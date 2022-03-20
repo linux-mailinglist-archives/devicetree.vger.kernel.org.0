@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 397A64E1D44
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 18:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5391A4E1D4A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 19:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245713AbiCTR5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 13:57:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34994 "EHLO
+        id S245753AbiCTSEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 14:04:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbiCTR5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 13:57:47 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5217A2DD49;
-        Sun, 20 Mar 2022 10:56:23 -0700 (PDT)
-Received: by mail-qk1-f177.google.com with SMTP id h196so10294978qke.12;
-        Sun, 20 Mar 2022 10:56:23 -0700 (PDT)
+        with ESMTP id S229713AbiCTSEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 14:04:47 -0400
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316723C713;
+        Sun, 20 Mar 2022 11:03:24 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id k125so10383741qkf.0;
+        Sun, 20 Mar 2022 11:03:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PlrhYK0n+/1TEhP4CYqWfa5XsyR6AYoCKIhvlTep8IQ=;
-        b=ksFyphtZDSkqH/lXaCKJLcBRkQ1BPyXesyaAmdP+VKuj5K9QTirXRuTtfUAJ1k7P3p
-         leMyfpFw6zjIPAKAfM9trGVNuko2hSeUGqmt2WL8kGUwbMbsd4rhXKzk3Hl7rQi249Us
-         Xqa/T7P0D5+Iftfb9hbw+s3i2ABLEiZ41DdinZ7V4XTiX9+uPoYPJr+Vdpv21eyVeJHe
-         AdNd79MoO5MVi4etuMKubiXvEXs20eJJZbZJLwN0SsfX2NWOWRMIw7qszqwT1rDjCFg+
-         Vw9C6YIY8Sm7oJfbTB+tDUWMlDQoG/YuXG1ZfuLNxe5IHwBIHyEGezvS1gGOQ3IcgHIJ
-         xr1A==
-X-Gm-Message-State: AOAM533f5QwGqJudFaxCZ4//47sK2X4SPPdfXhcSoT4UrGLrNJcXbxoI
-        omClho7JUKV4+5pdYUg9gw==
-X-Google-Smtp-Source: ABdhPJyMOSzhfb9Z4S+S6qTagxZd8GY8RYrfC2Te8jUzL4fQFSf1VvWKOCDovc/DZr81o+V2aSMYcA==
-X-Received: by 2002:ae9:f444:0:b0:67e:7985:8331 with SMTP id z4-20020ae9f444000000b0067e79858331mr3309202qkl.465.1647798982352;
-        Sun, 20 Mar 2022 10:56:22 -0700 (PDT)
+        bh=uFYTlV3ZvJ5BnTSe102STqzCL7q/7lu5pRd287m26OU=;
+        b=vbT2I5RSwJx0Cs2NZEPJ0+iHj/ynzZFBPrwv4902+RIjtywOnPU0hDtykAdkYr9nwe
+         xfmNm14/cMfyrGoo6RPXtCQIMcR9xC+0Xw3a/tjGuoswsBiMiTH47j5FORPA1uE8MnPT
+         Fu0i/XwgmZTviSlMud99M2yVQ4Tr0HHIst/meISrScA8czS+5rOKFHgZdBO3NCcRltu2
+         VSjFplJMQyqYNmWmC3PTy2mT8vCcZaEDe3fHaM1QqJIuzJZ1OGzqu2ZHjgkU0zvARpSp
+         spDkFBMlrkgleNfBueKng2fAGLBZaLyeFzohcYdyPXclUXM2Re+oKXxc6tBZqvvpZq+r
+         JWig==
+X-Gm-Message-State: AOAM533hAIbzpyCpvQoY8KTzJ1XBpQ2Wb32yJ2LsEihRlnX/Gki0DgMG
+        1Zdu/LbaVpLWQUn+KWs4Yg==
+X-Google-Smtp-Source: ABdhPJzdIBtEYUOictCAqbOBGdBoDlXAOfB8oyzDiVx1mSkD20ZXRm1ghfcgtIDuTNitJe9dBvE9aA==
+X-Received: by 2002:a05:620a:290f:b0:67b:3212:d529 with SMTP id m15-20020a05620a290f00b0067b3212d529mr10754269qkp.4.1647799403232;
+        Sun, 20 Mar 2022 11:03:23 -0700 (PDT)
 Received: from robh.at.kernel.org ([2607:fb90:c6d:21ec:c4f5:bb3:5269:3b0e])
-        by smtp.gmail.com with ESMTPSA id k1-20020ac85fc1000000b002e1c6420790sm10279552qta.40.2022.03.20.10.56.19
+        by smtp.gmail.com with ESMTPSA id w3-20020a05622a190300b002e1f084d84bsm8163270qtc.50.2022.03.20.11.03.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Mar 2022 10:56:21 -0700 (PDT)
-Received: (nullmailer pid 3117956 invoked by uid 1000);
-        Sun, 20 Mar 2022 17:56:18 -0000
-Date:   Sun, 20 Mar 2022 13:56:18 -0400
+        Sun, 20 Mar 2022 11:03:21 -0700 (PDT)
+Received: (nullmailer pid 3128961 invoked by uid 1000);
+        Sun, 20 Mar 2022 18:03:15 -0000
+Date:   Sun, 20 Mar 2022 14:03:15 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     michael.srba@seznam.cz, Lars-Peter Clausen <lars@metafoo.de>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
-Message-ID: <Yjdqwlp4NFpuj4vT@robh.at.kernel.org>
-References: <20220311161600.1469-1-michael.srba@seznam.cz>
- <20220311161600.1469-2-michael.srba@seznam.cz>
- <20220320151525.34db502c@jic23-huawei>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        David Rhodes <drhodes@opensource.cirrus.com>
+Subject: Re: [PATCH v4 15/16] ASoC: dt-bindings: cs35l41: Document CS35l41
+ External Boost
+Message-ID: <YjdsY9tcuDmvYYQk@robh.at.kernel.org>
+References: <20220317093120.168534-1-tanureal@opensource.cirrus.com>
+ <20220317093120.168534-16-tanureal@opensource.cirrus.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220320151525.34db502c@jic23-huawei>
+In-Reply-To: <20220317093120.168534-16-tanureal@opensource.cirrus.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,35 +68,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 20, 2022 at 03:15:25PM +0000, Jonathan Cameron wrote:
-> On Fri, 11 Mar 2022 17:15:59 +0100
-> michael.srba@seznam.cz wrote:
+On Thu, Mar 17, 2022 at 09:31:19AM +0000, Lucas Tanure wrote:
+> From: David Rhodes <drhodes@opensource.cirrus.com>
 > 
-> > From: Michael Srba <Michael.Srba@seznam.cz>
-> > 
-> > ICM-20608-D differs from the other ICM-20608 variants by having
-> > a DMP (Digital Motion Processor) core tacked on.
-> > Despite having a different WHOAMI register, this variant is
-> > completely interchangeable with the other ICM-20608 variants
-> > by simply pretending the DMP core doesn't exist.
-> > 
-> > Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> > ---
-> > changelog:
-> >  - v2: require specifying "invensense,icm20608" as a fallback compatible
+> Document internal and external boost feature for ASoC CS35L41.
+> For internal boost the following properties are required:
+> - cirrus,boost-peak-milliamp
+> - cirrus,boost-ind-nanohenry
+> - cirrus,boost-cap-microfarad
 > 
-> Apologies that I joined the thread for v1 late, but no. That doesn't work.
-> If the older driver before the new ID is present with this binding
-> it won't probe because of the WHOAMI value difference so it's not
-> compatible.
+> For external boost, the GPIO1 must be configured as output,
+> so the following properties are required:
+> - cirrus,gpio1-src-select = <1>
+> - cirrus,gpio1-output-enable
 > 
-> I'm fine with the v1 version.
+> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
+> ---
+>  .../bindings/sound/cirrus,cs35l41.yaml        | 44 +++++++++++++++++--
+>  1 file changed, 41 insertions(+), 3 deletions(-)
 
-If the driver didn't check WHOAMI then it would be compatible. So does 
-driver implementation determine what's compatible or not? It shouldn't 
-as those are supposed to be decoupled.
+With the indentation fixed,
 
-Generally, if there are h/w id registers, then we'll rely on them and 
-don't need a compatible for every variant.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
