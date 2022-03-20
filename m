@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA4D4E1C2C
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 16:08:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A74F4E1C43
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 16:27:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245325AbiCTPJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 11:09:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
+        id S238221AbiCTP2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 11:28:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245329AbiCTPJ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 11:09:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A3613FAE;
-        Sun, 20 Mar 2022 08:08:03 -0700 (PDT)
+        with ESMTP id S235395AbiCTP2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 11:28:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BBF6A9960;
+        Sun, 20 Mar 2022 08:27:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 41266B80E73;
-        Sun, 20 Mar 2022 15:08:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9904C340E9;
-        Sun, 20 Mar 2022 15:07:58 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CE0C5B80DC3;
+        Sun, 20 Mar 2022 15:27:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5052C340EE;
+        Sun, 20 Mar 2022 15:27:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647788880;
-        bh=q/k6omWUC4vFENIVP+s1xcuF82EKnFzFSW43LrnV6jA=;
+        s=k20201202; t=1647790026;
+        bh=5H1gxkakWBmBtJqH2SJyAEEPgBoD0f9vFvJORCGszAA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oPpzN8CLCoCjpHoDSJ8h9NHirYDCICT/2i7+sluwMyy3Y7BG+lC/63o9ZUdyEp5L5
-         OUC+HkUevCEmwiVcP5VAXIHK1eFiBLvsq0s01fOdwPg5b1KaH+9Q5dN1hn7EuLw4V9
-         lmhUEuU1oSFUwv+2hdVbAVnREeK946PXCxQsEsNaAiBUNaXgfeuT1UoMdKs9yHewNL
-         syQpuj3qtNDByrl8tLO0ZNvZRy7iDCNwySatkLL5jaRObqk+lm3ENxEhAsOoQi89R7
-         o6Mp/oPvwo21Hf53gb4LY3oFSH6QW7riQyjd6rdc9fz7Mx2wZNNEZe5BDyivjb0S3G
-         +lA0bbnP+77CA==
-Date:   Sun, 20 Mar 2022 15:15:25 +0000
+        b=unMG510N2lpk2tVs+CdlTgRSe80ah6BK4gp6wX+/j4H+OaP4M0KCWD8vOTDDBQGMN
+         8xcO+lnorn7tZjyECMZs70kwtR0OELxIbQoYT3YWSJXHCcnrPALe6TUT4fq/aRMjyJ
+         vm3D3ob+QiqSr5P7en6k7PNb8ZMqaJEktPUjnT+CiUadS1jpTeLMa/uylHak/NBhmF
+         EjgTekVLi4ZwUCyLsu9lrj2bhr9ewSbJ+tNU7CTQ0dXEDHHE4gIz905PkqcS1KIWMV
+         kzb6kd/6cFbnfRBXNEDMojLA8mlyypCuWcRt+G7LfXkXzucvMc0bywryZQbYCmGQP/
+         3Pq/EpZt/cMdg==
+Date:   Sun, 20 Mar 2022 15:34:28 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     michael.srba@seznam.cz
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     "Sicelo A. Mhlongo" <absicsz@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
-Message-ID: <20220320151525.34db502c@jic23-huawei>
-In-Reply-To: <20220311161600.1469-2-michael.srba@seznam.cz>
-References: <20220311161600.1469-1-michael.srba@seznam.cz>
-        <20220311161600.1469-2-michael.srba@seznam.cz>
+        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        maemo-leste@lists.dyne.org
+Subject: Re: [PATCH v3 0/3] Support LIS302DL in st_accel
+Message-ID: <20220320153428.0e1a8695@jic23-huawei>
+In-Reply-To: <YiYPiStW3ELlfEUr@smile.fi.intel.com>
+References: <20220307132502.73854-1-absicsz@gmail.com>
+        <YiYPiStW3ELlfEUr@smile.fi.intel.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -59,76 +60,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Mar 2022 17:15:59 +0100
-michael.srba@seznam.cz wrote:
+On Mon, 7 Mar 2022 15:58:33 +0200
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-> From: Michael Srba <Michael.Srba@seznam.cz>
+> On Mon, Mar 07, 2022 at 03:24:59PM +0200, Sicelo A. Mhlongo wrote:
+> > Hi,
+> > 
+> > The ST Microelectronics LIS302DL is currently only supported in the
+> > evdev framework driver in drivers/misc/lis3lv02d. This series enables
+> > support for it in the iio framework.  
 > 
-> ICM-20608-D differs from the other ICM-20608 variants by having
-> a DMP (Digital Motion Processor) core tacked on.
-> Despite having a different WHOAMI register, this variant is
-> completely interchangeable with the other ICM-20608 variants
-> by simply pretending the DMP core doesn't exist.
+> The entire series is fine to me
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+This crossed with another series adding the sc7a20 so I hand tweaked
+it whilst applying.
+
+Applied to the togreg branch of iio.git but I'll be rebasing that on
+rc1 once available so in meantime just pushed out as testing.
+
+Thanks,
+
+Jonathan
+
 > 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> ---
-> changelog:
->  - v2: require specifying "invensense,icm20608" as a fallback compatible
-
-Apologies that I joined the thread for v1 late, but no. That doesn't work.
-If the older driver before the new ID is present with this binding
-it won't probe because of the WHOAMI value difference so it's not
-compatible.
-
-I'm fine with the v1 version.
-
-> ---
->  .../bindings/iio/imu/invensense,mpu6050.yaml  | 34 +++++++++++--------
->  1 file changed, 19 insertions(+), 15 deletions(-)
+> > Regards,
+> > Sicelo
+> > 
+> > 
+> > 
+> > Sicelo A. Mhlongo (3):
+> >   dt-bindings: iio: st,st-sensors add LIS302DL
+> >   iio: accel: Remove unused enum in st_accel
+> >   iio: accel: add support for LIS302DL variant
+> > 
+> >  .../bindings/iio/st,st-sensors.yaml           |  1 +
+> >  drivers/iio/accel/st_accel.h                  | 26 +------------------
+> >  drivers/iio/accel/st_accel_core.c             |  1 +
+> >  drivers/iio/accel/st_accel_i2c.c              |  5 ++++
+> >  drivers/iio/accel/st_accel_spi.c              |  5 ++++
+> >  5 files changed, 13 insertions(+), 25 deletions(-)
+> > 
+> > -- 
+> > 2.35.1
+> >   
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-> index d69595a524c1..dbd214e7baba 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-> @@ -14,21 +14,25 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - invensense,iam20680
-> -      - invensense,icm20608
-> -      - invensense,icm20609
-> -      - invensense,icm20689
-> -      - invensense,icm20602
-> -      - invensense,icm20690
-> -      - invensense,mpu6000
-> -      - invensense,mpu6050
-> -      - invensense,mpu6500
-> -      - invensense,mpu6515
-> -      - invensense,mpu6880
-> -      - invensense,mpu9150
-> -      - invensense,mpu9250
-> -      - invensense,mpu9255
-> +    oneOf:
-> +      - enum:
-> +        - invensense,iam20680
-> +        - invensense,icm20608
-> +        - invensense,icm20609
-> +        - invensense,icm20689
-> +        - invensense,icm20602
-> +        - invensense,icm20690
-> +        - invensense,mpu6000
-> +        - invensense,mpu6050
-> +        - invensense,mpu6500
-> +        - invensense,mpu6515
-> +        - invensense,mpu6880
-> +        - invensense,mpu9150
-> +        - invensense,mpu9250
-> +        - invensense,mpu9255
-> +      - items:
-> +        - const: invensense,icm20608d
-> +        - const: invensense,icm20608
->  
->    reg:
->      maxItems: 1
 
