@@ -2,86 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB3C4E1AC2
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 09:21:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B32F4E1AE1
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 10:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242815AbiCTIWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 04:22:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35520 "EHLO
+        id S243233AbiCTJf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 05:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240333AbiCTIWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 04:22:23 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3764BFDA;
-        Sun, 20 Mar 2022 01:21:00 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id q14so3034534ljc.12;
-        Sun, 20 Mar 2022 01:21:00 -0700 (PDT)
+        with ESMTP id S241129AbiCTJf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 05:35:59 -0400
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31BA985AC;
+        Sun, 20 Mar 2022 02:34:35 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id a127so4713421vsa.3;
+        Sun, 20 Mar 2022 02:34:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=H5jqTsReHjJpHbnZQQczWjSuTqgW0vC/dZTYtBAjSnc=;
-        b=EPr3LbdzLYezPN2YQME62GNvv4acBq0u420N6LQEEBYBigFexkTSTeivHD2BFSoRKA
-         TBDYmIfSod8wh4bWAUOo7bxtCzbU5aRVZFpY4vI/6LK09LNyCXVxxzFDYRzqQ0KTjb4T
-         ZTgZbAex8YYSFEEbw3r0czvOmIdCcu4Wj5WH5zlMcDeYcpiZBiZu0oipMx7bsft7O46Z
-         fClGWrXcsyovrAHcRkHXrscHGTXt+kOzO73KeuxufoWt+GoGnOp4mwdlMMz0JwZuokc0
-         QYKg+tSYAzdoTQyF20bNaaDtlztEUkM95tG5tSkeR60z/yi7PxuNIVdBShLA6zd+gjSz
-         PPLQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=k96JhXl3WCD4rA/nH5gA5Te+rz3QsUmRsaPBqcMVBro=;
+        b=L5nbzkpvlCIIjhR5U72pm4Gf81AS26MXKr4gBtTeHv72wOkdrrqBi7uM58y4kWqE2L
+         NaQTufKL8JYCwSb4AeDQ4RqSyNuuX2v/qfnVwIUi0KYhT+p0hdNzxYi/m4J+Xh83hhLz
+         AY4oyZGSXslc4Xz2AkcKYSm/ovuDMGELJSCRXC4hU+Lwuk7QrBJfaWkF90Rfar98xHP8
+         ZI7tD0cG+tmRHQuvhxHZxxWjx4/XrWJ1LHWRurhPjIkbOriLkGgjbfIArw6cP9IMLLEp
+         00RTqk0BzNTdgi346D6z5BybWhzbapieP6zbFuXLJ4soZsSE9yOaCSPCaFK83VUn568C
+         BZYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=H5jqTsReHjJpHbnZQQczWjSuTqgW0vC/dZTYtBAjSnc=;
-        b=ULxkanb4t5cwWSUFtaZQGLWH+6cCoWq9ded4+j0FTg/E+4QzgzT7L6HZIN4HLzEde2
-         4SouQk3U+GzsOu7d850Ta6rns8WT8HA9l6aOX2bz4kfmtFJ2Mrblqw0kYVWQVJRfdDKF
-         gv6sK5AKcbxrPwIsnXpO9wCG7cGjRlYbwdwFeMhgYipNX6sWmP8hjsH+ZzpdR18W+moS
-         T6T5m/VV78mRpQIlKM1TusCOFa9HzQrcs82xbkAhMet9bltwma2reAHWQKPr5bNJmwQg
-         IwB+BJjxTnG3xEJfbyJ99zKP82Q5sJDHrdYRrhMpoPZDvVynODoRwj9uLKziWCh/0ogt
-         ioeg==
-X-Gm-Message-State: AOAM5309ldlJU2xGAJlSvZbsIonNy0HKhQCFaIhW6uVtrZuzXtc8g2kG
-        0nOPQ8vE5WjljgPVijYYsUm9RcwEv/xdEQ==
-X-Google-Smtp-Source: ABdhPJyw/MvUqES6wCAvnMJzwx5rx3Rs/R3I4PaI3L3m2x9GWui8eCx2CTqr1K2n1TEwNhy4wu/DYw==
-X-Received: by 2002:a2e:2a45:0:b0:246:430d:805 with SMTP id q66-20020a2e2a45000000b00246430d0805mr11487117ljq.439.1647764457911;
-        Sun, 20 Mar 2022 01:20:57 -0700 (PDT)
-Received: from [192.168.1.103] ([178.176.78.200])
-        by smtp.gmail.com with ESMTPSA id v29-20020ac25b1d000000b00448ac0a2d88sm1501433lfn.47.2022.03.20.01.20.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Mar 2022 01:20:57 -0700 (PDT)
-Subject: Re: [PATCH v2 7/8] ARM: dts: lan9662-pcb8291: fix pinctrl node name
-To:     Michael Walle <michael@walle.cc>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Quentin Schulz <quentin.schulz@bootlin.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
-References: <20220318202547.1650687-1-michael@walle.cc>
- <20220318202547.1650687-8-michael@walle.cc>
- <cf2a6d1a-bf98-e382-2623-e44e5979ca29@gmail.com>
- <e7467fe3a8dae5f5af84d595a0c4ab16@walle.cc>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <0e791aa5-4ff1-8348-04fb-508a53246de1@gmail.com>
-Date:   Sun, 20 Mar 2022 11:20:55 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:content-transfer-encoding;
+        bh=k96JhXl3WCD4rA/nH5gA5Te+rz3QsUmRsaPBqcMVBro=;
+        b=WFXpUwqDRo3DCsMBqsBAFBa+BcXaLBPDNX3lVNmrX+iZ4osOi2wVOXZPEW/kjt6phz
+         glo82aDVqJbbzF+NZBHMt2sKHvSoXYCkUuL6h8AXaDNhPlMyWuXQLBCIO75ScIg7id6G
+         Ls4Xv2lddrU/eoh2xKDGc9kuTd3qXyFraOju9mJNQB5NcFwH+n7x9Ly0IrjVpEx9NMdl
+         b09smpgPtvjs0+zpKOOpCQa8vAYd6J/jjt2okLODM+nuWiv/1om771VC8iaELEYHQx1A
+         SzCKbexFSbSxeqGfMXKoNh8J+hMPpBtgoMtC89II5tWnKKVqe9aZTrokPFBqdOxMGwx2
+         bdfg==
+X-Gm-Message-State: AOAM53335ECwzJSAs9M/TqXpREKnmGovgSlnAUgaiJASIHuCI80D/ysR
+        Lcy4h0mfCQKDdXsh98siw9HsBi0dLbm47yS9sA==
+X-Google-Smtp-Source: ABdhPJxz/+otTMk11U8KJ5mGaJRfVbBxkf9afGF7WtFFI5Z9nzL4Z6guq/Xh6KBFSKcN/wtr1W2v2eCd6vYHLnmNABY=
+X-Received: by 2002:a67:f353:0:b0:324:fc5f:5261 with SMTP id
+ p19-20020a67f353000000b00324fc5f5261mr1031275vsm.47.1647768874683; Sun, 20
+ Mar 2022 02:34:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <e7467fe3a8dae5f5af84d595a0c4ab16@walle.cc>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20220303083141.8742-1-warp5tw@gmail.com> <20220303083141.8742-2-warp5tw@gmail.com>
+ <YjTrgia/VX6rBT1r@shikoro>
+In-Reply-To: <YjTrgia/VX6rBT1r@shikoro>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Sun, 20 Mar 2022 17:34:24 +0800
+Message-ID: <CACD3sJarf9jBny8ru0YihehT4C6k1pqw9Ln+5a+Rs6_F_o6=AQ@mail.gmail.com>
+Subject: Re: [PATCH v3 01/11] arm: dts: add new property for NPCM i2c module
+To:     Wolfram Sang <wsa@kernel.org>, Tyrone Ting <warp5tw@gmail.com>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
+        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
+        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
+        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
+        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
+        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
+        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,41 +76,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/19/22 2:38 PM, Michael Walle wrote:
+Hi Wolfram:
 
-[...]
->>> The pinctrl device tree binding will be converted to YAML format. All
->>> the pin nodes should end with "-pins". Fix them.
->>
->>    It does end with "pins" already, right?
-> 
-> It ends with "_pins". Please note the underscore.
+Thank you for your reminder and suggestion.
 
-   Ah!
+There are still some discussions for the patch V4 and it might take
+some time though.
 
->>> Fixes: 290deaa10c50 ("ARM: dts: add DT for lan966 SoC and 2-port board pcb8291")
->>> Signed-off-by: Michael Walle <michael@walle.cc>
->>> ---
->>>  arch/arm/boot/dts/lan966x-pcb8291.dts | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
->>> index 3281af90ac6d..3c7e3a7d6f14 100644
->>> --- a/arch/arm/boot/dts/lan966x-pcb8291.dts
->>> +++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
->>> @@ -35,7 +35,7 @@ fc3_b_pins: fcb3-spi-pins {
->>>          function = "fc3_b";
->>>      };
->>>
->>> -    can0_b_pins:  can0_b_pins {
->>> +    can0_b_pins:  can0-b-pins {
->>
->>    Mhm, I can't even see what is changed here... :-/
-> 
-> The name of the node, s/_/-/
+Yes, the dts patch could be submitted via arm-soc.
 
-   Indeed! I must have been blind then, sorry. :-)
+I really appreciate your comments.
 
-> -michael
+Wolfram Sang <wsa@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8819=E6=97=A5 =
+=E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=884:29=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Thu, Mar 03, 2022 at 04:31:31PM +0800, Tyrone Ting wrote:
+> > From: Tyrone Ting <kfting@nuvoton.com>
+> >
+> > Add nuvoton,sys-mgr property for controlling NPCM gcr register.
+> >
+> > Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
+> > Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+>
+> There are some comments about this series, so I am expecting a v4
+> somewhen. However, I already want to state that I usually don't take DTS
+> patches. So, I guess the path forward is that Rob needs to ack the patch
+> which is now patch 2. Once he does this and I apply it, you can take this
+> DTS patch via arm-soc. Sounds good?
+>
 
-MBR, Sergey
+Regards,
+Tyrone
