@@ -2,125 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81FC34E1AEB
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 10:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D7814E1B24
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 11:54:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243440AbiCTJnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 05:43:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43170 "EHLO
+        id S238056AbiCTK4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 06:56:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239506AbiCTJng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 05:43:36 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F7749F84;
-        Sun, 20 Mar 2022 02:42:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A5762B80DB3;
-        Sun, 20 Mar 2022 09:42:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA43C340E9;
-        Sun, 20 Mar 2022 09:42:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647769331;
-        bh=m+CrXHcs1IMz031io+qrVwSLHQcIkDc2WgYRBJMoU5I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SJCZbu5FTyVw0taTsBz0vOAiE+XN0VdhH5f9jqSD6hhSETTg2crd9GcDC3tMqcq9O
-         crMsDdveov+dpqa5KsNJLxCkdzYtdp7u/knUnkWSQB5/SH5br4ZXr6A8qXBPIzV+tO
-         KWUXxmCuYOH1l1sRamcEmt9hNAeKvyKJxwDVxNN6NsUuJA0L8eBaJbsn7La85DMoyO
-         0Db5sSXyhbZImY+adn7DqnDhUscYF7vfYJpaJHXaM5juFox+JK+HtfpxPNJnv0x6HD
-         Z4VxOnPUYP3u3qSTQjlmiMBVwAk8ELMWyGsHzaTSSLDQx4PDHN9T2t17D9qLCdUYr4
-         2HSZAlJoKtZGw==
-Date:   Sun, 20 Mar 2022 10:42:05 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Tyrone Ting <warp5tw@gmail.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
-        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
-        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
-        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
-        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
-        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
-        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 01/11] arm: dts: add new property for NPCM i2c module
-Message-ID: <Yjb27Qbl8VRFZTkm@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, yangyicong@hisilicon.com,
-        semen.protsenko@linaro.org, jie.deng@intel.com, sven@svenpeter.dev,
-        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
-        olof@lixom.net, andriy.shevchenko@linux.intel.com,
-        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220303083141.8742-1-warp5tw@gmail.com>
- <20220303083141.8742-2-warp5tw@gmail.com>
- <YjTrgia/VX6rBT1r@shikoro>
- <CACD3sJarf9jBny8ru0YihehT4C6k1pqw9Ln+5a+Rs6_F_o6=AQ@mail.gmail.com>
+        with ESMTP id S231442AbiCTK4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 06:56:07 -0400
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90EA6419A4;
+        Sun, 20 Mar 2022 03:54:44 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id g20so14952437edw.6;
+        Sun, 20 Mar 2022 03:54:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DoyDLcneBed/lxmrHnHYG/MOmh/NiMvZkZDcOvMscXc=;
+        b=gnc4bfrWBvpS5qFmT3uS9pkqTMi2Zfk8OKf57gAXSV1hCffjRbdLVUSmA8YYRJ5TFC
+         hmLFkJ90gqboXdQVxFc92lq7ppIW5XmCk8z0UAwTSDZGawSTepUcDh8VQMu+0P/Qc44j
+         OPx53De17oeq32H8MBOCanaQcR3pen8UjO7EL2EaKPZpWMv6hvsKe9CsAM8Tl1TrQVs8
+         AdrxhZQQsspTtZZMsHadDNZ2rRjaLAbAW1Wa8q8ln8cRqVAVQaWswIOEQkekoXDhZE48
+         VI9co/iasNr2cIVOxihGNV/Ob2F8A8whqUpZay4bKQaKzA5pqqbXPIk/z2E07dveantR
+         8Qhg==
+X-Gm-Message-State: AOAM531xJhR2rvJZw/kDiB2pcCeyMbqTA3TblttbqnlyKLWi3DDzZna7
+        qbR761jJLuntBrs7sSTqD3Q=
+X-Google-Smtp-Source: ABdhPJxRIf8p/xeRo0ISGGexM1bBEv6iPxznNuiPCRws8lrVQk+QCr+5/1RPN3EyO6HOz5GsSH1T7Q==
+X-Received: by 2002:a50:e081:0:b0:401:8823:c9a8 with SMTP id f1-20020a50e081000000b004018823c9a8mr18092848edl.401.1647773681899;
+        Sun, 20 Mar 2022 03:54:41 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id z22-20020a17090655d600b006d229436793sm5699993ejp.223.2022.03.20.03.54.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Mar 2022 03:54:41 -0700 (PDT)
+Message-ID: <89f9b797-e4b8-139a-d9e6-ebe71779b943@kernel.org>
+Date:   Sun, 20 Mar 2022 11:54:39 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zy3zYHWxJ9cmIO3t"
-Content-Disposition: inline
-In-Reply-To: <CACD3sJarf9jBny8ru0YihehT4C6k1pqw9Ln+5a+Rs6_F_o6=AQ@mail.gmail.com>
-X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 6/6] dt-bindings: pinctrl: convert ocelot-pinctrl to
+ YAML format
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20220319204628.1759635-1-michael@walle.cc>
+ <20220319204628.1759635-7-michael@walle.cc>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220319204628.1759635-7-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/03/2022 21:46, Michael Walle wrote:
+> Convert the ocelot-pinctrl device tree binding to the new YAML format.
+> 
+> Additionally to the original binding documentation, add interrupt
+> properties which are optional and already used on several SoCs like
+> SparX-5, Luton, Ocelot and LAN966x but were not documented before.
+> 
+> Also, on the sparx5 and the lan966x SoCs there are two items for the
+> reg property.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |  42 -------
+>  .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 108 ++++++++++++++++++
+>  2 files changed, 108 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+> deleted file mode 100644
+> index 5d84fd299ccf..000000000000
+> --- a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Microsemi Ocelot pin controller Device Tree Bindings
+> -----------------------------------------------------
+> -
+> -Required properties:
+> - - compatible		: Should be "mscc,ocelot-pinctrl",
+> -			  "mscc,jaguar2-pinctrl", "microchip,sparx5-pinctrl",
+> -			  "mscc,luton-pinctrl", "mscc,serval-pinctrl",
+> -			  "microchip,lan966x-pinctrl" or "mscc,servalt-pinctrl"
+> - - reg			: Address and length of the register set for the device
+> - - gpio-controller	: Indicates this device is a GPIO controller
+> - - #gpio-cells		: Must be 2.
+> -			  The first cell is the pin number and the
+> -			  second cell specifies GPIO flags, as defined in
+> -			  <dt-bindings/gpio/gpio.h>.
+> - - gpio-ranges		: Range of pins managed by the GPIO controller.
+> -
+> -
+> -The ocelot-pinctrl driver uses the generic pin multiplexing and generic pin
+> -configuration documented in pinctrl-bindings.txt.
+> -
+> -The following generic properties are supported:
+> - - function
+> - - pins
+> -
+> -Example:
+> -	gpio: pinctrl@71070034 {
+> -		compatible = "mscc,ocelot-pinctrl";
+> -		reg = <0x71070034 0x28>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		gpio-ranges = <&gpio 0 0 22>;
+> -
+> -		uart_pins: uart-pins {
+> -				pins = "GPIO_6", "GPIO_7";
+> -				function = "uart";
+> -		};
+> -
+> -		uart2_pins: uart2-pins {
+> -				pins = "GPIO_12", "GPIO_13";
+> -				function = "uart2";
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..7149a6655623
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+> @@ -0,0 +1,108 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/mscc,ocelot-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microsemi Ocelot pin controller
+> +
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Lars Povlsen <lars.povlsen@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,lan966x-pinctrl
+> +      - microchip,sparx5-pinctrl
+> +      - mscc,jaguar2-pinctrl
+> +      - mscc,luton-pinctrl
+> +      - mscc,ocelot-pinctrl
+> +      - mscc,serval-pinctrl
+> +      - mscc,servalt-pinctrl
+> +
+> +  reg:
+> +    items:
+> +      - description: Base address
+> +      - description: Extended pin configuration registers
+> +    minItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  gpio-ranges: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
 
---zy3zYHWxJ9cmIO3t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Tyrone,
-
-> There are still some discussions for the patch V4 and it might take
-> some time though.
-
-Take your time, I am not in a hurry. Just wanted to outline the best
-process so it will be easier to apply the new version.
-
-> Yes, the dts patch could be submitted via arm-soc.
-
-Great.
-
-> I really appreciate your comments.
-
-Thank you and happy hacking,
-
-   Wolfram
+Thanks for the changes in other files, but I think you did not respond
+to my comments here. Can you address them?
 
 
---zy3zYHWxJ9cmIO3t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmI29u0ACgkQFA3kzBSg
-KbYWaQ/+OmWLzRVx0uITX7+yRTH8JlxcvGXr/kxT3kHYYKURJbJQLUDXrLgAasbq
-Yaf+7x9LECjsNF2zpr6ndF/pxvClrDmVdH7MMjjXrpMVgcFFQiJFufMkDDURtT+w
-ed7maEfDwwk1gjnrgZfmIKONhnrw0PwOxu+W+5N+gT7cX/i6/cmm4k9OMV18VJLs
-hMhz/DXuYFwqj/NKrDbQSqeRp9hPmNWXMWHWBaJARZOL6rB7/uLwM2JvJOJl/1gS
-X5upnQGJIBQs9LQ8TKFZqBHLb6HUBi4YE/EKGfVsAmJh48TdaIe4ava7X1ec41wc
-MBKW64Q5Hqmh85pSZLwTqkbhS/4xFIDUClPuV3ED8RzOdVWD9EMc3ubXrxYppEU1
-dTsp76kgMJjVoa17zizzMx2dvvceuonI0QPZvltb/qoWWeGrPt6HS5Lr+GzMtQ+e
-6tuIcmCxQnbIPVNvsXAO+ISzw4g07AEJTHD7azy3PMVRoo6YBajHiwWbRC9Q6+Iw
-H1BYlsOIvrVrYyydfN1gnxycbnwGDVu3ZVy+CCwIAeU4QLzHW+HobLHQg+U76wOr
-sz/KN/t+7XzP3bHUiLI9DjBP/PLxs5A2fJqNMZi8MiOH6WGAFPOJ+cP4GRN5F4Hk
-1xyPmSk+WQHr33vieTjYoG3hIAuMvJQPvbyyVAsl8rT0o/3/Ic4=
-=7k8X
------END PGP SIGNATURE-----
-
---zy3zYHWxJ9cmIO3t--
+Best regards,
+Krzysztof
