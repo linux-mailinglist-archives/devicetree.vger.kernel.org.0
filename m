@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5391A4E1D4A
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 19:03:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F214E1D56
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 19:15:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245753AbiCTSEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 14:04:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33578 "EHLO
+        id S1343494AbiCTSQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 14:16:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbiCTSEr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 14:04:47 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316723C713;
-        Sun, 20 Mar 2022 11:03:24 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id k125so10383741qkf.0;
-        Sun, 20 Mar 2022 11:03:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uFYTlV3ZvJ5BnTSe102STqzCL7q/7lu5pRd287m26OU=;
-        b=vbT2I5RSwJx0Cs2NZEPJ0+iHj/ynzZFBPrwv4902+RIjtywOnPU0hDtykAdkYr9nwe
-         xfmNm14/cMfyrGoo6RPXtCQIMcR9xC+0Xw3a/tjGuoswsBiMiTH47j5FORPA1uE8MnPT
-         Fu0i/XwgmZTviSlMud99M2yVQ4Tr0HHIst/meISrScA8czS+5rOKFHgZdBO3NCcRltu2
-         VSjFplJMQyqYNmWmC3PTy2mT8vCcZaEDe3fHaM1QqJIuzJZ1OGzqu2ZHjgkU0zvARpSp
-         spDkFBMlrkgleNfBueKng2fAGLBZaLyeFzohcYdyPXclUXM2Re+oKXxc6tBZqvvpZq+r
-         JWig==
-X-Gm-Message-State: AOAM533hAIbzpyCpvQoY8KTzJ1XBpQ2Wb32yJ2LsEihRlnX/Gki0DgMG
-        1Zdu/LbaVpLWQUn+KWs4Yg==
-X-Google-Smtp-Source: ABdhPJzdIBtEYUOictCAqbOBGdBoDlXAOfB8oyzDiVx1mSkD20ZXRm1ghfcgtIDuTNitJe9dBvE9aA==
-X-Received: by 2002:a05:620a:290f:b0:67b:3212:d529 with SMTP id m15-20020a05620a290f00b0067b3212d529mr10754269qkp.4.1647799403232;
-        Sun, 20 Mar 2022 11:03:23 -0700 (PDT)
-Received: from robh.at.kernel.org ([2607:fb90:c6d:21ec:c4f5:bb3:5269:3b0e])
-        by smtp.gmail.com with ESMTPSA id w3-20020a05622a190300b002e1f084d84bsm8163270qtc.50.2022.03.20.11.03.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Mar 2022 11:03:21 -0700 (PDT)
-Received: (nullmailer pid 3128961 invoked by uid 1000);
-        Sun, 20 Mar 2022 18:03:15 -0000
-Date:   Sun, 20 Mar 2022 14:03:15 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     Lucas Tanure <tanureal@opensource.cirrus.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        David Rhodes <drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH v4 15/16] ASoC: dt-bindings: cs35l41: Document CS35l41
- External Boost
-Message-ID: <YjdsY9tcuDmvYYQk@robh.at.kernel.org>
-References: <20220317093120.168534-1-tanureal@opensource.cirrus.com>
- <20220317093120.168534-16-tanureal@opensource.cirrus.com>
+        with ESMTP id S229713AbiCTSQT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 14:16:19 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD766527EC;
+        Sun, 20 Mar 2022 11:14:55 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8312983960;
+        Sun, 20 Mar 2022 19:14:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1647800094;
+        bh=G4COxeg0A4f/wUZ1lR4Tm4OAuUi9rJEM3Pr2WJAXfTA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=y8O7C24ulbtz4Caf3yQarcftZaDBCsS0YBi/SwtRlKkbq053Qg5WqvkdHnucWtKnP
+         koZPOTrQutaFyNzEj8mPEHPZfHoWPv2UqO2pvXxzo08rrQVeT1CTt9SHeY0h2/Lxe9
+         NSo+6xpDy/4krELQ1QccfvpVjTFHBBfTv00mk54jH3G+U1dTTdHZgNHcEtrz2FqJll
+         mTus65qD1hTpTOUbl9JAN8kiCPE+MAAbXlb48vtw/poQy4QnWniexAcjp/9i9BG3Nv
+         /OdSlUDZIFrMqvPuHTU+qr6xyHx2nS5ZCkoA1VBkQ87KYb2UuOzupJQPCRmz47aZpC
+         ZNz4X8+wxdxAg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-iio@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 01/10] dt-bindings: iio: adc: ti,ads1015: Add missing ADS1115 compatible string
+Date:   Sun, 20 Mar 2022 19:14:19 +0100
+Message-Id: <20220320181428.168109-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220317093120.168534-16-tanureal@opensource.cirrus.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 17, 2022 at 09:31:19AM +0000, Lucas Tanure wrote:
-> From: David Rhodes <drhodes@opensource.cirrus.com>
-> 
-> Document internal and external boost feature for ASoC CS35L41.
-> For internal boost the following properties are required:
-> - cirrus,boost-peak-milliamp
-> - cirrus,boost-ind-nanohenry
-> - cirrus,boost-cap-microfarad
-> 
-> For external boost, the GPIO1 must be configured as output,
-> so the following properties are required:
-> - cirrus,gpio1-src-select = <1>
-> - cirrus,gpio1-output-enable
-> 
-> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
-> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
-> ---
->  .../bindings/sound/cirrus,cs35l41.yaml        | 44 +++++++++++++++++--
->  1 file changed, 41 insertions(+), 3 deletions(-)
+Add missing ti,ads1115 compatible string. This compatible string is
+supported by the Linux kernel driver and the ads1015 is a 12bit ADC
+while ads1115 is 16bit ADC. Add the missing compatible string.
 
-With the indentation fixed,
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+---
+V2: Add AB from Krzysztof
+V3: No change
+---
+ Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+index 2c2d01bbc296d..c31c80989cc9a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/adc/ti,ads1015.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: TI ADS1015 4 channel I2C analog to digital converter
++title: TI ADS1015/ADS1115 4 channel I2C analog to digital converter
+ 
+ maintainers:
+   - Daniel Baluta <daniel.baluta@nxp.com>
+@@ -15,7 +15,9 @@ description: |
+ 
+ properties:
+   compatible:
+-    const: ti,ads1015
++    enum:
++      - ti,ads1015
++      - ti,ads1115
+ 
+   reg:
+     maxItems: 1
+-- 
+2.35.1
 
