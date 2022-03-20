@@ -2,211 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E3C44E1CCD
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 17:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B00E4E1C26
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 16:05:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245584AbiCTQaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 12:30:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41952 "EHLO
+        id S245311AbiCTPG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 11:06:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245585AbiCTQaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 12:30:03 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4B0134656;
-        Sun, 20 Mar 2022 09:28:32 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id bg31-20020a05600c3c9f00b00381590dbb33so7222886wmb.3;
-        Sun, 20 Mar 2022 09:28:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=bUbi/jkzYIKSOu8T7OV/skgoIWQk4BHawXnXdm1xB5I=;
-        b=QBfsjPV1XhoP5TR9nsbodr4/tWA62M6TCQ+D/v4Rrlnr0Opm3EEHHihqX0tPW+Jfqm
-         OQs6vgTDFJcfW0rEm9mDlhIkg1MMLfwW9WjuwoUSLi4pGhYBdaWXOzMTAsoZ+aTKg3zZ
-         kpQKsf01ab1ZKflLaRWZEgC8sAPL4V4YHziilfXjgo/wkzqUqGy1QJHvMMMwrRXJ6vj5
-         MbWwBLmaqX5PLtdjzafeVHC07m2GBxQ/Ahl+1v7rOzufYaGxk7EArv+r/XsoDtKEoEIh
-         x2GnJ6zvHJuqXIXWNt135+62fZT/11VboelJWlqmPt6ndE6HD02HnsWX/wq3GAdu85Gn
-         JFGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bUbi/jkzYIKSOu8T7OV/skgoIWQk4BHawXnXdm1xB5I=;
-        b=ZZXxs/nCM8pCByfwOc+Dp2a18PLc1yZZVq1kKrWkg+mboiCwjTYPrnGOhEeW1ikdEx
-         bm6qItVZ/QCa6XNuo3RqGjqKR/azKIInXhX2KXQ948FAnUnuTLnhbiTsEmCBk+SD8A7g
-         FNf0BRQ/rIsH0LK9pU1msQMmBHWpKBjOEFVx3/xGY4BhHThVoOM7Mv4bjpn9T8zFN0Qb
-         LABDvJ1YMGEqZ1IJrFISSUtjja9onL80WPUVJYjFtICxOGVrFAKriJgPHk05bn34MVZe
-         76X8S2te7tTwI1EcLToR1t/yzIIr/viiPecT49SaNytTaiOqQGwJ2vDYsywYk5ZNA2ge
-         RvrA==
-X-Gm-Message-State: AOAM531oXSJqeZd6p4WHe+mK+GMh+sbaxGle7NQOwbIz5StWhKLEpS4P
-        m3u+04FWVARnxVVRS2P85mo=
-X-Google-Smtp-Source: ABdhPJxQEeFWTDjt9U0eUu1Y+jsiC77yc6QUch/tNSKtkN/tpZTxvIGkyhsnawpJHsgdcwmo9KYENA==
-X-Received: by 2002:a05:600c:4142:b0:38c:9dc6:c87a with SMTP id h2-20020a05600c414200b0038c9dc6c87amr3628753wmm.114.1647793710898;
-        Sun, 20 Mar 2022 09:28:30 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
-        by smtp.googlemail.com with ESMTPSA id y6-20020a05600015c600b00203fa70b4ebsm6760085wry.53.2022.03.20.09.28.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Mar 2022 09:28:30 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [PATCH v3 18/18] dt-bindings: arm: msm: Convert kpss-gcc driver Documentation to yaml
-Date:   Sun, 20 Mar 2022 12:34:30 +0100
-Message-Id: <20220320113430.26076-19-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220320113430.26076-1-ansuelsmth@gmail.com>
-References: <20220320113430.26076-1-ansuelsmth@gmail.com>
+        with ESMTP id S245312AbiCTPGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 11:06:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEEC513E3C;
+        Sun, 20 Mar 2022 08:05:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DCF9161138;
+        Sun, 20 Mar 2022 15:05:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E7BFC340E9;
+        Sun, 20 Mar 2022 15:04:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647788700;
+        bh=owHPsnbfCStY5+TEuj2uO+SHgNq78C6bh6WcvxZRbJA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NifzXPJvq7pKpt0we2xlabCu0P9H7ASTqXR7t5C6AVE5tZ5hVl7ywp/RRuTd5DIf1
+         el6JNhe4WN8F/1jDtIqY/0x51DXj3VwXdqiCtg7ofpgthYsz/b6ME7BJMCjBbOgHjo
+         espspZXbe8+5S/pfHj4JQGUlHa6dX3O/Xis7vp36llYoUNeShgkJaf+8MTu+ZwIs7c
+         /lTadSLkJa0zYu4uEDzmt0o+T16TYO6d9A7fuoHgd5Bx2geGmRrY4SBGiT8Mih+N/6
+         jcMigBYtDzonr8jrmG1xQeW3bGx4rMMZAK00FAIvqQwJ6Q4u6KPS7DyjhOFmuesrYY
+         V7sHcr3zHqatQ==
+Date:   Sun, 20 Mar 2022 15:12:23 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Michael Srba <Michael.Srba@seznam.cz>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Message-ID: <20220320151223.3a9b13bd@jic23-huawei>
+In-Reply-To: <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+        <20220310133938.2495-2-michael.srba@seznam.cz>
+        <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+        <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
+        <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert kpss-gcc driver Documentation to yaml.
+On Thu, 10 Mar 2022 22:24:03 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ------------
- .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 68 +++++++++++++++++++
- 2 files changed, 68 insertions(+), 44 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
- create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+> On 10/03/2022 19:56, Michael Srba wrote:
+> > Hi,
+> > the thing is, the only reason the different compatible is needed at all
+> > is that the chip presents a different WHOAMI, and the invensense,icm20608
+> > compatible seems to imply the non-D WHOAMI value.  
+> 
+> But this is a driver implementation issue, not related to bindings.
+> Bindings describe the hardware.
 
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-deleted file mode 100644
-index e628758950e1..000000000000
---- a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
--
--PROPERTIES
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: should be one of the following. The generic compatible
--			"qcom,kpss-gcc" should also be included.
--			"qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc"
--			"qcom,kpss-gcc-apq8064", "qcom,kpss-gcc"
--			"qcom,kpss-gcc-msm8974", "qcom,kpss-gcc"
--			"qcom,kpss-gcc-msm8960", "qcom,kpss-gcc"
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: base address and size of the register region
--
--- clocks:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to the pll parents.
--
--- clock-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "pll8_vote", "pxo".
--
--- clock-output-names:
--	Usage: required
--	Value type: <string>
--	Definition: Name of the output clock. Typically acpu_l2_aux indicating
--		    an L2 cache auxiliary clock.
--
--Example:
--
--	l2cc: clock-controller@2011000 {
--		compatible = "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc";
--		reg = <0x2011000 0x1000>;
--		clocks = <&gcc PLL8_VOTE>, <&gcc PXO_SRC>;
--		clock-names = "pll8_vote", "pxo";
--		clock-output-names = "acpu_l2_aux";
--	};
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-new file mode 100644
-index 000000000000..351a88407f4b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/msm/qcom,kpss-gcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
-+
-+maintainers:
-+  - Ansuel Smith <ansuelsmth@gmail.com>
-+
-+description: |
-+  Krait Processor Sub-system (KPSS) Global Clock Controller (GCC). Used
-+  to control L2 mux (in the current implementation).
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+        - qcom,kpss-gcc-ipq8064
-+        - qcom,kpss-gcc-apq8064
-+        - qcom,kpss-gcc-msm8974
-+        - qcom,kpss-gcc-msm8960
-+      - const: qcom,kpss-gcc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: phandle to pll8_vote
-+      - description: phandle to pxo_board
-+
-+  clock-names:
-+    items:
-+      - const: pll8_vote
-+      - const: pxo
-+
-+  clock-output-names:
-+    const: acpu_l2_aux
-+
-+  '#clock-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - clock-output-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
-+
-+    clock-controller@2011000 {
-+      compatible = "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc";
-+      reg = <0x2011000 0x1000>;
-+      clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+      clock-names = "pll8_vote", "pxo";
-+      clock-output-names = "acpu_l2_aux";
-+      #clock-cells = <0>;
-+    };
-+...
-+
--- 
-2.34.1
+Indeed, but the key thing here is the WHOAMI register is hardware.
+
+> 
+> > I'm not sure how the driver would react to both compatibles being present,
+> > and looking at the driver code, it seems that icm20608d is not the only
+> > fully icm20608-compatible (to the extent of features supported by
+> > the driver, and excluding the WHOAMI value) invensense IC, yet none
+> > of these other ICs add the invensense,icm20608 compatible, so I guess I
+> > don't see a good reason to do something different.  
+> 
+> Probably my question should be asked earlier, when these other
+> compatibles were added in such way.
+> 
+> Skipping the DMP core, the new device is fully backwards compatible with
+> icm20608.
+
+No. It is 'nearly' compatible...  The different WHOAMI value (used
+to check the chip is the one we expect) makes it incompatible.  Now we
+could change the driver to allow for that bit of incompatibility and
+some other drivers do (often warning when the whoami is wrong but continuing
+anyway). 
+
+> Therefore extending the compatible makes sense. This is not
+> only correct from devicetree point of view, but also is friendly towards
+> out of tree users of bindings.
+> 
+> The Linux driver behavior about whoami register does not matter here.
+> Not mentioning that it would be easy for driver to accept multiple
+> values of whoami.
+
+I disagree entirely. Any driver that makes use of the whoami will not
+be compatible with this new part.  It's a driver design choice on whether
+to make use of that, but it's a perfectly valid one to refuse to probe
+if it doesn't detect that the device is the one it expects.
++ There is code out there today doing this so inherently it is not
+compatible.
+
+So no, a fall back compatible is not suitable here because it simply
+is not compatible.
+
+Now, if intent was to provide a backwards compatible path from this
+more advanced part then the behaviour of every register defined for
+the simpler part, must be identical on the more advanced part.
+Extra functionality could only make use of fields in registers marked
+reserved, or of new registers that didn't exist on the simpler device.
+
+There are other ways of handling backwards compatibility but they all
+require statements in the simpler device spec about how you can tell
+for future more complicated devices that they are compatible with this
+spec. E.g. Feature registers, version registers etc.
+
+Jonathan
+> 
+> 
+> Best regards,
+> Krzysztof
 
