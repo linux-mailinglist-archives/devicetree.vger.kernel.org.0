@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57B874E1971
+	by mail.lfdr.de (Postfix) with ESMTP id EE4CD4E1973
 	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 03:14:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244658AbiCTCPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 22:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58026 "EHLO
+        id S234519AbiCTCPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 22:15:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244679AbiCTCPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 22:15:16 -0400
+        with ESMTP id S244640AbiCTCPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 22:15:02 -0400
 Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEFD117E26;
-        Sat, 19 Mar 2022 19:13:50 -0700 (PDT)
-Received: by mail-io1-f41.google.com with SMTP id b16so13398941ioz.3;
-        Sat, 19 Mar 2022 19:13:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC6C13D07;
+        Sat, 19 Mar 2022 19:13:40 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id 125so64694iov.10;
+        Sat, 19 Mar 2022 19:13:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=4X/zQGDYpkVVW7IWxE5DUh7i3uSLBkv1mL4wCcuAH0c=;
-        b=xsv38eYd+HY9kxg3j7cM5bj/4vIGU9rl7LlNpE5OcHcvsdnhey8LLd35/raJAHZ4Gu
-         L5xTFkmYgD7wTHa0DHdCvcw8fbjAGoJWPP/mE9YZx8tqeH9O6o+dx9aQXsRdufeWQWR/
-         bBayb337RM3BkKilIY4NPSTmzVGqxY41o1W9PEkj6Vj70NvY6oYUiqsnNhVtLICjCJSm
-         ASxnjeBxW3zpy7ALevmUf65QEq7i4odGuRoE+s9wnnJKqNRVkNUHkuntcgRBy8yTb4cr
-         COaGrZnBf2DyaERUZQ+P8WCdIVNYdu+Ck6UjSq0tATUH8HCeGb6cFk2nbMSwXRocYWVH
-         6aTw==
-X-Gm-Message-State: AOAM5302rIek5cyFsIM7oSdwd0rlQPqKpg3aOyz5l5NSEsIsgf37QeHD
-        LegIekryYO6b1Ksp0LKdMw==
-X-Google-Smtp-Source: ABdhPJx11hfWDir6SQ/nINMJ8tzicnfsB7q7t+560DbBvqMA1MP1SJQBt+i7toEFD2yVV2TJNFidpA==
-X-Received: by 2002:a05:6638:3295:b0:317:d9c8:51f9 with SMTP id f21-20020a056638329500b00317d9c851f9mr8081749jav.48.1647742429802;
-        Sat, 19 Mar 2022 19:13:49 -0700 (PDT)
+        bh=bzqzRVsSfXzHXdH4cnEBtF3cJOqZ6zkfx1jImREFrRU=;
+        b=4ns7at61FcAdQXAM1Nzo6H5ZQWgncffc0aW8QRi1wBIb4Jb6jYvBBXbLAnJAsvRZAx
+         qxe6Xjx40w2OC3PdUCJ85xPWjfmcPzbOM+Nj97bl17r6QjU3yjq1oAR7GqywFD/wTQg8
+         zl1VxFNiivrkGzZGW2m5hqZq02wXl/hlpYDxDXFnya2np9Y45KYuLUunSGOazBfRDCmt
+         14718rF787gCBUGFHApJZWw1vByWzY51RQVi5qtmPrSGAntId3z5kRyyKTwF/kU4luCv
+         AzsFAPSwEw9lF1cVFZyRErO34cFE3zZSyT3/O0stuwV7T17hSt7Op0UnEZK1yf7uU0jZ
+         ce5w==
+X-Gm-Message-State: AOAM5316eABFLToSyeUzwHoujHFPt2AEOxFfuCeX0STYU8aq8YToc0Yb
+        mv5pYmHI7yBz/VCjUmXteQ==
+X-Google-Smtp-Source: ABdhPJxXBYFfeWib69UF2Qp22+Gx9dSv9nABSOAWi4J0Slm6vo8aEV2BDl8nbwjDxt8OLD+UrOtqVg==
+X-Received: by 2002:a05:6602:160a:b0:648:cf59:3613 with SMTP id x10-20020a056602160a00b00648cf593613mr7118338iow.163.1647742420034;
+        Sat, 19 Mar 2022 19:13:40 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q9-20020a5edb09000000b00645c7a00cbbsm6392975iop.20.2022.03.19.19.13.47
+        by smtp.gmail.com with ESMTPSA id w18-20020a6b4a12000000b00645b70866c2sm6225624iob.18.2022.03.19.19.13.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Mar 2022 19:13:48 -0700 (PDT)
-Received: (nullmailer pid 2990523 invoked by uid 1000);
+        Sat, 19 Mar 2022 19:13:38 -0700 (PDT)
+Received: (nullmailer pid 2990517 invoked by uid 1000);
         Sun, 20 Mar 2022 02:13:33 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     hkallweit1@gmail.com, f.fainelli@gmail.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, kuba@kernel.org,
-        UNGLinuxDriver@microchip.com, linux-kernel@vger.kernel.org,
-        davem@davemloft.net, devicetree@vger.kernel.org, andrew@lunn.ch,
-        olteanv@gmail.com, vivien.didelot@gmail.com, robh+dt@kernel.org,
-        woojung.huh@microchip.com
-In-Reply-To: <20220318085540.281721-2-prasanna.vengateshan@microchip.com>
-References: <20220318085540.281721-1-prasanna.vengateshan@microchip.com> <20220318085540.281721-2-prasanna.vengateshan@microchip.com>
-Subject: Re: [PATCH v9 net-next 01/11] dt-bindings: net: make internal-delay-ps based on phy-mode
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Mark Brown <broonie@kernel.org>, patches@opensource.cirrus.com,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        David Rhodes <drhodes@opensource.cirrus.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220317093120.168534-16-tanureal@opensource.cirrus.com>
+References: <20220317093120.168534-1-tanureal@opensource.cirrus.com> <20220317093120.168534-16-tanureal@opensource.cirrus.com>
+Subject: Re: [PATCH v4 15/16] ASoC: dt-bindings: cs35l41: Document CS35l41 External Boost
 Date:   Sat, 19 Mar 2022 20:13:33 -0600
-Message-Id: <1647742413.985820.2990522.nullmailer@robh.at.kernel.org>
+Message-Id: <1647742413.945686.2990516.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -62,34 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Mar 2022 14:25:30 +0530, Prasanna Vengateshan wrote:
-> *-internal-delay-ps properties would be applicable only for RGMII interface
-> modes.
+On Thu, 17 Mar 2022 09:31:19 +0000, Lucas Tanure wrote:
+> From: David Rhodes <drhodes@opensource.cirrus.com>
 > 
-> It is changed as per the request,
-> https://lore.kernel.org/netdev/d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com/
+> Document internal and external boost feature for ASoC CS35L41.
+> For internal boost the following properties are required:
+> - cirrus,boost-peak-milliamp
+> - cirrus,boost-ind-nanohenry
+> - cirrus,boost-cap-microfarad
 > 
-> Ran dt_binding_check to confirm nothing is broken and submitting as a RFC
-> patch to receive feedback.
+> For external boost, the GPIO1 must be configured as output,
+> so the following properties are required:
+> - cirrus,gpio1-src-select = <1>
+> - cirrus,gpio1-output-enable
 > 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
 > ---
->  .../bindings/net/ethernet-controller.yaml     | 37 +++++++++++++------
->  1 file changed, 25 insertions(+), 12 deletions(-)
+>  .../bindings/sound/cirrus,cs35l41.yaml        | 44 +++++++++++++++++--
+>  1 file changed, 41 insertions(+), 3 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/ethernet-controller.yaml:232:20: [warning] wrong indentation: expected 18 but found 19 (indentation)
-./Documentation/devicetree/bindings/net/ethernet-controller.yaml:233:21: [warning] wrong indentation: expected 21 but found 20 (indentation)
+./Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml:152:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
 
 dtschema/dtc warnings/errors:
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1606943
+See https://patchwork.ozlabs.org/patch/1606485
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
