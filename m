@@ -2,99 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A36A04E196F
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 03:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB3C4E1AC2
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 09:21:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244640AbiCTCPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 22:15:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
+        id S242815AbiCTIWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 04:22:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244659AbiCTCPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 22:15:10 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E8F13FAE;
-        Sat, 19 Mar 2022 19:13:47 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id z7so13422439iom.1;
-        Sat, 19 Mar 2022 19:13:47 -0700 (PDT)
+        with ESMTP id S240333AbiCTIWX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 04:22:23 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3764BFDA;
+        Sun, 20 Mar 2022 01:21:00 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id q14so3034534ljc.12;
+        Sun, 20 Mar 2022 01:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=H5jqTsReHjJpHbnZQQczWjSuTqgW0vC/dZTYtBAjSnc=;
+        b=EPr3LbdzLYezPN2YQME62GNvv4acBq0u420N6LQEEBYBigFexkTSTeivHD2BFSoRKA
+         TBDYmIfSod8wh4bWAUOo7bxtCzbU5aRVZFpY4vI/6LK09LNyCXVxxzFDYRzqQ0KTjb4T
+         ZTgZbAex8YYSFEEbw3r0czvOmIdCcu4Wj5WH5zlMcDeYcpiZBiZu0oipMx7bsft7O46Z
+         fClGWrXcsyovrAHcRkHXrscHGTXt+kOzO73KeuxufoWt+GoGnOp4mwdlMMz0JwZuokc0
+         QYKg+tSYAzdoTQyF20bNaaDtlztEUkM95tG5tSkeR60z/yi7PxuNIVdBShLA6zd+gjSz
+         PPLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=p25aMwhGOhWBbd8mkmtLP5nuvXeH2abYeqFXOGvGry8=;
-        b=Rm61mx5RgWiKZrEgqhKg29pV2493fcET4AwxPFqDBQj3NaU78kfbrXRlzViaTW5Dr3
-         iPly6+HtXlyN8aZyU9p56TsFzagCx8h2k5pGXQuiEKhdkkqNoBLPLg/gVpKWSaVgWEas
-         2cZ/MHqpbCwnfjvtYyjHRcNs4gX8LxrcJ43KBlAi+QGEN2TzYxzcBK0gGEuNUBRhfI5p
-         w4re0w4Ep7BNXL+4Z7MUMaJYs8QLdj+BHSHM9jyPxBkyqxUth2BOr65XIoUuclHdGQkM
-         zKkDKsTHUcriL2jfNcf8fHgbVXGjF4egvsJdJKy5JzcVagNoqAFR1+lv7smV5MLXh40G
-         +ZoA==
-X-Gm-Message-State: AOAM530fA/MZW0iT+FGe17t0QsaEOyU5DPdAKXqGqI90y21tDQjqkuRX
-        yymZSaxDgoqYhsTldAnf1Krm9REdBw==
-X-Google-Smtp-Source: ABdhPJzpRREMVFbQIB8DGhakLsihdCAOKb7CdwEKr94yCa5Mz0je5jMM5kxUI1MCdjm137NZP75rUw==
-X-Received: by 2002:a6b:8bd7:0:b0:646:2804:5c73 with SMTP id n206-20020a6b8bd7000000b0064628045c73mr7270589iod.112.1647742426317;
-        Sat, 19 Mar 2022 19:13:46 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v18-20020a6b5b12000000b00645bd8bd288sm6619523ioh.47.2022.03.19.19.13.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Mar 2022 19:13:45 -0700 (PDT)
-Received: (nullmailer pid 2990521 invoked by uid 1000);
-        Sun, 20 Mar 2022 02:13:33 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, huziji@marvell.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-In-Reply-To: <20220318033521.1432767-1-chris.packham@alliedtelesis.co.nz>
-References: <20220318033521.1432767-1-chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH] dt-bindings: mmc: xenon: Convert to JSON schema
-Date:   Sat, 19 Mar 2022 20:13:33 -0600
-Message-Id: <1647742413.974061.2990520.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=H5jqTsReHjJpHbnZQQczWjSuTqgW0vC/dZTYtBAjSnc=;
+        b=ULxkanb4t5cwWSUFtaZQGLWH+6cCoWq9ded4+j0FTg/E+4QzgzT7L6HZIN4HLzEde2
+         4SouQk3U+GzsOu7d850Ta6rns8WT8HA9l6aOX2bz4kfmtFJ2Mrblqw0kYVWQVJRfdDKF
+         gv6sK5AKcbxrPwIsnXpO9wCG7cGjRlYbwdwFeMhgYipNX6sWmP8hjsH+ZzpdR18W+moS
+         T6T5m/VV78mRpQIlKM1TusCOFa9HzQrcs82xbkAhMet9bltwma2reAHWQKPr5bNJmwQg
+         IwB+BJjxTnG3xEJfbyJ99zKP82Q5sJDHrdYRrhMpoPZDvVynODoRwj9uLKziWCh/0ogt
+         ioeg==
+X-Gm-Message-State: AOAM5309ldlJU2xGAJlSvZbsIonNy0HKhQCFaIhW6uVtrZuzXtc8g2kG
+        0nOPQ8vE5WjljgPVijYYsUm9RcwEv/xdEQ==
+X-Google-Smtp-Source: ABdhPJyw/MvUqES6wCAvnMJzwx5rx3Rs/R3I4PaI3L3m2x9GWui8eCx2CTqr1K2n1TEwNhy4wu/DYw==
+X-Received: by 2002:a2e:2a45:0:b0:246:430d:805 with SMTP id q66-20020a2e2a45000000b00246430d0805mr11487117ljq.439.1647764457911;
+        Sun, 20 Mar 2022 01:20:57 -0700 (PDT)
+Received: from [192.168.1.103] ([178.176.78.200])
+        by smtp.gmail.com with ESMTPSA id v29-20020ac25b1d000000b00448ac0a2d88sm1501433lfn.47.2022.03.20.01.20.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Mar 2022 01:20:57 -0700 (PDT)
+Subject: Re: [PATCH v2 7/8] ARM: dts: lan9662-pcb8291: fix pinctrl node name
+To:     Michael Walle <michael@walle.cc>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20220318202547.1650687-1-michael@walle.cc>
+ <20220318202547.1650687-8-michael@walle.cc>
+ <cf2a6d1a-bf98-e382-2623-e44e5979ca29@gmail.com>
+ <e7467fe3a8dae5f5af84d595a0c4ab16@walle.cc>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <0e791aa5-4ff1-8348-04fb-508a53246de1@gmail.com>
+Date:   Sun, 20 Mar 2022 11:20:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+MIME-Version: 1.0
+In-Reply-To: <e7467fe3a8dae5f5af84d595a0c4ab16@walle.cc>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Mar 2022 16:35:21 +1300, Chris Packham wrote:
-> Convert the marvell,xenon-sdhci binding to JSON schema. This is a fairly
-> direct conversion so there are some requirements that are documented in
-> prose but not currently enforced.
+On 3/19/22 2:38 PM, Michael Walle wrote:
+
+[...]
+>>> The pinctrl device tree binding will be converted to YAML format. All
+>>> the pin nodes should end with "-pins". Fix them.
+>>
+>>    It does end with "pins" already, right?
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->  .../bindings/mmc/marvell,xenon-sdhci.txt      | 173 ------------
->  .../bindings/mmc/marvell,xenon-sdhci.yaml     | 252 ++++++++++++++++++
->  2 files changed, 252 insertions(+), 173 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> It ends with "_pins". Please note the underscore.
+
+   Ah!
+
+>>> Fixes: 290deaa10c50 ("ARM: dts: add DT for lan966 SoC and 2-port board pcb8291")
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>> ---
+>>>  arch/arm/boot/dts/lan966x-pcb8291.dts | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
+>>> index 3281af90ac6d..3c7e3a7d6f14 100644
+>>> --- a/arch/arm/boot/dts/lan966x-pcb8291.dts
+>>> +++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
+>>> @@ -35,7 +35,7 @@ fc3_b_pins: fcb3-spi-pins {
+>>>          function = "fc3_b";
+>>>      };
+>>>
+>>> -    can0_b_pins:  can0_b_pins {
+>>> +    can0_b_pins:  can0-b-pins {
+>>
+>>    Mhm, I can't even see what is changed here... :-/
 > 
+> The name of the node, s/_/-/
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+   Indeed! I must have been blind then, sorry. :-)
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml:38:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml:41:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+> -michael
 
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-MAINTAINERS: Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.txt
-
-See https://patchwork.ozlabs.org/patch/1606868
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+MBR, Sergey
