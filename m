@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA99D4E1B37
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 12:00:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FFC34E1B42
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 12:08:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241367AbiCTLCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 07:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48568 "EHLO
+        id S244453AbiCTLJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 07:09:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233345AbiCTLCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 07:02:07 -0400
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6223A46656;
-        Sun, 20 Mar 2022 04:00:43 -0700 (PDT)
-Received: by mail-ed1-f54.google.com with SMTP id k10so1218281edj.2;
-        Sun, 20 Mar 2022 04:00:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=UcgHC2iDV9/2F3OSRK8axWbWLeeDPOH9bkq+3/RKRnI=;
-        b=D+AvUvNaCfELEa52AVOGWsGBYsx0BNXDcppuK0YLpGQKrL/KB8zFYBJ3dB5xvV7Zw+
-         vemXmB+cHuVFognnZIwlUJCPgu5mW2WP8fX3W58RdBTJsAeUYXNHpeBAeMkCRyXie3U0
-         ICn49IOu5Z4rHfpFlU75Vxb6RllKMRPXecUr7SxVo2zgCYielvIcuEI8rdZpKHPAKR9V
-         +UKzQTPAfSU5F1AcMVAuNntf1hLU5ZZBxGwVVx5pNHj65VnaWTjd06KujBVibUd8nNkg
-         HC5JFNu8xdGVKHGpv1BnjRB9tvKU098i00hxw1XfGUIQQXtzRmJbV97A8d88tPXk94yy
-         ZnoQ==
-X-Gm-Message-State: AOAM532y8JmjARFUoytQTMe7AidFnOiB7htAkQj7BSAz7jKSmQ/7md0j
-        yuGjQ/BWv41RHwoQSYq9DkR2OPQGlFU=
-X-Google-Smtp-Source: ABdhPJxRTuLruUTDTZsAJVUshE+SpdS5Zkp55qyuD9JyUZ0J4JGG+LRYWQALmKuoSvu94aJGeiYzzA==
-X-Received: by 2002:a05:6402:1742:b0:419:2707:747a with SMTP id v2-20020a056402174200b004192707747amr5398544edx.238.1647774041560;
-        Sun, 20 Mar 2022 04:00:41 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id b11-20020a170906728b00b006df8494d384sm5395666ejl.122.2022.03.20.04.00.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Mar 2022 04:00:40 -0700 (PDT)
-Message-ID: <f61abc2b-3ce8-7b1f-3d28-8a4a03ec58eb@kernel.org>
-Date:   Sun, 20 Mar 2022 12:00:39 +0100
+        with ESMTP id S238061AbiCTLJm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 07:09:42 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196AF4A930;
+        Sun, 20 Mar 2022 04:08:18 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 03F5D22239;
+        Sun, 20 Mar 2022 12:08:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647774495;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=n0pfP6YKouY5Uefqu8cIS2X4j5IhOaOxj4s6Fptz1KE=;
+        b=ikmlrbf48d3sLQYHflGABZMVqJCgRbDhBAdPcDvKME+tgtk1GnxESGtTKAnLfaXGJlSCzG
+        0K2jqhwUFqsxQLchMNmEm01v36xWFb3yodyhVuG3zRldZfafzxRgvPY68iwKZUvJ1VV/ar
+        UzNoaYogXCZwFyUqx3K9HUC5k+4RHT0=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm6350: Add UFS nodes
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220318183004.858707-1-luca.weiss@fairphone.com>
- <20220318183004.858707-6-luca.weiss@fairphone.com>
- <c88ed4b5-2e44-c3fd-ff2b-b4bee1354765@kernel.org>
- <CIO22P1JZY5F.1BYJF4HT2OOUW@otso>
-In-Reply-To: <CIO22P1JZY5F.1BYJF4HT2OOUW@otso>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+Date:   Sun, 20 Mar 2022 12:08:14 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] dt-bindings: pinctrl: convert ocelot-pinctrl to
+ YAML format
+In-Reply-To: <89f9b797-e4b8-139a-d9e6-ebe71779b943@kernel.org>
+References: <20220319204628.1759635-1-michael@walle.cc>
+ <20220319204628.1759635-7-michael@walle.cc>
+ <89f9b797-e4b8-139a-d9e6-ebe71779b943@kernel.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <3949a4c3271473b73851b0970bdb58b8@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,57 +70,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/03/2022 19:29, Luca Weiss wrote:
-> Hi Krzysztof,
+Am 2022-03-20 11:54, schrieb Krzysztof Kozlowski:
+> On 19/03/2022 21:46, Michael Walle wrote:
+>> Convert the ocelot-pinctrl device tree binding to the new YAML format.
+>> 
+>> Additionally to the original binding documentation, add interrupt
+>> properties which are optional and already used on several SoCs like
+>> SparX-5, Luton, Ocelot and LAN966x but were not documented before.
+>> 
+>> Also, on the sparx5 and the lan966x SoCs there are two items for the
+>> reg property.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>>  .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |  42 -------
+>>  .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 108 
+>> ++++++++++++++++++
+>>  2 files changed, 108 insertions(+), 42 deletions(-)
+>>  delete mode 100644 
+>> Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+>>  create mode 100644 
+>> Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt 
+>> b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+>> deleted file mode 100644
+>> index 5d84fd299ccf..000000000000
+>> --- 
+>> a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+>> +++ /dev/null
+>> @@ -1,42 +0,0 @@
+>> -Microsemi Ocelot pin controller Device Tree Bindings
+>> -----------------------------------------------------
+>> -
+>> -Required properties:
+>> - - compatible		: Should be "mscc,ocelot-pinctrl",
+>> -			  "mscc,jaguar2-pinctrl", "microchip,sparx5-pinctrl",
+>> -			  "mscc,luton-pinctrl", "mscc,serval-pinctrl",
+>> -			  "microchip,lan966x-pinctrl" or "mscc,servalt-pinctrl"
+>> - - reg			: Address and length of the register set for the device
+>> - - gpio-controller	: Indicates this device is a GPIO controller
+>> - - #gpio-cells		: Must be 2.
+>> -			  The first cell is the pin number and the
+>> -			  second cell specifies GPIO flags, as defined in
+>> -			  <dt-bindings/gpio/gpio.h>.
+>> - - gpio-ranges		: Range of pins managed by the GPIO controller.
+>> -
+>> -
+>> -The ocelot-pinctrl driver uses the generic pin multiplexing and 
+>> generic pin
+>> -configuration documented in pinctrl-bindings.txt.
+>> -
+>> -The following generic properties are supported:
+>> - - function
+>> - - pins
+>> -
+>> -Example:
+>> -	gpio: pinctrl@71070034 {
+>> -		compatible = "mscc,ocelot-pinctrl";
+>> -		reg = <0x71070034 0x28>;
+>> -		gpio-controller;
+>> -		#gpio-cells = <2>;
+>> -		gpio-ranges = <&gpio 0 0 22>;
+>> -
+>> -		uart_pins: uart-pins {
+>> -				pins = "GPIO_6", "GPIO_7";
+>> -				function = "uart";
+>> -		};
+>> -
+>> -		uart2_pins: uart2-pins {
+>> -				pins = "GPIO_12", "GPIO_13";
+>> -				function = "uart2";
+>> -		};
+>> -	};
+>> diff --git 
+>> a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml 
+>> b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+>> new file mode 100644
+>> index 000000000000..7149a6655623
+>> --- /dev/null
+>> +++ 
+>> b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+>> @@ -0,0 +1,108 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/mscc,ocelot-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Microsemi Ocelot pin controller
+>> +
+>> +maintainers:
+>> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+>> +  - Lars Povlsen <lars.povlsen@microchip.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - microchip,lan966x-pinctrl
+>> +      - microchip,sparx5-pinctrl
+>> +      - mscc,jaguar2-pinctrl
+>> +      - mscc,luton-pinctrl
+>> +      - mscc,ocelot-pinctrl
+>> +      - mscc,serval-pinctrl
+>> +      - mscc,servalt-pinctrl
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: Base address
+>> +      - description: Extended pin configuration registers
+>> +    minItems: 1
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  '#gpio-cells':
+>> +    const: 2
+>> +
+>> +  gpio-ranges: true
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  "#interrupt-cells":
+>> +    const: 2
 > 
-> On Sat Mar 19, 2022 at 3:43 PM CET, Krzysztof Kozlowski wrote:
->> On 18/03/2022 19:30, Luca Weiss wrote:
->>> Add the necessary nodes for UFS and its PHY.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 79 ++++++++++++++++++++++++++++
->>>  1 file changed, 79 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
->>> index d7c9edff19f7..c5c93b6bcd2a 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
->>> @@ -541,6 +541,85 @@ uart2: serial@98c000 {
->>>  			};
->>>  		};
->>>  
->>> +		ufs_mem_hc: ufshc@1d84000 {
->>
->> Generic node name, so ufs.
-> 
-> With the node name changes UFS doesn't probe anymore.
-> 
-> [    1.893762] ufshcd-qcom 1d84000.ufs: ufshcd_variant_hba_init: variant qcom init failed err -19
-> [    1.902674] ufshcd-qcom 1d84000.ufs: Initialization failed
-> [    1.908391] ufshcd-qcom 1d84000.ufs: ufshcd_pltfrm_init() failed -19
-> 
-> I didn't debug this in detail but it's likely from the
-> androidboot.bootdevice=1d84000.ufshc parameter in cmdline that
-> ufs-qcom.c uses to fail probe with -ENODEV for all UFS other than the
-> selected one. Not sure why this behavior exists in mainline (didn't look
-> into this either).
-> 
-> This cmdline parameter (among many others) is added by the stock
-> bootloader and as far as I know there's no way to turn that off.
+> Thanks for the changes in other files, but I think you did not respond
+> to my comments here. Can you address them?
 
-I see now in the driver weird Android code like:
-  static char android_boot_dev[ANDROID_BOOT_DEV_MAX];
-  ....
-  if (strlen(android_boot_dev) && strcmp(android_boot_dev, dev_name(dev)))
+Sorry, I might missunderstood you. They are currently used on all except
+on serval and servalt SoCs like described in the updated commit message.
+I thought it was clear from the commit message, so I didn't answer your
+questions in v2. Or is there something else?
 
-This is wrong. How is Android boot arguments needed for UFS? UFS is
-independent of Android... what if you run it with different bootloader
-and different system?
-
-I understand that it is inconvenient for you to change the name, but
-looking at driver code, I insist even more. :)
-
-
-Best regards,
-Krzysztof
+-michael
