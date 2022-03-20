@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 612AE4E1BDE
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 14:23:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06CDD4E1BDB
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 14:22:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245158AbiCTNYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 09:24:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45122 "EHLO
+        id S245138AbiCTNYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 09:24:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245157AbiCTNYl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 09:24:41 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D063ED33;
-        Sun, 20 Mar 2022 06:23:17 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S237391AbiCTNYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 09:24:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F54C4D;
+        Sun, 20 Mar 2022 06:22:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id F2562836A9;
-        Sun, 20 Mar 2022 14:23:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1647782595;
-        bh=54w8kSGD8O4Mg2N20vQfaHgu3zTtCAhOtmYc/RXD0uU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=iK843SEaMf3mLrx1X3rfsU1U8EPe0CjrhI+Ysm337C5QlovTpUfCHStd41rutJll0
-         jktMjk/8f+BriX6EB1NkNW9xQVR42s3bPSzADePK/j+OyhN1g0f7tz+h4gLNhhEdII
-         Jw81MJN4c7ubuv47w8q87u9tpGx6QRybi4Sa82zetvXYMNaIPESWXlZdh7YbpVg8Gk
-         i8VZlJMfV/S2fm3idtQ4M4TpwYLGVkHTQ9RVP41zfCQIFH8rEiORCTXmdEK4FL5RPD
-         k+SdIRih6fuHR2dag9Jaq2twMuacnHbvf+vrXd4LE1mLQKZnI08ZIXiEVzsEz04YbP
-         zdaFBp+nI31sg==
-Message-ID: <5f97232b-579f-bccf-c603-c263aea143b6@denx.de>
-Date:   Sun, 20 Mar 2022 14:23:14 +0100
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A42C96111A;
+        Sun, 20 Mar 2022 13:22:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9B33C340ED;
+        Sun, 20 Mar 2022 13:22:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647782572;
+        bh=zrk7xunDQEgKK4bMZN7k+PEFnf6KxwypnsecQUf+/7U=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=nezu0mRQRK6HUEQqgAKr3YTh8NS9o4SumGwjxuuVoLuyyAEBxAS2fSlAdZui2FtTW
+         xDEJZQDzrqsIhvyVcyK8u1vfiW9E6jEyLYLTepNOQHWxIaWiayZeLw941IvE0nA7xy
+         ZXk+GUcJ4u+VTuz27RjDUByjKBBmEu/g3Aps8/wwVaBqqxD7aJK+8KyKShtyi/vx/n
+         z8A/gxfK5MdljvqYuargSt7UEj3dSTHufdsrz5z6+58IibGEqpRF9vZlVIhF6X/Isv
+         pdAlIpxDn1W2xVy+H/y+Fopo467dCdz0EmX5iBfjiH53TcgZDUTGXCHoTMD/v3gsR7
+         Eky8/RT7O2QCw==
+Date:   Sun, 20 Mar 2022 13:30:14 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, orsonzhai@gmail.com,
+        baolin.wang7@gmail.com, zhang.lyra@gmail.com, lgirdwood@gmail.com,
+        broonie@kernel.org, yuming.zhu1@unisoc.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 1/7] dt-bindings:iio:adc: add sprd,ump9620-adc
+ dtbindings
+Message-ID: <20220320133014.7f5cb5b9@jic23-huawei>
+In-Reply-To: <20220311164628.378849-2-gengcixi@gmail.com>
+References: <20220311164628.378849-1-gengcixi@gmail.com>
+        <20220311164628.378849-2-gengcixi@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v3 2/3] clk: Make __clk_hw_register_fixed_factor
- non-static
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220226040723.143705-1-marex@denx.de>
- <20220226040723.143705-2-marex@denx.de>
- <20220318210356.55D1EC340E8@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220318210356.55D1EC340E8@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,29 +59,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/18/22 22:03, Stephen Boyd wrote:
-> Quoting Marek Vasut (2022-02-25 20:07:22)
->> Access to the full parameters of __clk_hw_register_fixed_factor()
->> is useful in case a driver is registering fixed clock with only
->> single parent, in which case the driver should set parent_name to
->> NULL and parent_index to 0, and access to this function permits it
->> to do just that.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Michael Turquette <mturquette@baylibre.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Stephen Boyd <sboyd@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> To: linux-clk@vger.kernel.org
->> ---
->> V2: - New patch
->> V3: - No change
+On Sat, 12 Mar 2022 00:46:22 +0800
+Cixi Geng <gengcixi@gmail.com> wrote:
+
+> From: Cixi Geng <cixi.geng1@unisoc.com>
+
+In title, use dt-binding instead of dtbindings at the end.
+
 > 
-> This isn't exported. Given that we don't typically export an internal
-> function (hence the double underscore) I'm going to change this to be a
-> new function. See the attached patch.
+> sprd,ump9620-adc is one variant of sc27xx series, add ump9620 in
+> dtbindings.
 
-I can confirm the change works and looks OK.
+dt-bindings.
 
-Do you want me to send a V4 or will you squash it into these patches 
-yourself when applying?
+> 
+> Signed-off-by: Chunyan Zhang <zhang.lyra@gmail.com>
+> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+
+If the patch was authored by Chunyan Zhang, it should be From: Chunyan Zhang,
+if it is more complex than you simply passing the patch on then we should
+see a co-developed to indicate that.
+
+Patch looks good to me
+
+Jonathan
+
+> ---
+>  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 30 +++++++++++++++++--
+>  1 file changed, 27 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> index caa3ee0b4b8c..331b08fb1761 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - sprd,sc2723-adc
+>        - sprd,sc2730-adc
+>        - sprd,sc2731-adc
+> +      - sprd,ump9620-adc
+>  
+>    reg:
+>      maxItems: 1
+> @@ -37,9 +38,32 @@ properties:
+>      maxItems: 2
+>  
+>    nvmem-cell-names:
+> -    items:
+> -      - const: big_scale_calib
+> -      - const: small_scale_calib
+> +    description: Names for each nvmem-cells specified.
+> +
+> +if:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          enum:
+> +            - sprd,ump9620-adc
+> +then:
+> +  properties:
+> +    nvmem-cell-names:
+> +      items:
+> +        - const: big_scale_calib
+> +        - const: small_scale_calib
+> +
+> +else:
+> +  properties:
+> +    nvmem-cell-names:
+> +      items:
+> +        - const: big_scale_calib1
+> +        - const: big_scale_calib2
+> +        - const: small_scale_calib1
+> +        - const: small_scale_calib2
+> +        - const: vbat_det_cal1
+> +        - const: vbat_det_cal2
+>  
+>  required:
+>    - compatible
+
