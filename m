@@ -2,91 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 867014E1B61
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 13:00:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6480C4E1B86
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 13:09:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244872AbiCTMB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 08:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55200 "EHLO
+        id S233767AbiCTMLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 08:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242916AbiCTMB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 08:01:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7F562D8;
-        Sun, 20 Mar 2022 05:00:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 75E9B60FC1;
-        Sun, 20 Mar 2022 12:00:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F20EC340ED;
-        Sun, 20 Mar 2022 11:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647777601;
-        bh=rtknE9wl83YeLcS+jxxy7owVyhePadw4/SffustgzjQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SKo5sSulAiVLD2Gr90c9SyqLkGRitvsoF489+2KD7No7TFM3RuZKg2SBxiiDLf4in
-         t066/fRFPLxs2ET+f5x0abtzYpvo/Q+oetzntw9bfak3DlEUOCyzT4tcKkQU9GsHqt
-         V/u9yFGtntYB8XhuWjk3qc9e3ghRFfJ+rZTPXI2TYfsoR4Q3pMamgXKXKfKRurQlWn
-         9jB/YD/9wwIcm1zvWXJwPkwZkuFNMoZCXinEOQMdwzDNSJE370+jLglz3Ue11I8JLS
-         3/Un6M9+A1xt/wULQHX1ZgBe6rJVpED9B13MdUZpZWOl6M0g87A80yksuX/FeL3rUV
-         AVGZG6isV5CYA==
-Date:   Sun, 20 Mar 2022 12:07:25 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Gwendal Grignou <gwendal@chromium.org>, robh+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/7] dt-bindings: iio: sx9324: Add precharge resistor
- setting
-Message-ID: <20220320120725.13317345@jic23-huawei>
-In-Reply-To: <CAE-0n52Lp9-F_DxHrb1aMQaiSU2qpuW6jKCp6qQ8FXyJ87WApg@mail.gmail.com>
-References: <20220315173042.1325858-1-gwendal@chromium.org>
-        <20220315173042.1325858-3-gwendal@chromium.org>
-        <CAE-0n52Lp9-F_DxHrb1aMQaiSU2qpuW6jKCp6qQ8FXyJ87WApg@mail.gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232356AbiCTMLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 08:11:10 -0400
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AECC53DDD1;
+        Sun, 20 Mar 2022 05:09:47 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id w25so15021197edi.11;
+        Sun, 20 Mar 2022 05:09:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=09MJ3F+SKFH/o6mzuUI5CFbfCkCq8QY9FgJU9k73OZc=;
+        b=fiRC911N6/W6iGbV1JRrSUO87WXp9WRuMNaCtvHy0RX3SanCyN0mfgEK6tpDa/FHUJ
+         ZdLVla7ZBETDHCBIO+bgeQUjbZzqj1FtmHE/8AbH2jucxn1IGHc08jMsGG+FHZuE9gjR
+         wtDhbteeJ1e1W1ATm0NN8byiIxMGH5Kbxx4pIa9TZKhTZiKYHE43nA5cTpUHQm9nTRqv
+         b3dNSHava7sqq2AY3fkZ4lKuwUTSCgQlSlRh9ApsyTKGljisLjnqrZ6DV7WTykYfeuP0
+         LIrn1WE16GO4mMqxqKYS8Tb+HaPmkHv9o+0fplHQEhR288hRub76cKdqxqTL4gSoyyaQ
+         Ry9w==
+X-Gm-Message-State: AOAM531q1bKi9Qupk9ZjLxtSv8zM6f7b8TntDCG/jYK17yDfQfyxKCUQ
+        jTogCwt5AT2IyVetP2nT4vY=
+X-Google-Smtp-Source: ABdhPJxJw0uAM+k7E1tqS8+6bFI30rkfWXjj31C1g20y/9V+mDiczOByjIKW0euKEIwV3OiVfosgQA==
+X-Received: by 2002:aa7:d156:0:b0:419:bc7:acd6 with SMTP id r22-20020aa7d156000000b004190bc7acd6mr11821446edo.239.1647778186114;
+        Sun, 20 Mar 2022 05:09:46 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id z21-20020a1709063a1500b006da6436819dsm5790038eje.173.2022.03.20.05.09.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Mar 2022 05:09:45 -0700 (PDT)
+Message-ID: <ce32768b-d68f-a5dd-ff68-4b90089c88f2@kernel.org>
+Date:   Sun, 20 Mar 2022 13:09:43 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 14/16] dt-bindings: clock: Convert qcom,krait-cc to
+ yaml
+Content-Language: en-US
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20220318160827.8860-1-ansuelsmth@gmail.com>
+ <20220318160827.8860-15-ansuelsmth@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220318160827.8860-15-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Mar 2022 13:05:38 -0700
-Stephen Boyd <swboyd@chromium.org> wrote:
+On 18/03/2022 17:08, Ansuel Smith wrote:
+> Convert qcom,krait-cc to yaml and add missing l2 clocks and names
+> definiton.
 
-> Quoting Gwendal Grignou (2022-03-15 10:30:37)
-> > Allow configure the resistance used during precharge.
-> >
-> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> > ---
-> >  .../bindings/iio/proximity/semtech,sx9324.yaml           | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> > index b8a6ee16854ff..cd8ed50f2882a 100644
-> > --- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> > @@ -126,6 +126,14 @@ properties:
-> >        UINT_MAX (4294967295) represents infinite. Other values
-> >        represent 1-1/N.
-> >
-> > +  semtech,input-precharge-resistor:  
+lang typo.
+
 > 
-> It is clearer when the units are in the name of the property.
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/clock/qcom,krait-cc.txt          | 34 ----------
+>  .../bindings/clock/qcom,krait-cc.yaml         | 63 +++++++++++++++++++
+>  2 files changed, 63 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
 > 
-> 	semtech,input-precharge-resistor-kohms
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,krait-cc.txt b/Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+> deleted file mode 100644
+> index 030ba60dab08..000000000000
+> --- a/Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+> +++ /dev/null
+> @@ -1,34 +0,0 @@
+> -Krait Clock Controller
+> -
+> -PROPERTIES
+> -
+> -- compatible:
+> -	Usage: required
+> -	Value type: <string>
+> -	Definition: must be one of:
+> -			"qcom,krait-cc-v1"
+> -			"qcom,krait-cc-v2"
+> -
+> -- #clock-cells:
+> -	Usage: required
+> -	Value type: <u32>
+> -	Definition: must be 1
+> -
+> -- clocks:
+> -	Usage: required
+> -	Value type: <prop-encoded-array>
+> -	Definition: reference to the clock parents of hfpll, secondary muxes.
+> -
+> -- clock-names:
+> -	Usage: required
+> -	Value type: <stringlist>
+> -	Definition: must be "hfpll0", "hfpll1", "acpu0_aux", "acpu1_aux", "qsb".
+> -
+> -Example:
+> -
+> -	kraitcc: clock-controller {
+> -		compatible = "qcom,krait-cc-v1";
+> -		clocks = <&hfpll0>, <&hfpll1>, <&acpu0_aux>, <&acpu1_aux>, <qsb>;
+> -		clock-names = "hfpll0", "hfpll1", "acpu0_aux", "acpu1_aux", "qsb";
+> -		#clock-cells = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml b/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+> new file mode 100644
+> index 000000000000..f89b70ab01ae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,krait-cc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Krait Clock Controller
+> +
+> +maintainers:
+> +  - Ansuel Smith <ansuelsmth@gmail.com>
+> +
+> +description: |
+> +  Qualcomm Krait Clock Controller used to correctly scale the CPU and the L2
+> +  rates.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,krait-cc-v1
+> +      - qcom,krait-cc-v2
+> +
+> +  clocks:
+> +    items:
+> +      - description: phandle to hfpll for CPU0 mux
+> +      - description: phandle to hfpll for CPU1 mux
+> +      - description: phandle to hfpll for L2 mux
+> +      - description: phandle to CPU0 aux clock
+> +      - description: phandle to CPU1 aux clock
+> +      - description: phandle to L2 aux clock
+> +      - description: phandle to QSB fixed clk
 
-Added bonus is that you won't need the ref if the units chosen
-match one of the ones in 
-https://github.com/robherring/dt-schema/blob/master/schemas/property-units.yaml
+None of these were in original bindings, original DTS (because it does
+not exist), original driver. Therefore you do not need to change
+bindings during conversion.
 
-Note kohms isn't there so unless we have an issue representing this in ohms,
-please use that instead.
+I propose to add them in second commit with explanation why do you add them.
 
-Jonathan
+Best regards,
+Krzysztof
