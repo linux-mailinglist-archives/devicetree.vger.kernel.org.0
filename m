@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFD484E30E0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:43:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F01674E30E1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348590AbiCUTpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 15:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38108 "EHLO
+        id S1351234AbiCUTqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 15:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344392AbiCUTpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:45:12 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB4F72E10;
-        Mon, 21 Mar 2022 12:43:45 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 17E448141D;
-        Mon, 21 Mar 2022 20:43:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1647891823;
-        bh=D2IpHeVAxnkZMDlNfPujRJHA+Lbh55IZq2hGC3wCKQ4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=DEMr1xlMHtuLMxyVCkXzx1i9I2bynmqnPzEAoWelrvtD+jzHmgYzFIvfBgB4Uq54t
-         Mbkq20IloKSZsYTF5oEtD0euoPZ+dzdaS5LEOXBcEcr/sl4ThqkMAlI5Gea82euXN0
-         BudO/SWhlN0fW5BT/t8rZ/GLE7tzxPDKi2GAmzQRISI8gCZu8E7P2XzOVeHfTJbvig
-         Cz4w0AJARo39VaZqKoB5HreuP8PAQ11sjCBHh+Q5v5qSyU1FfbTyE06Ahp7LkDGYFw
-         +GOj/zPZg2sP1IGpTZgXectXWtb/MeVBiSH4r+9pgZfzuvm767bXwSGNCZuqbydAnP
-         TzIV2U3hInRSg==
-Message-ID: <0ad64a7a-408a-1b11-0775-bd9bc71955e3@denx.de>
-Date:   Mon, 21 Mar 2022 20:43:42 +0100
+        with ESMTP id S1344392AbiCUTqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:46:36 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6D672E12;
+        Mon, 21 Mar 2022 12:45:10 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id j83so17378174oih.6;
+        Mon, 21 Mar 2022 12:45:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TAjWLBWhBHjCUb+VIfbAKdSt9gXhVpt6cPap/7gcaLE=;
+        b=T9tNkPvgm4n/7jmhqarxKsZTSVfFizrNTitTd3JY0n4rzKiuzL4sDiYEGjQyrKAtir
+         bN718MtP/4ZnRJgVh9mBzGM38Y89GnOyMF9t17WGN5mceXF5pVZ+a2V/29JYPC8iUVJd
+         r7Z2kO0GXo2BfKHKU+/YwmyjFVrb6F6xoqhOk5PtpGqSyIJ8kiGLOi3T4dbmDSdbIxt1
+         QEbj6sc8WgBwisDaR8izPFnVWeheKNdMhBCV2RoSyn7IELxnfn+sAZqAdt8xJzXKpuIr
+         oIm9XMMoeoc8qSnylFOdvXd9bRM/xXe83PmeYIRN5QcZqwxqT7R+UNGhYoHxw4aqsKXL
+         +Htw==
+X-Gm-Message-State: AOAM5319k/0ak7XmwheOvT1JHRsWPMujj6I9HEYblmt5RYprnMo/sv47
+        09BmMlb8gQ9RGadagiYASQ==
+X-Google-Smtp-Source: ABdhPJyBgzvN0GnnOtwLOq9oZTWqIpLkZn6zH522PjA2WIR9UZy8zCfvhj25OCnlkKnX0nFyxzagkg==
+X-Received: by 2002:a05:6808:912:b0:2ec:cf83:6137 with SMTP id w18-20020a056808091200b002eccf836137mr384391oih.227.1647891909394;
+        Mon, 21 Mar 2022 12:45:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o2-20020a05687072c200b000d9ae3e1fabsm6526127oak.12.2022.03.21.12.45.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 12:45:08 -0700 (PDT)
+Received: (nullmailer pid 431535 invoked by uid 1000);
+        Mon, 21 Mar 2022 19:45:06 -0000
+Date:   Mon, 21 Mar 2022 14:45:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: add
+ microchip,lan966x-cpu-syscon compatible
+Message-ID: <YjjVwhFCYRX3Alhy@robh.at.kernel.org>
+References: <20220313003122.19155-1-michael@walle.cc>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 2/3] clk: Make __clk_hw_register_fixed_factor
- non-static
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220226040723.143705-1-marex@denx.de>
- <20220226040723.143705-2-marex@denx.de>
- <20220318210356.55D1EC340E8@smtp.kernel.org>
- <5f97232b-579f-bccf-c603-c263aea143b6@denx.de>
- <20220321192650.E4409C340E8@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220321192650.E4409C340E8@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220313003122.19155-1-michael@walle.cc>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,35 +63,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/21/22 20:26, Stephen Boyd wrote:
-> Quoting Marek Vasut (2022-03-20 06:23:14)
->> On 3/18/22 22:03, Stephen Boyd wrote:
->>> Quoting Marek Vasut (2022-02-25 20:07:22)
->>>> Access to the full parameters of __clk_hw_register_fixed_factor()
->>>> is useful in case a driver is registering fixed clock with only
->>>> single parent, in which case the driver should set parent_name to
->>>> NULL and parent_index to 0, and access to this function permits it
->>>> to do just that.
->>>>
->>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>> Cc: Michael Turquette <mturquette@baylibre.com>
->>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>> Cc: Stephen Boyd <sboyd@kernel.org>
->>>> Cc: devicetree@vger.kernel.org
->>>> To: linux-clk@vger.kernel.org
->>>> ---
->>>> V2: - New patch
->>>> V3: - No change
->>>
->>> This isn't exported. Given that we don't typically export an internal
->>> function (hence the double underscore) I'm going to change this to be a
->>> new function. See the attached patch.
->>
->> I can confirm the change works and looks OK.
->>
->> Do you want me to send a V4 or will you squash it into these patches
->> yourself when applying?
+On Sun, 13 Mar 2022 01:31:22 +0100, Michael Walle wrote:
+> Add the Microchip LAN966x CPU system registers compatible.
 > 
-> No need I fixed it up and pushed it out.
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Thank you
+Applied, thanks!
