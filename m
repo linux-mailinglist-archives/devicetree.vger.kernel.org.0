@@ -2,66 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB7A4E2979
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:04:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B74DA4E2A3A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:14:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348694AbiCUOFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 10:05:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35106 "EHLO
+        id S1349179AbiCUOO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 10:14:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348667AbiCUOCj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:02:39 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E1FA27DC
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:59:34 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id n16so10365572ile.11
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:59:34 -0700 (PDT)
+        with ESMTP id S1351814AbiCUOLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:11:50 -0400
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3C9DFDC1;
+        Mon, 21 Mar 2022 07:10:24 -0700 (PDT)
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+        by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 22LCwA0S009877;
+        Mon, 21 Mar 2022 14:09:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=corp-2021-07-09;
+ bh=jJvjaD9nDPINy+yDER4EzUWY4D2RflHCie4NZqkBL5M=;
+ b=yzinJ2+Z10kVBOUVRRRflvhCizRqfLTxhzITyZk68qsGj8SJ6WCJm1ORyZSMTLLZU857
+ FxXycx6ws5J1DfPnShaBppZI9REk/AIzJPbqfSjKwemo/+2jInNtNrftOdhr/u7cUrFt
+ glL5A5rl8LJ6Y80zXyOWqkbZjgHeQzUo5UxYs85Y71ewT2tWQuoJGb1qhSoXrvLql9lQ
+ wQW17ppoTMDC6zL1vhB+Kbbne9WKYzHaDRxxsS8xerZc/wzNq1l3uBoLBTVrscpJMq42
+ /9ug7bMr/4K872OGlnHmBAo6Uew8Rtf3lA+7Shlve8ZbJdnP2bvxbVUIT9LpAx3fNf2b LA== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80] (may be forged))
+        by mx0b-00069f02.pphosted.com with ESMTP id 3ew72abb8f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 21 Mar 2022 14:09:28 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+        by userp3030.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 22LE85vv038153;
+        Mon, 21 Mar 2022 14:09:27 GMT
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2173.outbound.protection.outlook.com [104.47.55.173])
+        by userp3030.oracle.com with ESMTP id 3ew49r3k8h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 21 Mar 2022 14:09:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Fi3vHHOQmg/8+J8BUfKOs5SO+Obgu09/6kMplfMFQic6+XgyFsaVGW78q4ewpvx/0W0DBnz0AGSW+OFq7RxRXhsPkUy7zcf2HIXvDNLi4GWf5oDnjLrB/R3O+7h0nir3tXy2JyUouoOxBN2ZnvUmqoyVq1csuvTHUPXcybvXb0gNlM2w8Dxvtrnlw0Z+0S+QMSnXG9zGNAh6oj0xnqTAycluLL3SJHMWnAZqULDANwMfkRLn3mb9dJ5gW5Eg/0h/OCVwwyQUIhmWMldOyd72SQsV2k1Yk5LPrxDTjWoSB4DLFqLAffAiEg5G8ASgn/xqm5WA14od13Wh4hceQ+o/lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jJvjaD9nDPINy+yDER4EzUWY4D2RflHCie4NZqkBL5M=;
+ b=kRDGgPJ7u2eUqLjUlKziDP/QrFhs2FHmJMO3ZABM4eOMcOc26alBWIkYcidx0dvtS1LMiPvikLqHtPV/U+EgLMF1YQvuAPR1yJGoYgXgueVA46hXE4wNf2FYfOkv01eqvyWmpmaUskjB7r2FzNIbRS2AMR+XXC7TV+RA4uCF9/nnEQ87n5wF+sa30qr4QDrcVtp7qXgTRvj07VMGQpbImTRa6zBdeaWkPuY/ChyOkksTvNZh0YMW/RzIJ2NzL5IuC19huqy1x/n6Uk1/7AgG0TcelyG5p8Tp3pPv1GsP/4B5kDhEcGfiQzVbetWG3KcebtIf30nI6KjG/kBZPVQpXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Dbu61RfAwLouDAK/6ENRGBRMkX9WqXG9dwqpw7GxGSc=;
-        b=7U2GmjtjG+KrmWmI+8LnHnC6pKk/onL0sIn/KKf2y6YATs19BdLc4K5oEmR+8A0RZg
-         0qo4IJb1pJTxOHiGgCYAnY2Q5o18uabgI4uzBVZy9k21HrIblwrfH8Tu3Uk9271zXR/h
-         kLvi5r+pVlsH+AG0wOxCtF90HZtHZnkSh3tSxvPZvOFZLXvy/WKVJgpPsdAZrQdRTLFd
-         cRC9Y8/Lzkr/TmS80iBEnmytntbMXaig11TNkBgyKq9qByMGV1r1WxJdpp9WTV9re3mr
-         a2zakmessXkdnbYh9wmbOthz+MqEBeeMmslgGMnu7hCY14/gsdvMog7Iwulgdrp41IG4
-         E3Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Dbu61RfAwLouDAK/6ENRGBRMkX9WqXG9dwqpw7GxGSc=;
-        b=BrQcjQzzfCjKhU3TaEGaw6cUHom1fTV1kDogMANtqOr+5pJOpCNLBa4Kh9yncp1n1n
-         lGba9b8eU7orgNTXewPmdI2STvjqxs/07Z9HOkG3kFlm0MwJaPMpHFK1Q/wLpUhQUEgo
-         r6dZV11T9byWjjmv2yUBedD9AwmnudJj9lLb4V+i40sLwZO9tDzr0XMY2/KpINhuSvQq
-         aSlPnTsPmosxONqO/3+f5br7aexLjEbtVfKM3nxsdHHXuCplKuGVjdx2qfJ8XFRNgrdz
-         WLcyiO9uYZiReXH/Or2qy2NMHMgT5gUQVc9GzfjzdUlYehd3t3LOUw1gQ6zho/aSTgNp
-         txzw==
-X-Gm-Message-State: AOAM532pHkLK70flaaxe532Xm7mijksuJ7w0rUBNZByA8uJThsXmNx0u
-        7h+2jaOGNtozWP1/3KkK2v5I9Rs6tIFEoqVXIg/7jQ==
-X-Google-Smtp-Source: ABdhPJwFqiFF9wihpG2UV5EQ49HN7qgFBajF2wJoIKoeMVICJzzPqmjxMje563P+A3DunP4nG2b1CqH38mr2jjOtK2g=
-X-Received: by 2002:a05:6e02:1a0f:b0:2c8:28e2:72a6 with SMTP id
- s15-20020a056e021a0f00b002c828e272a6mr2418757ild.27.1647871169028; Mon, 21
- Mar 2022 06:59:29 -0700 (PDT)
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jJvjaD9nDPINy+yDER4EzUWY4D2RflHCie4NZqkBL5M=;
+ b=QKVz2fJRGHsmQhQCAJm+/ClYQRFhl7TLanghabE8JGvznKUIPqLYmv1u7V++pUXNsR6/j5n3SDddF1Ne0r3s3VqoMN9WZBQASW1NyFQSJu37cwnI6uXajsm99bUMM4N+Z3yjxiAYmg2+lHmOnBt6kk0vBDQ+LfYZYHn4Q049Yy4=
+Received: from SJ0PR10MB5742.namprd10.prod.outlook.com (2603:10b6:a03:3ed::20)
+ by SA2PR10MB4714.namprd10.prod.outlook.com (2603:10b6:806:111::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.17; Mon, 21 Mar
+ 2022 14:09:24 +0000
+Received: from SJ0PR10MB5742.namprd10.prod.outlook.com
+ ([fe80::2400:c9fb:a176:3502]) by SJ0PR10MB5742.namprd10.prod.outlook.com
+ ([fe80::2400:c9fb:a176:3502%2]) with mapi id 15.20.5081.022; Mon, 21 Mar 2022
+ 14:09:23 +0000
+Message-ID: <d938a7e8-6b4f-f24d-41d3-8058ca2b2ac8@oracle.com>
+Date:   Mon, 21 Mar 2022 09:09:19 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v21 3/5] arm64: kdump: reimplement crashkernel=X
+Content-Language: en-US
+To:     John Donnelly <John.p.donnelly@oracle.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <20220227030717.1464-4-thunder.leizhen@huawei.com>
+ <cc0186d9-29a3-8eff-e38a-95fd4dd9c46f@oracle.com>
+From:   Dave Kleikamp <dave.kleikamp@oracle.com>
+In-Reply-To: <cc0186d9-29a3-8eff-e38a-95fd4dd9c46f@oracle.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SN7PR04CA0176.namprd04.prod.outlook.com
+ (2603:10b6:806:125::31) To SJ0PR10MB5742.namprd10.prod.outlook.com
+ (2603:10b6:a03:3ed::20)
 MIME-Version: 1.0
-References: <20220321121728.414839-1-robert.marko@sartura.hr> <20220321134055.o3uz5al5np7fj273@pali>
-In-Reply-To: <20220321134055.o3uz5al5np7fj273@pali>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Mon, 21 Mar 2022 14:59:18 +0100
-Message-ID: <CA+HBbNE6ULsT1k7ZVsKk0JONsgYz50fzrrWb26_3LSs29p49Gw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: uDPU: update partition table
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: acde4f42-0a05-482f-c5ce-08da0b4466ae
+X-MS-TrafficTypeDiagnostic: SA2PR10MB4714:EE_
+X-Microsoft-Antispam-PRVS: <SA2PR10MB4714316445B7D14C213E503087169@SA2PR10MB4714.namprd10.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LUg/c+pnbFntsIAIdpaRfkDVRaSEmJno+d1iGmyXkROQUhOs8O5or1T7f2vHF+MOv9iZfCjc3FUvBelR0BEW4Sz2t0a3Y3tt2wUs8hXo2K14wysKC8FmlRjffrwLefvJWoRgn8FLJ/Wt6IJ7OGcpV5JOQLK/xTtPR5PSbs0dPrJervG9zi93EnoRlr3qJE+qgR3nffIAeLo3zmtFej4B2Bes162ddEk+nMbW1fe4O5TrryTn0imSR0now4+RUB2HGWoQgwOV5jNPUcJSS+lpiVzcMF4Puh9Sgd/L3654E9NNsiMjcWBTyQeuZLRbjwpZRpOrNRi6tlZy5Do44M3/5+TSvmclKrPeOERJWPXuxw3aDHVUmgoiVhf0boNe6t4wxvvzFLMOHkmngqCyIDZoXIk89ArliIMpfI9M//UgvI83Cc1Sr5ICLfgG64bqUPJfUNlez23lXpVxj7gjS9hb1kiPYxTJgbR3KQob8gNJ4q6P2jxuYm9+3SqzUFqvxSGqo0pL56jiMEPzI3bxnOUfqPk52gt3fAqmCMSmTmQCTAFV+uCBXUvSOfSwlRh5TejJhrzHIjQ/QRBx5Y0mhm+TAMBWWukiRq92TgrXd6WveGT6F2leU6VFaGyVu8L/FB1W105ytHeD6oFJ0a3uWsfcfdt4Rqf4DqCGAk/RoO8p91uOWglQnBBRPeKfqaQSov28BBjKu/uytJyg5yduZgtQrg8mG0JuhoHWkHocpsVY842W0gyz/YpF9sMmbxSjixl33TSgiG/qIzIy9prTsEPi4Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR10MB5742.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(54906003)(31686004)(316002)(38100700002)(6512007)(44832011)(110136005)(6666004)(8936002)(4326008)(8676002)(6506007)(83380400001)(86362001)(31696002)(36756003)(26005)(921005)(66556008)(66946007)(186003)(53546011)(5660300002)(7416002)(508600001)(2906002)(6486002)(2616005)(66476007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWRydVFLNndoaUlaS2pnS1hjSG5PV3d5aUliYU9HZzZhc216NlFUcndXcFNa?=
+ =?utf-8?B?YjBVNm1vYkpwQzhCRjJqTTY1WWtHSUFsMmZoemdQNkhPcHh1cnJYRVpJTEs3?=
+ =?utf-8?B?dnZYMWpoWlVSVDlnWkVZYzM3bnpLT0loc3k2MVowWi9JQ2ZZNWVlOXRWUW1K?=
+ =?utf-8?B?Y0hhVlZwODFDS0NldlVDNVh6V3JtRmhLS1NGVXVmNzUyeXF1UlBuQzV2NSti?=
+ =?utf-8?B?bWozNGlnMTU2OVFyWTBUWlFZZ0txRGxmU3RRNWtyVlBjUDNhZEJWUTVaYjlF?=
+ =?utf-8?B?ZHk3NXpReDJRdXlPN2tDdG9rYlFTNDEzaFBSUTFVOUpRNGthSzdRemEyTFVq?=
+ =?utf-8?B?aVBLcEp6Smt5aWRQNVJmNkpIVkhLOE5XRFdhZXBlT2gxanhiQU5pRDFOYjcz?=
+ =?utf-8?B?aGRFMCtMTkNJemNvTXoxdGY4Zi9jZWtmazUvSjJkK3VxL2xVVW8xL3VBbGhR?=
+ =?utf-8?B?MmJFc0pBU1IrSTd3WGIwR2pSbHNWa3BDaU5TUm9TQ0IxMy9JZ1puY21PZi9N?=
+ =?utf-8?B?R3g4UUlVZ0IvUEFYbHY1R1pWaHUwYVZZTE9ncE1PZ2dvNThaQnNzL3JHRlh6?=
+ =?utf-8?B?akVqMEdTVlMwL2xpOFhPcHo3V1BBby9RN0NUaXMxVmxvYTdCUUIxaWlyUHUw?=
+ =?utf-8?B?bmJmKzR2N3BTaW9kalVSMWRuK1pMU2x3N2U4enVmeXFLL05FVDcxc2NpRFJu?=
+ =?utf-8?B?aDdlTVU1KzVDdkovYjNTRXp3bGZacXZvQjF6SFhmUkRCd0dDdTU3dUFRMFlx?=
+ =?utf-8?B?TGhXcTBpem90dzRBeDA2dUZYakgzVWZ3YURKbThreDE5WEZEaWY2VER0dGVx?=
+ =?utf-8?B?VHdwalJTYldYOU5pazAyK0dFaHZ4RVZmd3REQlZzeXc2YUxPajhJalBLYnFZ?=
+ =?utf-8?B?Vmx4REhQRzFnZWplU3hZZ0xWMTJ6MkorOStIVmExcnBOVzBuckNlajYvRUdw?=
+ =?utf-8?B?Q1NnYUExc2s3bCs2L0NUMVpRL1UzdDJYQUtrS0V2akFlb0pBK29zTUhCemtI?=
+ =?utf-8?B?WGVJNXdKQlNLYTZEUWorQ3ZmVzhtYjFIMWVnc3RTZkR3aUtPYStIb3g5TDlG?=
+ =?utf-8?B?dE9haGZaSTZnaEpQNkJpR3l0QzNTcHhCb2IwQUdDV015WisyWWhtcWVmY2F4?=
+ =?utf-8?B?YW9abHYrdFlmckEwd2tHc0V3TlVNOFJ0M2NBamxzVUhhOWQ4Z3NOdUZwbEVT?=
+ =?utf-8?B?c0RXVVA3YXU3emV5Y0VMVi9hQUcxYkhuMUdkSEoxcm5qZXBIS21ZN0VLWk50?=
+ =?utf-8?B?eVowNXVON2E3UmhCdk01bGY0ZncvZFR1cElINFRKLzc0RURaWHB6WUZNZWxV?=
+ =?utf-8?B?b3NvRU5wcVQzRkZ4VzFQL0tXMzhhRFhNc013TXJGUllBeTJ6aU1wSGRHaVoy?=
+ =?utf-8?B?bkZORi9rTXRIak44NVdTZGh0aUdtNHhyT2RtS2ZBWlB1aUhTVzF6Z25SZ3NF?=
+ =?utf-8?B?VHJ2eERZeTdXR044NFhhR0VzNDJiOVlZczhlZ1loSFAzOXlITGVIWVJaRFda?=
+ =?utf-8?B?RkhHUndsMlJuRWNVTTJYeC9kT0VJRDU0dldodDRBUzcwMVJ6c3JEdHNLYURJ?=
+ =?utf-8?B?N0Q4QmhlcnprTUNSbUZBZUFjWDhnQVVnTGNQY1p1NUc0aGhvZlFBMkptcVIr?=
+ =?utf-8?B?UUg1N2lYNVNMaTllTzkvbmFJb1RUM2VRWURXYUdVcG1UNGlGUGtOMFBsWm9a?=
+ =?utf-8?B?ZDJ3TzgzcUptbEhlTXJxZWlGMFU1KzRGV1FJZkFtMG1GTi9tbEVrUzBIczdJ?=
+ =?utf-8?B?TkduaHl1Vmh6Sk9tVVJOUXZkam1KVXhMbmxwdnB2Y1FkV2ZuUmpvejZ1SG1h?=
+ =?utf-8?B?ZDNPc2NHQ0lZYXE4SnNFSnBJbTdoVVNSNDUyUmY2MEpiVkZxWjNRaWNjckQ5?=
+ =?utf-8?B?K3ptWXQrODI4eTlnalNXdmVyemVyMU1xQXdpdFBCSWs1Y3VQTjJKOFoyZFBZ?=
+ =?utf-8?B?QkNmbUp1K2NzN0tCYjd1Ri93MVpNZWNteEVLSDhJL3hUa1NGMGNNR2hhekk2?=
+ =?utf-8?B?UnkralFKWTRBPT0=?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acde4f42-0a05-482f-c5ce-08da0b4466ae
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR10MB5742.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2022 14:09:23.6164
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nzWL1sSv5bw9oP+u6Tn5kKBT03trK8lspgBr3sLXLXLTfVujtgcwmaUyOkhbGK7MPBcP/oti6AhYO23yVLww9D2xiLR86rlvVEWDl/UB2dk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4714
+X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10292 signatures=694221
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 malwarescore=0 mlxscore=0
+ bulkscore=0 phishscore=0 spamscore=0 mlxlogscore=999 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2202240000
+ definitions=main-2203210091
+X-Proofpoint-GUID: IRD0u_w1U8uV-9o6ukynIRVo8EFQqtM2
+X-Proofpoint-ORIG-GUID: IRD0u_w1U8uV-9o6ukynIRVo8EFQqtM2
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,80 +170,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 2:41 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Monday 21 March 2022 13:17:27 Robert Marko wrote:
-> > Partition currently called "uboot" does not only contain U-boot, but
-> > rather it contains TF-A, U-boot and U-boot environment.
-> >
-> > So, to avoid accidentally deleting the U-boot environment which is
-> > located at 0x180000 split the partition.
-> >
-> > "uboot" is not the correct name as you can't boot these boards with U-b=
-oot
-> > only, TF-A must be present as well, so rename the "uboot" partition to
-> > "firmware".
-> >
-> > While we are here, describe the NOR node as "spi-flash@0" instead of
-> > "m25p80@0" which is the old SPI-NOR driver name.
-> >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> >  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts | 13 +++++++++----
-> >  1 file changed, 9 insertions(+), 4 deletions(-)
->
-> FYI, U-Boot now contains copy of kernel's A3720 DTS files, so you should
-> send same patch also to U-Boot project.
+On 3/21/22 8:29AM, John Donnelly wrote:
+> On 2/26/22 9:07 PM, Zhen Lei wrote:
+>> From: Chen Zhou <chenzhou10@huawei.com>
+>>
+>> There are following issues in arm64 kdump:
+>> 1. We use crashkernel=X to reserve crashkernel below 4G, which
+>> will fail when there is no enough low memory.
+> 
+>                          " Not enough "
+>> 2. If reserving crashkernel above 4G, in this case, crash dump
+>> kernel will boot failure because there is no low memory available
+>> for allocation.
+> 
+>   We can't have a "boot failure". If the requested reservation
+>   can not be met,  the kdump  configuration is not setup.
 
-I am working on uDPU fixes for U-boot as well so it will get synced as
-part of the series.
-Regards,
-Robert
->
-> > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts b/arch/ar=
-m64/boot/dts/marvell/armada-3720-uDPU.dts
-> > index 95d46e8d081c..ac64949bb53e 100644
-> > --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> > +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> > @@ -99,7 +99,7 @@ &spi0 {
-> >       pinctrl-names =3D "default";
-> >       pinctrl-0 =3D <&spi_quad_pins>;
-> >
-> > -     m25p80@0 {
-> > +     spi-flash@0 {
-> >               compatible =3D "jedec,spi-nor";
-> >               reg =3D <0>;
-> >               spi-max-frequency =3D <54000000>;
-> > @@ -108,10 +108,15 @@ partitions {
-> >                       compatible =3D "fixed-partitions";
-> >                       #address-cells =3D <1>;
-> >                       #size-cells =3D <1>;
-> > -                     /* only bootloader is located on the SPI */
-> > +
-> >                       partition@0 {
-> > -                             label =3D "uboot";
-> > -                             reg =3D <0 0x400000>;
-> > +                             label =3D "firmware";
-> > +                             reg =3D <0x0 0x180000>;
-> > +                     };
-> > +
-> > +                     partition@180000 {
-> > +                             label =3D "u-boot-env";
-> > +                             reg =3D <0x180000 0x10000>;
-> >                       };
-> >               };
-> >       };
-> > --
-> > 2.35.1
-> >
+I think you misread this. Without these patches, if only high memory is 
+reserved for the crash kernel, then the crash kernel will fail to boot.
 
-
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+>>
+>> To solve these issues, change the behavior of crashkernel=X and
+>> introduce crashkernel=X,[high,low]. crashkernel=X tries low allocation
+>> in DMA zone, and fall back to high allocation if it fails.
+>> We can also use "crashkernel=X,high" to select a region above DMA zone,
+>> which also tries to allocate at least 256M in DMA zone automatically.
+>> "crashkernel=Y,low" can be used to allocate specified size low memory.
+> 
+> Is there going to be documentation on what values certain Arm platforms 
+> are going to use this on ?
+> 
+>>
+>> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+>> Co-developed-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
