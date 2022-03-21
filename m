@@ -2,117 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F32534E21E3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:15:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AFC54E21F9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:17:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345221AbiCUIRJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Mar 2022 04:17:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49128 "EHLO
+        id S1345185AbiCUISs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 04:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345137AbiCUIRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:17:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E851E11DD21
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 01:15:11 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nWDBd-0004Zy-AB; Mon, 21 Mar 2022 09:14:45 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nWDBW-0023Fj-7t; Mon, 21 Mar 2022 09:14:39 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nWDBW-0001PK-AO; Mon, 21 Mar 2022 09:14:38 +0100
-Message-ID: <84f2c72ced35506522ea3a6be72879d1699f885b.camel@pengutronix.de>
-Subject: Re: [PATCH 1/2] net: mdio: add reset deassertion for Aspeed MDIO
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Dylan Hung <dylan_hung@aspeedtech.com>, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au, andrew@lunn.ch,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Cc:     BMC-SW@aspeedtech.com, stable@vger.kernel.org
-Date:   Mon, 21 Mar 2022 09:14:38 +0100
-In-Reply-To: <20220321070131.23363-2-dylan_hung@aspeedtech.com>
-References: <20220321070131.23363-1-dylan_hung@aspeedtech.com>
-         <20220321070131.23363-2-dylan_hung@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S1345135AbiCUISn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:18:43 -0400
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601B711C7D9;
+        Mon, 21 Mar 2022 01:17:18 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id b24so16828240edu.10;
+        Mon, 21 Mar 2022 01:17:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=UPXEd69sTaiK/uNEn1bkYPH2H2f2n1BGPqtAGLVGAlM=;
+        b=1vgb+KsYh+T5dcILb+vJEdQbg7Ty1oneWwHzd9AzA9StYZN01RHwKWiNaoqwcwndQo
+         lNUPXK8NoShLKLn5WyPDh+033LaPCaIsUwL5EbZV83CnvyPlVcUaV122otEOo3odqOp0
+         Q8L9UO79FfNYAvYpKr7Gf4Ag3mrD2sVn8Owi8/tEAFo4uchusGkxMp8Cto4uNSeTrE8C
+         DAr1JuknVN9OZKAJaaIgv17Jc3AYRUankeG1ElaTjPyAckVIpra3gKcFKKIQ9RqjhAWx
+         qDmEEYWfT39kqxMb6FAYPNjPhjNh8uNLym10A+YEOf3nbLf0ldhsJurJbGLW3l+8xbbK
+         4LSA==
+X-Gm-Message-State: AOAM533xAJq7GvMLQPeQ9Ab8REMnWwprm+oDskzoNjPqDuYTkB+HGWFC
+        llmsHRrwj+N9ozzZHbCaMdA=
+X-Google-Smtp-Source: ABdhPJyWMXLY7z5rSMdohaPlv2/J6RBymfAfq4g9TdxYDtEo9oJQIIYQ1+HwNjN0P3ynt7HJZKzPkQ==
+X-Received: by 2002:a05:6402:1148:b0:413:11e0:1f58 with SMTP id g8-20020a056402114800b0041311e01f58mr21227589edw.113.1647850636901;
+        Mon, 21 Mar 2022 01:17:16 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id nb6-20020a1709071c8600b006e02910f818sm323062ejc.157.2022.03.21.01.17.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Mar 2022 01:17:16 -0700 (PDT)
+Message-ID: <8331991b-90e9-1649-8faa-4f42b4318488@kernel.org>
+Date:   Mon, 21 Mar 2022 09:17:15 +0100
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mmc: xenon: Convert to JSON schema
+Content-Language: en-US
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "huziji@marvell.com" <huziji@marvell.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220318033521.1432767-1-chris.packham@alliedtelesis.co.nz>
+ <91b6660d-c22b-0679-4cb9-6ebba9066545@kernel.org>
+ <b2ffd5d0-6cff-3ed1-cdca-e93ca1c6d5d0@alliedtelesis.co.nz>
+In-Reply-To: <b2ffd5d0-6cff-3ed1-cdca-e93ca1c6d5d0@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dylan,
-
-On Mo, 2022-03-21 at 15:01 +0800, Dylan Hung wrote:
-> Add reset deassertion for Aspeed MDIO.  There are 4 MDIO controllers
-> embedded in Aspeed AST2600 SOC and share one reset control register
-> SCU50[3]. So devm_reset_control_get_shared is used in this change.
+On 20/03/2022 20:51, Chris Packham wrote:
 > 
-> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-> Cc: stable@vger.kernel.org
-> ---
->  drivers/net/mdio/mdio-aspeed.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/net/mdio/mdio-aspeed.c b/drivers/net/mdio/mdio-
-> aspeed.c
-> index e2273588c75b..8ac262a12d13 100644
-> --- a/drivers/net/mdio/mdio-aspeed.c
-> +++ b/drivers/net/mdio/mdio-aspeed.c
-> @@ -3,6 +3,7 @@
->  
->  #include <linux/bitfield.h>
->  #include <linux/delay.h>
-> +#include <linux/reset.h>
->  #include <linux/iopoll.h>
->  #include <linux/mdio.h>
->  #include <linux/module.h>
-> @@ -37,6 +38,7 @@
->  
->  struct aspeed_mdio {
->         void __iomem *base;
-> +       struct reset_control *reset;
->  };
->  
->  static int aspeed_mdio_read(struct mii_bus *bus, int addr, int
-> regnum)
-> @@ -120,6 +122,12 @@ static int aspeed_mdio_probe(struct
-> platform_device *pdev)
->         if (IS_ERR(ctx->base))
->                 return PTR_ERR(ctx->base);
->  
-> +       ctx->reset = devm_reset_control_get_shared(&pdev->dev, NULL);
 
-The device tree bindings should have a required reset control property
-documented before this is added.
+(...)
 
-> +       if (IS_ERR(ctx->reset))
-> +               return PTR_ERR(ctx->reset);
-> +
-> +       reset_control_deassert(ctx->reset);
-> +
+>>> +
+>>> +patternProperties:
+>>> +  "^sdhci@[0-9a-f]+$":
+>>> +    type: object
+>>> +    $ref: mmc-controller.yaml
+>> This is unusual schema... What are you matching here? Are these children
+>> of this device?
+> I was going for compatibility with existing uses. The 
+> mmc-controller.yaml schema expects these nodes to be mmc@... . But all 
+> of the existing usages of these bindings use sdhci@... as the primary 
+> node. I could make my example use mmc@ to squash the warning but I was 
+> hoping to be able to do something that didn't make the existing usages 
+> invalid.
 
-This is missing a corresponding reset_control_assert() in
-aspeed_mdio_remove() and in the error path of of_mdiobus_register().
-That would allow to assert the reset line again after all MDIO
-controllers are unbound.
+Please do not create inconsistent bindings because some DTS are
+inconsistent. Change the DTS and align them with generic MMC schema.
+Node name should not be considered an ABI, so it can be changed in DTS.
+Some systems unfortunately break (usually Android and Chrome like to
+encode node names), so then it would have to be individually discussed.
 
-regards
-Philipp
+>> Looks like you wanted allOf. See some existing examples, like:
+>> Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
+>>
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        oneOf:
+>>> +          - const: marvell,armada-3700-sdhci
+>>> +            description: |
+>>> +              Must provide a second register area and marvell,pad-type
+>>> +          - const: marvell,armada-ap806-sdhci
+>>> +          - const: marvell,armada-ap807-sdhci
+>> This looks wrong. Either these can be standalone properties or in a list
+>> like in your last items below.
+> I was trying to allow 'compatible = "marvell,armada-ap806-sdhci";' or 
+> 'compatible = "marvell,armada-ap807-sdhci", "marvell,armada-ap806-sdhci";'
+
+But you have here 807! Both 806 and 807.  So is 807 compatible with 806
+or not?
+
+Best regards,
+Krzysztof
