@@ -2,122 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA34D4E289E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E94F4E28A3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347044AbiCUN76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 09:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46106 "EHLO
+        id S1345822AbiCUN74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 09:59:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348931AbiCUN6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:58:41 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EA2A616F074;
-        Mon, 21 Mar 2022 06:56:46 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,198,1643641200"; 
-   d="scan'208";a="115210252"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Mar 2022 22:56:35 +0900
-Received: from localhost.localdomain (unknown [10.226.92.135])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id BB8D34254BB7;
-        Mon, 21 Mar 2022 22:56:33 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] arm64: dts: renesas: rzg2lc-smarc: Enable RSPI1 on carrier board
-Date:   Mon, 21 Mar 2022 13:56:29 +0000
-Message-Id: <20220321135629.16876-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+        with ESMTP id S1349234AbiCUN7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:59:54 -0400
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A87CC2C117
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:58:28 -0700 (PDT)
+Received: by mail-il1-x129.google.com with SMTP id b7so10367434ilm.12
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:58:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X+Ha+4MkGG0rcPyeHKUpRTP8Sg3O5ksnG1QqvI9ZHyI=;
+        b=n2SzX5oZso0KhIFPs+X0TIL2//j1amgmhkmXqJupG9ju2j8lN3ilU10Ndb6yw0IS0M
+         EN4IBOoeKBrZw9hI3pVwDtUrwSy3229Y2bI47POcBB9SYgGe4t0NmEeJwtIzYgb3DtzL
+         CdmdPQlEUkLXGZjjz8+KYZ8/NyejAtcCSFWW4N5Zn2K+TAGEGOK9DogVIJrUjiwdfRL8
+         BgigFB5ko0wmq9tzu3sfoakRuiA8WS58LqhYZ+3yenSvgqC0quJaq/miYqEBLcf4+Ykk
+         enJP9BBxtv0JXf+8Ouyv6EqsQ9UYQLLjzh+nAx2Hnc0S/Hx+9rwaR4y4m/nuDPBq7pxq
+         IRbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X+Ha+4MkGG0rcPyeHKUpRTP8Sg3O5ksnG1QqvI9ZHyI=;
+        b=Lt5JocUDvUKE/nw/2/JMS3/IchOAyxPaR39teWPjPb+ohU17C/fy/nQ5OM+egPyCH0
+         fCqkbbMYjxcaRcuaWVIIk1R20GPT97eM71lou5CnZqoPC/UadiodX+r7/EW9P+jjmR3c
+         hHsyRmA+EUH/hQo06T2AwE9hfsXC2jWaLxZQ+awat3vjGmCyolqp0Prd5i8NFUo1TK+I
+         KtPsoVxBD+tjwbSxR3WNJsH9aopK+VxrA0gkUM2KGUuxCXzvAZptnRS+3gB7Pbi/Z80L
+         Oa4gbq9VH0+uAGCOok9qi7/5ZJEteeNwc9Iuc0g+h1DiBo3HUiop/fUUDy8V3Dbt/SIb
+         Li+A==
+X-Gm-Message-State: AOAM531FDvgLemgaMmSiWf/M/EagYCcR5Fvh9psgXkQGhUkny6ca9DSu
+        Rjp0g/GY4m15aTGJLxehXQ/acdpjgF6eP/BFVvkZNA==
+X-Google-Smtp-Source: ABdhPJwiF1TaI5R3uwA7Caoz179NE8txpfZxe1JHe+wKDDSOaRVDVID3DkeZILA6n1+PDO5TDjqp+g5YEGLFAvJkZEk=
+X-Received: by 2002:a05:6e02:1847:b0:2c8:1134:4d5c with SMTP id
+ b7-20020a056e02184700b002c811344d5cmr4473803ilv.159.1647871108097; Mon, 21
+ Mar 2022 06:58:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220321121728.414839-1-robert.marko@sartura.hr>
+ <Yjhyg5cNe5KZ6SOp@lunn.ch> <CA+HBbNHw5v+R5WHPTvNj7oVtz0szsCm=JCXPFRtUf2GW7Qz35Q@mail.gmail.com>
+ <Yjh6ysD/fPT/IQLc@lunn.ch>
+In-Reply-To: <Yjh6ysD/fPT/IQLc@lunn.ch>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Mon, 21 Mar 2022 14:58:17 +0100
+Message-ID: <CA+HBbNExq86kXpmFT4eiSBagcADyHFGmuuY3izkthEZ+GqEV4Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: uDPU: update partition table
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on the
-carrier board.  This patch adds pinmux and spi1 nodes to the carrier
-board dtsi file and drops deleting pinctl* properties from DTS file.
+On Mon, Mar 21, 2022 at 2:16 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Mar 21, 2022 at 01:47:21PM +0100, Robert Marko wrote:
+> > On Mon, Mar 21, 2022 at 1:41 PM Andrew Lunn <andrew@lunn.ch> wrote:
+> > >
+> > > On Mon, Mar 21, 2022 at 01:17:27PM +0100, Robert Marko wrote:
+> > > > Partition currently called "uboot" does not only contain U-boot, but
+> > > > rather it contains TF-A, U-boot and U-boot environment.
+> > > >
+> > > > So, to avoid accidentally deleting the U-boot environment which is
+> > > > located at 0x180000 split the partition.
+> > > >
+> > > > "uboot" is not the correct name as you can't boot these boards with U-boot
+> > > > only, TF-A must be present as well, so rename the "uboot" partition to
+> > > > "firmware".
+> > >
+> > > Are there any ABI issues here? If these names are being used
+> > > somewhere, you are potentially breaking the boot. At minimum, i would
+> > > like to see something in the commit message which indicates you have
+> > > considered this and why you don't expect it to be a problem.
+> >
+> > Hi Andrew, this won't break booting as BootROM does not care about
+> > partitions nor naming, it will just go to 0x0 of the NOR and boot it.
+> >
+> > The same renaming had already been done:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/marvell?h=v5.17&id=a9d9bfcadfb43b856dbcf9419de75f7420d5a225
+> >
+> > I can update the commit message if required.
+>
+> Yes, please. It is always good to indicate you have thought about
+> issues like this. Not breaking the ABI is very important, and could
+> result in this getting reverted at some point. So indicating why you
+> think this is safe is useful information.
 
-RSPI1 interface is tested by setting the macro SW_RSPI_CAN to 0.
+Thanks, will do it in v2.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
- * Sorted the node alphabetically
- * Delete/disable pinctrl/spi node, when SW_RSPI_CAN macro is set to 1.
-   This change is done in common file, so that both single core and 
-   dual core RZ/G2LC SMARC EVK can reuse the same.
----
- arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts  |  6 ------
- .../boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi |  7 +++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi      | 14 ++++++++++++++
- 3 files changed, 21 insertions(+), 6 deletions(-)
+Regards,
+Robert
+>
+>       Andrew
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 74a2f2bade10..fc34058002e2 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -13,9 +13,3 @@
- 	model = "Renesas SMARC EVK based on r9a07g044c2";
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
- };
--
--&spi1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index d275a55333e3..a78a8def363e 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -106,6 +106,13 @@
- 		input-enable;
- 	};
- 
-+	spi1_pins: spi1 {
-+		pinmux = <RZG2L_PORT_PINMUX(44, 0, 1)>, /* CK */
-+			 <RZG2L_PORT_PINMUX(44, 1, 1)>, /* MOSI */
-+			 <RZG2L_PORT_PINMUX(44, 2, 1)>, /* MISO */
-+			 <RZG2L_PORT_PINMUX(44, 3, 1)>; /* SSL */
-+	};
-+
- 	ssi0_pins: ssi0 {
- 		pinmux = <RZG2L_PORT_PINMUX(45, 0, 1)>, /* BCK */
- 			 <RZG2L_PORT_PINMUX(45, 1, 1)>, /* RCK */
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 74ad1ede3d0b..32c3d56511d5 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -158,3 +158,17 @@
- 	status = "okay";
- };
- #endif
-+
-+#if (!SW_RSPI_CAN)
-+&spi1 {
-+	pinctrl-0 = <&spi1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+#else
-+&spi1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+#endif
+
+
 -- 
-2.17.1
-
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
