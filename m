@@ -2,140 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91EB44E25BB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 12:55:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D80124E25EC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 13:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244308AbiCUL4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 07:56:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
+        id S1347036AbiCUMEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 08:04:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235298AbiCUL4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 07:56:05 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF1EB78;
-        Mon, 21 Mar 2022 04:54:39 -0700 (PDT)
-X-UUID: 8fc365ebb8e04c23b6a91a12633afcaf-20220321
-X-UUID: 8fc365ebb8e04c23b6a91a12633afcaf-20220321
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 960504842; Mon, 21 Mar 2022 19:54:33 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 21 Mar 2022 19:54:32 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 21 Mar 2022 19:54:31 +0800
-Message-ID: <b71b2496a19745648d6b1a9788f35b0371b45847.camel@mediatek.com>
-Subject: Re: [RESEND v7 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
- pinctrls properties
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Tian Tao <tiantao6@hisilicon.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Yue Hu <huyue2@yulong.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Yoshihiro Shimoda" <yoshihiro.shimoda.uh@renesas.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Eric Biggers" <ebiggers@google.com>,
-        Satya Tangirala <satyat@google.com>,
-        "Stephen Boyd" <swboyd@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        <linux-mediatek@lists.infradead.org>, Lucas Stach <dev@lynxeye.de>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "Kiwoong Kim" <kwmad.kim@samsung.com>
-Date:   Mon, 21 Mar 2022 19:54:31 +0800
-In-Reply-To: <1647742413.962309.2990518.nullmailer@robh.at.kernel.org>
-References: <20220317101215.24985-1-axe.yang@mediatek.com>
-         <20220317101215.24985-2-axe.yang@mediatek.com>
-         <1647742413.962309.2990518.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231757AbiCUMEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 08:04:53 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84562659B;
+        Mon, 21 Mar 2022 05:03:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647864208; x=1679400208;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=LBjKxMXHUPA0MBLtDXm+CGwGiORiHOghh88r4RgnKf4=;
+  b=Rpk2og1HUisF7EYuLK3jv9y8f3yAcZmRii/inxBY9cDaPfztBLypD9nl
+   19jmJXFEPULiz4zbl/3jVkrViLLgU3ylgPKlnsZCP8eh2Sx0my37xSW/q
+   Mvu+FzxtFXQTAD91HzvIlQhXpw9r4/Q1ygf7pvJjK0imeWLbVeatzzifw
+   g=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Mar 2022 05:03:28 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 05:03:27 -0700
+Received: from nalasex01b.na.qualcomm.com (10.47.209.197) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 21 Mar 2022 05:03:27 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 21 Mar 2022 05:03:23 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <rohitkr@codeaurora.org>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v5 0/3] Add lpass pin control support for audio on sc7280 based targets
+Date:   Mon, 21 Mar 2022 17:29:16 +0530
+Message-ID: <1647863959-3289-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patch set is to add lpass pin control support for Audio over I2S,
+wcd codec and digital mics.
+This patch set depends on:
+	-- Lpass-lpi pinctrl patches [https://patchwork.kernel.org/project/alsa-devel/list/?series=623951&archive=both&state=*]
 
-Thanks for your review.
+Changes Since V4:
+    -- Add primary and secondary I2S pinmux nodes for herobrine specific targets.
+Changes Since V3:
+    -- Add pinctrl nodes for wcd codec reset and CTIA/OMTP headset selection.
+Changes Since V2:
+    -- Move lpass pin control node to main dtsi file.
+    -- Sort nodes alphabetically.
+    -- Remove redundant wcd reset gpio nodes.
+    -- Remove redundant input-enable field in dmic pin control nodes.
+    -- Update amp_en node. 
+    -- Fix typo errors.
+    -- Modify node names.
+    -- Create patches on latest kernel.    
+Changes Since V1:
+    -- Merge pinmux and pinconf properties in amp_en and wcd pin reset node.
+    -- Split common i2s pin control nodes to functionality specific nodes.
+    -- Move board specific properties to board specific dtsi file.
+    -- Update dmic pin control node name.
+Srinivasa Rao Mandadapu (3):
+  arm64: dts: qcom: sc7280: Add pinctrl for wcd938x codec reset and
+    CTIA/OMTP headset selection
+  arm64: dts: qcom: sc7280: Add pinmux for I2S speaker and Headset
+  arm64: dts: qcom: sc7280: add lpass lpi pin controller node
 
-On Sat, 2022-03-19 at 20:13 -0600, Rob Herring wrote:
-> On Thu, 17 Mar 2022 18:12:13 +0800, Axe Yang wrote:
-> > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
-> > This feature allow SDIO devices alarm asynchronous interrupt to
-> > host
-> > even when host stop providing clock to SDIO card. An extra wakeup
-> > interrupt and pinctrl states for SDIO DAT1 pin state switching are
-> > required in this scenario.
-> > 
-> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24
-> > ++++++++++++++++++-
-> >  1 file changed, 23 insertions(+), 1 deletion(-)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/mmc/mtk-sd.yaml:
-> properties:pinctrl-names: {'description': 'Should at least contain
-> default and state_uhs. To support SDIO in-band wakeup, dat1 pin will
-> be switched between GPIO mode and SDIO DAT1 mode, state_eint and
-> state_dat1 are mandatory in this scenarios.', 'minItems': 2,
-> 'maxItems': 4, 'items': [{'const': 'default'}, {'const':
-> 'state_uhs'}, {'const': 'state_eint'}, {'const': 'state_dat1'}]}
-> should not be valid under {'required': ['maxItems']}
-> 	hint: "maxItems" is not needed with an "items" list
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/mmc/mtk-sd.yaml: ignoring,
-> error in schema: properties: pinctrl-names
-> Documentation/devicetree/bindings/mmc/mtk-sd.example.dt.yaml:0:0: 
-> /example-0/mmc@11230000: failed to match any schema with compatible:
-> ['mediatek,mt8173-mmc']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/1606491
-> 
-> This check can fail if there are any dependencies. The base for a
-> patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up
-> to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  34 +++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       |  43 ++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi           | 188 +++++++++++++++++++++++++
+ 3 files changed, 265 insertions(+)
 
-
-I reproduced the error and already fix it in v8.
-
-Regards,
-Axe
+-- 
+2.7.4
 
