@@ -2,69 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 787724E2AD5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:32:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1763D4E2AFD
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:39:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344155AbiCUOeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 10:34:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37900 "EHLO
+        id S233160AbiCUOk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 10:40:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350129AbiCUOeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:34:07 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F565DE46
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 07:32:39 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id m30so11129537wrb.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 07:32:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RccDfbuFs/Yz2WrfhL+KkjoyAgUu2DNhvPj6SzPznLY=;
-        b=MTu7SXp2mMCpLDiDwJeKrjiCt7ymx7U0UG1x1U6bTcaLMpAK5p8CBpfjbxlZvnr36d
-         maBuFhYOfQZReSuaI9sCQW4R/chbZxL9lDaimRIeZ2mhkIgo0yiaaGr3nf1tGZJy7yQW
-         7CdcJCwmF/gQa/Miq1bugA74rDusfk870DyVw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RccDfbuFs/Yz2WrfhL+KkjoyAgUu2DNhvPj6SzPznLY=;
-        b=PeSZKGGUWOQqJ3C/eTBw0H532Hx5wcbHg+tA/6Z4pUNjzfbQvVgTfMGH7+sN1LPSzX
-         3wAWIzxI1a8ACMlDCcwEpHDiOPyAlOo6COCEFA9kTZ6eqDg9Xhgv6ZfO0zdnl3FTM/bM
-         CWm/bmP4sODaS5Ef0rRqUXnxIifRLIjzWtFrmrlTlq+cGXaV1NyMaRS4jxAg2ih10yLJ
-         +yaHC0eFM6a1i+98zDfNBkEu9UWpQxkI/YySjg4AUGpp6ZFZ1FP05IgaUG1QomTyyRzo
-         zeDZD0sSsahGajv31H+YU+oa99VDOU1CTA+9G/TFvGcMquOK15S+Bz8ZleyEOmRedQlU
-         ufLw==
-X-Gm-Message-State: AOAM532EY+m0gJfJ9VbL/Zor3VGAdAlRN84NaYvJpivNIrf+bWmomLaP
-        +AgJM8sdE8H1dIGSf/2t8dQA4g==
-X-Google-Smtp-Source: ABdhPJwOqVlJwIVTX5II/TL9iAxFRONy6Vxcp8R+6SJpH47T6+n5NfKeVrNnW5xISpuY3ByAgkxtJg==
-X-Received: by 2002:a5d:4e89:0:b0:204:2ee:d87 with SMTP id e9-20020a5d4e89000000b0020402ee0d87mr8406009wru.9.1647873158156;
-        Mon, 21 Mar 2022 07:32:38 -0700 (PDT)
-Received: from fabiobaltieri-linux.lan ([37.228.205.1])
-        by smtp.gmail.com with ESMTPSA id u11-20020a05600c19cb00b00389efe9c512sm19092793wmq.23.2022.03.21.07.32.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 07:32:37 -0700 (PDT)
-From:   Fabio Baltieri <fabiobaltieri@chromium.org>
-To:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Fabio Baltieri <fabiobaltieri@chromium.org>
-Subject: [PATCH 4/4] arm64: dts: address cros-ec-pwm channels by type
-Date:   Mon, 21 Mar 2022 14:32:22 +0000
-Message-Id: <20220321143222.2523373-5-fabiobaltieri@chromium.org>
-X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
-In-Reply-To: <20220321143222.2523373-1-fabiobaltieri@chromium.org>
-References: <20220321143222.2523373-1-fabiobaltieri@chromium.org>
+        with ESMTP id S1349455AbiCUOkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:40:25 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA06C12E176;
+        Mon, 21 Mar 2022 07:38:55 -0700 (PDT)
+X-UUID: 65bb2f0f74004d3d9c0c060ceb518971-20220321
+X-UUID: 65bb2f0f74004d3d9c0c060ceb518971-20220321
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 312422891; Mon, 21 Mar 2022 22:38:50 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 21 Mar 2022 22:38:49 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Mar
+ 2022 22:38:49 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Mar 2022 22:38:48 +0800
+Message-ID: <f9cd3c31cc41f0f3c72930664445646d8175c760.camel@mediatek.com>
+Subject: Re: [v5 3/4] ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI
+ links of headset
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linmq006@gmail.com>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <trevor.wu@mediatek.com>,
+        <matthias.bgg@gmail.com>, <aaronyu@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <angelogioacchino.delregno@collabora.com>
+Date:   Mon, 21 Mar 2022 22:38:48 +0800
+In-Reply-To: <YjhDqKhtYastPhf0@google.com>
+References: <20220319114111.11496-1-jiaxin.yu@mediatek.com>
+         <20220319114111.11496-4-jiaxin.yu@mediatek.com>
+         <Yjf4KjXpVJaNnvb8@google.com>
+         <17e6e8895ebc1113911481c7e097b394005db123.camel@mediatek.com>
+         <YjhDqKhtYastPhf0@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,285 +64,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update various cros-ec-pwm board definitions to address the keyboard and
-screen backlight PWM channels by type rather than channel number. This
-makes the instance independent by the actual hardware configuration,
-relying on the EC firmware to pick the right channel, and allows
-dropping few dtsi overrides as a consequence.
+On Mon, 2022-03-21 at 17:21 +0800, Tzung-Bi Shih wrote:
+> On Mon, Mar 21, 2022 at 05:14:08PM +0800, Jiaxin Yu wrote:
+> > On Mon, 2022-03-21 at 11:59 +0800, Tzung-Bi Shih wrote:
+> > > On Sat, Mar 19, 2022 at 07:41:10PM +0800, Jiaxin Yu wrote:
+> > > > @@ -1145,6 +1140,13 @@ static int
+> > > > mt8192_mt6359_dev_probe(struct
+> > > > platform_device *pdev)
+> > > >  		goto err_speaker_codec;
+> > > >  	}
+> > > >  
+> > > > +	headset_codec = of_get_child_by_name(pdev->dev.of_node,
+> > > > "mediatek,headset-codec");
+> > > > +	if (!headset_codec) {
+> > > > +		ret = -EINVAL;
+> > > > +		dev_err_probe(&pdev->dev, ret, "Property
+> > > > 'headset_codec' missing or invalid\n");
+> > > > +		goto err_headset_codec;
+> > > > +	}
+> > > 
+> > > (to be neat) Does it have any reason to prevent from using
+> > > of_parse_phandle()
+> > > but of_get_child_by_name()?
+> > 
+> > "mediatek,headset-codec" is a child node of pdev->dev.of_node, so I
+> > use
+> > of_get_child_by_name() to get and   pass it to
+> > snd_soc_of_get_dai_link_codecs().
+> 
+> "mediatek,platform" and "mediatek,hdmi-codec" are also children of
+> pdev->dev.of_node.  I guess my question is: why doesn't it also use
+> of_parse_phandle() for "mediatek,headset-codec"?  Did I
+> misunderstand?
+Hi Tzung-Bi,
 
-Changed the node label used to cros_ec_pwm_type to avoid ambiguity about
-the pwm cell meaning.
+The following is from bindings, "mediatek,speaker-codec" and
+"mediatek,headset-codec" are sub nodes of sound but "mediatek,platform"
+and "mediatek,hdmi-codec" are the name of properties. So we can't get
+the sub node pointer through of_parse_phandle().
 
-Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
----
- .../dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts     | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi    | 3 ++-
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi            | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi       | 4 ----
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi              | 8 +++++---
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi            | 6 ++++--
- arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi            | 3 ++-
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi                | 6 ++++--
- arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts           | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi   | 4 +++-
- arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts         | 4 ----
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi              | 1 +
- 12 files changed, 24 insertions(+), 24 deletions(-)
+      sound: mt8192-sound {
+          compatible = "mediatek,mt8192_mt6359_rt1015_rt5682";
+          mediatek,platform = <&afe>;
+          mediatek,hdmi-codec = <&anx_bridge_dp>;
+          pinctrl-names = "aud_clk_mosi_off",
+                          "aud_clk_mosi_on";
+          pinctrl-0 = <&aud_clk_mosi_off>;
+          pinctrl-1 = <&aud_clk_mosi_on>;
+ 
+          mediatek,headset-codec {
+              sound-dai = <&rt5682>;
+          };
+ 
+          mediatek,speaker-codec {
+              sound-dai = <&rt1015_l>,
+                          <&rt1015_r>;
+          };
+      };
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-index dec11a4eb59e..e2554a313deb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dts
-@@ -15,13 +15,13 @@ pwmleds {
- 		compatible = "pwm-leds";
- 		keyboard_backlight: keyboard-backlight {
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
- };
- 
--&cros_ec_pwm {
-+&cros_ec_pwm_type {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-index 8f7bf33f607d..eaea09d0f8cd 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-@@ -92,10 +92,11 @@ volume_up {
- };
- 
- &cros_ec {
--	cros_ec_pwm: ec-pwm {
-+	cros_ec_pwm_type: ec-pwm {
- 		compatible = "google,cros-ec-pwm";
- 		#pwm-cells = <1>;
- 		status = "disabled";
-+		google,use_pwm_type;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 0f9480f91261..ff54687ab8bf 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include "mt8183.dtsi"
- #include "mt6358.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 14ed09f30a73..bcdfabe1860d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -77,10 +77,6 @@ &ap_spi_fp {
- 	status = "okay";
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
- &camcc {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index bd5909ffb3dc..3deddbf97cb3 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include <dt-bindings/sound/sc7180-lpass.h>
- 
-@@ -222,7 +223,7 @@ backlight: backlight {
- 		num-interpolated-steps = <64>;
- 		default-brightness-level = <951>;
- 
--		pwms = <&cros_ec_pwm 1>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
- 		pinctrl-names = "default";
-@@ -260,7 +261,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -543,9 +544,10 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: ec-pwm {
-+		cros_ec_pwm_type: ec-pwm {
- 			compatible = "google,cros-ec-pwm";
- 			#pwm-cells = <1>;
-+			google,use_pwm_type;
- 		};
- 
- 		i2c_tunnel: i2c-tunnel {
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 4619fa9fcacd..8676c8a677b9 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -12,6 +12,7 @@
- #include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-@@ -379,7 +380,7 @@ pwmleds {
- 		keyboard_backlight: keyboard-backlight {
- 			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
--			pwms = <&cros_ec_pwm 0>;
-+			pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_KB_LIGHT>;
- 			max-brightness = <1023>;
- 		};
- 	};
-@@ -771,9 +772,10 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: ec-pwm {
-+		cros_ec_pwm_type: ec-pwm {
- 			compatible = "google,cros-ec-pwm";
- 			#pwm-cells = <1>;
-+			google,use_pwm_type;
- 		};
- 
- 		i2c_tunnel: i2c-tunnel {
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-index 0896a6151817..48bb2159e126 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-@@ -20,9 +20,10 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: ec-pwm {
-+		cros_ec_pwm_type: ec-pwm {
- 			compatible = "google,cros-ec-pwm";
- 			#pwm-cells = <1>;
-+			google,use_pwm_type;
- 		};
- 
- 		i2c_tunnel: i2c-tunnel {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index 4a6285a25f77..e6dc4bc57f01 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sdm845.dtsi"
- 
-@@ -27,7 +28,7 @@ chosen {
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pwms = <&cros_ec_pwm 0>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		enable-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
- 		power-supply = <&ppvar_sys>;
- 		pinctrl-names = "default";
-@@ -708,9 +709,10 @@ cros_ec: ec@0 {
- 		pinctrl-0 = <&ec_ap_int_l>;
- 		spi-max-frequency = <3000000>;
- 
--		cros_ec_pwm: ec-pwm {
-+		cros_ec_pwm_type: ec-pwm {
- 			compatible = "google,cros-ec-pwm";
- 			#pwm-cells = <1>;
-+			google,use_pwm_type;
- 		};
- 
- 		i2c_tunnel: i2c-tunnel {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-index 31ebb4e5fd33..5a076c2564f6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
-@@ -55,10 +55,6 @@ trackpad: trackpad@15 {
- 	};
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 0>;
--};
--
- &cpu_alert0 {
- 	temperature = <65000>;
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-index 9b2c679f5eca..324bb8871fe2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
-@@ -198,6 +198,7 @@ backlight: backlight {
- 		power-supply = <&pp3300_disp>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bl_en>;
-+		pwms = <&cros_ec_pwm_type CROS_EC_PWM_DT_DISPLAY_LIGHT>;
- 		pwm-delay-us = <10000>;
- 	};
- 
-@@ -462,9 +463,10 @@ ap_i2c_tp: &i2c5 {
- };
- 
- &cros_ec {
--	cros_ec_pwm: ec-pwm {
-+	cros_ec_pwm_type: ec-pwm {
- 		compatible = "google,cros-ec-pwm";
- 		#pwm-cells = <1>;
-+		google,use_pwm_type;
- 	};
- 
- 	usbc_extcon1: extcon1 {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-index 6863689df06f..e959a33af34b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
-@@ -84,10 +84,6 @@ thermistor_ppvar_litcpu: thermistor-ppvar-litcpu {
- 	};
- };
- 
--&backlight {
--	pwms = <&cros_ec_pwm 1>;
--};
--
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&bt_host_wake_l>, <&cpu1_pen_eject>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-index 162f08bca0d4..181159e9982d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-@@ -6,6 +6,7 @@
-  */
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/mfd/cros_ec.h>
- #include "rk3399.dtsi"
- #include "rk3399-op1-opp.dtsi"
- 
--- 
-2.35.1.894.gb6a874cedc-goog
 
