@@ -2,131 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28FAA4E324D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 22:22:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 222924E3254
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 22:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbiCUVW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 17:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53510 "EHLO
+        id S229819AbiCUV1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 17:27:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbiCUVWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 17:22:25 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703B21B2C44
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 14:20:17 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A6AFC2C00BE;
-        Mon, 21 Mar 2022 21:20:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1647897615;
-        bh=qdVK/9bT48x/jOX0/GBrjiXcVufotfBylhHUtNPUL7E=;
-        h=From:To:Cc:Subject:Date:From;
-        b=PVf5Jhp7gQTXhHu611bV2MIgjGMvufK9deuwp4zAEBgauXdFuA5xSlV8hm7IKX13r
-         gPiH8kF65BZXsJQdLKD41fxR4FpgLlUtGXkG/kyY9VAvba2uSvmpHG2Y9g8TUggis8
-         wOMI+x3F/AL8fMv0RLcmPb0XFi75ILnUlOam2xOfQoAXNwhOp2wjnW5YiChHWzD1Fu
-         OVWa51uCMmG3ArtpT91pMfRmgMhS6O8d01XXkPvyXQWY3p7YW3XerdFzDVtIyctwiw
-         sQF+tiWO71cR77HfecPfh6hHC1l+pFkyPXhmZYyeyNIOtAp8bDoqiT1M5ytQx7GjSk
-         RTFUbtdxWHvAg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6238ec0f0000>; Tue, 22 Mar 2022 10:20:15 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 7941213EE36;
-        Tue, 22 Mar 2022 10:20:15 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id ADB172A2679; Tue, 22 Mar 2022 10:20:10 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH] arm64: dts: marvell: Update sdhci node names to match schema
-Date:   Tue, 22 Mar 2022 10:20:07 +1300
-Message-Id: <20220321212007.2961581-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229506AbiCUV1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 17:27:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E64E73476DC;
+        Mon, 21 Mar 2022 14:25:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 728526123B;
+        Mon, 21 Mar 2022 21:25:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE72C340EE;
+        Mon, 21 Mar 2022 21:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647897909;
+        bh=AKwmwLhwJETomCoi21Fza1mV0uLKeQfDm9gRO+vTHvI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MPxIKdPtpK4j7VKUCmDV+2tDsGY9qCuYZpT+uubn/K/7ZK4NFb15xCb7hlq9Udn/H
+         MyPl1Bk+q6LddZD/d1AuanZomshNMckC1t6J89dbe9aPrfrj2jV4VFMJ3LFFxatinG
+         8nGAUkv7JdOv+NClrOsXYg45DTg1HkU6jx8Tah4NtiEPqFXEyrdreKugKQTkRyWKrc
+         kbzZnCeF2Un5lZJqo4jqCFdILkwrWDyU06wV1wmVZsTgJcdUOiSAOHWV7SefJETDcd
+         d0N8EVw6gxjuXcIzFplBRj+SKCagjPJi8dToTNjOutjni0pgTncZZ2AW7rlyvnpKQx
+         iX6oJ6aiNI/GQ==
+Received: by mail-ej1-f53.google.com with SMTP id a8so32466468ejc.8;
+        Mon, 21 Mar 2022 14:25:09 -0700 (PDT)
+X-Gm-Message-State: AOAM530UiAgnZOXXy/T2Qgqek3nLWgM81QfN7gURhHXNic1iW4KlyRmM
+        mZkSd3BqKY2JkMoOqSZuzLMkbWejpS7r2+fJFQ==
+X-Google-Smtp-Source: ABdhPJzcUrtfN5C6Cp1DYIuKWWPjCKj++GrqTdBuxiMIr8dvQj2FvXNQlVmjtpr5ucAsK90IFEeDROYXBp42Lkqhk70=
+X-Received: by 2002:a17:906:5418:b0:6df:a07f:764b with SMTP id
+ q24-20020a170906541800b006dfa07f764bmr19268057ejo.27.1647897908076; Mon, 21
+ Mar 2022 14:25:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=AgHtZ1O-xYyxAwoHFCcA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <1647237097-29172-1-git-send-email-hammerh0314@gmail.com> <1647237097-29172-3-git-send-email-hammerh0314@gmail.com>
+In-Reply-To: <1647237097-29172-3-git-send-email-hammerh0314@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 21 Mar 2022 16:24:56 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJzbWejb0=XY+xi17n3P1QHWgHYhY1vM3cBBHOqRQ+4xA@mail.gmail.com>
+Message-ID: <CAL_JsqJzbWejb0=XY+xi17n3P1QHWgHYhY1vM3cBBHOqRQ+4xA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pwm: sunplus-pwm: Add Sunplus SoC SP7021 PWM Driver
+To:     Hammer Hsieh <hammerh0314@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        "hammer.hsieh" <hammer.hsieh@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the node names of the sdhci@ interfaces to be mmc@ to match the
-node name enforced by the mmc-controller.yaml schema.
+On Mon, Mar 14, 2022 at 12:51 AM Hammer Hsieh <hammerh0314@gmail.com> wrote:
+>
+> Add Sunplus SoC SP7021 PWM Driver
+>
+> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+Your message is corrupted because charset is set to 'y' which is not valid:
 
-Notes:
-    This was spun off from converting the dt-binding to JSON schema but I
-    think this change can stand on it's own.
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 
- arch/arm64/boot/dts/marvell/armada-37xx.dtsi  | 4 ++--
- arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 2 +-
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+This is due to git-send-email asking you what encoding to use and you
+entered 'y' instead of <enter> to accept the default of UTF-8.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-37xx.dtsi
-index 673f4906eef9..9d9415da8c88 100644
---- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-@@ -434,7 +434,7 @@ rwtm: mailbox@b0000 {
- 				#mbox-cells =3D <1>;
- 			};
-=20
--			sdhci1: sdhci@d0000 {
-+			sdhci1: mmc@d0000 {
- 				compatible =3D "marvell,armada-3700-sdhci",
- 					     "marvell,sdhci-xenon";
- 				reg =3D <0xd0000 0x300>,
-@@ -445,7 +445,7 @@ sdhci1: sdhci@d0000 {
- 				status =3D "disabled";
- 			};
-=20
--			sdhci0: sdhci@d8000 {
-+			sdhci0: mmc@d8000 {
- 				compatible =3D "marvell,armada-3700-sdhci",
- 					     "marvell,sdhci-xenon";
- 				reg =3D <0xd8000 0x300>,
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/b=
-oot/dts/marvell/armada-ap80x.dtsi
-index 6614472100c2..a06a0a889c43 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-@@ -250,7 +250,7 @@ watchdog: watchdog@610000 {
- 				interrupts =3D <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
- 			};
-=20
--			ap_sdhci0: sdhci@6e0000 {
-+			ap_sdhci0: mmc@6e0000 {
- 				compatible =3D "marvell,armada-ap806-sdhci";
- 				reg =3D <0x6e0000 0x300>;
- 				interrupts =3D <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/b=
-oot/dts/marvell/armada-cp11x.dtsi
-index 3bd2182817fb..d6c0990a267d 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-@@ -493,7 +493,7 @@ CP11X_LABEL(trng): trng@760000 {
- 			status =3D "okay";
- 		};
-=20
--		CP11X_LABEL(sdhci0): sdhci@780000 {
-+		CP11X_LABEL(sdhci0): mmc@780000 {
- 			compatible =3D "marvell,armada-cp110-sdhci";
- 			reg =3D <0x780000 0x300>;
- 			interrupts =3D <27 IRQ_TYPE_LEVEL_HIGH>;
---=20
-2.35.1
-
+Rob
