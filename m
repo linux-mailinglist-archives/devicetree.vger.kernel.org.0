@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE8794E1FD4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 06:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8DE4E2035
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 06:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234158AbiCUFRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 01:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
+        id S1344413AbiCUFqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 01:46:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344310AbiCUFR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 01:17:29 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DABC12BB03;
-        Sun, 20 Mar 2022 22:16:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647839764; x=1679375764;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZSklBNTsSIb9u8Zs+cghnGiUg/0nwYn/5hxrTKgdUw0=;
-  b=g6OZ4FsY8jndnQ/mgZNfNyVqCYs+wXiw8scG13Wtbkdk5PuJeIZfFw27
-   3K4u2fhl6uXRQI9kX3O92I9vYkdOdDlLfi5bVfrW7Hjay7jLAu4yta5fe
-   IYk8D4QKprpIkaEKRnbXPayHhWXBCH+cEmrPIR8I+FAXBTDEntExY5i0g
-   JMd3q6J+zZpDlvwK/+x5r+UNwUNjbfxBXo8/nYd90AljTZj5nWNbLKw3k
-   eu4zcpFqcr4Ub7fITLrv82jJotMMO8J4d7x0YZrDgJxqE6OtgvKtuxL8d
-   P42Augtw50qaPno8baDG+PQxiHhxHnaA/5LHQqeEKVpfzFlnfrPyywx+d
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="256288159"
-X-IronPort-AV: E=Sophos;i="5.90,197,1643702400"; 
-   d="scan'208";a="256288159"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2022 22:16:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,197,1643702400"; 
-   d="scan'208";a="692058812"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 20 Mar 2022 22:16:00 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nWAOd-000HVG-PW; Mon, 21 Mar 2022 05:15:59 +0000
-Date:   Mon, 21 Mar 2022 13:15:18 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org
-Cc:     kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <202203211339.6SuyU3aA-lkp@intel.com>
-References: <20220318124121.26117-2-liang.yang@amlogic.com>
+        with ESMTP id S237634AbiCUFqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 01:46:42 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412EB3467E;
+        Sun, 20 Mar 2022 22:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647841518; x=1679377518;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=5jpBW6uLsQb0YnPNbiHNaZP2OmTuH9tT+u8HihjWK8Y=;
+  b=jobQ4oOHQ30u19jP0tFiCUv8wdZK55VOlsq0JKs+Mn2ia9mjB08tHETt
+   BMeQUw15WlM34FtGuV6Acgx4mz4Gyo+R/dOxv8uGBfxVvTKo2w8mE5m+k
+   vLTSGijA24dVRC29fcqudFiu+Vvny0jxI7hgvlFY36+4Hx7jfFgyVC3xd
+   c=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 Mar 2022 22:45:17 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2022 22:45:16 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 20 Mar 2022 22:45:16 -0700
+Received: from [10.216.35.92] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 20 Mar
+ 2022 22:45:13 -0700
+Message-ID: <c808dc08-09c8-bb08-6656-18dd649af036@quicinc.com>
+Date:   Mon, 21 Mar 2022 11:14:56 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220318124121.26117-2-liang.yang@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: Add 'piglin' to the
+ crd-r3 compatible strings
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Stephen Boyd <swboyd@chromium.org>, <devicetree@vger.kernel.org>,
+        "Douglas Anderson" <dianders@chromium.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220316172814.v1.1.I2deda8f2cd6adfbb525a97d8fee008a8477b7b0e@changeid>
+ <20220316172814.v1.2.Ib0fbb7e5218201c81a2d064ff13c9bc1b0863212@changeid>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <20220316172814.v1.2.Ib0fbb7e5218201c81a2d064ff13c9bc1b0863212@changeid>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,40 +71,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
 
-I love your patch! Yet something to improve:
+On 3/17/2022 5:58 AM, Matthias Kaehlcke wrote:
+> With newer bootloader versions the crd-r3 (aka CRD 1.0 and 2.0) is
+> identified as a 'piglin' board (like the IDP2 board), instead of 'hoglin'
+> Add the compatible strings 'google,piglin-rev{3,4}'. The hoglin entries
+> are kept to make sure the board keeps booting with older bootloader
+> versions.
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.17 next-20220318]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+The older bootloaders really look for the google,hoglin-rev3/google,hoglin-rev4
+compatibles or just google,hoglin? If its just google,hoglin, won;t it pick the
+crd-rev5+ dtb now?
 
-url:    https://github.com/0day-ci/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220318-204307
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-config: m68k-randconfig-r015-20220320 (https://download.01.org/0day-ci/archive/20220321/202203211339.6SuyU3aA-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/8722c778a1a81891f7362662caf9d166442d5990
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220318-204307
-        git checkout 8722c778a1a81891f7362662caf9d166442d5990
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   m68k-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
->> meson_nand.c:(.text+0xaae): undefined reference to `clk_divider_ops'
->> m68k-linux-ld: meson_nand.c:(.text+0xaf0): undefined reference to `devm_clk_register'
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> 
+> The compatible string 'google,piglin' (without revision information) is
+> still used by the IDP2 board, which is not expected to evolve further.
+> 
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> 
+>   arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> index 7a028b9248c3..344338ad8a01 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts
+> @@ -12,7 +12,10 @@
+>   
+>   / {
+>   	model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev3 - 4)";
+> -	compatible = "qcom,sc7280-crd", "google,hoglin-rev3", "google,hoglin-rev4", "qcom,sc7280";
+> +	compatible = "qcom,sc7280-crd",
+> +		     "google,hoglin-rev3", "google,hoglin-rev4",
+> +		     "google,piglin-rev3", "google,piglin-rev4",
+> +		     "qcom,sc7280";
+>   
+>   	aliases {
+>   		serial0 = &uart5;
