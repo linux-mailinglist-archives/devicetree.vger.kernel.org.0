@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 829174E2F35
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 18:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDF24E2F3A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 18:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349654AbiCURlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 13:41:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        id S1349861AbiCURlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 13:41:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245499AbiCURlG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 13:41:06 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5730150E37;
-        Mon, 21 Mar 2022 10:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647884380; x=1679420380;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=93ScEXCpyveWIKDjm3CXxJUD3n+Kkxyy8pTNpHBuZjg=;
-  b=RC2vxF5HXTAwOBq98TPibdqxiSsoaML0M1R93+v3fyt2jc3k2YJoXziB
-   xo7u6ZlOkMj43N3mVrEaWFxNo3g9sAhtfiChnzCwWx5jZPL79hBl+tHqe
-   NIWu8W2yoe5bRgV4QZCJGZRmyvbmcUkyKd/+erENui1IPM6C/wBbhZ0FH
-   7gZfNa0OZW5A20JVIdX0aV7jkbnZcJH4Epp08+Q5cjgid4kklDb4o+OIw
-   kX/CCameEIJr+jLCfQBd0kCvtsvBySzQYifJkcmP401NbxdT/Rq7RSNju
-   iA7ILzVH/tJ9XBQf2TyXMPdU9bVgTc75RAuKP+xkBbcDyBC2iiVo7gZ/6
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10293"; a="257561102"
-X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; 
-   d="scan'208";a="257561102"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 10:39:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,199,1643702400"; 
-   d="scan'208";a="515015749"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 21 Mar 2022 10:39:15 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nWLzu-000I1T-Vq; Mon, 21 Mar 2022 17:39:15 +0000
-Date:   Tue, 22 Mar 2022 01:38:14 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v7 8/9] mfd: smpro-mfd: Adds Ampere's Altra SMpro MFD
- driver
-Message-ID: <202203220139.67ewF74A-lkp@intel.com>
-References: <20220321081355.6802-9-quan@os.amperecomputing.com>
+        with ESMTP id S1349829AbiCURlh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 13:41:37 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD3565173
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 10:40:11 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id i65so6397982qkd.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 10:40:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6W2sIVaPd1wN+ZQSZ4o9j1nJ91W2fIHQV8YHK4mslGI=;
+        b=othMTu8DE+iag13P8/3A86+7Cc/DHfdnjpWo/byQ5ZUfFCsKml6d/b3+j7enHM3E4T
+         p+KQDmhtptyFrPuooWSYmYPJhZWIkHdGt+4vDWYH8iYYuao36WWrhVCMkScMLZUcTZup
+         pbxMXwiUoDBFmduoGs8/S8k0tsoBfeYNIRC0GZYKyyNpLf6jW7ygE9Q4oqBC51xdfcFk
+         7ttNl5wra931kZmVavvxQVP/9NCHWg77ijwCiHKLw+zmH2XDabD4PX37zubDr18d1FXu
+         LkskplWtgjBIz3OnXb1aT9cH4qssg21daGzI4dNto8OQ0PN0SvwCPVBwRyAb6Xlo3qN2
+         FbyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6W2sIVaPd1wN+ZQSZ4o9j1nJ91W2fIHQV8YHK4mslGI=;
+        b=n+96pMN1fyWWBvOFMd/tvQlQdcwRZcoz6WJIWM6p0tPJXq/spOTYc/AiUk77Ze1m0G
+         d+dQ6KTirtI9PR3B5j4kN09zP9L6H2kbYNhr4cA6OzUIUrTOPQSYNHC+Ba0GSK+6QStC
+         KxluVxnuE4XDhq5IU4ETIuIjdHaB/03YlvOeTYeCfBzMH+xoO21Z34QI5enuI49wzqiw
+         thnMzddXY7n0gX3ehnYS0wGPAaDjDYai+RtVomwSmoJJyiiKtUjrjPVxzcqAy5qEAED3
+         6MPR/ZsK1CNwgyx8yjeGFgFzMPxDi5MpCAuu1k+8nYzAgRyBVeRXpI+Gyi5IhI5F1PfP
+         pR6w==
+X-Gm-Message-State: AOAM530e4cFFm1Gd4vzKnyAkwb07jTxomCBK2hGG5CiqDMTBJT/LZ7pJ
+        GdDOZv9/92Iz73zEG+FQGX/ZMFBAOuffkBbFiA7NKg==
+X-Google-Smtp-Source: ABdhPJzAfOtHcF9CqanODzAbHAfQeaYZMAZcZ9hv0xTWt4ZcE9sSN4BkC8am1z8h+EdgxGiCPhpJswcEmaek2cu2UjE=
+X-Received: by 2002:a05:620a:2453:b0:67d:9539:495c with SMTP id
+ h19-20020a05620a245300b0067d9539495cmr13674139qkn.30.1647884410564; Mon, 21
+ Mar 2022 10:40:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220321081355.6802-9-quan@os.amperecomputing.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <1647269217-14064-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1647269217-14064-2-git-send-email-quic_vpolimer@quicinc.com>
+ <CAE-0n51vfoOK_6B0yAvws32MtLQ1SvBPoQPHBFE14TLzZFUZaw@mail.gmail.com> <BN0PR02MB8173BBD2C02F5DFBEBE94E40E4169@BN0PR02MB8173.namprd02.prod.outlook.com>
+In-Reply-To: <BN0PR02MB8173BBD2C02F5DFBEBE94E40E4169@BN0PR02MB8173.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 21 Mar 2022 20:39:59 +0300
+Message-ID: <CAA8EJpribc722wN2jR5sQEkX6FiaE_SdBk8B5HPamCXZWhEd7A@mail.gmail.com>
+Subject: Re: [PATCH v6 1/5] drm/msm/disp/dpu1: set mdp clk to the maximum
+ frequency in opp table during probe
+To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        quic_vpolimer <quic_vpolimer@quicinc.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robdclark@gmail.com" <robdclark@gmail.com>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,75 +76,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quan,
+On Mon, 21 Mar 2022 at 19:21, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Stephen Boyd <swboyd@chromium.org>
+> > Sent: Friday, March 18, 2022 2:41 AM
+> > To: quic_vpolimer <quic_vpolimer@quicinc.com>;
+> > devicetree@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> > freedreno@lists.freedesktop.org; linux-arm-msm@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
+> > dmitry.baryshkov@linaro.org; dianders@chromium.org; quic_kalyant
+> > <quic_kalyant@quicinc.com>
+> > Subject: Re: [PATCH v6 1/5] drm/msm/disp/dpu1: set mdp clk to the
+> > maximum frequency in opp table during probe
+> >
+> > WARNING: This email originated from outside of Qualcomm. Please be wary
+> > of any links or attachments, and do not enable macros.
+> >
+> > Quoting Vinod Polimera (2022-03-14 07:46:53)
+> > > use max clock during probe/bind sequence from the opp table.
+> > > The clock will be scaled down when framework sends an update.
+> >
+> > Capitalize 'use'.
+> >
+> > Why is it important to use max frequency during probe/bind? Does not
+> > setting the clk rate during probe mean that we'll never use the max
+> > rate? Does it speed things up during probe?
+>
+> We need to vote mdp clock during probe/bind so that rails are not set at undetermined state as pointed out by Dmitry.
+> Since we dont know what will be the rate set in boot loader, it would be ideal to vote at max frequency.
+> There could be a firmware display programmed in bootloader and we want to transition it to kernel without underflowing.
 
-I love your patch! Perhaps something to improve:
+This should be expressed in the commit message.
 
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on groeck-staging/hwmon-next lee-mfd/for-mfd-next v5.17 next-20220321]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Quan-Nguyen/Add-Ampere-s-Altra-SMPro-MFD-and-its-child-drivers/20220321-161811
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 37fd83916da2e4cae03d350015c82a67b1b334c4
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220322/202203220139.67ewF74A-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 85e9b2687a13d1908aa86d1b89c5ce398a06cd39)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/20d62dfe69d4a3a0cb64bf97df0062d050d6a4d4
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Quan-Nguyen/Add-Ampere-s-Altra-SMPro-MFD-and-its-child-drivers/20220321-161811
-        git checkout 20d62dfe69d4a3a0cb64bf97df0062d050d6a4d4
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/hwmon/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/hwmon/smpro-hwmon.c:378:2: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
-           default:
-           ^
-   drivers/hwmon/smpro-hwmon.c:378:2: note: insert 'break;' to avoid fall-through
-           default:
-           ^
-           break; 
-   1 warning generated.
-
-
-vim +378 drivers/hwmon/smpro-hwmon.c
-
-91d3fe230bebb1c Quan Nguyen 2022-03-21  359  
-91d3fe230bebb1c Quan Nguyen 2022-03-21  360  static umode_t smpro_is_visible(const void *data, enum hwmon_sensor_types type,
-91d3fe230bebb1c Quan Nguyen 2022-03-21  361  				u32 attr, int channel)
-91d3fe230bebb1c Quan Nguyen 2022-03-21  362  {
-91d3fe230bebb1c Quan Nguyen 2022-03-21  363  	const struct smpro_hwmon *hwmon = data;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  364  	unsigned int value;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  365  	int ret;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  366  
-91d3fe230bebb1c Quan Nguyen 2022-03-21  367  	switch (type) {
-91d3fe230bebb1c Quan Nguyen 2022-03-21  368  	case hwmon_temp:
-91d3fe230bebb1c Quan Nguyen 2022-03-21  369  		switch (attr) {
-91d3fe230bebb1c Quan Nguyen 2022-03-21  370  		case hwmon_temp_input:
-91d3fe230bebb1c Quan Nguyen 2022-03-21  371  		case hwmon_temp_label:
-91d3fe230bebb1c Quan Nguyen 2022-03-21  372  		case hwmon_temp_crit:
-91d3fe230bebb1c Quan Nguyen 2022-03-21  373  			ret = regmap_read(hwmon->regmap, temperature[channel].reg, &value);
-91d3fe230bebb1c Quan Nguyen 2022-03-21  374  			if (ret || value == 0xFFFF)
-91d3fe230bebb1c Quan Nguyen 2022-03-21  375  				return 0;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  376  		break;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  377  		}
-91d3fe230bebb1c Quan Nguyen 2022-03-21 @378  	default:
-91d3fe230bebb1c Quan Nguyen 2022-03-21  379  		break;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  380  	}
-91d3fe230bebb1c Quan Nguyen 2022-03-21  381  
-91d3fe230bebb1c Quan Nguyen 2022-03-21  382  	return 0444;
-91d3fe230bebb1c Quan Nguyen 2022-03-21  383  }
-91d3fe230bebb1c Quan Nguyen 2022-03-21  384  
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+With best wishes
+Dmitry
