@@ -2,279 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC0A4E2B0E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A05A4E2B5C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244693AbiCUOnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 10:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49810 "EHLO
+        id S1349733AbiCUPAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 11:00:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349508AbiCUOnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:43:46 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D23518BCFB;
-        Mon, 21 Mar 2022 07:42:20 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d18so12928381plr.6;
-        Mon, 21 Mar 2022 07:42:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=itwmKt5D3YRmhePmZfG4X/rjRFYViLaVcU1Zd/ou0pM=;
-        b=Iy48cvT2SJoI0Y2J0k4o97AvhdQ6RHEcwKzzsgUzHhYvya6G44v/Caw2bM8uP8GX+4
-         lQRwewSNc9UnV7jx4cO6kzOEUmoHGQBA4MI4oDPDgXyVYI38gLc3l1m9VfabR62V3Fgf
-         k8XUmyQ8CmaVnixy35W5nGFRfk53nRLsxMhO6rJn16+voNEn4F+VqjJ6IRaAj3cdPhj/
-         zD4+/5lYyHUsekI/K140bl4UG+fzVFzPAgkkguvGfOyvqt6msKeh2FA9l/muaqYeJEsg
-         aWPGa/bLsPwbYsdpgvRPOQMx499QvSTtcLkL8bziZpID6c1qR2tGjjTb4SeJEgL7Sipo
-         hEfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=itwmKt5D3YRmhePmZfG4X/rjRFYViLaVcU1Zd/ou0pM=;
-        b=ZBgiZRTvrxe3J2uzUYnQiu8a7onhjGzA2fDCAxkYavwYpo622oDUMl232dx2sqIFMe
-         1FxQPnk1UjZrNsUXiLXXRACULIdnk4VL8Yaw605cQDYyo0fOPTroFi86jfecXZL+YS8K
-         /o4Gr4gWQJ43R9SfbxehMAEwKcdCq+8nh03R8jrL3LUDL9cW0cdfYkpA41V8cC0OjVvj
-         KPTnJoLGzRFQ1znF40M7+bF4BgHWW7Gbh3VifQRni5a1Dc4ru+i4MwW00AjPl2ZIWy1B
-         KZ237evlrtLrmY2CnsxaU5uF1o4/xOMHRdyZMqztVfAvMqAGFNlgRQ/x98b0QDhQg65F
-         pEcg==
-X-Gm-Message-State: AOAM533g1WUlKggo2J0jBq/Aj53qxkkDD1SN7sYG7H55q+JFjG3Mu6vM
-        DeW6txIe8ZC5eOjDaaJ6azqIlaxctlrfboIbHPE=
-X-Google-Smtp-Source: ABdhPJyBnbo/UgxXqMV8gAY32qIJY6RHi9yPSeHqk0GIu5ekRfhkzA4VaeBXM8z2kz7ftDIR1xkMsAdLb/iUTjzJGYU=
-X-Received: by 2002:a17:90a:7e8b:b0:1be:ef6c:9797 with SMTP id
- j11-20020a17090a7e8b00b001beef6c9797mr36644729pjl.183.1647873739850; Mon, 21
- Mar 2022 07:42:19 -0700 (PDT)
+        with ESMTP id S234542AbiCUPAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:00:18 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C157427FF0;
+        Mon, 21 Mar 2022 07:58:52 -0700 (PDT)
+Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KMd4k0kwRz67JXs;
+        Mon, 21 Mar 2022 22:57:10 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Mon, 21 Mar 2022 15:58:50 +0100
+Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Mon, 21 Mar
+ 2022 14:58:48 +0000
+Date:   Mon, 21 Mar 2022 14:58:46 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>, <michael.srba@seznam.cz>,
+        "Lars-Peter Clausen" <lars@metafoo.de>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Message-ID: <20220321145846.000066ba@Huawei.com>
+In-Reply-To: <Yjdqwlp4NFpuj4vT@robh.at.kernel.org>
+References: <20220311161600.1469-1-michael.srba@seznam.cz>
+        <20220311161600.1469-2-michael.srba@seznam.cz>
+        <20220320151525.34db502c@jic23-huawei>
+        <Yjdqwlp4NFpuj4vT@robh.at.kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <20220321133651.291592-1-cbranchereau@gmail.com>
- <20220321133651.291592-4-cbranchereau@gmail.com> <GJM39R.I3L8ZIKHOJ252@crapouillou.net>
- <CAFsFa85Rcxh7G-X9zygHdAaca2nydUXxGfE2Vgcx_nzqgQZVgw@mail.gmail.com>
-In-Reply-To: <CAFsFa85Rcxh7G-X9zygHdAaca2nydUXxGfE2Vgcx_nzqgQZVgw@mail.gmail.com>
-From:   Christophe Branchereau <cbranchereau@gmail.com>
-Date:   Mon, 21 Mar 2022 15:42:08 +0100
-Message-ID: <CAFsFa85P8V-yePR5LTLjn57GCoqJJYn5pX6WNdp+a+G23XEbSg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] drm/panel : innolux-ej030na and abt-y030xx067a :
- add .enable and .disable
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.41]
+X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry I meant "sleep out" not "sleep in" obviously
+On Sun, 20 Mar 2022 13:56:18 -0400
+Rob Herring <robh@kernel.org> wrote:
 
-On Mon, Mar 21, 2022 at 3:39 PM Christophe Branchereau
-<cbranchereau@gmail.com> wrote:
->
-> Following the introduction of bridge_atomic_enable in the ingenic
-> drm driver, the crtc is enabled between .prepare and .enable, if
-> it exists. Add it so the backlight is only enabled after the crtc is, to
-> avoid graphical issues.
->
-> As we're moving the "sleep in" command out of the init sequence
-> into .enable for the ABT, we need to switch the regmap cache
-> to REGCACHE_FLAT to be able to use regmap_set_bits, given this
-> panel registers are write-ony and read as 0.
->
-> On Mon, Mar 21, 2022 at 3:21 PM Paul Cercueil <paul@crapouillou.net> wrot=
-e:
-> >
-> > Hi Christophe,
-> >
-> > Le lun., mars 21 2022 at 14:36:51 +0100, Christophe Branchereau
-> > <cbranchereau@gmail.com> a =C3=A9crit :
-> > > Following the introduction of bridge_atomic_enable in the ingenic
-> > > drm driver, the crtc is enabled between .prepare and .enable, if
-> > > it exists.
-> > >
-> > > Add it so the backlight is only enabled after the crtc is, to avoid
-> > > graphical issues.
-> > >
-> > > Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
-> >
-> > Didn't Sam acked it?
-> >
+> On Sun, Mar 20, 2022 at 03:15:25PM +0000, Jonathan Cameron wrote:
+> > On Fri, 11 Mar 2022 17:15:59 +0100
+> > michael.srba@seznam.cz wrote:
+> >   
+> > > From: Michael Srba <Michael.Srba@seznam.cz>
+> > > 
+> > > ICM-20608-D differs from the other ICM-20608 variants by having
+> > > a DMP (Digital Motion Processor) core tacked on.
+> > > Despite having a different WHOAMI register, this variant is
+> > > completely interchangeable with the other ICM-20608 variants
+> > > by simply pretending the DMP core doesn't exist.
+> > > 
+> > > Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 > > > ---
-> > >  drivers/gpu/drm/panel/panel-abt-y030xx067a.c  | 31
-> > > +++++++++++++++++--
-> > >  drivers/gpu/drm/panel/panel-innolux-ej030na.c | 31
-> > > ++++++++++++++++---
-> > >  2 files changed, 55 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-> > > b/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-> > > index f043b484055b..ddfacaeac1d4 100644
-> > > --- a/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-> > > +++ b/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-> > > @@ -140,7 +140,7 @@ static const struct reg_sequence
-> > > y030xx067a_init_sequence[] =3D {
-> > >       { 0x03, REG03_VPOSITION(0x0a) },
-> > >       { 0x04, REG04_HPOSITION1(0xd2) },
-> > >       { 0x05, REG05_CLIP | REG05_NVM_VREFRESH | REG05_SLBRCHARGE(0x2)=
- },
-> > > -     { 0x06, REG06_XPSAVE | REG06_NT },
-> > > +     { 0x06, REG06_NT },
-> > >       { 0x07, 0 },
-> > >       { 0x08, REG08_PANEL(0x1) | REG08_CLOCK_DIV(0x2) },
-> > >       { 0x09, REG09_SUB_BRIGHT_R(0x20) },
-> > > @@ -183,8 +183,6 @@ static int y030xx067a_prepare(struct drm_panel
-> > > *panel)
-> > >               goto err_disable_regulator;
-> > >       }
-> > >
-> > > -     msleep(120);
-> > > -
-> > >       return 0;
-> > >
-> > >  err_disable_regulator:
-> > > @@ -202,6 +200,30 @@ static int y030xx067a_unprepare(struct drm_panel
-> > > *panel)
-> > >       return 0;
-> > >  }
-> > >
-> > > +static int y030xx067a_enable(struct drm_panel *panel)
-> > > +{
-> > > +
-> > > +     struct y030xx067a *priv =3D to_y030xx067a(panel);
-> > > +
-> > > +     regmap_set_bits(priv->map, 0x06, REG06_XPSAVE);
-> > > +
-> > > +     if (panel->backlight) {
-> > > +             /* Wait for the picture to be ready before enabling bac=
-klight */
-> > > +             msleep(120);
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int y030xx067a_disable(struct drm_panel *panel)
-> > > +{
-> > > +     struct y030xx067a *priv =3D to_y030xx067a(panel);
-> > > +
-> > > +     regmap_clear_bits(priv->map, 0x06, REG06_XPSAVE);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > >  static int y030xx067a_get_modes(struct drm_panel *panel,
-> > >                               struct drm_connector *connector)
-> > >  {
-> > > @@ -239,6 +261,8 @@ static int y030xx067a_get_modes(struct drm_panel
-> > > *panel,
-> > >  static const struct drm_panel_funcs y030xx067a_funcs =3D {
-> > >       .prepare        =3D y030xx067a_prepare,
-> > >       .unprepare      =3D y030xx067a_unprepare,
-> > > +     .enable         =3D y030xx067a_enable,
-> > > +     .disable        =3D y030xx067a_disable,
-> > >       .get_modes      =3D y030xx067a_get_modes,
-> > >  };
-> > >
-> > > @@ -246,6 +270,7 @@ static const struct regmap_config
-> > > y030xx067a_regmap_config =3D {
-> > >       .reg_bits =3D 8,
-> > >       .val_bits =3D 8,
-> > >       .max_register =3D 0x15,
-> > > +     .cache_type =3D REGCACHE_FLAT,
-> >
-> > I understand that this is added because the panel registers are
-> > write-only and read as zero, and it is needed for
-> > regmap_{clear,set}_bits to work.
-> >
-> > This information should definitely be added to the commit message.
-> >
-> > If you can add it inline here, and I'll update the commit message when
-> > applying the patch.
-> >
-> > Cheers,
-> > -Paul
-> >
-> > >  };
-> > >
-> > >  static int y030xx067a_probe(struct spi_device *spi)
-> > > diff --git a/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-> > > b/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-> > > index c558de3f99be..6de7370185cd 100644
-> > > --- a/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-> > > +++ b/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-> > > @@ -80,8 +80,6 @@ static const struct reg_sequence
-> > > ej030na_init_sequence[] =3D {
-> > >       { 0x47, 0x08 },
-> > >       { 0x48, 0x0f },
-> > >       { 0x49, 0x0f },
-> > > -
-> > > -     { 0x2b, 0x01 },
-> > >  };
-> > >
-> > >  static int ej030na_prepare(struct drm_panel *panel)
-> > > @@ -109,8 +107,6 @@ static int ej030na_prepare(struct drm_panel
-> > > *panel)
-> > >               goto err_disable_regulator;
-> > >       }
-> > >
-> > > -     msleep(120);
-> > > -
-> > >       return 0;
-> > >
-> > >  err_disable_regulator:
-> > > @@ -128,6 +124,31 @@ static int ej030na_unprepare(struct drm_panel
-> > > *panel)
-> > >       return 0;
-> > >  }
-> > >
-> > > +static int ej030na_enable(struct drm_panel *panel)
-> > > +{
-> > > +     struct ej030na *priv =3D to_ej030na(panel);
-> > > +
-> > > +     /* standby off */
-> > > +     regmap_write(priv->map, 0x2b, 0x01);
-> > > +
-> > > +     if (panel->backlight) {
-> > > +             /* Wait for the picture to be ready before enabling bac=
-klight */
-> > > +             msleep(120);
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int ej030na_disable(struct drm_panel *panel)
-> > > +{
-> > > +     struct ej030na *priv =3D to_ej030na(panel);
-> > > +
-> > > +     /* standby on */
-> > > +     regmap_write(priv->map, 0x2b, 0x00);
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > >  static int ej030na_get_modes(struct drm_panel *panel,
-> > >                            struct drm_connector *connector)
-> > >  {
-> > > @@ -165,6 +186,8 @@ static int ej030na_get_modes(struct drm_panel
-> > > *panel,
-> > >  static const struct drm_panel_funcs ej030na_funcs =3D {
-> > >       .prepare        =3D ej030na_prepare,
-> > >       .unprepare      =3D ej030na_unprepare,
-> > > +     .enable         =3D ej030na_enable,
-> > > +     .disable        =3D ej030na_disable,
-> > >       .get_modes      =3D ej030na_get_modes,
-> > >  };
-> > >
-> > > --
-> > > 2.35.1
-> > >
-> >
-> >
+> > > changelog:
+> > >  - v2: require specifying "invensense,icm20608" as a fallback compatible  
+> > 
+> > Apologies that I joined the thread for v1 late, but no. That doesn't work.
+> > If the older driver before the new ID is present with this binding
+> > it won't probe because of the WHOAMI value difference so it's not
+> > compatible.
+> > 
+> > I'm fine with the v1 version.  
+> 
+> If the driver didn't check WHOAMI then it would be compatible. So does 
+> driver implementation determine what's compatible or not? It shouldn't 
+> as those are supposed to be decoupled.
+
+OK. That decoupling needs perhaps to be more clearly stated as it wasn't
+something I was keeping an eye open for in drivers.
+
+It does check them and warns if there isn't a match. This is partly historical
+because we had board implementers switch to an 'mostly' compatible part
+that was fine with their software stack but not with the Linux drivers and
+those bugs were hard to diagnose. We didn't support he particular WHOAMI
+at the time so the check was dded.
+
+The code could be improved as it carries on using the chip
+specified when it should perhaps use the one matched on WHOAMI.  
+The discussion of the original patch that added the check
+"iio: inv_mpu6050: Check WHO_AM_I register on probe"
+included a request for such a change as a follow up patch.
+I guess that never showed up.
+
+The driver supports a bunch of parts that aren't completely compatible
+from a register interface point of view + we have other drivers supporting
+additional parts. The particular question of which part is supported
+by what driver is a choice that other software stacks may have made
+differently. So we can't have a general compatible covering everything
+supported by the driver.
+
+Having said that we could do subsets where a particular compatible
+maps to some of the supported parts where the compatibility is such that
+it is unlikely another OS would chose to support them with different
+drivers.
+
+> 
+> Generally, if there are h/w id registers, then we'll rely on them and 
+> don't need a compatible for every variant.
+
+I don't mind the driver moving to that model, but it's not true today
+and we'd still have to be careful with what we describe with each
+compatible.
+
+Jonathan
+> 
+> Rob
+
