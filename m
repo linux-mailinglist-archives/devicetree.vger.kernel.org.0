@@ -2,87 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 650844E21BF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:10:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D68A4E21C2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:12:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345100AbiCUIMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 04:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59260 "EHLO
+        id S242248AbiCUINz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Mar 2022 04:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234851AbiCUIMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:12:19 -0400
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2D4473A2;
-        Mon, 21 Mar 2022 01:10:54 -0700 (PDT)
-Received: by mail-ed1-f47.google.com with SMTP id g20so16847293edw.6;
-        Mon, 21 Mar 2022 01:10:54 -0700 (PDT)
+        with ESMTP id S233809AbiCUINx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:13:53 -0400
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167A311BDBD;
+        Mon, 21 Mar 2022 01:12:28 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id gh15so6321838qvb.8;
+        Mon, 21 Mar 2022 01:12:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VR9e0iZWt0FeO56LbwGYfT7tfmrE93+bIcYs8f42zMU=;
-        b=mF943hlck2JLyQClEYB3q58HKQ0Mqwi0hM3lS9sUwpT4kKOz9LGXZA2JrFdyeXsh8L
-         wjJ48UcS+cAHiu9E5Xyiee7mRniALo5ug4cTW/R62wHNcH9iY57Fd1yGpnuEAt5rERTI
-         zRq3LtQO/DnEJ+EhATLXbUFkxta4unfQtLETtI8Yp1Ov7o45zP5S2zRdrcZVK+2pRaDV
-         csrhKh0FMQqyEdKnezxRDCizOjcbHzjrpjYRgc9n0YFkpEcS0B63jeUpmqNpw4t+fUJ/
-         NEpmxgfqjzYvEazI5eUUAy2NnM1FfFy+oyr4PDBtWs/rjA2792O/VtiQ32D9tFSbsjW9
-         9U5A==
-X-Gm-Message-State: AOAM530SSnDLojMO/2lDf8qVzstGYhiH4xNcoEWiCeYEMttGbDovXpuI
-        bdna/R9AcLInRotfq7LAKXQ=
-X-Google-Smtp-Source: ABdhPJwHgX6IH7vB0Gk5yvtqOiL8MQs5vJyBbAFANw6q6SoJGAjf1/czso+3H830kxaAO5wpyYl1SQ==
-X-Received: by 2002:a05:6402:1d4f:b0:416:6450:e1b4 with SMTP id dz15-20020a0564021d4f00b004166450e1b4mr21510894edb.79.1647850252705;
-        Mon, 21 Mar 2022 01:10:52 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id og49-20020a1709071df100b006db0dcf673esm6688688ejc.27.2022.03.21.01.10.51
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wICsFIN9ZJuas+sxL7xNcM8ZFAXB8Ijif9RKrDeIc3o=;
+        b=Ee95tFL4S513s9ZfQalxeNuW6xTeCtaH8FoG/6Q8EMTwYvGk92D2R+LAftadxIJt7V
+         5arZeNDins1vQ89p7glp4g1HesQxK7e1/gLPnJzzeQbCyRFPYHwNiZyhNqmnJN9id6id
+         qq/4GV3L8G7eG8O4yWfCRyKd7Joc7RfFqV9f5aESEF9/CRz8WF6nqHjUW1/CgEK90TsO
+         PxTCq2ZY+eGrKV80/HT8d2OTQFFJ6zfO8qel2Fa2eiXob2VVYDXsFW66bI/xk51BBdnH
+         H3abW4DS7gDtREOxFM24yffCVYUxgRSrMBPWx1gkOrOS+c68BBQ9Qpf0xgTKcSRsNkFv
+         pkiA==
+X-Gm-Message-State: AOAM530P/HzmS6s7Qwms6+RmcsGA7791Ape7RcXXfFGbZtlUhJwUmG2a
+        OX6e2/70SQGLzJ7i/2t8t0UsnkhtM/7IAQ==
+X-Google-Smtp-Source: ABdhPJw4NI1PzC1GLRFeFFzq5Dl/d0qLq2B20VHWLRidpoSMbUtMaocDq/c6Sag5cKtzPoqm4yMWGQ==
+X-Received: by 2002:a05:6214:f03:b0:441:27ee:ba71 with SMTP id gw3-20020a0562140f0300b0044127eeba71mr2637510qvb.88.1647850346361;
+        Mon, 21 Mar 2022 01:12:26 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id t7-20020a05622a01c700b002e1b3555c2fsm10843628qtw.26.2022.03.21.01.12.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Mar 2022 01:10:52 -0700 (PDT)
-Message-ID: <3f9605e5-16e4-e982-73d6-ab116155d2d7@kernel.org>
-Date:   Mon, 21 Mar 2022 09:10:49 +0100
+        Mon, 21 Mar 2022 01:12:25 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-2e64a6b20eeso6956777b3.3;
+        Mon, 21 Mar 2022 01:12:25 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr22987805ywb.132.1647850345315; Mon, 21
+ Mar 2022 01:12:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V2 1/2] dt-bindings: memory: snps,ddrc-3.80a compatible
- also need interrupts
-Content-Language: en-US
-To:     Sherry Sun <sherry.sun@nxp.com>, robh+dt@kernel.org,
-        krzk+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        manish.narani@xilinx.com, michal.simek@xilinx.com,
-        dinguyen@kernel.org, bp@suse.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-References: <20220321075131.17811-1-sherry.sun@nxp.com>
- <20220321075131.17811-2-sherry.sun@nxp.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220321075131.17811-2-sherry.sun@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+ <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com> <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
+In-Reply-To: <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Mar 2022 09:12:14 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV8iy4vMASuUgeQmjHdAMNzvCikwheyQO1-AQH0yYk0RQ@mail.gmail.com>
+Message-ID: <CAMuHMdV8iy4vMASuUgeQmjHdAMNzvCikwheyQO1-AQH0yYk0RQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
+ Electronics TM1628
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2022 08:51, Sherry Sun wrote:
-> For the snps,ddrc-3.80a compatible, the interrupts property is also
-> required, also order the compatibles by name (s goes before x).
-> 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  .../bindings/memory-controllers/synopsys,ddrc-ecc.yaml      | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
+Hi Robin,
 
-Fixes: a9e6b3819b36 ("dt-bindings: memory: Add entry for version 3.80a")
+On Fri, Mar 18, 2022 at 9:50 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> On 2022-02-25 21:13, Heiner Kallweit wrote:
+> > Add a YAML schema binding for TM1628 auxdisplay
+> > (7/11-segment LED) controller.
+> >
+> > This patch is partially based on previous work from
+> > Andreas Färber <afaerber@suse.de>.
+> >
+> > Co-developed-by: Andreas Färber <afaerber@suse.de>
+> > Signed-off-by: Andreas Färber <afaerber@suse.de>
+> > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
 
-Looks good, I will take it after merge window. Somehow I was not cc-ed
-on previous memory controllers patch. :(
+> > +
+> > +patternProperties:
+> > +  "^.*@[1-7],([1-9]|1[0-6])$":
+> > +    type: object
+> > +    $ref: /schemas/leds/common.yaml#
+> > +    unevaluatedProperties: false
+> > +    description: |
+> > +      Properties for a single LED.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: |
+> > +          1-based grid number, followed by 1-based segment bit number.
+> > +        maxItems: 1
+> > +
+> > +    required:
+> > +      - reg
+>
+> I'm concerned that this leaves us no room to support the additional
+> keypad functionality in future. Having now double-checked a datasheet,
+> the inputs are also a two-dimensional mux (sharing the segment lines),
+> so the device effectively has two distinct but numerically-overlapping
+> child address spaces - one addressed by (grid,segment) and the other by
+> (segment,key).
 
-Best regards,
-Krzysztof
+Sounds similar to HT16K33?
+
+> Rob, Krysztof, any thoughts on the best DT idiom to leave accommodation
+> for that? I'm thinking either require an intermediate node to contain
+> each notional address space, or perhaps add another leading address cell
+> to select between them? I don't believe any of these things have further
+> functionality beyond that.
+
+The problem with these devices is that there are thousands of different
+ways to wire them, and coming up with a generic wiring description in
+DT and writing code to handle that can be very hard.
+
+For HT16K33 non-dot-matrix wirings, I just added extra compatible
+values matching the wiring of a few known devices[1].  That way the
+driver can handle them efficiently.
+It does have the disadvantage that adding support for new devices
+means introducing more compatible values, and adding more code.
+
+Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
