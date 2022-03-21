@@ -2,100 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0289A4E3349
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 23:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 962114E33E4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 00:11:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbiCUWwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 18:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
+        id S231928AbiCUXAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 19:00:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbiCUWvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 18:51:49 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DA23DA5F;
-        Mon, 21 Mar 2022 15:41:39 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 1CDC01F43824
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647902498;
-        bh=kI/wjHaSk0veo5TLOr3KNgxZeKIdR/WCP+DeGO3YYFA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iS3YE/xkM6pS7zwzvrFBf/k+0phCo54uO8OLGHbzvfBi2CzRboZXCE7HUyOG3168o
-         ZwQaigQV4XLRXSAOpGNFATX6kAg/ZPxusmhLLj5ScYifylmF/RRzF/u/JHRcs+1wc4
-         yhQ93sTnljzF41D9nX/qBx7d7A3F9ghtiWsNPVQ4MaJtBKnYRTxS8k5Zxz3U8WggOp
-         DtXFcYqTPIj44ETXfHk7vNJmubHcLkXJuKlyPLKKVJjAqswxoRX7aJtqLSLs0+NaTP
-         dLlRVTDZ3wnrWty48KAhhNGG9jR1C/z3XJ9hQhF5TkUCqUHucYV3cJRnHyL/gLGKxS
-         t044I3mz6MUbQ==
-Date:   Mon, 21 Mar 2022 18:41:33 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH v4 13/22] arm64: dts: mt8192: Add mipi_tx node
-Message-ID: <20220321224133.jjodvrurv6kvrouf@notapiano>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-14-allen-kh.cheng@mediatek.com>
+        with ESMTP id S232807AbiCUW6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 18:58:40 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4B5362D06;
+        Mon, 21 Mar 2022 15:36:15 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so396129wmb.4;
+        Mon, 21 Mar 2022 15:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VEY0X4OyCU3/iAzQa5k+IyEdis1PzP3qOVzQs+i3IrU=;
+        b=LkwRWPCX/iULhA7/6CDwI/dQQG+8KKQEDgfZekVNHnJLVpuugYPcECcWvhcZh+pxGF
+         RQtjateZgvCJXR1QmD6Z1shAJcueM3/8XtWPuZcZLkU4O2ndQgvnniTyMTc7tLuRQLE6
+         lzIVOvGgLwJ529joD5QTMtSPhKevjJWSXAfrCBeFBIPPkW79CZiCHIvRnhkgEyr+bqkM
+         kQPES1cRfkfYwj5VSe/jbfrJ4hxQrP49MR02uPWx6bIxr2mc/VLxCR/VhwCSCkTujdd8
+         fGLOZkPRx58d58X3V0C49ZXm2M82PrMHaNHvrpuGRa49D0uQCiXIs+iaFq1k0CzIgPiG
+         2yYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VEY0X4OyCU3/iAzQa5k+IyEdis1PzP3qOVzQs+i3IrU=;
+        b=3xWeltTzY1mF1k4R8jUJ6KurG9vpf99540DiAe7W5suSSxgkCsybowEdbMOgiq3K1J
+         jlD5E5QzLQencR0Nrf2QKQrIpa5rZM1d1G/I+/W9XSdhTHK3I7hRm0FWF7Nib29rJflg
+         CfkO1a1NoTq3ZQYXrqvlo/8iuBkaUcQ8+1iUREfhm0rPJbo4OA7XgdKLxp7OpY83JxRO
+         jI46usYbtormYu4GwOP4y+FuHlNoI2Vd4HAktbrRSkVtoJ52J7QY6pPwFX+cQZNgnauH
+         Z8Iw3C0qdTS/5pebxM3vjM6fRP2zxZ91Gzg6adLMZEf6Hpsli/tCfVDqxQNCerQI1wLD
+         ztUQ==
+X-Gm-Message-State: AOAM531kYoyKHwfS37DK5iQR1c7JbfcOCFmszi3CmZMAtit2UdDQpGJF
+        GW3zOyptSak5pa9kNiA67SHfWPuJO10=
+X-Google-Smtp-Source: ABdhPJwOu5SgpIvDS+cc8Pa3YCZ3gEvW6NMK+B3R5zhf3SQ0JtRxwjwPpnCkLe2VulMXizTjOT7fHg==
+X-Received: by 2002:a7b:c922:0:b0:383:e7e2:4a1a with SMTP id h2-20020a7bc922000000b00383e7e24a1amr1015908wml.51.1647900049727;
+        Mon, 21 Mar 2022 15:00:49 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
+        by smtp.gmail.com with ESMTPSA id w5-20020a5d5445000000b00203f8c96bcesm8773157wrv.49.2022.03.21.15.00.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 15:00:49 -0700 (PDT)
+Date:   Mon, 21 Mar 2022 22:31:29 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 15/18] dt-bindings: clock: Add L2 clocks to
+ qcom,krait-cc Documentation
+Message-ID: <YjjusXDsyhWMUeZb@Ansuel-xps.localdomain>
+References: <20220321153855.12082-1-ansuelsmth@gmail.com>
+ <20220321153855.12082-16-ansuelsmth@gmail.com>
+ <YjjzQw4z6GCmlmp+@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220318144534.17996-14-allen-kh.cheng@mediatek.com>
+In-Reply-To: <YjjzQw4z6GCmlmp+@robh.at.kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 18, 2022 at 10:45:25PM +0800, Allen-KH Cheng wrote:
-> Add mipi_tx node for mt8192 SoC.
+On Mon, Mar 21, 2022 at 04:50:59PM -0500, Rob Herring wrote:
+> On Mon, Mar 21, 2022 at 04:38:52PM +0100, Ansuel Smith wrote:
+> > Krait-cc qcom driver provide also L2 clocks and require the acpu_l2_aux
+> > and the hfpll_l2 clock to be provided. Add these missing clocks to the
+> > Documentation. The driver keep support for both old and this new
+> > implementation and should prevent any regression by this fixup.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Depends on what the old driver looks for.
+>
+
+The old driver used parent_names with the same name declared now in the
+Documentation.
+
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  .../devicetree/bindings/clock/qcom,krait-cc.yaml     | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml b/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+> > index e879bfbe67ac..f89b70ab01ae 100644
+> > --- a/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+> > @@ -23,16 +23,20 @@ properties:
+> >      items:
+> >        - description: phandle to hfpll for CPU0 mux
+> >        - description: phandle to hfpll for CPU1 mux
+> > +      - description: phandle to hfpll for L2 mux
+> >        - description: phandle to CPU0 aux clock
+> >        - description: phandle to CPU1 aux clock
+> > +      - description: phandle to L2 aux clock
+> >        - description: phandle to QSB fixed clk
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 2648f2847993..6b769fa5b427 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1110,6 +1110,16 @@
->  			};
->  		};
->  
-> +		mipi_tx0: dsi-dphy@11e50000 {
-
-Typo here, should be dsi-phy, not dsi-dphy.
-
-Other than that,
-
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-> +			compatible = "mediatek,mt8183-mipi-tx";
-> +			reg = <0 0x11e50000 0 0x1000>;
-> +			clocks = <&apmixedsys CLK_APMIXED_MIPID26M>;
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +			clock-output-names = "mipi_tx0_pll";
-> +			status = "disabled";
-> +		};
-> +
->  		i2c0: i2c@11f00000 {
->  			compatible = "mediatek,mt8192-i2c";
->  			reg = <0 0x11f00000 0 0x1000>,
-> -- 
-> 2.18.0
+> Clock indices should not change. New clocks go on the end of the list.
 > 
-> 
+
+Sad but will change if necessary.
+
+> >  
+> >    clock-names:
+> >      items:
+> >        - const: hfpll0
+> >        - const: hfpll1
+> > +      - const: hfpll_l2
+> >        - const: acpu0_aux
+> >        - const: acpu1_aux
+> > +      - const: acpu_l2_aux
+> >        - const: qsb
+> >  
+> >    '#clock-cells':
+> > @@ -50,10 +54,10 @@ examples:
+> >    - |
+> >      clock-controller {
+> >        compatible = "qcom,krait-cc-v1";
+> > -      clocks = <&hfpll0>, <&hfpll1>,
+> > -               <&acpu0_aux>, <&acpu1_aux>, <&qsb>;
+> > -      clock-names = "hfpll0", "hfpll1",
+> > -                    "acpu0_aux", "acpu1_aux", "qsb";
+> > +      clocks = <&hfpll0>, <&hfpll1>, <&hfpll_l2>,
+> > +               <&acpu0_aux>, <&acpu1_aux>, <&acpu_l2_aux>, <&qsb>;
+> > +      clock-names = "hfpll0", "hfpll1", "hfpll_l2",
+> > +                    "acpu0_aux", "acpu1_aux", "acpu_l2_aux", "qsb";
+> >        #clock-cells = <1>;
+> >      };
+> >  ...
+> > -- 
+> > 2.34.1
+> > 
+> > 
+
+-- 
+	Ansuel
