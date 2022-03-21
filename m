@@ -2,105 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0962C4E30D2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD484E30E0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:43:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348626AbiCUTfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 15:35:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59934 "EHLO
+        id S1348590AbiCUTpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 15:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237280AbiCUTfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:35:36 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 578AB201B0;
-        Mon, 21 Mar 2022 12:34:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1647891250; x=1679427250;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=w7a5ayX4fO/yYsd6UzC9sc+2sok0Wa5i+Fi3ge1HonM=;
-  b=2fPH9FSYUI49grJJKduBVpDwYoxiEPPcVv83VFPtI5uiac/lxcYYe7q/
-   98pDkm0/wJlsSeYU38uZXw6QwBqcKktmdE5ofMnyGH8d/3KRNdzfzw+Kn
-   BgeavC0ppAsIMPP8oqT/j5BOeC2kECZkslhZjbZypQTdBXWa2IirKhaQT
-   JilEojTmJV0rFEPPCG49b42mjdZrQLio0ykVMUuGAxw38cYaBkBKQe0MR
-   ZuGKGYJRdwuCvPFd/2/xHVGq2t15a5SC0i2JBdl9fxN4K52ME3XKopCnk
-   WOVnKP+TZgJnWaDPRGTXJAhuBDao+NaJG5kSdMhAg1opr4boFsSt6a00Z
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,199,1643698800"; 
-   d="scan'208";a="152734289"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Mar 2022 12:34:08 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 21 Mar 2022 12:34:08 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 21 Mar 2022 12:34:01 -0700
-Message-ID: <fd60a58c729d3bd6e8c12ba37610fd7e53d2ea05.camel@microchip.com>
-Subject: Re: [PATCH v9 net-next 08/11] net: dsa: microchip: add support for
- ethtool port counters
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <netdev@vger.kernel.org>, <olteanv@gmail.com>,
-        <robh+dt@kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <woojung.huh@microchip.com>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Tue, 22 Mar 2022 01:03:58 +0530
-In-Reply-To: <YjaCz0gqm846RAk5@lunn.ch>
-References: <20220318085540.281721-1-prasanna.vengateshan@microchip.com>
-         <20220318085540.281721-9-prasanna.vengateshan@microchip.com>
-         <YjaCz0gqm846RAk5@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0-1 
+        with ESMTP id S1344392AbiCUTpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:45:12 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB4F72E10;
+        Mon, 21 Mar 2022 12:43:45 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 17E448141D;
+        Mon, 21 Mar 2022 20:43:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1647891823;
+        bh=D2IpHeVAxnkZMDlNfPujRJHA+Lbh55IZq2hGC3wCKQ4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DEMr1xlMHtuLMxyVCkXzx1i9I2bynmqnPzEAoWelrvtD+jzHmgYzFIvfBgB4Uq54t
+         Mbkq20IloKSZsYTF5oEtD0euoPZ+dzdaS5LEOXBcEcr/sl4ThqkMAlI5Gea82euXN0
+         BudO/SWhlN0fW5BT/t8rZ/GLE7tzxPDKi2GAmzQRISI8gCZu8E7P2XzOVeHfTJbvig
+         Cz4w0AJARo39VaZqKoB5HreuP8PAQ11sjCBHh+Q5v5qSyU1FfbTyE06Ahp7LkDGYFw
+         +GOj/zPZg2sP1IGpTZgXectXWtb/MeVBiSH4r+9pgZfzuvm767bXwSGNCZuqbydAnP
+         TzIV2U3hInRSg==
+Message-ID: <0ad64a7a-408a-1b11-0775-bd9bc71955e3@denx.de>
+Date:   Mon, 21 Mar 2022 20:43:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 2/3] clk: Make __clk_hw_register_fixed_factor
+ non-static
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220226040723.143705-1-marex@denx.de>
+ <20220226040723.143705-2-marex@denx.de>
+ <20220318210356.55D1EC340E8@smtp.kernel.org>
+ <5f97232b-579f-bccf-c603-c263aea143b6@denx.de>
+ <20220321192650.E4409C340E8@smtp.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20220321192650.E4409C340E8@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2022-03-20 at 02:26 +0100, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
+On 3/21/22 20:26, Stephen Boyd wrote:
+> Quoting Marek Vasut (2022-03-20 06:23:14)
+>> On 3/18/22 22:03, Stephen Boyd wrote:
+>>> Quoting Marek Vasut (2022-02-25 20:07:22)
+>>>> Access to the full parameters of __clk_hw_register_fixed_factor()
+>>>> is useful in case a driver is registering fixed clock with only
+>>>> single parent, in which case the driver should set parent_name to
+>>>> NULL and parent_index to 0, and access to this function permits it
+>>>> to do just that.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>> Cc: Michael Turquette <mturquette@baylibre.com>
+>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>> Cc: Stephen Boyd <sboyd@kernel.org>
+>>>> Cc: devicetree@vger.kernel.org
+>>>> To: linux-clk@vger.kernel.org
+>>>> ---
+>>>> V2: - New patch
+>>>> V3: - No change
+>>>
+>>> This isn't exported. Given that we don't typically export an internal
+>>> function (hence the double underscore) I'm going to change this to be a
+>>> new function. See the attached patch.
+>>
+>> I can confirm the change works and looks OK.
+>>
+>> Do you want me to send a V4 or will you squash it into these patches
+>> yourself when applying?
 > 
-> On Fri, Mar 18, 2022 at 02:25:37PM +0530, Prasanna Vengateshan wrote:
-> > Added support for get_eth_**_stats() (phy/mac/ctrl) and
-> > get_stats64()
-> > 
-> > Reused the KSZ common APIs for get_ethtool_stats() & get_sset_count()
-> > along with relevant lan937x hooks for KSZ common layer and added
-> > support for get_strings()
-> 
-> 
-> > +static void lan937x_get_stats64(struct dsa_switch *ds, int port,
-> > +                             struct rtnl_link_stats64 *s)
-> > +{
-> > +     struct ksz_device *dev = ds->priv;
-> > +     struct ksz_port_mib *mib = &dev->ports[port].mib;
-> > +     u64 *ctr = mib->counters;
-> > +
-> > +     mutex_lock(&mib->cnt_mutex);
-> 
-> I think for stats64 you are not allowed to block.
-> 
-> https://lore.kernel.org/netdev/20220218104330.g3vfbpdqltdkp4sr@skbuf/T/
-> 
-> There was talk of changing this. but i don't think it ever happened.
-> 
->       Andrew
+> No need I fixed it up and pushed it out.
 
-Looks like it has been changed from mutex_lock() to spin_lock() since
-ndo_get_stats64 runs in atomic context. I will adopt the same. Thanks for the
-feedback.
-
-Prasanna V
-
+Thank you
