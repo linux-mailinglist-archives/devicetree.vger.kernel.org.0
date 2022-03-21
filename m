@@ -2,144 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA014E1F81
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 05:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A4B4E1FA5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 05:55:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245732AbiCUE0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 00:26:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
+        id S242624AbiCUE4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 00:56:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239857AbiCUE0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 00:26:35 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4469D23150
-        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 21:25:10 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-2e5969bdf31so142532977b3.8
-        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 21:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4NSXl8x9VQewgRZHgqXMmZGOEdV3eFjb3sYvvvg6pNg=;
-        b=J6gele5F7EmCQLLAJAVg85lJycQ/fkbtMV60Bxn6mvBD54K/cP91HfuCJSamixeAe6
-         SMimZpLUVi6GEmvbVU07gyHdeCeiYdtk4dmtLUJ8nH0xQuKRP5nXagiIZ3LrTCv9YfDe
-         C+mSOTSyfmPr+Jge0Xnm2nipVd5HfDakmx2EM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4NSXl8x9VQewgRZHgqXMmZGOEdV3eFjb3sYvvvg6pNg=;
-        b=UHO9aMCpXnTGuXETlkHoSwgo0LBCb3HCc+QUx2fh9/jdU7hex/0b+ukR1yijJyus6E
-         32+YK8wP3lVjnUxzKe4Jk/HgzYX5cJR+Np80pQHlqU6+pKlb+EEyFXLU9vzYX81uDgCW
-         kLkoxVi2KoR0eNqbM64NP4kD1g6JN3S2I71wzWjQ632iCQ4Jm7rY1Rt1qf8Muy6AlZtt
-         zch8ZXoycxwhazPLudYtfpX7dtmA1enGVrr7yzIz2JrOhE/mts43OnOvV+7ji2uHhd5i
-         /ekuA02q8iFH52IP9dHKEl4o5Wy+tSV5GWcE3MQCVJcBVO310mN+qrQTTtvPZbxCUlcx
-         2JoA==
-X-Gm-Message-State: AOAM530j3qMBwkbtKwYfM2dstEoOtdx5/czLYDsuK5oZzkxcbjROhbYP
-        XCKxsT/TvCo0cIZJJFVmqtJyq8Fr3oL16us4+N7rKA==
-X-Google-Smtp-Source: ABdhPJxzqdQkJL+E26J8ZUZbTwrpFeuieBZ6OBpvDJ70M8HbgvzqPpoqzxqTXlsc0yVVk8krFj2m/iV9tyn319SkBwY=
-X-Received: by 2002:a05:690c:9c:b0:2e6:4ca0:d140 with SMTP id
- be28-20020a05690c009c00b002e64ca0d140mr502772ywb.161.1647836709475; Sun, 20
- Mar 2022 21:25:09 -0700 (PDT)
+        with ESMTP id S238723AbiCUE4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 00:56:31 -0400
+X-Greylist: delayed 8364 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 20 Mar 2022 21:55:05 PDT
+Received: from mg.sunplus.com (unknown [113.196.136.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 61626193DC;
+        Sun, 20 Mar 2022 21:55:04 -0700 (PDT)
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(10891:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Mon, 21 Mar 2022 12:55:17 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Mon, 21 Mar 2022 12:55:12 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Mon, 21 Mar 2022 12:55:12 +0800
+From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lhjeff911@gmail.com" <lhjeff911@gmail.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+CC:     =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        =?utf-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
+Subject: RE: [PATCH v4 2/2] mmc: Add mmc driver for Sunplus SP7021
+Thread-Topic: [PATCH v4 2/2] mmc: Add mmc driver for Sunplus SP7021
+Thread-Index: AQHYOzO6cpYNd+UZBku5eHHWG55gaqzHpeaAgAGhbhA=
+Date:   Mon, 21 Mar 2022 04:55:11 +0000
+Message-ID: <c6ecbe40dc234454b41bcbc0bf073084@sphcmbx02.sunplus.com.tw>
+References: <cover.1647652688.git.tonyhuang.sunplus@gmail.com>
+ <f954fb1c0d1c4950b71a8fc360c78edcca9954de.1647652688.git.tonyhuang.sunplus@gmail.com>
+ <e5426768-1dd0-0bef-25e8-2ab494f7723d@kernel.org>
+In-Reply-To: <e5426768-1dd0-0bef-25e8-2ab494f7723d@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220318095417.2016-1-jianjun.wang@mediatek.com>
- <20220318095417.2016-2-jianjun.wang@mediatek.com> <2e0989c3-7132-6091-5c9e-5dc8d9af22e8@collabora.com>
- <319cf016-55fb-dcd4-9157-ad795c8e68ff@kernel.org> <e0adbb4d-aa87-49ea-d79f-11c5f4fc4bdd@collabora.com>
-In-Reply-To: <e0adbb4d-aa87-49ea-d79f-11c5f4fc4bdd@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 21 Mar 2022 12:24:58 +0800
-Message-ID: <CAGXv+5GzC_LFd_1uTBDT=2otiUrJn9NGa4g=R4NhED7-p-G9RA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek: Add YAML schema for
- PCIe PHY
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rex-bc.chen@mediatek.com, Randy.Wu@mediatek.com,
-        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
-        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 18, 2022 at 9:56 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 18/03/22 14:51, Krzysztof Kozlowski ha scritto:
-> > On 18/03/2022 12:12, AngeloGioacchino Del Regno wrote:
-> >> Il 18/03/22 10:54, Jianjun Wang ha scritto:
-> >>> Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
-> >>>
-> >>> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> >>> ---
-> >>>    .../bindings/phy/mediatek,pcie-phy.yaml       | 75 +++++++++++++++++++
-> >>>    1 file changed, 75 insertions(+)
-> >>>    create mode 100644 Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..868bf976568b
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> >>> @@ -0,0 +1,75 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: MediaTek PCIe PHY
-> >>> +
-> >>> +maintainers:
-> >>> +  - Jianjun Wang <jianjun.wang@mediatek.com>
-> >>> +
-> >>> +description: |
-> >>> +  The PCIe PHY supports physical layer functionality for PCIe Gen3 port.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: mediatek,mt8195-pcie-phy
-> >>
-> >> Since I don't expect this driver to be only for MT8195, but to be extended to
-> >> support some more future MediaTek SoCs and, depending on the number of differences
-> >> in the possible future Gen4 PHYs, even different gen's, I propose to add a generic
-> >> compatible as const.
-> >>
-> >> So you'll have something like:
-> >>
-> >> - enum:
-> >>       - mediatek,mt8195-pcie-phy
-> >> - const: mediatek,pcie-gen3-phy
-> >
-> > I am not sure if this is a good idea. How sure are you that there will
-> > be no different PCIe Gen3 PHY not compatible with this one?
-> >
-> >
->
-> Thanks for pointing that out, I have underestimated this option.
->
-> Perhaps Jianjun may be more informed about whether my proposal is valid or not.
-
-Just FYI, for Allwinner and I believe Rockchip as well, the compatible strings
-always list the first SoC the hardware block was seen on known at the time
-of driver/binding submission. No generic compatible strings are ever used.
-
-Not sure if that's the general rule or not.
-
-
-ChenYu
+RGVhciBLcnp5c3p0b2Y6DQo+IA0KPiA+ICsJaW50IGRtYV9pbnRfdGhyZXNob2xkOw0KPiA+ICsJ
+c3RydWN0IHNnX21hcHBpbmdfaXRlciBzZ19taXRlcjsgLyogZm9yIHBpbyBtb2RlIHRvIGFjY2Vz
+cyBzZ2xpc3QgKi8NCj4gPiArCWludCBkbWFfdXNlX2ludDsgLyogc2hvdWxkIHJhaXNlIGlycSB3
+aGVuIGRtYSBkb25lICovDQo+ID4gKwlzdHJ1Y3Qgc3BtbWNfdHVuaW5nX2luZm8gZW1tY190dW5p
+bmdfaW5mbzsNCj4gPiArCXN0cnVjdCBzcHNkY190dW5pbmdfaW5mbyBzZF90dW5pbmdfaW5mbzsN
+Cj4gPiArCWludCByZXN0b3JlXzRiaXRfc2Rpb19idXM7DQo+ID4gKwljb25zdCBzdHJ1Y3Qgc3Bt
+bWNfY29tcGF0aWJsZSAqZGV2X2NvbXA7IH07DQo+ID4gKw0KPiA+ICtzdHJ1Y3Qgc3BzZGNfaG9z
+dCB7DQo+IA0KPiBXaGVyZSBpcyB0aGlzIHVzZWQ/DQo+IA0KDQpzdHJ1Y3Qgc3BtbWNfaG9zdHt9
+IGZvciBlbW1jLgkJCQ0Kc3RydWN0IHNwc2RjX2hvc3R7fSBmb3IgU0QgY2FyZC4JCQkNClRoZSBy
+ZWdpc3RlciBiYXNlIGFkZHJlc3MgYW5kIG9mZnNldCBhZGRyZXNzIG9mIGVtbWMgYW5kIHNkIGNh
+cmRzIGFyZSBkaWZmZXJlbnQuCQkJDQplTU1DIGFuZCBzZGNhcmQgYXJlIHRoZWlyIHJlc3BlY3Rp
+dmUgaGFyZHdhcmUgc2V0dGluZ3MuDQoNCg0K
