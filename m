@@ -2,111 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 290F04E2FE6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 19:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E176A4E2FFB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 19:29:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352120AbiCUSZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 14:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37992 "EHLO
+        id S1352157AbiCUSad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 14:30:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352118AbiCUSZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 14:25:02 -0400
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB061205F8;
-        Mon, 21 Mar 2022 11:23:36 -0700 (PDT)
-Received: by mail-oo1-f44.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so20207819ooj.2;
-        Mon, 21 Mar 2022 11:23:36 -0700 (PDT)
+        with ESMTP id S1352138AbiCUSab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 14:30:31 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBF02AE0A;
+        Mon, 21 Mar 2022 11:29:05 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id m3so14037773lfj.11;
+        Mon, 21 Mar 2022 11:29:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QJZE8dkCUnUnco1V96yxtmClw0LriXyfY1+6Wy3W2Cc=;
+        b=K/auwkg58bis+KPUyv2LucN9+M2eugoOwqQbdSPyxV/O+vsw08julPiPq/JKG/QQF4
+         hvUsNny4SYaI3irAM2JnrqK/hUchdS6UHbb4A/+vIx2bY9vQMubluIWrsAVCgJtmIgHn
+         nXN2WsRp5E+YMeuZNUwRfMWVL+XKgduggKhmZILxvMjCY7zYW9H3evS0m5ZZ3h3A8zIK
+         JKzoJO/vUuCBEPzXyuqb5jA6ogKNsDGhPS1zv0mD4shTBcJ35k5DChWFlhmdCDfhO33F
+         Rg8UONAMbrIWNO6yPHVzVEnh06oZNQGdlkkzecccFiIY3Hqt6wPtS1zL6k9uHjydBf0S
+         d+AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ku41EwMrpike2rw1zkBgegHuSBM8D1pxwnRie00HI3s=;
-        b=ifa5iJdQpJAqwQD9NDVar3BiAxcUtXDmy5m3ssz6e4Z12t9RLt+MuTXvD967hNRIat
-         99Pztr17EW8CUifk0CiFU2wswSvwUQZApytCMY6ROO8rPwaieU9kMNdPj885FcZnLKwP
-         h9EZDEt0p6MRGAqZRTuy2tbh7eHUDAG8UPueAk1/D5uv93MjqgM3fh8o9+7jO6sUGhs8
-         mCTGU4V3HznQYL+oIlI0R3aqZREWoHND9NYU8se1tfjXHCSQr9tjGbl8oTtt2hiF3BWd
-         Vjt+kwVmQ2Q5RyyAS8AoZ+tfrPYmmBmXHL8T4DcIHmMDV5hIEaYYkv6kOhkaMvQTv4+m
-         0NcA==
-X-Gm-Message-State: AOAM532O0FP7cuSIc6oY2Gi6frPT52qvUPzC5uaGG/EAZ+IOSLrTrC5R
-        /E+wdRXV7/D7hXrU3vqksg==
-X-Google-Smtp-Source: ABdhPJxEbbdQHTHasMqPbVoEvSXN5GqzSXj2JN10aOeMu119s+b2yNq16XRHjwNknIXSn2Ux3/bbGg==
-X-Received: by 2002:a05:6870:4586:b0:da:6a35:fcd with SMTP id y6-20020a056870458600b000da6a350fcdmr182637oao.140.1647887016156;
-        Mon, 21 Mar 2022 11:23:36 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bm51-20020a0568081ab300b002da5c44e0bdsm7304841oib.28.2022.03.21.11.23.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 11:23:35 -0700 (PDT)
-Received: (nullmailer pid 319364 invoked by uid 1000);
-        Mon, 21 Mar 2022 18:23:33 -0000
-Date:   Mon, 21 Mar 2022 13:23:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Alexander Shiyan <shc_work@mail.ru>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        "A.s. Dong" <aisheng.dong@nxp.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Jesse Taube <Mr.Bossman075@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [PATCH 2/2] dt-bindings: clock: drop useless consumer example
-Message-ID: <YjjCpQ9vwFoEmFFi@robh.at.kernel.org>
-References: <20220316130858.93455-1-krzysztof.kozlowski@canonical.com>
- <20220316130858.93455-2-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QJZE8dkCUnUnco1V96yxtmClw0LriXyfY1+6Wy3W2Cc=;
+        b=OolXeokEEFlaCqfTPrGvIv1QPZVEE7vrl3ahQcEuOKBz/97ct3Iv1MacL2OPn25Ygw
+         SMJBXFu14xKa9+nMZBttpU2KaeHcJ1JIjUh8cVjK2Qrswjj+GFeG/zF+seDbLQArCWZy
+         w5QghfweEn8yF+1qbkU47J99P0dTVAaoQAgJNDVgEiX3PIUpSKsM4ep6j5Ua8FCT2kLy
+         UTSpGn2UgKLh6OIgYBFy7WhK2aJje9AmxRD1Pp28c31X5uJT8Bf+Yi0/Vm0tb7UInJ1V
+         c4vyPIrvdPpWw1kv3J5mHNpJCBdB68KGJ6P846R4T92z3n7QijN7bEj69Owo3JmNJ2uo
+         tfwg==
+X-Gm-Message-State: AOAM531GzeuEYmzRywSL2iOJRhvnNcvEPFfDbJc6dMnd/OneZwAzTyRr
+        7vUkQP5PYhjEY82zYqdsi2YBrfxvqpDT/DLO+g==
+X-Google-Smtp-Source: ABdhPJwXvLHLay8erHVCVarSzPk3KZSKXrgZr/Qo7BnjPvJl91SNmZ0JLwo1w/mYrxtHRGimXzrK+jroSI6bBTB7WGQ=
+X-Received: by 2002:a05:6512:3b2c:b0:44a:35fd:994c with SMTP id
+ f44-20020a0565123b2c00b0044a35fd994cmr1302459lfv.473.1647887343882; Mon, 21
+ Mar 2022 11:29:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220316130858.93455-2-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220317015854.18864-1-ctcchien@nuvoton.com> <20220317015854.18864-4-ctcchien@nuvoton.com>
+ <37361667-C932-4139-B649-52DE029BDEE5@alien8.de>
+In-Reply-To: <37361667-C932-4139-B649-52DE029BDEE5@alien8.de>
+From:   Avi Fishman <avifishman70@gmail.com>
+Date:   Mon, 21 Mar 2022 20:28:51 +0200
+Message-ID: <CAKKbWA66rdm11fM2eWpQpSW2aCfFn-9OwJNNN4J2Q4rE2H4vEw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+To:     Boris Petkov <bp@alien8.de>
+Cc:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        James Morse <james.morse@arm.com>, YSCHU@nuvoton.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        tony.luck@intel.com, Benjamin Fair <benjaminfair@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        Rob Herring <robh+dt@kernel.org>, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, Nancy Yuen <yuenn@google.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>, ctcchien@nuvoton.com,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 16, 2022 at 02:08:58PM +0100, Krzysztof Kozlowski wrote:
-> Consumer examples in the bindings of resource providers are trivial,
-> useless and duplication of code.  Remove the example code for consumer
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../bindings/clock/bitmain,bm1880-clk.yaml           | 12 ------------
->  .../devicetree/bindings/clock/idt,versaclock5.yaml   |  7 -------
->  .../devicetree/bindings/clock/imx1-clock.yaml        |  9 ---------
->  .../devicetree/bindings/clock/imx21-clock.yaml       |  9 ---------
->  .../devicetree/bindings/clock/imx23-clock.yaml       |  9 ---------
->  .../devicetree/bindings/clock/imx25-clock.yaml       |  8 --------
->  .../devicetree/bindings/clock/imx27-clock.yaml       |  9 ---------
->  .../devicetree/bindings/clock/imx28-clock.yaml       |  9 ---------
->  .../devicetree/bindings/clock/imx31-clock.yaml       |  8 --------
->  .../devicetree/bindings/clock/imx35-clock.yaml       |  8 --------
->  .../devicetree/bindings/clock/imx7ulp-pcc-clock.yaml | 11 -----------
->  .../devicetree/bindings/clock/imx7ulp-scg-clock.yaml | 11 -----------
->  .../devicetree/bindings/clock/imx8qxp-lpcg.yaml      | 11 -----------
->  .../devicetree/bindings/clock/imxrt1050-clock.yaml   |  8 --------
->  .../bindings/clock/nvidia,tegra124-car.yaml          |  7 -------
->  .../bindings/clock/nvidia,tegra20-car.yaml           |  7 -------
->  16 files changed, 143 deletions(-)
+On Thu, Mar 17, 2022 at 2:50 PM Boris Petkov <bp@alien8.de> wrote:
+>
+> On March 17, 2022 1:58:54 AM UTC, Medad CChien <medadyoung@gmail.com> wrote:
+> >Add support for Nuvoton NPCM SoC.
+> >
+> >Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+> >Reported-by: kernel test robot <lkp@intel.com>
+>
+> What exactly has the robot reported here?
+>
+> >---
+> > drivers/edac/Kconfig     |   9 +
+> > drivers/edac/Makefile    |   1 +
+> > drivers/edac/npcm_edac.c | 710 +++++++++++++++++++++++++++++++++++++++
+> > 3 files changed, 720 insertions(+)
+> > create mode 100644 drivers/edac/npcm_edac.c
+>
+> I don't see a MAINTAINERS file entry so that people can Cc you on bugs. See the other EDAC drivers for an example.
+>
 
-Doesn't apply to my tree (no imxrt1050-clock.yaml), so
+see in MAINTAINERS:
+ARM/NUVOTON NPCM ARCHITECTURE
+M:      Avi Fishman <avifishman70@gmail.com>
+M:      Tomer Maimon <tmaimon77@gmail.com>
+...
+F:      drivers/*/*npcm*
+F:      drivers/*/*/*npcm*
 
-Acked-by: Rob Herring <robh@kernel.org>
+Isn't it OK?
+
+> --
+> Sent from a small device: formatting sux and brevity is inevitable.
+
+
+
+-- 
+Regards,
+Avi
