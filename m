@@ -2,153 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43F134E2E44
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 17:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91AB74E2EAF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 18:01:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351479AbiCUQnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 12:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43462 "EHLO
+        id S1351551AbiCURCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 13:02:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351368AbiCUQmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 12:42:53 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70041.outbound.protection.outlook.com [40.107.7.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55E3E103D97;
-        Mon, 21 Mar 2022 09:41:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LyMUlrWR7Fs/sdB0piDS7AOHqJWJT0wQjqUaIOXUYpX2P/cAaZgvq4r5/UdsHyGiyzcGPzvD3o+b70dSdFpTGuYc1xqit+6yxIx0n1j64vaHn5+D+t0vU1c0I4q8WzXhv16T4d6IcLyWRzV7WjtHZLNaJzqx8O+ivupqNwJTy0GYQEFKbvYrOL5BN46AiBuO+TyfeIfdI8F0qjts4j8Kjwpa5VHfiKJ8CJ6NrUNd1ZOxDXl7U4K+Cxd3hiJgve15r4/j5wiatOv30YOdysbl1qUpgjzj51aGoW09T3cvy5YKzrJR5upOWtw6k+OY+OwYcCY5HcpKbnb+mr4elydt9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iB07LRIDCKDOmNN6cGIr4xqHqwEpsD/QNdBa1C+rvXA=;
- b=PRLg6OfLO/zRjGwbZQWAYXzO3RNm9qXd6Az+DaYhzPkuVqgHi7N+i72OCD0th6xw2PHip23dm3hrKT6wg13lM9XzWHy3Yijlp0VW5XYuxR4yQCRDXJDd985FfkoTopNYJzYb7zTkxM251C78TkrrpJ38at2Mes5oDRRQMYpkxBzT/8F22doIOyRmE/OzwSZCXCJ9yPLLzQqyJYLWmzLoVjUqK8H5WdwKMolzL3gqdgLRZ23IpBvqgYtS9XAyOdyMZiRG96SygV4Hp8/Z4SBZSnGWDWJFO+vmFla55renCADKguhx8zswaBTjhaUaFRf4vU098nbxBLPKy68qYlK/GA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iB07LRIDCKDOmNN6cGIr4xqHqwEpsD/QNdBa1C+rvXA=;
- b=dQdza3c2VVMaQIybBtVfcpgim3DrSwfKOS9oxW9HjiunCnsbx6HyRHevXhst/prH/f2Plj5QhZxsNa/91NoOVdjkdNxeg94HJKmIdnjkqQSE01HgIN1ZKiwuu83u/04wex3FCqdAaLlboV/Z08cuZLsMO+yGia84WXDewpyg0Cc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR0401MB2495.eurprd04.prod.outlook.com
- (2603:10a6:800:52::15) by VI1PR04MB5790.eurprd04.prod.outlook.com
- (2603:10a6:803:e7::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.22; Mon, 21 Mar
- 2022 16:41:24 +0000
-Received: from VI1PR0401MB2495.eurprd04.prod.outlook.com
- ([fe80::3c05:836b:b977:a027]) by VI1PR0401MB2495.eurprd04.prod.outlook.com
- ([fe80::3c05:836b:b977:a027%7]) with mapi id 15.20.5081.022; Mon, 21 Mar 2022
- 16:41:24 +0000
-Message-ID: <659fb73c-525d-cc2b-0512-651f0f5cbef3@oss.nxp.com>
-Date:   Mon, 21 Mar 2022 18:41:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/5] imx-jpeg: Support dynamic resolution change
-Content-Language: en-US
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1647590462.git.ming.qian@nxp.com>
-From:   "mirela.rabulea@oss.nxp.com" <mirela.rabulea@oss.nxp.com>
-In-Reply-To: <cover.1647590462.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR03CA0050.eurprd03.prod.outlook.com (2603:10a6:208::27)
- To VI1PR0401MB2495.eurprd04.prod.outlook.com (2603:10a6:800:52::15)
+        with ESMTP id S1350897AbiCURC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 13:02:29 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01F78BF11
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 10:01:03 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 96E583200973;
+        Mon, 21 Mar 2022 12:51:51 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 21 Mar 2022 12:51:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-transfer-encoding:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm1; bh=aD8/Y4hPqAyTKU5rh74GM8ppHJsw64m0Pybq+d
+        SZ3sU=; b=Unl77xM818Hg40rm3neqXsUYPf84ogGUOSO9s/WU+dBjTycleHCTNS
+        VGIS4QE4J0Zm0wjTnH9plpUqax9jY2bzccpbqaz6/rV3B0OKM3Uy7U2FD50hu7u/
+        6KYNqbz5uF1CRyYl5ajO2fk1/LGFFgh06S+W1z9WVUTaregdRs/yPhAtoUOZp/7W
+        w+V7UEux9f+ZIZDc2JkdQAxuQyUFvkCg69mJnq/68nBtQzQvAI24etGon5JElXUL
+        0GcoSVLGsr7310zwLoLu4dtvpluaB3EpqxjiXi45TDjY/n5004ZtQhxPdQUkfkNj
+        nJRPlOi5h+DobH+Pg9SEg52pYgijrSwQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm3; bh=aD8/Y4hPqAyTKU5rh74GM8ppHJsw6
+        4m0Pybq+dSZ3sU=; b=ZXwI48PmFtFZXoQoICSrxzYjsMp+HimXuhfYuBH0kqyS3
+        H936lNBr25GHeNkMNkePjiYGCROktVxhFyZ6Dn4PsujIEv3L8YKSXY0NK74qqKUn
+        ksRc/NKDPOEPk/vBRmwVof/XwqQ73ts4b7KuwrM/r02uGgMUVV8V+VQmyfqijOLs
+        UtFMNyBDJgX186nhMWLV4kjmF1+PR8OJulHQWNbIgAwbtmHfjrdn2ID6iCdVa1QI
+        QAAuPx+gRjQ00+1BqbPT4w1Hhq2JN3kZ7kDXeNG6mD+UCPdNR6GCD6kYSNS/gN3E
+        VeCpAAPeviBlqQdktNhgTpn//Yvu1NthMwgPZe+zA==
+X-ME-Sender: <xms:Jq04YiFQg_MIx0FglpHhZf77RssM9UutuDnZXqFSb_MdtNN8k24pxw>
+    <xme:Jq04YjXgSG3kVkzqD-8j9f0b6E29HaAVndSZYuUOzWhrsxDHN27V1zgOJ-wUc-t73
+    RVHSgSFrAb27LTlm6w>
+X-ME-Received: <xmr:Jq04YsJss5_C3PdUGVCsuTOGOaI3EPcznSK9Vz07DV1poQlomWxuwYtOycXz6jMHWQkxs-7qxYjKskelNHx6izpUgi4YXJ6T_4DE3tJWSS04aLMbO4fQg87jdXk9iBo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudegfedgleehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    hmihhsshhinhhgucfvqfcufhhivghlugculdeftddmnegoteeftdduqddtudculdduhedm
+    necujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcurf
+    gvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvghr
+    nhepfeehudeftddvhfehvdduhedtjeejheeuudfftdfgvdekvdelleeuveelgfeflefgne
+    cuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecu
+    rfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:Jq04YsEG1_bhSXIhM9DTrk0xP3MN8H1n5HO74vBYkZXt1iTwsv8uhw>
+    <xmx:Jq04YoUKzx2otZq5QLrdbgh5_KrbF-l1lw8nyWmOflmsCCatafPGug>
+    <xmx:Jq04YvOUHT5camEHD40iiOJIEvD0pz3YGzOm9UOeEqjFMWP8M2agog>
+    <xmx:J604YpsIDrCEkKaTDgSnOU0WyMols2DVv6Oxj9gb5LBfhy7zXrrIjA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 21 Mar 2022 12:51:48 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+Cc:     Sven Peter <sven@svenpeter.dev>, Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
+        Jens Axboe <axboe@fb.com>, Christoph Hellwig <hch@lst.de>,
+        Sagi Grimberg <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-nvme@lists.infradead.org
+Subject: [PATCH 0/9] Apple M1 (Pro/Max) NVMe driver
+Date:   Mon, 21 Mar 2022 17:50:40 +0100
+Message-Id: <20220321165049.35985-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cfa561a9-f3d4-4c93-5af4-08da0b59a275
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5790:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB5790086FD4CAF5C95173F3B6CE169@VI1PR04MB5790.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vRCGXCF4aE07T2qm6bDxZ7RLanp6bOZYY9jt8+r5p+ADgWInQkJ9iC9WhkJyqWDVxwx0AU4fa9ZV3RetbYN5xN1Oa/cHO1Tv+o1G2lKZt+3E1yGAi32bw6Wx28dmB4a8ZxFiFOYrBx9nJ1sx2fAthNyzc6TmdvpKEoqckd0gPV2hSES15b5ucg1OKOF07dH3F1TgbsLli9KRS5rOgQwknlhXB9mJOdFV2OnLAJ51WZ9z31SkWPo24VztDz2takKvpmGCbv9lvzw5FISLHiH1gKCzpgLbLCwHA8PZYSod0QZt67Mb/JI112RG3ZMUT0DrrZnGUkvOcYQpvapaahbcnCDQvOjW0veMzfgMCZOkJoUDImdSpRQvBo6msqBFL0N7slAOuKdk221eRD009fOCmTZe13zHPeygnXFivCxHlq1XF/T0bbcugUh52GnbJuWkeVgpmP14jmPFhmWGUwBgAp8AuT+wvKsRHkkHuvq2SRHhz7mvESvFwI0GOrvujpYzVc8+AtgaekVdXGi9HEcP9EPByRRqX7gUNuefeq4ubn1rGSQBU3wRABdafOPlbybvbFWni98ovtm0RfEfF/AjUhSNp9DhFpUNOEON4S2O6YUGMKPNnBdGRlVYeLhUmf02lxSp3ZTbztxmySoK/Oji5k1/yecR2BPIH4oIcolY1Lc1IiwIIdmw7fJd4QOv67+myabc4aqDFUX2uylb9SWp1KMgGwmD9QoB2HMG+3kIHvILx3ppZxS2MZI96y65wJBdKYDzGjReqchVb9VPBhiABQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2495.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38350700002)(38100700002)(86362001)(31696002)(8936002)(7416002)(5660300002)(2906002)(4744005)(53546011)(52116002)(6512007)(6506007)(316002)(2616005)(186003)(26005)(6486002)(508600001)(6666004)(4326008)(31686004)(83380400001)(8676002)(66556008)(66946007)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SUpycHJUUWEyZE16TDBZbW53czQvM1JOckpRU085cHlidERudmg0OWREcjZv?=
- =?utf-8?B?eDBaUGMvUG80K3VEN1paL0RTRHdUanlWUXBYcTRhY0tlT01Wb3NrbjVPVk93?=
- =?utf-8?B?UVNtaGM5SEJLRFhnY3Vpa2t2cFBsV09DMmRmM0hpM3RlZ1lqY3Z1NnJZRGsw?=
- =?utf-8?B?YkJnemNEMmVnaDluWVZiNmVHZTBrd2tsWFFSSEJjUVY2YlF5V1VNTWZQTmha?=
- =?utf-8?B?Yzdkc2ZCN0NLazVGbzU5TjdOcFMwd0REcTR6ODBPK0JYWG1TTXVneCtLd2d0?=
- =?utf-8?B?VFFxcWE3OVVxZUtHRXFjdEpZR1lsQnFJWVZhNHJHZGhJV3dBNlZLcGM1L09h?=
- =?utf-8?B?MHVGMUR4TlFwSzFpbXBVL2JzMWh3K1RMYmtZNG9oM0JiRFNqR2FKeGlaN0ZJ?=
- =?utf-8?B?cjVHakliWkJ6VGFXZyszeCszVURscnZnUFVEOTJFeTVyUGMxSVhjOEwycDRJ?=
- =?utf-8?B?c1ZNRGhhQkpxTDUxTFpxcWR6R3pzdlZKQkxsVEwxSHBBTjBSYVIvcGw2Y093?=
- =?utf-8?B?bzlPMkJlaGRhaUhrVUVWaVZiQ0NOVnllMjZ1OFd4aWJQa3l0YytHUVYrT21J?=
- =?utf-8?B?YmRLOU5sWTZMZmlFWktJKzlmTFlMTXNVamZ5TkNmOUNaQXFrSkxsU05VMGVv?=
- =?utf-8?B?K0drREVUMUl5L05KU00va1ZMMkhneVlteC9QM1gwRWJZTkUrUXlGUlJEZnpI?=
- =?utf-8?B?Yk5Peko5UHprYjZtd1h1R2l2ZDFZV25MakJzcDhSNll5eGRqRW9hVEs0alVv?=
- =?utf-8?B?eWN3NlNINVBmRVZKeHNiY0c2N0xRWEtzT1cvdEhTWUdValpubXo3dWovQWEz?=
- =?utf-8?B?NmN3TzBmdkpiWGxJcS80R0ZWdjBKWi9mRVJ1M3hKdHFCR2VhSXlqVVNtVGs5?=
- =?utf-8?B?UWFlSUxnQ2hWTkZjS0dSWE9LMWZFUW9EMlJDeW1jZWJEQ0pMTlVCWlRWc3ZQ?=
- =?utf-8?B?S1hCaHN5N1A5b3dlU0RKWGZmSWh6Vi95ODNDcktRMndaMTVmM2JFUURDZDli?=
- =?utf-8?B?VTVkSC9zZ3VZUSs5TTUraU5jc0taaVF0MThLWHlCQ25ZaFh4OWFIbnQvdVdZ?=
- =?utf-8?B?VHdCckJJZ2g4alR5ZXVNOFp5elZvb2lBaVlrbWRCbThGWDFJbFNFTjZFenpn?=
- =?utf-8?B?MTF0QXBaTXcwNXVvSlNORFZPakwwcVNSQVFIeEdUdmtOY0hXODNpKzIzOG5k?=
- =?utf-8?B?R3ozZ29aM09Yc0h4NTRnVjJOWVB2Wk4xTG5UYmNIY3JMRHp1VXU3bVBDdEYw?=
- =?utf-8?B?Y29SdmI0R213Rm9mY0xOTVY4OVg3UFpqK2JkT2VuY0dzaGFNSE5NandmVnF4?=
- =?utf-8?B?Z0M0QmhFeXFjdXBCMCtmWXZPb0NvaHdpQlRnVkx6U0QwYVIzQXVSRjM0V0J2?=
- =?utf-8?B?UzRzeTRzWE4zeVdINS96L210dFgvd09BRjZkeCs3NFlKUTZOVVZSWXdUMjZC?=
- =?utf-8?B?a3BDVlZJM2FORjBFek5VWnVXeFlidzRyRDY0c2s1WnQ2WGkweTFpZ2wrUURn?=
- =?utf-8?B?U05TTExaSy9KaTNuQTdGRkdzQWZJZWlnMG4zcFJRTlQwbDlYSEcrVStsRUtX?=
- =?utf-8?B?SDJJeEQrVEdXOGoxSDVlaU1xMjdtYmhYeE40V1lyamZhR2tORGIyZmp4MUJt?=
- =?utf-8?B?MFNTNm9USzcxRWlSRitFRjh1UktSZlczZkNHT3dxTjI0cFRvMzRIcjRyWkdG?=
- =?utf-8?B?cXB4T0VHYm5zVzIwY3BaTDg4UWJKVU9qU1VjUEphckFyNFNTU1hZY1N1Tk1k?=
- =?utf-8?B?SUJhcmV0bFdEWG1qY2NIbDdVYTBDY3NpT2x6eGFwaDB5Z01tN1JSOGxxdXhq?=
- =?utf-8?B?QmZBalp2aFZVOEZPRmovSWtPQWlPb1dYbUFtR1BVSXlzendnTHN1a2Izd2I3?=
- =?utf-8?B?aWl0cU4xTkZpUWFEdUJzck5WcG8yNm1ibHg2V2JiVzhaM2ZhQm5jaVAzWlBn?=
- =?utf-8?B?c1IvdzBMcnJnWlcyYTc0QktwTmR6a1B0VUVpOHVZOGNldDBZZ1RzVWswUGY0?=
- =?utf-8?B?dCt2RzN4SGl3PT0=?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfa561a9-f3d4-4c93-5af4-08da0b59a275
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2495.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2022 16:41:23.8659
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J0nl7OSzMbvNqNmkRWhnwRb9jTq1je4kQGfFVBT5P7AsiRSiGopiHfAr63rFj+gftrw0iBZvA1+va26ttHboHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5790
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This series includes everything[*] required to get NVMe up and running on
+Apple's M1, M1 Pro and M1 Max SoCs.
 
-On 18.03.2022 10:16, Ming Qian wrote:
-> These patchset are to support dynamic resolution change.
-> Avoid decoding error or even kernel panic.
-> Otherwise, the Gstreamer v4l2videodec will fail to decode jpeg
-> who is not decoded to yuyv.
-> 
+The NVMe controller on these machines is not attached to a PCI bus and
+this driver originally started out when Arnd added platform support to
+pci.c and I added the required Apple quirks. Christoph Hellwig stumbled
+upon an early version and suggested to instead rewrite it as a
+stand-alone driver since some of these quirks are rather awkward to
+implement and would affect the hot path otherwise [1].
 
-For the entire patchset:
-Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+Here's the first version that creates apple.c to handle these weird NVMe
+controllers. The following parts are included:
 
-> Ming Qian (5):
->    media: imx-jpeg: Refactor function mxc_jpeg_parse
->    media: imx-jpeg: Identify and handle precision correctly
->    media: imx-jpeg: Propagate the output frame size to the capture side
->    media: imx-jpeg: Handle source change in a function
->    media: imx-jpeg: Support dynamic resolution change
-> 
->   .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 244 ++++++++++++------
->   .../media/platform/nxp/imx-jpeg/mxc-jpeg.h    |   3 +
->   2 files changed, 169 insertions(+), 78 deletions(-)
-> 
-> 
-> base-commit: 71e6d0608e4d1b79069990c7dacb3600ced28a3b
+  - Device tree bindings: Since this is the first and probably only
+    SoC that has NVMe outside of a PCIe bus I've put them into
+    soc/apple. The same bindings are also used by u-boot and OpenBSD
+    already.
+
+  - SART address filter: Some of the buffers required by the NVMe
+    controller sit behind a simple DMA address filter Apple calls
+    SART. It allows to specify up to 16 physical address ranges
+    that are allowed and will reject access to anything else.
+    Unlike a real IOMMU there's no way to setup pagetables and
+    also not all buffers are subject to this filtering. Most
+    buffers used by the NVMe commands themselves use an integrated
+    IOMMU instead.
+
+  - RTKit IPC protocol: The NVMe controller is running a proprietary
+    RTOS Apple calls RTKit and we need to communicate with it in order
+    to bring up and use the NVMe controller. This communication happens
+    over a mailbox interface that is already upstream. This protocol
+    is also used for various other drivers present on these SoCs
+    (SMC, display controller, Thunderbolt/USB4).
+
+  - And finally the NVMe driver itself: The driver registers a platform
+    device and is mainly based on pci.c with a few special Apple quirks.
+    The biggest difference to normal NVMe (except for the missing PCI
+    bus) is that command submission works differently: The SQ is
+    replaced with a simple array and a command is triggered by writing
+    its tag to a MMIO register. Additionally, the command must also be
+    setup in the proprietary NVMMU before it can be submitted.
+    There is some code duplication with pci.c for the setup of the PRPs.
+    Depending on what you prefer this could be moved to a common file
+    shared between pci.c and apple.c.
+
+The hardware here is the same hardware that's already used in T2 Macs.
+The only difference is that the T2 chip itself initializes the
+controller, disable some quirks (the NVMMU and the weird submission
+array) and then exposes it over a PCIe interface.
+
+The driver itself has been successfully used by multiple people as
+their daily driver for weeks at this point and no major issues have
+been reported.
+A smaller issue is that flushes on the devices take *much* longer than
+expected. Jens Axboe has a workaround where the flushes are delayed but
+that one isn't ready for submission yet.
+
+Best,
+
+Sven
+
+[1] https://lore.kernel.org/linux-nvme/YRE7vCyn9d1ClhRm@infradead.org/
+[*] The only missing part in this series are the device tree updates
+    but since these will go through arm-soc anyway I haven't included
+    them here but will instead submit them once this series is in a shape
+    where it can be merged.
+
+Hector Martin (2):
+  nvme-apple: Add support for multiple power domains
+  nvme-apple: Add support for suspend/resume
+
+Jens Axboe (1):
+  nvme-apple: Serialize command issue
+
+Sven Peter (6):
+  dt-bindings: soc: apple: Add Apple SART
+  dt-bindings: soc: apple: Add ANS NVMe
+  soc: apple: Always include Makefile
+  soc: apple: Add SART driver
+  soc: apple: Add RTKit IPC library
+  nvme-apple: Add initial Apple SoC NVMe driver
+
+ .../bindings/soc/apple/apple,nvme-ans.yaml    |   75 +
+ .../bindings/soc/apple/apple,sart.yaml        |   52 +
+ MAINTAINERS                                   |    3 +
+ drivers/nvme/host/Kconfig                     |   12 +
+ drivers/nvme/host/Makefile                    |    3 +
+ drivers/nvme/host/apple.c                     | 1568 +++++++++++++++++
+ drivers/soc/Makefile                          |    2 +-
+ drivers/soc/apple/Kconfig                     |   24 +
+ drivers/soc/apple/Makefile                    |    6 +
+ drivers/soc/apple/rtkit-crashlog.c            |  147 ++
+ drivers/soc/apple/rtkit-internal.h            |   76 +
+ drivers/soc/apple/rtkit.c                     |  842 +++++++++
+ drivers/soc/apple/sart.c                      |  318 ++++
+ include/linux/soc/apple/rtkit.h               |  203 +++
+ include/linux/soc/apple/sart.h                |   77 +
+ 15 files changed, 3407 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/apple/apple,nvme-ans.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/apple/apple,sart.yaml
+ create mode 100644 drivers/nvme/host/apple.c
+ create mode 100644 drivers/soc/apple/rtkit-crashlog.c
+ create mode 100644 drivers/soc/apple/rtkit-internal.h
+ create mode 100644 drivers/soc/apple/rtkit.c
+ create mode 100644 drivers/soc/apple/sart.c
+ create mode 100644 include/linux/soc/apple/rtkit.h
+ create mode 100644 include/linux/soc/apple/sart.h
+
+-- 
+2.25.1
+
