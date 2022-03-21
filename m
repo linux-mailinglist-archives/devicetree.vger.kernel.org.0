@@ -2,162 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D25B64E2FA3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 19:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36C7F4E2FAA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 19:09:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349300AbiCUSJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 14:09:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42240 "EHLO
+        id S1345447AbiCUSKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 14:10:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345172AbiCUSJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 14:09:42 -0400
-Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42ACE2B1A6;
-        Mon, 21 Mar 2022 11:08:12 -0700 (PDT)
-Received: from email.seznam.cz
-        by email-smtpc1b.ko.seznam.cz (email-smtpc1b.ko.seznam.cz [10.53.13.15])
-        id 7be6592620e80d4f7a4f9578;
-        Mon, 21 Mar 2022 19:07:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1647886054; bh=hIG+XZnMpWDgbwOqfCXDAjb4ztBGpTtgq9+OPkhp6qM=;
-        h=Received:Message-ID:Date:MIME-Version:User-Agent:Subject:
-         Content-Language:To:Cc:References:From:In-Reply-To:Content-Type:
-         Content-Transfer-Encoding:X-szn-frgn:X-szn-frgc;
-        b=jDNRlrk6Wk2Z67iIEct6xoK75RDc77TKJyZRjgt4zyqMLlY2KuS2XNWL9EbJsRlf1
-         BsN2C+t4YgwOyDHxDrVMf8CvWXHSWq7ggYUodUtydoM9mM/3N9afkv9JzEfz3Zt+kT
-         hsD1V4YsZqmonOyiyT/juUKx9r3PYvQcv0tYuSh8=
-Received: from [192.168.88.151] (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay13.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Mon, 21 Mar 2022 19:07:29 +0100 (CET)  
-Message-ID: <f8ba569f-d230-92a8-6a56-fbcaf620af36@seznam.cz>
-Date:   Mon, 21 Mar 2022 19:07:26 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
+        with ESMTP id S233194AbiCUSKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 14:10:51 -0400
+Received: from mx0d-0054df01.pphosted.com (mx0d-0054df01.pphosted.com [67.231.150.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1318E387B5;
+        Mon, 21 Mar 2022 11:09:24 -0700 (PDT)
+Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
+        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22LBsiVO016560;
+        Mon, 21 Mar 2022 14:08:59 -0400
+Received: from can01-to1-obe.outbound.protection.outlook.com (mail-to1can01lp2051.outbound.protection.outlook.com [104.47.61.51])
+        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3ewc33gv1q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Mar 2022 14:08:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c4MTNMryVQpBC5fUHs4EF4J8SPlP1xXHrs7AntkVboPC/erIXLuLgTOwet6TJ0HAHAzrII5pSZ+n4fhSTOZasEPMaG3SyI5sdc7FIDFAP7vjQn+NYvKP5atELwoJn1DlJWhCpgCDpdcp6KltJEkbaRpZGn/0uTKY23cu0d2+d9e5Z5JUs5jhaFq7XS/YChZmGiNoIrQVQlERRh5gIgEkXqF8swI8WAemo3jeUCi2jshX3nEbTpFtRPryLQ2ItfGf6gBkuZ9hWPUnMTb8Wv787hXZbOL+voqpD4csKLVjsBeCe7FtFxb+WH3vkfG+K9BWJkCK8mMsuoIACGc18jBhOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UVmlW85AYU3BIUfSyqQxClf5DpNjNohifSz3K0IN/hM=;
+ b=HdAD6BywoHVDYAj2Mv8/KDKLTryykFL8qkgVbPDhemCWZKDK1TzopQIhor/idPNBVoxlH+smcohZM6TEWZC0Y308/W82KTUvFSkElWRLQVbpgNQFO2psd9uT8otePSh8B+nFfHuUtjqAvLwZkgQytEOTNWaHJUUaHGAU6X07fRhsE+AGZCIElacq5Slgz54hTYrDH8GtTH9BtvTbvZfO0tdJLZLRMCy7hXYx8DHZ+ypsxM3+KQ07E6NLn6bmpQS2huHcwm3LF6ZYNOKSOnWMGY3KdpGf8IOxev8NPKXqOtjVv75wjQ8T82cT8Cj6PJjnngSCoxTAJ3QMWRDVh/H1kw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=calian.com; dmarc=pass action=none header.from=calian.com;
+ dkim=pass header.d=calian.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UVmlW85AYU3BIUfSyqQxClf5DpNjNohifSz3K0IN/hM=;
+ b=C3hziEF++kwFabNnsrYyJ2OcBdHYfzSO7tXVIFu7jH0XXUwTXbxrc6t/irBSdLUIjVC/2iBu5FVyaTR4hbqlI1l7NR14QCiRIk5NpZ2C2eDvx2rYNdomuRkc4UA/1OCey0Xvcwxz62ZhBe1oK8hAq1hpZbPeZdRQmLYZWXTK0B4=
+Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
+ by YT1PR01MB3354.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:b::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.17; Mon, 21 Mar
+ 2022 18:08:57 +0000
+Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::e8a8:1158:905f:8230]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::e8a8:1158:905f:8230%7]) with mapi id 15.20.5081.022; Mon, 21 Mar 2022
+ 18:08:57 +0000
+From:   Robert Hancock <robert.hancock@calian.com>
+To:     "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "andy.chiu@sifive.com" <andy.chiu@sifive.com>,
+        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>
+CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "greentime.hu@sifive.com" <greentime.hu@sifive.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>
+Subject: Re: [PATCH v4 1/4] net: axienet: setup mdio unconditionally
+Thread-Topic: [PATCH v4 1/4] net: axienet: setup mdio unconditionally
+Thread-Index: AQHYPTgmjMCHk+wFaUa9PUM46co+x6zKIwUA
+Date:   Mon, 21 Mar 2022 18:08:57 +0000
+Message-ID: <52e8c8ba9b9558aa6a5666230a834decfbaee0d8.camel@calian.com>
+References: <20220321152515.287119-1-andy.chiu@sifive.com>
+In-Reply-To: <20220321152515.287119-1-andy.chiu@sifive.com>
+Accept-Language: en-CA, en-US
 Content-Language: en-US
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220310133938.2495-1-michael.srba@seznam.cz>
- <20220310133938.2495-2-michael.srba@seznam.cz>
- <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
- <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
- <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
- <20220320151223.3a9b13bd@jic23-huawei>
- <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
- <20220321150411.00002206@Huawei.com>
- <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
- <20220321174202.00007895@Huawei.com>
-From:   Michael Srba <Michael.Srba@seznam.cz>
-In-Reply-To: <20220321174202.00007895@Huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-szn-frgn: <fdd3ab9c-2f1d-418d-8dca-a1aa962050d9>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5 (3.28.5-18.el8) 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e9608e2b-bff4-41d8-1bec-08da0b65de47
+x-ms-traffictypediagnostic: YT1PR01MB3354:EE_
+x-microsoft-antispam-prvs: <YT1PR01MB33541655E2DC95CEE5A9B8F5EC169@YT1PR01MB3354.CANPRD01.PROD.OUTLOOK.COM>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lDNhoxCs89GoYG2YYeYX9Gz+FAx8BeThQjlvlYQBuNMBk9DxdihS2+2k0TzyZOF9BlJy/v4HIXWrhVAjUgp8zZS3EBm0bBE+Ly2e5vVX+CjyQh0nw2y8VRQKR8VyRKc8bVump5grTvTAxgeinmnCGp6Xy4TyYlEcsC95A/j81+DRe0tbENPE9WX3olMqJ9fvqFhBj0gT3SwEOCVwoKZh25vmZd0n5MudcoRNoqF8bXdjitCXm/qd5xB6hTcGjx0RaOw1LH09Pi0e9WnxXmkLlqtzj/DUb9gv3xsTtXzn1y24l4iGYPUvKZ5MbBnImbRrh7kvkYtlwvcuex+sampaHw8cOHZQ0cdGqB5zSXNxkBrFfkV27rptwyJqwKKSX3bBSef0cbdYvVS63G7cX8w0kpa8/E5W8noC33de1OPzkU9IdYsxJRPDhLyM+67jETRgp8e6hkE/3b4OdbClqeqbB07IsQ2EOsytYJMhE5nBivMtOVvekVOQRFdPbLySlS3P5mPNNFBpwPuItRtqv2ivCeAfBYcCvrdNxcw3O54zQHFR3zqj39F07SXA8DjI1RB0PGh2/6Yz8yJwMO3nxT1mvt0q8cQ5A4ueQfEGauxdUFlvzNt7KEy/H846Y2sdB7NX8Eg8Kvdat144gA/yU7E3SmvVsvABi958/PiDND8rOZcG/1NZxNSLkBTff4ytMz56V2+sXVijUuprWx6n4GTy1HDX2rMK+FEezpPVf543WFuBH0BjZBdfVJ0YZlCMyztezMRP9X3BsZQfM4gTZ9qmT27nbMcZMqMHpuIYRrIJhe7hKRcJbN68H0No1eJtgNZTlFbhkLjP+OuWYFJxGSALcWEu1cntYmtW40cUCXObaQ4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(15974865002)(2906002)(76116006)(6506007)(91956017)(66946007)(71200400001)(8676002)(66556008)(66476007)(4326008)(66446008)(64756008)(122000001)(6486002)(38070700005)(508600001)(44832011)(7416002)(26005)(8936002)(5660300002)(86362001)(38100700002)(316002)(186003)(6512007)(2616005)(36756003)(110136005)(54906003)(99106002)(18886075002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dnBMV1NTbWtBZVNweVlWajFvNlAvM3JyYU9SWWowUjVvU3BadUtyRkgyWVBK?=
+ =?utf-8?B?Qm5YeUdBQ0xuaUdZWHJHNkZiYm9UdEZWZG1XOHJzS1BBME1hWERQL0VjNXB1?=
+ =?utf-8?B?VzFWUmVEMVVIa2JqZWVpQkE0WWxJcmpQQjV5U0ZzMzlYejQxREpWM09tVURs?=
+ =?utf-8?B?UnZta0xtZ2ZsWHNMYnZYWFQ1cWVVcENmSnY5Sml1OG1rc25pMjVoNWdENk1H?=
+ =?utf-8?B?RytxQ0wxdkxvWk9FemxjcU44YTE0S0l1MnRrckh2SUxuSXk1cTUwSHcyTmRU?=
+ =?utf-8?B?RE9OWkoydUtGLys4c1VISXRWN3ZjUmcxRTNaNVY3alREbitEbGJyMlZxaE9V?=
+ =?utf-8?B?NlkwV2JkY1Fpemo1d1VmYW1nemV3U0ZKSjNJQkdXSzdjU0NtalRNYU5iOW1F?=
+ =?utf-8?B?UWdXOG5hREcxT2pvaXdYSEttMVB0QzNPR3VVS2dhYWc3STJycmNuYkd1WkZ1?=
+ =?utf-8?B?bTlDNWhpQkcvcFBKNDhDU0FMbm9pYjFZTWlsSS9sVXJ2djdUSVYvOHVSeTVD?=
+ =?utf-8?B?dTZ5SUVIWm5XdU5BMlYxdEVKL3U2S0ZzamtMRzdYaTRrZHlsVHB1QUc2Qmo5?=
+ =?utf-8?B?bXk2VWVQcjZHRjhBcUdvUUpWcU93UWhHUmtMZEk2QTZpYnVzTGV2V29RZDYr?=
+ =?utf-8?B?RmU5b2hzcnV0UjF4akxMR09VejZDaktUSmcrKy9DU2gvQzVPclRIbDB6ZVRh?=
+ =?utf-8?B?VzZtRW1TV2VmdzFMdmNoYlJ3U3diMHpXdnV1RlloNEIvSFA5c2U3dDlkWWFH?=
+ =?utf-8?B?dktUcnJFVjhqblk0cDZsSy8vREIxTVJVbjF4dkNGeitWakJrSXl2WXJ3Z2Vz?=
+ =?utf-8?B?cFYzaHRndm9lRUVoVmh5ZXk3M0JwaG1zQ2I3Ujg2QTcxblRQNXVvRDRKbkli?=
+ =?utf-8?B?OVRPaG1kcTlEU1JZMVUzNEM2dWF6a1NRa29nbk5oWEkyU2lJMllTdU9WdjNY?=
+ =?utf-8?B?VEhLNEtCTXQ2RjBWeGtGREJ6R2JOaStmdlZoQUpobzRmWTNSSXg4Uks2OGNs?=
+ =?utf-8?B?ZkUvRXA4cDJRMnRHdmtFaEZmVjJZdGdIbzdjYVJMU3dwbjZXNmNkeVh6NGk3?=
+ =?utf-8?B?YlpwcDNxUmpDRm5mSTFiN3FZWnplNDh2d3VtcE1xQ1ErejNVOXZQVVhRZ0wv?=
+ =?utf-8?B?c0pTb2IyYldEVktGODlxaEI5MXpDSy9HZlQrT0M4Q0U1ZEpLZ2x3anpDNEFk?=
+ =?utf-8?B?c2FXVngrQWU1NFgvTFJiNG9BQ081bytraFJyOGpSSjhWOUhwaE9IaVB1MDNq?=
+ =?utf-8?B?YkdxaTFhakR0MENEL1BCT3MySGFHL3l6RUhJUTYvcVhwQkZYY1pNOFpzaFlR?=
+ =?utf-8?B?eWpSTGdjNDZsY1A5VlpubVpjKzJ5SXM4c3hweEdWYUFUTmlobFRRY1BnNG1P?=
+ =?utf-8?B?ZnQrdjR3ME5GZ3BsRzF4VHdzamRJaVQ4SGREV25RQjBMMnkzdTA0TjJFb01D?=
+ =?utf-8?B?NHV4aXJ3c21acnNJOEs3ejE0WldXQVBPa3ZhaThZZWFjZjdlaEtQbnBjV3ZX?=
+ =?utf-8?B?L1IzQTM4UUVJQnB0RktaZ1Q3aENJbHNWYldaVG9rRGxTem5JTktsTHdGYU9o?=
+ =?utf-8?B?MkZsVk10ejc5eG1WWkJvdFRWbHEwVE4xL3drVllFaXNNN0ROamtQbzZyNEY3?=
+ =?utf-8?B?cXlnODNROUxGZVNLT1czeVBvVCtFUGt3VFVFYkxsTmZDTkttTStrQ3M1emlU?=
+ =?utf-8?B?dXBabEdJeWtYbWdhbmltNDFjYkNNanFwQXUvUC9aeFdZZ2NUSm9YdDJxSjVW?=
+ =?utf-8?B?eWQxK2FWRFlLL1lpeEd5RDZlSC90ZmJoM1hQYndZbUwwZWFnZHhMV1lOa3lm?=
+ =?utf-8?B?NFdSZjBISG5EdUNzRnBTc1NkUlNwR1ZvVVJiWm5oeGlWeTZNR2JGTlN3Uisr?=
+ =?utf-8?B?RTFPeGRsVWwra1lBdjVQRXdIR1ZYenJvN3lDNVF2eGI5SHRTelZERU9UdU5I?=
+ =?utf-8?B?ck4rNUtuNldQQllFTDVIYUpScEVYVDh5TjArcHZUYldTdjFab1ZLMk05Nkh1?=
+ =?utf-8?Q?X9k4UDgf98JrcRR/YRbBuGT1addLyQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <433ADA6796D7B8498E0D7C97625789C4@CANPRD01.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: calian.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9608e2b-bff4-41d8-1bec-08da0b65de47
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2022 18:08:57.4057
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SOJZCi8JTqxfH2lIKppdZ3AyVlS1tqM8xrGOZfUU1akzPIlb79bnTrYuHp8qG4rnD/2ztPdxvw5aDuCUMzp0mHyHYrWU3ftU7hk+p88XlqQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT1PR01MB3354
+X-Proofpoint-ORIG-GUID: rlhQ7JpIr2wr5_taxW4buapyvl3AnlSt
+X-Proofpoint-GUID: rlhQ7JpIr2wr5_taxW4buapyvl3AnlSt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-21_07,2022-03-21_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=724 suspectscore=0
+ clxscore=1011 priorityscore=1501 adultscore=0 spamscore=0 bulkscore=0
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2203210116
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 21. 03. 22 18:42, Jonathan Cameron wrote:
-> On Mon, 21 Mar 2022 16:22:38 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
->> On 21/03/2022 16:04, Jonathan Cameron wrote:
->>> On Mon, 21 Mar 2022 09:04:11 +0100
->>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>    
->>>> On 20/03/2022 16:12, Jonathan Cameron wrote:
->>>>> On Thu, 10 Mar 2022 22:24:03 +0100
->>>>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
->>>>>      
->>>>>> On 10/03/2022 19:56, Michael Srba wrote:
->>>>>>> Hi,
->>>>>>> the thing is, the only reason the different compatible is needed at all
->>>>>>> is that the chip presents a different WHOAMI, and the invensense,icm20608
->>>>>>> compatible seems to imply the non-D WHOAMI value.
->>>>>> But this is a driver implementation issue, not related to bindings.
->>>>>> Bindings describe the hardware.
->>>>> Indeed, but the key thing here is the WHOAMI register is hardware.
->>>>>      
->>>>>>     
->>>>>>> I'm not sure how the driver would react to both compatibles being present,
->>>>>>> and looking at the driver code, it seems that icm20608d is not the only
->>>>>>> fully icm20608-compatible (to the extent of features supported by
->>>>>>> the driver, and excluding the WHOAMI value) invensense IC, yet none
->>>>>>> of these other ICs add the invensense,icm20608 compatible, so I guess I
->>>>>>> don't see a good reason to do something different.
->>>>>> Probably my question should be asked earlier, when these other
->>>>>> compatibles were added in such way.
->>>>>>
->>>>>> Skipping the DMP core, the new device is fully backwards compatible with
->>>>>> icm20608.
->>>>> No. It is 'nearly' compatible...  The different WHOAMI value (used
->>>>> to check the chip is the one we expect) makes it incompatible.  Now we
->>>>> could change the driver to allow for that bit of incompatibility and
->>>>> some other drivers do (often warning when the whoami is wrong but continuing
->>>>> anyway).
->>>> Different value of HW register within the same programming model does
->>>> not make him incompatible. Quite contrary - it is compatible and to
->>>> differentiate variants you do not need specific compatibles.
->>> Whilst I don't personally agree with the definition of "compatible"
->>> and think you are making false distinctions between hardware and software...
->>>
->>> I'll accept Rob's statement of best practice.  However we can't just
->>> add a compatible that won't work if someone uses it on a new board
->>> that happens to run an old kernel.
->>>    
->> The please explain me how this patch (the compatible set I proposed)
->> fails to work in such case? How a new board with icm20608 (not
->> icm20608d!) fails to work?
-> I'm confused.  An actual icm20608 would work.
-> I guess you mean an icm20608d via compatible "invensense,icm20608"?
->
->> To remind, the compatible has a format of:
->> comaptible = "new", "old"
->> e.g.: "invensense,icm20608d", "invensense,icm20608"
-> Old kernel fails to match invensense,icm20608d, matches on invensense,icm20608.
-> Checks the WHOAMI value and reports a missmatched value and fails the probe
-> as it has no idea what the part was so no idea how to support it.
->
-> Obviously it wouldn't work anyway with an old kernel, but
-> without the fallback compatible at least there would be no error message
-> saying that the device is not the icm20608 we expected to see.
-I'm not sure if that's really an issue?
-The old kernel is clearly not handling the compatible "correctly",
-since the compatible says that the interface is a superset of
-the icm20608 interface, and that using the icm20608
-interface will work.
-If the driver makes the incorrect assumption that
-the WHOAMI being different means the interface cannot
-be icm20608 compatible, then that seems like an issue
-with the driver?
-And I believe the single reason for why catering to
-a broken driver would ever be considered is if not doing
-so would result in breaking the devicetree ABI promise,
-which doesn't seem to happen here.
-
-btw, when this is resolved, I will be sending a v3 with
-fixed dt-schema errors now that I managed to reproduce
-those errors locally.
-
-Regards,
-Michael.
-> Jonathan
->
->> Best regards,
->> Krzysztof
-
+T24gTW9uLCAyMDIyLTAzLTIxIGF0IDIzOjI1ICswODAwLCBBbmR5IENoaXUgd3JvdGU6DQo+IFRo
+ZSBjYWxsIHRvIGF4aWVuZXRfbWRpb19zZXR1cCBzaG91bGQgbm90IGRlcGVuZCBvbiB3aGV0aGVy
+ICJwaHktbm9kZSINCj4gcHJlc3NlbnRzIG9uIHRoZSBEVC4gQmVzaWRlcywgc2luY2UgYGxwLT5w
+aHlfbm9kZWAgaXMgdXNlZCBpZiBQSFkgaXMgaW4NCj4gU0dNSUkgb3IgMTAwQmFzZS1YIG1vZGVz
+LCBtb3ZlIGl0IGludG8gdGhlIGlmIHN0YXRlbWVudC4gQW5kIHRoZSBuZXh0IHBhdGNoDQo+IHdp
+bGwgcmVtb3ZlIGBscC0+cGh5X25vZGVgIGZyb20gZHJpdmVyJ3MgcHJpdmF0ZSBzdHJ1Y3R1cmUg
+YW5kIGRvIGFuDQo+IG9mX25vZGVfcHV0IG9uIGl0IHJpZ2h0IGF3YXkgYWZ0ZXIgdXNlIHNpbmNl
+IGl0IGlzIG5vdCB1c2VkIGVsc2V3aGVyZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEFuZHkgQ2hp
+dSA8YW5keS5jaGl1QHNpZml2ZS5jb20+DQo+IFJldmlld2VkLWJ5OiBHcmVlbnRpbWUgSHUgPGdy
+ZWVudGltZS5odUBzaWZpdmUuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvbmV0L2V0aGVybmV0L3hp
+bGlueC94aWxpbnhfYXhpZW5ldF9tYWluLmMgfCAxMyArKysrKystLS0tLS0tDQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvbmV0L2V0aGVybmV0L3hpbGlueC94aWxpbnhfYXhpZW5ldF9tYWluLmMNCj4g
+Yi9kcml2ZXJzL25ldC9ldGhlcm5ldC94aWxpbngveGlsaW54X2F4aWVuZXRfbWFpbi5jDQo+IGlu
+ZGV4IDZmZDUxNTdmMGE2ZC4uNWQ0MWI4ZGU4NDBhIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL25l
+dC9ldGhlcm5ldC94aWxpbngveGlsaW54X2F4aWVuZXRfbWFpbi5jDQo+ICsrKyBiL2RyaXZlcnMv
+bmV0L2V0aGVybmV0L3hpbGlueC94aWxpbnhfYXhpZW5ldF9tYWluLmMNCj4gQEAgLTIwNjQsMTUg
+KzIwNjQsMTQgQEAgc3RhdGljIGludCBheGllbmV0X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
+Y2UNCj4gKnBkZXYpDQo+ICAJaWYgKHJldCkNCj4gIAkJZ290byBjbGVhbnVwX2NsazsNCj4gIA0K
+PiAtCWxwLT5waHlfbm9kZSA9IG9mX3BhcnNlX3BoYW5kbGUocGRldi0+ZGV2Lm9mX25vZGUsICJw
+aHktaGFuZGxlIiwgMCk7DQo+IC0JaWYgKGxwLT5waHlfbm9kZSkgew0KPiAtCQlyZXQgPSBheGll
+bmV0X21kaW9fc2V0dXAobHApOw0KPiAtCQlpZiAocmV0KQ0KPiAtCQkJZGV2X3dhcm4oJnBkZXYt
+PmRldiwNCj4gLQkJCQkgImVycm9yIHJlZ2lzdGVyaW5nIE1ESU8gYnVzOiAlZFxuIiwgcmV0KTsN
+Cj4gLQl9DQo+ICsJcmV0ID0gYXhpZW5ldF9tZGlvX3NldHVwKGxwKTsNCj4gKwlpZiAocmV0KQ0K
+PiArCQlkZXZfd2FybigmcGRldi0+ZGV2LA0KPiArCQkJICJlcnJvciByZWdpc3RlcmluZyBNRElP
+IGJ1czogJWRcbiIsIHJldCk7DQo+ICsNCj4gIAlpZiAobHAtPnBoeV9tb2RlID09IFBIWV9JTlRF
+UkZBQ0VfTU9ERV9TR01JSSB8fA0KPiAgCSAgICBscC0+cGh5X21vZGUgPT0gUEhZX0lOVEVSRkFD
+RV9NT0RFXzEwMDBCQVNFWCkgew0KPiArCQlscC0+cGh5X25vZGUgPSBvZl9wYXJzZV9waGFuZGxl
+KHBkZXYtPmRldi5vZl9ub2RlLCAicGh5LQ0KPiBoYW5kbGUiLCAwKTsNCj4gIAkJaWYgKCFscC0+
+cGh5X25vZGUpIHsNCj4gIAkJCWRldl9lcnIoJnBkZXYtPmRldiwgInBoeS1oYW5kbGUgcmVxdWly
+ZWQgZm9yDQo+IDEwMDBCYXNlWC9TR01JSVxuIik7DQo+ICAJCQlyZXQgPSAtRUlOVkFMOw0KDQpS
+ZXZpZXdlZC1ieTogUm9iZXJ0IEhhbmNvY2sgPHJvYmVydC5oYW5jb2NrQGNhbGlhbi5jb20+DQoN
+Ci0tIA0KUm9iZXJ0IEhhbmNvY2sNClNlbmlvciBIYXJkd2FyZSBEZXNpZ25lciwgQ2FsaWFuIEFk
+dmFuY2VkIFRlY2hub2xvZ2llcw0Kd3d3LmNhbGlhbi5jb20NCg==
