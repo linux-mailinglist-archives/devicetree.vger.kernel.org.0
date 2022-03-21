@@ -2,116 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDF24E2F3A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 18:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 099DA4E2F43
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 18:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349861AbiCURlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 13:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
+        id S1349089AbiCURnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 13:43:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349829AbiCURlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 13:41:37 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD3565173
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 10:40:11 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id i65so6397982qkd.7
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 10:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6W2sIVaPd1wN+ZQSZ4o9j1nJ91W2fIHQV8YHK4mslGI=;
-        b=othMTu8DE+iag13P8/3A86+7Cc/DHfdnjpWo/byQ5ZUfFCsKml6d/b3+j7enHM3E4T
-         p+KQDmhtptyFrPuooWSYmYPJhZWIkHdGt+4vDWYH8iYYuao36WWrhVCMkScMLZUcTZup
-         pbxMXwiUoDBFmduoGs8/S8k0tsoBfeYNIRC0GZYKyyNpLf6jW7ygE9Q4oqBC51xdfcFk
-         7ttNl5wra931kZmVavvxQVP/9NCHWg77ijwCiHKLw+zmH2XDabD4PX37zubDr18d1FXu
-         LkskplWtgjBIz3OnXb1aT9cH4qssg21daGzI4dNto8OQ0PN0SvwCPVBwRyAb6Xlo3qN2
-         FbyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6W2sIVaPd1wN+ZQSZ4o9j1nJ91W2fIHQV8YHK4mslGI=;
-        b=n+96pMN1fyWWBvOFMd/tvQlQdcwRZcoz6WJIWM6p0tPJXq/spOTYc/AiUk77Ze1m0G
-         d+dQ6KTirtI9PR3B5j4kN09zP9L6H2kbYNhr4cA6OzUIUrTOPQSYNHC+Ba0GSK+6QStC
-         KxluVxnuE4XDhq5IU4ETIuIjdHaB/03YlvOeTYeCfBzMH+xoO21Z34QI5enuI49wzqiw
-         thnMzddXY7n0gX3ehnYS0wGPAaDjDYai+RtVomwSmoJJyiiKtUjrjPVxzcqAy5qEAED3
-         6MPR/ZsK1CNwgyx8yjeGFgFzMPxDi5MpCAuu1k+8nYzAgRyBVeRXpI+Gyi5IhI5F1PfP
-         pR6w==
-X-Gm-Message-State: AOAM530e4cFFm1Gd4vzKnyAkwb07jTxomCBK2hGG5CiqDMTBJT/LZ7pJ
-        GdDOZv9/92Iz73zEG+FQGX/ZMFBAOuffkBbFiA7NKg==
-X-Google-Smtp-Source: ABdhPJzAfOtHcF9CqanODzAbHAfQeaYZMAZcZ9hv0xTWt4ZcE9sSN4BkC8am1z8h+EdgxGiCPhpJswcEmaek2cu2UjE=
-X-Received: by 2002:a05:620a:2453:b0:67d:9539:495c with SMTP id
- h19-20020a05620a245300b0067d9539495cmr13674139qkn.30.1647884410564; Mon, 21
- Mar 2022 10:40:10 -0700 (PDT)
+        with ESMTP id S235588AbiCURne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 13:43:34 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EF818CD17;
+        Mon, 21 Mar 2022 10:42:08 -0700 (PDT)
+Received: from fraeml741-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KMhjr0NYSz67M4k;
+        Tue, 22 Mar 2022 01:41:04 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml741-chm.china.huawei.com (10.206.15.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Mon, 21 Mar 2022 18:42:06 +0100
+Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Mon, 21 Mar
+ 2022 17:42:04 +0000
+Date:   Mon, 21 Mar 2022 17:42:02 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Message-ID: <20220321174202.00007895@Huawei.com>
+In-Reply-To: <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+        <20220310133938.2495-2-michael.srba@seznam.cz>
+        <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+        <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
+        <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
+        <20220320151223.3a9b13bd@jic23-huawei>
+        <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
+        <20220321150411.00002206@Huawei.com>
+        <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <1647269217-14064-1-git-send-email-quic_vpolimer@quicinc.com>
- <1647269217-14064-2-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n51vfoOK_6B0yAvws32MtLQ1SvBPoQPHBFE14TLzZFUZaw@mail.gmail.com> <BN0PR02MB8173BBD2C02F5DFBEBE94E40E4169@BN0PR02MB8173.namprd02.prod.outlook.com>
-In-Reply-To: <BN0PR02MB8173BBD2C02F5DFBEBE94E40E4169@BN0PR02MB8173.namprd02.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 21 Mar 2022 20:39:59 +0300
-Message-ID: <CAA8EJpribc722wN2jR5sQEkX6FiaE_SdBk8B5HPamCXZWhEd7A@mail.gmail.com>
-Subject: Re: [PATCH v6 1/5] drm/msm/disp/dpu1: set mdp clk to the maximum
- frequency in opp table during probe
-To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        quic_vpolimer <quic_vpolimer@quicinc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.41]
+X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Mar 2022 at 19:21, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Stephen Boyd <swboyd@chromium.org>
-> > Sent: Friday, March 18, 2022 2:41 AM
-> > To: quic_vpolimer <quic_vpolimer@quicinc.com>;
-> > devicetree@vger.kernel.org; dri-devel@lists.freedesktop.org;
-> > freedreno@lists.freedesktop.org; linux-arm-msm@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
-> > dmitry.baryshkov@linaro.org; dianders@chromium.org; quic_kalyant
-> > <quic_kalyant@quicinc.com>
-> > Subject: Re: [PATCH v6 1/5] drm/msm/disp/dpu1: set mdp clk to the
-> > maximum frequency in opp table during probe
-> >
-> > WARNING: This email originated from outside of Qualcomm. Please be wary
-> > of any links or attachments, and do not enable macros.
-> >
-> > Quoting Vinod Polimera (2022-03-14 07:46:53)
-> > > use max clock during probe/bind sequence from the opp table.
-> > > The clock will be scaled down when framework sends an update.
-> >
-> > Capitalize 'use'.
-> >
-> > Why is it important to use max frequency during probe/bind? Does not
-> > setting the clk rate during probe mean that we'll never use the max
-> > rate? Does it speed things up during probe?
->
-> We need to vote mdp clock during probe/bind so that rails are not set at undetermined state as pointed out by Dmitry.
-> Since we dont know what will be the rate set in boot loader, it would be ideal to vote at max frequency.
-> There could be a firmware display programmed in bootloader and we want to transition it to kernel without underflowing.
+On Mon, 21 Mar 2022 16:22:38 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-This should be expressed in the commit message.
+> On 21/03/2022 16:04, Jonathan Cameron wrote:
+> > On Mon, 21 Mar 2022 09:04:11 +0100
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On 20/03/2022 16:12, Jonathan Cameron wrote:  
+> >>> On Thu, 10 Mar 2022 22:24:03 +0100
+> >>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+> >>>     
+> >>>> On 10/03/2022 19:56, Michael Srba wrote:    
+> >>>>> Hi,
+> >>>>> the thing is, the only reason the different compatible is needed at all
+> >>>>> is that the chip presents a different WHOAMI, and the invensense,icm20608
+> >>>>> compatible seems to imply the non-D WHOAMI value.      
+> >>>>
+> >>>> But this is a driver implementation issue, not related to bindings.
+> >>>> Bindings describe the hardware.    
+> >>>
+> >>> Indeed, but the key thing here is the WHOAMI register is hardware.
+> >>>     
+> >>>>    
+> >>>>> I'm not sure how the driver would react to both compatibles being present,
+> >>>>> and looking at the driver code, it seems that icm20608d is not the only
+> >>>>> fully icm20608-compatible (to the extent of features supported by
+> >>>>> the driver, and excluding the WHOAMI value) invensense IC, yet none
+> >>>>> of these other ICs add the invensense,icm20608 compatible, so I guess I
+> >>>>> don't see a good reason to do something different.      
+> >>>>
+> >>>> Probably my question should be asked earlier, when these other
+> >>>> compatibles were added in such way.
+> >>>>
+> >>>> Skipping the DMP core, the new device is fully backwards compatible with
+> >>>> icm20608.    
+> >>>
+> >>> No. It is 'nearly' compatible...  The different WHOAMI value (used
+> >>> to check the chip is the one we expect) makes it incompatible.  Now we
+> >>> could change the driver to allow for that bit of incompatibility and
+> >>> some other drivers do (often warning when the whoami is wrong but continuing
+> >>> anyway).     
+> >>
+> >> Different value of HW register within the same programming model does
+> >> not make him incompatible. Quite contrary - it is compatible and to
+> >> differentiate variants you do not need specific compatibles.  
+> > 
+> > Whilst I don't personally agree with the definition of "compatible"
+> > and think you are making false distinctions between hardware and software...
+> > 
+> > I'll accept Rob's statement of best practice.  However we can't just
+> > add a compatible that won't work if someone uses it on a new board
+> > that happens to run an old kernel.
+> >   
+> 
+> The please explain me how this patch (the compatible set I proposed)
+> fails to work in such case? How a new board with icm20608 (not
+> icm20608d!) fails to work?
 
+I'm confused.  An actual icm20608 would work.
+I guess you mean an icm20608d via compatible "invensense,icm20608"?
 
--- 
-With best wishes
-Dmitry
+> 
+> To remind, the compatible has a format of:
+> comaptible = "new", "old"
+> e.g.: "invensense,icm20608d", "invensense,icm20608"
+
+Old kernel fails to match invensense,icm20608d, matches on invensense,icm20608.
+Checks the WHOAMI value and reports a missmatched value and fails the probe
+as it has no idea what the part was so no idea how to support it.
+
+Obviously it wouldn't work anyway with an old kernel, but
+without the fallback compatible at least there would be no error message
+saying that the device is not the icm20608 we expected to see.
+
+Jonathan
+
+> 
+> Best regards,
+> Krzysztof
+
