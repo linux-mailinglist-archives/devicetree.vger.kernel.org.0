@@ -2,78 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC6EE4E2C2C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CECDC4E2C50
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350176AbiCUP2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 11:28:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44302 "EHLO
+        id S1350274AbiCUPcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 11:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350278AbiCUP2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:28:06 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D50310428C
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 08:26:40 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id a17-20020a9d3e11000000b005cb483c500dso6317304otd.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 08:26:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uaYYePl58qD2iQ93LY0YiSd1GFMq/Ms9P4dOHYbzMlI=;
-        b=kDFmbf4AUYcplwDiauwDg1kjxYY9CNrcbJmzEghMFM5UCpt1iKIStezrGUo/lpVXgU
-         8MpcjOabilgH+AD6ZYGglj/ForVsTjm3QOGkx91oKL/qrKwAT+zZPwgcmBIk0pEay9c5
-         3NgFw4t9WDT3IEXLOQMpoYYHft4yX2vljoDBaUcYgrI4SR0MHggrOEwfWUj6zl0ri+zc
-         uP/2/VGpKrE2Ye4WCAZk4pLJYp+JB1wno3oZk004MfMLxrRQz2WE3whQJsGE8JXI4OAW
-         wqs8BOQ7nkLXDkUsIsFrpijQUP9nB+5w9T5nyOSmziH1lHCBO8Z9lhJdcotwfOj5PATI
-         zB3A==
+        with ESMTP id S241939AbiCUPcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:32:45 -0400
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04C5169798;
+        Mon, 21 Mar 2022 08:31:19 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id q20so8786567wmq.1;
+        Mon, 21 Mar 2022 08:31:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uaYYePl58qD2iQ93LY0YiSd1GFMq/Ms9P4dOHYbzMlI=;
-        b=m3pLuqvAlOJKMlvljzqFHXGvzfyZ1f3PpF90Qno3pcNKvB1ohjUmpW9XetLNGpqASX
-         YH0LQ5Gi1wV+5I8LhuZzjIUI6Y1N2a/LEQCyjqtbQCoyyBu64LqNfd79SFEUO7F6qdXd
-         TF7GF80ei7+/vm+HPyj7utgClgEwncr2KwfciD5Vo5VrEj/jOHUcTiHNR9M8lyXPjxoc
-         H60mP1E94GkJh58nzO6LTVlCYQm4GFTWJWume9ncxrj+GXzkIduV+yL1IE2Ld78mcU+f
-         0MWJvvsHLTKd5VdfKxt44l0Wr53C8C81DWaRiVXye/Dry43NAY7yeore8eo+fXjREE8J
-         RMkg==
-X-Gm-Message-State: AOAM531meETxBZJxYf+iqUOj4/X23F8fumIo0ZxgA0FOb167iD2ZCgCN
-        BH+eVjT66ndlqt8QcVJTpVKTa4pKDUdKuKWP+FXixw==
-X-Google-Smtp-Source: ABdhPJzo+Gow3AjJyknC7hnuT59nMcfKj/ZSEALpmQFZjy9h9OILBmdMYSId8bh1qQeBKRysv2Abg9CHQ5XPCx7eBO8=
-X-Received: by 2002:a9d:2247:0:b0:5cb:3eef:d42b with SMTP id
- o65-20020a9d2247000000b005cb3eefd42bmr6801297ota.297.1647876399510; Mon, 21
- Mar 2022 08:26:39 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/5/C1gYgp4VfvcuFi8LRcN8/3RmQ7G2v7pTXWSD0gyk=;
+        b=ikU2jUK8bO2Y8uvXIouxrNntLlS3zOteRo7pzh6zSJRj+Ehe9WRh/zqCub/FMm6ZFE
+         8+An2O5WYwx3ZZZuaUzvuwgHA+AHZSnlyUihi/ubWUBemyi6cgTxgkdSAprvoBE0n4UM
+         lF7orA/1anN4N2UpAjsL6Tqbb8u5r5J4IfutZzY4642oTcq/SQK1K/H82+C1ohgdtwnC
+         JTOnvkNnkkq5xjE3IZ4/U20tLcCK29y7NARKK/EQO63LANKYmQcmFOFFN4JOE4r3LWS8
+         YnzOiDlISRizVea3inz3abGIS5JeJFVCrtw+ZukGGWE5swmzIIYq5d2PueRiK8Dp+hy6
+         DTMA==
+X-Gm-Message-State: AOAM530i74lfKoB8ZztmbTWKiowtw+9vhMnjvvLHMoj+34QDKOLm+6WC
+        yKPN83MC2Zr0UG49p7itY1E=
+X-Google-Smtp-Source: ABdhPJwVJp0KtpTuBf4c2VyunnMuFCDqiKloKbAIJMgm6G95zkywhdBK4Zy0uSs2jpqDnjxCqCmmuw==
+X-Received: by 2002:a05:600c:1d9f:b0:389:a1c4:f400 with SMTP id p31-20020a05600c1d9f00b00389a1c4f400mr27473867wms.171.1647876678403;
+        Mon, 21 Mar 2022 08:31:18 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id h188-20020a1c21c5000000b0038c6c37efc3sm14255712wmh.12.2022.03.21.08.31.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Mar 2022 08:31:17 -0700 (PDT)
+Message-ID: <24ba0e3e-b6ba-8434-059a-8bda197a74e3@kernel.org>
+Date:   Mon, 21 Mar 2022 16:31:16 +0100
 MIME-Version: 1.0
-References: <20220318070039.108948-1-andy.chiu@sifive.com> <20220318070039.108948-2-andy.chiu@sifive.com>
- <557c20e1045320288557c72fd2b9b1fb0899b5a7.camel@calian.com>
-In-Reply-To: <557c20e1045320288557c72fd2b9b1fb0899b5a7.camel@calian.com>
-From:   Andy Chiu <andy.chiu@sifive.com>
-Date:   Mon, 21 Mar 2022 23:26:28 +0800
-Message-ID: <CABgGipW4dU8g5=Cp4725vTsTUXBqMwb+mYdUnUwMe+cuWcuB+Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] net: axiemac: use a phandle to reference pcs_phy
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "greentime.hu@sifive.com" <greentime.hu@sifive.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 14/18] dt-bindings: clock: Convert qcom,krait-cc to
+ yaml
+Content-Language: en-US
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20220321144825.11736-1-ansuelsmth@gmail.com>
+ <20220321144825.11736-15-ansuelsmth@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220321144825.11736-15-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your suggestions. The existence of phy_node looks obsolete
-to me as well. I will include these changes on a v4 patch.
+On 21/03/2022 15:48, Ansuel Smith wrote:
+> Convert qcom,krait-cc to yaml Documentation.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/clock/qcom,krait-cc.txt          | 34 -----------
+>  .../bindings/clock/qcom,krait-cc.yaml         | 59 +++++++++++++++++++
+>  2 files changed, 59 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+> 
+
+
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+
+Best regards,
+Krzysztof
