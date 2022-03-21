@@ -2,89 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8754E27F2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA34D4E289E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:59:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348014AbiCUNna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 09:43:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57646 "EHLO
+        id S1347044AbiCUN76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 09:59:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348021AbiCUNna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:43:30 -0400
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5150762B3;
-        Mon, 21 Mar 2022 06:42:04 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id h16so8011600wmd.0;
-        Mon, 21 Mar 2022 06:42:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=1D8fCbd6M2RW3TQjcSstNbvj49/pj/ERzJ4WGueTQMM=;
-        b=zy7gnPp6kRgYvdHKJ7GiG1CzpeLw814XN62JxLljQXEHgeCrceVtHy0LQRgSc7EkpX
-         5Tq2lrRb3/WXb9gq3YGurBgBLocgB+WXyzPz8SyGTuVnCh7cBCLpm38zWN/ppYlVheGc
-         Q1U1I3LEok1U5NEBzCHk5Qu1CUdEaGW0ueSawH1LUqObMkqrz50PVW6THd8rm2Q1IInD
-         67p9nFcG5Ub2G9MEok5/R1tH9mGnodz6w9Ke4amiJbg2FtT4FJMD7zEaVvV2ylGui+Tq
-         avp3/vtnUjcQ5lIWVySMcPFW3N6eLon7pOrCfG287zMDZIhnKWcwxu0BHrOi41zbAV1r
-         JB0A==
-X-Gm-Message-State: AOAM531248Zk5KAm0dZBgHbGfqju2GT08A3ImDP+qOSA9qT6uIGwZSnk
-        lJV/GSK+Y4XCDJtX3uAmrz4=
-X-Google-Smtp-Source: ABdhPJwKkkvUtLSdDDQnT1UyZu0lkFZ/o7qOqJ0X0Ghcmb7fM5+dc9Qw88Yf1Id0H4ErQQHl9dhFsw==
-X-Received: by 2002:a05:600c:1f14:b0:38b:6ef5:1247 with SMTP id bd20-20020a05600c1f1400b0038b6ef51247mr19448817wmb.194.1647870123435;
-        Mon, 21 Mar 2022 06:42:03 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id p2-20020a5d4582000000b00203f51aa12asm8887120wrq.55.2022.03.21.06.42.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Mar 2022 06:42:02 -0700 (PDT)
-Message-ID: <04c0d6a7-190a-cdde-d953-3eae73282343@kernel.org>
-Date:   Mon, 21 Mar 2022 14:42:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: sm6350: Add UFS nodes
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220321133318.99406-1-luca.weiss@fairphone.com>
- <20220321133318.99406-6-luca.weiss@fairphone.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220321133318.99406-6-luca.weiss@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1348931AbiCUN6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:58:41 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EA2A616F074;
+        Mon, 21 Mar 2022 06:56:46 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,198,1643641200"; 
+   d="scan'208";a="115210252"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 21 Mar 2022 22:56:35 +0900
+Received: from localhost.localdomain (unknown [10.226.92.135])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id BB8D34254BB7;
+        Mon, 21 Mar 2022 22:56:33 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: rzg2lc-smarc: Enable RSPI1 on carrier board
+Date:   Mon, 21 Mar 2022 13:56:29 +0000
+Message-Id: <20220321135629.16876-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2022 14:33, Luca Weiss wrote:
-> Add the necessary nodes for UFS and its PHY.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> Changes in v2:
-> - rename node to ufs@ -> this makes this patch now (soft-)depend on
->   https://lore.kernel.org/linux-arm-msm/20220320110616.18355-1-krzk@kernel.org/
-> 
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 77 ++++++++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
-> 
+RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on the
+carrier board.  This patch adds pinmux and spi1 nodes to the carrier
+board dtsi file and drops deleting pinctl* properties from DTS file.
 
+RSPI1 interface is tested by setting the macro SW_RSPI_CAN to 0.
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v1->v2:
+ * Sorted the node alphabetically
+ * Delete/disable pinctrl/spi node, when SW_RSPI_CAN macro is set to 1.
+   This change is done in common file, so that both single core and 
+   dual core RZ/G2LC SMARC EVK can reuse the same.
+---
+ arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts  |  6 ------
+ .../boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi |  7 +++++++
+ arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi      | 14 ++++++++++++++
+ 3 files changed, 21 insertions(+), 6 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+index 74a2f2bade10..fc34058002e2 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+@@ -13,9 +13,3 @@
+ 	model = "Renesas SMARC EVK based on r9a07g044c2";
+ 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
+ };
+-
+-&spi1 {
+-	/delete-property/ pinctrl-0;
+-	/delete-property/ pinctrl-names;
+-	status = "disabled";
+-};
+diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
+index d275a55333e3..a78a8def363e 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
+@@ -106,6 +106,13 @@
+ 		input-enable;
+ 	};
+ 
++	spi1_pins: spi1 {
++		pinmux = <RZG2L_PORT_PINMUX(44, 0, 1)>, /* CK */
++			 <RZG2L_PORT_PINMUX(44, 1, 1)>, /* MOSI */
++			 <RZG2L_PORT_PINMUX(44, 2, 1)>, /* MISO */
++			 <RZG2L_PORT_PINMUX(44, 3, 1)>; /* SSL */
++	};
++
+ 	ssi0_pins: ssi0 {
+ 		pinmux = <RZG2L_PORT_PINMUX(45, 0, 1)>, /* BCK */
+ 			 <RZG2L_PORT_PINMUX(45, 1, 1)>, /* RCK */
+diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+index 74ad1ede3d0b..32c3d56511d5 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+@@ -158,3 +158,17 @@
+ 	status = "okay";
+ };
+ #endif
++
++#if (!SW_RSPI_CAN)
++&spi1 {
++	pinctrl-0 = <&spi1_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++#else
++&spi1 {
++	/delete-property/ pinctrl-0;
++	/delete-property/ pinctrl-names;
++	status = "disabled";
++};
++#endif
+-- 
+2.17.1
 
-Best regards,
-Krzysztof
