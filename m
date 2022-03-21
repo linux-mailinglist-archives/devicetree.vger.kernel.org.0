@@ -2,69 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C3EF4E236D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 10:36:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0854E238F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 10:46:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345979AbiCUJiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 05:38:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57880 "EHLO
+        id S245006AbiCUJsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 05:48:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345901AbiCUJhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 05:37:55 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBCFD5FF29;
-        Mon, 21 Mar 2022 02:36:28 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id l4-20020a17090a49c400b001c6840df4a3so10099687pjm.0;
-        Mon, 21 Mar 2022 02:36:28 -0700 (PDT)
+        with ESMTP id S235734AbiCUJsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 05:48:15 -0400
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam08on2128.outbound.protection.outlook.com [40.107.102.128])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85FE72E0C;
+        Mon, 21 Mar 2022 02:46:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RYrUiMFLd7nOUZDfH43VI16lOLZff3PgohhyQy/LXhAMGrhBk95K0/e9ZRLPab3klYwGNuLjrYgEnzbsscIppXptzcSGuIl32341m0nBKIiPdbIHw20NXyxU7zsY9xRjHBZ1F9JC8tRzky0pmvd2Wvs6feX8OA3x2TnFSVcpauej4hmDTPOMYluwnFgGt8OT0mdG4+omdhlT6Ys21WAYp+YubqL9wXJn/pAWSkTdIVPPl5Skl3c0M/Hro/8l1NhHh7HwMn2eDQNSYD1bxkmU4YwnkEJZr0J0BOukTsNDAEbuY/M2J/T/Os/cdPYl2G0DVfTyWEK9xrq2mmx0mcgZCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nlXjFh9ZGSYjymspz3NVf/3Iii+bAImAkYO6nQ6oZU0=;
+ b=XqspCN5oX3kc8st98HuwHcRCG0w64/Xw/OIVNBxq0D1axIO2kaM9ZjghyBgu56qxQ+ehuJ3IQhHin41DET2odxehTFgbtj04exCZsvz5oyKtBe/MLhWgN/wUHBODPMb1ajmjOmLjiiC1ef59FXdVobo33Cvlw0sgEglBXk1aRqYAd4oUmnea+HON+qfBZXs+ABL7Cmd+YWH99ROi+AvIIaHTDv0tzdW2HN0YKEbWLMiLKcFrnvGOmBWaObsW1PQXeyCQtiXW9VuiAHerZJxMYkWfE21K0IBcz2ic0WY4v7i3TPFPwDOm93K7ca8+Qczp8M68eVCGzEsNS+L8/OWUHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=s2P5Lw/DsAKf7yY0qEaJNmwr7N89ocRPuK2j4JhWlrc=;
-        b=KT7QeMz1NqB+HMsVwUXmk861vvvxxOdOWCEd5bpQVVmeoxmTa0JpALgY2aUl7ImAeB
-         7ndwN1oj3D8d7FXI8cSgzNYUvcTwCEcsmO+ORo0r4G/CGjTVZQatY8cJWfVAjK8OzuCn
-         eSo3yGGRc0yOJns4AGBSXjfzRSH4x7fDQQiohtfcuUY8upJsOyDkuGsj5+OEwu4QiNga
-         odEgAA7VRXahtIngThDgle3xywRchZRiETzMWQ7SZS84NF+8XSsl32FoXKUvfvbAcKZh
-         pOCSWPaF83NWdUHLg6H9azV8S/QQ4mxBIoaxwHrG2z7/eGFEfc00zdTh2A5fkcgg0WpM
-         VQUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=s2P5Lw/DsAKf7yY0qEaJNmwr7N89ocRPuK2j4JhWlrc=;
-        b=MZXnFlZnsyYF91mfBgOUYKpAbECgDUDZB+JPQHuaolYzW9ZgU+pq3UGCeRlOdTbc2L
-         6ANVR+wGXB3vbhMyrG2XFsW8N2TlhMsXsarqkr/4iqPj3Hznrz5j6+tFhcC0j7w71VJG
-         iQzSkTdHiBXIox3BvntukLEmVWu/cYCFPIN04FsBhyU5/M1Xk+jBj+DTgnkSW3V//Rpr
-         K1Zx5fgk/m7pW9qkLBkAk8YCC1dLtSfb1s32y0ydZ8zRmldFxSxht09Z3AMeJJJZjsvR
-         bp/dCsRF6CIGq4iT8R93xESlRCz8bYY0zLrAGkJO+MzLleckN94jVzn9TTY1L9kX00MA
-         dvLA==
-X-Gm-Message-State: AOAM531kdVlbyybrcutq/j7lTvacAJtoKKihOsLFe4ov6BqqWtCb6RYK
-        +OyG2esksujkixNI9JHGEVNTc7YR9Ai9Uhmad4Y=
-X-Google-Smtp-Source: ABdhPJwhclQAU0bcNNzQNAYvSMp3963FNp9lNNfK8TA41DuF3UR2CMJUXgoMgYeHVkDUp2IwX/SlZ1844df4xvsbhyA=
-X-Received: by 2002:a17:902:c412:b0:154:4012:4beb with SMTP id
- k18-20020a170902c41200b0015440124bebmr8002715plk.107.1647855388012; Mon, 21
- Mar 2022 02:36:28 -0700 (PDT)
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nlXjFh9ZGSYjymspz3NVf/3Iii+bAImAkYO6nQ6oZU0=;
+ b=GRNQ3syM9DITzMpnM4fXQ6T4lsjzmbSmS+AzO45D8349mrdrLSHLf539T5dCul82FEHJLwEa0RM5pHKKU8Eel7tQRzeOqH3nMllRDNiLqL9JlKrz4M/i0tzeKOPFwgqWXED6kxbTIOLQwSBmwHTkvhUk6rQGUyvLLjAYrjvDjWY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (13.101.206.88) by
+ PH0PR01MB6667.prod.exchangelabs.com (13.101.39.79) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5081.17; Mon, 21 Mar 2022 09:46:48 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6%8]) with mapi id 15.20.5081.022; Mon, 21 Mar 2022
+ 09:46:48 +0000
+Message-ID: <8f01a63d-0d10-81ee-7398-b69e496964f8@os.amperecomputing.com>
+Date:   Mon, 21 Mar 2022 16:46:36 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.6.0
+Subject: Re: [PATCH v7 9/9] docs: ABI: testing: Document the Ampere Altra
+ Family's SMpro sysfs interfaces
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220321081355.6802-1-quan@os.amperecomputing.com>
+ <20220321081355.6802-10-quan@os.amperecomputing.com>
+ <Yjg2AkYOCTi2CXc1@kroah.com>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <Yjg2AkYOCTi2CXc1@kroah.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: HK2PR06CA0005.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::17) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
-References: <20220311170240.173846-1-cbranchereau@gmail.com>
- <20220311170240.173846-3-cbranchereau@gmail.com> <YjD1rl7jSxLvJhfL@ravnborg.org>
-In-Reply-To: <YjD1rl7jSxLvJhfL@ravnborg.org>
-From:   Christophe Branchereau <cbranchereau@gmail.com>
-Date:   Mon, 21 Mar 2022 10:36:16 +0100
-Message-ID: <CAFsFa87NBB8VFFHJKjyPi+A255i9dyE-xxTggz3kLcEXmSWJXg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] drm/panel: Add panel driver for NewVision NV3052C
- based LCDs
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 55cd84e3-361f-4b7a-67a0-08da0b1fb771
+X-MS-TrafficTypeDiagnostic: PH0PR01MB6667:EE_
+X-Microsoft-Antispam-PRVS: <PH0PR01MB6667D7F5035F6759862A801EF2169@PH0PR01MB6667.prod.exchangelabs.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iel9N90c92GVQLQJBxGSXQks1dvmkwlF9+i1fUeVO288oOEpfFLCuLNznGZDl3Q9Ud5jmPL6Em0mus6UEREUaJZqi0Xho9wkyuMLBFGF1JWevqoWzkJKj9aHyXX14sD6zj18OM8UDf1jEq+SONvldEHViQqoMvDWWhHyXxb3ZHpeJd3giP7yqmko0L9WpUAp0IQ4lqLL+nKLr/fdH/NB4dOsTmMgNMgLvq0RIhhLvN3qM6EGPuhPLY6GCLN7ePLBVrRjerpCaaoSbZXXxPSdeMsIWfls4YQMAMUMQXxbsfPvWVXtnMp17y2a/7D0SGIeQMCNd9qnX+NEvEkZ99VFhOrOJwOlOGtt3ry28APRKXBF5WrQAqd7YugTQ4mb49hF/+HYFGOvn5So/XFFk1actQFvjP0OYa8qC6k4izOxPpSzEdJj5ZaHCP+4c7d02uwEuIlLVrCn9/U9imlw6Ddo0DxZ2Up3vOKdkWpNKVl5k7zxKdUaZnA6Pi4aUWCoybfZIBAxRLn7VUmGC1+yq5dnoZsrLJ7qYaB1Nq8H6yS7y+IcO0dwFWL1fBpqIDnxb5XXz6t5jnqkE5LwPaad8yXlgm8C32e7W/GnUlTCWs5xDR/5OPHdsLWi4cUc9GnJVM2PS9m98zzdx9GnNA4XLiPbt+fSeLXo74AdQAXsvxR2sQ8Lhh9W6ywyPTyTcDqCialFHgcD6Dv4nV5UuHmUmD/Nfu0JMvWtqYcxqmTdWvV7dQRyrg0XZ5c4JGj21r0GGlvgHn0sdrknj8nVB6ddBRQ+mrQ0q49IlCANviY/P1Miqm7R+Gp3KhmgbIJbBBaN+8Jf
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4326008)(66476007)(66556008)(66946007)(8676002)(8936002)(2616005)(6666004)(6916009)(54906003)(107886003)(316002)(2906002)(31686004)(52116002)(53546011)(31696002)(38350700002)(38100700002)(6512007)(508600001)(86362001)(6506007)(186003)(26005)(7416002)(5660300002)(6486002)(966005)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3ZuT2oyMzMzekVCREl0R2ZpZkVnYVI1MytLZGRqcEc3LzFseVJ3TkRQdXJ0?=
+ =?utf-8?B?SnZ1TVM4QVk1WGZGZnBNWHF5OGZEYmRMZ2djeENiK1duNG9mb2JySGhreDRH?=
+ =?utf-8?B?WmVSdHAraWVjSEVTa0wxQ0FxS09NS2QwdXpzWUgzbmJBRnlqTHBmMEducmhG?=
+ =?utf-8?B?QkZRWTVxa2s2RmxTbkNMR1U2cDhjWFJMUkErM1NOUGZpRk5vbFlEbjBMeWM4?=
+ =?utf-8?B?dmxmVy9zQURoMXB0dHRubGdXbXAvSzZZY0pyYUJSN0h0MC9aZ3crcmh6MWow?=
+ =?utf-8?B?dXRnbHZvMmtRMGpjYUw4Q09pRmVWNHVkUE9rZU80a08yWDVIVC9TbVY4bEJ3?=
+ =?utf-8?B?Tit0T0Vlb3hvVU00Q2NkMjFCTFAwWGZiZWpwMGlyUGsyam5ReHlFZUg0Z2Jr?=
+ =?utf-8?B?ZXFRMlB6bTMrd21BYndtZVVuZ1krblY3L1JaclRGU2I4ZjBXdEhmUmgrcWdP?=
+ =?utf-8?B?RkcyaEYzUnkxcHJ4SDVPQndXbTdaZjhlWFM1OHh0dU9FcHpUWC9zcDNOdFlI?=
+ =?utf-8?B?dlkxMWdCS0JkM0VraGRpaUo3OUd4WFlZei9zWHc4QmhYTjFYUTFkYllIcTFP?=
+ =?utf-8?B?UitCODI1RHlLRCtKSy8yYTZscnFNUmMrVHlDSlpHU0o0LzRsNnQ1SG80VTUv?=
+ =?utf-8?B?cUZZakt3NkprZCtvcFR4cmdqOFY5SnJLOGpmdHlIL0J6d3RjWC9DRWptNXRu?=
+ =?utf-8?B?eElVQ1FLMCtjc2h4QnFsbzRQeDN2R0JRLzBJYUdIenVBUWsvekFqNUNuOS93?=
+ =?utf-8?B?MmRUcXhyMkhZK1B5NWRQelBqcmxwWEdTbjA5YWJQaUhKMTd2SjhaYjlOeWpO?=
+ =?utf-8?B?YmRlaTdidkxuVERGb0l2NHlzOVdFRGxBTFYrMVZDQ0lYMnl2K0RnQmRFc2h2?=
+ =?utf-8?B?c2dDMFhPTXNvMHJTQUREcmE0MW5GWmNwSlZmNm4vLzZNQmlGK0tnZkIxZG5p?=
+ =?utf-8?B?bk1EOXNic3ZEYldtT2NKK0pyTnVpbnJOcmErMG84a2pUcVpnd1VFQnplTTA4?=
+ =?utf-8?B?b29xU0prRGY1enZQdWFUeVN6UXlkbXNoT1dZN1RwVFBEL0doVHNEZGRGMTR4?=
+ =?utf-8?B?cHRPcjZhVjgwMzFSWnNsc2lVRE1KRWlXRU5EWEFsN202Y0ZDd2pnRmExM09R?=
+ =?utf-8?B?LzdHQTdZUFo4QlptZ2xNUnY5RG1MNUcvL2NPbGt4MHhncW1GUHdxMVNKSFYw?=
+ =?utf-8?B?czNFdkdkekNPb3JrSkJLbWlwQzROeFp3SFVFMzhBREJHdDVUUDVuQmtZanZQ?=
+ =?utf-8?B?ZGluY0pYeUhkYWU4by9VbkZzT2lXbE5UU0s0OS9kN0hjdE96WGJ4QjdKU3pD?=
+ =?utf-8?B?QlhqNnVaUnZ3U3ZZMVBONVp2UFV2Y2txS1dNdXg2RWNJM25KVi9aak9QY1Bt?=
+ =?utf-8?B?ZXlGK2QvRXk2RFd2Sks5MmhIQmFQVG1TejhKMmlJVVhoNWFBS2NUcHl1RXUz?=
+ =?utf-8?B?dVY0OGUweUhSYUx5SVB5WlJEdEExNG42anRrcTQxNEtYUFM2RXdWS0tDRmhs?=
+ =?utf-8?B?aW40UUN1T2poSDY1RnlYa0pROVlFR0d1NUNKdWxlcC9ISEZBdnl6RG5mblE4?=
+ =?utf-8?B?U2g2dmZCZGttbkkvL2RKUTRZa09yU0R3MHZKS3NBNUNRL0h4c1ZQWEYvYlVQ?=
+ =?utf-8?B?eTdNTDRKVnVnWHJnT1pNMFJGeEpVY28xaUVjcVZwT3BiQzBndzRGTjIrMmZh?=
+ =?utf-8?B?TWVSSmV1MzZJOTNzb3Z3K2FjeU5XOERXaWZTaE9SWEI4NFUvNmphV1owQkp4?=
+ =?utf-8?B?WVQ5WEsvRGQwQXRhUTZXQWMveG5FQjJ1Umg2WnJnYmMrUGhyOU5teDlDYjUr?=
+ =?utf-8?B?alplcGVUd1VxdXZPR2hFc1luN1pVQ0RYa1BLM2tva3BlbVdHcGo4b3hUV2lN?=
+ =?utf-8?B?eThkdXZ3V25OdkhWSG1VZHlVTm9TWnhtdXlhYXZvRUtRdXZLKzFMRzk0OXgx?=
+ =?utf-8?B?eWVic0NjcG52UDltR2h4NlFBZlhqRkl1MTZlWTNrNld0YzZIWkpqNm5kSCtv?=
+ =?utf-8?Q?HqAywV6SHKETKR6cL7WizF+o0jA1w4=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55cd84e3-361f-4b7a-67a0-08da0b1fb771
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2022 09:46:47.9963
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3tHxSEjWFwNwpjs6uxZ0yBDeAKQYSRXXbEJ7X/QQkUeBS88XmZw+K+pVer6N1ifW/juPWRSthfgSiS6cHoFxhoYWNMgKiuDKicED4ywKLSo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR01MB6667
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,593 +143,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sam
 
-On Tue, Mar 15, 2022 at 9:23 PM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Christophe,
-> On Fri, Mar 11, 2022 at 06:02:38PM +0100, Christophe Branchereau wrote:
-> > This driver supports the NewVision NV3052C based LCDs. Right now, it
-> > only supports the LeadTek LTK035C5444T 2.4" 640x480 TFT LCD panel, which
-> > can be found in the Anbernic RG-350M handheld console.
->
-> I had to get away from my day-time job and you were the lucky winner.
-> A couple of comments in the following that you can address now or later.
->
-> >
-> > Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> > ---
-> >  drivers/gpu/drm/panel/Kconfig                 |   9 +
-> >  drivers/gpu/drm/panel/Makefile                |   1 +
-> >  .../gpu/drm/panel/panel-newvision-nv3052c.c   | 497 ++++++++++++++++++
-> >  3 files changed, 507 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> >
-> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> > index bb2e47229c68..40084f709789 100644
-> > --- a/drivers/gpu/drm/panel/Kconfig
-> > +++ b/drivers/gpu/drm/panel/Kconfig
-> > @@ -283,6 +283,15 @@ config DRM_PANEL_NEC_NL8048HL11
-> >         panel (found on the Zoom2/3/3630 SDP boards). To compile this driver
-> >         as a module, choose M here.
-> >
-> > +config DRM_PANEL_NEWVISION_NV3052C
-> > +     tristate "NewVision NV3052C RGB/SPI panel"
-> > +     depends on OF && SPI
-> > +     depends on BACKLIGHT_CLASS_DEVICE
-> > +     select DRM_MIPI_DBI
-> > +     help
-> > +       Say Y here if you want to enable support for the panels built
-> > +       around the NewVision NV3052C display controller.
-> > +
-> >  config DRM_PANEL_NOVATEK_NT35510
-> >       tristate "Novatek NT35510 RGB panel driver"
-> >       depends on OF
-> > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> > index 5740911f637c..42a7ab54234b 100644
-> > --- a/drivers/gpu/drm/panel/Makefile
-> > +++ b/drivers/gpu/drm/panel/Makefile
-> > @@ -26,6 +26,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
-> >  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
-> >  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
-> >  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
-> > +obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
-> >  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35510) += panel-novatek-nt35510.o
-> >  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35560) += panel-novatek-nt35560.o
-> >  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
-> > diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> > new file mode 100644
-> > index 000000000000..fc31df0dee12
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-> > @@ -0,0 +1,497 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * NevVision NV3052C IPS LCD panel driver
-> > + *
-> > + * Copyright (C) 2020, Paul Cercueil <paul@crapouillou.net>
-> > + * Copyright (C) 2022, Christophe Branchereau <cbranchereau@gmail.com>
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/device.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/media-bus-format.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/regulator/consumer.h>
-> > +#include <linux/spi/spi.h>
-> > +
-> > +#include <video/mipi_display.h>
-> > +
-> > +#include <drm/drm_mipi_dbi.h>
-> > +#include <drm/drm_modes.h>
-> > +#include <drm/drm_panel.h>
-> > +
-> > +struct nv3052c_panel_info {
-> > +     const struct drm_display_mode *display_modes;
-> > +     unsigned int num_modes;
-> > +     u16 width_mm, height_mm;
-> > +     u32 bus_format, bus_flags;
-> > +};
-> > +
-> > +struct nv3052c {
-> > +     struct device *dev;
-> > +     struct drm_panel panel;
-> > +     struct mipi_dbi dbi;
-> > +
-> > +     const struct nv3052c_panel_info *panel_info;
-> > +
-> > +     struct regulator *supply;
-> > +     struct gpio_desc *reset_gpio;
-> > +};
-> > +
-> > +struct nv3052c_reg {
-> > +     u8 cmd;
-> > +     u8 val;
-> > +};
-> > +
-> > +static const struct nv3052c_reg nv3052c_panel_regs[] = {
-> > +     { 0xff, 0x30 },
-> > +     { 0xff, 0x52 },
-> > +     { 0xff, 0x01 },
-> > +     { 0xe3, 0x00 },
-> > +     { 0x40, 0x00 },
-> > +     { 0x03, 0x40 },
-> > +     { 0x04, 0x00 },
-> > +     { 0x05, 0x03 },
-> > +     { 0x08, 0x00 },
-> > +     { 0x09, 0x07 },
-> > +     { 0x0a, 0x01 },
-> > +     { 0x0b, 0x32 },
-> > +     { 0x0c, 0x32 },
-> > +     { 0x0d, 0x0b },
-> > +     { 0x0e, 0x00 },
-> > +     { 0x23, 0xa0 },
-> > +
-> > +     { 0x24, 0x0c },
-> > +     { 0x25, 0x06 },
-> > +     { 0x26, 0x14 },
-> > +     { 0x27, 0x14 },
-> > +
-> > +     { 0x38, 0xcc },
-> > +     { 0x39, 0xd7 },
-> > +     { 0x3a, 0x4a },
-> > +
-> > +     { 0x28, 0x40 },
-> > +     { 0x29, 0x01 },
-> > +     { 0x2a, 0xdf },
-> > +     { 0x49, 0x3c },
-> > +     { 0x91, 0x77 },
-> > +     { 0x92, 0x77 },
-> > +     { 0xa0, 0x55 },
-> > +     { 0xa1, 0x50 },
-> > +     { 0xa4, 0x9c },
-> > +     { 0xa7, 0x02 },
-> > +     { 0xa8, 0x01 },
-> > +     { 0xa9, 0x01 },
-> > +     { 0xaa, 0xfc },
-> > +     { 0xab, 0x28 },
-> > +     { 0xac, 0x06 },
-> > +     { 0xad, 0x06 },
-> > +     { 0xae, 0x06 },
-> > +     { 0xaf, 0x03 },
-> > +     { 0xb0, 0x08 },
-> > +     { 0xb1, 0x26 },
-> > +     { 0xb2, 0x28 },
-> > +     { 0xb3, 0x28 },
-> > +     { 0xb4, 0x33 },
-> > +     { 0xb5, 0x08 },
-> > +     { 0xb6, 0x26 },
-> > +     { 0xb7, 0x08 },
-> > +     { 0xb8, 0x26 },
-> > +     { 0xf0, 0x00 },
-> > +     { 0xf6, 0xc0 },
-> > +
-> > +     { 0xff, 0x30 },
-> > +     { 0xff, 0x52 },
-> > +     { 0xff, 0x02 },
-> > +     { 0xb0, 0x0b },
-> > +     { 0xb1, 0x16 },
-> > +     { 0xb2, 0x17 },
-> > +     { 0xb3, 0x2c },
-> > +     { 0xb4, 0x32 },
-> > +     { 0xb5, 0x3b },
-> > +     { 0xb6, 0x29 },
-> > +     { 0xb7, 0x40 },
-> > +     { 0xb8, 0x0d },
-> > +     { 0xb9, 0x05 },
-> > +     { 0xba, 0x12 },
-> > +     { 0xbb, 0x10 },
-> > +     { 0xbc, 0x12 },
-> > +     { 0xbd, 0x15 },
-> > +     { 0xbe, 0x19 },
-> > +     { 0xbf, 0x0e },
-> > +     { 0xc0, 0x16 },
-> > +     { 0xc1, 0x0a },
-> > +     { 0xd0, 0x0c },
-> > +     { 0xd1, 0x17 },
-> > +     { 0xd2, 0x14 },
-> > +     { 0xd3, 0x2e },
-> > +     { 0xd4, 0x32 },
-> > +     { 0xd5, 0x3c },
-> > +     { 0xd6, 0x22 },
-> > +     { 0xd7, 0x3d },
-> > +     { 0xd8, 0x0d },
-> > +     { 0xd9, 0x07 },
-> > +     { 0xda, 0x13 },
-> > +     { 0xdb, 0x13 },
-> > +     { 0xdc, 0x11 },
-> > +     { 0xdd, 0x15 },
-> > +     { 0xde, 0x19 },
-> > +     { 0xdf, 0x10 },
-> > +     { 0xe0, 0x17 },
-> > +     { 0xe1, 0x0a },
-> > +
-> > +     { 0xff, 0x30 },
-> > +     { 0xff, 0x52 },
-> > +     { 0xff, 0x03 },
-> > +     { 0x00, 0x2a },
-> > +     { 0x01, 0x2a },
-> > +     { 0x02, 0x2a },
-> > +     { 0x03, 0x2a },
-> > +     { 0x04, 0x61 },
-> > +     { 0x05, 0x80 },
-> > +     { 0x06, 0xc7 },
-> > +     { 0x07, 0x01 },
-> > +     { 0x08, 0x03 },
-> > +     { 0x09, 0x04 },
-> > +     { 0x70, 0x22 },
-> > +     { 0x71, 0x80 },
-> > +     { 0x30, 0x2a },
-> > +     { 0x31, 0x2a },
-> > +     { 0x32, 0x2a },
-> > +     { 0x33, 0x2a },
-> > +     { 0x34, 0x61 },
-> > +     { 0x35, 0xc5 },
-> > +     { 0x36, 0x80 },
-> > +     { 0x37, 0x23 },
-> > +     { 0x40, 0x03 },
-> > +     { 0x41, 0x04 },
-> > +     { 0x42, 0x05 },
-> > +     { 0x43, 0x06 },
-> > +     { 0x44, 0x11 },
-> > +     { 0x45, 0xe8 },
-> > +     { 0x46, 0xe9 },
-> > +     { 0x47, 0x11 },
-> > +     { 0x48, 0xea },
-> > +     { 0x49, 0xeb },
-> > +     { 0x50, 0x07 },
-> > +     { 0x51, 0x08 },
-> > +     { 0x52, 0x09 },
-> > +     { 0x53, 0x0a },
-> > +     { 0x54, 0x11 },
-> > +     { 0x55, 0xec },
-> > +     { 0x56, 0xed },
-> > +     { 0x57, 0x11 },
-> > +     { 0x58, 0xef },
-> > +     { 0x59, 0xf0 },
-> > +     { 0xb1, 0x01 },
-> > +     { 0xb4, 0x15 },
-> > +     { 0xb5, 0x16 },
-> > +     { 0xb6, 0x09 },
-> > +     { 0xb7, 0x0f },
-> > +     { 0xb8, 0x0d },
-> > +     { 0xb9, 0x0b },
-> > +     { 0xba, 0x00 },
-> > +     { 0xc7, 0x02 },
-> > +     { 0xca, 0x17 },
-> > +     { 0xcb, 0x18 },
-> > +     { 0xcc, 0x0a },
-> > +     { 0xcd, 0x10 },
-> > +     { 0xce, 0x0e },
-> > +     { 0xcf, 0x0c },
-> > +     { 0xd0, 0x00 },
-> > +     { 0x81, 0x00 },
-> > +     { 0x84, 0x15 },
-> > +     { 0x85, 0x16 },
-> > +     { 0x86, 0x10 },
-> > +     { 0x87, 0x0a },
-> > +     { 0x88, 0x0c },
-> > +     { 0x89, 0x0e },
-> > +     { 0x8a, 0x02 },
-> > +     { 0x97, 0x00 },
-> > +     { 0x9a, 0x17 },
-> > +     { 0x9b, 0x18 },
-> > +     { 0x9c, 0x0f },
-> > +     { 0x9d, 0x09 },
-> > +     { 0x9e, 0x0b },
-> > +     { 0x9f, 0x0d },
-> > +     { 0xa0, 0x01 },
-> > +
-> > +     { 0xff, 0x30 },
-> > +     { 0xff, 0x52 },
-> > +     { 0xff, 0x02 },
-> > +     { 0x01, 0x01 },
-> > +     { 0x02, 0xda },
-> > +     { 0x03, 0xba },
-> > +     { 0x04, 0xa8 },
-> > +     { 0x05, 0x9a },
-> > +     { 0x06, 0x70 },
-> > +     { 0x07, 0xff },
-> > +     { 0x08, 0x91 },
-> > +     { 0x09, 0x90 },
-> > +     { 0x0a, 0xff },
-> > +     { 0x0b, 0x8f },
-> > +     { 0x0c, 0x60 },
-> > +     { 0x0d, 0x58 },
-> > +     { 0x0e, 0x48 },
-> > +     { 0x0f, 0x38 },
-> > +     { 0x10, 0x2b },
-> > +
-> > +     { 0xff, 0x30 },
-> > +     { 0xff, 0x52 },
-> > +     { 0xff, 0x00 },
-> > +     { 0x36, 0x0a },
-> > +};
-> There are some random (?) empty lines.
-> If they have any significance then a short comment would be nice.
-> If not, then drop the empty lines.
->
 
-The empty lines are not random no, to access a different page in the
-init, one must write i.e.   { 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff,
-0x02 }, to access page 2, so they add a little bit of readability.
+On 21/03/2022 15:23, Greg Kroah-Hartman wrote:
+> On Mon, Mar 21, 2022 at 03:13:55PM +0700, Quan Nguyen wrote:
+>> Add documentation for the Ampere(R)'s Altra(R) SMpro sysfs interfaces
+>>
+>> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+>> ---
+>> Changes in v7:
+>>    + First introduce in v7     [Greg]
+>>
+>>   .../sysfs-bus-platform-devices-ampere-smpro   | 133 ++++++++++++++++++
+>>   1 file changed, 133 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+>> new file mode 100644
+>> index 000000000000..9bfd8d6d0f71
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+>> @@ -0,0 +1,133 @@
+>> +What:		/sys/bus/platform/devices/smpro-errmon.*/errors_[core|mem|pcie|other]_[ce|ue]
+> 
+> Please split this out as one entry per file.
+> 
 
-But I can drop them indeed. as well as for the includes and struct on
-top, to make it more compact.
+These sysfs share same format of HW errors (the 48-byte Arm vendor 
+specific HW error record) but for separate HW domains: Core, PCIe, 
+Mem... etc
 
-> > +
-> > +static inline struct nv3052c *to_nv3052c(struct drm_panel *panel)
-> > +{
-> > +     return container_of(panel, struct nv3052c, panel);
-> > +}
-> > +
-> > +static int nv3052c_prepare(struct drm_panel *panel)
-> > +{
-> > +     struct nv3052c *priv = to_nv3052c(panel);
-> > +     struct mipi_dbi *dbi = &priv->dbi;
-> > +     unsigned int i;
-> > +     int err;
-> > +
-> > +     err = regulator_enable(priv->supply);
-> > +     if (err) {
-> > +             dev_err(priv->dev, "Failed to enable power supply: %d\n", err);
-> > +             return err;
-> > +     }
-> > +
-> > +     /* Reset the chip */
-> > +     gpiod_set_value_cansleep(priv->reset_gpio, 1);
-> > +     usleep_range(10, 1000);
-> > +     gpiod_set_value_cansleep(priv->reset_gpio, 0);
-> > +     msleep(5);
-> > +
-> > +     for (i = 0; i < ARRAY_SIZE(nv3052c_panel_regs); i++) {
-> > +             err = mipi_dbi_command(dbi, nv3052c_panel_regs[i].cmd,
-> > +                                    nv3052c_panel_regs[i].val);
-> > +
-> > +             if (err) {
-> > +                     dev_err(priv->dev, "Unable to set register: %d\n", err);
-> > +                     goto err_disable_regulator;
-> > +             }
-> > +     }
-> > +
-> > +     err = mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
-> > +     if (err) {
-> > +             dev_err(priv->dev, "Unable to exit sleep mode: %d\n", err);
-> > +             goto err_disable_regulator;
-> > +     }
-> > +
-> > +     return 0;
-> > +
-> > +err_disable_regulator:
-> > +     regulator_disable(priv->supply);
-> > +     return err;
-> > +}
-> > +
-> > +static int nv3052c_unprepare(struct drm_panel *panel)
-> > +{
-> > +     struct nv3052c *priv = to_nv3052c(panel);
-> > +     struct mipi_dbi *dbi = &priv->dbi;
-> > +     int err;
-> > +
-> > +     err = mipi_dbi_command(dbi, MIPI_DCS_ENTER_SLEEP_MODE);
-> > +     if (err) {
-> > +             dev_err(priv->dev, "Unable to enter sleep mode: %d\n", err);
-> > +             return err;
-> Consider to just continue here. In case we fail to enter sleep mode we
-> will anyway reset the panel and disable the supply voltage.
-> So things will likely work anyway and we avoid a display with power
-> where it was supposed to be disabled.
-> I bet many panels uses the same pattern as this driver, but I think that
-> continue is the right thing to do here.
->
-Yes, you're right.
+>> +KernelVersion:	5.14
+> 
+> 5.14 is a long time ago.
+> 
+>> +Contact:	quan@os.amperecomputing.com
+>> +Description:
+>> +		(RO) Contains the 48-byte Ampere (Vendor-Specific) Error Record, see [1]
+>> +		printed in hex format as below:
+>> +
+>> +		AA BB CCCC DDDDDDDD DDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDD \
+>> +		   DDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDD
+>> +		Where:
+>> +		  AA       : Error Type
+>> +		  BB       : Subtype
+>> +		  CCCC     : Instance
+>> +		  DDD...DDD: Similar to the Arm RAS standard error record
+> 
+> No, this is not a valid sysfs file, sorry.  This should just be one
+> value per file.
+> 
 
->
-> > +     }
-> > +
-> > +     gpiod_set_value_cansleep(priv->reset_gpio, 1);
-> > +     regulator_disable(priv->supply);
-> > +
-> > +     return 0;
-> > +}
->
-> Everything else looked good - nicely written driver.
->
->         Sam
+This 48-byte value is unable to separate into smaller values because it 
+contain all information necessary to indicate a single HW error as per 
+ARM RAS supplement document [1]. The format is to make it read-able 
+other than a single 48-byte hex value.
 
-Thank you
+[1] https://developer.arm.com/documentation/ddi0587/latest/
 
->
-> > +
-> > +static int nv3052c_enable(struct drm_panel *panel)
-> > +{
-> > +     struct nv3052c *priv = to_nv3052c(panel);
-> > +     struct mipi_dbi *dbi = &priv->dbi;
-> > +     int err;
-> > +
-> > +     err = mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON);
-> > +     if (err) {
-> > +             dev_err(priv->dev, "Unable to enable display: %d\n", err);
-> > +             return err;
-> > +     }
-> > +
-> > +     if (panel->backlight) {
-> > +             /* Wait for the picture to be ready before enabling backlight */
-> > +             msleep(120);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int nv3052c_disable(struct drm_panel *panel)
-> > +{
-> > +     struct nv3052c *priv = to_nv3052c(panel);
-> > +     struct mipi_dbi *dbi = &priv->dbi;
-> > +     int err;
-> > +
-> > +     err = mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_OFF);
-> > +     if (err) {
-> > +             dev_err(priv->dev, "Unable to disable display: %d\n", err);
-> > +             return err;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int nv3052c_get_modes(struct drm_panel *panel,
-> > +                          struct drm_connector *connector)
-> > +{
-> > +     struct nv3052c *priv = to_nv3052c(panel);
-> > +     const struct nv3052c_panel_info *panel_info = priv->panel_info;
-> > +     struct drm_display_mode *mode;
-> > +     unsigned int i;
-> > +
-> > +     for (i = 0; i < panel_info->num_modes; i++) {
-> > +             mode = drm_mode_duplicate(connector->dev,
-> > +                                       &panel_info->display_modes[i]);
-> > +             if (!mode)
-> > +                     return -ENOMEM;
-> > +
-> > +             drm_mode_set_name(mode);
-> > +
-> > +             mode->type = DRM_MODE_TYPE_DRIVER;
-> > +             if (panel_info->num_modes == 1)
-> > +                     mode->type |= DRM_MODE_TYPE_PREFERRED;
-> > +
-> > +             drm_mode_probed_add(connector, mode);
-> > +     }
-> > +
-> > +     connector->display_info.bpc = 8;
-> > +     connector->display_info.width_mm = panel_info->width_mm;
-> > +     connector->display_info.height_mm = panel_info->height_mm;
-> > +
-> > +     drm_display_info_set_bus_formats(&connector->display_info,
-> > +                                      &panel_info->bus_format, 1);
-> > +     connector->display_info.bus_flags = panel_info->bus_flags;
-> > +
-> > +     return panel_info->num_modes;
-> > +}
-> > +
-> > +static const struct drm_panel_funcs nv3052c_funcs = {
-> > +     .prepare        = nv3052c_prepare,
-> > +     .unprepare      = nv3052c_unprepare,
-> > +     .enable         = nv3052c_enable,
-> > +     .disable        = nv3052c_disable,
-> > +     .get_modes      = nv3052c_get_modes,
-> > +};
-> > +
-> > +static int nv3052c_probe(struct spi_device *spi)
-> > +{
-> > +     struct device *dev = &spi->dev;
-> > +     struct nv3052c *priv;
-> > +     int err;
-> > +
-> > +     priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +
-> > +     priv->dev = dev;
-> > +
-> > +     priv->panel_info = of_device_get_match_data(dev);
-> > +     if (!priv->panel_info)
-> > +             return -EINVAL;
-> > +
-> > +     priv->supply = devm_regulator_get(dev, "power");
-> > +     if (IS_ERR(priv->supply))
-> > +             return dev_err_probe(dev, PTR_ERR(priv->supply), "Failed to get power supply\n");
-> > +
-> > +     priv->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> > +     if (IS_ERR(priv->reset_gpio))
-> > +             return dev_err_probe(dev, PTR_ERR(priv->reset_gpio), "Failed to get reset GPIO\n");
-> > +
-> > +     err = mipi_dbi_spi_init(spi, &priv->dbi, NULL);
-> > +     if (err)
-> > +             return dev_err_probe(dev, err, "MIPI DBI init failed\n");
-> > +
-> > +     priv->dbi.read_commands = NULL;
-> > +
-> > +     spi_set_drvdata(spi, priv);
-> > +
-> > +     drm_panel_init(&priv->panel, dev, &nv3052c_funcs,
-> > +                    DRM_MODE_CONNECTOR_DPI);
-> > +
-> > +     err = drm_panel_of_backlight(&priv->panel);
-> > +     if (err)
-> > +             return dev_err_probe(dev, err, "Failed to attach backlight\n");
-> > +
-> > +     drm_panel_add(&priv->panel);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int nv3052c_remove(struct spi_device *spi)
-> > +{
-> > +     struct nv3052c *priv = spi_get_drvdata(spi);
-> > +
-> > +     drm_panel_remove(&priv->panel);
-> > +     drm_panel_disable(&priv->panel);
-> > +     drm_panel_unprepare(&priv->panel);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct drm_display_mode ltk035c5444t_modes[] = {
-> > +     { /* 60 Hz */
-> > +             .clock = 24000,
-> > +             .hdisplay = 640,
-> > +             .hsync_start = 640 + 96,
-> > +             .hsync_end = 640 + 96 + 16,
-> > +             .htotal = 640 + 96 + 16 + 48,
-> > +             .vdisplay = 480,
-> > +             .vsync_start = 480 + 5,
-> > +             .vsync_end = 480 + 5 + 2,
-> > +             .vtotal = 480 + 5 + 2 + 13,
-> > +             .flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> > +     },
-> > +     { /* 50 Hz */
-> > +             .clock = 18000,
-> > +             .hdisplay = 640,
-> > +             .hsync_start = 640 + 39,
-> > +             .hsync_end = 640 + 39 + 2,
-> > +             .htotal = 640 + 39 + 2 + 39,
-> > +             .vdisplay = 480,
-> > +             .vsync_start = 480 + 5,
-> > +             .vsync_end = 480 + 5 + 2,
-> > +             .vtotal = 480 + 5 + 2 + 13,
-> > +             .flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> > +     },
-> > +};
-> > +
-> > +static const struct nv3052c_panel_info ltk035c5444t_panel_info = {
-> > +     .display_modes = ltk035c5444t_modes,
-> > +     .num_modes = ARRAY_SIZE(ltk035c5444t_modes),
-> > +     .width_mm = 77,
-> > +     .height_mm = 64,
-> > +     .bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-> > +     .bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
-> > +};
-> > +
-> > +static const struct of_device_id nv3052c_of_match[] = {
-> > +     { .compatible = "leadtek,ltk035c5444t", .data = &ltk035c5444t_panel_info },
-> > +     { /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, nv3052c_of_match);
-> > +
-> > +static struct spi_driver nv3052c_driver = {
-> > +     .driver = {
-> > +             .name = "nv3052c",
-> > +             .of_match_table = nv3052c_of_match,
-> > +     },
-> > +     .probe = nv3052c_probe,
-> > +     .remove = nv3052c_remove,
-> > +};
-> > +module_spi_driver(nv3052c_driver);
-> > +
-> > +MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
-> > +MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
-> > +MODULE_LICENSE("GPL v2");
-> > --
-> > 2.35.1
+> 
+>> +
+>> +		See [1] below for the format details.
+>> +
+>> +		The detail of each sysfs entries is as below:
+>> +		+-------------+---------------------------------------------------------+
+>> +		|   Error     |                   Sysfs entry                           |
+>> +		+-------------+---------------------------------------------------------+
+>> +		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/errors_core_ce |
+>> +		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/errors_core_ue |
+>> +		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/errors_mem_ce  |
+>> +		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/errors_mem_ue  |
+>> +		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/errors_pcie_ce |
+>> +		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/errors_pcie_ue |
+>> +		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/errors_other_ce|
+>> +		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/errors_other_ue|
+>> +		+-------------+---------------------------------------------------------+
+>> +		UE: Uncorrect-able Error
+>> +		CE: Correct-able Error
+>> +
+>> +		[1] Section 3.3 Ampere (Vendor-Specific) Error Record Formats,
+>> +		    Altra Family RAS Supplement.
+>> +
+>> +
+>> +What:           /sys/bus/platform/devices/smpro-errmon.*/errors_[smpro|pmpro]
+>> +KernelVersion:	5.14
+>> +Contact:	quan@os.amperecomputing.com
+>> +Description:
+>> +		(RO) Contains the internal firmware error record printed as hex format
+>> +		as below:
+>> +
+>> +		A BB C DD EEEE FFFFFFFF
+> 
+> Again this isn't a good sysfs entry.  You should never have to parse a
+> sysfs file except for a single value.
+> 
+> thanks,
+> 
+> greg k-h
+
+This error is also unable to separate further as well.
+
+Thanks Greg for the review.
+- Quan
