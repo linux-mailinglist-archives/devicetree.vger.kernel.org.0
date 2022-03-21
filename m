@@ -2,146 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 099DA4E2F43
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 18:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B9C4E2F7F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 19:00:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349089AbiCURnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 13:43:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40902 "EHLO
+        id S1350818AbiCUSBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 14:01:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235588AbiCURne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 13:43:34 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EF818CD17;
-        Mon, 21 Mar 2022 10:42:08 -0700 (PDT)
-Received: from fraeml741-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KMhjr0NYSz67M4k;
-        Tue, 22 Mar 2022 01:41:04 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml741-chm.china.huawei.com (10.206.15.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Mon, 21 Mar 2022 18:42:06 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Mon, 21 Mar
- 2022 17:42:04 +0000
-Date:   Mon, 21 Mar 2022 17:42:02 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
-Message-ID: <20220321174202.00007895@Huawei.com>
-In-Reply-To: <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
-References: <20220310133938.2495-1-michael.srba@seznam.cz>
-        <20220310133938.2495-2-michael.srba@seznam.cz>
-        <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
-        <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
-        <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
-        <20220320151223.3a9b13bd@jic23-huawei>
-        <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
-        <20220321150411.00002206@Huawei.com>
-        <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S245712AbiCUSBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 14:01:44 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960A15B3CE
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 11:00:18 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id h13so18845233ede.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 11:00:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wKK/3aJDesbLM5oqz8z5Re8H9WUhRynGrOLLLku81oQ=;
+        b=oVT82hMUHADOkzZXY4rLYtvS4f339EjEtv5ia2gPprDg2sXJEpMAhlK9ekc9C9MUGc
+         axdEivJ8XKqM+fN/cgPX6dZjTc5Uxs9bA1MCbZchE7C14a0in/MJ+stldWJPPH3n3G9K
+         jbZJwxTtYINvEF3P9oFgTtIrLuvfc3TT5f084=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wKK/3aJDesbLM5oqz8z5Re8H9WUhRynGrOLLLku81oQ=;
+        b=fX5muP/hFVrn3q97r/OB+MOV9Uw1qlFyhGDYp1xe0+soebE3/3bPE4zMx9kl6GcRn3
+         9I/H3IBapXXEtXxiPuwA7s5u/SWjYU6ccll66NbxpGh9h8RJzO4iIhsOBne8Aa1+Kt4b
+         2qQTQ+kytiHn3fDNTDELeuQU97QdBOz83ogKXYKF9wdkXSl+Do9sKDPx/qcNmbYe5z7X
+         dXhWtwhwDf8QWSBoqbSg0qGaZPZzxiw+qCtw78lWpH2pZSdfuvPAu/Eli5jAIuJN6yXB
+         2Vg9gxvCbqBqwBnuPLViKu/2uOEuz3DxzHNtfYXESlhehTPOgvsVJ2jEHGG30T5jlWW0
+         Meaw==
+X-Gm-Message-State: AOAM532S+d0NMbhp8Ljs3/2NR0vnUQgvOUZHuc3AG2se4FmirFYyiCP7
+        /5/mJYVzU/Zu01yRxBcS5Q0iZuNCjcJNdA==
+X-Google-Smtp-Source: ABdhPJwTIAxsKIXfyFHveyJMoKkxFmW1Pz1uL0y9WC2bZN9Iw6ytpyB+T59A7762jsEVXvf79P8D9w==
+X-Received: by 2002:a05:6402:4396:b0:418:d776:14c1 with SMTP id o22-20020a056402439600b00418d77614c1mr24577207edc.127.1647885616828;
+        Mon, 21 Mar 2022 11:00:16 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
+        by smtp.gmail.com with ESMTPSA id c4-20020a170906340400b006d077e850b5sm7189974ejb.23.2022.03.21.11.00.15
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Mar 2022 11:00:16 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id r64so9039932wmr.4
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 11:00:15 -0700 (PDT)
+X-Received: by 2002:a05:600c:4f10:b0:38c:ae36:d305 with SMTP id
+ l16-20020a05600c4f1000b0038cae36d305mr278333wmq.34.1647885615421; Mon, 21 Mar
+ 2022 11:00:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220316172814.v1.1.I2deda8f2cd6adfbb525a97d8fee008a8477b7b0e@changeid>
+ <20220316172814.v1.2.Ib0fbb7e5218201c81a2d064ff13c9bc1b0863212@changeid>
+ <c808dc08-09c8-bb08-6656-18dd649af036@quicinc.com> <YjiWXA40Nh0jBPO9@google.com>
+In-Reply-To: <YjiWXA40Nh0jBPO9@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 21 Mar 2022 11:00:02 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WQFbsFQdnUsroCdgKaHfZEyDTdRmvuEaY_ymuBrDt76w@mail.gmail.com>
+Message-ID: <CAD=FV=WQFbsFQdnUsroCdgKaHfZEyDTdRmvuEaY_ymuBrDt76w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: Add 'piglin' to the
+ crd-r3 compatible strings
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Mar 2022 16:22:38 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+"Hi,
 
-> On 21/03/2022 16:04, Jonathan Cameron wrote:
-> > On Mon, 21 Mar 2022 09:04:11 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >   
-> >> On 20/03/2022 16:12, Jonathan Cameron wrote:  
-> >>> On Thu, 10 Mar 2022 22:24:03 +0100
-> >>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
-> >>>     
-> >>>> On 10/03/2022 19:56, Michael Srba wrote:    
-> >>>>> Hi,
-> >>>>> the thing is, the only reason the different compatible is needed at all
-> >>>>> is that the chip presents a different WHOAMI, and the invensense,icm20608
-> >>>>> compatible seems to imply the non-D WHOAMI value.      
-> >>>>
-> >>>> But this is a driver implementation issue, not related to bindings.
-> >>>> Bindings describe the hardware.    
-> >>>
-> >>> Indeed, but the key thing here is the WHOAMI register is hardware.
-> >>>     
-> >>>>    
-> >>>>> I'm not sure how the driver would react to both compatibles being present,
-> >>>>> and looking at the driver code, it seems that icm20608d is not the only
-> >>>>> fully icm20608-compatible (to the extent of features supported by
-> >>>>> the driver, and excluding the WHOAMI value) invensense IC, yet none
-> >>>>> of these other ICs add the invensense,icm20608 compatible, so I guess I
-> >>>>> don't see a good reason to do something different.      
-> >>>>
-> >>>> Probably my question should be asked earlier, when these other
-> >>>> compatibles were added in such way.
-> >>>>
-> >>>> Skipping the DMP core, the new device is fully backwards compatible with
-> >>>> icm20608.    
-> >>>
-> >>> No. It is 'nearly' compatible...  The different WHOAMI value (used
-> >>> to check the chip is the one we expect) makes it incompatible.  Now we
-> >>> could change the driver to allow for that bit of incompatibility and
-> >>> some other drivers do (often warning when the whoami is wrong but continuing
-> >>> anyway).     
-> >>
-> >> Different value of HW register within the same programming model does
-> >> not make him incompatible. Quite contrary - it is compatible and to
-> >> differentiate variants you do not need specific compatibles.  
-> > 
-> > Whilst I don't personally agree with the definition of "compatible"
-> > and think you are making false distinctions between hardware and software...
-> > 
-> > I'll accept Rob's statement of best practice.  However we can't just
-> > add a compatible that won't work if someone uses it on a new board
-> > that happens to run an old kernel.
-> >   
-> 
-> The please explain me how this patch (the compatible set I proposed)
-> fails to work in such case? How a new board with icm20608 (not
-> icm20608d!) fails to work?
+On Mon, Mar 21, 2022 at 8:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> On Mon, Mar 21, 2022 at 11:14:56AM +0530, Rajendra Nayak wrote:
+> >
+> > On 3/17/2022 5:58 AM, Matthias Kaehlcke wrote:
+> > > With newer bootloader versions the crd-r3 (aka CRD 1.0 and 2.0) is
+> > > identified as a 'piglin' board (like the IDP2 board), instead of 'hoglin'
+> > > Add the compatible strings 'google,piglin-rev{3,4}'. The hoglin entries
+> > > are kept to make sure the board keeps booting with older bootloader
+> > > versions.
+> >
+> > The older bootloaders really look for the google,hoglin-rev3/google,hoglin-rev4
+> > compatibles or just google,hoglin? If its just google,hoglin, won;t it pick the
+> > crd-rev5+ dtb now?
+>
+> They look for the -revN compatible, I confirmed that on my CRD 2.0.
 
-I'm confused.  An actual icm20608 would work.
-I guess you mean an icm20608d via compatible "invensense,icm20608"?
+Thanks for confirming Matthias! I'll also note that, in general, these
+"google,board-revX" type compatible strings are all programmatically
+generated. You can see at:
 
-> 
-> To remind, the compatible has a format of:
-> comaptible = "new", "old"
-> e.g.: "invensense,icm20608d", "invensense,icm20608"
+https://chromium.googlesource.com/chromiumos/platform/depthcharge/+/refs/heads/main/src/boot/fit.c#70
 
-Old kernel fails to match invensense,icm20608d, matches on invensense,icm20608.
-Checks the WHOAMI value and reports a missmatched value and fails the probe
-as it has no idea what the part was so no idea how to support it.
+...and whenever it's using this normal logic then it has a standard
+fallback mechanism in place. On a random board in front of me
+depthcharge prints out:
 
-Obviously it wouldn't work anyway with an old kernel, but
-without the fallback compatible at least there would be no error message
-saying that the device is not the icm20608 we expected to see.
+Compat preference: google,lazor-rev3-sku0 google,lazor-rev3
+google,lazor-sku0 google,lazor
 
-Jonathan
+So it'll first try the very specific verison with rev and sku. Then
+just by rev. Then just by sku. ...and if none of those match it'll
+pick a device tree that has neither. The "newest" device tree always
+has no revision number specified and that way if software doesn't
+change but the revision bumps then we have no problem. We only add the
+revision info for old boards.
 
-> 
-> Best regards,
-> Krzysztof
+There are a few cases where we add special compatible strings and
+these don't match on board/rev. This is fairly uncommon, though. You
+might be aware of the special case of adding "qcom,sc7180-idp"
+(without rev/sku matching) for "bubs". See:
 
+https://chromium.googlesource.com/chromiumos/platform/depthcharge/+/refs/heads/main/src/board/trogdor/board.c#136
+
+
+-Doug
