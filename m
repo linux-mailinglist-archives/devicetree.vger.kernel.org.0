@@ -2,61 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D4294E1F12
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 03:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D0224E1F43
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 04:14:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344200AbiCUChI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 22:37:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S234851AbiCUDQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 23:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238487AbiCUChH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 22:37:07 -0400
-Received: from mg.sunplus.com (unknown [113.196.136.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EAB6A4C7A6;
-        Sun, 20 Mar 2022 19:35:40 -0700 (PDT)
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(10880:0:AUTH_RELAY)
-        (envelope-from <tony.huang@sunplus.com>); Mon, 21 Mar 2022 10:35:52 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Mon, 21 Mar 2022 10:35:46 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Mon, 21 Mar 2022 10:35:46 +0800
-From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Tony Huang <tonyhuang.sunplus@gmail.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lhjeff911@gmail.com" <lhjeff911@gmail.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-CC:     =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v4 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus
- SP7021
-Thread-Topic: [PATCH v4 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus
- SP7021
-Thread-Index: AQHYOzO5KyAdMjgPQEaJFU8W2wW2NazHonKAgAF9QKA=
-Date:   Mon, 21 Mar 2022 02:35:46 +0000
-Message-ID: <cab5bdafed86451a99cd59da3b1c5a38@sphcmbx02.sunplus.com.tw>
-References: <cover.1647652688.git.tonyhuang.sunplus@gmail.com>
- <27dba330ec0c1cd7edbcec53083f78169713a42e.1647652688.git.tonyhuang.sunplus@gmail.com>
- <c78aa9fa-8001-2c48-7a25-1f44f9952c9b@kernel.org>
-In-Reply-To: <c78aa9fa-8001-2c48-7a25-1f44f9952c9b@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.54]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S243506AbiCUDQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 23:16:03 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFB423160
+        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 20:14:37 -0700 (PDT)
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220321031432epoutp02f0071b2bfd8145cd87f46f6633fe363a~eRucZC5GH2835528355epoutp02o
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 03:14:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220321031432epoutp02f0071b2bfd8145cd87f46f6633fe363a~eRucZC5GH2835528355epoutp02o
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1647832472;
+        bh=+sXwCEW3mW2sBV52D5/Cek7rU4aPA8/VK9Jgbz0yWmE=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=n1cS5VMMlHXdNMkagq5PD5WkZXz66jJr7NLOV6Tq5Tmn93Ka1zbuT03WcO1wx35K6
+         7DhP8p6BXjHLzqkHF7e86FVFi1qb0xks/mC6esfyxeP1mzVhmmofcctKNibGXz4PAe
+         QVHbcTGLfeLY4zNIEivoYxx1RyM6u1psq8S8w/Cc=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20220321031431epcas1p32f0935dc303f7369ceae86585dd9eed3~eRub3yE4x0183401834epcas1p3U;
+        Mon, 21 Mar 2022 03:14:31 +0000 (GMT)
+Received: from epsmges1p4.samsung.com (unknown [182.195.36.135]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4KMKTt1Dzpz4x9QB; Mon, 21 Mar
+        2022 03:14:26 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        3D.C5.21932.29DE7326; Mon, 21 Mar 2022 12:14:26 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220321031425epcas1p21cc0552e9712818d95b39747cfc3166a~eRuV55cd11508815088epcas1p20;
+        Mon, 21 Mar 2022 03:14:25 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220321031425epsmtrp2bc3634279bd20ef71f9c17652dd7160d~eRuV5EIzW1070910709epsmtrp2-;
+        Mon, 21 Mar 2022 03:14:25 +0000 (GMT)
+X-AuditID: b6c32a38-929ff700000255ac-d3-6237ed92eba0
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D4.17.29871.09DE7326; Mon, 21 Mar 2022 12:14:24 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220321031424epsmtip26ce8e671a406bff7abd96a260df92c06~eRuVsX4lV1929219292epsmtip2K;
+        Mon, 21 Mar 2022 03:14:24 +0000 (GMT)
+Subject: Re: [PATCH v4 00/15] rk3399: Clean up and enable DDR DVFS
+To:     Brian Norris <briannorris@chromium.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Derek Basehore <dbasehore@chromium.org>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Lin Huang <hl@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <c909b9ce-d787-e5fe-6a92-473cd24d0858@samsung.com>
+Date:   Mon, 21 Mar 2022 12:39:38 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+In-Reply-To: <20220308190901.3144566-1-briannorris@chromium.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNJsWRmVeSWpSXmKPExsWy7bCmru6kt+ZJBjMWcFhs+vie1eLV5j1s
+        FvOPnGO1+P/oNavFjw2nmC3ONr1ht9j0+BqrxeVdc9gsPvceYbT49OA/s8XtxhVsFq17j7A7
+        8HjMbrjI4rFpVSebx+Yl9R5/Z+1n8ejbsorRY/u1ecwenzfJBbBHZdtkpCampBYppOYl56dk
+        5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAB2qpFCWmFMKFApILC5W0rezKcov
+        LUlVyMgvLrFVSi1IySkwLdArTswtLs1L18tLLbEyNDAwMgUqTMjOWP//N3PBM/GK5ktXmBsY
+        W4S7GDk5JARMJN7fvs8CYgsJ7GCUONPi0MXIBWR/YpRof9vEAuF8Y5Q42XmDHabj+aYXrBCJ
+        vYwSOxoamSCc94wSn87uYwOpEhZwkpj0diMziC0icJxR4vjvPJAiZoF3jBKrm76DFbEJaEns
+        f3EDzOYXUJS4+uMxI4jNK2AnMWPaHiCbg4NFQFXi2rFCkLCoQJjEyW0tUCWCEidnPgG7m1PA
+        QeLEt0tg1zELiEvcejKfCcKWl9j+dg4zyF4JgQscEsv2dTFBvOAicfjYdihbWOLV8S1Qr0lJ
+        fH63lw2ioZlRouHFbUYIp4dR4uizPhaIKmOJ/UsnM4FcxyygKbF+lz5EWFFi5++5jBCb+STe
+        fe1hBSmREOCV6GgTgihRlrj84C7UXkmJxe2dbBMYlWYh+WcWkh9mIflhFsKyBYwsqxjFUguK
+        c9NTiw0LTODRnZyfu4kRnIq1LHYwzn37Qe8QIxMH4yFGCQ5mJRHef7+Nk4R4UxIrq1KL8uOL
+        SnNSiw8xmgIDeCKzlGhyPjAb5JXEG5pYGpiYGRmbWBiaGSqJ8/ZOPZ0oJJCeWJKanZpakFoE
+        08fEwSnVwFRwf8G3MPnlAhoqP/a3JcR7TJzK9Y/z3NeYmmYOU7UZJ6s//CjLLF71d1PfySym
+        vbFJ8pKy4Qu8omWnaJ1fdcCzdUmCk6SJo3J008MqxsIJjxcvm2u1Y1W1lv6r6c/vVv8+s+K1
+        8Jyj8UqTr2xdzlTv36p05dGNIHMXqedHarvjrnbM2Ncn+FNPJlW55qLO6+vrn3J9fb/2s1HU
+        Bc2SYttVpemnK92Sq+eY/5u6l9N0tYx3Rf6FtPYsK1c9zwepIuVvzcSjHmi2eeW/6tk9uTfh
+        aceeAC3P2slxV/QONXy9JfBsU9HUg/mKFUlzu2ynP2R5tvSzUszEfeLyG38tbXHVviRVlXXQ
+        V3meOkv6QSWW4oxEQy3mouJEABK45UlOBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrMIsWRmVeSWpSXmKPExsWy7bCSvO6Et+ZJBvcO2Fhs+vie1eLV5j1s
+        FvOPnGO1+P/oNavFjw2nmC3ONr1ht9j0+BqrxeVdc9gsPvceYbT49OA/s8XtxhVsFq17j7A7
+        8HjMbrjI4rFpVSebx+Yl9R5/Z+1n8ejbsorRY/u1ecwenzfJBbBHcdmkpOZklqUW6dslcGWs
+        //+bueCZeEXzpSvMDYwtwl2MnBwSAiYSzze9YAWxhQR2M0qsPOoHEZeUmHbxKHMXIweQLSxx
+        +HBxFyMXUMlbRonlfxYwgdQICzhJTHq7kRnEFhE4ySix4pUQiM0s8I5RYuH3LIiGyYwSbw6f
+        AGtgE9CS2P/iBhuIzS+gKHH1x2NGEJtXwE5ixrQ9jCDLWARUJa4dKwQJiwqESexc8pgJokRQ
+        4uTMJywgNqeAg8SJb5fYIXapS/yZd4kZwhaXuPVkPhOELS+x/e0c5gmMwrOQtM9C0jILScss
+        JC0LGFlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIEx6OW5g7G7as+6B1iZOJgPMQo
+        wcGsJML777dxkhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeC10n44UE0hNLUrNTUwtSi2CyTByc
+        Ug1Mez4HP5mq+bIrXNRWLkj5trvPKsNFZ2UDu3mzJT77V/yrr5N5nekkJPo2pa3uxoVbAT/m
+        3ll1Rkwpwln98+TGOydZxeTbNEuzDx0XfWT68YH13puBNelNC4Tj6x3u763LWBN37/JE6Z/v
+        GB7civp6+/vM/QJLxIolH5m6zQjkuXSqvt1uxYRtkU61p8zM//1Y5mSZvE/eXH/TiUtJWeUq
+        CQoF4ssrI37Uv8jOKe0QnNrxgtGvtCFkzmuZAIZzvx9+36d0oe6ttPmk5btlLxUJ7ImZZ3el
+        LeY0N2tCvEOh3eFj2i8uez0WU//91dRox//+Hw8lflV+XHbnXGvelGUN23LuRE6KX/Y+btqc
+        PF03JZbijERDLeai4kQAdAGeuTYDAAA=
+X-CMS-MailID: 20220321031425epcas1p21cc0552e9712818d95b39747cfc3166a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220308190916epcas1p1baf4361cc5f33a90b38b01be7ffa748d
+References: <CGME20220308190916epcas1p1baf4361cc5f33a90b38b01be7ffa748d@epcas1p1.samsung.com>
+        <20220308190901.3144566-1-briannorris@chromium.org>
+X-Spam-Status: No, score=-6.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,65 +126,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBLcnp5c3p0b2Y6DQoNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvbW1jL3N1bnBsdXMsbW1jLnlhbWwNCj4gPiBAQCAtMCwwICsxLDc5IEBADQo+ID4gKyMg
-U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKSAj
-IENvcHlyaWdodA0KPiA+ICsoQykgU3VucGx1cyBMdGQuIENvLiAyMDIxICVZQU1MIDEuMg0KPiA+
-ICstLS0NCj4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9tbWMvc3VucGx1
-cyxtbWMueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2No
-ZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogc3VucGx1cyBNTUMgY29udHJvbGxl
-cg0KPiANCj4gcy9zdW5wbHVzL1N1bnBsdXMvDQo+IA0KDQpCZWxvdyBpcyBteSBtb2RpZmljYXRp
-b246DQp0aXRsZTogU3VucGx1cyBNTUMgQ29udHJvbGxlcg0KDQo+ID4gKw0KPiA+ICthbGxPZjoN
-Cj4gPiArICAtICRyZWY6ICJtbWMtY29udHJvbGxlci55YW1sIg0KPiANCj4gYWxsT2YgYmVsb3cg
-bWFpbnRhaW5lcnMsDQo+IA0KDQpJIHdpbGwgbW9kaWZ5IGl0Lg0KDQo+ID4gKw0KPiA+ICttYWlu
-dGFpbmVyczoNCj4gPiArICAtIFRvbnkgSHVhbmcgPHRvbnlodWFuZy5zdW5wbHVzQGdtYWlsLmNv
-bT4NCj4gPiArICAtIExpLWhhbyBLdW8gPGxoamVmZjkxMUBnbWFpbC5jb20+DQo+ID4gKw0KPiA+
-ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBlbnVtOg0KPiA+ICsg
-ICAgICAtIHN1bnBsdXMsbW1jLXYxDQo+ID4gKyAgICAgIC0gc3VucGx1cyxtbWMtdjINCj4gDQo+
-IEhvdyBkaWQgdGhpcyBoYXBwZW4/IFZlcnNpb25zIG9mIGJsb2NrcyBhcmUgdXN1YWxseSBkaXNj
-b3VyYWdlZCwgdW5sZXNzIHlvdQ0KPiBoYXZlIGNsZWFyIHNwZWNpZmljYXRpb24sLiBUaGUgcHJl
-dmlvdXMgZGlzY3Vzc2lvbiBkaWQgbm90IGVuZCB3aXRoICJhZGQgdjEgYW5kDQo+IHYyIi4NCj4g
-DQo+IERvIHlvdSBoYXZlIGNsZWFyIGRvY3VtZW50YXRpb24vc3BlY2lmaWNhdGlvbiBvZiB0aGVz
-ZSBibG9ja3M/IElmIG5vLCBwbGVhc2UNCj4gdXNlIFNvQyBjb21wYXRpYmxlcy4NCj4gDQoNCnYx
-OiBzdXBwb3J0IFNESU8gMi4wCQkJCQkJCQ0KdjI6IHN1cHBvcnQgZU1NQyA0LjQxCQkJCQkJCQ0K
-VGhlIHJlZ2lzdGVyIGJhc2UgYWRkcmVzcyBhbmQgb2Zmc2V0IGFkZHJlc3Mgb2YgZW1tYyBhbmQg
-c2QgY2FyZCBhcmUgZGlmZmVyZW50LgkJCQkJCQkNCmVNTUMgYW5kIHNkY2FyZCBhcmUgaW5kaXZp
-ZHVhbCBoYXJkd2FyZSBzZXR0aW5ncwkJCQkJCQkNCldlIG5lZWQgdmVyc2lvbiB0byBkaXN0aW5n
-dWlzaCBkaWZmZXJlbnQgc3BlZWRzCQkJCQkJCQ0KDQo+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiAr
-ICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGludGVycnVwdHM6DQo+ID4gKyAgICBtYXhJ
-dGVtczogMQ0KPiA+ICsNCj4gPiArICBjbG9ja3M6DQo+ID4gKyAgICBtaW5JdGVtczogMQ0KPiAN
-Cj4gbWF4SXRlbXMNCj4gDQoNCkkgd2lsbCBtb2RpZnkgaXQuDQoNCj4gPiArDQo+ID4gKyAgcmVz
-ZXRzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgbWF4LWZyZXF1ZW5jeTog
-dHJ1ZQ0KPiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAg
-LSByZWcNCj4gPiArICAtIGludGVycnVwdHMNCj4gPiArICAtIGNsb2Nrcw0KPiA+ICsgIC0gcmVz
-ZXRzDQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+
-ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9p
-bnRlcnJ1cHQtY29udHJvbGxlci9pcnEuaD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5n
-cy9pbnRlcnJ1cHQtY29udHJvbGxlci9hcm0tZ2ljLmg+DQo+ID4gKyAgICBtbWMwOiBtbWNAOWMw
-MDNiMDAgew0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAic3VucGx1cyxtbWMtdjIiOw0KPiA+
-ICsgICAgICAgIHJlZyA9IDwweDljMDAzYjAwIDB4MTgwPjsNCj4gPiArICAgICAgICBpbnRlcnJ1
-cHRzID0gPDIwIElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+ICsgICAgICAgIGNsb2NrcyA9IDwm
-Y2xrYyAweDRlPjsNCj4gPiArICAgICAgICByZXNldHMgPSA8JnJzdGMgMHgzZT47DQo+ID4gKyAg
-ICAgICAgYnVzLXdpZHRoID0gPDg+Ow0KPiA+ICsgICAgICAgIG1heC1mcmVxdWVuY3kgPSA8NTIw
-MDAwMDA+Ow0KPiA+ICsgICAgICAgIG5vbi1yZW1vdmFibGU7DQo+ID4gKyAgICAgICAgZGlzYWJs
-ZS13cDsNCj4gPiArICAgICAgICBjYXAtbW1jLWhpZ2hzcGVlZDsNCj4gPiArICAgICAgICBtbWMt
-ZGRyLTNfM3Y7DQo+ID4gKyAgICAgICAgbm8tc2RpbzsNCj4gPiArICAgICAgICBuby1zZDsNCj4g
-PiArICAgIH07DQo+ID4gKw0KPiA+ICsgICAgbW1jMTogbW1jQDljMDAzZTgwIHsNCj4gPiArICAg
-ICAgIGNvbXBhdGlibGUgPSAic3VucGx1cyxtbWMtdjEiOw0KPiA+ICsgICAgICAgcmVnID0gPDB4
-OWMwMDNlODAgMHgyODA+Ow0KPiA+ICsgICAgICAgaW50ZXJydXB0cyA9IDwyMSBJUlFfVFlQRV9M
-RVZFTF9ISUdIPjsNCj4gPiArICAgICAgIGNsb2NrcyA9IDwmY2xrYyAweDRmPjsNCj4gPiArICAg
-ICAgIHJlc2V0cyA9IDwmcnN0YyAweDNmPjsNCj4gPiArICAgICAgIHBpbmN0cmwtbmFtZXMgPSAi
-ZGVmYXVsdCI7DQo+ID4gKyAgICAgICBwaW5jdHJsLTAgPSA8Jm1tYzFfbXV4ICZtbWMxX211eF9j
-ZD47DQo+ID4gKyAgICAgICBtYXgtZnJlcXVlbmN5ID0gPDUyMDAwMDAwPjsNCj4gPiArICAgICAg
-IGRpc2FibGUtd3A7DQo+ID4gKyAgICAgICBjYXAtc2QtaGlnaHNwZWVkOw0KPiA+ICsgICAgICAg
-bm8tc2RpbzsNCj4gPiArICAgICAgIG5vLW1tYzsNCj4gPiArICAgIH07DQo+ID4gZGlmZiAtLWdp
-dCBhL01BSU5UQUlORVJTIGIvTUFJTlRBSU5FUlMgaW5kZXggZmIxOGNlNy4uMmQ5MTQzMSAxMDA2
-NDQNCj4gPiAtLS0gYS9NQUlOVEFJTkVSUw0KPiA+ICsrKyBiL01BSU5UQUlORVJTDQo+ID4gQEAg
-LTE4MjQyLDYgKzE4MjQyLDEyIEBAIEw6CW5ldGRldkB2Z2VyLmtlcm5lbC5vcmcNCj4gPiAgUzoJ
-TWFpbnRhaW5lZA0KPiA+ICBGOglkcml2ZXJzL25ldC9ldGhlcm5ldC9kbGluay9zdW5kYW5jZS5j
-DQo+ID4NCj4gPiArU1VOUExVUyBNTUMgRFJJVkVSDQo+ID4gK006CVRvbnkgSHVhbmcgPHRvbnlo
-dWFuZy5zdW5wbHVzQGdtYWlsLmNvbT4NCj4gPiArTTogTGktaGFvIEt1byA8bGhqZWZmOTExQGdt
-YWlsLmNvbT4NCj4gDQo+IFdyb25nIGluZGVudGF0aW9uLg0KDQpJIHdpbGwgbW9kaWZ5IGl0Lg0K
-DQo+IA0KPiA+ICtTOglNYWludGFpbmVkDQo+ID4gK0Y6CURvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9tbWMvc3VucGx1LG1tYy55YW1sDQo+IA0KPiBXcm9uZyBmaWxlIG5hbWUuDQo+
-IA0KDQpJIHdpbGwgbW9kaWZ5IGl0Lg0KDQo=
+Hi Brian,
+
+
+On 3/9/22 4:08 AM, Brian Norris wrote:
+> This series covers 2 primary tasks:
+> 
+> 1) Resubmit prior work:
+> 
+> [RESEND PATCH v5 3/4] arm64: dts: rockchip: Enable dmc and dfi nodes on gru.
+> https://lore.kernel.org/lkml/20210308233858.24741-2-daniel.lezcano@linaro.org/
+> [RESEND PATCH v5 2/4] arm64: dts: rk3399: Add dfi and dmc nodes.
+> https://lore.kernel.org/lkml/20210308233858.24741-3-daniel.lezcano@linaro.org/
+> 
+> This series was partially merged a while back, but the remaining 2
+> patches were blocked mostly on stylistic grounds (alpha/numerical
+> ordering).
+> 
+> 2) Integrate many updates, bugfixes, and clarifications that were done
+> by Rockchip and Google engineers when first launching this platform.
+> Many of these were not integrated in the earlier series (e.g., the OPPs
+> changed before production; earlier patchsets used pre-production
+> numbers).
+> 
+> Along the way, it seemed worthwhile to convert the binding docs to a
+> schema. Among other reasons, it actually helped catch several errors and
+> omissions in translation between downstream device trees and the version
+> that actually landed upstream.
+> 
+> See the patches for further details.
+> 
+> Regards,
+> Brian
+> 
+> Changes in v4:
+>  * Update .yaml to use more "default" entries, instead of free-form text
+>  * s/phandle-array/phandle/
+>  * Move to .../memory-controllers, update filename
+> 
+> Changes in v3:
+>  * Add |maxItems| for devfreq-events
+>  * Improve deprecation notes
+>  * Add Reviewed-by tags
+>  * Collect some Acked/Reviewed tags
+> 
+> Changes in v2:
+>  * Fix yamllint issues
+>  * Adapt to various review comments (use of *-hz, hyphens, node naming)
+>  * Add a few new bugfixes
+>  * Add some new properties (ported from downstream kernels) required for
+>    stability
+>  * Convert more properties from "cycles" to "nanoseconds"
+> 
+> Brian Norris (13):
+>   dt-bindings: devfreq: rk3399_dmc: Convert to YAML
+>   dt-bindings: devfreq: rk3399_dmc: Deprecate unused/redundant
+>     properties
+>   dt-bindings: devfreq: rk3399_dmc: Fix Hz units
+>   dt-bindings: devfreq: rk3399_dmc: Specify idle params in nanoseconds
+>   dt-bindings: devfreq: rk3399_dmc: Add more disable-freq properties
+>   PM / devfreq: rk3399_dmc: Drop undocumented ondemand DT props
+>   PM / devfreq: rk3399_dmc: Drop excess timing properties
+>   PM / devfreq: rk3399_dmc: Use bitfield macro definitions for ODT_PD
+>   PM / devfreq: rk3399_dmc: Support new disable-freq properties
+>   PM / devfreq: rk3399_dmc: Support new *-ns properties
+>   PM / devfreq: rk3399_dmc: Disable edev on remove()
+>   PM / devfreq: rk3399_dmc: Use devm_pm_opp_of_add_table()
+>   PM / devfreq: rk3399_dmc: Avoid static (reused) profile
+> 
+> Lin Huang (2):
+>   arm64: dts: rk3399: Add dfi and dmc nodes
+>   arm64: dts: rockchip: Enable dmc and dfi nodes on gru
+
+
+Applied them except for patch11/patch12 about dts patches.
+
+Thanks for your work.
+Chanwoo Choi
+
+
+
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
