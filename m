@@ -2,65 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1812D4E26CF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 13:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB204E26DB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 13:47:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344686AbiCUMrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 08:47:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52700 "EHLO
+        id S244356AbiCUMs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 08:48:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238218AbiCUMrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 08:47:08 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E889972B8;
-        Mon, 21 Mar 2022 05:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Kom58yxs7t2K4oUdufJDsnhiLyTppH8H97t+BIi+2pk=; b=slgidefFqclK1P2DulHa23qtke
-        XdtDCFXKdxr6o3iNY/j5BBLZnNK0Z+vzk8r7RBzyksdnKoCWYMc7c1EE2cmB1NHA791AuDvM89EP9
-        7bL01GhWrQtv0Y3iM0BiLxgv1hf23yB+6VEnT9I1Zya4p+15aU9IZ0qYmpwr69JcIKwE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nWHPe-00BweU-Bh; Mon, 21 Mar 2022 13:45:30 +0100
-Date:   Mon, 21 Mar 2022 13:45:30 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Dylan Hung <dylan_hung@aspeedtech.com>
-Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH v2 0/3]  Add reset deassertion for Aspeed MDIO
-Message-ID: <YjhzatUg09SoH9DR@lunn.ch>
-References: <20220321095648.4760-1-dylan_hung@aspeedtech.com>
+        with ESMTP id S241799AbiCUMs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 08:48:57 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968E18FE41
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 05:47:32 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id 8so1162950ilq.4
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 05:47:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bf6DH+83XG8UE1e9L+UJGLGGrgMRp+G3nSV6FxSx3p0=;
+        b=2+nnDfCOIo+wapK4Fsw1/CMxpQHiYfchtA3lKnkkLW2n0e/mFe3/MnlTXlC/4/QBpl
+         CizrzlKJaalZuGx+OynSaQbhjyaIuK/5DQbHzX86KCyI/zZ2cHnyEhQ31e2LDfvBskIY
+         Z87nONGY6nFDgh0ubTjSnlTyd6X7tccWuzTGo+1HuZvdE099FCAo9IYRIQutdhdMFlgV
+         0QaPjftSSRgPyHklRoXrPU2/+UPiv1yr8pKQt6/yGu4GLUUR7HSG5nWNPfjQP55/pPsW
+         DT7Ml6mwARyrYwaI+uB5jIGZtN01eVD9G0QoV3fq4vunk5/o3XDhLMcof6Dxl0COVG9L
+         Am5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bf6DH+83XG8UE1e9L+UJGLGGrgMRp+G3nSV6FxSx3p0=;
+        b=lT37NSjlCXHO8jEJLc4U98JjwXyOL/1fTz8mvZfMz9YBvtFtmT+kEzb6pmNLODDA7/
+         IrIDcN5otBxAzF7P3Ub30HDH+JkGE+/O/F2pBKJIod42Po+YDGPU40Um5gzqE9EYWl+o
+         Nydk+a4bTbbRE8PGloGFqPk7+IVv2a1fFXewuPePhqfDNL6wjaIURAGUAsRAcYFo4WBn
+         zguBcipKjG78hA1DTxeEZgsNabzVulsDbdaPHZqrpFCpg1RlhmjNfyM+UKIUu9ws0t4b
+         nyRSI7Gzk0tFfs9NX1Q0EGewDMOZhFeNhSEyybvcbnT3Eky8TGQmPlRv4Bm6551Y8qk+
+         /hKQ==
+X-Gm-Message-State: AOAM532J0IXxL9eVUkZ1RiPxMVJMxjllR04hyicgVDLcWigzL6Ihgupo
+        Gpm5TnisjVSbAW854vWBGiekMPVRnmZGipNMf19K0A==
+X-Google-Smtp-Source: ABdhPJw4UQDKLYFVVqjgpcun+5W07OdW05mbWbRHUidXIal0bk0/wI/AZ1HJJmi4rMd46egCWYTbbm13zieLMkY31bg=
+X-Received: by 2002:a05:6e02:20c5:b0:2c6:14c9:35dd with SMTP id
+ 5-20020a056e0220c500b002c614c935ddmr9894325ilq.129.1647866851755; Mon, 21 Mar
+ 2022 05:47:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220321095648.4760-1-dylan_hung@aspeedtech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220321121728.414839-1-robert.marko@sartura.hr> <Yjhyg5cNe5KZ6SOp@lunn.ch>
+In-Reply-To: <Yjhyg5cNe5KZ6SOp@lunn.ch>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Mon, 21 Mar 2022 13:47:21 +0100
+Message-ID: <CA+HBbNHw5v+R5WHPTvNj7oVtz0szsCm=JCXPFRtUf2GW7Qz35Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: uDPU: update partition table
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 05:56:45PM +0800, Dylan Hung wrote:
-> Add missing reset deassertion for Aspeed MDIO. There are 4 MDIOs embedded
-> in Aspeed AST2600 and share one reset control bit SCU50[3].
+On Mon, Mar 21, 2022 at 1:41 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Mar 21, 2022 at 01:17:27PM +0100, Robert Marko wrote:
+> > Partition currently called "uboot" does not only contain U-boot, but
+> > rather it contains TF-A, U-boot and U-boot environment.
+> >
+> > So, to avoid accidentally deleting the U-boot environment which is
+> > located at 0x180000 split the partition.
+> >
+> > "uboot" is not the correct name as you can't boot these boards with U-boot
+> > only, TF-A must be present as well, so rename the "uboot" partition to
+> > "firmware".
+>
+> Are there any ABI issues here? If these names are being used
+> somewhere, you are potentially breaking the boot. At minimum, i would
+> like to see something in the commit message which indicates you have
+> considered this and why you don't expect it to be a problem.
 
-Hi Dylan
+Hi Andrew, this won't break booting as BootROM does not care about
+partitions nor naming, it will just go to 0x0 of the NOR and boot it.
 
-Please wait at least 24 hours between posting versions, to give other
-people times to comment.
+The same renaming had already been done:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/arch/arm64/boot/dts/marvell?h=v5.17&id=a9d9bfcadfb43b856dbcf9419de75f7420d5a225
 
-The danger here is that my comments on the previous version are going
-to get ignored, and this version merged containing the issues i
-pointed out.
+I can update the commit message if required.
+Regards,
+Robert
 
-	Andrew
+>
+>            Andrew
+
+
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
