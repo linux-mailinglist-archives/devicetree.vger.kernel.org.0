@@ -2,169 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A194E3091
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7242B4E30B4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352473AbiCUTMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 15:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39868 "EHLO
+        id S1352631AbiCUTUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 15:20:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352114AbiCUTMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:12:33 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F5016F048
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 12:11:03 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id u22so4929859pfg.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 12:11:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Y8xKsOKQoYHLByfOe51jB9Pdd/Kku28PTFesOqH+BHQ=;
-        b=a/wUtTrzJZ88ZdS3AVoW24UHEU68v+xnSwdesJpUMBwCbIZfekHcio2TCKhij0nOpa
-         OCjgj8Per1gAFGqZxA2+1s7a6nhUvF0BOqHNJseprvbjc82DetVtxab7DzbtCBgpfTHx
-         pJjaI/x8xXG46eJozZgliPjtIlsw6f/Uzo58M=
+        with ESMTP id S1352620AbiCUTT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:19:56 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA72C1CB00;
+        Mon, 21 Mar 2022 12:18:23 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id g5-20020a4ae885000000b003240bc9b2afso20385069ooe.10;
+        Mon, 21 Mar 2022 12:18:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Y8xKsOKQoYHLByfOe51jB9Pdd/Kku28PTFesOqH+BHQ=;
-        b=1tcOgm/ST7HwgOKzwszTra2rai/3ItPS8wNAZYLMe3CkGLQQriMQWPD9Je1c2F1N2F
-         rFnppLBg/MGK5eHCzppNB+TCrVvulvWM5w0Mic21ZzPgXgbUtQIfohUnX+I3jwSl/0RZ
-         f62dwMW1vbRK2yuJ6gHWgYuRtQLxSRdeu2uksV6u64FIHY5chNnv6fZ84fN26r9A8KRD
-         88ti+vMrxmsbfzAblk6+F8DlpQgYA0AQ5DQtAtJMyAAg1i4MTg+fYIQMdluaAjUBFoFQ
-         B8sy3hjWOTnAm9fiySIE9b/uOh45IVMQ/GmTs+4OLa+ZiVc64q8ywOiOaC7YHb/Cr5lU
-         9UeA==
-X-Gm-Message-State: AOAM532CHQ5E2uBouwyDEHuwssEUcS32saBT+LrfS8pZkoAaKiMeVp8j
-        BxoMHO/txHZEz5A8JsZSEbExPQ==
-X-Google-Smtp-Source: ABdhPJzcynlfZI6q4Y8x/ntQYEEgl6MQIbVAzndxpP1vJNsgWD1rHv5EflpnTaA945avao1y2ykHVg==
-X-Received: by 2002:a65:6d0c:0:b0:382:a4b1:c93 with SMTP id bf12-20020a656d0c000000b00382a4b10c93mr2390953pgb.237.1647889863416;
-        Mon, 21 Mar 2022 12:11:03 -0700 (PDT)
-Received: from smtp.gmail.com ([2620:15c:202:201:2ffa:f7a0:c7f5:8171])
-        by smtp.gmail.com with ESMTPSA id y14-20020a056a001c8e00b004fa829db45csm3384022pfw.218.2022.03.21.12.11.02
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=zQsaTPyUZRrtGSfO6Vj1TGY8oZRoTuE+VKGytgXpzzg=;
+        b=ArfqrP/y9oMW41ohoQWgFyxLlp0YQJDQtYwixlje6FqdqSX7xsXFpyQ3Y8fFrzTq+8
+         G992R8z93KzTzdc0geJd/2AzL2Rw2NXcuIMqdLTuueSxh6hwzR3UjzoJrTVQblIorKFQ
+         tp4wqYToVKGqwr/4lDNBT8jbWRcmgM+ymcP8YnGOH8560o1s99diInjoYdhHoNuxqA5z
+         C0FVGJlkxBocvHjdZbcl9N61imorABWqC08fhAQeebc7KqFdI7EUViCShQYW+jvIqzHg
+         wy0zolfds/z+emDcW89nJytL9Ked5Tj3dnixXCcNJLgM6Qpnq4lE8mAy2DrwnS2XQ2VO
+         CHHg==
+X-Gm-Message-State: AOAM532TsoJGio3TXYkpYJBuj+YuYFn5exyKxYwAPTPvXDYM5p5sheFB
+        tTneqD8M69rG8v585laoNQ==
+X-Google-Smtp-Source: ABdhPJzHrejqYtTO7cVO+lZa5TGwJfswtpENqFTFNjyk0JeJ7ytAcURFYCvK/4bCrBstINdyYiBs7Q==
+X-Received: by 2002:a05:6870:d207:b0:de:1872:fe43 with SMTP id g7-20020a056870d20700b000de1872fe43mr271409oac.242.1647890303057;
+        Mon, 21 Mar 2022 12:18:23 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 15-20020aca110f000000b002da58c4ec52sm7835920oir.6.2022.03.21.12.18.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 12:11:03 -0700 (PDT)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Benson Leung <bleung@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v4 1/3] dt-bindings: chrome: Add ChromeOS fingerprint binding
-Date:   Mon, 21 Mar 2022 12:10:57 -0700
-Message-Id: <20220321191100.1993-2-swboyd@chromium.org>
-X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
-In-Reply-To: <20220321191100.1993-1-swboyd@chromium.org>
-References: <20220321191100.1993-1-swboyd@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Mon, 21 Mar 2022 12:18:21 -0700 (PDT)
+Received: (nullmailer pid 394706 invoked by uid 1000);
+        Mon, 21 Mar 2022 19:18:20 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>
+In-Reply-To: <20220321153855.12082-19-ansuelsmth@gmail.com>
+References: <20220321153855.12082-1-ansuelsmth@gmail.com> <20220321153855.12082-19-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v5 18/18] dt-bindings: arm: msm: Convert kpss-gcc driver Documentation to yaml
+Date:   Mon, 21 Mar 2022 14:18:20 -0500
+Message-Id: <1647890300.369438.394705.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding to describe the fingerprint processor found on Chromebooks
-with a fingerprint sensor. Previously we've been describing this with
-the google,cros-ec-spi binding but it lacks gpio and regulator control
-used during firmware flashing.
+On Mon, 21 Mar 2022 16:38:55 +0100, Ansuel Smith wrote:
+> Convert kpss-gcc driver Documentation to yaml. Since kpss-gcc expose a
+> clock add the required '#clock-cells' binding while converting it.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ------------
+>  .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 68 +++++++++++++++++++
+>  2 files changed, 68 insertions(+), 44 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+> 
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Guenter Roeck <groeck@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Cc: Craig Hesling <hesling@chromium.org>
-Cc: Tom Hughes <tomhughes@chromium.org>
-Cc: Alexandru M Stan <amstan@chromium.org>
-Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-Cc: Matthias Kaehlcke <mka@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- .../bindings/chrome/google,cros-ec-fp.yaml    | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-new file mode 100644
-index 000000000000..b7fbaaa94d65
---- /dev/null
-+++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ChromeOS Embedded Fingerprint Controller
-+
-+description:
-+  Google's ChromeOS embedded fingerprint controller is a device which
-+  implements fingerprint functionality such as unlocking a Chromebook
-+  without typing a password.
-+
-+maintainers:
-+  - Tom Hughes <tomhughes@chromium.org>
-+
-+properties:
-+  compatible:
-+    const: google,cros-ec-fp
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 3000000
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios: true
-+  boot0-gpios:
-+    maxItems: 1
-+    description: Assert for bootloader mode.
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - boot0-gpios
-+  - vdd-supply
-+  - spi-max-frequency
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+      #address-cells = <0x1>;
-+      #size-cells = <0x0>;
-+      ec@0 {
-+        compatible = "google,cros-ec-fp";
-+        reg = <0>;
-+        interrupt-parent = <&gpio_controller>;
-+        interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-+        spi-max-frequency = <3000000>;
-+        reset-gpios = <&gpio_controller 5 GPIO_ACTIVE_LOW>;
-+        boot0-gpios = <&gpio_controller 10 GPIO_ACTIVE_HIGH>;
-+        vdd-supply = <&pp3300_fp_mcu>;
-+      };
-+    };
-+...
--- 
-https://chromeos.dev
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/1607841
+
+
+clock-controller@2011000: '#clock-cells' is a required property
+	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
+	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
+
+clock-controller@2011000: compatible:0: 'qcom,kpss-gcc' is not one of ['qcom,kpss-gcc-ipq8064', 'qcom,kpss-gcc-apq8064', 'qcom,kpss-gcc-msm8974', 'qcom,kpss-gcc-msm8960']
+	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
+	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
+
+clock-controller@2011000: compatible:1: 'qcom,kpss-gcc' was expected
+	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
+	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
 
