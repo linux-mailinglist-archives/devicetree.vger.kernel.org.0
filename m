@@ -2,171 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D72C4E2571
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 12:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0894E25CC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 12:57:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241385AbiCULuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 07:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35726 "EHLO
+        id S1346983AbiCUL6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 07:58:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344286AbiCULuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 07:50:20 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05FBA51308
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 04:48:52 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220321114851epoutp036f659ef9562a4f6e73dc90bf9eca4d6b~eYvgERHjO2475224752epoutp03i
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 11:48:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220321114851epoutp036f659ef9562a4f6e73dc90bf9eca4d6b~eYvgERHjO2475224752epoutp03i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1647863331;
-        bh=cVmbILAOErI1/Ntsxmq2/4Qe7dFI/4RFsr+Bznbjtw8=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=pcFxUeREUOsvZdn8AEOy0RCSKTnVLZg9SLyQUXVuKrk/GBN2MTXNSLimAeJeA0y86
-         2MUS/5k3opwH1t79bltOLravq2dQHYdxVk9teDhEXPYQi7tPWCIlV2AgRuJdMVUrqV
-         NhwJ7Tckc+mZ0S1x3U3hMxA1JAuLvbO34WqQjWWk=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20220321114850epcas5p3cc7ef564bef30093d8c9e293a2309268~eYvfHHhAE1354413544epcas5p3G;
-        Mon, 21 Mar 2022 11:48:50 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.181]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4KMXvJ0FVVz4x9Q7; Mon, 21 Mar
-        2022 11:48:44 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        CA.B0.12523.B1668326; Mon, 21 Mar 2022 20:48:43 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220321114843epcas5p2d8ed09bcc95965e899ec9bf9f2e538a3~eYvY5nEdP0791907919epcas5p2x;
-        Mon, 21 Mar 2022 11:48:43 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220321114843epsmtrp1446a9dd71c1fe67c0a621fc60828fa9c~eYvY4xl033127731277epsmtrp1Q;
-        Mon, 21 Mar 2022 11:48:43 +0000 (GMT)
-X-AuditID: b6c32a4a-5b7ff700000030eb-16-6238661be9e5
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        29.A8.03370.B1668326; Mon, 21 Mar 2022 20:48:43 +0900 (KST)
-Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220321114839epsmtip2303f733938f43f5bc9ee880d74948e4f~eYvVei-_J1710117101epsmtip2U;
-        Mon, 21 Mar 2022 11:48:38 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Luca Weiss'" <luca.weiss@fairphone.com>,
-        <linux-arm-msm@vger.kernel.org>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
-        "'Avri Altman'" <avri.altman@wdc.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
-        <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-In-Reply-To: <20220318183004.858707-2-luca.weiss@fairphone.com>
-Subject: RE: [PATCH 1/6] scsi: ufs: dt-bindings: Add SM6350 compatible
- string
-Date:   Mon, 21 Mar 2022 17:18:37 +0530
-Message-ID: <002001d83d19$9d596d70$d80c4850$@samsung.com>
+        with ESMTP id S1347197AbiCUL6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 07:58:39 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F5501575A2;
+        Mon, 21 Mar 2022 04:57:12 -0700 (PDT)
+X-UUID: 6e93e3f35d1c45c6acda66a5e805f1af-20220321
+X-UUID: 6e93e3f35d1c45c6acda66a5e805f1af-20220321
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 915159880; Mon, 21 Mar 2022 19:51:58 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 21 Mar 2022 19:51:56 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Mar 2022 19:51:55 +0800
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Axe Yang <axe.yang@mediatek.com>, Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v8 0/3] mmc: mediatek: add support for SDIO async IRQ
+Date:   Mon, 21 Mar 2022 19:51:31 +0800
+Message-ID: <20220321115133.32121-1-axe.yang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQDZaQauO888J59Marq/WZ4JfNFAKQH2rYCJAgAjn6Sup6oXsA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMJsWRmVeSWpSXmKPExsWy7bCmuq50mkWSwfMmK4tzj3+zWLz8eZXN
-        4vT+dywW84+cY7V4Oesem8XE/WfZLS7vmsNm0X19B5vFwxVGFgv+2Fm07j3CbrH5+19GBx6P
-        tqaXrB6bVnWyedy5tofN4/+dtewenzfJebQf6GYKYIvKtslITUxJLVJIzUvOT8nMS7dV8g6O
-        d443NTMw1DW0tDBXUshLzE21VXLxCdB1y8wBOlFJoSwxpxQoFJBYXKykb2dTlF9akqqQkV9c
-        YquUWpCSU2BSoFecmFtcmpeul5daYmVoYGBkClSYkJ0xZ9EBpoLZPBXn3jeyNTDO5+pi5OSQ
-        EDCR6Pq8mh3EFhLYzSjx5b8ehP0JyO5JgLA/M0pMOWcNU/9nyWtmiPguRolJDeZdjFxA9ktG
-        iQs3PzOBJNgEdCV2LG5jA7FFBAIkTm07wgJSxCzQyCyx7f0NFpAEp4C9xNz+TrBJwgL+Ekum
-        LQGLswioSvya9RnsIl4BS4mrf2dC2YISJ2c+AathFpCX2P52DjPERQoSP58uY4VY5iTxbvMi
-        qBpxiZdHj7CDLJYQOMAh8erTW0aIBheJIyvuskDYwhKvjm9hh7ClJF72twHZHEB2tkTPLmOI
-        cI3E0nnHoMrtJQ5cmcMCUsIsoCmxfpc+xCo+id7fT5ggOnklOtqEIKpVJZrfXYXqlJaY2N3N
-        CmF7SDTtP8g8gVFxFpLHZiF5bBaSB2YhLFvAyLKKUTK1oDg3PbXYtMAoL7UcHtnJ+bmbGMGp
-        V8trB+PDBx/0DjEycTAeYpTgYFYS4V38wTxJiDclsbIqtSg/vqg0J7X4EKMpMLQnMkuJJucD
-        k39eSbyhiaWBiZmZmYmlsZmhkjjv6fQNiUIC6YklqdmpqQWpRTB9TBycUg1MRva3q9u4fybf
-        lCp72bN1tZ2z7Kd5Zp895y5N4ni681/N0ZxtURPkL8td8Et+HHZ/UlyDYcS3XZKqV6b5zM/j
-        f7Qtu0Ku4HSrtEtf058TgkKR7xTX7xCYy2m56OnTwowrCWZF158sSRFU2Cvg6PjsDe/S5Zvc
-        tq/81VEw8fNhkd+HJ92taY9qU4jwl9rRvDHIYuVSHce9jZ69EvkFezu6OPbGbjZ8//95qOTt
-        5bPepLT75N4+u/9/7h4dy27TwnrhY1eP6mSt2vvnG4d0aI+C4cuzd/6lb3l9SOPny8C1FXIL
-        tVvvT/BRfXKfqT+wuCvfNHVd6bQZaw/3qDsfuvLM+vvk3xt6VL7zMq68fjC7VImlOCPRUIu5
-        qDgRAKWQDDNGBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLIsWRmVeSWpSXmKPExsWy7bCSvK50mkWSwdNH3BbnHv9msXj58yqb
-        xen971gs5h85x2rxctY9NouJ+8+yW1zeNYfNovv6DjaLhyuMLBb8sbNo3XuE3WLz97+MDjwe
-        bU0vWT02repk87hzbQ+bx/87a9k9Pm+S82g/0M0UwBbFZZOSmpNZllqkb5fAlTFn0QGmgtk8
-        FefeN7I1MM7n6mLk5JAQMJH4s+Q1M4gtJLCDUeLkXHmIuLTE9Y0T2CFsYYmV/54D2VxANc8Z
-        JVbv2scCkmAT0JXYsbiNDcQWEQiQOLXtCAtIEbNAJ7PEtI3rWSGmHmaUWLVAC8TmFLCXmNvf
-        CbZNWMBXYvIFiEEsAqoSv2Z9BtvGK2ApcfXvTChbUOLkzCdANRxAQ/Uk2jYygoSZBeQltr+d
-        wwxxnILEz6fLWCFucJJ4t3kRC0SNuMTLo0fYJzAKz0IyaRbCpFlIJs1C0rGAkWUVo2RqQXFu
-        em6xYYFRXmq5XnFibnFpXrpecn7uJkZwDGpp7WDcs+qD3iFGJg7GQ4wSHMxKIryLP5gnCfGm
-        JFZWpRblxxeV5qQWH2KU5mBREue90HUyXkggPbEkNTs1tSC1CCbLxMEp1cA0v1LzmITT6rle
-        LEf0/CPvZXBHcbfali9/Xr3rg/ebM1e2GPFx7U5knxSSzfuswzNx6q5gyUNHLqWc58j948y0
-        zX5fgc7z+gW/+R/clk17bTZhtVzTV2Uutb3dSTdWnf5Sy36/tOpb9Pa4a/p63xJkeM2kc47e
-        LpyXO3PGrp4/u6V3v9zp+fTTOsttDUu1D8dd1WLMZ7l8Ycph013OK0I/52zX8Nry4vcO/Yda
-        cfL2rgaVWTFSVr1vHyrxPGJY25+yIblcZ/7xh18fbGtL5BRgO/9e7+y6WPtLvFZOk/UVfryf
-        5VJR/VTpidvjTIX234vSF8Uc3RNeqHNp+tTlEl68s6IDNvZqfv8/O8j587E/SizFGYmGWsxF
-        xYkAwgxR7TADAAA=
-X-CMS-MailID: 20220321114843epcas5p2d8ed09bcc95965e899ec9bf9f2e538a3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220318183030epcas5p46eab9485e0e7d19a249759ef44e29928
-References: <20220318183004.858707-1-luca.weiss@fairphone.com>
-        <CGME20220318183030epcas5p46eab9485e0e7d19a249759ef44e29928@epcas5p4.samsung.com>
-        <20220318183004.858707-2-luca.weiss@fairphone.com>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v8:
+- remove maxItems property under pinctrl-names property
 
+Changes in v7:
+- add device_init_wakeup() to register SDIO host as wakeup source
 
->-----Original Message-----
->From: Luca Weiss [mailto:luca.weiss@fairphone.com]
->Sent: Saturday, March 19, 2022 12:00 AM
->To: linux-arm-msm@vger.kernel.org
->Cc: ~postmarketos/upstreaming@lists.sr.ht; phone-devel@vger.kernel.org;
->Luca Weiss <luca.weiss@fairphone.com>; Andy Gross <agross@kernel.org>;
->Bjorn Andersson <bjorn.andersson@linaro.org>; Alim Akhtar
-><alim.akhtar@samsung.com>; Avri Altman <avri.altman@wdc.com>; Rob
->Herring <robh+dt@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
->linux-scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
->kernel@vger.kernel.org
->Subject: [PATCH 1/6] scsi: ufs: dt-bindings: Add SM6350 compatible string
->
->Document the compatible for the UFS found on SM6350.
->
->Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->---
-> Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 1 +
-> 1 file changed, 1 insertion(+)
->
->diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->index 5b3a2157f7e5..d17db2cdf3c2 100644
->--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->@@ -27,6 +27,7 @@ properties:
->           - qcom,msm8996-ufshc
->           - qcom,msm8998-ufshc
->           - qcom,sdm845-ufshc
->+          - qcom,sm6350-ufshc
+Changes in v6:
+- abandon cap-sdio-async-irq flag, use wakeup-source flag instead
+- extend interrupts and pinctrls in mediatek mmc host controller DT documents
+- add mmc_card_enable_async_irq() to access enable_async_irq flag
+- simplify wakeup irq implementation with dedicate wake up irq related interface
 
-You need to update "if:then" below as well, as this SoC is different than
-other in the series
+Changes in v5:
+- resort variables to reversed xmas tree order
+- restore old copyright year range and add current year back
 
->           - qcom,sm8150-ufshc
->           - qcom,sm8250-ufshc
->           - qcom,sm8350-ufshc
->--
->2.35.1
+Changes in v4:
+- add MMC_CAP2_SDIO_ASYNC_IRQ judge before lookup eint pinctrl
+- replace spin_lock_irqsave() variant with spin_lock() in eint irq handler
+
+Changes in v3:
+- correct abbreviations with capital letters in commit message
+- replace copyright year with 2022 in mtk-sd.c
+- remove unnessary pointer casting
+- adjust variable order to reversed xmas tree
+- remove a redundant blank line
+- refine if statement, following standard pattern
+
+Changes in v2:
+- change flag name from 'cap-sdio-async-int' to 'cap-sdio-async-irq'
+- change corresponding macro names from xxx_INT to xxx_IRQ
+- resort new member in msdc_host structure
+- refine function msdc_request_dat1_eint_irq()
+- rename msdc_{suspend,resume} function names, add suffix '_noirq'
+- add MMC_CAP2_NO_SDIO judgement before parse eint related pin setting
+
+Axe Yang (3):
+  dt-bindings: mmc: mtk-sd: extend interrupts and pinctrls properties
+  mmc: core: Add support for SDIO wakeup interrupt
+  mmc: mediatek: add support for SDIO eint wakup IRQ
+
+ .../devicetree/bindings/mmc/mtk-sd.yaml       |  23 +++-
+ drivers/mmc/core/sdio.c                       |  17 +++
+ drivers/mmc/host/mtk-sd.c                     | 100 ++++++++++++++++--
+ include/linux/mmc/card.h                      |   8 +-
+ include/linux/mmc/sdio.h                      |   5 +
+ 5 files changed, 143 insertions(+), 10 deletions(-)
+
+-- 
+2.25.1
 
 
