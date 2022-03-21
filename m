@@ -2,86 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D7D4E2303
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 10:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B8A64E2311
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 10:14:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343932AbiCUJOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 05:14:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49198 "EHLO
+        id S241114AbiCUJPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 05:15:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235501AbiCUJOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 05:14:04 -0400
-Received: from mg.sunplus.com (unknown [113.196.136.146])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 43A81DB4BE;
-        Mon, 21 Mar 2022 02:12:38 -0700 (PDT)
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(37793:0:AUTH_RELAY)
-        (envelope-from <tony.huang@sunplus.com>); Mon, 21 Mar 2022 17:13:00 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Mon, 21 Mar 2022 17:12:54 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Mon, 21 Mar 2022 17:12:54 +0800
-From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Tony Huang <tonyhuang.sunplus@gmail.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lhjeff911@gmail.com" <lhjeff911@gmail.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-CC:     =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        =?utf-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
-Subject: RE: [PATCH v4 2/2] mmc: Add mmc driver for Sunplus SP7021
-Thread-Topic: [PATCH v4 2/2] mmc: Add mmc driver for Sunplus SP7021
-Thread-Index: AQHYOzO6cpYNd+UZBku5eHHWG55gaqzHpeaAgAGhbhD//8C6gIAAiLaA
-Date:   Mon, 21 Mar 2022 09:12:54 +0000
-Message-ID: <65f7b13e2c9d4bf484ecfd29b6ab4cc7@sphcmbx02.sunplus.com.tw>
-References: <cover.1647652688.git.tonyhuang.sunplus@gmail.com>
- <f954fb1c0d1c4950b71a8fc360c78edcca9954de.1647652688.git.tonyhuang.sunplus@gmail.com>
- <e5426768-1dd0-0bef-25e8-2ab494f7723d@kernel.org>
- <c6ecbe40dc234454b41bcbc0bf073084@sphcmbx02.sunplus.com.tw>
- <ef173db6-4635-8a77-c3e3-d96b0c2fa7a3@kernel.org>
-In-Reply-To: <ef173db6-4635-8a77-c3e3-d96b0c2fa7a3@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.54]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S235509AbiCUJPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 05:15:43 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC1531DFD;
+        Mon, 21 Mar 2022 02:14:13 -0700 (PDT)
+X-UUID: e030b7e5dcad4d9286f6479676f04775-20220321
+X-UUID: e030b7e5dcad4d9286f6479676f04775-20220321
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 524223218; Mon, 21 Mar 2022 17:14:10 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Mar 2022 17:14:09 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Mar 2022 17:14:08 +0800
+Message-ID: <17e6e8895ebc1113911481c7e097b394005db123.camel@mediatek.com>
+Subject: Re: [v5 3/4] ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI
+ links of headset
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linmq006@gmail.com>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <trevor.wu@mediatek.com>,
+        <matthias.bgg@gmail.com>, <aaronyu@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <angelogioacchino.delregno@collabora.com>
+Date:   Mon, 21 Mar 2022 17:14:08 +0800
+In-Reply-To: <Yjf4KjXpVJaNnvb8@google.com>
+References: <20220319114111.11496-1-jiaxin.yu@mediatek.com>
+         <20220319114111.11496-4-jiaxin.yu@mediatek.com>
+         <Yjf4KjXpVJaNnvb8@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBrcnp5c3p0b2Y6DQoNCj4gPj4+ICsJaW50IGRtYV9pbnRfdGhyZXNob2xkOw0KPiA+Pj4g
-KwlzdHJ1Y3Qgc2dfbWFwcGluZ19pdGVyIHNnX21pdGVyOyAvKiBmb3IgcGlvIG1vZGUgdG8gYWNj
-ZXNzIHNnbGlzdCAqLw0KPiA+Pj4gKwlpbnQgZG1hX3VzZV9pbnQ7IC8qIHNob3VsZCByYWlzZSBp
-cnEgd2hlbiBkbWEgZG9uZSAqLw0KPiA+Pj4gKwlzdHJ1Y3Qgc3BtbWNfdHVuaW5nX2luZm8gZW1t
-Y190dW5pbmdfaW5mbzsNCj4gPj4+ICsJc3RydWN0IHNwc2RjX3R1bmluZ19pbmZvIHNkX3R1bmlu
-Z19pbmZvOw0KPiA+Pj4gKwlpbnQgcmVzdG9yZV80Yml0X3NkaW9fYnVzOw0KPiA+Pj4gKwljb25z
-dCBzdHJ1Y3Qgc3BtbWNfY29tcGF0aWJsZSAqZGV2X2NvbXA7IH07DQo+ID4+PiArDQo+ID4+PiAr
-c3RydWN0IHNwc2RjX2hvc3Qgew0KPiA+Pg0KPiA+PiBXaGVyZSBpcyB0aGlzIHVzZWQ/DQo+ID4+
-DQo+ID4NCj4gPiBzdHJ1Y3Qgc3BtbWNfaG9zdHt9IGZvciBlbW1jLg0KPiA+IHN0cnVjdCBzcHNk
-Y19ob3N0e30gZm9yIFNEIGNhcmQuDQo+ID4gVGhlIHJlZ2lzdGVyIGJhc2UgYWRkcmVzcyBhbmQg
-b2Zmc2V0IGFkZHJlc3Mgb2YgZW1tYyBhbmQgc2QgY2FyZHMgYXJlDQo+IGRpZmZlcmVudC4NCj4g
-PiBlTU1DIGFuZCBzZGNhcmQgYXJlIHRoZWlyIHJlc3BlY3RpdmUgaGFyZHdhcmUgc2V0dGluZ3Mu
-DQo+IA0KPiANCj4gVGhpcyBpcyBhIHdlaXJkIGFuc3dlci4gSSBhc2tlZCB3aGVyZSBpcyB0aGlz
-IHVzZWQgKHN0cnVjdCBzcHNkY19ob3N0KS4NCj4gVGhlcmUgaXMgbm8gc2luZ2xlIHJlZmVyZW5j
-ZSBvZiB0aGlzIHR5cGUuIFlvdXIgYW5zd2VyIGRvZXMgbm90IGNvdmVyIGl0IGFsbC4gSQ0KPiBr
-bm93IHRoYXQgZU1NQyBhbmQgU0QgYXJlIGRpZmZlcmVudC4gVGhhdCB3YXMgbm90IHRoZSBxdWVz
-dGlvbi4NCj4gVGhlIHF1ZXN0aW9uIGlzOiBwb2ludCBtZSB0byB0aGUgY29kZSB3aGljaCB1c2Vz
-IHRoaXMgdHlwZS4NCj4gDQoNClNvcnJ5LCBJIHdpbGwgcmVtb3ZlIHN0cnVjdCBzcHNkY19ob3N0
-IHt9Lg0KDQo=
+On Mon, 2022-03-21 at 11:59 +0800, Tzung-Bi Shih wrote:
+> On Sat, Mar 19, 2022 at 07:41:10PM +0800, Jiaxin Yu wrote:
+> > @@ -1145,6 +1140,13 @@ static int mt8192_mt6359_dev_probe(struct
+> > platform_device *pdev)
+> >  		goto err_speaker_codec;
+> >  	}
+> >  
+> > +	headset_codec = of_get_child_by_name(pdev->dev.of_node,
+> > "mediatek,headset-codec");
+> > +	if (!headset_codec) {
+> > +		ret = -EINVAL;
+> > +		dev_err_probe(&pdev->dev, ret, "Property
+> > 'headset_codec' missing or invalid\n");
+> > +		goto err_headset_codec;
+> > +	}
+> 
+> (to be neat) Does it have any reason to prevent from using
+> of_parse_phandle()
+> but of_get_child_by_name()?
+
+Hi Tzung-Bi,
+
+"mediatek,headset-codec" is a child node of pdev->dev.of_node, so I use
+of_get_child_by_name() to get and   pass it to
+snd_soc_of_get_dai_link_codecs().
+
+Jiaxin.Yu
+Thanks
+
