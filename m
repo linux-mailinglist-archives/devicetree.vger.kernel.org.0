@@ -2,81 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D226B4E2AA5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B604E2AD9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:32:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349611AbiCUO3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 10:29:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34100 "EHLO
+        id S1346942AbiCUOeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 10:34:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349090AbiCUO3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:29:19 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3BD5675B;
-        Mon, 21 Mar 2022 07:25:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647872706; x=1679408706;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZRgMOrMKRu4QklsqExf2gmjTp684KRU6lmpsY+ibWYM=;
-  b=i0/4zLYkwiJ8NvI69RnJ/Eg2uKUZ27hDn5B90vRAAJHIxqUp4nVJhvQD
-   FLIRifQoWSx0uXI2FB7o6FtMes/po82QJpzo7cpJ6v44BKXs1kst0XfY1
-   hGLRusJWVnJ/nqttbjkMSE4UvI5qvTLvyf4e8VxeJlbR4uMSjuXgbWRVl
-   4AMHvZxbdT4RalOsU2cWM3E8lGltXZvTeIZZxqIJB0Zo+nAzTdHH4SYrC
-   ZlaqkVfJ0HDD3Lsn2JXRrzivQzGv9i5uPjYLZqLl3146OqLCE3e01wcsb
-   DDOyFv//8Tf7cXvMEWPidEuI98Is629XEwcHHv6GCez0ySqyNPSUn6fC+
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="237506512"
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; 
-   d="scan'208";a="237506512"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 07:25:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,198,1643702400"; 
-   d="scan'208";a="824465825"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 21 Mar 2022 07:25:01 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nWIxu-000HtG-Qp; Mon, 21 Mar 2022 14:24:58 +0000
-Date:   Mon, 21 Mar 2022 22:24:20 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Lee Jones <lee.jones@linaro.org>,
+        with ESMTP id S1350091AbiCUOd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 10:33:58 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 420BB5D1A8
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 07:32:32 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id h23so20351049wrb.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 07:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Rz2kPyhob/Zn4b4eynOw/6UOyfstxjJm01L/htyIYCc=;
+        b=J9iqLc21143U4IqrHGZbl43PU2GcDIexyXwwfNg978gKFJ++vuXmJOnT4lv/HRd0dA
+         KhTJ0wFqyMYnKGSo+Arx6XL89qwnqi9YDs2QkCF+5rUz9Zcj2NNdqny+c19uCLiJ12S/
+         BBYe8FQDOdmnbZHKvEmOoX2I+hnhW61pr2jZ4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Rz2kPyhob/Zn4b4eynOw/6UOyfstxjJm01L/htyIYCc=;
+        b=JkeK07n6NvApqMV5lbm0uHuksMap7w3oAUYkNIpLwGGq6+MFvyyN6m8ubGXEJ/dGlg
+         vTZaSqV73yNEQLe31JsSnAvk50DKqHFiPrygb4zSCPbeEXFTi6OCJDCGhwSqcN2xdRyG
+         Ivirxy4kFWQizflty+QTpxw1y1AiKficjBEnT9Ctb69VFPsgImed0qxtjY2S8hIYCVF7
+         um8CYz0j4xp3cS1QN4JtUfauZ1tHgD+PhKozy7t1aRMjLnn3dJEZwrOJ8WtfEIj8uXck
+         7zU+GY4ue0Sh4MVSsvEXyTfXsoXeCnwwNULfzrsmeY1/dNVd0dI7QcvSo4BvSBfM7gaC
+         h0dA==
+X-Gm-Message-State: AOAM533tKPR1f+1PhXDYbuvbGVDRD0SMMOEyr6bDRxgnGIGXiq+36aoK
+        lWgsnN088KUaRXTIv5N+m1CL/A==
+X-Google-Smtp-Source: ABdhPJwlF27a1NJ6xMacbGdjU1rd5N8lVS4V0IPQ+1pI4C3wPK4QyQWn/uHzsmotIgUqlAj4AnT7RQ==
+X-Received: by 2002:adf:f281:0:b0:203:e3a2:de5d with SMTP id k1-20020adff281000000b00203e3a2de5dmr18548830wro.598.1647873150811;
+        Mon, 21 Mar 2022 07:32:30 -0700 (PDT)
+Received: from fabiobaltieri-linux.lan ([37.228.205.1])
+        by smtp.gmail.com with ESMTPSA id u11-20020a05600c19cb00b00389efe9c512sm19092793wmq.23.2022.03.21.07.32.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 07:32:30 -0700 (PDT)
+From:   Fabio Baltieri <fabiobaltieri@chromium.org>
+To:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v7 3/9] misc: smpro-errmon: Add Ampere's SMpro error
- monitor driver
-Message-ID: <202203212244.dJ8wLdCt-lkp@intel.com>
-References: <20220321081355.6802-4-quan@os.amperecomputing.com>
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Fabio Baltieri <fabiobaltieri@chromium.org>
+Subject: [PATCH 0/4] Add channel type support to pwm-cros-ec
+Date:   Mon, 21 Mar 2022 14:32:18 +0000
+Message-Id: <20220321143222.2523373-1-fabiobaltieri@chromium.org>
+X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220321081355.6802-4-quan@os.amperecomputing.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,113 +70,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quan,
+Hi,
 
-I love your patch! Perhaps something to improve:
+The ChromiumOS EC PWM host command protocol supports specifying the
+requested PWM by type rather than channel. [1]
 
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on groeck-staging/hwmon-next lee-mfd/for-mfd-next v5.17 next-20220318]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This series adds support for specifying PWM by type rather than channel
+number in the pwm-cros-ec driver, which abstracts the node definitions
+from the actual hardware configuration from the kernel perspective,
+aligns the API with the one used by the bootloader, and allows removing
+some dtsi overrides.
 
-url:    https://github.com/0day-ci/linux/commits/Quan-Nguyen/Add-Ampere-s-Altra-SMPro-MFD-and-its-child-drivers/20220321-161811
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 37fd83916da2e4cae03d350015c82a67b1b334c4
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220321/202203212244.dJ8wLdCt-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 85e9b2687a13d1908aa86d1b89c5ce398a06cd39)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/3e85c45303bab9bd02a4761bc7e182fb001ac625
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Quan-Nguyen/Add-Ampere-s-Altra-SMPro-MFD-and-its-child-drivers/20220321-161811
-        git checkout 3e85c45303bab9bd02a4761bc7e182fb001ac625
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/hwmon/ drivers/misc/
+Tested on a sc7180-trogdor board, but on a version based on an older
+kernel, so this exact series is build only tested.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+[1] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/ec/common/pwm.c;l=24
+[2] https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/depthcharge/src/drivers/ec/cros/ec.c;l=1271-1273
 
-All warnings (new ones prefixed by >>):
+Fabio Baltieri (4):
+  dt-bindings: add mfd/cros_ec definitions
+  drivers: pwm: pwm-cros-ec: add channel type support
+  dt-bindings: update google,cros-ec-pwm documentation
+  arm64: dts: address cros-ec-pwm channels by type
 
->> drivers/misc/smpro-errmon.c:276:6: warning: variable 'data_hi' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           if (addr2 != 0xff) {
-               ^~~~~~~~~~~~~
-   drivers/misc/smpro-errmon.c:303:28: note: uninitialized use occurs here
-                            ret_hi & 0xff, ret_lo, data_hi, data_lo);
-                                                   ^~~~~~~
-   drivers/misc/smpro-errmon.c:276:2: note: remove the 'if' if its condition is always true
-           if (addr2 != 0xff) {
-           ^~~~~~~~~~~~~~~~~~~
-   drivers/misc/smpro-errmon.c:265:47: note: initialize the variable 'data_hi' to silence this warning
-           unsigned int ret_hi, ret_lo, data_lo, data_hi;
-                                                        ^
-                                                         = 0
->> drivers/misc/smpro-errmon.c:276:6: warning: variable 'data_lo' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           if (addr2 != 0xff) {
-               ^~~~~~~~~~~~~
-   drivers/misc/smpro-errmon.c:303:37: note: uninitialized use occurs here
-                            ret_hi & 0xff, ret_lo, data_hi, data_lo);
-                                                            ^~~~~~~
-   drivers/misc/smpro-errmon.c:276:2: note: remove the 'if' if its condition is always true
-           if (addr2 != 0xff) {
-           ^~~~~~~~~~~~~~~~~~~
-   drivers/misc/smpro-errmon.c:265:38: note: initialize the variable 'data_lo' to silence this warning
-           unsigned int ret_hi, ret_lo, data_lo, data_hi;
-                                               ^
-                                                = 0
-   2 warnings generated.
-
-
-vim +276 drivers/misc/smpro-errmon.c
-
-   261	
-   262	static s32 smpro_internal_err_get_info(struct regmap *regmap, u8 addr, u8 addr1,
-   263					       u8 addr2, u8 addr3, u8 subtype, char *buf)
-   264	{
-   265		unsigned int ret_hi, ret_lo, data_lo, data_hi;
-   266		int ret;
-   267	
-   268		ret = regmap_read(regmap, addr, &ret_lo);
-   269		if (ret)
-   270			return ret;
-   271	
-   272		ret = regmap_read(regmap, addr1, &ret_hi);
-   273		if (ret)
-   274			return ret;
-   275	
- > 276		if (addr2 != 0xff) {
-   277			ret = regmap_read(regmap, addr2, &data_lo);
-   278			if (ret)
-   279				return ret;
-   280			ret = regmap_read(regmap, addr3, &data_hi);
-   281			if (ret)
-   282				return ret;
-   283		}
-   284		/*
-   285		 * Output format:
-   286		 * <errType> <image> <dir> <Location> <errorCode> <data>
-   287		 * Where:
-   288		 *   + errType: SCP Error Type (3 bits)
-   289		 *      1: Warning
-   290		 *      2: Error
-   291		 *      4: Error with data
-   292		 *   + image: SCP Image Code (8 bits)
-   293		 *   + dir: Direction (1 bit)
-   294		 *      0: Enter
-   295		 *      1: Exit
-   296		 *   + location: SCP Module Location Code (8 bits)
-   297		 *   + errorCode: SCP Error Code (16 bits)
-   298		 *   + data : Extensive data (32 bits)
-   299		 *      All bits are 0 when errType is warning or error.
-   300		 */
-   301		return scnprintf(buf, MAX_MSG_LEN, "%01x %02x %01x %02x %04x %04x%04x\n",
-   302				 subtype, (ret_hi & 0xf000) >> 12, (ret_hi & 0x0800) >> 11,
-   303				 ret_hi & 0xff, ret_lo, data_hi, data_lo);
-   304	}
-   305	
+ .../bindings/pwm/google,cros-ec-pwm.yaml      |  6 ++
+ .../mt8183-kukui-jacuzzi-fennel-sku1.dts      |  4 +-
+ .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    |  3 +-
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  4 -
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  8 +-
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  6 +-
+ .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi |  3 +-
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  6 +-
+ .../boot/dts/rockchip/rk3399-gru-bob.dts      |  4 -
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  4 +-
+ .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  4 -
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  1 +
+ drivers/pwm/pwm-cros-ec.c                     | 80 +++++++++++++++----
+ include/dt-bindings/mfd/cros_ec.h             | 18 +++++
+ 15 files changed, 113 insertions(+), 39 deletions(-)
+ create mode 100644 include/dt-bindings/mfd/cros_ec.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.1.894.gb6a874cedc-goog
+
