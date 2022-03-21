@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B764E2799
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9534E27A0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:34:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347879AbiCUNf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 09:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53448 "EHLO
+        id S1347925AbiCUNfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 09:35:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347928AbiCUNf0 (ORCPT
+        with ESMTP id S1347936AbiCUNf0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:35:26 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C04293CA47
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:33:55 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id z92so16905760ede.13
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:33:55 -0700 (PDT)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFDE53CA68
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:33:56 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id g20so17852758edw.6
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 06:33:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=aM6GQeVZtCegHilLMs+aD7A4drFAdvrQdeDC75uWokk=;
-        b=0ZmJa6mEHVzoEvukgeG4nEGyuYrvNOV6BVoc0wD/1/Ux1o12tc/3YNQvOS4/iqjC4m
-         GIFrwlLgMqP2tMUXoOlcRU60T1e5cQM/56JodEjpAdsgh7bI95LBnCAuale6tVLavsQQ
-         H6YxEyLf3ZAz1jRLELbLsh6snRv0r/osgE3nNZ8lsw6tg3ZsgJikmuz1LcEhSMhovPia
-         IYRTtLWa0Vok4cjLZvKEIggAjxNmyYiJ+fgWM0hAlxwHGyRahM/6oWSx144DCShIsw7h
-         6HJWMJYp5CjDOrg4DrwtBlmFHafmu96DRTE0/3fCg1hJonH20hIDw+EpDetqIlCRvC6C
-         z8DA==
+        bh=x6BxZch4uZImMxpopzhj/TV44ApdnEVZrzFIJlaiPFA=;
+        b=wzYxgeoIax8d+We0XG2f4nTSOUImN5EoFfh9Lu1qqqg/T/M8YkqCuBEsZGLyy6EngN
+         pioZEioorYT3x1q2CPJOzLdyGd2iCCL1fWngRY7DYq5XrwqGrsyq90nG9t3qSKUvrh9h
+         dmwYa+6TaIqbMqA7Bs/6YfF71FnfzVbfAWH3VOiJDLpoIX58jAnAOICYNn57piHWaY9f
+         rV0dikn5CkZyqWMZwJH5nsGOsdp/LQk/JYPJit8kVNd2/j4nXGu40k8piBqnnRTs1LoZ
+         FC+SPX0SEqGv9W/lDx3vNYzq9wy7vNsU+p+Z50lyIcKVrNJvubKAkwbYoPBYPMc8QZjR
+         lBig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aM6GQeVZtCegHilLMs+aD7A4drFAdvrQdeDC75uWokk=;
-        b=ja0c2bOmPi728BVH1CC/tNSjNYhFXy8NTmay1+FNMR5+gYYCsVDnzYSdmbqxXeAPCi
-         gFbFfrrl6nPk9tH6rVuRbE9kN5v08B9FUCQ4gcKgD0JHEu2cv6SqEBB4Vk+zxY3JNiW5
-         +6YZWHZOI0g4HY0BZds06byAlIqQqbY6I8EehSfhFvY6yAL2SLTHh1rI5jDFo9B2cU+t
-         XslAXFphZ4ZZipPQebk1xqWcxt1rK/rNk/mzhr89iz0bGuA5As6OMriRoUQgU9IvLVeU
-         NIZQy0eIEYNEaH8ZdW0ueL8paoOMaGNpLhJLjK5eVGUeeUgEA+HbFMDF37VbX1PiTKiv
-         wPPQ==
-X-Gm-Message-State: AOAM533x+uJ0ipXYhVS2BFIcUJ1Bqa8w/sWj70cT/QYkoJcEOsgwXT2w
-        SXcZZrht1zGrrkdcfz+vM5Y6DQ==
-X-Google-Smtp-Source: ABdhPJwK5bxupTxJOcHJW/CL8XeUHz5cLnTleQNzf5yTSvwqrflM4qAG71Qe/NROSCms+FRKCcnQlw==
-X-Received: by 2002:a05:6402:3591:b0:419:26ea:1e22 with SMTP id y17-20020a056402359100b0041926ea1e22mr10468061edc.27.1647869634278;
-        Mon, 21 Mar 2022 06:33:54 -0700 (PDT)
+        bh=x6BxZch4uZImMxpopzhj/TV44ApdnEVZrzFIJlaiPFA=;
+        b=Zp2ZSEMbk/y+sETmkhXQuZZtfsKIOZrru4GAtFf7XfyUMLduIXzH2ybuSS4vrM64sj
+         NZl+v/B7LW66WFqYKaElbMB2x3NjwzR4v+TXLnjgN5KMrEYqhionqqaDeez3OtkJYEG6
+         1rF55wczBA6/mKj8bYUC/kEMBxG5wNO86Dr9Mq3Bi27jWlY10ypwwEU2SMqH+wsBFPdL
+         TwgZnxg3Z4S6m+M4OHahyWr5zxxHe9yX+PQ1w7jv1de9+y9P/v4hoPs/PP3U1icbU+BS
+         +srBb/5PwLbXgCEJK1oP+EZXB/MVfjeIoJN31cJ9oiTRZePv5JPqRuKygtiGZJQG16eF
+         PFBg==
+X-Gm-Message-State: AOAM530C6wkjdoEQxA6lk/yxN8GESdEt2WSPlKfnYxleQB5jkU7kO6Tm
+        Xp1PfUodZas+WEmPfKWPchTZLw==
+X-Google-Smtp-Source: ABdhPJy5wcFMSxqYF9z9tT1TTrf1HxYWEDeD8UzOptL563RO6bUoh84uqACrFycVwHbxAjuXq70lkw==
+X-Received: by 2002:a05:6402:13d6:b0:419:2eab:d21 with SMTP id a22-20020a05640213d600b004192eab0d21mr7959137edx.78.1647869635192;
+        Mon, 21 Mar 2022 06:33:55 -0700 (PDT)
 Received: from otso.arnhem.chello.nl (a246182.upc-a.chello.nl. [62.163.246.182])
-        by smtp.gmail.com with ESMTPSA id r22-20020a17090638d600b006d584aaa9c9sm6862154ejd.133.2022.03.21.06.33.53
+        by smtp.gmail.com with ESMTPSA id r22-20020a17090638d600b006d584aaa9c9sm6862154ejd.133.2022.03.21.06.33.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 06:33:53 -0700 (PDT)
+        Mon, 21 Mar 2022 06:33:54 -0700 (PDT)
 From:   Luca Weiss <luca.weiss@fairphone.com>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -56,9 +56,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/6] arm64: dts: qcom: sm6350: Add UFS nodes
-Date:   Mon, 21 Mar 2022 14:33:17 +0100
-Message-Id: <20220321133318.99406-6-luca.weiss@fairphone.com>
+Subject: [PATCH v2 6/6] arm64: dts: qcom: sm7225-fairphone-fp4: Enable UFS
+Date:   Mon, 21 Mar 2022 14:33:18 +0100
+Message-Id: <20220321133318.99406-7-luca.weiss@fairphone.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220321133318.99406-1-luca.weiss@fairphone.com>
 References: <20220321133318.99406-1-luca.weiss@fairphone.com>
@@ -66,7 +66,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,105 +74,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the necessary nodes for UFS and its PHY.
+Configure and enable the nodes for UFS that are used for internal
+storage on FP4.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
 Changes in v2:
-- rename node to ufs@ -> this makes this patch now (soft-)depend on
-  https://lore.kernel.org/linux-arm-msm/20220320110616.18355-1-krzk@kernel.org/
+- nothing
 
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 77 ++++++++++++++++++++++++++++
- 1 file changed, 77 insertions(+)
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts     | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index d7c9edff19f7..75e4b2b4d3af 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -541,6 +541,83 @@ uart2: serial@98c000 {
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+index adb6ca2be2a5..533a1c88040f 100644
+--- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
++++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+@@ -336,6 +336,24 @@ &uart2 {
+ 	status = "okay";
+ };
  
-+		ufs_mem_hc: ufs@1d84000 {
-+			compatible = "qcom,sm6350-ufshc", "qcom,ufshc",
-+				     "jedec,ufs-2.0";
-+			reg = <0 0x01d84000 0 0x3000>,
-+			      <0 0x01d90000 0 0x8000>;
-+			reg-names = "std", "ice";
-+			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&ufs_mem_phy_lanes>;
-+			phy-names = "ufsphy";
-+			lanes-per-direction = <2>;
-+			#reset-cells = <1>;
-+			resets = <&gcc GCC_UFS_PHY_BCR>;
-+			reset-names = "rst";
++&ufs_mem_hc {
++	status = "okay";
 +
-+			power-domains = <&gcc UFS_PHY_GDSC>;
++	reset-gpios = <&tlmm 156 GPIO_ACTIVE_LOW>;
 +
-+			iommus = <&apps_smmu 0x80 0x0>;
++	vcc-supply = <&vreg_l7e>;
++	vcc-max-microamp = <800000>;
++	vccq2-supply = <&vreg_l12a>;
++	vccq2-max-microamp = <800000>;
++};
 +
-+			clock-names = "core_clk",
-+				      "bus_aggr_clk",
-+				      "iface_clk",
-+				      "core_clk_unipro",
-+				      "ref_clk",
-+				      "tx_lane0_sync_clk",
-+				      "rx_lane0_sync_clk",
-+				      "rx_lane1_sync_clk",
-+				      "ice_core_clk";
-+			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-+				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-+				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-+				 <&rpmhcc RPMH_QLINK_CLK>,
-+				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-+				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-+				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
-+				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-+			freq-table-hz =
-+				<50000000 200000000>,
-+				<0 0>,
-+				<0 0>,
-+				<37500000 150000000>,
-+				<75000000 300000000>,
-+				<0 0>,
-+				<0 0>,
-+				<0 0>,
-+				<0 0>;
++&ufs_mem_phy {
++	status = "okay";
 +
-+			status = "disabled";
-+		};
++	vdda-phy-supply = <&vreg_l18a>;
++	vdda-pll-supply = <&vreg_l22a>;
++};
 +
-+		ufs_mem_phy: phy@1d87000 {
-+			compatible = "qcom,sm6350-qmp-ufs-phy";
-+			reg = <0 0x01d87000 0 0x18c>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clock-names = "ref",
-+				      "ref_aux";
-+			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
-+				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-+
-+			resets = <&ufs_mem_hc 0>;
-+			reset-names = "ufsphy";
-+
-+			status = "disabled";
-+
-+			ufs_mem_phy_lanes: phy@1d87400 {
-+				reg = <0 0x01d87400 0 0x128>,
-+				      <0 0x01d87600 0 0x1fc>,
-+				      <0 0x01d87c00 0 0x1dc>,
-+				      <0 0x01d87800 0 0x128>,
-+				      <0 0x01d87a00 0 0x1fc>;
-+				#phy-cells = <0>;
-+			};
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0x0 0x01f40000 0x0 0x40000>;
+ &usb_1 {
+ 	status = "okay";
+ };
 -- 
 2.35.1
 
