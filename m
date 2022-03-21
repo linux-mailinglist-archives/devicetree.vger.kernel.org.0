@@ -2,99 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 539AC4E27AF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D951D4E27BB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:35:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348010AbiCUNhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 09:37:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59696 "EHLO
+        id S1347971AbiCUNg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 09:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347967AbiCUNgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:36:40 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC4045079;
-        Mon, 21 Mar 2022 06:35:14 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id k10so4670874oia.0;
-        Mon, 21 Mar 2022 06:35:14 -0700 (PDT)
+        with ESMTP id S1347984AbiCUNgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:36:45 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF33457B1;
+        Mon, 21 Mar 2022 06:35:20 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id p10-20020a056820044a00b00320d7d4af22so19126499oou.4;
+        Mon, 21 Mar 2022 06:35:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=9yHBFvAmotgj/IqBA0AuyCu3wDLvOQFxKhwN+eCLBMw=;
-        b=VYHizoU0TNVl0J36Szh7Rzmxfm2HXTbTvOqc/5FvWf1/P++WUam1MbJLFUf5GYcABb
-         vJysgxU7EPpox/lJvT7zLSTuAadhGfkk+BvCFO5BtylziSeZE/S/m9fCdGAMelPjkDPr
-         0tKE9hjMO3kqP9a4rj6ukfL6utqYeRk+9FTywPy7HJXn/Tu7DoFiasOf0Q/TEgLTsbIN
-         qGAuX2A2GYbB5jKIScVf6u+nnw+yY7eOaMTqILTBQn2jK8zfG5AR6A1dGykUocwNo7rS
-         8H3oKvZq1i52EQ6vRuJlGwxtfhKhGfj0R80t5mg4ZKWxMOLVsw5fNU7ExUKRKR0GmN8o
-         um1g==
-X-Gm-Message-State: AOAM531ZYTAK/RJhLo6OrMlLlHTrJYkSdDH+E8sFLJm4dnQflzGGOzxr
-        vhfSusZNwBaGnhfgMz67nQ==
-X-Google-Smtp-Source: ABdhPJw70yBMj/HnL99fXmgwqAbCYFqxmA+8bkEnDSsHVCZzESWK309igckM3Lgg4pHysUWDvWDa1Q==
-X-Received: by 2002:a05:6808:28b:b0:2ee:36b8:8619 with SMTP id z11-20020a056808028b00b002ee36b88619mr13273266oic.275.1647869713552;
-        Mon, 21 Mar 2022 06:35:13 -0700 (PDT)
+        bh=5UU4N1/jkwKIKHDgJE8Xaunth0Jq4iesYl4vSjdvP6Y=;
+        b=qK5Q3XxSupslhtSENzAM+l3k2Q+QECQFrcdN0K8V+GutjLodKMgqTSLCDjNH+H/lXM
+         quGzqqFM815yOTaGq6Va31/CvI4187G3ZcWZMLu4PKxbuHo1ut/QB66BwQHogJjHW8YT
+         eTLS4/ZY8Dot3kq+2M6CsbkPqjbyR3T7zcnx0/teuwZWVFPXNzUp0l1fIa/tw1zXhvx/
+         o4hJiO7gbFVHf9xOcryMa2WGFHn5g7eVOMc9+YifLDSMyfCnVCApH2iNJ3X/jxESmcI1
+         ocIl++leTqzC58O6tEEBFDazcPFxoBbGh8tolRrhXkbP/oUghP3bN+l1WqQt3mevVd46
+         YWng==
+X-Gm-Message-State: AOAM5322FDgSfm+6zNaKWh/yVrqx8byxlEeaWJ9l8vOpMVPCsPH733t4
+        xBfFwa5+9sM53y0Wh7aUzQ==
+X-Google-Smtp-Source: ABdhPJzfmSYuwsV67ZwxyLb5RUYtTVRmT0EHgTTZezQLdru8b+cuGc6RlbeGCMx5yctS3/FrA95Q3g==
+X-Received: by 2002:a05:6870:3112:b0:ce:c0c9:62b with SMTP id v18-20020a056870311200b000cec0c9062bmr11623640oaa.125.1647869719305;
+        Mon, 21 Mar 2022 06:35:19 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w22-20020acaad16000000b002d9c98e551bsm7255683oie.36.2022.03.21.06.35.12
+        by smtp.gmail.com with ESMTPSA id t15-20020a056808158f00b002e331356c87sm7572522oiw.39.2022.03.21.06.35.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 06:35:12 -0700 (PDT)
-Received: (nullmailer pid 4125319 invoked by uid 1000);
+        Mon, 21 Mar 2022 06:35:18 -0700 (PDT)
+Received: (nullmailer pid 4125326 invoked by uid 1000);
         Mon, 21 Mar 2022 13:35:11 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>
-In-Reply-To: <20220320113430.26076-15-ansuelsmth@gmail.com>
-References: <20220320113430.26076-1-ansuelsmth@gmail.com> <20220320113430.26076-15-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v3 14/18] dt-bindings: clock: Convert qcom,krait-cc to yaml
+To:     Dylan Hung <dylan_hung@aspeedtech.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, andrew@aj.id.au,
+        linux-arm-kernel@lists.infradead.org, andrew@lunn.ch,
+        davem@davemloft.net, linux-aspeed@lists.ozlabs.org,
+        BMC-SW@aspeedtech.com, kuba@kernel.org, p.zabel@pengutronix.de,
+        hkallweit1@gmail.com, joel@jms.id.au, pabeni@redhat.com,
+        linux@armlinux.org.uk
+In-Reply-To: <20220321095648.4760-2-dylan_hung@aspeedtech.com>
+References: <20220321095648.4760-1-dylan_hung@aspeedtech.com> <20220321095648.4760-2-dylan_hung@aspeedtech.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: add reset property for aspeed, ast2600-mdio binding
 Date:   Mon, 21 Mar 2022 08:35:11 -0500
-Message-Id: <1647869711.854036.4125318.nullmailer@robh.at.kernel.org>
+Message-Id: <1647869711.893197.4125325.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Mar 2022 12:34:26 +0100, Ansuel Smith wrote:
-> Convert qcom,krait-cc to yaml Documentation.
+On Mon, 21 Mar 2022 17:56:46 +0800, Dylan Hung wrote:
+> The AST2600 MDIO bus controller has a reset control bit and must be
+> deasserted before the manipulating the MDIO controller.
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+> Cc: stable@vger.kernel.org
 > ---
->  .../bindings/clock/qcom,krait-cc.txt          | 34 -----------
->  .../bindings/clock/qcom,krait-cc.yaml         | 59 +++++++++++++++++++
->  2 files changed, 59 insertions(+), 34 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+>  .../devicetree/bindings/net/aspeed,ast2600-mdio.yaml          | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,krait-cc.example.dt.yaml: clock-controller: clocks: [[4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295], [4294967295]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+Full log is available here: https://patchwork.ozlabs.org/patch/1607671
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1607456
+mdio@1e650000: 'resets' is a required property
+	arch/arm/boot/dts/aspeed-ast2600-evb-a1.dt.yaml
+	arch/arm/boot/dts/aspeed-ast2600-evb.dt.yaml
+	arch/arm/boot/dts/aspeed-bmc-inventec-transformers.dt.yaml
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+mdio@1e650008: 'resets' is a required property
+	arch/arm/boot/dts/aspeed-ast2600-evb-a1.dt.yaml
+	arch/arm/boot/dts/aspeed-ast2600-evb.dt.yaml
+	arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dt.yaml
+	arch/arm/boot/dts/aspeed-bmc-facebook-fuji.dt.yaml
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+mdio@1e650010: 'resets' is a required property
+	arch/arm/boot/dts/aspeed-ast2600-evb-a1.dt.yaml
+	arch/arm/boot/dts/aspeed-ast2600-evb.dt.yaml
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+mdio@1e650018: 'resets' is a required property
+	arch/arm/boot/dts/aspeed-ast2600-evb-a1.dt.yaml
+	arch/arm/boot/dts/aspeed-ast2600-evb.dt.yaml
+	arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dt.yaml
 
