@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA8C4E1E5B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 01:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC72D4E1E7F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 01:27:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343855AbiCUANx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 20:13:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        id S245233AbiCUA3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 20:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236339AbiCUANw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 20:13:52 -0400
+        with ESMTP id S1343935AbiCUA26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 20:28:58 -0400
 Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0D8710F3
-        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 17:12:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75086DFDE4
+        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 17:27:28 -0700 (PDT)
 Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 056162C05F3;
-        Mon, 21 Mar 2022 00:12:25 +0000 (UTC)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 830512C05F3;
+        Mon, 21 Mar 2022 00:27:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1647821545;
-        bh=A1XDGzxnAPnhWdHJEVIaz098g7kZ8jMAFOh3mQ6xx9g=;
+        s=mail181024; t=1647822445;
+        bh=Rz96f5sjJQKWQ0HhnNfpbrE6GlGWm8SFIyHhy6QKXrg=;
         h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=CsrXBQprPgYWpzjsWWg+htuQBOLaar1yNwSp2oD37Ud5Ic+SUV+SGIlBKzNR7M97L
-         4NGL+Y+jgvuo37aFOdnL81htuyxFGJsFOjMERXKBraYwdvb2x2zupS4YGbPY3T69Em
-         qvr0DN/UVXN8JK7+Py0VfaIhmVrE/ERgG2fX34e2bNL5qXu2bGcumtsSLHXNOJX0Sd
-         5fHipZN3JmqdLzdmdYuAw4Z7OLezMUjP4eNkCVbmBTfAYIY4nfDLKAr6WtLKZXEFjY
-         ZvfblfCziZjIncNhDl8xzNC9XtxGDfK/PDldry2EYcZkXTq7clv7LVU4NdvxAlJu32
-         PsEiM5weodrEA==
+        b=PKiSthMC+Bm36Tj/3T5Ruc29yxDAWuwTrPm7ZjVFdzP8/QH7WJkOZXmCdssoK8MZR
+         i/uJAPLqE7eKB4SFVHAVlXcFkGLwZjcU1wQehDhFrr/fyWkfOfW87hjcM5tNom2rDq
+         qijlMvZlSkBtx7NsM358QZ1cCuFy64TI4UP3L2XuUnOHBwapB4T/P1a7WG/7y78LeJ
+         +vUieyRzhZPqwNTQr/TGCfa2efUQt9DI404xE+K42om89AtD5heL7u6EmXKMFGMZ+z
+         hijfXpnq/zbnVMrDzj4J5pJrynOulNii0Z5gRexVW4FQ+Rv8D/Njrt0/p31CwyW6CZ
+         WB6x11EWtrx+Q==
 Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6237c2e80001>; Mon, 21 Mar 2022 13:12:24 +1300
+        id <B6237c66d0001>; Mon, 21 Mar 2022 13:27:25 +1300
 Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
  by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.32; Mon, 21 Mar 2022 13:12:24 +1300
+ Microsoft SMTP Server (TLS) id 15.0.1497.32; Mon, 21 Mar 2022 13:27:25 +1300
 Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
  svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.033; Mon, 21 Mar 2022 13:12:24 +1300
+ 15.00.1497.033; Mon, 21 Mar 2022 13:27:25 +1300
 From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "huziji@marvell.com" <huziji@marvell.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     "jdelvare@suse.com" <jdelvare@suse.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
-CC:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: mmc: xenon: Convert to JSON schema
-Thread-Topic: [PATCH] dt-bindings: mmc: xenon: Convert to JSON schema
-Thread-Index: AQHYOnk50rTlUpEP/EiwBNSfY0h6HKzEV64AgAPKHoA=
-Date:   Mon, 21 Mar 2022 00:12:24 +0000
-Message-ID: <fd8cb680-5ae0-6b47-3f35-a497c51a47b9@alliedtelesis.co.nz>
-References: <20220318033521.1432767-1-chris.packham@alliedtelesis.co.nz>
- <91b6660d-c22b-0679-4cb9-6ebba9066545@kernel.org>
-In-Reply-To: <91b6660d-c22b-0679-4cb9-6ebba9066545@kernel.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] hwmon: (adt7475) Use enum chips when loading
+ attenuator settings
+Thread-Topic: [PATCH v2 3/3] hwmon: (adt7475) Use enum chips when loading
+ attenuator settings
+Thread-Index: AQHYOk6t2MAzos32V0mfrGePR/IVEazEW2uAgAPK54A=
+Date:   Mon, 21 Mar 2022 00:27:24 +0000
+Message-ID: <84514187-1170-0932-3a31-9e8ce6b07e9d@alliedtelesis.co.nz>
+References: <20220317223051.1227110-1-chris.packham@alliedtelesis.co.nz>
+ <20220317223051.1227110-4-chris.packham@alliedtelesis.co.nz>
+ <20220318143223.GA673001@roeck-us.net>
+In-Reply-To: <20220318143223.GA673001@roeck-us.net>
 Accept-Language: en-NZ, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -67,37 +64,53 @@ x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-exchange-transport-fromentityheader: Hosted
 x-originating-ip: [10.32.1.11]
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <3B303CDD4947E94088B318403BF5FDE3@atlnz.lc>
+Content-ID: <C4915410CF2A284680B5EA72E2BB5226@atlnz.lc>
 Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=o8Y5sQTvuykA:10 a=AefNodu_EPYWPp4RkKgA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=o8Y5sQTvuykA:10 a=Q6Hju86AWDR5xJoMpMYA:9 a=QEXdDO2ut3YA:10
 X-SEG-SpamProfiler-Score: 0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-KGFkZGluZyBzb21lIEFSTSBwZW9wbGUsIHJlc2VuZGluZyBob3BlZnVsbHkgd2l0aG91dCB0aGUg
-aHRtbCkNCg0KT24gMTkvMDMvMjIgMDM6MjAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+
-PiArICAgICAgICAgIC0gY29uc3Q6IG1hcnZlbGwsc2RoY2kteGVub24NCj4gVGhpcyBkaWQgbm90
-IGV4aXN0IGJlZm9yZS4gU2VwYXJhdGUgcGF0Y2hlcyBwbGVhc2UgZm9yIGFkZGl0aW9ucyAod2l0
-aA0KPiBleHBsYW5hdGlvbiB3aHkpLiBNYXliZSBzb21lIERUUyBsaXN0cyB0aGlzLCBidXQgdGhl
-biBpdCBzaG91bGQgYmUNCj4gaW5kaXZpZHVhbGx5IGp1ZGdlZCB3aGV0aGVyIHRoZSBEVFMgaXMg
-Y29ycmVjdC4NCj4NCk9uIHRoaXMgc3BlY2lmaWNhbGx5LiBJIHdhcyBhbGwgcmVhZHkgdG8gYWRk
-IGFuIGFkZGl0aW9uYWwgcGF0Y2ggdG8gDQpkb2N1bWVudCB0aGlzIGJ1dCB0aGVuIEkgbm90aWNl
-ZCBub3RoaW5nIGFjdHVhbGx5IHVzZXMgdGhlIA0KIm1hcnZlbGwsc2RoY2kteGVub24iIGNvbXBh
-dGlibGUgYW5kIGl0IGFwcGVhcnMgbm90aGluZyBldmVyIGRpZC4gSSB0aGVuIA0KZmlndXJlZCBJ
-J2QgZGVsZXRlIHRoZSB1bnVzZWQgY29tcGF0aWJsZSBzdHJpbmcgZnJvbSBhcm1hZGEtMzd4eC5k
-dHNpIA0KYnV0IHRoZW4gSSByZW1lbWJlcmVkIHRoYXQgc29tZXRpbWVzIHdlIGFkZCBjb21wYXRp
-YmxlIHN0cmluZ3MgdG8gaGF2ZSANCnRoZW0gImp1c3QgaW4gY2FzZSIgd2UgbmVlZCB0aGVtIGZv
-ciBzb21lIFNvQyBzcGVjaWZpYyB3b3JrYXJvdW5kLg0KDQpTbyB0aGVyZSdzIGEgZmV3IHRoaW5n
-cyBJIGNhbiBkbw0KDQowLiBOb3RoaW5nIChlYXN5KSBhbHRob3VnaCB0aGUgYmluZGluZyBJIGp1
-c3Qgc3VibWl0dGVkIHdpbGwgY29tcGxhaW4gDQphYm91dCB0aGUgdW5leHBlY3RlZCB2YWx1ZQ0K
-MS4gRG9jdW1lbnQgIm1hcnZlbGwsc2RoY2kteGVub24iIGFzIGEgdmFsaWQgY29tcGF0aWJsZQ0K
-MS5hLiBBZGQgIm1hcnZlbGwsc2RoY2kteGVub24iIHRvIHRoZSBzZGhjaS14ZW5vbi5jIGRyaXZl
-cg0KMi4gUmVtb3ZlICJtYXJ2ZWxsLHNkaGNpLXhlbm9uIiBmcm9tIGFybWFkYS0zN3h4LmR0c2kN
-Cg==
+DQpPbiAxOS8wMy8yMiAwMzozMiwgR3VlbnRlciBSb2VjayB3cm90ZToNCj4gT24gRnJpLCBNYXIg
+MTgsIDIwMjIgYXQgMTE6MzA6NTBBTSArMTMwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IFNp
+bXBsaWZ5IGxvYWRfYXR0ZW51YXRvcnMoKSBieSBtYWtpbmcgdXNlIG9mIGVudW0gY2hpcHMgaW5z
+dGVhZCBvZiBpbnQuDQo+Pg0KPiBUaGF0IGlzbid0IHRoZSBvbmx5IHRoaW5nIHRoZSBwYXRjaCBp
+cyBkb2luZy4NCj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2to
+YW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4NCj4+IE5vdGVzOg0KPj4gICAgICBD
+aGFuZ2VzIGluIHYyOg0KPj4gICAgICAtIE5ldw0KPj4NCj4+ICAgZHJpdmVycy9od21vbi9hZHQ3
+NDc1LmMgfCA0ICsrLS0NCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBk
+ZWxldGlvbnMoLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9od21vbi9hZHQ3NDc1LmMg
+Yi9kcml2ZXJzL2h3bW9uL2FkdDc0NzUuYw0KPj4gaW5kZXggNmRlNTAxZGU0MWIyLi5lYmU0YTg1
+ZWI2MmUgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2h3bW9uL2FkdDc0NzUuYw0KPj4gKysrIGIv
+ZHJpdmVycy9od21vbi9hZHQ3NDc1LmMNCj4+IEBAIC0xNTY5LDcgKzE1NjksNyBAQCBzdGF0aWMg
+aW50IHNldF9wcm9wZXJ0eV9iaXQoY29uc3Qgc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCwgY2hh
+ciAqcHJvcGVydHksDQo+PiAgIAlyZXR1cm4gcmV0Ow0KPj4gICB9DQo+PiAgIA0KPj4gLXN0YXRp
+YyBpbnQgbG9hZF9hdHRlbnVhdG9ycyhjb25zdCBzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50LCBp
+bnQgY2hpcCwNCj4+ICtzdGF0aWMgaW50IGxvYWRfYXR0ZW51YXRvcnMoY29uc3Qgc3RydWN0IGky
+Y19jbGllbnQgKmNsaWVudCwgZW51bSBjaGlwcyBjaGlwLA0KPj4gICAJCQkgICAgc3RydWN0IGFk
+dDc0NzVfZGF0YSAqZGF0YSkNCj4+ICAgew0KPj4gICAJaW50IHJldDsNCj4+IEBAIC0xNTg4LDcg
+KzE1ODgsNyBAQCBzdGF0aWMgaW50IGxvYWRfYXR0ZW51YXRvcnMoY29uc3Qgc3RydWN0IGkyY19j
+bGllbnQgKmNsaWVudCwgaW50IGNoaXAsDQo+PiAgIAkJCQkJCWRhdGEtPmNvbmZpZzQpOw0KPj4g
+ICAJCWlmIChyZXQgPCAwKQ0KPj4gICAJCQlyZXR1cm4gcmV0Ow0KPj4gLQl9IGVsc2UgaWYgKGNo
+aXAgPT0gYWR0NzQ3MyB8fCBjaGlwID09IGFkdDc0NzUpIHsNCj4+ICsJfSBlbHNlIHsNCj4gVGhp
+cyBpcyB0aGUgcmVhbCBjaGFuZ2UuIFdlbGwsIGluIHRoZW9yeS4gSXQgZG9lc24ndCByZWFsbHkg
+bWFrZSBhIGRpZmZlcmVuY2UsDQo+IGl0IGlzIGp1c3QgKGN1cnJlbnRseSkgdW5uZWNlc3Nhcnkg
+YnV0IGNsYXJpZmllcyB0aGF0IHRoZSBmb2xsb3dpbmcgY29kZSBvbmx5DQo+IGFwcGxpZXMgdG8g
+dGhlIHR3byBjaGlwcy4gSXQgbWF5IGJlIGJldHRlciB0byByZXBsYWNlIHRoZSBpZi9lbHNlIHdp
+dGggYSBzd2l0Y2gNCj4gc3RhdGVtZW50IHRvIGNsYXJpZnkgdGhpcy4gRHJvcHBpbmcgdGhlIGNv
+bmRpdGlvbmFsIHdvdWxkIG5vdCByZXF1aXJlIHRvIGNoYW5nZQ0KPiB0aGUgcGFyYW1ldGVyIHR5
+cGUuIFRoYXQgb25seSByZWFsbHkgYWRkcyB2YWx1ZSBpZiB5b3UgYWxzbyB1c2UgYSBzd2l0Y2gN
+Cj4gc3RhdGVtZW50ICh3aXRob3V0IGR1bW15IGRlZmF1bHQpLg0KDQpJJ3ZlIHdyaXR0ZW4gYSB2
+MyB0aGF0IHVwZGF0ZXMgdGhpcyB0byB1c2UgYSBzd2l0Y2ggc3RhdGVtZW50IGJ1dCBJJ2xsIA0K
+d2FpdCB0byBzZW5kIGl0IGluIGNhc2UgdGhlcmUgaXMgYW55IGZlZWRiYWNrIG9uIHRoZSBmaXJz
+dCAyIHBhdGNoZXMuDQoNCj4gVGhhbmtzLA0KPiBHdWVudGVyDQo+DQo+PiAgIAkJc2V0X3Byb3Bl
+cnR5X2JpdChjbGllbnQsICJhZGksYnlwYXNzLWF0dGVudWF0b3ItaW4xIiwNCj4+ICAgCQkJCSAm
+ZGF0YS0+Y29uZmlnMiwgNSk7DQo+PiAgIA==
