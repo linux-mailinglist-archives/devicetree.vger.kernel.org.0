@@ -2,231 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C97D4E352A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 01:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E23104E350A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 01:07:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233926AbiCVABO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 20:01:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
+        id S233799AbiCVAAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 20:00:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233922AbiCVABN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 20:01:13 -0400
-Received: from mx0c-0054df01.pphosted.com (mx0c-0054df01.pphosted.com [67.231.159.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B85611162;
-        Mon, 21 Mar 2022 16:58:39 -0700 (PDT)
-Received: from pps.filterd (m0208999.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22LNBKkD019221;
-        Mon, 21 Mar 2022 19:56:21 -0400
-Received: from can01-yt3-obe.outbound.protection.outlook.com (mail-yt3can01lp2177.outbound.protection.outlook.com [104.47.75.177])
-        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3ewa9vhnac-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 21 Mar 2022 19:56:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D588Oq1UHGPClpWlvj7opbF6Ht6lSpgtV+V7jXSSgs/6KNxdruy1Xpu3rN46G4uTozGCVSoQS0+bTF+AAAA15mDVOFKHxW0ZTBWhqVKiMzKK60WKAlq3oqMpV7y5gdwiuQFTfs3jUEQWmCi3IxPkUrs8uiFDmGEeqMGDf61W4uHgOrUqqknJjBy4j5kOTWG/4XrguXyrLrP2I1ybcoo/qbO7hqgD8sWB9rMqukWbZ10Vkt8ddVc4mqiLFPNBOuuy+zLUe2pSrsvv8tVcSgQYfb/72C/LsCDhUW/OvgKCAI5k2vR7aZLqYEru/f8ixH7riq/IGsOZgh6c3gruIa7H3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Omo7X3x4s33vPVBhPAaEKYl2HaZIyQw9LQgnnFgZcA0=;
- b=Ec1EEWAo3N9XC94ArMoO3ZEwHiVAJs2686ncHnIsMePYb49wPA8oaWhXH5Cb7xk3/T5ZdPDOhCa8eTsySULqYfv+g4Ms7NP4H1Rrlh2/q+DAnU4u8uWnW+tvLpStrsDk8zUzm9ikvZnQGUxRbpNy1EMfhVkpoROnPJZO95LxAqMIFOyTmH3am6Fh+ad2whq8uHmah1F2CTfHXYKa93Sxg9xUBxaKVWtUL2vdOyOMPq5ID4zkopu4JQUiMAKdyNpmyoHeApIK1EuUb9p1MMGlsEgUR7pfebpn4uoyAcTxDbo7FxIf4bzGMXl52xfNjTc6CRArkmTVpBMsHt8qKopBzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=calian.com; dmarc=pass action=none header.from=calian.com;
- dkim=pass header.d=calian.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Omo7X3x4s33vPVBhPAaEKYl2HaZIyQw9LQgnnFgZcA0=;
- b=zS7HaTl/aEiqb1GuVjSgzdgoxrpr1wNYD555aHK2WgpjhKUPVO5PHCr5Gc7iSaZBtMotU2YgQiiN3DHQG9J7BFsrQ6YSNq9NYsmi1qfvp7w/mvn9n32I2ov8LAgIbQNPHQufjSTRVB5pghtZGtkw+qkmr+QhZRjUgG+11VIb2AM=
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
- by QB1PR01MB3475.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:39::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Mon, 21 Mar
- 2022 23:56:19 +0000
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::e8a8:1158:905f:8230]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::e8a8:1158:905f:8230%7]) with mapi id 15.20.5081.023; Mon, 21 Mar 2022
- 23:56:19 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     "robh@kernel.org" <robh@kernel.org>,
-        "radheys@xilinx.com" <radheys@xilinx.com>
-CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "michals@xilinx.com" <michals@xilinx.com>,
-        "greentime.hu@sifive.com" <greentime.hu@sifive.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "harinik@xilinx.com" <harinik@xilinx.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "andy.chiu@sifive.com" <andy.chiu@sifive.com>,
-        "davem@davemloft.net" <davem@davemloft.net>
-Subject: Re: [PATCH v4 3/4] dt-bindings: net: xilinx_axienet: add pcs-handle
- attribute
-Thread-Topic: [PATCH v4 3/4] dt-bindings: net: xilinx_axienet: add pcs-handle
- attribute
-Thread-Index: AQHYPTgrI7jLgAaz1UWtdS3v+RtT+KzJ+jUAgACGoACAAAM+AA==
-Date:   Mon, 21 Mar 2022 23:56:19 +0000
-Message-ID: <d649514d914366156128505091ecaab61da525b8.camel@calian.com>
-References: <20220321152515.287119-1-andy.chiu@sifive.com>
-         <20220321152515.287119-3-andy.chiu@sifive.com>
-         <SA1PR02MB856080742C4C5B1AA50FA254C7169@SA1PR02MB8560.namprd02.prod.outlook.com>
-         <YjkN6uo/3hXMU36c@robh.at.kernel.org>
-In-Reply-To: <YjkN6uo/3hXMU36c@robh.at.kernel.org>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5 (3.28.5-18.el8) 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 38e2b01d-f2d7-473b-037c-08da0b9664eb
-x-ms-traffictypediagnostic: QB1PR01MB3475:EE_
-x-microsoft-antispam-prvs: <QB1PR01MB3475C90CFBF293B4DA553736EC169@QB1PR01MB3475.CANPRD01.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 04SOuPLAZVZ/dSBORKfseUxIqHbfjog8IrRi2gAC11VDV2Q8hvwCowTIDjrHw9KhGbg83dxtOG3vEY7Oyc4XHEmA9SmJ8VT+FtU3jZWjc8SdNmHbWuxwoweFvb4TYKmr4ccEoEZ3v5Q40rFTRvJxo8fSvXoCxvFdLcUceUlxgONOA2Dakb+vmaUkOI7jk4+d86Bcngsot8K2mASo/lTzaRIeqEA/VE65FnCc4atbJGaRQ7m9/2zE66mU9ipbATn7ciMhq7luMyQUexBtbTf2PsWgfIvEForBg9m+PndJj1Ogh3Cs32xmI8fgR1Ry/D2OBWMSQ3RRKIuAH/6fy5AsLchdtJAXHsY55j94Zw69mGNJOYLmfjpuc/pV19Mftnqzuum17J8UTHCTNiIWPrv395TKHdwEfKT/IrTC9cBRcYJYw+fGlrk+xKGyEw34XYS7cQPiLGpmDdSBQL6fEiJ6xqKH08Ug+y6DfPC6pI/F2HwixDuW9KJ3ReEsLmhaQU0S6AuzOBqOQQoCxXaBiba8/JB14dKQwf6lpb5L7zkKJk6Aya2C2qPg8mUDY72kPRCq1K9921ql90W/vCv6Zey/M/DmylxmKnNGs1dqh6fBVsLgSMkpkrgkEsoGWFaND3oZ7/oE723BDQqe9moWsYO0boGYZbQTImp4gtC+5uBH93VlvHNjFe+t47Mvjf2SeWUQImlPSi/F2VOe7OTJhDq2+azICURnS7K7yvkiFiHiuF0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(44832011)(91956017)(76116006)(38100700002)(4326008)(66946007)(66556008)(36756003)(122000001)(6486002)(71200400001)(508600001)(38070700005)(64756008)(66446008)(66476007)(2616005)(316002)(83380400001)(110136005)(6512007)(186003)(8936002)(53546011)(7416002)(5660300002)(2906002)(6506007)(8676002)(86362001)(54906003)(26005)(99106002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SDVTQitXT3hNdks0S2F2MTZVRmtINTROVnlheVhVRDZ2RVlTN1VSZXZ4cWhQ?=
- =?utf-8?B?MEZ3V0tFaFZIUkhhTUwxK0ZnZ1IzaUZUb2dDTTVDRUN2ajZTTXNvb1E3OXRX?=
- =?utf-8?B?N0JCMGlseEhrcE5kVUVvMWJZNzlockZxN1krMjlNTjZ3eWlSaXNKYWpzcm05?=
- =?utf-8?B?d2lUeVFIaUNqVDZtUWM3MUpENG9uaG9NMlFaTHMzdVBMdDB4TlE1T0doSjF5?=
- =?utf-8?B?d0VzSDZlajVEV2liNmZBdTVVWTY3SlUza1dDVXAyUUlsTVUwN2hsNHgwSVVY?=
- =?utf-8?B?eHlQeEtjU3JZYkZSa0V4enlPL0xSZnJHSFpqMmVrS0FPVVQ1MU9tY3Q1eThJ?=
- =?utf-8?B?K0lUL2kzNWJoZnhiZXcyRTVXN0J2TWdiNnFOdHF0a2tIN29sUmNHMGl6QnZH?=
- =?utf-8?B?UTN6TjJGMXB5bHVaZDM5dW9jRFRzUnRCZWVVMFk5L0V5VmhzSXB4bkkyNWF0?=
- =?utf-8?B?R3BYRXF1SnplcG9oN290MTBjTVlqMitSMEM1dk50K0JUVkc5SFJSbzJMdmN0?=
- =?utf-8?B?Z3pCRG0rTjZkUW5FT250VnA5NHF4c2dZOFFzRTFrcGNLdDB0YUFwU05hVVZY?=
- =?utf-8?B?eEFiZVd3NFE1MjVrZ29NUFJoZDlJdm5zZ1dRYlBNWjd6ZXVuamxwbExQTXhF?=
- =?utf-8?B?RGVUT0JpRlRpcWQ1VjN2RlNUMWpUa2xmZ1VjaWNLS2ViaU5GeEFCNklyN1JH?=
- =?utf-8?B?SG9GUSt6UXducEF4TG9tRGFWbnJUODg5QkRUeDVFMXVNUHhxSUxCWGJSdkUx?=
- =?utf-8?B?ZFVVZnlHMm9IQkdySTNIMWlwdFU1UnRJVHZOMVF1QjdybWl0Z0c5NHhybytl?=
- =?utf-8?B?U25Id1BYL0p2NTAxSmUvWDBQMTJQdG1KUmVsdVM2Z0Vyd1hmeHFHVjZxMVF4?=
- =?utf-8?B?bEhPZGg3V2lLUmNxdDk1OHdLOUZuUlhBc1AxZ01ZMHpCSFdBTzd3a09teVdZ?=
- =?utf-8?B?aUZJVkR6Uk1pRXB2RkdoMGM4aEhYblNYajdBekIyeVVWaURyY20yQ3FkZ1M0?=
- =?utf-8?B?MXhETHVpN0dOODMzSC9BR1NxTUs2aHk1RFdkRExhMTl5UmJJN1hZL1ExaXpr?=
- =?utf-8?B?SWtkWG92RXR6OUlhNndnWUdaWEpJRU0wNUVjb25CdUwybHNZcUwvcWhDNVdh?=
- =?utf-8?B?VWpaaGZIUGw4MEk5NEhPWnEvSXlETUJacCt6SzBDV1lnOEI4dDJGVEhFL3Rs?=
- =?utf-8?B?WnlVbXorZ0dqWUZxd3lnUXdZUHpJSVpGeU1NbDcwUC9BQ1A3T3VuSVlwSzFk?=
- =?utf-8?B?Z2RWWUhuVUVCcE1TampzVnBDUk1HVGNKL0tGSFlvR2xWWXBVdFRQeUtzUWRB?=
- =?utf-8?B?Y3pLZkJsUm1UN20wdHFNQWVzL2VWWitzTlBjSHg2aWhTRk1CK1FZSHhnaHhs?=
- =?utf-8?B?Mko4OThySWlMSGhWRXNUSWVuMG9zT2JPU1I4eHdjODdoZmp6a0NtSDZjcHdE?=
- =?utf-8?B?aFE3czBnaDFubzBBV3djblZ2dmd2NUNWbllNcFRyY0lGWk1hSFQ3dVdDYkxI?=
- =?utf-8?B?MUNKV25nOEcxbjhNaEVVL3V2c0hKd0s3aUdYUStScmxjNm9qZU5vWUNpQkhq?=
- =?utf-8?B?dkhhdlNvWVZJL3NuTWhIQWNocElycDhKd0FCQXl1bU9RVGlybVEvVHNnOE1I?=
- =?utf-8?B?TmRNRXRYSVdFVm5rRDc2OHRmNW1DeW9yNVZQTEx1UHpadHhCb3hFbWcrTTRN?=
- =?utf-8?B?MFZadGtrbCsxYlVTaFgwckptK1RLWVU0aUxQaXpSSXRNK2pNWjdLSzUxclMv?=
- =?utf-8?B?ZTQxVEVqbU5BT2t0ZXFobFJuZTdqejFwUTBLUGt0OG42dnNzc3k4NldkQmNj?=
- =?utf-8?B?bnVjVnk4YWZXeGdTalVMY1M1RGVCZWd6UXkxOUw1UTZMSjlTVjBITXNMcTdo?=
- =?utf-8?B?b1BKOEJ5bnU2Y2FqL09yNmdJNGxrejZtMGFDb1pZTEZQTnVjSkxxZU9PaUYx?=
- =?utf-8?B?THUwK2VpeEJlbFlXNFdkeGxlejFJVkIvcDRJSmV3OWhEVnVnNmNmMHZWVGVo?=
- =?utf-8?B?ZzJGd3kzTnZBPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9B117BABCCFA3C48A086722E0332BCD3@CANPRD01.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38e2b01d-f2d7-473b-037c-08da0b9664eb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2022 23:56:19.2001
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: p48NRldgCdYqSv/mBtMtTbgypJQRFZyt9+kiU8Yq5D/Dc8du7H5fIhPbd+SPUIJetJEshpI5QdYNFSVYYcq/ZRa/vq6EN/R/KL3xwLyMspQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: QB1PR01MB3475
-X-Proofpoint-ORIG-GUID: SsKxwF5Djw7MUmw-8vyJhe8tp447FqVL
-X-Proofpoint-GUID: SsKxwF5Djw7MUmw-8vyJhe8tp447FqVL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-21_10,2022-03-21_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 clxscore=1015 mlxlogscore=999 impostorscore=0 bulkscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 phishscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203210147
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233617AbiCVAAr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 20:00:47 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F439167FB
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 16:58:15 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id m11-20020a17090a7f8b00b001beef6143a8so693791pjl.4
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 16:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2WCRaXyJNfT25RlaLnKjG5IpC0nuVkmevmwHgWTxhDU=;
+        b=0PahQ6QoXT4pY0tIlmmNw7ASpnE4NmFxgFuO+xLrAyXX85d6f8PhKJBn2m6hW0Q4wq
+         JfkR5Veqf5xw1F/A2K9qm1hKouQ4d2v16lK/jBwQgB1VM/Rv8ewdAybl0BLyAe+EEfkH
+         FnnVoJ8R0dIUb0s7fbf5o0b58RDJs8QnChhSQHcPD5uRldk9yjkFRJOjCQJv2TBtEaqP
+         Iu2FXWzxbVA9A1EkRoC4b7wI1kUtt7sOhvBDiEbAd+O2dzGHqazWDmsZPxIKb54AxYa2
+         ndu0i9FriyKs+5Kmkj+2qIElTpqRFLSt0bXVW7H/04HWGv9m4HzJ7Jv2LRrMglJw6wCB
+         3/Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=2WCRaXyJNfT25RlaLnKjG5IpC0nuVkmevmwHgWTxhDU=;
+        b=RGXGgFq9XChVAY/L013KXJWeVNRXeIuy+enIGG8dRLoqofjm0EoVdJUMi/k9OoYrPx
+         oyDDe58VF9qA14xfBNU+fKOuV/gEduGFXIIbEqT36dInpJRpI+66FLOzM+7gKqjUi6UB
+         FBSzQAXfhhv8MftI/oWq9Ay+abH6r/rOuYZanf2hyiortUWXME8mkQmZ5m3zKLqYuBbU
+         BSu55FGbyPvvApsku97ytgNEKxZbjF5png9CBy1DMbUHMt94jCpPSciZ/EzN9sncH4oI
+         CJr5dOBEf4bDfP8+o9fA6Tvme7ZDDKBVZV237hk2bo1cX3FIwcxk/e4/JmCbkHi5LCTI
+         uyOg==
+X-Gm-Message-State: AOAM530NOqv2J+bTCWoXPwPqV8yH0AiPeKSi+aOs2vaYgVKFsEfbzWY2
+        S/Gsw49yuZrem3C+PufvNz837Q==
+X-Google-Smtp-Source: ABdhPJxXEhHVuh8zmmi6r9ISLVsMdKJWOUN2ppxSOSVlZR97nu7sLik7vSo0/LIUqdJKE4D35J4HSA==
+X-Received: by 2002:a17:902:db0d:b0:14f:b047:8d22 with SMTP id m13-20020a170902db0d00b0014fb0478d22mr14974715plx.90.1647907066311;
+        Mon, 21 Mar 2022 16:57:46 -0700 (PDT)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id a38-20020a056a001d2600b004f70d5e92basm20890232pfx.34.2022.03.21.16.57.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 16:57:44 -0700 (PDT)
+Date:   Mon, 21 Mar 2022 16:57:44 -0700 (PDT)
+X-Google-Original-Date: Mon, 21 Mar 2022 16:57:41 PDT (-0700)
+Subject:     Re: [v6 0/9] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
+In-Reply-To: <20220219004700.1973682-1-atishp@rivosinc.com>
+CC:     linux-kernel@vger.kernel.org, aou@eecs.berkeley.edu,
+        atishp@atishpatra.org, anup@brainfault.org, damien.lemoal@wdc.com,
+        devicetree@vger.kernel.org, jszhang@kernel.org,
+        krzysztof.kozlowski@canonical.com, linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Atish Patra <atishp@rivosinc.com>
+Message-ID: <mhng-11acdcb6-8dfc-46dd-bc30-4efc85e8a0ed@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIyLTAzLTIxIGF0IDE4OjQ0IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gTW9uLCBNYXIgMjEsIDIwMjIgYXQgMDM6NDI6NTJQTSArMDAwMCwgUmFkaGV5IFNoeWFtIFBh
-bmRleSB3cm90ZToNCj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiBGcm9t
-OiBBbmR5IENoaXUgPGFuZHkuY2hpdUBzaWZpdmUuY29tPg0KPiA+ID4gU2VudDogTW9uZGF5LCBN
-YXJjaCAyMSwgMjAyMiA4OjU1IFBNDQo+ID4gPiBUbzogUmFkaGV5IFNoeWFtIFBhbmRleSA8cmFk
-aGV5c0B4aWxpbnguY29tPjsgcm9iZXJ0LmhhbmNvY2tAY2FsaWFuLmNvbTsNCj4gPiA+IE1pY2hh
-bCBTaW1layA8bWljaGFsc0B4aWxpbnguY29tPg0KPiA+ID4gQ2M6IGRhdmVtQGRhdmVtbG9mdC5u
-ZXQ7IGt1YmFAa2VybmVsLm9yZzsgcGFiZW5pQHJlZGhhdC5jb207DQo+ID4gPiByb2JoK2R0QGtl
-cm5lbC5vcmc7IGxpbnV4QGFybWxpbnV4Lm9yZy51azsgYW5kcmV3QGx1bm4uY2g7DQo+ID4gPiBu
-ZXRkZXZAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgQW5keSBD
-aGl1DQo+ID4gPiA8YW5keS5jaGl1QHNpZml2ZS5jb20+OyBHcmVlbnRpbWUgSHUgPGdyZWVudGlt
-ZS5odUBzaWZpdmUuY29tPg0KPiA+ID4gU3ViamVjdDogW1BBVENIIHY0IDMvNF0gZHQtYmluZGlu
-Z3M6IG5ldDogeGlsaW54X2F4aWVuZXQ6IGFkZCBwY3MtaGFuZGxlDQo+ID4gPiBhdHRyaWJ1dGUN
-Cj4gPiA+IA0KPiA+ID4gRG9jdW1lbnQgdGhlIG5ldyBwY3MtaGFuZGxlIGF0dHJpYnV0ZSB0byBz
-dXBwb3J0IGNvbm5lY3RpbmcgdG8gYW4NCj4gPiA+IGV4dGVybmFsDQo+ID4gPiBQSFkgaW4gU0dN
-SUkgb3IgMTAwMEJhc2UtWCBtb2RlcyB0aHJvdWdoIHRoZSBpbnRlcm5hbCBQQ1MvUE1BIFBIWS4N
-Cj4gPiA+IA0KPiA+ID4gU2lnbmVkLW9mZi1ieTogQW5keSBDaGl1IDxhbmR5LmNoaXVAc2lmaXZl
-LmNvbT4NCj4gPiA+IFJldmlld2VkLWJ5OiBHcmVlbnRpbWUgSHUgPGdyZWVudGltZS5odUBzaWZp
-dmUuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL25ldC94aWxpbnhfYXhpZW5ldC50eHQgfCA4ICsrKysrKystDQo+ID4gPiAgMSBmaWxlIGNo
-YW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+ID4gDQo+ID4gPiBkaWZm
-IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC94aWxpbnhfYXhp
-ZW5ldC50eHQNCj4gPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC94
-aWxpbnhfYXhpZW5ldC50eHQNCj4gPiA+IGluZGV4IGI4ZTQ4OTRiYzYzNC4uYmE3MjBhMmVhNWZj
-IDEwMDY0NA0KPiA+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25l
-dC94aWxpbnhfYXhpZW5ldC50eHQNCj4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9uZXQveGlsaW54X2F4aWVuZXQudHh0DQo+ID4gPiBAQCAtMjYsNyArMjYsOCBA
-QCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+ID4gIAkJICBzcGVjaWZpZWQsIHRoZSBUWC9SWCBE
-TUEgaW50ZXJydXB0cyBzaG91bGQgYmUgb24gdGhhdCBub2RlDQo+ID4gPiAgCQkgIGluc3RlYWQs
-IGFuZCBvbmx5IHRoZSBFdGhlcm5ldCBjb3JlIGludGVycnVwdCBpcyBvcHRpb25hbGx5DQo+ID4g
-PiAgCQkgIHNwZWNpZmllZCBoZXJlLg0KPiA+ID4gLS0gcGh5LWhhbmRsZQk6IFNob3VsZCBwb2lu
-dCB0byB0aGUgZXh0ZXJuYWwgcGh5IGRldmljZS4NCj4gPiA+ICstIHBoeS1oYW5kbGUJOiBTaG91
-bGQgcG9pbnQgdG8gdGhlIGV4dGVybmFsIHBoeSBkZXZpY2UgaWYgZXhpc3RzLg0KPiA+ID4gUG9p
-bnRpbmcNCj4gPiA+ICsJCSAgdGhpcyB0byB0aGUgUENTL1BNQSBQSFkgaXMgZGVwcmVjYXRlZCBh
-bmQgc2hvdWxkIGJlDQo+ID4gPiBhdm9pZGVkLg0KPiA+ID4gIAkJICBTZWUgZXRoZXJuZXQudHh0
-IGZpbGUgaW4gdGhlIHNhbWUgZGlyZWN0b3J5Lg0KPiA+ID4gIC0geGxueCxyeG1lbQk6IFNldCB0
-byBhbGxvY2F0ZWQgbWVtb3J5IGJ1ZmZlciBmb3IgUngvVHggaW4gdGhlDQo+ID4gPiBoYXJkd2Fy
-ZQ0KPiA+ID4gDQo+ID4gPiBAQCAtNjgsNiArNjksMTEgQEAgT3B0aW9uYWwgcHJvcGVydGllczoN
-Cj4gPiA+ICAJCSAgcmVxdWlyZWQgdGhyb3VnaCB0aGUgY29yZSdzIE1ESU8gaW50ZXJmYWNlIChp
-LmUuIGFsd2F5cywNCj4gPiA+ICAJCSAgdW5sZXNzIHRoZSBQSFkgaXMgYWNjZXNzZWQgdGhyb3Vn
-aCBhIGRpZmZlcmVudCBidXMpLg0KPiA+ID4gDQo+ID4gPiArIC0gcGNzLWhhbmRsZTogCSAgUGhh
-bmRsZSB0byB0aGUgaW50ZXJuYWwgUENTL1BNQSBQSFkgaW4gU0dNSUkgb3INCj4gPiA+IDEwMDBC
-YXNlLVgNCj4gPiA+ICsJCSAgbW9kZXMsIHdoZXJlICJwY3MtaGFuZGxlIiBzaG91bGQgYmUgcHJl
-ZmVyYWJseSB1c2VkIHRvDQo+ID4gPiBwb2ludA0KPiA+ID4gKwkJICB0byB0aGUgUENTL1BNQSBQ
-SFksIGFuZCAicGh5LWhhbmRsZSIgc2hvdWxkIHBvaW50IHRvIGFuDQo+ID4gPiArCQkgIGV4dGVy
-bmFsIFBIWSBpZiBleGlzdHMuDQo+ID4gDQo+ID4gSSB3b3VsZCBsaWtlIHRvIGhhdmUgUm9iIGZl
-ZWRiYWNrIG9uIHRoaXMgcGNzLWhhbmRsZSBEVCBwcm9wZXJ0eS4NCj4gPiANCj4gPiBUaGUgdXNl
-IGNhc2UgaXMgZ2VuZXJpYyBpLmUuIHJlcXVpcmUgc2VwYXJhdGUgaGFuZGxlIHRvIGludGVybmFs
-IFNHTUlJDQo+ID4gYW5kIGV4dGVybmFsIFBoeSBzbyB3b3VsZCBwcmVmZXIgdGhpcyBuZXcgRFQg
-Y29udmVudGlvbiBpcyANCj4gPiBzdGFuZGFyZGl6ZWQgb3Igd2UgZGlzY3VzcyBwb3NzaWJsZSBh
-cHByb2FjaGVzIG9uIGhvdyB0byBoYW5kbGUNCj4gPiBib3RoIHBoeXMgYW5kIG5vdCBhZGQgaXQg
-YXMgdmVuZG9yIHNwZWNpZmljIHByb3BlcnR5IGluIHRoZSBmaXJzdCANCj4gPiBwbGFjZS4NCj4g
-DQo+IElNTywgeW91IHNob3VsZCB1c2UgJ3BoeXMnIGZvciB0aGUgaW50ZXJuYWwgUENTIHBoeS4g
-VGhhdCdzIGFsaWduZWQgd2l0aCANCj4gb3RoZXIgdXNlcyBsaWtlIFBDSWUsIFNBVEEsIGV0Yy4g
-KHRoZXJlIGlzIHBoeSBoL3cgdGhhdCB3aWxsIGRvIFBDUywgDQo+IFBDSWUsIFNBVEEpLiAncGh5
-LWhhbmRsZScgaXMgZm9yIHRoZSBldGhlcm5ldCBQSFkuDQoNClRoYXQgbWlnaHQgYmUgY29uZnVz
-aW5nIGluIHNvbWUgY2FzZXMgLSBJJ20gdGhpbmtpbmcgb2YgdGhlIENhZGVuY2UgR0VNDQpjb250
-cm9sbGVycyBvbiB0aGUgWGlsaW54IE1QU29DIGRldmljZXMsIHdoZXJlIHRoZXJlIGlzIGEgUENT
-IGludGVybmFsIHRvIHRoZQ0KY29udHJvbGxlciwgYXMgd2VsbCBhcyBhIGdlbmVyaWMgUEhZIGRl
-dmljZSB3aGljaCBpcyB1c2VkIHRvIGNvbnRyb2wgdGhlIGFjdHVhbA0KbG93LWxldmVsIEkvTyB0
-cmFuc2NlaXZlciBvbiB0aGUgY2hpcCAod2hpY2ggY2FuIHdvcmsgaW4gU0dNSUkgbW9kZSBidXQg
-YWxzbyBpbg0KVVNCLCBQQ0llLCBTQVRBIG1vZGVzKS4gQ2FsbGluZyB0aGVtIGJvdGgganVzdCBh
-ICJQSFkiIG1ha2VzIHRoYXQgZGlzdGluY3Rpb24NCnJhdGhlciB1bmNsZWFyLiBJbiB0aGUgY2Fz
-ZSBvZiB0aGF0IGRyaXZlciBJIGJlbGlldmUgaXRzIFBDUyBpcyBqdXN0ICJrbm93bg0KYWJvdXQi
-IGJ5IHRoZSBNQUMgd2hlbiBpdCBpcyBwcmVzZW50IGFuZCBub3QgY29uZmlndXJlZCBpbiB0aGUg
-ZGV2aWNlIHRyZWUgbGlrZQ0KdGhpcyBkcml2ZXIgZG9lcywgYnV0IHBvc3NpYmx5IGl0IGNvdWxk
-IGJlIERUIGNvbmZpZ3VyYWJsZSBzb21lZGF5IChzaW5jZSBJDQp0aGluayBpdCdzIHBvdGVudGlh
-bGx5IHBvc3NpYmxlIHRvIHVzZSBhIGRpZmZlcmVudCBQQ1MgaW1wbGVtZW50ZWQgaW4gdGhlDQpw
-cm9ncmFtbWFibGUgbG9naWMgaWYgb25lIHdhbnRlZCkuDQoNClRoZSB3YXkgdGhpcyBQQ1MgaXMg
-YWNjZXNzZWQsIGJvdGggaXQgYW5kIHRoZSBwb3RlbnRpYWwgZXh0ZXJuYWwgUEhZIGFyZSBib3Ro
-DQoiRXRoZXJuZXQgUEhZcyIgaW4gdGhhdCB0aGV5IHN1cHBvcnQgc3RhbmRhcmQgRXRoZXJuZXQg
-UEhZIHJlZ2lzdGVycyBldGMuLCBpdCdzDQpqdXN0IHRoYXQgZ2VuZXJhbGx5IHRoZSBleHRlcm5h
-bCBvbmUgaXMgdGhlIG9uZSB0aGUgb3V0c2lkZSBMaW51eCBuZXR3b3JraW5nDQppbmZyYXN0cnVj
-dHVyZSBjYXJlcyBhYm91dCwgdGhlIFBDUyBQSFkgaXMgbW9yZSBvZiBhbiBpbXBsZW1lbnRhdGlv
-biBkZXRhaWwNCmludGVybmFsIHRvIHRoZSBkcml2ZXIuDQoNCj4gDQo+IFJvYg0K
+On Fri, 18 Feb 2022 16:46:51 PST (-0800), Atish Patra wrote:
+> This series adds improved perf support for RISC-V based system using
+> SBI PMU extension[1] and Sscofpmf extension[2]. The SBI PMU extension allows
+> the kernel to program the counters for different events and start/stop counters
+> while the sscofpmf extension allows the counter overflow interrupt and privilege
+> mode filtering. An hardware platform can leverage SBI PMU extension without
+> the sscofpmf extension if it supports mcounteren at least. Perf stat will work
+> but record won't work as sscofpmf & mcountinhibit is required to support that.
+> A platform can support both features event counting and sampling using perf
+> tool only if sscofpmf is supported.
+>
+> This series introduces a platform perf driver instead of a existing arch
+> specific implementation. The new perf implementation has adopted a modular
+> approach where most of the generic event handling is done in the core library
+> while individual PMUs need to only implement necessary features specific to
+> the PMU. This is easily extensible and any future RISC-V PMU implementation
+> can leverage this. Currently, SBI PMU driver & legacy PMU driver are implemented
+> as a part of this series.
+>
+> The legacy driver tries to reimplement the existing minimal perf under a new
+> config to maintain backward compatibility. This implementation only allows
+> monitoring of always running cycle/instruction counters. Moreover, they can
+> not be started or stopped. In general, this is very limited and not very useful.
+> That's why, I am not very keen to carry the support into the new driver.
+> However, I don't want to break perf for any existing hardware platforms.
+> If everybody agrees that we don't need legacy perf implementation for older
+> implementation, I will be happy to drop PATCH 4.
+>
+> This series has been tested in Qemu (RV64 & RV32) and HiFive Unmatched.
+> Qemu patches[4] and OpenSBI v1.0 is required to test it on Qemu and a dt patch
+> required in U-Boot[5] for HiFive Unmatched. Qemu changes are not
+> backward compatible. That means, you can not use perf anymore on older Qemu
+> versions with latest OpenSBI and/or Kernel. However, newer kernel will
+> just use legacy pmu driver if old OpenSBI is detected.
+>
+> The U-Boot patch is just an example that encodes few of the events defined
+> in fu740 documentation [6] in the DT. We can update the DT to include all the
+> events defined if required.
+>
+> This series depends on the ISA extension parsing series[7].
+>
+> Here is an output of perf stat/report while running perf benchmark with OpenSBI,
+> Linux kernel and U-Boot patches applied.
+>
+> HiFive Unmatched:
+> =================
+> perf stat -e cycles -e instructions -e L1-icache-load-misses -e branches -e branch-misses \
+> -e r0000000000000200 -e r0000000000000400 \
+> -e r0000000000000800 perf bench sched messaging -g 25 -l 15
+>
+> # Running 'sched/messaging' benchmark:
+> # 20 sender and receiver processes per group
+> # 25 groups == 1000 processes run
+>
+>      Total time: 0.826 [sec]
+>
+>  Performance counter stats for 'perf bench sched messaging -g 25 -l 15':
+>
+>         3426710073      cycles                (65.92%)
+>         1348772808      instructions          #0.39  insn per cycle  (75.44%)
+>                  0      L1-icache-load-misses (72.28%)
+>          201133996      branches              (67.88%)
+>           44663584      branch-misses         #22.21% of all branches (35.01%)
+>          248194747      r0000000000000200     (41.94%) --> Integer load instruction retired
+>          156879950      r0000000000000400     (43.58%) --> Integer store instruction retired
+>            6988678      r0000000000000800     (47.91%) --> Atomic memory operation retired
+>
+>        1.931335000 seconds time elapsed
+>
+>        1.100415000 seconds user
+>        3.755176000 seconds sys
+>
+>
+> QEMU:
+> =========
+> Perf stat:
+> =========
+>
+> [root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e r8000000000000007 \
+> -e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e branch-misses \
+> -e cache-misses -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses \
+> -e cycles -e instructions perf bench sched messaging -g 15 -l 10 \
+> Running with 15*40 (== 600) tasks.
+> Time: 6.578
+>
+>  Performance counter stats for './hackbench -pipe 15 process':
+>
+>              1,794      r8000000000000005      (52.59%) --> SBI_PMU_FW_SET_TIMER
+>              2,859      r8000000000000007      (60.74%) --> SBI_PMU_FW_IPI_RECVD
+>              4,205      r8000000000000006      (68.71%) --> SBI_PMU_FW_IPI_SENT
+>                  0      r0000000000020002      (81.69%)
+>      <not counted>      r0000000000020004      (0.00%)
+>      <not counted>      branch-misses          (0.00%)
+>      <not counted>      cache-misses           (0.00%)
+>          7,878,328      dTLB-load-misses       (15.60%)
+>            680,270      dTLB-store-misses      (28.45%)
+>          8,287,931      iTLB-load-misses       (39.24%)
+>     20,008,506,675      cycles                 (48.60%)
+>     21,484,427,932      instructions   # 1.07  insn per cycle (56.60%)
+>
+>        1.681344735 seconds time elapsed
+>
+>        0.614460000 seconds user
+>        8.313254000 seconds sys
+>
+>
+> [root@fedora-riscv ~]# perf stat -e cycles -e instructions -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses \
+>> perf bench sched messaging -g 1 -l 10
+> # Running 'sched/messaging' benchmark:
+> # 20 sender and receiver processes per group
+> # 1 groups == 40 processes run
+>
+>      Total time: 0.218 [sec]
+>
+>  Performance counter stats for 'perf bench sched messaging -g 1 -l 10':
+>
+>      3,685,401,394      cycles
+>      3,684,529,388      instructions              #    1.00  insn per cycle
+>          3,006,042      dTLB-load-misses
+>            258,144      dTLB-store-misses
+>          1,992,860      iTLB-load-misses
+>
+>        0.588717389 seconds time elapsed
+>
+>        0.324009000 seconds user
+>        0.937087000 seconds sys
+>
+> [root@fedora-riscv ~]# perf record -e cycles -e instructions -e dTLB-load-misses -e dTLB-store-misses \
+> -e iTLB-load-misses -c 10000 perf bench sched messaging -g 1 -l 10
+> # Running 'sched/messaging' benchmark:
+> # 20 sender and receiver processes per group
+> # 1 groups == 40 processes run
+>
+>      Total time: 2.160 [sec]
+> [ perf record: Woken up 11 times to write data ]
+> Warning:
+> Processed 291769 events and lost 1 chunks!
+>
+> [root@fedora-riscv ~]# perf report
+>
+> Available samples
+> 146K cycles                                                                    ◆
+> 146K instructions                                                              ▒
+> 298 dTLB-load-misses                                                           ▒
+> 8 dTLB-store-misses                                                            ▒
+> 211 iTLB-load-misses
+>
+> [1] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc
+> [2] https://drive.google.com/file/d/171j4jFjIkKdj5LWcExphq4xG_2sihbfd/edit
+> [3] https://github.com/atishp04/linux/tree/riscv_pmu_v6
+> [4] https://github.com/atishp04/qemu/tree/riscv_pmu_v5
+> [5] https://github.com/atishp04/u-boot/tree/hifive_unmatched_dt_pmu
+> [6] https://sifive.cdn.prismic.io/sifive/de1491e5-077c-461d-9605-e8a0ce57337d_fu740-c000-manual-v1p3.pdf
+> [7] https://lkml.org/lkml/2022/2/15/1604
+>
+> Changes from v5->v6:
+> 1. Split the used counters bitmap to firmware and hardware so that we don't
+>    have to generate a hardware only used counter mask during overflow handling.
+> 2. Stopped all the counters during cpu hotplug to restore correct behavior.
+> 3. Addressed all the comments during the v5 review.
+> 4. Rebased on top of the isa extension framework series and 5.17-rc4.
+>
+> Changes from v4->v5:
+> 1. Fixed few corner case issues in perf interrupt handling.
+> 2. Changed the set_period API so that the caller can compute the initialize
+>    value.
+> 3. Fixed the per cpu interrupt enablement issue.
+> 4. Fixed a bug for the privilege mode filtering.
+> 5. Modified the sbi driver independent of the DT.
+> 6. Removed any DT related modifications.
+>
+> Changes from v3->v4:
+> 1. Do not proceed overflow handler if event doesn't set for sampling.
+> 2. overflow status register is only read after counters are stopped.
+> 3. Added the PMU DT node for HiFive Unmatched.
+>
+> Changes from v2->v3:
+> 1. Added interrupt overflow support.
+> 2. Cleaned up legacy driver initialization.
+> 3. Supports perf record now.
+> 4. Added the DT binding and maintainers file.
+> 5. Changed cpu hotplug notifier to be multi-state.
+> 6. OpenSBI doesn't disable cycle/instret counter during boot. Update the
+>    perf code to disable all the counter during the boot.
+>
+> Changes from v1->v2
+> 1. Implemented the latest SBI PMU extension specification.
+> 2. The core platform driver was changed to operate as a library while only
+>    sbi based PMU is built as a driver. The legacy one is just a fallback if
+>    SBI PMU extension is not available.
+>
+> Atish Patra (9):
+> RISC-V: Remove the current perf implementation
+> RISC-V: Add CSR encodings for all HPMCOUNTERS
+> RISC-V: Add a perf core library for pmu drivers
+> RISC-V: Add a simple platform driver for RISC-V legacy perf
+> RISC-V: Add RISC-V SBI PMU extension definitions
+> RISC-V: Add perf platform driver based on SBI PMU extension
+> RISC-V: Add sscofpmf extension support
+> Documentation: riscv: Remove the old documentation
+> MAINTAINERS: Add entry for RISC-V PMU drivers
+>
+> Documentation/riscv/pmu.rst         | 255 ---------
+> MAINTAINERS                         |   9 +
+> arch/riscv/Kconfig                  |  13 -
+> arch/riscv/include/asm/csr.h        |  66 ++-
+> arch/riscv/include/asm/hwcap.h      |   1 +
+> arch/riscv/include/asm/perf_event.h |  72 ---
+> arch/riscv/include/asm/sbi.h        |  95 ++++
+> arch/riscv/kernel/Makefile          |   1 -
+> arch/riscv/kernel/cpu.c             |   1 +
+> arch/riscv/kernel/cpufeature.c      |   2 +
+> arch/riscv/kernel/perf_event.c      | 485 -----------------
+> drivers/perf/Kconfig                |  30 ++
+> drivers/perf/Makefile               |   3 +
+> drivers/perf/riscv_pmu.c            | 324 ++++++++++++
+> drivers/perf/riscv_pmu_legacy.c     | 142 +++++
+> drivers/perf/riscv_pmu_sbi.c        | 790 ++++++++++++++++++++++++++++
+> include/linux/cpuhotplug.h          |   1 +
+> include/linux/perf/riscv_pmu.h      |  75 +++
+> 18 files changed, 1538 insertions(+), 827 deletions(-)
+> delete mode 100644 Documentation/riscv/pmu.rst
+> delete mode 100644 arch/riscv/kernel/perf_event.c
+> create mode 100644 drivers/perf/riscv_pmu.c
+> create mode 100644 drivers/perf/riscv_pmu_legacy.c
+> create mode 100644 drivers/perf/riscv_pmu_sbi.c
+> create mode 100644 include/linux/perf/riscv_pmu.h
+
+Thanks, this is on for-next.
