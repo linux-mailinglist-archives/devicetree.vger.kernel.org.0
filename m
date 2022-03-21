@@ -2,111 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4534E31C9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 21:30:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28FAA4E324D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 22:22:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350305AbiCUUbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 16:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38238 "EHLO
+        id S230195AbiCUVW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 17:22:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347907AbiCUUbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 16:31:43 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F607CB04
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 13:30:17 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id q129so15506898oif.4
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 13:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=SVEe7hUZOZ574KT711GyJJUr8pqUU3sbXrrP/FH6lUQ=;
-        b=HgN8E2bzL5A2bOlDz55Mv25/tt/RKwL9jSNjt40u/m04w3/7P+7g9c1HkyBvlAeQfV
-         2dhF+CnMi7h+Hj27pLjB7vrt+MzJ33fr0SD0TfhrIdKlbvJbV3XL81l38mZBlmlSDQYN
-         U405VmvwgH/ui0st6tSGtygKgfRSLlo87paTk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=SVEe7hUZOZ574KT711GyJJUr8pqUU3sbXrrP/FH6lUQ=;
-        b=m0MPQaYIPM/K59BxEyKOsCdIXdGybvQd2GokCp8nOoDlJhy1EWyNeqfeSomJZ+Lxjl
-         RXmcFE7IHajI50LwTb6Fo4w8sHsgFjLUNTfYSCYu8/H1FisLrF/VV3ZkSYRwCnNHjs6Z
-         N5VSirGyDCyY5b2+HU1hM7Ip3C6TXPK9U6Y6ucM1FaPKFSxdYUfhyH1AxQG2Ffqnh6JI
-         g9+JJctjQvbX19CqdVF/w7r4kI5BZ02r9eC4bklJFwjPOTt+1emp09n1VFj6vnziWqwI
-         we7raAeEjUOsNTDQrDU4XVvoV+v8pWaRBGGeotXUGb96SSVrtTITHlN/R61hx4gFTteW
-         KKPA==
-X-Gm-Message-State: AOAM533uEW46O//t1TkVE2x+j1V6Jf2NqYJYYu+boIuU9AdZuJuxG4gu
-        KcJHe6dszQiUxKXOudtfIJ9X9KPSlxX1I27zge16gA==
-X-Google-Smtp-Source: ABdhPJy+w/ls2aSZCJrRsAdMrUWPb6dkwdIyuIvulQVig3ErIeGd57xFdDTojd0oyBT5QVRYIJdm9YWYMeqLFjZcwKg=
-X-Received: by 2002:aca:a9c8:0:b0:2da:45b6:b796 with SMTP id
- s191-20020acaa9c8000000b002da45b6b796mr428878oie.193.1647894616632; Mon, 21
- Mar 2022 13:30:16 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 21 Mar 2022 21:30:16 +0100
+        with ESMTP id S230222AbiCUVWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 17:22:25 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703B21B2C44
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 14:20:17 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A6AFC2C00BE;
+        Mon, 21 Mar 2022 21:20:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1647897615;
+        bh=qdVK/9bT48x/jOX0/GBrjiXcVufotfBylhHUtNPUL7E=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PVf5Jhp7gQTXhHu611bV2MIgjGMvufK9deuwp4zAEBgauXdFuA5xSlV8hm7IKX13r
+         gPiH8kF65BZXsJQdLKD41fxR4FpgLlUtGXkG/kyY9VAvba2uSvmpHG2Y9g8TUggis8
+         wOMI+x3F/AL8fMv0RLcmPb0XFi75ILnUlOam2xOfQoAXNwhOp2wjnW5YiChHWzD1Fu
+         OVWa51uCMmG3ArtpT91pMfRmgMhS6O8d01XXkPvyXQWY3p7YW3XerdFzDVtIyctwiw
+         sQF+tiWO71cR77HfecPfh6hHC1l+pFkyPXhmZYyeyNIOtAp8bDoqiT1M5ytQx7GjSk
+         RTFUbtdxWHvAg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6238ec0f0000>; Tue, 22 Mar 2022 10:20:15 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 7941213EE36;
+        Tue, 22 Mar 2022 10:20:15 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id ADB172A2679; Tue, 22 Mar 2022 10:20:10 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH] arm64: dts: marvell: Update sdhci node names to match schema
+Date:   Tue, 22 Mar 2022 10:20:07 +1300
+Message-Id: <20220321212007.2961581-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-In-Reply-To: <1647863959-3289-3-git-send-email-quic_srivasam@quicinc.com>
-References: <1647863959-3289-1-git-send-email-quic_srivasam@quicinc.com> <1647863959-3289-3-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 21 Mar 2022 21:30:16 +0100
-Message-ID: <CAE-0n5131FQaejVVHKwW9ZnoGM+uy6+jjJZMkh5Pa82=r5ojuQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add pinmux for I2S
- speaker and Headset
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=AgHtZ1O-xYyxAwoHFCcA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-03-21 04:59:18)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 688fa95..4a7b18a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -462,7 +462,28 @@
->         drive-strength = <10>;
->  };
->
-> +&sec_mi2s_data0 {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&sec_mi2s_sclk {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&sec_mi2s_ws {
-> +       drive-strength = <6>;
-> +};
-> +
->  &tlmm {
-> +       amp_en: amp-en {
-> +               pins = "gpio63";
-> +               function = "gpio";
+Update the node names of the sdhci@ interfaces to be mmc@ to match the
+node name enforced by the mmc-controller.yaml schema.
 
-I'm pretty sure 'function = "gpio"' isn't needed. When a gpio is
-requested with gpio functions it gets muxed to gpio function
-automatically. See commit 1de7ddb3a15c ("pinctrl: msm: Mux out gpio
-function with gpio_request()").
+Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+---
 
-> +               bias-pull-down;
-> +               drive-strength = <2>;
-> +       };
-> +
->         bt_en: bt-en {
->                 pins = "gpio85";
->                 function = "gpio";
+Notes:
+    This was spun off from converting the dt-binding to JSON schema but I
+    think this change can stand on it's own.
+
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  | 4 ++--
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 2 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
+ot/dts/marvell/armada-37xx.dtsi
+index 673f4906eef9..9d9415da8c88 100644
+--- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+@@ -434,7 +434,7 @@ rwtm: mailbox@b0000 {
+ 				#mbox-cells =3D <1>;
+ 			};
+=20
+-			sdhci1: sdhci@d0000 {
++			sdhci1: mmc@d0000 {
+ 				compatible =3D "marvell,armada-3700-sdhci",
+ 					     "marvell,sdhci-xenon";
+ 				reg =3D <0xd0000 0x300>,
+@@ -445,7 +445,7 @@ sdhci1: sdhci@d0000 {
+ 				status =3D "disabled";
+ 			};
+=20
+-			sdhci0: sdhci@d8000 {
++			sdhci0: mmc@d8000 {
+ 				compatible =3D "marvell,armada-3700-sdhci",
+ 					     "marvell,sdhci-xenon";
+ 				reg =3D <0xd8000 0x300>,
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/b=
+oot/dts/marvell/armada-ap80x.dtsi
+index 6614472100c2..a06a0a889c43 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+@@ -250,7 +250,7 @@ watchdog: watchdog@610000 {
+ 				interrupts =3D <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+ 			};
+=20
+-			ap_sdhci0: sdhci@6e0000 {
++			ap_sdhci0: mmc@6e0000 {
+ 				compatible =3D "marvell,armada-ap806-sdhci";
+ 				reg =3D <0x6e0000 0x300>;
+ 				interrupts =3D <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/b=
+oot/dts/marvell/armada-cp11x.dtsi
+index 3bd2182817fb..d6c0990a267d 100644
+--- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+@@ -493,7 +493,7 @@ CP11X_LABEL(trng): trng@760000 {
+ 			status =3D "okay";
+ 		};
+=20
+-		CP11X_LABEL(sdhci0): sdhci@780000 {
++		CP11X_LABEL(sdhci0): mmc@780000 {
+ 			compatible =3D "marvell,armada-cp110-sdhci";
+ 			reg =3D <0x780000 0x300>;
+ 			interrupts =3D <27 IRQ_TYPE_LEVEL_HIGH>;
+--=20
+2.35.1
+
