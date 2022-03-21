@@ -2,115 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC72D4E1E7F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 01:27:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8FAD4E1EA7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 02:24:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245233AbiCUA3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 20:29:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52390 "EHLO
+        id S244598AbiCUBZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 21:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343935AbiCUA26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 20:28:58 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75086DFDE4
-        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 17:27:28 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 830512C05F3;
-        Mon, 21 Mar 2022 00:27:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1647822445;
-        bh=Rz96f5sjJQKWQ0HhnNfpbrE6GlGWm8SFIyHhy6QKXrg=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=PKiSthMC+Bm36Tj/3T5Ruc29yxDAWuwTrPm7ZjVFdzP8/QH7WJkOZXmCdssoK8MZR
-         i/uJAPLqE7eKB4SFVHAVlXcFkGLwZjcU1wQehDhFrr/fyWkfOfW87hjcM5tNom2rDq
-         qijlMvZlSkBtx7NsM358QZ1cCuFy64TI4UP3L2XuUnOHBwapB4T/P1a7WG/7y78LeJ
-         +vUieyRzhZPqwNTQr/TGCfa2efUQt9DI404xE+K42om89AtD5heL7u6EmXKMFGMZ+z
-         hijfXpnq/zbnVMrDzj4J5pJrynOulNii0Z5gRexVW4FQ+Rv8D/Njrt0/p31CwyW6CZ
-         WB6x11EWtrx+Q==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6237c66d0001>; Mon, 21 Mar 2022 13:27:25 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.32; Mon, 21 Mar 2022 13:27:25 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.033; Mon, 21 Mar 2022 13:27:25 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] hwmon: (adt7475) Use enum chips when loading
- attenuator settings
-Thread-Topic: [PATCH v2 3/3] hwmon: (adt7475) Use enum chips when loading
- attenuator settings
-Thread-Index: AQHYOk6t2MAzos32V0mfrGePR/IVEazEW2uAgAPK54A=
-Date:   Mon, 21 Mar 2022 00:27:24 +0000
-Message-ID: <84514187-1170-0932-3a31-9e8ce6b07e9d@alliedtelesis.co.nz>
-References: <20220317223051.1227110-1-chris.packham@alliedtelesis.co.nz>
- <20220317223051.1227110-4-chris.packham@alliedtelesis.co.nz>
- <20220318143223.GA673001@roeck-us.net>
-In-Reply-To: <20220318143223.GA673001@roeck-us.net>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C4915410CF2A284680B5EA72E2BB5226@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S242273AbiCUBZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 21:25:43 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2652716D;
+        Sun, 20 Mar 2022 18:24:15 -0700 (PDT)
+X-UUID: b29e7eacf5ae47559f6c5d9b61827a64-20220321
+X-UUID: b29e7eacf5ae47559f6c5d9b61827a64-20220321
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2009333236; Mon, 21 Mar 2022 09:24:12 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Mar 2022 09:24:11 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Mar
+ 2022 09:24:11 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Mar 2022 09:24:10 +0800
+Message-ID: <e672b7192e47e5247dc5feeaf7ecbc1bb019292e.camel@mediatek.com>
+Subject: Re: [PATCH V5 1/3] spi: mediatek: add spi memory support for ipm
+ design
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Mark Brown" <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Date:   Mon, 21 Mar 2022 09:24:10 +0800
+In-Reply-To: <a6844feb-98d5-4f44-f8fa-87f47aa9ec93@collabora.com>
+References: <20220318025027.31281-1-leilk.liu@mediatek.com>
+         <20220318025027.31281-2-leilk.liu@mediatek.com>
+         <a6844feb-98d5-4f44-f8fa-87f47aa9ec93@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=o8Y5sQTvuykA:10 a=Q6Hju86AWDR5xJoMpMYA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxOS8wMy8yMiAwMzozMiwgR3VlbnRlciBSb2VjayB3cm90ZToNCj4gT24gRnJpLCBNYXIg
-MTgsIDIwMjIgYXQgMTE6MzA6NTBBTSArMTMwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IFNp
-bXBsaWZ5IGxvYWRfYXR0ZW51YXRvcnMoKSBieSBtYWtpbmcgdXNlIG9mIGVudW0gY2hpcHMgaW5z
-dGVhZCBvZiBpbnQuDQo+Pg0KPiBUaGF0IGlzbid0IHRoZSBvbmx5IHRoaW5nIHRoZSBwYXRjaCBp
-cyBkb2luZy4NCj4NCj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2to
-YW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+IC0tLQ0KPj4NCj4+IE5vdGVzOg0KPj4gICAgICBD
-aGFuZ2VzIGluIHYyOg0KPj4gICAgICAtIE5ldw0KPj4NCj4+ICAgZHJpdmVycy9od21vbi9hZHQ3
-NDc1LmMgfCA0ICsrLS0NCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBk
-ZWxldGlvbnMoLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9od21vbi9hZHQ3NDc1LmMg
-Yi9kcml2ZXJzL2h3bW9uL2FkdDc0NzUuYw0KPj4gaW5kZXggNmRlNTAxZGU0MWIyLi5lYmU0YTg1
-ZWI2MmUgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2h3bW9uL2FkdDc0NzUuYw0KPj4gKysrIGIv
-ZHJpdmVycy9od21vbi9hZHQ3NDc1LmMNCj4+IEBAIC0xNTY5LDcgKzE1NjksNyBAQCBzdGF0aWMg
-aW50IHNldF9wcm9wZXJ0eV9iaXQoY29uc3Qgc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCwgY2hh
-ciAqcHJvcGVydHksDQo+PiAgIAlyZXR1cm4gcmV0Ow0KPj4gICB9DQo+PiAgIA0KPj4gLXN0YXRp
-YyBpbnQgbG9hZF9hdHRlbnVhdG9ycyhjb25zdCBzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50LCBp
-bnQgY2hpcCwNCj4+ICtzdGF0aWMgaW50IGxvYWRfYXR0ZW51YXRvcnMoY29uc3Qgc3RydWN0IGky
-Y19jbGllbnQgKmNsaWVudCwgZW51bSBjaGlwcyBjaGlwLA0KPj4gICAJCQkgICAgc3RydWN0IGFk
-dDc0NzVfZGF0YSAqZGF0YSkNCj4+ICAgew0KPj4gICAJaW50IHJldDsNCj4+IEBAIC0xNTg4LDcg
-KzE1ODgsNyBAQCBzdGF0aWMgaW50IGxvYWRfYXR0ZW51YXRvcnMoY29uc3Qgc3RydWN0IGkyY19j
-bGllbnQgKmNsaWVudCwgaW50IGNoaXAsDQo+PiAgIAkJCQkJCWRhdGEtPmNvbmZpZzQpOw0KPj4g
-ICAJCWlmIChyZXQgPCAwKQ0KPj4gICAJCQlyZXR1cm4gcmV0Ow0KPj4gLQl9IGVsc2UgaWYgKGNo
-aXAgPT0gYWR0NzQ3MyB8fCBjaGlwID09IGFkdDc0NzUpIHsNCj4+ICsJfSBlbHNlIHsNCj4gVGhp
-cyBpcyB0aGUgcmVhbCBjaGFuZ2UuIFdlbGwsIGluIHRoZW9yeS4gSXQgZG9lc24ndCByZWFsbHkg
-bWFrZSBhIGRpZmZlcmVuY2UsDQo+IGl0IGlzIGp1c3QgKGN1cnJlbnRseSkgdW5uZWNlc3Nhcnkg
-YnV0IGNsYXJpZmllcyB0aGF0IHRoZSBmb2xsb3dpbmcgY29kZSBvbmx5DQo+IGFwcGxpZXMgdG8g
-dGhlIHR3byBjaGlwcy4gSXQgbWF5IGJlIGJldHRlciB0byByZXBsYWNlIHRoZSBpZi9lbHNlIHdp
-dGggYSBzd2l0Y2gNCj4gc3RhdGVtZW50IHRvIGNsYXJpZnkgdGhpcy4gRHJvcHBpbmcgdGhlIGNv
-bmRpdGlvbmFsIHdvdWxkIG5vdCByZXF1aXJlIHRvIGNoYW5nZQ0KPiB0aGUgcGFyYW1ldGVyIHR5
-cGUuIFRoYXQgb25seSByZWFsbHkgYWRkcyB2YWx1ZSBpZiB5b3UgYWxzbyB1c2UgYSBzd2l0Y2gN
-Cj4gc3RhdGVtZW50ICh3aXRob3V0IGR1bW15IGRlZmF1bHQpLg0KDQpJJ3ZlIHdyaXR0ZW4gYSB2
-MyB0aGF0IHVwZGF0ZXMgdGhpcyB0byB1c2UgYSBzd2l0Y2ggc3RhdGVtZW50IGJ1dCBJJ2xsIA0K
-d2FpdCB0byBzZW5kIGl0IGluIGNhc2UgdGhlcmUgaXMgYW55IGZlZWRiYWNrIG9uIHRoZSBmaXJz
-dCAyIHBhdGNoZXMuDQoNCj4gVGhhbmtzLA0KPiBHdWVudGVyDQo+DQo+PiAgIAkJc2V0X3Byb3Bl
-cnR5X2JpdChjbGllbnQsICJhZGksYnlwYXNzLWF0dGVudWF0b3ItaW4xIiwNCj4+ICAgCQkJCSAm
-ZGF0YS0+Y29uZmlnMiwgNSk7DQo+PiAgIA==
+On Fri, 2022-03-18 at 12:29 +0100, AngeloGioacchino Del Regno wrote:
+> Il 18/03/22 03:50, Leilk Liu ha scritto:
+> > this patch add the support of spi-mem for ipm design.
+> > 
+> > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
+> > ---
+> >   drivers/spi/spi-mt65xx.c | 302
+> > ++++++++++++++++++++++++++++++++++++++-
+> >   1 file changed, 301 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
+> > index 1a0b3208dfca..ea6223259060 100644
+> > --- a/drivers/spi/spi-mt65xx.c
+> > +++ b/drivers/spi/spi-mt65xx.c
+> 
+> ...snip...
+> 
+> > @@ -78,8 +79,21 @@
+> >   #define SPI_CMD_IPM_GET_TICKDLY_OFFSET    22
+> >   
+> >   #define SPI_CMD_IPM_GET_TICKDLY_MASK	GENMASK(24, 22)
+> > +
+> > +#define PIN_MODE_CFG(x)	((x) / 2)
+> > +
+> > +#define SPI_CFG3_IPM_PIN_MODE_OFFSET		0
+> 
+> This definition is useless, the offset is zero... and this is used
+> to bitshift zero.
+> 
+> 
+> Please remove that, after which:
+OK, thanks for your comment.
+
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+
