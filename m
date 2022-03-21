@@ -2,98 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8FAD4E1EA7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 02:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DCB64E1ECF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 02:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244598AbiCUBZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 21:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S241893AbiCUBkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 21:40:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242273AbiCUBZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 21:25:43 -0400
+        with ESMTP id S231352AbiCUBka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 21:40:30 -0400
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2652716D;
-        Sun, 20 Mar 2022 18:24:15 -0700 (PDT)
-X-UUID: b29e7eacf5ae47559f6c5d9b61827a64-20220321
-X-UUID: b29e7eacf5ae47559f6c5d9b61827a64-20220321
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D666110A5;
+        Sun, 20 Mar 2022 18:39:01 -0700 (PDT)
+X-UUID: 9774075e367b47f4875db3038c7d7046-20220321
+X-UUID: 9774075e367b47f4875db3038c7d7046-20220321
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2009333236; Mon, 21 Mar 2022 09:24:12 +0800
+        with ESMTP id 400680502; Mon, 21 Mar 2022 09:38:55 +0800
 Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 21 Mar 2022 09:24:11 +0800
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 21 Mar 2022 09:38:54 +0800
 Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
  (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Mar
- 2022 09:24:11 +0800
+ 2022 09:38:52 +0800
 Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 21 Mar 2022 09:24:10 +0800
-Message-ID: <e672b7192e47e5247dc5feeaf7ecbc1bb019292e.camel@mediatek.com>
-Subject: Re: [PATCH V5 1/3] spi: mediatek: add spi memory support for ipm
- design
-From:   Leilk Liu <leilk.liu@mediatek.com>
+ Transport; Mon, 21 Mar 2022 09:38:51 +0800
+Message-ID: <9fe3230c05f12623e951f5c1f9c741222f326c64.camel@mediatek.com>
+Subject: Re: [PATCH v3, 00/10] Enable two H264 encoder core on MT8195
+From:   Irui Wang <irui.wang@mediatek.com>
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        "Mark Brown" <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        "Andrew-CT Chen" <andrew-ct.chen@mediatek.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
-Date:   Mon, 21 Mar 2022 09:24:10 +0800
-In-Reply-To: <a6844feb-98d5-4f44-f8fa-87f47aa9ec93@collabora.com>
-References: <20220318025027.31281-1-leilk.liu@mediatek.com>
-         <20220318025027.31281-2-leilk.liu@mediatek.com>
-         <a6844feb-98d5-4f44-f8fa-87f47aa9ec93@collabora.com>
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 21 Mar 2022 09:38:49 +0800
+In-Reply-To: <aae7c675-6be4-03f1-a8fb-121faae320c2@collabora.com>
+References: <20220317082230.23622-1-irui.wang@mediatek.com>
+         <aae7c675-6be4-03f1-a8fb-121faae320c2@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-03-18 at 12:29 +0100, AngeloGioacchino Del Regno wrote:
-> Il 18/03/22 03:50, Leilk Liu ha scritto:
-> > this patch add the support of spi-mem for ipm design.
-> > 
-> > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-> > ---
-> >   drivers/spi/spi-mt65xx.c | 302
-> > ++++++++++++++++++++++++++++++++++++++-
-> >   1 file changed, 301 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-> > index 1a0b3208dfca..ea6223259060 100644
-> > --- a/drivers/spi/spi-mt65xx.c
-> > +++ b/drivers/spi/spi-mt65xx.c
-> 
-> ...snip...
-> 
-> > @@ -78,8 +79,21 @@
-> >   #define SPI_CMD_IPM_GET_TICKDLY_OFFSET    22
-> >   
-> >   #define SPI_CMD_IPM_GET_TICKDLY_MASK	GENMASK(24, 22)
-> > +
-> > +#define PIN_MODE_CFG(x)	((x) / 2)
-> > +
-> > +#define SPI_CFG3_IPM_PIN_MODE_OFFSET		0
-> 
-> This definition is useless, the offset is zero... and this is used
-> to bitshift zero.
-> 
-> 
-> Please remove that, after which:
-OK, thanks for your comment.
+Dear Angelo,
 
+Thanks for your comments.
+On Fri, 2022-03-18 at 15:04 +0100, AngeloGioacchino Del Regno wrote:
+> Il 17/03/22 09:22, Irui Wang ha scritto:
+> > MT8195 has two H264 encoder cores, they have their own power-
+> > domains,
+> > clocks, interrupts, register base. The two H264 encoder cores can
+> > work
+> > together to achieve higher performance, it's a core mode called
+> > frame-racing, one core has 4K@30fps performance, two cores can
+> > achieve
+> > 4K@60fps.
+> > The two encoder core encoding process looks like this:
+> > 
+> >      VENC Core0: frm#0....frm#2....frm#4....
+> >      VENC Core1: ..frm#1....frm#3....frm#5....
+> > 
+> > This series of patches are used to enable the two H264 encoder
+> > cores,
+> > encoding process will be changed:
+> > As-Is: Synchronous
+> > V4L2_VIDIOC_QBUF#0 --> device_run(triger encoder) --> wait encoder
+> > IRQ -->
+> > encoding done with result --> job_finish
+> > V4l2_VIDIOC_QBUF#1 --> device_run(triger encoder) --> wait encoder
+> > IRQ -->
+> > encoding done with result --> job_finish
+> > ...
+> > 
+> > To-Be: Asynchronous
+> > V4L2_VIDIOC_QBUF#0 --> device_run(triger encoder) --> job_finish
+> > ..V4l2_VIDIOC_QBUF#1 --> device_run(triger encoder) --> job_finish
+> > (venc core0 may encode done here, done the encoding result to
+> > client)
+> > V4L2_VIDIOC_QBUF#2 --> device_run(triger encoder) --> job_finish.
+> > 
+> > There is no "wait encoder IRQ" synchronous call during frame-racing 
+> > mode
+> > encoding process, it can full use the two encoder cores to achieve
+> > higher
+> > performance.
+> > 
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
+> Hello Irui,
+> like v1 and v2, also this version of the series will crash the kernel
+> when
+> trying to encode.
+
+As mentioned before, dual core encoding need more encoding working
+buffers in patch-8:
+media: mtk-vcodec: Add more extra processing for venc_multi_core mode
+a new structure, struct venc_multi_core_vsi defined for it,
+
+encoding processing like this: 
+kernel --> ipi message --> scp firmware(userspace), vsi is a share
+memory to transfer data between kernel and user, so, the definition of
+vsi must be the same in kernel and userspace. otherwise, errors will be
+occurred, for example, kernel crash.
+
+When we enable dual core encoding in this patch, the
+venc_multi_core_vsi used in kernel, but scp(userspace) still use the
+older one vsi(struct venc_h264_vsi), the crash happened.
+
+Maybe we would find out how to resolve the limitations, many thanks for
+your review.
+> 
+> Before pushing the next series, you shall ensure that it is not
+> crashing
+> the entire kernel, hence, please test your code with gstreamer.
+> 
+> 
+> Please use the following pipeline to test:
+> 
+> gst-launch-1.0 videotestsrc num-buffers=100 ! v4l2h264enc ! queue !
+> h264parse ! 
+> qtmux ! filesink location=test.mov
+> 
+> 
+> Regards,
+> Angelo
+
+Thanks
+Best Regards
 
