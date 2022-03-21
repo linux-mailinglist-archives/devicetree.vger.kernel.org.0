@@ -2,65 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BDF44E22AB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5FF4E22C6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 10:00:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233785AbiCUI61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 04:58:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49496 "EHLO
+        id S1345448AbiCUJBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 05:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345512AbiCUI6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:58:20 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F30E57485;
-        Mon, 21 Mar 2022 01:56:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647853016; x=1679389016;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=M4kVC0r/rfY1s2TKqLyYnRyMBohGE64J9AJFvf+O4KQ=;
-  b=IJMX+KdTy25+V0wM9k1IOIUbUKOWf0+8Pud5IGWpB/g/Uw8+vgu63uBK
-   2SxUFTUzTNVSptd8NxuifDTjnGFys2VN12QvJIQNA6SkSL7FlnH0+wv+f
-   kULr5/gjG5TJTNfRxT7bBcKtBmGo3Dfax04bBRtUW25yZRXVuIsNVT6uV
-   M=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 21 Mar 2022 01:56:56 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 01:56:55 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 21 Mar 2022 01:56:55 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 21 Mar 2022 01:56:50 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rohitkr@codeaurora.org>,
-        <srinivas.kandagatla@linaro.org>, <dianders@chromium.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <alsa-devel@alsa-project.org>, <krzysztof.kozlowski@canonical.com>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH 3/3] ASoC: dt-bindings: lpass-cpu: Update clocks and power domain names for sc7280 platform
-Date:   Mon, 21 Mar 2022 14:26:21 +0530
-Message-ID: <1647852981-27895-4-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1647852981-27895-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1647852981-27895-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1345505AbiCUJBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 05:01:22 -0400
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18BAA74625;
+        Mon, 21 Mar 2022 01:59:56 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id r22so8342543ejs.11;
+        Mon, 21 Mar 2022 01:59:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=KRRTaiowhTFiSU/AwzcdwKwVkTXFIC8zPamc05kYi08=;
+        b=FVwI7360URwLrqtUQ9bcGhyIEfVpMcicRQUdh/nReECGeZhIHQ+nXkLOsHl9z6IZ+t
+         LiIaHvU38VJIhHnE/GDY+ZWe82dvWWCrXOrI23BLDUZzVLFhTHROvf1qthdKow239/UY
+         ilFhmDxzBB0J0ZcDGolWi7Zna4jP/8DPd9/3sxDbSALsXhb09BL/JWaeMxAhiwAJ+gZr
+         QwvOKWZTMl60YZ9YbMI0NhWpymElszT9PbvYQ5aVI4+3oYPjsAww1TjaKo2XqGdllB4j
+         DSigSgG8K0EtT27Xeyb7qSKfJhaOSZC2HRWR9sGf3q9V//DD0BC+u0O0HtrNYyjnmrd/
+         W7UA==
+X-Gm-Message-State: AOAM532u22hYSOXx0o/QbxmZXs4dghCyAToQ95/d7z59ATGwj8o9I9w8
+        nreI0Qdji+QIsWo3o02UU4w=
+X-Google-Smtp-Source: ABdhPJzQDdtrXwr62oHXBR+r3Zxj9WS5mOJMQjOnMzrvDrnJKWIRehXBIFg5pA2QHkUbl4Kmjav/qg==
+X-Received: by 2002:a17:907:1628:b0:6d0:ae1c:251b with SMTP id hb40-20020a170907162800b006d0ae1c251bmr19791393ejc.393.1647853194551;
+        Mon, 21 Mar 2022 01:59:54 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id p3-20020a1709060e8300b006d0e8ada804sm6506135ejf.127.2022.03.21.01.59.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Mar 2022 01:59:53 -0700 (PDT)
+Message-ID: <21044180-faeb-a590-f195-dc2dc5257e05@kernel.org>
+Date:   Mon, 21 Mar 2022 09:59:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus
+ SP7021
+Content-Language: en-US
+To:     =?UTF-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lhjeff911@gmail.com" <lhjeff911@gmail.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+References: <cover.1647652688.git.tonyhuang.sunplus@gmail.com>
+ <27dba330ec0c1cd7edbcec53083f78169713a42e.1647652688.git.tonyhuang.sunplus@gmail.com>
+ <c78aa9fa-8001-2c48-7a25-1f44f9952c9b@kernel.org>
+ <cab5bdafed86451a99cd59da3b1c5a38@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <cab5bdafed86451a99cd59da3b1c5a38@sphcmbx02.sunplus.com.tw>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,74 +74,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update required clock-names used for MI2S primary path, VA macro's
-codec memory path and HDMI path in sc7280 based platforms.
-Update power domain names required for sc7280 platforms.
+On 21/03/2022 03:35, Tony Huang 黃懷厚 wrote:
+> Dear Krzysztof:
+> 
+>>> +++ b/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+>>> @@ -0,0 +1,79 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # Copyright
+>>> +(C) Sunplus Ltd. Co. 2021 %YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mmc/sunplus,mmc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: sunplus MMC controller
+>>
+>> s/sunplus/Sunplus/
+>>
+> 
+> Below is my modification:
+> title: Sunplus MMC Controller
+> 
+>>> +
+>>> +allOf:
+>>> +  - $ref: "mmc-controller.yaml"
+>>
+>> allOf below maintainers,
+>>
+> 
+> I will modify it.
+> 
+>>> +
+>>> +maintainers:
+>>> +  - Tony Huang <tonyhuang.sunplus@gmail.com>
+>>> +  - Li-hao Kuo <lhjeff911@gmail.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - sunplus,mmc-v1
+>>> +      - sunplus,mmc-v2
+>>
+>> How did this happen? Versions of blocks are usually discouraged, unless you
+>> have clear specification,. The previous discussion did not end with "add v1 and
+>> v2".
+>>
+>> Do you have clear documentation/specification of these blocks? If no, please
+>> use SoC compatibles.
+>>
+> 
+> v1: support SDIO 2.0							
+> v2: support eMMC 4.41		
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- .../devicetree/bindings/sound/qcom,lpass-cpu.yaml       | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+That's spec is not enough. You need to provide detailed specification of
+each of them. See for example versioned blocks of Synopsys DeisgnWare
+(e.g. eMMC/SDHCI).
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-index 2c81efb..e9a5330 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-@@ -38,8 +38,8 @@ properties:
-     maxItems: 7
- 
-   clock-names:
--    minItems: 3
--    maxItems: 7
-+    minItems: 1
-+    maxItems: 10
- 
-   interrupts:
-     minItems: 2
-@@ -62,6 +62,9 @@ properties:
-   power-domains:
-     maxItems: 1
- 
-+  power-domain-names:
-+    maxItems: 1
-+
-   '#sound-dai-cells':
-     const: 1
- 
-@@ -192,15 +195,19 @@ allOf:
-           oneOf:
-             - items:   #for I2S
-                 - const: aon_cc_audio_hm_h
-+                - const: audio_cc_ext_mclk0
-                 - const: core_cc_sysnoc_mport_core
-+                - const: core_cc_ext_if0_ibit
-                 - const: core_cc_ext_if1_ibit
-             - items:   #for Soundwire
-                 - const: aon_cc_audio_hm_h
-+                - const: audio_cc_codec_mem
-                 - const: audio_cc_codec_mem0
-                 - const: audio_cc_codec_mem1
-                 - const: audio_cc_codec_mem2
-+                - const: aon_cc_va_mem0
-             - items:   #for HDMI
--                - const: aon_cc_audio_hm_h
-+                - const: core_cc_sysnoc_mport_core
- 
-         reg-names:
-           anyOf:
-@@ -228,6 +235,10 @@ allOf:
-                 - const: lpass-irq-hdmi
-                 - const: lpass-irq-vaif
-                 - const: lpass-irq-rxtxif
-+        power-domain-names:
-+          allOf:
-+            - items:
-+                - const: lcx
- 
-       required:
-         - iommus
--- 
-2.7.4
+					
+> The register base address and offset address of emmc and sd card are different.							
+> eMMC and sdcard are individual hardware settings							
+> We need version to distinguish different speeds	
 
+That's not the answer. How did it happen that you have now versions and
+before there were SoC compatibles? No one pointed to this and you did
+not mention it in description of changes.
+
+Best regards,
+Krzysztof
