@@ -2,172 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA744E2B71
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A72B64E2C67
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:36:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349792AbiCUPFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 11:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49002 "EHLO
+        id S232186AbiCUPhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 11:37:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238929AbiCUPFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:05:43 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642F654BE9;
-        Mon, 21 Mar 2022 08:04:17 -0700 (PDT)
-Received: from fraeml702-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KMdBR42Bgz67Cxn;
-        Mon, 21 Mar 2022 23:02:07 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml702-chm.china.huawei.com (10.206.15.51) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2375.24; Mon, 21 Mar 2022 16:04:15 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Mon, 21 Mar
- 2022 15:04:13 +0000
-Date:   Mon, 21 Mar 2022 15:04:11 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+        with ESMTP id S1345364AbiCUPhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:37:24 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 381694B430;
+        Mon, 21 Mar 2022 08:35:59 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id q20so8794920wmq.1;
+        Mon, 21 Mar 2022 08:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=zeB3x3APdJn10Q/65pa9H4C06swtypRcP5k7mf1+6xM=;
+        b=UW2i+3qFiir2ZAB+TP2REhqERmIxVwvkZQx95jQmct4AMuf7P7E4uGp78abhHld5Ls
+         mrw9uo2WyxZiGDTiFruBC1l2CXYbRudjO7VFcFbMLcwkcqWGEWewNpXgBwoWDSRcfRNX
+         R2nwKGFb/6O+rLecLJW/lGA0ZdYyndDmU/uZa14/Tnzycz2TBcXqS/h/bK9hTMwQut7P
+         ryTujVsJUstA6eW3mwe8GjBReM5ZxtUyNzCPm7W4pD+/pJm0QKBQiKk9jjBs1wkIk892
+         HBr0NWev80E+WWTl6m6w44eHdjwiwI7MaBdXXrYmhVibfQ70uPwNBKJynh8j4eSd+z3j
+         Es4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=zeB3x3APdJn10Q/65pa9H4C06swtypRcP5k7mf1+6xM=;
+        b=aLXcoLHe37iTZD/uvqWTRK0nCwofVB6RbK4em2A34N41WEqhkDB70/xYiT1A3rJ9o7
+         +TWnqPx26TKBmkx0geWQLJ2/LcLAmXvDczI3dyOJlIIOzu0e8dFZpaNZSjEa5LWawRBi
+         yDf8dAr7rFQ4FgOzVL55VtAfRMlitmChWrC+uEmNqGIscH94SmOGpVdw0GXky23munxt
+         zNyv0UEQN6xC1rbtVN3ryRYyJ2Hjyk7GQXhGK3VVPf/TTTKPDh7WXoKcam0Je8GtWEMU
+         H/ipefnH3474jP31bqrxeu+tdMQFqrHGka0e6pGfOu9KkzTSG7qXPeBtXebo2zGBqg6X
+         Zk0A==
+X-Gm-Message-State: AOAM533qd4e+E+bQVqDQ5c32109G9i8PpIym7s0Hd6gScD0ylBljifpz
+        pOpw65eMSOkQ0djReX7cIWcN4Lsg7P8=
+X-Google-Smtp-Source: ABdhPJwNo4n+gak51bhFbPpO1rwKapfoWzj27hvrH6TGolCr6Aa9tUINJNwvSciiDzE2HYt2Mu9e0w==
+X-Received: by 2002:a7b:cc12:0:b0:37c:1ae:100a with SMTP id f18-20020a7bcc12000000b0037c01ae100amr27344039wmh.54.1647876957649;
+        Mon, 21 Mar 2022 08:35:57 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
+        by smtp.gmail.com with ESMTPSA id g5-20020a5d64e5000000b00203914f5313sm13672805wri.114.2022.03.21.08.35.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 08:35:57 -0700 (PDT)
+Date:   Mon, 21 Mar 2022 16:06:38 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
-Message-ID: <20220321150411.00002206@Huawei.com>
-In-Reply-To: <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
-References: <20220310133938.2495-1-michael.srba@seznam.cz>
-        <20220310133938.2495-2-michael.srba@seznam.cz>
-        <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
-        <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
-        <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
-        <20220320151223.3a9b13bd@jic23-huawei>
-        <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 15/18] dt-bindings: clock: Add L2 clocks to
+ qcom,krait-cc Documentation
+Message-ID: <YjiUfln1MzDyTDHZ@Ansuel-xps.localdomain>
+References: <20220321144825.11736-1-ansuelsmth@gmail.com>
+ <20220321144825.11736-16-ansuelsmth@gmail.com>
+ <3ee94d1d-4e16-a744-c217-c4bc69ad96b4@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3ee94d1d-4e16-a744-c217-c4bc69ad96b4@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Mar 2022 09:04:11 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 20/03/2022 16:12, Jonathan Cameron wrote:
-> > On Thu, 10 Mar 2022 22:24:03 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
-> >   
-> >> On 10/03/2022 19:56, Michael Srba wrote:  
-> >>> Hi,
-> >>> the thing is, the only reason the different compatible is needed at all
-> >>> is that the chip presents a different WHOAMI, and the invensense,icm20608
-> >>> compatible seems to imply the non-D WHOAMI value.    
-> >>
-> >> But this is a driver implementation issue, not related to bindings.
-> >> Bindings describe the hardware.  
+On Mon, Mar 21, 2022 at 04:33:02PM +0100, Krzysztof Kozlowski wrote:
+> On 21/03/2022 15:48, Ansuel Smith wrote:
+> > Krait-cc qcom driver provide also L2 clocks and require the acpu_l2_aux
+> > and the hfpll_l2 clock to be provided. Add these missing clocks to the
+> > Documentation.
 > > 
-> > Indeed, but the key thing here is the WHOAMI register is hardware.
-> >   
-> >>  
-> >>> I'm not sure how the driver would react to both compatibles being present,
-> >>> and looking at the driver code, it seems that icm20608d is not the only
-> >>> fully icm20608-compatible (to the extent of features supported by
-> >>> the driver, and excluding the WHOAMI value) invensense IC, yet none
-> >>> of these other ICs add the invensense,icm20608 compatible, so I guess I
-> >>> don't see a good reason to do something different.    
-> >>
-> >> Probably my question should be asked earlier, when these other
-> >> compatibles were added in such way.
-> >>
-> >> Skipping the DMP core, the new device is fully backwards compatible with
-> >> icm20608.  
-> > 
-> > No. It is 'nearly' compatible...  The different WHOAMI value (used
-> > to check the chip is the one we expect) makes it incompatible.  Now we
-> > could change the driver to allow for that bit of incompatibility and
-> > some other drivers do (often warning when the whoami is wrong but continuing
-> > anyway).   
 > 
-> Different value of HW register within the same programming model does
-> not make him incompatible. Quite contrary - it is compatible and to
-> differentiate variants you do not need specific compatibles.
-
-Whilst I don't personally agree with the definition of "compatible"
-and think you are making false distinctions between hardware and software...
-
-I'll accept Rob's statement of best practice.  However we can't just
-add a compatible that won't work if someone uses it on a new board
-that happens to run an old kernel.
-
-Jonathan
-
-
+> Thanks. It would be also nice to see here short sentence about expected
+> impact, e.g. there are no in-tree DTSes which would be affected, no out
+> of tree known users etc.
 > 
-> Using arguments how driver behaves is wrong. Driver does not determine
-> hardware/bindings.
+> Because basically with this requirement you change the ABI, so you might
+> break some users.
 > 
-> >   
-> >> Therefore extending the compatible makes sense. This is not
-> >> only correct from devicetree point of view, but also is friendly towards
-> >> out of tree users of bindings.
-> >>
-> >> The Linux driver behavior about whoami register does not matter here.
-> >> Not mentioning that it would be easy for driver to accept multiple
-> >> values of whoami.  
-> > 
-> > I disagree entirely. Any driver that makes use of the whoami will not
-> > be compatible with this new part.  
+> I will leave it to platform maintainers to decide whether it is accepted
+> or not.
 > 
-> Driver implementation is not related to bindings, does not matter. You
-> cannot use driver implementation as argument in discussion about
-> bindings and compatibility. Implementation differs, is limited, can be
-> changed.
 > 
-> >   It's a driver design choice on whether
-> > to make use of that, but it's a perfectly valid one to refuse to probe
-> > if it doesn't detect that the device is the one it expects.  
-> 
-> Still not argument about bindings and compatibility but about driver. 
-> 
-> > + There is code out there today doing this so inherently it is not
-> > compatible.  
-> 
-> Still code of driver, not bindings/DTS/hardware.
-> 
-> > 
-> > So no, a fall back compatible is not suitable here because it simply
-> > is not compatible.
-> > 
-> > Now, if intent was to provide a backwards compatible path from this
-> > more advanced part then the behaviour of every register defined for
-> > the simpler part, must be identical on the more advanced part.  
-> 
-> There is no backwards compatibility of advanced path, so the DMP core.
-> The device (not driver, we do not talk here about driver) is compatible
-> with basic version fully. 100%. Only this part you need to keep always
-> compatible between each other,
-> 
-> > Extra functionality could only make use of fields in registers marked
-> > reserved, or of new registers that didn't exist on the simpler device.  
-> 
-> Extra functionality is for new, extended compatible. See
-> Documentation/devicetree/bindings/ABI.rst which exactly explains this case.
-> 
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
 > 
 > Best regards,
 > Krzysztof
 
+In the driver I keep support for both and also I tested the changes with
+the old wrong implementation. Both works so we shouldn't have any
+regression.
+
+-- 
+	Ansuel
