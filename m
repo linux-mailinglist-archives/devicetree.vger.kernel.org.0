@@ -2,88 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 197114E347A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 00:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1DB4E346E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 00:33:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233058AbiCUXf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 19:35:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54094 "EHLO
+        id S232981AbiCUXfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 19:35:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233050AbiCUXfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 19:35:24 -0400
-Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0451103D93;
-        Mon, 21 Mar 2022 16:33:57 -0700 (PDT)
-Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id 6B03330AE010;
-        Tue, 22 Mar 2022 00:33:56 +0100 (CET)
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id BBF7E30AE009;
-        Tue, 22 Mar 2022 00:33:55 +0100 (CET)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 22LNXtJc014368;
-        Tue, 22 Mar 2022 00:33:55 +0100
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 22LNXtAj014367;
-        Tue, 22 Mar 2022 00:33:55 +0100
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        "Marc Kleine-Budde" <mkl@pengutronix.de>,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>,
-        Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Subject: [PATCH v8 7/7] MAINTAINERS: Add maintainers for CTU CAN FD IP core driver
-Date:   Tue, 22 Mar 2022 00:32:34 +0100
-Message-Id: <2cc77e2999d9688bed155e4c7f7807e46d1bf9e3.1647904780.git.pisa@cmp.felk.cvut.cz>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1647904780.git.pisa@cmp.felk.cvut.cz>
-References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz>
+        with ESMTP id S232864AbiCUXfM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 19:35:12 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477086E34C;
+        Mon, 21 Mar 2022 16:33:46 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id a17-20020a9d3e11000000b005cb483c500dso7104669otd.6;
+        Mon, 21 Mar 2022 16:33:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iqlGJqAp9J3mBYn2W544lt1cPtvAWKBsX1sKB8vjaFQ=;
+        b=8RR2NtTyRvA8kVRw1oOtA6dceP1ZDrEpEkVuOIPpCypgdP7XtvReLFuc0utca5auPp
+         DmRS/yWxq2K6ESJrS3bmCb7wuZQcs/ntXt1yTKBjldE4NLIVFz3H8cmsQOXgbDAzytyK
+         WGss64E10ZpcKjU5JZCZs1feOC2vvDptmD9N/EX3+R+MBxXHfJCQHMmCfJrh3D+sQ9ta
+         gdOKRZOtHhco8AXGmgKI0qY51RipMEqUcWD/4q3IXNrHqfHLMHtDC1zAeTTdwtiO6kZf
+         GIjkT4f19JDPNM4kHbT3FY/lUwOqWg5Ytivwk8kss4S2GQRZW8a+m37lewnC4h11+pDs
+         t85Q==
+X-Gm-Message-State: AOAM533V97s+JieCsanUOd0M0r4mrLjlNM9h2nOX7mq9+kh3xVPGey1z
+        RgUV61czvtO/67rHH8y7KA==
+X-Google-Smtp-Source: ABdhPJzxxO+k7l8znxP0vjnY2lEafBroFgaKOlvFVHd8JKFt8pjObiL7SWOFKakst91i39pW6Q1Hgw==
+X-Received: by 2002:a9d:5f16:0:b0:5cb:51de:6761 with SMTP id f22-20020a9d5f16000000b005cb51de6761mr6071903oti.139.1647905625156;
+        Mon, 21 Mar 2022 16:33:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p14-20020a9d744e000000b005b235f5cf92sm8228647otk.65.2022.03.21.16.33.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 16:33:44 -0700 (PDT)
+Received: (nullmailer pid 751258 invoked by uid 1000);
+        Mon, 21 Mar 2022 23:33:43 -0000
+Date:   Mon, 21 Mar 2022 18:33:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, tzungbi@google.com,
+        angelogioacchino.delregno@collabora.com, aaronyu@google.com,
+        matthias.bgg@gmail.com, trevor.wu@mediatek.com, linmq006@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [v5 1/4] ASoC: dt-bindings: mt8192-mt6359: add new compatible
+ and new properties
+Message-ID: <YjkLVwvxvOKr30qL@robh.at.kernel.org>
+References: <20220319114111.11496-1-jiaxin.yu@mediatek.com>
+ <20220319114111.11496-2-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220319114111.11496-2-jiaxin.yu@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Sat, Mar 19, 2022 at 07:41:08PM +0800, Jiaxin Yu wrote:
+> 1. Adds new compatible string "mt8192_mt6359_rt1015p_rt5682s" for machines
+> with rt1015p and rt5682s.
+> 2. Adds new property "mediatek,headset-codec" for getting headset codecs.
+> 3. Adds new property "mediatek,speaker-codec" for getting speaker codecs.
+> 
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+>  .../sound/mt8192-mt6359-rt1015-rt5682.yaml    | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+> index a781e7aaaa38..aa0476eedd38 100644
+> --- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+> @@ -18,6 +18,7 @@ properties:
+>      enum:
+>        - mediatek,mt8192_mt6359_rt1015_rt5682
+>        - mediatek,mt8192_mt6359_rt1015p_rt5682
+> +      - mediatek,mt8192_mt6359_rt1015p_rt5682s
+>  
+>    mediatek,platform:
+>      $ref: "/schemas/types.yaml#/definitions/phandle"
+> @@ -27,6 +28,25 @@ properties:
+>      $ref: "/schemas/types.yaml#/definitions/phandle"
+>      description: The phandle of HDMI codec.
+>  
+> +patternProperties:
+> +  "^mediatek,headset-codec$":
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd0f68d4a34a6..82be168dbadd9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5113,6 +5113,14 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
- F:	drivers/media/platform/sunxi/sun6i-csi/
- 
-+CTU CAN FD DRIVER
-+M:	Pavel Pisa <pisa@cmp.felk.cvut.cz>
-+M:	Ondrej Ille <ondrej.ille@gmail.com>
-+L:	linux-can@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/can/ctu,ctucanfd.yaml
-+F:	drivers/net/can/ctucanfd/
-+
- CW1200 WLAN driver
- M:	Solomon Peachy <pizza@shaftnet.org>
- S:	Maintained
--- 
-2.20.1
+Fixed string, not a pattern. Move to 'properties'. Drop the vendor 
+prefix too.
 
+> +    description: Holds subnode which indicates headset dai.
+> +    type: object
+> +    properties:
+> +      sound-dai:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
 
+Standard property, don't need a type or description. Just how many and 
+what each one is if more than 1.
+
+> +        description: List of phandles to the headset codec nodes.
+
+More than 1?
+
+> +    additionalProperties: false
+> +
+> +  "^mediatek,speaker-codec$":
+> +    description: Holds subnode which indicates speaker dai.
+> +    type: object
+> +    properties:
+> +      sound-dai:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description: List of phandles to the speaker codec nodes.
+
+Same here.
+
+> +    additionalProperties: false
+> +
+>  additionalProperties: false
+>  
+>  required:
+> @@ -44,6 +64,15 @@ examples:
+>                          "aud_clk_mosi_on";
+>          pinctrl-0 = <&aud_clk_mosi_off>;
+>          pinctrl-1 = <&aud_clk_mosi_on>;
+> +
+> +        mediatek,headset-codec {
+> +            sound-dai = <&rt5682>;
+> +        };
+> +
+> +        mediatek,speaker-codec {
+> +            sound-dai = <&rt1015_l>,
+> +                        <&rt1015_r>;
+> +        };
+>      };
+>  
+>  ...
+> -- 
+> 2.18.0
+> 
+> 
