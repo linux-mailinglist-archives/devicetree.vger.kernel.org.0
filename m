@@ -2,131 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A05A4E2B5C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 15:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F6EB4E2BAA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:17:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349733AbiCUPAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 11:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
+        id S1349921AbiCUPTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 11:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234542AbiCUPAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:00:18 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C157427FF0;
-        Mon, 21 Mar 2022 07:58:52 -0700 (PDT)
-Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KMd4k0kwRz67JXs;
-        Mon, 21 Mar 2022 22:57:10 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Mon, 21 Mar 2022 15:58:50 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Mon, 21 Mar
- 2022 14:58:48 +0000
-Date:   Mon, 21 Mar 2022 14:58:46 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>, <michael.srba@seznam.cz>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
-Message-ID: <20220321145846.000066ba@Huawei.com>
-In-Reply-To: <Yjdqwlp4NFpuj4vT@robh.at.kernel.org>
-References: <20220311161600.1469-1-michael.srba@seznam.cz>
-        <20220311161600.1469-2-michael.srba@seznam.cz>
-        <20220320151525.34db502c@jic23-huawei>
-        <Yjdqwlp4NFpuj4vT@robh.at.kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S1349901AbiCUPTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:19:13 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D2FD10EC5A;
+        Mon, 21 Mar 2022 08:17:47 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id j18so11530822wrd.6;
+        Mon, 21 Mar 2022 08:17:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e4IGptxZ1Fj/rxyhFk27+MlJU6AA0j30gb7cbqQiOOM=;
+        b=KDmvf+e2FwkPan7KAyChyliuW0KQGte9n8i7sep3stYwfVwbtyK0PQz5QjNdmJbrJ4
+         iTPH6ZI8Z+FJETI38oejOoMuxMjaHH919KdWteOiyolzOSqGv2e65AdHsBDKSxw5+64i
+         wMOHaZQEA2pEBy2BeI32OIXOkl0vu8OcX3llUPPQ0qqYT1ri2Ilc7NHN2NbC9f6xFlX9
+         AxPlI8jjfelQrI/eKlWxDXlnjvZEb1RZtjr/O1xOALL71YJsFimtMfCgpPg5OZWC62Jc
+         cE7DYi1ehg4KbC30cnWyYHQBMUMA2mGiGDY2omYtnIWaVJKOnL+c5s8tvNdC7bWZC+ts
+         QEpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e4IGptxZ1Fj/rxyhFk27+MlJU6AA0j30gb7cbqQiOOM=;
+        b=N2FoeI07i12Y+bCYjkzvLULk+/wMa9efn82K4K0RyoTdazLU5OncxcwyjbV+3T2A1L
+         bCCt6rscxXspSkR4omRVEZSGOhZgurmRXeAmHH6mEEQ9zRX0JLzg7lbLI7HbMyl+TPeZ
+         n+0aFsOXvJOihvumtx8TZAQflsFrzbio46jGT+YsJ9Iv+ksrXzaikHpUtEK4QMntlJsv
+         hcNVQcfxTzrtNfbYRn/u7LQ/znbPLwj7Ys0mSS7irGfOHltlhdyHgcP4tqtxEqB2fV/o
+         y8ga1dt2DT7vN7pAGMwWs5mWNG0j3lIvfuKuIrhPklceG5i67aaL6ZBCVZUEmYvMmRAU
+         b6oQ==
+X-Gm-Message-State: AOAM530GJgHDE0YiaF4A1YCxWJR1ytdhvlZJQc+Zu8tdEFpIuGoSGMuN
+        pbvQu/xfVOWKbQngDGI/GZk=
+X-Google-Smtp-Source: ABdhPJwSeo6aGBz94AOUGz2JbiJtLjN4kug7S+US6ukMc9vkj31tevhFjpKEP4sgMraSUMJWzvSsFA==
+X-Received: by 2002:a05:6000:1e1e:b0:204:203:73ba with SMTP id bj30-20020a0560001e1e00b00204020373bamr8505290wrb.445.1647875865467;
+        Mon, 21 Mar 2022 08:17:45 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
+        by smtp.googlemail.com with ESMTPSA id 10-20020a5d47aa000000b00204012e4373sm7239729wrb.101.2022.03.21.08.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 08:17:44 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [PATCH v4 00/18] Modernize rest of the krait drivers
+Date:   Mon, 21 Mar 2022 15:48:07 +0100
+Message-Id: <20220321144825.11736-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Mar 2022 13:56:18 -0400
-Rob Herring <robh@kernel.org> wrote:
+This is a follow-up to the ipq806x gcc modernize series. Manu cleanup
+changes and also some discoveries of wrong definition notice only with
+all these conversions.
 
-> On Sun, Mar 20, 2022 at 03:15:25PM +0000, Jonathan Cameron wrote:
-> > On Fri, 11 Mar 2022 17:15:59 +0100
-> > michael.srba@seznam.cz wrote:
-> >   
-> > > From: Michael Srba <Michael.Srba@seznam.cz>
-> > > 
-> > > ICM-20608-D differs from the other ICM-20608 variants by having
-> > > a DMP (Digital Motion Processor) core tacked on.
-> > > Despite having a different WHOAMI register, this variant is
-> > > completely interchangeable with the other ICM-20608 variants
-> > > by simply pretending the DMP core doesn't exist.
-> > > 
-> > > Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> > > ---
-> > > changelog:
-> > >  - v2: require specifying "invensense,icm20608" as a fallback compatible  
-> > 
-> > Apologies that I joined the thread for v1 late, but no. That doesn't work.
-> > If the older driver before the new ID is present with this binding
-> > it won't probe because of the WHOAMI value difference so it's not
-> > compatible.
-> > 
-> > I'm fine with the v1 version.  
-> 
-> If the driver didn't check WHOAMI then it would be compatible. So does 
-> driver implementation determine what's compatible or not? It shouldn't 
-> as those are supposed to be decoupled.
+The first patch is an improvement of the clk_hw_get_parent_index. The
+original idea of clk_hw_get_parent_index was to give a way to access the
+parent index but for some reason the final version limited it to the
+current index. We change it to give the current parent if is not
+provided and to give the requested parent if provided. Any user of this
+function is updated to follow the new implementation.
 
-OK. That decoupling needs perhaps to be more clearly stated as it wasn't
-something I was keeping an eye open for in drivers.
+The patch 2 and 3 are some additional fixes for gcc.
+The first one is a fix that register the pxo and cxo fixed clock only if
+they are not defined in DTS.
+The patch 3 require some explaination. In short is a big HACK to prevent
+kernel panic with this series.
 
-It does check them and warns if there isn't a match. This is partly historical
-because we had board implementers switch to an 'mostly' compatible part
-that was fine with their software stack but not with the Linux drivers and
-those bugs were hard to diagnose. We didn't support he particular WHOAMI
-at the time so the check was dded.
+The kpss-xcc driver is a mess.
+The Documentation declare that the clocks should be provided but for some
+reason it was never followed.
+In fact in the ipq8064 DTSI only the clocks for l2cc are declared but
+for cpu0 and cpu1 the clocks are not defined.
+The kpss-xcc driver use parent_names so the clks are ignored and never
+used so till now it wasn't a problem (ignoring the fact that they
+doesn't follow documentation at all)
+On top of that, the l2cc node declare the pxo clock in a really strange
+way. It's declared using the PXO_SRC gcc clock that is never defined in
+the gcc ipq8064 clock table. (the correct way was to declare a fixed
+clock in dts and reference that)
+To prevent any kind of problem we use the patch 3 and provide the clk
+for PXO_SRC in the gcc clock table. We manually provide the clk after
+gcc probe.
 
-The code could be improved as it carries on using the chip
-specified when it should perhaps use the one matched on WHOAMI.  
-The discussion of the original patch that added the check
-"iio: inv_mpu6050: Check WHO_AM_I register on probe"
-included a request for such a change as a follow up patch.
-I guess that never showed up.
+Patch 4 is just a minor cleanup where we use the poll macro
 
-The driver supports a bunch of parts that aren't completely compatible
-from a register interface point of view + we have other drivers supporting
-additional parts. The particular question of which part is supported
-by what driver is a choice that other software stacks may have made
-differently. So we can't have a general compatible covering everything
-supported by the driver.
+Patch 5 is the actually kpss-xcc conversion to parent data
 
-Having said that we could do subsets where a particular compatible
-maps to some of the supported parts where the compatibility is such that
-it is unlikely another OS would chose to support them with different
-drivers.
+Patch 6-7 should be a fixup of a real conver case
 
-> 
-> Generally, if there are h/w id registers, then we'll rely on them and 
-> don't need a compatible for every variant.
+Patch 8 converts the krait-cc to parent_data
+Patch 9 give some love to the code with some minor fixup
+Patch 10 drop the hardcoded safe sel and use the new
+clk_hw_get_parent_index to get the safe parent index.
+(also I discovered that the parent order was wrong)
 
-I don't mind the driver moving to that model, but it's not true today
-and we'd still have to be careful with what we describe with each
-compatible.
+Patch 11 is an additional fixup to force the reset of the muxes even
+more.
 
-Jonathan
-> 
-> Rob
+Patch 12-13 are some additiona taken from the qsdk that were missing in
+the upstream driver
+
+Patch 14 converts krait-cc to yaml
+
+Patch 15 add to krait-cc Documentation the L2 clocks
+
+Patch 16 finally adds all this stuff to the ipq8064 dtsi (and fix the
+stupid PXO_SRC phandle)
+
+Patch 17 converts the kpss-acc driver to yaml and fix some Documentation
+error
+
+Patch 18 convets the kpss-gcc driver to yaml
+
+I tested this series on a ipq8064 SoC by running a cache benchmark test
+to make sure the changes are correct and we don't silently cause
+regressions. Also I compared the output of the clk_summary every time
+and we finally have a sane output where the mux are correctly placed in
+the correct parent. (till now we had the cpu aux clock all over the
+place, probably never cause problems but who knows.)
+
+v4:
+- Fix more dt-bindings bog errors
+v3:
+- Split Documentation files for kpss and krait-cc
+v2:
+- introduce new API instead of fixing the existing one
+- do not reorganize variables in krait-cc
+- fix some comments error and improve it
+- return better error for patch 7
+- fix missing new line on patch 16
+
+Ansuel Smith (18):
+  clk: introduce clk_hw_get_index_of_parent new API
+  clk: qcom: gcc-ipq806x: skip pxo/cxo fixed clk if already present
+  clk: qcom: gcc-ipq806x: add PXO_SRC in clk table
+  clk: qcom: clk-hfpll: use poll_timeout macro
+  clk: qcom: kpss-xcc: convert to parent data API
+  clk: qcom: clk-krait: unlock spin after mux completion
+  clk: qcom: clk-krait: add hw_parent check for div2_round_rate
+  clk: qcom: krait-cc: convert to parent_data API
+  clk: qcom: krait-cc: drop pr_info and register qsb only if needed
+  clk: qcom: krait-cc: drop hardcoded safe_sel
+  clk: qcom: krait-cc: force sec_mux to QSB
+  clk: qcom: clk-krait: add apq/ipq8064 errata workaround
+  clk: qcom: clk-krait: add enable disable ops
+  dt-bindings: clock: Convert qcom,krait-cc to yaml
+  dt-bindings: clock: Add L2 clocks to qcom,krait-cc Documentation
+  ARM: dts: qcom: qcom-ipq8064: add missing krait-cc compatible and
+    clocks
+  dt-bindings: arm: msm: Convert kpss-acc driver Documentation to yaml
+  dt-bindings: arm: msm: Convert kpss-gcc driver Documentation to yaml
+
+ .../bindings/arm/msm/qcom,kpss-acc.txt        |  49 -----
+ .../bindings/arm/msm/qcom,kpss-acc.yaml       |  88 +++++++++
+ .../bindings/arm/msm/qcom,kpss-gcc.txt        |  44 -----
+ .../bindings/arm/msm/qcom,kpss-gcc.yaml       |  68 +++++++
+ .../bindings/clock/qcom,krait-cc.txt          |  34 ----
+ .../bindings/clock/qcom,krait-cc.yaml         |  63 ++++++
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           |  20 +-
+ drivers/clk/clk.c                             |  14 ++
+ drivers/clk/qcom/clk-hfpll.c                  |  13 +-
+ drivers/clk/qcom/clk-krait.c                  |  44 ++++-
+ drivers/clk/qcom/clk-krait.h                  |   1 +
+ drivers/clk/qcom/gcc-ipq806x.c                |  27 ++-
+ drivers/clk/qcom/kpss-xcc.c                   |  25 +--
+ drivers/clk/qcom/krait-cc.c                   | 186 ++++++++++--------
+ include/linux/clk-provider.h                  |   1 +
+ 15 files changed, 441 insertions(+), 236 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+
+-- 
+2.34.1
 
