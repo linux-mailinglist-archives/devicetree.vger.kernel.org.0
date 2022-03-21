@@ -2,137 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93FA64E2C14
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:22:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 628DD4E2C17
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 16:23:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348926AbiCUPYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 11:24:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57916 "EHLO
+        id S241448AbiCUPZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 11:25:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350108AbiCUPYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:24:08 -0400
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B301168DE;
-        Mon, 21 Mar 2022 08:22:41 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id b19so21157349wrh.11;
-        Mon, 21 Mar 2022 08:22:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=3abe80l9msZOhwxOubLxAre+q+fnEX/6XNWvjvUZElY=;
-        b=zFaz3E+ag6L9SDKqkHEK+hByAsVqtWk5ob2H6YUhqxUu6xJD7WIR2twzbE2IPafGwq
-         b2k6uSYsrYPBG01+vcRoZCbBGpX5dt6vAXbZ6RaK4gZQ5KvG4sxMH6phJOHgg9ebs09O
-         0y9h+4YJR5PTGTPyRCi7oY48ZsQMzCWInPta2LufzNKAUJBlITpmVToporUf3P26lPaQ
-         MW0NGEdyTzG3dIRZHwfd2J3tVEbsv5VQuRc8VGSxzIoPjrpwW+yBgCRfF0VMrsv5yc5X
-         bR/4i2rP7O5L8QaAFMS1L+Z8SJODZlakIzmYykxnqms5v1FOHpg6CVG7mev+zUiooOFe
-         oo1A==
-X-Gm-Message-State: AOAM531E3CRhxaL3O94/BSqgIP5jGYtiVACZVLRVbCKkn7vreaM+g7xH
-        i+UkVHalOfSFPvG2EEn16jY=
-X-Google-Smtp-Source: ABdhPJxGalA37R+AGX12fTKU66XvtKTXi23oNPipCgdiBchO47NP9cFOXlUBspj04cLQSWTSzKUYmQ==
-X-Received: by 2002:adf:f604:0:b0:203:d9ca:bccf with SMTP id t4-20020adff604000000b00203d9cabccfmr18684891wrp.331.1647876159732;
-        Mon, 21 Mar 2022 08:22:39 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id n23-20020a05600c3b9700b0038b7c4c0803sm17375625wms.30.2022.03.21.08.22.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Mar 2022 08:22:39 -0700 (PDT)
-Message-ID: <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
-Date:   Mon, 21 Mar 2022 16:22:38 +0100
+        with ESMTP id S1350076AbiCUPY7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 11:24:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D2B25E9C;
+        Mon, 21 Mar 2022 08:23:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7AAB1B817C2;
+        Mon, 21 Mar 2022 15:23:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2884C340E8;
+        Mon, 21 Mar 2022 15:23:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647876211;
+        bh=4ZpyIyXYDcZ36RfZOIv4oxh4lJ+vIIHH8n+8gbprSCg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FLUh+ySfIHCMJccWzOujn77JxsZSejOrwn2p+855hwyPXkF77aZrr9VGfNd3TNBae
+         Jv/ZNWbw9RsZ+dfUJ84+PcHkfujZL0NeibCYTsty4A6WSXYyMYGmUmcj2w2lcgxd4P
+         cf8c1Gms39QL09R0tr7PAs6V8cKQg33YUUbBvLVsjcnKMHMgi57S0ZTfSyDw1nfGl/
+         HoyUkLDdnEeKZ8mYgoL+WPh+F2bKLY/gcv6y9AFrzpORCRUSuBTM7+tSlEiZbuUDU6
+         80L7Ocezq1BqkwgAuVGW8CVX5utlXtGw9ev6MzSOKgVw2psVepJdNKjc6a5a4AXINL
+         /VeaMprAovbNg==
+Date:   Mon, 21 Mar 2022 23:23:26 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linmq006@gmail.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-mediatek@lists.infradead.org, trevor.wu@mediatek.com,
+        matthias.bgg@gmail.com, aaronyu@google.com,
+        linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com
+Subject: Re: [v5 3/4] ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI
+ links of headset
+Message-ID: <YjiYbqtrxlgrUplq@google.com>
+References: <20220319114111.11496-1-jiaxin.yu@mediatek.com>
+ <20220319114111.11496-4-jiaxin.yu@mediatek.com>
+ <Yjf4KjXpVJaNnvb8@google.com>
+ <17e6e8895ebc1113911481c7e097b394005db123.camel@mediatek.com>
+ <YjhDqKhtYastPhf0@google.com>
+ <f9cd3c31cc41f0f3c72930664445646d8175c760.camel@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
- invensense,icm20608d
-Content-Language: en-US
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220310133938.2495-1-michael.srba@seznam.cz>
- <20220310133938.2495-2-michael.srba@seznam.cz>
- <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
- <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
- <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
- <20220320151223.3a9b13bd@jic23-huawei>
- <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
- <20220321150411.00002206@Huawei.com>
-In-Reply-To: <20220321150411.00002206@Huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f9cd3c31cc41f0f3c72930664445646d8175c760.camel@mediatek.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2022 16:04, Jonathan Cameron wrote:
-> On Mon, 21 Mar 2022 09:04:11 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Mon, Mar 21, 2022 at 10:38:48PM +0800, Jiaxin Yu wrote:
+> On Mon, 2022-03-21 at 17:21 +0800, Tzung-Bi Shih wrote:
+> > On Mon, Mar 21, 2022 at 05:14:08PM +0800, Jiaxin Yu wrote:
+> > > On Mon, 2022-03-21 at 11:59 +0800, Tzung-Bi Shih wrote:
+> > > > On Sat, Mar 19, 2022 at 07:41:10PM +0800, Jiaxin Yu wrote:
+> > > > > @@ -1145,6 +1140,13 @@ static int
+> > > > > mt8192_mt6359_dev_probe(struct
+> > > > > platform_device *pdev)
+> > > > >  		goto err_speaker_codec;
+> > > > >  	}
+> > > > >  
+> > > > > +	headset_codec = of_get_child_by_name(pdev->dev.of_node,
+> > > > > "mediatek,headset-codec");
+> > > > > +	if (!headset_codec) {
+> > > > > +		ret = -EINVAL;
+> > > > > +		dev_err_probe(&pdev->dev, ret, "Property
+> > > > > 'headset_codec' missing or invalid\n");
+> > > > > +		goto err_headset_codec;
+> > > > > +	}
+> > > > 
+> > > > (to be neat) Does it have any reason to prevent from using
+> > > > of_parse_phandle()
+> > > > but of_get_child_by_name()?
+> > > 
+> > > "mediatek,headset-codec" is a child node of pdev->dev.of_node, so I
+> > > use
+> > > of_get_child_by_name() to get and   pass it to
+> > > snd_soc_of_get_dai_link_codecs().
+> > 
+> > "mediatek,platform" and "mediatek,hdmi-codec" are also children of
+> > pdev->dev.of_node.  I guess my question is: why doesn't it also use
+> > of_parse_phandle() for "mediatek,headset-codec"?  Did I
+> > misunderstand?
 > 
->> On 20/03/2022 16:12, Jonathan Cameron wrote:
->>> On Thu, 10 Mar 2022 22:24:03 +0100
->>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
->>>   
->>>> On 10/03/2022 19:56, Michael Srba wrote:  
->>>>> Hi,
->>>>> the thing is, the only reason the different compatible is needed at all
->>>>> is that the chip presents a different WHOAMI, and the invensense,icm20608
->>>>> compatible seems to imply the non-D WHOAMI value.    
->>>>
->>>> But this is a driver implementation issue, not related to bindings.
->>>> Bindings describe the hardware.  
->>>
->>> Indeed, but the key thing here is the WHOAMI register is hardware.
->>>   
->>>>  
->>>>> I'm not sure how the driver would react to both compatibles being present,
->>>>> and looking at the driver code, it seems that icm20608d is not the only
->>>>> fully icm20608-compatible (to the extent of features supported by
->>>>> the driver, and excluding the WHOAMI value) invensense IC, yet none
->>>>> of these other ICs add the invensense,icm20608 compatible, so I guess I
->>>>> don't see a good reason to do something different.    
->>>>
->>>> Probably my question should be asked earlier, when these other
->>>> compatibles were added in such way.
->>>>
->>>> Skipping the DMP core, the new device is fully backwards compatible with
->>>> icm20608.  
->>>
->>> No. It is 'nearly' compatible...  The different WHOAMI value (used
->>> to check the chip is the one we expect) makes it incompatible.  Now we
->>> could change the driver to allow for that bit of incompatibility and
->>> some other drivers do (often warning when the whoami is wrong but continuing
->>> anyway).   
->>
->> Different value of HW register within the same programming model does
->> not make him incompatible. Quite contrary - it is compatible and to
->> differentiate variants you do not need specific compatibles.
+> The following is from bindings, "mediatek,speaker-codec" and
+> "mediatek,headset-codec" are sub nodes of sound but "mediatek,platform"
+> and "mediatek,hdmi-codec" are the name of properties. So we can't get
+> the sub node pointer through of_parse_phandle().
 > 
-> Whilst I don't personally agree with the definition of "compatible"
-> and think you are making false distinctions between hardware and software...
-> 
-> I'll accept Rob's statement of best practice.  However we can't just
-> add a compatible that won't work if someone uses it on a new board
-> that happens to run an old kernel.
-> 
+>       sound: mt8192-sound {
+>           compatible = "mediatek,mt8192_mt6359_rt1015_rt5682";
+>           mediatek,platform = <&afe>;
+>           mediatek,hdmi-codec = <&anx_bridge_dp>;
+>           pinctrl-names = "aud_clk_mosi_off",
+>                           "aud_clk_mosi_on";
+>           pinctrl-0 = <&aud_clk_mosi_off>;
+>           pinctrl-1 = <&aud_clk_mosi_on>;
+>  
+>           mediatek,headset-codec {
+>               sound-dai = <&rt5682>;
+>           };
+>  
+>           mediatek,speaker-codec {
+>               sound-dai = <&rt1015_l>,
+>                           <&rt1015_r>;
+>           };
+>       };
 
-The please explain me how this patch (the compatible set I proposed)
-fails to work in such case? How a new board with icm20608 (not
-icm20608d!) fails to work?
-
-To remind, the compatible has a format of:
-comaptible = "new", "old"
-e.g.: "invensense,icm20608d", "invensense,icm20608"
-
-Best regards,
-Krzysztof
+Got it, thanks for the explanation.  Will provide my R-b tag in another
+thread.
