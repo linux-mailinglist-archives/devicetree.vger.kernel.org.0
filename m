@@ -2,151 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ADF84E221D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:23:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 660004E222F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 09:28:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345219AbiCUIZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 04:25:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
+        id S1345239AbiCUIaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 04:30:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345206AbiCUIZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:25:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01C05FE1;
-        Mon, 21 Mar 2022 01:23:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 08053B81145;
-        Mon, 21 Mar 2022 08:23:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A6E1C340E8;
-        Mon, 21 Mar 2022 08:23:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1647851013;
-        bh=Cfz3f9Iw/dbsqO3pWGoIxGQSFuUQvmLff9oW734nUSo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0gQ+ZQZAjVysYCaO3ADO4mYtthm6nqM3Ax2qySTJZFtuEfSV1u9OEwujRcu3Z4y29
-         kr+Z6Qv1DqRoitFm1r53pVDwJkEttnjviddGI2xMBZIaqLilNVZX7iodrwz4WipY/i
-         ivoxO80ikjHRFW4MVTfm8JV/Dx+2rzb1RI2iOQIA=
-Date:   Mon, 21 Mar 2022 09:23:30 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v7 9/9] docs: ABI: testing: Document the Ampere Altra
- Family's SMpro sysfs interfaces
-Message-ID: <Yjg2AkYOCTi2CXc1@kroah.com>
-References: <20220321081355.6802-1-quan@os.amperecomputing.com>
- <20220321081355.6802-10-quan@os.amperecomputing.com>
+        with ESMTP id S1345234AbiCUIaS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 04:30:18 -0400
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3CF1BE80;
+        Mon, 21 Mar 2022 01:28:51 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id dr20so27923662ejc.6;
+        Mon, 21 Mar 2022 01:28:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HcEnlmQ/c9nTewqIhQqcZV4bu3Z7rpqXOTeyXi1ZiTE=;
+        b=02VwklxeLGQ6T/MQ/Ygz7G603focViv6JYrM3bhh4sijgcrkESzucGBQRMctRPcdMx
+         0rmrOTcKp2h4spb2x1u774cGEr5891uj4Yzc1WKBf/WUraN7Yh8nmehFPWtt8ANa0ycg
+         mnCpPYEqOuqYidHHg9PqT4WE/9hAjJaRVDCajFwS10vOjyj5mwMk9NVYY9DOB9/RAtQl
+         swXND1dwX8uu15ZyJX+eMnmEeFkSU05zrLCztJjTvW1HjHdzG0lzJRRWpHC5lN2LHr6k
+         Mk9x8wT365jBZr02W6pwmlCx3gnemVZ87+TS2eK0NMdZ7ah+UNL0V+jysjcGBwLUhPcP
+         Fp9Q==
+X-Gm-Message-State: AOAM530zOlrqBWkn8/1jMLdVPZxI3UaVqt0YJEwrP54m9S4oMDUeUO4l
+        CJ4kK6JE4SIPtZCqpCeTGvA=
+X-Google-Smtp-Source: ABdhPJz1bc2yRucsjFlFqG+ZLQE2pqxqxKBCGdgZURhOXqOXx8d8uTZ5oEOh0scuZ5Wi50lwshifxg==
+X-Received: by 2002:a17:907:7244:b0:6df:fb38:1d02 with SMTP id ds4-20020a170907724400b006dffb381d02mr5224559ejc.453.1647851330001;
+        Mon, 21 Mar 2022 01:28:50 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id c12-20020a05640227cc00b004192114e521sm2852274ede.60.2022.03.21.01.28.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Mar 2022 01:28:49 -0700 (PDT)
+Message-ID: <a4836cd6-1b92-8ee6-78aa-a85415e2c1b9@kernel.org>
+Date:   Mon, 21 Mar 2022 09:28:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220321081355.6802-10-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
+ Electronics TM1628
+Content-Language: en-US
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+ <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 03:13:55PM +0700, Quan Nguyen wrote:
-> Add documentation for the Ampere(R)'s Altra(R) SMpro sysfs interfaces
+On 25/02/2022 22:13, Heiner Kallweit wrote:
+> Add a YAML schema binding for TM1628 auxdisplay
+> (7/11-segment LED) controller.
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
-> Changes in v7:
->   + First introduce in v7     [Greg]
+> This patch is partially based on previous work from
+> Andreas Färber <afaerber@suse.de>.
 > 
->  .../sysfs-bus-platform-devices-ampere-smpro   | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-> new file mode 100644
-> index 000000000000..9bfd8d6d0f71
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
-> @@ -0,0 +1,133 @@
-> +What:		/sys/bus/platform/devices/smpro-errmon.*/errors_[core|mem|pcie|other]_[ce|ue]
 
-Please split this out as one entry per file.
-
-> +KernelVersion:	5.14
-
-5.14 is a long time ago.
-
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Contains the 48-byte Ampere (Vendor-Specific) Error Record, see [1]
-> +		printed in hex format as below:
-> +
-> +		AA BB CCCC DDDDDDDD DDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDD \
-> +		   DDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDD DDDDDDDDDDDDDDDD
-> +		Where:
-> +		  AA       : Error Type
-> +		  BB       : Subtype
-> +		  CCCC     : Instance
-> +		  DDD...DDD: Similar to the Arm RAS standard error record
-
-No, this is not a valid sysfs file, sorry.  This should just be one
-value per file.
-
+(...)
 
 > +
-> +		See [1] below for the format details.
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
 > +
-> +		The detail of each sysfs entries is as below:
-> +		+-------------+---------------------------------------------------------+
-> +		|   Error     |                   Sysfs entry                           |
-> +		+-------------+---------------------------------------------------------+
-> +		| Core's CE   | /sys/bus/platform/devices/smpro-errmon.*/errors_core_ce |
-> +		| Core's UE   | /sys/bus/platform/devices/smpro-errmon.*/errors_core_ue |
-> +		| Memory's CE | /sys/bus/platform/devices/smpro-errmon.*/errors_mem_ce  |
-> +		| Memory's UE | /sys/bus/platform/devices/smpro-errmon.*/errors_mem_ue  |
-> +		| PCIe's CE   | /sys/bus/platform/devices/smpro-errmon.*/errors_pcie_ce |
-> +		| PCIe's UE   | /sys/bus/platform/devices/smpro-errmon.*/errors_pcie_ue |
-> +		| Other's CE  | /sys/bus/platform/devices/smpro-errmon.*/errors_other_ce|
-> +		| Other's UE  | /sys/bus/platform/devices/smpro-errmon.*/errors_other_ue|
-> +		+-------------+---------------------------------------------------------+
-> +		UE: Uncorrect-able Error
-> +		CE: Correct-able Error
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +		[1] Section 3.3 Ampere (Vendor-Specific) Error Record Formats,
-> +		    Altra Family RAS Supplement.
+> +        led-controller@0 {
+> +            compatible = "titanmec,tm1628";
+> +            reg = <0>;
+> +            spi-3-wire;
+> +            spi-lsb-first;
+> +            spi-max-frequency = <500000>;
+> +            titanmec,grid = /bits/ 8 <4 3 2 1>;
+> +            titanmec,segment-mapping = /bits/ 8 <4 5 6 1 2 3 7>;
+> +            #address-cells = <2>;
+> +            #size-cells = <0>;
 > +
-> +
-> +What:           /sys/bus/platform/devices/smpro-errmon.*/errors_[smpro|pmpro]
-> +KernelVersion:	5.14
-> +Contact:	quan@os.amperecomputing.com
-> +Description:
-> +		(RO) Contains the internal firmware error record printed as hex format
-> +		as below:
-> +
-> +		A BB C DD EEEE FFFFFFFF
+> +            alarm@5,4 {
 
-Again this isn't a good sysfs entry.  You should never have to parse a
-sysfs file except for a single value.
+A nit: generic node name, so "led".
 
-thanks,
 
-greg k-h
+Best regards,
+Krzysztof
