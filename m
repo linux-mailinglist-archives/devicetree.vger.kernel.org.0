@@ -2,76 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE76A4E3064
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:01:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A76FA4E306A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 20:03:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352369AbiCUTDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 15:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
+        id S1352410AbiCUTEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 15:04:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346596AbiCUTDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:03:22 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6EFD6BDC6;
-        Mon, 21 Mar 2022 12:01:55 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id z9-20020a05683020c900b005b22bf41872so11102402otq.13;
-        Mon, 21 Mar 2022 12:01:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OFNzX0RcfjvIV1qQsoDTPNb+AhrilIDRJVRjWyRvurs=;
-        b=SHZkpJd+fAU5BXC2YE81LziJXKOmrKGBmZM8vuNXyP/BIrvFFqq8BkozF3K3HUuLi1
-         5qnxx2MYCKnWdUaJJJp9PebD86QU9KT+9GBlHscqJ08kx9/2/xPEJYzG2lfJVkrJ+0/O
-         a8UOb/ZhBuznqknK2C3+6c1zp9f/IwaKeONnDYmEvVYh5ySG1dOo3+TGL61/1gYMlBQz
-         aZuCAM5s4tEjmKde+lGBPtCZm3lb6Uf3Am8OGWn0bWkrMO+YUeZlHdjVxgqtTNgtbUpY
-         Wvgtmhk7/kHs3sDC+zRPosZP2MjqJOec0dHkMN6O0TYCx9TEFisp9l+sa6E74zogUTP8
-         qtUg==
-X-Gm-Message-State: AOAM533JI798rdebjRkPibJskJej6UCn4t5fvzyAK2GymEMM33w8mu23
-        4KIwGTMEJ0SQcNsrt+iTgQ==
-X-Google-Smtp-Source: ABdhPJxjYA4wqMBQQY15Sz3S7Ek8UJwpW/VRiWrfPkV/RELlwACRKSJU78WDb012aNCY4yCGNOAuCA==
-X-Received: by 2002:a05:6830:3c1:b0:5b0:3e3d:b788 with SMTP id p1-20020a05683003c100b005b03e3db788mr8702196otc.179.1647889315203;
-        Mon, 21 Mar 2022 12:01:55 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r10-20020a056830448a00b005c9344dac06sm7881963otv.19.2022.03.21.12.01.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 12:01:53 -0700 (PDT)
-Received: (nullmailer pid 372195 invoked by uid 1000);
-        Mon, 21 Mar 2022 19:01:51 -0000
-Date:   Mon, 21 Mar 2022 14:01:51 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: Add Immersion Corporation prefix
-Message-ID: <YjjLn4vM4f1tpZzO@robh.at.kernel.org>
-References: <20220315233528.1204930-1-linus.walleij@linaro.org>
+        with ESMTP id S1352412AbiCUTEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 15:04:44 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0AE167E7;
+        Mon, 21 Mar 2022 12:03:15 -0700 (PDT)
+Received: from zn.tnic (p200300ea971561e8329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9715:61e8:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id AF4851EC056A;
+        Mon, 21 Mar 2022 20:03:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1647889389;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=3tsEfYC5mE29FrztA7klv5Gy5kBdTlSRewG9h1lk6J0=;
+        b=b2Lotxl6qpFk/BSkwu5EtFqSYbA64Og5nG81QQAjZmC/55o4n2tQflqjjyr26KVi5wOrOU
+        1h7vZ/fuLu+fzxA6nOYnWXMUwFwQu/O3QwdFdu6woIBZJO3nhgvLO9efNrU95zSiLM2mck
+        GIU/s4MUQGsZUr6TFX0ozIyPprqhOfI=
+Date:   Mon, 21 Mar 2022 20:03:04 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Avi Fishman <avifishman70@gmail.com>
+Cc:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        James Morse <james.morse@arm.com>, YSCHU@nuvoton.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        tony.luck@intel.com, Benjamin Fair <benjaminfair@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        Rob Herring <robh+dt@kernel.org>, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, Nancy Yuen <yuenn@google.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>, ctcchien@nuvoton.com,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Subject: Re: [PATCH v5 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+Message-ID: <YjjL6OJ3MLXvC6mj@zn.tnic>
+References: <20220317015854.18864-1-ctcchien@nuvoton.com>
+ <20220317015854.18864-4-ctcchien@nuvoton.com>
+ <37361667-C932-4139-B649-52DE029BDEE5@alien8.de>
+ <CAKKbWA66rdm11fM2eWpQpSW2aCfFn-9OwJNNN4J2Q4rE2H4vEw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220315233528.1204930-1-linus.walleij@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <CAKKbWA66rdm11fM2eWpQpSW2aCfFn-9OwJNNN4J2Q4rE2H4vEw@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Mar 2022 00:35:26 +0100, Linus Walleij wrote:
-> Immersion Corporation makes haptic feedback circuits such as
-> the ISA1200.
+On Mon, Mar 21, 2022 at 08:28:51PM +0200, Avi Fishman wrote:
+> see in MAINTAINERS:
+> ARM/NUVOTON NPCM ARCHITECTURE
+> M:      Avi Fishman <avifishman70@gmail.com>
+> M:      Tomer Maimon <tmaimon77@gmail.com>
+> ...
+> F:      drivers/*/*npcm*
+> F:      drivers/*/*/*npcm*
 > 
-> Cc: phone-devel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> Isn't it OK?
 
-Acked-by: Rob Herring <robh@kernel.org>
+Ah, I didn't know you guys have such an entry already - we usually do
+EDAC-specific ones but yeah, the current solution is ok too:
+
+./scripts/get_maintainer.pl -f drivers/edac/npcm_edac.c
+Avi Fishman <avifishman70@gmail.com> (supporter:ARM/NUVOTON NPCM ARCHITECTURE)
+Tomer Maimon <tmaimon77@gmail.com> (supporter:ARM/NUVOTON NPCM ARCHITECTURE)
+Tali Perry <tali.perry1@gmail.com> (supporter:ARM/NUVOTON NPCM ARCHITECTURE)
+Patrick Venture <venture@google.com> (reviewer:ARM/NUVOTON NPCM ARCHITECTURE)
+Nancy Yuen <yuenn@google.com> (reviewer:ARM/NUVOTON NPCM ARCHITECTURE)
+...
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
