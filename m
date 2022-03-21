@@ -2,157 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 538D64E2159
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 08:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BFD84E2170
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 08:36:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235616AbiCUH00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 03:26:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37044 "EHLO
+        id S1344968AbiCUHh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 03:37:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244518AbiCUH0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 03:26:24 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BE258806;
-        Mon, 21 Mar 2022 00:24:59 -0700 (PDT)
-X-UUID: bf319316ec4c4ac78d0bf8b63b671b06-20220321
-X-UUID: bf319316ec4c4ac78d0bf8b63b671b06-20220321
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1336590698; Mon, 21 Mar 2022 15:24:54 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 21 Mar 2022 15:24:52 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Mar
- 2022 15:24:52 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 21 Mar 2022 15:24:52 +0800
-Message-ID: <dae3ccb3e2f658418d6b1c061181a0b9291c108f.camel@mediatek.com>
-Subject: Re: [PATCH v8 17/19] drm/mediatek: add hpd debounce
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>,
-        <chunfeng.yun@mediatek.com>, <kishon@ti.com>, <vkoul@kernel.org>,
-        <deller@gmx.de>, <ck.hu@mediatek.com>, <jitao.shi@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Mon, 21 Mar 2022 15:24:52 +0800
-In-Reply-To: <20220218145437.18563-18-granquet@baylibre.com>
-References: <20220218145437.18563-1-granquet@baylibre.com>
-         <20220218145437.18563-18-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1344958AbiCUHhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 03:37:22 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA2526102;
+        Mon, 21 Mar 2022 00:35:57 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id l18so15803951ioj.2;
+        Mon, 21 Mar 2022 00:35:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2C1RpUiaL1vxBujg7Ap4jwKIx1sYBZVVayjRXFtUjW8=;
+        b=h0x23kDJVoNipENf2uxRroNJjO3bRCExeHMpIyb0k8GlXVUocGo1v7QRTy3S7wqKQe
+         F14hgQzl3fhQgvpytDD7IVj0yYtQhfU3BD3nSPDawzJyvZ/0FLHbjnqzlQLYt5oGiZCV
+         BKThdOte++FVPf8br9RtUBani1fyrWFYiAoIblQwkzVpMptFgRxFLr0ciWgKZvxPlw6T
+         xxQ4dVFgCNQ0VUTKT2nowk/pWvs1OSCeYISudA0z+jdimAmDiXVrZMvO7DmrFUizERtw
+         pByPvG2+KgSp+vGH/2iKWccO71+mFL8sq6b6JVH7GapqTpn3Z7T8CfvYrT1nwOd/DWZh
+         n6nA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2C1RpUiaL1vxBujg7Ap4jwKIx1sYBZVVayjRXFtUjW8=;
+        b=o6bbqC3DABcuvlgEEnJTevQG4Nzi4dq/rq9Q6hSGxgCBVWVGCn5KKg43sXuzxdKnY4
+         6S06okTYA9/UeGJDCp1k4XIN416UyoFK3jePhguwbwjhVawTVZLCa/rPtKRq08t9doBs
+         pKgvXLs+t979WAE3APj2NyyYTVUUS3MQtpdf8GvhhqeOfv5o6JBA+DeYhttHzGYPEg9X
+         FFvrQGYUa1GlaDIZyKtpj2tQq32INyaWNOXzoOGrTmexAIwZUsrYMhVWbq4ImvVbrZPP
+         Mii81w1l9i4+Xg2eFhRlu5R+oU/kDYue47TW71N9Q/L3R6A1EX3UxB/N/ZZZeE8VUUT0
+         d5MA==
+X-Gm-Message-State: AOAM5311wFoT2U+/SjzEZ0/S2RAACpokEcQRXYVOIq71ikU/9bOiV5MI
+        DnlHs143OAbfu3LSUJs/lvdXhQWerOlrVH/2uNQ=
+X-Google-Smtp-Source: ABdhPJyqls2NFpxeM30XnCiTx/a14dnQbjvulBh2ylQ4W+yALmNT8s1MyOmauqboODswFHXJyBr2/nja9BfbQjnkx5Y=
+X-Received: by 2002:a05:6638:1495:b0:31d:f416:150 with SMTP id
+ j21-20020a056638149500b0031df4160150mr5563972jak.68.1647848156450; Mon, 21
+ Mar 2022 00:35:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220124121009.108649-1-alistair@alistair23.me>
+ <20220124121009.108649-6-alistair@alistair23.me> <CAMuHMdUe-z-6_=W5AFtWMug-cqTZKJhd-iLbdoRnSKoXwm27Uw@mail.gmail.com>
+In-Reply-To: <CAMuHMdUe-z-6_=W5AFtWMug-cqTZKJhd-iLbdoRnSKoXwm27Uw@mail.gmail.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Mon, 21 Mar 2022 17:34:00 +1000
+Message-ID: <CAKmqyKNtE8=Jna78+L2a8BwsgM+LZVPi4ppg8Z0RGJ-21RqPtw@mail.gmail.com>
+Subject: Re: [PATCH v18 5/8] hwmon: sy7636a: Add temperature driver for sy7636a
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-18 at 15:54 +0100, Guillaume Ranquet wrote:
-> From: Jitao Shi <jitao.shi@mediatek.com>
-> 
-> Implement the DP HDP debounce described in DP 1.4a 3.3.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+On Tue, Mar 8, 2022 at 9:21 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Alistair,
+>
+> On Mon, Jan 24, 2022 at 1:25 PM Alistair Francis <alistair@alistair23.me> wrote:
+> > This is a multi-function device to interface with the sy7636a
+> > EPD PMIC chip from Silergy.
+> >
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > Acked-by: Guenter Roeck <linux@roeck-us.net>
+>
+> Thanks for your patch, which is now commit de34a40532507814 ("hwmon:
+> sy7636a: Add temperature driver for sy7636a") in mfd/for-mfd-next.
+>
+> > --- a/drivers/hwmon/Kconfig
+> > +++ b/drivers/hwmon/Kconfig
+> > @@ -1672,6 +1672,15 @@ config SENSORS_SIS5595
+> >           This driver can also be built as a module. If so, the module
+> >           will be called sis5595.
+> >
+> > +config SENSORS_SY7636A
+> > +       tristate "Silergy SY7636A"
+> > +       help
+> > +         If you say yes here you get support for the thermistor readout of
+> > +         the Silergy SY7636A PMIC.
+>
+> As this is an i2c mfd device, you do need a dependency on MFD and I2C,
+> or some other symbol, unless compile-testing?
 
-Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+It doesn't depend on either to build though. It can be built independently.
 
-> ---
->  drivers/gpu/drm/mediatek/mtk_dp.c | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
-> b/drivers/gpu/drm/mediatek/mtk_dp.c
-> index 2a3d5f15b651b..fe91ab8b2fd89 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -178,6 +178,8 @@ struct mtk_dp {
->  	struct device *codec_dev;
->  	u8 connector_eld[MAX_ELD_BYTES];
->  	struct drm_connector *conn;
-> +	bool need_debounce;
-> +	struct timer_list debounce_timer;
->  };
->  
->  static struct regmap_config mtk_dp_regmap_config = {
-> @@ -1698,6 +1700,9 @@ static irqreturn_t mtk_dp_hpd_event_thread(int
-> hpd, void *dev)
->  	if (event < 0)
->  		return IRQ_HANDLED;
->  
-> +	if (mtk_dp->need_debounce && mtk_dp-
-> >train_info.cable_plugged_in)
-> +		msleep(100);
-> +
->  	if (mtk_dp->drm_dev) {
->  		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
->  		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-> @@ -1776,6 +1781,13 @@ static irqreturn_t
-> mtk_dp_hpd_isr_handler(struct mtk_dp *mtk_dp)
->  	}
->  	train_info->cable_state_change = true;
->  
-> +	if (train_info->cable_state_change) {
-> +		if (!train_info->cable_plugged_in) {
-> +			mod_timer(&mtk_dp->debounce_timer, jiffies +
-> msecs_to_jiffies(100) - 1);
-> +			mtk_dp->need_debounce = false;
-> +		}
-> +	}
-> +
->  	return IRQ_WAKE_THREAD;
->  }
->  
-> @@ -2239,6 +2251,13 @@ static const struct drm_bridge_funcs
-> mtk_dp_bridge_funcs = {
->  	.detect = mtk_dp_bdg_detect,
->  };
->  
-> +static void mtk_dp_debounce_timer(struct timer_list *t)
-> +{
-> +	struct mtk_dp *mtk_dp = from_timer(mtk_dp, t, debounce_timer);
-> +
-> +	mtk_dp->need_debounce = true;
-> +}
-> +
->  static int mtk_dp_probe(struct platform_device *pdev)
->  {
->  	struct mtk_dp *mtk_dp;
-> @@ -2319,6 +2338,9 @@ static int mtk_dp_probe(struct platform_device
-> *pdev)
->  	else
->  		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
->  
-> +	mtk_dp->need_debounce = true;
-> +	timer_setup(&mtk_dp->debounce_timer, mtk_dp_debounce_timer, 0);
-> +
->  	pm_runtime_enable(dev);
->  	pm_runtime_get_sync(dev);
->  
-> @@ -2332,6 +2354,7 @@ static int mtk_dp_remove(struct platform_device
-> *pdev)
->  	platform_device_unregister(mtk_dp->phy_dev);
->  
->  	mtk_dp_video_mute(mtk_dp, true);
-> +	del_timer_sync(&mtk_dp->debounce_timer);
->  
->  	pm_runtime_disable(&pdev->dev);
->  
+Alistair
 
+>
+> > +
+> > +         This driver can also be built as a module.  If so, the module
+> > +         will be called sy7636a-hwmon.
+> > +
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
