@@ -2,54 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3210D4E211B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 08:18:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F276D4E2132
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 08:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344809AbiCUHTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 03:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39340 "EHLO
+        id S1344770AbiCUHYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 03:24:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344804AbiCUHTs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 03:19:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9996E1CFD4;
-        Mon, 21 Mar 2022 00:18:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3509460F99;
-        Mon, 21 Mar 2022 07:18:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38D5BC340E8;
-        Mon, 21 Mar 2022 07:18:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647847102;
-        bh=Pwp6sQixtqzl3bOa6QAUaAOxQIEUFhK8JMtjcBpVpDM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ObaljEBIIt36s6lvN7hITTGlBx6XdVdueWqQ1pdTDqhtiBnreYLviOEp7OAZsyeuQ
-         p5I/Gt9Ee38ymaoYIPT1SaoO2+f1TBcAy9SFKBxaDs5PrmZ8uAi1OW4zZHebbQmXrs
-         CdDiJ1bj3ebW6LVPHL90zh2xEnG41SIGhhKbrIbI8TJ/zzDfkP8Zy4oa9OPdw0qKeg
-         HO8SgYBTrxTc8iz9ABjAwZYZr5aHgQuK2fS55/qtO6/cw2nKoK4+r6RoptXY47pNLa
-         TjXSxXGHdqvOJAwikDYoOgWFvh3LYXn/wvbU3BV5AOf6gq+634JGBh5M/1fSkZtCi/
-         8yS4Y8VeDtDNg==
-Date:   Mon, 21 Mar 2022 15:18:18 +0800
-From:   Tzung-Bi Shih <tzungbi@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] platform/chrome: cros_kbd_led_backlight: support
- EC PWM backend
-Message-ID: <Yjgmut/HndnYsPVE@google.com>
-References: <20220314090835.3822093-1-tzungbi@kernel.org>
- <20220314090835.3822093-6-tzungbi@kernel.org>
- <20220318170751.GA687500@roeck-us.net>
+        with ESMTP id S244578AbiCUHYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 03:24:46 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D514CDE89;
+        Mon, 21 Mar 2022 00:23:20 -0700 (PDT)
+X-UUID: 020b47e84d724129b9b452438f375d2b-20220321
+X-UUID: 020b47e84d724129b9b452438f375d2b-20220321
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 126629414; Mon, 21 Mar 2022 15:23:14 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Mar 2022 15:23:13 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Mar 2022 15:23:13 +0800
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <aaronyu@google.com>, <angelogioacchino.delregno@collabora.com>,
+        <tzungbi@google.com>, <yc.hung@mediatek.com>
+Subject: [PATCH v3 0/6] ASoC: mediatek: Add support for MT8195 sound card with max98390 and rt5682
+Date:   Mon, 21 Mar 2022 15:23:06 +0800
+Message-ID: <20220321072312.14972-1-trevor.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220318170751.GA687500@roeck-us.net>
-X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,26 +51,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 18, 2022 at 10:07:51AM -0700, Guenter Roeck wrote:
-> On Mon, Mar 14, 2022 at 05:08:35PM +0800, Tzung-Bi Shih wrote:
-> > @@ -142,6 +142,12 @@ config CROS_KBD_LED_BACKLIGHT_ACPI
-> >  	help
-> >  	  ChromeOS keyboard backlight ACPI backend.
-> >  
-> > +config CROS_KBD_LED_BACKLIGHT_EC_PWM
-> > +	tristate "ChromeOS keyboard backlight EC PWM backend"
-> 
-> This is not a standa-alone module and should therefore be bool,
-> not tristate.
+This series of patches adds support for mt8195 board with mt6359, max98390
+and rt5682.
 
-Ack.
+To prevent from copy-paste components, mt8195 machine drivers and 
+dt-bindings are merged in the patch.
 
-> > @@ -123,34 +130,122 @@ static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
-> >  
-> >  #endif /* IS_ENABLED(CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI) */
-> >  
-> > +#if IS_ENABLED(CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM)
-> 
-> #ifdef (with bool) should do.
+Patches are based on broonie tree "for-next" branch.
 
-Ack.  Will apply the fix for CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI too.
+Changes since v2:
+  - split "merge machine driver" into two parts for better understanding
+
+Changes since v1:
+  - remove merged patches about reset controller
+  - propose a common machine driver instead of machine driver common code
+  - propose a common dt-bindings for mt8195 sound card
+
+Trevor Wu (6):
+  ASoC: mediatek: mt8195: revise mt8195-mt6359-rt1019-rt5682.c
+  ASoC: mediatek: mt8195: merge machine driver
+  ASoC: dt-bindings: mediatek: mt8195: merge mt8195 machine yaml
+  ASoC: mediatek: mt8195: rename card controls
+  ASoC: mediatek: mt8195: add machine support for max98390 and rt5682
+  ASoC: dt-bindings: mediatek: mt8195: support
+    mt8195-mt6359-max98390-rt5682
+
+ .../sound/mt8195-mt6359-rt1011-rt5682.yaml    |   51 -
+ ...-rt1019-rt5682.yaml => mt8195-mt6359.yaml} |    9 +-
+ sound/soc/mediatek/Kconfig                    |   26 +-
+ sound/soc/mediatek/mt8195/Makefile            |    3 +-
+ .../mt8195/mt8195-mt6359-rt1011-rt5682.c      | 1198 -----------------
+ ...mt6359-rt1019-rt5682.c => mt8195-mt6359.c} |  865 +++++++-----
+ 6 files changed, 569 insertions(+), 1583 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
+ rename Documentation/devicetree/bindings/sound/{mt8195-mt6359-rt1019-rt5682.yaml => mt8195-mt6359.yaml} (84%)
+ delete mode 100644 sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+ rename sound/soc/mediatek/mt8195/{mt8195-mt6359-rt1019-rt5682.c => mt8195-mt6359.c} (78%)
+
+-- 
+2.18.0
+
