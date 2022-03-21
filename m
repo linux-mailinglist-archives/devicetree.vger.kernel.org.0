@@ -2,224 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA9274E27CF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:37:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1809E4E27E1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Mar 2022 14:41:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236015AbiCUNit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 09:38:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40652 "EHLO
+        id S1347990AbiCUNm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 09:42:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347860AbiCUNir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:38:47 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF53C11F78E;
-        Mon, 21 Mar 2022 06:37:21 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id h4so2766924wrc.13;
-        Mon, 21 Mar 2022 06:37:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=C7ur1ssTUbHNpecbbbCU94tMoZ1fCbXzPQjfgyWqqxg=;
-        b=T070mISsGNQa6RHk1dvm7QAfEGtCL8QdJrl2jjSnGDB6cwq2T9wm74b4gFuuuJlMKT
-         2nTxKTsyhsMZ0uvuXyO559/Aq3xhzUs99+G0yudWaQ5o0OyMWNSef1QKfPkUrLfTEah5
-         3JdeOMHFOhs9VAxy7jhmLl68/uKjUa/lOkQ2H6c373zvP+94m9x61dLxPj3jyWYE67HV
-         S3xp7ejlINrtQxXGa6PJS9joqNSBQRIadcOUcKu+CvxWe/QnvrYG1LQ3FDtSmGrQmmS8
-         CBmCy6nrfzqAwRDiRRvD9vz0aorR2mINGePL0dEp2hicWhfcotQ4SKy3kBgcaHiubTKM
-         kABw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=C7ur1ssTUbHNpecbbbCU94tMoZ1fCbXzPQjfgyWqqxg=;
-        b=phN75rF3k5IuHIiWhjUMBW9ovpp/oOR9tAFrIWc5Uf6LOWU0T4JROD7JoBezeiuow8
-         8Xn2C9db/OPP14a+xQDwGy/2wts+EUjD1cXEd5afK8DlASDW7cje62UuzQhkBpMRdrmy
-         9YqbqTRSFhGDwEa9gHRu4zPsWGQampbPcsDysiic+tqlvmd7KZnjBA1tQ2mtLWP3ozzo
-         siSKSgxW9VHlSCF3QWcnHOYbXTetGRrq8Oa/MSL/LSiIuMsXrgD4YEb2JkYpkiXN4bhb
-         +DsNh6PvjX6lostOt72pOxUvH/Ay9AljaQ6a2O5jaH15Z8SSc+njrTgKt1HZarFxy1hu
-         5mdg==
-X-Gm-Message-State: AOAM530fF1VtppX1Zh58vVcL06HlpCsFeD+T7+fGEbxMfGzs34BDnDp9
-        kZ/zPM427C95vJ5zhGaG99c8Yat1mPtYBA==
-X-Google-Smtp-Source: ABdhPJwWZt9Ny/5MMoWri+0K296W3KYZx1PnQurYTeD4TmtqWAgVUE/0FAd2tN/N/WuCLsgov0xN5A==
-X-Received: by 2002:a5d:4804:0:b0:203:d59b:e83 with SMTP id l4-20020a5d4804000000b00203d59b0e83mr18685188wrq.696.1647869840048;
-        Mon, 21 Mar 2022 06:37:20 -0700 (PDT)
-Received: from monk.home ([2a01:cb10:430:ec00:4737:d56e:186b:af1])
-        by smtp.gmail.com with ESMTPSA id w5-20020a5d5445000000b00203f8c96bcesm7969426wrv.49.2022.03.21.06.37.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 06:37:19 -0700 (PDT)
-From:   Christophe Branchereau <cbranchereau@gmail.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH v5 3/3] drm/panel : innolux-ej030na and abt-y030xx067a : add .enable and .disable
-Date:   Mon, 21 Mar 2022 14:36:51 +0100
-Message-Id: <20220321133651.291592-4-cbranchereau@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220321133651.291592-1-cbranchereau@gmail.com>
-References: <20220321133651.291592-1-cbranchereau@gmail.com>
+        with ESMTP id S1347988AbiCUNmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 09:42:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE98C7306A;
+        Mon, 21 Mar 2022 06:40:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F01CC61240;
+        Mon, 21 Mar 2022 13:40:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEDDC340E8;
+        Mon, 21 Mar 2022 13:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647870058;
+        bh=Tta+gf+lXM/5A76YW4BpjuBuyFt4HrFGmdEfOCer/ZI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oTFgDUVOAkqeq+MZLODh7VZJB6faVsBs7zC2CzrHiKJ+WjDoJFDMW61NSu0Rhkp03
+         2tekrg1np6R9SuP0hq3wRC5EXjau3a+F/M+G7i40UFXYsh2LeYHxTM4dKfL8rk/3JF
+         fy/42Pxzd6M8Fo3Uk4J4h43mmiha4oBOmERpJTJBq5/pyctMVQTV7DvXbpiRy8XfRe
+         AAdAPFJbrJwjQLFXI/Jw5znjsKapqEyu9oGndZGVfsYF5J4M/YERv1jz5A0Tc6nVlW
+         0M/8WC+A7Doz8qHUvbgvPnq1QKbAl1u95ZTjSgFqwx7M+jkig624WjIsoR4Ri/p0I0
+         k5tP5hbvSH4Vg==
+Received: by pali.im (Postfix)
+        id 2BE61A5B; Mon, 21 Mar 2022 14:40:55 +0100 (CET)
+Date:   Mon, 21 Mar 2022 14:40:55 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, marek.behun@nic.cz
+Subject: Re: [PATCH 1/2] arm64: dts: uDPU: update partition table
+Message-ID: <20220321134055.o3uz5al5np7fj273@pali>
+References: <20220321121728.414839-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220321121728.414839-1-robert.marko@sartura.hr>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following the introduction of bridge_atomic_enable in the ingenic
-drm driver, the crtc is enabled between .prepare and .enable, if
-it exists.
+On Monday 21 March 2022 13:17:27 Robert Marko wrote:
+> Partition currently called "uboot" does not only contain U-boot, but
+> rather it contains TF-A, U-boot and U-boot environment.
+> 
+> So, to avoid accidentally deleting the U-boot environment which is
+> located at 0x180000 split the partition.
+> 
+> "uboot" is not the correct name as you can't boot these boards with U-boot
+> only, TF-A must be present as well, so rename the "uboot" partition to
+> "firmware".
+> 
+> While we are here, describe the NOR node as "spi-flash@0" instead of
+> "m25p80@0" which is the old SPI-NOR driver name.
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
 
-Add it so the backlight is only enabled after the crtc is, to avoid
-graphical issues.
+FYI, U-Boot now contains copy of kernel's A3720 DTS files, so you should
+send same patch also to U-Boot project.
 
-Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
----
- drivers/gpu/drm/panel/panel-abt-y030xx067a.c  | 31 +++++++++++++++++--
- drivers/gpu/drm/panel/panel-innolux-ej030na.c | 31 ++++++++++++++++---
- 2 files changed, 55 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/panel/panel-abt-y030xx067a.c b/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-index f043b484055b..ddfacaeac1d4 100644
---- a/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-+++ b/drivers/gpu/drm/panel/panel-abt-y030xx067a.c
-@@ -140,7 +140,7 @@ static const struct reg_sequence y030xx067a_init_sequence[] = {
- 	{ 0x03, REG03_VPOSITION(0x0a) },
- 	{ 0x04, REG04_HPOSITION1(0xd2) },
- 	{ 0x05, REG05_CLIP | REG05_NVM_VREFRESH | REG05_SLBRCHARGE(0x2) },
--	{ 0x06, REG06_XPSAVE | REG06_NT },
-+	{ 0x06, REG06_NT },
- 	{ 0x07, 0 },
- 	{ 0x08, REG08_PANEL(0x1) | REG08_CLOCK_DIV(0x2) },
- 	{ 0x09, REG09_SUB_BRIGHT_R(0x20) },
-@@ -183,8 +183,6 @@ static int y030xx067a_prepare(struct drm_panel *panel)
- 		goto err_disable_regulator;
- 	}
- 
--	msleep(120);
--
- 	return 0;
- 
- err_disable_regulator:
-@@ -202,6 +200,30 @@ static int y030xx067a_unprepare(struct drm_panel *panel)
- 	return 0;
- }
- 
-+static int y030xx067a_enable(struct drm_panel *panel)
-+{
-+
-+	struct y030xx067a *priv = to_y030xx067a(panel);
-+
-+	regmap_set_bits(priv->map, 0x06, REG06_XPSAVE);
-+
-+	if (panel->backlight) {
-+		/* Wait for the picture to be ready before enabling backlight */
-+		msleep(120);
-+	}
-+
-+	return 0;
-+}
-+
-+static int y030xx067a_disable(struct drm_panel *panel)
-+{
-+	struct y030xx067a *priv = to_y030xx067a(panel);
-+
-+	regmap_clear_bits(priv->map, 0x06, REG06_XPSAVE);
-+
-+	return 0;
-+}
-+
- static int y030xx067a_get_modes(struct drm_panel *panel,
- 				struct drm_connector *connector)
- {
-@@ -239,6 +261,8 @@ static int y030xx067a_get_modes(struct drm_panel *panel,
- static const struct drm_panel_funcs y030xx067a_funcs = {
- 	.prepare	= y030xx067a_prepare,
- 	.unprepare	= y030xx067a_unprepare,
-+	.enable		= y030xx067a_enable,
-+	.disable	= y030xx067a_disable,
- 	.get_modes	= y030xx067a_get_modes,
- };
- 
-@@ -246,6 +270,7 @@ static const struct regmap_config y030xx067a_regmap_config = {
- 	.reg_bits = 8,
- 	.val_bits = 8,
- 	.max_register = 0x15,
-+	.cache_type = REGCACHE_FLAT,
- };
- 
- static int y030xx067a_probe(struct spi_device *spi)
-diff --git a/drivers/gpu/drm/panel/panel-innolux-ej030na.c b/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-index c558de3f99be..6de7370185cd 100644
---- a/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-+++ b/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-@@ -80,8 +80,6 @@ static const struct reg_sequence ej030na_init_sequence[] = {
- 	{ 0x47, 0x08 },
- 	{ 0x48, 0x0f },
- 	{ 0x49, 0x0f },
--
--	{ 0x2b, 0x01 },
- };
- 
- static int ej030na_prepare(struct drm_panel *panel)
-@@ -109,8 +107,6 @@ static int ej030na_prepare(struct drm_panel *panel)
- 		goto err_disable_regulator;
- 	}
- 
--	msleep(120);
--
- 	return 0;
- 
- err_disable_regulator:
-@@ -128,6 +124,31 @@ static int ej030na_unprepare(struct drm_panel *panel)
- 	return 0;
- }
- 
-+static int ej030na_enable(struct drm_panel *panel)
-+{
-+	struct ej030na *priv = to_ej030na(panel);
-+
-+	/* standby off */
-+	regmap_write(priv->map, 0x2b, 0x01);
-+
-+	if (panel->backlight) {
-+		/* Wait for the picture to be ready before enabling backlight */
-+		msleep(120);
-+	}
-+
-+	return 0;
-+}
-+
-+static int ej030na_disable(struct drm_panel *panel)
-+{
-+	struct ej030na *priv = to_ej030na(panel);
-+
-+	/* standby on */
-+	regmap_write(priv->map, 0x2b, 0x00);
-+
-+	return 0;
-+}
-+
- static int ej030na_get_modes(struct drm_panel *panel,
- 			     struct drm_connector *connector)
- {
-@@ -165,6 +186,8 @@ static int ej030na_get_modes(struct drm_panel *panel,
- static const struct drm_panel_funcs ej030na_funcs = {
- 	.prepare	= ej030na_prepare,
- 	.unprepare	= ej030na_unprepare,
-+	.enable		= ej030na_enable,
-+	.disable	= ej030na_disable,
- 	.get_modes	= ej030na_get_modes,
- };
- 
--- 
-2.35.1
-
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+> index 95d46e8d081c..ac64949bb53e 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+> @@ -99,7 +99,7 @@ &spi0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&spi_quad_pins>;
+>  
+> -	m25p80@0 {
+> +	spi-flash@0 {
+>  		compatible = "jedec,spi-nor";
+>  		reg = <0>;
+>  		spi-max-frequency = <54000000>;
+> @@ -108,10 +108,15 @@ partitions {
+>  			compatible = "fixed-partitions";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> -			/* only bootloader is located on the SPI */
+> +
+>  			partition@0 {
+> -				label = "uboot";
+> -				reg = <0 0x400000>;
+> +				label = "firmware";
+> +				reg = <0x0 0x180000>;
+> +			};
+> +
+> +			partition@180000 {
+> +				label = "u-boot-env";
+> +				reg = <0x180000 0x10000>;
+>  			};
+>  		};
+>  	};
+> -- 
+> 2.35.1
+> 
