@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E0654E4127
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 15:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7AB4E414D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 15:29:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234988AbiCVO1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 10:27:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46382 "EHLO
+        id S233774AbiCVOaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 10:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239717AbiCVOYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 10:24:51 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD94D98F4F;
-        Tue, 22 Mar 2022 07:19:59 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 9F78D1F4413E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647958775;
-        bh=2ZZiH3Q6QoDzKHSBWyIRldNto/3FwFwrN/F38RcE6Ec=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h5WICPDqkPjkv2ZhwlTveB9UxtzmX5E4wncmi9Ziyd6CbKMgZwtyBpgIb7JhyvuhG
-         t58Of7F4ECbXqfCKOxpgzIpQK0Ex2YRglMYSlVfuc+MCTK/HyAbw3biC4iE171edH8
-         X//Y1FGFuhChsFJtX1ngmIFqxC4+nHAlcjywAUtzNxJhzFZDq047MXnn8unHJtm6xV
-         JsrU7RMeNX9VIpRcA/exhmTiQN69hklPbFV0NguvQNKNSb/kqxnnpZIO/gwBCyAMGG
-         uCJYyHRegXLoa2WnYqYbiiGasWtZfHldT7oY32nTxvaXzTnmP0DuqqQZpuK/Huhcj4
-         B5gTzqBwgGPUA==
-Date:   Tue, 22 Mar 2022 10:19:30 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH v4 18/22] arm64: dts: mt8192: Add display nodes
-Message-ID: <20220322141930.blpksmixuefhdguv@notapiano>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-19-allen-kh.cheng@mediatek.com>
- <20220321232657.6z2g3p2aflixzamp@notapiano>
- <28c6f778b312b53ec22aec536dadfb3d7d85c35e.camel@mediatek.com>
+        with ESMTP id S233610AbiCVOap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 10:30:45 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB529652C0
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 07:29:17 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 3D743839C2;
+        Tue, 22 Mar 2022 15:29:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1647959354;
+        bh=W3GwdCSddnz2u+fQ3pCDO758m9Q5vIU5oc3SoQFhHN4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MA/GOJURekx5d6npz9fI+rj6xV8qWWe8FA7cIpi9E4vi1jnIRE6QMa0n9ArmA3ejT
+         4JsDboRYBYSP0huJbpV7DxF+D+GiwlJS+9cA0JtbFooH8KMFrtJLCZqIbwrxWLhTa6
+         6q+LfRCpAFOcL/2Nkl/zxXs8iblGDsH+F/9eOSTgO363Pg9Bk+ptSZXOShu/MfWcd0
+         t8gY3dmg0Vtr+Ne86rvGeBjEpz1DR/Te2hirqqyIkO912jebEO32DJZyPPsD55VpHt
+         slR12MmdQ/G6l+dgtFnbSSH1QEbfQdvEug02qLioEKnxwdMPNhFO5kXQEj+Br/scnV
+         vZ46XgdCqGYUw==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
+Date:   Tue, 22 Mar 2022 15:28:52 +0100
+Message-Id: <20220322142853.125880-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <28c6f778b312b53ec22aec536dadfb3d7d85c35e.camel@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 02:15:28PM +0800, allen-kh.cheng wrote:
-> On Mon, 2022-03-21 at 19:26 -0400, Nícolas F. R. A. Prado wrote:
-> > On Fri, Mar 18, 2022 at 10:45:30PM +0800, Allen-KH Cheng wrote:
-> > > +		aal0: aal@1400b000 {
-> > > +			compatible = "mediatek,mt8192-disp-aal",
-> > > +				     "mediatek,mt8193-disp-aal";
-> > 
-> > Typo: "mediatek,mt8193-disp-aal" should be "mediatek,mt8173-disp-
-> > aal", otherwise 
-> > the drm driver doesn't even probe. Typos happen, just please make
-> > sure you're
-> > testing before sending to the list so these kind of issues can be
-> > caught
-> > earlier.
-> > 
-> > Thanks,
-> > Nícolas
-> > 
-> Hi Nícolas,
-> 
-> Thanks for your kindly reminder.
-> 
-> There are two compatibles in drivers/gpu/drm/mediatek/mtk_disp_aal.c
-> (mediatek,mt8173-disp-aal adn mediatek,mt8183-disp-aal)
-> 
-> In 8192, We should use mediatek,mt8183-disp-aal because of design.
+Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
+and is completely different from the LCDIFv3 found in i.MX23 in that it
+has a completely scrambled register layout compared to all previous LCDIF
+variants. The new LCDIFv3 also supports 36bit address space. However,
+except for the complete bit reshuffling, this is still LCDIF and it still
+works like one.
 
-If that's the case, then the mediatek,aal.yaml binding should be fixed. As it
-currently is, the mt8173 compatible is expected as a fallback for mt8192. [1]
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robby Cai <robby.cai@nxp.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Stefan Agner <stefan@agner.ch>
+Cc: devicetree@vger.kernel.org
+---
+ Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> 
-> Do I need to add some information for this in mediatek,disp.txt?
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index 900a56cae80e6..876015a44a1e6 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -20,6 +20,7 @@ properties:
+           - fsl,imx23-lcdif
+           - fsl,imx28-lcdif
+           - fsl,imx6sx-lcdif
++          - fsl,imx8mp-lcdif
+       - items:
+           - enum:
+               - fsl,imx6sl-lcdif
+-- 
+2.35.1
 
-Note that the mediatek,disp.txt binding was split into several yaml bindings.
-The binding for this node is now mediatek,aal.yaml and can be seen in Chun-Kuang
-Hu's tree [1].
-
-Thanks,
-Nícolas
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/tree/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml?h=mediatek-drm-next
