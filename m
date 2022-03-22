@@ -2,89 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B38C4E4752
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 21:16:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB694E475D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 21:21:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbiCVUSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 16:18:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46648 "EHLO
+        id S233318AbiCVUWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 16:22:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiCVURv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 16:17:51 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E29C6245B5;
-        Tue, 22 Mar 2022 13:16:23 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 64D721F42F6C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647980182;
-        bh=zvjZFzW+8eVSVcYN3AYKVNtaszJpAGzALDjXSoRAcFk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kabOxj6vgJIgSb4+zJOxfFHg2gUKHisLnUGdjCXL47ayPobEqtmU85Se5OnNj1ZKJ
-         lHP5OYBoSg+zSqGB2cC6MdOldJKA/cs+Liva5ByTacI1Awr38/OSbKArkS2YRXwX/7
-         qK/jOXG1uryB6BADQMhkNszS+CnEP8PqjbkNXCk9XkidPUA9rxS7USwczoQ1Vxjnkr
-         q6l2devdSG6Oi6kfoaZcqxXptUJQEKRp+6QU2roR80ZDC3ughWFSIKZSdgpE6+N5TI
-         kwx2ariVWo4dTQHkIaw55uVLOOBXeuVUPYzbRvYmavZCpmxL+ThvshomxHrZaUUVnJ
-         9sgQUhcnq+aNA==
-Date:   Tue, 22 Mar 2022 16:16:17 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S232215AbiCVUWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 16:22:48 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B76657A6
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 13:21:19 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id mr5-20020a17090b238500b001c67366ae93so4222654pjb.4
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 13:21:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OzgKQX00j77D35fg7pwuF5yWqtWZcjI+3JQituFaLCQ=;
+        b=QgPuYPj8mFIyfXoUJGf4zaJXwCzD2PE3f8RlIStxC/NSba12o0kgL7nS/DpSyT3tXq
+         /TfrD02ZwKXySbRTQ2X7BFtrYLC0q4obEWHN5jrCp5RVy6rOktKCV93ytEZmZdA7pU+9
+         N6sxdJmyL1HEx/433DeFCKNlYmctiR3l/q8nby0qDJBRp+dV91SQId4aJNrSEwRe2QzC
+         hx65g4DAdFyBbgKuEcJbQCvHk/2+7vRvpC4W/UXkeL0GP/Sw8mKtJFvpyQZOFsBz52Fe
+         A6Adaz4DjJt3D8FpNmb8FGuztgtOT1vzX+tXelpZN4r5ki+zSrTwdsS1JEpyF1JNPV2v
+         k7rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OzgKQX00j77D35fg7pwuF5yWqtWZcjI+3JQituFaLCQ=;
+        b=b9+r4LAU2wWrRGHWaa54WubzB+AwnnfzsdEViAX98CxepVtv9/TS58qO2trqTmu34Z
+         peRle/pDw00etkJfzCKCeHNZcbc3LcWVBKGE27cHIANwe+62hO1yUrZwYTSPx5mDCo9a
+         Gf/D+4x0OyVNM9wro+PgwC8Wqv4uXiWSqtkwNRoeXxO1CiqHahnbL5HNZvU24NQdnBeU
+         E21Nze5bcRTujTXL+mlgXr4c6XVUWLAvvlS4Kt6MS7tKoyXXZNFuFJQNeQesqNWDqv5o
+         A+rYTaIhUAsAiuGgLcWJ/hECt1jUHxvHjoTuu9r+IQhRxy9A4mQZTJRVvHCcTDGOtRUp
+         dRfQ==
+X-Gm-Message-State: AOAM533mJBIgfzQykGuboK+B1VFf2robgPqwmQdqNczTSgoKBrubN5/K
+        EDJpF5DkX2atGEy6FVhJGa3u7g==
+X-Google-Smtp-Source: ABdhPJwExt7xSpNVxNS9SolkdaicYIyWQLhE7Kl1FuO/CNsPN1cxEMx698OYo250+QpTB34Qid7eQw==
+X-Received: by 2002:a17:903:32c9:b0:154:3a2d:fa89 with SMTP id i9-20020a17090332c900b001543a2dfa89mr16642693plr.3.1647980479095;
+        Tue, 22 Mar 2022 13:21:19 -0700 (PDT)
+Received: from google.com (223.103.125.34.bc.googleusercontent.com. [34.125.103.223])
+        by smtp.gmail.com with ESMTPSA id me5-20020a17090b17c500b001c63699ff60sm3926048pjb.57.2022.03.22.13.21.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Mar 2022 13:21:18 -0700 (PDT)
+Date:   Tue, 22 Mar 2022 20:21:14 +0000
+From:   Chun-Tse Shao <ctshao@google.com>
+To:     Nick Desaulniers <ndesaulniers@google.com>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH v4 19/22] arm64: dts: mt8192: Add the mmsys reset bit to
- reset the dsi0
-Message-ID: <20220322201617.s55p4xp3hcb4zgvi@notapiano>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-20-allen-kh.cheng@mediatek.com>
+        Michal Marek <michal.lkml@markovi.net>,
+        David Howells <dhowells@redhat.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        keyrings@vger.kernel.org, DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4] config: Allow kernel installation packaging to
+ override pkg-config
+Message-ID: <YjovutS5McV8A8z4@google.com>
+References: <20220306223016.2239094-1-ctshao@google.com>
+ <CAKwvOdnmtRYnSx3VvG=PEnzpzWa8f=0bn1xDymjER5EShS2tmw@mail.gmail.com>
+ <YiaMJCHOOuujHwiK@google.com>
+ <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
+ <YjFQvhv7I6w8xjbK@google.com>
+ <CAK7LNATmPXs6f-Oe4XmfcZSRPsCsuexSebA=4-jyNsMYHu9cag@mail.gmail.com>
+ <CAKwvOd=D22k53yXFC=E=VkJotn6q-AYCu5QsaFPmH_v+fWGVwA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220318144534.17996-20-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAKwvOd=D22k53yXFC=E=VkJotn6q-AYCu5QsaFPmH_v+fWGVwA@mail.gmail.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 18, 2022 at 10:45:31PM +0800, Allen-KH Cheng wrote:
-> Reset the DSI hardware is needed to prevent different settings between
-> the bootloader and the kernel.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+On Tue, Mar 22, 2022 at 10:19:14AM -0700, Nick Desaulniers wrote:
+> On Tue, Mar 22, 2022 at 12:44 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> >
+> > On Wed, Mar 16, 2022 at 11:51 AM Chun-Tse Shao <ctshao@google.com> wrote:
+> > >
+> > > Tue, Mar 08, 2022 at 01:01:45PM +0900, Masahiro Yamada wrote:
+> > > > On Tue, Mar 8, 2022 at 7:50 AM Chun-Tse Shao <ctshao@google.com> wrote:
+> > > > >
+> > > > > On Mon, Mar 07, 2022 at 10:17:17AM -0800, Nick Desaulniers wrote:
+> > > > > > On Sun, Mar 6, 2022 at 2:39 PM Chun-Tse Shao <ctshao@google.com> wrote:
+> > > > > > >
+> > > > > > > Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
+> > > > > > > what pkg-config and parameters are used.
+> > > > > >
+> > > > > > Sorry, kind a late thought here for v4, but we don't seem to prefix
+> > > > > > many other host side tools with HOST_, i.e. LEX, YACC, AWK, PERL,
+> > > > > > PYTHON3, etc.  Maybe just having the variable identifier be simply
+> > > > > > PKGCONFIG rather than HOSTPKG_CONFIG then put it at the end of the
+> > > > > > list in the top level Makefile after ZSTD (i.e. the list of host
+> > > > > > tools)?  There's HOST_ prefixes when there's more than one tool
+> > > > > > involved (i.e. host compiler vs target compiler), but I suspect
+> > > > > > there's no such distinction for the existing uses of pkg-config?
+> > > > > >
+> > > > > Thanks for your suggestion, Nick! Yes I think it makes sense with PKGCONFIG
+> > > > > instead of HOSTPKG_CONFIG since there is only one tool involved. I will
+> > > > > work on it and submit a new patch.
+> > > > >
+> > > >
+> > > > Please hold on.
+> > > >
+> > > > I was also wondering what to do with the "HOST" prefix.
+> > > >
+> > > > Libraries are usually arch-dependent.
+> > > > (in other words, pkg-config should return different library paths
+> > > > for $(CC) and $(HOSTCC) )
+> > > >
+> > > > You already understood this, so you added "HOST" prefix.
+> > > >
+> > > >
+> > > > Please let me take time for further discussion.
+> > > > I will come back to this when I get some time.
+> > > >
+> > > >
+> > >
+> > > Hi Mashiro,
+> > >
+> > > I was wondering if you were able to look more into this.
+> > >
+> > > Thank you!
+> > >
+> > > -CT
+> > >
+> > > > In the meantime,
+> > > >   a8a5cd8b472ca20e5b8fa649c43b3756867322f8
+> > > > as reference info if you have not seen it.
+> > > >
+> > > >
+> > > > How many distros support something like
+> > > > "aarch64-linux-gnu-pkg-config"  ?
+> > > >
+> > > > Ubuntu 18.04 and 20.04 seem to support it.
+> > > > I do not know for others.
+> > > >
+> > > >
+> > > >
+> > > >
+> >
+> >
+> >
+> > Sorry for the delay.
+> > I am OK with the idea of allowing users to override the pkg-config command,
+> > but I tend to take time before making a decision.
+> >
+> >
+> >
+> >
+> > Does anybody have any insight / thoughts about the following points?
+> >
+> >
+> >
+> >
+> >
+> >
+> > [Q1]   with/without "HOST" prefix
+> >
+> >
+> > Apparently, "pkg-config" should return different libs/cflags
+> > for $(CC) and $(HOSTCC).
+> >
+> > I think the non-prefixed macro name "PKG_CONFIG" should be
+> > reserved for $(CC)  (building for the target system).
+>
+> Ok. I retract my comment on v4 about removing the HOST prefix then.
+>
+> >
+> > "HOSTPKG_CONFIG" looks unbalanced
+> > due to the underscore.
+> >
+> > Perhaps, "HOST_PKG_CONFIG" might be better?
+>
+> I'm fine with HOSTPKG_CONFIG (what's in v4); follows the style of
+> HOSTCC and HOSTCXX.
+>
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Agree, it should follow the style of HOSTCC/HOSTCXX.
 
-> ---
->  include/dt-bindings/reset/mt8192-resets.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/include/dt-bindings/reset/mt8192-resets.h b/include/dt-bindings/reset/mt8192-resets.h
-> index be9a7ca245b9..764ca9910fa9 100644
-> --- a/include/dt-bindings/reset/mt8192-resets.h
-> +++ b/include/dt-bindings/reset/mt8192-resets.h
-> @@ -27,4 +27,7 @@
->  
->  #define MT8192_TOPRGU_SW_RST_NUM				23
->  
-> +/* MMSYS resets */
-> +#define MT8192_MMSYS_SW0_RST_B_DISP_DSI0			15
-> +
->  #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8192 */
-> -- 
-> 2.18.0
-> 
-> 
+> >
+> >
+> >
+> >
+> > [Q2]    "pkg-config" vs "pkgconf"
+> >
+> > The traditional pkg-config implementation [1] is not actively
+> > maintained these days.
+> > The last commit was more than one year ago.
+> >
+> > The alternative one 'pkgconf' [2] is more active.
+> >
+> > In fact, Fedora already switched to 'pkgconf' [3].
+> > Now 'pkg-config' is just a wrapper of 'pkgconf'.
+> > Many distributions already support pkgconf.
+> >
+> >
+> > I considered the shorter macro name "HOSTPKGCONF" and
+> >
+> >    HOSTPKGCONF  = pkgconf
+> >
+> > but I am not sure if this is the right decision.
+> > Maybe we should stick to "PKG_CONFIG" / "HOST_PKG_CONFIG"
+> > for the macro names.
+> >
+> >
+> >   [1]  https://gitlab.freedesktop.org/pkg-config/pkg-config.git
+> >   [2]  https://github.com/pkgconf/pkgconf.git
+> >   [3]  https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation
+>
+> If the folks sending this are working on CrOS, better find what's in
+> their build system. Chun-Tse?
+>
+> (I feel like I'm behind the times again, like when `apt-get install`
+> became old news in favor of `apt install`...)
+>
+
+In Cros we only support pkg-config, and that is the reason we would like
+to make this change in upstream.
+
+> >
+> >
+> >
+> >
+> >
+> > [Q3] What is the trend of handling cross-compile by pkg-config (or pkgconf).
+> >
+> >
+> > By default, pkg-config returns the libs/cflags for native builds.
+> >
+> > For cross builds, the search paths for the *.pc files must be changed
+> > via the "PKG_CONFIG_LIBDIR" environment variable.
+> >
+> > To ease this, some distributions provide  <triplet>-pkg-config
+> > (for example,   aarch64-linux-gnu-pkg-config).
+> > This became the nationale for tools/build/feature/Makefile defining:
+> >
+> >    PKG_CONFIG ?= $(CROSS_COMPILE)pkg-config
+> >
+> > But, this wrapper shell script is not always available.
+> > I do not know how to do it with the LLVM tool suite.
+> > I am not quite sure if this is the global solution.
+> >
+> >
+> > These days, pkgconf supports another way, .personality file [4]
+> > to specify the .pc search paths for cross builds.
+> >
+> > Is it reasonable to use an option to distinguish native / cross builds
+> > and use the same macro   "PKG_CONFIG = pkg-config" everywhere ?
+> >
+> >
+> > [4] http://manpages.ubuntu.com/manpages/focal/en/man5/pkgconf-personality.5.html
+>
+> I'm not sure, but do we need to cross that bridge for this patch if
+> it's just adding support for the HOST? No cross pkg-config necessary,
+> yet. (Famous last words).
+
+Agree with Nick.
+
+Thanks,
+CT
+> --
+> Thanks,
+> ~Nick Desaulniers
