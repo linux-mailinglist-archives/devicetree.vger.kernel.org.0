@@ -2,102 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93DFE4E3B4D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:57:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 702A04E3B70
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 10:08:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbiCVI6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 04:58:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56200 "EHLO
+        id S231408AbiCVJKL convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Mar 2022 05:10:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232056AbiCVI5w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:57:52 -0400
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F49729C9C;
-        Tue, 22 Mar 2022 01:56:25 -0700 (PDT)
-Received: by mail-wr1-f52.google.com with SMTP id b19so23899725wrh.11;
-        Tue, 22 Mar 2022 01:56:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4IDTqc3vS0homRb5egEok1VAKstmLtnVq0FuLPeo1/I=;
-        b=fI0YkxoYnWriJDzISwKrT/RUs0HreSjLl54+DnfaZU9yUYEj0At0eYTRKlYY6DBuON
-         yW8138Vff/Q/YaHWa3a28iqMCFYbfqEHVDka6hSOCjA9qdY+f05BN0IVDMytta9619as
-         qJE9KWOEWfLlr/jGCJHQYQDgHYNJuMD1w/WHPqlZe9x1Uw77G/AUBw97IybkTWnNS/pu
-         y+IH2h1vTZZHXW1N1t9V0FpuJZgoT2bFymQgbNaRxPYJlMrgqQZD7YQ87TOx6hR90w5u
-         fIOA/v8SAZaij4bxq+H+62F36G5+cD9UnAOdu9Y8sKN4t0X4/vFVhXaw2AmqdDsEye5H
-         3KtQ==
-X-Gm-Message-State: AOAM531qnKnc4cM4h+azfwENRI9Mo9nFm1XiFVdqiNds7I6Ro5uHPRaS
-        hxW9DW6EB+Bkz7biM2AJHnY=
-X-Google-Smtp-Source: ABdhPJw3LqEXSODpm7x6a7J1hW37RYctIUsVBlf4FNn9sxGpKqFJ02EMCbHoSiDm/MN0asiqrU6/hg==
-X-Received: by 2002:a5d:588b:0:b0:204:1c1a:965d with SMTP id n11-20020a5d588b000000b002041c1a965dmr4922405wrf.669.1647939383900;
-        Tue, 22 Mar 2022 01:56:23 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id l9-20020a5d6d89000000b00203d62072c4sm16804387wrs.43.2022.03.22.01.56.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Mar 2022 01:56:23 -0700 (PDT)
-Message-ID: <870f8623-8a99-09b6-56c6-0f8c010af237@kernel.org>
-Date:   Tue, 22 Mar 2022 09:56:22 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 1/2] thermal: Add thermal driver for Sunplus SP7021
-Content-Language: en-US
-To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>,
-        Li-hao Kuo <lhjeff911@gmail.com>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "amitk@kernel.org" <amitk@kernel.org>,
-        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        with ESMTP id S230391AbiCVJKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 05:10:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5735F270
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 02:08:42 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1nWaV3-0002h8-Qv; Tue, 22 Mar 2022 10:08:21 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1nWaUn-002G5K-VH; Tue, 22 Mar 2022 10:08:08 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1nWaUq-00015B-0c; Tue, 22 Mar 2022 10:08:08 +0100
+Message-ID: <b861bc8259084432dffe3ca6b3a76ee682fd4b64.camel@pengutronix.de>
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset properties into MDIO
+ nodes
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Dylan Hung <dylan_hung@aspeedtech.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-References: <cover.1647399369.git.lhjeff911@gmail.com>
- <a658d7513a62e067086d8e2a73920bb892293569.1647399369.git.lhjeff911@gmail.com>
- <9b263f80-15df-efd3-2682-0adda06f5b5f@canonical.com>
- <4c05e7767bfe401b8c139e159855fe77@sphcmbx02.sunplus.com.tw>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <4c05e7767bfe401b8c139e159855fe77@sphcmbx02.sunplus.com.tw>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "stable@vger.kernel.org" <stable@vger.kernel.org>
+Date:   Tue, 22 Mar 2022 10:08:07 +0100
+In-Reply-To: <HK0PR06MB28348F925FEDA3853DD3489D9C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
+References: <20220321095648.4760-1-dylan_hung@aspeedtech.com>
+         <20220321095648.4760-4-dylan_hung@aspeedtech.com>
+         <eefe6dd8-6542-a5c2-6bdf-2c3ffe06e06b@kernel.org>
+         <HK0PR06MB2834CFADF087A439B06F87C29C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
+         <Yjk722CyEW3q1ntm@lunn.ch>
+         <HK0PR06MB28348F925FEDA3853DD3489D9C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2022 03:55, Lh Kuo 郭力豪 wrote:
->>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	if (IS_ERR(res))
->>> +		return dev_err_probe(&pdev->dev, PTR_ERR(res), "resource get
->>> +fail\n");
->>> +
->>> +	sp_data->regs = devm_ioremap(&pdev->dev, res->start, resource_size(res));
->>> +	if (IS_ERR(sp_data->regs))
->>> +		return dev_err_probe(&pdev->dev, PTR_ERR(sp_data->regs), "mas_base
->>> +get fail\n");
->>
->> Use devm_platform_ioremap_resource() instead.
->>
+On Di, 2022-03-22 at 03:22 +0000, Dylan Hung wrote:
+> > -----Original Message-----
+> > From: Andrew Lunn [mailto:andrew@lunn.ch]
+> > Sent: 2022年3月22日 11:01 AM
+> > To: Dylan Hung <dylan_hung@aspeedtech.com>
+> > Cc: Krzysztof Kozlowski <krzk@kernel.org>; robh+dt@kernel.org;
+> > joel@jms.id.au; andrew@aj.id.au; hkallweit1@gmail.com;
+> > linux@armlinux.org.uk; davem@davemloft.net; kuba@kernel.org;
+> > pabeni@redhat.com; p.zabel@pengutronix.de; 
+> > devicetree@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org;
+> > linux-aspeed@lists.ozlabs.org;
+> > linux-kernel@vger.kernel.org; netdev@vger.kernel.org; BMC-SW
+> > <BMC-SW@aspeedtech.com>; stable@vger.kernel.org
+> > Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset properties
+> > into MDIO
+> > nodes
+> > 
+> > On Tue, Mar 22, 2022 at 02:32:13AM +0000, Dylan Hung wrote:
+> > > > -----Original Message-----
+> > > > From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
+> > > > Sent: 2022年3月21日 11:53 PM
+> > > > To: Dylan Hung <dylan_hung@aspeedtech.com>; robh+dt@kernel.org;
+> > > > joel@jms.id.au; andrew@aj.id.au; andrew@lunn.ch;
+> > > > hkallweit1@gmail.com; linux@armlinux.org.uk; 
+> > > > davem@davemloft.net;
+> > > > kuba@kernel.org; pabeni@redhat.com; p.zabel@pengutronix.de;
+> > > > devicetree@vger.kernel.org; 
+> > > > linux-arm-kernel@lists.infradead.org;
+> > > > linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org;
+> > > > netdev@vger.kernel.org
+> > > > Cc: BMC-SW <BMC-SW@aspeedtech.com>; stable@vger.kernel.org
+> > > > Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset
+> > > > properties
+> > > > into MDIO nodes
+> > > > 
+> > > > On 21/03/2022 10:56, Dylan Hung wrote:
+> > > > > Add reset control properties into MDIO nodes.  The 4 MDIO
+> > > > > controllers in
+> > > > > AST2600 SOC share one reset control bit SCU50[3].
+> > > > > 
+> > > > > Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+> > > > > Cc: stable@vger.kernel.org
+> > > > 
+> > > > Please describe the bug being fixed. See stable-kernel-rules.
+> > > 
+> > > Thank you for your comment.
+> > > The reset deassertion of the MDIO device was usually done by the
+> > bootloader (u-boot).
+> > > However, one of our clients uses proprietary bootloader and
+> > > doesn't
+> > > deassert the MDIO reset so failed to access the HW in kernel
+> > > driver.
+> > 
+> > So are you saying mainline u-boot releases the reset?
+> > 
+> Yes, if the mdio devices are used in u-boot.
 > 
-> Other drivers must also access these registers.
-> Warning when using devm_platform_ioremap_resource
-> Can I keep the original settings?
+> > > The reset deassertion is missing in the kernel driver since it
+> > > was
+> > > created, should I add a BugFix for the first commit of this
+> > > driver?
+> > 
+> > Yes, that is normal. Ideally the kernel should not depend on u-
+> > boot, because
+> > often people want to use other bootloaders, e.g. barebox. You
+> > should also
+> > consider kexec, where one kernel hands over to another kernel,
+> > without the
+> > bootloader being involved. In such a situation, you ideally want to
+> > assert and
+> > deassert the reset just to clean away any state the old kernel left
+> > around.
+> > 
+> > But please do note, that the reset is optional, since you need to
+> > be able to
+> > work with old DT blobs which don't have the reset property in them.
+> > 
+> 
+> Thank you. I will let the reset property be optional and modify the
+> error-checking in the driver accordingly in V3.
 
-You should not map one region twice. How do you guarantee
-synchronization during for example updates of specific registers? In
-such case you need to use regmap and share it via syscon (although this
-does not solve synchronization on higher level - avoiding conflicting
-changes to same registers)
+No need to change the error checking, just use 
+devm_reset_control_get_optional_shared().
 
 
-Best regards,
-Krzysztof
+regards
+Philipp
