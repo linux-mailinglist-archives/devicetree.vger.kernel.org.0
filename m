@@ -2,67 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DBBA4E42AE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 16:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 298774E43DE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 17:07:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238401AbiCVPUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 11:20:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35746 "EHLO
+        id S237278AbiCVQIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 12:08:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237034AbiCVPUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 11:20:22 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE5FF5B3DE;
-        Tue, 22 Mar 2022 08:18:54 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22MCnUfK013136;
-        Tue, 22 Mar 2022 10:18:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=PODMain02222019;
- bh=ddJfGZI/scN6mRC0h2W5QEUJscVe7Kzx37aqg8MLuNA=;
- b=agV21sKbQO+mnnF/IDqn6DXrzShVnUSZGy6oqMQTLscKyKqfybA3P4FyDYeC5g/9/OG4
- sOEXmMWQ1HJUAEYRjuL6IsbC2Bw6aR1Oj2Oyqga9S6PayIOdwFhl0QdFjuLUQOi9LFsF
- 61YdS5WBUmue3Y8ceFMnvnYkI7eEqFq5POIUvNQsQYH3lbvBOP5qmkAqalDX3iD38aml
- LYs8Uo8+wDuhAYy/ufrWvXxcYzAbILazXKNRjvFs0GfjVYEquU6PPAkdCBNTKXI+/XYI
- xBtAYVeTj6L+T4GIaz1aEZNWkl0/LE1Di4bp2Rgeg1krY13/DDZhoHC5yq0dXLWjwteL Vw== 
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ewbknc0jc-13
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 22 Mar 2022 10:18:46 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 22 Mar
- 2022 15:18:36 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Tue, 22 Mar 2022 15:18:36 +0000
-Received: from aryzen.ad.cirrus.com (unknown [198.61.65.125])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 371F3B1A;
-        Tue, 22 Mar 2022 15:18:36 +0000 (UTC)
-From:   Lucas Tanure <tanureal@opensource.cirrus.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lucas Tanure <tanureal@opensource.cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>
-Subject: [PATCH v5 16/16] ASoC: cs35l41: Support external boost
-Date:   Tue, 22 Mar 2022 15:18:19 +0000
-Message-ID: <20220322151819.4299-17-tanureal@opensource.cirrus.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220322151819.4299-1-tanureal@opensource.cirrus.com>
-References: <20220322151819.4299-1-tanureal@opensource.cirrus.com>
+        with ESMTP id S238925AbiCVQIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 12:08:02 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6440589CE8;
+        Tue, 22 Mar 2022 09:06:34 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id C5C443200A16;
+        Tue, 22 Mar 2022 12:06:29 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Tue, 22 Mar 2022 12:06:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=njLfScwfSIsbRp
+        wMMXOHvEwf47Gc3N9QuE3MOOyufO8=; b=mrSOWK9B2wHgPPy1DjT/rNR51S7XHT
+        CkZ4vt2wVT5PXr3stz55S5GIETYKh6XAsh0YFBjz/R7Ytx9lrl31W84ccKHdPGbS
+        OTzenxHaxJTbQ21k3XR9ibecctCZqlzw/G6Lkd+LZ3JO/+3Y4w9YY8BLLAI0Dv2y
+        nOdhNkLl94o5RTUwRbQWAjxcSkewGZhPiDKZCnl0PNTrZQlGQXoN3oRyej41v6Sm
+        4IxUFMLyY1YhVoT2/8BL1scF9z3sAVipc9m9wmiX3bI55VtFfxqzZ3hjF0idyFUQ
+        KL8UzWfPvbV1BB+D40sDiOqJSCD+nTNarnJUG0yt2FjOaaJOmID01l/Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=njLfScwfSIsbRpwMMXOHvEwf47Gc3N9QuE3MOOyuf
+        O8=; b=T2z74KWnSjzmYsvP1FFaLsySkMOYkhg4dK5Hwn0Z7ZUogqIhBTfd+osc8
+        u1lVrYcuSlGmWkdGao4yAmUYmh2GpPLAY+jCrEuRZbtLKWgOciulSywchyyYy1dr
+        brKPp98QXd/3NNhAMfqNGFfcbF7SouTI8eGSd9MLYhK1jBeh7q087BQy1T7Jdlsd
+        0V1SRFvKHEmSVGkrFHxP4/7sVzyQYT+eDPb4s7kT0R2y28WRaZatrLe01eOBsR30
+        pG1QCeCurPaTj5TgE865iEzDMWXghyz3DrAGvFlKeqFXshwY1wTcB5B+dMdG0NNY
+        ldOiOr6/UnmsBafFsjsOqDggP5tcQ==
+X-ME-Sender: <xms:AfQ5YnSCAHTJqsAkcgC_Gk8HphAS02P0mHFSXDjvdqMeojxt46vAGQ>
+    <xme:AfQ5YozfUfyZanc4v7379uYngHqaa96AR0bDm68oyx8r3i7kXE8ius3sA4lCqTdF6
+    p7CoEASUdfPy4GSNlw>
+X-ME-Received: <xmr:AfQ5Ys1OJHJYuq63v9YGmQmD4hoqy-3YYlQ7t76IHS_H_3HRT5JbAZ2f6_mc9YY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeghedgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheplfhirgig
+    uhhnucgjrghnghcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpeehieduvdevhfekjeeftddtkeeitefhudekvdeiueeulefgleei
+    jeeghedvkeduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:AvQ5YnAnIeinxahWnfN-0m_a3Zif53vigXpLmye0-GlYbAndSNCURg>
+    <xmx:AvQ5YggvEFfvOnO72nGuBKigfQl2fTqJE4VfdT4z-RlZyR-slW5Ggg>
+    <xmx:AvQ5YrrSa2iP10W6NrEzz42nyPie965Z11_ec1NeMvkAs0_-HWxDRQ>
+    <xmx:BfQ5YrTmy1c9Rg6aGLAQ6QcT2ssLU_tT9xeyFByrQ6xHA6u4lKjP-Q>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 22 Mar 2022 12:06:23 -0400 (EDT)
+Message-ID: <005099b5-33ed-4cb7-f8e4-10e1de780311@flygoat.com>
+Date:   Tue, 22 Mar 2022 16:06:21 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v11 2/7] MIPS: Loongson64: dts: introduce ls3A4000
+ evaluation board
+Content-Language: en-GB
+To:     Sui Jingfeng <15330273260@189.cn>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-3-15330273260@189.cn>
+ <2644866a-8db2-923e-4227-2aa6d8e375fe@flygoat.com>
+ <2c671752-6684-f87b-7b2d-90568d36adde@189.cn>
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+In-Reply-To: <2c671752-6684-f87b-7b2d-90568d36adde@189.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: 7qj2pbFDKuMEJ4kwlvpuFjVyGqelGceF
-X-Proofpoint-GUID: 7qj2pbFDKuMEJ4kwlvpuFjVyGqelGceF
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,178 +107,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for external boost voltage, where GPIO1 must control a
-switch to isolate CS35L41 from the external Boost Voltage
 
-Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
- include/sound/cs35l41.h        |  4 +--
- sound/soc/codecs/cs35l41-lib.c |  5 ++--
- sound/soc/codecs/cs35l41.c     | 49 +++++++++++++++++++++++++---------
- 3 files changed, 41 insertions(+), 17 deletions(-)
 
-diff --git a/include/sound/cs35l41.h b/include/sound/cs35l41.h
-index ac629f852f2a..dbe8d9c0191b 100644
---- a/include/sound/cs35l41.h
-+++ b/include/sound/cs35l41.h
-@@ -701,6 +701,8 @@
- #define CS35L41_GPIO1_CTRL_SHIFT	16
- #define CS35L41_GPIO2_CTRL_MASK		0x07000000
- #define CS35L41_GPIO2_CTRL_SHIFT	24
-+#define CS35L41_GPIO_LVL_SHIFT		15
-+#define CS35L41_GPIO_LVL_MASK		BIT(CS35L41_GPIO_LVL_SHIFT)
- #define CS35L41_GPIO_POL_MASK		0x1000
- #define CS35L41_GPIO_POL_SHIFT		12
- 
-@@ -802,8 +804,6 @@ int cs35l41_register_errata_patch(struct device *dev, struct regmap *reg, unsign
- int cs35l41_set_channels(struct device *dev, struct regmap *reg,
- 			 unsigned int tx_num, unsigned int *tx_slot,
- 			 unsigned int rx_num, unsigned int *rx_slot);
--int cs35l41_boost_config(struct device *dev, struct regmap *regmap, int boost_ind, int boost_cap,
--			 int boost_ipk);
- int cs35l41_gpio_config(struct regmap *regmap, struct cs35l41_hw_cfg *hw_cfg);
- int cs35l41_init_boost(struct device *dev, struct regmap *regmap,
- 		       struct cs35l41_hw_cfg *hw_cfg);
-diff --git a/sound/soc/codecs/cs35l41-lib.c b/sound/soc/codecs/cs35l41-lib.c
-index 2d3b577a63e3..491616c7c5c7 100644
---- a/sound/soc/codecs/cs35l41-lib.c
-+++ b/sound/soc/codecs/cs35l41-lib.c
-@@ -954,8 +954,8 @@ static const unsigned char cs35l41_bst_slope_table[4] = {
- 	0x75, 0x6B, 0x3B, 0x28
- };
- 
--int cs35l41_boost_config(struct device *dev, struct regmap *regmap, int boost_ind,
--			 int boost_cap, int boost_ipk)
-+static int cs35l41_boost_config(struct device *dev, struct regmap *regmap, int boost_ind,
-+				int boost_cap, int boost_ipk)
- {
- 	unsigned char bst_lbst_val, bst_cbst_range, bst_ipk_scaled;
- 	int ret;
-@@ -1040,7 +1040,6 @@ int cs35l41_boost_config(struct device *dev, struct regmap *regmap, int boost_in
- 
- 	return 0;
- }
--EXPORT_SYMBOL_GPL(cs35l41_boost_config);
- 
- static const struct reg_sequence cs35l41_safe_to_reset[] = {
- 	{ 0x00000040,			0x00000055 },
-diff --git a/sound/soc/codecs/cs35l41.c b/sound/soc/codecs/cs35l41.c
-index d25689fe0c60..912196f45648 100644
---- a/sound/soc/codecs/cs35l41.c
-+++ b/sound/soc/codecs/cs35l41.c
-@@ -578,15 +578,10 @@ static int cs35l41_main_amp_event(struct snd_soc_dapm_widget *w,
- 						cs35l41_pup_patch,
- 						ARRAY_SIZE(cs35l41_pup_patch));
- 
--		regmap_update_bits(cs35l41->regmap, CS35L41_PWR_CTRL1,
--				   CS35L41_GLOBAL_EN_MASK,
--				   1 << CS35L41_GLOBAL_EN_SHIFT);
--
--		usleep_range(1000, 1100);
-+		cs35l41_global_enable(cs35l41->regmap, cs35l41->hw_cfg.bst_type, 1);
- 		break;
- 	case SND_SOC_DAPM_POST_PMD:
--		regmap_update_bits(cs35l41->regmap, CS35L41_PWR_CTRL1,
--				   CS35L41_GLOBAL_EN_MASK, 0);
-+		cs35l41_global_enable(cs35l41->regmap, cs35l41->hw_cfg.bst_type, 0);
- 
- 		ret = regmap_read_poll_timeout(cs35l41->regmap, CS35L41_IRQ1_STATUS1,
- 					       val, val &  CS35L41_PDN_DONE_MASK,
-@@ -1001,13 +996,13 @@ static int cs35l41_set_pdata(struct cs35l41_private *cs35l41)
- 	if (!hw_cfg->valid)
- 		return -EINVAL;
- 
-+	if (hw_cfg->bst_type == CS35L41_EXT_BOOST_NO_VSPK_SWITCH)
-+		return -EINVAL;
-+
- 	/* Required */
--	ret = cs35l41_boost_config(cs35l41->dev, cs35l41->regmap,
--				   hw_cfg->bst_ind, hw_cfg->bst_cap, hw_cfg->bst_ipk);
--	if (ret) {
--		dev_err(cs35l41->dev, "Error in Boost DT config: %d\n", ret);
-+	ret = cs35l41_init_boost(cs35l41->dev, cs35l41->regmap, hw_cfg);
-+	if (ret)
- 		return ret;
--	}
- 
- 	/* Optional */
- 	if (hw_cfg->dout_hiz <= CS35L41_ASP_DOUT_HIZ_MASK && hw_cfg->dout_hiz >= 0)
-@@ -1017,9 +1012,31 @@ static int cs35l41_set_pdata(struct cs35l41_private *cs35l41)
- 	return 0;
- }
- 
-+static const struct snd_soc_dapm_route cs35l41_ext_bst_routes[] = {
-+	{"Main AMP", NULL, "VSPK"},
-+};
-+
-+static const struct snd_soc_dapm_widget cs35l41_ext_bst_widget[] = {
-+	SND_SOC_DAPM_SUPPLY("VSPK", CS35L41_GPIO1_CTRL1, CS35L41_GPIO_LVL_SHIFT, 0, NULL, 0),
-+};
-+
- static int cs35l41_component_probe(struct snd_soc_component *component)
- {
- 	struct cs35l41_private *cs35l41 = snd_soc_component_get_drvdata(component);
-+	struct snd_soc_dapm_context *dapm = snd_soc_component_get_dapm(component);
-+	int ret;
-+
-+	if (cs35l41->hw_cfg.bst_type == CS35L41_EXT_BOOST) {
-+		ret = snd_soc_dapm_new_controls(dapm, cs35l41_ext_bst_widget,
-+						ARRAY_SIZE(cs35l41_ext_bst_widget));
-+		if (ret)
-+			return ret;
-+
-+		ret = snd_soc_dapm_add_routes(dapm, cs35l41_ext_bst_routes,
-+					      ARRAY_SIZE(cs35l41_ext_bst_routes));
-+		if (ret)
-+			return ret;
-+	}
- 
- 	return wm_adsp2_component_probe(&cs35l41->dsp, component);
- }
-@@ -1084,6 +1101,10 @@ static int cs35l41_handle_pdata(struct device *dev, struct cs35l41_hw_cfg *hw_cf
- 	unsigned int val;
- 	int ret;
- 
-+	ret = device_property_read_u32(dev, "cirrus,boost-type", &val);
-+	if (ret >= 0)
-+		hw_cfg->bst_type = val;
-+
- 	ret = device_property_read_u32(dev, "cirrus,boost-peak-milliamp", &val);
- 	if (ret >= 0)
- 		hw_cfg->bst_ipk = val;
-@@ -1376,6 +1397,7 @@ int cs35l41_probe(struct cs35l41_private *cs35l41, const struct cs35l41_hw_cfg *
- 
- 	wm_adsp2_remove(&cs35l41->dsp);
- err:
-+	cs35l41_safe_reset(cs35l41->regmap, cs35l41->hw_cfg.bst_type);
- 	regulator_bulk_disable(CS35L41_NUM_SUPPLIES, cs35l41->supplies);
- 	gpiod_set_value_cansleep(cs35l41->reset_gpio, 0);
- 
-@@ -1390,6 +1412,7 @@ void cs35l41_remove(struct cs35l41_private *cs35l41)
- 
- 	regmap_write(cs35l41->regmap, CS35L41_IRQ1_MASK1, 0xFFFFFFFF);
- 	wm_adsp2_remove(&cs35l41->dsp);
-+	cs35l41_safe_reset(cs35l41->regmap, cs35l41->hw_cfg.bst_type);
- 
- 	pm_runtime_put_noidle(cs35l41->dev);
- 
-@@ -1409,6 +1432,7 @@ static int __maybe_unused cs35l41_runtime_suspend(struct device *dev)
- 
- 	dev_dbg(cs35l41->dev, "Enter hibernate\n");
- 
-+	cs35l41_safe_reset(cs35l41->regmap, cs35l41->hw_cfg.bst_type);
- 	regmap_write(cs35l41->regmap, CS35L41_WAKESRC_CTL, 0x0088);
- 	regmap_write(cs35l41->regmap, CS35L41_WAKESRC_CTL, 0x0188);
- 
-@@ -1505,6 +1529,7 @@ static int __maybe_unused cs35l41_runtime_resume(struct device *dev)
- 		dev_err(cs35l41->dev, "Failed to restore register cache: %d\n", ret);
- 		return ret;
- 	}
-+	cs35l41_init_boost(cs35l41->dev, cs35l41->regmap, &cs35l41->hw_cfg);
- 
- 	return 0;
- }
--- 
-2.35.1
+在 2022/3/22 13:38, Sui Jingfeng 写道:
+>
+> On 2022/3/22 21:05, Jiaxun Yang wrote:
+>>
+>>
+>> 在 2022/3/21 16:29, Sui Jingfeng 写道:
+>>> From: suijingfeng <suijingfeng@loongson.cn>
+>>>
+>>> The board name is LS3A4000_7A1000_EVB_BOARD_V1.4, it consist of 1.8Ghz
+>>> mips64r5 4-core CPU and LS7A1000 bridge chip. It has PCIe GEN2 x8 slot,
+>>> therefore can play with discrete graphics card.
+>>
+>> Hi Jingfeng,
+>>
+>> As we've discussed before if you are going to introduce new dts then 
+>> you *MUST*
+>> include it in makefile and wire it up in code.
+>>
+>> A dts file doing nothing lying in the tree is just suspicious.
+>>
+>> Thanks.
+>> - Jiaxun
+>>
+> Hi, Jiaxun,
+>
+> I know what you means, but it is the kernel side developer's job.
+> I am just a naive graphic driver developer,I can not care so much.
+> Below is my private patch which can be used to built specific dts
+> into the linux kernel, therefore make the verification easier.
+Hi Jingfeng,
+
+In kernel world we take care all the stuff we touched ourself :-)
+
+If you are not confident with them please drop those DTS from the patchset
+besides the generic one. I can do the rest for you after getting this 
+set merged.
+
+Thanks.
+- Jiaxun
 
