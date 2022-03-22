@@ -2,75 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9E04E3E5A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 13:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB0F74E3E7C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 13:29:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234794AbiCVMVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 08:21:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54590 "EHLO
+        id S234855AbiCVMa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 08:30:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234817AbiCVMVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 08:21:42 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFDD6CA6F;
-        Tue, 22 Mar 2022 05:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=77siS/SH/HdarcIrWyVVppwMCwxzQ+Pw6iY9q6o5pqs=; b=2whWCEXXLZh0kwKMBXmKqCehAT
-        uKxh09s1QPkjlTvRY+GC4mbQb2t+3xLmIR5nt2rixip3vimafyiS+XV/7wz6atwSsLGVxvQbFLTe2
-        AWpuyQ3O/hAHV652EcB3HmGxxwK56l7Kifrs4L+hrREog/ZUhsSjVhDjtoMDsAr4PAbI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nWdUi-00C7UV-OO; Tue, 22 Mar 2022 13:20:12 +0100
-Date:   Tue, 22 Mar 2022 13:20:12 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        pali@kernel.org, marek.behun@nic.cz
-Subject: Re: [PATCH v2 1/2] arm64: dts: uDPU: update partition table
-Message-ID: <Yjm+/I9ItqFMuEsK@lunn.ch>
-References: <20220322105857.1107016-1-robert.marko@sartura.hr>
+        with ESMTP id S234859AbiCVMaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 08:30:24 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143CC13F50;
+        Tue, 22 Mar 2022 05:28:52 -0700 (PDT)
+X-UUID: d75214175f7b4c9887984bbf88c1975e-20220322
+X-UUID: d75214175f7b4c9887984bbf88c1975e-20220322
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1570562477; Tue, 22 Mar 2022 20:28:48 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 22 Mar 2022 20:28:47 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 22 Mar
+ 2022 20:28:47 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Mar 2022 20:28:46 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH] remoteproc: mediatek: enable cache for mt8186 SCP
+Date:   Tue, 22 Mar 2022 20:28:45 +0800
+Message-ID: <20220322122845.4068-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220322105857.1107016-1-robert.marko@sartura.hr>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 11:58:56AM +0100, Robert Marko wrote:
-> Partition currently called "uboot" does not only contain U-boot, but
-> rather it contains TF-A, U-boot and U-boot environment.
-> 
-> So, to avoid accidentally deleting the U-boot environment which is
-> located at 0x180000 split the partition.
-> 
-> "uboot" is not the correct name as you can't boot these boards with U-boot
-> only, TF-A must be present as well, so rename the "uboot" partition to
-> "firmware".
-> 
-> While we are here, describe the NOR node as "spi-flash@0" instead of
-> "m25p80@0" which is the old SPI-NOR driver name.
-> 
-> This won't break booting for existing devices as the SoC-s BootROM is not
-> partition aware at all, it will simply try booting from 0x0 of the
-> boot device that is set by bootstrap pins.
-> 
-> This will however prevent accidental or automated flashing of just U-boot
-> to the partition.
-> 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+1. Set SCP cache size before loading SCP FW. (8KB+8KB)
+2. Adjust ipi_buf_offset from 0x7bdb0 to 0x3BDB0 for enableing cache
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+SCP side
+ - IPI Buffer: 0x3BDB0 <-> 0x3C000
+ - Cache: 0x3C000 <-> 0x40000
 
-    Andrew
+Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+---
+ drivers/remoteproc/mtk_scp.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+index 38609153bf64..24065b6b4da8 100644
+--- a/drivers/remoteproc/mtk_scp.c
++++ b/drivers/remoteproc/mtk_scp.c
+@@ -401,6 +401,14 @@ static int mt8186_scp_before_load(struct mtk_scp *scp)
+ 	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_P1);
+ 	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_p2);
+ 
++	/*
++	 * Set I-cache and D-cache size before loading SCP FW.
++	 * SCP SRAM logical address may change when cache size setting differs.
++	 */
++	writel(MT8183_SCP_CACHE_CON_WAYEN | MT8183_SCP_CACHESIZE_8KB,
++	       scp->reg_base + MT8183_SCP_CACHE_CON);
++	writel(MT8183_SCP_CACHESIZE_8KB, scp->reg_base + MT8183_SCP_DCACHE_CON);
++
+ 	return 0;
+ }
+ 
+@@ -905,7 +913,7 @@ static const struct mtk_scp_of_data mt8186_of_data = {
+ 	.scp_da_to_va = mt8183_scp_da_to_va,
+ 	.host_to_scp_reg = MT8183_HOST_TO_SCP,
+ 	.host_to_scp_int_bit = MT8183_HOST_IPC_INT_BIT,
+-	.ipi_buf_offset = 0x7bdb0,
++	.ipi_buf_offset = 0x3bdb0,
+ };
+ 
+ static const struct mtk_scp_of_data mt8192_of_data = {
+-- 
+2.18.0
+
