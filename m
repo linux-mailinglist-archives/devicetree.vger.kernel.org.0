@@ -2,101 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53A794E4848
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 22:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F174E4862
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 22:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235567AbiCVVba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 17:31:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52730 "EHLO
+        id S235814AbiCVVkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 17:40:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233342AbiCVVb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 17:31:29 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B0A758395
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 14:30:00 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S235861AbiCVVkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 17:40:41 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D9D95E747;
+        Tue, 22 Mar 2022 14:39:10 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9BBAC83B3B;
-        Tue, 22 Mar 2022 22:29:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1647984598;
-        bh=UYycdJVYXZ+3TfiHG7Yw3v4KtwVGkyT5W7RqJn0lWuk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mu7eh1CwoiWow2/EUcRCc/2EsO3Chg5SG4fhBNlSOjxSVyOF7upBr2WMCos/XcoSc
-         44SC/Q9celfGsVFoHRwP+cpXel+awhTKqjZpU7klP9urIA1REqTHE17dLmFKF8+qCM
-         EI4QP57eBDfU8DYtTD+Skzj72gZtZUiIm6TVnLmoREVB6qL/kRVT2m9GvsKDT25ML0
-         w5q4mpLEWyPweRvLdbh0PO5ZBJDEAgfPRs1u/NGwIDHgcsjbeBs9Z5QIy/ROmB0i6+
-         f3gD4qqj8oJHFWukexadC/+4DmzAGwqk1n96v7IL/dKXfhsqsDiqn4ITXUjC0aUh1h
-         1BFKSQiq5HgGA==
-Message-ID: <3f7bdca8-0da7-fe2d-7bcb-9768b12bb759@denx.de>
-Date:   Tue, 22 Mar 2022 22:29:56 +0100
+        by ssl.serverraum.org (Postfix) with ESMTPSA id D984422205;
+        Tue, 22 Mar 2022 22:39:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647985148;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=u4r6vLaven55dK5umy3WWTE/9sCNUfcL0n7ze3I+7DM=;
+        b=ctAGNtYfe8CwjY/aTkifNRWAwYZy8sRj6XRwTET4GJv47XFDI1JT3Ms31A9dLRq09wGtPg
+        JptzSQE/WfiU+5hcXkZ9e1AW9hGGKTNlF0W7qSkPYYdgLcnh+kUbaR8n2P47o+KQfHmCAR
+        1b2bUtWP+H5SGkLgXF8A9QsvGv/LbWI=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: Add i.MX8MP media block control
- DT bindings
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-References: <20220322190324.12589-1-laurent.pinchart@ideasonboard.com>
- <20220322190324.12589-2-laurent.pinchart@ideasonboard.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220322190324.12589-2-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Tue, 22 Mar 2022 22:39:07 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Claudiu.Beznea@microchip.com
+Cc:     Kavyasree.Kotagiri@microchip.com, Nicolas.Ferre@microchip.com,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com, alexandre.belloni@bootlin.com
+Subject: Re: [PATCH v1 3/6] ARM: dts: lan966x: add all flexcom usart nodes
+In-Reply-To: <3e17aa8b-f6e5-e2c1-bd1d-8950d23c3e49@microchip.com>
+References: <20220303160323.3316317-1-michael@walle.cc>
+ <20220303160323.3316317-4-michael@walle.cc>
+ <a33f0c73-df49-5a22-14b3-0059f7d6b827@microchip.com>
+ <2e0aefc90a80bdf13df0e59857c52ca7@walle.cc>
+ <bf005cd2-4c83-1552-8282-d229eacc51f3@microchip.com>
+ <219ffd086373c453d5d0aad897cd2d41@walle.cc>
+ <3e17aa8b-f6e5-e2c1-bd1d-8950d23c3e49@microchip.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <d7d17a2156a9591ad4c19ef912189a98@walle.cc>
+X-Sender: michael@walle.cc
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/22/22 20:03, Laurent Pinchart wrote:
-> From: Paul Elder <paul.elder@ideasonboard.com>
+Am 2022-03-18 13:17, schrieb Claudiu.Beznea@microchip.com:
+> On 07.03.2022 14:04, Michael Walle wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
+>> the
+>> content is safe
+>> 
+>> Am 2022-03-07 12:53, schrieb Claudiu.Beznea@microchip.com:
+>>> On 04.03.2022 13:01, Michael Walle wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you 
+>>>> know
+>>>> the
+>>>> content is safe
+>>>> 
+>>>> Hi,
+>>>> 
+>>>> thanks for the quick review.
+>>>> 
+>>>> Am 2022-03-04 09:30, schrieb Claudiu.Beznea@microchip.com:
+>>>>> On 03.03.2022 18:03, Michael Walle wrote:
+>>>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you
+>>>>>> know
+>>>>>> the content is safe
+>>>>>> 
+>>>>>> Add all the usart nodes for the flexcom block. There was already
+>>>>>> an usart node for the flexcom3 block. But it missed the DMA
+>>>>>> channels.
+>>>>> 
+>>>>> And it would be good to go though a different patch.
+>>>> 
+>>>> sure
+>>>> 
+>>>>>> Although the DMA channels are specified, DMA is not
+>>>>>> enabled by default because break detection doesn't work with DMA.
+>>>>>> 
+>>>>>> Keep the nodes disabled by default.
+>>>>>> 
+>>>>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>>>>> ---
+>>>>>>  arch/arm/boot/dts/lan966x.dtsi | 55
+>>>>>> ++++++++++++++++++++++++++++++++++
+>>>>>>  1 file changed, 55 insertions(+)
+>>>>>> 
+>>>>>> diff --git a/arch/arm/boot/dts/lan966x.dtsi
+>>>>>> b/arch/arm/boot/dts/lan966x.dtsi
+>>>>>> index a7d46a2ca058..bea69b6d2749 100644
+>>>>>> --- a/arch/arm/boot/dts/lan966x.dtsi
+>>>>>> +++ b/arch/arm/boot/dts/lan966x.dtsi
+>>>>>> @@ -92,6 +92,19 @@ flx0: flexcom@e0040000 {
+>>>>>>                         #size-cells = <1>;
+>>>>>>                         ranges = <0x0 0xe0040000 0x800>;
+>>>>>>                         status = "disabled";
+>>>>>> +
+>>>>>> +                       usart0: serial@200 {
+>>>>>> +                               compatible =
+>>>>>> "atmel,at91sam9260-usart";
+>>>>> 
+>>>>> Are the usart blocks in lan966x 1:1 compatible with what is is
+>>>>> sam9260?
+>>>>> In
+>>>>> case not it may worth to have a new compatible here, for lan966x,
+>>>>> such
+>>>>> that
+>>>>> when new features will be implemented in usart driver for lan966x 
+>>>>> the
+>>>>> old
+>>>>> DT (this one) will work with the new kernel implementation.
+>>>> 
+>>>> During my review of the inital dtsi patch, I've asked the same
+>>>> question
+>>>> [1]
+>>>> and I was told they are the same.
+>>>> 
+>>>> At least this exact usart compatible is already in this file. I was
+>>>> under
+>>>> the impression, that was the least controversial compatible :)
+>>> 
+>>> OK.
+>>> 
+>>>> 
+>>>> But you'll need to tell me if they are the same or not, I don't have
+>>>> any clue what microchip has reused.
+>>> 
+>>> From software point of view comparing registers should be good, as 
+>>> far
+>>> as I
+>>> can tell. All AT91 datasheet should be available. I though you have
+>>> checked
+>>> one against LAN966. At the moment I don't have a DS for LAN966. I'll
+>>> find
+>>> one and have a look.
+>> 
+>> So my train of thought was like: even if the registers are the same I
+>> cannot be sure that it is the exact same IP and will behave the same.
+>> Therefore, it is something only microchip can answer.
+>> 
+>> You can find the registers at
+>> https://microchip-ung.github.io/lan9668_reginfo/reginfo_LAN9668.html
+>> 
+>> I'm not aware of any "classic" datasheet.
 > 
-> The i.MX8MP Media Block Control (MEDIA BLK_CTRL) is a top-level
-> peripheral providing access to the NoC and ensuring proper power
-> sequencing of the peripherals within the MEDIAMIX domain. Add DT
-> bindings for it.
+> You can find all AT91 datasheet on Microchip web site [1].
 > 
-> There is already a driver for block controls of other SoCs in the i.MX8M
-> family, so these bindings will expand upon that.
+> Simple register comparison b/w register mapping at [2] and SAMA5D2
+> datasheet [3] (which uses the same compatible),  SAM9X60 datasheet [3] 
+> and
+> SAMA7G5 datasheet (not public at the moment) brings up a difference at
+> register FLEX_US_CR (bits 16, 17) which are not available on SAMA5D2,
+> SAM9X60 or SAMA7G5. Unless this is a mistake on documentation at [2] I 
+> say
+> it needs a new compatible.
+
+I can't follow you here. These bits are already used in the current UART
+driver and are supported on the LAN966X. So if anything, SAMA5D2, 
+SAM9X60
+and SAMA7G5 need a new compatible, no?
+
+-michael
+
+> Kavya, could you confirm this?
 > 
-> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-Reviewed-by: Marek Vasut <marex@denx.de>
-
-[...]
-
-> +        power-domain-names = "bus", "mipi-dsi1", "mipi-csi1", "lcdif1", "isi",
-> +                             "mipi-csi2", "lcdif2", "isp2", "isp1", "dwe",
-> +                             "mipi-dsi2";
-
-Nit, I cannot say I'm a big fan of calling the power domain "mipi-csi1" 
-and "mipi-csi2", they are both MIPI CSI2, except there are two of them 
-CSI2 (#1 and #2).
-
-Maybe mipi-csi2-1 and mipi-csi2-2 would be better ? DTTO for the LCDIF, 
-where we have lcdifv3 and then mx8mp lcdifv3 and eventually we will have 
-power domain for lcdif #3 instance in this SoC in hdmimix, so maybe some 
-lcdif-1/lcdif-2 would be a better name ?
-
-[...]
+> Thank you,
+> Claudiu Beznea
+> 
+> [1] https://www.microchip.com/
+> [2] 
+> https://microchip-ung.github.io/lan9668_reginfo/reginfo_LAN9668.html
+> [3] 
+> http://ww1.microchip.com/downloads/en/devicedoc/ds60001476b.pdf#G22.2193277
+> [4]
+> https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/ProductDocuments/DataSheets/SAM9X60-Data-Sheet-DS60001579E.pdf
+> 
+>> 
+>> -michael
