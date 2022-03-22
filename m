@@ -2,117 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B959C4E35BC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 01:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 438C94E35F7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 02:27:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234447AbiCVAtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 20:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55920 "EHLO
+        id S234571AbiCVB1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 21:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234341AbiCVAtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 20:49:14 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CC42715E;
-        Mon, 21 Mar 2022 17:47:48 -0700 (PDT)
+        with ESMTP id S234503AbiCVB07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 21:26:59 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC624E0EC;
+        Mon, 21 Mar 2022 18:25:33 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id g19so16938067pfc.9;
+        Mon, 21 Mar 2022 18:25:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647910068; x=1679446068;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=ubdrenh8RZbdb9SUuFRL3yPGdNKdx7dpJeScfreUfxs=;
-  b=oV/gQ17iGHzNyojLz15qsnxaDROH+Rej42hWjC0+p4lE5Z1eJ5I8xAKY
-   dA8HbI562z07F4HgPFv04SjVvicx0E8bc1VEVHuDCN40F5iGEqQTMRzXx
-   aqIRIbqHy/nJeuiNkRi9yO01he6a52rSc8K+8L7zBf3tpecWhD0ShV95X
-   k=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Mar 2022 17:47:48 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 17:47:48 -0700
-Received: from collinsd-linux.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 21 Mar 2022 17:47:47 -0700
-From:   David Collins <quic_collinsd@quicinc.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <devicetree@vger.kernel.org>
-CC:     David Collins <quic_collinsd@quicinc.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        "Subbaraman Narayanamurthy" <quic_subbaram@quicinc.com>
-Subject: [PATCH v2 1/2] dt-bindings: firmware: arm,scmi: define support for name based regulators
-Date:   Mon, 21 Mar 2022 17:47:19 -0700
-Message-ID: <4c94b4351b8d38167e972df46fbc507f9499513a.1647909090.git.quic_collinsd@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1647909090.git.quic_collinsd@quicinc.com>
-References: <cover.1647909090.git.quic_collinsd@quicinc.com>
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=svKeoLbw/Rh/+w0dWnKtX9ir9NmoZ2RCvIsO83FTo+k=;
+        b=ii6ygNdxXF2YuMjx62GY/8lyC742aCoMJuNxD7GB602IPDTF3bwhqy5sRIcpp/gf9R
+         aRfk/igL0j3xPZf8vUlPeERF5MoHg3sel33OehBQY2TArO+cMC7d54kL0Ih/Y2Go/Pd8
+         9vAuGi2Qw97uN4xE9yuNwBgG2/ArTRa+H/ZdkdZZ4yesBiqNsLhu6rNyE5JKYYul3aZD
+         lw6aUWZvf8mX/DBioT0JE3QkcxFDtba1kAWLtyzXxcPvD138JcruxZfpw9fiYa+OyR3+
+         KgKj6aFyK5J00kYFuvBxGVNqgq6BJFafs2+PCFxYzez+se3EKCaDhHIjxhfsNmKw8eht
+         X7yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=svKeoLbw/Rh/+w0dWnKtX9ir9NmoZ2RCvIsO83FTo+k=;
+        b=3rQYlNiHRV3vFyjILr1R7g6mHAOV59jq2w835SFYjGGHVNB2gWwiuGxgqzhUqBtU6r
+         JCcFlJvr6070vj78KwKSYdMrxTuxoWx5aLl3Bn08R1ZTRYwg3JLgtgAWo3GX1ai1WsF1
+         eqdi06XIgySo5IG59VCUlTZj5As0ZkORI+d198xQMn7IdLqZP/cF//sjqVZ1mfzskxqE
+         YsXt4+YgY8RO3MCd7cSfnnvx8OemAcJDLJnwphAGvHgV0C2ZueUhkYiznfDOikmq6L2T
+         6V9PpoDawoMduojfSmCt8oiUBPvUhD19c2zDfsDpB7LwGWmNmSOwbSMEfTdYLRi5w3X5
+         y57w==
+X-Gm-Message-State: AOAM530ypz/eoyUFIdJkUFmXh5llqvgez/f9GSYr6kzQ1asTGMYd/iht
+        yVUIA+qBnk6CnLEU0jIFc9PJhnIOXcMX26Bw
+X-Google-Smtp-Source: ABdhPJx89klCKoXhRGT7afcgmBcOslDABbniHk+l6vDRIv723MOLQCCNT26OWRB++AlmY1gihMWOVw==
+X-Received: by 2002:a05:6a00:2484:b0:4fa:997e:3290 with SMTP id c4-20020a056a00248400b004fa997e3290mr9036621pfv.37.1647912333030;
+        Mon, 21 Mar 2022 18:25:33 -0700 (PDT)
+Received: from localhost.localdomain (60-250-49-31.hinet-ip.hinet.net. [60.250.49.31])
+        by smtp.gmail.com with ESMTPSA id z16-20020a637e10000000b00382b21c6b0bsm1230539pgc.51.2022.03.21.18.25.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Mar 2022 18:25:32 -0700 (PDT)
+From:   Ivy Jian <ivyjian417@gmail.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, Ivy Jian <ivyjian417@gmail.com>,
+        Pan Sheng-Liang <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: switch panel compatible to "edp-panel" for limozeen
+Date:   Tue, 22 Mar 2022 09:25:26 +0800
+Message-Id: <20220322092524.1.Ied05fc4b996737e3481861c6ab130a706f288412@changeid>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow SCMI regulator subnodes to be specified either by ID using
-the "reg" property or by name using the "arm,scmi-domain-name"
-property.
+some panel can't light up with new board with ps8640, switch compatible
+panel define to make it workable.
 
-Name based SCMI regulator specification helps ensure that an SCMI
-agent doesn't need to be aware of the numbering scheme used for
-Voltage Domains by the SCMI platform.  It also ensures that the
-correct Voltage Domain is selected for a given physical regulator.
-This cannot be guaranteed with numeric Voltage Domain IDs alone.
-
-Signed-off-by: David Collins <quic_collinsd@quicinc.com>
+Signed-off-by: Pan Sheng-Liang <sheng-liang.pan@quanta.corp-partner.google.com>
+Signed-off-by: Ivy Jian <ivyjian417@gmail.com>
 ---
- .../devicetree/bindings/firmware/arm,scmi.yaml    | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 5c4c6782e052..08cb5de967ac 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -155,7 +155,7 @@ properties:
-           The list of all regulators provided by this SCMI controller.
+ .../boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
+index 4e35aec6a1e5..c44ed54af690 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
+@@ -20,7 +20,7 @@ / {
+ /delete-node/&ap_ts;
  
-         patternProperties:
--          '^regulators@[0-9a-f]+$':
-+          '^regulator.+$':
-             type: object
-             $ref: "../regulator/regulator.yaml#"
+ &panel {
+-	compatible = "innolux,n116bca-ea1", "innolux,n116bge";
++	compatible = "edp-panel";
+ };
  
-@@ -164,8 +164,17 @@ properties:
-                 maxItems: 1
-                 description: Identifier for the voltage regulator.
- 
--            required:
--              - reg
-+              arm,scmi-domain-name:
-+                description:
-+                  A string matching the name of the SCMI voltage domain for this
-+                  regulator.
-+                $ref: "/schemas/types.yaml#/definitions/string"
-+
-+            anyOf:
-+              - required:
-+                  - reg
-+              - required:
-+                  - arm,scmi-domain-name
- 
- additionalProperties: false
- 
+ &sdhc_2 {
 -- 
-2.17.1
+2.25.1
 
