@@ -2,93 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89DFD4E3C54
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 11:19:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A214E3C65
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 11:23:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbiCVKVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 06:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41590 "EHLO
+        id S231675AbiCVKYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 06:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231332AbiCVKVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 06:21:22 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C8380200;
-        Tue, 22 Mar 2022 03:19:54 -0700 (PDT)
-Received: from mail-wm1-f49.google.com ([209.85.128.49]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MElhb-1nHTL12vUZ-00GIYs; Tue, 22 Mar 2022 11:19:52 +0100
-Received: by mail-wm1-f49.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so1343400wmb.4;
-        Tue, 22 Mar 2022 03:19:52 -0700 (PDT)
-X-Gm-Message-State: AOAM530bWBvWM9ntC+bk90KgEoU8vsTGK3oVOEBvt806WgJBRUacvlrj
-        /4+8G1L1DsaCMnBE+EerggpSBUXDTUyULmxxe94=
-X-Google-Smtp-Source: ABdhPJwdbflMTyfO6uATl5GHFZmF+z0lbORSOicvJ4H+deKlIBq4ori/SM7/sEXZTmFU6gY9Y+GGeD1FNpnfFY/4qso=
-X-Received: by 2002:a1c:f219:0:b0:38c:782c:3bb with SMTP id
- s25-20020a1cf219000000b0038c782c03bbmr3017415wmc.94.1647944392359; Tue, 22
- Mar 2022 03:19:52 -0700 (PDT)
+        with ESMTP id S232484AbiCVKYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 06:24:49 -0400
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342D665D0;
+        Tue, 22 Mar 2022 03:23:22 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id p184-20020a1c29c1000000b0037f76d8b484so1128746wmp.5;
+        Tue, 22 Mar 2022 03:23:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=WG7JO6Gw41AnZmksgsF7DPkXyxm7aFIAWm2plOwedqE=;
+        b=vWymlx2I2OQgglQb6fOax+SBm/vHJ7dOSHcv8GBxGt6tQSM6CWwbAxwUAGgJqJmS3v
+         oIIoQP8kVbENvzPAxeCK+NkeJGiFWjVq+aayNjZjR0NwVpGO+WZItnBI21ajoZ/oetqu
+         DcvZzuTFcXjSYk/tWpFvqovQfC6ItvlClg+1e333o6fOg06RQqUtUl7BP/iI9rp87WqA
+         DRP30CQCn5AUHeVJJS0cYgA2vVfrYzUGqooUVGNrCrSr19DbF1NWg/GPW+kxYiqsF+Zr
+         9Q2KOwhtK+xjPxB6kTGP0F6qMtbVPYrDmDK39Yff8FN/pSKaGiwDeSJSsgbkVBQPe1WT
+         rcdA==
+X-Gm-Message-State: AOAM530jd3c3wtpBXh6+Cpt7f+g3Ybwyz34xDUtlHQgTOTgKlAdHvQg3
+        SDLo9YnqS5zCJ7ITbdLUcDu9upCjvZU=
+X-Google-Smtp-Source: ABdhPJwRZKlC5/1UGiNO1kFSY3oIGX64eh0i/6bWkIExp3pulv/L2z9gwB9D/tFzinbewSrbghw5ew==
+X-Received: by 2002:a05:600c:3545:b0:38c:ac1c:53c7 with SMTP id i5-20020a05600c354500b0038cac1c53c7mr3092887wmq.92.1647944600634;
+        Tue, 22 Mar 2022 03:23:20 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id v8-20020a1cf708000000b0034d7b5f2da0sm1577202wmh.33.2022.03.22.03.23.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Mar 2022 03:23:20 -0700 (PDT)
+Message-ID: <6fae1b16-f898-adf6-4064-df7e45e8b041@kernel.org>
+Date:   Tue, 22 Mar 2022 11:23:18 +0100
 MIME-Version: 1.0
-References: <cover.1647928315.git.qinjian@cqplus1.com> <8372ee2fcf361a3af7233450c4403178052ceee2.1647928316.git.qinjian@cqplus1.com>
-In-Reply-To: <8372ee2fcf361a3af7233450c4403178052ceee2.1647928316.git.qinjian@cqplus1.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 22 Mar 2022 11:19:36 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1H2xM1PdDwKPWHD0fqZ0q_o-KZTLvSXdm9jjqTWcX-hA@mail.gmail.com>
-Message-ID: <CAK8P3a1H2xM1PdDwKPWHD0fqZ0q_o-KZTLvSXdm9jjqTWcX-hA@mail.gmail.com>
-Subject: Re: [PATCH v11 9/9] ARM: sp7021_defconfig: Add Sunplus SP7021 defconfig
-To:     Qin Jian <qinjian@cqplus1.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Content-Language: en-US
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:gWRO82PyVIBo4zOziSihvLnl+yjPW9/rb7xLTq+m/nDIRNqKye9
- o0yskHKYwmDbSwBnHRa70PSr1Qn+UxzgmwEp+c5AcSi8zUVTPnCCkuoIGfXBpN5GY8X4OMb
- w5CsflLLjocAmHiSowux7FguSySuTCFlUt7q0Le2H21juIzdoixo7Alh7rNAd/qfFR0dxA+
- /dw1Vmy1B2PMHosR0YJdQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hX8OBEP4Flk=:Y/IP4ybCl1z6sT8txeV9HB
- JBaVvamnBYvEweoouc9QuOfJsloIypQgWTQIwv/zG0YETigOa0g/Qlw40uWD24Hi0g+LU9waS
- cxAcCiHSKNrPKZSG7RF2JQWZFaFsOkG/H1HGbZUA+739AOd5BEJX74j8OYyTEYzUO9e9JP2ki
- FPvETNP8vwliTEhyDGMLYZL5liy99vbl/OJ4rH/fXIKL1aGf2/aN5KaNIGkn3Wtvx6uCIxbi2
- pMvxeUb3WTKi/0CxxJkczYgpe313kTXsQ+4+3zwWOa6u1UbS1YqjeAzZbY1rBryBNCDxY/Uei
- fALp8eWSYVpFAQPWIxz+BW6ZAWMK8K+OtfiOO8/UzYR3sIoFyfUahO2WKCfbC9JA1IRUPvkwV
- +w/hVTJ8e3k21Xh6sPiuJbmpcODtrRAws4N5HRhMNKBrCWfjetlNESiZtCtp7gH/hV5QqFTq4
- PW8NhoBN90pepBvRcb1bZVixUIYTOhbt/vDQB0t/STHgT1YCSxh0ltaYGMQeJZj84W7mDgWVc
- T+F2+VZC+11pDAg3vkGAQqRtTLN3LFZEt8uSs9XmLkRTTx1r3CLdatjhdUZ0fDg5Fo9U12mho
- ugqLeEramYXg9dFg5B1PkZ9WcCZb/IeoDcjdYYXg2Im2aKxmDIVc45EGP7JETgtfD3wOPRrSh
- ekKTWYAts9cKt6sonKDnvBGXNL8+QIE5s7wDa/GNP/gh4wJ22EYSUSxkRowoBRNtqsLvhMqVJ
- qEng4rCRPCdNfjS+fUz/oZMjGRITBFZcMkQe8zA4Is+tRDpeytANo6O+Knn1FRXq+hFDSM30u
- Tr6R/Zdocp+l78ibTeui179ACyrWpDcErz4I3kmW4Rhp41irOo=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+ <20220310133938.2495-2-michael.srba@seznam.cz>
+ <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+ <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
+ <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
+ <20220320151223.3a9b13bd@jic23-huawei>
+ <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
+ <20220321150411.00002206@Huawei.com>
+ <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
+ <20220321174202.00007895@Huawei.com>
+In-Reply-To: <20220321174202.00007895@Huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 7:17 AM Qin Jian <qinjian@cqplus1.com> wrote:
->
-> Add generic Sunplus SP7021 based board defconfig
->
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+On 21/03/2022 18:42, Jonathan Cameron wrote:
+> On Mon, 21 Mar 2022 16:22:38 +0100
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 21/03/2022 16:04, Jonathan Cameron wrote:
+>>> On Mon, 21 Mar 2022 09:04:11 +0100
+>>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>   
+>>>> On 20/03/2022 16:12, Jonathan Cameron wrote:  
+>>>>> On Thu, 10 Mar 2022 22:24:03 +0100
+>>>>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+>>>>>     
+>>>>>> On 10/03/2022 19:56, Michael Srba wrote:    
+>>>>>>> Hi,
+>>>>>>> the thing is, the only reason the different compatible is needed at all
+>>>>>>> is that the chip presents a different WHOAMI, and the invensense,icm20608
+>>>>>>> compatible seems to imply the non-D WHOAMI value.      
+>>>>>>
+>>>>>> But this is a driver implementation issue, not related to bindings.
+>>>>>> Bindings describe the hardware.    
+>>>>>
+>>>>> Indeed, but the key thing here is the WHOAMI register is hardware.
+>>>>>     
+>>>>>>    
+>>>>>>> I'm not sure how the driver would react to both compatibles being present,
+>>>>>>> and looking at the driver code, it seems that icm20608d is not the only
+>>>>>>> fully icm20608-compatible (to the extent of features supported by
+>>>>>>> the driver, and excluding the WHOAMI value) invensense IC, yet none
+>>>>>>> of these other ICs add the invensense,icm20608 compatible, so I guess I
+>>>>>>> don't see a good reason to do something different.      
+>>>>>>
+>>>>>> Probably my question should be asked earlier, when these other
+>>>>>> compatibles were added in such way.
+>>>>>>
+>>>>>> Skipping the DMP core, the new device is fully backwards compatible with
+>>>>>> icm20608.    
+>>>>>
+>>>>> No. It is 'nearly' compatible...  The different WHOAMI value (used
+>>>>> to check the chip is the one we expect) makes it incompatible.  Now we
+>>>>> could change the driver to allow for that bit of incompatibility and
+>>>>> some other drivers do (often warning when the whoami is wrong but continuing
+>>>>> anyway).     
+>>>>
+>>>> Different value of HW register within the same programming model does
+>>>> not make him incompatible. Quite contrary - it is compatible and to
+>>>> differentiate variants you do not need specific compatibles.  
+>>>
+>>> Whilst I don't personally agree with the definition of "compatible"
+>>> and think you are making false distinctions between hardware and software...
+>>>
+>>> I'll accept Rob's statement of best practice.  However we can't just
+>>> add a compatible that won't work if someone uses it on a new board
+>>> that happens to run an old kernel.
+>>>   
+>>
+>> The please explain me how this patch (the compatible set I proposed)
+>> fails to work in such case? How a new board with icm20608 (not
+>> icm20608d!) fails to work?
+> 
+> I'm confused.  An actual icm20608 would work.
+> I guess you mean an icm20608d via compatible "invensense,icm20608"?
 
-I don't think I ever replied with 'Reviewed-by: Arnd Bergmann <arnd@arndb.de>'
-to this patch. While I did review it in version 5, you never seem to have
-replied to my questions there.
+In your example, new board with old kernel (so old kernel not supporting
+icm20608d), icm20608d will work exactly the same. Meaning: not work. Old
+kernel does not support it, new kernel will weirdly try to read WHOAMI
+and return -EINVAL (or whatever is there). Same effect.
 
-It was a while ago though, so I don't remember the details, if we did
-conclude the review, can you link to the lore.kernel.org thread in
-the next version? Please also check the other patches on which
-you added a 'Reviewed-by' tag from someone to ensure that they
-actually provided that tag, rather than just providing review comments.
+> 
+>>
+>> To remind, the compatible has a format of:
+>> comaptible = "new", "old"
+>> e.g.: "invensense,icm20608d", "invensense,icm20608"
+> 
+> Old kernel fails to match invensense,icm20608d, matches on invensense,icm20608.
+> Checks the WHOAMI value and reports a missmatched value and fails the probe
+> as it has no idea what the part was so no idea how to support it.
 
-       Arnd
+And old kernel fails in your solution as well, because it does not know
+the compatible and refuses to bind.
+
+> 
+> Obviously it wouldn't work anyway with an old kernel, but
+> without the fallback compatible at least there would be no error message
+> saying that the device is not the icm20608 we expected to see.
+
+You said before:
+"...that won't work if someone uses..."
+so still please explain how does this "will not work" happens. It does
+not work with old kernel in both cases...
+
+Best regards,
+Krzysztof
