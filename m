@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E66E34E38E8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 07:26:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 080DC4E38F1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 07:26:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237191AbiCVG1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 02:27:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42442 "EHLO
+        id S237080AbiCVG1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 02:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237229AbiCVG0t (ORCPT
+        with ESMTP id S237260AbiCVG0t (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 02:26:49 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7336833A0E
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 23:25:17 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id i11so13945556plr.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 23:25:17 -0700 (PDT)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6FF12AC51
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 23:25:18 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id j13so4731297plj.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 23:25:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=30RcZys3m+mnl1wP4Li2+2cSCnquqYOBajAz0JIjDJs=;
-        b=V3aUEaQA32XUGTV33Mandcv3Lgfa4gFsNJTEvaf+bqRWidZOP6Jnjaa/oTUkMfgTAE
-         BwaQtd8esfQvUJhfr1lds+siUo+tD/Pr5yFGLfrjteMEhxVhj+5cfiK4Ee/V1V/UGvZ7
-         iUL4kyaidVBtyeB+3tvRbdyQ4wKge6UR5jalE=
+        bh=hikheyI0Nl+ipWdnweJSWsnrclofhtF+n/fKkrLyMFM=;
+        b=TiV4uSre9LReQAaZ+o4zK4NCDqoZW5AC2CT8gkv5kcowRPQEHh7aKIgcH4ieFGaGq/
+         gom/Q6cZtLtMsReWwqW50lLGTQ6OMfNVyeiQLsvqcI4H0VfarxNnxYAr3n6iSaDm2Dxt
+         pEB9Mxm/CM+cqPDdJwuy3X71ULNP/N+K6izJg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=30RcZys3m+mnl1wP4Li2+2cSCnquqYOBajAz0JIjDJs=;
-        b=Xg4N/kHfsFb6tv0N7hoWHvfxj4ZjMQl+L4iYQNXq5ku8eDg9eKwUumKmVuvso2b/4W
-         FKHvQazUrMHLVOZnTPYc/G+4E4c2v8zs58GWiL8ZV9bdZqU1d9G3gyulaM+nEUEGKqOi
-         XfeAIRyZ/7ItkT+t/3Dexm4NuserBPw8f8WYGFkhMSKyPzdB15u4Br3Z8ex47SVLG2Mr
-         cGLyUX3H+YkkjXR4JgkdSRDgEKN1zVeAYkuqHrOIsn2RXWJIwGthjcv8NCoXxClDKSwx
-         9B6FXQ01ACsaKVoDk8NlTIPz/BVz65MVbxH/cUeq8yYfIQ2s3w0aTOFpSMGFpzmwv2TC
-         JH+Q==
-X-Gm-Message-State: AOAM531SBs5jvNw8MWoeMHpag0C9TYRmBk4N7t74l00iKjKWSaaFI5iZ
-        HfrlVN0fcEq54RQsDQ5VCTx4Rg==
-X-Google-Smtp-Source: ABdhPJyLtfBqUQpoVZNoqWX48X/ynHku0Q/mpdlADxhZE9maHPd7pzNzlEz8Vp+sXtbfa1/CJYhJYA==
-X-Received: by 2002:a17:902:b113:b0:153:2251:c1b0 with SMTP id q19-20020a170902b11300b001532251c1b0mr16128580plr.44.1647930316996;
-        Mon, 21 Mar 2022 23:25:16 -0700 (PDT)
+        bh=hikheyI0Nl+ipWdnweJSWsnrclofhtF+n/fKkrLyMFM=;
+        b=fZXnSCXVU/NPY4BS2BRU5tbDvGCkOLckWI4rzwcddnNojvoa1l7Md9G5/IIrPiSGXo
+         BnsyCXi3bVCzXczh6DV2gMbITaJw831SoWDeUcS7SACen20xPXTonmhu4wWZT0dL5mae
+         y6fLaCwDh8YhKVDwBgtlZTnBG1iT3EGyCARw+NiqOZqyWNBq8PMHYZmFSrbwinSOOvmQ
+         +RJwvHWUKdePUUpmJLZqpPXnxTNClUemV4c60n1BGY145TIfRkB4KfYe0nYz2Yi+17yH
+         /i1iYIoP2QGKv1ipHPvIRj4SoPrXuUDxFJSAGTVuwitteNLCZXg0oO585h4JXvc5rZHH
+         LjxQ==
+X-Gm-Message-State: AOAM530QQX6E6vKW/FVw6q54hnC+7qO27IAw0UcnN5pc+doWwudwQ50P
+        JJr6Tbt7iFv8oby8M0ITEHEAAA==
+X-Google-Smtp-Source: ABdhPJyK8P6TrbFnJDLZ0h/km0s1P+Qjz2PJ6CEy3m8HmmLxwFjE5QXjHV8mETAYZD1l9Zk/FDLHqQ==
+X-Received: by 2002:a17:903:41cf:b0:154:25bf:7d0f with SMTP id u15-20020a17090341cf00b0015425bf7d0fmr16150921ple.41.1647930318211;
+        Mon, 21 Mar 2022 23:25:18 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:c016:a147:e7e:6836])
-        by smtp.gmail.com with UTF8SMTPSA id y2-20020a056a00190200b004fa865d1fd3sm9903049pfi.86.2022.03.21.23.25.16
+        by smtp.gmail.com with UTF8SMTPSA id g5-20020a056a001a0500b004def10341e5sm22139411pfv.22.2022.03.21.23.25.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Mar 2022 23:25:16 -0700 (PDT)
+        Mon, 21 Mar 2022 23:25:17 -0700 (PDT)
 From:   Gwendal Grignou <gwendal@chromium.org>
 To:     jic23@kernel.org, robh+dt@kernel.org, swboyd@chromium.org
 Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v2 7/8] dt-bindings: iio: sx9360: Add precharge resistor setting
-Date:   Mon, 21 Mar 2022 23:25:03 -0700
-Message-Id: <20220322062504.1019504-8-gwendal@chromium.org>
+Subject: [PATCH v2 8/8] iio: sx9360: Add pre-charge resistor setting
+Date:   Mon, 21 Mar 2022 23:25:04 -0700
+Message-Id: <20220322062504.1019504-9-gwendal@chromium.org>
 X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
 In-Reply-To: <20220322062504.1019504-1-gwendal@chromium.org>
 References: <20220322062504.1019504-1-gwendal@chromium.org>
@@ -58,7 +58,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,42 +66,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow configure the resistance used during precharge.
+Add ability to set the precharge internal resistance from the device
+tree.
 
 Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 ---
 Changes since v1:
-- no changes.
+- Suffix field with kOhms unit.
 
- .../bindings/iio/proximity/semtech,sx9360.yaml           | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/iio/proximity/sx9360.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
-index 63e1a1fd00d4c..1225f64f14174 100644
---- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
-@@ -61,6 +61,14 @@ properties:
-       UINT_MAX (4294967295) represents infinite. Other values
-       represent 1-1/N.
+diff --git a/drivers/iio/proximity/sx9360.c b/drivers/iio/proximity/sx9360.c
+index 3ebb30c8a4f61..a70d2ad808f1a 100644
+--- a/drivers/iio/proximity/sx9360.c
++++ b/drivers/iio/proximity/sx9360.c
+@@ -51,6 +51,8 @@
+ #define SX9360_REG_GNRL_REG_2_FREQ(_r)  (SX9360_FOSC_HZ / ((_r) * 8192))
  
-+  semtech,input-precharge-resistor-kohms:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description:
-+      Pre-charge input resistance in kOhm.
-+    minimum: 0
-+    maximum: 30
-+
- required:
-   - compatible
-   - reg
-@@ -85,5 +93,6 @@ examples:
-         semtech,resolution = <256>;
-         semtech,proxraw-strength = <2>;
-         semtech,avg-pos-strength = <64>;
-+        semtech,input-precharge-resistor-kohms = <4>;
-       };
-     };
+ #define SX9360_REG_AFE_CTRL1		0x21
++#define SX9360_REG_AFE_CTRL1_RESFILTIN_MASK GENMASK(3, 0)
++#define SX9360_REG_AFE_CTRL1_RESFILTIN_0OHMS 0
+ #define SX9360_REG_AFE_PARAM0_PHR	0x22
+ #define SX9360_REG_AFE_PARAM1_PHR	0x23
+ #define SX9360_REG_AFE_PARAM0_PHM	0x24
+@@ -671,7 +673,7 @@ static const struct sx_common_reg_default sx9360_default_regs[] = {
+ 	{ SX9360_REG_GNRL_CTRL1, 0x00 },
+ 	{ SX9360_REG_GNRL_CTRL2, SX9360_REG_GNRL_CTRL2_PERIOD_102MS },
+ 
+-	{ SX9360_REG_AFE_CTRL1, 0x00 },
++	{ SX9360_REG_AFE_CTRL1, SX9360_REG_AFE_CTRL1_RESFILTIN_0OHMS },
+ 	{ SX9360_REG_AFE_PARAM0_PHR, SX9360_REG_AFE_PARAM0_RSVD |
+ 		SX9360_REG_AFE_PARAM0_RESOLUTION_128 },
+ 	{ SX9360_REG_AFE_PARAM1_PHR, SX9360_REG_AFE_PARAM1_AGAIN_PHM_6PF |
+@@ -722,6 +724,14 @@ sx9360_get_default_reg(struct device *dev, int idx,
+ 
+ 	memcpy(reg_def, &sx9360_default_regs[idx], sizeof(*reg_def));
+ 	switch (reg_def->reg) {
++	case SX9360_REG_AFE_CTRL1:
++		ret = device_property_read_u32(dev,
++				"semtech,input-precharge-resistor-kohms",
++				&raw);
++		reg_def->def &= ~SX9360_REG_AFE_CTRL1_RESFILTIN_MASK;
++		reg_def->def |= FIELD_PREP(SX9360_REG_AFE_CTRL1_RESFILTIN_MASK,
++					   raw / 2);
++		break;
+ 	case SX9360_REG_AFE_PARAM0_PHR:
+ 	case SX9360_REG_AFE_PARAM0_PHM:
+ 		ret = device_property_read_u32(dev, "semtech,resolution", &raw);
 -- 
 2.35.1.894.gb6a874cedc-goog
 
