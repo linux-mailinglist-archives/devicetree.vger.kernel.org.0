@@ -2,96 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B43C64E38C2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 07:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACBC24E38D9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 07:26:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236877AbiCVGVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 02:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52830 "EHLO
+        id S237003AbiCVG0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 02:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236853AbiCVGVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 02:21:31 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD38BC89;
-        Mon, 21 Mar 2022 23:20:04 -0700 (PDT)
+        with ESMTP id S237153AbiCVG0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 02:26:44 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23F1A2FFEA
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 23:25:09 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id mm17-20020a17090b359100b001c6da62a559so1575094pjb.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Mar 2022 23:25:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647930004; x=1679466004;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fuupoUJoLFYUw2IJpPsW8XNa1Db+aIHi1q8einOYAIc=;
-  b=EM01nKv2pI7R8tPECQuzAvuQXefDljXgAzA1vkgFXumoyfUnSkZW4hwi
-   qmGpP3KHE0aUYWcGFV3sbEJW9InAI4Oms/rRC4e/+arvgnvOz4k4TvPJO
-   0+CqZOl6lfqI0dYdKWp1HCI75R4jVCWqS21sqlpI+Fn0iqxfg/QAHLMEm
-   M=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Mar 2022 23:20:03 -0700
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 23:20:02 -0700
-Received: from mingxue-gv.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 21 Mar 2022 23:19:59 -0700
-Date:   Tue, 22 Mar 2022 14:19:56 +0800
-From:   Minghao Xue <quic_mingxue@quicinc.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Jean-Philippe Brucker <jean-philippe@linaro.org>, <mst@redhat.com>,
-        <jasowang@redhat.com>, <quic_ztu@quicinc.com>,
-        <robh+dt@kernel.org>, <virtualization@lists.linux-foundation.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: virtio: mmio: add optional virtio,wakeup
- property
-Message-ID: <20220322061956.GA1441@mingxue-gv.qualcomm.com>
-References: <1646733156-19333-1-git-send-email-quic_mingxue@quicinc.com>
- <20220317063515.GA30789@mingxue-gv.qualcomm.com>
- <YjMJ32SFXTLCuaRY@myrica>
- <20220318021052.GA16300@mingxue-gv.qualcomm.com>
- <d4d69acd-72d3-dfe1-9a11-d6590d2d90d8@kernel.org>
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B4lnF6WH2JiFLQIjY9++AH603zbzpU8W6RZVc5shiIc=;
+        b=T1g/4PCbOeYmnlW4ceWT2FHKLk9EkZYxsjibYXv4IhTHUUUfYMPHYr1RQznRraQXST
+         NaFJJWSHeviStGVX6UFkLQ/E+hu+a+bYvPL6HMH3XAZ3cGawhmSibzartCUn/44U6iIo
+         HOVM+PddS9CIe8vYrNCAs4KrAci7gENTlSdJg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B4lnF6WH2JiFLQIjY9++AH603zbzpU8W6RZVc5shiIc=;
+        b=wrfQ3roxsL+TOWkaI51YAFhJJ94B4vAystT9p/oT5QbexwgNQLSBfDDe4Bn8EHhYzi
+         7sUmsHudJpfKgMvYbe6fAm579DK3jaopR9cQax43UFIPOoKnoHVA6TqiZ7RPFoFCeHnr
+         G7hKGWsVmaRQSMke8GXot4w49jDB+JmksnqSj0SeZHBZzx1DftIL48UQ1TQTaU63IqAC
+         fqaGWpIu3sPEFtvSqEVyGbsrzVLIRXfTEv3h4jCZx2iqNA3bxDuTlmKxG8DflZZJmFRU
+         lDsG2L1ujJOsgaeyCLjHwRIV5GJNrE8iUNpo/Hg2jzXUmJSzzv08XoJcGJCNNRkU7oE/
+         YU3Q==
+X-Gm-Message-State: AOAM531EsAOd9rfqUjxq2t/kRXqwZpcLepQHPObrEPItrp2n0DIplU+K
+        48fg5InJksQemAyb3IRSHZ5UZCHtgnYIvg==
+X-Google-Smtp-Source: ABdhPJzyVhLalQoN68U41cY0djWlnNGWyolZsN2zI1e3B5JmW4E/ZEuJFaEDm3qktCCRsNu8XBzH0g==
+X-Received: by 2002:a17:90a:e7cc:b0:1bf:5ab5:f481 with SMTP id kb12-20020a17090ae7cc00b001bf5ab5f481mr3109790pjb.215.1647930308666;
+        Mon, 21 Mar 2022 23:25:08 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:c016:a147:e7e:6836])
+        by smtp.gmail.com with UTF8SMTPSA id h2-20020a056a00218200b004f66d50f054sm21294183pfi.158.2022.03.21.23.25.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Mar 2022 23:25:08 -0700 (PDT)
+From:   Gwendal Grignou <gwendal@chromium.org>
+To:     jic23@kernel.org, robh+dt@kernel.org, swboyd@chromium.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Gwendal Grignou <gwendal@chromium.org>
+Subject: [PATCH v2 0/8] Add settings for precharge and internal resistor
+Date:   Mon, 21 Mar 2022 23:24:56 -0700
+Message-Id: <20220322062504.1019504-1-gwendal@chromium.org>
+X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d4d69acd-72d3-dfe1-9a11-d6590d2d90d8@kernel.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+For Semtech sensors SX9324 and SX9360, allow confugration of the
+pre-charge resistor (9324/9360) and internal resistor (9324).
 
-Thanks for your comment. First of all, which "generic wakeup-source
-property" do you mean? Could you give an example? I find "wakeup-source"
-property in several binding files. Are you pointing to this? As my
-understanding, there is no standard naming rule about the property of
-each driver right? Currently, there's no virtio-mmio driver using this.
-Anyway, I can modify my patch, if you prefer "wakeup-source".
+Fix register name spelling mistakes first and set default value properly
+for sx9324 internal resistor register.
 
-Regards,
-Minghao
+The 9360 changes are independent from the 9324 changes, but they are
+very similar.
 
-On Fri, Mar 18, 2022 at 02:40:29PM +0100, Krzysztof Kozlowski wrote:
-> On 18/03/2022 03:10, Minghao Xue wrote:
-> > Hi Jean and folks,
-> > This is just an optional flag which could be used on an embedded system.
-> > For example, if we want to use an virtio-input device as a virtual power
-> > key to wake up the virtual machine, we can set this flag in the device
-> > tree.
-> > Currently, virio-mmio driver does not implement suspend/resume
-> > callback(maybe no need). So we want to check this flag and call
-> > enable_irq_wake()  accordingly in vm_find_vqs().
-> 
-> There is a generic wakeup-source property. How is this one different
-> that you need a separate one?
-> 
-> 
-> Best regards,
-> Krzysztof
+Gwendal Grignou (8):
+  iio: sx9324: Fix default precharge internal resistance register
+  iio: sx9324: Fix register field spelling
+  dt-bindings: iio: sx9324: Add precharge resistor setting
+  iio: sx9324: Add precharge internal resistance setting
+  dt-bindings: iio: sx9324: Add internal compensation resistor setting
+  iio: sx9324: Add Setting for internal compensation resistor
+  dt-bindings: iio: sx9360: Add precharge resistor setting
+  iio: sx9360: Add pre-charge resistor setting
+
+ .../iio/proximity/semtech,sx9324.yaml         | 19 ++++++++
+ .../iio/proximity/semtech,sx9360.yaml         |  9 ++++
+ drivers/iio/proximity/sx9324.c                | 44 ++++++++++++++++---
+ drivers/iio/proximity/sx9360.c                | 12 ++++-
+ 4 files changed, 78 insertions(+), 6 deletions(-)
+
+-- 
+2.35.1.894.gb6a874cedc-goog
+
