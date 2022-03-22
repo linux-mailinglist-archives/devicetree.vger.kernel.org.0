@@ -2,139 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2E574E3A6E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D27724E3A96
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:30:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbiCVIVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 04:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58944 "EHLO
+        id S230357AbiCVIby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 04:31:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230345AbiCVIVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:21:05 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B4295EBF7
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 01:19:35 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220322081931epoutp03cd79c5aa3c39dff61f5dc91a9a35468b~epiBJJR7w1725517255epoutp03V
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 08:19:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220322081931epoutp03cd79c5aa3c39dff61f5dc91a9a35468b~epiBJJR7w1725517255epoutp03V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1647937171;
-        bh=HhEg8SeIzOQ+B0sMaC9D5JpzHmXS6nQ9Z/IoLLlUzo0=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=UZwnrBJKH7n2qS4+spnZTA2KOb6E5ORtjJJh49fu7jmPac3GgSVvG1fMmFhMaCo4U
-         1SVD9CZtedLwpzTDnbOxkG+uZDtmOgkXC6g/1oiYz4UA7g5L6XwqHRlbarLTqc2sLI
-         /62xZB7cJmlcaHg/z9dWKpxwew/RGvq5IzQZQfpQ=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220322081930epcas2p290165808ac75eba01e3f09182d951db2~epiAgacJo1883518835epcas2p2a;
-        Tue, 22 Mar 2022 08:19:30 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.68]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4KN4CP2bHJz4x9Q2; Tue, 22 Mar
-        2022 08:19:29 +0000 (GMT)
-X-AuditID: b6c32a46-be9ff70000023ea8-c2-62398690f0c9
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        29.50.16040.09689326; Tue, 22 Mar 2022 17:19:28 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH 1/2] dt-bindings: thermal: Add ARTPEC-8 compatible string
- for exynos-thermal
-Reply-To: hypmean.kim@samsung.com
-Sender: Sang Min Kim <hypmean.kim@samsung.com>
-From:   Sang Min Kim <hypmean.kim@samsung.com>
-To:     "bzolnier@gmail.com" <bzolnier@gmail.com>,
-        "krzysztof.kozlowski@canonical.com" 
-        <krzysztof.kozlowski@canonical.com>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "amitk@kernel.org" <amitk@kernel.org>,
-        "rui.zhang@intel.com" <rui.zhang@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        ALIM AKHTAR <alim.akhtar@samsung.com>
-CC:     "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S229706AbiCVIbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:31:53 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC0713F8D;
+        Tue, 22 Mar 2022 01:30:24 -0700 (PDT)
+X-UUID: 2c5a5ae2a33341f9803f4fa11f802fd3-20220322
+X-UUID: 2c5a5ae2a33341f9803f4fa11f802fd3-20220322
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1934978458; Tue, 22 Mar 2022 16:30:18 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 22 Mar 2022 16:30:17 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Mar 2022 16:30:17 +0800
+Message-ID: <51750d230b38aa3d2e9d370247bcb4be93a35877.camel@mediatek.com>
+Subject: Re: [PATCH v2 02/15] clk: mediatek: Add MT8186 mcusys clock support
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20220322075617.109855-1-hypmean.kim@samsung.com>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220322081928epcms2p5c426f8eebbc5251a294ab08ae869e487@epcms2p5>
-Date:   Tue, 22 Mar 2022 17:19:28 +0900
-X-CMS-MailID: 20220322081928epcms2p5c426f8eebbc5251a294ab08ae869e487
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMJsWRmVeSWpSXmKPExsWy7bCmue6ENsskg3VnxSwezNvGZnF4foXF
-        9y3XmSxeHtK0mPdZ1mL+kXOsFhvf/mCy2PT4GqvF5V1z2Cw+9x5htJhxfh+TxdwvU5ktWvce
-        Ybd48rCPzYHPY1ZDL5vHzll32T0W73nJ5LFpVSebx51re9g8Ni+p9+jbsorR4/MmuQCOqGyb
-        jNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKCjlRTKEnNK
-        gUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGU++
-        1RVcFqh4t28VUwPjbIEuRk4OCQETiaNTP7F3MXJxCAnsYJR4sfEYYxcjBwevgKDE3x3CIDXC
-        AnESnefWsoPYQgKKEi93bGeGiOtJ3Nz4GSzOJqAj8bj1PhPIHBGBDmaJY53HWUEcZoGrTBLP
-        589jh9jGKzGj/SkLhC0tsX35VrBlnAJ2Emv2hkCENSR+LOtlhrBFJW6ufssOY78/Np8RwhaR
-        aL13FqpGUOLBz91QcUmJTYe3Q9VXS9zauBzsBgmBBkaJ1m9NzCC7JAT0JXZcNwap4RXwlVi4
-        eh9YPYuAqsS9y7ugel0kLt9rAJvJLKAtsWzha7BWZgFNifW79CGmKEscucUC81TDxt/s6Gxm
-        AT6JjsN/4eI75j1hgrBVJXZu6mafwKg8CxHQs5DsmoWwawEj8ypGsdSC4tz01GKjAiN41Cbn
-        525iBKdeLbcdjFPeftA7xMjEwXiIUYKDWUmEd/EH8yQh3pTEyqrUovz4otKc1OJDjKZAX05k
-        lhJNzgcm/7ySeEMTSwMTMzNDcyNTA3MlcV6vlA2JQgLpiSWp2ampBalFMH1MHJxSDUw7933c
-        4eTrpHnkOC/P/Zuzrh/Q2r5ndWHpzBlrde264o2Dr7bdbHv8+UTR+vrrZ4o7YxbPv6/mtqtr
-        XUHmpwev7rN4XFLz9BbQEuMK8zs0oaq39YMHB2v/g4Ji/5LzD95Nvbg9eWNbJ6+S4wzvx4k/
-        onh7zhj1qHc4OR7tKrR9VmNT7X1iXmErvxzr0plOy+azLFP6e8Mmz0z99sFOk/ZPSZuPae6a
-        F7rA2Pbkwr0ODeWiRa8C9q9p91EJyXYrVP5sd0ki8rSHaODXVd3zlheELtCIvzfvwgJl7wMb
-        XRXiAtvV9/T1/l74o7CVV3vTyxNu/Wd97z6fsl6gcJtx18uU7pl9xecNpA9cqMv3MFZiKc5I
-        NNRiLipOBACIUOEGRgQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220322075557epcas2p26c9dcb578e9c5f68a23f7fe1bdf35f65
-References: <20220322075617.109855-1-hypmean.kim@samsung.com>
-        <CGME20220322075557epcas2p26c9dcb578e9c5f68a23f7fe1bdf35f65@epcms2p5>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 22 Mar 2022 16:30:17 +0800
+In-Reply-To: <CAGXv+5Fq4_dZBWJvKZ8ADUSQF4bTu-QWZ+7KG1dsJoWDrT2nXg@mail.gmail.com>
+References: <20220221015258.913-1-chun-jie.chen@mediatek.com>
+         <20220221015258.913-3-chun-jie.chen@mediatek.com>
+         <CAGXv+5Fq4_dZBWJvKZ8ADUSQF4bTu-QWZ+7KG1dsJoWDrT2nXg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend=C2=A0the=C2=A0exynos-thermal=C2=A0dt=C2=A0bindings=C2=A0document=C2=
-=A0to=C2=A0include=C2=A0compatible=0D=0Astring=C2=A0supporting=C2=A0ARTPEC-=
-8=C2=A0SoC=0D=0A=C2=A0=0D=0ASigned-off-by:=C2=A0sangmin=C2=A0kim=C2=A0<hypm=
-ean.kim=40samsung.com>=0D=0A---=0D=0A=C2=A0Documentation/devicetree/binding=
-s/thermal/samsung,exynos-thermal.yaml=C2=A0=7C=C2=A02=C2=A0++=0D=0A=C2=A01=
-=C2=A0file=C2=A0changed,=C2=A02=C2=A0insertions(+)=0D=0A=C2=A0=0D=0Adiff=C2=
-=A0--git=C2=A0a/Documentation/devicetree/bindings/thermal/samsung,exynos-th=
-ermal.yaml=C2=A0b/Documentation/devicetree/bindings/thermal/samsung,exynos-=
-thermal.yaml=0D=0Aindex=C2=A017129f7..c12bcff=C2=A0100644=0D=0A---=C2=A0a/D=
-ocumentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml=0D=0A+=
-++=C2=A0b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.=
-yaml=0D=0A=40=40=C2=A0-16,6=C2=A0+16,7=C2=A0=40=40=C2=A0description:=C2=A0=
-=7C=0D=0A=C2=A0properties:=0D=0A=C2=A0=C2=A0=C2=A0compatible:=0D=0A=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0enum:=0D=0A+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
-=C2=A0axis,artpec8-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=
-=A0samsung,exynos3250-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
-=C2=A0samsung,exynos4412-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0-=C2=A0samsung,exynos4210-tmu=0D=0A=40=40=C2=A0-101,6=C2=A0+102,7=C2=A0=
-=40=40=C2=A0allOf:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0compatible:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0contains:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0enum:=0D=0A+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0axis,artpec8-tmu=
-=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0-=C2=A0samsung,exynos5433-tmu=0D=0A=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
-=C2=A0samsung,exynos7-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0then:=0D=0A--=
-=C2=A0=0D=0A2.9.5=0D=0A=C2=A0=0D=0A=C2=A0
+On Wed, 2022-03-09 at 18:13 +0800, Chen-Yu Tsai wrote:
+> Hi,
+> 
+> On Mon, Feb 21, 2022 at 9:59 AM Chun-Jie Chen
+> <chun-jie.chen@mediatek.com> wrote:
+> > 
+> > Add MT8186 mcusys clock controller which provides muxes
+> > to select the clock source of APMCU.
+> > 
+> > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > Acked-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  drivers/clk/mediatek/Kconfig          |   8 ++
+> >  drivers/clk/mediatek/Makefile         |   1 +
+> >  drivers/clk/mediatek/clk-mt8186-mcu.c | 106
+> > ++++++++++++++++++++++++++
+> >  3 files changed, 115 insertions(+)
+> >  create mode 100644 drivers/clk/mediatek/clk-mt8186-mcu.c
+> > 
+> > diff --git a/drivers/clk/mediatek/Kconfig
+> > b/drivers/clk/mediatek/Kconfig
+> > index 01ef02c54725..d5936cfb3bee 100644
+> > --- a/drivers/clk/mediatek/Kconfig
+> > +++ b/drivers/clk/mediatek/Kconfig
+> > @@ -512,6 +512,14 @@ config COMMON_CLK_MT8183_VENCSYS
+> >         help
+> >           This driver supports MediaTek MT8183 vencsys clocks.
+> > 
+> > +config COMMON_CLK_MT8186
+> > +       bool "Clock driver for MediaTek MT8186"
+> > +       depends on ARM64 || COMPILE_TEST
+> > +       select COMMON_CLK_MEDIATEK
+> > +       default ARCH_MEDIATEK
+> > +       help
+> > +         This driver supports MediaTek MT8186 clocks.
+> > +
+> >  config COMMON_CLK_MT8192
+> >         bool "Clock driver for MediaTek MT8192"
+> >         depends on ARM64 || COMPILE_TEST
+> > diff --git a/drivers/clk/mediatek/Makefile
+> > b/drivers/clk/mediatek/Makefile
+> > index 7b0c2646ce4a..677fa4f0eea2 100644
+> > --- a/drivers/clk/mediatek/Makefile
+> > +++ b/drivers/clk/mediatek/Makefile
+> > @@ -71,6 +71,7 @@ obj-$(CONFIG_COMMON_CLK_MT8183_MFGCFG) += clk-
+> > mt8183-mfgcfg.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8183_MMSYS) += clk-mt8183-mm.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8183_VDECSYS) += clk-mt8183-vdec.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8183_VENCSYS) += clk-mt8183-venc.o
+> > +obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-mcu.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
+> > diff --git a/drivers/clk/mediatek/clk-mt8186-mcu.c
+> > b/drivers/clk/mediatek/clk-mt8186-mcu.c
+> > new file mode 100644
+> > index 000000000000..6d82c5de16c1
+> > --- /dev/null
+> > +++ b/drivers/clk/mediatek/clk-mt8186-mcu.c
+> > @@ -0,0 +1,106 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +//
+> > +// Copyright (c) 2022 MediaTek Inc.
+> > +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > +
+> > +#include "clk-mtk.h"
+> 
+> Please move local headers after global ones. And please do this for
+> all
+> patches.
+> 
+> > +
+> > +#include <dt-bindings/clock/mt8186-clk.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +static DEFINE_SPINLOCK(mt8186_clk_lock);
+> > +
+> > +static const char * const mcu_armpll_ll_parents[] = {
+> > +       "clk26m",
+> > +       "armpll_ll",
+> > +       "mainpll",
+> > +       "univpll_d2"
+> > +};
+> > +
+> > +static const char * const mcu_armpll_bl_parents[] = {
+> > +       "clk26m",
+> > +       "armpll_bl",
+> > +       "mainpll",
+> > +       "univpll_d2"
+> > +};
+> > +
+> > +static const char * const mcu_armpll_bus_parents[] = {
+> > +       "clk26m",
+> > +       "ccipll",
+> > +       "mainpll",
+> > +       "univpll_d2"
+> > +};
+> > +
+> > +static struct mtk_composite mcu_muxes[] = {
+> > +       /* CPU_PLLDIV_CFG0 */
+> > +       MUX(CLK_MCU_ARMPLL_LL_SEL, "mcu_armpll_ll_sel",
+> > mcu_armpll_ll_parents, 0x2A0, 9, 2),
+> 
+> Can you add a comment stating that these registers have other bits
+> that
+> should not be touched? Otherwise anyone reading the datasheet might
+> consider this to be incomplete.
+> 
+> I assume the other bits (such as one field that looks like a divider)
+> are
+> configured in the bootloader, or the POR defaults are correct.
+> 
+
+Yes, We only control mux in linux side and keep same value in divider.
+I will add more description in v4. Sorry I missed this comment before.
+
+> > +       /* CPU_PLLDIV_CFG1 */
+> > +       MUX(CLK_MCU_ARMPLL_BL_SEL, "mcu_armpll_bl_sel",
+> > mcu_armpll_bl_parents, 0x2A4, 9, 2),
+> > +       /* BUS_PLLDIV_CFG */
+> > +       MUX(CLK_MCU_ARMPLL_BUS_SEL, "mcu_armpll_bus_sel",
+> > mcu_armpll_bus_parents, 0x2E0, 9, 2),
+> > +};
+> 
+> Note: I've checked the register bits against the datasheet.
+> 
+> > +
+> > +static const struct of_device_id of_match_clk_mt8186_mcu[] = {
+> > +       { .compatible = "mediatek,mt8186-mcusys", },
+> > +       {}
+> > +};
+> > +
+> > +static int clk_mt8186_mcu_probe(struct platform_device *pdev)
+> > +{
+> > +       struct clk_onecell_data *clk_data;
+> > +       struct device_node *node = pdev->dev.of_node;
+> > +       int r;
+> > +       void __iomem *base;
+> > +
+> > +       clk_data = mtk_alloc_clk_data(CLK_MCU_NR_CLK);
+> > +       if (!clk_data)
+> > +               return -ENOMEM;
+> > +
+> > +       base = devm_platform_ioremap_resource(pdev, 0);
+> > +       if (IS_ERR(base)) {
+> > +               r = PTR_ERR(base);
+> > +               goto free_mcu_data;
+> > +       }
+> > +
+> > +       r = mtk_clk_register_composites(mcu_muxes,
+> > ARRAY_SIZE(mcu_muxes), base,
+> > +                                       &mt8186_clk_lock,
+> > clk_data);
+> 
+> I don't think you need the lock. None of the bit fields you have
+> defined
+> in this driver have overlapping registers.
+> 
+> 
+> Regards
+> ChenYu
+> 
+
+Yes, the muxes register of big and little CPU are not overlapping,
+I will remove the lock in next patch.
+
+Thanks!
+
+> > +       if (r)
+> > +               goto free_mcu_data;
+> > +
+> > +       r = of_clk_add_provider(node, of_clk_src_onecell_get,
+> > clk_data);
+> > +       if (r)
+> > +               goto unregister_composite_muxes;
+> > +
+> > +       platform_set_drvdata(pdev, clk_data);
+> > +
+> > +       return r;
+> > +
+> > +unregister_composite_muxes:
+> > +       mtk_clk_unregister_composites(mcu_muxes,
+> > ARRAY_SIZE(mcu_muxes), clk_data);
+> > +free_mcu_data:
+> > +       mtk_free_clk_data(clk_data);
+> > +       return r;
+> > +}
+> > +
+> > +static int clk_mt8186_mcu_remove(struct platform_device *pdev)
+> > +{
+> > +       struct clk_onecell_data *clk_data =
+> > platform_get_drvdata(pdev);
+> > +       struct device_node *node = pdev->dev.of_node;
+> > +
+> > +       of_clk_del_provider(node);
+> > +       mtk_clk_unregister_composites(mcu_muxes,
+> > ARRAY_SIZE(mcu_muxes), clk_data);
+> > +       mtk_free_clk_data(clk_data);
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static struct platform_driver clk_mt8186_mcu_drv = {
+> > +       .probe = clk_mt8186_mcu_probe,
+> > +       .remove = clk_mt8186_mcu_remove,
+> > +       .driver = {
+> > +               .name = "clk-mt8186-mcu",
+> > +               .of_match_table = of_match_clk_mt8186_mcu,
+> > +       },
+> > +};
+> > +builtin_platform_driver(clk_mt8186_mcu_drv);
+> > --
+> > 2.18.0
+> > 
+
