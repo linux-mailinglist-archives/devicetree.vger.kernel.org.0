@@ -2,118 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7094E4288
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 16:10:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D61CD4E42B0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 16:19:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234828AbiCVPMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 11:12:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41532 "EHLO
+        id S238416AbiCVPUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 11:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233694AbiCVPMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 11:12:15 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1B4245BD;
-        Tue, 22 Mar 2022 08:10:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6C244B81D14;
-        Tue, 22 Mar 2022 15:10:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C6F8C340F8;
-        Tue, 22 Mar 2022 15:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647961845;
-        bh=iD3r2C8ohus5StZzu+HIHENCtSsyhMruFFh9RM7/ok0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lTfrr6Xx5T7dbCIZGWoVSA4ezDO8SPB4V6YiBOHileBU/8ywOv7AWeMUKIdBFO6mz
-         MvY51MObY0A/m/xTXiyLMLUAPYZ6+actWLn4LlYJqH3g/L4jHHzy1wCWg70oZIXspZ
-         U6x970s8lT3VvnYOpTRHlqx2tDKXxKQ8DwacUVkUrJ627HzygQZjwNdf37sragLX6I
-         bv5f/jPoJ3qdHmRLPmHthWGXr32polEsPw4OQWIeCq8MGYMWb/SYtKycLUnFl/f0w3
-         gU4qi+iDUfcOw13fViapVaP64M1Fj7vJK1yygwrMI30M63p4q3O58w9LVF3z2np3Le
-         yUcdLHGQehvQQ==
-Received: by mail-ej1-f48.google.com with SMTP id p15so36862235ejc.7;
-        Tue, 22 Mar 2022 08:10:45 -0700 (PDT)
-X-Gm-Message-State: AOAM531XSdB6/OWFAEaTqiF0zfcNM5lVuxjgPZXdnvcd8qGySgbFTyr9
-        txTki9x94MqUVpkO/HDZhsKqEE6CMN06Kin/yA==
-X-Google-Smtp-Source: ABdhPJwcstYlhae/VDeErmYlaX8hBZSodjccbiEArN1YhP3mCzfkMUHmbq6+FoN7ayATI+AtiuwrK2GB7QQaqZOLugM=
-X-Received: by 2002:a17:907:97c9:b0:6db:ab53:1fdf with SMTP id
- js9-20020a17090797c900b006dbab531fdfmr26610884ejc.406.1647961843159; Tue, 22
- Mar 2022 08:10:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220317143926.15835-1-moudy.ho@mediatek.com> <20220317143926.15835-4-moudy.ho@mediatek.com>
- <Yjj8CanzmdHeX7qz@robh.at.kernel.org>
-In-Reply-To: <Yjj8CanzmdHeX7qz@robh.at.kernel.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 22 Mar 2022 23:10:32 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-nTojmt44ts2VtXU3_kNpbn=CniHJh8dDeM0bPj8ouRA@mail.gmail.com>
-Message-ID: <CAAOTY_-nTojmt44ts2VtXU3_kNpbn=CniHJh8dDeM0bPj8ouRA@mail.gmail.com>
-Subject: Re: [PATCH v14 3/6] dt-bindings: soc: mediatek: move out common
- module from display folder
-To:     Rob Herring <robh@kernel.org>
-Cc:     Moudy Ho <moudy.ho@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        with ESMTP id S238384AbiCVPUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 11:20:22 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 933895BD18;
+        Tue, 22 Mar 2022 08:18:55 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22MAwx97011964;
+        Tue, 22 Mar 2022 10:18:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=t/gIWbrFIeUs9lIXPjB+8KVuHGKfVEEHJnT4Li9xa8I=;
+ b=SBS2lIuO9N+/MJGmp4DGKT+md5CDYkGHdaeA6XJMkj/b5DbKwnq7H/Cf7mTav3TjxxC8
+ 43aO9iTgfkopOiOf3tJ8yOFLpSrj1E+3kr7UvH6WuFrB3u0mzi46oz85/Mto30j0mvk2
+ QUWFY2HM2DOHTdgVnIlRLo1ClAluITfb4nLnfm/y5palFt6DdjPoAlp9Pz/DPsaZ1IuJ
+ rlTbmCTON7H/mlhCTyt6bat2QGusyGK0MMT/y7sB8AcJaa5d9jaKQbyOqkq4RYoezsHu
+ hGDX2jgLqRo+HcQOtDEmAEyul+ejAixhDhs8IccaGgdeBTTvqpdp+EaLm7Q3n32llQwA iw== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ewck1cb46-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 22 Mar 2022 10:18:33 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 22 Mar
+ 2022 15:18:31 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Tue, 22 Mar 2022 15:18:31 +0000
+Received: from aryzen.ad.cirrus.com (unknown [198.61.65.125])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2F3E0477;
+        Tue, 22 Mar 2022 15:18:30 +0000 (UTC)
+From:   Lucas Tanure <tanureal@opensource.cirrus.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jason-JH Lin <jason-jh.lin@mediatek.com>,
-        river.cheng@mediatek.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        roy-cw.yeh@mediatek.com,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Hsin-Yi Wang <hsinyi@google.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        randy.wu@mediatek.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        allen-kh.cheng@mediatek.com,
-        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        menghui.lin@mediatek.com,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Rob Landley <rob@landley.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lucas Tanure <tanureal@opensource.cirrus.com>
+Subject: [PATCH v5 00/16] Support external boost at CS35l41 ASoC driver
+Date:   Tue, 22 Mar 2022 15:18:03 +0000
+Message-ID: <20220322151819.4299-1-tanureal@opensource.cirrus.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: QSUQrxhAm6eOeHid3RiILi13Lrg6IOn7
+X-Proofpoint-GUID: QSUQrxhAm6eOeHid3RiILi13Lrg6IOn7
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8822=E6=97=A5 =
-=E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=886:28=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Thu, 17 Mar 2022 22:39:23 +0800, Moudy Ho wrote:
-> > In order to share the same hardware information with MDP3,
-> > change the MUTEX dt-binding to the path "soc/mediatek".
+Move the support for CS35L41 external boost to its shared library
+for ASoC use.
+This move resulted in cs35l41_hda_reg_sequence being removed,
+and its steps were broken down into regmap writes or functions
+from the library. And hardware configuration struct was unified
+for its use in the shared lib.
+While at it, some minor bugs were found and fixed it.
 
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+v5 changelog:
+ - Fixed wrong indentation at Documentation patch
+ - Use of consistent prefix
 
-> >
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > ---
-> >  .../bindings/{display =3D> soc}/mediatek/mediatek,mutex.yaml      | 2 =
-+-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >  rename Documentation/devicetree/bindings/{display =3D> soc}/mediatek/m=
-ediatek,mutex.yaml (97%)
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
+v4 changelog:
+ - Separated GPIO 1 and 2 function enums
+
+v3 changelog:
+ - Remove patches already accepted
+ - Improved logic in documentation patch
+ - Documentation patch goes before its code
+ - Fixed missing Signed-off-by
+ - Fixed subject for HDA patches
+
+v2 changelog:
+ - Instead of removing the log, playback actions will log the last regmap access.
+ - Documentation patch with the correct subject line and fixed bug reported by Rob Herring on the
+ provided example.
+
+Previous versions:
+ v1: https://lkml.org/lkml/2022/3/3/759
+ v2: https://lkml.org/lkml/2022/3/4/743
+ v3: https://lkml.org/lkml/2022/3/8/975
+ v4: https://lkml.org/lkml/2022/3/17/267
+
+David Rhodes (1):
+  ASoC: cs35l41: Document CS35l41 External Boost
+
+Lucas Tanure (15):
+  ALSA: cs35l41: Unify hardware configuration
+  ALSA: cs35l41: Check hw_config before using it
+  ALSA: cs35l41: Move cs35l41_gpio_config to shared lib
+  ALSA: hda: cs35l41: Fix I2S params comments
+  ALSA: hda: cs35l41: Always configure the DAI
+  ALSA: hda: cs35l41: Add Boost type flag
+  ALSA: hda: cs35l41: Put the device into safe mode for external boost
+  ALSA: hda: cs35l41: Mute the device before shutdown
+  ALSA: cs35l41: Enable Internal Boost in shared lib
+  ALSA: hda: cs35l41: Move boost config to initialization code
+  ALSA: hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
+  ALSA: hda: cs35l41: Reorganize log for playback actions
+  ALSA: hda: cs35l41: Handle all external boost setups the same way
+  ALSA: hda: cs35l41: Move external boost handling to lib for ASoC use
+  ASoC: cs35l41: Support external boost
+
+ .../bindings/sound/cirrus,cs35l41.yaml        |  44 ++-
+ include/sound/cs35l41.h                       |  59 +++-
+ sound/pci/hda/cs35l41_hda.c                   | 295 ++++++------------
+ sound/pci/hda/cs35l41_hda.h                   |  27 +-
+ sound/soc/codecs/cs35l41-i2c.c                |   4 +-
+ sound/soc/codecs/cs35l41-lib.c                | 190 ++++++++++-
+ sound/soc/codecs/cs35l41-spi.c                |   4 +-
+ sound/soc/codecs/cs35l41.c                    | 166 +++++-----
+ sound/soc/codecs/cs35l41.h                    |   5 +-
+ 9 files changed, 443 insertions(+), 351 deletions(-)
+
+-- 
+2.35.1
+
