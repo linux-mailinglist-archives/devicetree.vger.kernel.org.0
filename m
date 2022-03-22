@@ -2,73 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E154E3ABE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:37:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D03B4E3ACB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:39:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231350AbiCVIiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 04:38:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37754 "EHLO
+        id S230082AbiCVIkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 04:40:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231359AbiCVIiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:38:11 -0400
-X-Greylist: delayed 140 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 22 Mar 2022 01:36:44 PDT
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C31E6A438
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 01:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1647938013;
-    s=strato-dkim-0002; d=hartkopp.net;
-    h=In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:Cc:Date:
-    From:Subject:Sender;
-    bh=ntrq2GDLVZrYGtItjUXPdagiGGLGKRv1C9uWWopglQU=;
-    b=jlYDY1xt9eqCm8cyhDwadLpuygIPvUnrPSRWlrZKufoT9rGv8zvlmdRr11VjewO+mz
-    czpM096lvUC1eBwFWTne5ueeqCprl4lJoXydJdArqbSlkmMa0X8OvLsCbAke7JCp1/aV
-    W1OlanywjKPJVzlQOqgWf0zPYdNnVm66BoMtBO3KdFdFwBCXB4abcTmN/+clZo+NV7/l
-    jtaccaY979cr/zm5CtKV7fXBLGckN8aaDDeK0KDQZSsfGZL0jr7bug2EPBP2AJu4Xm+h
-    4j7UZR6fJZHZeesEFAjkmFl0sUqnfJrPxfO35KugV/cq5Q9677ZXZwpFi+PvEhpqWFYq
-    JXwQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P2MHfkW8eP4Mre39l357AZT/I7AY/7nT2yrDxb8mjG14FZxedJy6qgO1qCHSa1GLptZHusx3hdd0DIgVuBOfXW6v7w=="
-X-RZG-CLASS-ID: mo00
-Received: from [IPV6:2a00:6020:1cfa:f900::b82]
-    by smtp.strato.de (RZmta 47.41.1 AUTH)
-    with ESMTPSA id cc2803y2M8XWDnA
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 22 Mar 2022 09:33:32 +0100 (CET)
-Message-ID: <17c8dc7b-7768-09cb-b48f-a923514f02db@hartkopp.net>
-Date:   Tue, 22 Mar 2022 09:33:31 +0100
+        with ESMTP id S231127AbiCVIkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:40:19 -0400
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27009EA9;
+        Tue, 22 Mar 2022 01:38:52 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id k124-20020a1ca182000000b0038c9cf6e2a6so859175wme.0;
+        Tue, 22 Mar 2022 01:38:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=0FcdRambMsRKShOfd/k3JzjIzx8GGv4n7YmQbRU/7n0=;
+        b=lpDvjwP6pvZL9HmzQ77KoautAOs5kJnLoc02cm3sYA0m84fXOEelWpz7oEnBv1xiFe
+         zvgTmEMCek2O/LvrJxbzgQEHWUf6nAO/dE2YwZIP+8fbXSwss59uf/RSQVkM2Lau3v8o
+         6PCYH9d7K3ZorZTBAsDsv54PJJqYkH0l1iz3UNQpGAwsSh1yLgz0jFDxRt7tKGnSI7Hh
+         CzsWBrLLd0HHK0MNpWz+ZBYzMpiU2ap9+z4+ORrmBW1jR6gnvZfk/uGG2frCrhrvs3eG
+         PspKIzCouWb1YrtzwXlgLv1ZNQtls6Y4m4dVDLdSkSM4jtGnysbyiydtyvrtQdhRfhT6
+         uMFA==
+X-Gm-Message-State: AOAM531S5jzb/YZrPf4ggCgMqz/QMMJA5QNJUxAh94YGF+suS6r8C7nT
+        lGWWrzbwUlI4SYx5uIBKO8rug30RGCQ=
+X-Google-Smtp-Source: ABdhPJx5cFoT4/ge0DuruG2LnSzEJ79ktilr8/JnWLY7QJDxE5kYgAMTZFcS3KNJQKTEJo5dvxbGKw==
+X-Received: by 2002:a1c:2744:0:b0:382:a9b7:1c8a with SMTP id n65-20020a1c2744000000b00382a9b71c8amr2551228wmn.187.1647938330451;
+        Tue, 22 Mar 2022 01:38:50 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id i206-20020a1c3bd7000000b0038bfc3ab76csm1336485wma.48.2022.03.22.01.38.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Mar 2022 01:38:49 -0700 (PDT)
+Message-ID: <7b6fec6a-12ef-7381-b06e-108a7b3ff1e4@kernel.org>
+Date:   Tue, 22 Mar 2022 09:38:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v8 0/7] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] dt-bindings: virtio: mmio: add optional virtio,wakeup
+ property
 Content-Language: en-US
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz>
- <20220322074622.5gkjhs25epurecvx@pengutronix.de>
- <202203220918.33033.pisa@cmp.felk.cvut.cz>
-From:   Oliver Hartkopp <socketcan@hartkopp.net>
-In-Reply-To: <202203220918.33033.pisa@cmp.felk.cvut.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+To:     Minghao Xue <quic_mingxue@quicinc.com>
+Cc:     Jean-Philippe Brucker <jean-philippe@linaro.org>, mst@redhat.com,
+        jasowang@redhat.com, quic_ztu@quicinc.com, robh+dt@kernel.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1646733156-19333-1-git-send-email-quic_mingxue@quicinc.com>
+ <20220317063515.GA30789@mingxue-gv.qualcomm.com> <YjMJ32SFXTLCuaRY@myrica>
+ <20220318021052.GA16300@mingxue-gv.qualcomm.com>
+ <d4d69acd-72d3-dfe1-9a11-d6590d2d90d8@kernel.org>
+ <20220322061956.GA1441@mingxue-gv.qualcomm.com>
+In-Reply-To: <20220322061956.GA1441@mingxue-gv.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,103 +70,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22/03/2022 07:19, Minghao Xue wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your comment. First of all, which "generic wakeup-source
+> property" do you mean? 
+
+There is only one generic - wakeup-source.
+
+> Could you give an example? I find "wakeup-source"
+> property in several binding files. Are you pointing to this? 
+
+Yes, use wakeup-source.
+
+Please avoid top-posting.
 
 
-On 22.03.22 09:18, Pavel Pisa wrote:
-> Hello Marc,
-> 
-> thanks for positive reply for our years effort.
-> 
-> On Tuesday 22 of March 2022 08:46:22 Marc Kleine-Budde wrote:
->> On 22.03.2022 00:32:27, Pavel Pisa wrote:
->>> This driver adds support for the CTU CAN FD open-source IP core.
->>
->> The driver looks much better now. Good work. Please have a look at the
->> TX path of the mcp251xfd driver, especially the tx_stop_queue and
->> tx_wake_queue in mcp251xfd_start_xmit() and mcp251xfd_handle_tefif(). A
->> lockless implementation should work in your hardware, too.
-> 
-> Is this blocker for now? I would like to start with years tested base.
-> 
-> We have HW timestamping implemented for actual stable CTU CAN FD IP core
-> version, support for variable number of TX buffers which count can be
-> parameterized up to 8 in the prepared version and long term desire to
-> configurable-SW defined multi-queue which our HW interface allows to
-> dynamically server by á TX buffers. But plan is to keep combinations
-> of the design and driver compatible from the actual revision.
-> 
-> I would be happy if we can agree on some base/minimal support and get
-> it into mainline and use it as base for the followup patch series.
-
-IMHO I would vote for this approach too.
-
-There are many users of that open source IP CAN core right now and the 
-out-of-tree maintenance is no fun for all of them.
-
-When the driver status is fine from the technical and programming style 
-standpoint we should move the improvements for the lockless 
-transmissions to a later date.
 
 Best regards,
-Oliver
-
-> 
-> I understand that I have sent code late for actual merge window,
-> but I am really loaded by teaching, related RISC-V simulator
-> https://github.com/cvut/qtrvsim , ESA and robotic projects
-> at company. So I would prefer to go step by step and cooperate
-> on updates and testing with my diploma students.
-> 
->> BTW: The PROP_SEG/PHASE_SEG1 issue is known:
->>> +A curious reader will notice that the durations of the segments PROP_SEG
->>> +and PHASE_SEG1 are not determined separately but rather combined and
->>> +then, by default, the resulting TSEG1 is evenly divided between PROP_SEG
->>> +and PHASE_SEG1.
->>
->> and the flexcan IP core in CAN-FD mode has the same problem. When
->> working on the bit timing parameter, I'll plan to have separate
->> PROP_SEG/PHASE_SEG1 min/max in the kernel, so that the bit timing
->> algorithm can take care of this.
-> 
-> Hmm, when I have thought about that years ago I have not noticed real
-> difference when time quanta is move between PROP_SEG and PHASE_SEG1.
-> So for me it had no influence on the algorithm computation and
-> could be done on the chip level when minimal and maximal sum is
-> respected. But may it be I have overlooked something and there is
-> difference for CAN FD.  May it be my colleagues Jiri Novak and
-> Ondrej Ille are more knowable.
-> 
-> As for the optimal timequantas per bit value, I agree that it
-> is not so simple. In the fact SJW and even tipple-sampling
-> should be defined in percentage of bit time and then all should
-> be optimized together and even combination with slight bitrate
-> error should be preferred against other exact matching when
-> there is significant difference in the other parameters values.
-> 
-> But I am not ready to dive into it till our ESA space NanoXplore
-> FPGA project passes final stage...
-> 
-> By the way we have received report from Andrew Dennison about
-> successful integration of CTU CAN FD into Litex based RISC-V
-> system. Tested with the Linux our Linux kernel driver.
-> 
-> The first iteration there, but he reported that some corrections
-> from his actual development needs to be added to the public
-> repo still to be usable out of the box
-> 
->    https://github.com/AndrewD/litecan
-> 
-> Best wishes,
-> 
->                  Pavel Pisa
->      phone:      +420 603531357
->      e-mail:     pisa@cmp.felk.cvut.cz
->      Department of Control Engineering FEE CVUT
->      Karlovo namesti 13, 121 35, Prague 2
->      university: http://dce.fel.cvut.cz/
->      personal:   http://cmp.felk.cvut.cz/~pisa
->      projects:   https://www.openhub.net/accounts/ppisa
->      CAN related:http://canbus.pages.fel.cvut.cz/
->      Open Technologies Research Education and Exchange Services
->      https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
-> 
+Krzysztof
