@@ -2,145 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A985C4E44DE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 18:18:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC2604E44E6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 18:19:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239482AbiCVRUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 13:20:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52086 "EHLO
+        id S239509AbiCVRVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 13:21:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235774AbiCVRUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 13:20:16 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0260A27160;
-        Tue, 22 Mar 2022 10:18:48 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id g24so23675302lja.7;
-        Tue, 22 Mar 2022 10:18:47 -0700 (PDT)
+        with ESMTP id S239505AbiCVRU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 13:20:59 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9038F275FE
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 10:19:29 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id u3so24972987ljd.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 10:19:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=google.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=RTM8YUH/16l7EmtQcBgSO7BwZNaXuM1GsNHw5TU8YMA=;
-        b=J29nEJuaabNwiyFtO8XZPJKmEU9lbA8VGTBj0axXaQD+gTYL1YKfUAADfwV/o/lH8o
-         wRmlmmOVhmigITYeNYkxvKqC1BmEQ8TT7w2jnw6P4bHYJqs30SY0R9jl953jv2p00H/1
-         0+tmBnmJOmrY4v4vb2xjA5lMl3pjnCv9DYZFQ/BI5ZAlwbJNuvnxbEXjWL53tNCMaPL2
-         BbK893Os0K1j3Bj1/igfs65CzEV8BGVA6Y7JTd0qE6plW2BdV4BeNSTmnnnKCqlRLYKl
-         9+vdcIStLRNz04/cWIrq+DhMCXoKhlyb+sDtos9t1bZLSBhWPbktKKFGfO2OtkSYNoqg
-         iv/Q==
+         :cc;
+        bh=TWrLQlhghP36NrYUE7OTdGLeaRuvPVmKunaV7kLXB3s=;
+        b=MN2jSxUkfZLt3GwoOVdJh1xPPczQv9dff/HXY1Wq5fEvIMQFlYYew86a2dkRe6IQA3
+         owW//XHUSRjcI1EK+no8l0jJYcI/glDOmAXxjWUJ9y1GOj6zX4lzUNQbs+tZmRnyhlze
+         t4LBHWbEgZxBsj5SRxtgaZDZ6yHxiRQqcuNQn/1tWHI1AHJiy4Erz7tfgTdS2rrPwnqM
+         gdDP7xwzRD1un+RWQ3EQr3P9oFlPug5yWZ2LzZhut3/5X2uwP4H89i6Fsd6lxtmlviNt
+         P8aZ2nDSMZ+cS0n00uZCKYzcCU0RsT6/xIpzFP3Qwl6H++xC4mUgJ70xvMD4FtBmh2Sq
+         wUUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=RTM8YUH/16l7EmtQcBgSO7BwZNaXuM1GsNHw5TU8YMA=;
-        b=ppnQJCTIOlltrlvDx19PrrTduZ9pZItzekh0Mz0kjtNj83SoZpaRW+wKKK5HwygAsw
-         z6LfvIod85s+IiXUmciMS5JcFhVtKq+kUbeWiCW92fzXQorU0vdrxqPxlLAw335bnJwL
-         ur99cPglGP3+tkZu93mbB9wgKRUTThhNbDzWioP6zbwwdv6hUrgjUl9FEYuO2FnsTvmK
-         BzpIh9PePMj3wjYYA0maI4ooQ53hBf2lHpz8mZ+iVckssSXjVKKi0nUA12lJdas0VlNC
-         tWiiEP4pvaz0Pt/iGQbqStXy7Dry7JyShI92b54Y4IWohnLRCp/1b7O5yeSYhxIR2rDH
-         swfw==
-X-Gm-Message-State: AOAM5318R8RT0Z5p9F/1NMHt/80/9YSBAhSztWPEeRT4RLwPxqFRBZBx
-        bJ6lN2Eu0mhtiUndZL2Bo67Jrp6+JRe1704alQ==
-X-Google-Smtp-Source: ABdhPJymIl3mnNzrBExxaC0P2tRc8nbab8mz9t2Jc0bzsAMqP+1Rv0yxtuHSGMSJ0/8LnAfqx+/tcAL9uimcF+hNheg=
-X-Received: by 2002:a2e:505b:0:b0:248:1fc:68e9 with SMTP id
- v27-20020a2e505b000000b0024801fc68e9mr20172432ljd.206.1647969525404; Tue, 22
- Mar 2022 10:18:45 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=TWrLQlhghP36NrYUE7OTdGLeaRuvPVmKunaV7kLXB3s=;
+        b=V+qOvWyTwn31Haihc8dz5VJIIrnV+PDjIhoFz3sGJy2RioJ+E0DgVjZ1xBieBMXhXv
+         LDTLmH2advDD7yBePYXVs0L2wylegvjOpYpppy6vYb3Zx8RJ70YDx8EwWtTzirs6zjm4
+         x22LBjCJnjggBoIUIbumbAqQXWkk4I9TycZf5SOl0dDW8EwVm4CRuGjwx36pifcMRFld
+         SJ/ToyOtTMkjPzQjiKTN9EHsN7czlsPgRgyeOoWIJnC0c6fnUMHbA1eml5Wp9q6snF8+
+         0dG3JC6aifoeXKJvIxX4cxBMqKRE8GGVtUgc5ceBePJDzUp58r83Dm8sXwWAQ2W6dPKD
+         P5iw==
+X-Gm-Message-State: AOAM531jejyC/3fTU8I+C+m1hPrvX7BE+TmY+3SwQX6DpfsY3CiQQsZZ
+        a2RjKJMiS+W6+KfE8C3O72g2FjfRmiXDEqwczSua2Q==
+X-Google-Smtp-Source: ABdhPJwS/1ZVBJTdMLl/Hk7nhVyvCHZ01feHNTbqxvng49pwR5uWfzheYUYjpb0MlPYi7TlPLUgs9mjiozk6/4FuC4E=
+X-Received: by 2002:a2e:611a:0:b0:249:83e5:9f9b with SMTP id
+ v26-20020a2e611a000000b0024983e59f9bmr8629823ljb.165.1647969566185; Tue, 22
+ Mar 2022 10:19:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220303083141.8742-1-warp5tw@gmail.com> <20220303083141.8742-9-warp5tw@gmail.com>
- <YiCZlhJoXPLpQ6/D@smile.fi.intel.com> <CAHb3i=t+Ai3w5mMhmZxxMsD7Zv0xpM4ZicMCmdDMtVn_OMbWYA@mail.gmail.com>
- <YiDNdlEKqorDFkZB@smile.fi.intel.com> <YiJ5unrCb82ZMV4Z@latitude>
-In-Reply-To: <YiJ5unrCb82ZMV4Z@latitude>
-From:   Avi Fishman <avifishman70@gmail.com>
-Date:   Tue, 22 Mar 2022 19:18:34 +0200
-Message-ID: <CAKKbWA4quvDbHWBdckAsKe65fDXXe8M-9CsjaP=4wsA=-NnULA@mail.gmail.com>
-Subject: Re: [PATCH v3 08/11] i2c: npcm: Correct register access width
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        yangyicong@hisilicon.com, Linux I2C <linux-i2c@vger.kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        JJLIU0@nuvoton.com, Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Tomer Maimon <tomer.maimon@nuvoton.com>, KWLIU@nuvoton.com,
-        bence98@sch.bme.hu, Arnd Bergmann <arnd@arndb.de>,
-        sven@svenpeter.dev, Rob Herring <robh+dt@kernel.org>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        Tyrone Ting <warp5tw@gmail.com>, semen.protsenko@linaro.org,
-        jie.deng@intel.com, Patrick Venture <venture@google.com>,
+References: <20220306223016.2239094-1-ctshao@google.com> <CAKwvOdnmtRYnSx3VvG=PEnzpzWa8f=0bn1xDymjER5EShS2tmw@mail.gmail.com>
+ <YiaMJCHOOuujHwiK@google.com> <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
+ <YjFQvhv7I6w8xjbK@google.com> <CAK7LNATmPXs6f-Oe4XmfcZSRPsCsuexSebA=4-jyNsMYHu9cag@mail.gmail.com>
+In-Reply-To: <CAK7LNATmPXs6f-Oe4XmfcZSRPsCsuexSebA=4-jyNsMYHu9cag@mail.gmail.com>
+From:   Nick Desaulniers <ndesaulniers@google.com>
+Date:   Tue, 22 Mar 2022 10:19:14 -0700
+Message-ID: <CAKwvOd=D22k53yXFC=E=VkJotn6q-AYCu5QsaFPmH_v+fWGVwA@mail.gmail.com>
+Subject: Re: [PATCH v4] config: Allow kernel installation packaging to
+ override pkg-config
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Chun-Tse Shao <ctshao@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        David Howells <dhowells@redhat.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, kfting@nuvoton.com,
-        Tali Perry <tali.perry@nuvoton.com>, olof@lixom.net
+        keyrings@vger.kernel.org, DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 4, 2022 at 10:42 PM Jonathan Neusch=C3=A4fer
-<j.neuschaefer@gmx.net> wrote:
+On Tue, Mar 22, 2022 at 12:44 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> Hello,
->
-> On Thu, Mar 03, 2022 at 04:15:18PM +0200, Andy Shevchenko wrote:
-> > On Thu, Mar 03, 2022 at 02:54:27PM +0200, Tali Perry wrote:
-> > > > On Thu, Mar 03, 2022 at 04:31:38PM +0800, Tyrone Ting wrote:
-> > > > > From: Tyrone Ting <kfting@nuvoton.com>
-> > > > >
-> > > > > Use ioread8 instead of ioread32 to access the SMBnCTL3 register s=
-ince
-> > > > > the register is only 8-bit wide.
-> > > >
-> > > > > Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controll=
-er driver")
-> > > >
-> > > > No, this is bad commit message, since you have bitwise masks and th=
-ere is
-> > > > nothing to fix from functional point of view. So, why is this a fix=
-?
-> > > >
-> > >
-> > > The next gen of this device is a 64 bit cpu.
-> > > The module is and was 8 bit.
-> > >
-> > > The ioread32 that seemed to work smoothly on a 32 bit machine
-> > > was causing a panic on a 64 bit machine.
-> > > since the module is 8 bit we changed to ioread8.
-> > > This is working both for the 32 and 64 CPUs with no issue.
+> On Wed, Mar 16, 2022 at 11:51 AM Chun-Tse Shao <ctshao@google.com> wrote:
 > >
-> > Then the commit message is completely wrong here.
+> > Tue, Mar 08, 2022 at 01:01:45PM +0900, Masahiro Yamada wrote:
+> > > On Tue, Mar 8, 2022 at 7:50 AM Chun-Tse Shao <ctshao@google.com> wrote:
+> > > >
+> > > > On Mon, Mar 07, 2022 at 10:17:17AM -0800, Nick Desaulniers wrote:
+> > > > > On Sun, Mar 6, 2022 at 2:39 PM Chun-Tse Shao <ctshao@google.com> wrote:
+> > > > > >
+> > > > > > Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
+> > > > > > what pkg-config and parameters are used.
+> > > > >
+> > > > > Sorry, kind a late thought here for v4, but we don't seem to prefix
+> > > > > many other host side tools with HOST_, i.e. LEX, YACC, AWK, PERL,
+> > > > > PYTHON3, etc.  Maybe just having the variable identifier be simply
+> > > > > PKGCONFIG rather than HOSTPKG_CONFIG then put it at the end of the
+> > > > > list in the top level Makefile after ZSTD (i.e. the list of host
+> > > > > tools)?  There's HOST_ prefixes when there's more than one tool
+> > > > > involved (i.e. host compiler vs target compiler), but I suspect
+> > > > > there's no such distinction for the existing uses of pkg-config?
+> > > > >
+> > > > Thanks for your suggestion, Nick! Yes I think it makes sense with PKGCONFIG
+> > > > instead of HOSTPKG_CONFIG since there is only one tool involved. I will
+> > > > work on it and submit a new patch.
+> > > >
+> > >
+> > > Please hold on.
+> > >
+> > > I was also wondering what to do with the "HOST" prefix.
+> > >
+> > > Libraries are usually arch-dependent.
+> > > (in other words, pkg-config should return different library paths
+> > > for $(CC) and $(HOSTCC) )
+> > >
+> > > You already understood this, so you added "HOST" prefix.
+> > >
+> > >
+> > > Please let me take time for further discussion.
+> > > I will come back to this when I get some time.
+> > >
+> > >
+> >
+> > Hi Mashiro,
+> >
+> > I was wondering if you were able to look more into this.
+> >
+> > Thank you!
+> >
+> > -CT
+> >
+> > > In the meantime,
+> > >   a8a5cd8b472ca20e5b8fa649c43b3756867322f8
+> > > as reference info if you have not seen it.
+> > >
+> > >
+> > > How many distros support something like
+> > > "aarch64-linux-gnu-pkg-config"  ?
+> > >
+> > > Ubuntu 18.04 and 20.04 seem to support it.
+> > > I do not know for others.
+> > >
+> > >
+> > >
+> > >
 >
-> I disagree: The commit message is perhaps incomplete, but not wrong.
-> The SMBnCTL3 register was specified as 8 bits wide in the datasheets of
-> multiple chip generations, as far as I can tell, but the driver wrongly
-> made a 32-bit access, which just happened not to blow up.
 >
-> So, indeed, "since the register is only 8-bit wide" seems to be a
-> correct claim.
 >
-> > And provide necessary (no need to have noisy commit messages)
-> > bits of the oops to show what's going on
+> Sorry for the delay.
+> I am OK with the idea of allowing users to override the pkg-config command,
+> but I tend to take time before making a decision.
 >
-> I guess it's blowing up now because SMBnCTL3 isn't 32-bit aligned
-> (being at offset 0x0e in the controller).
 >
+>
+>
+> Does anybody have any insight / thoughts about the following points?
+>
+>
+>
+>
+>
+>
+> [Q1]   with/without "HOST" prefix
+>
+>
+> Apparently, "pkg-config" should return different libs/cflags
+> for $(CC) and $(HOSTCC).
+>
+> I think the non-prefixed macro name "PKG_CONFIG" should be
+> reserved for $(CC)  (building for the target system).
 
-Hi Andy,
-After this clarification can you please acknowledge this specific patch?
-If you think there is a better way to describe this, can you propose one?
+Ok. I retract my comment on v4 about removing the HOST prefix then.
 
 >
-> Jonathan
+> "HOSTPKG_CONFIG" looks unbalanced
+> due to the underscore.
+>
+> Perhaps, "HOST_PKG_CONFIG" might be better?
 
+I'm fine with HOSTPKG_CONFIG (what's in v4); follows the style of
+HOSTCC and HOSTCXX.
 
+>
+>
+>
+>
+> [Q2]    "pkg-config" vs "pkgconf"
+>
+> The traditional pkg-config implementation [1] is not actively
+> maintained these days.
+> The last commit was more than one year ago.
+>
+> The alternative one 'pkgconf' [2] is more active.
+>
+> In fact, Fedora already switched to 'pkgconf' [3].
+> Now 'pkg-config' is just a wrapper of 'pkgconf'.
+> Many distributions already support pkgconf.
+>
+>
+> I considered the shorter macro name "HOSTPKGCONF" and
+>
+>    HOSTPKGCONF  = pkgconf
+>
+> but I am not sure if this is the right decision.
+> Maybe we should stick to "PKG_CONFIG" / "HOST_PKG_CONFIG"
+> for the macro names.
+>
+>
+>   [1]  https://gitlab.freedesktop.org/pkg-config/pkg-config.git
+>   [2]  https://github.com/pkgconf/pkgconf.git
+>   [3]  https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation
 
---=20
-Regards,
-Avi
+If the folks sending this are working on CrOS, better find what's in
+their build system. Chun-Tse?
+
+(I feel like I'm behind the times again, like when `apt-get install`
+became old news in favor of `apt install`...)
+
+>
+>
+>
+>
+>
+> [Q3] What is the trend of handling cross-compile by pkg-config (or pkgconf).
+>
+>
+> By default, pkg-config returns the libs/cflags for native builds.
+>
+> For cross builds, the search paths for the *.pc files must be changed
+> via the "PKG_CONFIG_LIBDIR" environment variable.
+>
+> To ease this, some distributions provide  <triplet>-pkg-config
+> (for example,   aarch64-linux-gnu-pkg-config).
+> This became the nationale for tools/build/feature/Makefile defining:
+>
+>    PKG_CONFIG ?= $(CROSS_COMPILE)pkg-config
+>
+> But, this wrapper shell script is not always available.
+> I do not know how to do it with the LLVM tool suite.
+> I am not quite sure if this is the global solution.
+>
+>
+> These days, pkgconf supports another way, .personality file [4]
+> to specify the .pc search paths for cross builds.
+>
+> Is it reasonable to use an option to distinguish native / cross builds
+> and use the same macro   "PKG_CONFIG = pkg-config" everywhere ?
+>
+>
+> [4] http://manpages.ubuntu.com/manpages/focal/en/man5/pkgconf-personality.5.html
+
+I'm not sure, but do we need to cross that bridge for this patch if
+it's just adding support for the HOST? No cross pkg-config necessary,
+yet. (Famous last words).
+-- 
+Thanks,
+~Nick Desaulniers
