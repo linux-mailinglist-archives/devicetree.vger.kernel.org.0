@@ -2,147 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47E7B4E3FB0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:40:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B89864E3FBE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235733AbiCVNk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 09:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50438 "EHLO
+        id S235587AbiCVNpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 09:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235749AbiCVNkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:40:25 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C0F5BE12;
-        Tue, 22 Mar 2022 06:38:57 -0700 (PDT)
-Received: from mail-wm1-f43.google.com ([209.85.128.43]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1N3bCH-1oEl190w43-010d2h; Tue, 22 Mar 2022 14:38:56 +0100
-Received: by mail-wm1-f43.google.com with SMTP id p184-20020a1c29c1000000b0037f76d8b484so1756900wmp.5;
-        Tue, 22 Mar 2022 06:38:56 -0700 (PDT)
-X-Gm-Message-State: AOAM5324cotBQ0lfYEOmJeoFNHhV9pmsgUxLcDOixQVRl6SsmGG1y1ZR
-        pTKAyKk/0AsZiNMActrT8aoJKk1mF+PY5wlh0i8=
-X-Google-Smtp-Source: ABdhPJzs3QeOlZNcBzENKO3A5fNgCdfHUg3y8+9tjOUu6Mb84GKwxwBSCBHL98AVKD2sOKEDH/Q+ERdYLiTXX/5v0oE=
-X-Received: by 2002:a5d:6d0f:0:b0:203:9157:1c48 with SMTP id
- e15-20020a5d6d0f000000b0020391571c48mr22098146wrq.192.1647956335843; Tue, 22
- Mar 2022 06:38:55 -0700 (PDT)
+        with ESMTP id S232683AbiCVNpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:45:03 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2AD6145;
+        Tue, 22 Mar 2022 06:43:33 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id l7-20020a05600c1d0700b0038c99618859so2623190wms.2;
+        Tue, 22 Mar 2022 06:43:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sUWPIP8GGlUV6VTKUliU0ZHihvV6xHZFMDP/CthCS1Y=;
+        b=kMiThXn0nYgm8kE9/5EMEUd8O+PbiR58lHQyKuCcXR9EnM/D1SqqpTE6RCdV1X25G2
+         l8g7Afpgbu7uEWO6cMsOHaLUqgVcBvc0UXE8VLy71Jk3gEYaBmmZ7YQZjq0peIwRN7YS
+         pcSSh+oSHkWK8j2mMr8q3Pt4Qq/Nmb57vctQQo1ezBtCy/Lqhv9mNTujciIcBFiR/cj3
+         wv0Tg48dt1Olollfdfo/Pz6efrGjhW/lDlryryfodStI2ZGKmrzW9iFiWhYGXh3lutEc
+         9GlyHsqdnLtFABWLXE5RSc20zOcjMWcMuonTzDhuXa+RyZaIN7qHUEyjT+PcdlgUmaRJ
+         9rfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sUWPIP8GGlUV6VTKUliU0ZHihvV6xHZFMDP/CthCS1Y=;
+        b=7ODUo15p9XCkFbB+nG6vPcELnwoSldNEWAX73/9T4b6HWmf6bIRlanLebpDkuoho+K
+         9NvtXKH93faIVkD7y8GodlZseYfkMFS/c+yUMgwXuXMdQIc40YCB1olThR8srZHq43q8
+         uheAnUjIbifsK0OnixDTwxsah7nsqfACscIJ31NNHS2MUFaqRY4TNvBBVSHBPuY59lTj
+         w4rpEPyl5SJS1hzHmiaWvdfVdtXMEOFVNJ3GgAFu4cZ74Cw4Uv8GGZlLYPoXGIzYJfbV
+         SWz1UHlbe58idW6u2G6l83cpd7M73kl5JToghQRUcuvHKj/f+Db8yiuYcfyanCdRW/oR
+         hgcQ==
+X-Gm-Message-State: AOAM531X/R7YSpx67qmSUiGBOQPl7ombJH80VCQ4n33PJHjRBMPVy6K1
+        td13WZcph53KmXUP77hCZHI=
+X-Google-Smtp-Source: ABdhPJzLfbPQALu/tIjINp547kjDW6t8wUr3vl4gLrMN21/OlnP9ymOVeRnzDdJSQWmTLH34IZu+cw==
+X-Received: by 2002:adf:908e:0:b0:1e7:bea7:3486 with SMTP id i14-20020adf908e000000b001e7bea73486mr21814271wri.401.1647956612387;
+        Tue, 22 Mar 2022 06:43:32 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
+        by smtp.gmail.com with ESMTPSA id 189-20020a1c02c6000000b0038c57df82aasm1961561wmc.20.2022.03.22.06.43.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Mar 2022 06:43:31 -0700 (PDT)
+Date:   Tue, 22 Mar 2022 14:43:31 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v6 00/18] Modernize rest of the krait drivers
+Message-ID: <YjnSg1NixXzjyXX9@Ansuel-xps.localdomain>
+References: <20220321231548.14276-1-ansuelsmth@gmail.com>
+ <CAL_JsqKbgZ39XBbT3nueN+vs9GdL9+mejJKYqB-o8-A3xti6jQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220321165049.35985-1-sven@svenpeter.dev> <20220321165049.35985-7-sven@svenpeter.dev>
-In-Reply-To: <20220321165049.35985-7-sven@svenpeter.dev>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 22 Mar 2022 14:38:39 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a27-eWP=krGQOp29krcc7bVME9=MbN6B3Rs7Q4Ran_VFw@mail.gmail.com>
-Message-ID: <CAK8P3a27-eWP=krGQOp29krcc7bVME9=MbN6B3Rs7Q4Ran_VFw@mail.gmail.com>
-Subject: Re: [PATCH 6/9] nvme-apple: Add initial Apple SoC NVMe driver
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@fb.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Sagi Grimberg <sagi@grimberg.me>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-nvme@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:zenq9dNBPyR4Cpm38NfQEf+UK2FuiOPpPDempQ8AJnXebIfJXmf
- 93BsvJKhF2GNjg5ntyJdNAGHx7cj0du+3Y7hr/e3IDFlMFylmv1QhGT2YmxbvCU4tYtGYom
- JF9+BKTMyIYC4Khx6AMqSme/EhlO/fkFXm/jWw+uORNzEcsGLjSpGaJeaCNcaZlWq+XfLxB
- GZTmzbNWw6iTfuX3PQF2A==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8SvVq9YpZvI=:5uHD4aaefb0pZ9QtPGiYX5
- eI+YnRZXpI+NVn9zCydT3pqTEEhF02jE0y8CzwtGQ4NugYNPidTta2WgifBjqM6SXjY+uS06f
- vy3OdU/Qn6iOXq3bo6Kd1o6SYTq7ejEHrkt3Pn4Xth9D44xN2w0SnCRGOpyx93eMjtqHZJe4a
- eoxHqYDnF2dn7gucqsbfZ1tuekm0s1z0oDSuhJfAvioUvbbftfQG+e/Tl8aBO9dOHCMhQOi7T
- BuCpC296aXeKjdqZExM1rzYhqsgOLV0p7K3roqWFomPEcDtf7YJE4Ml4Hn2IEFLax3U3MRB9f
- rgJOqoZEfVWHFcUIWHkaAGdjr0ZIoBFGLXjeGvoGhADRVeuzRf8h8qy0eCiIc3YIqOqO9FKvO
- RynHNQ1UpoAdYqW2QKohP7wiFI05VWqcgIdsErB7Ltux0yQslaHvaG/se0MdMagqpMQaJ6Aq5
- Ss251BH/4qn83ICK8RbltFIlD+/6mJxkup51b+LXzRb5t3jnEMPcIBuQ6lsw83XlJev0TqOri
- XyAK2ic6J0PtARB0hCt+0gslv4XyMW7yQlL2uXK8zY67iFan8W/Ho2cAvV6fYdx4yqaW0ersK
- q5uD2brLFpk5va++IBaIEW8X1yNm9ZVHgj0WU8b9uy1GUvr+YfgNF5fDM3oiWyS5kPPJeq4P6
- 0bMDNysji/JwZe0eu+9x6XG757aTMzUXIuDP/pobw8t0eNA7O0Z+8KEqUySKk567elGtdIYti
- NJ8HJZogQxj0/pT2SEHL89KGJZ+LxW9P01eYTFf+jnnbxbNr/gLTlX8r+JfkWKfDlvKxBNK+x
- kfqRS7lw08u4XxdrxPt5SYeql7DmFtm9v9KLFxe3RZSf+IWcZA=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKbgZ39XBbT3nueN+vs9GdL9+mejJKYqB-o8-A3xti6jQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 5:50 PM Sven Peter <sven@svenpeter.dev> wrote:
+On Mon, Mar 21, 2022 at 08:56:13PM -0500, Rob Herring wrote:
+> On Mon, Mar 21, 2022 at 6:45 PM Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> >
+> > This is a follow-up to the ipq806x gcc modernize series. Manu cleanup
+> > changes and also some discoveries of wrong definition notice only with
+> > all these conversions.
+> >
+> > The first patch is an improvement of the clk_hw_get_parent_index. The
+> > original idea of clk_hw_get_parent_index was to give a way to access the
+> > parent index but for some reason the final version limited it to the
+> > current index. We change it to give the current parent if is not
+> > provided and to give the requested parent if provided. Any user of this
+> > function is updated to follow the new implementation.
+> >
+> > The patch 2 and 3 are some additional fixes for gcc.
+> > The first one is a fix that register the pxo and cxo fixed clock only if
+> > they are not defined in DTS.
+> > The patch 3 require some explaination. In short is a big HACK to prevent
+> > kernel panic with this series.
+> >
+> > The kpss-xcc driver is a mess.
+> > The Documentation declare that the clocks should be provided but for some
+> > reason it was never followed.
+> > In fact in the ipq8064 DTSI only the clocks for l2cc are declared but
+> > for cpu0 and cpu1 the clocks are not defined.
+> > The kpss-xcc driver use parent_names so the clks are ignored and never
+> > used so till now it wasn't a problem (ignoring the fact that they
+> > doesn't follow documentation at all)
+> > On top of that, the l2cc node declare the pxo clock in a really strange
+> > way. It's declared using the PXO_SRC gcc clock that is never defined in
+> > the gcc ipq8064 clock table. (the correct way was to declare a fixed
+> > clock in dts and reference that)
+> > To prevent any kind of problem we use the patch 3 and provide the clk
+> > for PXO_SRC in the gcc clock table. We manually provide the clk after
+> > gcc probe.
+> >
+> > Patch 4 is just a minor cleanup where we use the poll macro
+> >
+> > Patch 5 is the actually kpss-xcc conversion to parent data
+> >
+> > Patch 6-7 should be a fixup of a real conver case
+> >
+> > Patch 8 converts the krait-cc to parent_data
+> > Patch 9 give some love to the code with some minor fixup
+> > Patch 10 drop the hardcoded safe sel and use the new
+> > clk_hw_get_parent_index to get the safe parent index.
+> > (also I discovered that the parent order was wrong)
+> >
+> > Patch 11 is an additional fixup to force the reset of the muxes even
+> > more.
+> >
+> > Patch 12-13 are some additiona taken from the qsdk that were missing in
+> > the upstream driver
+> >
+> > Patch 14 converts krait-cc to yaml
+> >
+> > Patch 15 add to krait-cc Documentation the L2 clocks
+> >
+> > Patch 16 converts the kpss-acc driver to yaml and fix some Documentation
+> > error
+> >
+> > Patch 17 convets the kpss-gcc driver to yaml
+> >
+> > Patch 18 finally adds all this stuff to the ipq8064 dtsi (and fix the
+> > stupid PXO_SRC phandle)
+> >
+> > I tested this series on a ipq8064 SoC by running a cache benchmark test
+> > to make sure the changes are correct and we don't silently cause
+> > regressions. Also I compared the output of the clk_summary every time
+> > and we finally have a sane output where the mux are correctly placed in
+> > the correct parent. (till now we had the cpu aux clock all over the
+> > place, probably never cause problems but who knows.)
+> >
+> > v6:
+> > - Move dts patch as last patch
+> > - Address commencts from Rob
+> > - Fix warning from make dtbs_check
+> > v5:
+> > - Address comments from Krzysztof
+> > v4:
+> > - Fix more dt-bindings bog errors
+> > v3:
+> > - Split Documentation files for kpss and krait-cc
+> > v2:
+> > - introduce new API instead of fixing the existing one
+> > - do not reorganize variables in krait-cc
+> > - fix some comments error and improve it
+> > - return better error for patch 7
+> > - fix missing new line on patch 16
+> 
+> 6 versions in a week is too many, especially with the merge window
+> starting. Please give some time for review of all the patches and by
+> more than one person. It doesn't look like any of the clk driver
+> patches have been reviewed since v1 for example.
+> 
+> Rob
 
-> +static int apple_nvme_sart_dma_setup(void *cookie, struct apple_rtkit_shmem *bfr,
-> +                                    dma_addr_t iova, size_t size)
-> +{
-> +       struct apple_nvme *anv = cookie;
-> +       int ret;
-> +
-> +       if (iova)
-> +               return -EINVAL;
-> +
-> +       bfr->buffer = dma_alloc_coherent(anv->dev, size, &iova, GFP_KERNEL);
-> +       if (!bfr->buffer)
-> +               return -ENOMEM;
+Yes sorry. There was an initial review for the clk driver from v1 to
+v2 but nothing else. I was trying to make the Documentation ready while
+I wait for a second review of the clk code.
 
-You pass 'iova' as an argument, but then replace it with the address
-returned by dma_alloc_coherent(). Can you remove the function
-argument?
+Will wait for clk code review to send v7 hoping it will be the final
+version.
 
-> +static void apple_nvmmu_inval(struct apple_nvme_queue *q, unsigned int tag)
-> +{
-> +       struct apple_nvme *anv = queue_to_apple_nvme(q);
-> +
-> +       writel(tag, anv->mmio_nvme + APPLE_NVMMU_TCB_INVAL);
-> +       if (readl_relaxed(anv->mmio_nvme + APPLE_NVMMU_TCB_STAT))
-> +               dev_warn(anv->dev, "NVMMU TCB invalidation failed\n");
-> +}
-
-I don't like to see the _relaxed() accessors used without an explanation
-about why that helps. Please use the non-relaxed version, or make sure
-it's obvious here why you use it.
-
-> +bad_sgl:
-> +       WARN(DO_ONCE(apple_nvme_print_sgl, iod->sg, iod->nents),
-> +            "Invalid SGL for payload:%d nents:%d\n", blk_rq_payload_bytes(req),
-> +            iod->nents);
-
-I think you mean WARN_ONCE() here?
-
-> +       writel_relaxed(0, anv->mmio_coproc + APPLE_ANS_COPROC_CPU_CONTROL);
-> +       (void)readl_relaxed(anv->mmio_coproc + APPLE_ANS_COPROC_CPU_CONTROL);
-
-What is the purpose of the readl_relaxed() here? It looks like you are
-trying to flush
-the write to the hardware, but then again
-
-  a) on Apple hardware, the registers are mapped using PROT_DEVICE_nGnRnE,
-      so MMIO writes are never posted
-
-  b) the read is "_relaxed", so there is no barrier, and the result is
-unused, so
-      it would appear that the CPU can just keep executing code anyway.
-
-Since this is all the initialization path, I can't imagine what the
-relaxation of
-the barriers helps with.
-
-> +static int apple_nvme_reg_read32(struct nvme_ctrl *ctrl, u32 off, u32 *val)
-> +{
-> +       *val = readl_relaxed(ctrl_to_apple_nvme(ctrl)->mmio_nvme + off);
-> +       return 0;
-> +}
-> +
-> +static int apple_nvme_reg_write32(struct nvme_ctrl *ctrl, u32 off, u32 val)
-> +{
-> +       writel_relaxed(val, ctrl_to_apple_nvme(ctrl)->mmio_nvme + off);
-> +       return 0;
-> +}
-
-If you have generic register access functions, don't make them use
-_relaxed internally. If there are instances that need to be _relaxed,
-add another version of the accessor that spells this out in the caller.
-
-       Arnd
+-- 
+	Ansuel
