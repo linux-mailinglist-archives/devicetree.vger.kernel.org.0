@@ -2,140 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCDAE4E3F29
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D764E3F3C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:14:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232200AbiCVNKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 09:10:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
+        id S234491AbiCVNPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 09:15:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235323AbiCVNJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:09:58 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE7ADF25;
-        Tue, 22 Mar 2022 06:08:30 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 14C5B32013BE;
-        Tue, 22 Mar 2022 09:08:28 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Tue, 22 Mar 2022 09:08:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=OMRHkwKrqTNPvZ
-        BpmQ6WmDl0jpezKoqEw5HOCaOA9RA=; b=1idvj3QIH5becCDN3HXGsuHjLnIx+N
-        Yp+XgaUvfFJQXqIqX97fxmFuVjg7L3ubqZTCwJAcKdO2sTKsNdiBQy8XDotZU6er
-        p1pq8BwLR2qjv12m5dGlo67r0Ty8ybYgs9LmBprvS028NZ7UWTIIVbwIZ+sCsA9F
-        thIPZgbwlidWszPPe4EvNfTtGowJyKiJhSfEydGOo7S/kbZQOWYwmkS3VTIQKRXe
-        ImCBXLYFX+L5lv1m9YAocGtiz+KSf2/XjczfmKPiqSPwXODIZdB+TZrLVfr80yfG
-        lLWH6cZzBewcji3LX02JNQiL/ImdUFJNv7vGEf25eQu8OeHCRrgnu/BQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=OMRHkwKrqTNPvZBpmQ6WmDl0jpezKoqEw5HOCaOA9
-        RA=; b=CdhKh+gH3iao6fjugrlhu46nlpKbPxrVe+7FTGVnBDNGMVqFsrZzDGebl
-        ioYHjXX44CEAEC8xmbQyX6sb/7uWxwsOEtlv7a5BS4EGYvs7q4DdYng9oRst0C0n
-        jQ7pKKJdSVfqQGjG2y80jT/wzEPaMmoVGo7G4hoMI3WCFcrD+iV4skS0dgU1sg8o
-        oXuO+OBduByIrKXgFXaaFOg8yVGxumsST8FRHOaOm68P76ekE8jy4PTj6fUPLrRS
-        ebu5jK3kGoRYLPYRAFQPWCGZpQX7/JNxGmNHdzp2rlS5W99IXGlThfgdKDXMTtzc
-        VZSbBD4aeHCLw5P9taNda1IkOgO7Q==
-X-ME-Sender: <xms:Sco5YiAhS-n9sjVu45L98Aqrg4UKe2ytx1UMVblIwS-lUccz0vSCnw>
-    <xme:Sco5Ysj2NWbepEO_akFofkrUC2RManEz5zyUhlpXB-SLn-FYYyd21JXGYnj9rHCCa
-    dp2F2ej_yZIQjsIko8>
-X-ME-Received: <xmr:Sco5YlkbcujgErZLOU43fbSqV6WRBpsp_EoWsfmeke45cESbxCzcsGOpcNIXePk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeghedggeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheplfhirgig
-    uhhnucgjrghnghcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
-    ggtffrrghtthgvrhhnpeehieduvdevhfekjeeftddtkeeitefhudekvdeiueeulefgleei
-    jeeghedvkeduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:Sco5YgwHFyaoWi1CZloJlE_TTBFuNSAjw6ZUpPbLeJntkOE7C1gvzw>
-    <xmx:Sco5YnSMdgs9nMV2VyYdXHAHNxPaQh7r5djQRegOyLGfGAd0uxtcfw>
-    <xmx:Sco5YrahgPdgJLyN3L05ZMsdW2mg_r2oeub8DiX9_5gFJUxsnkrb-g>
-    <xmx:S8o5YmBLB-TAVq4lraZedTXhXPLWDNep5MnRXmghRbAPYvRJ_RZRwA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 22 Mar 2022 09:08:23 -0400 (EDT)
-Message-ID: <66ae2436-aa86-f583-85b4-d652273188e9@flygoat.com>
-Date:   Tue, 22 Mar 2022 13:08:22 +0000
+        with ESMTP id S234548AbiCVNPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:15:42 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C883E7657;
+        Tue, 22 Mar 2022 06:14:11 -0700 (PDT)
+Received: from mail-wm1-f42.google.com ([209.85.128.42]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MdNPq-1o5i2U0Hse-00ZMsx; Tue, 22 Mar 2022 14:14:10 +0100
+Received: by mail-wm1-f42.google.com with SMTP id r190-20020a1c2bc7000000b0038a1013241dso1677405wmr.1;
+        Tue, 22 Mar 2022 06:14:09 -0700 (PDT)
+X-Gm-Message-State: AOAM533cgpzCjEn8RKb+oacCxiOqclq7sNEBUv1wx13rcYhb0cCZY9Sf
+        6z7GdX4qWofWV4rjg0cCqO99IBmnIu4Xs/+oxWs=
+X-Google-Smtp-Source: ABdhPJyHDWv/mDC8WwrAR2wIUWCLvYl74QCY8Bcoo4lV+G5Q4bMm4glI5YH/lSfsRyVIlxl4wVhx+pOkDz4xDrytxAc=
+X-Received: by 2002:a05:600c:4e11:b0:38c:bd19:e72c with SMTP id
+ b17-20020a05600c4e1100b0038cbd19e72cmr1599974wmq.174.1647954849655; Tue, 22
+ Mar 2022 06:14:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v11 5/7] dt-bindings: display: Add Loongson display
- controller
-Content-Language: en-GB
-To:     Sui Jingfeng <15330273260@189.cn>, Rob Herring <robh@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220321162916.1116541-1-15330273260@189.cn>
- <20220321162916.1116541-6-15330273260@189.cn>
- <YjkITWpbnCmhKaX+@robh.at.kernel.org>
- <f7eb61bc-6784-c77a-083f-7408c0a17e05@189.cn>
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-In-Reply-To: <f7eb61bc-6784-c77a-083f-7408c0a17e05@189.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220321165049.35985-1-sven@svenpeter.dev> <20220321165049.35985-6-sven@svenpeter.dev>
+In-Reply-To: <20220321165049.35985-6-sven@svenpeter.dev>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 22 Mar 2022 14:13:53 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2VgrWHerXTX4_wS8UU7fpN9-JZ5xESaWrr-WGYqGty=g@mail.gmail.com>
+Message-ID: <CAK8P3a2VgrWHerXTX4_wS8UU7fpN9-JZ5xESaWrr-WGYqGty=g@mail.gmail.com>
+Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
+        Jens Axboe <axboe@fb.com>, Christoph Hellwig <hch@lst.de>,
+        Sagi Grimberg <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:2bBe4cyn3++cwdW/0rs3Hoz8DBuyuGh94rq9xa3h/Q6bApTSrfY
+ ciBXTMWnVq9a5Xq03Pb3yMhPSS+qsMnk+uHi+2G5tNhkE+nqVZZ0cxS4jOcC+eVIaRgN5t2
+ LHCe8O3qi239if3Uuh3SpA4qrmYc8rYmqzxihzkknqPBGqZj7YR9hfVPXBPhV3E3R/FceQr
+ DelYM8HEErILnBlgDObhQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:8GIhNQ+L9zA=:88M/Tj2uslOfKziF5bGUEx
+ ndkAQDGpGYjiNfMnIPDzl+ccdtQUu1Ia4F91AK/cCCjy3QO1lb+MWNou+vrl5baSdfW9yM7Wj
+ agfBbSfCXedENbHWA2kEwKfnhsgC/dtTO9ZYGswPyeeh4gqA6vEeXmYf3oAJ6UVI0DR6v5Hwq
+ dBGhe1st3MftRG/HH8G/L6P5lM0Pj9b7m0+atjxjz8T7GStEJU0Qxy2/kTTPWzScmZdFzknMX
+ S5bFy7OHoIFsscCGGwF7TO02IQJ1qKU0TPWbr1A0w6bMqtcZZjVSeLHkYYIrmmDNImInDEnYl
+ /MxexH4G7+lg2f0sSnB0UXn0Idf0dHbfxon7hun6VBjD4JxRvMn7+8cGhEqAPfYwLeZBv+CMJ
+ X7G0tRpILH5Gd/N/D3ORxJJVqE5McKK3u4/wjTnwupoEi/vbSiqXCfTa7CtHX1Zf/ZNSmdduT
+ Yre8x5U0gesKT9qLFkd6lam7/1f6d7TkjH4280wPiGNuNRMZWlzqGVY/H5MDiO3jVuNl8pl65
+ wsT7rQLa+y8M9FGQswGpvEoSMHI18x4jM6p33//1bT5g0VaO5FPQVV/IK6GMTLG5LBZpKv28v
+ /osGUKYzcmuhrLLwtfb3P+3LLG+W/gNzfQ3bse+zq+eGftKbD1xSpKtYuT3L+QIb3vsVY7TXi
+ J0M0dOyxpIUaG7DEf9gMobC4SogephW1TLy3eRP3jssWj/Qhd4OPehlr2y07/lDbZnUk=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H4,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 21, 2022 at 5:50 PM Sven Peter <sven@svenpeter.dev> wrote:
+>
+> Apple SoCs such as the M1 come with multiple embedded co-processors
+> running proprietary firmware. Communication with those is established
+> over a simple mailbox using the RTKit IPC protocol.
+>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 
+> +
+> +#define rtk_err(format, arg...) dev_err(rtk->dev, "RTKit: " format, ##arg)
+> +#define rtk_warn(format, arg...) dev_warn(rtk->dev, "RTKit: " format, ##arg)
+> +#define rtk_info(format, arg...) dev_info(rtk->dev, "RTKit: " format, ##arg)
+> +#define rtk_dbg(format, arg...) dev_dbg(rtk->dev, "RTKit: " format, ##arg)
 
-在 2022/3/22 2:33, Sui Jingfeng 写道:
->
-> On 2022/3/22 07:20, Rob Herring wrote:
->> On Tue, Mar 22, 2022 at 12:29:14AM +0800, Sui Jingfeng wrote:
->>> From: suijingfeng <suijingfeng@loongson.cn>
->>>
->> Needs a commit message.
->>
->>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
->>> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
->> Same person? Don't need both emails.
->
-> Yes,  suijingfeng@loongson.cn is my company's email. But it can not be 
-> used to send patches to dri-devel,
->
-> when send patches with this email, the patch will not be shown on 
-> patch works.
->
-> Emails  are either blocked or got  rejected  by loongson's mail 
-> server.  It can only receive emails
->
-> from you and other people, but not dri-devel. so have to use my 
-> personal email(15330273260@189.cn) to send patches.
-In this case you can just use your company's email to sign-off
-code and sending with your personal email. It's common practice.
+I generally don't like the custom printing macros, please just open-code
+the prints where they are used, that makes it easier for other kernel
+developers to see exactly what is being printed.
 
-If you don't want to receiving kernel email in your company mailbox,
-you can add a entry in .mailmap .
+> +enum { APPLE_RTKIT_WORK_MSG,
+> +       APPLE_RTKIT_WORK_REINIT,
+> +};
+> +
+> +enum { APPLE_RTKIT_PWR_STATE_OFF = 0x00,
+> +       APPLE_RTKIT_PWR_STATE_SLEEP = 0x01,
+> +       APPLE_RTKIT_PWR_STATE_GATED = 0x02,
+> +       APPLE_RTKIT_PWR_STATE_QUIESCED = 0x10,
+> +       APPLE_RTKIT_PWR_STATE_ON = 0x20,
+> +};
 
-Thanks.
-- Jiaxun
+This is an odd indentation style, I would insert a newline after the 'enum {'
+
+> +static int apple_rtkit_worker(void *data)
+> +{
+> +       struct apple_rtkit *rtk = data;
+> +       struct apple_rtkit_work work;
+> +
+> +       while (!kthread_should_stop()) {
+> +               wait_event_interruptible(rtk->wq,
+> +                                        kfifo_len(&rtk->work_fifo) > 0 ||
+> +                                                kthread_should_stop());
+> +
+> +               if (kthread_should_stop())
+> +                       break;
+> +
+> +               while (kfifo_out_spinlocked(&rtk->work_fifo, &work, 1,
+> +                                           &rtk->work_lock) == 1) {
+> +                       switch (work.type) {
+> +                       case APPLE_RTKIT_WORK_MSG:
+> +                               apple_rtkit_rx(rtk, &work.msg);
+> +                               break;
+> +                       case APPLE_RTKIT_WORK_REINIT:
+> +                               apple_rtkit_do_reinit(rtk);
+> +                               break;
+> +                       }
+> +               }
+
+It looks like you add quite a bit of complexity by using a custom
+worker thread implementation. Can you explain what this is
+needed for? Isn't this roughly the same thing that one would
+get more easily with create_singlethread_workqueue()?
+
+> +#if IS_ENABLED(CONFIG_APPLE_RTKIT)
+
+Instead of allowing the interface to be used without CONFIG_APPLE_RTKIT,
+I think it is sufficient to allow the driver itself to be built with
+CONFIG_COMPILE_TEST (as you already do), and then have
+drivers using it marked as 'depends on APPLE_RTKIT'
+unconditionally.
+
+> +/*
+> + * Initializes the internal state required to handle RTKit. This
+> + * should usually be called within _probe.
+> + *
+> + * @dev: Pointer to the device node this coprocessor is assocated with
+> + * @cookie: opaque cookie passed to all functions defined in rtkit_ops
+> + * @mbox_name: mailbox name used to communicate with the co-processor
+> + * @mbox_idx: mailbox index to be used if mbox_name is NULL
+> + * @ops: pointer to rtkit_ops to be used for this co-processor
+> + */
+> +struct apple_rtkit *apple_rtkit_init(struct device *dev, void *cookie,
+> +                                    const char *mbox_name, int mbox_idx,
+> +                                    const struct apple_rtkit_ops *ops);
+> +
+> +/*
+> + * Dev-res managed version of apple_rtkit_init.
+> + */
+> +struct apple_rtkit *devm_apple_rtkit_init(struct device *dev, void *cookie,
+> +                                         const char *mbox_name, int mbox_idx,
+> +                                         const struct apple_rtkit_ops *ops);
+
+Do we need to export both of these?
+
+         Arnd
