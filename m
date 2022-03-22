@@ -2,104 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CCA4E3DBD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 12:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC56F4E3DEF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 13:00:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234303AbiCVLmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 07:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
+        id S233223AbiCVMBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 08:01:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233062AbiCVLmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 07:42:21 -0400
+        with ESMTP id S233145AbiCVMBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 08:01:39 -0400
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC89F5BE68;
-        Tue, 22 Mar 2022 04:40:54 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0BD89522DA;
+        Tue, 22 Mar 2022 05:00:11 -0700 (PDT)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 842BC1596;
-        Tue, 22 Mar 2022 04:40:54 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 20FF83F66F;
-        Tue, 22 Mar 2022 04:40:53 -0700 (PDT)
-Date:   Tue, 22 Mar 2022 11:40:50 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     David Collins <quic_collinsd@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
-Subject: Re: [PATCH v2 0/2] regulator: scmi: add support for registering SCMI
- regulators by name
-Message-ID: <Yjm1wpcMZsZJJCuy@bogus>
-References: <cover.1647909090.git.quic_collinsd@quicinc.com>
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A58D153B;
+        Tue, 22 Mar 2022 05:00:11 -0700 (PDT)
+Received: from [10.57.43.230] (unknown [10.57.43.230])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 956A63F73B;
+        Tue, 22 Mar 2022 05:00:08 -0700 (PDT)
+Message-ID: <70422777-a3f9-b2f1-5faa-94d24fe200ac@arm.com>
+Date:   Tue, 22 Mar 2022 12:00:06 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1647909090.git.quic_collinsd@quicinc.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 18/26] arm64: dts: rockchip: rk3399: add crypto node
+Content-Language: en-GB
+To:     Corentin Labbe <clabbe@baylibre.com>, heiko@sntech.de,
+        herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20220321200739.3572792-1-clabbe@baylibre.com>
+ <20220321200739.3572792-19-clabbe@baylibre.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220321200739.3572792-19-clabbe@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 05:47:18PM -0700, David Collins wrote:
-> Add support to register SCMI regulator subnodes based on an SCMI
-> Voltage Domain name specified via the "arm,scmi-domain-name" device
-> tree property.  In doing so, make the "reg" property optional with
-> the constraint that at least one of "reg" or "arm,scmi-domain-name"
-> must be specified.  If both are specified, then both must match the
-> Voltage Domain data exposed by the SCMI platform.
->
+On 2022-03-21 20:07, Corentin Labbe wrote:
+> The rk3399 has a crypto IP handled by the rk3288 crypto driver so adds a
+> node for it.
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> index 88f26d89eea1..ca2c658371a5 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+> @@ -573,6 +573,18 @@ saradc: saradc@ff100000 {
+>   		status = "disabled";
+>   	};
+>   
+> +	crypto0: crypto@ff8b0000 {
+> +		compatible = "rockchip,rk3399-crypto";
+> +		reg = <0x0 0xff8b0000 0x0 0x4000>,
+> +		      <0x0 0xff8b8000 0x0 0x4000>;
+> +		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH 0>,
+> +			     <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH 0>;
+> +		clocks = <&cru SCLK_CRYPTO0>, <&cru HCLK_M_CRYPTO0>, <&cru HCLK_S_CRYPTO0>,
+> +			 <&cru SCLK_CRYPTO1>, <&cru HCLK_M_CRYPTO1>, <&cru HCLK_S_CRYPTO1>;
+> +		resets = <&cru SRST_CRYPTO0>, <&cru SRST_CRYPTO0_S>, <&cru SRST_CRYPTO0_M>,
+> +			 <&cru SRST_CRYPTO1>, <&cru SRST_CRYPTO1_S>, <&cru SRST_CRYPTO1_M>;
+> +	};
 
-Since the SCMI specification allows discovery of names based on the
-numbering scheme, we haven't added support for the name explicitly.
-However, I have heard/received couple of such feedback to provide
-name based access in private so far. So good to have this discussion
-in public.
+What's going on here? If these are simply two instances of the same IP 
+block as the evidence suggests, why are they crammed into a single DT 
+node rather than simply being described as two separate instances? I was 
+rather wondering what all the confusing mess in patch #16 was about, 
+until I got here.
 
-> Name based SCMI regulator registration helps ensure that an SCMI
-> agent doesn't need to be aware of the numbering scheme used for
-> Voltage Domains by the SCMI platform.
+If there's something in the crypto API that means the driver can't 
+simply naively register itself multiple times, there should be any 
+number of ways for the probe routine to keep track of whether it's 
+already registered something and associate any subsequent devices with 
+the first one internally if need be. Linux implementation details should 
+not leak out as non-standard DT weirdness.
 
-While I understand the regulator framework has a good support for name
-based approach you prefer, I see other frameworks like clock rely on
-numbering scheme and I see quite a few qualcomm platforms upstream use
-the number scheme for clocks. So why is that a problem with regulator ?
+I know the Rockchip IOMMU driver does this, but in that case the two 
+IOMMU instances are closely coupled and sharing work such that they 
+effectively need to be programmed identically at all times, so it was a 
+bit more justifiable. I don't know the full story here, but it certainly 
+looks like rk_get_engine_number() is just a means to schedule work on 
+any available unit independently, so looks like it wouldn't take much to 
+select between distinct devices at that point, and actually end up a lot 
+simpler and cleaner overall.
 
-Another main issue I have is what if the firmware and DT end up with a
-mismatch say with a firmware upgrade or a DT update ? Basically out of sync
-between DT and the SCMI firmware. I see this as duplication of source of
-information and is always cause for the trouble. I don't want to end up with
-the quirks to deal with (totally unnecessary) issues this may create in long
-run.
+Robin.
 
-> It also ensures that the
-> correct Voltage Domain is selected for a given physical regulator.
-
-How is that done magically if I give wrong regulator name ? Sorry the way
-it is presented sounds like adding name fixes something that numerical
-ID alone will always break.
-
-> This cannot be guaranteed with numeric Voltage Domain IDs alone.
->
-
-If the IDs are correct like the names, it is guaranteed. I see this
-ID vs name is more for some maintenance convenience because somewhere
-something else needs to changes or moved away from existing way of
-maintenance.
-
-That said, if others believe, this is useful, I am happy to consider
-esp. if there are more *real* reasons for doing this.
-
-Please add clock and other subsystem maintainers who also have numbering
-scheme as main mechanism in the upstream so that we get feedback from them
-too.
-
--- 
-Regards,
-Sudeep
+> +
+>   	i2c1: i2c@ff110000 {
+>   		compatible = "rockchip,rk3399-i2c";
+>   		reg = <0x0 0xff110000 0x0 0x1000>;
