@@ -2,458 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF92E4E3B9D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 10:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92E2C4E3BAA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 10:22:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231818AbiCVJVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 05:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38704 "EHLO
+        id S230515AbiCVJXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 05:23:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231328AbiCVJVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 05:21:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13CF223BE0;
-        Tue, 22 Mar 2022 02:19:35 -0700 (PDT)
-X-UUID: d8c28aa4ed974d50b2c722c72e7ad493-20220322
-X-UUID: d8c28aa4ed974d50b2c722c72e7ad493-20220322
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1757657028; Tue, 22 Mar 2022 17:19:30 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 22 Mar 2022 17:19:29 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 22 Mar
- 2022 17:19:28 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 22 Mar 2022 17:19:27 +0800
-Message-ID: <d820c899626c247ae14cfd0745eef97a7ddc7dac.camel@mediatek.com>
-Subject: Re: [PATCH v3 2/2] phy: mediatek: Add PCIe PHY driver
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Chen-Yu Tsai" <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Wei-Shun Chang <weishunc@google.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
-        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <jian.yang@mediatek.com>
-Date:   Tue, 22 Mar 2022 17:19:27 +0800
-In-Reply-To: <fb0f14cf952623557c8d71866b1d0eb38ffc4d11.camel@mediatek.com>
-References: <20220322024705.9665-1-jianjun.wang@mediatek.com>
-         <20220322024705.9665-3-jianjun.wang@mediatek.com>
-         <fb0f14cf952623557c8d71866b1d0eb38ffc4d11.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229938AbiCVJXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 05:23:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6FBF5C87C
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 02:22:25 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nWaiU-0004ha-Pd; Tue, 22 Mar 2022 10:22:14 +0100
+Received: from pengutronix.de (2a03-f580-87bc-d400-7c76-e54b-1dbb-9ff1.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:7c76:e54b:1dbb:9ff1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 8B471513DE;
+        Tue, 22 Mar 2022 09:22:12 +0000 (UTC)
+Date:   Tue, 22 Mar 2022 10:22:12 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marin Jerabek <martin.jerabek01@gmail.com>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Jiri Novak <jnovak@fel.cvut.cz>,
+        Jaroslav Beran <jara.beran@gmail.com>,
+        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
+        Drew Fustini <pdp7pdp7@gmail.com>
+Subject: Re: [PATCH v8 0/7] CTU CAN FD open-source IP core SocketCAN driver,
+ PCI, platform integration and documentation
+Message-ID: <20220322092212.f5eaxm5k45j5khra@pengutronix.de>
+References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz>
+ <20220322074622.5gkjhs25epurecvx@pengutronix.de>
+ <202203220918.33033.pisa@cmp.felk.cvut.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wz3c3pbms7s7war2"
+Content-Disposition: inline
+In-Reply-To: <202203220918.33033.pisa@cmp.felk.cvut.cz>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-03-22 at 16:08 +0800, Chunfeng Yun wrote:
-> On Tue, 2022-03-22 at 10:47 +0800, Jianjun Wang wrote:
-> > Add PCIe GEN3 PHY driver support on MediaTek chipsets.
-> > 
-> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > ---
-> >  drivers/phy/mediatek/Kconfig        |  11 ++
-> >  drivers/phy/mediatek/Makefile       |   1 +
-> >  drivers/phy/mediatek/phy-mtk-pcie.c | 271
-> > ++++++++++++++++++++++++++++
-> >  3 files changed, 283 insertions(+)
-> >  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
-> > 
-> > diff --git a/drivers/phy/mediatek/Kconfig
-> > b/drivers/phy/mediatek/Kconfig
-> > index 55f8e6c048ab..387ed1b3f2cc 100644
-> > --- a/drivers/phy/mediatek/Kconfig
-> > +++ b/drivers/phy/mediatek/Kconfig
-> > @@ -55,3 +55,14 @@ config PHY_MTK_MIPI_DSI
-> >  	select GENERIC_PHY
-> >  	help
-> >  	  Support MIPI DSI for Mediatek SoCs.
-> > +
-> > +config PHY_MTK_PCIE
-> > +	tristate "MediaTek PCIe-PHY Driver"
-> > +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> > +	depends on OF
-> > +	select GENERIC_PHY
-> > +	help
-> > +	  Say 'Y' here to add support for MediaTek PCIe PHY driver.
-> > +	  This driver create the basic PHY instance and provides
-> > initialize
-> > +	  callback for PCIe GEN3 port, it supports software efuse
-> > +	  initialization.
-> > diff --git a/drivers/phy/mediatek/Makefile
-> > b/drivers/phy/mediatek/Makefile
-> > index ace660fbed3a..788c13147f63 100644
-> > --- a/drivers/phy/mediatek/Makefile
-> > +++ b/drivers/phy/mediatek/Makefile
-> > @@ -6,6 +6,7 @@
-> >  obj-$(CONFIG_PHY_MTK_TPHY)		+= phy-mtk-tphy.o
-> >  obj-$(CONFIG_PHY_MTK_UFS)		+= phy-mtk-ufs.o
-> >  obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-xsphy.o
-> > +obj-$(CONFIG_PHY_MTK_PCIE)		+= phy-mtk-pcie.o
-> >  
-> >  phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
-> >  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
-> > diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c
-> > b/drivers/phy/mediatek/phy-mtk-pcie.c
-> > new file mode 100644
-> > index 000000000000..2f19c253238f
-> > --- /dev/null
-> > +++ b/drivers/phy/mediatek/phy-mtk-pcie.c
-> > @@ -0,0 +1,271 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2022 MediaTek Inc.
-> > + * Author: Jianjun Wang <jianjun.wang@mediatek.com>
-> > + */
-> > +
-> > +#include <linux/bits.h>
-> > +#include <linux/compiler_types.h>
-> > +#include <linux/module.h>
-> > +#include <linux/nvmem-consumer.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/slab.h>
-> > +
-> > +#include "phy-mtk-io.h"
-> > +
-> > +#define PEXTP_ANA_GLB_00_REG		0x9000
-> > +#define PEXTP_ANA_LN0_TRX_REG		0xa000
-> > +#define PEXTP_ANA_TX_OFFSET		0x04
-> > +#define PEXTP_ANA_RX_OFFSET		0x3c
-> > +#define PEXTP_ANA_LANE_OFFSET		0x100
-> > +
-> > +/* PEXTP_GLB_00_REG[28:24] Internal Resistor Selection of TX Bias
-> > Current */
-> > +#define EFUSE_GLB_INTR_SEL		GENMASK(28, 24)
-> > +#define EFUSE_GLB_INTR_VAL(x)		((0x1f & (x)) << 24)
-> > +
-> > +/* PEXTP_ANA_LN_RX_REG[3:0] RX impedance selection */
-> > +#define EFUSE_LN_RX_SEL			GENMASK(3, 0)
-> > +#define EFUSE_LN_RX_VAL(x)		(0xf & (x))
-> > +
-> > +/* PEXTP_ANA_LN_TX_REG[5:2] TX PMOS impedance selection */
-> > +#define EFUSE_LN_TX_PMOS_SEL		GENMASK(5, 2)
-> > +#define EFUSE_LN_TX_PMOS_VAL(x)		((0xf & (x)) << 2)
-> > +
-> > +/* PEXTP_ANA_LN_TX_REG[11:8] TX NMOS impedance selection */
-> > +#define EFUSE_LN_TX_NMOS_SEL		GENMASK(11, 8)
-> > +#define EFUSE_LN_TX_NMOS_VAL(x)		((0xf & (x)) << 8)
-> > +
-> > +/**
-> > + * struct mtk_pcie_lane_efuse - eFuse data for each lane
-> > + * @tx_pmos: TX PMOS impedance selection data
-> > + * @tx_nmos: TX NMOS impedance selection data
-> > + * @rx_data: RX impedance selection data
-> > + * @lane_efuse_supported: software eFuse data is supported for
-> > this
-> > lane
-> > + */
-> > +struct mtk_pcie_lane_efuse {
-> > +	u32 tx_pmos;
-> > +	u32 tx_nmos;
-> > +	u32 rx_data;
-> > +	bool lane_efuse_supported;
-> > +};
-> > +
-> > +/**
-> > + * struct mtk_pcie_phy_data - phy data for each SoC
-> > + * @num_lanes: supported lane numbers
-> > + * @sw_efuse_supported: support software to load eFuse data
-> > + */
-> > +struct mtk_pcie_phy_data {
-> > +	int num_lanes;
-> > +	bool sw_efuse_supported;
-> > +};
-> > +
-> > +/**
-> > + * struct mtk_pcie_phy - PCIe phy driver main structure
-> > + * @dev: pointer to device
-> > + * @phy: pointer to generic phy
-> > + * @sif_base: IO mapped register base address of system interface
-> > + * @data: pointer to SoC dependent data
-> > + * @sw_efuse_en: software eFuse enable status
-> > + * @efuse_glb_intr: internal resistor selection of TX bias current
-> > data
-> > + * @efuse: pointer to eFues data for each lane
-> > + */
-> > +struct mtk_pcie_phy {
-> > +	struct device *dev;
-> > +	struct phy *phy;
-> > +	void __iomem *sif_base;
-> > +	const struct mtk_pcie_phy_data *data;
-> > +
-> > +	bool sw_efuse_en;
-> > +	u32 efuse_glb_intr;
-> > +	struct mtk_pcie_lane_efuse *efuse;
-> > +};
-> > +
-> > +static void mtk_pcie_efuse_set_lane(struct mtk_pcie_phy *pcie_phy,
-> > +				    unsigned int lane)
-> > +{
-> > +	struct mtk_pcie_lane_efuse *data = &pcie_phy->efuse[lane];
-> > +	void __iomem *addr;
-> > +
-> > +	if (!data->lane_efuse_supported)
-> > +		return;
-> > +
-> > +	addr = pcie_phy->sif_base + PEXTP_ANA_LN0_TRX_REG +
-> > +	       lane * PEXTP_ANA_LANE_OFFSET;
-> > +
-> > +	mtk_phy_update_bits(addr + PEXTP_ANA_TX_OFFSET,
-> > EFUSE_LN_TX_PMOS_SEL,
-> > +			    EFUSE_LN_TX_PMOS_VAL(data->tx_pmos));
-> > +
-> > +	mtk_phy_update_bits(addr + PEXTP_ANA_TX_OFFSET,
-> > EFUSE_LN_TX_NMOS_SEL,
-> > +			    EFUSE_LN_TX_NMOS_VAL(data->tx_nmos));
-> > +
-> > +	mtk_phy_update_bits(addr + PEXTP_ANA_RX_OFFSET,
-> > EFUSE_LN_RX_SEL,
-> > +			    EFUSE_LN_RX_VAL(data->rx_data));
-> > +}
-> > +
-> > +/**
-> > + * mtk_pcie_phy_init() - Initialize the phy
-> > + * @phy: the phy to be initialized
-> > + *
-> > + * Initialize the phy by setting the efuse data.
-> > + * The hardware settings will be reset during suspend, it should
-> > be
-> > + * reinitialized when the consumer calls phy_init() again on
-> > resume.
-> > + */
-> > +static int mtk_pcie_phy_init(struct phy *phy)
-> > +{
-> > +	struct mtk_pcie_phy *pcie_phy = phy_get_drvdata(phy);
-> > +	int i;
-> > +
-> > +	if (!pcie_phy->sw_efuse_en)
-> > +		return 0;
-> > +
-> > +	/* Set global data */
-> > +	mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_GLB_00_REG,
-> > +			    EFUSE_GLB_INTR_SEL,
-> > +			    EFUSE_GLB_INTR_VAL(pcie_phy-
-> > > efuse_glb_intr));
-> > 
-> > +
-> > +	for (i = 0; i < pcie_phy->data->num_lanes; i++)
-> > +		mtk_pcie_efuse_set_lane(pcie_phy, i);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct phy_ops mtk_pcie_phy_ops = {
-> > +	.init	= mtk_pcie_phy_init,
-> > +	.owner	= THIS_MODULE,
-> > +};
-> > +
-> > +static int mtk_pcie_efuse_read_for_lane(struct mtk_pcie_phy
-> > *pcie_phy,
-> > +					unsigned int lane)
-> > +{
-> > +	struct mtk_pcie_lane_efuse *efuse = &pcie_phy->efuse[lane];
-> > +	struct device *dev = pcie_phy->dev;
-> > +	char efuse_id[15];
-> > +	int ret;
-> > +
-> > +	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_pmos", lane);
-> > +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
-> > > tx_pmos);
-> > 
-> > +	if (ret)
-> > +		dev_err_probe(dev, ret, "Failed to read %s\n",
-> > efuse_id);
-> 
-> skip this error?
 
-Oh, sorry, I made a mistake, it should be return here, I'll fix it in
-the next version, thanks for your review.
+--wz3c3pbms7s7war2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks.
-> 
-> > +
-> > +	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_nmos", lane);
-> > +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
-> > > tx_nmos);
-> > 
-> > +	if (ret)
-> > +		dev_err_probe(dev, ret, "Failed to read %s\n",
-> > efuse_id);
-> > +
-> > +	snprintf(efuse_id, sizeof(efuse_id), "rx_ln%d", lane);
-> > +	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse-
-> > > rx_data);
-> > 
-> > +	if (ret)
-> > +		dev_err_probe(dev, ret, "Failed to read %s\n",
-> > efuse_id);
-> > +
-> > +	if (!(efuse->tx_pmos || efuse->tx_nmos || efuse->rx_data))
-> > +		dev_err_probe(dev, -EINVAL,
-> > +			      "No eFuse data found for lane%d, but dts
-> > enable it\n",
-> > +			      lane);
-> > +
-> > +	efuse->lane_efuse_supported = true;
-> 
-> Seems efuse->lane_efuse_supported is always true?
-> but is false if all these three efuse values are zero, right?
+On 22.03.2022 09:18:32, Pavel Pisa wrote:
+> > The driver looks much better now. Good work. Please have a look at the
+> > TX path of the mcp251xfd driver, especially the tx_stop_queue and
+> > tx_wake_queue in mcp251xfd_start_xmit() and mcp251xfd_handle_tefif(). A
+> > lockless implementation should work in your hardware, too.
+>=20
+> Is this blocker for now? I would like to start with years tested base.
 
-Yes, I'll fix it in the next version, thanks.
+Makes sense.
 
-> 
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int mtk_pcie_read_efuse(struct mtk_pcie_phy *pcie_phy)
-> > +{
-> > +	struct device *dev = pcie_phy->dev;
-> > +	bool nvmem_enabled;
-> > +	int ret, i;
-> > +
-> > +	nvmem_enabled = device_property_read_bool(dev, "nvmem-cells");
-> > +	if (!nvmem_enabled)
-> > +		return -ENODEV;
-> > +
-> > +	ret = nvmem_cell_read_variable_le_u32(dev, "glb_intr",
-> > +					      &pcie_phy-
-> > > efuse_glb_intr);
-> > 
-> > +	if (ret)
-> > +		dev_err_probe(dev, ret, "Failed to read glb_intr\n");
-> 
-> also here, skip the error?
+> We have HW timestamping implemented for actual stable CTU CAN FD IP core=
+=20
+> version, support for variable number of TX buffers which count can be=20
+> parameterized up to 8 in the prepared version and long term desire to=20
+> configurable-SW defined multi-queue which our HW interface allows to=20
+> dynamically server by =C3=A1 TX buffers. But plan is to keep combinations
+> of the design and driver compatible from the actual revision.
 
-Should be return here, I'll fix it in the next version.
-> 
-> > +
-> > +	pcie_phy->sw_efuse_en = true;
-> > +
-> > +	pcie_phy->efuse = devm_kzalloc(dev, pcie_phy->data->num_lanes *
-> > +				       sizeof(*pcie_phy->efuse),
-> > GFP_KERNEL);
-> > +	if (!pcie_phy->efuse)
-> > +		return -ENOMEM;
-> > +
-> > +	for (i = 0; i < pcie_phy->data->num_lanes; i++) {
-> > +		ret = mtk_pcie_efuse_read_for_lane(pcie_phy, i);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int mtk_pcie_phy_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct phy_provider *provider;
-> > +	struct mtk_pcie_phy *pcie_phy;
-> > +	int ret;
-> > +
-> > +	pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
-> > +	if (!pcie_phy)
-> > +		return -ENOMEM;
-> > +
-> > +	pcie_phy->sif_base =
-> > devm_platform_ioremap_resource_byname(pdev, "sif");
-> > +	if (IS_ERR(pcie_phy->sif_base))
-> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->sif_base),
-> > +				     "Failed to map phy-sif base\n");
-> > +
-> > +	pcie_phy->phy = devm_phy_create(dev, dev->of_node,
-> > &mtk_pcie_phy_ops);
-> > +	if (IS_ERR(pcie_phy->phy))
-> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
-> > +				     "Failed to create PCIe phy\n");
-> > +
-> > +	pcie_phy->dev = dev;
-> > +	pcie_phy->data = of_device_get_match_data(dev);
-> > +	if (!pcie_phy->data)
-> > +		return dev_err_probe(dev, -EINVAL, "Failed to get phy
-> > data\n");
-> > +
-> > +	if (pcie_phy->data->sw_efuse_supported) {
-> > +		/*
-> > +		 * Failed to read the efuse data is not a fatal
-> > problem,
-> > +		 * ignore the failure and keep going.
-> > +		 */
-> > +		ret = mtk_pcie_read_efuse(pcie_phy);
-> > +		if (ret == -EPROBE_DEFER)
-> > +			return ret;
-> > +	}
-> > +
-> > +	phy_set_drvdata(pcie_phy->phy, pcie_phy);
-> > +
-> > +	provider = devm_of_phy_provider_register(dev,
-> > of_phy_simple_xlate);
-> > +	if (IS_ERR(provider))
-> > +		return dev_err_probe(dev, PTR_ERR(provider),
-> > +				     "PCIe phy probe failed\n");
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct mtk_pcie_phy_data mt8195_data = {
-> > +	.num_lanes = 2,
-> > +	.sw_efuse_supported = true,
-> > +};
-> > +
-> > +static const struct of_device_id mtk_pcie_phy_of_match[] = {
-> > +	{ .compatible = "mediatek,mt8195-pcie-phy", .data =
-> > &mt8195_data },
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
-> 
-> Do we need add a generic compatible which sw_efuse_supported is set
-> false? if no need, then pcie driver should handle the case without
-> phy
-> due to we may use hw auto efuse and do not this driver anymore.
+Is the number of RX and TX buffers and TX queues auto detectable by
+software, or do we need DT bindings for this?
 
-Indeed, I'll add a generic ones in the next version, thanks.
+> I would be happy if we can agree on some base/minimal support and get
+> it into mainline and use it as base for the followup patch series.
+>=20
+> I understand that I have sent code late for actual merge window,
+> but I am really loaded by teaching, related RISC-V simulator
+> https://github.com/cvut/qtrvsim , ESA and robotic projects
+> at company. So I would prefer to go step by step and cooperate
+> on updates and testing with my diploma students.
 
-> 
-> 
-> > +
-> > +static struct platform_driver mtk_pcie_phy_driver = {
-> > +	.probe	= mtk_pcie_phy_probe,
-> > +	.driver	= {
-> > +		.name = "mtk-pcie-phy",
-> > +		.of_match_table = mtk_pcie_phy_of_match,
-> > +	},
-> > +};
-> > +module_platform_driver(mtk_pcie_phy_driver);
-> > +
-> > +MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
-> > +MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
-> > +MODULE_LICENSE("GPL v2");
-> 
-> 
+The net-next merge window closed with Monday evening, so this driver
+will go into net-next for v5.19.
 
+> > BTW: The PROP_SEG/PHASE_SEG1 issue is known:
+> > > +A curious reader will notice that the durations of the segments PROP=
+_SEG
+> > > +and PHASE_SEG1 are not determined separately but rather combined and
+> > > +then, by default, the resulting TSEG1 is evenly divided between PROP=
+_SEG
+> > > +and PHASE_SEG1.
+> >
+> > and the flexcan IP core in CAN-FD mode has the same problem. When
+> > working on the bit timing parameter, I'll plan to have separate
+> > PROP_SEG/PHASE_SEG1 min/max in the kernel, so that the bit timing
+> > algorithm can take care of this.
+>=20
+> Hmm, when I have thought about that years ago I have not noticed real
+> difference when time quanta is move between PROP_SEG and PHASE_SEG1.
+> So for me it had no influence on the algorithm computation and
+> could be done on the chip level when minimal and maximal sum is
+> respected. But may it be I have overlooked something and there is
+> difference for CAN FD.  May it be my colleagues Jiri Novak and=20
+> Ondrej Ille are more knowable.
+
+Jiri, Ondrej, I'm interested in details :)
+
+> As for the optimal timequantas per bit value, I agree that it
+> is not so simple. In the fact SJW and even tipple-sampling
+> should be defined in percentage of bit time
+
+I thought of specifying SJW in a relative value, too.
+
+> and then all should be optimized together
+
+SJW has no influence on the bit rate and sample point. Although SJW is
+max phase seg 2, so it's maximum is influenced by the sample point.
+
+> and even combination with slight bitrate error should be preferred
+> against other exact matching when there is significant difference in
+> the other parameters values.
+
+Since linux-4.8, i.e.
+
+| 7da29f97d6c8 can: dev: can-calc-bit-timing(): better sample point calcula=
+tion
+
+the algorithm optimizes for best bit minimal absolute bit rate error
+first and then for minimal sample point error. The sample point must be
+<=3D the nominal sample point. I have some experiments where the algorithm
+optimizes the absolute sample point error.
+
+For more complicated bit timing optimization you need to combine the
+bitrate error and the sample point error into a function that needs to
+be minimized.
+
+> But I am not ready to dive into it till our ESA space NanoXplore
+> FPGA project passes final stage...=20
+
+Ok
+
+> By the way we have received report from Andrew Dennison about
+> successful integration of CTU CAN FD into Litex based RISC-V
+> system. Tested with the Linux our Linux kernel driver.
+
+That sounds interesting!
+
+> The first iteration there, but he reported that some corrections
+> from his actual development needs to be added to the public
+> repo still to be usable out of the box
+>=20
+>   https://github.com/AndrewD/litecan
+
+Nice!
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--wz3c3pbms7s7war2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmI5lUEACgkQrX5LkNig
+013s3AgAiI2/IBnSVWKDKiirvit6BOUskBFzxN/zqF0p+ydquBA3ebQ6z9kbKbjb
+pPc8Ic8qgxg7dFhW3a7XrwdzCoe7ShCnjqsR2wgYibExjrizLCfFJ/K1vO4dE4Df
+VRKbw5+cQDsT6+tZHnIqjzVRglmQIgG0WnXFc349DdrWoQXTP2ugd9p0cylVjNBu
+suwfT8LBtgNM6swYeEkq3otP72+Ksw0WAeIPHUlBaMA+dAxNYubX3EqRN9VyCpe5
+VXnaEh3vSnGrMRn8DYIwFYplA7wLoA0AjfKEL8ZjlUixopJWWPGbIGN+beAKW2jq
+aNKQ+pn/RpnswF+EtDGMcREGmm83lA==
+=fe3N
+-----END PGP SIGNATURE-----
+
+--wz3c3pbms7s7war2--
