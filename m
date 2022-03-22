@@ -2,120 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6484E3AD3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:40:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3E6C4E3AFB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbiCVIlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 04:41:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49036 "EHLO
+        id S231539AbiCVIoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 04:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbiCVIlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:41:31 -0400
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F11725D8;
-        Tue, 22 Mar 2022 01:40:04 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id p9so23824857wra.12;
-        Tue, 22 Mar 2022 01:40:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=/Tfn3grWM8EBZ0IFyy5BUNygjofN0WZXFLyZhdj5fD8=;
-        b=UlDPQna4CCdnJGBrEqI6B8NF4N/ps+D1GLXFLuXXlmtvEs5zpF2MdoIvIpAoofLeJU
-         ZOKbOec2wgadltr6Qxs9Bw0nrxcduvkxlHaH1Vvv52+VNzvVbYmXtIxQWA6oaOk7RGFr
-         sERxThNv90Ev5yaTWNhyfNU2oDhqyhV3PKWuiq/sHOtD52XQf4rL+pYRRlAOgQVgZ6DU
-         eOVp/S1BrSS662yJTlpIzrhmQOaQE7AH5ztC8xUv2ncfWcK6yrwQLz5LKFAPc0Vo38X6
-         oYVpeD6I9Ar4f7bCAmKKBf1b3lNq62eawlTJnM8MLdL9vKab0kz54DS0su+Cbjur5pq5
-         mpvw==
-X-Gm-Message-State: AOAM530r1O45zpM53iKwyh+LSkPDwKvpfbvxBeQQVIpUXZfmykDCVIn2
-        YJYHELMAlVFb7HDhmB1tY9iGFEc7K7U=
-X-Google-Smtp-Source: ABdhPJxkORCp7gIYkTNw3KV3bdX3kmbwKYImn33rbcbzHbL5oapUbtQ9rTY8znVVhU8GFn8NowZFyg==
-X-Received: by 2002:a5d:4609:0:b0:203:e792:3add with SMTP id t9-20020a5d4609000000b00203e7923addmr21101655wrq.657.1647938402451;
-        Tue, 22 Mar 2022 01:40:02 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id i10-20020a0560001aca00b00203daf3759asm16563813wry.68.2022.03.22.01.40.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Mar 2022 01:40:01 -0700 (PDT)
-Message-ID: <216b98d5-a254-4527-c569-9f3397811e70@kernel.org>
-Date:   Tue, 22 Mar 2022 09:40:00 +0100
+        with ESMTP id S230414AbiCVIoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:44:02 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E919413CF6;
+        Tue, 22 Mar 2022 01:42:33 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 648181F43DA9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1647938552;
+        bh=ZNH440yknkDh/m/M5zf1aXWnLlpXC6fg0XWbHBtoN7M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=EeM1uYKCpBYjXvUDyOx6y+vxbXAaJzLk3Ge26/1Xy2eJCOadADsvRuo+jPUVoEE5v
+         igb7eq2Oduhale4IAuQUCnGb+Ejf4u1MJviwCMkjuKHu9VEfMMaHni45sLbQ3xTM7O
+         Duw29OL3LMKr/mdC6t6yjGGaJbaiACBaGwBpOiTKGQ3kM7AKWw/7Z46wtrkRxMa9ld
+         uQgJKW3XvSVzB5FznnLyn3mQFzltxOyymH3s8st6eR6W+G9mWxunJcKO/GTfBFI8hV
+         LEuMbAXpELgraVmQxSK/he0kT6rFfKF/OIyGjQZOULwwAF8t+OAvCCjeB+hBR2CsvQ
+         vcKOEppgZpCjA==
+Message-ID: <5d9c7655-b05e-aa77-d405-c1ec971daa77@collabora.com>
+Date:   Tue, 22 Mar 2022 09:42:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset properties into MDIO
- nodes
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v8 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
+ pinctrls properties
 Content-Language: en-US
-To:     Dylan Hung <dylan_hung@aspeedtech.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Cc:     BMC-SW <BMC-SW@aspeedtech.com>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>
-References: <20220321095648.4760-1-dylan_hung@aspeedtech.com>
- <20220321095648.4760-4-dylan_hung@aspeedtech.com>
- <eefe6dd8-6542-a5c2-6bdf-2c3ffe06e06b@kernel.org>
- <HK0PR06MB2834CFADF087A439B06F87C29C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
-In-Reply-To: <HK0PR06MB2834CFADF087A439B06F87C29C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+To:     Axe Yang <axe.yang@mediatek.com>, Rob Herring <robh@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220321115133.32121-1-axe.yang@mediatek.com>
+ <20220321115133.32121-2-axe.yang@mediatek.com>
+ <YjkKURNzg8JPbXcg@robh.at.kernel.org>
+ <b03df175f871ee9a6561862f5bd7bceb9cafbde1.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <b03df175f871ee9a6561862f5bd7bceb9cafbde1.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2022 03:32, Dylan Hung wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
->> Sent: 2022年3月21日 11:53 PM
->> To: Dylan Hung <dylan_hung@aspeedtech.com>; robh+dt@kernel.org;
->> joel@jms.id.au; andrew@aj.id.au; andrew@lunn.ch; hkallweit1@gmail.com;
->> linux@armlinux.org.uk; davem@davemloft.net; kuba@kernel.org;
->> pabeni@redhat.com; p.zabel@pengutronix.de; devicetree@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
->> linux-kernel@vger.kernel.org; netdev@vger.kernel.org
->> Cc: BMC-SW <BMC-SW@aspeedtech.com>; stable@vger.kernel.org
->> Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset properties into MDIO
->> nodes
->>
->> On 21/03/2022 10:56, Dylan Hung wrote:
->>> Add reset control properties into MDIO nodes.  The 4 MDIO controllers in
->>> AST2600 SOC share one reset control bit SCU50[3].
+Il 22/03/22 02:35, Axe Yang ha scritto:
+> On Mon, 2022-03-21 at 18:29 -0500, Rob Herring wrote:
+>> On Mon, Mar 21, 2022 at 07:51:32PM +0800, Axe Yang wrote:
+>>> Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
+>>> This feature allow SDIO devices alarm asynchronous interrupt to
+>>> host
+>>> even when host stop providing clock to SDIO card. An extra wakeup
+>>> interrupt and pinctrl states for SDIO DAT1 pin state switching are
+>>> required in this scenario.
 >>>
->>> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
->>> Cc: stable@vger.kernel.org
+>>> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+>>> ---
+>>>   .../devicetree/bindings/mmc/mtk-sd.yaml       | 23
+>>> ++++++++++++++++++-
+>>>   1 file changed, 22 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> index 297ada03e3de..f57774535a1d 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> @@ -69,12 +69,23 @@ properties:
+>>>         - const: ahb_cg
+>>>   
+>>>     interrupts:
+>>> -    maxItems: 1
+>>> +    description:
+>>> +      Should at least contain MSDC GIC interrupt. To support SDIO
+>>> in-band wakeup, an extended
+>>> +      interrupt is required and be configured as wakeup source
+>>> irq.
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>>   
+>>>     pinctrl-names:
+>>> +    description:
+>>> +      Should at least contain default and state_uhs. To support
+>>> SDIO in-band wakeup, dat1 pin
+>>> +      will be switched between GPIO mode and SDIO DAT1 mode,
+>>> state_eint and state_dat1 are
+>>> +      mandatory in this scenarios.
+>>> +    minItems: 2
+>>>       items:
+>>>         - const: default
+>>>         - const: state_uhs
+>>> +      - const: state_eint
+>>> +      - const: state_dat1
+>>>   
+>>>     pinctrl-0:
+>>>       description:
+>>> @@ -86,6 +97,16 @@ properties:
+>>>         should contain uhs mode pin ctrl.
+>>>       maxItems: 1
+>>>   
+>>> +  pinctrl-2:
+>>> +    description:
+>>> +      should switch dat1 pin to GPIO mode.
+>>> +    maxItems: 1
+>>> +
+>>> +  pinctrl-3:
+>>> +    description:
+>>> +      should switch SDIO dat1 pin from GPIO mode back to SDIO
+>>> mode.
 >>
->> Please describe the bug being fixed. See stable-kernel-rules.
+>> How is this different than pinctrl-0?
 > 
-> Thank you for your comment.
-> The reset deassertion of the MDIO device was usually done by the bootloader (u-boot).
-> However, one of our clients uses proprietary bootloader and doesn't deassert the MDIO
-> reset so failed to access the HW in kernel driver.  The reset deassertion is missing in the
-> kernel driver since it was created, should I add a BugFix for the first commit of this driver?
-> Or would it be better if I remove " Cc: stable@vger.kernel.org"?
+> pinctrl-0 contains default settings for all IO pins(CLK/CMD/DAT).
+> pinctrl-1 contains settings for all IO pins(CLK/CMD/DAT) in UHS mode.
+> pinctrl-3 is lightweight pinctrl-1, only keep SDIO DAT1 pin function
+> switch part.
+> 
 
-This rather looks like a missing feature, not a bug. Anyway any
-description must be in commit message.
+Is there any particular reason why we cannot simply select pinctrl-1 again
+instead of pinctrl-3, apart from the virtually not existent overhead of
+one more mmio write?
 
+> ...
+> 
+> Regards,
+> Axe
+> 
 
-Best regards,
-Krzysztof
