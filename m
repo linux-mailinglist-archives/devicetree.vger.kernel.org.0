@@ -2,63 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D03B4E3ACB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A6484E3AD3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:40:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230082AbiCVIkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 04:40:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43754 "EHLO
+        id S231441AbiCVIlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 04:41:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231127AbiCVIkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:40:19 -0400
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27009EA9;
-        Tue, 22 Mar 2022 01:38:52 -0700 (PDT)
-Received: by mail-wm1-f54.google.com with SMTP id k124-20020a1ca182000000b0038c9cf6e2a6so859175wme.0;
-        Tue, 22 Mar 2022 01:38:52 -0700 (PDT)
+        with ESMTP id S231260AbiCVIlb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:41:31 -0400
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F11725D8;
+        Tue, 22 Mar 2022 01:40:04 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id p9so23824857wra.12;
+        Tue, 22 Mar 2022 01:40:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:from
          :subject:content-language:to:cc:references:in-reply-to
          :content-transfer-encoding;
-        bh=0FcdRambMsRKShOfd/k3JzjIzx8GGv4n7YmQbRU/7n0=;
-        b=lpDvjwP6pvZL9HmzQ77KoautAOs5kJnLoc02cm3sYA0m84fXOEelWpz7oEnBv1xiFe
-         zvgTmEMCek2O/LvrJxbzgQEHWUf6nAO/dE2YwZIP+8fbXSwss59uf/RSQVkM2Lau3v8o
-         6PCYH9d7K3ZorZTBAsDsv54PJJqYkH0l1iz3UNQpGAwsSh1yLgz0jFDxRt7tKGnSI7Hh
-         CzsWBrLLd0HHK0MNpWz+ZBYzMpiU2ap9+z4+ORrmBW1jR6gnvZfk/uGG2frCrhrvs3eG
-         PspKIzCouWb1YrtzwXlgLv1ZNQtls6Y4m4dVDLdSkSM4jtGnysbyiydtyvrtQdhRfhT6
-         uMFA==
-X-Gm-Message-State: AOAM531S5jzb/YZrPf4ggCgMqz/QMMJA5QNJUxAh94YGF+suS6r8C7nT
-        lGWWrzbwUlI4SYx5uIBKO8rug30RGCQ=
-X-Google-Smtp-Source: ABdhPJx5cFoT4/ge0DuruG2LnSzEJ79ktilr8/JnWLY7QJDxE5kYgAMTZFcS3KNJQKTEJo5dvxbGKw==
-X-Received: by 2002:a1c:2744:0:b0:382:a9b7:1c8a with SMTP id n65-20020a1c2744000000b00382a9b71c8amr2551228wmn.187.1647938330451;
-        Tue, 22 Mar 2022 01:38:50 -0700 (PDT)
+        bh=/Tfn3grWM8EBZ0IFyy5BUNygjofN0WZXFLyZhdj5fD8=;
+        b=UlDPQna4CCdnJGBrEqI6B8NF4N/ps+D1GLXFLuXXlmtvEs5zpF2MdoIvIpAoofLeJU
+         ZOKbOec2wgadltr6Qxs9Bw0nrxcduvkxlHaH1Vvv52+VNzvVbYmXtIxQWA6oaOk7RGFr
+         sERxThNv90Ev5yaTWNhyfNU2oDhqyhV3PKWuiq/sHOtD52XQf4rL+pYRRlAOgQVgZ6DU
+         eOVp/S1BrSS662yJTlpIzrhmQOaQE7AH5ztC8xUv2ncfWcK6yrwQLz5LKFAPc0Vo38X6
+         oYVpeD6I9Ar4f7bCAmKKBf1b3lNq62eawlTJnM8MLdL9vKab0kz54DS0su+Cbjur5pq5
+         mpvw==
+X-Gm-Message-State: AOAM530r1O45zpM53iKwyh+LSkPDwKvpfbvxBeQQVIpUXZfmykDCVIn2
+        YJYHELMAlVFb7HDhmB1tY9iGFEc7K7U=
+X-Google-Smtp-Source: ABdhPJxkORCp7gIYkTNw3KV3bdX3kmbwKYImn33rbcbzHbL5oapUbtQ9rTY8znVVhU8GFn8NowZFyg==
+X-Received: by 2002:a5d:4609:0:b0:203:e792:3add with SMTP id t9-20020a5d4609000000b00203e7923addmr21101655wrq.657.1647938402451;
+        Tue, 22 Mar 2022 01:40:02 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id i206-20020a1c3bd7000000b0038bfc3ab76csm1336485wma.48.2022.03.22.01.38.49
+        by smtp.googlemail.com with ESMTPSA id i10-20020a0560001aca00b00203daf3759asm16563813wry.68.2022.03.22.01.40.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Mar 2022 01:38:49 -0700 (PDT)
-Message-ID: <7b6fec6a-12ef-7381-b06e-108a7b3ff1e4@kernel.org>
-Date:   Tue, 22 Mar 2022 09:38:48 +0100
+        Tue, 22 Mar 2022 01:40:01 -0700 (PDT)
+Message-ID: <216b98d5-a254-4527-c569-9f3397811e70@kernel.org>
+Date:   Tue, 22 Mar 2022 09:40:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH] dt-bindings: virtio: mmio: add optional virtio,wakeup
- property
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset properties into MDIO
+ nodes
 Content-Language: en-US
-To:     Minghao Xue <quic_mingxue@quicinc.com>
-Cc:     Jean-Philippe Brucker <jean-philippe@linaro.org>, mst@redhat.com,
-        jasowang@redhat.com, quic_ztu@quicinc.com, robh+dt@kernel.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1646733156-19333-1-git-send-email-quic_mingxue@quicinc.com>
- <20220317063515.GA30789@mingxue-gv.qualcomm.com> <YjMJ32SFXTLCuaRY@myrica>
- <20220318021052.GA16300@mingxue-gv.qualcomm.com>
- <d4d69acd-72d3-dfe1-9a11-d6590d2d90d8@kernel.org>
- <20220322061956.GA1441@mingxue-gv.qualcomm.com>
-In-Reply-To: <20220322061956.GA1441@mingxue-gv.qualcomm.com>
+To:     Dylan Hung <dylan_hung@aspeedtech.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Cc:     BMC-SW <BMC-SW@aspeedtech.com>,
+        "stable@vger.kernel.org" <stable@vger.kernel.org>
+References: <20220321095648.4760-1-dylan_hung@aspeedtech.com>
+ <20220321095648.4760-4-dylan_hung@aspeedtech.com>
+ <eefe6dd8-6542-a5c2-6bdf-2c3ffe06e06b@kernel.org>
+ <HK0PR06MB2834CFADF087A439B06F87C29C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
+In-Reply-To: <HK0PR06MB2834CFADF087A439B06F87C29C179@HK0PR06MB2834.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
         NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
@@ -70,21 +83,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2022 07:19, Minghao Xue wrote:
-> Hi Krzysztof,
+On 22/03/2022 03:32, Dylan Hung wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzk@kernel.org]
+>> Sent: 2022年3月21日 11:53 PM
+>> To: Dylan Hung <dylan_hung@aspeedtech.com>; robh+dt@kernel.org;
+>> joel@jms.id.au; andrew@aj.id.au; andrew@lunn.ch; hkallweit1@gmail.com;
+>> linux@armlinux.org.uk; davem@davemloft.net; kuba@kernel.org;
+>> pabeni@redhat.com; p.zabel@pengutronix.de; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
+>> linux-kernel@vger.kernel.org; netdev@vger.kernel.org
+>> Cc: BMC-SW <BMC-SW@aspeedtech.com>; stable@vger.kernel.org
+>> Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: add reset properties into MDIO
+>> nodes
+>>
+>> On 21/03/2022 10:56, Dylan Hung wrote:
+>>> Add reset control properties into MDIO nodes.  The 4 MDIO controllers in
+>>> AST2600 SOC share one reset control bit SCU50[3].
+>>>
+>>> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
+>>> Cc: stable@vger.kernel.org
+>>
+>> Please describe the bug being fixed. See stable-kernel-rules.
 > 
-> Thanks for your comment. First of all, which "generic wakeup-source
-> property" do you mean? 
+> Thank you for your comment.
+> The reset deassertion of the MDIO device was usually done by the bootloader (u-boot).
+> However, one of our clients uses proprietary bootloader and doesn't deassert the MDIO
+> reset so failed to access the HW in kernel driver.  The reset deassertion is missing in the
+> kernel driver since it was created, should I add a BugFix for the first commit of this driver?
+> Or would it be better if I remove " Cc: stable@vger.kernel.org"?
 
-There is only one generic - wakeup-source.
-
-> Could you give an example? I find "wakeup-source"
-> property in several binding files. Are you pointing to this? 
-
-Yes, use wakeup-source.
-
-Please avoid top-posting.
-
+This rather looks like a missing feature, not a bug. Anyway any
+description must be in commit message.
 
 
 Best regards,
