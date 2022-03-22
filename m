@@ -2,164 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D764E3F3C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:14:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED6B4E3F5B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:19:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234491AbiCVNPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 09:15:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49392 "EHLO
+        id S235328AbiCVNVD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Mar 2022 09:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234548AbiCVNPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:15:42 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C883E7657;
-        Tue, 22 Mar 2022 06:14:11 -0700 (PDT)
-Received: from mail-wm1-f42.google.com ([209.85.128.42]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MdNPq-1o5i2U0Hse-00ZMsx; Tue, 22 Mar 2022 14:14:10 +0100
-Received: by mail-wm1-f42.google.com with SMTP id r190-20020a1c2bc7000000b0038a1013241dso1677405wmr.1;
-        Tue, 22 Mar 2022 06:14:09 -0700 (PDT)
-X-Gm-Message-State: AOAM533cgpzCjEn8RKb+oacCxiOqclq7sNEBUv1wx13rcYhb0cCZY9Sf
-        6z7GdX4qWofWV4rjg0cCqO99IBmnIu4Xs/+oxWs=
-X-Google-Smtp-Source: ABdhPJyHDWv/mDC8WwrAR2wIUWCLvYl74QCY8Bcoo4lV+G5Q4bMm4glI5YH/lSfsRyVIlxl4wVhx+pOkDz4xDrytxAc=
-X-Received: by 2002:a05:600c:4e11:b0:38c:bd19:e72c with SMTP id
- b17-20020a05600c4e1100b0038cbd19e72cmr1599974wmq.174.1647954849655; Tue, 22
- Mar 2022 06:14:09 -0700 (PDT)
+        with ESMTP id S231388AbiCVNVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:21:02 -0400
+Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF5C67D38;
+        Tue, 22 Mar 2022 06:19:29 -0700 (PDT)
+Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id 9495630AE012;
+        Tue, 22 Mar 2022 14:19:27 +0100 (CET)
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id 0472330AE009;
+        Tue, 22 Mar 2022 14:19:24 +0100 (CET)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 22MDJNFf027861;
+        Tue, 22 Mar 2022 14:19:23 +0100
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 22MDJNRV027860;
+        Tue, 22 Mar 2022 14:19:23 +0100
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     "Marc Kleine-Budde" <mkl@pengutronix.de>
+Subject: Re: [PATCH v8 0/7] CTU CAN FD open-source IP core SocketCAN driver, PCI, platform integration and documentation
+Date:   Tue, 22 Mar 2022 14:19:23 +0100
+User-Agent: KMail/1.9.10
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marin Jerabek <martin.jerabek01@gmail.com>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Jiri Novak <jnovak@fel.cvut.cz>,
+        Jaroslav Beran <jara.beran@gmail.com>,
+        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
+        Drew Fustini <pdp7pdp7@gmail.com>
+References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz> <202203220918.33033.pisa@cmp.felk.cvut.cz> <20220322092212.f5eaxm5k45j5khra@pengutronix.de>
+In-Reply-To: <20220322092212.f5eaxm5k45j5khra@pengutronix.de>
+X-KMail-QuotePrefix: > 
 MIME-Version: 1.0
-References: <20220321165049.35985-1-sven@svenpeter.dev> <20220321165049.35985-6-sven@svenpeter.dev>
-In-Reply-To: <20220321165049.35985-6-sven@svenpeter.dev>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 22 Mar 2022 14:13:53 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2VgrWHerXTX4_wS8UU7fpN9-JZ5xESaWrr-WGYqGty=g@mail.gmail.com>
-Message-ID: <CAK8P3a2VgrWHerXTX4_wS8UU7fpN9-JZ5xESaWrr-WGYqGty=g@mail.gmail.com>
-Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
-        Jens Axboe <axboe@fb.com>, Christoph Hellwig <hch@lst.de>,
-        Sagi Grimberg <sagi@grimberg.me>,
-        Marc Zyngier <maz@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-nvme@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:2bBe4cyn3++cwdW/0rs3Hoz8DBuyuGh94rq9xa3h/Q6bApTSrfY
- ciBXTMWnVq9a5Xq03Pb3yMhPSS+qsMnk+uHi+2G5tNhkE+nqVZZ0cxS4jOcC+eVIaRgN5t2
- LHCe8O3qi239if3Uuh3SpA4qrmYc8rYmqzxihzkknqPBGqZj7YR9hfVPXBPhV3E3R/FceQr
- DelYM8HEErILnBlgDObhQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8GIhNQ+L9zA=:88M/Tj2uslOfKziF5bGUEx
- ndkAQDGpGYjiNfMnIPDzl+ccdtQUu1Ia4F91AK/cCCjy3QO1lb+MWNou+vrl5baSdfW9yM7Wj
- agfBbSfCXedENbHWA2kEwKfnhsgC/dtTO9ZYGswPyeeh4gqA6vEeXmYf3oAJ6UVI0DR6v5Hwq
- dBGhe1st3MftRG/HH8G/L6P5lM0Pj9b7m0+atjxjz8T7GStEJU0Qxy2/kTTPWzScmZdFzknMX
- S5bFy7OHoIFsscCGGwF7TO02IQJ1qKU0TPWbr1A0w6bMqtcZZjVSeLHkYYIrmmDNImInDEnYl
- /MxexH4G7+lg2f0sSnB0UXn0Idf0dHbfxon7hun6VBjD4JxRvMn7+8cGhEqAPfYwLeZBv+CMJ
- X7G0tRpILH5Gd/N/D3ORxJJVqE5McKK3u4/wjTnwupoEi/vbSiqXCfTa7CtHX1Zf/ZNSmdduT
- Yre8x5U0gesKT9qLFkd6lam7/1f6d7TkjH4280wPiGNuNRMZWlzqGVY/H5MDiO3jVuNl8pl65
- wsT7rQLa+y8M9FGQswGpvEoSMHI18x4jM6p33//1bT5g0VaO5FPQVV/IK6GMTLG5LBZpKv28v
- /osGUKYzcmuhrLLwtfb3P+3LLG+W/gNzfQ3bse+zq+eGftKbD1xSpKtYuT3L+QIb3vsVY7TXi
- J0M0dOyxpIUaG7DEf9gMobC4SogephW1TLy3eRP3jssWj/Qhd4OPehlr2y07/lDbZnUk=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H4,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 8BIT
+Content-Disposition: inline
+Message-Id: <202203221419.23089.pisa@cmp.felk.cvut.cz>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 5:50 PM Sven Peter <sven@svenpeter.dev> wrote:
+Hello Marc,
+
+On Tuesday 22 of March 2022 10:22:12 Marc Kleine-Budde wrote:
+> > We have HW timestamping implemented for actual stable CTU CAN FD IP core
+> > version, support for variable number of TX buffers which count can be
+> > parameterized up to 8 in the prepared version and long term desire to
+> > configurable-SW defined multi-queue which our HW interface allows to
+> > dynamically server by á TX buffers. But plan is to keep combinations
+> > of the design and driver compatible from the actual revision.
 >
-> Apple SoCs such as the M1 come with multiple embedded co-processors
-> running proprietary firmware. Communication with those is established
-> over a simple mailbox using the RTKit IPC protocol.
+> Is the number of RX and TX buffers and TX queues auto detectable by
+> software, or do we need DT bindings for this?
+
+we plan to count info available through field in the registers.
+See paragraph 3.1.39 TXTB_INFO
+
+http://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/doc/Datasheet.pdf
+
+The bits are read as zeros on the older version so if the zero
+is found older default 4 will be chosen by the driver.
+So I prefer no side information channel DTC etc.
+Even on the actual PCI integration you can read number
+of channels from the support PCI BAR range and locate
+actual cores on the other BAR.
+
+> The net-next merge window closed with Monday evening, so this driver
+> will go into net-next for v5.19.
+
+My shame. I hoped to get driver into mainline till Embedded World
+Conference 2022 where we participate with our RISC-V education tools
+and materials so that I could report to others in the RISC-V camp
+and even CiA that we are finally easily to use.
+
+On the other hand more time gives time for better review and possible
+cleanup. But I would wait with features addition till some base
+accepted to the next or mainline. I hope that interfaces will not
+change too much before inclusion that actual tested code can
+get in.
+
+> > > BTW: The PROP_SEG/PHASE_SEG1 issue is known:
+> > > > +A curious reader will notice that the durations of the segments
+> > > > PROP_SEG +and PHASE_SEG1 are not determined separately but rather
+> > > > combined and +then, by default, the resulting TSEG1 is evenly divided
+> > > > between PROP_SEG +and PHASE_SEG1.
+> > >
+> > > and the flexcan IP core in CAN-FD mode has the same problem. When
+> > > working on the bit timing parameter, I'll plan to have separate
+> > > PROP_SEG/PHASE_SEG1 min/max in the kernel, so that the bit timing
+> > > algorithm can take care of this.
+> >
+> > Hmm, when I have thought about that years ago I have not noticed real
+> > difference when time quanta is move between PROP_SEG and PHASE_SEG1.
+> > So for me it had no influence on the algorithm computation and
+> > could be done on the chip level when minimal and maximal sum is
+> > respected. But may it be I have overlooked something and there is
+> > difference for CAN FD.  May it be my colleagues Jiri Novak and
+> > Ondrej Ille are more knowable.
 >
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> Jiri, Ondrej, I'm interested in details :)
+>
+> > As for the optimal timequantas per bit value, I agree that it
+> > is not so simple. In the fact SJW and even tipple-sampling
+> > should be defined in percentage of bit time
+>
+> I thought of specifying SJW in a relative value, too.
+>
+> > and then all should be optimized together
+>
+> SJW has no influence on the bit rate and sample point. Although SJW is
+> max phase seg 2, so it's maximum is influenced by the sample point.
+>
+> > and even combination with slight bitrate error should be preferred
+> > against other exact matching when there is significant difference in
+> > the other parameters values.
+>
+> Since linux-4.8, i.e.
+>
+> | 7da29f97d6c8 can: dev: can-calc-bit-timing(): better sample point
+> | calculation
+>
+> the algorithm optimizes for best bit minimal absolute bit rate error
+> first and then for minimal sample point error. The sample point must be
+> <= the nominal sample point. I have some experiments where the algorithm
+> optimizes the absolute sample point error.
 
-> +
-> +#define rtk_err(format, arg...) dev_err(rtk->dev, "RTKit: " format, ##arg)
-> +#define rtk_warn(format, arg...) dev_warn(rtk->dev, "RTKit: " format, ##arg)
-> +#define rtk_info(format, arg...) dev_info(rtk->dev, "RTKit: " format, ##arg)
-> +#define rtk_dbg(format, arg...) dev_dbg(rtk->dev, "RTKit: " format, ##arg)
+Yes but you do not need exact bitrate even when it is available.
+I do no look into standards now, but I think 1% error should not be
+a problem. May it be even 3% error when whole jitter and clocks
+frequency errors fit below it should work (5 (bit stuff) x 3% = 15%
+is less than 100% - 80% (typical SP) and with well tuned SF even 25
+or 50% of the last bit could be accepted that communication can
+at leas sometimes succeed). So allow error of 0.1% as better than
+too low or too high TQ per bit or strange SJW can be acceptable.
+On the other hand if CAN is used with time triggered stuff or keep/
+synchronize whole plant global time then 0.1% is too much.
+So at the end in this case really tuning for concrete application
+comes into play. But in kernel algorithm is there to make most
+common usages easy...
 
-I generally don't like the custom printing macros, please just open-code
-the prints where they are used, that makes it easier for other kernel
-developers to see exactly what is being printed.
+> For more complicated bit timing optimization you need to combine the
+> bitrate error and the sample point error into a function that needs to
+> be minimized.
 
-> +enum { APPLE_RTKIT_WORK_MSG,
-> +       APPLE_RTKIT_WORK_REINIT,
-> +};
-> +
-> +enum { APPLE_RTKIT_PWR_STATE_OFF = 0x00,
-> +       APPLE_RTKIT_PWR_STATE_SLEEP = 0x01,
-> +       APPLE_RTKIT_PWR_STATE_GATED = 0x02,
-> +       APPLE_RTKIT_PWR_STATE_QUIESCED = 0x10,
-> +       APPLE_RTKIT_PWR_STATE_ON = 0x20,
-> +};
+Yes.
 
-This is an odd indentation style, I would insert a newline after the 'enum {'
+> > By the way we have received report from Andrew Dennison about
+> > successful integration of CTU CAN FD into Litex based RISC-V
+> > system. Tested with the Linux our Linux kernel driver.
+>
+> That sounds interesting!
 
-> +static int apple_rtkit_worker(void *data)
-> +{
-> +       struct apple_rtkit *rtk = data;
-> +       struct apple_rtkit_work work;
-> +
-> +       while (!kthread_should_stop()) {
-> +               wait_event_interruptible(rtk->wq,
-> +                                        kfifo_len(&rtk->work_fifo) > 0 ||
-> +                                                kthread_should_stop());
-> +
-> +               if (kthread_should_stop())
-> +                       break;
-> +
-> +               while (kfifo_out_spinlocked(&rtk->work_fifo, &work, 1,
-> +                                           &rtk->work_lock) == 1) {
-> +                       switch (work.type) {
-> +                       case APPLE_RTKIT_WORK_MSG:
-> +                               apple_rtkit_rx(rtk, &work.msg);
-> +                               break;
-> +                       case APPLE_RTKIT_WORK_REINIT:
-> +                               apple_rtkit_do_reinit(rtk);
-> +                               break;
-> +                       }
-> +               }
+I hope that community joint forces can reach state where
+CAN FD will be solved on all FPGA and combinations easily
+and open source way. We need to find way for funding
+of certification and long term sustainability.
+But at least our previous release and actual public
+code is game level save point.
 
-It looks like you add quite a bit of complexity by using a custom
-worker thread implementation. Can you explain what this is
-needed for? Isn't this roughly the same thing that one would
-get more easily with create_singlethread_workqueue()?
+Best wishes,
 
-> +#if IS_ENABLED(CONFIG_APPLE_RTKIT)
+                Pavel
+--
+                Pavel Pisa
+    phone:      +420 603531357
+    e-mail:     pisa@cmp.felk.cvut.cz
+    Department of Control Engineering FEE CVUT
+    Karlovo namesti 13, 121 35, Prague 2
+    university: http://dce.fel.cvut.cz/
+    personal:   http://cmp.felk.cvut.cz/~pisa
+    projects:   https://www.openhub.net/accounts/ppisa
+    CAN related:http://canbus.pages.fel.cvut.cz/
+    Open Technologies Research Education and Exchange Services
+    https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
 
-Instead of allowing the interface to be used without CONFIG_APPLE_RTKIT,
-I think it is sufficient to allow the driver itself to be built with
-CONFIG_COMPILE_TEST (as you already do), and then have
-drivers using it marked as 'depends on APPLE_RTKIT'
-unconditionally.
-
-> +/*
-> + * Initializes the internal state required to handle RTKit. This
-> + * should usually be called within _probe.
-> + *
-> + * @dev: Pointer to the device node this coprocessor is assocated with
-> + * @cookie: opaque cookie passed to all functions defined in rtkit_ops
-> + * @mbox_name: mailbox name used to communicate with the co-processor
-> + * @mbox_idx: mailbox index to be used if mbox_name is NULL
-> + * @ops: pointer to rtkit_ops to be used for this co-processor
-> + */
-> +struct apple_rtkit *apple_rtkit_init(struct device *dev, void *cookie,
-> +                                    const char *mbox_name, int mbox_idx,
-> +                                    const struct apple_rtkit_ops *ops);
-> +
-> +/*
-> + * Dev-res managed version of apple_rtkit_init.
-> + */
-> +struct apple_rtkit *devm_apple_rtkit_init(struct device *dev, void *cookie,
-> +                                         const char *mbox_name, int mbox_idx,
-> +                                         const struct apple_rtkit_ops *ops);
-
-Do we need to export both of these?
-
-         Arnd
