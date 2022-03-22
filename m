@@ -2,98 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 438C94E35F7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 02:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE4334E3600
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 02:34:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234571AbiCVB1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 21:27:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
+        id S234667AbiCVBeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 21:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234503AbiCVB07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 21:26:59 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC624E0EC;
-        Mon, 21 Mar 2022 18:25:33 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id g19so16938067pfc.9;
-        Mon, 21 Mar 2022 18:25:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=svKeoLbw/Rh/+w0dWnKtX9ir9NmoZ2RCvIsO83FTo+k=;
-        b=ii6ygNdxXF2YuMjx62GY/8lyC742aCoMJuNxD7GB602IPDTF3bwhqy5sRIcpp/gf9R
-         aRfk/igL0j3xPZf8vUlPeERF5MoHg3sel33OehBQY2TArO+cMC7d54kL0Ih/Y2Go/Pd8
-         9vAuGi2Qw97uN4xE9yuNwBgG2/ArTRa+H/ZdkdZZ4yesBiqNsLhu6rNyE5JKYYul3aZD
-         lw6aUWZvf8mX/DBioT0JE3QkcxFDtba1kAWLtyzXxcPvD138JcruxZfpw9fiYa+OyR3+
-         KgKj6aFyK5J00kYFuvBxGVNqgq6BJFafs2+PCFxYzez+se3EKCaDhHIjxhfsNmKw8eht
-         X7yg==
+        with ESMTP id S234673AbiCVBeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 21:34:10 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525422BE2D2;
+        Mon, 21 Mar 2022 18:32:43 -0700 (PDT)
+Received: by mail-oi1-f178.google.com with SMTP id n7so18132684oif.5;
+        Mon, 21 Mar 2022 18:32:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=svKeoLbw/Rh/+w0dWnKtX9ir9NmoZ2RCvIsO83FTo+k=;
-        b=3rQYlNiHRV3vFyjILr1R7g6mHAOV59jq2w835SFYjGGHVNB2gWwiuGxgqzhUqBtU6r
-         JCcFlJvr6070vj78KwKSYdMrxTuxoWx5aLl3Bn08R1ZTRYwg3JLgtgAWo3GX1ai1WsF1
-         eqdi06XIgySo5IG59VCUlTZj5As0ZkORI+d198xQMn7IdLqZP/cF//sjqVZ1mfzskxqE
-         YsXt4+YgY8RO3MCd7cSfnnvx8OemAcJDLJnwphAGvHgV0C2ZueUhkYiznfDOikmq6L2T
-         6V9PpoDawoMduojfSmCt8oiUBPvUhD19c2zDfsDpB7LwGWmNmSOwbSMEfTdYLRi5w3X5
-         y57w==
-X-Gm-Message-State: AOAM530ypz/eoyUFIdJkUFmXh5llqvgez/f9GSYr6kzQ1asTGMYd/iht
-        yVUIA+qBnk6CnLEU0jIFc9PJhnIOXcMX26Bw
-X-Google-Smtp-Source: ABdhPJx89klCKoXhRGT7afcgmBcOslDABbniHk+l6vDRIv723MOLQCCNT26OWRB++AlmY1gihMWOVw==
-X-Received: by 2002:a05:6a00:2484:b0:4fa:997e:3290 with SMTP id c4-20020a056a00248400b004fa997e3290mr9036621pfv.37.1647912333030;
-        Mon, 21 Mar 2022 18:25:33 -0700 (PDT)
-Received: from localhost.localdomain (60-250-49-31.hinet-ip.hinet.net. [60.250.49.31])
-        by smtp.gmail.com with ESMTPSA id z16-20020a637e10000000b00382b21c6b0bsm1230539pgc.51.2022.03.21.18.25.29
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=H9pYjXD74yJgRzh7QlanadwSjljKEdkZYPjwglF/fI8=;
+        b=JmWBz2ApZj2BcMMwcou2DXM9TsWUdb9s6VyAmZrCWV0lBV0UutTmfKRd1nQpgsH9Vh
+         9m4jcMnRDMwM79ipbMTe6wquP4UPbrpoYeuhp/ExvMxG0djchpVsskdl/S3iirMHaxGx
+         pT3VdE5b2MwQ3FnWFggiS4Jeqom+v1HcKglFFGwRnVeIXljfXQV33xXvpq7PISZVVyhU
+         ZAe1rrsdkFcYuo22XBcLIbfY7tP1bQhVQXeXXRE+oP/V4xa09I3neYd3rYTsVYXS/7tO
+         m/VuKzuz6rYoHQs9TH6/0pRRDMRuawlzM7aLzOnRs0aLaus3PRI5X0ARixDpnbwe8vkO
+         8Qmg==
+X-Gm-Message-State: AOAM532JpbG5v66JsXN6yFGI93XBvxyn/qE3phQAPk5kqRTwcf4aYYH9
+        UGsiDdo4uKT6QLwqKcBwYQ==
+X-Google-Smtp-Source: ABdhPJzmvRCe53/YOGzXdHoJihtboRpJXSIwrracAfHLjj8c7Z2nEObal3TmOqYYfC+C1o7sIY3r5w==
+X-Received: by 2002:a05:6808:20a7:b0:2da:5fcb:29b2 with SMTP id s39-20020a05680820a700b002da5fcb29b2mr1003263oiw.82.1647912762406;
+        Mon, 21 Mar 2022 18:32:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z1-20020a056870514100b000da196da21csm6811854oak.26.2022.03.21.18.32.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 18:25:32 -0700 (PDT)
-From:   Ivy Jian <ivyjian417@gmail.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org, Ivy Jian <ivyjian417@gmail.com>,
-        Pan Sheng-Liang <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: switch panel compatible to "edp-panel" for limozeen
-Date:   Tue, 22 Mar 2022 09:25:26 +0800
-Message-Id: <20220322092524.1.Ied05fc4b996737e3481861c6ab130a706f288412@changeid>
-X-Mailer: git-send-email 2.25.1
+        Mon, 21 Mar 2022 18:32:41 -0700 (PDT)
+Received: (nullmailer pid 915913 invoked by uid 1000);
+        Tue, 22 Mar 2022 01:32:40 -0000
+Date:   Mon, 21 Mar 2022 20:32:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>, linux-kernel@vger.kernel.org,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: chrome: Add ChromeOS fingerprint
+ binding
+Message-ID: <YjknOFMere5DG5He@robh.at.kernel.org>
+References: <20220321191100.1993-1-swboyd@chromium.org>
+ <20220321191100.1993-2-swboyd@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220321191100.1993-2-swboyd@chromium.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-some panel can't light up with new board with ps8640, switch compatible
-panel define to make it workable.
+On Mon, Mar 21, 2022 at 12:10:57PM -0700, Stephen Boyd wrote:
+> Add a binding to describe the fingerprint processor found on Chromebooks
+> with a fingerprint sensor. Previously we've been describing this with
+> the google,cros-ec-spi binding but it lacks gpio and regulator control
+> used during firmware flashing.
 
-Signed-off-by: Pan Sheng-Liang <sheng-liang.pan@quanta.corp-partner.google.com>
-Signed-off-by: Ivy Jian <ivyjian417@gmail.com>
----
+Then 'google,cros-ec-spi' should be a fallback?
 
- .../boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts     | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Cc: Craig Hesling <hesling@chromium.org>
+> Cc: Tom Hughes <tomhughes@chromium.org>
+> Cc: Alexandru M Stan <amstan@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  .../bindings/chrome/google,cros-ec-fp.yaml    | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+> new file mode 100644
+> index 000000000000..b7fbaaa94d65
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ChromeOS Embedded Fingerprint Controller
+> +
+> +description:
+> +  Google's ChromeOS embedded fingerprint controller is a device which
+> +  implements fingerprint functionality such as unlocking a Chromebook
+> +  without typing a password.
+> +
+> +maintainers:
+> +  - Tom Hughes <tomhughes@chromium.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: google,cros-ec-fp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 3000000
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios: true
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-index 4e35aec6a1e5..c44ed54af690 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-@@ -20,7 +20,7 @@ / {
- /delete-node/&ap_ts;
- 
- &panel {
--	compatible = "innolux,n116bca-ea1", "innolux,n116bge";
-+	compatible = "edp-panel";
- };
- 
- &sdhc_2 {
--- 
-2.25.1
+maxItems: 1
 
+> +  boot0-gpios:
+> +    maxItems: 1
+> +    description: Assert for bootloader mode.
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - reset-gpios
+> +  - boot0-gpios
+> +  - vdd-supply
+> +  - spi-max-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +      #address-cells = <0x1>;
+> +      #size-cells = <0x0>;
+> +      ec@0 {
+> +        compatible = "google,cros-ec-fp";
+> +        reg = <0>;
+> +        interrupt-parent = <&gpio_controller>;
+> +        interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+> +        spi-max-frequency = <3000000>;
+> +        reset-gpios = <&gpio_controller 5 GPIO_ACTIVE_LOW>;
+> +        boot0-gpios = <&gpio_controller 10 GPIO_ACTIVE_HIGH>;
+> +        vdd-supply = <&pp3300_fp_mcu>;
+> +      };
+> +    };
+> +...
+> -- 
+> https://chromeos.dev
+> 
+> 
