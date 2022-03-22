@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE4334E3600
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 02:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DF374E3605
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 02:38:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234667AbiCVBeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 21:34:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
+        id S234609AbiCVBgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Mar 2022 21:36:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234673AbiCVBeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 21:34:10 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525422BE2D2;
-        Mon, 21 Mar 2022 18:32:43 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id n7so18132684oif.5;
-        Mon, 21 Mar 2022 18:32:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=H9pYjXD74yJgRzh7QlanadwSjljKEdkZYPjwglF/fI8=;
-        b=JmWBz2ApZj2BcMMwcou2DXM9TsWUdb9s6VyAmZrCWV0lBV0UutTmfKRd1nQpgsH9Vh
-         9m4jcMnRDMwM79ipbMTe6wquP4UPbrpoYeuhp/ExvMxG0djchpVsskdl/S3iirMHaxGx
-         pT3VdE5b2MwQ3FnWFggiS4Jeqom+v1HcKglFFGwRnVeIXljfXQV33xXvpq7PISZVVyhU
-         ZAe1rrsdkFcYuo22XBcLIbfY7tP1bQhVQXeXXRE+oP/V4xa09I3neYd3rYTsVYXS/7tO
-         m/VuKzuz6rYoHQs9TH6/0pRRDMRuawlzM7aLzOnRs0aLaus3PRI5X0ARixDpnbwe8vkO
-         8Qmg==
-X-Gm-Message-State: AOAM532JpbG5v66JsXN6yFGI93XBvxyn/qE3phQAPk5kqRTwcf4aYYH9
-        UGsiDdo4uKT6QLwqKcBwYQ==
-X-Google-Smtp-Source: ABdhPJzmvRCe53/YOGzXdHoJihtboRpJXSIwrracAfHLjj8c7Z2nEObal3TmOqYYfC+C1o7sIY3r5w==
-X-Received: by 2002:a05:6808:20a7:b0:2da:5fcb:29b2 with SMTP id s39-20020a05680820a700b002da5fcb29b2mr1003263oiw.82.1647912762406;
-        Mon, 21 Mar 2022 18:32:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z1-20020a056870514100b000da196da21csm6811854oak.26.2022.03.21.18.32.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Mar 2022 18:32:41 -0700 (PDT)
-Received: (nullmailer pid 915913 invoked by uid 1000);
-        Tue, 22 Mar 2022 01:32:40 -0000
-Date:   Mon, 21 Mar 2022 20:32:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Benson Leung <bleung@chromium.org>, linux-kernel@vger.kernel.org,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: chrome: Add ChromeOS fingerprint
- binding
-Message-ID: <YjknOFMere5DG5He@robh.at.kernel.org>
-References: <20220321191100.1993-1-swboyd@chromium.org>
- <20220321191100.1993-2-swboyd@chromium.org>
+        with ESMTP id S234610AbiCVBgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 21:36:43 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C764EDD2;
+        Mon, 21 Mar 2022 18:35:11 -0700 (PDT)
+X-UUID: abf182d065b1441099eb1659cab90541-20220322
+X-UUID: abf182d065b1441099eb1659cab90541-20220322
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1999322037; Tue, 22 Mar 2022 09:35:04 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 22 Mar 2022 09:35:03 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Mar 2022 09:35:01 +0800
+Message-ID: <b03df175f871ee9a6561862f5bd7bceb9cafbde1.camel@mediatek.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
+ pinctrls properties
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        "Eric Biggers" <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "Stephen Boyd" <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Tue, 22 Mar 2022 09:35:01 +0800
+In-Reply-To: <YjkKURNzg8JPbXcg@robh.at.kernel.org>
+References: <20220321115133.32121-1-axe.yang@mediatek.com>
+         <20220321115133.32121-2-axe.yang@mediatek.com>
+         <YjkKURNzg8JPbXcg@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220321191100.1993-2-swboyd@chromium.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,106 +70,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 12:10:57PM -0700, Stephen Boyd wrote:
-> Add a binding to describe the fingerprint processor found on Chromebooks
-> with a fingerprint sensor. Previously we've been describing this with
-> the google,cros-ec-spi binding but it lacks gpio and regulator control
-> used during firmware flashing.
-
-Then 'google,cros-ec-spi' should be a fallback?
-
+On Mon, 2022-03-21 at 18:29 -0500, Rob Herring wrote:
+> On Mon, Mar 21, 2022 at 07:51:32PM +0800, Axe Yang wrote:
+> > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
+> > This feature allow SDIO devices alarm asynchronous interrupt to
+> > host
+> > even when host stop providing clock to SDIO card. An extra wakeup
+> > interrupt and pinctrl states for SDIO DAT1 pin state switching are
+> > required in this scenario.
+> > 
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/mmc/mtk-sd.yaml       | 23
+> > ++++++++++++++++++-
+> >  1 file changed, 22 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > index 297ada03e3de..f57774535a1d 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > @@ -69,12 +69,23 @@ properties:
+> >        - const: ahb_cg
+> >  
+> >    interrupts:
+> > -    maxItems: 1
+> > +    description:
+> > +      Should at least contain MSDC GIC interrupt. To support SDIO
+> > in-band wakeup, an extended
+> > +      interrupt is required and be configured as wakeup source
+> > irq.
+> > +    minItems: 1
+> > +    maxItems: 2
+> >  
+> >    pinctrl-names:
+> > +    description:
+> > +      Should at least contain default and state_uhs. To support
+> > SDIO in-band wakeup, dat1 pin
+> > +      will be switched between GPIO mode and SDIO DAT1 mode,
+> > state_eint and state_dat1 are
+> > +      mandatory in this scenarios.
+> > +    minItems: 2
+> >      items:
+> >        - const: default
+> >        - const: state_uhs
+> > +      - const: state_eint
+> > +      - const: state_dat1
+> >  
+> >    pinctrl-0:
+> >      description:
+> > @@ -86,6 +97,16 @@ properties:
+> >        should contain uhs mode pin ctrl.
+> >      maxItems: 1
+> >  
+> > +  pinctrl-2:
+> > +    description:
+> > +      should switch dat1 pin to GPIO mode.
+> > +    maxItems: 1
+> > +
+> > +  pinctrl-3:
+> > +    description:
+> > +      should switch SDIO dat1 pin from GPIO mode back to SDIO
+> > mode.
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Cc: Craig Hesling <hesling@chromium.org>
-> Cc: Tom Hughes <tomhughes@chromium.org>
-> Cc: Alexandru M Stan <amstan@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Cc: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../bindings/chrome/google,cros-ec-fp.yaml    | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> new file mode 100644
-> index 000000000000..b7fbaaa94d65
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChromeOS Embedded Fingerprint Controller
-> +
-> +description:
-> +  Google's ChromeOS embedded fingerprint controller is a device which
-> +  implements fingerprint functionality such as unlocking a Chromebook
-> +  without typing a password.
-> +
-> +maintainers:
-> +  - Tom Hughes <tomhughes@chromium.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: google,cros-ec-fp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 3000000
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios: true
+> How is this different than pinctrl-0?
 
-maxItems: 1
+pinctrl-0 contains default settings for all IO pins(CLK/CMD/DAT).
+pinctrl-1 contains settings for all IO pins(CLK/CMD/DAT) in UHS mode.
+pinctrl-3 is lightweight pinctrl-1, only keep SDIO DAT1 pin function
+switch part.
 
-> +  boot0-gpios:
-> +    maxItems: 1
-> +    description: Assert for bootloader mode.
-> +
-> +  vdd-supply: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - reset-gpios
-> +  - boot0-gpios
-> +  - vdd-supply
-> +  - spi-max-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    spi {
-> +      #address-cells = <0x1>;
-> +      #size-cells = <0x0>;
-> +      ec@0 {
-> +        compatible = "google,cros-ec-fp";
-> +        reg = <0>;
-> +        interrupt-parent = <&gpio_controller>;
-> +        interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-> +        spi-max-frequency = <3000000>;
-> +        reset-gpios = <&gpio_controller 5 GPIO_ACTIVE_LOW>;
-> +        boot0-gpios = <&gpio_controller 10 GPIO_ACTIVE_HIGH>;
-> +        vdd-supply = <&pp3300_fp_mcu>;
-> +      };
-> +    };
-> +...
-> -- 
-> https://chromeos.dev
-> 
-> 
+...
+
+Regards,
+Axe
+
