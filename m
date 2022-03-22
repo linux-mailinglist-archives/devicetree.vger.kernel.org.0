@@ -2,146 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F5A4E3B1E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93DFE4E3B4D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231743AbiCVIsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 04:48:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47474 "EHLO
+        id S231976AbiCVI6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 04:58:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231928AbiCVIr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:47:57 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E06A04C417
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 01:46:30 -0700 (PDT)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5C4243F1E5
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 08:46:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647938789;
-        bh=Ns6x5qMhMdYQ14F/6CRmR+MC5tPxoh9wJPntlRcRYM8=;
-        h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-         In-Reply-To:Content-Type;
-        b=n056Sl5XuOgmMqUCyViD66hFvB8v9w30oMpkz+GXpKIs2oSCnHtaWQPTi6N0MZx6M
-         D96U7tq5/9zDpDgdghQ2e/G+siTzGKfgQckzRSYAiv64fbKh0DEGwO3AsGXw9uokg3
-         wvGYLVwFMEqXEuWLCLtFVaTggWVU2TT6NZUG1KHZHjWfFLvB8gNAgodGaL5251IHBb
-         M9gOAidjd9XP5Tgq9OTGruBviF7Pic1j+gcAgyKt1oMDMSXGyINdSa1xK4iCDXnXCP
-         avy1icfRs1MwcLi6cKow0K5+G1596vSc/wooTRanz9f4cipKL2AvsXXEnNbFQIJ0mW
-         sC+ajbk4zqSaA==
-Received: by mail-wm1-f72.google.com with SMTP id 9-20020a05600c240900b0038c99b98f6fso552102wmp.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 01:46:29 -0700 (PDT)
+        with ESMTP id S232056AbiCVI5w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:57:52 -0400
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F49729C9C;
+        Tue, 22 Mar 2022 01:56:25 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id b19so23899725wrh.11;
+        Tue, 22 Mar 2022 01:56:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Ns6x5qMhMdYQ14F/6CRmR+MC5tPxoh9wJPntlRcRYM8=;
-        b=4V7EAoNbLxIw76gjq7j7ow7T0tRRrZ/fUN9HdzQcBbJmLVV+p4MVsYmCSBIChzous2
-         0KUb8eEfTiCCzy1kYRXmgt4HhDKLla7o6xDvvit7CtUDBqT9qxP8fLYCJfO+8qdz6xnY
-         1ElX0yDed1VZo9sSlEH37OF1STQ6/v5lb7ewsRrp1Vzt/ZSifxyPdjG5a2/o/OuO6e+W
-         +3+2Ryv38mT8cfXqgmmsVCBQwRAe/JH6gREsM44y7dVfyvuIKcJCf5RUvVi+ML+KSTNc
-         yD1CGRAg3OeAlhuJg5BRTC4TirCMsP4O6QjAvnlnYfNBdH5uXlAFag5b2RKYU0klDSMJ
-         oTdA==
-X-Gm-Message-State: AOAM531IVnelmTCKPoBlhJ/mrVNMQGEMfgely2IXr97IcS0sgXdYp3xL
-        17+J+p2p1K7ZXFfv6g0VP2ZIJDUi4KxR4gMfVbmuQttuiG/ys9Ao8Jq09macSr9CA+PbGN220Aa
-        J99cskQDBHogDgYKxbBDxi6WH4HJPglB2Yh5Fb/U=
-X-Received: by 2002:a5d:47a7:0:b0:203:d1b4:8f6 with SMTP id 7-20020a5d47a7000000b00203d1b408f6mr22185072wrb.36.1647938788912;
-        Tue, 22 Mar 2022 01:46:28 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyhYewicFouwHmI7LoZatc4e5+uyx8QH11LnUERCGbNVF6UFm3eYkF8CEUxLw1D82wG8LV7FA==
-X-Received: by 2002:a5d:47a7:0:b0:203:d1b4:8f6 with SMTP id 7-20020a5d47a7000000b00203d1b408f6mr22185047wrb.36.1647938788647;
-        Tue, 22 Mar 2022 01:46:28 -0700 (PDT)
+        bh=4IDTqc3vS0homRb5egEok1VAKstmLtnVq0FuLPeo1/I=;
+        b=fI0YkxoYnWriJDzISwKrT/RUs0HreSjLl54+DnfaZU9yUYEj0At0eYTRKlYY6DBuON
+         yW8138Vff/Q/YaHWa3a28iqMCFYbfqEHVDka6hSOCjA9qdY+f05BN0IVDMytta9619as
+         qJE9KWOEWfLlr/jGCJHQYQDgHYNJuMD1w/WHPqlZe9x1Uw77G/AUBw97IybkTWnNS/pu
+         y+IH2h1vTZZHXW1N1t9V0FpuJZgoT2bFymQgbNaRxPYJlMrgqQZD7YQ87TOx6hR90w5u
+         fIOA/v8SAZaij4bxq+H+62F36G5+cD9UnAOdu9Y8sKN4t0X4/vFVhXaw2AmqdDsEye5H
+         3KtQ==
+X-Gm-Message-State: AOAM531qnKnc4cM4h+azfwENRI9Mo9nFm1XiFVdqiNds7I6Ro5uHPRaS
+        hxW9DW6EB+Bkz7biM2AJHnY=
+X-Google-Smtp-Source: ABdhPJw3LqEXSODpm7x6a7J1hW37RYctIUsVBlf4FNn9sxGpKqFJ02EMCbHoSiDm/MN0asiqrU6/hg==
+X-Received: by 2002:a5d:588b:0:b0:204:1c1a:965d with SMTP id n11-20020a5d588b000000b002041c1a965dmr4922405wrf.669.1647939383900;
+        Tue, 22 Mar 2022 01:56:23 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p21-20020a05600c359500b0038ca92f175csm2416313wmq.32.2022.03.22.01.46.26
+        by smtp.googlemail.com with ESMTPSA id l9-20020a5d6d89000000b00203d62072c4sm16804387wrs.43.2022.03.22.01.56.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Mar 2022 01:46:27 -0700 (PDT)
-Message-ID: <13878c88-487b-2546-0af8-3031fdc8e308@canonical.com>
-Date:   Tue, 22 Mar 2022 09:46:26 +0100
+        Tue, 22 Mar 2022 01:56:23 -0700 (PDT)
+Message-ID: <870f8623-8a99-09b6-56c6-0f8c010af237@kernel.org>
+Date:   Tue, 22 Mar 2022 09:56:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] dt-bindings: clock: drop useless consumer example
+Subject: Re: [PATCH v5 1/2] thermal: Add thermal driver for Sunplus SP7021
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     Jesse Taube <mr.bossman075@gmail.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Alexander Shiyan <shc_work@mail.ru>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        "A.s. Dong" <aisheng.dong@nxp.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>
-References: <20220316130858.93455-1-krzysztof.kozlowski@canonical.com>
- <20220316130858.93455-2-krzysztof.kozlowski@canonical.com>
- <YjjCpQ9vwFoEmFFi@robh.at.kernel.org>
- <ca6c4fe5-93c5-9ad4-0c9f-86ec3213d44e@gmail.com>
- <a8290aa4-8a2c-68c3-bc55-82abcd27385e@canonical.com>
-In-Reply-To: <a8290aa4-8a2c-68c3-bc55-82abcd27385e@canonical.com>
+To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>,
+        Li-hao Kuo <lhjeff911@gmail.com>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "amitk@kernel.org" <amitk@kernel.org>,
+        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+References: <cover.1647399369.git.lhjeff911@gmail.com>
+ <a658d7513a62e067086d8e2a73920bb892293569.1647399369.git.lhjeff911@gmail.com>
+ <9b263f80-15df-efd3-2682-0adda06f5b5f@canonical.com>
+ <4c05e7767bfe401b8c139e159855fe77@sphcmbx02.sunplus.com.tw>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <4c05e7767bfe401b8c139e159855fe77@sphcmbx02.sunplus.com.tw>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2022 09:45, Krzysztof Kozlowski wrote:
-> On 22/03/2022 02:45, Jesse Taube wrote:
+On 22/03/2022 03:55, Lh Kuo 郭力豪 wrote:
+>>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>> +	if (IS_ERR(res))
+>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(res), "resource get
+>>> +fail\n");
+>>> +
+>>> +	sp_data->regs = devm_ioremap(&pdev->dev, res->start, resource_size(res));
+>>> +	if (IS_ERR(sp_data->regs))
+>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(sp_data->regs), "mas_base
+>>> +get fail\n");
 >>
+>> Use devm_platform_ioremap_resource() instead.
 >>
->> On 3/21/22 14:23, Rob Herring wrote:
->>> On Wed, Mar 16, 2022 at 02:08:58PM +0100, Krzysztof Kozlowski wrote:
->>>> Consumer examples in the bindings of resource providers are trivial,
->>>> useless and duplication of code.  Remove the example code for consumer
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>>> ---
->>>>   .../bindings/clock/bitmain,bm1880-clk.yaml           | 12 ------------
->>>>   .../devicetree/bindings/clock/idt,versaclock5.yaml   |  7 -------
->>>>   .../devicetree/bindings/clock/imx1-clock.yaml        |  9 ---------
->>>>   .../devicetree/bindings/clock/imx21-clock.yaml       |  9 ---------
->>>>   .../devicetree/bindings/clock/imx23-clock.yaml       |  9 ---------
->>>>   .../devicetree/bindings/clock/imx25-clock.yaml       |  8 --------
->>>>   .../devicetree/bindings/clock/imx27-clock.yaml       |  9 ---------
->>>>   .../devicetree/bindings/clock/imx28-clock.yaml       |  9 ---------
->>>>   .../devicetree/bindings/clock/imx31-clock.yaml       |  8 --------
->>>>   .../devicetree/bindings/clock/imx35-clock.yaml       |  8 --------
->>>>   .../devicetree/bindings/clock/imx7ulp-pcc-clock.yaml | 11 -----------
->>>>   .../devicetree/bindings/clock/imx7ulp-scg-clock.yaml | 11 -----------
->>>>   .../devicetree/bindings/clock/imx8qxp-lpcg.yaml      | 11 -----------
->>>>   .../devicetree/bindings/clock/imxrt1050-clock.yaml   |  8 --------
->>>>   .../bindings/clock/nvidia,tegra124-car.yaml          |  7 -------
->>>>   .../bindings/clock/nvidia,tegra20-car.yaml           |  7 -------
->>>>   16 files changed, 143 deletions(-)
->>>
->>> Doesn't apply to my tree (no imxrt1050-clock.yaml), so
->> merge against linux-next I can submit another patch if needed.
->>> Acked-by: Rob Herring <robh@kernel.org>
 > 
-> Let me send it after the merge window - all dependencies should be there.
+> Other drivers must also access these registers.
+> Warning when using devm_platform_ioremap_resource
+> Can I keep the original settings?
 
-Optionally this could be picked up by Stephen/Michael (clock).
+You should not map one region twice. How do you guarantee
+synchronization during for example updates of specific registers? In
+such case you need to use regmap and share it via syscon (although this
+does not solve synchronization on higher level - avoiding conflicting
+changes to same registers)
 
 
 Best regards,
