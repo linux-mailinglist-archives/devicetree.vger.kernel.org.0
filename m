@@ -2,94 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7AB4E414D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 15:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 595184E4169
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 15:35:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233774AbiCVOaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 10:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57728 "EHLO
+        id S237267AbiCVOga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 10:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233610AbiCVOap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 10:30:45 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB529652C0
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 07:29:17 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 3D743839C2;
-        Tue, 22 Mar 2022 15:29:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1647959354;
-        bh=W3GwdCSddnz2u+fQ3pCDO758m9Q5vIU5oc3SoQFhHN4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=MA/GOJURekx5d6npz9fI+rj6xV8qWWe8FA7cIpi9E4vi1jnIRE6QMa0n9ArmA3ejT
-         4JsDboRYBYSP0huJbpV7DxF+D+GiwlJS+9cA0JtbFooH8KMFrtJLCZqIbwrxWLhTa6
-         6q+LfRCpAFOcL/2Nkl/zxXs8iblGDsH+F/9eOSTgO363Pg9Bk+ptSZXOShu/MfWcd0
-         t8gY3dmg0Vtr+Ne86rvGeBjEpz1DR/Te2hirqqyIkO912jebEO32DJZyPPsD55VpHt
-         slR12MmdQ/G6l+dgtFnbSSH1QEbfQdvEug02qLioEKnxwdMPNhFO5kXQEj+Br/scnV
-         vZ46XgdCqGYUw==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>,
-        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
-Date:   Tue, 22 Mar 2022 15:28:52 +0100
-Message-Id: <20220322142853.125880-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S233212AbiCVOg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 10:36:29 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57D348896;
+        Tue, 22 Mar 2022 07:35:01 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 4A85D1F44168
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1647959700;
+        bh=aNbxXQ/SWTcyB0DYx3I3/ERMzeu2JAiNEzh7tn5j4wE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PH97x9fGWNjR9ZafBX72qdRbmIzVwKx9irbMtnG21KzUrfNSFcVwxferoJpZSZ/z5
+         OJ4DP+GIVHNY1x2JNg94ne1kWTU8mnmhCFLO6jRqyxGycTQjZSXNb3nM1EmQVszbkj
+         a0DVTFrmX0Tce65fW25rRtLIDu32/ansGYY8memvI0SlPcHaQm+t4XZow1sNE8bFmb
+         51kqueaI3W2fN/k2MRCuB+w0fR2WXNPkxJC6TYSk7yGUMtQuDhfpFCoEXHEaPgCTfU
+         fKb2lI5FVxWKaj40ZIKS9mrjAAc7a1US64tzPIEngTqXyNKFXz115hyfjuhCAWU5tV
+         kCJVWVquz2dsA==
+Date:   Tue, 22 Mar 2022 10:34:55 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>
+Subject: Re: [PATCH v4 12/22] arm64: dts: mt8192: Add mmc device nodes
+Message-ID: <20220322143455.fbaavvhf3uh5otbn@notapiano>
+References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
+ <20220318144534.17996-13-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220318144534.17996-13-allen-kh.cheng@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
-and is completely different from the LCDIFv3 found in i.MX23 in that it
-has a completely scrambled register layout compared to all previous LCDIF
-variants. The new LCDIFv3 also supports 36bit address space. However,
-except for the complete bit reshuffling, this is still LCDIF and it still
-works like one.
+On Fri, Mar 18, 2022 at 10:45:24PM +0800, Allen-KH Cheng wrote:
+> Add mmc nodes for mt8192 SoC.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Robby Cai <robby.cai@nxp.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Stefan Agner <stefan@agner.ch>
-Cc: devicetree@vger.kernel.org
----
- Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index 900a56cae80e6..876015a44a1e6 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -20,6 +20,7 @@ properties:
-           - fsl,imx23-lcdif
-           - fsl,imx28-lcdif
-           - fsl,imx6sx-lcdif
-+          - fsl,imx8mp-lcdif
-       - items:
-           - enum:
-               - fsl,imx6sl-lcdif
--- 
-2.35.1
-
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 34 +++++++++++++++++++++---
+>  1 file changed, 30 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 6220d6962f58..2648f2847993 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -1150,10 +1150,36 @@
+>  			#clock-cells = <1>;
+>  		};
+>  
+> -		msdc: clock-controller@11f60000 {
+> -			compatible = "mediatek,mt8192-msdc";
+> -			reg = <0 0x11f60000 0 0x1000>;
+> -			#clock-cells = <1>;
+> +		mmc0: mmc@11f60000 {
+> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
+> +			reg = <0 0x11f60000 0 0x1000>, <0 0x11f50000 0 0x1000>;
+> +			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>,
+> +				 <&msdc_top CLK_MSDC_TOP_H_MST_0P>,
+> +				 <&msdc_top CLK_MSDC_TOP_SRC_0P>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC0>,
+> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
+> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
+> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
+> +				      "pclk_cg", "axi_cg", "ahb_cg";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc1: mmc@11f70000 {
+> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
+> +			reg = <0 0x11f70000 0 0x1000>, <0 0x11c70000 0 0x1000>;
+> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>,
+> +				 <&msdc_top CLK_MSDC_TOP_H_MST_1P>,
+> +				 <&msdc_top CLK_MSDC_TOP_SRC_1P>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC1>,
+> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
+> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
+> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
+> +				      "pclk_cg", "axi_cg", "ahb_cg";
+> +			status = "disabled";
+>  		};
+>  
+>  		mfgcfg: clock-controller@13fbf000 {
+> -- 
+> 2.18.0
+> 
+> 
