@@ -2,148 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4E44E3A65
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2E574E3A6E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 09:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbiCVIUH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Mar 2022 04:20:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54170 "EHLO
+        id S230343AbiCVIVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 04:21:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbiCVIUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:20:06 -0400
-Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028F15A5A3;
-        Tue, 22 Mar 2022 01:18:36 -0700 (PDT)
-Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id 3027330AE012;
-        Tue, 22 Mar 2022 09:18:35 +0100 (CET)
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id 41F7530AE000;
-        Tue, 22 Mar 2022 09:18:34 +0100 (CET)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 22M8IYRq010948;
-        Tue, 22 Mar 2022 09:18:34 +0100
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 22M8IXBX010947;
-        Tue, 22 Mar 2022 09:18:33 +0100
-X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     "Marc Kleine-Budde" <mkl@pengutronix.de>
-Subject: Re: [PATCH v8 0/7] CTU CAN FD open-source IP core SocketCAN driver, PCI, platform integration and documentation
-Date:   Tue, 22 Mar 2022 09:18:32 +0100
-User-Agent: KMail/1.9.10
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz> <20220322074622.5gkjhs25epurecvx@pengutronix.de>
-In-Reply-To: <20220322074622.5gkjhs25epurecvx@pengutronix.de>
-X-KMail-QuotePrefix: > 
-MIME-Version: 1.0
-Content-Type: Text/Plain;
-  charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-Content-Disposition: inline
-Message-Id: <202203220918.33033.pisa@cmp.felk.cvut.cz>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230345AbiCVIVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 04:21:05 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B4295EBF7
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 01:19:35 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220322081931epoutp03cd79c5aa3c39dff61f5dc91a9a35468b~epiBJJR7w1725517255epoutp03V
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 08:19:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220322081931epoutp03cd79c5aa3c39dff61f5dc91a9a35468b~epiBJJR7w1725517255epoutp03V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1647937171;
+        bh=HhEg8SeIzOQ+B0sMaC9D5JpzHmXS6nQ9Z/IoLLlUzo0=;
+        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
+        b=UZwnrBJKH7n2qS4+spnZTA2KOb6E5ORtjJJh49fu7jmPac3GgSVvG1fMmFhMaCo4U
+         1SVD9CZtedLwpzTDnbOxkG+uZDtmOgkXC6g/1oiYz4UA7g5L6XwqHRlbarLTqc2sLI
+         /62xZB7cJmlcaHg/z9dWKpxwew/RGvq5IzQZQfpQ=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220322081930epcas2p290165808ac75eba01e3f09182d951db2~epiAgacJo1883518835epcas2p2a;
+        Tue, 22 Mar 2022 08:19:30 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.68]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4KN4CP2bHJz4x9Q2; Tue, 22 Mar
+        2022 08:19:29 +0000 (GMT)
+X-AuditID: b6c32a46-be9ff70000023ea8-c2-62398690f0c9
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        29.50.16040.09689326; Tue, 22 Mar 2022 17:19:28 +0900 (KST)
+Mime-Version: 1.0
+Subject: [PATCH 1/2] dt-bindings: thermal: Add ARTPEC-8 compatible string
+ for exynos-thermal
+Reply-To: hypmean.kim@samsung.com
+Sender: Sang Min Kim <hypmean.kim@samsung.com>
+From:   Sang Min Kim <hypmean.kim@samsung.com>
+To:     "bzolnier@gmail.com" <bzolnier@gmail.com>,
+        "krzysztof.kozlowski@canonical.com" 
+        <krzysztof.kozlowski@canonical.com>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "amitk@kernel.org" <amitk@kernel.org>,
+        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        ALIM AKHTAR <alim.akhtar@samsung.com>
+CC:     "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+In-Reply-To: <20220322075617.109855-1-hypmean.kim@samsung.com>
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20220322081928epcms2p5c426f8eebbc5251a294ab08ae869e487@epcms2p5>
+Date:   Tue, 22 Mar 2022 17:19:28 +0900
+X-CMS-MailID: 20220322081928epcms2p5c426f8eebbc5251a294ab08ae869e487
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+X-CPGSPASS: Y
+X-CPGSPASS: Y
+CMS-TYPE: 102P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMJsWRmVeSWpSXmKPExsWy7bCmue6ENsskg3VnxSwezNvGZnF4foXF
+        9y3XmSxeHtK0mPdZ1mL+kXOsFhvf/mCy2PT4GqvF5V1z2Cw+9x5htJhxfh+TxdwvU5ktWvce
+        Ybd48rCPzYHPY1ZDL5vHzll32T0W73nJ5LFpVSebx51re9g8Ni+p9+jbsorR4/MmuQCOqGyb
+        jNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKCjlRTKEnNK
+        gUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGU++
+        1RVcFqh4t28VUwPjbIEuRk4OCQETiaNTP7F3MXJxCAnsYJR4sfEYYxcjBwevgKDE3x3CIDXC
+        AnESnefWsoPYQgKKEi93bGeGiOtJ3Nz4GSzOJqAj8bj1PhPIHBGBDmaJY53HWUEcZoGrTBLP
+        589jh9jGKzGj/SkLhC0tsX35VrBlnAJ2Emv2hkCENSR+LOtlhrBFJW6ufssOY78/Np8RwhaR
+        aL13FqpGUOLBz91QcUmJTYe3Q9VXS9zauBzsBgmBBkaJ1m9NzCC7JAT0JXZcNwap4RXwlVi4
+        eh9YPYuAqsS9y7ugel0kLt9rAJvJLKAtsWzha7BWZgFNifW79CGmKEscucUC81TDxt/s6Gxm
+        AT6JjsN/4eI75j1hgrBVJXZu6mafwKg8CxHQs5DsmoWwawEj8ypGsdSC4tz01GKjAiN41Cbn
+        525iBKdeLbcdjFPeftA7xMjEwXiIUYKDWUmEd/EH8yQh3pTEyqrUovz4otKc1OJDjKZAX05k
+        lhJNzgcm/7ySeEMTSwMTMzNDcyNTA3MlcV6vlA2JQgLpiSWp2ampBalFMH1MHJxSDUw7933c
+        4eTrpHnkOC/P/Zuzrh/Q2r5ndWHpzBlrde264o2Dr7bdbHv8+UTR+vrrZ4o7YxbPv6/mtqtr
+        XUHmpwev7rN4XFLz9BbQEuMK8zs0oaq39YMHB2v/g4Ji/5LzD95Nvbg9eWNbJ6+S4wzvx4k/
+        onh7zhj1qHc4OR7tKrR9VmNT7X1iXmErvxzr0plOy+azLFP6e8Mmz0z99sFOk/ZPSZuPae6a
+        F7rA2Pbkwr0ODeWiRa8C9q9p91EJyXYrVP5sd0ki8rSHaODXVd3zlheELtCIvzfvwgJl7wMb
+        XRXiAtvV9/T1/l74o7CVV3vTyxNu/Wd97z6fsl6gcJtx18uU7pl9xecNpA9cqMv3MFZiKc5I
+        NNRiLipOBACIUOEGRgQAAA==
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220322075557epcas2p26c9dcb578e9c5f68a23f7fe1bdf35f65
+References: <20220322075617.109855-1-hypmean.kim@samsung.com>
+        <CGME20220322075557epcas2p26c9dcb578e9c5f68a23f7fe1bdf35f65@epcms2p5>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marc,
-
-thanks for positive reply for our years effort.
-
-On Tuesday 22 of March 2022 08:46:22 Marc Kleine-Budde wrote:
-> On 22.03.2022 00:32:27, Pavel Pisa wrote:
-> > This driver adds support for the CTU CAN FD open-source IP core.
->
-> The driver looks much better now. Good work. Please have a look at the
-> TX path of the mcp251xfd driver, especially the tx_stop_queue and
-> tx_wake_queue in mcp251xfd_start_xmit() and mcp251xfd_handle_tefif(). A
-> lockless implementation should work in your hardware, too.
-
-Is this blocker for now? I would like to start with years tested base.
-
-We have HW timestamping implemented for actual stable CTU CAN FD IP core 
-version, support for variable number of TX buffers which count can be 
-parameterized up to 8 in the prepared version and long term desire to 
-configurable-SW defined multi-queue which our HW interface allows to 
-dynamically server by á TX buffers. But plan is to keep combinations
-of the design and driver compatible from the actual revision.
-
-I would be happy if we can agree on some base/minimal support and get
-it into mainline and use it as base for the followup patch series.
-
-I understand that I have sent code late for actual merge window,
-but I am really loaded by teaching, related RISC-V simulator
-https://github.com/cvut/qtrvsim , ESA and robotic projects
-at company. So I would prefer to go step by step and cooperate
-on updates and testing with my diploma students.
-
-> BTW: The PROP_SEG/PHASE_SEG1 issue is known:
-> > +A curious reader will notice that the durations of the segments PROP_SEG
-> > +and PHASE_SEG1 are not determined separately but rather combined and
-> > +then, by default, the resulting TSEG1 is evenly divided between PROP_SEG
-> > +and PHASE_SEG1.
->
-> and the flexcan IP core in CAN-FD mode has the same problem. When
-> working on the bit timing parameter, I'll plan to have separate
-> PROP_SEG/PHASE_SEG1 min/max in the kernel, so that the bit timing
-> algorithm can take care of this.
-
-Hmm, when I have thought about that years ago I have not noticed real
-difference when time quanta is move between PROP_SEG and PHASE_SEG1.
-So for me it had no influence on the algorithm computation and
-could be done on the chip level when minimal and maximal sum is
-respected. But may it be I have overlooked something and there is
-difference for CAN FD.  May it be my colleagues Jiri Novak and 
-Ondrej Ille are more knowable.
-
-As for the optimal timequantas per bit value, I agree that it
-is not so simple. In the fact SJW and even tipple-sampling
-should be defined in percentage of bit time and then all should
-be optimized together and even combination with slight bitrate
-error should be preferred against other exact matching when
-there is significant difference in the other parameters values.
-
-But I am not ready to dive into it till our ESA space NanoXplore
-FPGA project passes final stage... 
-
-By the way we have received report from Andrew Dennison about
-successful integration of CTU CAN FD into Litex based RISC-V
-system. Tested with the Linux our Linux kernel driver.
-
-The first iteration there, but he reported that some corrections
-from his actual development needs to be added to the public
-repo still to be usable out of the box
-
-  https://github.com/AndrewD/litecan
-
-Best wishes,
-
-                Pavel Pisa
-    phone:      +420 603531357
-    e-mail:     pisa@cmp.felk.cvut.cz
-    Department of Control Engineering FEE CVUT
-    Karlovo namesti 13, 121 35, Prague 2
-    university: http://dce.fel.cvut.cz/
-    personal:   http://cmp.felk.cvut.cz/~pisa
-    projects:   https://www.openhub.net/accounts/ppisa
-    CAN related:http://canbus.pages.fel.cvut.cz/
-    Open Technologies Research Education and Exchange Services
-    https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
-
+Extend=C2=A0the=C2=A0exynos-thermal=C2=A0dt=C2=A0bindings=C2=A0document=C2=
+=A0to=C2=A0include=C2=A0compatible=0D=0Astring=C2=A0supporting=C2=A0ARTPEC-=
+8=C2=A0SoC=0D=0A=C2=A0=0D=0ASigned-off-by:=C2=A0sangmin=C2=A0kim=C2=A0<hypm=
+ean.kim=40samsung.com>=0D=0A---=0D=0A=C2=A0Documentation/devicetree/binding=
+s/thermal/samsung,exynos-thermal.yaml=C2=A0=7C=C2=A02=C2=A0++=0D=0A=C2=A01=
+=C2=A0file=C2=A0changed,=C2=A02=C2=A0insertions(+)=0D=0A=C2=A0=0D=0Adiff=C2=
+=A0--git=C2=A0a/Documentation/devicetree/bindings/thermal/samsung,exynos-th=
+ermal.yaml=C2=A0b/Documentation/devicetree/bindings/thermal/samsung,exynos-=
+thermal.yaml=0D=0Aindex=C2=A017129f7..c12bcff=C2=A0100644=0D=0A---=C2=A0a/D=
+ocumentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml=0D=0A+=
+++=C2=A0b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.=
+yaml=0D=0A=40=40=C2=A0-16,6=C2=A0+16,7=C2=A0=40=40=C2=A0description:=C2=A0=
+=7C=0D=0A=C2=A0properties:=0D=0A=C2=A0=C2=A0=C2=A0compatible:=0D=0A=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0enum:=0D=0A+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
+=C2=A0axis,artpec8-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=
+=A0samsung,exynos3250-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
+=C2=A0samsung,exynos4412-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0-=C2=A0samsung,exynos4210-tmu=0D=0A=40=40=C2=A0-101,6=C2=A0+102,7=C2=A0=
+=40=40=C2=A0allOf:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0compatible:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0contains:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0enum:=0D=0A+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0axis,artpec8-tmu=
+=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0-=C2=A0samsung,exynos5433-tmu=0D=0A=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
+=C2=A0samsung,exynos7-tmu=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0then:=0D=0A--=
+=C2=A0=0D=0A2.9.5=0D=0A=C2=A0=0D=0A=C2=A0
