@@ -2,142 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F0C4E4760
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 21:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 398D54E4764
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 21:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232738AbiCVUXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 16:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
+        id S232965AbiCVUXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 16:23:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232965AbiCVUXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 16:23:08 -0400
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam07olkn2055.outbound.protection.outlook.com [40.92.15.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86AB6583B;
-        Tue, 22 Mar 2022 13:21:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TbT0pdFNaFPPp91htMftj5Nd6R47A1knv7hXDzLve3mBl2+Pfwiu6AVg6s3S+L32tNy+qhv5oZMCaz/RGn8yOuoDlnoxrA4M+HAemkHxiibU1zP4Wh7kNQDZhGe6WuJ25j4Pn8x9xKeE8PNSUjRLKuREFB4QoDjsmZ2++jil0wIq9R967Fy0KmsnUtStzBLRQsXqMsqZ/6lo3AzyQ5oup51a4W9SVSGojs/541uOdNOQJ8E70v0b4voa7Csk/mr4gRXvzIsw66vUV64O0eMlBe0ZcrxszUn9xXzjk5zod+FWbcB3ZVCEdqSy9W4aDDon4HO2goAIVCEG/V+zez/1HQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iKUdJNU3HsjcgvpaDcN8glDhmKdVXPbWmZLHDRSf3E0=;
- b=Tdybg2mXJdJuN7e0zfG8q93e2YrKOxa88ukdrPBFuTfN6yBJJGo88/eczn1uV8ZCIZUh9ay+e+7s1UKqHqMjQp+Yhqb6ncdM12Lfp9ERghHkje1yPFgQ32f1MpHK5E7nBNctdKEIQcrMfpTS15MzKc6LVG8rXkgxoUtn1aOnSFK8nQH6dTVE1vDkhezZu/04rwcoZkh6kItD395RDyFi+VwC8/MOutJ8a/M63PtlcQqIo0yVNOStmqCvZykx313LHeiruPmjeOpsgWyT9Xi9ksn8f9npSu3JlIaxdLPIJyRa0nxOj51H/fEaSGotLAm2FPEdbL2sXwMk5Py8RFDv+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from CY4PR04MB0567.namprd04.prod.outlook.com (2603:10b6:903:b1::20)
- by DM5PR04MB0253.namprd04.prod.outlook.com (2603:10b6:3:6d::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Tue, 22 Mar
- 2022 20:21:38 +0000
-Received: from CY4PR04MB0567.namprd04.prod.outlook.com
- ([fe80::451b:e5ed:c1a3:4070]) by CY4PR04MB0567.namprd04.prod.outlook.com
- ([fe80::451b:e5ed:c1a3:4070%5]) with mapi id 15.20.5102.016; Tue, 22 Mar 2022
- 20:21:38 +0000
-Subject: Re: [PATCH 0/7] ARM: dts: s5pv210: Bugfixes, features, and
- improvements
-To:     krzk@kernel.org, alim.akhtar@samsung.com
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CY4PR04MB05677B4C4E26A8A179F6ABC0CB179@CY4PR04MB0567.namprd04.prod.outlook.com>
-From:   Jonathan Bakker <xc-racer2@live.ca>
-Message-ID: <CY4PR04MB05673676DA7E6E4BF275305ECB179@CY4PR04MB0567.namprd04.prod.outlook.com>
-Date:   Tue, 22 Mar 2022 13:21:36 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <CY4PR04MB05677B4C4E26A8A179F6ABC0CB179@CY4PR04MB0567.namprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-TMN:  [HAnldOGDVXVzGXgH6cD7dOOUFnHCnq/znYc12QJj2+5/Ko6U/+1x2kOgqP+6BhTh]
-X-ClientProxiedBy: MW4PR04CA0115.namprd04.prod.outlook.com
- (2603:10b6:303:83::30) To CY4PR04MB0567.namprd04.prod.outlook.com
- (2603:10b6:903:b1::20)
-X-Microsoft-Original-Message-ID: <4e451cff-6907-8c6a-8758-77a1a20abc16@live.ca>
+        with ESMTP id S230489AbiCVUXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 16:23:50 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709E165825;
+        Tue, 22 Mar 2022 13:22:20 -0700 (PDT)
+Received: from fraeml734-chm.china.huawei.com (unknown [172.18.147.207])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KNND83Rvmz67lYX;
+        Wed, 23 Mar 2022 04:21:12 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml734-chm.china.huawei.com (10.206.15.215) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Tue, 22 Mar 2022 21:22:17 +0100
+Received: from localhost (10.47.75.191) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Tue, 22 Mar
+ 2022 20:22:16 +0000
+Date:   Tue, 22 Mar 2022 20:22:15 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Michael Srba <Michael.Srba@seznam.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Message-ID: <20220322202215.000046f9@Huawei.com>
+In-Reply-To: <5709ab75-2c9e-d7d3-eaf7-4619583bb6c6@kernel.org>
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+        <20220310133938.2495-2-michael.srba@seznam.cz>
+        <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+        <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
+        <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
+        <20220320151223.3a9b13bd@jic23-huawei>
+        <ca80bd79-338c-98a4-2f4d-4dcfc52ed538@kernel.org>
+        <20220321150411.00002206@Huawei.com>
+        <47d67c82-788e-2ced-54cc-4959c67922fc@kernel.org>
+        <20220321174202.00007895@Huawei.com>
+        <f8ba569f-d230-92a8-6a56-fbcaf620af36@seznam.cz>
+        <20220322101916.0000759f@Huawei.com>
+        <5709ab75-2c9e-d7d3-eaf7-4619583bb6c6@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b64f8564-60d8-40ec-dcc3-08da0c419160
-X-MS-TrafficTypeDiagnostic: DM5PR04MB0253:EE_
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DAk0R7B2KC721hdTlaZjzLyUlkGKFEd7RiycwbXcO691jLMhDIqMs+n5kYlissTHotnmbhAMj7Az308HAXVUyLxjN2LSoQ4PjOuLe5WztD/n6O/zyF4O2BN5xouCbJ4hsX3bXT8YM9rJcq1j+sOIoZyje4K/DfRzDJ/CwLf0fx7Qsxm06hkfDp19MQkzkmS2CHPmN2tg37xP+MdfXm1TZwgxic5wi0hu7MLVr1BxfttU8ILgGF0oPOENpenkwWtir3Xh33RmOAeBHq5LHEUzryRzGYAT3qUurFtOCwNr++A2I//3dQ89bS/i8X+upAHTxQXvd5xBgJX0Xc4x6YogcP0MBS8/RHO4K5KpVT09bYwr4BgcWvw804201VRCnTVJWaw5VATp6bM4OqWH2PA0Bo1bqhaVByJNtnZtLPuLlr0JQEDMj2iD7CeLg1++9OWwDFIkBpCX/LIY9QMzo1k5rYhel9Z9i1N5shfdsMpG7HGa1WxNdLjktb/NlRMW9BaLfPZOFp+je/PQerO/kFB11ewkRP/hiLz9UhxFSXlYc089gk0UzQ4TyrztSdogVyCn+fE4DrnNO1XDkFim/33vJA==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ym9OK2RvbVUyS2pEdlVoTUh3a2ZZUVJJSkplRnJjZ3dLVDBZVnlNZTJwR1NJ?=
- =?utf-8?B?MDIvVExZM0tWSWlNRmlOUE5WMHZBRzNFZFBIeDYxdHpRZk15ZXBlNklxZlNX?=
- =?utf-8?B?bithcHgxSVFzTHkvN05wR2Q0SEFxQU9xNzIrZVNlRzB1bmtsZ1lZZ3huell4?=
- =?utf-8?B?WlJqOTgrYm10Mk5Oa3h2T3hLdEIxOUtlRXFBeXJDTllyZzIwOEZrWnlWUlJQ?=
- =?utf-8?B?WGdqWFpJNndSWUJ6UkpDUUtleFY0Y0s5TTBOQ002bDZwSHpUYmNGdGowMXhp?=
- =?utf-8?B?RjlaN1pRQUxsa2prbm5YVEVreEVUUDBvcVNkNCtpb2JmbHVGVzZBSzMrcXpG?=
- =?utf-8?B?bWlhb1dyTCtMcCtGTEVwZWQ3dmtPVDdMSW1EdHNPMTdXNlBKT2Rocjh4Y2Rv?=
- =?utf-8?B?WENKWmg4Y0VMeFhnWDI2bWRMWUFtMG5JL3NELy9nQ21iL1N0SlAyd2FILzVG?=
- =?utf-8?B?YUZoZTJjZko0cVJ4bkhhb3ZYSjZLbXd0YUNhbUx3ZDllN1JjNWdFbVc3TlRz?=
- =?utf-8?B?ZlpoZFhYSXpJVHpNdWZ2ZVk3L1BqT2VDOFF2Ymo1NTBEcDNFMEI2TlJMUC84?=
- =?utf-8?B?S2hMVjd5d3htbFE4SmhqQndjSklHY0dPbUpYeFhnM3JiZDNuNzY3N01sNHFk?=
- =?utf-8?B?dXBQR3M3RHBqajJUMmZjSG5QTnA3aTdLN1dRanUyQXlRQkh5RlBkV2l4QUtq?=
- =?utf-8?B?SkRMb291N2Vib05WRjhPd0pLQ1h1M2pqUkZqY0FPdmh4SGV1c3pmcXQxQ2dX?=
- =?utf-8?B?TWhRd0dwODdPQytLUWtlV2lpajhNOU8vRkExV2tnbGN0UklweVJ2MDFEM1VD?=
- =?utf-8?B?NGpXcEd6U1FJZlFXTmRyTEhHNDQ4czdnK1ZCMTJseWxlU1M3blV2Q244OStE?=
- =?utf-8?B?TjE5WXZ4dWs1bFdveUdLU0NVcFBPNTlBM1VyR1RCN3VJUXZPdVVidVNwT0Nu?=
- =?utf-8?B?YmpwWUN2VDNJZVNacjhrSm1QOEdQZ0V0cTYxV1QxbGFDTmVka1BRTkxQV0FB?=
- =?utf-8?B?ODR3SlVRNVcxcy8yYXBEM0ErdGRxV1M4L3J4NVpna0ZMVXUvUDZ4eEFIV0Nr?=
- =?utf-8?B?KytOZk1uRG8rQ2t0cEl3KzNOOTcxS1hoYll6Z0pwbXk2dC9XRTk0QklGa0Nl?=
- =?utf-8?B?M1UyMGhiZzUxOUFWM2R1ZldseGZENSs1cE1oeHJZV05IMW1RMWNrK01mUG80?=
- =?utf-8?B?cWZrS3dRSlQzRmFYQUtrcXNseU9ERWJyQmoweWhYV0JXQ00rVUNZc0lCNXlW?=
- =?utf-8?B?Qk03K0RKN3FRZVBVYytVaE1QeWIwWHBnQ3AvZWJPTkpKT284UGNKY2t5SkZs?=
- =?utf-8?B?T2hMd2lhaktCYkc2cjJEYkVtcG84TngzSHdxNDcxdWhkdkVIeVpENFk1SUxr?=
- =?utf-8?B?TWFpaXpYZW16bXBPTmJUQ1FHbzZXb0dLSjhHRldrRUN0YUFtajMwN1BBRGNB?=
- =?utf-8?B?WmJCcmhUanAwZVd3WndUTldSUkdmQnZkL2JxaEZSVXRuYUxyMEQ3U3BveWho?=
- =?utf-8?B?VHFvVzlSTjJXaFg5L1ZKdkwrNHBJTlZkcVR1UFl4WjlPRUNFMlRYcTRMZFM5?=
- =?utf-8?B?VGpIMzhtQXhBWWkrQVdnSlNzcHU3Wisvc3JzVytPVkF2aUwyZWUyTnh1SDNm?=
- =?utf-8?B?azdDRW8weFc3cG5La3NLb1Naa3lPVlE9PQ==?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-edb50.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: b64f8564-60d8-40ec-dcc3-08da0c419160
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR04MB0567.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2022 20:21:38.1235
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0253
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.75.191]
+X-ClientProxiedBy: lhreml742-chm.china.huawei.com (10.201.108.192) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry, it appears that I ran into connectivity issues part way through sending
-the patchset.  Should I resend the entire series or is there a way to get
-git send-email to retry/continue?
+On Tue, 22 Mar 2022 11:41:11 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Thanks,
+> On 22/03/2022 11:19, Jonathan Cameron wrote:
+> >>> Obviously it wouldn't work anyway with an old kernel, but
+> >>> without the fallback compatible at least there would be no error message
+> >>> saying that the device is not the icm20608 we expected to see.    
+> >> I'm not sure if that's really an issue?
+> >> The old kernel is clearly not handling the compatible "correctly",
+> >> since the compatible says that the interface is a superset of
+> >> the icm20608 interface, and that using the icm20608
+> >> interface will work.
+> >> If the driver makes the incorrect assumption that
+> >> the WHOAMI being different means the interface cannot
+> >> be icm20608 compatible, then that seems like an issue
+> >> with the driver?
+> >> And I believe the single reason for why catering to
+> >> a broken driver would ever be considered is if not doing
+> >> so would result in breaking the devicetree ABI promise,
+> >> which doesn't seem to happen here.  
+> > 
+> > I'll be honest I no longer care that much either way.
+> > 
+> > If someone would point me to clear documentation of that
+> > DT ABI promise   
+> 
+> Documentation/devicetree/bindings/ABI.rst
+
+Hi Krzyztof,
+
+I am not willfully ignoring your reference. I simply disagree
+that it says what you understand it to.  This may be an aspect of
+the intended meaning but it is sufficiently vague that I read
+that reference several times and did not come to the same
+conclusion as you have.
+
+If you want to take your description and propose it as additional
+documentation I would be happy to review it.
+
+I'm not keen to continue this discussion because we are talking
+cross purposes and going over the same ground with no fundamental
+change of opinions, so it is not productive use of time.
+
 Jonathan
 
-On 2022-03-22 1:11 p.m., Jonathan Bakker wrote:
-> Various cleanups to fix warnings when running make dtbs_check are included,
-> as are bugfixes for the panel CS pin and bluetooth interrupt name on Aries.
 > 
-> The new feature is charging support for Aries board, note that the galaxys
-> (i9000) and fascinate4g (SGH-T959P) have slightly different batteries,
-> and so the DTS can't be shared.
+> > and how it describes things as being compatible
+> > that would be great and provide me with a clear statement
+> > to point others to in the future.  
 > 
-> Jonathan Bakker (7):
->   ARM: dts: s5pv210: Split memory nodes to match spec
->   ARM: dts: s5pv210: Adjust I2S entries to match spec
->   ARM: dts: s5pv210: Adjust DMA node names to match spec
->   ARM: dts: s5pv210: Remove spi-cs-high on panel in Aries
->   ARM: dts: s5pv210: Correct interrupt name for bluetooth in Aries
->   ARM: dts: s5pv210: Add charger regulator to max8998 in Aries
->   ARM: dts: s5pv210: Add charger support in Aries
+> It's very concise, so let me decipher the first paragraph.
+> It is safe to
+> add new compatibles to the chain (so exactly like here "icm20608d,
+> icm20608") because the system can bind:
+> 1. against new compatible bringing all new features,
+> 2. old compatible, working with "old" or limited set of features.
 > 
->  arch/arm/boot/dts/s5pv210-aquila.dts      |   8 +-
->  arch/arm/boot/dts/s5pv210-aries.dtsi      |  25 +++-
->  arch/arm/boot/dts/s5pv210-fascinate4g.dts | 162 ++++++++++++++++++++++
->  arch/arm/boot/dts/s5pv210-galaxys.dts     | 144 +++++++++++++++++++
->  arch/arm/boot/dts/s5pv210-goni.dts        |  14 +-
->  arch/arm/boot/dts/s5pv210.dtsi            |  24 ++--
->  6 files changed, 354 insertions(+), 23 deletions(-)
+> What I was explaining you in mails before, which you responded to with:
+> "Whilst I don't personally agree with the definition of "compatible"
+> and think you are making false distinctions between hardware and
+> software..."
+> we do not talk here about software, as in device driver. We talk about
+> bindings which describe the hardware, therefore the compatible should be
+> rather understood in the hardware model, not driver model.
 > 
+> The compatible field does not mean that one driver is compatible with
+> this or other hardware. It means that devices have a compatible
+> programming model or interface.
+> 
+> Now driver should be implemented in that way. If driver handles
+> "icm20608" compatible, it should nicely handle only icm20608 features,
+> regardless whether device is icm20608 or icm20608d.
+> 
+> Now let's imagine, that icm20608d is slightly different than icm20608 in
+> the basic feature set. Than it's not compatible and should deserve
+> another separate binding entry, regardless how driver handles it.
+> 
+> Keep in mind what Rob said - driver implementation can changed, but
+> device compatibility in bindings should stay the same. Specially that
+> bindings are used in other operating systems (*BSD) and software pieces
+> (u-boot).
+> 
+> > Perhaps I've just been missing that documentation or it
+> > needs writing.
+> > 
+> > I think that having to ignore a WHOAMI value that
+> > is unknown to the driver because there might be a future part
+> > which is compatible is a very bad way to support
+> > devices in a reliable fashion and going to lead to annoyed
+> > users and bug reports.  
+> 
+> I see your point. It's a safer choice than just accepting any device.
+> However it's a designer/programmers fault to provide a DTB with a
+> matching compatible for a non-compatible device. Not driver programmer
+> fault. Usually you do not have to protect the driver from it.
+> 
+> > This is different to electing to
+> > using a shared compatible when two parts are introduced at
+> > the same time and we are doing detection in the driver of
+> > which variant we have.
+> > 
+> > I mentioned earlier that we have this type of defensive coding
+> > precisely because we have had false assessments about
+> > compatibility in the past. This manufacturer does not in
+> > general document compatibility across parts. I have no idea if
+> > they do for this particular part as there doesn't seem to be
+> > a public datasheet.  
+> 
+> Kind of continuing my previous thought also here - it's not a problem of
+> driver developer, but DTB developer. If the devices are not compatible
+> (thus driver will not work correctly), the person using that compatible
+> in DTB made mistake. Bug reports should be sent to that person, not to
+> driver developer, not to you.
+> 
+> > It didn't work before, now it won't work and will complain about it
+> > which may lead to some bug reports that won't be resolved but
+> > I'll adopt the majority opinion which seems to be that we
+> > don't care about that.  
+> 
+> Yes, we don't care but the DTB/DTS person should. :)
+> 
+> >  I'd also be happy to see us reduce
+> > the problem scope here by having a 'fix' for that rejection
+> > of unknown IDs that we can push back to stable kernels.
+> > Relaxing it to a warning should be sufficient, though we probably
+> > want to screen out whatever comes back from the bus if there
+> > is no device present at all as the WHOAMI check is also
+> > providing that protection.  
+> 
+> A dev_warn() with a disclaimer might be actually better approach. Unless
+> it might be a safety-critical device.
+> 
+> Best regards,
+> Krzysztof
+
