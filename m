@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A084E48BB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 22:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FB9E4E48C6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 23:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237198AbiCVV7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 17:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33726 "EHLO
+        id S230400AbiCVWDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 18:03:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237184AbiCVV7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 17:59:30 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F15D99;
-        Tue, 22 Mar 2022 14:58:00 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 3A0281F43FFC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647986279;
-        bh=I0arKn0E7vN63I4XgUWTYnGY2tJfYbzJ7u22hHlqdDE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VsElHnMT+C8u3vo7bEekufFYeVPA3WFbn8uJ7uEwX5zTyvAfnKvP8pET4CbmF9xqP
-         D1PxKgrCJG68lzmgEMGyc3swAkukTZmnjPvAXxEOoFep6ecSKq2VjKsUVUgCQF0/mm
-         g2FXPiUePLi8uVnGqWFE7nzNlWVzClFXrbhRA9MwXyA8GwUfrJW81L18mPqM2wUqpj
-         /h8G4wcFiDkRp9zyF5GIOtqEjW7/J1jPEterRCWpsN6W9Bw4dTUl5021ji1EEjuMX2
-         cWFdboVCpxGkZHXt6zRcdBn2tT/LqoXQhPAPRZNrdakXsr/WQ/TQ3XQ5xY/SsWBf08
-         3YLGry8aa0FJg==
-Date:   Tue, 22 Mar 2022 17:57:54 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-Subject: Re: [PATCH v4 08/22] arm64: dts: mt8192: Add infracfg_rst node
-Message-ID: <20220322215754.j2hzutm775hvr25n@notapiano>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-9-allen-kh.cheng@mediatek.com>
+        with ESMTP id S230328AbiCVWDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 18:03:10 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77745DE9F
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 15:01:40 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 65CC583B15;
+        Tue, 22 Mar 2022 23:01:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1647986499;
+        bh=4sCwKYdjwBVsX0VeIWVH2ZkfcS9DgX908He+0PJaxJo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Ie9P9SrDwiAC7X1NRqsaq2bdQ+xSlwnRk5zhculC+y//5Xw1356F7nkbXx5C6MppO
+         LBItw2WCuNDocNcDfVluURZCoJWyVNsGUjHde+7zJeaR87BwWsi0iTH4LKAtPgVie/
+         fKnBfkqpPgW9O7WjDBeMiSIgqro9f1riovePD/hY4OfuMJUqoF+uDK8UgezJjlnnKD
+         AG/xLPxkgIM24/phLLj/61CVrfrQrhwIRVljAVbs0wDNUbdd1MEeWmYrSzmp3Z4JvV
+         8gHF81K5qyEuzSRL2EZbFEm5LTEMC99EkmH6H0FKW8rcX0Rmk8GEoqii4u+Ng30drW
+         id8vEzgH3PCkA==
+Message-ID: <3fdcaaf4-245b-2856-eaf9-4350f0f20724@denx.de>
+Date:   Tue, 22 Mar 2022 23:01:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220318144534.17996-9-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: Add i.MX8MP media block control
+ DT bindings
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+References: <20220322190324.12589-1-laurent.pinchart@ideasonboard.com>
+ <20220322190324.12589-2-laurent.pinchart@ideasonboard.com>
+ <3f7bdca8-0da7-fe2d-7bcb-9768b12bb759@denx.de>
+ <YjpGRpQcbKjJQJEG@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <YjpGRpQcbKjJQJEG@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,71 +68,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen,
-
-please see my comment below.
-
-On Fri, Mar 18, 2022 at 10:45:20PM +0800, Allen-KH Cheng wrote:
-> Add infracfg_rst node for mt8192 SoC.
->  - Add simple-mfd to allow probing the ti,syscon-reset node.
+On 3/22/22 22:57, Laurent Pinchart wrote:
+> Hi Marek,
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
+> On Tue, Mar 22, 2022 at 10:29:56PM +0100, Marek Vasut wrote:
+>> On 3/22/22 20:03, Laurent Pinchart wrote:
+>>> From: Paul Elder <paul.elder@ideasonboard.com>
+>>>
+>>> The i.MX8MP Media Block Control (MEDIA BLK_CTRL) is a top-level
+>>> peripheral providing access to the NoC and ensuring proper power
+>>> sequencing of the peripherals within the MEDIAMIX domain. Add DT
+>>> bindings for it.
+>>>
+>>> There is already a driver for block controls of other SoCs in the i.MX8M
+>>> family, so these bindings will expand upon that.
+>>>
+>>> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>
+>> Reviewed-by: Marek Vasut <marex@denx.de>
+>>
+>> [...]
+>>
+>>> +        power-domain-names = "bus", "mipi-dsi1", "mipi-csi1", "lcdif1", "isi",
+>>> +                             "mipi-csi2", "lcdif2", "isp2", "isp1", "dwe",
+>>> +                             "mipi-dsi2";
+>>
+>> Nit, I cannot say I'm a big fan of calling the power domain "mipi-csi1"
+>> and "mipi-csi2", they are both MIPI CSI2, except there are two of them
+>> CSI2 (#1 and #2).
+>>
+>> Maybe mipi-csi2-1 and mipi-csi2-2 would be better ? DTTO for the LCDIF,
+>> where we have lcdifv3 and then mx8mp lcdifv3 and eventually we will have
+>> power domain for lcdif #3 instance in this SoC in hdmimix, so maybe some
+>> lcdif-1/lcdif-2 would be a better name ?
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 40cf6dacca3e..82de1af3f6aa 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
->  #include <dt-bindings/phy/phy.h>
->  #include <dt-bindings/power/mt8192-power.h>
-> +#include <dt-bindings/reset/ti-syscon.h>
->  
->  / {
->  	compatible = "mediatek,mt8192";
-> @@ -267,10 +268,23 @@
->  			#clock-cells = <1>;
->  		};
->  
-> -		infracfg: syscon@10001000 {
-> -			compatible = "mediatek,mt8192-infracfg", "syscon";
-> +		infracfg: infracfg@10001000 {
-> +			compatible = "mediatek,mt8192-infracfg", "syscon", "simple-mfd";
->  			reg = <0 0x10001000 0 0x1000>;
->  			#clock-cells = <1>;
-> +
-> +			infracfg_rst: reset-controller {
-> +				compatible = "ti,syscon-reset";
-> +				#reset-cells = <1>;
-> +
-> +				ti,reset-bits = <
-> +					0x120 0 0x124 0 0 0	(ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: lvts_ap */
-> +					0x730 12 0x734 12 0 0	(ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 1: lvts_mcu */
-> +					0x140 15 0x144 15 0 0	(ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 2: pcie phy */
-> +					0x730 1 0x734 1 0 0	(ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 3: pcie top */
-> +					0x150 5 0x154 5 0 0	(ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 4: svs */
-> +				>;
-
-If you see [1], Rob has previously said that there shouldn't be new users of the
-ti,reset-bits property. I suggest doing like proposed on [2]: moving these bit
-definitions to the reset-ti-syscon driver, and have them selected through the
-compatible. You'd need to add a mt8192 specific compatible here too for that.
-
-[1] https://lore.kernel.org/all/CAL_JsqJq6gqoXtvG1U7UDsOQpz7oMLMunZHq2njN6nvPr8PZMA@mail.gmail.com/
-[2] https://lore.kernel.org/all/CAATdQgA5pKhjOf5gxo+h7cs7kCts3DeKGU5axeX2t+OaJFHyBg@mail.gmail.com/
-
-Thanks,
-Nícolas
-
-> +			};
->  		};
->  
->  		pericfg: syscon@10003000 {
-> -- 
-> 2.18.0
+> The names come from the reference manual, at least the ones for the
+> second instance. We have, for instance, SFT_EN_MIPI_CSI_PCLK_RESETN and
+> SFT_EN_MIPI_CSI2_PCLK_RESETN. Same for DSI and LCDIF, there's DSI and
+> DSI2, and LCDIF and LCDIF2. The "1" suffix has been added for clarity.
 > 
+> This is a bit bikeshedding territory as I expect the DT node for the
+> media-blk-ctrl to be written once and never be touched again, so if
+> anyone feels strongly about using better names (whatever those better
+> names would be), I don't mind much.
 > 
+> I can submit a v3 once a consensus emerges.
+
+I don't feel strongly about it, I just wanted to point it out.
+Let's wait for the others' opinions.
