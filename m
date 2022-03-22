@@ -2,218 +2,400 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C75B04E3F7D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A214E3FB3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 14:40:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235572AbiCVN2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 09:28:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60120 "EHLO
+        id S235694AbiCVNkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 09:40:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235577AbiCVN1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:27:49 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6FE386E23;
-        Tue, 22 Mar 2022 06:26:16 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id v2-20020a7bcb42000000b0037b9d960079so2540412wmj.0;
-        Tue, 22 Mar 2022 06:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IIdko25aJ8r8oXO9dJcIkuRwywJie0xWlfwcrpolijM=;
-        b=k+Xqm4XEjcNB27dcl8cbdcV2mnDhFAVtfIoMn7Bho9BKtBXi9IRwts13efcC0yHIaO
-         OtrTAG1ol9iF1l3eolv/82D2yUnApnxbirFLo0N5Pnbb6HFPxtCUkx7wMWQXF0qIHLad
-         O1rPYRm+7z+yOaO4Z0t5+qh4aQzYKtij/MIDBIeWyXcTbJJngE8nJpWIiuyL/O69909r
-         1NIWlA2tnXo9b2yM2TbC0UIpJcVtGpBS++HHe2GXPdivECG7raR3fDW6+EbaPIYsqgOX
-         b7TIc9EiimdBEg4pI8svrB7Sb/sq5232sw/hSjHbT+w5+4dFSzfheK1uTSL7glpRxKaY
-         OUtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IIdko25aJ8r8oXO9dJcIkuRwywJie0xWlfwcrpolijM=;
-        b=hjFvrwEj0YEA5QhqAcnzqzVSVsgAs7tQ1j4p7K9E2XgU8IQWzNGyKvHJXh+d4vtnAp
-         7XqHNdrVQYJCCosgtoLgz6mrUf49eCSBJKcvekhZEaaT9iZ+9hi8tyWaF4kY2GnwI0Cq
-         u6dMh0zlX54UU9UXFhiQ0I7Qf+/qy4v7RKLV2nc0o5/ekSdDY+CQoyaeZJ8pbs23+d/m
-         l+q2THWq3OW4wDEuH2ogcsP4JIk+QHWzqsr3xJQ0gp+qDT+SY0MPiepY7/sQyOXH4gWp
-         +czqyRHTrDev2I1nH76rbIz+YcVYFU6WJBp2jBGngcipItHD5sCoMC+gyHUID0c9YKUM
-         PhlQ==
-X-Gm-Message-State: AOAM531pWPpSAhRsV/xctO+2aZFO8bgbW95yVnPvQQYuwcc+DDUUXVze
-        wSvM9PKhcg79ewMPzeXPP7A=
-X-Google-Smtp-Source: ABdhPJwCjEoZaxPfszasxDZYViMDEX1R+a26wY4aZzUJ72h6blx+Qf1X6DlzYk1oWN78GbZIaT+RHQ==
-X-Received: by 2002:a5d:4890:0:b0:1ed:9d4e:f8ef with SMTP id g16-20020a5d4890000000b001ed9d4ef8efmr22733837wrq.595.1647955574998;
-        Tue, 22 Mar 2022 06:26:14 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
-        by smtp.gmail.com with ESMTPSA id x13-20020adfec0d000000b00203ff46f802sm13971386wrn.36.2022.03.22.06.26.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Mar 2022 06:26:14 -0700 (PDT)
-Date:   Tue, 22 Mar 2022 14:26:13 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v6 17/18] dt-bindings: arm: msm: Convert kpss-gcc driver
- Documentation to yaml
-Message-ID: <YjnOdYMS+P85pqvF@Ansuel-xps.localdomain>
-References: <20220321231548.14276-1-ansuelsmth@gmail.com>
- <20220321231548.14276-18-ansuelsmth@gmail.com>
- <e832516d-277d-6a0b-4588-b32a085185c8@kernel.org>
+        with ESMTP id S235702AbiCVNkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 09:40:03 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 14BAD1F633;
+        Tue, 22 Mar 2022 06:38:32 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.43:60198.555504461
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+        by 189.cn (HERMES) with SMTP id C74A8100225;
+        Tue, 22 Mar 2022 21:38:28 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id bbab2de56e904e23a38356a55f9eb734 for jiaxun.yang@flygoat.com;
+        Tue, 22 Mar 2022 21:38:31 CST
+X-Transaction-ID: bbab2de56e904e23a38356a55f9eb734
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <2c671752-6684-f87b-7b2d-90568d36adde@189.cn>
+Date:   Tue, 22 Mar 2022 21:38:25 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e832516d-277d-6a0b-4588-b32a085185c8@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v11 2/7] MIPS: Loongson64: dts: introduce ls3A4000
+ evaluation board
+Content-Language: en-US
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-3-15330273260@189.cn>
+ <2644866a-8db2-923e-4227-2aa6d8e375fe@flygoat.com>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <2644866a-8db2-923e-4227-2aa6d8e375fe@flygoat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 11:07:26AM +0100, Krzysztof Kozlowski wrote:
-> On 22/03/2022 00:15, Ansuel Smith wrote:
-> > Convert kpss-gcc driver Documentation to yaml. Since kpss-gcc expose a
-> > clock add the required '#clock-cells' binding while converting it.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ------------
-> >  .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 69 +++++++++++++++++++
-> >  2 files changed, 69 insertions(+), 44 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-> > deleted file mode 100644
-> > index e628758950e1..000000000000
-> > --- a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-> > +++ /dev/null
-> > @@ -1,44 +0,0 @@
-> > -Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
-> > -
-> > -PROPERTIES
-> > -
-> > -- compatible:
-> > -	Usage: required
-> > -	Value type: <string>
-> > -	Definition: should be one of the following. The generic compatible
-> > -			"qcom,kpss-gcc" should also be included.
-> > -			"qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc"
-> > -			"qcom,kpss-gcc-apq8064", "qcom,kpss-gcc"
-> > -			"qcom,kpss-gcc-msm8974", "qcom,kpss-gcc"
-> > -			"qcom,kpss-gcc-msm8960", "qcom,kpss-gcc"
-> > -
-> > -- reg:
-> > -	Usage: required
-> > -	Value type: <prop-encoded-array>
-> > -	Definition: base address and size of the register region
-> > -
-> > -- clocks:
-> > -	Usage: required
-> > -	Value type: <prop-encoded-array>
-> > -	Definition: reference to the pll parents.
-> > -
-> > -- clock-names:
-> > -	Usage: required
-> > -	Value type: <stringlist>
-> > -	Definition: must be "pll8_vote", "pxo".
-> > -
-> > -- clock-output-names:
-> > -	Usage: required
-> > -	Value type: <string>
-> > -	Definition: Name of the output clock. Typically acpu_l2_aux indicating
-> > -		    an L2 cache auxiliary clock.
-> > -
-> > -Example:
-> > -
-> > -	l2cc: clock-controller@2011000 {
-> > -		compatible = "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc";
-> > -		reg = <0x2011000 0x1000>;
-> > -		clocks = <&gcc PLL8_VOTE>, <&gcc PXO_SRC>;
-> > -		clock-names = "pll8_vote", "pxo";
-> > -		clock-output-names = "acpu_l2_aux";
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-> > new file mode 100644
-> > index 000000000000..7eb852be02c1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/msm/qcom,kpss-gcc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
-> > +
-> > +maintainers:
-> > +  - Ansuel Smith <ansuelsmth@gmail.com>
-> > +
-> > +description: |
-> > +  Krait Processor Sub-system (KPSS) Global Clock Controller (GCC). Used
-> > +  to control L2 mux (in the current implementation).
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - qcom,kpss-gcc-ipq8064
-> > +          - qcom,kpss-gcc-apq8064
-> > +          - qcom,kpss-gcc-msm8974
-> > +          - qcom,kpss-gcc-msm8960
-> > +      - const: qcom,kpss-gcc
-> > +      - const: syscon
-> 
-> There was no syscon here before. This is not explained in commit msg or
-> patch history, while I asked to document explicitly any deviation from
-> the conversion.
-> 
-> This is not how the process works. You keep making silent/hidden changes
-> to the bindings and to the patch submission process. It's difficult to
-> review and it is even more difficult to trust you that you implement
-> what we ask for. You keep resending versions of the patchset the same
-> day (two versions yesterday, shortly after another one) which does not
-> give time to react and review. Plus then you hide some more changes to
-> regular conversion without explaining them.
-> 
-> NAK. It's really bad process. :(
-> 
-> 
-> Best regards,
-> Krzysztof
 
-The thing is that i'm trying to fix all the mess of years of keeping bad
-Documentation and having dts that never followed Documentation. It's
-really nothing silent/hidden. You add review tag to a patch? That won't
-change. The bot alert me of some bugs? I push another revision with the
-bug fixed. (I understand I should not send that much revision in the
-same day but still considering the slow process of reviewing the c code,
-I prefer to keep the Documentation part correct and ready)
+On 2022/3/22 21:05, Jiaxun Yang wrote:
+>
+>
+> 在 2022/3/21 16:29, Sui Jingfeng 写道:
+>> From: suijingfeng <suijingfeng@loongson.cn>
+>>
+>> The board name is LS3A4000_7A1000_EVB_BOARD_V1.4, it consist of 1.8Ghz
+>> mips64r5 4-core CPU and LS7A1000 bridge chip. It has PCIe GEN2 x8 slot,
+>> therefore can play with discrete graphics card.
+>
+> Hi Jingfeng,
+>
+> As we've discussed before if you are going to introduce new dts then 
+> you *MUST*
+> include it in makefile and wire it up in code.
+>
+> A dts file doing nothing lying in the tree is just suspicious.
+>
+> Thanks.
+> - Jiaxun
+>
+Hi, Jiaxun,
 
-If you notice the changes across the different patch, it's very minimal
-and 99% of it has not changed. Nothing silent just me addressing warning
-from the bot. About the trust issue...
-Is it really a syscon addition that bad? Again the original
-Documentation was just bad so why should we care to have a 100% 1:1
-conversion if it should have been not accepted in the first place.
-The addition of this new syscon is because in the current dtsi it's
-there and I assume it's there as this is a global accessor and probably
-other driver would access the same regs (so it's also a syscon)
+I know what you means, but it is the kernel side developer's job.
+I am just a naive graphic driver developer,I can not care so much.
+Below is my private patch which can be used to built specific dts
+into the linux kernel, therefore make the verification easier.
 
-I understand the complain about putting too much revision... But NAK
-this cause I'm trying to fix all this mess just because more and more
-problems are coming up and I'm trying to fix them. It's a bit sad.
-Hope you can understand that it's not my interest to push silent changes
-or other nasty stuff. It's just me fixing the mess and trying to at
-least have the Documentation part ready while I wait for c code review.
 
--- 
-	Ansuel
+diff --git a/arch/mips/boot/dts/loongson/Makefile b/arch/mips/boot/dts/loongson/Makefile
+index 5c6433e441ee..99b66675c4a1 100644
+--- a/arch/mips/boot/dts/loongson/Makefile
++++ b/arch/mips/boot/dts/loongson/Makefile
+@@ -1,9 +1,22 @@
+  # SPDX-License-Identifier: GPL-2.0
+-dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64_2core_2k1000.dtb
+-dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_4core_ls7a.dtb
+-dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_4core_rs780e.dtb
+-dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_8core_rs780e.dtb
+-dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64g_4core_ls7a.dtb
+-dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64v_4core_virtio.dtb
++
++dtb-$(CONFIG_LOONGSON64_LS2K1000_PAI_V1_5)	+= ls2k1000_pai.dtb
++dtb-$(CONFIG_LOONGSON64_LS2K1000_EVB_V1_2)	+= ls2k1000_evb.dtb
++dtb-$(CONFIG_LOONGSON64_LS2K1000_GENERIC)	+= loongson64_2core_2k1000.dtb
++
++dtb-$(CONFIG_LOONGSON64_LS3A3000_LS7A1000)	+= loongson64c_4core_ls7a.dtb
++dtb-$(CONFIG_LOONGSON64_LS3A3000_RS780E)	+= loongson64c_4core_rs780e.dtb
++dtb-$(CONFIG_LOONGSON64_LS3B3000_RS780E)	+= loongson64c_8core_rs780e.dtb
++
++dtb-$(CONFIG_LOONGSON64_LS3A4000_7A1000_LEMOTE_A1901) += lemote_a1901.dtb
++dtb-$(CONFIG_LOONGSON64_LS3A4000_7A1000_EVB_V1_4) += ls3a4000_7a1000_evb.dtb
++dtb-$(CONFIG_LOONGSON64_LS3A4000_7A1000_GENERIC)  += loongson64g_4core_ls7a.dtb
++
++dtb-$(CONFIG_LOONGSON64_BOARD_DEFAULT)	+= loongson64_2core_2k1000.dtb
++dtb-$(CONFIG_LOONGSON64_BOARD_DEFAULT)	+= loongson64c_4core_ls7a.dtb
++dtb-$(CONFIG_LOONGSON64_BOARD_DEFAULT)	+= loongson64c_4core_rs780e.dtb
++dtb-$(CONFIG_LOONGSON64_BOARD_DEFAULT)	+= loongson64c_8core_rs780e.dtb
++dtb-$(CONFIG_LOONGSON64_BOARD_DEFAULT)	+= loongson64g_4core_ls7a.dtb
++dtb-$(CONFIG_LOONGSON64_BOARD_DEFAULT)	+= loongson64v_4core_virtio.dtb
+  
+  obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h b/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
+index 8be710557bdb..605bfa47b4b9 100644
+--- a/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
++++ b/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
+@@ -8,10 +8,10 @@
+  #ifndef __ASM_MACH_LOONGSON64_BUILTIN_DTBS_H_
+  #define __ASM_MACH_LOONGSON64_BUILTIN_DTBS_H_
+  
+-extern u32 __dtb_loongson64_2core_2k1000_begin[];
+-extern u32 __dtb_loongson64c_4core_ls7a_begin[];
+-extern u32 __dtb_loongson64c_4core_rs780e_begin[];
+-extern u32 __dtb_loongson64c_8core_rs780e_begin[];
+-extern u32 __dtb_loongson64g_4core_ls7a_begin[];
+-extern u32 __dtb_loongson64v_4core_virtio_begin[];
++extern u32 __weak __dtb_loongson64_2core_2k1000_begin[];
++extern u32 __weak __dtb_loongson64c_4core_ls7a_begin[];
++extern u32 __weak __dtb_loongson64c_4core_rs780e_begin[];
++extern u32 __weak __dtb_loongson64c_8core_rs780e_begin[];
++extern u32 __weak __dtb_loongson64g_4core_ls7a_begin[];
++extern u32 __weak __dtb_loongson64v_4core_virtio_begin[];
+  #endif
+diff --git a/arch/mips/loongson64/Kconfig b/arch/mips/loongson64/Kconfig
+index 517f1f8e81fb..7030185ed0c6 100644
+--- a/arch/mips/loongson64/Kconfig
++++ b/arch/mips/loongson64/Kconfig
+@@ -12,4 +12,43 @@ config RS780_HPET
+  	  Note: This driver is doing some dangerous hack. Please only enable
+  	  it on RS780E systems.
+  
++choice
++	prompt "Board type"
++	depends on MACH_LOONGSON64
++	depends on BUILTIN_DTB
++	help
++	 pick a device tree that matches the target board.
++
++config LOONGSON64_BOARD_DEFAULT
++	bool "Default"
++
++config LOONGSON64_LS3A4000_7A1000_LEMOTE_A1901
++	bool "LEMOTE A1901 LS3A4000 board"
++
++config LOONGSON64_LS3A4000_7A1000_EVB_V1_4
++	bool "LS3A4000 LS7A1000 evaluation board v1.4"
++
++config LOONGSON64_LS3A4000_7A1000_GENERIC
++	bool "LS3A4000 LS7A1000 generic board"
++
++config LOONGSON64_LS3A3000_LS7A1000
++	bool "LS3A3000 LS7A1000 generic board"
++
++config LOONGSON64_LS3A3000_RS780E
++	bool "LS3A3000 RS780E generic board"
++
++config LOONGSON64_LS3B3000_RS780E
++	bool "LS3B3000 RS780E generic board"
++
++config LOONGSON64_LS2K1000_PAI_V1_5
++	bool "LS2K1000 PAI board V1.5"
++
++config LOONGSON64_LS2K1000_EVB_V1_2
++	bool "LS2K1000 evaluation board V1.2"
++
++config LOONGSON64_LS2K1000_GENERIC
++	bool "LS2K1000 generic"
++
++endchoice
++
+  endif # MACH_LOONGSON64
+diff --git a/arch/mips/loongson64/setup.c b/arch/mips/loongson64/setup.c
+index cb10d14da433..f8859039a4e0 100644
+--- a/arch/mips/loongson64/setup.c
++++ b/arch/mips/loongson64/setup.c
+@@ -16,6 +16,13 @@ void *loongson_fdt_blob;
+  
+  void __init plat_mem_setup(void)
+  {
++	void *fdt;
++
++	fdt = get_fdt();
++
++	if (fdt)
++		loongson_fdt_blob = fdt;
++
+  	if (loongson_fdt_blob)
+  		__dt_setup_arch(loongson_fdt_blob);
+  }
+
+>>
+>> While the integrated display copntroller is equipped with a VGA output
+>> and a DVI output, the VGA is connect to the DVO0 output port of the
+>> display controller, the DVI is connected to DVO1 output port of the
+>> display controller.
+>>
+>>      +------+            +-----------------------------------+
+>>      | DDR4 |            |  +-------------------+            |
+>>      +------+            |  | PCIe Root complex |   LS7A1000 |
+>>         || MC0           |  +--++---------++----+            |
+>>    +----------+  HT 3.0  |     ||         ||                 |
+>>    | LS3A4000 |<-------->| +---++---+  +--++--+ +---------+   +------+
+>>    |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| 
+>> VRAM |
+>>    +----------+          | +--------+  +-+--+-+    +---------+ +------+
+>>         || MC1           +---------------|--|----------------+
+>>      +------+                            |  |
+>>      | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+>>      +------+   VGA <--|ADV7125|<--------+ +-------->|TFP410|--> 
+>> DVI/HDMI
+>>                        +-------+                      +------+
+>>
+>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+>> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+>> ---
+>>   .../boot/dts/loongson/ls3a4000_7a1000_evb.dts | 136 ++++++++++++++++++
+>>   1 file changed, 136 insertions(+)
+>>   create mode 100644 arch/mips/boot/dts/loongson/ls3a4000_7a1000_evb.dts
+>>
+>> diff --git a/arch/mips/boot/dts/loongson/ls3a4000_7a1000_evb.dts 
+>> b/arch/mips/boot/dts/loongson/ls3a4000_7a1000_evb.dts
+>> new file mode 100644
+>> index 000000000000..f467eddccdac
+>> --- /dev/null
+>> +++ b/arch/mips/boot/dts/loongson/ls3a4000_7a1000_evb.dts
+>> @@ -0,0 +1,136 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "loongson64g-package.dtsi"
+>> +#include "ls7a-pch.dtsi"
+>> +
+>> +/ {
+>> +    compatible = "loongson,loongson64g-4core-ls7a";
+>> +    model = "LS3A4000_7A1000_EVB_BOARD_V1.4";
+>> +
+>> +    vga-encoder {
+>> +        compatible = "adi,adv7123", "dumb-vga-dac";
+>> +
+>> +        ports {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            port@0 {
+>> +                reg = <0>;
+>> +                adv7123_in: endpoint {
+>> +                    remote-endpoint = <&dc_out_rgb0>;
+>> +                };
+>> +            };
+>> +
+>> +            port@1 {
+>> +                reg = <1>;
+>> +                adv7123_out: endpoint {
+>> +                    remote-endpoint = <&vga_connector_in>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    vga-connector {
+>> +        compatible = "vga-connector";
+>> +        label = "vga";
+>> +
+>> +        ddc-i2c-bus = <&i2c6>;
+>> +
+>> +        port {
+>> +            vga_connector_in: endpoint {
+>> +                remote-endpoint = <&adv7123_out>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    tfp410: dvi-encoder {
+>> +        compatible = "ti,tfp410";
+>> +
+>> +        ports {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            port@0 {
+>> +                reg = <0>;
+>> +                tfp410_in: endpoint {
+>> +                    pclk-sample = <1>;
+>> +                    bus-width = <24>;
+>> +                    remote-endpoint = <&dc_out_rgb1>;
+>> +                };
+>> +            };
+>> +
+>> +            port@1 {
+>> +                reg = <1>;
+>> +                tfp410_out: endpoint {
+>> +                    remote-endpoint = <&dvi_connector_in>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +    dvi-connector {
+>> +        compatible = "dvi-connector";
+>> +        label = "dvi";
+>> +        digital;
+>> +
+>> +        ddc-i2c-bus = <&i2c7>;
+>> +
+>> +        port {
+>> +            dvi_connector_in: endpoint {
+>> +                remote-endpoint = <&tfp410_out>;
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&package0 {
+>> +    htvec: interrupt-controller@efdfb000080 {
+>> +        compatible = "loongson,htvec-1.0";
+>> +        reg = <0xefd 0xfb000080 0x40>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <1>;
+>> +
+>> +        interrupt-parent = <&liointc>;
+>> +        interrupts = <24 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <25 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <26 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <27 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <28 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <29 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <30 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <31 IRQ_TYPE_LEVEL_HIGH>;
+>> +    };
+>> +};
+>> +
+>> +&pch {
+>> +    msi: msi-controller@2ff00000 {
+>> +        compatible = "loongson,pch-msi-1.0";
+>> +        reg = <0 0x2ff00000 0 0x8>;
+>> +        interrupt-controller;
+>> +        msi-controller;
+>> +        loongson,msi-base-vec = <64>;
+>> +        loongson,msi-num-vecs = <192>;
+>> +        interrupt-parent = <&htvec>;
+>> +    };
+>> +};
+>> +
+>> +&lsdc {
+>> +    ports {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        port@0 {
+>> +            endpoint {
+>> +                remote-endpoint = <&adv7123_in>;
+>> +            };
+>> +        };
+>> +
+>> +        port@1 {
+>> +            endpoint {
+>> +                remote-endpoint = <&tfp410_in>;
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>
