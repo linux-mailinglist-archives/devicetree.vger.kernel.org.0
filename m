@@ -2,188 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF8CA4E37B0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 04:47:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC4D4E37DA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 05:17:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236201AbiCVDrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Mar 2022 23:47:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36828 "EHLO
+        id S229574AbiCVER5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 00:17:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236157AbiCVDrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Mar 2022 23:47:00 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C881C91A;
-        Mon, 21 Mar 2022 20:45:31 -0700 (PDT)
-X-UUID: e2f1032bd75c4a44aedc03b14251f9a1-20220322
-X-UUID: e2f1032bd75c4a44aedc03b14251f9a1-20220322
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1473736653; Tue, 22 Mar 2022 11:45:27 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 22 Mar 2022 11:45:26 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 22 Mar
- 2022 11:45:25 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 22 Mar 2022 11:45:25 +0800
-Message-ID: <0e909de12a52ae88633634d868bd5001eef1b830.camel@mediatek.com>
-Subject: Re: [v5 1/4] ASoC: dt-bindings: mt8192-mt6359: add new compatible
- and new properties
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <broonie@kernel.org>, <tzungbi@google.com>,
-        <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 22 Mar 2022 11:45:24 +0800
-In-Reply-To: <YjkLVwvxvOKr30qL@robh.at.kernel.org>
-References: <20220319114111.11496-1-jiaxin.yu@mediatek.com>
-         <20220319114111.11496-2-jiaxin.yu@mediatek.com>
-         <YjkLVwvxvOKr30qL@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S236417AbiCVERx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 00:17:53 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529C327CE0;
+        Mon, 21 Mar 2022 21:16:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647922587; x=1679458587;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=kO25VhGwe8ryd6btk/aw5kwTyNNr5HaJdMK800Ut7Vk=;
+  b=emzJqon/rnjomDGxfkoA13pMwAyiX8dSsOGkCFAI1IS9QWmBAgTZD3Kp
+   YNAQ6aqsaHzeyXGyMh9wFuYp0AU27Zd0fgGK8UxNwlGSe+hs0m+G0bXBh
+   qkD8sbrqhk+wrcfn8tBC7cTEYokFjenWB05p/oE5M0VxNmbAbhaLFJ7If
+   4=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Mar 2022 21:16:27 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Mar 2022 21:16:26 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 21 Mar 2022 21:16:26 -0700
+Received: from [10.216.35.92] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 21 Mar
+ 2022 21:16:22 -0700
+Message-ID: <5977f8f4-f05c-3608-93e3-0a8aeaaad4bf@quicinc.com>
+Date:   Tue, 22 Mar 2022 09:46:19 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: Add 'piglin' to the
+ crd-r3 compatible strings
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20220316172814.v1.1.I2deda8f2cd6adfbb525a97d8fee008a8477b7b0e@changeid>
+ <20220316172814.v1.2.Ib0fbb7e5218201c81a2d064ff13c9bc1b0863212@changeid>
+ <c808dc08-09c8-bb08-6656-18dd649af036@quicinc.com>
+ <YjiWXA40Nh0jBPO9@google.com>
+ <CAD=FV=WQFbsFQdnUsroCdgKaHfZEyDTdRmvuEaY_ymuBrDt76w@mail.gmail.com>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <CAD=FV=WQFbsFQdnUsroCdgKaHfZEyDTdRmvuEaY_ymuBrDt76w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-03-21 at 18:33 -0500, Rob Herring wrote:
-> On Sat, Mar 19, 2022 at 07:41:08PM +0800, Jiaxin Yu wrote:
-> > 1. Adds new compatible string "mt8192_mt6359_rt1015p_rt5682s" for
-> > machines
-> > with rt1015p and rt5682s.
-> > 2. Adds new property "mediatek,headset-codec" for getting headset
-> > codecs.
-> > 3. Adds new property "mediatek,speaker-codec" for getting speaker
-> > codecs.
-> > 
-> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > ---
-> >  .../sound/mt8192-mt6359-rt1015-rt5682.yaml    | 29
-> > +++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-
-> > rt1015-rt5682.yaml
-> > b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-
-> > rt5682.yaml
-> > index a781e7aaaa38..aa0476eedd38 100644
-> > --- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-
-> > rt5682.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-
-> > rt5682.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >      enum:
-> >        - mediatek,mt8192_mt6359_rt1015_rt5682
-> >        - mediatek,mt8192_mt6359_rt1015p_rt5682
-> > +      - mediatek,mt8192_mt6359_rt1015p_rt5682s
-> >  
-> >    mediatek,platform:
-> >      $ref: "/schemas/types.yaml#/definitions/phandle"
-> > @@ -27,6 +28,25 @@ properties:
-> >      $ref: "/schemas/types.yaml#/definitions/phandle"
-> >      description: The phandle of HDMI codec.
-> >  
-> > +patternProperties:
-> > +  "^mediatek,headset-codec$":
+
+On 3/21/2022 11:30 PM, Doug Anderson wrote:
+> "Hi,
 > 
-> Fixed string, not a pattern. Move to 'properties'. Drop the vendor 
-> prefix too.
+> On Mon, Mar 21, 2022 at 8:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>>
+>> On Mon, Mar 21, 2022 at 11:14:56AM +0530, Rajendra Nayak wrote:
+>>>
+>>> On 3/17/2022 5:58 AM, Matthias Kaehlcke wrote:
+>>>> With newer bootloader versions the crd-r3 (aka CRD 1.0 and 2.0) is
+>>>> identified as a 'piglin' board (like the IDP2 board), instead of 'hoglin'
+>>>> Add the compatible strings 'google,piglin-rev{3,4}'. The hoglin entries
+>>>> are kept to make sure the board keeps booting with older bootloader
+>>>> versions.
+>>>
+>>> The older bootloaders really look for the google,hoglin-rev3/google,hoglin-rev4
+>>> compatibles or just google,hoglin? If its just google,hoglin, won;t it pick the
+>>> crd-rev5+ dtb now?
+>>
+>> They look for the -revN compatible, I confirmed that on my CRD 2.0.
 > 
-Hi Rob,
-
-I originally referred to simple-card.yaml and move "xxx.yyy" to the
-patternProperties.
-
-Such as:
-# use patternProperties to avoid naming "xxx,yyy" issue
-patternProperties:
-  "^simple-audio-card,widgets$":
-    $ref: "#/definitions/widgets"
-
-But your comment is more reasonable. I will move them to 'properties'
-and drop the vendor prefix. Thanks for your review.
-
-
-> > +    description: Holds subnode which indicates headset dai.
-> > +    type: object
-> > +    properties:
-> > +      sound-dai:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> Thanks for confirming Matthias! I'll also note that, in general, these
+> "google,board-revX" type compatible strings are all programmatically
+> generated. You can see at:
 > 
-> Standard property, don't need a type or description. Just how many
-> and 
-> what each one is if more than 1.
+> https://chromium.googlesource.com/chromiumos/platform/depthcharge/+/refs/heads/main/src/boot/fit.c#70
+> 
+> ...and whenever it's using this normal logic then it has a standard
+> fallback mechanism in place. On a random board in front of me
+> depthcharge prints out:
+> 
+> Compat preference: google,lazor-rev3-sku0 google,lazor-rev3
+> google,lazor-sku0 google,lazor
+> 
+> So it'll first try the very specific verison with rev and sku. Then
+> just by rev. Then just by sku. ...and if none of those match it'll
+> pick a device tree that has neither. The "newest" device tree always
+> has no revision number specified and that way if software doesn't
+> change but the revision bumps then we have no problem. We only add the
+> revision info for old boards.
 
-Should I describe them as below?
+Thanks Matthias/Doug for the clarification,
 
-properties:
-...
-  speaker-codec:
-    type: object
-    properties:
-      sound-dai:
-         maxItems: 1
-...
+Reviewed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 
 > 
-> > +        description: List of phandles to the headset codec nodes.
+> There are a few cases where we add special compatible strings and
+> these don't match on board/rev. This is fairly uncommon, though. You
+> might be aware of the special case of adding "qcom,sc7180-idp"
+> (without rev/sku matching) for "bubs". See:
 > 
-> More than 1?
+> https://chromium.googlesource.com/chromiumos/platform/depthcharge/+/refs/heads/main/src/board/trogdor/board.c#136
 > 
-
-Sorry, the description here is incorrect, there is only one phandle.
-
-> > +    additionalProperties: false
-> > +
-> > +  "^mediatek,speaker-codec$":
-> > +    description: Holds subnode which indicates speaker dai.
-> > +    type: object
-> > +    properties:
-> > +      sound-dai:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +        description: List of phandles to the speaker codec nodes.
 > 
-> Same here.
-> 
-> > +    additionalProperties: false
-> > +
-> >  additionalProperties: false
-> >  
-> >  required:
-> > @@ -44,6 +64,15 @@ examples:
-> >                          "aud_clk_mosi_on";
-> >          pinctrl-0 = <&aud_clk_mosi_off>;
-> >          pinctrl-1 = <&aud_clk_mosi_on>;
-> > +
-> > +        mediatek,headset-codec {
-> > +            sound-dai = <&rt5682>;
-> > +        };
-> > +
-> > +        mediatek,speaker-codec {
-> > +            sound-dai = <&rt1015_l>,
-> > +                        <&rt1015_r>;
-> > +        };
-> >      };
-> >  
-> >  ...
-> > -- 
-> > 2.18.0
-> > 
-> > 
-
+> -Doug
