@@ -2,102 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB0F74E3E7C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 13:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED784E3EE6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 13:57:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234855AbiCVMa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 08:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53886 "EHLO
+        id S234078AbiCVM6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 08:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234859AbiCVMaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 08:30:24 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143CC13F50;
-        Tue, 22 Mar 2022 05:28:52 -0700 (PDT)
-X-UUID: d75214175f7b4c9887984bbf88c1975e-20220322
-X-UUID: d75214175f7b4c9887984bbf88c1975e-20220322
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1570562477; Tue, 22 Mar 2022 20:28:48 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 22 Mar 2022 20:28:47 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 22 Mar
- 2022 20:28:47 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 22 Mar 2022 20:28:46 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH] remoteproc: mediatek: enable cache for mt8186 SCP
-Date:   Tue, 22 Mar 2022 20:28:45 +0800
-Message-ID: <20220322122845.4068-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S234029AbiCVM6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 08:58:37 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D153180211;
+        Tue, 22 Mar 2022 05:57:06 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id w127so19351974oig.10;
+        Tue, 22 Mar 2022 05:57:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=pl/BJ9q+YsDBv49alBkTvA+Fq5IMYwC01bJf59GIEQ4=;
+        b=YF1+bRfLqLwGs9Wv9704z1JkYfL9kpBN9JYP9/WyJaRW+MQRfmeKxH/VPXbMEIvJlj
+         64W4eNiFs4MWRnlzVmy1vYwK0aSPq+Eti4Bu/wqX5vomNqzQrn+iPVcXKdxK6vmg67xw
+         2vRFtzQ9vXoEku5l3zAFlRqCVLtNU3LIJTWJm1LBtmtTb3yGteasbt+7oG5kEBwMYo7w
+         cjmmJMTaq5+ki8vsDNO3kInBEGG3PUdecN+6kngdQVEwXI738/zuh3JmWrBW3KI+WO94
+         IGFIUokOmE0Z3tRPpvw0VCjk4zyiczoK7ywjtUGY2SJ8ezj/n/h2hXXu9lsuku639AlP
+         a8eQ==
+X-Gm-Message-State: AOAM530yJs/W/b+dUufOIxm3YV+XueBDOBI+tlN7+C86Jc/aMMmwKtR3
+        h2IgzJRJ6oApi1EWAi53RQ==
+X-Google-Smtp-Source: ABdhPJx3WzhGPyoHLx2nFXw2TYGFCsRSGzOwQwTcz4duy4GzTSSG97skkKNPovKJvmJPCMHJuUIshQ==
+X-Received: by 2002:a54:4384:0:b0:2ec:f432:59bf with SMTP id u4-20020a544384000000b002ecf43259bfmr1984468oiv.278.1647953825768;
+        Tue, 22 Mar 2022 05:57:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 184-20020a4a03c1000000b003240492fc15sm8127148ooi.36.2022.03.22.05.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Mar 2022 05:57:04 -0700 (PDT)
+Received: (nullmailer pid 1840076 invoked by uid 1000);
+        Tue, 22 Mar 2022 12:57:03 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
+        hao.wu@intel.com, linux-kernel@vger.kernel.org, mdf@kernel.org,
+        conor.dooley@microchip.com, trix@redhat.com, robh+dt@kernel.org,
+        yilun.xu@intel.com, system@metrotek.ru
+In-Reply-To: <20220322043219.23770-3-i.bornyakov@metrotek.ru>
+References: <20220322043219.23770-1-i.bornyakov@metrotek.ru> <20220322043219.23770-3-i.bornyakov@metrotek.ru>
+Subject: Re: [PATCH v7 2/2] dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
+Date:   Tue, 22 Mar 2022 07:57:03 -0500
+Message-Id: <1647953823.568706.1840075.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1. Set SCP cache size before loading SCP FW. (8KB+8KB)
-2. Adjust ipi_buf_offset from 0x7bdb0 to 0x3BDB0 for enableing cache
+On Tue, 22 Mar 2022 07:32:19 +0300, Ivan Bornyakov wrote:
+> Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
+> slave SPI to load .dat formatted bitstream image.
+> 
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> ---
+>  .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+> 
 
-SCP side
- - IPI Buffer: 0x3BDB0 <-> 0x3C000
- - Cache: 0x3C000 <-> 0x40000
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
- drivers/remoteproc/mtk_scp.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+yamllint warnings/errors:
 
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index 38609153bf64..24065b6b4da8 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -401,6 +401,14 @@ static int mt8186_scp_before_load(struct mtk_scp *scp)
- 	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_P1);
- 	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_p2);
- 
-+	/*
-+	 * Set I-cache and D-cache size before loading SCP FW.
-+	 * SCP SRAM logical address may change when cache size setting differs.
-+	 */
-+	writel(MT8183_SCP_CACHE_CON_WAYEN | MT8183_SCP_CACHESIZE_8KB,
-+	       scp->reg_base + MT8183_SCP_CACHE_CON);
-+	writel(MT8183_SCP_CACHESIZE_8KB, scp->reg_base + MT8183_SCP_DCACHE_CON);
-+
- 	return 0;
- }
- 
-@@ -905,7 +913,7 @@ static const struct mtk_scp_of_data mt8186_of_data = {
- 	.scp_da_to_va = mt8183_scp_da_to_va,
- 	.host_to_scp_reg = MT8183_HOST_TO_SCP,
- 	.host_to_scp_int_bit = MT8183_HOST_IPC_INT_BIT,
--	.ipi_buf_offset = 0x7bdb0,
-+	.ipi_buf_offset = 0x3bdb0,
- };
- 
- static const struct mtk_scp_of_data mt8192_of_data = {
--- 
-2.18.0
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.example.dts:20.21-29.11: Warning (unit_address_vs_reg): /example-0/spi@2008000: node has a unit name, but no reg or ranges property
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1608028
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
