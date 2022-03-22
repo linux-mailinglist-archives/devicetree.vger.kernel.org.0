@@ -2,132 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C014B4E3D21
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 12:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F159F4E3D4E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 12:12:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231920AbiCVLGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 07:06:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37360 "EHLO
+        id S233987AbiCVLNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 07:13:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231460AbiCVLGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 07:06:12 -0400
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B297D2BD9;
-        Tue, 22 Mar 2022 04:04:45 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id v2-20020a7bcb42000000b0037b9d960079so1669408wmj.0;
-        Tue, 22 Mar 2022 04:04:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mvvlFkEN/DsC17H+AQBLEAD8Y8PP0Iw+Q8j7hJjOCTQ=;
-        b=mp6Vp+tdPau70tKYoybT2xo1cMJ/5hDlC7V252cAvNX/VZuM+VkzUgi6veKpk0oltb
-         sCOxJ2D6gKoCUB8llScO9oW8b3VuxC6aruf5m4U2tL7GgSQomeOzYjSV0RjNRwTcgsuy
-         AFxqmiAcCSjODW6ZjRW/+CU/ipUWeh/lcpBvit8Xwf4f2I/xYqPlVl11B7q23vhlqPkH
-         6Io9tLeoNta8tQN/tyfAENpP0Pg79qK7xUc5i78btdyXooh5Uu0XoRF0G5Qp8oY01Eha
-         0Sa3G0URvhYyJTLTwIFjQsXsH8WrhkitKqpi8pvsFe2ITIkmHWOpzedR71jMThHpu7J1
-         uimQ==
-X-Gm-Message-State: AOAM530d8tg/H58grneufbKHve0jxhDBQSqtqNfh2f0BP7OUnxM9GuWa
-        Xs9r4UGwX4k9Jfcw+5rzzo8=
-X-Google-Smtp-Source: ABdhPJxuCH8Z9PTSPbFFW8KpTaaQmfCuymARb1qmutYtTbeZXsihRbaFDTA1CSPdosK56J2+k3PKow==
-X-Received: by 2002:a7b:c115:0:b0:38c:b045:6969 with SMTP id w21-20020a7bc115000000b0038cb0456969mr3242738wmi.45.1647947084274;
-        Tue, 22 Mar 2022 04:04:44 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id e10-20020a056000178a00b0020414f27a58sm4774621wrg.35.2022.03.22.04.04.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Mar 2022 04:04:43 -0700 (PDT)
-Message-ID: <a7194fbf-8423-9b49-1443-68dd33e23783@kernel.org>
-Date:   Tue, 22 Mar 2022 12:04:42 +0100
+        with ESMTP id S232818AbiCVLNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 07:13:53 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1FC1681671;
+        Tue, 22 Mar 2022 04:12:25 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C29EF153B;
+        Tue, 22 Mar 2022 04:12:24 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD5153F66F;
+        Tue, 22 Mar 2022 04:12:23 -0700 (PDT)
+Date:   Tue, 22 Mar 2022 11:12:21 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Stefano Stabellini <sstabellini@kernel.org>
+Cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: xen: Add xen,scmi-devid property
+ description for SCMI
+Message-ID: <YjmvFZOqAcnoBcR+@bogus>
+References: <cover.1646639462.git.oleksii_moisieiev@epam.com>
+ <5859bb58c8caf87985deb84d7f6bfc8182bd6a59.1646639462.git.oleksii_moisieiev@epam.com>
+ <Yie47a4lqXjVzgxI@robh.at.kernel.org>
+ <20220316164619.GA3489934@EPUAKYIW015D>
+ <YjIzeyNoWhVAY5HK@bogus>
+ <alpine.DEB.2.22.394.2203181644560.2910984@ubuntu-linux-20-04-desktop>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v11 2/9] dt-bindings: reset: Add bindings for SP7021 reset
- driver
-Content-Language: en-US
-To:     Qin Jian <qinjian@cqplus1.com>
-Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, p.zabel@pengutronix.de,
-        linux@armlinux.org.uk, arnd@arndb.de,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <cover.1647928315.git.qinjian@cqplus1.com>
- <55db801055793f43678e902395913330ecb8fbbf.1647928316.git.qinjian@cqplus1.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <55db801055793f43678e902395913330ecb8fbbf.1647928316.git.qinjian@cqplus1.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.22.394.2203181644560.2910984@ubuntu-linux-20-04-desktop>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2022 07:16, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 reset driver bindings.
+On Fri, Mar 18, 2022 at 04:53:20PM -0700, Stefano Stabellini wrote:
+> On Wed, 16 Mar 2022, Sudeep Holla wrote:
+> > On Wed, Mar 16, 2022 at 04:46:20PM +0000, Oleksii Moisieiev wrote:
+> > > 
+> > > > + The reason I want to keep it xen specific at the moment as we had some
+> > > > plan to extended the device-id usage in the spec which hasn't progressed
+> > > > a bit(I must admit that before you ask), and this addition should not be
+> > > > obstruct that future development. If we align with what we define xen
+> > > > specific as part of $subject work, we can always define generic binding
+> > > > in the future and slowly make the other obsolete over the time.
+> > > 
+> > > IIUC you have some plans to provide device_id support to the device-tree
+> > > bindings from your side. Maybe we can discuss some of your plans here
+> > > and we can come up with the generic device-id binding?
+> > > So I will have something to base on in Xen.
+> > > 
+> > 
+> > Sorry if I wasn't clear in earlier emails. What I mentioned was that I would
+> > like to reserve the generic namespace(i.e. just device-id) for generic SCMI
+> > usage. Since we haven't defined it clearly in the spec, I don't want to
+> > introduce the generic definition and binding now.
+> > 
+> > As mentioned earlier, though Xen definition and generic once may be exactly
+> > same, but we won't know until then. So keep the xen usage and namespace
+> > separate for now to avoid any future conflicts.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
-> ---
->  .../bindings/reset/sunplus,reset.yaml         | 38 ++++++++
->  MAINTAINERS                                   |  2 +
->  include/dt-bindings/reset/sp-sp7021.h         | 97 +++++++++++++++++++
->  3 files changed, 137 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
->  create mode 100644 include/dt-bindings/reset/sp-sp7021.h
 > 
-> diff --git a/Documentation/devicetree/bindings/reset/sunplus,reset.yaml b/Documentation/devicetree/bindings/reset/sunplus,reset.yaml
-> new file mode 100644
-> index 000000000..c083c821f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/sunplus,reset.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd. 2021
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/reset/sunplus,reset.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Sunplus SoC Reset Controller
-> +
-> +maintainers:
-> +  - Qin Jian <qinjian@cqplus1.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sunplus,sp7021-reset
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    rstc: reset@9c000054 {
-> +      compatible = "sunplus,sp7021-reset";
-> +      #reset-cells = <1>;
-> +      reg = <0x9c000054 0x28>;
+> Hi Sudeep,
+> 
+> I thought the specification already covered this device id, it simply
+> delegated the description of it to Device Tree or ACPI, which is common
+> behavior in ARM specs. What is missing in the SCMI spec from your point
+> of view?
+>
 
-I asked you to put the reg after compatible in all DTS code and
-examples. If you do not agree with a comment, please respond. Ignoring
-it is not cooperative.
+While you can say so, but for me it isn't to an extent that we can support
+software around it. I did share my feedback with spec author but as you
+know it was needed for virtualisation use-case like Xen and was rushed
+into the spec. All it states is "Device identifier" identifies the device
+and the enumeration is not part of the spec. It defers to DT/ACPI.
 
+Since I didn't have to use that in OSPM, I hadn't given much thought/review
+on that.
 
-Best regards,
-Krzysztof
+>
+> Or would you like this scmi-devid Device Tree property (or similar) to
+> be described in the SCMI specification itself?
+>
+
+Spec doesn't cover that in general but do carry some recommendations
+sometimes.
+
+> Typically Device Tree and ACPI descriptions are delegated to Device Tree
+> and ACPI respectively. Also specification updates are typically slow
+> (for good reason.) We might be waiting for a long time. It is usually
+> not a matter of days.
+
+I agree.
+
+As I said, there were thoughts about adding device protocol to make
+all the other protocols centered around the device. The idea is as below:
+
+Today a device A is associated with clock domain X, reset domain Y,
+voltage domain Z, perf domain P, power domain Q, ...and so on.
+Especially this would get complex with lots of devices and for virtual
+machines.
+
+Instead let all these different operations use the device identifier A
+in the above case to drive clock, reset, perf, power, voltage,...etc.
+
+While this was just initial idea, I am bit wary of the fact that it would
+alter the definition of device identifier. Also there is orthogonal topic
+of device assignment in various contexts and associated identifiers.
+IIRC Rob briefly raised concerns on one of such topics.
+
+With all these in consideration, I preferred to not use the "device-id"
+in the standard namespace for anything else until we get clarity on these.
+
+--
+Regards,
+Sudeep
