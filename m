@@ -2,54 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4529D4E4641
-	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 19:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D00E4E4655
+	for <lists+devicetree@lfdr.de>; Tue, 22 Mar 2022 19:56:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbiCVSuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 14:50:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
+        id S230248AbiCVS54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 14:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbiCVSub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 14:50:31 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00E85AEE5;
-        Tue, 22 Mar 2022 11:49:03 -0700 (PDT)
+        with ESMTP id S230030AbiCVS5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 14:57:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4A391378
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 11:56:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 895B1B81D12;
-        Tue, 22 Mar 2022 18:49:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CAEDC340F2;
-        Tue, 22 Mar 2022 18:49:01 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9BBEC61644
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 18:56:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0941EC340F2
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 18:56:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647974941;
-        bh=GezTty0jPoyFJLxyLQyA1KLxy9CHoc9y6yF+W6ZDHqI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EW+Tezg6MJ9CTsRF6nd9zHrO+NTai3t2i/r0wNX+SmIk4nwkXW3F6qYcbpKGfUtf2
-         dPqN26kOslkDv4aMn04gojtLkrs9JRyTgm5Plb08K62SA9p2C2fD1EWmtifhpiecQr
-         jQYHBUrvv5U9tsooAE7+FZLlZPFq4JBY+LbON2jJaS+9nZMM7x/gILPa7IPRZv4HiI
-         1u5sE6zMSzdbQaK9Dwq7RHd0WS5dbuhmEB7Z0cSEVIZzjEox89xm81M4kZ7YpqvUK2
-         Mhf23Ai+eTH+ecbhQVTNeDVQmjFbnxfOwm28NDFkxNavND8WbjebUXh6jSruGY5TvF
-         bkww2lHfjGDQw==
-Received: by pali.im (Postfix)
-        id C113E843; Tue, 22 Mar 2022 19:48:58 +0100 (CET)
-Date:   Tue, 22 Mar 2022 19:48:58 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marek.behun@nic.cz
-Subject: Re: [PATCH v2 2/2] arm64: dts: uDPU: correct temperature sensors
-Message-ID: <20220322184858.irr5p75tdu4mths3@pali>
-References: <20220322105857.1107016-1-robert.marko@sartura.hr>
- <20220322105857.1107016-2-robert.marko@sartura.hr>
+        s=k20201202; t=1647975383;
+        bh=yQu7mD0MqF0QfaaMkkc7HqXQC6NDYfLgVYhsQIhAJMA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nWsVvBhKN1vu06I1hERIyCJi6q5s5h1MVGYgRQ92KgVTiiWnR7FHzQf9oiInwB1jt
+         ZQC2pgpEFmW8l3ECECtmmBSKsJY0EcDxNvGyZyn6wBuBFkI2In2p/OwaLM2FCWTCzU
+         8fADR0AH2wsVbguc0l+TtOqcpH5uIpOV8PiKCeabIZHxVPQMstvXGOgPK1lH04se0N
+         T37ieQWgVPMz19tcv2c5cKlimaEOwQnMXFdgzrTNSjqQh/SA+Ws5SiJfFZ6N1Z+9g7
+         YD+9TvPVuIX+CC8AO1wiJew6agC75P2ty+6zLMuuO2WNprYVyd02CSpqJKh2mzOY7P
+         P/MSZD9DtZ6VQ==
+Received: by mail-ed1-f54.google.com with SMTP id z92so21902163ede.13
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 11:56:22 -0700 (PDT)
+X-Gm-Message-State: AOAM530a/LbwWHg1CiMnGD3QPDSCq0EsYNNfRs0h0daMSfoUSTZucCrE
+        8A3S92ufVqn03UAmrPdMhlQANEx8HzAkiRsJPQ==
+X-Google-Smtp-Source: ABdhPJzziky+h4S7y1Oapwg6GLoQ4MKwfHE2BgXDz13RMs42HSRszzwB9Fo9/VxTML7QkaiTJ1h9U+piBCwHFpmyypQ=
+X-Received: by 2002:aa7:d309:0:b0:419:128f:7178 with SMTP id
+ p9-20020aa7d309000000b00419128f7178mr22680706edq.109.1647975381192; Tue, 22
+ Mar 2022 11:56:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220322105857.1107016-2-robert.marko@sartura.hr>
-User-Agent: NeoMutt/20180716
+References: <20220128105849.368438-1-u.kleine-koenig@pengutronix.de>
+ <20220128105849.368438-2-u.kleine-koenig@pengutronix.de> <CAL_JsqJjTf2zY-n69Ozh+S1gSi5Eoa5T44Qnq9RPNgJWDLmzKQ@mail.gmail.com>
+ <20220128175829.vjm66rs7eu7pk2my@pengutronix.de> <YflvS007gL5mLa9k@robh.at.kernel.org>
+ <b91696142ff5e27afae9ad2125c39a4f937d072f.camel@pengutronix.de>
+In-Reply-To: <b91696142ff5e27afae9ad2125c39a4f937d072f.camel@pengutronix.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 22 Mar 2022 13:56:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJvfqC79unzmS0Y9yaQt3g7Y8SBVgOt9RjjyRAogvHO2w@mail.gmail.com>
+Message-ID: <CAL_JsqJvfqC79unzmS0Y9yaQt3g7Y8SBVgOt9RjjyRAogvHO2w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: imx: Add fsl,imx21-lcdc docs
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Fabio Estevam <festevam@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,52 +74,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 22 March 2022 11:58:57 Robert Marko wrote:
-> uDPU has a pair of NCT375 temperature sensors, which are TMP75C compatible
-> as far as the driver is concerned.
-> 
-> The current LM75 compatible worked as all of the LM75 compatible sensors
-> are backwards compatible with the original part, but it meant that lower
-> resolution and incorrect sample rate was being used.
-> 
-> The "lm75" compatible has been deprecated anyway and is meant as fallback
-> in order to keep older DTS-es working.
-> 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+On Thu, Feb 10, 2022 at 11:54 AM Lucas Stach <l.stach@pengutronix.de> wrote=
+:
+>
+> Hi Rob,
+>
+> Am Dienstag, dem 01.02.2022 um 11:35 -0600 schrieb Rob Herring:
+> > On Fri, Jan 28, 2022 at 06:58:29PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > > Hello Rob,
+> > >
+> > > On Fri, Jan 28, 2022 at 07:04:10AM -0600, Rob Herring wrote:
+> > > > On Fri, Jan 28, 2022 at 4:59 AM Uwe Kleine-K=C3=B6nig
+> > > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > >
+> > > > > From: Marian Cichy <m.cichy@pengutronix.de>
+> > > > >
+> > > > > This files documents the device tree for the new imx21-lcdc DRM d=
+river.
+> > > >
+> > > > No, bindings document h/w and the h/w has not changed. We already h=
+ave
+> > > > a binding for the LCDC.
+> > >
+> > > Just to be sure we're talking about the same thing: You're refering t=
+o
+> > > Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt, right?
+> >
+> > Looks right...
+> >
+> > > I'm unsure what to do now. Should the two different bindings just be
+> > > described in the same file? Should I stick to fsl,imx21-fb even for t=
+he
+> > > new binding? (The hardware unit is named LCDC, so the name chosen her=
+e
+> > > is the better one.) Please advise.
+> >
+> > Yes, the name is unfortunate, but it should be 1 binding, 1 file, and
+> > unchanged (unless you want to add new optional properties).
+> >
+> The old FB driver binding is pretty insane. Except the reg and
+> interrupt properties it is very confused about things. It exposes
+> internal implementation details (like specifying verbatim register
+> settings in the DT) and other properties are just misplaced, like the
+> lcd-supply property that controls the panel power supply.
 
-Reviewed-by: Pali Rohár <pali@kernel.org>
+I agree on 'lcd-supply', but that can simply be marked as deprecated
+as can anything else. From what I remember working on these chips, I'm
+not sure you can really avoid some of these register properties. For
+example, the Sharp config is pretty much a use some value with some
+specific Sharp panel. I guess we can have 'if panel A, then register
+value is X' type code in the driver. Maybe the DMA settings can be
+heuristics based on the pixel data rate, but I recall avoiding
+underruns was challenging on some parts.
 
-> ---
-> Changes in v2:
-> * None
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> index ac64949bb53e..1f534c0c65f7 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
-> @@ -153,15 +153,15 @@ &i2c1 {
->  	scl-gpios = <&gpionb 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	sda-gpios = <&gpionb 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  
-> -	lm75@48 {
-> +	nct375@48 {
->  		status = "okay";
-> -		compatible = "lm75";
-> +		compatible = "ti,tmp75c";
->  		reg = <0x48>;
->  	};
->  
-> -	lm75@49 {
-> +	nct375@49 {
->  		status = "okay";
-> -		compatible = "lm75";
-> +		compatible = "ti,tmp75c";
->  		reg = <0x49>;
->  	};
->  };
-> -- 
-> 2.35.1
-> 
+> I really don't think that trying to stay backwards compatible here is a
+> win for anyone. Anyone willing to switch their systems running on a 15
+> year old SoC to the new DRM driver probably doesn't mind if they have
+> to modify the DTS to make it work. Can we please let the FB driver die
+> in peace and have a clean slate driver/binding for the DRM driver?
+
+The existing binding will still need a schema if it appears in dts files.
+
+There's nothing really conflicting between the 2 bindings. Your
+choices are to merge it all into 1 node and it's up to kernel
+configuration (or module load) to select which driver. Or you have 2
+nodes in the DT with one enabled at a time (because 2 enabled nodes at
+the same address is not allowed). Then you need a DT change to switch.
+Either way is fine and the schema should match which one you pick, but
+I would do 1 node.
+
+If you do a new binding, then justify it for the reasons above, not
+the old one is for the FB driver and the new one is for the DRM
+driver.
+
+Rob
