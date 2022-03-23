@@ -2,133 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F514E4B9E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 04:41:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AAFC4E4BD1
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 05:12:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241611AbiCWDmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 23:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39292 "EHLO
+        id S241755AbiCWEOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 00:14:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241622AbiCWDmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 23:42:35 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932D16C1F7
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 20:41:04 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5D6F82C0821;
-        Wed, 23 Mar 2022 03:41:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1648006861;
-        bh=3kRD+oortahrXsHkmlIWk4d3La4jPOGfcWeSyoZ6p3c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BXefxU0NqTGdouL3WTTHJ0pjo7CiBySqtxTe/ys2bdFwuc7+UpSjPs2XDp2cOeQrp
-         QMYm5kSN3wFifxu9ehHK4H0nB4yeHiGqFriwrqZGP79mb5zmUG6D5uQtPvqsYCBNZa
-         Bz5RBxzsJm47Uj8K9jdYDyjQPXp6EoU+RnnJ48wsvMzFGmDK9rNwnUP+jKVtLrXfCv
-         3hfoZ37yE4fZQre/PENuBRv0UukL3YfsZp1D7nvTB3pzPfk96yO84P6erHQbhMcUnp
-         iSLt8vW3t1iTTYZD0jIS5U125wZwiK1nkjwwuLSFhhjv1BqwZsLS/GPUp1eCI3ngA3
-         xz3vHUd5wq+SA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B623a96cc0003>; Wed, 23 Mar 2022 16:41:00 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id E113B13EE8E;
-        Wed, 23 Mar 2022 16:41:00 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 276AB2A2678; Wed, 23 Mar 2022 16:40:59 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v3 3/3] hwmon: (adt7475) Use enum chips when loading attenuator settings
-Date:   Wed, 23 Mar 2022 16:40:56 +1300
-Message-Id: <20220323034056.260455-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220323034056.260455-1-chris.packham@alliedtelesis.co.nz>
-References: <20220323034056.260455-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S229446AbiCWEOS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 00:14:18 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.103])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4F5CC46168;
+        Tue, 22 Mar 2022 21:12:48 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.31:49490.1900241467
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
+        by 189.cn (HERMES) with SMTP id 65E70100295;
+        Wed, 23 Mar 2022 12:12:44 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 9fdf852ba39e43dc86bc897a873f4e2f for robh@kernel.org;
+        Wed, 23 Mar 2022 12:12:47 CST
+X-Transaction-ID: 9fdf852ba39e43dc86bc897a873f4e2f
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <9ea4d326-ad5f-4f2c-1609-4ca772699d1b@189.cn>
+Date:   Wed, 23 Mar 2022 12:12:43 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=LMJ1QkyDWGgx0nKO9dUA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v11 7/7] drm/lsdc: add drm driver for loongson display
+ controller
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kernel test robot <lkp@intel.com>
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-8-15330273260@189.cn>
+ <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make use of enum chips and use a switch statement in load_attenuators()
-so that the compiler can tell us if we've failed to cater for a
-supported chip.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+On 2022/3/23 04:49, Rob Herring wrote:
+>> +/*
+>> + * mainly for dc in ls7a1000 which have builtin gpio emulated i2c
+>> + *
+>> + * @index : output channel index, 0 for DVO0, 1 for DVO1
+>> + */
+>> +struct lsdc_i2c *lsdc_create_i2c_chan(struct device *dev, void *base, unsigned int index)
+>> +{
+>> +	char compat[32] = {0};
+>> +	unsigned int udelay = 5;
+>> +	unsigned int timeout = 2200;
+>> +	int nr = -1;
+>> +	struct i2c_adapter *adapter;
+>> +	struct lsdc_i2c *li2c;
+>> +	struct device_node *i2c_np;
+>> +	int ret;
+>> +
+>> +	li2c = devm_kzalloc(dev, sizeof(*li2c), GFP_KERNEL);
+>> +	if (!li2c)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	li2c->index = index;
+>> +	li2c->dev = dev;
+>> +
+>> +	if (index == 0) {
+>> +		li2c->sda = 0x01;
+>> +		li2c->scl = 0x02;
+>> +	} else if (index == 1) {
+>> +		li2c->sda = 0x04;
+>> +		li2c->scl = 0x08;
+> Just require this to be in DT rather than having some default.
+>
+By design,  I am try very hard to let the code NOT fully  DT dependent. DT is nice , easy to learn and use.
+But kernel side developer plan to follow UEFI + ACPI Specification on LS3A5000 + LS7A1000 platform. See [1]
+There will no DT support then, provide a convention support  make the driver more flexible. I want the
+driver works with minimal requirement. The driver just works on simple boards by put the following dc device
+node in arch/mips/dts/loongson/loongson64g_4core_ls7a.dts,
 
-Notes:
-    Changes in v3:
-    - Reword commit message
-    - Use switch instead of if/else
-    Changes in v2:
-    - New
+             lsdc: display-controller@6,1 {
+                 compatible = "loongson,ls7a1000-dc";
 
- drivers/hwmon/adt7475.c | 23 ++++++++++-------------
- 1 file changed, 10 insertions(+), 13 deletions(-)
+                 reg = <0x3100 0x0 0x0 0x0 0x0>;
+                 interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
+                 interrupt-parent = <&pic>;
+             };
 
-diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
-index 6de501de41b2..ac480e6e4818 100644
---- a/drivers/hwmon/adt7475.c
-+++ b/drivers/hwmon/adt7475.c
-@@ -1569,12 +1569,12 @@ static int set_property_bit(const struct i2c_clie=
-nt *client, char *property,
- 	return ret;
- }
-=20
--static int load_attenuators(const struct i2c_client *client, int chip,
-+static int load_attenuators(const struct i2c_client *client, enum chips =
-chip,
- 			    struct adt7475_data *data)
- {
--	int ret;
--
--	if (chip =3D=3D adt7476 || chip =3D=3D adt7490) {
-+	switch (chip) {
-+	case adt7476:
-+	case adt7490:
- 		set_property_bit(client, "adi,bypass-attenuator-in0",
- 				 &data->config4, 4);
- 		set_property_bit(client, "adi,bypass-attenuator-in1",
-@@ -1584,18 +1584,15 @@ static int load_attenuators(const struct i2c_clie=
-nt *client, int chip,
- 		set_property_bit(client, "adi,bypass-attenuator-in4",
- 				 &data->config4, 7);
-=20
--		ret =3D i2c_smbus_write_byte_data(client, REG_CONFIG4,
--						data->config4);
--		if (ret < 0)
--			return ret;
--	} else if (chip =3D=3D adt7473 || chip =3D=3D adt7475) {
-+		return i2c_smbus_write_byte_data(client, REG_CONFIG4,
-+						 data->config4);
-+	case adt7473:
-+	case adt7475:
- 		set_property_bit(client, "adi,bypass-attenuator-in1",
- 				 &data->config2, 5);
-=20
--		ret =3D i2c_smbus_write_byte_data(client, REG_CONFIG2,
--						data->config2);
--		if (ret < 0)
--			return ret;
-+		return i2c_smbus_write_byte_data(client, REG_CONFIG2,
-+						 data->config2);
- 	}
-=20
- 	return 0;
---=20
-2.35.1
+[1] 
+https://lwn.net/Articles/869541/#:~:text=LoongArch%20is%20a%20new%20RISC%20ISA%2C%20which%20is,revision%20of%20ACPI%20Specification%20%28current%20revision%20is%206.4%29.
 
