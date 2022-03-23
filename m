@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 506E84E5842
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:17:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EEF04E5852
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238448AbiCWSS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 14:18:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
+        id S236368AbiCWSYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 14:24:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237766AbiCWSS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:18:56 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E93F88B35;
-        Wed, 23 Mar 2022 11:17:26 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id x8-20020a9d6288000000b005b22c373759so1623405otk.8;
-        Wed, 23 Mar 2022 11:17:26 -0700 (PDT)
+        with ESMTP id S231986AbiCWSYr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:24:47 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F5C6583;
+        Wed, 23 Mar 2022 11:23:16 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id y3-20020a056830070300b005cd9c4d03feso1650776ots.3;
+        Wed, 23 Mar 2022 11:23:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=UMilCH3nmO4hHuQpJXoN2BLcTlli6OsI7fhFVNJE50w=;
-        b=qjnQBA5fJZYYgNBJHgj4kEJXhcpC9jeormcoKyE3VvEL6FH6rAQ5Cl2SHorPafJGSS
-         AZlvCUuy0b6tTe29c4U7W/DOxFc1om+LVt21IGvLZwH1MjDE0pRqVV6BxINM4StJ8I0Q
-         MmQtd3wLPV6iNO83ho797e8HZWykIIt43bTymLdHriwt6dby9TpF4DVhvYM1m8drmIH4
-         YD9jkWBIPtoO3c43dirmEH+pzz2mQnoaDpN2jHJyYsGvH6JZcG6nPWXedWhLMQ2YhE++
-         ouCulztTXbYhGUred/HQWS8wCi8tvr1Wl9X/Df96/sCk93G2hFQ5En/twq34ZU9Th9XJ
-         JTHA==
-X-Gm-Message-State: AOAM531IXJBRyvBtq0PSUTPnPl+/z8yvk86tMP7NoFHNK6uiQjRqwjh2
-        yHjYzZFhA7xO7XbrNamKZQ==
-X-Google-Smtp-Source: ABdhPJyY3XpjvesCfrD2gGm+p1Kf4TEmHHzEFzoS8st8x4woCgqCc8eAyWBIbIYnalhw5UQR550UAg==
-X-Received: by 2002:a05:6830:1c3d:b0:5cd:97c1:2590 with SMTP id f29-20020a0568301c3d00b005cd97c12590mr584713ote.90.1648059445321;
-        Wed, 23 Mar 2022 11:17:25 -0700 (PDT)
+        bh=IBKbGB+pt9Zh8RRqE0uQmOCyVj+jNoLop9r8WmBsrLs=;
+        b=jQhT3dywNQF2XrEWbDvv2rZzIN5rIQANM5xgcGFI4WztO97wuZZuDPvbxM0X9WEfvk
+         UndBnS7sBLb6gnxL4Pl6NJaKV3qHhQemyk6HwzOZu4BqPQfU22MPdvbwtunt3NB+vMgz
+         Beel3ELM5T+dlvkS7Ym6h2m6IX+x5I5VmNQlcAFXDD7RlD1qfqn0J3Opw0RKO08qqmVQ
+         AGtUw5m84K69WEZCRg/Os4DnUjBcaNnNwOm8ssPkIx7i4Fw0k8X4Wpg9jKS/1A5O5hqM
+         7Il1zN/2HKeUeTVhtOcF8N9UHuhpUfYKErRThgTpQGNAcN8YPSkqM0tDZ3gYPyxXyNb8
+         r1EQ==
+X-Gm-Message-State: AOAM533uVMioGV16AkmFhbREgh3sYR8WjOu1p9rQxrTohwut6i/U5yLu
+        6BVAFWm/xxaBtR3JPzVr7w==
+X-Google-Smtp-Source: ABdhPJzo/c5tb80wxEAYG/WuNLFuZWT7lHLuNXFR3TQzzebDK/VmeVlx4R7iB0ElQ9MwjuY0bCP4FA==
+X-Received: by 2002:a9d:7751:0:b0:5b2:49ae:76c6 with SMTP id t17-20020a9d7751000000b005b249ae76c6mr588309otl.18.1648059795879;
+        Wed, 23 Mar 2022 11:23:15 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 15-20020a056870118f00b000de58283559sm273166oau.36.2022.03.23.11.17.24
+        by smtp.gmail.com with ESMTPSA id k124-20020aca3d82000000b002ef4c5bb9dbsm267714oia.0.2022.03.23.11.23.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 11:17:24 -0700 (PDT)
-Received: (nullmailer pid 196157 invoked by uid 1000);
-        Wed, 23 Mar 2022 18:17:23 -0000
-Date:   Wed, 23 Mar 2022 13:17:23 -0500
+        Wed, 23 Mar 2022 11:23:15 -0700 (PDT)
+Received: (nullmailer pid 205240 invoked by uid 1000);
+        Wed, 23 Mar 2022 18:23:14 -0000
+Date:   Wed, 23 Mar 2022 13:23:14 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
- DSI TX bindings
-Message-ID: <YjtkMxC0X7mMvMKX@robh.at.kernel.org>
-References: <20220314161004.14765-1-biju.das.jz@bp.renesas.com>
- <20220314161004.14765-2-biju.das.jz@bp.renesas.com>
+To:     Max Krummenacher <max.oss.09@gmail.com>
+Cc:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        Lucas Stach <dev@lynxeye.de>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        max.krummenacher@toradex.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 01/14] dt-bindings: arm: fsl: imx6dl-colibri: Drop
+ dedicated v1.1 bindings
+Message-ID: <YjtlkqKq7Yta0nv4@robh.at.kernel.org>
+References: <20220314162958.40361-1-max.krummenacher@toradex.com>
+ <20220314162958.40361-2-max.krummenacher@toradex.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220314161004.14765-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220314162958.40361-2-max.krummenacher@toradex.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,185 +77,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 14, 2022 at 04:10:02PM +0000, Biju Das wrote:
-> The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
-> can operate in DSI mode, with up to four data lanes.
+On Mon, 14 Mar 2022 17:29:45 +0100, Max Krummenacher wrote:
+> The dedicated device tree for V1.1 modules has been dropped. Remove
+> its bindings too.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 > ---
-> RFC->v1:
->  * Added a ref to dsi-controller.yaml.
-> RFC:-
->  * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
-> ---
->  .../bindings/display/bridge/renesas,dsi.yaml  | 146 ++++++++++++++++++
->  1 file changed, 146 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> new file mode 100644
-> index 000000000000..74bc3782d230
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> @@ -0,0 +1,146 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L MIPI DSI Encoder
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  This binding describes the MIPI DSI encoder embedded in the Renesas
-> +  RZ/G2L family of SoC's. The encoder can operate in DSI mode with up
-> +  to four data lanes.
-> +
-> +allOf:
-> +  - $ref: ../dsi-controller.yaml#
-
-Full path preferred:
-
-/schemas/display/dsi-controller.yaml#
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,rzg2l-mipi-dsi # RZ/G2L and RZ/V2L
-> +
-> +  reg:
-> +    items:
-> +      - description: Link register
-> +      - description: D-PHY register
-
-D-PHY is not a separate block?
-
-> +
-> +  clocks:
-> +    items:
-> +      - description: DSI D-PHY PLL multiplied clock
-> +      - description: DSI D-PHY system clock
-> +      - description: DSI AXI bus clock
-> +      - description: DSI Register access clock
-> +      - description: DSI Video clock
-> +      - description: DSI D_PHY Escape mode Receive clock
-
-D-PHY
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pllclk
-> +      - const: sysclk
-> +      - const: aclk
-> +      - const: pclk
-> +      - const: vclk
-> +      - const: lpclk
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: MIPI_DSI_CMN_RSTB
-> +      - description: MIPI_DSI_ARESET_N
-> +      - description: MIPI_DSI_PRESET_N
-> +
-> +  reset-names:
-> +    items:
-> +      - const: rst
-> +      - const: arst
-> +      - const: prst
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Parallel input port
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: DSI output port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +
-> +    dsi0: dsi@10860000 {
-> +        compatible = "renesas,rzg2l-mipi-dsi";
-> +        reg = <0x10860000 0x10000>,
-> +              <0x10850000 0x10000>;
-> +        power-domains = <&cpg>;
-> +        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
-> +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
-> +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
-> +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
-> +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
-> +                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
-> +        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
-> +        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
-> +                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
-> +                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
-> +        reset-names = "rst", "arst", "prst";
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                dsi0_in: endpoint {
-> +                    remote-endpoint = <&du_out_dsi0>;
-> +                };
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                dsi0_out: endpoint {
-> +                    data-lanes = <1 2 3 4>;
-> +                    remote-endpoint = <&adv7535_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.17.1
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 8 --------
+>  1 file changed, 8 deletions(-)
 > 
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
