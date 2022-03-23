@@ -2,136 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F7604E55A9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 16:48:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85CB94E55C3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 16:56:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242954AbiCWPuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 11:50:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48466 "EHLO
+        id S245306AbiCWP6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 11:58:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245241AbiCWPuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 11:50:00 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 590484B1C6
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 08:48:30 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 0BEBD32003C0;
-        Wed, 23 Mar 2022 11:48:26 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Wed, 23 Mar 2022 11:48:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
-         s=fm3; bh=KiN4ObRYprXusmbrsgvz1YYBWCwTlWwWphfqiu5Q6zY=; b=rkaJb
-        1NKa5bx82M/aPM/WE6bPC4ZZuSxy6pQN1nuvNHcRlXgTHD1HVRN4lAysuu/G9KjO
-        eW8ItiFhIRcDdqyAdKVXYqlcvbgyitria5dLxc60B2r0e8F+k6+Hw8JVSGffF502
-        1YgE/MtuKNo48UP9rn53WagbMK9EQNmPHeRsZkks6VdEFIQgYx/KtZoFC15z1iBD
-        xjkxRzA691nS6d6ap6b3s6c4G4d0AWwseO1wXlQe68S5L/plPg30abKFuqj6gkRO
-        dnyJK3m6zG33tMN/q6Wk6iooGyaty9V3nOAolH0bgWN5WtVdyNJvP7x6vzRq8oK2
-        5Ze908Rlp6+0983XA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
-        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
-        :x-me-sender:x-sasl-enc; s=fm3; bh=KiN4ObRYprXusmbrsgvz1YYBWCwTl
-        WwWphfqiu5Q6zY=; b=Qg/YG5QMct3gCFkr/6ifU7Q32QsW+vNx36IEysFaRMY4x
-        4N2xiDmwgltgVRMrD6G9tqEzZkX3jp8wBSHIOuf7dafnN75E+Q0iwE8YvFwb47QH
-        2H/zjgo/Ult700DWhajCppkQekhTvAYTkJYdYL0wVT8MLqLGpanV4Z/nIxxWB/yC
-        ceziHqFLWrVWv8y4u6gu67iCqNlewWqG1hSv9CxFT/jtP/LIxjyTYBanWsz88i2n
-        Gu7l1cqoNOB9iHoxN4wHvw+AaCupoUeRnPM8Yu1FHGsrzrXG61uXifaNRC7IyxBv
-        cBgEyF1oX8yQaThm9BD6N/PawGZ6nfMjfpnjFDBxg==
-X-ME-Sender: <xms:SUE7YtF6LgddOsgJe9ag4ktqc10zgZ9X0RgLuQSt03EggvnnII9h_w>
-    <xme:SUE7YiUtxI-QKxYbpCfxgonE_fAb9rj_oZePvyNaUSyhalOTeZThi9kg2gnjZSUiu
-    3ZbQbMIddzu5PavKq4>
-X-ME-Received: <xmr:SUE7YvLOkiIS4YmPnQRyBLDUQy89kDjnmHWb7vQYkhVyBTYVrAjGsr2unh0ed0QlW8TVVvZGP4nGPhcOfz6ChKzXzYXM-eJdn1690pA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudegjedgjeelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcu
-    tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
-    hrnhepjeffheduvddvvdelhfegleelfffgieejvdehgfeijedtieeuteejteefueekjeeg
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgi
-    himhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:SUE7YjH1aoaHOgMUWUZzzQXBlgqvLQG_K-57hypXts0l5H7ktxaxaw>
-    <xmx:SUE7YjUwRBfauHab1XDYK9F0fchayV0xJG2_jQczTm4znE-4i5OlaQ>
-    <xmx:SUE7YuPAGhOTNAP6USUIT_TsjSusoBbGzqQLjt-mRqOiWzlgJQ-bHQ>
-    <xmx:SkE7YgUJrUVM36U9Hx5iocTRtRJGQ4aVtQWi5KxNp7pYjEj5Z1SuEw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 23 Mar 2022 11:48:25 -0400 (EDT)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>, Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH] dt-bindings: display: bridge: Drop requirement on input port for DSI devices
-Date:   Wed, 23 Mar 2022 16:48:23 +0100
-Message-Id: <20220323154823.839469-1-maxime@cerno.tech>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S245298AbiCWP6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 11:58:23 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0884E7A9AB;
+        Wed, 23 Mar 2022 08:56:54 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id k10so2100553oia.0;
+        Wed, 23 Mar 2022 08:56:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IgrPCceiCwLycG0doYf+GNfBOLy+mSKqNNmNcIvAjl0=;
+        b=1fFJ3gkknvNw/4X7Pz5iuOWnp3QU/qo/YRnNQ8V2rYpXjcqb7yU755xua4xd6pdzFW
+         TajXqZSz3FI6of8bsItXQu1qZfNaV6OJK0IBRydG2tT4ts7kiYTPmi1uGHVivzpxFcnK
+         hRFULlByVuAykRB1/0Bj5ul3WtIOuljr+obT6doyqceP616I9rU8WAGW+tKuH4b3auQF
+         ORny3VzKm9J05siEmS0G42RGCiCqKqggK2QAlVnBy7F0V1KhYY8QRlEWhgvWUTZ4C2TT
+         3Ma/o3T79jJD7RjIW37ZH8sk2lTDhdOe7DSiT7EQEUDhK7c3g3TGkVxTKJjRbGJYSkZo
+         X38g==
+X-Gm-Message-State: AOAM533Lf+cUC0P611rCHwHs5+ulWuZVM0WHAjSJVLjHbKsQmaO0d4dT
+        JCQivfKnVPL81C4+Bf4P5v/PJSuuew==
+X-Google-Smtp-Source: ABdhPJzGJohUCXKA2BUHvBwllauhSqeFTTmapJ+mhGNVtrmcSr4Eo0LvjG+iTbOZPmccBggq8FsfBA==
+X-Received: by 2002:a05:6808:209e:b0:2da:4de9:e632 with SMTP id s30-20020a056808209e00b002da4de9e632mr359702oiw.214.1648051013312;
+        Wed, 23 Mar 2022 08:56:53 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s38-20020a05683043a600b005cda8c77010sm147072otv.26.2022.03.23.08.56.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Mar 2022 08:56:52 -0700 (PDT)
+Received: (nullmailer pid 4177743 invoked by uid 1000);
+        Wed, 23 Mar 2022 15:56:50 -0000
+Date:   Wed, 23 Mar 2022 10:56:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     james.morse@arm.com, benjaminfair@google.com,
+        devicetree@vger.kernel.org, ctcchien@nuvoton.com,
+        linux-kernel@vger.kernel.org, KFTING@nuvoton.com,
+        linux-edac@vger.kernel.org, venture@google.com, yuenn@google.com,
+        rric@kernel.org, robh+dt@kernel.org, JJLIU0@nuvoton.com,
+        bp@alien8.de, tony.luck@intel.com, KWLIU@nuvoton.com,
+        avifishman70@gmail.com, YSCHU@nuvoton.com, tmaimon77@gmail.com,
+        openbmc@lists.ozlabs.org, tali.perry1@gmail.com, mchehab@kernel.org
+Subject: Re: [PATCH v6 2/3] dt-bindings: edac: nuvoton: add NPCM memory
+ controller
+Message-ID: <YjtDQu+R+eDQW76B@robh.at.kernel.org>
+References: <20220322030152.19018-1-ctcchien@nuvoton.com>
+ <20220322030152.19018-3-ctcchien@nuvoton.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220322030152.19018-3-ctcchien@nuvoton.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MIPI-DSI devices, if they are controlled through the bus itself, have to
-be described as a child node of the controller they are attached to.
+On Tue, 22 Mar 2022 11:01:51 +0800, Medad CChien wrote:
+> Added device tree binding documentation for Nuvoton BMC
+> NPCM memory controller.
+> 
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../edac/nuvoton,npcm-memory-controller.yaml  | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
+> 
 
-Thus, there's no requirement on the controller having an OF-Graph output
-port to model the data stream: it's assumed that it would go from the
-parent to the child.
-
-However, some bridges controlled through the DSI bus still require an
-input OF-Graph port, thus requiring a controller with an OF-Graph output
-port. This prevents those bridges from being used with the controllers
-that do not have one without any particular reason to.
-
-Let's drop that requirement.
-
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- .../devicetree/bindings/display/bridge/chipone,icn6211.yaml      | 1 -
- .../devicetree/bindings/display/bridge/toshiba,tc358762.yaml     | 1 -
- 2 files changed, 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-index 62c3bd4cb28d..7257fd0ae4da 100644
---- a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
-@@ -51,7 +51,6 @@ properties:
-           Video port for MIPI DPI output (panel or connector).
- 
-     required:
--      - port@0
-       - port@1
- 
- required:
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml
-index 5216c27fc0ad..a412a1da950f 100644
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml
-@@ -39,7 +39,6 @@ properties:
-           Video port for MIPI DPI output (panel or connector).
- 
-     required:
--      - port@0
-       - port@1
- 
- required:
--- 
-2.35.1
-
+Acked-by: Rob Herring <robh@kernel.org>
