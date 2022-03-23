@@ -2,104 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE0C4E57FE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 18:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2AD4E5807
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:02:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241867AbiCWSA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 14:00:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56148 "EHLO
+        id S235384AbiCWSEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 14:04:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235384AbiCWSA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:00:57 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761B41F605;
-        Wed, 23 Mar 2022 10:59:27 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id kx5-20020a17090b228500b001c6ed9db871so7182116pjb.1;
-        Wed, 23 Mar 2022 10:59:27 -0700 (PDT)
+        with ESMTP id S1343917AbiCWSEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:04:00 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A334F8879A
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:30 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id s11so2036420pfu.13
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TeKF1IrVTPwtitTV8dgbmN8AVqD0Mtciv+RTNtchAtM=;
-        b=CvS8qLVfcrk3NGlCqS+dzql75jrHonuWq7qfMNBpfDuWkx+hMOOp9iOU9e0kom/Vzu
-         PoEoodYURFWHBLM/vjzBIi1mkmM8fHUnSIZrKe7yhVUsBFioL4HmZDJQ89Mh8v+2al/l
-         /9qJUdoMxL/wc5GDlc7snCBOhfpm+krsr4wX0aQrLjUa2cx5atgPYYeZ1Ogj5a1qfmOm
-         i8r1AC/3qQiPyO/k+NEc//VJmgKq3WyYkzAogz3FE2klGCXhdxgnFNsrtmTPQRcbXZWj
-         bC2exxhscNLB5MsO79gtUxB0jgrfhQKfy3nMB+SHVX7tUTFRrHzEQZysXgpD/wTcJjMf
-         qK8g==
+        bh=+vhUVkYYqSMRPXwABeEXGVAUkLgXfGxO7Iwv+BSFBag=;
+        b=ONI92zooPFODPz+oM5A6PFVgICqa6LAyrUfEQsv5h7QMlubwTEzpA1eH7PNtfvX2nA
+         7OnA/PxNdB7+CJQ57XSMKShuQ6KM5WLBcYiIbP3oqXUXNaWXX1kyUAey9q1ohzdkPNOL
+         pAzu9RL6gMWtjRnAOQxmJrG3gVUT6vdBJk5sg+PlRR5xtdklrwqmWmR1G2DZ00X+F+Oz
+         Ol4/Tmtoe58WppeE90n2jfUk1yOZ+1w48TNNsx5tUlgONeWLuXfhE8qjpA+hilkci7ml
+         uPEQQ/aPJ/m6Bl/LWwbZp/QpStU+cC5G7cEQbVYXLr345SEbOjrsLA1yQ3pge1iI/7E2
+         Xc7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TeKF1IrVTPwtitTV8dgbmN8AVqD0Mtciv+RTNtchAtM=;
-        b=lEBqrZ/KWouxPw6rQxQyT4UfarzmmtVhtD2fcVm2rHQwxQZaZVh4Vw49/Y9eujfsjX
-         kpY3yOLeJ/fJxJ87o33UM1WdV1ZdL3AUahlHxzry5AZA38fTxrHcwl/+uEk39xCMwSzw
-         B1wIojbdVcABQUwuy7tDEoHetrg5bOl+eWLs/zSQE+f4Oaqiak4fsQP6Rp/vZWLwSLnR
-         Gjyiv0X1iVWnYo7uPu+66iRK9x/qjG3WIDYk19RC9J6Q4gFgT2Y1RuZ74b3tNBbnkQVC
-         VOaoM71tLC8kpnXJ9chlqqq5iIWr+gX9+1F1AeHjCOW0k6aY/bIO+9V2cHkbCA5p3Z4Q
-         PVNA==
-X-Gm-Message-State: AOAM533lxIOIplErCPHlPh95DZOJyCcRGxAtCXwOvEoaDE9s266/wln0
-        hSz0R7FMdxkIMWeBXzdq/nk=
-X-Google-Smtp-Source: ABdhPJwaHPOu98pWAjMGLcxyok9W+oPp/AYZC/v0jL+r/3wC+oBxGKiyJZhBZ8kX81WieVhTk9diBw==
-X-Received: by 2002:a17:90a:cce:b0:1bf:6387:30d9 with SMTP id 14-20020a17090a0cce00b001bf638730d9mr13199933pjt.196.1648058366984;
-        Wed, 23 Mar 2022 10:59:26 -0700 (PDT)
-Received: from localhost.localdomain ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id q2-20020a056a00084200b004f761a7287dsm551622pfk.131.2022.03.23.10.59.24
+        bh=+vhUVkYYqSMRPXwABeEXGVAUkLgXfGxO7Iwv+BSFBag=;
+        b=pgLVuMosNVwuPxuRaTPcM64lNdwNDXAjRtNoq51OXzFf9pWQ7xwKtCRxzpq+RB+ZLT
+         l+GJu1maP8GoPEKVASw4MXCg80DfjXxlxDejHSLY6XggV3nhxYNZluLEDPZeMUQvcuOF
+         ALS+vttKPU+//IgGfpg7pZoP9j/aF+V5uU+Rx+rL2xWcLiVPA49qd2F6pu55Vz2wUE4i
+         u+1loy/3o0gKRHSNhk1y7Y79mHBXR0597CXILUa7uA1TR2E2LltOfmewMvIZ+9sKg6K/
+         w0Gwqgc09dkALMk1dok+fQyNs/CRwq7FngiYZUcWB+kDERH2vvJfKUpWMChW5KvkX2SS
+         +SvA==
+X-Gm-Message-State: AOAM533MNtIuGe5hZJmh8GBYB3rdeU9xLikYsafsqxIdTS1VdLiVRcoe
+        2ciEPFtSd0dJ7KJCu8H/FPEkSA==
+X-Google-Smtp-Source: ABdhPJybMH7prPEUWwxTS01Q1gq6+E6xSD0ItDHehCAVfOkahORz0J/W33Wz+VHoCeuKJPotbFDdrA==
+X-Received: by 2002:a05:6a00:9aa:b0:4f6:ebd0:25bd with SMTP id u42-20020a056a0009aa00b004f6ebd025bdmr1167608pfg.12.1648058550000;
+        Wed, 23 Mar 2022 11:02:30 -0700 (PDT)
+Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id l19-20020a17090aec1300b001c7a31ba88csm1265870pjy.1.2022.03.23.11.02.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 10:59:26 -0700 (PDT)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: spear13xx: Update SPI dma properties
-Date:   Wed, 23 Mar 2022 23:29:20 +0530
-Message-Id: <20220323175920.93155-1-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Wed, 23 Mar 2022 11:02:29 -0700 (PDT)
+From:   Andy Chiu <andy.chiu@sifive.com>
+To:     radhey.shyam.pandey@xilinx.com, robert.hancock@calian.com,
+        michal.simek@xilinx.com
+Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, linux@armlinux.org.uk, andrew@lunn.ch,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, Andy Chiu <andy.chiu@sifive.com>
+Subject: [PATCH v5 net 0/4] Fix broken link on Xilinx's AXI Ethernet in SGMII mode
+Date:   Thu, 24 Mar 2022 02:00:18 +0800
+Message-Id: <20220323180022.864567-1-andy.chiu@sifive.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reorder dmas and dma-names property for spi controller node to make it
-compliant with bindings.
+The Ethernet driver use phy-handle to reference the PCS/PMA PHY. This
+could be a problem if one wants to configure an external PHY via phylink,
+since it use the same phandle to get the PHY. To fix this, introduce a
+dedicated pcs-handle to point to the PCS/PMA PHY and deprecate the use
+of pointing it with phy-handle. A similar use case of pcs-handle can be
+seen on dpaa2 as well.
 
-Fixes: 6e8887f60f60 ("ARM: SPEAr13xx: Pass generic DW DMAC platform data from DT")
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
-v2:
-- Add fixes tag
-- Remove 1/2 patch from series as it's not required
-- v1 discussion link:
-  https://lore.kernel.org/linux-devicetree/20220312180615.68929-2-singh.kuldeep87k@gmail.com/
+The v4 patch was wrongly based on net-next tree. 1,2,4 parts of v5 patch
+was generated after re-applying the v4 patch then resolving conflicts on
+the net tree. 3/5 also describes the pcs-handle more globally at the
+ethernet-controller device tree binding document.
 
- arch/arm/boot/dts/spear13xx.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Andy Chiu (4):
+  net: axienet: setup mdio unconditionally
+  net: axienet: factor out phy_node in struct axienet_local
+  dt-bindings: net: add pcs-handle attribute
+  net: axiemac: use a phandle to reference pcs_phy
 
-diff --git a/arch/arm/boot/dts/spear13xx.dtsi b/arch/arm/boot/dts/spear13xx.dtsi
-index c87b881b2c8b..45f0b2a33e02 100644
---- a/arch/arm/boot/dts/spear13xx.dtsi
-+++ b/arch/arm/boot/dts/spear13xx.dtsi
-@@ -284,9 +284,8 @@ spi0: spi@e0100000 {
- 				#size-cells = <0>;
- 				interrupts = <0 31 0x4>;
- 				status = "disabled";
--				dmas = <&dwdma0 4 0 0>,
--					<&dwdma0 5 0 0>;
--				dma-names = "tx", "rx";
-+				dmas = <&dwdma0 5 0 0>, <&dwdma0 4 0 0>;
-+				dma-names = "rx", "tx";
- 			};
- 
- 			rtc@e0580000 {
+ .../bindings/net/ethernet-controller.yaml     |  6 ++++
+ .../bindings/net/xilinx_axienet.txt           |  8 ++++-
+ drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 --
+ .../net/ethernet/xilinx/xilinx_axienet_main.c | 33 ++++++++++---------
+ 4 files changed, 31 insertions(+), 18 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
