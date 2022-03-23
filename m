@@ -2,142 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DD8B4E5301
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 14:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 190F74E5326
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 14:32:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244266AbiCWNYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 09:24:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57198 "EHLO
+        id S244291AbiCWNdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 09:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244263AbiCWNYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 09:24:16 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A705E7CDFF
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:22:45 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id v22so2125761wra.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:22:45 -0700 (PDT)
+        with ESMTP id S244249AbiCWNdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 09:33:37 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3BB75E53
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:32:07 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id w141so744661qkb.6
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:32:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        d=konsulko.com; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=nFhPQ/2TAffPjbDjiI/2I0v37r+CcQs5C7D/sWxAMI8=;
-        b=quPIS4rlbqNNwzlG7UsIcANuXUutqUX2+fS2vwwVrkSb8FadLyZ9PZuzt3n4FECs6b
-         JD3NheA8m53Arv3IJp2+FRXgb8apclZMBwVLZzL1u949YS0k93kjWRoPRC7j6cfksk60
-         qxWnya1GQ0o6FnD0kdxsnW3YSZ6iUb00BQ9WyMilezQ5n3ltGCDn+C8jl6rMTHz5Oakz
-         /607HtEh8xP6zzvxbUd5PSpNYWuV9/bc8PQYBMTN/o3/amywjFJkjwFPiEjWUSPZsUf+
-         UUicmWGMkDbN/NfGnIkjbJTQNk7WhHnpkDNNvhtM2OQ7+b+7vY0duYDYvrj3Vwl6M31g
-         2puA==
+         :content-disposition:in-reply-to;
+        bh=nPGspUnXDfSSjkwMaGFzPZOYPt1+G1sJy9ZdXHVCp+8=;
+        b=Cr6TDAC63Uli7HQZ9nYheNpDiEzDDtVl9wd6iUyAqKes9XcIcVheNz/MbiPidhndJm
+         d22sDoKrdyJxG/hbX8XM9lGTKhYvbyQmi4AdUQWymBaGa7MsCImsgrXTvT+hPw/6iULK
+         kxomLZlBnF6wb3dQT7O7jtEj7/fdfwnCo7kpA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=nFhPQ/2TAffPjbDjiI/2I0v37r+CcQs5C7D/sWxAMI8=;
-        b=FRmM6y1dYwNfm32S3F5RDclJ64+GkJC6574OoPOl/C6mIfPzXSSfq2qGdLo0cgHWfb
-         jEmqECGDwQAOjsrDDmpQk4wG1F7vHeZ4kfrXp+phQ1bCYO0GfLKF3ZnN0JUubriKG2J5
-         WPFjS3dcV3HpwT5ypBzwDbghHM9TQCD+UzQKNbdz73jgv0uULvnrGcln6vRid6LegIyH
-         wfeGU2U5Da4jE1SjXGoTY+68EcZdff8SyqntBcXO8AI2NDVOiENaQEx6fWWww/YKx3HT
-         gdQleaM+22z9k6z0OXBRJotMcwDjVVNEwHkwtGU2qglYGxHcJUC95CYzjOT/C4XhUy2r
-         idLA==
-X-Gm-Message-State: AOAM531rLhcw2q5HahMXZ4o709LFsWnA6Wb5z1YyPXnlYIrFws3Cr2WA
-        Pc5Ujnvaw/ui5NrgCu7EBDdSmQ==
-X-Google-Smtp-Source: ABdhPJzktCyQ+4ZXtq4E5zEr/KHSW2QBwhlwN+M/BloZ0THBfCmhcKR2IkHX5we1S2uX5VNg/THYAA==
-X-Received: by 2002:a05:6000:1b86:b0:1f0:d6f:1424 with SMTP id r6-20020a0560001b8600b001f00d6f1424mr26954876wru.174.1648041764214;
-        Wed, 23 Mar 2022 06:22:44 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id l15-20020a05600c4f0f00b0038cbdf5221dsm2806353wmq.41.2022.03.23.06.22.43
+         :mime-version:content-disposition:in-reply-to;
+        bh=nPGspUnXDfSSjkwMaGFzPZOYPt1+G1sJy9ZdXHVCp+8=;
+        b=bgtCDdAl4DbgGQ7otu3Kj2MSTFcmkdc+z5H7vKIeFLCoHmSRtRWhDW26PLZ0TOZgnE
+         /YtJlpWUf9eQzrcVEyR1lWuYrIQDYdwVaiOINVTexowoK1VZxC3KzJRorT4CuIsAmPR1
+         iIVOu4lDtsqm3WmaTkoTEtiBrcqm7qKLyPLzKdvrgAH6INsh2LtCWqvONJquD9zvVDdA
+         9ny3VQMymCm/7RGRhES/MPD2KWYBwaegKeg2Kw6KvpublOhb4O3ef7PX9upswS+HULH4
+         U6asyjpY66bcceKAEHn1Araup1PsbGzCQeNOheekoC8uT+9Exv27MssOo7/JlV+M7Xpd
+         7pJw==
+X-Gm-Message-State: AOAM530vIt3Ne0AAbxhu0TG6l79NgArx+P/mu4KS7ADVTEIX4erR0+xb
+        Vb0Yg/r5bmLh/hkdoCFfDcIGtQ==
+X-Google-Smtp-Source: ABdhPJzoo4UXmqA2kFsY4AxIOGuvgy0FfwekMuH1JcPG1w1Ujia1jCE5tPW3sGPBb6+u7rvXG496XA==
+X-Received: by 2002:a05:620a:108f:b0:67b:465f:56ba with SMTP id g15-20020a05620a108f00b0067b465f56bamr18542419qkk.297.1648042326089;
+        Wed, 23 Mar 2022 06:32:06 -0700 (PDT)
+Received: from bill-the-cat (2603-6081-7b01-cbda-2ef0-5dff-fedb-a8ba.res6.spectrum.com. [2603:6081:7b01:cbda:2ef0:5dff:fedb:a8ba])
+        by smtp.gmail.com with ESMTPSA id o13-20020ac87c4d000000b002e1e732dea5sm23955qtv.70.2022.03.23.06.32.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 06:22:43 -0700 (PDT)
-Date:   Wed, 23 Mar 2022 14:22:41 +0100
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
-        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 18/26] arm64: dts: rockchip: rk3399: add crypto node
-Message-ID: <YjsfIbLQRvoxkana@Red>
-References: <20220321200739.3572792-1-clabbe@baylibre.com>
- <20220321200739.3572792-19-clabbe@baylibre.com>
- <70422777-a3f9-b2f1-5faa-94d24fe200ac@arm.com>
+        Wed, 23 Mar 2022 06:32:05 -0700 (PDT)
+Date:   Wed, 23 Mar 2022 09:32:03 -0400
+From:   Tom Rini <trini@konsulko.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ricardo Salveti <ricardo@foundries.io>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Jorge Ramirez-Ortiz <jorge@foundries.io>,
+        Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
+        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables
+ binding
+Message-ID: <20220323133203.GD2226424@bill-the-cat>
+References: <20220228131250.16943-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dicp5grlxus9uUnk"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <70422777-a3f9-b2f1-5faa-94d24fe200ac@arm.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220228131250.16943-1-zajec5@gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, Mar 22, 2022 at 12:00:06PM +0000, Robin Murphy a écrit :
-> On 2022-03-21 20:07, Corentin Labbe wrote:
-> > The rk3399 has a crypto IP handled by the rk3288 crypto driver so adds a
-> > node for it.
-> > 
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3399.dtsi | 12 ++++++++++++
-> >   1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> > index 88f26d89eea1..ca2c658371a5 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> > @@ -573,6 +573,18 @@ saradc: saradc@ff100000 {
-> >   		status = "disabled";
-> >   	};
-> >   
-> > +	crypto0: crypto@ff8b0000 {
-> > +		compatible = "rockchip,rk3399-crypto";
-> > +		reg = <0x0 0xff8b0000 0x0 0x4000>,
-> > +		      <0x0 0xff8b8000 0x0 0x4000>;
-> > +		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH 0>,
-> > +			     <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +		clocks = <&cru SCLK_CRYPTO0>, <&cru HCLK_M_CRYPTO0>, <&cru HCLK_S_CRYPTO0>,
-> > +			 <&cru SCLK_CRYPTO1>, <&cru HCLK_M_CRYPTO1>, <&cru HCLK_S_CRYPTO1>;
-> > +		resets = <&cru SRST_CRYPTO0>, <&cru SRST_CRYPTO0_S>, <&cru SRST_CRYPTO0_M>,
-> > +			 <&cru SRST_CRYPTO1>, <&cru SRST_CRYPTO1_S>, <&cru SRST_CRYPTO1_M>;
-> > +	};
-> 
-> What's going on here? If these are simply two instances of the same IP 
-> block as the evidence suggests, why are they crammed into a single DT 
-> node rather than simply being described as two separate instances? I was 
-> rather wondering what all the confusing mess in patch #16 was about, 
-> until I got here.
-> 
-> If there's something in the crypto API that means the driver can't 
-> simply naively register itself multiple times, there should be any 
-> number of ways for the probe routine to keep track of whether it's 
-> already registered something and associate any subsequent devices with 
-> the first one internally if need be. Linux implementation details should 
-> not leak out as non-standard DT weirdness.
-> 
-> I know the Rockchip IOMMU driver does this, but in that case the two 
-> IOMMU instances are closely coupled and sharing work such that they 
-> effectively need to be programmed identically at all times, so it was a 
-> bit more justifiable. I don't know the full story here, but it certainly 
-> looks like rk_get_engine_number() is just a means to schedule work on 
-> any available unit independently, so looks like it wouldn't take much to 
-> select between distinct devices at that point, and actually end up a lot 
-> simpler and cleaner overall.
 
-Yes rk3399 has 2 instances of the same IP (Exception: crypto1 does not have RSA).
+--dicp5grlxus9uUnk
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The problem is that only one drivername (like rk-md5) could exists.
-If crypto0 and crypto1 register with different drivername (rk-md5-0/rk-md5-1), only one will be used anyway.
-So I merged them into only one instance.
-I think this way will be easier, but you are right, this is not pretty.
+On Mon, Feb 28, 2022 at 02:12:50PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
 
-I found another way with 2 nodes:
-You could preview it at https://github.com/montjoie/linux/tree/cryptorockchipv4
-Basicly the crypto0 is a normal instance, and crypto1 "registers" itself against crypto0.
-So if crypto0 know another instance exists it will load balance requests.
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> U-Boot uses environment variables for storing device setup data. It
+> usually needs to be accessed by a bootloader, kernel and often
+> user-space.
+>=20
+> This binding allows describing environment data located in a raw flash
+> partition. It's treated as NVMEM device and can be reused later for
+> other storage devices.
+>=20
+> Using DT should be cleaner than hardcoding & duplicating such info in
+> multiple places. Bootloader & kernel can share DTS and user-space can
+> try reading it too or just have correct data exposed by a kernel.
+>=20
+> A custom "compatible" string allows system to automatically load
+> relevant NVMEM driver but phandle can be also used for reading raw
+> location.
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 
-Regards
+Reviewed-by: Tom Rini <trini@konsulko.com>
+
+--=20
+Tom
+
+--dicp5grlxus9uUnk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCgAdFiEEGjx/cOCPqxcHgJu/FHw5/5Y0tywFAmI7IVIACgkQFHw5/5Y0
+tyzRfQwAt3O0IvBGs764YvWeHo1sL/8xI1tMnKQnfo+cZmVJBI60nE+Ghmu0Y3Rn
+Me445fR/Ill/NBVMdUnp2bhPUWUI/puej7VqfB1t5mm3xCaeD2BRl+BVwIue73FX
+vNf9Sk3tIBNrh8mDihG5XMNMq8UWkms+FDk/zjv2I7pfJ//Wpgo3nDlX5Wyle1hp
+YDK3JlsgMI3wYMJQZ5g7+EknBgtTPndJ0DyjO2gCuZEOh688Tf3eXmC21+0aW/o/
+2ErUXJmux8BxvRZqHH2bpH00sY/377FSlGowlI09GlR8VYvGFIfWIX0NFE4gauKG
+wSavW952MP1pYMulvQIDBtg2aQNnigugCUM7Xm1xVHlvZQATqqdtIgusvEozkuKk
+VSGnyWhYPANUINk7FORtIctrGkmNWe8JOeBtjMsLtmYJiRiCwvrYkNxfPGUuWYK2
+10CnEzryX9Flx8ez8Sg/ywniMD77fwub90QQv9fqaKta/EqKSt08wruLoAtp/c12
+mgGwY0fX
+=rCXN
+-----END PGP SIGNATURE-----
+
+--dicp5grlxus9uUnk--
