@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 019B64E549D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:54:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB39F4E54A0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:54:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243648AbiCWOzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 10:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50428 "EHLO
+        id S233734AbiCWO4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 10:56:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbiCWOzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:55:39 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B15813F6C;
-        Wed, 23 Mar 2022 07:54:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648047250; x=1679583250;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rSlpVK8+R01VAXYRit0qcvSrSRsMZS+hlQozzAGKVDA=;
-  b=EycwbQ9/HAATSsFlhvUcZ3ndnZhUyWKoqPQ1rjuS0s8Tq7i3NqIReljl
-   Gkw1QdLPP0GxLEebwo2YMYHQQqMZoaf1BxOykROHQ1A9GNROTqUOa/Zxv
-   wJJcA/N64miv8fS2eXg5nZBfXvVTrD+2O3IJ/ywN9b3y8GTRNjkthvL6/
-   FvUFtOv4lHhy85N3veuxaTt02AInVx95AttF1GqYoq/315fjTDpK8gr8k
-   dI91Pac+V+ywT7uzVlLna8m4IRAjPlC8h6U+GvVbxgRXiiJCV46zPXrzR
-   6ZK3cxZJ324tqPaBYcFqfytvbSLoiU7fDECCiU5eWvuj3UEhZ+ZygAHf9
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="238069627"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
-   d="scan'208";a="238069627"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 07:54:09 -0700
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
-   d="scan'208";a="544222466"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 07:54:08 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 388572012F;
-        Wed, 23 Mar 2022 16:54:06 +0200 (EET)
-Date:   Wed, 23 Mar 2022 16:54:06 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: Convert Dongwoon dw9807-vcm bindings to
- json-schema
-Message-ID: <Yjs0jjNMeqVl2HPj@paasikivi.fi.intel.com>
-References: <20220318165119.12191-1-sakari.ailus@linux.intel.com>
- <20220318165119.12191-2-sakari.ailus@linux.intel.com>
- <035a1501-4a40-2f1a-2220-1a35a4419876@kernel.org>
+        with ESMTP id S244903AbiCWO4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:56:15 -0400
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E6313FBA;
+        Wed, 23 Mar 2022 07:54:45 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id k10so2164239edj.2;
+        Wed, 23 Mar 2022 07:54:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=mo2GmOP8jkxt+z2fNbZo7XVN+gp9JFoqU9djcfF/JBo=;
+        b=tkFCgUBvTSKkAHWC1Sur/w0vllAq+/IcbBWuwn2S3AquR11+4yelXBdk4HeXE55NBB
+         eiSwhcpTGu7Xd4TFZGDa5jmwZGArZ/17QlwmBSiMDcvi9DQpkO5EK98WtxR3eNP0ki6x
+         0jOmazbqTh5oFc7DrxAFuw/gu5LLGWGljxTRbUg8+lo5BMfdFAael91IXmc08JbV14VJ
+         8Zq9687AWYDvMCFOWvF8PMoYlYfvlUtjukCHGy5ko4Swm0UPle0Grkvt9wq7Th2IU/PX
+         xao0mwc9pdtd2gt54cO+xTdNXkLhB+Z4uV6spgbF3WO1L94JSOLSdSLTpqgwL4ZGI6Lz
+         V8Ww==
+X-Gm-Message-State: AOAM530FyjsB44C6OIX5JGC4kfWCLDYGPyQs+F0eBUn2ZDMxAuek+t/t
+        CS2MIPVfyJIYHB495RpmSPs=
+X-Google-Smtp-Source: ABdhPJyjAA3A6OB9bfyWMPLAftFpVdJVl8+54puVoR64LqxbGpfmWCihWX71WVcOW7Q00iYIJIOZWg==
+X-Received: by 2002:a05:6402:14d1:b0:415:8df3:bfa4 with SMTP id f17-20020a05640214d100b004158df3bfa4mr534498edx.344.1648047283570;
+        Wed, 23 Mar 2022 07:54:43 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id nc13-20020a1709071c0d00b006df4e0d352csm37798ejc.151.2022.03.23.07.54.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Mar 2022 07:54:43 -0700 (PDT)
+Message-ID: <4297b8c2-1958-9abb-7d93-0e6d283b6194@kernel.org>
+Date:   Wed, 23 Mar 2022 15:54:42 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <035a1501-4a40-2f1a-2220-1a35a4419876@kernel.org>
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 02/14] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
+Content-Language: en-US
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220321154232.56315-1-phil.edworthy@renesas.com>
+ <20220321154232.56315-3-phil.edworthy@renesas.com>
+ <a51dec7d-4dfd-5603-3d34-a40b0fd9ec08@kernel.org>
+ <TYYPR01MB70862B27A67D868B196A70E7F5189@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYYPR01MB70862B27A67D868B196A70E7F5189@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,36 +71,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Sun, Mar 20, 2022 at 12:56:48PM +0100, Krzysztof Kozlowski wrote:
-> On 18/03/2022 17:51, Sakari Ailus wrote:
-> > +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9807-vcm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Dongwoon Anatech DW9807 voice coil lens driver
-> > +
-> > +maintainers:
-> > +  - Sakari Ailus <sakari.ailus@linux.intel.com>
-> > +
-> > +description: |
-> > +  DW9807 is a 10-bit DAC with current sink capability. It is intended for
-> > +  controlling voice coil lenses.
-> > +
-> > +properties:
-> > +
+On 23/03/2022 15:44, Phil Edworthy wrote:
+> Hi Krzysztof,
 > 
-> No blank line.
+> Thanks for the review.
 > 
-> > +  compatible:
-> > +    const: "dongwoon,dw9807-vcm"
+> On 23 March 2022 10:42, Krzysztof Kozlowski wrote:
+>> On 21/03/2022 16:42, Phil Edworthy wrote:
+>>> Add DT binding documentation for System Configuration (SYS) found on
+>>> RZ/V2M SoC's.
+>>>
+>>> SYS block contains the SYS_VERSION register which can be used to
+>> retrieve
+>>> SoC version information.
+>>>
+>>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+>>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>
+>> Could you send reviewed-by tags publicly? Maybe there was internal
+>> review, maybe not and it was just copy-pasted to all submissions...
+> Yes, it was reviewed internally.
+> We've done it like this for a while, I'll see what we can do to change
+> the way we do it. Would just copying the person who reviewed it be
+> enough?
 > 
-> No quotes.
+>>> ---
+>>>  .../bindings/arm/renesas,rzv2m-sys.yaml       | 39 +++++++++++++++++++
+>>>  1 file changed, 39 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/renesas,rzv2m-
+>> sys.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/renesas,rzv2m-
+>> sys.yaml b/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+>>> new file mode 100644
+>>> index 000000000000..1a58906336b8
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+>>> @@ -0,0 +1,39 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: "http://devicetree.org/schemas/arm/renesas,rzv2m-sys.yaml#"
+>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>> +
+>>> +title: Renesas RZ/V2M System Configuration (SYS)
+>>> +
+>>> +maintainers:
+>>> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+>>> +
+>>> +description:
+>>> +  The RZ/V2M System Configuration (SYS) performs system control of the
+>> LSI
+>>> +  and supports the following functions,
+>>> +  - LSI version
+>>> +  - 34-bit address space access function
+>>> +  - PCIe related settings
+>>> +  - WDT stop control
+>>> +  - Temperature sensor (TSU) monitor
+>>
+>> Usually all these are separate devices, so what does it mean that SYS is
+>> supporting these functions? Is it related to other Renesas System
+>> Controllers? For example
+>> Documentation/devicetree/bindings/power/renesas,apmu.yaml
+>> ?
+>> Why one is in power and one in arm subdirectory? Maybe you should extend
+>> existing one?
+> 
+> SYS looks like somewhere to put registers that don't have a logical home.
+> There are lots of little bits, I just listed the main functions.
+> On other Renesas SoCs, it's similar but they include power related
+> registers. Actually, I originally put it in the power directory, then
+> moved it.
 
-Hmm. Strings generally need to be quoted, including the compatible
-strings.
+The existing rzg2l-sysc looks similar and is in power. If arm location
+is conscious choice (not just placeholder), fine with me. :)
 
-I'll remove the extra blank lines.
 
--- 
-Sakari Ailus
+Best regards,
+Krzysztof
