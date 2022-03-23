@@ -2,87 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CB9E4E59ED
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:34:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ED2C4E59F9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:38:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344656AbiCWUgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 16:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56920 "EHLO
+        id S229546AbiCWUj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 16:39:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344809AbiCWUft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:35:49 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C099027C;
-        Wed, 23 Mar 2022 13:33:27 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id o10so5233311ejd.1;
-        Wed, 23 Mar 2022 13:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8w53GL3MnLADST4E9DcwHIxh+z2VdgIPaNKFHog2SHc=;
-        b=Nmp4i2IKn+57oTHm39eJaqGtLbPBR9bF0QWZqkMTvyicg/ojKJw81a5ZUfz4qe0zZM
-         UClxD/I/o11G0mQN42pVYkVYiIIfHQM8DSC89JyBjzPOJ9KvQLXmc3LqMVLFrFejUb/X
-         8tuc2GAHel4ujRN3JaalPC9uv97sx2Y747CxEeQgkin9AFtEwERAopiSIQG20/jpEKz2
-         kWLuw7m5n2V8lk+EfO+1hwryPsSJd/ZThiFcxFVb/oI8AdNWffI6SmItzjmBWvmICxYG
-         s1KMm9Luf6OdmEQO6VF8JFnhJI2//Hc9nT6litKo5atkZHGWSKD+FNsZD/eE1lyHWQCs
-         ndZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8w53GL3MnLADST4E9DcwHIxh+z2VdgIPaNKFHog2SHc=;
-        b=riPHKVl3S2SjO10++jP0ES80E9dMEriWnVbdO3bRbNoJm2yhsSKjkEn0JhcyDC2HlP
-         x1ST98AxbIdcOoXGvEb+a6oSeJXgwkSgY+4wkoEEW9J0pvf/rZVhyo3q2Ki+m1gx4bAU
-         RCazZatrJPuiVn8TyiAB+Z94rj3IEze/k3k5q9pslH+Ni0IG3brULc/w/Iz13Lde/1AN
-         Ygi7PwxH1a73x9yaokGrkvuZbDYImP8UhiYc3RrIu0UhFC6VG7K39J7mQo/7ZxdCXZjw
-         WSDruqo2SEWX6r9cIHLFzpXuqoFf7Z9REyg4LsmvxAN7BmKF+F2bqErNT/pvUw9yKW8O
-         cNZg==
-X-Gm-Message-State: AOAM531U2vM1b1qcti++iejJSe5A5i+E2GbjC7w1jeZ7h0bjdJcDvUdG
-        GkbqEMMI35jVtCbU5N5Ix0Y=
-X-Google-Smtp-Source: ABdhPJy35M7x98Gg8G1hQ6cDhzEMbFWY8nuotieRdsHkGjwSKkzFwncXI0Jp56IPyp3CyPe6EKkFKQ==
-X-Received: by 2002:a17:907:6296:b0:6da:745b:7b40 with SMTP id nd22-20020a170907629600b006da745b7b40mr2076068ejc.750.1648067605870;
-        Wed, 23 Mar 2022 13:33:25 -0700 (PDT)
-Received: from ?IPV6:2a01:c22:73b2:3800:a873:f3b8:ab68:ccbd? (dynamic-2a01-0c22-73b2-3800-a873-f3b8-ab68-ccbd.c22.pool.telefonica.de. [2a01:c22:73b2:3800:a873:f3b8:ab68:ccbd])
-        by smtp.googlemail.com with ESMTPSA id z6-20020a056402274600b004194fc1b7casm427134edd.48.2022.03.23.13.33.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 13:33:25 -0700 (PDT)
-Message-ID: <80937566-6455-b1bf-0a5d-a7b54dd3adc5@gmail.com>
-Date:   Wed, 23 Mar 2022 21:33:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
- Electronics TM1628
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S240098AbiCWUjz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:39:55 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B84213980F
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 13:38:22 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6BC3D9DE;
+        Wed, 23 Mar 2022 21:38:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1648067900;
+        bh=WSW94vMBnEmYZ14bodFNcPMJ6dUevtZakV9qp0LsYe0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QIm3Kz2L49M0543NKRuRHiSUj6Ju15ML14khw6sLQYEmFgjk2JY06QVOQoJwONY6F
+         3GD2KXk7abNBhPrj0amrhRBIWqPbYEfKtNqUi5OfkY18oT86/12xGWCkRK6vJAE6lf
+         D150LA+ETWN16OUQ9gWrk/iNTxuWoqfhrUZm2UcI=
+Date:   Wed, 23 Mar 2022 22:38:19 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
- <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
- <3bf14cf0-f00d-f718-30ea-e63272f3ce72@arm.com>
- <9e2fc38a-a51e-7635-970c-64948fc6eae4@kernel.org>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-In-Reply-To: <9e2fc38a-a51e-7635-970c-64948fc6eae4@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Vasut <marex@denx.de>, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <YjuFO45Gr1vmKxWG@pendragon.ideasonboard.com>
+References: <20220323154823.839469-1-maxime@cerno.tech>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220323154823.839469-1-maxime@cerno.tech>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,125 +56,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.03.2022 09:34, Krzysztof Kozlowski wrote:
-> On 18/03/2022 21:50, Robin Murphy wrote:
->> On 2022-02-25 21:13, Heiner Kallweit wrote:
->>> Add a YAML schema binding for TM1628 auxdisplay
->>> (7/11-segment LED) controller.
->>>
->>> This patch is partially based on previous work from
->>> Andreas Färber <afaerber@suse.de>.
->>>
->>> Co-developed-by: Andreas Färber <afaerber@suse.de>
->>> Signed-off-by: Andreas Färber <afaerber@suse.de>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>> v5:
->>> - add vendor prefix to driver-specific properties
->>> ---
->>>   .../bindings/auxdisplay/titanmec,tm1628.yaml  | 92 +++++++++++++++++++
->>>   1 file changed, 92 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->>> new file mode 100644
->>> index 000000000..2a1ef692c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->>> @@ -0,0 +1,92 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm1628.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Titan Micro Electronics TM1628 LED controller
->>> +
->>> +maintainers:
->>> +  - Andreas Färber <afaerber@suse.de>
->>> +  - Heiner Kallweit <hkallweit1@gmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: titanmec,tm1628
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  titanmec,grid:
->>> +    description:
->>> +      Mapping of display digit position to grid number.
->>> +      This implicitly defines the display size.
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    minItems: 1
->>> +    maxItems: 7
->>> +
->>> +  titanmec,segment-mapping:
->>> +    description:
->>> +      Mapping of 7 segment display segments A-G to bit numbers 1-12.
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    minItems: 7
->>> +    maxItems: 7
->>> +
->>> +  "#address-cells":
->>> +    const: 2
->>> +
->>> +  "#size-cells":
->>> +    const: 0
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>
->> Would it be fair to say that "spi-lsb-first" and "spi-3wire" are also 
->> required? The chips aren't configurable so won't exactly be usable any 
->> other way. Furthermore I believe the transmission format actually works 
->> out equivalent to SPI mode 3, so should warrant "spi-cpha" and 
->> "spi-cpol" as well.
->>
->>> +
->>> +patternProperties:
->>> +  "^.*@[1-7],([1-9]|1[0-6])$":
->>> +    type: object
->>> +    $ref: /schemas/leds/common.yaml#
->>> +    unevaluatedProperties: false
->>> +    description: |
->>> +      Properties for a single LED.
->>> +
->>> +    properties:
->>> +      reg:
->>> +        description: |
->>> +          1-based grid number, followed by 1-based segment bit number.
->>> +        maxItems: 1
->>> +
->>> +    required:
->>> +      - reg
->>
->> I'm concerned that this leaves us no room to support the additional 
->> keypad functionality in future. Having now double-checked a datasheet, 
->> the inputs are also a two-dimensional mux (sharing the segment lines), 
->> so the device effectively has two distinct but numerically-overlapping 
->> child address spaces - one addressed by (grid,segment) and the other by 
->> (segment,key).
->>
->> Rob, Krysztof, any thoughts on the best DT idiom to leave accommodation 
->> for that? I'm thinking either require an intermediate node to contain 
->> each notional address space, or perhaps add another leading address cell 
->> to select between them? I don't believe any of these things have further 
->> functionality beyond that.
-> 
-> I think intermediate nodes - leds, keys - are more appropriate, because
-> it is self-describing. Additional address space number would require
-> decoding this "0" or "1" into LED/key. For complex devices - like PMICs
-> with regulators, RTC and clocks - we already have such patterns.
-> 
-Then it's just the question who can implement such an intermediate node
-based on what has been done so far.
+Hi Maxime,
 
-> Best regards,
-> Best regards,
-> Krzysztof
+(CC'ing Sakari)
 
+Thank you for the patch.
+
+On Wed, Mar 23, 2022 at 04:48:23PM +0100, Maxime Ripard wrote:
+> MIPI-DSI devices, if they are controlled through the bus itself, have to
+> be described as a child node of the controller they are attached to.
+> 
+> Thus, there's no requirement on the controller having an OF-Graph output
+> port to model the data stream: it's assumed that it would go from the
+> parent to the child.
+> 
+> However, some bridges controlled through the DSI bus still require an
+> input OF-Graph port, thus requiring a controller with an OF-Graph output
+> port. This prevents those bridges from being used with the controllers
+> that do not have one without any particular reason to.
+> 
+> Let's drop that requirement.
+
+I'm sure this won't come as a surprise, I'm very much opposed to this
+change, for two reasons.
+
+First, ports are part of the hardware, even if they're not connected. It
+thus simplifies handling in drivers if they're always present.
+
+Then, and that's the most important reason, I think it's a mistake not
+to model the DSI data connection using OF graph unconditionally, even
+when the DSI sink device is also controlled through the DSI bus (using
+DCS) and is in that case a child of the DSI source device in the DT
+hierarchy.
+
+The device tree describes a control hierarchy between devices. OF graph
+overlays on top of that a data transfer graph. The two are different
+concepts, and the fact that DSI can sometimes be used as a control bus
+doesn't change the concept. Using OF graph unconditionally to describe
+the data connections for DSI leads to less variation in the device tree
+structure, and thus less complexity in the implementation. We're
+suffering from the fact we haven't made it a requirement in the first
+place, which can't be fixed due to ABI breakage constraints, but let's
+not acknowledge it as a good idea.
+
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../devicetree/bindings/display/bridge/chipone,icn6211.yaml      | 1 -
+>  .../devicetree/bindings/display/bridge/toshiba,tc358762.yaml     | 1 -
+>  2 files changed, 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> index 62c3bd4cb28d..7257fd0ae4da 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> @@ -51,7 +51,6 @@ properties:
+>            Video port for MIPI DPI output (panel or connector).
+>  
+>      required:
+> -      - port@0
+>        - port@1
+>  
+>  required:
+> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml
+> index 5216c27fc0ad..a412a1da950f 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358762.yaml
+> @@ -39,7 +39,6 @@ properties:
+>            Video port for MIPI DPI output (panel or connector).
+>  
+>      required:
+> -      - port@0
+>        - port@1
+>  
+>  required:
+
+-- 
+Regards,
+
+Laurent Pinchart
