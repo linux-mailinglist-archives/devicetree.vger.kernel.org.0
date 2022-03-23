@@ -2,100 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8014E4D0F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 08:07:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB5A94E4D4E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 08:28:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232881AbiCWHJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 03:09:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53972 "EHLO
+        id S242170AbiCWH3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 03:29:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232824AbiCWHJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 03:09:14 -0400
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4E02C71EF2;
-        Wed, 23 Mar 2022 00:07:44 -0700 (PDT)
-HMM_SOURCE_IP: 10.64.8.43:52698.1965467250
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
-        by 189.cn (HERMES) with SMTP id 71D7210023D;
-        Wed, 23 Mar 2022 15:07:41 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id 5fe13736b6734204a16a00a71691bb7f for jiaxun.yang@flygoat.com;
-        Wed, 23 Mar 2022 15:07:43 CST
-X-Transaction-ID: 5fe13736b6734204a16a00a71691bb7f
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <c9357494-6472-e0a0-50a8-e62df56dceb0@189.cn>
-Date:   Wed, 23 Mar 2022 15:07:40 +0800
+        with ESMTP id S233037AbiCWH3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 03:29:17 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF2E7307F;
+        Wed, 23 Mar 2022 00:27:46 -0700 (PDT)
+X-UUID: e15f1e9d55d14d03bebaae2c8d269a2a-20220323
+X-UUID: e15f1e9d55d14d03bebaae2c8d269a2a-20220323
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1533571860; Wed, 23 Mar 2022 15:27:40 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 23 Mar 2022 15:27:39 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 23 Mar
+ 2022 15:27:39 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Mar 2022 15:27:38 +0800
+Message-ID: <f7fa502776ce2d28553238fb10289f07de0a1d77.camel@mediatek.com>
+Subject: Re: [PATCH v3 3/6] ASoC: dt-bindings: mediatek: mt8195: merge
+ mt8195 machine yaml
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     Miles Chen <miles.chen@mediatek.com>
+CC:     <aaronyu@google.com>, <alsa-devel@alsa-project.org>,
+        <angelogioacchino.delregno@collabora.com>, <broonie@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <robh+dt@kernel.org>, <tiwai@suse.com>, <tzungbi@google.com>,
+        <yc.hung@mediatek.com>
+Date:   Wed, 23 Mar 2022 15:27:39 +0800
+In-Reply-To: <20220321233045.22156-1-miles.chen@mediatek.com>
+References: <20220321072312.14972-4-trevor.wu@mediatek.com>
+         <20220321233045.22156-1-miles.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v11 2/7] MIPS: Loongson64: dts: introduce ls3A4000
- evaluation board
-Content-Language: en-US
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        chenhuacai@kernel.org, Tiezhu Yang <yangtiezhu@loongson.cn>,
-        liyi@loongson.cn
-References: <20220321162916.1116541-1-15330273260@189.cn>
- <20220321162916.1116541-3-15330273260@189.cn>
- <2644866a-8db2-923e-4227-2aa6d8e375fe@flygoat.com>
- <2c671752-6684-f87b-7b2d-90568d36adde@189.cn>
- <005099b5-33ed-4cb7-f8e4-10e1de780311@flygoat.com>
- <abe784ce-eb9e-0143-dbc3-d415bbedbb81@189.cn>
- <87d4f869-2ae8-f8d3-a55f-1a563cb21115@flygoat.com>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <87d4f869-2ae8-f8d3-a55f-1a563cb21115@flygoat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2022-03-22 at 07:30 +0800, Miles Chen wrote:
+> Hi Trevor,
+> 
+> >  
+> > -title: Mediatek MT8195 with MT6359, RT1019 and RT5682 ASoC sound
+> > card driver
+> > +title: Mediatek MT8195 ASoC sound card driver
+> 
+> s/Mediatek/MediaTek/
+> 
+> Thanks,
+> Miles
 
-On 2022/3/23 10:29, Jiaxun Yang wrote:
-> If you want to blame somebody for the problem then please don't
-> blame us. We tried very hard to fit all those stuff into kernel's model
-> of devices. You should blame those who did the initial design of
-> Loongson's boot interface that failed to introduce a proper way
-> to describe the platform. 
+OK. I will update it in v4.
 
-I am not blame anybody, please do not misleading.
-I am report problem and try to seek a better solution.
+Thanks,
+Trevor
 
-I have my intention and ideas, i just don't want to solve
-all of the problems in one shot.
-
-I could provide one more patch wire all board specific dts up.
-But i don't know what's the opinions of other reviewers, does
-this is plausible?
+> >  
+> >  maintainers:
+> >    - Trevor Wu <trevor.wu@mediatek.com>
+> > @@ -14,7 +14,9 @@ description:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: mediatek,mt8195_mt6359_rt1019_rt5682
+> > +    enum:
+> > +      - mediatek,mt8195_mt6359_rt1019_rt5682
+> > +      - mediatek,mt8195_mt6359_rt1011_rt5682
+> >  
+> >    model:
+> >      $ref: /schemas/types.yaml#/definitions/string
 
