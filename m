@@ -2,68 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D944E5433
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 805694E5438
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:27:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234359AbiCWO2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 10:28:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33466 "EHLO
+        id S237199AbiCWO2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 10:28:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231790AbiCWO2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:28:15 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B38DF2C;
-        Wed, 23 Mar 2022 07:26:44 -0700 (PDT)
-Received: by mail-qt1-f179.google.com with SMTP id t7so1234978qta.10;
-        Wed, 23 Mar 2022 07:26:44 -0700 (PDT)
+        with ESMTP id S231790AbiCWO2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:28:34 -0400
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B194DF1C;
+        Wed, 23 Mar 2022 07:27:02 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id b24so2024014edu.10;
+        Wed, 23 Mar 2022 07:27:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MgaVbTc6NIAbgS2wEZfzTz0EIf+0SLB19R8ha1w5Zmc=;
-        b=6yh7OkIoFpKFL3aPJ7SSm/F4hrHx85q6Ka0r12r0MXCDIuKsUseKrtkxutPWaOBqFR
-         DsWng2xiiJYyaQuFoKxrWH/gZtgpZXuEyj01WrK0XuLQcWyChNzW5KbKPyBca37a+i8d
-         Mxc40PYPJXFpaHz46kIHmtEEiFLwO+URSI1aBIB9PjMVKxompgXlBsd6XhwKxrUHZfnJ
-         84QOYmLQo6FE8XiHp4qedljX5H2HGCGDzJ2lk/5XSOLzgKoG2cqIQlbu4ErJO/X7qG/u
-         yNjFmsOwd+OowWNLgVHTL9hLFyFOSVcBPnToBZJP/YRb/VIq/KmTErDqWKDx/pixMIGU
-         XAqQ==
-X-Gm-Message-State: AOAM533tbJpw0/aOGCa5UG78a9EZUN8hpq3xlmtzzQCl+J2jFkkRYEWE
-        yKJRwP8gmpXcFHHLlPA9CZOlNAhT1k0rqquj
-X-Google-Smtp-Source: ABdhPJzPnzoyNIrd1y1A1+ahUJOehAFamtMkh/kPgcBS1SG4dLj9mcGF3yn2if79yS8zlNzQ6JvmxQ==
-X-Received: by 2002:ac8:57ca:0:b0:2e2:131b:6f0e with SMTP id w10-20020ac857ca000000b002e2131b6f0emr11994094qta.664.1648045602739;
-        Wed, 23 Mar 2022 07:26:42 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id b21-20020a05620a04f500b0067b4895472esm75201qkh.5.2022.03.23.07.26.42
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Gu7jR1q+CZaAX+HAwksicyFCNKAjaGnuPEoMTmmLZCs=;
+        b=rY8gNGd6tFt5KCVAeVmDPoomXN3Pkw27gVM45h2UxmCXtqao0WtBGh1VcB+1XKgmOd
+         WqS5GvizzDW9Y7M8UgWA9u6zwS48dIj+yo295HFX7Wf4Z2P57zkHSu9SQE86oc4cUPXe
+         44UQ7VjgXJ+g3W+VjjGvZZV/Qor7xnNRvZo4QYAKwlfKjQ0T2/ypjqvxJPURvJuYoHFq
+         Kbg780frGAYNCdK+w+hNHZBxfxzn77Wyc2Ln3wBz4PoaD1KDyAAICdcGNEdsgUqJ6m9s
+         A3PtaBaD20fuyzig18h6JJFpNLK/8Xj4FQKznCgZVXcBMPYpT9WyZarxv2FdYX9Hpo3R
+         76sA==
+X-Gm-Message-State: AOAM531vahCooTjgD4nQ7oSpTgknUqpzeIKMQDsuiA0Hm/JPg7ob7kfc
+        RhGLTgCPxEWTVkYy/JCU/Mo=
+X-Google-Smtp-Source: ABdhPJzP3DVeClIEKiPMv1GRntBEcTEE5kxKj8bWi/MK5IIqFxy0dq6Emtg7/kiKKp3zAIzBv77RtA==
+X-Received: by 2002:a05:6402:3452:b0:418:f963:42a3 with SMTP id l18-20020a056402345200b00418f96342a3mr421435edc.12.1648045621024;
+        Wed, 23 Mar 2022 07:27:01 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id a18-20020a170906671200b006e05929e66csm20541ejp.20.2022.03.23.07.26.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 07:26:42 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id z8so2989358ybh.7;
-        Wed, 23 Mar 2022 07:26:42 -0700 (PDT)
-X-Received: by 2002:a5b:a8f:0:b0:633:fd57:f587 with SMTP id
- h15-20020a5b0a8f000000b00633fd57f587mr190730ybq.506.1648045601981; Wed, 23
- Mar 2022 07:26:41 -0700 (PDT)
+        Wed, 23 Mar 2022 07:26:59 -0700 (PDT)
+Message-ID: <8752f318-9842-0b50-1574-be1ca6b98007@kernel.org>
+Date:   Wed, 23 Mar 2022 15:26:58 +0100
 MIME-Version: 1.0
-References: <20220301190400.1644150-1-robh@kernel.org> <CAMuHMdXqsvQy_6+6w8DVCtqNiFERPV29xd3HRqtyz9RY3KXOYw@mail.gmail.com>
- <CAL_JsqKX7XrSS1OktT6OfPgyxte6_+AcGh4uV0Abdf2Wi4eCFg@mail.gmail.com>
- <CAMuHMdXzNpjSjhT3crdN3XzcFNXd8Uojqo8gA7Y=Qtz8utH6Mw@mail.gmail.com> <CAL_Jsq+=2oibXA1otjaVoGY0GWdLZg2bmw1C9BACga5P99X35A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+=2oibXA1otjaVoGY0GWdLZg2bmw1C9BACga5P99X35A@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Mar 2022 15:26:30 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUHUqCccnUa2WaAm=7s8EcumwJoZ22Wyy1=hosOu1kVuQ@mail.gmail.com>
-Message-ID: <CAMuHMdUHUqCccnUa2WaAm=7s8EcumwJoZ22Wyy1=hosOu1kVuQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: clock: renesas: Make example 'clocks' parsable
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Content-Language: en-US
+To:     michael.srba@seznam.cz, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220323121550.16096-1-michael.srba@seznam.cz>
+ <20220323121550.16096-2-michael.srba@seznam.cz>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220323121550.16096-2-michael.srba@seznam.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,49 +67,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 23/03/2022 13:15, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
+> 
+> ICM-20608-D differs from the other ICM-20608 variants by having
+> a DMP (Digital Motion Processor) core tacked on.
+> Despite having a different WHOAMI register, this variant is
+> completely interchangeable with the other ICM-20608 variants
+> by simply pretending the DMP core doesn't exist.
+> 
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> ---
+> changelog:
+>  - v2: require specifying "invensense,icm20608" as a fallback
+>        compatible
+>  - v3: fix indentation
+> ---
+>  .../bindings/iio/imu/invensense,mpu6050.yaml  | 34 +++++++++++--------
+>  1 file changed, 19 insertions(+), 15 deletions(-)
+> 
 
-On Wed, Mar 23, 2022 at 3:07 PM Rob Herring <robh@kernel.org> wrote:
-> On Tue, Mar 8, 2022 at 3:53 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Fri, Mar 4, 2022 at 2:28 PM Rob Herring <robh@kernel.org> wrote:
-> > > On Fri, Mar 4, 2022 at 3:09 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Tue, Mar 1, 2022 at 8:04 PM Rob Herring <robh@kernel.org> wrote:
-> > > > > 'clocks' in the example is not parsable with the 0 phandle value
-> > > > > because the number of #clock-cells is unknown in the previous entry.
-> > > > > Solve this by adding the clock provider node. Only 'cpg_clocks' is
-> > > > > needed as the examples are built with fixups which can be used to
-> > > > > identify phandles.
-> > > > >
-> > > > > This is in preparation to support schema validation on .dtb files.
-> > > > >
-> > > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > >
-> > > > Thanks for your patch!
-> > > >
-> > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > >
-> > > > Do you want me to queue this in renesas-clk-for-v5.19, or do you
-> > > > want to take it yourself, together with the validation patches?
-> > > > Please let me know.
-> > >
-> > > You can take it.
-> >
-> > Thanks, queuing in renesas-clk-for-v5.19.
->
-> This needs to go in 5.18, not 5.19.
 
-Mike/Stephen: can you please take this directly?
-Thanks!
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
