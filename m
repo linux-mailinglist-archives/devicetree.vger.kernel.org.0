@@ -2,205 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFED4E553E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 16:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7E14E5557
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 16:34:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237977AbiCWPdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 11:33:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37634 "EHLO
+        id S245245AbiCWPfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 11:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237516AbiCWPdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 11:33:22 -0400
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC6B70F70;
-        Wed, 23 Mar 2022 08:31:51 -0700 (PDT)
-Received: by mail-ej1-f52.google.com with SMTP id r13so3593616ejd.5;
-        Wed, 23 Mar 2022 08:31:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=HlmRUE9bFHFNjrv1b4k2u8pDKleK8lJOe2XyU8TJzEU=;
-        b=vARMwS0XPGLB2sMqVdPfnR8f4XKlV55dwDrqG9idOmv+2vYTLr3de0kiQUYx2Re989
-         Msr8Q0AtwTlSBD+Iq+D6ZcIj6cZJwC3jfBBEfjCNy2STd9+E9AJbQdqeBb6Ev57i1pU+
-         ajxsPv9QwISpZQg0ncBQ9sp46Xwy7lorYjEvJ2kw9yHT4ixPAUcj52AjJgrE4WI+Fkeb
-         5Z65Y1Bznfxju23WHEf4/FmodWTiNMy+3WEYjmumVMqBmJtEe5Gk9LnpFCzn4sKjD0O0
-         zTqQiF/5nWudxGFmuEMP5HNwCSqLh4/VxhwIGwLG1ujJC2p5SkaNA9p3RsdUa0DTfl96
-         05MA==
-X-Gm-Message-State: AOAM5312uJoqRsx9XWA8p7CX9IVBCIcMnq2M0xwcp0q6BWwJmvILQV9b
-        6Ka7JiGqYKJn9yDruIxp8xE=
-X-Google-Smtp-Source: ABdhPJw48yfeqAIJM+CSgIJQlCaWPpOMlnPlp79H55niR+TGvFjpmIyU8BUbhK1Bro6gG2xepkwLdQ==
-X-Received: by 2002:a17:907:7d9e:b0:6df:9fe8:856a with SMTP id oz30-20020a1709077d9e00b006df9fe8856amr552897ejc.373.1648049510204;
-        Wed, 23 Mar 2022 08:31:50 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id c14-20020a170906340e00b006ce98f2581asm63669ejb.205.2022.03.23.08.31.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 08:31:49 -0700 (PDT)
-Message-ID: <2eee2611-d618-3fe2-4315-c57a26de6b21@kernel.org>
-Date:   Wed, 23 Mar 2022 16:31:48 +0100
+        with ESMTP id S245275AbiCWPfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 11:35:22 -0400
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6767A98C;
+        Wed, 23 Mar 2022 08:33:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648049628; x=1679585628;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=UUvy3PmLdXRoXIoIHmStQjl4OzUkEA0LzuGBcPCBCiU=;
+  b=VXQ7MM4BcXXPvd1ScLJbSqpvXxu3I8DG6kd+H7exaD9aRXvJlhALD9vf
+   1IGMVlt4PN1WW0Ocm4qqk8sGdCZWzAgakWtiG7fhQYSJGGBWf3Y0vkZCe
+   2MBuA4/S+KM3gJMkDWVOLar/tSuF9deO6n70Xxaaw4rVRyw6+YMTOJdb5
+   STTv5BCY9Y93ablYG3IMB90NmJ1nmdezNTBoZBGfyywU1RVuGaqSOy7qz
+   iH5LYQO0eILMb3o4W37XlxP/O4vE1yRu4QUolTUPjkumQH0QrXsrt6JNn
+   Kl2rdc9iws8kFi4sKc+lhNLehyYwB+fGV0sCU3mANGAoUllAo8DZiGjM3
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="318847029"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
+   d="scan'208";a="318847029"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 08:33:47 -0700
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
+   d="scan'208";a="501038440"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 08:33:46 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id 8D7C6204A8;
+        Wed, 23 Mar 2022 17:33:44 +0200 (EET)
+Date:   Wed, 23 Mar 2022 17:33:44 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org
+Subject: Re: [PATCH 2/2] dw9807-vcm: Add "dongwoon,dw9807" compatible string
+Message-ID: <Yjs92Ol/S/K5qlPX@paasikivi.fi.intel.com>
+References: <20220318165119.12191-1-sakari.ailus@linux.intel.com>
+ <20220318165119.12191-3-sakari.ailus@linux.intel.com>
+ <7e937551-fba4-760d-f3ce-16f811e10bd8@kernel.org>
+ <YjszuFazVgIBw3gl@paasikivi.fi.intel.com>
+ <c51c156a-4e70-86ca-8fe6-a03fbad258f7@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   krzk@kernel.org
-Subject: Re: [PATCH 7/7] ARM: dts: s5pv210: Add charger support in Aries
-Content-Language: en-US
-To:     Jonathan Bakker <xc-racer2@live.ca>, alim.akhtar@samsung.com
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CY4PR04MB0567E33A07D8761C2D485327CB179@CY4PR04MB0567.namprd04.prod.outlook.com>
- <20220323150311.26699-1-xc-racer2@live.ca>
- <CY4PR04MB05671BD0A7FF349E8B04EE84CB189@CY4PR04MB0567.namprd04.prod.outlook.com>
-In-Reply-To: <CY4PR04MB05671BD0A7FF349E8B04EE84CB189@CY4PR04MB0567.namprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c51c156a-4e70-86ca-8fe6-a03fbad258f7@kernel.org>
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2022 16:03, Jonathan Bakker wrote:
-> Add charger-manager support to Aries boards to allow safe
-> charging of the battery without the need for userspace control.
+On Wed, Mar 23, 2022 at 03:59:03PM +0100, Krzysztof Kozlowski wrote:
+> On 23/03/2022 15:50, Sakari Ailus wrote:
+> > Hi Krysztof,
+> > 
+> > On Sun, Mar 20, 2022 at 12:58:08PM +0100, Krzysztof Kozlowski wrote:
+> >> On 18/03/2022 17:51, Sakari Ailus wrote:
+> >>> There is firmware out there that uses "dongwoon,dw9807" compatible string
+> >>> that never made it to upstream as-is. Add it to the driver to make it load
+> >>> on such systems.
+> >>>
+> >>> The chip also has an EEPROM part which is AT24 compatible (for reading
+> >>> purposes) on a separate I²C address. Adding possible support for this in
+> >>> the future is not affected by this change.
+> >>>
+> >>> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> >>> ---
+> >>>  drivers/media/i2c/dw9807-vcm.c | 2 ++
+> >>>  1 file changed, 2 insertions(+)
+> >>>
+> >>> diff --git a/drivers/media/i2c/dw9807-vcm.c b/drivers/media/i2c/dw9807-vcm.c
+> >>> index 95e06f13bc9ed..ada8e467a0450 100644
+> >>> --- a/drivers/media/i2c/dw9807-vcm.c
+> >>> +++ b/drivers/media/i2c/dw9807-vcm.c
+> >>> @@ -295,6 +295,8 @@ static int  __maybe_unused dw9807_vcm_resume(struct device *dev)
+> >>>  
+> >>>  static const struct of_device_id dw9807_of_table[] = {
+> >>>  	{ .compatible = "dongwoon,dw9807-vcm" },
+> >>> +	/* Compatibility for older firmware */
+> >>> +	{ .compatible = "dongwoon,dw9807" },
+> >>
+> >> You need to add it to the bindings as well.
+> > 
+> > Why? Generally things that are there for binary compatibility but
+> > deprecated are not documented in bindings.
 > 
-> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
-> ---
->  arch/arm/boot/dts/s5pv210-fascinate4g.dts | 162 ++++++++++++++++++++++
->  arch/arm/boot/dts/s5pv210-galaxys.dts     | 144 +++++++++++++++++++
->  2 files changed, 306 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/s5pv210-fascinate4g.dts b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
-> index 7427c84f1126..9530231b7a70 100644
-> --- a/arch/arm/boot/dts/s5pv210-fascinate4g.dts
-> +++ b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
-> @@ -57,6 +57,168 @@
->  		pinctrl-0 = <&main_micbias_ena>;
->  	};
->  
-> +	thermal-zones {
-> +		batt_thermal: batt-thermal {
-> +			polling-delay-passive = <60000>; /* 60 seconds */
+> Because:
+> 1. Otherwise it will get removed by someone as undocumented, unknown
+> stuff. Someone might treat it as mistake.
+> 2. Putting it in the driver code is already self-documenting, so someone
+> might start using it. This should be clearly discouraged and bindings
+> help in it - the compatible is marked as deprecated with the comment you
+> mentioned.
 
-There is no passive cooling device, so why do you need it?
+That's why there's a comment. I could add a warning telling not to use it
+anywhere.
 
-> +			polling-delay = <600000>; /* 600 seconds */
-> +
-> +			thermal-sensors = <&batt_thermistor>;
-> +		};
-> +	};
-> +
-> +	batt_thermistor: thermal-sensor-0 {
-> +		compatible = "generic-adc-thermal";
-> +		#thermal-sensor-cells = <0>;
-> +		io-channels = <&adc 6>;
-> +		io-channel-names = "sensor-channel";
-> +
-> +		temperature-lookup-table = <
-> +			(-20000) 1859
-> +			(-19000) 1846
-> +			(-18000) 1832
-> +			(-17000) 1818
-> +			(-16000) 1804
-> +			(-15000) 1790
-> +			(-14000) 1773
-> +			(-13000) 1756
-> +			(-12000) 1739
-> +			(-11000) 1722
-> +			(-10000) 1705
-> +			(-9000) 1691
-> +			(-8000) 1677
-> +			(-7000) 1663
-> +			(-6000) 1649
-> +			(-5000) 1635
-> +			(-4000) 1550
-> +			(-3000) 1510
-> +			(-2000) 1500
-> +			(-1000) 1490
-> +			0 1480
-> +			1000 1470
-> +			2000 1460
-> +			3000 1450
-> +			4000 1430
-> +			5000 1420
-> +			6000 1406
-> +			7000 1386
-> +			8000 1366
-> +			9000 1346
-> +			10000 1326
-> +			11000 1302
-> +			12000 1278
-> +			13000 1254
-> +			14000 1230
-> +			15000 1206
-> +			16000 1182
-> +			17000 1158
-> +			18000 1134
-> +			19000 1110
-> +			20000 1086
-> +			21000 1059
-> +			22000 1035
-> +			23000 1011
-> +			24000 987
-> +			25000 963
-> +			26000 937
-> +			27000 913
-> +			28000 889
-> +			29000 865
-> +			30000 841
-> +			31000 816
-> +			32000 794
-> +			33000 772
-> +			34000 750
-> +			35000 728
-> +			36000 708
-> +			37000 690
-> +			38000 672
-> +			39000 654
-> +			40000 636
-> +			41000 616
-> +			42000 599
-> +			43000 580
-> +			44000 565
-> +			45000 548
-> +			46000 529
-> +			47000 512
-> +			48000 495
-> +			49000 478
-> +			50000 461
-> +			51000 440
-> +			52000 431
-> +			53000 416
-> +			54000 405
-> +			55000 396
-> +			56000 375
-> +			57000 360
-> +			58000 347
-> +			59000 334
-> +			60000 325
-> +			61000 311
-> +			62000 303
-> +			63000 296
-> +			64000 290
-> +			65000 279
-> +			66000 265
-> +			67000 254
-> +			68000 240
-> +			69000 220
-> +			70000 206>;
-> +	};
-> +
-> +	charger_manager: charger-manager-0 {
-> +		compatible = "charger-manager";
+This really does not belong to bindings.
 
-Sorry, this is not a hardware. It's a hack to configure kernel charging
-driver via DT which was made deprecated.
+> 3. Bindings are used beyond Linux kernel, so they might document
+> something more than we use here in DT.
 
-Best regards,
-Krzysztof
+-- 
+Sakari Ailus
