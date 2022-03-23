@@ -2,77 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8F84E57F3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 18:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE0C4E57FE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 18:59:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238503AbiCWR5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 13:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
+        id S241867AbiCWSA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 14:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244232AbiCWR5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 13:57:12 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB98B7FC;
-        Wed, 23 Mar 2022 10:55:42 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-dda559a410so2477447fac.3;
-        Wed, 23 Mar 2022 10:55:42 -0700 (PDT)
+        with ESMTP id S235384AbiCWSA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:00:57 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761B41F605;
+        Wed, 23 Mar 2022 10:59:27 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id kx5-20020a17090b228500b001c6ed9db871so7182116pjb.1;
+        Wed, 23 Mar 2022 10:59:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TeKF1IrVTPwtitTV8dgbmN8AVqD0Mtciv+RTNtchAtM=;
+        b=CvS8qLVfcrk3NGlCqS+dzql75jrHonuWq7qfMNBpfDuWkx+hMOOp9iOU9e0kom/Vzu
+         PoEoodYURFWHBLM/vjzBIi1mkmM8fHUnSIZrKe7yhVUsBFioL4HmZDJQ89Mh8v+2al/l
+         /9qJUdoMxL/wc5GDlc7snCBOhfpm+krsr4wX0aQrLjUa2cx5atgPYYeZ1Ogj5a1qfmOm
+         i8r1AC/3qQiPyO/k+NEc//VJmgKq3WyYkzAogz3FE2klGCXhdxgnFNsrtmTPQRcbXZWj
+         bC2exxhscNLB5MsO79gtUxB0jgrfhQKfy3nMB+SHVX7tUTFRrHzEQZysXgpD/wTcJjMf
+         qK8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=G9nuSpDKEgw7Nx+8QlyFC8zKvObs8NIU6xkxgQTrJ2g=;
-        b=XXO/uAKyVHHA7PFX99D/CLVJqJyJGk7Bj7wYMY34evQinv5mBbaxZOqAZUakV3CqQ3
-         rojSbGCUhvYUEHr7eyO4wpfRDKxlDOWHARLXLy6MCnWsOcDMIH9nTXjD8H63Y+bGWbc1
-         qYzvfJMSHeZ4JImhElaJD9NM+7UPakfbCuIlWgecbCvvSkmob5kN9sxUvjQH+JFgT1Yl
-         qDqBFmB588rTgNtNGFD+1TqYMCVLbTgrVOM1So7snlQD7WIc6eq9a2Go86S8r5RECGyu
-         BJLdfBncYWlLPc6pVn1m2fZ/sywGwfM4/Y5zT892X6G9sg+j4msocoKi7UAYbGLolvC7
-         Nruw==
-X-Gm-Message-State: AOAM532TC4uWzrtxZz/UEs6Iy4obEkW5dOM/jgiE37N7vdyfpJnkbr5R
-        VYqMsMukCNwEHiEpVaxOPg==
-X-Google-Smtp-Source: ABdhPJwaB9MUC7QokIP99uc9L6Wq+ettpIdTaw8OrMyNbqh3zU3dXgYv87+41FqCM7ufTf7BjMESnw==
-X-Received: by 2002:a05:6870:95a4:b0:d7:18b5:f927 with SMTP id k36-20020a05687095a400b000d718b5f927mr559577oao.45.1648058141804;
-        Wed, 23 Mar 2022 10:55:41 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z82-20020aca3355000000b002ef73b018absm234689oiz.9.2022.03.23.10.55.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TeKF1IrVTPwtitTV8dgbmN8AVqD0Mtciv+RTNtchAtM=;
+        b=lEBqrZ/KWouxPw6rQxQyT4UfarzmmtVhtD2fcVm2rHQwxQZaZVh4Vw49/Y9eujfsjX
+         kpY3yOLeJ/fJxJ87o33UM1WdV1ZdL3AUahlHxzry5AZA38fTxrHcwl/+uEk39xCMwSzw
+         B1wIojbdVcABQUwuy7tDEoHetrg5bOl+eWLs/zSQE+f4Oaqiak4fsQP6Rp/vZWLwSLnR
+         Gjyiv0X1iVWnYo7uPu+66iRK9x/qjG3WIDYk19RC9J6Q4gFgT2Y1RuZ74b3tNBbnkQVC
+         VOaoM71tLC8kpnXJ9chlqqq5iIWr+gX9+1F1AeHjCOW0k6aY/bIO+9V2cHkbCA5p3Z4Q
+         PVNA==
+X-Gm-Message-State: AOAM533lxIOIplErCPHlPh95DZOJyCcRGxAtCXwOvEoaDE9s266/wln0
+        hSz0R7FMdxkIMWeBXzdq/nk=
+X-Google-Smtp-Source: ABdhPJwaHPOu98pWAjMGLcxyok9W+oPp/AYZC/v0jL+r/3wC+oBxGKiyJZhBZ8kX81WieVhTk9diBw==
+X-Received: by 2002:a17:90a:cce:b0:1bf:6387:30d9 with SMTP id 14-20020a17090a0cce00b001bf638730d9mr13199933pjt.196.1648058366984;
+        Wed, 23 Mar 2022 10:59:26 -0700 (PDT)
+Received: from localhost.localdomain ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id q2-20020a056a00084200b004f761a7287dsm551622pfk.131.2022.03.23.10.59.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 10:55:41 -0700 (PDT)
-Received: (nullmailer pid 163348 invoked by uid 1000);
-        Wed, 23 Mar 2022 17:55:40 -0000
-Date:   Wed, 23 Mar 2022 12:55:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yannick Brosseau <yannick.brosseau@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] clk: stm32: Fix typo in comment
-Message-ID: <YjtfHEh8wUe0FZul@robh.at.kernel.org>
-References: <20220314012634.1176231-1-yannick.brosseau@gmail.com>
+        Wed, 23 Mar 2022 10:59:26 -0700 (PDT)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: spear13xx: Update SPI dma properties
+Date:   Wed, 23 Mar 2022 23:29:20 +0530
+Message-Id: <20220323175920.93155-1-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220314012634.1176231-1-yannick.brosseau@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Mar 2022 21:26:33 -0400, Yannick Brosseau wrote:
-> s/Documentatoin/Documentation/ in path to the doc file
-> 
-> Signed-off-by: Yannick Brosseau <yannick.brosseau@gmail.com>
-> ---
->  include/dt-bindings/clock/stm32fx-clock.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Reorder dmas and dma-names property for spi controller node to make it
+compliant with bindings.
 
-Applied, thanks!
+Fixes: 6e8887f60f60 ("ARM: SPEAr13xx: Pass generic DW DMAC platform data from DT")
+Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+---
+v2:
+- Add fixes tag
+- Remove 1/2 patch from series as it's not required
+- v1 discussion link:
+  https://lore.kernel.org/linux-devicetree/20220312180615.68929-2-singh.kuldeep87k@gmail.com/
+
+ arch/arm/boot/dts/spear13xx.dtsi | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/spear13xx.dtsi b/arch/arm/boot/dts/spear13xx.dtsi
+index c87b881b2c8b..45f0b2a33e02 100644
+--- a/arch/arm/boot/dts/spear13xx.dtsi
++++ b/arch/arm/boot/dts/spear13xx.dtsi
+@@ -284,9 +284,8 @@ spi0: spi@e0100000 {
+ 				#size-cells = <0>;
+ 				interrupts = <0 31 0x4>;
+ 				status = "disabled";
+-				dmas = <&dwdma0 4 0 0>,
+-					<&dwdma0 5 0 0>;
+-				dma-names = "tx", "rx";
++				dmas = <&dwdma0 5 0 0>, <&dwdma0 4 0 0>;
++				dma-names = "rx", "tx";
+ 			};
+ 
+ 			rtc@e0580000 {
+-- 
+2.25.1
+
