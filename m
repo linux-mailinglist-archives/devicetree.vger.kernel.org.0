@@ -2,88 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5894E58C9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:54:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 037274E58D7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 20:03:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244719AbiCWSzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 14:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34306 "EHLO
+        id S237336AbiCWTEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 15:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240229AbiCWSzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:55:39 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3AEC74B2F;
-        Wed, 23 Mar 2022 11:54:08 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-d39f741ba0so2617723fac.13;
-        Wed, 23 Mar 2022 11:54:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cWHIqUb2GLClWkPw5kQ250/Lh0uWw4ugg2e9CkpD9ng=;
-        b=8PllPUMdvyabJGo+gc/9yNEkLiGzcDVv/gZIeiFey8LrpiIMWSnpuUC1c4U+gVbpag
-         FxNEvI1jsk/o/n99W39O7RaINLMGZw/VCkAh2eB3m/yHDZuXwucOFAPM1+1aQEXo3nNu
-         JlhJPTjTqEpa70gtp24jLFVNc8Prpg3YyOLidF78XBoepxYWrMZwC7vxIKRo+YMXlhH4
-         oxtbBojbhF6NvVjyyGz1K82aGgoUsTAcrhrVlQIcnIOZz261K51MEFy2nnHzUh4hXeWk
-         2bq6zePacb4ctofnaXb7DrGulfDMfgxZqoNT6uN51Yu9yi5eckv5Eh22wgD2KkD09kQh
-         d/SQ==
-X-Gm-Message-State: AOAM533ls5OK8G/xTjJBZrWHXVr4rl2x7oYDgHxX/SChsZxonTWCoCXU
-        4CopKpUiazQgA9DWWcMgdA==
-X-Google-Smtp-Source: ABdhPJwb31fwcGvR7p9nqoczWVgSbjevAuJ03XKtuwAPPvfJWOWi+SoELyx+qTikU4J6+3nz2lWBqA==
-X-Received: by 2002:a05:6871:5cf:b0:de:3ca3:26a0 with SMTP id v15-20020a05687105cf00b000de3ca326a0mr704806oan.136.1648061648208;
-        Wed, 23 Mar 2022 11:54:08 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x6-20020a9d6d86000000b005cdb017ddcfsm333780otp.41.2022.03.23.11.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 11:54:07 -0700 (PDT)
-Received: (nullmailer pid 252266 invoked by uid 1000);
-        Wed, 23 Mar 2022 18:54:06 -0000
-Date:   Wed, 23 Mar 2022 13:54:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>
-Cc:     devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 4/4] dt-bindings: pinctrl: mt8192: Add gpio-line-names
- property
-Message-ID: <YjtszlCtzG+XCzBj@robh.at.kernel.org>
-References: <20220315211936.442708-1-nfraprado@collabora.com>
- <20220315211936.442708-5-nfraprado@collabora.com>
+        with ESMTP id S229836AbiCWTEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 15:04:49 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102E065BF;
+        Wed, 23 Mar 2022 12:03:16 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id F1281100004;
+        Wed, 23 Mar 2022 19:03:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1648062191;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Jn4eEh+cMlzdXNoYeFxpZsql1R7mD18vfamv6OpnlJo=;
+        b=EVK5SV6gKLJ1Wmc8xcKelEB5XgHl439t77Ep+sR3gT6kk+SAGiGqsNvlrOKw4TtaikP1Nq
+        CVlmvTnqhRBp6RjC5r3FdtYxQmr9EB3RIYPHFroR8oLpxyFbtK32DdFpavBBy3wxj4SfGb
+        DiqJmvdWvwdMJP+lQo/9omI0nHpITPHB+tC3wkJez2NhRbeDUQdpIv1RDlWw8N54fOV8rJ
+        NIOVYVOLNP2r2WSs2LVqp/dnL39x1AhWZCvXpr2SVwQx8VSj787HB/vSaJ0WT+XeJEf/r8
+        tax6aC6tUlPp7oC5LYsbpirqNmz/9nAEY1P0s857vkER9MQhJX6cF4zevdAuVQ==
+Date:   Wed, 23 Mar 2022 20:03:10 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] dt-bindings: rtc: at91: rename rtt bindings file
+Message-ID: <Yjtu7sRdl3yIR0u8@piout.net>
+References: <20220308155735.54146-1-alexandre.belloni@bootlin.com>
+ <CAL_JsqJXz01F_+-xg8VfAOQ=-C96NVa1KO+nRbXf9mq289kmYQ@mail.gmail.com>
+ <CAL_Jsq++eqGS6xJ6EgwXe2RpZYgbB30kfTvZQx=sGmb-LgVWXg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220315211936.442708-5-nfraprado@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAL_Jsq++eqGS6xJ6EgwXe2RpZYgbB30kfTvZQx=sGmb-LgVWXg@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Mar 2022 17:19:36 -0400, Nícolas F. R. A. Prado wrote:
-> Add the gpio-line-names optional property to the pinctrl-mt8192 binding
-> to prevent dt_binding_check warnings when it is present in the pinctrl
-> node in the Devicetree.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> ---
-> 
->  Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+On 23/03/2022 09:39:07-0500, Rob Herring wrote:
+> On Wed, Mar 9, 2022 at 3:05 PM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Tue, Mar 8, 2022 at 9:57 AM Alexandre Belloni
+> > <alexandre.belloni@bootlin.com> wrote:
+> > >
+> > > atmel,at91sam9-rtc is a confuing name for this file as it is documenting
+> > > the RTT used as an RTC and not the other regular RTC (atmel,at91rm9200-rtc
+> > > and atmel,at91sam9x5-rtc)
+> > >
+> > > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > > ---
+> > >  .../rtc/{atmel,at91sam9-rtc.yaml => atmel,at91sam9260-rtt.yaml}   | 0
+> > >  1 file changed, 0 insertions(+), 0 deletions(-)
+> > >  rename Documentation/devicetree/bindings/rtc/{atmel,at91sam9-rtc.yaml => atmel,at91sam9260-rtt.yaml} (100%)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91sam9260-rtt.yaml
+> > > similarity index 100%
+> > > rename from Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+> > > rename to Documentation/devicetree/bindings/rtc/atmel,at91sam9260-rtt.yaml
+> >
+> > Now failing in -next:
+> >
+> > ./Documentation/devicetree/bindings/rtc/atmel,at91sam9260-rtt.yaml:
+> > $id: relative path/filename doesn't match actual path or filename
+> >   expected: http://devicetree.org/schemas/rtc/atmel,at91sam9260-rtt.yaml#
+> 
+> Still failing...
+
+Sorry, this is fixed now.
+
+> 
+> Rob
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
