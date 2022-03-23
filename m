@@ -2,144 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC3C64E5B0D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 23:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B1B4E5B52
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 23:38:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240789AbiCWWJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 18:09:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46498 "EHLO
+        id S1345269AbiCWWjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 18:39:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238850AbiCWWJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 18:09:13 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA4375C657;
-        Wed, 23 Mar 2022 15:07:42 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id d15-20020a9d72cf000000b005cda54187c3so2053389otk.2;
-        Wed, 23 Mar 2022 15:07:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+k118EBZ9Ly3Szi3Mxb7IXwKz7kOcKPTbNJ/BWP0n8U=;
-        b=0Alo3+eLDj2hTS9MTS0UsXrepkak5txB6tGYagtLVTrXBcEv73WmDZDeTEdgBsICIr
-         bL+NmCQB8kxSTx70QJ9aVRN9C51fDEnRNs5mQTWyeWlp2XAcqffpexiCBfIqVWUmnrPu
-         Tz/TqdYjJ3Ua3wxjwITdcO7oTdnu1majv7Nox6QReZdGeAi5HzqsaixwgmF1xjL2pV7z
-         e7ZaL807LH+c/+KE2pUBiUTj0UbwRYyBZDlS/d/KcKk6HYw91uw84+vOtAithncAs7R/
-         FmfNIRQWIIa+pNw9l/D9zVxdSUWblW9nkjgeqkSZUA4cmIU7W2Lghoq1H805Cl8OGx2N
-         WX0g==
-X-Gm-Message-State: AOAM531barf292WBq4KHxob4pZVa9fruAHh8rJlauYc9PJP/OQLYZrdL
-        ACYQS6N4DsAoVR67KtNm8OMuqpBjmQ==
-X-Google-Smtp-Source: ABdhPJw7gnH0on5+VuPG99lAMzszLuHJzDpkKnDuE2x3uL6p6JER3OsZ5NYU+MEvSoY741aHmr4ZMQ==
-X-Received: by 2002:a9d:6c94:0:b0:5b2:2c47:7228 with SMTP id c20-20020a9d6c94000000b005b22c477228mr926239otr.14.1648073262156;
-        Wed, 23 Mar 2022 15:07:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b002ef960f65b3sm522714oih.25.2022.03.23.15.07.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 15:07:40 -0700 (PDT)
-Received: (nullmailer pid 543440 invoked by uid 1000);
-        Wed, 23 Mar 2022 22:07:39 -0000
-Date:   Wed, 23 Mar 2022 17:07:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: input: Add bindings for Immersion
- ISA1200
-Message-ID: <YjuaK09nOztYOmyn@robh.at.kernel.org>
-References: <20220315233528.1204930-1-linus.walleij@linaro.org>
- <20220315233528.1204930-2-linus.walleij@linaro.org>
- <YjjNkyChcJcaJi11@robh.at.kernel.org>
- <CACRpkdbz6Ua+0bTJMf-Qc7tju33CmEEgUsxH5KCS_zW3A_-SYA@mail.gmail.com>
+        with ESMTP id S1345267AbiCWWju (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 18:39:50 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A83A1B9;
+        Wed, 23 Mar 2022 15:38:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648075099; x=1679611099;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8W6j9MRzMqrTwJHwnu1KmnMFhXBPnNCWDanG0n2qgGU=;
+  b=KIQN5SDe5OsxkS5nVugw2QZjcukf4ihPt4BBds6mHspeHhs6m+hZIwy7
+   Ga5SoTSJog0JEGbdLSJ+PHYlcqdn62HspFXJagX+lDHv+dZqlB+KmHotz
+   AX7uxevFDm1UHHWNnBThTU3VkuzMYWyQOaQAKlakIW4zXtc1wKBql/+UE
+   KNy2P5GWnVuNCgfPHllAjPexPZgj6KRdSWO8ymSbK16uo6ZMp/MqvdMr5
+   +rcKEyjo0ZjGqcvJkvdzADrxIFQ9u+Xzv2wnXB4L2KbBPHFuGVpymBVPB
+   wKY/YvFq64dUArgVPycSpq/jLkUL39ZI4zFkkVJkjkJqkKv7PBmaeBfcY
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="257952560"
+X-IronPort-AV: E=Sophos;i="5.90,205,1643702400"; 
+   d="scan'208";a="257952560"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 15:38:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,205,1643702400"; 
+   d="scan'208";a="637641640"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 23 Mar 2022 15:38:11 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nX9cI-000KRL-Mn; Wed, 23 Mar 2022 22:38:10 +0000
+Date:   Thu, 24 Mar 2022 06:37:19 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-acpi@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, andriy.shevchenko@linux.intel.com,
+        devicetree@vger.kernel.org, "Rafael J.Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2 3/4] device property: Add iomap to fwnode operations
+Message-ID: <202203240648.x2upaXar-lkp@intel.com>
+References: <20220323154737.169483-4-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdbz6Ua+0bTJMf-Qc7tju33CmEEgUsxH5KCS_zW3A_-SYA@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220323154737.169483-4-sakari.ailus@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 03:57:44PM +0100, Linus Walleij wrote:
-> On Mon, Mar 21, 2022 at 8:10 PM Rob Herring <robh@kernel.org> wrote:
-> 
-> > > +properties:
-> > > +  compatible:
-> > > +    description: One compatible per product using this chip. Each product
-> > > +      need deliberate custom values for things such as LRA resonance
-> > > +      frequency and these are not stored in the device tree, rather we
-> > > +      let the operating system look up the appropriate parameters from a
-> > > +      table.
-> > > +    enum:
-> > > +      - immersion,isa1200-janice
-> > > +      - immersion,isa1200-gavini
-> >
-> > Same device, different boards. I think I would put necessary properties
-> > in the DT.
-> 
-> That will be all of these (from the driver):
-> 
-> +struct isa1200_config {
-> +       u8 ldo_voltage;
-> +       bool pwm_in;
-> +       bool erm;
-> +       u8 clkdiv;
-> +       u8 plldiv;
-> +       u8 freq;
-> +       u8 duty;
-> +       u8 period;
-> +};
+Hi Sakari,
 
-Could be all, but in your 2 cases some of these values are the same.
+I love your patch! Yet something to improve:
 
-> 
-> Example:
-> 
-> +/* Configuration for Janice, Samsung Galaxy S Advance GT-I9070 */
-> +static const struct isa1200_config isa1200_janice = {
-> +       .ldo_voltage = ISA1200_LDO_VOLTAGE_30V,
-> +       .pwm_in = false,
-> +       .clkdiv = ISA1200_HCTRL0_DIV_256,
-> +       .plldiv = 2,
-> +       .freq = 0,
-> +       .duty = 0x3b,
-> +       .period = 0x77,
-> +};
-> 
-> This is derived from the compatible rather than individual properties
-> or extra regulator and/or clock abstractions in line with:
-> Documentation/devicetree/bindings/display/panel/ilitek,ili9322.yaml
-> 
-> Which was originally looking like so:
-> https://lore.kernel.org/dri-devel/20170813114448.20179-2-linus.walleij@linaro.org/
-> 
-> To which you replied:
-> https://lore.kernel.org/dri-devel/20170817204424.e2wdkmyp4vyx2qj3@rob-hp-laptop/
-> 
-> "Normally, we the physical panel is described which would imply all these
-> settings. Are there lots of panels with this controller that would
-> justify all these settings?"
+[auto build test ERROR on rafael-pm/linux-next]
+[also build test ERROR on next-20220323]
+[cannot apply to driver-core/driver-core-testing robh/for-next v5.17]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I reserve the right to contradict myself. :)
+url:    https://github.com/0day-ci/linux/commits/Sakari-Ailus/Shovel-firmware-specific-code-to-appropriate-locations/20220324-000256
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git linux-next
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20220324/202203240648.x2upaXar-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/c9025bc8f89f50eaf9b9d628f1ac5d47b77c6bc8
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sakari-Ailus/Shovel-firmware-specific-code-to-appropriate-locations/20220324-000256
+        git checkout c9025bc8f89f50eaf9b9d628f1ac5d47b77c6bc8
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
 
-Seriously, it's always a judgement call.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> 
-> In that case there was one (1)
-> 
-> In this case there are two (2) products that I know of. It does not have the
-> relationship between panel and panel controller products though, but...
-> it's not very different.
-> 
-> I don't think this chip was used a lot, I really tried to find other instances.
-> But they could exist of course.
+All errors (new ones prefixed by >>):
 
-Okay, if you want to leave it like this, I'm fine with that.
+   s390-linux-ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
+   coherent.c:(.text+0x122): undefined reference to `memremap'
+   s390-linux-ld: coherent.c:(.text+0x230): undefined reference to `memunmap'
+   s390-linux-ld: kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
+   coherent.c:(.text+0x69c): undefined reference to `memunmap'
+   s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
+   irq-al-fic.c:(.init.text+0x7e): undefined reference to `of_iomap'
+   s390-linux-ld: irq-al-fic.c:(.init.text+0x502): undefined reference to `iounmap'
+   s390-linux-ld: drivers/clk/clk-fixed-mmio.o: in function `fixed_mmio_clk_setup':
+   clk-fixed-mmio.c:(.text+0x90): undefined reference to `of_iomap'
+   s390-linux-ld: clk-fixed-mmio.c:(.text+0xcc): undefined reference to `iounmap'
+   s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
+   timer-of.c:(.init.text+0x144): undefined reference to `of_iomap'
+   s390-linux-ld: timer-of.c:(.init.text+0x76c): undefined reference to `iounmap'
+   s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_cleanup':
+   timer-of.c:(.init.text+0x960): undefined reference to `iounmap'
+   s390-linux-ld: drivers/clocksource/timer-microchip-pit64b.o: in function `mchp_pit64b_dt_init_timer':
+   timer-microchip-pit64b.c:(.init.text+0x67c): undefined reference to `of_iomap'
+   s390-linux-ld: timer-microchip-pit64b.c:(.init.text+0xcd2): undefined reference to `iounmap'
+   s390-linux-ld: drivers/of/property.o: in function `of_fwnode_iomap':
+>> property.c:(.text+0x1b8c): undefined reference to `of_iomap'
 
-Rob
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
