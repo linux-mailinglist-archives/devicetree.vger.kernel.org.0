@@ -2,108 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 461C24E4AEB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 03:30:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE134E4B02
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 03:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234265AbiCWCbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 22:31:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34134 "EHLO
+        id S239363AbiCWCpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 22:45:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbiCWCbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 22:31:37 -0400
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB5566ACD;
-        Tue, 22 Mar 2022 19:30:08 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 2E9FD580273;
-        Tue, 22 Mar 2022 22:30:06 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 22 Mar 2022 22:30:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=z448nDq6oePU/m
-        QSH0x3hhq/M5ZKeqSdorKIcUafQmQ=; b=1cirzLxzmbufXSFnaOvbvxX7mx3EKS
-        HVMeAJmDODCXBlm3DNszMIFlYWGhM96QRaDTs/MkRYWv66e8EoEHUIRQkS3x0oeI
-        TE85TQOHjaYHQo4YFV9p4U/io7z+V7Lo4X+oikO6P+ijiiC/I+bxXC+VNIKoFBNr
-        WLPpTX/drRez0pQvRhq7GzwDPfi0njrPNvi4vXgAOW8cUMhkbjVwmtUyYOWqCUyV
-        xQXrpfhawIr0b7sHAmXrd+LHDtUCVvyiQBV/qFuLrWoyumfcjEJRoN6eXnVlKpgw
-        hmCLRe+fscTRGdiKgLxLWRlzl7k66u7YXyKJ6s0ObYQ7ifEryfIfjS/A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=z448nDq6oePU/mQSH0x3hhq/M5ZKeqSdorKIcUafQ
-        mQ=; b=gfma0HoXMMYkAMu/STYjCpy0yb58vNWXI0wyrB8cvOHQqcQn5fU9fHkil
-        o086v7oKaVrI7E9PzOjcW6gCJfBh7ua2GM7RaQS14AX2zirt47kI5+Vuz4QFBwHt
-        SVCRiyWbCmhyQiOTrxRac5LcYr1rj1MXMaFPR8JefGc7Aw/IjgX+YMRoYbXmEvYj
-        79NpP1pS3t1qRQqZqNQzMjD6CeTryzImTU3UxIuLM+30X9QwgAgxcjqbyejOJPG/
-        xiuNeCU5FxaY35RbrF7B9vOhPyHIhFFkapOwiG9M5Nd5hfluMFVsmmo9ewtrbvI+
-        LHe9syJFsAIjtj6lUuBbrM6le7k4w==
-X-ME-Sender: <xms:LIY6Ym0BhdV2sC2kSQradoXRNqtzb2kC3P7dthRcZ_sX5LfP0t9mMg>
-    <xme:LIY6YpGlW4edpX0xA6gKgjm7DBYZvl2oiUyBR31Hg7kNT-YFn2A5To-3mggMhLj2O
-    2kfF1YugkAlJWEk6VA>
-X-ME-Received: <xmr:LIY6Yu4c0k8IVs35qeZZnvNXWlHPLP2bHAR_BwnzeGvRQYNiPD5rsGNFkuqHh8o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudegiedggeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheplfhirgig
-    uhhnucgjrghnghcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
-    ggtffrrghtthgvrhhnpeehieduvdevhfekjeeftddtkeeitefhudekvdeiueeulefgleei
-    jeeghedvkeduleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:LIY6Yn2RvxaO0WAw_nQ_zj3S2natVIJvHXJ0QUVibx__HL5VZ5W5yA>
-    <xmx:LIY6YpEEx42Ukfd3i88up_UNwg5micsJX_zWmfaty-VTdKkab54Meg>
-    <xmx:LIY6Yg_UaaAApUaapt0j_xI1k0l191Q4Whp8TqPgmlGMkFiUAORRsg>
-    <xmx:LoY6YuuZ_u5thrRte02ss6sakFKjscOSU7gZZSG7uHUymaaBFlsNRg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 22 Mar 2022 22:30:01 -0400 (EDT)
-Message-ID: <87d4f869-2ae8-f8d3-a55f-1a563cb21115@flygoat.com>
-Date:   Wed, 23 Mar 2022 02:29:59 +0000
+        with ESMTP id S231430AbiCWCpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 22:45:54 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 671FA10FFE
+        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 19:44:16 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(7832:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Wed, 23 Mar 2022 10:40:26 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Wed, 23 Mar 2022 10:40:52 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.018; Wed, 23 Mar 2022 10:40:52 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+CC:     "krzysztof.kozlowski@canonical.com" 
+        <krzysztof.kozlowski@canonical.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v11 0/9] Add Sunplus SP7021 SoC Support
+Thread-Topic: [PATCH v11 0/9] Add Sunplus SP7021 SoC Support
+Thread-Index: AQHYPbV1SsKXsmp1VUKTEITYbA9OsKzKtY4AgAGLvVA=
+Date:   Wed, 23 Mar 2022 02:40:51 +0000
+Message-ID: <be7f6ea70a5146a190c750695aead7f5@cqplus1.com>
+References: <cover.1647928315.git.qinjian@cqplus1.com>
+ <YjmrdlQqoqUNcs7R@bogus>
+In-Reply-To: <YjmrdlQqoqUNcs7R@bogus>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v11 2/7] MIPS: Loongson64: dts: introduce ls3A4000
- evaluation board
-Content-Language: en-GB
-To:     Sui Jingfeng <15330273260@189.cn>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        chenhuacai@kernel.org, Tiezhu Yang <yangtiezhu@loongson.cn>,
-        liyi@loongson.cn
-References: <20220321162916.1116541-1-15330273260@189.cn>
- <20220321162916.1116541-3-15330273260@189.cn>
- <2644866a-8db2-923e-4227-2aa6d8e375fe@flygoat.com>
- <2c671752-6684-f87b-7b2d-90568d36adde@189.cn>
- <005099b5-33ed-4cb7-f8e4-10e1de780311@flygoat.com>
- <abe784ce-eb9e-0143-dbc3-d415bbedbb81@189.cn>
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-In-Reply-To: <abe784ce-eb9e-0143-dbc3-d415bbedbb81@189.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -111,51 +67,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2022/3/23 1:53, Sui Jingfeng 写道:
-> Hi, Jiaxun
->
-> Build all dts into vmlinuz will make the vmlinuz bigger and bigger.
-> How does the kernel get the dtb is another big issue, either from 
-> built-in
-> dtb or pass from the firmware(pmon and uefi etc). This should be
-> solved with another patch carefully. Providing board specific dts
-> helps to code review, it helps reviewers understand that there are
-> variant boards and have to be express with different OF graph.
-Hi,
-
-I insist my taste on those code. If the only intention is to demonstrate
-the usage of the driver then please just leave them in dt document
-or commit message.
-
->
-> Now, there are about 6 dts under arch/mips/boot/dts/loongson/,
-> Suppose loongson have 1000+ different board, do you want built all
-> of them into vmlinuz?
-Note that we are supporting all those boards on "platform" bias. Which
-means if they share similar design then they will use the same DTS.
-If we have a new design then unfortunately our kernel binary must grow.
-
-For those who intended to build a size-optimized kernel they will be
-able to disable unused DTS in Kconfig.
-
-If you want to blame somebody for the problem then please don't
-blame us. We tried very hard to fit all those stuff into kernel's model
-of devices. You should blame those who did the initial design of
-Loongson's boot interface that failed to introduce a proper way
-to describe the platform.
-
->
-> Besides, ls7a1000 and ls2k1000 lack a i2c driver, gpio driver,
-> pwm driver, clk driver, can you pay more attention to salve those
-> problems, please ?
-Are you trying to make a TODO list for your colleague :-)
-
-We , community developers, don't owe you anything. So please
-don't expect anything from us. I lost access to most Loongson
-devices since I'm currently study abroad, but I'm determined to
-keep platform code in a good shape. That's my duty as a maintainer.
-
-Thanks.
-- Jiaxun
+PiANCj4gTm90IHJlbGF0ZWQgdG8gdGhpcyBzZXJpZXMsIGJ1dCB0byB0aGUgcGxhdGZvcm0gaW4g
+Z2VuZXJhbC4gWW91IHN0aWxsDQo+IG5lZWQgdG8gcmVzb2x2ZWQgdGhlIGJvb3QvY3B1LW1ldGhv
+ZCBmb3IgdGhpcyBwbGF0Zm9ybSBiZWZvcmUgeW91IGFkZA0KPiBzdXBwb3J0IGZvciBhbGwgdGhl
+IDQgY3B1cyBvbiB0aGlzIHBsYXRmb3JtLiBJIHJlbWVtYmVyIGRpc2N1c3NpbmcgYWJvdXQNCj4g
+Q1BVSWRsZSBvbiBhIHNlcGFyYXRlIHRocmVhZC4gSSB0aG91Z2h0IHRoaXMgaXMgYmVzdCB0aHJl
+YWQgdG8gcmVtaW5kIHRoYXQNCj4gc28gdGhhdCBpdCBpcyBhZGRyZXNzZWQgYmVmb3JlIHdlIHNl
+ZSBlaXRoZXIgY3B1aWRsZSBvciBjcHVob3RwbHVnIHN1cHBvcnQNCj4gb24gdGhpcyBwbGF0Zm9y
+bS4NCj4gDQo+IC0tDQo+IFJlZ2FyZHMsDQo+IFN1ZGVlcA0KDQpUaGFua3MgZm9yIHlvdXIgY29t
+bWVudHMuDQpDdXJyZW50bHksICB3ZSBib290IGFsbCA0IGNvcmVzIHZpYSBwc2NpIHN1Y2Nlc3Nm
+dWxseS4NCg0K
