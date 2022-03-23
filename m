@@ -2,352 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 889974E4FEF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 11:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F210D4E4FE8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 10:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243396AbiCWKCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 06:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51272 "EHLO
+        id S243373AbiCWKBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 06:01:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243403AbiCWKCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 06:02:05 -0400
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F63576655
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 03:00:34 -0700 (PDT)
-Received: from relay5-d.mail.gandi.net (unknown [217.70.183.197])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id C945EC912E
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:51:54 +0000 (UTC)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id AD23A1C000F;
-        Wed, 23 Mar 2022 09:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1648029109;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=HvflhV383HAbfw2gM+Fly4yDunR+NxERRhU6kf/8npo=;
-        b=JO9uGtBzN+5S/FlMWzKAX5WmicEztGs40YBS0zkrQ3AWPNNp8O9dDsgQ9D/CI2Eed77b/X
-        BNrdl2gtedMHI83x12hMzbtnwUVqeHjXryRrtMqpF9halSsgsG5Q3WQiLOydIQy74EnBzh
-        +hjEzrWpQGr7BRLjH3kmfz82u5EGAC4eO7mLOK4vQCT4BjgUG3klgMKi9/lbSxqeddUEaE
-        RqY5DLKxblDWqvIlPsF0x6J09Bgouej/qXSt7JQ2F4msa0QEDwO7QLv77X7XD8UEb8NNdm
-        jmIeZf3Nm1U2Td6DSkH/aaOtpZXYP1v2miTIaYO1wNvsWeTRcaPZW5H+FzUblw==
-From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-Subject: [PATCH 2/2] reset: add support for fwnode
-Date:   Wed, 23 Mar 2022 10:50:22 +0100
-Message-Id: <20220323095022.453708-3-clement.leger@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220323095022.453708-1-clement.leger@bootlin.com>
-References: <20220323095022.453708-1-clement.leger@bootlin.com>
+        with ESMTP id S239268AbiCWKBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 06:01:12 -0400
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B36C375C37;
+        Wed, 23 Mar 2022 02:59:42 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id r22so1704019ejs.11;
+        Wed, 23 Mar 2022 02:59:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=RkfMRwQ+lzNAq0Y79wKv+fIuubMsSf8cziDDSaFTilM=;
+        b=sYViR/5W1aINEirPPtsZ4Pe9BasCo37hI/1QbOqMVG9EpWNqCSGfJVQzgl09HG/8a9
+         48Albv+u8wkdrWBcdkivscKn8TB3P4dPCfLo+H5jHWYs9nWrGBVGTD5eNXcWtXFxQpSK
+         Lu4PriSxbd3d9SYHQRrCRXKuVI9qajrF3AYMlYV+ditXGY0zpeG3adiEo6N1aSzDfUp/
+         jb0R2YtItmyZmwdGkH1G3f1T5N8wsbKlgRT5ytYpvlTjwVDKeBYcIPjqjP7tmkLVUfDP
+         SaD5sHFOG712AQ2fVdOlAF/GzjDihq4WH8R7PUzU8o/qPRowx2QZDardBBvtbrR/388m
+         AcUg==
+X-Gm-Message-State: AOAM532kcHku9SZpfVV58YqZ6Mj/x+AlsGDVnakrAqdBYco3sNNti3pC
+        WJcCq2R7x2LdcRlKKyMnMxA=
+X-Google-Smtp-Source: ABdhPJwjV+ei6iKYAvFwt4ijhV80vJ+s3wmOKfaFxFMyXsM5AGVP3dJvLED3a7u2jEgvijnDBfVk/w==
+X-Received: by 2002:a17:907:3e0d:b0:6e0:5c27:a184 with SMTP id hp13-20020a1709073e0d00b006e05c27a184mr3041967ejc.355.1648029581079;
+        Wed, 23 Mar 2022 02:59:41 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm9447882ejb.187.2022.03.23.02.59.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Mar 2022 02:59:40 -0700 (PDT)
+Message-ID: <f13fdc4b-8f45-b09f-5d58-8d2a565e2c18@kernel.org>
+Date:   Wed, 23 Mar 2022 10:59:39 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v6 17/18] dt-bindings: arm: msm: Convert kpss-gcc driver
+ Documentation to yaml
+Content-Language: en-US
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20220321231548.14276-1-ansuelsmth@gmail.com>
+ <20220321231548.14276-18-ansuelsmth@gmail.com>
+ <e832516d-277d-6a0b-4588-b32a085185c8@kernel.org>
+ <YjnOdYMS+P85pqvF@Ansuel-xps.localdomain>
+In-Reply-To: <YjnOdYMS+P85pqvF@Ansuel-xps.localdomain>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to abstract the firmware node used by the reset subsystem,
-switch to fwnode API. This will allow the subsystem to work with
-all nodes that are supported by the fwnode API. ACPI node is for the
-moment excluded from this support until the reset device description
-is specified.
+On 22/03/2022 14:26, Ansuel Smith wrote:
+> On Tue, Mar 22, 2022 at 11:07:26AM +0100, Krzysztof Kozlowski wrote:
+>> On 22/03/2022 00:15, Ansuel Smith wrote:
+>>> Convert kpss-gcc driver Documentation to yaml. Since kpss-gcc expose a
+>>> clock add the required '#clock-cells' binding while converting it.
+>>>
+>>> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+>>> ---
+>>>  .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ------------
+>>>  .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 69 +++++++++++++++++++
+>>>  2 files changed, 69 insertions(+), 44 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+>>> deleted file mode 100644
+>>> index e628758950e1..000000000000
+>>> --- a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+>>> +++ /dev/null
+>>> @@ -1,44 +0,0 @@
+>>> -Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
+>>> -
+>>> -PROPERTIES
+>>> -
+>>> -- compatible:
+>>> -	Usage: required
+>>> -	Value type: <string>
+>>> -	Definition: should be one of the following. The generic compatible
+>>> -			"qcom,kpss-gcc" should also be included.
+>>> -			"qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc"
+>>> -			"qcom,kpss-gcc-apq8064", "qcom,kpss-gcc"
+>>> -			"qcom,kpss-gcc-msm8974", "qcom,kpss-gcc"
+>>> -			"qcom,kpss-gcc-msm8960", "qcom,kpss-gcc"
+>>> -
+>>> -- reg:
+>>> -	Usage: required
+>>> -	Value type: <prop-encoded-array>
+>>> -	Definition: base address and size of the register region
+>>> -
+>>> -- clocks:
+>>> -	Usage: required
+>>> -	Value type: <prop-encoded-array>
+>>> -	Definition: reference to the pll parents.
+>>> -
+>>> -- clock-names:
+>>> -	Usage: required
+>>> -	Value type: <stringlist>
+>>> -	Definition: must be "pll8_vote", "pxo".
+>>> -
+>>> -- clock-output-names:
+>>> -	Usage: required
+>>> -	Value type: <string>
+>>> -	Definition: Name of the output clock. Typically acpu_l2_aux indicating
+>>> -		    an L2 cache auxiliary clock.
+>>> -
+>>> -Example:
+>>> -
+>>> -	l2cc: clock-controller@2011000 {
+>>> -		compatible = "qcom,kpss-gcc-ipq8064", "qcom,kpss-gcc";
+>>> -		reg = <0x2011000 0x1000>;
+>>> -		clocks = <&gcc PLL8_VOTE>, <&gcc PXO_SRC>;
+>>> -		clock-names = "pll8_vote", "pxo";
+>>> -		clock-output-names = "acpu_l2_aux";
+>>> -	};
+>>> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+>>> new file mode 100644
+>>> index 000000000000..7eb852be02c1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+>>> @@ -0,0 +1,69 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/arm/msm/qcom,kpss-gcc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Krait Processor Sub-system (KPSS) Global Clock Controller (GCC)
+>>> +
+>>> +maintainers:
+>>> +  - Ansuel Smith <ansuelsmth@gmail.com>
+>>> +
+>>> +description: |
+>>> +  Krait Processor Sub-system (KPSS) Global Clock Controller (GCC). Used
+>>> +  to control L2 mux (in the current implementation).
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - qcom,kpss-gcc-ipq8064
+>>> +          - qcom,kpss-gcc-apq8064
+>>> +          - qcom,kpss-gcc-msm8974
+>>> +          - qcom,kpss-gcc-msm8960
+>>> +      - const: qcom,kpss-gcc
+>>> +      - const: syscon
+>>
+>> There was no syscon here before. This is not explained in commit msg or
+>> patch history, while I asked to document explicitly any deviation from
+>> the conversion.
+>>
+>> This is not how the process works. You keep making silent/hidden changes
+>> to the bindings and to the patch submission process. It's difficult to
+>> review and it is even more difficult to trust you that you implement
+>> what we ask for. You keep resending versions of the patchset the same
+>> day (two versions yesterday, shortly after another one) which does not
+>> give time to react and review. Plus then you hide some more changes to
+>> regular conversion without explaining them.
+>>
+>> NAK. It's really bad process. :(
+>>
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> The thing is that i'm trying to fix all the mess of years of keeping bad
+> Documentation and having dts that never followed Documentation. It's
+> really nothing silent/hidden. You add review tag to a patch? That won't
+> change. The bot alert me of some bugs? I push another revision with the
+> bug fixed. 
 
-Existing device-tree support is kept and a fwnode_of_reset_xlate()
-function has been added to translate fwnode reference args to a
-device-tree spec for xlate function.
+It does not necessarily mean that bindings are bad and such changes
+should be documented.
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
----
- drivers/reset/core.c             | 91 ++++++++++++++++++++++++--------
- include/linux/reset-controller.h | 14 ++++-
- include/linux/reset.h            | 14 +++++
- 3 files changed, 96 insertions(+), 23 deletions(-)
+> (I understand I should not send that much revision in the
+> same day but still considering the slow process of reviewing the c code,
+> I prefer to keep the Documentation part correct and ready)
 
-diff --git a/drivers/reset/core.c b/drivers/reset/core.c
-index 61e688882643..f014da03b7c1 100644
---- a/drivers/reset/core.c
-+++ b/drivers/reset/core.c
-@@ -4,6 +4,7 @@
-  *
-  * Copyright 2013 Philipp Zabel, Pengutronix
-  */
-+#include <linux/acpi.h>
- #include <linux/atomic.h>
- #include <linux/device.h>
- #include <linux/err.h>
-@@ -70,26 +71,49 @@ static const char *rcdev_name(struct reset_controller_dev *rcdev)
- 	if (rcdev->of_node)
- 		return rcdev->of_node->full_name;
- 
-+	if (rcdev->fwnode)
-+		return fwnode_get_name(rcdev->fwnode);
-+
- 	return NULL;
- }
- 
- /**
-- * of_reset_simple_xlate - translate reset_spec to the reset line number
-+ * fwnode_reset_simple_xlate - translate reset_spec to the reset line number
-  * @rcdev: a pointer to the reset controller device
-- * @reset_spec: reset line specifier as found in the device tree
-+ * @rargs: fwnode reset line specifier
-  *
-- * This static translation function is used by default if of_xlate in
-+ * This static translation function is used by default if fwnode_xlate in
-  * :c:type:`reset_controller_dev` is not set. It is useful for all reset
-  * controllers with 1:1 mapping, where reset lines can be indexed by number
-  * without gaps.
-  */
--static int of_reset_simple_xlate(struct reset_controller_dev *rcdev,
--				 const struct of_phandle_args *reset_spec)
-+static int fwnode_reset_simple_xlate(struct reset_controller_dev *rcdev,
-+				     const struct fwnode_reference_args *rargs)
- {
--	if (reset_spec->args[0] >= rcdev->nr_resets)
-+	if (rargs->args[0] >= rcdev->nr_resets)
- 		return -EINVAL;
- 
--	return reset_spec->args[0];
-+	return rargs->args[0];
-+}
-+
-+/**
-+ * fwnode_of_reset_xlate - convert fwnode reference args for of_xlate call
-+ * @rcdev: a pointer to the reset controller device
-+ * @rargs: fwnode reset line specifier
-+ *
-+ * This static translation function is used by default for fwnode_xlate if
-+ * of_xlate in * :c:type:`reset_controller_dev` is set. It allows to keep
-+ * compatibility with device-tree compatible reset drivers by converting the
-+ * fwnode_reference_args to of_phandle_args and calling of_xlate.
-+ */
-+static int fwnode_of_reset_xlate(struct reset_controller_dev *rcdev,
-+				 const struct fwnode_reference_args *rargs)
-+{
-+	struct of_phandle_args of_args;
-+
-+	of_phandle_args_from_fwnode_reference_args(&of_args, rargs);
-+
-+	return rcdev->of_xlate(rcdev, &of_args);
- }
- 
- /**
-@@ -98,9 +122,21 @@ static int of_reset_simple_xlate(struct reset_controller_dev *rcdev,
-  */
- int reset_controller_register(struct reset_controller_dev *rcdev)
- {
--	if (!rcdev->of_xlate) {
--		rcdev->of_reset_n_cells = 1;
--		rcdev->of_xlate = of_reset_simple_xlate;
-+	if (!rcdev->fwnode) {
-+		rcdev->fwnode = of_fwnode_handle(rcdev->of_node);
-+	} else {
-+		if (is_acpi_node(rcdev->fwnode))
-+			return -EINVAL;
-+	}
-+
-+	if (rcdev->of_xlate) {
-+		rcdev->fwnode_xlate = fwnode_of_reset_xlate;
-+		rcdev->fwnode_reset_n_cells = rcdev->of_reset_n_cells;
-+	}
-+
-+	if (!rcdev->fwnode_xlate) {
-+		rcdev->fwnode_reset_n_cells = 1;
-+		rcdev->fwnode_xlate = fwnode_reset_simple_xlate;
- 	}
- 
- 	INIT_LIST_HEAD(&rcdev->reset_control_head);
-@@ -810,29 +846,28 @@ static void __reset_control_put_internal(struct reset_control *rstc)
- }
- 
- struct reset_control *
--__of_reset_control_get(struct device_node *node, const char *id, int index,
--		       bool shared, bool optional, bool acquired)
-+__fwnode_reset_control_get(struct fwnode_handle *fwnode, const char *id,
-+			   int index, bool shared, bool optional, bool acquired)
- {
- 	struct reset_control *rstc;
- 	struct reset_controller_dev *r, *rcdev;
--	struct of_phandle_args args;
-+	struct fwnode_reference_args args;
- 	int rstc_id;
- 	int ret;
- 
--	if (!node)
-+	if (!fwnode || is_acpi_node(fwnode))
- 		return ERR_PTR(-EINVAL);
- 
- 	if (id) {
--		index = of_property_match_string(node,
--						 "reset-names", id);
-+		index = fwnode_property_match_string(fwnode, "reset-names", id);
- 		if (index == -EILSEQ)
- 			return ERR_PTR(index);
- 		if (index < 0)
- 			return optional ? NULL : ERR_PTR(-ENOENT);
- 	}
- 
--	ret = of_parse_phandle_with_args(node, "resets", "#reset-cells",
--					 index, &args);
-+	ret = fwnode_property_get_reference_args(fwnode, "resets", "#reset-cells",
-+						 0, index, &args);
- 	if (ret == -EINVAL)
- 		return ERR_PTR(ret);
- 	if (ret)
-@@ -841,7 +876,7 @@ __of_reset_control_get(struct device_node *node, const char *id, int index,
- 	mutex_lock(&reset_list_mutex);
- 	rcdev = NULL;
- 	list_for_each_entry(r, &reset_controller_list, list) {
--		if (args.np == r->of_node) {
-+		if (args.fwnode == r->fwnode) {
- 			rcdev = r;
- 			break;
- 		}
-@@ -852,12 +887,12 @@ __of_reset_control_get(struct device_node *node, const char *id, int index,
- 		goto out;
- 	}
- 
--	if (WARN_ON(args.args_count != rcdev->of_reset_n_cells)) {
-+	if (WARN_ON(args.nargs != rcdev->fwnode_reset_n_cells)) {
- 		rstc = ERR_PTR(-EINVAL);
- 		goto out;
- 	}
- 
--	rstc_id = rcdev->of_xlate(rcdev, &args);
-+	rstc_id = rcdev->fwnode_xlate(rcdev, &args);
- 	if (rstc_id < 0) {
- 		rstc = ERR_PTR(rstc_id);
- 		goto out;
-@@ -868,10 +903,19 @@ __of_reset_control_get(struct device_node *node, const char *id, int index,
- 
- out:
- 	mutex_unlock(&reset_list_mutex);
--	of_node_put(args.np);
-+	fwnode_handle_put(args.fwnode);
- 
- 	return rstc;
- }
-+EXPORT_SYMBOL_GPL(__fwnode_reset_control_get);
-+
-+struct reset_control *
-+__of_reset_control_get(struct device_node *node, const char *id, int index,
-+		       bool shared, bool optional, bool acquired)
-+{
-+	return __fwnode_reset_control_get(of_fwnode_handle(node), id, index,
-+					  shared, optional, acquired);
-+}
- EXPORT_SYMBOL_GPL(__of_reset_control_get);
- 
- static struct reset_controller_dev *
-@@ -945,6 +989,9 @@ struct reset_control *__reset_control_get(struct device *dev, const char *id,
- 	if (dev->of_node)
- 		return __of_reset_control_get(dev->of_node, id, index, shared,
- 					      optional, acquired);
-+	if (dev_fwnode(dev))
-+		return __fwnode_reset_control_get(dev_fwnode(dev), id, index,
-+						  shared, optional, acquired);
- 
- 	return __reset_control_get_from_lookup(dev, id, shared, optional,
- 					       acquired);
-diff --git a/include/linux/reset-controller.h b/include/linux/reset-controller.h
-index 0fa4f60e1186..292552003d11 100644
---- a/include/linux/reset-controller.h
-+++ b/include/linux/reset-controller.h
-@@ -24,7 +24,9 @@ struct reset_control_ops {
- 
- struct module;
- struct device_node;
-+struct fwnode_handle;
- struct of_phandle_args;
-+struct fwnode_reference_args;
- 
- /**
-  * struct reset_control_lookup - represents a single lookup entry
-@@ -60,10 +62,16 @@ struct reset_control_lookup {
-  * @reset_control_head: head of internal list of requested reset controls
-  * @dev: corresponding driver model device struct
-  * @of_node: corresponding device tree node as phandle target
-+ * @fwnode: corresponding firmware node as reference target
-  * @of_reset_n_cells: number of cells in reset line specifiers
-  * @of_xlate: translation function to translate from specifier as found in the
-  *            device tree to id as given to the reset control ops, defaults
-- *            to :c:func:`of_reset_simple_xlate`.
-+ *            to :c:func:`fwnode_of_reset_xlate`.
-+ * @fwnode_reset_n_cells: number of cells in reset line reference specifiers
-+ * @fwnode_xlate: translation function to translate from reference specifier as
-+ *                found in the firmware node description to id as given to the
-+ *                reset control ops, defaults to
-+ *                :c:func:`fwnode_reset_simple_xlate`.
-  * @nr_resets: number of reset controls in this reset controller device
-  */
- struct reset_controller_dev {
-@@ -73,9 +81,13 @@ struct reset_controller_dev {
- 	struct list_head reset_control_head;
- 	struct device *dev;
- 	struct device_node *of_node;
-+	struct fwnode_handle *fwnode;
- 	int of_reset_n_cells;
- 	int (*of_xlate)(struct reset_controller_dev *rcdev,
- 			const struct of_phandle_args *reset_spec);
-+	int fwnode_reset_n_cells;
-+	int (*fwnode_xlate)(struct reset_controller_dev *rcdev,
-+			    const struct fwnode_reference_args *reset_spec);
- 	unsigned int nr_resets;
- };
- 
-diff --git a/include/linux/reset.h b/include/linux/reset.h
-index 8a21b5756c3e..0f0fe9408180 100644
---- a/include/linux/reset.h
-+++ b/include/linux/reset.h
-@@ -8,6 +8,7 @@
- 
- struct device;
- struct device_node;
-+struct fwnode_handle;
- struct reset_control;
- 
- /**
-@@ -41,6 +42,10 @@ int reset_control_bulk_deassert(int num_rstcs, struct reset_control_bulk_data *r
- int reset_control_bulk_acquire(int num_rstcs, struct reset_control_bulk_data *rstcs);
- void reset_control_bulk_release(int num_rstcs, struct reset_control_bulk_data *rstcs);
- 
-+struct reset_control *__fwnode_reset_control_get(struct fwnode_handle *node,
-+						 const char *id, int index,
-+						 bool shared, bool optional,
-+						 bool acquired);
- struct reset_control *__of_reset_control_get(struct device_node *node,
- 				     const char *id, int index, bool shared,
- 				     bool optional, bool acquired);
-@@ -114,6 +119,15 @@ static inline int __device_reset(struct device *dev, bool optional)
- 	return optional ? 0 : -ENOTSUPP;
- }
- 
-+static inline
-+struct reset_control *__fwnode_reset_control_get(struct fwnode_handle *node,
-+						 const char *id, int index,
-+						 bool shared, bool optional,
-+						 bool acquired)
-+{
-+	return optional ? NULL : ERR_PTR(-ENOTSUPP);
-+}
-+
- static inline struct reset_control *__of_reset_control_get(
- 					struct device_node *node,
- 					const char *id, int index, bool shared,
--- 
-2.34.1
+Rob also pointed to this - sending two versions of this huge patchset
+the same day is way too much.
 
+> 
+> If you notice the changes across the different patch, it's very minimal
+> and 99% of it has not changed. Nothing silent just me addressing warning
+> from the bot. About the trust issue...
+> Is it really a syscon addition that bad? Again the original
+> Documentation was just bad so why should we care to have a 100% 1:1
+> conversion if it should have been not accepted in the first place.
+
+Does not have to be 100% but deviations should be either expected or
+explained. Bindings are used also outside of Linux kernel.
+
+> The addition of this new syscon is because in the current dtsi it's
+> there and I assume it's there as this is a global accessor and probably
+> other driver would access the same regs (so it's also a syscon)
+
+If these are assumptions, then they need to be checked. If these were
+new bindings, we would discuss/check the need of syscon. Now we do not
+question existing properties, because they were accepted. But syscon
+compatible was not accepted, so putting it here requires our acknowledgment.
+
+The bindings are probably pure junk, so this is not merely a conversion
+how you wrote in commit msg. This is rework of the bindings. Don't hide
+rework under "conversion". Conversion is TXT->YAML without any changes...
+
+I asked about this before and the only part you added to commit msg was
+"clock-cells". And now I see syscon - so isn't it a bit surprising?
+
+> 
+> I understand the complain about putting too much revision... But NAK
+> this cause I'm trying to fix all this mess just because more and more
+> problems are coming up and I'm trying to fix them. It's a bit sad.
+
+Why you cannot test your changes and fix them all before sending sixth
+version? Why the bot has to test your code, not you?
+
+> Hope you can understand that it's not my interest to push silent changes
+> or other nasty stuff. It's just me fixing the mess and trying to at
+> least have the Documentation part ready while I wait for c code review.
+Best regards,
+Krzysztof
