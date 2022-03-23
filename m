@@ -2,118 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F22C4E580C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:02:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFFC4E5819
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:07:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343929AbiCWSEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 14:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34600 "EHLO
+        id S231592AbiCWSIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 14:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343944AbiCWSEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:04:13 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677E9888F9
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:43 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id x2so2272080plm.7
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=orl2DqP7YtUtU1F53uUuvJSoGofFC8TzKIF9FwAKJ10=;
-        b=kWDLbEhWVULPKdQdIk5ef3SAbPmlhN8ZuF5/xMSMXITbMq+U6hdRBoRwiHqUjvzkGv
-         ieN7g+gdE+0/BN8NlMV4Ud61oXfK1pEJPLQGG0ELZaeOKeOPUJfouRIQrOyny3e5HYBZ
-         RM5/b2VZZyFrk8zUO4LCevFjmQRMgvTIMOxR2cn+nfDJ969L86STNg5kkrWE4W6dbXv+
-         KIn72EmGqF8BdASAOeaqWICi8jRK4vLPMW+jPscF5vaXdxbUxEtWCJ/sPc6OqnLo0h64
-         IXF9AJwWjgBuTMtzdsuUPPb/Mf7MbacrxiQjUh5zCc192fsuHk0ufabdUCEsaaKVjWM5
-         CYWg==
+        with ESMTP id S231695AbiCWSIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:08:50 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8526888E4;
+        Wed, 23 Mar 2022 11:07:20 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id y3-20020a056830070300b005cd9c4d03feso1619301ots.3;
+        Wed, 23 Mar 2022 11:07:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=orl2DqP7YtUtU1F53uUuvJSoGofFC8TzKIF9FwAKJ10=;
-        b=SqT2KnjjWnLDdElpcbfhp1fURZnzhSNKitS7ExpZ3DFp99AEtggD+IUgmHTLdYmjBf
-         66Xl+dHqcg+1PirsSHzunX09Vzk7PzjnwYumh6gnn013FwUJLcaQWpme6LVjgDYLVS9a
-         oHUQ2LzFkO2+rwr6Rpty8G+rMU2OI12bSr+bS3vOFIP9eQNYJBZzsX6lzftS0tbSjcUF
-         FV75yse8ubABU2Yz/SsS4giFFzy0opTS+HlT3HvkbkuZWiiecEN1U3B1CHQNaV6Zr1j2
-         cIqhFeozNmyJDuIZsRvMBYmgpc2Rf3LTAAdFFxuBdfE0BTu+pERA+ekCIo4bT/fMDGUb
-         i2sw==
-X-Gm-Message-State: AOAM5317s0X+u9sUYwNf3JvNHep+/8TaPiYdSnrR9wRQfyPj48qYXoIQ
-        Dpl/qFARf4dcpr5AnHAcV24P0Q==
-X-Google-Smtp-Source: ABdhPJyBxJsYn93AHwvkMAs4VeT7lQvIzVS/H5iMNRXoLppcZ+AZCPHumZn57ug/x0xj8nCxaHNn+A==
-X-Received: by 2002:a17:90b:3904:b0:1c6:c1f8:cbd8 with SMTP id ob4-20020a17090b390400b001c6c1f8cbd8mr1013884pjb.53.1648058562916;
-        Wed, 23 Mar 2022 11:02:42 -0700 (PDT)
-Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id l19-20020a17090aec1300b001c7a31ba88csm1265870pjy.1.2022.03.23.11.02.39
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2mGmOPHJ7+RA73j6bZcuSzfgGUyVcCTQ8/kiyLCy7vc=;
+        b=xXgzPr4mXSsr0XK6hk4yqOFY8quEpyAI8X5Y9qdK0MsNz/lfncJ0knkhCniEZ8VMLI
+         sNGhhWEiRI2RgcaNATx8Djc36lKD2Lar6N3U+hrJHtEcEpWO+xa2qU5pozEZtu591bRT
+         Wkdw+V49g2KX7/+c3gt2KjnjpwhwdNqNdPTb6HNt8z0Zinp4jYYCxAMB52NeSUAXuwKX
+         EiUedDCqy7iANfqgJYwmPrPjKu/RO11fkP08saMnJqOBXuXRJyIrLHnFkRJL6O7EkdQi
+         YBHHSQtO8PPYpV6zEt5HjxoGFY8GM/II5JCOa6miiQ2x8sMqDfshlPIzG4GTijE8Doks
+         wiJA==
+X-Gm-Message-State: AOAM53226T/3YTO2+u7x9E2tD06uCzOpezERv8asmAPe9ZGem+caPvPU
+        XkL0hCLb91ee7tC+aeVFeA==
+X-Google-Smtp-Source: ABdhPJw/EhNofizCEXIXPzxmAs3l3IBLf0YzIPbigyV/R+R/dgdStWja2bBqluNpigjz4mTlFeMvwg==
+X-Received: by 2002:a9d:7842:0:b0:5b2:4dee:79c2 with SMTP id c2-20020a9d7842000000b005b24dee79c2mr532888otm.53.1648058840117;
+        Wed, 23 Mar 2022 11:07:20 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 60-20020a9d0642000000b005b22a82458csm283573otn.55.2022.03.23.11.07.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 11:02:42 -0700 (PDT)
-From:   Andy Chiu <andy.chiu@sifive.com>
-To:     radhey.shyam.pandey@xilinx.com, robert.hancock@calian.com,
-        michal.simek@xilinx.com
-Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, linux@armlinux.org.uk, andrew@lunn.ch,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, Andy Chiu <andy.chiu@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>
-Subject: [PATCH v5 net 4/4] net: axiemac: use a phandle to reference pcs_phy
-Date:   Thu, 24 Mar 2022 02:00:22 +0800
-Message-Id: <20220323180022.864567-5-andy.chiu@sifive.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220323180022.864567-1-andy.chiu@sifive.com>
-References: <20220323180022.864567-1-andy.chiu@sifive.com>
+        Wed, 23 Mar 2022 11:07:19 -0700 (PDT)
+Received: (nullmailer pid 181456 invoked by uid 1000);
+        Wed, 23 Mar 2022 18:07:18 -0000
+Date:   Wed, 23 Mar 2022 13:07:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vincent Shih <vincent.sunplus@gmail.com>
+Cc:     gregkh@linuxfoundation.org, stern@rowland.harvard.edu,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+Subject: Re: [PATCH v1 0/2] Add USB HOST OHCI driver for Sunplus SP7021 SoC
+Message-ID: <Yjth1mAtn/hX2Xvx@robh.at.kernel.org>
+References: <1647235924-15572-1-git-send-email-vincent.sunplus@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1647235924-15572-1-git-send-email-vincent.sunplus@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some SGMII use cases where both a fixed link external PHY and the
-internal PCS/PMA PHY need to be configured, we should explicitly use a
-phandle "pcs-phy" to get the reference to the PCS/PMA PHY. Otherwise, the
-driver would use "phy-handle" in the DT as the reference to both the
-external and the internal PCS/PMA PHY.
+On Mon, Mar 14, 2022 at 01:32:02PM +0800, Vincent Shih wrote:
+> This is a patch series for USB HOST OHCI driver for Sunplus SP7021 SoC.
+> 
+> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
+> etc.) into a single chip. It is designed for industrial control.
 
-In other cases where the core is connected to a SFP cage, we could still
-point phy-handle to the intenal PCS/PMA PHY, and let the driver connect
-to the SFP module, if exist, via phylink.
+Looks to me like the generic-ohci binding and driver should work for 
+this?
 
-Fixes: 1a02556086fc (net: axienet: Properly handle PCS/PMA PHY for 1000BaseX mode)
-Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
-Reviewed-by: Robert Hancock <robert.hancock@calian.com>
----
- drivers/net/ethernet/xilinx/xilinx_axienet_main.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-index a4783f95b979..6749d0eebc13 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-@@ -2067,9 +2067,16 @@ static int axienet_probe(struct platform_device *pdev)
- 
- 	if (lp->phy_mode == PHY_INTERFACE_MODE_SGMII ||
- 	    lp->phy_mode == PHY_INTERFACE_MODE_1000BASEX) {
--		np = of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
-+		np = of_parse_phandle(pdev->dev.of_node, "pcs-handle", 0);
- 		if (!np) {
--			dev_err(&pdev->dev, "phy-handle required for 1000BaseX/SGMII\n");
-+			/* Deprecated: Always use "pcs-handle" for pcs_phy.
-+			 * Falling back to "phy-handle" here is only for
-+			 * backward compatibility with old device trees.
-+			 */
-+			np = of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
-+		}
-+		if (!np) {
-+			dev_err(&pdev->dev, "pcs-handle (preferred) or phy-handle required for 1000BaseX/SGMII\n");
- 			ret = -EINVAL;
- 			goto cleanup_mdio;
- 		}
--- 
-2.34.1
-
+Rob
