@@ -2,82 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C7514E55CE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 16:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EF204E55D9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:00:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245314AbiCWQAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:00:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46162 "EHLO
+        id S245348AbiCWQCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 12:02:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231529AbiCWQAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:00:07 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E419F76669;
-        Wed, 23 Mar 2022 08:58:33 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-de3f2a19c8so2126222fac.1;
-        Wed, 23 Mar 2022 08:58:33 -0700 (PDT)
+        with ESMTP id S229771AbiCWQCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:02:10 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD81B7B113;
+        Wed, 23 Mar 2022 09:00:40 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id e25-20020a0568301e5900b005b236d5d74fso1382612otj.0;
+        Wed, 23 Mar 2022 09:00:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NG0MaL/m0Ugiyb4lvw9XfPJHFjK/vQPjCIXYdlzKaG8=;
-        b=AF/l746Uka3aY2pP60be4279oCgCtNT0jaqz8NpjRWMOILMGisN/Ug6d1MFGsSNjBu
-         4bqb0K2oY7LUIs7JSFA43qJEtoeO+HDHicwMwC0SkGoKjY9RtYFyyaAn3dJlougRAmLP
-         Lc0a+an+TRPh/EUMw5foGPGFySH62WTFnZpevYSWzTBQ6fCqnguVwmFsKZg4gdfiWyDE
-         /qB372d/z6X3W63/R7Xoh3iz+C3rHLLowMcF/bCJ+3PfxX9JCN1QBMKJ9Mj9w/ATLzim
-         hFfIMnH1P7oYmBBgQUuEomw/dg6wdwkSwiqndl6aNkdmoB9YE/iJo4Wf0EQVnGeAIQWu
-         s0Zg==
-X-Gm-Message-State: AOAM532UVM2WvHahRSykl2Xz2Y9j1INi8lnp3ieNApo9CXnjuh7b6CwS
-        z6n/jZ1EYg728JjidTfd8A==
-X-Google-Smtp-Source: ABdhPJzwB2nctudJI6BxharZdhijdzegpU5OW2/Oni8BU/n/uPgULwdatKy2CzcIlrvGMj/w9CBM2w==
-X-Received: by 2002:a05:6870:d254:b0:db:12b5:da3 with SMTP id h20-20020a056870d25400b000db12b50da3mr4592133oac.211.1648051113213;
-        Wed, 23 Mar 2022 08:58:33 -0700 (PDT)
+        bh=ItgsvKknDgPPRT6QdI3gqczq0a2rgAWLLRXRr1H1X0I=;
+        b=EN+581kvdWJdo0HTYoEqKqg0j4fi1iRJtDxmNg1dsVfDc2ELvkbbp+0O4YSbfSKssO
+         u67MAL9piTFJmqdviQpKh2o+N5xsDLSVpiTjTUmdCRF5xuV002q1WAs1tCaft4K8oGmW
+         yHlcciJmAhEEeA9UCrGrOSZBJi7wh4rdsbtzOoWg7MJ+yZaw97ghbjPwQE4XSWhBFri5
+         U8+F6RU8GjcTokIOXfiiPskJxU+UmJF8Vs86i6XcTfs58KNDkKIA/ULPYSiek9aokfS6
+         ZhEcaVPo5A9zwC+OpQMXBfzCCvRXZe10KPtXepFMbgwYmNCDlbJ6Zrpq/F6vZ+SOMFfU
+         /PMg==
+X-Gm-Message-State: AOAM531hMpmaKAFxnLdZiPvZT/qAlkQTmsXDvYZBnIvf7krReCpd5biw
+        kmpLo7rxZwcZcI4SkFBdaA==
+X-Google-Smtp-Source: ABdhPJwm8hy5dG6f7GV8HQtgTKu1aHPTQAXkVnJ9GS4vgt8Kk9tMCcQ7gxv1fc4VnI6Fpkf3vS8GPQ==
+X-Received: by 2002:a9d:4798:0:b0:5b2:3791:beb7 with SMTP id b24-20020a9d4798000000b005b23791beb7mr230153otf.123.1648051240121;
+        Wed, 23 Mar 2022 09:00:40 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05680811d000b002d72ec3a921sm104610oiv.21.2022.03.23.08.58.31
+        by smtp.gmail.com with ESMTPSA id t15-20020a056808158f00b002e331356c87sm91459oiw.39.2022.03.23.09.00.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 08:58:32 -0700 (PDT)
-Received: (nullmailer pid 4180667 invoked by uid 1000);
-        Wed, 23 Mar 2022 15:58:31 -0000
-Date:   Wed, 23 Mar 2022 10:58:31 -0500
+        Wed, 23 Mar 2022 09:00:39 -0700 (PDT)
+Received: (nullmailer pid 4184267 invoked by uid 1000);
+        Wed, 23 Mar 2022 16:00:38 -0000
+Date:   Wed, 23 Mar 2022 11:00:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Hammer Hsieh <hammerh0314@gmail.com>
-Cc:     hammer.hsieh@sunplus.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        wells.lu@sunplus.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: pwm: Add bindings doc for Sunplus
- SoC SP7021 PWM Driver
-Message-ID: <YjtDpyGp8pXYcqVH@robh.at.kernel.org>
-References: <1647945781-10191-1-git-send-email-hammerh0314@gmail.com>
- <1647945781-10191-2-git-send-email-hammerh0314@gmail.com>
+To:     michael.srba@seznam.cz
+Cc:     devicetree@vger.kernel.org,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Message-ID: <YjtEJniv5LdFk7rY@robh.at.kernel.org>
+References: <20220323121550.16096-1-michael.srba@seznam.cz>
+ <20220323121550.16096-2-michael.srba@seznam.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1647945781-10191-2-git-send-email-hammerh0314@gmail.com>
+In-Reply-To: <20220323121550.16096-2-michael.srba@seznam.cz>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Mar 2022 18:43:00 +0800, Hammer Hsieh wrote:
-> Add bindings doc for Sunplus SoC SP7021 PWM Driver
+On Wed, 23 Mar 2022 13:15:49 +0100, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
+> ICM-20608-D differs from the other ICM-20608 variants by having
+> a DMP (Digital Motion Processor) core tacked on.
+> Despite having a different WHOAMI register, this variant is
+> completely interchangeable with the other ICM-20608 variants
+> by simply pretending the DMP core doesn't exist.
+> 
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 > ---
-> Changes in v4:
->  - no change
-> 
->  .../bindings/pwm/sunplus,sp7021-pwm.yaml           | 42 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 +++
->  2 files changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/sunplus,sp7021-pwm.yaml
+> changelog:
+>  - v2: require specifying "invensense,icm20608" as a fallback
+>        compatible
+>  - v3: fix indentation
+> ---
+>  .../bindings/iio/imu/invensense,mpu6050.yaml  | 34 +++++++++++--------
+>  1 file changed, 19 insertions(+), 15 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
