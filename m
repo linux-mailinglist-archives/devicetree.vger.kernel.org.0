@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D1994E5450
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CF704E545D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:38:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239698AbiCWOhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 10:37:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57436 "EHLO
+        id S244795AbiCWOjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 10:39:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232141AbiCWOho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:37:44 -0400
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1857CDE9;
-        Wed, 23 Mar 2022 07:36:13 -0700 (PDT)
-Received: by mail-ej1-f42.google.com with SMTP id a8so3230373ejc.8;
-        Wed, 23 Mar 2022 07:36:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=9+oziuct3CAitsgTUnYQuBcd4UOBzHktk8xbsb7d1O0=;
-        b=csfduY7C3HFsG6cOIOBIF/04NcFFhHn7PVDai8USAWQ8eCyWUl8x5QlxgrDHFqrr1r
-         bqqLE5LQZCKzGPRt8oerl3BhuKXeOz83BAzfKHMUUto6VZng8Ulc3ohOZk6FUSalIDbq
-         qi429mLHHT1BPRXzBHDGwtbQOYGv+xNwt1adawInJQ+YMMA77lLafjdfSCqlpN0V2JOG
-         jM586ggvt7SDFHgNdAsdHw8jV9LeTw+wlr2JIFspH+qltq+EZ/XDVkryqDoU7AretStK
-         ku7cTqARuPT+0UWWfXkju5dTwf4aZwoA0DZbN0JtaU1q2Gcdq1MxO4VLoZBDqkgMVuB+
-         YMkg==
-X-Gm-Message-State: AOAM533WcO/vYkYWRHX0aX4a5ADoA7Vpq5wq9P1lspeSKW9Lr99O6Ls5
-        kz3ANq9OQCTUMtpQo/TUUGg=
-X-Google-Smtp-Source: ABdhPJzXpF4l4uLsYmzOQ6w0q6cxu8lWiHaNZfTXr9D1cTaf8TzlD1JCVy1aSnese2vWl/U02eURLA==
-X-Received: by 2002:a17:906:7307:b0:6da:92db:c78f with SMTP id di7-20020a170906730700b006da92dbc78fmr250261ejc.35.1648046172103;
-        Wed, 23 Mar 2022 07:36:12 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id z12-20020a17090674cc00b006df9afdda91sm13721ejl.185.2022.03.23.07.36.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 07:36:11 -0700 (PDT)
-Message-ID: <aa2900df-2e4f-2107-7332-48484dcb44b2@kernel.org>
-Date:   Wed, 23 Mar 2022 15:36:10 +0100
+        with ESMTP id S244848AbiCWOjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:39:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D810327A;
+        Wed, 23 Mar 2022 07:37:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 03D3AB81F52;
+        Wed, 23 Mar 2022 14:37:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7040C340F2;
+        Wed, 23 Mar 2022 14:37:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648046276;
+        bh=y7kPB+6dz+NTgOxXvHEPt4jVFLvTfCy8QOblukuN19k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mLaezqStUH26yDjyzPofJ8wgZLSXXnrZU8AVSixiSAmQ8ZPvHTO0eWSNP+5+ypecA
+         yY/Dw4v84+t6Wqfi769TVna5IugBGOH7uVbOOsejDS5GmhZjFQ6geh2J43uUt6xSlM
+         Yvny2Zi4mZgEVnqcEVwTpp7oVEaoyizKuxcawWC01viMl0Nny6i+kyk9kdtc+M0YLX
+         K0XVQzZSOdQwFLYdNFHtbpMv/8AuJBqZ2x/C9UFVcRwB2x7xX7dYzHn33i2DRGdjwT
+         T30Q3b6kYF0j/7I0GLzBi7s/5jERngdZXDGGaLE55jKsKsLyDvnR6HSb7w5C3F6XNZ
+         P+pcpwJqUY/TA==
+Received: by mail-ed1-f45.google.com with SMTP id h1so2110839edj.1;
+        Wed, 23 Mar 2022 07:37:56 -0700 (PDT)
+X-Gm-Message-State: AOAM532FCoHsfejmbA8gKKGdsiYN79OiTWKJnsYkLWKvKc6IqT9Paa09
+        oYnkJ2mkN/NyBJxSDepR3k3wCgT+y5AaSjwfUQ==
+X-Google-Smtp-Source: ABdhPJxkYhGJZroqp0K4TQl4kYe/4WvgzJrBtElcSt4uMwnWhsfX/Dqo/ZAYg+WYAz1tvKUP7RuzhTrRC7d46flZT0s=
+X-Received: by 2002:a05:6402:42c6:b0:419:276a:dded with SMTP id
+ i6-20020a05640242c600b00419276addedmr488840edc.2.1648046274998; Wed, 23 Mar
+ 2022 07:37:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 04/14] dt-bindings: clock: Add r9a09g011 CPG Clock
- Definitions
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220321154232.56315-1-phil.edworthy@renesas.com>
- <20220321154232.56315-5-phil.edworthy@renesas.com>
- <b00a4cc8-c8b8-60ab-9891-e6cb44c8bf75@kernel.org>
- <CAMuHMdXFOjuvWiORs_CNt+xgm4QWgDaHvzb0Q0OPibmKP7uhRA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXFOjuvWiORs_CNt+xgm4QWgDaHvzb0Q0OPibmKP7uhRA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220303232350.2591143-1-robh@kernel.org> <Yjl6fP2Bylv6ud8W@google.com>
+In-Reply-To: <Yjl6fP2Bylv6ud8W@google.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 23 Mar 2022 09:37:43 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+5GkEaE9sf5HJMaNQLkZUB_q2Qyv2rzADVD7if1MNvqg@mail.gmail.com>
+Message-ID: <CAL_Jsq+5GkEaE9sf5HJMaNQLkZUB_q2Qyv2rzADVD7if1MNvqg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: mfd: Fix pinctrl node name warnings
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        - <patches@opensource.cirrus.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,44 +70,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2022 15:29, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Wed, Mar 23, 2022 at 11:44 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 21/03/2022 16:42, Phil Edworthy wrote:
->>> Define RZ/V2M (R9A09G011) Clock Pulse Generator core clocks, module clock
->>> outputs (CPG_CLK_ON* registers), and reset definitions (CPG_RST_*
->>> registers) in Section 48.5 ("Register Description") of the RZ/V2M Hardware
->>> User's Manual (Rev. 1.10, Sep. 2021).
->>>
->>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
->>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> 
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/r9a09g011-cpg.h
->>> @@ -0,0 +1,337 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> + *
->>> + * Copyright (C) 2022 Renesas Electronics Corp.
->>> + */
->>> +#ifndef __DT_BINDINGS_CLOCK_R9A09G011_CPG_H__
->>> +#define __DT_BINDINGS_CLOCK_R9A09G011_CPG_H__
->>> +
->>> +#include <dt-bindings/clock/renesas-cpg-mssr.h>
->>
->> Include only headers which you use here. Do you use it directly here?
-> 
-> Technically, it is part of the clock bindings for the SoC.
-> That's why it's included here, and in several other *-cpg-mssr.h files.
-> 
-> So I prefer to keep it that way.
+On Tue, Mar 22, 2022 at 2:28 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Thu, 03 Mar 2022, Rob Herring wrote:
+>
+> > The recent addition pinctrl.yaml in commit c09acbc499e8 ("dt-bindings:
+> > pinctrl: use pinctrl.yaml") resulted in some node name warnings:
+> >
+> > Documentation/devicetree/bindings/mfd/cirrus,lochnagar.example.dt.yaml:=
+ \
+> >  lochnagar-pinctrl: $nodename:0: 'lochnagar-pinctrl' does not match '^(=
+pinctrl|pinmux)(@[0-9a-f]+)?$'
+> > Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml: \
+> >  codec@1a: $nodename:0: 'codec@1a' does not match '^(pinctrl|pinmux)(@[=
+0-9a-f]+)?$'
+> > Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: \
+> >  pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match '=
+^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+> >
+> > Fix the node names to the preferred 'pinctrl'. For cirrus,madera,
+> > nothing from pinctrl.yaml schema is used, so just drop the reference.
+> >
+> > Fixes: c09acbc499e8 ("dt-bindings: pinctrl: use pinctrl.yaml")
+> > Cc: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > v2:
+> >  - Fix lochnagar-pinctrl nodename in example
+> > v3:
+> >  - And fix lochnagar-pinctrl nodename in 'required'. Sigh...
+> > ---
+> >  Documentation/devicetree/bindings/mfd/brcm,cru.yaml         | 4 ++--
+> >  Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml | 6 +++---
+> >  .../devicetree/bindings/pinctrl/cirrus,madera.yaml          | 3 ---
+> >  3 files changed, 5 insertions(+), 8 deletions(-)
+>
+> Requires rebase.  Doesn't presently apply.
 
-Sure, thanks for the explanation. It sill makes header decoupling more
-difficult if ever needed, but it's ok.
+It's already in 5.17.
 
-
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-
-Best regards,
-Krzysztof
+Rob
