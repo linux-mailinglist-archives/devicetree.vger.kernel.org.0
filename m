@@ -2,125 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 290844E53D4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:01:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C6514E53E3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:02:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243062AbiCWOCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 10:02:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57068 "EHLO
+        id S244623AbiCWOEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 10:04:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241736AbiCWOCj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:02:39 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6AE7484E;
-        Wed, 23 Mar 2022 07:01:10 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id p15so3023918ejc.7;
-        Wed, 23 Mar 2022 07:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TCVIhfUSnU8IPSagUHAJ0Zv4n7o7gQntDTvbCX+nFt8=;
-        b=juExcyDTlT2UxKk3zCaBuoiQGJhree5ifHR7oGTRpSsDRiZfWhNHEoZbt2uL1Td94d
-         UgBQB/rsoeFcq09aZyEYqUBXv4ocQJxhTOjHBBpvRSiUyznxb30omlPbg7F22O844Ejr
-         Yv4ihxVXOZrftdmtmeQK6hM9H0KB5mUkphorU2Cnphc7xm7grwbmT7m3lfRZxHqi83HA
-         VRjLZyVoWHwrJSl1x+MrYsHb1QwZelcKyDWXAm/A4ZqH6m0/JNGBotpnpgR8R4vbBthF
-         a76LWrQdQ7vwvcJhNQhpu3aGoufB9zv7NN9uedQxRZ0NSY9B/mSXEGp8BX+qoJ4/q0xR
-         bb0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TCVIhfUSnU8IPSagUHAJ0Zv4n7o7gQntDTvbCX+nFt8=;
-        b=iqBCRxS6V4YpCpQBZJPZul4wa0t9avga/tRoyVw3WCnylvKz+9hLpBPwDuYZPi8oqV
-         YiPcXXnKflsj2GrDrZEiszcmNNERWby5yk8vyvpAd+JZ354friBRpY207dzy32U0WLFn
-         FJ1oN2pmcxZJKfdx8yHqA9kgazyHkKNXeQpYgYigQ5DKwfiSYcOZ9N2H20cEXwrWfgBA
-         XoeIPV4aXIYkJlKd+H9whpfkdy4ta/utWHt5TQxa/otcu2R2QiPxCx6fuLJbxmnjOqB2
-         vfonHU6lvMFuKjsyGs56Ut2eY8u3LbOslI/COUNTjWxRT3Pogi26x6ozrfa/ukjsNjJY
-         PQbw==
-X-Gm-Message-State: AOAM530ZbkdMLbWfqvjZ5ww7sFAg0geRHPlsOBRCmq3rhJtEetlhb11g
-        RivM1hq1J/B2vEFwsseI9UvR/6NEl1r9s5f9K20=
-X-Google-Smtp-Source: ABdhPJyqw2t5SZvLPazfXOr5THRD2EXHKAd2jXnzzMePxhtG4B2gyboCh8jzuJpoks8a2B4rBbdXNqpPs7XxSF/vJi8=
-X-Received: by 2002:a17:906:9e11:b0:6df:a9d8:cbad with SMTP id
- fp17-20020a1709069e1100b006dfa9d8cbadmr115397ejc.32.1648044068495; Wed, 23
- Mar 2022 07:01:08 -0700 (PDT)
+        with ESMTP id S244629AbiCWOEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:04:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE3E17EA23;
+        Wed, 23 Mar 2022 07:02:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CE42616CA;
+        Wed, 23 Mar 2022 14:02:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B26DCC340E9;
+        Wed, 23 Mar 2022 14:02:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648044153;
+        bh=JxYjL1a/RqmPUfkRn2b3Bnz8DtavbdauzsNtNCTAyYA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oieN1aCzKvsVfn12YfFRhONaJvev2wuG5HlGd48E/hkTVcyxN5y4by+9isp6uB0qa
+         sU3XvLHPErb8dH3TQrsNCPpruV8PjYxtyAbt9olbXZ8oIoYW/rf/e3qvuP302tyfiT
+         MCwg7dTNW0kcum4698cWuAtfSJxWUh0F4fcZ8H+OYjGwyg7kz30NgFvfhHea+Tb9v5
+         kUUP9r9rcSaCgpMbOnaFsA4/RQgYda/xERiZHXioLj476QSc+no9l93wDFvXjxdgAi
+         AkSvfY64eQbYNk/Y11SszxuRpk7WtL/NrM+nMyJcb51oERc4JuRhG2bVMkXx2w0e/4
+         yufXW/tfwlJxg==
+Received: by mail-ej1-f50.google.com with SMTP id o10so3076315ejd.1;
+        Wed, 23 Mar 2022 07:02:33 -0700 (PDT)
+X-Gm-Message-State: AOAM532KESkBXdubdWibucwVD2CGwBDs2eQq6b9Ro4n8wQ4fmi0VmTaT
+        4UbZxdJUgVGFiDwftZcvwZjNCR/cjhEzov4ueQ==
+X-Google-Smtp-Source: ABdhPJx2TFWrM7icRG1WmcNLDv99GAOvmhqZlzEVH4q/kNWKTlIGOLxQ9V863+3ejraj2Zqd64uKHsl0Oob/a0vBacY=
+X-Received: by 2002:a17:906:d204:b0:6d6:df17:835e with SMTP id
+ w4-20020a170906d20400b006d6df17835emr119400ejz.20.1648044145846; Wed, 23 Mar
+ 2022 07:02:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220323134019.3796178-1-aford173@gmail.com> <35f58894-ed6d-0af0-e483-7a161ad6625a@kernel.org>
-In-Reply-To: <35f58894-ed6d-0af0-e483-7a161ad6625a@kernel.org>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 23 Mar 2022 09:00:57 -0500
-Message-ID: <CAHCN7x+RLAFnES8b3UMoc6n69ZVSFGOmAZyMeeY1g3aoiDNbZg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: imx-esdhc: Change imx8mn and imx8mp
- compatible fallback
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220302001410.2264039-1-dmitry.baryshkov@linaro.org> <CAL_Jsq+TwPpZSZa3Jq-qYg0kUpb2ord5bWKVAwqsdVP40RKFuQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+TwPpZSZa3Jq-qYg0kUpb2ord5bWKVAwqsdVP40RKFuQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 23 Mar 2022 09:02:13 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+dQDBoWST6+HfhsQjT4=Gks2F72S7iPyHzapp2eEdwfA@mail.gmail.com>
+Message-ID: <CAL_Jsq+dQDBoWST6+HfhsQjT4=Gks2F72S7iPyHzapp2eEdwfA@mail.gmail.com>
+Subject: Re: [RESEND PATCH] dt-bindings: display/msm: add missing brace in dpu-qcm2290.yaml
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Loic Poulain <loic.poulain@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 8:56 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, Mar 8, 2022 at 1:36 PM Rob Herring <robh+dt@kernel.org> wrote:
 >
-> On 23/03/2022 14:40, Adam Ford wrote:
-> > The SDHC controller in the imx8mn and imx8mp have the same controller
-> > as the imx8mm which is slightly different than that of the imx7d.
-> > Using the fallback of the imx8mm enables the controllers to support
-> > HS400-ES which is not available on the imx7d.
+> On Tue, Mar 1, 2022 at 6:14 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
 > >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > Add missing brace in dpu-qcm2290.yaml. While we are at it, also fix
+> > indentation for another brace, so it matches the corresponding line.
 > >
-> > diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > index 7dbbcae9485c..d6ea73d76bdd 100644
-> > --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> > @@ -39,14 +39,14 @@ properties:
-> >        - items:
-> >            - enum:
-> >                - fsl,imx8mm-usdhc
+> > Reported-by: Rob Herring <robh@kernel.org>
+> > Cc: Loic Poulain <loic.poulain@linaro.org>
+> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> > Didn't include freedreno@ in the first email, so resending.
+> > ---
+> >  Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> Your change looks reasonable, but why imx8mm is compatible with imx7d?
+> Now that the example actually builds, we get just schema warnings:
+>
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dt.yaml:
+> mdss@5e00000: compatible: ['qcom,qcm2290-mdss', 'qcom,mdss'] is too
+> long
+> From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dt.yaml:
+> mdss@5e00000: 'mdp@5e01000' does not match any of the regexes:
+> '^display-controller@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+>
+>
+> I would have assumed upon reporting errors with 'make
+> dt_binding_check' that the fixes would be tested with 'make
+> dt_binding_check'...
 
-I saw that, and I wasn't sure the best way to go about  fixing it.  If
-I move the 8mm out of the imx7d category, do I need to add it to the
-enum list associated with the imx8mm, or can I just delete it from the
-enum leaving the const for imx8mm good enough?
+Still failing. Please send a fix ASAP.
 
-I am not very good with YAML files yet, so please forgive my ignorance.
-
-adam
->
-> > -              - fsl,imx8mn-usdhc
-> > -              - fsl,imx8mp-usdhc
-> >                - fsl,imx8mq-usdhc
-> >                - fsl,imx8qm-usdhc
-> >                - fsl,imx8qxp-usdhc
-> >            - const: fsl,imx7d-usdhc
-> >        - items:
-> >            - enum:
-> > +              - fsl,imx8mn-usdhc
-> > +              - fsl,imx8mp-usdhc
-> >                - fsl,imx93-usdhc
-> >                - fsl,imx8ulp-usdhc
-> >            - const: fsl,imx8mm-usdhc
->
->
-> Best regards,
-> Krzysztof
+Rob
