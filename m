@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09B234E580A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 330524E580D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:02:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343922AbiCWSEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 14:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34370 "EHLO
+        id S1343947AbiCWSEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 14:04:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343920AbiCWSEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:04:08 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A7FE888E0
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:36 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id b15so2067410pfm.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:36 -0700 (PDT)
+        with ESMTP id S1343920AbiCWSEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:04:10 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4BB86E16
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:40 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id c2so1762820pga.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 11:02:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gNEGSlS2mPCYLZrFQejehM36cdi8B+KPhgqHYrJkMJk=;
-        b=U+FC0zvEMskeJPO6QafbDtyAkMA40WHTepQKPxaUHxq6GWxi8+VaKwMIO0YhMmownc
-         Y2BO7w9D+7LkM23KMhAdAjTZozsf6iWea/g8PTshI4Almyv/+Bcr8S22AA3CKvpqr0vT
-         TOsm6e5koKGGabEXziNF0hbOgJPz4aMuUvovvMoBP68YjPOolwBky100vvztJMr0M29G
-         b9iRUyon8M+5x2IQCfFbNu238/CiG94NIXWqgCxxHMGaV4zXNzNL6cx4m6Fhih/qUmrI
-         Y2PL8MjjCZQT8t+izQTvZr7LMh59Xbhq1CVUbNlI2SfpZMNrDllxR5W2rb1gToqnSTxC
-         X/tg==
+        bh=bwIjazYGh/13rqi29xt94fh6HfpqlQOG+ZItpj9cq4E=;
+        b=Cwd3KFSI/agyKxOiSZRaQgHH5s9cCIxb9ZH26XhlJyM5Ee2d6GUDYDjDZs0PO2rLTH
+         gJUzkgwY9zJA+fmln+Ws0oFxAN9BOZUQUzAnQalMQjyWV8VKY7rEk4sIozlEhASvEw+Z
+         l+O76FfmHFmhBZkq6TzwHSapiTXB42l1Q216GY7pimeqSrhBKBAY6W4cpGsohddmy9O1
+         cQXw5CJAcX5nyCoUJx5oFWtwvKWj4p91nZKwgg/RnOfjzumXNnpN6hFcVh+lyadz0spw
+         yde3nVP2eSdVPJr49xlXbo0AGV1yKIbW55Snrw2AC14xx21YbamBCNDYMISeP3fCxTlG
+         HdlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gNEGSlS2mPCYLZrFQejehM36cdi8B+KPhgqHYrJkMJk=;
-        b=6XTYF7Jc1Fly83pXPVdINgoJ9TqaGhyo1i+PiiAPsqd5FYkZQLMZyKV1ZUOrX4BuqO
-         WRZCvMFKCb+quGkTfoQabmOvrgG4S+Y/9O01cxmqLq+EKRft67FTniuvVP6IsMbSy0we
-         aPzR4sG4zvSF4JqtEQfOcEE0n3aXOf38H1Fr8na1DqNZT4uuo18HFnunwA1c75anch4o
-         Y0ByYKkEpm27fOvfMd25tFmjrM+1DJgHj03WfgCiVl9t0KGTWNciN7zikOJt1PObuaBX
-         aWRm1O39XjckNY8jFvOwP148MKi+JYXxoOZUWSevEsbKbErNIDCRDagLKyo5SRymemTT
-         QfbQ==
-X-Gm-Message-State: AOAM532JYHdiwuPawPGDS2Qik5NIXuv0oAHngcwyuFzWePAh54Yklulk
-        Mhp7Vw3XEqzI9wVJR+X//q4+qg==
-X-Google-Smtp-Source: ABdhPJyrXAem/49LdGoF6jLSNndXSt4r+mvKChNrDteg/iCxp5KVfvKgpbwZokPKRJrLFaJqz1pnoA==
-X-Received: by 2002:a63:e201:0:b0:382:6afe:f0ec with SMTP id q1-20020a63e201000000b003826afef0ecmr819472pgh.339.1648058556422;
-        Wed, 23 Mar 2022 11:02:36 -0700 (PDT)
+        bh=bwIjazYGh/13rqi29xt94fh6HfpqlQOG+ZItpj9cq4E=;
+        b=y7vh1/gYQVjB4SQ8jP/+MZ0kbynq/+qG0Ka/URYn6Jr8EpNnk6YTsfbGmuLwuYPgk5
+         EqOacmScI0DkjhJ8CqCwm1InxIq8MQzXOl658u86qM6HUFZE2lcej4bE1Vqs3hW8tj3l
+         kmom/aNrpB2EBBTnheXvyjd2IMqWJpoIBUIVzP+RsVP/3DNmPuqKYBsTa88Y2blx2GM/
+         g6WQz8hibaiVplDpx7Skg2pPCeLKuwklvQFj0n/GyWGdgSOPMcaBDFraRmzQWaYWJMzh
+         kvFVc0AI7x7jWPqQccGiZZEiPMTY546uLPTKUR6qawmUUvWpKOFfDs12tsSHqkWHiYYt
+         7sMw==
+X-Gm-Message-State: AOAM533d5cvuZC8BoCcI39PfyHN672MZWk9fEMCkxgmV3Spf3r67UJ2a
+        i1jsSPMJnF3KLC7quzPpm2zKmw==
+X-Google-Smtp-Source: ABdhPJwrJ1/ea3VN6pmR/JRCmTVCgRNMBCnuSQS8Q8pTlW8Ye6OQR0MPoEtF95QiHxTVvxg6Oq7Zog==
+X-Received: by 2002:a63:6809:0:b0:37c:68d3:1224 with SMTP id d9-20020a636809000000b0037c68d31224mr815631pgc.287.1648058559570;
+        Wed, 23 Mar 2022 11:02:39 -0700 (PDT)
 Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id l19-20020a17090aec1300b001c7a31ba88csm1265870pjy.1.2022.03.23.11.02.33
+        by smtp.gmail.com with ESMTPSA id l19-20020a17090aec1300b001c7a31ba88csm1265870pjy.1.2022.03.23.11.02.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 11:02:36 -0700 (PDT)
+        Wed, 23 Mar 2022 11:02:39 -0700 (PDT)
 From:   Andy Chiu <andy.chiu@sifive.com>
 To:     radhey.shyam.pandey@xilinx.com, robert.hancock@calian.com,
         michal.simek@xilinx.com
@@ -55,9 +55,9 @@ Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         robh@kernel.org, Andy Chiu <andy.chiu@sifive.com>,
         Greentime Hu <greentime.hu@sifive.com>
-Subject: [PATCH v5 net 2/4] net: axienet: factor out phy_node in struct axienet_local
-Date:   Thu, 24 Mar 2022 02:00:20 +0800
-Message-Id: <20220323180022.864567-3-andy.chiu@sifive.com>
+Subject: [PATCH v5 net 3/4] dt-bindings: net: add pcs-handle attribute
+Date:   Thu, 24 Mar 2022 02:00:21 +0800
+Message-Id: <20220323180022.864567-4-andy.chiu@sifive.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220323180022.864567-1-andy.chiu@sifive.com>
 References: <20220323180022.864567-1-andy.chiu@sifive.com>
@@ -73,78 +73,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-the struct member `phy_node` of struct axienet_local is not used by the
-driver anymore after initialization. It might be a remnent of old code
-and could be removed.
+Document the new pcs-handle attribute to support connecting to an
+external PHY. For Xilinx's AXI Ethernet, this is used when the core
+operates in SGMII or 1000Base-X modes and links through the internal
+PCS/PMA PHY.
 
 Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
 Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
-Reviewed-by: Robert Hancock <robert.hancock@calian.com>
 ---
- drivers/net/ethernet/xilinx/xilinx_axienet.h      |  2 --
- drivers/net/ethernet/xilinx/xilinx_axienet_main.c | 13 +++++--------
- 2 files changed, 5 insertions(+), 10 deletions(-)
+ .../devicetree/bindings/net/ethernet-controller.yaml      | 6 ++++++
+ Documentation/devicetree/bindings/net/xilinx_axienet.txt  | 8 +++++++-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet.h b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-index 5b4d153b1492..6a0b7ad958cd 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet.h
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-@@ -428,8 +428,6 @@ struct axienet_local {
- 	struct net_device *ndev;
- 	struct device *dev;
+diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+index 34c5463abcec..978772c04e1c 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+@@ -102,6 +102,12 @@ properties:
+   phy-mode:
+     $ref: "#/properties/phy-connection-type"
  
--	struct device_node *phy_node;
--
- 	struct phylink *phylink;
- 	struct phylink_config phylink_config;
++  pcs-handle:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Specifies a reference to a node representing a PCS PHY device on a MDIO
++      bus to link with an external PHY (phy-handle) if exists.
++
+   phy-handle:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+index b8e4894bc634..ba720a2ea5fc 100644
+--- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
++++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+@@ -26,7 +26,8 @@ Required properties:
+ 		  specified, the TX/RX DMA interrupts should be on that node
+ 		  instead, and only the Ethernet core interrupt is optionally
+ 		  specified here.
+-- phy-handle	: Should point to the external phy device.
++- phy-handle	: Should point to the external phy device if exists. Pointing
++		  this to the PCS/PMA PHY is deprecated and should be avoided.
+ 		  See ethernet.txt file in the same directory.
+ - xlnx,rxmem	: Set to allocated memory buffer for Rx/Tx in the hardware
  
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-index 93be1adc303f..a4783f95b979 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-@@ -2067,18 +2067,20 @@ static int axienet_probe(struct platform_device *pdev)
+@@ -68,6 +69,11 @@ Optional properties:
+ 		  required through the core's MDIO interface (i.e. always,
+ 		  unless the PHY is accessed through a different bus).
  
- 	if (lp->phy_mode == PHY_INTERFACE_MODE_SGMII ||
- 	    lp->phy_mode == PHY_INTERFACE_MODE_1000BASEX) {
--		lp->phy_node = of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
--		if (!lp->phy_node) {
-+		np = of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
-+		if (!np) {
- 			dev_err(&pdev->dev, "phy-handle required for 1000BaseX/SGMII\n");
- 			ret = -EINVAL;
- 			goto cleanup_mdio;
- 		}
--		lp->pcs_phy = of_mdio_find_device(lp->phy_node);
-+		lp->pcs_phy = of_mdio_find_device(np);
- 		if (!lp->pcs_phy) {
- 			ret = -EPROBE_DEFER;
-+			of_node_put(np);
- 			goto cleanup_mdio;
- 		}
- 		lp->phylink_config.pcs_poll = true;
-+		of_node_put(np);
- 	}
- 
- 	lp->phylink_config.dev = &ndev->dev;
-@@ -2120,8 +2122,6 @@ static int axienet_probe(struct platform_device *pdev)
- 		put_device(&lp->pcs_phy->dev);
- 	if (lp->mii_bus)
- 		axienet_mdio_teardown(lp);
--	of_node_put(lp->phy_node);
--
- cleanup_clk:
- 	clk_bulk_disable_unprepare(XAE_NUM_MISC_CLOCKS, lp->misc_clks);
- 	clk_disable_unprepare(lp->axi_clk);
-@@ -2150,9 +2150,6 @@ static int axienet_remove(struct platform_device *pdev)
- 	clk_bulk_disable_unprepare(XAE_NUM_MISC_CLOCKS, lp->misc_clks);
- 	clk_disable_unprepare(lp->axi_clk);
- 
--	of_node_put(lp->phy_node);
--	lp->phy_node = NULL;
--
- 	free_netdev(ndev);
- 
- 	return 0;
++ - pcs-handle: 	  Phandle to the internal PCS/PMA PHY in SGMII or 1000Base-X
++		  modes, where "pcs-handle" should be preferably used to point
++		  to the PCS/PMA PHY, and "phy-handle" should point to an
++		  external PHY if exists.
++
+ Example:
+ 	axi_ethernet_eth: ethernet@40c00000 {
+ 		compatible = "xlnx,axi-ethernet-1.00.a";
 -- 
 2.34.1
 
