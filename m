@@ -2,94 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8DD4E512D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 12:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D0694E516C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 12:40:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239988AbiCWLVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 07:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59450 "EHLO
+        id S234567AbiCWLly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 07:41:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235705AbiCWLVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 07:21:31 -0400
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E1D2AE2E;
-        Wed, 23 Mar 2022 04:20:01 -0700 (PDT)
-Received: by mail-ej1-f51.google.com with SMTP id dr20so2144222ejc.6;
-        Wed, 23 Mar 2022 04:20:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8NQwjInQeHX4PNBQH9WRkcIExVlhXjtH5bBsP3hUUow=;
-        b=rsmRF13+szGJjK74EX3UkoYGPxvponNSH/MTschx7TUpNFbfZCezKQoVkHseddkMee
-         NyDvaHi/XRHWfWuhGvs3qMZ/6lqK+Yh8OSq4gn8Ml4AP2TNkWkEU4Ol9Dl6eYb/l1M43
-         R/lGeCiTbVeFLeznRCzC+vKJu+pYMDw+Zf1PSlOnBBl1FBzJM4Yh0xW4Uca3QfedddyN
-         he3NLddOQ3SQ/A6cOOhZ64fjdspy91/nWgUeVclN6qm4hdY1tuEa8y1k7v4gbz35frUI
-         R0ZPJ3ovlKw7D18YAjQltfhs6Xop/iJtVihL7hyfn/x6cWmzjAxs+/1/5aUHkVaFAS9e
-         EtRg==
-X-Gm-Message-State: AOAM530JtDL/9Ivc+2QF1nfntxf5tljZRYNlvO7pod79j0JAMM2UlaTY
-        bNimD6zILEzlVE/Ad4ABaF8Au0BZNQZpRw==
-X-Google-Smtp-Source: ABdhPJyggNgkzWof95iHK2BBBMKkQTe1ofpITUi/c6gBiK4dbd3/biJiEJrfNyHqAUzhektMkOESWg==
-X-Received: by 2002:a17:907:16ac:b0:6e0:1646:9121 with SMTP id hc44-20020a17090716ac00b006e016469121mr14215917ejc.194.1648034400203;
-        Wed, 23 Mar 2022 04:20:00 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm9582171eji.67.2022.03.23.04.19.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 04:19:59 -0700 (PDT)
-Message-ID: <5eed58a1-ee56-8aee-e73b-76b162d59873@kernel.org>
-Date:   Wed, 23 Mar 2022 12:19:57 +0100
+        with ESMTP id S232743AbiCWLlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 07:41:53 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A01F37BFA;
+        Wed, 23 Mar 2022 04:40:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E5BBE9DE;
+        Wed, 23 Mar 2022 12:40:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1648035621;
+        bh=5FOLOdg+keD5Ld/XWJRitYJ2sdA0NV1UdHW91zVIQUs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ejqiD13TJqkZgPtorZNlN1ohTk7uThUVwbsscLWBstcMN0B9ihBmRfUIO4GT2tOLG
+         MtrIPwKRxixEmba/MKTL0kzuC11N2LnUnZ7KrkGWb0Dzt/L93jjvHJQx4tc5zhE8KC
+         ryP6udTdkiqZGAnZhcfatZUaZ3CjAUailWlQT7oQ=
+Date:   Wed, 23 Mar 2022 13:40:03 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "reinhold.mueller@emtrion.com" <reinhold.mueller@emtrion.com>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "alexandru.marginean@nxp.com" <alexandru.marginean@nxp.com>
+Subject: Re: [PATCH v1 3/3] arm64: dts: freescale: add initial support for
+ verdin imx8m plus
+Message-ID: <YjsHE9fDFye0+O5T@pendragon.ideasonboard.com>
+References: <20220317160122.341484-1-marcel@ziswiler.com>
+ <20220317160122.341484-4-marcel@ziswiler.com>
+ <YjpVlmEGewIGE3WR@pendragon.ideasonboard.com>
+ <4c5f438da678097642d9442e5d672a8423ef5804.camel@toradex.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
-Content-Language: en-US
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
-        Jens Axboe <axboe@fb.com>, Christoph Hellwig <hch@lst.de>,
-        Sagi Grimberg <sagi@grimberg.me>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-nvme@lists.infradead.org
-References: <20220321165049.35985-1-sven@svenpeter.dev>
- <20220321165049.35985-6-sven@svenpeter.dev>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220321165049.35985-6-sven@svenpeter.dev>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4c5f438da678097642d9442e5d672a8423ef5804.camel@toradex.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/03/2022 17:50, Sven Peter wrote:
-> Apple SoCs such as the M1 come with multiple embedded co-processors
-> running proprietary firmware. Communication with those is established
-> over a simple mailbox using the RTKit IPC protocol.
+Hi Marcel,
+
+On Wed, Mar 23, 2022 at 10:55:33AM +0000, Marcel Ziswiler wrote:
+> On Wed, 2022-03-23 at 01:02 +0200, Laurent Pinchart wrote:
+> > On Thu, Mar 17, 2022 at 05:01:22PM +0100, Marcel Ziswiler wrote:
+> > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> > > 
+> > > This patch adds the device tree to support Toradex Verdin iMX8M Plus [1]
+> > > a computer on module which can be used on different carrier boards.
+> > > 
+> > > The module consists of an NXP i.MX 8M Plus family SoC (either i.MX 8M
+> > > Plus Quad or 8M Plus QuadLite), a PCA9450C PMIC, a Gigabit Ethernet PHY,
+> > > 1, 2, 4 or 8 GB of LPDDR4 RAM, an eMMC, a TLA2024 ADC, an I2C EEPROM, an
+> > > RX8130 RTC, an optional I2C temperature sensor plus an optional
+> > > Bluetooth/Wi-Fi module.
+> > > 
+> > > Anything that is not self-contained on the module is disabled by
+> > > default.
+> > > 
+> > > The device tree for the Dahlia includes the module's device tree and
+> > > enables the supported peripherals of the carrier board.
+> > > 
+> > > The device tree for the Verdin Development Board includes the module's
+> > > device tree as well as the Dahlia one as it is a superset and supports
+> > > almost all peripherals available.
+> > > 
+> > > So far there is no display functionality supported at all but basic
+> > > console UART, USB host, eMMC and Ethernet functionality work fine.
+> > > 
+> > > [1] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx-8m-plus
+> > > 
+> > > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> > > 
+> > > ---
+> > > 
+> > >  arch/arm64/boot/dts/freescale/Makefile        |    4 +
+> > >  .../dts/freescale/imx8mp-verdin-dahlia.dtsi   |  125 ++
+> > >  .../boot/dts/freescale/imx8mp-verdin-dev.dtsi |   44 +
+> > >  .../imx8mp-verdin-nonwifi-dahlia.dts          |   18 +
+> > >  .../freescale/imx8mp-verdin-nonwifi-dev.dts   |   18 +
+> > >  .../dts/freescale/imx8mp-verdin-nonwifi.dtsi  |   54 +
+> > >  .../freescale/imx8mp-verdin-wifi-dahlia.dts   |   18 +
+> > >  .../dts/freescale/imx8mp-verdin-wifi-dev.dts  |   18 +
+> > >  .../dts/freescale/imx8mp-verdin-wifi.dtsi     |   82 +
+> > >  .../boot/dts/freescale/imx8mp-verdin.dtsi     | 1373 +++++++++++++++++
+> > >  10 files changed, 1754 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dts
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dts
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dts
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dts
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+
+[snip]
+
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-
+> > > verdin.dtsi
+> > > new file mode 100644
+> > > index 000000000000..26d6c2819ee8
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+> > > @@ -0,0 +1,1373 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > > +/*
+> > > + * Copyright 2022 Toradex
+> > > + */
+> > > +
+> > > +#include "dt-bindings/pwm/pwm.h"
+> > > +#include "imx8mp.dtsi"
+> > > +
+> > > +/ {
+> > > +       chosen {
+> > > +               stdout-path = &uart3;
+> > > +       };
+> > > +
+> > > +       aliases {
+> > > +               /* Ethernet aliases to ensure correct MAC addresses */
+> > > +               ethernet0 = &eqos;
+> > > +               ethernet1 = &fec;
+> > 
+> > On Dahlia the ethernet connector is routed to the eqos if I'm not
+> > mistaken.
 > 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  drivers/soc/apple/Kconfig          |  13 +
->  drivers/soc/apple/Makefile         |   3 +
->  drivers/soc/apple/rtkit-crashlog.c | 147 +++++
->  drivers/soc/apple/rtkit-internal.h |  76 +++
->  drivers/soc/apple/rtkit.c          | 842 +++++++++++++++++++++++++++++
->  include/linux/soc/apple/rtkit.h    | 203 +++++++
->  6 files changed, 1284 insertions(+)
+> Yes, actually the on-module PHY which is what is routed to the RJ-45 on Dahlia uses the EQOS MAC, correct.
+> 
+> > On my board U-Boot considers this to be the second ethernet
+> > controller, with the fec being the first one.
+> 
+> Yes, however, U-Boot does use the EQOS one as primary MAC as well. This is just how U-Boot does things. There
+> is no easy way to change the actual instance numbering. Actually just like on Linux really with the one
+> difference that U-Boot will always show both independent whether or not your carrier board even has the second
+> PHY or not. This is due to U-Boot doing lazy loading aka not touch any Ethernet hardware unless you actually
+> run some network commands.
+> 
+> > The mismatch results in
+> > the MAC addresses being swapped between eth0 and eth1 when comparing
+> > U-Boot and Linux.
+> 
+> No, this alias should really be what ensures the correct MAC addresses.
+> 
+> > Am I using a too old boot loader, or should the two
+> > ethernet controlls be swapped here ?
+> 
+> Yes, I guess you might not be using latest mainline U-Boot. I just verified this on my table again having both
+> the Dahlia and Verdin Development carrier boards available. Please note that on the Verdin Development Board
+> the primary Ethernet is also called eth1. Unfortunately, changing this naming is also not entirely trivial. But
+> it really should have the proper MAC address.
 
-Isn't this some implementation of a mailbox? If so, it should be in
-drivers/mailbox. Please don't put all stuff in soc/apple, that's not how
-Linux is organized. To drivers/soc usually we put drivers which do not
-fit regular subsystems.
+I've updated U-Boot to 2022-rc4 and I confirm it now works fine.
 
-Best regards,
-Krzysztof
+> Dahlia
+> 
+> U-Boot 2022.04-rc4-00068-g5f68470d69 (Mar 23 2022 - 10:15:46 +0100)
+> 
+> Verdin iMX8MP # echo $ethaddr
+> 00:14:2d:6c:71:64
+> => verified with wireshark
+> 
+> root@verdin-imx8mp-07106916:~# ip addr
+> ...
+> 4: eth0: <BROADCAST,MULTICAST,DYNAMIC,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+>     link/ether 00:14:2d:6c:71:64 brd ff:ff:ff:ff:ff:ff
+>     inet 192.168.10.239/24 brd 192.168.10.255 scope global eth0
+>        valid_lft forever preferred_lft forever
+>     inet6 fe80::214:2dff:fe6c:7164/64 scope link 
+>        valid_lft forever preferred_lft forever
+> ...
+> 
+> Verdin Developer Board
+> 
+> U-Boot 2022.04-rc4-00068-g5f68470d69 (Mar 23 2022 - 10:15:46 +0100)
+> 
+> Verdin iMX8MP # echo $ethaddr  
+> 00:14:2d:6c:71:64
+> => verified with wireshark
+> 
+> root@verdin-imx8mp-07106916:~# uname -a
+> Linux verdin-imx8mp-07106916 5.17.0-rc8-next-20220317-00003-g695dc7d13c2a #12 SMP PREEMPT Thu Mar 17 16:07:49
+> CET 2022 aarch64 aarch64 aarch64 GNU/Linux
+> 
+> root@verdin-imx8mp-07106916:~# ip addr
+> ...
+> 2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,DYNAMIC,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+>     link/ether 00:14:2d:7c:71:64 brd ff:ff:ff:ff:ff:ff
+> ...
+> 5: eth1: <BROADCAST,MULTICAST,DYNAMIC,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+>     link/ether 00:14:2d:6c:71:64 brd ff:ff:ff:ff:ff:ff
+>     inet 192.168.10.239/24 brd 192.168.10.255 scope global eth1
+>        valid_lft forever preferred_lft forever
+>     inet6 fe80::214:2dff:fe6c:7164/64 scope link 
+>        valid_lft forever preferred_lft forever
+> ...
+> 
+> > > +               rtc0 = &rtc_i2c;
+> > > +               rtc1 = &snvs_rtc;
+> > > +       };
+> > 
+> > [snip]
+> > 
+> > With these issues addressed,
+> > 
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Thanks again!
+
+-- 
+Regards,
+
+Laurent Pinchart
