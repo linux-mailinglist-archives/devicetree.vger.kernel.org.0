@@ -2,115 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FEA44E599B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:13:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BEE64E59CA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:26:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344537AbiCWUOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 16:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
+        id S1344626AbiCWU1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 16:27:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236584AbiCWUOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:14:38 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 168DBD63;
-        Wed, 23 Mar 2022 13:13:06 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-de3f2a19c8so2896851fac.1;
-        Wed, 23 Mar 2022 13:13:06 -0700 (PDT)
+        with ESMTP id S230375AbiCWU1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:27:32 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7348BF15
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 13:26:01 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-d39f741b2bso2908034fac.6
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 13:26:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hCqTymlzZq7d2LM/hJ6WXqavnWTYg5mQtD7l1RPuIts=;
+        b=XrkTSLNvhIyRpFRWZXwx7u0voib5AhADVRacw7VLJ8YrqKFvP2H4PPHas0lIE6B0ja
+         leMn3hA6hiwh5+pR0TF9Xy8HM+M3npF11/BU3cuWsG8mBs4a4Y5zIqiQPA5N1ZQ+FWyd
+         G3BFGEEEeJA2H3u1LrQ5ssnCbDLLVIzT1bQShTDFobC9mD83gEBa0ssWJFDZoSJcPxgv
+         0FTVWmUUEDSc9XosPsYV3Xey3obXsuqpNiPWAKNoCJ5l3zl8vfNQ3avq7Qj/tY0Qu+RF
+         LcMhvy4Db1mzqZjvMBC/GJmplgYjxcRMGgTI41NkkwQ41zWeMj4jI4t6lkVTs0hGEssW
+         ndGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0dtghV1fkEXQC3eY/8QyiqW6VQirMjQBl/NSTjJ0W9I=;
-        b=JGYUxljba0jZsOFk3PA5RW7Ys9FxFTVDybJpIwNc9MflcbRx08O0ZYjQcElC+gstN/
-         Kc/TBsoZRjnzSpjUC8lWpZiCYqJodlIAKLT9XPRLiLupNjr9hfPyhlNtkL1vgA1t2kh0
-         vh7UdjYO1EqQINxlZ+cBnrtv/Vgs0xgfrS20JTcEsbfVJYTYBJRU2f9Cm5TKLjP/p9nJ
-         ggwnalH/YwVRgaumFHBG0piVq9vKn0zohUCpK5EuZW5m5npJRMFLYyJ3JGVSfB9GDhnn
-         N3lvMzL3e2MJc6Ea2kUNeipNE1NNVhGaw8IWOTBiyhntP6wCw/X8hyUPXsnA2UQ2gV4Z
-         stfg==
-X-Gm-Message-State: AOAM532q8bjyiYZctrcJLpyaqxXixDNTvy0gjHYImlKJIsv2hAH2FfZD
-        M4Y6mnwBCXeZRaVzXd256g==
-X-Google-Smtp-Source: ABdhPJx08/NjwL/LKLNaYctq1rd2mdl4jiv/04ZWeiY6YBXgM0/680BNb6NQWQd/cV6Kt76ohwagPg==
-X-Received: by 2002:a05:6870:c101:b0:da:b3f:2b89 with SMTP id f1-20020a056870c10100b000da0b3f2b89mr5288216oad.296.1648066385933;
-        Wed, 23 Mar 2022 13:13:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c9-20020a4a8ec9000000b0032438ba79b0sm449783ool.0.2022.03.23.13.13.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 13:13:05 -0700 (PDT)
-Received: (nullmailer pid 373336 invoked by uid 1000);
-        Wed, 23 Mar 2022 20:13:04 -0000
-Date:   Wed, 23 Mar 2022 15:13:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc:     broonie@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        ashishsingha@nvidia.com, skomatineni@nvidia.com,
-        ldewangan@nvidia.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] spi: dt-bindings: Add wait state polling flag
-Message-ID: <Yjt/UDlkE9ciA4Yt@robh.at.kernel.org>
-References: <20220317012006.15080-1-kyarlagadda@nvidia.com>
- <20220317012006.15080-4-kyarlagadda@nvidia.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hCqTymlzZq7d2LM/hJ6WXqavnWTYg5mQtD7l1RPuIts=;
+        b=HdFL6NKiuVB6y+FeAd7jLNrWxleNRVqq65z0lknp6E25THd8x7wjrKcQXs64F7tijS
+         LyuXM1J0RZvvwJ/JpPHd2AOnx+Rfn+PKJuccRxIpaAhHLu3YbG1exeq6mlU9txgOnt9B
+         D8P8QqhgUIZ1GhXwTClZkJiDU/+GnI8li/ETVP0zjDU7RD7UoFifEhGOQyLH3Us1n2zK
+         wTeCT66Asyj0zy92gC3u6AgEPaGUaIljrEV8Uww4W48LHa2zsiDH0ILAwEcghpgk+omV
+         OSpAOj6NvTK40AbibZ7pIeVUGg7uIJDAi+o9XHXfeqXO8h3mv1J7Wf4HbPgK60OHcw5M
+         50Zw==
+X-Gm-Message-State: AOAM533JqkAGPgaTWU6yxbclJmDqGogJBr79Ci2YnT9rAI+Y/Hg/sC2A
+        Dv+lSzcIp7cF8BW4j35crO/QEVm+pjE0hj9PL3v3SA==
+X-Google-Smtp-Source: ABdhPJxK5PCrm7se+j7JSsX7TwXXNoSnhIA+aCnhYBRmctAV/BHIhyyHjA7emMsyezHB1yJ5PP7/jemHq9ZV8OeGASI=
+X-Received: by 2002:a05:6870:a44c:b0:de:230:730b with SMTP id
+ n12-20020a056870a44c00b000de0230730bmr905684oal.48.1648067160504; Wed, 23 Mar
+ 2022 13:26:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220317012006.15080-4-kyarlagadda@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220303082140.240745-1-bhupesh.sharma@linaro.org>
+ <20220303082140.240745-3-bhupesh.sharma@linaro.org> <CAA8EJpqF5ppEc7-ngvpQifUaGLuvguUS+EKofwwuYe2edOhSbQ@mail.gmail.com>
+In-Reply-To: <CAA8EJpqF5ppEc7-ngvpQifUaGLuvguUS+EKofwwuYe2edOhSbQ@mail.gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Thu, 24 Mar 2022 01:55:49 +0530
+Message-ID: <CAH=2NtxWE+9cTz=yTMH=kr3Y2iehZxH22KGkOZ9V2LpakOq+-A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sm8150: Add ufs power-domain entries
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 17, 2022 at 06:50:06AM +0530, Krishna Yarlagadda wrote:
-> Add flag to enable tpm wait state polling and Tegra Grace binding.
+Hi Dmitry,
 
-TPM
+On Thu, 3 Mar 2022 at 16:02, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Thu, 3 Mar 2022 at 11:22, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+> >
+> > Add power-domain entries for UFS controller & phy nodes
+> > in sm8150 dts.
+> >
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > index 6012322a5984..7aa879eb24d7 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > @@ -1637,6 +1637,8 @@ ufs_mem_hc: ufshc@1d84000 {
+> >                         phy-names = "ufsphy";
+> >                         lanes-per-direction = <2>;
+> >                         #reset-cells = <1>;
+> > +
+> > +                       power-domains = <&gcc UFS_PHY_GDSC>;
+> >                         resets = <&gcc GCC_UFS_PHY_BCR>;
+> >                         reset-names = "rst";
+> >
+> > @@ -1687,6 +1689,9 @@ ufs_mem_phy: phy@1d87000 {
+> >                         clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
+> >                                  <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> >
+> > +                       power-domains = <&gcc UFS_CARD_GDSC>,
+> > +                                       <&gcc UFS_PHY_GDSC>;
+> > +                       power-domain-names = "ufs_card_gdsc", "ufs_phy_gdsc";
+>
+> This will not work, if I'm not mistaken. Platform drivers won't bind
+> two power-domains by default. And the qmp driver lacks handling for
+> power domains.
+>
+> Also a generic question. I see that other platforms use UFS_PHY_GDSC
+> for the host controller and completely ingore the UFS_CARD_GDSC. What
+> makes sm8150 so different from the rest of the platforms?
 
-> 
-> Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
-> ---
->  .../devicetree/bindings/spi/nvidia,tegra210-quad.yaml       | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> index 0296edd1de22..88b00fcad210 100644
-> --- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> +++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> @@ -20,6 +20,7 @@ properties:
->        - nvidia,tegra186-qspi
->        - nvidia,tegra194-qspi
->        - nvidia,tegra234-qspi
-> +      - nvidia,tegra-grace-qspi
->  
->    reg:
->      maxItems: 1
-> @@ -57,6 +58,11 @@ patternProperties:
->        spi-tx-bus-width:
->          enum: [1, 2, 4]
->  
-> +      nvidia,wait-polling:
-> +        description:
-> +          Enable TPM wait state polling on supported chips.
+You are right. I used the UFS power-domain constructs presently used
+downstream, but I think using UFS_PHY_GDSC only is sufficient for our
+use case upstream.
 
-What's TPM?
+So, I will send a fixed v4 version.
 
-Why is this not implied by the compatible string?
+Thanks,
+Bhupesh
 
-Also, how child node properties are handled has changed. See 
-Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml. The 
-NVidia specific properties should be refactored first before adding 
-more.
-
-> +	type: boolean
-> +
->        nvidia,tx-clk-tap-delay:
->          description:
->            Delays the clock going out to device with this tap value.
-> -- 
-> 2.17.1
-> 
-> 
+> >                         resets = <&ufs_mem_hc 0>;
+> >                         reset-names = "ufsphy";
+> >                         status = "disabled";
+> > --
+> > 2.35.1
+> >
+>
+>
+> --
+> With best wishes
+> Dmitry
