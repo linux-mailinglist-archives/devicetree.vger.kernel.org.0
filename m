@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD2C4E5698
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A9C4E56BB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245508AbiCWQiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:38:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38712 "EHLO
+        id S244148AbiCWQqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 12:46:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239165AbiCWQhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:37:47 -0400
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFBB57A98C;
-        Wed, 23 Mar 2022 09:36:17 -0700 (PDT)
-Received: by mail-ed1-f50.google.com with SMTP id t1so2524379edc.3;
-        Wed, 23 Mar 2022 09:36:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xID/y6FVW34VZrnvCf0b9HExW6zMhF2WBK1VWecEDPg=;
-        b=w0+URP/NpRTVuwxl77Qr9I1OZgMlF1MyeKnVHinI1L+kCHCaJ9J4tvFxXn3IN3Qoj4
-         oQWGhpQAHTJO8TOO+D7o4CHU50feAlqx912PsKAtDz+0I3+wc8mKwlywwkJPrSW8FkJX
-         lx9ItOYJZKa0PHyD4PcOk0Tm3yuusVWEAhMD0qRQxefmFdPNy2fbaBEMyNMdqrVTOxlH
-         ykbKPE3mgIg+rpgdVVymXSLp/AdMddjkFjqsKfn2nKZOK3wvLyBYELBHhGo35iZ4vxJM
-         X2lKDUL0Pq7ATs46kPhrHTq18pak8qUVOHCzDV+JoJrq1ekfsbKsF504gFXgaxIaszJU
-         ZHVw==
-X-Gm-Message-State: AOAM530bzso8sbAiv01vXpCeoSDAgbe9tZsnGBCGl8gGBM514XyWeuSk
-        mK23wY41wtB1xRSo/bGhqVU=
-X-Google-Smtp-Source: ABdhPJzJZKppkCgdf9Ls3orQM6PkVRgexV03RFrCKXVAejBsgpE0V7ijjVuq3fJFMNQ3F6dmcebOxQ==
-X-Received: by 2002:a05:6402:2747:b0:419:4817:ba22 with SMTP id z7-20020a056402274700b004194817ba22mr1128020edd.253.1648053376177;
-        Wed, 23 Mar 2022 09:36:16 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id z22-20020a17090655d600b006d229436793sm122598ejp.223.2022.03.23.09.36.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 09:36:15 -0700 (PDT)
-Message-ID: <6c263c20-0731-3ef0-692e-76126ed0466f@kernel.org>
-Date:   Wed, 23 Mar 2022 17:36:14 +0100
+        with ESMTP id S239311AbiCWQqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:46:43 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD5D1DEB2;
+        Wed, 23 Mar 2022 09:45:08 -0700 (PDT)
+X-UUID: 823a31c6cb464439b24d2060ea07910c-20220324
+X-UUID: 823a31c6cb464439b24d2060ea07910c-20220324
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 737013015; Thu, 24 Mar 2022 00:45:02 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 24 Mar 2022 00:45:01 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Mar 2022 00:45:00 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>
+CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [v6 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Date:   Thu, 24 Mar 2022 00:44:38 +0800
+Message-ID: <20220323164442.921-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v13 4/9] dt-bindings: iio: adc: document qcom-spmi-rradc
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-References: <20220323162820.110806-1-caleb@connolly.tech>
- <20220323162820.110806-5-caleb@connolly.tech>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220323162820.110806-5-caleb@connolly.tech>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2022 17:28, Caleb Connolly wrote:
-> From: Caleb Connolly <caleb.connolly@linaro.org>
-> 
-> Add dt-binding docs for the Qualcomm SPMI RRADC found in PMICs like
-> PMI8998 and PMI8994
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  .../bindings/iio/adc/qcom,spmi-rradc.yaml     | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
-> 
+The series reuses mt8192-mt6359-rt10150rt5682.c for supporting machine
+driver with rt1015p speaker amplifier and rt5682s headset codec.
 
+Changes from v5:
+  - "mediatek,headset-codec" and "mediatek,speaker-codec" drop prefix
+    and move to properties from patternProperties.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Changes form v4:
+  - split a large patch into three small patches for easy reviewing
+  - correct coding style
 
+Changes from v3:
+  - fix build error: too many arguments for format
+    [-Werror-format-extra-args]
 
-Best regards,
-Krzysztof
+Changes from v2:
+  - fix build warnings such as "data argument not used by format string"
+
+Changes from v1:
+  - uses the snd_soc_of_get_dai_link_codecs to complete the
+  configuration of dai_link's codecs
+  - uses definitions to simplifies card name and compatible name
+
+Jiaxin Yu (4):
+  ASoC: dt-bindings: mt8192-mt6359: add new compatible and new
+    properties
+  ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
+  ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
+  ASoC: mediatek: mt8192: support rt1015p_rt5682s
+
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    |  32 +++
+ sound/soc/mediatek/Kconfig                    |   1 +
+ .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 201 +++++++++++-------
+ 3 files changed, 156 insertions(+), 78 deletions(-)
+
+-- 
+2.18.0
+
