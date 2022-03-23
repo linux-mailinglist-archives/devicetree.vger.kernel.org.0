@@ -2,125 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B1B4E5B52
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 23:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90C3D4E5C37
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 01:12:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345269AbiCWWjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 18:39:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35142 "EHLO
+        id S1346744AbiCXAOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 20:14:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345267AbiCWWju (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 18:39:50 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A83A1B9;
-        Wed, 23 Mar 2022 15:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648075099; x=1679611099;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8W6j9MRzMqrTwJHwnu1KmnMFhXBPnNCWDanG0n2qgGU=;
-  b=KIQN5SDe5OsxkS5nVugw2QZjcukf4ihPt4BBds6mHspeHhs6m+hZIwy7
-   Ga5SoTSJog0JEGbdLSJ+PHYlcqdn62HspFXJagX+lDHv+dZqlB+KmHotz
-   AX7uxevFDm1UHHWNnBThTU3VkuzMYWyQOaQAKlakIW4zXtc1wKBql/+UE
-   KNy2P5GWnVuNCgfPHllAjPexPZgj6KRdSWO8ymSbK16uo6ZMp/MqvdMr5
-   +rcKEyjo0ZjGqcvJkvdzADrxIFQ9u+Xzv2wnXB4L2KbBPHFuGVpymBVPB
-   wKY/YvFq64dUArgVPycSpq/jLkUL39ZI4zFkkVJkjkJqkKv7PBmaeBfcY
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="257952560"
-X-IronPort-AV: E=Sophos;i="5.90,205,1643702400"; 
-   d="scan'208";a="257952560"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 15:38:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,205,1643702400"; 
-   d="scan'208";a="637641640"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by FMSMGA003.fm.intel.com with ESMTP; 23 Mar 2022 15:38:11 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nX9cI-000KRL-Mn; Wed, 23 Mar 2022 22:38:10 +0000
-Date:   Thu, 24 Mar 2022 06:37:19 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-acpi@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, andriy.shevchenko@linux.intel.com,
-        devicetree@vger.kernel.org, "Rafael J.Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        with ESMTP id S229569AbiCXAOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 20:14:08 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10AFE73;
+        Wed, 23 Mar 2022 17:12:37 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id a1so4367068wrh.10;
+        Wed, 23 Mar 2022 17:12:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/J+7k67HIa20DrfFo2NZzVdI2EGmtq275w1giXcVqMg=;
+        b=aX7p1KgXTAPQI9KVgmJz86DFHJvwHj/22QzWJxFYKV+H5EEDKfPyv9MsDGu9ulX0Al
+         khcAN99RaFvggO1wOv/K/I27zC1DPjZXxkSrMmIIPzPyCfsG+F76aPa+Pp5fBFBYobUt
+         mu0bcqmW9kE55KNDY+lWK5X9UEWxkrG6Ijb6t1D0feSrFYlCj683uyYARj7lsQWS0BC0
+         f4Z/AhoO5mRAZFLEwK1KDVb5bfACaEV/AyUALHU0WSmpPvzZhNc5Qi3DCY8+byocF8dz
+         YKQkkUTvJXV1+mEFY0CafLsRRkCi6Qi0j+nwUgAQb/vSuWw5DohLenFZhXFG25yU1thI
+         MYQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/J+7k67HIa20DrfFo2NZzVdI2EGmtq275w1giXcVqMg=;
+        b=gMoeDjwbp0nZTl7U/fpugZALrJrsFTQWDnGw0av51chZ0NYxt0xME/ZKaeTOPpv/At
+         gvoKFTxKeS6PHVvZyRHwmp1HmkbTlFFKcXmJqN3q5i1ZWy+YKUSJmNLM7FsMomqpWup6
+         XgdGx519kiFmpAVjFMsungKHhuax6BbGqPTP0Bp8dxuePVJ1SSl4ia3359EbDAl5uBoL
+         lfdu94AUuBfFDa1FRzUjKGZV10q3Li+k5jD86LA8+3EFb9OEGhZEcBUzToV7K09HzJZs
+         4CesZmgqQT0iBFY+glG+VC3KN3Qd1EZI77Fvmwe8Xlr9OhMcE1TQzM+X5Gm7tyL/ubW3
+         0Wow==
+X-Gm-Message-State: AOAM532OHqaamg859hfA1/A/RmqIHdQJe31y/NfiormjebvC//aYjhO1
+        d4FzyZu4lr3ISTYbEv/UigNQSPCYGvc=
+X-Google-Smtp-Source: ABdhPJxSxAzqMRccmd40N0pwlBUxRZGY1074kjwxy9DJTuBtXtj9TRvIROv1gUaKQI7JxeQrcDP8Vw==
+X-Received: by 2002:adf:f28d:0:b0:203:f161:55ac with SMTP id k13-20020adff28d000000b00203f16155acmr2252918wro.209.1648080756298;
+        Wed, 23 Mar 2022 17:12:36 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
+        by smtp.googlemail.com with ESMTPSA id bg18-20020a05600c3c9200b0037c2ef07493sm1058665wmb.3.2022.03.23.17.12.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Mar 2022 17:12:35 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 3/4] device property: Add iomap to fwnode operations
-Message-ID: <202203240648.x2upaXar-lkp@intel.com>
-References: <20220323154737.169483-4-sakari.ailus@linux.intel.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: clock: fix dt_binding_check error for qcom,gcc-other.yaml
+Date:   Wed, 23 Mar 2022 20:42:48 +0100
+Message-Id: <20220323194248.26970-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220323154737.169483-4-sakari.ailus@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+qcom,gcc-other Documentation lacks a '|' for the description. This cause
+dt_binding_check to incorrectly parse "See also:" as a new value.
+Add the missing '|' to correctly parse the description.
 
-I love your patch! Yet something to improve:
+Fixes: a03965ed1310 ("dt-bindings: clock: split qcom,gcc.yaml to common and specific schema")
+Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+---
+ Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[auto build test ERROR on rafael-pm/linux-next]
-[also build test ERROR on next-20220323]
-[cannot apply to driver-core/driver-core-testing robh/for-next v5.17]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Sakari-Ailus/Shovel-firmware-specific-code-to-appropriate-locations/20220324-000256
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git linux-next
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20220324/202203240648.x2upaXar-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/c9025bc8f89f50eaf9b9d628f1ac5d47b77c6bc8
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sakari-Ailus/Shovel-firmware-specific-code-to-appropriate-locations/20220324-000256
-        git checkout c9025bc8f89f50eaf9b9d628f1ac5d47b77c6bc8
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   s390-linux-ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
-   coherent.c:(.text+0x122): undefined reference to `memremap'
-   s390-linux-ld: coherent.c:(.text+0x230): undefined reference to `memunmap'
-   s390-linux-ld: kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
-   coherent.c:(.text+0x69c): undefined reference to `memunmap'
-   s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
-   irq-al-fic.c:(.init.text+0x7e): undefined reference to `of_iomap'
-   s390-linux-ld: irq-al-fic.c:(.init.text+0x502): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clk/clk-fixed-mmio.o: in function `fixed_mmio_clk_setup':
-   clk-fixed-mmio.c:(.text+0x90): undefined reference to `of_iomap'
-   s390-linux-ld: clk-fixed-mmio.c:(.text+0xcc): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
-   timer-of.c:(.init.text+0x144): undefined reference to `of_iomap'
-   s390-linux-ld: timer-of.c:(.init.text+0x76c): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_cleanup':
-   timer-of.c:(.init.text+0x960): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clocksource/timer-microchip-pit64b.o: in function `mchp_pit64b_dt_init_timer':
-   timer-microchip-pit64b.c:(.init.text+0x67c): undefined reference to `of_iomap'
-   s390-linux-ld: timer-microchip-pit64b.c:(.init.text+0xcd2): undefined reference to `iounmap'
-   s390-linux-ld: drivers/of/property.o: in function `of_fwnode_iomap':
->> property.c:(.text+0x1b8c): undefined reference to `of_iomap'
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+index 4dc0274dbd6b..6c45e0f85494 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Stephen Boyd <sboyd@kernel.org>
+   - Taniya Das <tdas@codeaurora.org>
+ 
+-description:
++description: |
+   Qualcomm global clock control module which supports the clocks, resets and
+   power domains.
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.34.1
+
