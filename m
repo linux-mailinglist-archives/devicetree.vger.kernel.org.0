@@ -2,110 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABDBF4E564E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0676A4E5642
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:22:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242099AbiCWQ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40862 "EHLO
+        id S238611AbiCWQYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 12:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239650AbiCWQ2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:28:35 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DA3617A82;
-        Wed, 23 Mar 2022 09:27:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648052826; x=1679588826;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PSwOYGMNforfQR+WoxKFhheJUlLrBbUwxRMosTEqx44=;
-  b=Akd3HyMI3Pwb0dUhpq+jwo6RC5iAr53m3VO5hpAz4mp0oESl7COG1dVF
-   SldskjwYKiIRqQwcDyfXKJwmk1LlYQTACU3GxI6niUnfLfBYPIPsY1ZNP
-   FDyQyZZadyIq3TSY7Gz8Su57lvI5S1wdb1aauuoaTyDjIV2si84WQGhWq
-   knuVUluI0CqQdaWmlO2IJB6oz/jfUjgi2cif8KDsr5wJzwQI+p/pP2u42
-   +DFHCo4LCaQygEbSplsW60nib/7T9fdvHhWZFTAnTY6CTVhTZOKjiP1Eh
-   4ty70QKOicBfBNcdrFl1bK/wqwegTqqn9/+nsG1bX503iA96s82rz+imS
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="240320471"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
-   d="scan'208";a="240320471"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 09:21:22 -0700
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
-   d="scan'208";a="649495814"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 09:21:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nX3j1-005IPs-KU;
-        Wed, 23 Mar 2022 18:20:43 +0200
-Date:   Wed, 23 Mar 2022 18:20:43 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        "Rafael J.Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 0/4] Shovel firmware specific code to appropriate
- locations
-Message-ID: <YjtI22BnRjfNOVhG@smile.fi.intel.com>
-References: <20220323154737.169483-1-sakari.ailus@linux.intel.com>
+        with ESMTP id S235186AbiCWQYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:24:15 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB877C791;
+        Wed, 23 Mar 2022 09:22:44 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C72D5240006;
+        Wed, 23 Mar 2022 16:22:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1648052563;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=iU22Ut2bf3iPraCysIP/pzQ8KDzRQbmOe5f5yJ9SnL4=;
+        b=mHlIN0q0OCIRu9O+TqNRdjU5WYOxBxyqjpt2ib13jXmBQ5BJ7oXS1jhqPfFu46AZ1Absjy
+        u+RfEDOh5o8D4KeTLOJBRFf6R+4Da6k3jY28ikql5ynblTu1NmX9ZYrIUV1BDR4LXRKEz4
+        rZDbzMJKJojt3p8lg5U09k4mv4s2I9hEVau091RzySV+TWBHJgP8QawGBANx8zXZ9X1RFN
+        XcwtxFvwEwz4nmhQFAbVi2p4QhTDd2deaVRX4DGy+CsSoPyjv2MHcBUexSwFfuzMsHQ5R9
+        hoHQK3bX827EWZevGwG9auNzY7ZuzgHQ2jDptV1fDDhcWJb1gHfUaUTcZ6crSw==
+Date:   Wed, 23 Mar 2022 17:21:21 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] reset: add support for fwnode
+Message-ID: <20220323172121.220a26e9@fixe.home>
+In-Reply-To: <ba95a3fec9c726e2cd61665ac5d7f89d16232d60.camel@pengutronix.de>
+References: <20220323095022.453708-1-clement.leger@bootlin.com>
+        <20220323095022.453708-3-clement.leger@bootlin.com>
+        <ba95a3fec9c726e2cd61665ac5d7f89d16232d60.camel@pengutronix.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220323154737.169483-1-sakari.ailus@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 05:47:33PM +0200, Sakari Ailus wrote:
-> Hi folks,
-> 
-> This set moves the implementation of recently added device property API
-> functions to OF and ACPI frameworks, where the rest of such functionality
-> resides.
-> 
-> Compile tested.
+Le Wed, 23 Mar 2022 16:29:41 +0100,
+Philipp Zabel <p.zabel@pengutronix.de> a =C3=A9crit :
 
-Thanks!
+> On Mi, 2022-03-23 at 10:50 +0100, Cl=C3=A9ment L=C3=A9ger wrote:
+> [...]
+> > diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+> > index 61e688882643..f014da03b7c1 100644
+> > --- a/drivers/reset/core.c
+> > +++ b/drivers/reset/core.c
+> > @@ -4,6 +4,7 @@
+> > =C2=A0 *
+> > =C2=A0 * Copyright 2013 Philipp Zabel, Pengutronix
+> > =C2=A0 */
+> > +#include <linux/acpi.h>
+> > =C2=A0#include <linux/atomic.h>
+> > =C2=A0#include <linux/device.h>
+> > =C2=A0#include <linux/err.h>
+> > @@ -70,26 +71,49 @@ static const char *rcdev_name(struct
+> > reset_controller_dev *rcdev)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (rcdev->of_node)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return rcdev->of_node->full_name; =20
+>=20
+> Could the above be removed, since reset_controller_register() set
+> rcdev->fwnode to of_fwnode_handle(rcdev->of_node) earlier?
 
-It would be nice to use --base when creating a cover letter.
-Because it has been sent during merge window, I'm not sure
-what base you have chosen for it (v5.17 or latest Linus'
-master or ...).
+Yes, this should work in all cases, the only difference is that
+fwnode_get_name() returns the basename of the of_node full_name field.
+This is potentially a change from what was displayed before. If you are
+ok with that, I'll drop these lines.
 
-> The dependencies can be found in Rafael's devprop branch now.
-> 
-> changes since v1:
-> 
-> - Drop wrongly placed Depends-on: tag from the first patch.
-> 
-> - Drop IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode) check (3rd
->   patch).
-> 
-> Sakari Ailus (4):
->   device property: Convert device_{dma_supported,get_dma_attr} to fwnode
->   ACPI: property: Move acpi_fwnode_device_get_match_data() up
->   device property: Add iomap to fwnode operations
->   device property: Add irq_get to fwnode operation
-> 
->  drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
->  drivers/base/property.c | 42 ++++++-----------------------------------
->  drivers/of/property.c   | 30 +++++++++++++++++++++++++++++
->  include/linux/fwnode.h  |  5 +++++
->  4 files changed, 73 insertions(+), 40 deletions(-)
+[...]
 
--- 
-With Best Regards,
-Andy Shevchenko
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (rcdev->of_xlate) {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0rcdev->fwnode_xlate =3D fwnode_of_reset_xlate; =20
+>=20
+> It should be documented that .fwnode_xlate/.fwnode_reset_n_cells are
+> ignored if .of_xlate is set.
 
+Acked.
 
+[...]
+
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (id) {
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0index =3D of_property_match_string(node,
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "reset-name=
+s", id);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0index =3D fwnode_property_match_string(fwnode, "reset-=
+names", id);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0if (index =3D=3D -EILSEQ)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+return ERR_PTR(index); =20
+>=20
+> I don't think this is good enough any more. At least -ENOMEM is added
+> as a possible error return code by this change.
+
+Yes indeed, errors are clearly not correctly handled anymore. At least
+-EILSEQ won't be triggered.
+>=20
+> [...]
+> > @@ -945,6 +989,9 @@ struct reset_control *__reset_control_get(struct de=
+vice *dev, const char *id,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (dev->of_node)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return __of_reset_control_get(dev->of_node, id, =
+index, shared,
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 optional, acquired); =20
+>=20
+> Could the above be removed, given that __of_reset_control_get() just
+> wraps __fwnode_reset_control_get(), which is called right below:
+
+Oh yes, sorry for that. It can clearly be removed.
+
+[...]
+
+> > =C2=A0 * @of_node: corresponding device tree node as phandle target
+> > + * @fwnode: corresponding firmware node as reference target
+> > =C2=A0 * @of_reset_n_cells: number of cells in reset line specifiers
+> > =C2=A0 * @of_xlate: translation function to translate from specifier as=
+ found in the
+> > =C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 device tree to id as given to the reset control ops, defaults
+> > - *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 t=
+o :c:func:`of_reset_simple_xlate`.
+> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 t=
+o :c:func:`fwnode_of_reset_xlate`.
+> > + * @fwnode_reset_n_cells: number of cells in reset line reference spec=
+ifiers
+> > + * @fwnode_xlate: translation function to translate from reference spe=
+cifier as
+> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 found in the firmware node description to id as gi=
+ven to the
+> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 reset control ops, defaults to
+> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 :c:func:`fwnode_reset_simple_xlate`. =20
+>=20
+> This should mention that .fwnode_xlate is ignored/overwritten when
+> .of_xlate is set.
+
+Acked.
+
+>=20
+>=20
+> regards
+> Philipp
+
+Regards,
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
