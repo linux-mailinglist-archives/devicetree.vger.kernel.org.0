@@ -2,54 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A36004E56BE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF9994E56F3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:51:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244715AbiCWQqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:46:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60100 "EHLO
+        id S245654AbiCWQxI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 23 Mar 2022 12:53:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239277AbiCWQqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:46:47 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89FDC4A3CB;
-        Wed, 23 Mar 2022 09:45:16 -0700 (PDT)
-X-UUID: eafe73e201da4ff29899425d27de526d-20220324
-X-UUID: eafe73e201da4ff29899425d27de526d-20220324
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2060070821; Thu, 24 Mar 2022 00:45:11 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 24 Mar 2022 00:45:05 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 24 Mar 2022 00:45:04 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>
-CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: [v6 4/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Date:   Thu, 24 Mar 2022 00:44:42 +0800
-Message-ID: <20220323164442.921-5-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220323164442.921-1-jiaxin.yu@mediatek.com>
-References: <20220323164442.921-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S245594AbiCWQw5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:52:57 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0492140A2E;
+        Wed, 23 Mar 2022 09:51:26 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nX4Cb-000381-K5; Wed, 23 Mar 2022 17:51:17 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org, wefu@redhat.com,
+        liush@allwinnertech.com, guoren@kernel.org, atishp@atishpatra.org,
+        anup@brainfault.org, drew@beagleboard.org,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        wens@csie.org, maxime@cerno.tech, gfavor@ventanamicro.com,
+        andrea.mondelli@huawei.com, behrensj@mit.edu, xinhaoqu@huawei.com,
+        huffman@cadence.com, mick@ics.forth.gr,
+        allen.baum@esperantotech.com, jscheid@ventanamicro.com,
+        rtrauben@gmail.com, samuel@sholland.org, cmuellner@linux.com,
+        philipp.tomsich@vrull.eu
+Subject: Re: [PATCH v6 08/14] riscv: move boot alternatives to a slightly earlier position
+Date:   Wed, 23 Mar 2022 17:51:16 +0100
+Message-ID: <2695327.BEx9A2HvPv@diego>
+In-Reply-To: <mhng-3d591628-2c87-40c7-91e4-407ad313a4aa@palmer-ri-x1c9>
+References: <mhng-3d591628-2c87-40c7-91e4-407ad313a4aa@palmer-ri-x1c9>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,180 +50,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To support machine that only choose one of the rt5682s and rt5682 as
-headset codec, adds new compatible string "mt8192_mt6359_rt1015p_rt5682s".
-Meanwhile, using macros to simplifies card name and compatible name.
+Am Dienstag, 8. März 2022, 01:47:23 CET schrieb Palmer Dabbelt:
+> On Wed, 09 Feb 2022 04:37:54 PST (-0800), heiko@sntech.de wrote:
+> > Move the application of boot alternatives to soc_early_init().
+> > This allows to catch more generic cases of code needing patches
+> > than doing it in smp_prepare_boot_cpu() and also makes it actually
+> > work if CONFIG_SMP is disabled for whatever reason.
+> >
+> > The position is chosen mainly as it is before the actual soc early
+> > init runs but also already allows accessing the devicetree
+> > via fdt_* functions.
+> 
+> I think this is OK, but it warrants testing on the K210 -- specifically 
+> the system is in an odd state before soc_early_init (IIRC some of memory 
+> doesn't work right) so I'm always a bit worried about calling stuff 
+> there.  I don't have a K210 (or at least a working one), so I'm not 
+> going to be able to test it.
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
----
- sound/soc/mediatek/Kconfig                    |  1 +
- .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 61 ++++++++++++-------
- 2 files changed, 40 insertions(+), 22 deletions(-)
+just to finalize this partial thread, v7 and onward doesn't move
+the alternative-application this early but instead actually behind
+fill_hwcaps to be able to read available extensions.
 
-diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-index d515613a79da..cacfbab4262d 100644
---- a/sound/soc/mediatek/Kconfig
-+++ b/sound/soc/mediatek/Kconfig
-@@ -176,6 +176,7 @@ config SND_SOC_MT8192_MT6359_RT1015_RT5682
- 	select SND_SOC_RT1015
- 	select SND_SOC_RT1015P
- 	select SND_SOC_RT5682_I2C
-+	select SND_SOC_RT5682S
- 	select SND_SOC_DMIC
- 	help
- 	  This adds ASoC driver for Mediatek MT8192 boards
-diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-index 328a71aa413b..61eeb973a405 100644
---- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-@@ -28,6 +28,14 @@
- #define RT1015_DEV0_NAME	"rt1015.1-0028"
- #define RT1015_DEV1_NAME	"rt1015.1-0029"
- 
-+#define RT1015_RT5682_CARD_NAME "mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_CARD_NAME "mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_CARD_NAME "mt8192_mt6359_rt1015p_rt5682s"
-+
-+#define RT1015_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682s"
-+
- struct mt8192_mt6359_priv {
- 	struct snd_soc_jack headset_jack;
- 	struct snd_soc_jack hdmi_jack;
-@@ -68,8 +76,8 @@ static int mt8192_rt1015_i2s_hw_params(struct snd_pcm_substream *substream,
- 	return snd_soc_dai_set_sysclk(cpu_dai, 0, mclk_fs, SND_SOC_CLOCK_OUT);
- }
- 
--static int mt8192_rt5682_i2s_hw_params(struct snd_pcm_substream *substream,
--				       struct snd_pcm_hw_params *params)
-+static int mt8192_rt5682x_i2s_hw_params(struct snd_pcm_substream *substream,
-+					struct snd_pcm_hw_params *params)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
- 	struct snd_soc_card *card = rtd->card;
-@@ -118,8 +126,8 @@ static const struct snd_soc_ops mt8192_rt1015_i2s_ops = {
- 	.hw_params = mt8192_rt1015_i2s_hw_params,
- };
- 
--static const struct snd_soc_ops mt8192_rt5682_i2s_ops = {
--	.hw_params = mt8192_rt5682_i2s_hw_params,
-+static const struct snd_soc_ops mt8192_rt5682x_i2s_ops = {
-+	.hw_params = mt8192_rt5682x_i2s_hw_params,
- };
- 
- static int mt8192_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
-@@ -950,7 +958,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.init = mt8192_rt5682_init,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s8),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "I2S9",
-@@ -959,7 +967,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s9),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "CONNSYS_I2S",
-@@ -1039,7 +1047,7 @@ static struct snd_soc_codec_conf rt1015_amp_conf[] = {
- };
- 
- static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015_rt5682",
-+	.name = RT1015_RT5682_CARD_NAME,
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
-@@ -1053,14 +1061,13 @@ static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
- 	.num_configs = ARRAY_SIZE(rt1015_amp_conf),
- };
- 
--static const struct snd_soc_dapm_widget
--mt8192_mt6359_rt1015p_rt5682_widgets[] = {
-+static const struct snd_soc_dapm_widget mt8192_mt6359_rt1015p_rt5682x_widgets[] = {
- 	SND_SOC_DAPM_SPK("Speakers", NULL),
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
--static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
-+static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682x_routes[] = {
- 	/* speaker */
- 	{ "Speakers", NULL, "Speaker" },
- 	/* headset */
-@@ -1069,23 +1076,22 @@ static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
- 	{ "IN1P", NULL, "Headset Mic" },
- };
- 
--static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682_controls[] = {
-+static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682x_controls[] = {
- 	SOC_DAPM_PIN_SWITCH("Speakers"),
- 	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
- 	SOC_DAPM_PIN_SWITCH("Headset Mic"),
- };
- 
--static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015p_rt5682",
-+static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682x_card = {
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
--	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
--	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
--	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
--	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
--	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
--	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
-+	.controls = mt8192_mt6359_rt1015p_rt5682x_controls,
-+	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_controls),
-+	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682x_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_widgets),
-+	.dapm_routes = mt8192_mt6359_rt1015p_rt5682x_routes,
-+	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_routes),
- };
- 
- static int mt8192_mt6359_card_set_be_link(struct snd_soc_card *card,
-@@ -1119,6 +1125,13 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	card->dev = &pdev->dev;
- 
-+	if (of_device_is_compatible(pdev->dev.of_node, RT1015P_RT5682_OF_NAME))
-+		card->name = RT1015P_RT5682_CARD_NAME;
-+	else if (of_device_is_compatible(pdev->dev.of_node, RT1015P_RT5682S_OF_NAME))
-+		card->name = RT1015P_RT5682S_CARD_NAME;
-+	else
-+		dev_dbg(&pdev->dev, "No need to set card name\n");
-+
- 	platform_node = of_parse_phandle(pdev->dev.of_node, "mediatek,platform", 0);
- 	if (!platform_node) {
- 		ret = -EINVAL;
-@@ -1213,12 +1226,16 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- #ifdef CONFIG_OF
- static const struct of_device_id mt8192_mt6359_dt_match[] = {
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015_rt5682",
-+		.compatible = RT1015_RT5682_OF_NAME,
- 		.data = &mt8192_mt6359_rt1015_rt5682_card,
- 	},
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682",
--		.data = &mt8192_mt6359_rt1015p_rt5682_card,
-+		.compatible = RT1015P_RT5682_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
-+	},
-+	{
-+		.compatible = RT1015P_RT5682S_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
- 	},
- 	{}
- };
--- 
-2.18.0
+So nothing to do for this - for people reading along, and me if
+I don't remember this in the future ;-)
+
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  arch/riscv/kernel/head.S    | 2 ++
+> >  arch/riscv/kernel/smpboot.c | 2 --
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+> > index 2363b43312fc..0e1bb97f9749 100644
+> > --- a/arch/riscv/kernel/head.S
+> > +++ b/arch/riscv/kernel/head.S
+> > @@ -10,6 +10,7 @@
+> >  #include <asm/thread_info.h>
+> >  #include <asm/page.h>
+> >  #include <asm/pgtable.h>
+> > +#include <asm/alternative.h>
+> >  #include <asm/csr.h>
+> >  #include <asm/cpu_ops_sbi.h>
+> >  #include <asm/hwcap.h>
+> > @@ -341,6 +342,7 @@ clear_bss_done:
+> >  	call kasan_early_init
+> >  #endif
+> >  	/* Start the kernel */
+> > +	call apply_boot_alternatives
+> >  	call soc_early_init
+> >  	tail start_kernel
+> >
+> > diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
+> > index a6d13dca1403..f1e4948a4b52 100644
+> > --- a/arch/riscv/kernel/smpboot.c
+> > +++ b/arch/riscv/kernel/smpboot.c
+> > @@ -32,7 +32,6 @@
+> >  #include <asm/sections.h>
+> >  #include <asm/sbi.h>
+> >  #include <asm/smp.h>
+> > -#include <asm/alternative.h>
+> >
+> >  #include "head.h"
+> >
+> > @@ -41,7 +40,6 @@ static DECLARE_COMPLETION(cpu_running);
+> >  void __init smp_prepare_boot_cpu(void)
+> >  {
+> >  	init_cpu_topology();
+> > -	apply_boot_alternatives();
+> >  }
+> >
+> >  void __init smp_prepare_cpus(unsigned int max_cpus)
+> 
+
+
+
 
