@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C454C4E5A26
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:48:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D38684E5A5B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 22:07:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240806AbiCWUuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 16:50:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45226 "EHLO
+        id S229748AbiCWVIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 17:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240768AbiCWUuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:50:22 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E72833524B;
-        Wed, 23 Mar 2022 13:48:51 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id n35so1643459wms.5;
-        Wed, 23 Mar 2022 13:48:51 -0700 (PDT)
+        with ESMTP id S231975AbiCWVIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 17:08:32 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1152571EC9;
+        Wed, 23 Mar 2022 14:07:02 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id z92so3324735ede.13;
+        Wed, 23 Mar 2022 14:07:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LukbgojREw+PN9UG7YjuzAI4ZmJ6UO0+vPcwD8VUwiE=;
-        b=n0E+qZZAzaM8kRFDnrmWh+PSqigHNi3NS4aaYCR6aEbybV9DDXhTAidVcCg5dpYF1v
-         bKzCqai4gQcI3pKyIuf5OA5loiaBzr5JyYeE8brz7ObVJ8QbFIZ8Q765JcasYj0hpoOA
-         IlBUHyHJol25U1McaHQ3uqMfewYvBLn645f9/ogksEyr0eatWGiBBJAF9omcmAvuPaKF
-         e8e0k44wW0+aEfLYBmNRzeShThwKDBKD8FR1J5pS6E3qYL0Hk6c2zRJeEEX7crxLtZpU
-         zyrMnM4D6Eecm1HyL73K6B1luiz1/seAn+1IgxdDM2+E4OyiaRQXuyAYo89BNwy9j1+F
-         SVJA==
+        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LMob1D1i/R5KcK87hci+jzzEC4MjJYbt0t47d5hUovY=;
+        b=cQ5Rn8RP7D8ngoNZu2dFD/oZPt4P7BynwfQeptMD2aRY5pL1OoGxdVWqza1pXJtVQ4
+         rY/X/C14pA/drwoh1QDrx/CT8b/5cafJ7Xepvj/zxd1mph2n4LW2eBLaleDfcT07+cy+
+         WjBcHZSvjd6rCnIzelsXdJd6BG87LFEJ9/bv9rPsDZ3uwcXV0wbwKGpoyXFtVgAMRhzs
+         MNcXty9r8FntZHvteS696YBi0bbDGiKW95SQBxAixwojNbsdGksOjMkgIGeWcdxnJ73m
+         Trv9IZxSWgFTbTCb1jtj1BV+HHyKtR8DfyFAmdT7y6NfL+aAi524rl347gpDwVptb+7F
+         Yzyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LukbgojREw+PN9UG7YjuzAI4ZmJ6UO0+vPcwD8VUwiE=;
-        b=MfOuVrTaMBEkdjTGUpa3tInounE5IQX6R6UTLLX9hArbK7aVc3wSRuoO0xoZm0vII3
-         Ui8Sp+QinKpM3AN0sf0A7tIxe5F66/DrqV3qZxemPcraIti75HqbcARwZbEeUBZU5R0e
-         ccyiNG3xOucztBNLo6TyLJQslUM44JX54cUPKEKENsiNGWIZat5JhfenzBySCzI74JXb
-         1JGte2OLbvOXyPG4FdvQ/FckntzGY1uCQcn0gOAh8XsnY739OzlYnw9NVR5I5MDwn0Rp
-         JaYR++TllfLMNavd7VoESmAnE0dlDCblQcNQcam3Yrd5caQ3RjHOmqkgA5Q02Bh0sqCY
-         yfgA==
-X-Gm-Message-State: AOAM533a2ymWwudCHapBvq8EdfFpZwB0VPo9IoxOzMLtXNCMZgQ2TPHX
-        ojeMV6M1xP7Y/VeTM7M5sSLpiL571r7RZg==
-X-Google-Smtp-Source: ABdhPJxeQHruZoouFnyYI3jT/FWg2BTm68I/sYDF8LVRA+uY/R+iWBdubrPGtvu8h21wiJOvHR6FGw==
-X-Received: by 2002:a1c:6a01:0:b0:37f:1b18:6b17 with SMTP id f1-20020a1c6a01000000b0037f1b186b17mr11024533wmc.146.1648068530369;
-        Wed, 23 Mar 2022 13:48:50 -0700 (PDT)
-Received: from dell5510.arch.suse.de (gw1.ms-free.net. [185.243.124.10])
-        by smtp.gmail.com with ESMTPSA id i15-20020adffdcf000000b00203efad1d89sm1047350wrs.9.2022.03.23.13.48.49
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=LMob1D1i/R5KcK87hci+jzzEC4MjJYbt0t47d5hUovY=;
+        b=b3act5+uIXOyocE5IQsdqsoiv6WCEt3ualTUoMeU+m1/s08HPfo0BPcs0Nbt87pbJs
+         GB00avaaw03Mv6rMi6p5HPC4B1hRdUuWBieA+ynJbb/KikfSmnGjpWvOCCROpOnV1/mR
+         9+5C7Uq8ReGYSxYGfn/Teow3hUett9yurO4cFicJTf7+RV+CWgXRvREOadTXShCX8LVs
+         1zVpsC0kHEx9RqA/0fsjo1cX1oFJeCyxHy1fedwANJmwc1R67Hvd9DGMgu+kCoE0s275
+         kcjYKqwo/+7t+QR+nBSPgwy3lPtMStpRWeJBkdVK2P8UWNeCpZDsLccVC8rVnQs4zPxs
+         2+mw==
+X-Gm-Message-State: AOAM533dTwcisRp7ua4oQHNTr3HZC8pAbIjCvS/w3yqC6y4wpqwp3Za3
+        Z0C+b8gguMNox4PTkt70wRTCsXNBNMxyvA==
+X-Google-Smtp-Source: ABdhPJwwpGcC22tUk/vFU08UDFRGXnFfeqL0QOtqdwUlIomdkvOYkwsmmgqV3qAkjGeSZLeGH7bKOA==
+X-Received: by 2002:a05:6402:1e92:b0:419:76:21a6 with SMTP id f18-20020a0564021e9200b00419007621a6mr2644728edf.128.1648069620537;
+        Wed, 23 Mar 2022 14:07:00 -0700 (PDT)
+Received: from pevik (gw1.ms-free.net. [185.243.124.10])
+        by smtp.gmail.com with ESMTPSA id b15-20020a50cccf000000b0040f74c6abedsm442301edj.77.2022.03.23.14.06.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 13:48:49 -0700 (PDT)
+        Wed, 23 Mar 2022 14:07:00 -0700 (PDT)
+Date:   Wed, 23 Mar 2022 22:06:57 +0100
 From:   Petr Vorel <petr.vorel@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Petr Vorel <petr.vorel@gmail.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 1/1] arm64: dts: qcom: msm8994-huawei-angler: Add sdhc1 definition
-Date:   Wed, 23 Mar 2022 21:48:40 +0100
-Message-Id: <20220323204840.22832-1-petr.vorel@gmail.com>
-X-Mailer: git-send-email 2.35.1
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/15] arm64: dts: qcom: msm8994: Fix sleep clock name
+Message-ID: <YjuL8UKROE5pnUj1@pevik>
+Reply-To: Petr Vorel <petr.vorel@gmail.com>
+References: <20220319174645.340379-1-konrad.dybcio@somainline.org>
+ <20220319174645.340379-2-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220319174645.340379-2-konrad.dybcio@somainline.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -70,41 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Angler does not have SD card, thus sdhc2 kept disabled.
+Hi Konrad, all,
 
-Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
----
-NOTE: requires Konrad's fix
-https://lore.kernel.org/linux-arm-msm/YjuE+cgGXCLihPIa@pevik/T/#t
+> The sleep clock name expected by GCC is actually "sleep" and not
+> "sleep_clk". Fix the clock-names value for it to make sure it is
+> provided.
 
-changes v4->v5:
-* remove workaround (fixed by Konrad's fix)
+> Fixes: 9204da57cd65 ("arm64: dts: qcom: msm8994: Provide missing "xo_board" and "sleep_clk" to GCC")
+Thanks for fixing it, now I see it in
+Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
 
- arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Reviewed-by: Petr Vorel <petr.vorel@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-index 0e3dd48f0dbf..6e43e4339f55 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /* Copyright (c) 2015, Huawei Inc. All rights reserved.
-  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
-+ * Copyright (c) 2021-2022, Petr Vorel <petr.vorel@gmail.com>
-  */
- 
- /dts-v1/;
-@@ -41,3 +41,8 @@ serial@f991e000 {
- &tlmm {
- 	gpio-reserved-ranges = <85 4>;
- };
-+
-+&sdhc1 {
-+	status = "okay";
-+	mmc-hs400-1_8v;
-+};
--- 
-2.35.1
+I also tested it with "clk: qcom: gcc-msm8994: Fix gpll4 width" [1]
+and "[PATCH v5 1/1] arm64: dts: qcom: msm8994-huawei-angler: Add sdhc1 definition" [2]
+and it works as expected.
 
+Reviewed-by: Petr Vorel <petr.vorel@gmail.com>
+
+Kind regards,
+Petr
+
+[1] https://lore.kernel.org/linux-arm-msm/20220319174940.341137-1-konrad.dybcio@somainline.org/
+[2] https://lore.kernel.org/linux-arm-msm/20220323204840.22832-1-petr.vorel@gmail.com/
