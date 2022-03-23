@@ -2,202 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 308984E520B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 13:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0804E5202
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 13:17:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239831AbiCWMUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 08:20:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35112 "EHLO
+        id S235795AbiCWMTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 08:19:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239152AbiCWMUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 08:20:18 -0400
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0309852E63;
-        Wed, 23 Mar 2022 05:18:47 -0700 (PDT)
-Received: from email.seznam.cz
-        by email-smtpc25b.ng.seznam.cz (email-smtpc25b.ng.seznam.cz [10.23.18.35])
-        id 02835ba5598d0fcc032a97fb;
-        Wed, 23 Mar 2022 13:18:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1648037896; bh=awM1rDsehR2wyeRn1zZaXShGQo6kRf4IVmYDQWGJWVw=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=JSuW+rbSKIFoAAn5MVQNrWUIciggqKnXPG+Cpe6X1b+LNR2YybqIYMBwP7a0sneav
-         3dJyzCXb6dZ0ny61gHRS3E0fLzWfpI0bueQHWy/VG5InvdZb/K/17QvvukkeyC1Yy3
-         UQs/UnuJpWuxtnCVEMbBPihOiW9FDQZqY7QxbRYQ=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay19.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Wed, 23 Mar 2022 13:18:12 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Subject: [PATCH v3 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D
-Date:   Wed, 23 Mar 2022 13:15:50 +0100
-Message-Id: <20220323121550.16096-3-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220323121550.16096-1-michael.srba@seznam.cz>
-References: <20220323121550.16096-1-michael.srba@seznam.cz>
+        with ESMTP id S235516AbiCWMTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 08:19:01 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EC2376E2E;
+        Wed, 23 Mar 2022 05:17:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648037852; x=1679573852;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PSHcI897D2zwxp8xEylKJ3SYcDP8lVWYEjAmdTs22kM=;
+  b=JvztOgiYfjHuuPoDvTvt1ftKhcgovQ3A40U1kdwutYHiritjVaRd1Pbi
+   KWIpRtj4T1LTN1mkwv3f3QO/mgSEHnZoNpMMLidJ7FaDqcqqKD1MrrAiE
+   18bd5wxwrb098Q92EZSXzosKGpZup91qc5obMHJE4M7sEbHDI1BnbAa/D
+   OwRBTHCyT+97BzkmpKyjCqRB+19AkBdpYV4x06MrSVLCLiCOLInCQ7R7o
+   SzvmDv1YBCilu8qU2midHQoZsW7SVENGwxctLzzUW7ZTmvj0eshodiO1d
+   FAS0TNgA7KIsckM5dcIhuKzbCLwvZamMEa6fQtwrJFG4eH7OwibYBFwJo
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="282942188"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
+   d="scan'208";a="282942188"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 05:17:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
+   d="scan'208";a="583669177"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 23 Mar 2022 05:17:28 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nWzvb-000K2T-L6; Wed, 23 Mar 2022 12:17:27 +0000
+Date:   Wed, 23 Mar 2022 20:17:22 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH 2/2] drivers: usb: dwc3: Add AM62 USB wrapper driver
+Message-ID: <202203232002.K45zQUfY-lkp@intel.com>
+References: <20220323053524.7009-3-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <2703369f-32ce-446c-8977-19a4fd619181>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220323053524.7009-3-a-govindraju@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+Hi Aswath,
 
-The difference between the ICM-20608-D and the other ICM-20608
-variants is the addition of a DMP (Digital Motion Processor) core.
-This difference is deemed substantial enough to change the WHOAMI
-register value.
-Since this driver doesn't currently acknowledge the exisence of
-something like a DMP core, simply copy ICM-20608 except for the
-aforementioned WHOAMI register.
+I love your patch! Yet something to improve:
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-Acked-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
----
-changes:
- - v2: none
- - v3: none
----
- drivers/iio/imu/inv_mpu6050/Kconfig        | 4 ++--
- drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 9 +++++++++
- drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c  | 6 ++++++
- drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h  | 2 ++
- drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c  | 5 +++++
- 5 files changed, 24 insertions(+), 2 deletions(-)
+[auto build test ERROR on linux/master]
+[also build test ERROR on usb/usb-testing linus/master v5.17 next-20220323]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-diff --git a/drivers/iio/imu/inv_mpu6050/Kconfig b/drivers/iio/imu/inv_mpu6050/Kconfig
-index 9c625517173a..3636b1bc90f1 100644
---- a/drivers/iio/imu/inv_mpu6050/Kconfig
-+++ b/drivers/iio/imu/inv_mpu6050/Kconfig
-@@ -16,7 +16,7 @@ config INV_MPU6050_I2C
- 	select REGMAP_I2C
- 	help
- 	  This driver supports the Invensense MPU6050/9150,
--	  MPU6500/6515/6880/9250/9255, ICM20608/20609/20689, ICM20602/ICM20690
-+	  MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20689, ICM20602/ICM20690
- 	  and IAM20680 motion tracking devices over I2C.
- 	  This driver can be built as a module. The module will be called
- 	  inv-mpu6050-i2c.
-@@ -28,7 +28,7 @@ config INV_MPU6050_SPI
- 	select REGMAP_SPI
- 	help
- 	  This driver supports the Invensense MPU6000,
--	  MPU6500/6515/6880/9250/9255, ICM20608/20609/20689, ICM20602/ICM20690
-+	  MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20689, ICM20602/ICM20690
- 	  and IAM20680 motion tracking devices over SPI.
- 	  This driver can be built as a module. The module will be called
- 	  inv-mpu6050-spi.
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-index 597768c29a72..86fbbe904050 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-@@ -217,6 +217,15 @@ static const struct inv_mpu6050_hw hw_info[] = {
- 		.temp = {INV_ICM20608_TEMP_OFFSET, INV_ICM20608_TEMP_SCALE},
- 		.startup_time = {INV_MPU6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},
- 	},
-+	{
-+		.whoami = INV_ICM20608D_WHOAMI_VALUE,
-+		.name = "ICM20608D",
-+		.reg = &reg_set_6500,
-+		.config = &chip_config_6500,
-+		.fifo_size = 512,
-+		.temp = {INV_ICM20608_TEMP_OFFSET, INV_ICM20608_TEMP_SCALE},
-+		.startup_time = {INV_MPU6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},
-+	},
- 	{
- 		.whoami = INV_ICM20609_WHOAMI_VALUE,
- 		.name = "ICM20609",
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-index fe03707ec2d3..ed52b27409ac 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-@@ -29,6 +29,7 @@ static bool inv_mpu_i2c_aux_bus(struct device *dev)
- 
- 	switch (st->chip_type) {
- 	case INV_ICM20608:
-+	case INV_ICM20608D:
- 	case INV_ICM20609:
- 	case INV_ICM20689:
- 	case INV_ICM20602:
-@@ -182,6 +183,7 @@ static const struct i2c_device_id inv_mpu_id[] = {
- 	{"mpu9250", INV_MPU9250},
- 	{"mpu9255", INV_MPU9255},
- 	{"icm20608", INV_ICM20608},
-+	{"icm20608d", INV_ICM20608D},
- 	{"icm20609", INV_ICM20609},
- 	{"icm20689", INV_ICM20689},
- 	{"icm20602", INV_ICM20602},
-@@ -225,6 +227,10 @@ static const struct of_device_id inv_of_match[] = {
- 		.compatible = "invensense,icm20608",
- 		.data = (void *)INV_ICM20608
- 	},
-+	{
-+		.compatible = "invensense,icm20608d",
-+		.data = (void *)INV_ICM20608D
-+	},
- 	{
- 		.compatible = "invensense,icm20609",
- 		.data = (void *)INV_ICM20609
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-index c6aa36ee966a..8e14f20b1314 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-@@ -76,6 +76,7 @@ enum inv_devices {
- 	INV_MPU9250,
- 	INV_MPU9255,
- 	INV_ICM20608,
-+	INV_ICM20608D,
- 	INV_ICM20609,
- 	INV_ICM20689,
- 	INV_ICM20602,
-@@ -394,6 +395,7 @@ struct inv_mpu6050_state {
- #define INV_MPU9255_WHOAMI_VALUE		0x73
- #define INV_MPU6515_WHOAMI_VALUE		0x74
- #define INV_ICM20608_WHOAMI_VALUE		0xAF
-+#define INV_ICM20608D_WHOAMI_VALUE		0xAE
- #define INV_ICM20609_WHOAMI_VALUE		0xA6
- #define INV_ICM20689_WHOAMI_VALUE		0x98
- #define INV_ICM20602_WHOAMI_VALUE		0x12
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-index 6800356b25fb..ce8ab6db2bf2 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-@@ -74,6 +74,7 @@ static const struct spi_device_id inv_mpu_id[] = {
- 	{"mpu9250", INV_MPU9250},
- 	{"mpu9255", INV_MPU9255},
- 	{"icm20608", INV_ICM20608},
-+	{"icm20608d", INV_ICM20608D},
- 	{"icm20609", INV_ICM20609},
- 	{"icm20689", INV_ICM20689},
- 	{"icm20602", INV_ICM20602},
-@@ -113,6 +114,10 @@ static const struct of_device_id inv_of_match[] = {
- 		.compatible = "invensense,icm20608",
- 		.data = (void *)INV_ICM20608
- 	},
-+	{
-+		.compatible = "invensense,icm20608d",
-+		.data = (void *)INV_ICM20608D
-+	},
- 	{
- 		.compatible = "invensense,icm20609",
- 		.data = (void *)INV_ICM20609
+url:    https://github.com/0day-ci/linux/commits/Aswath-Govindraju/AM62-Add-support-for-AM62-USB-wrapper-driver/20220323-133708
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git 2c271fe77d52a0555161926c232cd5bc07178b39
+config: hexagon-buildonly-randconfig-r002-20220323 (https://download.01.org/0day-ci/archive/20220323/202203232002.K45zQUfY-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 902f4708fe1d03b0de7e5315ef875006a6adc319)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/4ca423573f638454724a40416042d84552db81af
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Aswath-Govindraju/AM62-Add-support-for-AM62-USB-wrapper-driver/20220323-133708
+        git checkout 4ca423573f638454724a40416042d84552db81af
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/usb/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/usb/dwc3/dwc3-am62.c:567:10: error: use of undeclared identifier 'dwc3_ti_pm_ops'; did you mean 'dwc3_ti_probe'?
+                   .pm     = &dwc3_ti_pm_ops,
+                              ^~~~~~~~~~~~~~
+                              dwc3_ti_probe
+   drivers/usb/dwc3/dwc3-am62.c:379:12: note: 'dwc3_ti_probe' declared here
+   static int dwc3_ti_probe(struct platform_device *pdev)
+              ^
+>> drivers/usb/dwc3/dwc3-am62.c:567:9: error: incompatible pointer types initializing 'const struct dev_pm_ops *' with an expression of type 'int (*)(struct platform_device *)' [-Werror,-Wincompatible-pointer-types]
+                   .pm     = &dwc3_ti_pm_ops,
+                             ^~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +567 drivers/usb/dwc3/dwc3-am62.c
+
+   561	
+   562	static struct platform_driver dwc3_ti_driver = {
+   563		.probe		= dwc3_ti_probe,
+   564		.remove		= dwc3_ti_remove,
+   565		.driver		= {
+   566			.name	= "dwc3-am62",
+ > 567			.pm	= &dwc3_ti_pm_ops,
+   568			.of_match_table = dwc3_ti_of_match,
+   569		},
+   570	};
+   571	
+
 -- 
-2.35.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
