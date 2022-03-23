@@ -2,129 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190F74E5326
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 14:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7BE24E535C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 14:40:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244291AbiCWNdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 09:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
+        id S244397AbiCWNmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 09:42:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244249AbiCWNdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 09:33:37 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3BB75E53
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:32:07 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id w141so744661qkb.6
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:32:06 -0700 (PDT)
+        with ESMTP id S244393AbiCWNmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 09:42:05 -0400
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B2E7D02A;
+        Wed, 23 Mar 2022 06:40:35 -0700 (PDT)
+Received: by mail-il1-x135.google.com with SMTP id e9so989203ilu.9;
+        Wed, 23 Mar 2022 06:40:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nPGspUnXDfSSjkwMaGFzPZOYPt1+G1sJy9ZdXHVCp+8=;
-        b=Cr6TDAC63Uli7HQZ9nYheNpDiEzDDtVl9wd6iUyAqKes9XcIcVheNz/MbiPidhndJm
-         d22sDoKrdyJxG/hbX8XM9lGTKhYvbyQmi4AdUQWymBaGa7MsCImsgrXTvT+hPw/6iULK
-         kxomLZlBnF6wb3dQT7O7jtEj7/fdfwnCo7kpA=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=S0yGfWVmwvBNXjV8YPBIOWgjw8QQzbCwNdOAxvwVYTE=;
+        b=U6wM5GzjHJQC3hlOYG2GxK4bQbvQp3hRDn+95gNbAfEFuk64fLKwY/tFSnVyK+NOj4
+         vZdXztglI5nT5OqVgR0LmqQ5/zLQNrcB9NcwH/1R8NuihQSH1k1uVW77r0Ph/WLqE/1u
+         3WZfIcLcgFQHFNonYfaUPVRIeWPEnR0wrr4wXtBarfp/4sMKCVkpxJ0FrnXP72vEPY8/
+         SxMiB6fvPl/UooyAOhFgBjcUFQlLjrd3xbGBHnpHjGtWD9TE9pBgLTBMVUTVlfYxQBeQ
+         kVDerAky8jen0gUdFCVIf0t4Fvck8cdKvgKzNb7XeZr6gopmbUli8TaQx6o01i2hM48M
+         XUMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nPGspUnXDfSSjkwMaGFzPZOYPt1+G1sJy9ZdXHVCp+8=;
-        b=bgtCDdAl4DbgGQ7otu3Kj2MSTFcmkdc+z5H7vKIeFLCoHmSRtRWhDW26PLZ0TOZgnE
-         /YtJlpWUf9eQzrcVEyR1lWuYrIQDYdwVaiOINVTexowoK1VZxC3KzJRorT4CuIsAmPR1
-         iIVOu4lDtsqm3WmaTkoTEtiBrcqm7qKLyPLzKdvrgAH6INsh2LtCWqvONJquD9zvVDdA
-         9ny3VQMymCm/7RGRhES/MPD2KWYBwaegKeg2Kw6KvpublOhb4O3ef7PX9upswS+HULH4
-         U6asyjpY66bcceKAEHn1Araup1PsbGzCQeNOheekoC8uT+9Exv27MssOo7/JlV+M7Xpd
-         7pJw==
-X-Gm-Message-State: AOAM530vIt3Ne0AAbxhu0TG6l79NgArx+P/mu4KS7ADVTEIX4erR0+xb
-        Vb0Yg/r5bmLh/hkdoCFfDcIGtQ==
-X-Google-Smtp-Source: ABdhPJzoo4UXmqA2kFsY4AxIOGuvgy0FfwekMuH1JcPG1w1Ujia1jCE5tPW3sGPBb6+u7rvXG496XA==
-X-Received: by 2002:a05:620a:108f:b0:67b:465f:56ba with SMTP id g15-20020a05620a108f00b0067b465f56bamr18542419qkk.297.1648042326089;
-        Wed, 23 Mar 2022 06:32:06 -0700 (PDT)
-Received: from bill-the-cat (2603-6081-7b01-cbda-2ef0-5dff-fedb-a8ba.res6.spectrum.com. [2603:6081:7b01:cbda:2ef0:5dff:fedb:a8ba])
-        by smtp.gmail.com with ESMTPSA id o13-20020ac87c4d000000b002e1e732dea5sm23955qtv.70.2022.03.23.06.32.04
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=S0yGfWVmwvBNXjV8YPBIOWgjw8QQzbCwNdOAxvwVYTE=;
+        b=ZSaJSQ0Yy4z4glXjGB7k+G5hJb/4fCU3U5uQPC41UAgGhbDuoEsUeLsQRGrYv5xPA4
+         gXNU0T0+RUkwDU8v5914ZFpJ2th7IOpZ6HhEuTrVUbiZTyjmOcKSUb7U0HuezmurSp4z
+         oS8Ag3QobU6nU9lFkVBR2z3B1VkCCg0teoxYouwVXspXwMQ5snJx1k8NGxPQiJ+hRBxc
+         Dw/qaWNxFETdy6+C/67fZ28yy4MwwRYbRLePIi7DdUjlFtkfp5TT+M8/MuMUpLM7KpxZ
+         TJRax6ms8vaAobTZIt56bG0a2UTmulJ7W8fRLYbO1o8DYIP4yDyW1Qo/rNh5oWi/5qRG
+         NZxQ==
+X-Gm-Message-State: AOAM532TO0dzbMyU5M7q7Crf3oj+GCjUhrgT8wGyHvDsfxQum5Cyl1yk
+        DxxBszLtb/o44osdr1I1dso=
+X-Google-Smtp-Source: ABdhPJzb6EZp+G+otRr+uRIAi5dKKi+NDQ5nUb8OUQKG4oZdIcQqV2tuKvBx5s3aRxvoMx2tKK+wvg==
+X-Received: by 2002:a05:6e02:1ba8:b0:2c8:218a:24bd with SMTP id n8-20020a056e021ba800b002c8218a24bdmr41690ili.198.1648042834178;
+        Wed, 23 Mar 2022 06:40:34 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:3c99:2d92:f93d:dc94])
+        by smtp.gmail.com with ESMTPSA id y6-20020a056e02174600b002c7f247b3a7sm35253ill.54.2022.03.23.06.40.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 06:32:05 -0700 (PDT)
-Date:   Wed, 23 Mar 2022 09:32:03 -0400
-From:   Tom Rini <trini@konsulko.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
-        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables
- binding
-Message-ID: <20220323133203.GD2226424@bill-the-cat>
-References: <20220228131250.16943-1-zajec5@gmail.com>
+        Wed, 23 Mar 2022 06:40:33 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: mmc: imx-esdhc: Change imx8mn and imx8mp compatible fallback
+Date:   Wed, 23 Mar 2022 08:40:17 -0500
+Message-Id: <20220323134019.3796178-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dicp5grlxus9uUnk"
-Content-Disposition: inline
-In-Reply-To: <20220228131250.16943-1-zajec5@gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The SDHC controller in the imx8mn and imx8mp have the same controller
+as the imx8mm which is slightly different than that of the imx7d.
+Using the fallback of the imx8mm enables the controllers to support
+HS400-ES which is not available on the imx7d.
 
---dicp5grlxus9uUnk
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-On Mon, Feb 28, 2022 at 02:12:50PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+index 7dbbcae9485c..d6ea73d76bdd 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+@@ -39,14 +39,14 @@ properties:
+       - items:
+           - enum:
+               - fsl,imx8mm-usdhc
+-              - fsl,imx8mn-usdhc
+-              - fsl,imx8mp-usdhc
+               - fsl,imx8mq-usdhc
+               - fsl,imx8qm-usdhc
+               - fsl,imx8qxp-usdhc
+           - const: fsl,imx7d-usdhc
+       - items:
+           - enum:
++              - fsl,imx8mn-usdhc
++              - fsl,imx8mp-usdhc
+               - fsl,imx93-usdhc
+               - fsl,imx8ulp-usdhc
+           - const: fsl,imx8mm-usdhc
+-- 
+2.34.1
 
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> U-Boot uses environment variables for storing device setup data. It
-> usually needs to be accessed by a bootloader, kernel and often
-> user-space.
->=20
-> This binding allows describing environment data located in a raw flash
-> partition. It's treated as NVMEM device and can be reused later for
-> other storage devices.
->=20
-> Using DT should be cleaner than hardcoding & duplicating such info in
-> multiple places. Bootloader & kernel can share DTS and user-space can
-> try reading it too or just have correct data exposed by a kernel.
->=20
-> A custom "compatible" string allows system to automatically load
-> relevant NVMEM driver but phandle can be also used for reading raw
-> location.
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-
-Reviewed-by: Tom Rini <trini@konsulko.com>
-
---=20
-Tom
-
---dicp5grlxus9uUnk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCgAdFiEEGjx/cOCPqxcHgJu/FHw5/5Y0tywFAmI7IVIACgkQFHw5/5Y0
-tyzRfQwAt3O0IvBGs764YvWeHo1sL/8xI1tMnKQnfo+cZmVJBI60nE+Ghmu0Y3Rn
-Me445fR/Ill/NBVMdUnp2bhPUWUI/puej7VqfB1t5mm3xCaeD2BRl+BVwIue73FX
-vNf9Sk3tIBNrh8mDihG5XMNMq8UWkms+FDk/zjv2I7pfJ//Wpgo3nDlX5Wyle1hp
-YDK3JlsgMI3wYMJQZ5g7+EknBgtTPndJ0DyjO2gCuZEOh688Tf3eXmC21+0aW/o/
-2ErUXJmux8BxvRZqHH2bpH00sY/377FSlGowlI09GlR8VYvGFIfWIX0NFE4gauKG
-wSavW952MP1pYMulvQIDBtg2aQNnigugCUM7Xm1xVHlvZQATqqdtIgusvEozkuKk
-VSGnyWhYPANUINk7FORtIctrGkmNWe8JOeBtjMsLtmYJiRiCwvrYkNxfPGUuWYK2
-10CnEzryX9Flx8ez8Sg/ywniMD77fwub90QQv9fqaKta/EqKSt08wruLoAtp/c12
-mgGwY0fX
-=rCXN
------END PGP SIGNATURE-----
-
---dicp5grlxus9uUnk--
