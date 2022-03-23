@@ -2,200 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A40754E4CA9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 07:19:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225A54E4CF6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 07:56:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232462AbiCWGUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 02:20:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44434 "EHLO
+        id S242074AbiCWG6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 02:58:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbiCWGUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 02:20:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58BA201B1;
-        Tue, 22 Mar 2022 23:19:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 548DEB81DC8;
-        Wed, 23 Mar 2022 06:19:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFF62C340E8;
-        Wed, 23 Mar 2022 06:19:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648016360;
-        bh=MzQEQky33M0cJ5F2F8Vi8dnLCUNFt0CeZ3m3y8keaR4=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=bJaacLTojb3+tyLclb1sP9D4BxAKew2KgKze7cKKOQFBjzZnDTlb+UG3L9vsXkd34
-         m5N31atAjI7edk0KMxK+3qowWb3XlH6YHMCgVLBrLBaCP0NTV+CD5ov6DlKUa+5wSZ
-         fzFqrrtRx3Zr1D+oWrOdY2pkFt2QEb87QZbF+/0+dEIemH7FhsHQpfw26pfixG7Yqb
-         x0zZ3XdqMBhxoHzj8rea765aWXPiE6dBgIgWb1B7mG2mjzlAM0TYiL4iC8Zbyur527
-         eGN3X4+T49bSO1+vt4Yz4SnbGuEmm9T+xEz0PVde6o5msmCDcmviN4uUe+d6GlgREC
-         IlKY0xSQuEDtg==
-Message-ID: <9b966da2-e414-fa2f-1401-18d3a150bfbd@kernel.org>
-Date:   Wed, 23 Mar 2022 08:19:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add documentation for AM62 USB
- Wrapper module
-Content-Language: en-US
-From:   Roger Quadros <rogerq@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        with ESMTP id S242042AbiCWG5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 02:57:55 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 003BB71A11;
+        Tue, 22 Mar 2022 23:56:25 -0700 (PDT)
+X-UUID: 972c8aee81944895b22513bc9208dbcd-20220323
+X-UUID: 972c8aee81944895b22513bc9208dbcd-20220323
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 685011337; Wed, 23 Mar 2022 14:56:14 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 23 Mar 2022 14:56:13 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Mar 2022 14:56:11 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20220323053524.7009-1-a-govindraju@ti.com>
- <20220323053524.7009-2-a-govindraju@ti.com>
- <7005ad7a-1e5e-8823-239e-18dc0fed472a@kernel.org>
-In-Reply-To: <7005ad7a-1e5e-8823-239e-18dc0fed472a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Wei-Shun Chang <weishunc@google.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Subject: [PATCH v4 0/2] phy: mediatek: Add PCIe PHY driver
+Date:   Wed, 23 Mar 2022 14:56:06 +0800
+Message-ID: <20220323065608.27426-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These series patches add support for PCIe PHY driver on MediaTek chipsets.
 
+Changes in v4:
+1. Fix no return when calling dev_err_probe.
 
-On 23/03/2022 08:17, Roger Quadros wrote:
-> Hi Aswath,
-> 
-> On 23/03/2022 07:35, Aswath Govindraju wrote:
->> Add bindings for the TI's AM62 wrapper module for the Synopsys USBSS-DRD
->> controller.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>  .../devicetree/bindings/usb/ti,am62-usb.yaml  | 98 +++++++++++++++++++
->>  1 file changed, 98 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
->> new file mode 100644
->> index 000000000000..4bb139d1926d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
-> 
-> We already have ti,j721e-usb.yaml which is covering am64-usb.
-> We could just add am62 compatible there.
+Changes in v3:
+1. Add introductions for structure members;
+2. Add SoC dependent data;
+3. Dynamically allocate efuse data;
+4. Check return value if it's an -EPROBE_DEFER.
 
-Please ignore my email. Need to drink more coffee :P
-I totally missed that is for Cadence controller.
+Changes in v2:
+1. Add specific compatible name;
+2. Read NVMEM data at probe time;
+3. Fix typos.
 
-cheers,
--roger
-> 
-> Any am62 specific properties could be handled with conditional
-> 'required' statements.
-> 
-> cheers,
-> -roger
-> 
->> @@ -0,0 +1,98 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/usb/ti,am62-usb.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Bindings for the TI's AM62 wrapper module for the Synopsys USBSS-DRD controller
->> +
->> +maintainers:
->> +  - Aswath Govindraju <a-govindraju@ti.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,am62-usb
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  ranges: true
->> +
->> +  power-domains:
->> +    description:
->> +      PM domain provider node and an args specifier containing
->> +      the USB ISO device id value. See,
->> +      Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    description: Clock phandles to usb2_refclk
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: ref
->> +
->> +  id-gpio:
->> +    description:
->> +      GPIO to be used as ID pin
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    description:
->> +      interrupt line to be used for detecting changes in VBUS
->> +
->> +  ti,vbus-divider:
->> +    description:
->> +      Should be present if USB VBUS line is connected to the
->> +      VBUS pin of the SoC via a 1/3 voltage divider.
->> +    type: boolean
->> +
->> +  ti,syscon-phy-pll-refclk:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      - items:
->> +          - description: Phandle to the SYSCON entry
->> +          - description: USB phy control register offset within SYSCON
->> +    description: Specifier for configuring frequency of ref clock input.
->> +
->> +  '#address-cells':
->> +    const: 2
->> +
->> +  '#size-cells':
->> +    const: 2
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - power-domains
->> +  - clocks
->> +  - clock-names
->> +  - interrupts
->> +  - ti,syscon-phy-pll-refclk
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/gpio/gpio.h>
->> +
->> +    bus {
->> +      #address-cells = <2>;
->> +      #size-cells = <2>;
->> +
->> +      dwc3-usb@f910000 {
->> +        compatible = "ti,am62-usb";
->> +        reg = <0x00 0x0f910000 0x00 0x800>;
->> +        interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>; /* MISC IRQ */
->> +        clocks = <&k3_clks 162 3>;
->> +        clock-names = "ref";
->> +        ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
->> +        power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
->> +        id-gpio = <&main_gpio1 51 GPIO_ACTIVE_LOW>;
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +      };
->> +    };
+Jianjun Wang (2):
+  dt-bindings: phy: mediatek: Add YAML schema for PCIe PHY
+  phy: mediatek: Add PCIe PHY driver
+
+ .../bindings/phy/mediatek,pcie-phy.yaml       |  75 +++++
+ drivers/phy/mediatek/Kconfig                  |  11 +
+ drivers/phy/mediatek/Makefile                 |   1 +
+ drivers/phy/mediatek/phy-mtk-pcie.c           | 272 ++++++++++++++++++
+ 4 files changed, 359 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+ create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
+
+-- 
+2.18.0
+
