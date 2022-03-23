@@ -2,89 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E53BC4E4A9A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 02:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EAC74E4AA3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 02:53:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231799AbiCWBoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Mar 2022 21:44:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54114 "EHLO
+        id S231573AbiCWByz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Mar 2022 21:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbiCWBox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 21:44:53 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D30E25294
-        for <devicetree@vger.kernel.org>; Tue, 22 Mar 2022 18:43:14 -0700 (PDT)
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(7834:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Wed, 23 Mar 2022 09:41:20 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Wed, 23 Mar 2022 09:41:50 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.018; Wed, 23 Mar 2022 09:41:50 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King - ARM Linux" <linux@armlinux.org.uk>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH v11 9/9] ARM: sp7021_defconfig: Add Sunplus SP7021
- defconfig
-Thread-Topic: [PATCH v11 9/9] ARM: sp7021_defconfig: Add Sunplus SP7021
- defconfig
-Thread-Index: AQHYPbV20XoTM/apKU2VdtNWQYp2n6zKqyIAgAGFk2A=
-Date:   Wed, 23 Mar 2022 01:41:50 +0000
-Message-ID: <d79dd7655c964f88a58d8bf403da39be@cqplus1.com>
-References: <cover.1647928315.git.qinjian@cqplus1.com>
- <8372ee2fcf361a3af7233450c4403178052ceee2.1647928316.git.qinjian@cqplus1.com>
- <CAK8P3a1H2xM1PdDwKPWHD0fqZ0q_o-KZTLvSXdm9jjqTWcX-hA@mail.gmail.com>
-In-Reply-To: <CAK8P3a1H2xM1PdDwKPWHD0fqZ0q_o-KZTLvSXdm9jjqTWcX-hA@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231530AbiCWByz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Mar 2022 21:54:55 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 158A353E34;
+        Tue, 22 Mar 2022 18:53:22 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.31:44820.495833220
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
+        by 189.cn (HERMES) with SMTP id EF32B1002A9;
+        Wed, 23 Mar 2022 09:53:15 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 437bde2d691948a680665d3a4e627624 for jiaxun.yang@flygoat.com;
+        Wed, 23 Mar 2022 09:53:20 CST
+X-Transaction-ID: 437bde2d691948a680665d3a4e627624
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <abe784ce-eb9e-0143-dbc3-d415bbedbb81@189.cn>
+Date:   Wed, 23 Mar 2022 09:53:14 +0800
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v11 2/7] MIPS: Loongson64: dts: introduce ls3A4000
+ evaluation board
+Content-Language: en-US
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-3-15330273260@189.cn>
+ <2644866a-8db2-923e-4227-2aa6d8e375fe@flygoat.com>
+ <2c671752-6684-f87b-7b2d-90568d36adde@189.cn>
+ <005099b5-33ed-4cb7-f8e4-10e1de780311@flygoat.com>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <005099b5-33ed-4cb7-f8e4-10e1de780311@flygoat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBPbiBUdWUsIE1hciAyMiwgMjAyMiBhdCA3OjE3IEFNIFFpbiBKaWFuIDxxaW5qaWFuQGNxcGx1
-czEuY29tPiB3cm90ZToNCj4gPg0KPiA+IEFkZCBnZW5lcmljIFN1bnBsdXMgU1A3MDIxIGJhc2Vk
-IGJvYXJkIGRlZmNvbmZpZw0KPiA+DQo+ID4gUmV2aWV3ZWQtYnk6IEFybmQgQmVyZ21hbm4gPGFy
-bmRAYXJuZGIuZGU+DQo+ID4gU2lnbmVkLW9mZi1ieTogUWluIEppYW4gPHFpbmppYW5AY3FwbHVz
-MS5jb20+DQo+IA0KPiBJIGRvbid0IHRoaW5rIEkgZXZlciByZXBsaWVkIHdpdGggJ1Jldmlld2Vk
-LWJ5OiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPicNCj4gdG8gdGhpcyBwYXRjaC4gV2hp
-bGUgSSBkaWQgcmV2aWV3IGl0IGluIHZlcnNpb24gNSwgeW91IG5ldmVyIHNlZW0gdG8gaGF2ZQ0K
-PiByZXBsaWVkIHRvIG15IHF1ZXN0aW9ucyB0aGVyZS4NCj4gDQo+IEl0IHdhcyBhIHdoaWxlIGFn
-byB0aG91Z2gsIHNvIEkgZG9uJ3QgcmVtZW1iZXIgdGhlIGRldGFpbHMsIGlmIHdlIGRpZA0KPiBj
-b25jbHVkZSB0aGUgcmV2aWV3LCBjYW4geW91IGxpbmsgdG8gdGhlIGxvcmUua2VybmVsLm9yZyB0
-aHJlYWQgaW4NCj4gdGhlIG5leHQgdmVyc2lvbj8gUGxlYXNlIGFsc28gY2hlY2sgdGhlIG90aGVy
-IHBhdGNoZXMgb24gd2hpY2gNCj4geW91IGFkZGVkIGEgJ1Jldmlld2VkLWJ5JyB0YWcgZnJvbSBz
-b21lb25lIHRvIGVuc3VyZSB0aGF0IHRoZXkNCj4gYWN0dWFsbHkgcHJvdmlkZWQgdGhhdCB0YWcs
-IHJhdGhlciB0aGFuIGp1c3QgcHJvdmlkaW5nIHJldmlldyBjb21tZW50cy4NCj4gDQo+ICAgICAg
-ICBBcm5kDQoNCg0KSW4gcGF0Y2ggNiwgSSBmaXhlZCBhbGwgeW91ciBjb21tZW50cy4NCg0KSSBn
-b3QgYSByZXBseSBmcm9tIHlvdTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsL0NBSzhQM2Ex
-RG9oOEdZOWlGWnN2bWQ2d0FTSG9QcXlSK3JvWHgwRzVYaWRubUhOa0dhQUBtYWlsLmdtYWlsLmNv
-bS8NCj4gVGhpcyBsb29rcyBhbGwgZ29vZCB0byBtZSBub3csIGl0IGp1c3QgbmVlZHMgYSByZXZp
-ZXcgZm9yIHRoZSBjbGssDQo+IHJlc2V0ICBhbmQgaXJxY2hpcCBkcml2ZXJzLiAuLi4NCg0KSWYg
-dGhlc2Ugbm90IG1lYW5zIHlvdSByZXZpZXdlZCwgSSdsbCByZW1vdmUgeW91ciByZXZpZXctdGFn
-Lg0KDQoNCg==
+
+On 2022/3/23 00:06, Jiaxun Yang wrote:
+>
+>
+> 在 2022/3/22 13:38, Sui Jingfeng 写道:
+>>
+>> On 2022/3/22 21:05, Jiaxun Yang wrote:
+>>>
+>>>
+>>> 在 2022/3/21 16:29, Sui Jingfeng 写道:
+>>>> From: suijingfeng <suijingfeng@loongson.cn>
+>>>>
+>>>> The board name is LS3A4000_7A1000_EVB_BOARD_V1.4, it consist of 1.8Ghz
+>>>> mips64r5 4-core CPU and LS7A1000 bridge chip. It has PCIe GEN2 x8 
+>>>> slot,
+>>>> therefore can play with discrete graphics card.
+>>>
+>>> Hi Jingfeng,
+>>>
+>>> As we've discussed before if you are going to introduce new dts then 
+>>> you *MUST*
+>>> include it in makefile and wire it up in code.
+>>>
+>>> A dts file doing nothing lying in the tree is just suspicious.
+>>>
+>>> Thanks.
+>>> - Jiaxun
+>>>
+>> Hi, Jiaxun,
+>>
+>> I know what you means, but it is the kernel side developer's job.
+>> I am just a naive graphic driver developer,I can not care so much.
+>> Below is my private patch which can be used to built specific dts
+>> into the linux kernel, therefore make the verification easier.
+> Hi Jingfeng,
+>
+> In kernel world we take care all the stuff we touched ourself :-)
+>
+> If you are not confident with them please drop those DTS from the 
+> patchset
+> besides the generic one. I can do the rest for you after getting this 
+> set merged.
+>
+> Thanks.
+> - Jiaxun
+>
+Hi, Jiaxun
+
+Build all dts into vmlinuz will make the vmlinuz bigger and bigger.
+How does the kernel get the dtb is another big issue, either from built-in
+dtb or pass from the firmware(pmon and uefi etc). This should be
+solved with another patch carefully. Providing board specific dts
+helps to code review, it helps reviewers understand that there are
+variant boards and have to be express with different OF graph.
+
+Now, there are about 6 dts under arch/mips/boot/dts/loongson/,
+Suppose loongson have 1000+ different board, do you want built all
+of them into vmlinuz?
+
+Besides, ls7a1000 and ls2k1000 lack a i2c driver, gpio driver,
+pwm driver, clk driver, can you pay more attention to salve those
+problems, please ?
+
