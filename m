@@ -2,101 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C034E53FB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C9E4E5403
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:09:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244644AbiCWOJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 10:09:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43280 "EHLO
+        id S236938AbiCWOKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 10:10:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbiCWOJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:09:05 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE54E7E093;
-        Wed, 23 Mar 2022 07:07:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 42F41B81F15;
-        Wed, 23 Mar 2022 14:07:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6011C340E8;
-        Wed, 23 Mar 2022 14:07:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648044452;
-        bh=hlAK85GWeZIiZUtHyCOQqLWZSNib4RZQ9MjZfUdypAM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ORlt45dCzEAqKCiG4WzfiALVPc4/rPqz8Lt8ifVDWSr1sQHEeZ5/k6ed6dMw22kZQ
-         8galVZwXj5MrlxrCo2PCPuA3ON5HbA6t+t8jOeCIpC+1oCNa4KaGujmgGuNfP3hM+v
-         eTQHVR5lBgGKyVcg+zMDVcB2A8m5racEdqsRTSXeTI7WC0yHG8l6lC/uaV9cKcjYIa
-         Rg5mro4VesTqfuWp3DigW6kE3tYPs8V6JH4hH4V5CUR20V8XlB96omglM4LWJav+Cf
-         mGaP391sWWHhkc3uZYjaeHwJEzeoY7cC9BGuBZtTDf4cEoIp4wpApnREAmGWbl9m1c
-         7HpLxy71WoJXA==
-Received: by mail-ed1-f42.google.com with SMTP id w25so1958095edi.11;
-        Wed, 23 Mar 2022 07:07:32 -0700 (PDT)
-X-Gm-Message-State: AOAM530Ob5e2KjkdXu8c+J8b7Z4Fxn/ODyAtNhGaQ3dkxyl2XnHF4y6y
-        6+mPgWBxuz3wDGFAbgXJeUxgAKm/5aG1PRhZMA==
-X-Google-Smtp-Source: ABdhPJyqtH2wi69wtxMlEd0gUrDvXtAAZhqIdFHRMCXO5QGIr2NlWJpS6ir6FtDZgjkTS4FM7uOdfb/mrEXFiRGWVdQ=
-X-Received: by 2002:a05:6402:686:b0:418:edaa:9cbc with SMTP id
- f6-20020a056402068600b00418edaa9cbcmr247094edy.67.1648044451245; Wed, 23 Mar
- 2022 07:07:31 -0700 (PDT)
+        with ESMTP id S236534AbiCWOKc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:10:32 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D3936B6B;
+        Wed, 23 Mar 2022 07:09:02 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id bp39so1195376qtb.6;
+        Wed, 23 Mar 2022 07:09:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Nnzujr/9w5yv7VmfvBVj8t7Pp/lBvu+cUel9AUsKnc4=;
+        b=GxnGH8X4pwCOkQmivYx30gdwX5XCZATNOUdp+xEy9onfcRfUvfh2fuHKplV2r+M9ma
+         HtIQlDdTD6RQbQjT4b32YoG/EZvYcS3Nxz1OTSLYv9JH3Rmt1LD7nLjkJpvwOpP0d+g1
+         DG+fXtGFMZ8tvjD2s4wXaIGEaS01HoeqzuvsRPiI1M00PS24yXZvUpR4Bn9neZX1WOU8
+         dYSKFQB6tUPtfRlxL0fPcdBYT5/fXaeEBth1fyQ9unbiZ6153ftpSucVL4rqqNcqK0nW
+         ZF6wuqfA8plRqW+HwqpE8zQbZ10H3lGAyekwTW3NywUY0K9nyDqTnxOC6U0V2tjLUuXz
+         o5Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Nnzujr/9w5yv7VmfvBVj8t7Pp/lBvu+cUel9AUsKnc4=;
+        b=BEyC91msxzVM2XU9Jv1sQgKbyZBoYAlXWZ0MTUukLqsRma8K1/FkVd2asWxY+vKC1a
+         R5wqK4Iw+2qJXy7vrgCrBvjbsvWxy3jLQ3zUP6DNwriS0S/2khkIcnCIE8YNB+y2yuEL
+         fLMQ8frT4GhPmV1zBdImD9GjKrCGkngeA6XzTNgn9e1IIFJ6bMCa2A0BN7ZzG/xrF/5G
+         Tr7uywJeTFhIvENjl4TlCzaF8FoJekLlGf4yVGZCL5Ty19DglTTl3kWDCfXFVIA1tK2k
+         zEbPdd/9SkXZfAHlH+lwf3+4gtpPV3Xhna9iN8x0fhPPG6k3EiAiA9DFAKMy8RK77AOB
+         8fAg==
+X-Gm-Message-State: AOAM5314fovckF7J+4lJq8LhI+9NdLPbGx5hB9wHfMkKYPlusNrczhoK
+        dWZkm6FF/wVXGHWT7sBOcyX4i1avh05MBULB+rQ=
+X-Google-Smtp-Source: ABdhPJxF6vyzbewMOMHuSjYrXVW47XC4GaWj3ntkDGXVgqTUkYhzPwYCL2S4HPEezVTQ6ott/O6ehDSMtUkYTHuH9VQ=
+X-Received: by 2002:a05:622a:291:b0:2e1:fee4:8a56 with SMTP id
+ z17-20020a05622a029100b002e1fee48a56mr20587862qtw.624.1648044541317; Wed, 23
+ Mar 2022 07:09:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220301190400.1644150-1-robh@kernel.org> <CAMuHMdXqsvQy_6+6w8DVCtqNiFERPV29xd3HRqtyz9RY3KXOYw@mail.gmail.com>
- <CAL_JsqKX7XrSS1OktT6OfPgyxte6_+AcGh4uV0Abdf2Wi4eCFg@mail.gmail.com> <CAMuHMdXzNpjSjhT3crdN3XzcFNXd8Uojqo8gA7Y=Qtz8utH6Mw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXzNpjSjhT3crdN3XzcFNXd8Uojqo8gA7Y=Qtz8utH6Mw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 23 Mar 2022 09:07:19 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+=2oibXA1otjaVoGY0GWdLZg2bmw1C9BACga5P99X35A@mail.gmail.com>
-Message-ID: <CAL_Jsq+=2oibXA1otjaVoGY0GWdLZg2bmw1C9BACga5P99X35A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: clock: renesas: Make example 'clocks' parsable
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220311164628.378849-1-gengcixi@gmail.com> <20220311164628.378849-6-gengcixi@gmail.com>
+In-Reply-To: <20220311164628.378849-6-gengcixi@gmail.com>
+From:   Baolin Wang <baolin.wang7@gmail.com>
+Date:   Wed, 23 Mar 2022 22:09:47 +0800
+Message-ID: <CADBw62qJCHrGSX7+yMfo7SV9SGdQwyYPFc6zcBn=cmfOuMgMTA@mail.gmail.com>
+Subject: Re: [PATCH V2 5/7] iio: adc: sc27xx: add support for PMIC sc2730
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     jic23@kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        =?UTF-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
+        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 8, 2022 at 3:53 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On Sat, Mar 12, 2022 at 12:47 AM Cixi Geng <gengcixi@gmail.com> wrote:
 >
-> Hi Rob,
+> From: Cixi Geng <cixi.geng1@unisoc.com>
 >
-> On Fri, Mar 4, 2022 at 2:28 PM Rob Herring <robh@kernel.org> wrote:
-> > On Fri, Mar 4, 2022 at 3:09 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Tue, Mar 1, 2022 at 8:04 PM Rob Herring <robh@kernel.org> wrote:
-> > > > 'clocks' in the example is not parsable with the 0 phandle value
-> > > > because the number of #clock-cells is unknown in the previous entry.
-> > > > Solve this by adding the clock provider node. Only 'cpg_clocks' is
-> > > > needed as the examples are built with fixups which can be used to
-> > > > identify phandles.
-> > > >
-> > > > This is in preparation to support schema validation on .dtb files.
-> > > >
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >
-> > > Do you want me to queue this in renesas-clk-for-v5.19, or do you
-> > > want to take it yourself, together with the validation patches?
-> > > Please let me know.
-> >
-> > You can take it.
+> sc2730 is the product of sc27xx series.
 >
-> Thanks, queuing in renesas-clk-for-v5.19.
+> Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
+> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> ---
+>  drivers/iio/adc/sc27xx_adc.c | 108 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 107 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
+> index 2603ce313b07..b89637c051ac 100644
+> --- a/drivers/iio/adc/sc27xx_adc.c
+> +++ b/drivers/iio/adc/sc27xx_adc.c
+> @@ -13,9 +13,11 @@
+>  #include <linux/slab.h>
+>
+>  /* PMIC global registers definition */
+> +#define SC2730_MODULE_EN               0x1808
+>  #define SC2731_MODULE_EN               0xc08
+>  #define SC27XX_MODULE_ADC_EN           BIT(5)
+>  #define SC2721_ARM_CLK_EN              0xc0c
+> +#define SC2730_ARM_CLK_EN              0x180c
+>  #define SC2731_ARM_CLK_EN              0xc10
+>  #define SC27XX_CLK_ADC_EN              BIT(5)
+>  #define SC27XX_CLK_ADC_CLK_EN          BIT(6)
+> @@ -293,6 +295,80 @@ static int sc2721_adc_get_ratio(int channel, int scale)
+>         return SC27XX_VOLT_RATIO(1, 1);
+>  }
+>
+> +static int sc2730_adc_get_ratio(int channel, int scale)
+> +{
+> +       switch (channel) {
+> +       case 14:
+> +               switch (scale) {
+> +               case 0:
+> +                       return SC27XX_VOLT_RATIO(68, 900);
+> +               case 1:
+> +                       return SC27XX_VOLT_RATIO(68, 1760);
+> +               case 2:
+> +                       return SC27XX_VOLT_RATIO(68, 2327);
+> +               case 3:
+> +                       return SC27XX_VOLT_RATIO(68, 3654);
+> +               default:
+> +                       return SC27XX_VOLT_RATIO(1, 1);
+> +               }
+> +       case 15:
+> +               switch (scale) {
+> +               case 0:
+> +                       return SC27XX_VOLT_RATIO(1, 3);
+> +               case 1:
+> +                       return SC27XX_VOLT_RATIO(1000, 5865);
+> +               case 2:
+> +                       return SC27XX_VOLT_RATIO(500, 3879);
+> +               case 3:
+> +                       return SC27XX_VOLT_RATIO(500, 6090);
+> +               default:
+> +                       return SC27XX_VOLT_RATIO(1, 1);
+> +               }
+> +       case 16:
+> +               switch (scale) {
+> +               case 0:
+> +                       return SC27XX_VOLT_RATIO(48, 100);
+> +               case 1:
+> +                       return SC27XX_VOLT_RATIO(480, 1955);
+> +               case 2:
+> +                       return SC27XX_VOLT_RATIO(480, 2586);
+> +               case 3:
+> +                       return SC27XX_VOLT_RATIO(48, 406);
+> +               default:
+> +                       return SC27XX_VOLT_RATIO(1, 1);
+> +               }
+> +       case 21:
+> +       case 22:
+> +       case 23:
+> +               switch (scale) {
+> +               case 0:
+> +                       return SC27XX_VOLT_RATIO(3, 8);
+> +               case 1:
+> +                       return SC27XX_VOLT_RATIO(375, 1955);
+> +               case 2:
+> +                       return SC27XX_VOLT_RATIO(375, 2586);
+> +               case 3:
+> +                       return SC27XX_VOLT_RATIO(300, 3248);
+> +               default:
+> +                       return SC27XX_VOLT_RATIO(1, 1);
+> +               }
+> +       default:
+> +               switch (scale) {
+> +               case 0:
+> +                       return SC27XX_VOLT_RATIO(1, 1);
+> +               case 1:
+> +                       return SC27XX_VOLT_RATIO(1000, 1955);
+> +               case 2:
+> +                       return SC27XX_VOLT_RATIO(1000, 2586);
+> +               case 3:
+> +                       return SC27XX_VOLT_RATIO(1000, 4060);
+> +               default:
+> +                       return SC27XX_VOLT_RATIO(1, 1);
+> +               }
+> +       }
+> +       return SC27XX_VOLT_RATIO(1, 1);
+> +}
+> +
+>  static int sc2731_adc_get_ratio(int channel, int scale)
+>  {
+>         switch (channel) {
+> @@ -349,6 +425,22 @@ static void sc2720_adc_scale_init(struct sc27xx_adc_data *data)
+>         }
+>  }
+>
+> +static void sc2730_adc_scale_init(struct sc27xx_adc_data *data)
+> +{
+> +       int i;
+> +
+> +       for (i = 0; i < SC27XX_ADC_CHANNEL_MAX; i++) {
+> +               if (i == 5 || i == 10 || i == 19 || i == 30 || i == 31)
+> +                       data->channel_scale[i] = 3;
+> +               else if (i == 7 || i == 9)
+> +                       data->channel_scale[i] = 2;
+> +               else if (i == 13)
+> +                       data->channel_scale[i] = 1;
+> +               else
+> +                       data->channel_scale[i] = 0;
+> +       }
+> +}
+> +
+>  static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
+>  {
+>         int i;
+> @@ -449,7 +541,8 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
+>                                                     SC27XX_ADC_REFVOL_VDD28,
+>                                                     SC27XX_ADC_REFVOL_VDD28);
+>                         if (ret_volref) {
+> -                               dev_err(data->dev, "failed to set the volref 2.8V, ret_volref = 0x%x\n,ret_volref");
+> +                               dev_err(data->dev, "failed to set the volref 2.8V, ret_volref = 0x%x\n",
+> +                                       ret_volref);
 
-This needs to go in 5.18, not 5.19.
+Do not add unrelated changes in this patch.
 
-Rob
+-- 
+Baolin Wang
