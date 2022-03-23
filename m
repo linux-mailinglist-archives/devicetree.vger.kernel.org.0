@@ -2,125 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9944E5051
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 11:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ACFE4E508A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 11:41:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243529AbiCWKbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 06:31:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45476 "EHLO
+        id S243592AbiCWKnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 06:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243497AbiCWKbW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 06:31:22 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9CC23149;
-        Wed, 23 Mar 2022 03:29:53 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id o30-20020a05600c511e00b0038c9cfb79cbso2848784wms.1;
-        Wed, 23 Mar 2022 03:29:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=NPCBeK8EmlJTLX7b8VpEEv5X7dyNwlhHhnCggdFBrcE=;
-        b=qCdS83+Qfa6n9umTyVz3zBeCN4SuOd83241gKDfei+pW0vIEpIF7/yBTmxVFUjunnX
-         2hdou67Rw8yuOKtQjBGjB6l8T7axLIFyZM0rA8UxjHYIvCzYdWZ/OAngIna0jfD+/aVV
-         quEtdxTe4Zt36sJLG3b9I/ZviguWfUVLrBMzNhJ9GLawtO/x1s3PI1mADTbR4G2U4g7I
-         OKoHhF1Zdf8bbUJmXLPb3VjmaLqJUtSFTpaVmZULmjwaLBshuBMFp0pIPB8wfphmoTEF
-         l9IfSpcuedD3pwQbVTtJF50DGCfV0wzMJUo81ikY320MwUIFf23hMTMv07XQKiP78GmT
-         /l0w==
+        with ESMTP id S236222AbiCWKnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 06:43:04 -0400
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D352A6D1B4;
+        Wed, 23 Mar 2022 03:41:34 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id r13so1958609ejd.5;
+        Wed, 23 Mar 2022 03:41:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NPCBeK8EmlJTLX7b8VpEEv5X7dyNwlhHhnCggdFBrcE=;
-        b=1b79UelmdjbTKPrGmk5hOigaFMQXnLtgGnLBQ1myc3ijRCyzXPUWTSf1SCNiQ/Ug9U
-         PFmpyjjqQsYVTMlDRTpnPWV4P0yoygCiZHK8d/EIxrDvyz0dMaU50R2OAAm5xSJRWI6k
-         npfz1mGJx74Cv2Bp0j3Hrq+WKVRRyWSf7EwDp9hroTFpWEr64uCGFBfEAXBCKJF+EJKZ
-         nMIUODpDj4Gk/XCKG5BeEYAJCLzof4Av9NIEJbG9MIisbK3ITF6dUIct77Mq5iFaOl1a
-         5mHFXDHFNIecEr0R3xw/vDCH1vk/guRXCdZB/0ezTBTGWO1JEr1mVVSoUrZ5J7fJaSUh
-         SWCg==
-X-Gm-Message-State: AOAM532CjHKGFhKbAUmmVkdPJx1Tzw5r3YErM2zDkOlaQexcDPyTWzcN
-        iSy1T+E0heCVB3AnUOvgHUs=
-X-Google-Smtp-Source: ABdhPJyHea6O2q1bz2HV4g4AFBLS35QU0I+LtFAlaTzAWOVC/Wo0vznM+u/mxodCJm04FmQER/vFyA==
-X-Received: by 2002:a1c:c904:0:b0:38c:8dc1:87a3 with SMTP id f4-20020a1cc904000000b0038c8dc187a3mr8671232wmb.101.1648031391419;
-        Wed, 23 Mar 2022 03:29:51 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
-        by smtp.gmail.com with ESMTPSA id x13-20020adfec0d000000b00203ff46f802sm17017681wrn.36.2022.03.23.03.29.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 03:29:51 -0700 (PDT)
-Date:   Wed, 23 Mar 2022 11:29:50 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 17/18] dt-bindings: arm: msm: Convert kpss-gcc driver
- Documentation to yaml
-Message-ID: <Yjr2nkIrQ356DMUI@Ansuel-xps.localdomain>
-References: <20220321231548.14276-1-ansuelsmth@gmail.com>
- <20220321231548.14276-18-ansuelsmth@gmail.com>
- <1647913851.222685.941035.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Almyyc1IrKf1zO+Kw8vUDsh6wUJc2+4bjOhxQbAJAVM=;
+        b=hlOWAf6Oq7tFsyTJuvN4tvwht9VfkqrH+Ethwh5csZozPsIiER92eJV0Avk7NLw8fW
+         rrrQcwgaBZB/xRz9DE6w4BG7cprDlidXYnjPsRdXcXPf7oA393RqjYQ6RR/8j+QPEIpk
+         9OhdVR9uc70EF0Zuv13zyq8CeWbASj3p9svcHYDq5QyOSVcodpQHw1vpBbhIEGkVwC8v
+         RJFaNrBfvmrNdhdOayrQzcGHxVhJ+S0/onqV2RS7BuH+YcNMt01fWWAD3fCb8eMvN26a
+         8izqLGDWXqQy6vUsA7syciG1j+wRO+iF3/vb783YkaNzTaNsRwZPHfCYv23yLFOFMPna
+         3iJw==
+X-Gm-Message-State: AOAM530txvN9ui2OqW9RJy9sJWIai+0Fch28JGyHzmFilxaaXi3sQ54e
+        QAV4Nm28ONDGxlLfsAzJ9ZXwokCQmqc=
+X-Google-Smtp-Source: ABdhPJwIa6bE48WVeXssjbI2MwYz2RKFkBZESjJZuw58Kq+0+MIM0XkbuDIwWj+ZCutP0aiSmDwRmg==
+X-Received: by 2002:a17:906:c0c8:b0:6d0:562c:2894 with SMTP id bn8-20020a170906c0c800b006d0562c2894mr31259441ejb.625.1648032092732;
+        Wed, 23 Mar 2022 03:41:32 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id bk1-20020a170906b0c100b006d47308d84dsm9652311ejb.33.2022.03.23.03.41.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Mar 2022 03:41:32 -0700 (PDT)
+Message-ID: <a51dec7d-4dfd-5603-3d34-a40b0fd9ec08@kernel.org>
+Date:   Wed, 23 Mar 2022 11:41:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1647913851.222685.941035.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 02/14] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
+Content-Language: en-US
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220321154232.56315-1-phil.edworthy@renesas.com>
+ <20220321154232.56315-3-phil.edworthy@renesas.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220321154232.56315-3-phil.edworthy@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 08:50:51PM -0500, Rob Herring wrote:
-> On Tue, 22 Mar 2022 00:15:47 +0100, Ansuel Smith wrote:
-> > Convert kpss-gcc driver Documentation to yaml. Since kpss-gcc expose a
-> > clock add the required '#clock-cells' binding while converting it.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  .../bindings/arm/msm/qcom,kpss-gcc.txt        | 44 ------------
-> >  .../bindings/arm/msm/qcom,kpss-gcc.yaml       | 69 +++++++++++++++++++
-> >  2 files changed, 69 insertions(+), 44 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
-> > 
+On 21/03/2022 16:42, Phil Edworthy wrote:
+> Add DT binding documentation for System Configuration (SYS) found on
+> RZ/V2M SoC's.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> SYS block contains the SYS_VERSION register which can be used to retrieve
+> SoC version information.
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1607962
-> 
-> 
-> clock-controller@2011000: '#clock-cells' is a required property
-> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
-> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
-> 
-> clock-controller@2011000: compatible:0: 'qcom,kpss-gcc' is not one of ['qcom,kpss-gcc-ipq8064', 'qcom,kpss-gcc-apq8064', 'qcom,kpss-gcc-msm8974', 'qcom,kpss-gcc-msm8960']
-> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
-> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
-> 
-> clock-controller@2011000: compatible:1: 'qcom,kpss-gcc' was expected
-> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
-> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
-> 
-> clock-controller@2011000: compatible: ['qcom,kpss-gcc', 'syscon'] is too short
-> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
-> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
-> 
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Sorry for the very stupid question but it's something i'm searching for
-a bit now... I can't really find Documentation or a guide on how to
-check single yaml and dts instead of using the make command and check
-everything. Am I missing something or this is not supported?
+Could you send reviewed-by tags publicly? Maybe there was internal
+review, maybe not and it was just copy-pasted to all submissions...
 
--- 
-	Ansuel
+> ---
+>  .../bindings/arm/renesas,rzv2m-sys.yaml       | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml b/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+> new file mode 100644
+> index 000000000000..1a58906336b8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/arm/renesas,rzv2m-sys.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Renesas RZ/V2M System Configuration (SYS)
+> +
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +description:
+> +  The RZ/V2M System Configuration (SYS) performs system control of the LSI
+> +  and supports the following functions,
+> +  - LSI version
+> +  - 34-bit address space access function
+> +  - PCIe related settings
+> +  - WDT stop control
+> +  - Temperature sensor (TSU) monitor
+
+Usually all these are separate devices, so what does it mean that SYS is
+supporting these functions? Is it related to other Renesas System
+Controllers? For example
+Documentation/devicetree/bindings/power/renesas,apmu.yaml
+?
+Why one is in power and one in arm subdirectory? Maybe you should extend
+existing one?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,r9a09g011-sys
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sysc: system-configuration@a3f03000 {
+> +            compatible = "renesas,r9a09g011-sys";
+> +            reg = <0 0xa3f03000 0 0x400>;
+
+Did you actually test it (make dt_binding_check)? This looks wrong.
+
+> +    };
+
+
+Best regards,
+Krzysztof
