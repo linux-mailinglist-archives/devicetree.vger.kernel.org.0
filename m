@@ -2,65 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C514E598B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B15E44E598C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:06:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244029AbiCWUHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 16:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
+        id S244359AbiCWUHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 16:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244359AbiCWUHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:07:13 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29FB486E2B;
-        Wed, 23 Mar 2022 13:05:43 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id z8so2796527oix.3;
-        Wed, 23 Mar 2022 13:05:43 -0700 (PDT)
+        with ESMTP id S242564AbiCWUHe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:07:34 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C381C8596F;
+        Wed, 23 Mar 2022 13:06:04 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id q129so2797194oif.4;
+        Wed, 23 Mar 2022 13:06:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gR3650OK4Kk4y8p0bJ8B5cWOD9FNq9cookGajVqOgH8=;
-        b=eaTzxYX2tWl3IMWmKp4862ik3+IWEw24C+etcIam/bhMgiyDySD7BB6cMFa+yQ1ene
-         RFfRP4ZAAcqUCWT/pbCGOd20DXl2UKfgFT4uHByZULF/6C8nI1TUDh2LhyGbzSQDovKg
-         1ZgrEK6OTNG/kpKUrGgOlGFqS7nQbD5UCJBApEj7dyt54hI7lXMYAVN3rzrOOf7uCaqK
-         3Hj5RlthO9j1qZMqEoRMuPg3bFpm8uT2l3HmiH/NcoTIV0iliLS8IgWM6spGfc37srz7
-         weFAtXSq+UZWjm5HQNbgMWT54YVQfo8JtfWlIu6PM91QXZFdsvz6CIvQ5ocPonKOaGy0
-         PwrA==
-X-Gm-Message-State: AOAM531lwptYimRdYAYyXBuPXbeC3EoiHDI1qePtVPsVbGIAbNyOGG/C
-        BRKNkqZR0LA51q66k6/kOw==
-X-Google-Smtp-Source: ABdhPJytsw/Iu8lzVzWw09sb/tW8nq9AKE1yUUK4QZT1ga++TGAD+SxkJPnMP8020ukMFZCVHMpfrg==
-X-Received: by 2002:a05:6808:c:b0:2ef:8913:354 with SMTP id u12-20020a056808000c00b002ef89130354mr3422949oic.201.1648065941050;
-        Wed, 23 Mar 2022 13:05:41 -0700 (PDT)
+        bh=xJAiyJpQqYMzE45B4+4Ip3dFo7/yY92VkX/LiqX9660=;
+        b=XevktBZOQlWe/ThAIjPK6RVgY9H1dh1T+G60gcQC3tNjLsJ9sZL8qsPMqmPK+0rmeO
+         MadMgxRZ/Vf30taNiZtTM2aYOHaNiy7pBWS59DVOS16eYSxqqqA1+Ezr7nBNTlEsALje
+         QHIm0AZFbg/H58knMRpMz1cz4icaISd2HcA9lCa9NAtsCjyGRidUhOJlgiup1SZsAreL
+         odpdU34rtsl31jz7pFyrxKXdqzwTLn/DqQJPP1UWyP7xJhjZUbwJElV9+XQBwl+fHnEM
+         RIrloIMFizmtFaDJ4RZ0sIXtGN5cQeeiWGT1E3nYxH/zlabVl2GjcjQPCMzCuqJfuURw
+         EBfQ==
+X-Gm-Message-State: AOAM532f+5BZ+rNiTckDElCFNevkwr25eb6e7hsDhb0TcFEXHs85dBPQ
+        FJM+rq+XwFCHB+Ie8XanYw==
+X-Google-Smtp-Source: ABdhPJyEg+a3Qvv1SXv6BAjqSqkcktrlf4VnWVfiwkpussCQzsTjMRsK/CDQ1DJSXP2e4dHsgVNAtg==
+X-Received: by 2002:a05:6808:30a0:b0:2da:3e03:5620 with SMTP id bl32-20020a05680830a000b002da3e035620mr5445003oib.264.1648065964085;
+        Wed, 23 Mar 2022 13:06:04 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n128-20020a4a4086000000b0032118eda64bsm418856ooa.38.2022.03.23.13.05.39
+        by smtp.gmail.com with ESMTPSA id o10-20020aca410a000000b002ecf2a4fda5sm395637oia.10.2022.03.23.13.06.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 13:05:40 -0700 (PDT)
-Received: (nullmailer pid 361968 invoked by uid 1000);
-        Wed, 23 Mar 2022 20:05:39 -0000
-Date:   Wed, 23 Mar 2022 15:05:39 -0500
+        Wed, 23 Mar 2022 13:06:03 -0700 (PDT)
+Received: (nullmailer pid 362658 invoked by uid 1000);
+        Wed, 23 Mar 2022 20:06:02 -0000
+Date:   Wed, 23 Mar 2022 15:06:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        dri-devel@lists.freedesktop.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: renesas,du: Document
- r9a07g044l bindings
-Message-ID: <Yjt9kxLDLlJSB8sd@robh.at.kernel.org>
-References: <20220316131100.30685-1-biju.das.jz@bp.renesas.com>
- <20220316131100.30685-2-biju.das.jz@bp.renesas.com>
+To:     Nicolas Belin <nbelin@baylibre.com>
+Cc:     linux-kernel@vger.kernel.org, andrzej.hajda@intel.com,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        narmstrong@baylibre.com, devicetree@vger.kernel.org,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] dt-bindings: display: bridge: it66121: Add audio
+ support
+Message-ID: <Yjt9qrPP7UsvDkq7@robh.at.kernel.org>
+References: <20220316135733.173950-1-nbelin@baylibre.com>
+ <20220316135733.173950-2-nbelin@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220316131100.30685-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220316135733.173950-2-nbelin@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -72,24 +66,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Mar 2022 13:10:54 +0000, Biju Das wrote:
-> Extend the Renesas DU display bindings to support the r9a07g044l
-> DU module found on RZ/G2L LCDC.
+On Wed, 16 Mar 2022 14:57:31 +0100, Nicolas Belin wrote:
+> Update the ITE bridge HDMI it66121 bindings in order to
+> support audio.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
 > ---
-> v1->v2:
->  * Updated commit description.
->  * Removed LCDC references
->  * Changed clock name from du.0->aclk
->  * Changed reset name from du.0->du
-> RFC->v1:
->  * Changed  minItems->maxItems for renesas,vsps.
-> RFC:
->  https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-18-biju.das.jz@bp.renesas.com/
-> ---
->  .../bindings/display/renesas,du.yaml          | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
+>  .../devicetree/bindings/display/bridge/ite,it66121.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
