@@ -2,159 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F36E14E5AD4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 22:47:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3C64E5B0D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 23:07:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345000AbiCWVs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 17:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48942 "EHLO
+        id S240789AbiCWWJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 18:09:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232814AbiCWVs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 17:48:56 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1648E18A;
-        Wed, 23 Mar 2022 14:47:26 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id r8so3053430oib.5;
-        Wed, 23 Mar 2022 14:47:26 -0700 (PDT)
+        with ESMTP id S238850AbiCWWJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 18:09:13 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA4375C657;
+        Wed, 23 Mar 2022 15:07:42 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id d15-20020a9d72cf000000b005cda54187c3so2053389otk.2;
+        Wed, 23 Mar 2022 15:07:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OkkqPejIvAtlOMyVAYvOIwcHM2WzlIdgAOpzjXKoJU4=;
-        b=GBv4ySwhhFjefQgVBpAab2mkEET9ddtSOgzepQ1wEogrprQM0Vqb7xbxA3JZi57s1S
-         5bMoonjgTlcbuLESOho1yqSqnEETjIQYXMElb4Wh2bYtbj9D5DNVZ3/TBZssjGHdA5U6
-         Rpw359ezp3sjvY56Aoo2QfLyb0ZY/bkzcw2kd7v4ohzs+VNvSnKHhfCfF27Qc+IJqCPU
-         2+qN7yCr8cCeu/pXfa9tuI5a5HGGjaEqDOpinHNbiyXjCKpNNNx61xBvwPE6RNjaEFpM
-         f7mPBC1lmabAMBc9ExxPuUfwAWr0B8c5LkRDJvZzlUAGhHuTx3u7nYtqcZLBm1aifnTy
-         97BQ==
-X-Gm-Message-State: AOAM531qofpn/el0U9Tr9SdPAIj+RqK8ydgeo3ddQFRQdAV8451CdSAq
-        6sXNZTlB9ilcFioLiEbmEA==
-X-Google-Smtp-Source: ABdhPJxWMtgj0H9DbEOzxF/FOzBu64GXgF8jadPVZ/QU9gzyJsiWf8KipKX16vZYBZk3dCF5pko6Yg==
-X-Received: by 2002:a05:6808:146:b0:2f4:748:5588 with SMTP id h6-20020a056808014600b002f407485588mr495090oie.292.1648072045865;
-        Wed, 23 Mar 2022 14:47:25 -0700 (PDT)
+        bh=+k118EBZ9Ly3Szi3Mxb7IXwKz7kOcKPTbNJ/BWP0n8U=;
+        b=0Alo3+eLDj2hTS9MTS0UsXrepkak5txB6tGYagtLVTrXBcEv73WmDZDeTEdgBsICIr
+         bL+NmCQB8kxSTx70QJ9aVRN9C51fDEnRNs5mQTWyeWlp2XAcqffpexiCBfIqVWUmnrPu
+         Tz/TqdYjJ3Ua3wxjwITdcO7oTdnu1majv7Nox6QReZdGeAi5HzqsaixwgmF1xjL2pV7z
+         e7ZaL807LH+c/+KE2pUBiUTj0UbwRYyBZDlS/d/KcKk6HYw91uw84+vOtAithncAs7R/
+         FmfNIRQWIIa+pNw9l/D9zVxdSUWblW9nkjgeqkSZUA4cmIU7W2Lghoq1H805Cl8OGx2N
+         WX0g==
+X-Gm-Message-State: AOAM531barf292WBq4KHxob4pZVa9fruAHh8rJlauYc9PJP/OQLYZrdL
+        ACYQS6N4DsAoVR67KtNm8OMuqpBjmQ==
+X-Google-Smtp-Source: ABdhPJw7gnH0on5+VuPG99lAMzszLuHJzDpkKnDuE2x3uL6p6JER3OsZ5NYU+MEvSoY741aHmr4ZMQ==
+X-Received: by 2002:a9d:6c94:0:b0:5b2:2c47:7228 with SMTP id c20-20020a9d6c94000000b005b22c477228mr926239otr.14.1648073262156;
+        Wed, 23 Mar 2022 15:07:42 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b002ef960f65b3sm498887oih.25.2022.03.23.14.47.24
+        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b002ef960f65b3sm522714oih.25.2022.03.23.15.07.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 14:47:25 -0700 (PDT)
-Received: (nullmailer pid 512768 invoked by uid 1000);
-        Wed, 23 Mar 2022 21:47:24 -0000
-Date:   Wed, 23 Mar 2022 16:47:24 -0500
+        Wed, 23 Mar 2022 15:07:40 -0700 (PDT)
+Received: (nullmailer pid 543440 invoked by uid 1000);
+        Wed, 23 Mar 2022 22:07:39 -0000
+Date:   Wed, 23 Mar 2022 17:07:39 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
- DSI TX bindings
-Message-ID: <YjuVbBck5RE79EPl@robh.at.kernel.org>
-References: <20220314161004.14765-1-biju.das.jz@bp.renesas.com>
- <20220314161004.14765-2-biju.das.jz@bp.renesas.com>
- <YjtkMxC0X7mMvMKX@robh.at.kernel.org>
- <TYCPR01MB593341D2E966F3C60ADAC8E986189@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: input: Add bindings for Immersion
+ ISA1200
+Message-ID: <YjuaK09nOztYOmyn@robh.at.kernel.org>
+References: <20220315233528.1204930-1-linus.walleij@linaro.org>
+ <20220315233528.1204930-2-linus.walleij@linaro.org>
+ <YjjNkyChcJcaJi11@robh.at.kernel.org>
+ <CACRpkdbz6Ua+0bTJMf-Qc7tju33CmEEgUsxH5KCS_zW3A_-SYA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TYCPR01MB593341D2E966F3C60ADAC8E986189@TYCPR01MB5933.jpnprd01.prod.outlook.com>
+In-Reply-To: <CACRpkdbz6Ua+0bTJMf-Qc7tju33CmEEgUsxH5KCS_zW3A_-SYA@mail.gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 06:26:31PM +0000, Biju Das wrote:
-> Hi Rob,
+On Wed, Mar 23, 2022 at 03:57:44PM +0100, Linus Walleij wrote:
+> On Mon, Mar 21, 2022 at 8:10 PM Rob Herring <robh@kernel.org> wrote:
 > 
-> Thanks for the feedback.
-> 
-> > Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L
-> > MIPI DSI TX bindings
-> > 
-> > On Mon, Mar 14, 2022 at 04:10:02PM +0000, Biju Das wrote:
-> > > The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's.
-> > > It can operate in DSI mode, with up to four data lanes.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > > RFC->v1:
-> > >  * Added a ref to dsi-controller.yaml.
-> > > RFC:-
-> > >  *
-> > > ---
-> > >  .../bindings/display/bridge/renesas,dsi.yaml  | 146
-> > > ++++++++++++++++++
-> > >  1 file changed, 146 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > > b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > > new file mode 100644
-> > > index 000000000000..74bc3782d230
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yam
-> > > +++ l
-> > > @@ -0,0 +1,146 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +$id:
-> > > +
-> > > +title: Renesas RZ/G2L MIPI DSI Encoder
-> > > +
-> > > +maintainers:
-> > > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > > +
-> > > +description: |
-> > > +  This binding describes the MIPI DSI encoder embedded in the Renesas
-> > > +  RZ/G2L family of SoC's. The encoder can operate in DSI mode with up
-> > > +  to four data lanes.
-> > > +
-> > > +allOf:
-> > > +  - $ref: ../dsi-controller.yaml#
-> > 
-> > Full path preferred:
-> > 
-> > /schemas/display/dsi-controller.yaml#
-> 
-> OK. Will fix this.
-> 
-> > 
-> > > +
 > > > +properties:
 > > > +  compatible:
+> > > +    description: One compatible per product using this chip. Each product
+> > > +      need deliberate custom values for things such as LRA resonance
+> > > +      frequency and these are not stored in the device tree, rather we
+> > > +      let the operating system look up the appropriate parameters from a
+> > > +      table.
 > > > +    enum:
-> > > +      - renesas,rzg2l-mipi-dsi # RZ/G2L and RZ/V2L
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: Link register
-> > > +      - description: D-PHY register
-> > 
-> > D-PHY is not a separate block?
+> > > +      - immersion,isa1200-janice
+> > > +      - immersion,isa1200-gavini
+> >
+> > Same device, different boards. I think I would put necessary properties
+> > in the DT.
 > 
-> Basically D-PHY is integrated inside MIPI-DSI Tx module.
+> That will be all of these (from the driver):
 > 
-> MIPI-DSI Tx module consists of MIPI DSI-2 Host controller (LINK)
-> and MIPI D-PHY Tx(D-PHY).
-> 
-> That is the reason I have modelled like this.
-> 
-> Is this model ok or am I missing something here? Please let me know.
+> +struct isa1200_config {
+> +       u8 ldo_voltage;
+> +       bool pwm_in;
+> +       bool erm;
+> +       u8 clkdiv;
+> +       u8 plldiv;
+> +       u8 freq;
+> +       u8 duty;
+> +       u8 period;
+> +};
 
-I don't know the details of the h/w so I can't say. We do see blocks 
-with a phy modeled as 1 block only to need to separate them when the phy 
-part changes in the next process node. I imagine we have it done both 
-ways for DSI + D-PHY.
+Could be all, but in your 2 cases some of these values are the same.
+
+> 
+> Example:
+> 
+> +/* Configuration for Janice, Samsung Galaxy S Advance GT-I9070 */
+> +static const struct isa1200_config isa1200_janice = {
+> +       .ldo_voltage = ISA1200_LDO_VOLTAGE_30V,
+> +       .pwm_in = false,
+> +       .clkdiv = ISA1200_HCTRL0_DIV_256,
+> +       .plldiv = 2,
+> +       .freq = 0,
+> +       .duty = 0x3b,
+> +       .period = 0x77,
+> +};
+> 
+> This is derived from the compatible rather than individual properties
+> or extra regulator and/or clock abstractions in line with:
+> Documentation/devicetree/bindings/display/panel/ilitek,ili9322.yaml
+> 
+> Which was originally looking like so:
+> https://lore.kernel.org/dri-devel/20170813114448.20179-2-linus.walleij@linaro.org/
+> 
+> To which you replied:
+> https://lore.kernel.org/dri-devel/20170817204424.e2wdkmyp4vyx2qj3@rob-hp-laptop/
+> 
+> "Normally, we the physical panel is described which would imply all these
+> settings. Are there lots of panels with this controller that would
+> justify all these settings?"
+
+I reserve the right to contradict myself. :)
+
+Seriously, it's always a judgement call.
+
+> 
+> In that case there was one (1)
+> 
+> In this case there are two (2) products that I know of. It does not have the
+> relationship between panel and panel controller products though, but...
+> it's not very different.
+> 
+> I don't think this chip was used a lot, I really tried to find other instances.
+> But they could exist of course.
+
+Okay, if you want to leave it like this, I'm fine with that.
 
 Rob
