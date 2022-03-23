@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB064E5663
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:28:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AF354E566C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:28:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245464AbiCWQaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:30:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
+        id S245483AbiCWQaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 12:30:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242091AbiCWQaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:30:13 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FA6425EAD
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:28:43 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id qa43so3891566ejc.12
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:28:43 -0700 (PDT)
+        with ESMTP id S245474AbiCWQaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:30:14 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD10A2613D
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:28:44 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id b15so2506795edn.4
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:28:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SuS0GFyMkF49fojOT7289HMEh2erdlNdJcyK6aLYL2U=;
-        b=S94TOVpK+xO0ajQUHWO32NF7EMpklO/9MMBruSRWwCYayBm5bGeDIM7aFicgFGje3v
-         1OS48MLgsdaN9d6bT0jzJczAVI/H6jqz9caJVgkF+CdL9T8XSrSRBy9n2XSKxqdBqA6U
-         suuGCFHo+qIfTgx3C34FrqQAsoGBLxuKI1SlOsMqcwvqC9ORUuA16bsgiPdSBoFPmYpY
-         yVN50bTcPT6M3Ea4xV7eRuqstiLCUTtmm9BGXgX/zfAJFN6gJ5+sxOZJopL9WEIKqwSz
-         nDmcQz/aYDZ7rr+bj4BOdQHJTBQve9uEeabCHNO/E38MgCNp2+xqGEUWsCp0qbkSjyu3
-         5t7A==
+        bh=q6sZ9TrpMbSuqw2lSukP8mYcJ/MBczjmWfHRwtht0/k=;
+        b=KTMMAKFdqzkMrR4PM5BD8W6BjPPR+FxT6cJH2XjB0aZrO1rYfJyhQXQa66UteJBC9c
+         CW+/I1B8J9Qgc24TuWXzCAbptqJIzZSeZ5I/d5Dqxgw1p+qy9JpE2XA4+D3Yh4K4baQs
+         KnPUwHBbS2vVT2G1y6OSVcqrgHYiKzbX8n7EZE/s3welCPfcU2hHv13D7f8tmEe023kF
+         i5uV7IFVOGWUpZRhE5xNuOFuuP7fPcvFKXpwIryU548uDkEfakkGxp0SqZDX3tHnAM+E
+         BtweXKBn+mBcOY1Mpf62GDyo0Ou7CQsECPvsZOM+cj+Y+OJ4Uf25Go3oL2ZX1ahm5OgA
+         6rjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SuS0GFyMkF49fojOT7289HMEh2erdlNdJcyK6aLYL2U=;
-        b=RGTB7BryteeNQD4oM1liXs/jTP8Sr+BS9yBAT7elPxSSASSVBzh4wpnJxdvHJ0YK8c
-         ChCWN7BFdxGwdg7Z+X0RP7DSTNQvcunD/+ppksJee+VUTYX6Tf+QvbG+8nKC1ZIceAJd
-         X2i8C02+g0X4W//CYrFVAxrkjXjEoI11f6w6NIXKZrTf4FufaYJ9xk4lVAEqTrOFrZiu
-         PTW81LZdIb1YeT4Y8OushglLYEuQ6cu1RvzYA4yYhz79RGspjYDT0C6Yi74hHTHThIfD
-         S47PSjgnswG4PL3674aN/wxRHT/iHbb2smvu1+cWJ0zfu8xZz1wR1SAIUMRI+mJ43nCz
-         q4xw==
-X-Gm-Message-State: AOAM533dFK9x1m9sCYdkPvmr2t1gQvs6y630l6YW4NyyAYp01t8y3HLf
-        UapbyKjUliekn1SiXyWUOD09NA==
-X-Google-Smtp-Source: ABdhPJw0ju3QeaJlsfcyfL9x/ksPhIAUTg7cbMlu1CpvfH7Fi/EEZh3AAqt9t/p5kcQhTVcqR4pwfQ==
-X-Received: by 2002:a17:907:6297:b0:6da:6388:dc58 with SMTP id nd23-20020a170907629700b006da6388dc58mr929026ejc.472.1648052922090;
-        Wed, 23 Mar 2022 09:28:42 -0700 (PDT)
+        bh=q6sZ9TrpMbSuqw2lSukP8mYcJ/MBczjmWfHRwtht0/k=;
+        b=tl1g3j8FLp4fLKdGmG8HCE1O27LNDiluxju1bv3SL038sATLK/leEzKwegKpuFt8qO
+         bN2Z8M/6JIKkuraE77P57UV0wNT8YlqPMGo5gJydTLp0d5vE5ykUuDEMdgY2e1FkyW4h
+         etg6Ep0iv6TMvWateZ3aUXuzSxwqywU0iDSWVgSf5dhyy1UDSvqH5karga9xPM4UwAWb
+         p6PObI3/UQ804bFn6KS3pEcWoYb4aSlmno3uf+R+eZC88cF5Q+Jm+xQFOwpp9P3VXQpd
+         I0dVewjcJvwT7N6XzxR2+Ki8O6BSoxduh8uK9mgBpW2QFCMEG/LK6eGyhSXEXZP0Gzof
+         v/Eg==
+X-Gm-Message-State: AOAM531NAFqPSnvYsyACriRJiURrxbr+WJsG4qJThoVbXtO+1gTBfM2w
+        +ZIrC8KW4Lc4d/zxIAgukKFFww==
+X-Google-Smtp-Source: ABdhPJzIIhcR01QY6OTpji/DDtEmb+IsLv7EGx8u37LtKNAXeQLlYXkNAvDaIdZ5lDXuHULQX2w0lw==
+X-Received: by 2002:a05:6402:3495:b0:419:1ff6:95d9 with SMTP id v21-20020a056402349500b004191ff695d9mr1112414edc.249.1648052923158;
+        Wed, 23 Mar 2022 09:28:43 -0700 (PDT)
 Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id z11-20020a50e68b000000b00412ec8b2180sm173306edm.90.2022.03.23.09.28.40
+        by smtp.gmail.com with ESMTPSA id z11-20020a50e68b000000b00412ec8b2180sm173306edm.90.2022.03.23.09.28.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 09:28:41 -0700 (PDT)
+        Wed, 23 Mar 2022 09:28:42 -0700 (PDT)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
 X-Google-Original-From: Caleb Connolly <caleb@connolly.tech>
 To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
@@ -60,9 +60,9 @@ To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
 Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
         john.stultz@linaro.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH v13 6/9] arm64: dts: qcom: pmi8998: add rradc node
-Date:   Wed, 23 Mar 2022 16:28:17 +0000
-Message-Id: <20220323162820.110806-7-caleb@connolly.tech>
+Subject: [PATCH v13 7/9] arm64: dts: qcom: sdm845-oneplus: enable rradc
+Date:   Wed, 23 Mar 2022 16:28:18 +0000
+Message-Id: <20220323162820.110806-8-caleb@connolly.tech>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220323162820.110806-1-caleb@connolly.tech>
 References: <20220323162820.110806-1-caleb@connolly.tech>
@@ -70,7 +70,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,32 +80,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Caleb Connolly <caleb.connolly@linaro.org>
 
-Add a DT node for the Round Robin ADC found in the PMI8998 PMIC.
+Enable the RRADC for the OnePlus 6.
 
 Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmi8998.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-index 0fef5f113f05..da10668c361d 100644
---- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-@@ -18,6 +18,14 @@ pmi8998_gpio: gpios@c000 {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		pmi8998_rradc: rradc@4500 {
-+			compatible = "qcom,pmi8998-rradc";
-+			reg = <0x4500>;
-+			#io-channel-cells = <1>;
-+
-+			status = "disabled";
-+		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 7f42e5315ecb..e8287cf02511 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -450,6 +450,10 @@ pinconf {
  	};
+ };
  
- 	pmi8998_lsid1: pmic@3 {
++&pmi8998_rradc {
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
 -- 
 2.35.1
 
