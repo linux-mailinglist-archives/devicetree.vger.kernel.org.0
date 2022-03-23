@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F25D4E4BDA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 05:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA6AE4E4C52
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 06:35:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232353AbiCWEVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 00:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
+        id S237756AbiCWFhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 01:37:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiCWEVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 00:21:21 -0400
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 113B270053;
-        Tue, 22 Mar 2022 21:19:50 -0700 (PDT)
-HMM_SOURCE_IP: 10.64.8.43:38400.1514282877
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
-        by 189.cn (HERMES) with SMTP id F2DF2100225;
-        Wed, 23 Mar 2022 12:19:48 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id fd80e39b552643fb87559fcd61b3a94f for robh@kernel.org;
-        Wed, 23 Mar 2022 12:19:49 CST
-X-Transaction-ID: fd80e39b552643fb87559fcd61b3a94f
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <3d042840-0d4d-bfed-3543-15a5d33e9213@189.cn>
-Date:   Wed, 23 Mar 2022 12:19:47 +0800
+        with ESMTP id S231261AbiCWFhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 01:37:01 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E3170CFB;
+        Tue, 22 Mar 2022 22:35:32 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22N5ZT4T045069;
+        Wed, 23 Mar 2022 00:35:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1648013729;
+        bh=cnxKwREyex8W9TaoJH3a6mh/x2YhctnazmmmL+X6/Yw=;
+        h=From:To:CC:Subject:Date;
+        b=N4MDFI84hjyKj6AKp0WBnd2VDBxGzcDZyZ8t0Z2uzKSS/3bh19hyoJOZGNqkeiZ7h
+         NCGSoqtfWCIpvkvrKI0BpdKOMZb7ZnWR85wpxpPYVjFD9fAyz31MmiC43aK8cx/bIO
+         qG2NDRmQwO3LECNC8V4csUKZqh7eJ/9eWi66f9Aw=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22N5ZTDE095525
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Mar 2022 00:35:29 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 23
+ Mar 2022 00:35:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 23 Mar 2022 00:35:28 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22N5ZOoO038635;
+        Wed, 23 Mar 2022 00:35:25 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH 0/2] AM62: Add support for AM62 USB wrapper driver
+Date:   Wed, 23 Mar 2022 11:05:22 +0530
+Message-ID: <20220323053524.7009-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v11 7/7] drm/lsdc: add drm driver for loongson display
- controller
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kernel test robot <lkp@intel.com>
-References: <20220321162916.1116541-1-15330273260@189.cn>
- <20220321162916.1116541-8-15330273260@189.cn>
- <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The following series of patches add support for AM62 USB wrapper driver
+and its corresponding bindings.
 
-On 2022/3/23 04:49, Rob Herring wrote:
-> This condition is never true. We're in the 'else' because !state.
+Aswath Govindraju (2):
+  dt-bindings: usb: Add documentation for AM62 USB Wrapper module
+  drivers: usb: dwc3: Add AM62 USB wrapper driver
 
-Thanks for your sharp eyes,  after the gpio emulate i2c driver works, i do not pay much
-attention to it and get hurry to do other things. I will fix this issue at next version
-and reply other problem at a letter time.
+ .../devicetree/bindings/usb/ti,am62-usb.yaml  |  98 +++
+ drivers/usb/dwc3/Kconfig                      |   9 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-am62.c                  | 577 ++++++++++++++++++
+ 4 files changed, 685 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+ create mode 100644 drivers/usb/dwc3/dwc3-am62.c
 
+-- 
+2.17.1
 
