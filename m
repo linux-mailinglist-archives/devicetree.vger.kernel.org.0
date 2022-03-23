@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AEAB4E5A07
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C454C4E5A26
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 21:48:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239696AbiCWUqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 16:46:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35132 "EHLO
+        id S240806AbiCWUuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 16:50:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344780AbiCWUqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:46:30 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A0417E39;
-        Wed, 23 Mar 2022 13:44:59 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id d10so5226923eje.10;
-        Wed, 23 Mar 2022 13:44:59 -0700 (PDT)
+        with ESMTP id S240768AbiCWUuW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 16:50:22 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E72833524B;
+        Wed, 23 Mar 2022 13:48:51 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id n35so1643459wms.5;
+        Wed, 23 Mar 2022 13:48:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=yhuvhLdU1yikBbXJnbS64sl4VTDQyAm7M8+B3IIJfiA=;
-        b=H7olfx27ZO/+7TEDfrDeA4+eltGIgsaJocQnxuzJ0Ah2KjuSmYpM/EQalZTxjYHstE
-         /45qy8RC786lyyEdVVsspP26LzR9cBCoweegLZchsTC8l8EnIA4XgvCSxwJgp9P8hh41
-         HLutKdcDYAV9gD5zOsMJhI3XEHPW6eJIxuATG0QBJWgeJ0yTnazMjJnUInasJgaqhX9f
-         O3mPLLG00AqnqcdG90iwT6+XT7VoJC/wz3yZ1Usde/5vJh2EULu7RAsMN6BUsf6+oIlX
-         CXANifTPJlCiKcSAjeCUDPIqtz8I7ziHiKfpTQI+1tX5KJapyuPqJf4hdiw7FvKdRY6w
-         CUzw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LukbgojREw+PN9UG7YjuzAI4ZmJ6UO0+vPcwD8VUwiE=;
+        b=n0E+qZZAzaM8kRFDnrmWh+PSqigHNi3NS4aaYCR6aEbybV9DDXhTAidVcCg5dpYF1v
+         bKzCqai4gQcI3pKyIuf5OA5loiaBzr5JyYeE8brz7ObVJ8QbFIZ8Q765JcasYj0hpoOA
+         IlBUHyHJol25U1McaHQ3uqMfewYvBLn645f9/ogksEyr0eatWGiBBJAF9omcmAvuPaKF
+         e8e0k44wW0+aEfLYBmNRzeShThwKDBKD8FR1J5pS6E3qYL0Hk6c2zRJeEEX7crxLtZpU
+         zyrMnM4D6Eecm1HyL73K6B1luiz1/seAn+1IgxdDM2+E4OyiaRQXuyAYo89BNwy9j1+F
+         SVJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=yhuvhLdU1yikBbXJnbS64sl4VTDQyAm7M8+B3IIJfiA=;
-        b=1mko0Lfs6WvjwRk9MQGhKKEhiSDqIfJa9A6h3eWuvK/Ud3JjffZIWFXdyulKzdm7F7
-         cwk+VJD+2JLUQBGiC0VItQKINAOmaoD0C40Ncf97jV/f1SaKmpdGeFdhMd5KkObDqO+L
-         Q2g+ZrYIh4GHzXeD36yFc0DQnQWdL799Vzc2WySZuipvwrXuMdXzAGK8J4LgZRkNYY5s
-         24KW9p1W5M/iWByNZcaP2pFONMkxc8C2YTeqdSNEj4jZlq7PQwnErlj4T/Ek9K6Uie6p
-         ovasirAhMUKg6SgPSicmp7ex3Tj39ceDg+ZWjMls+B+Nukrwmjt5yXVUHzAP+LJUO/Vd
-         zcNw==
-X-Gm-Message-State: AOAM532Hx1a9TJ0evrjr5dMmyl7WaActdnaiTUv6PIxSC+nILnsyLlPt
-        3dvhTAguzuqjen93OtspOXt4t6FpUB7WTA==
-X-Google-Smtp-Source: ABdhPJxgcEcPz/x4hkpFtKOojw5cc9QFIABOYiS7lH2JpK3UPhtHdBLYo6UiTKgXgMLmQXnobQuWPQ==
-X-Received: by 2002:a17:906:6144:b0:6cf:bb2e:a2e1 with SMTP id p4-20020a170906614400b006cfbb2ea2e1mr2066187ejl.299.1648068296359;
-        Wed, 23 Mar 2022 13:44:56 -0700 (PDT)
-Received: from pevik (gw1.ms-free.net. [185.243.124.10])
-        by smtp.gmail.com with ESMTPSA id z5-20020a1709063a0500b006da8fa9526esm339889eje.178.2022.03.23.13.44.55
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LukbgojREw+PN9UG7YjuzAI4ZmJ6UO0+vPcwD8VUwiE=;
+        b=MfOuVrTaMBEkdjTGUpa3tInounE5IQX6R6UTLLX9hArbK7aVc3wSRuoO0xoZm0vII3
+         Ui8Sp+QinKpM3AN0sf0A7tIxe5F66/DrqV3qZxemPcraIti75HqbcARwZbEeUBZU5R0e
+         ccyiNG3xOucztBNLo6TyLJQslUM44JX54cUPKEKENsiNGWIZat5JhfenzBySCzI74JXb
+         1JGte2OLbvOXyPG4FdvQ/FckntzGY1uCQcn0gOAh8XsnY739OzlYnw9NVR5I5MDwn0Rp
+         JaYR++TllfLMNavd7VoESmAnE0dlDCblQcNQcam3Yrd5caQ3RjHOmqkgA5Q02Bh0sqCY
+         yfgA==
+X-Gm-Message-State: AOAM533a2ymWwudCHapBvq8EdfFpZwB0VPo9IoxOzMLtXNCMZgQ2TPHX
+        ojeMV6M1xP7Y/VeTM7M5sSLpiL571r7RZg==
+X-Google-Smtp-Source: ABdhPJxeQHruZoouFnyYI3jT/FWg2BTm68I/sYDF8LVRA+uY/R+iWBdubrPGtvu8h21wiJOvHR6FGw==
+X-Received: by 2002:a1c:6a01:0:b0:37f:1b18:6b17 with SMTP id f1-20020a1c6a01000000b0037f1b186b17mr11024533wmc.146.1648068530369;
+        Wed, 23 Mar 2022 13:48:50 -0700 (PDT)
+Received: from dell5510.arch.suse.de (gw1.ms-free.net. [185.243.124.10])
+        by smtp.gmail.com with ESMTPSA id i15-20020adffdcf000000b00203efad1d89sm1047350wrs.9.2022.03.23.13.48.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 13:44:55 -0700 (PDT)
-Date:   Wed, 23 Mar 2022 21:44:53 +0100
+        Wed, 23 Mar 2022 13:48:49 -0700 (PDT)
 From:   Petr Vorel <petr.vorel@gmail.com>
 To:     linux-arm-msm@vger.kernel.org
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+Cc:     Petr Vorel <petr.vorel@gmail.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Jean Thomas <virgule@jeanthomas.me>
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: bullhead: Fix sdcard1 overclocking
-Message-ID: <YjuGxQNt8xUZdW8J@pevik>
-Reply-To: Petr Vorel <petr.vorel@gmail.com>
-References: <20220221200540.14460-1-petr.vorel@gmail.com>
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 1/1] arm64: dts: qcom: msm8994-huawei-angler: Add sdhc1 definition
+Date:   Wed, 23 Mar 2022 21:48:40 +0100
+Message-Id: <20220323204840.22832-1-petr.vorel@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220221200540.14460-1-petr.vorel@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -73,24 +70,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Angler does not have SD card, thus sdhc2 kept disabled.
 
-> rev 1.01 (msm8992-lg-bullhead-rev-101.dts) has overclocking warnings:
-> [    1.997606] mmc0: Card appears overclocked; req 200000000 Hz, actual 343999999 Hz
-> [    1.997681] mmc0: Card appears overclocked; req 200000000 Hz, actual 343999999 Hz
-> [    2.010904] mmc0: Card appears overclocked; req 400000000 Hz, actual 687999999 Hz
-> [    2.012961] mmc0: Card appears overclocked; req 200000000 Hz, actual 343999999 Hz
-> [    2.027497] mmc0: Card appears overclocked; req 400000000 Hz, actual 687999999 Hz
-> [    2.027607] mmc0: Card appears overclocked; req 400000000 Hz, actual 687999999 Hz
-> [    2.039699] mmc0: new HS400 MMC card at address 0001
+Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+---
+NOTE: requires Konrad's fix
+https://lore.kernel.org/linux-arm-msm/YjuE+cgGXCLihPIa@pevik/T/#t
 
-> Similarly to angler use gcc GPLL4_EARLY to get rid of the warnings.
-> Not tested on 1.0, but should work here as well.
+changes v4->v5:
+* remove workaround (fixed by Konrad's fix)
 
-As I wrote at Konrad's patch "clk: qcom: gcc-msm8994: Fix gpll4 width" [1]
-with that fix this workaround is not needed if Konrad's patch applied.
+ arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Kind regards,
-Petr
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
+index 0e3dd48f0dbf..6e43e4339f55 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
++++ b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /* Copyright (c) 2015, Huawei Inc. All rights reserved.
+  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+- * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
++ * Copyright (c) 2021-2022, Petr Vorel <petr.vorel@gmail.com>
+  */
+ 
+ /dts-v1/;
+@@ -41,3 +41,8 @@ serial@f991e000 {
+ &tlmm {
+ 	gpio-reserved-ranges = <85 4>;
+ };
++
++&sdhc1 {
++	status = "okay";
++	mmc-hs400-1_8v;
++};
+-- 
+2.35.1
 
-[1] https://lore.kernel.org/linux-arm-msm/YjuE+cgGXCLihPIa@pevik/T/#t
