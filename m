@@ -2,147 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF9624E4F83
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 10:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACEAD4E4FB3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 10:47:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234152AbiCWJgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 05:36:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48864 "EHLO
+        id S241861AbiCWJsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 05:48:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234481AbiCWJgm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 05:36:42 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60087.outbound.protection.outlook.com [40.107.6.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8006E7B4;
-        Wed, 23 Mar 2022 02:35:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y1w0dV63M1aYDLTTjb9biET8XV2jfMKaKe1HwzDYQwwRU+4BVFwJ3uBcz9v9boelHlvSNRhfLVoGPeIXDpjRKFZFkoqwlmIfR0UbZEd9GiQghndrRmaqNYladM5qHsdaCycyCnM+16bRxDp2KwPTCJi4Zf7SGl29pQSwkuuCBWfxBsC3BekuAEpBrjMxDytZwsN9g+VnH/lZyseU0lFqVI4ACmpNSEiBYUg5OfKNRM7o08oxskr/Vgr2GpXp8bdy5HhbyHTdT0kxgk1vfL7375UU3qVsolMUZoAsGe+1l+vvreTqjaTQ9Ja+RzAY6xQjUQBxMHu/1K8rm05ILApatQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RW+Wy/cWHWH80OMzya/xM16Pi5s9FJ+30ec7EZrCL3c=;
- b=K3/ULRILD6WquhaifTwgWNTIBZ5+/Yz/6y8cnJ/OEx1M7G8IYlCMminu8I7k2txgmshzmBswpPRFv2dApq5Moa1gc+RZEGZybr0kwtzprAIjei0sf9eeObX9ncjYTZxMzldlitsfACo4loijbAsnHlPwmg/G1LYmU5AeuZq2DXvuEVHYU5f+GHVAMbab9pxrdQtcm+41h4QgVexb/3h71zqBi1/v0i4UirfOJsgTc2n693f1AUM/Icw1Ege93D+fn2it52QnUAr1xBzY3cNyCgltR0toX6OmP04L7ZnrG2uFgdQYOW7TZz13CJlT9dll5Sx/gz9Y/ppCDMG3VNDbbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RW+Wy/cWHWH80OMzya/xM16Pi5s9FJ+30ec7EZrCL3c=;
- b=PslrzTcXSlRfWr+NTCWDE3ERH5S2+OnXg+WlL8kixAq3xMTYoIkxcvaOfMPDTi6XWsLn1d3KRbElyMroRpcLeamPD9JuYDWDlTpyPfUZEm7lyN1EEPrungInUFLxr238h67aWn+90zGDkeFgpi0uKqecSBQfkAvZI5NxweIUg80=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PAXPR04MB8095.eurprd04.prod.outlook.com (2603:10a6:102:1c6::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17; Wed, 23 Mar
- 2022 09:35:10 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::1d8b:d8d8:ca2b:efff]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::1d8b:d8d8:ca2b:efff%3]) with mapi id 15.20.5102.016; Wed, 23 Mar 2022
- 09:35:09 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     gregkh@linuxfoundation.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V2] dt-bindings: serial: fsl-lpuart: Add imx93 compatible string
-Date:   Wed, 23 Mar 2022 17:36:59 +0800
-Message-Id: <20220323093659.1722463-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR03CA0093.apcprd03.prod.outlook.com
- (2603:1096:4:7c::21) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S239488AbiCWJsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 05:48:37 -0400
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BC810FDD;
+        Wed, 23 Mar 2022 02:47:07 -0700 (PDT)
+Received: by mail-ed1-f41.google.com with SMTP id z92so1104719ede.13;
+        Wed, 23 Mar 2022 02:47:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=KHm72o5Y4MjVl7rRhvPVahUTvwKrMwJLAH7A+mLGnhw=;
+        b=wa50lWNVFGL+Lek+Iu//NdwQiOcMLZmvNNMIKk2wR2bRl2t10UjFETTzYn73iWLahv
+         aXJ3UnXOMJRO0LBOMrOxpNOMDQlBkeEGx8Jm78hfXAPjBbKZJ8evBiW7W8NyVmm1eMR7
+         7GhKLl4zoC3TdTyKZWkUdB2Y7EwoqTxcURWSMKKrtFJp8wvzcF/bFyoZzRXmrhFQWT58
+         KDr4W8R76Pyzl+Ut7AWK+Dq5kMhA/WKHD42dtmGRZKEnNd2ICVP2u3B+DD4h9n0K12Cw
+         Cc/CRp1VcdSyFE9P6cqiJMMqUIginxE1J1HhX0gbDEy7LIbNKsfUv1HpImqn2/Wr045O
+         LDPA==
+X-Gm-Message-State: AOAM531tSNHmYRBBMtDPwEKRWwDqzK9QcebPNA7f0859pmCNMdKe2YAb
+        0j7MTpx6mJrXkt/dFIvhQTz1sVarqT4=
+X-Google-Smtp-Source: ABdhPJy7Te9mb6SAVMrVpJ0UoTWaTwu2FW1kGcfE7g15tD/BYULe2tkh14yK8RQhDHew1/1SerTqBA==
+X-Received: by 2002:aa7:c683:0:b0:418:f5f3:9684 with SMTP id n3-20020aa7c683000000b00418f5f39684mr33731202edq.184.1648028826179;
+        Wed, 23 Mar 2022 02:47:06 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm9473886eji.67.2022.03.23.02.47.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Mar 2022 02:47:05 -0700 (PDT)
+Message-ID: <e6d014ca-4568-20f2-0254-e8fe51f30e5d@kernel.org>
+Date:   Wed, 23 Mar 2022 10:47:04 +0100
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 557e760c-0323-4724-fdae-08da0cb06c35
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8095:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <PAXPR04MB80957E0B721EFD56A455B803C9189@PAXPR04MB8095.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TJJIfucVvt3z0Xgup43hObltmURBjbZxm5ZVL/JwRo7CiANOOzIZIO/6IhEYaxA4tv+5bnnko9/FY/S5igMfN9wFzSaSIwJSmYpCoy0eDuKdfXrWhpbqytoOtgszz0vpP8z0pIdfix8gPyRJyEaZGtx3W+Fz3bsFzAzFEW62Su2Qw2UEhKbmpr9KnUw4xsmSAqy/etJ5mTbObngLvuf6j1FOZvzgpEeawuCfYr2fcifTN+zQf+rzRd2DUVJd/bt7dC3ixkvZTYsl7rOXrgaJTEOv63/WlZXNJ4fOjwyj8WO2R1aPCIjWzBWsmH8YyhmvIDhJkug7p4FoslnESWGid6aUDANJJ3JFOJpLlrgYx5VpRbuaAQt+vDHq3Uvv+43dZSWZejVVPCHCsfRzKXG8J0vQCzMv4v2j+Z4c3MXYuTn+3EsYf14xqsp5UgiIbCeCUEq8Hf+1JhXaB/P8YIKnhQdJ6G9DKne4VnVQOCE+PjfbDvnYfY/r08YXssk6AwyuxE9l/DLMVCbWLNnbkErTMBwFXk+TZgznKcFa3vGduIKoPx70LPrnYXChnNqcgCbl4nSZ9zxcEZl5+AvEuKuEq8TEGBoVe+ADrb6bwqHGfE4wLBnykN7O7NNbxT5B+s6Sz2uktDOZFm7r3ioVGgSvt7pSJnU58VX+gLLlptfHKwedrhpURk/txj7MhYa16DbRMEpQSnbpwQyE/XpWxbP/MA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(1076003)(6506007)(26005)(186003)(6512007)(6666004)(2616005)(2906002)(66556008)(8676002)(4326008)(38350700002)(316002)(5660300002)(52116002)(38100700002)(66946007)(66476007)(83380400001)(508600001)(86362001)(4744005)(8936002)(6486002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6S3qP23SEhZij7KXx9yNpqBTsr3rWLCST4wix2C1sb6OIj84+w7JqXl43WVU?=
- =?us-ascii?Q?yuNYoTDPbUja9/e/I3y00rP69EIJy7pqdl9fZnLo21udD7rkDYuC6iiKVKvS?=
- =?us-ascii?Q?FrF15tRoyd1t/Ir+mpITVm/jEYqS75ni+D03gbsjJJ8MeTelfe+ZwS81kAKC?=
- =?us-ascii?Q?Rgm/mEFc3QG1yjRo5XLrkmBm9q+iPaXYmsgrPxDi/b0m9dG3a7jeJkCPJzD4?=
- =?us-ascii?Q?n10ZIO//Lx5Y2pKsicgCPgjIpmIID6/earT0rNLuAcnZL+pOBy6ILFuIn41C?=
- =?us-ascii?Q?Qltj8T1/Peygylj2rpibYnaVXj3lQabr4DMLEDh0eVnV4DZeYiiLH+9ayyQr?=
- =?us-ascii?Q?oA3tSI32LGrhrY/RAXdrUex/x6EcDnvpl5umLxYMpD9e7emYF9+zttf6w09B?=
- =?us-ascii?Q?3j621xjPEtJ/xgFXsyF8vqAgg5a3EsThTxQv/640TOgFh76m0/LG9AlQg6XZ?=
- =?us-ascii?Q?rWc3yuHaODEBJQp6tdGVKcROW4WWkd9s5F7Jk716ngZRR0WCAr08TVB+Bcb0?=
- =?us-ascii?Q?LK6zy7wYeuAO3pFYgh/G9oQyEOwO1LHoyaPIW4x3d7cySFx75cb+/3Q6eNwU?=
- =?us-ascii?Q?i59fcsLzSih0m10zW6xuQ5PaPy9Y8bHT2RkHM7vlgIHGBbyGYPxdfCXWw7CM?=
- =?us-ascii?Q?0SdfqS6ZLhSwngp44pKD2j5jg84eOzAe97qYxT+HRfQeY5GIwsqBjIG1/o31?=
- =?us-ascii?Q?YH4hFXk60qc6jeg/h7B0VbbPypT/txRQi6EbJPSFO0jad/6l1tWuGIgLBAxV?=
- =?us-ascii?Q?bPA16Y8mr6mkgqpmVzbsOv+It2Afg9oGwcy8Hzv4V+H0mG3e1VJ1FhrDem+D?=
- =?us-ascii?Q?CR2Ajw+Cu1wwQPHzRdztcdyaSdUpt1uJopDGsLZ+h/NSOeJ1c3JthPBjMyZh?=
- =?us-ascii?Q?hnWoFgpweoAESNuv0OupmU2tY4EPTP+8YFfT9xqDGNaqF+GKred6UcSmKIVg?=
- =?us-ascii?Q?IVfmWRPmHGCfiSF0uyjIBVkMkmsA6x0OqVYC5sry6o4wyqaU9/uob9Hrce12?=
- =?us-ascii?Q?q3y/P2WKaQY23CYX9DVgszsE7eTkVxQqWdhiVyktNNpO8kks+R51tlUGKXvl?=
- =?us-ascii?Q?eqXtGq8phTz0U+TdOTX/HHbU+84JrcLRGHeQItrpHh7Oy42+LT/e9AJDDHG5?=
- =?us-ascii?Q?FoWQ7SwEyEeWYaQt7ocbjp0VHgAUAjFQB3NBqcfieFLtZXNVMHUhnLfINPhy?=
- =?us-ascii?Q?0XUz56K04af1UABGr2fVExu4SufRwc/6KJe1/VC3pHwQYRVysOy2h5KJNpmn?=
- =?us-ascii?Q?k6XMALhKWHRPLluYbfJm3gv7D34LGDOsoEg2bcBELlAisd7C2CD/7eQcHUHd?=
- =?us-ascii?Q?e7SyrVeRJ17bi9dxWZV70ky2Z9ypMBh4YjQ8fFh0uAoNWTjsbKhL63oLtfX5?=
- =?us-ascii?Q?G6cCqhiU15MWvHCP+q39p3LMHciVtM0X+0aLcEZSRkcQz+Ypai6WrLbRiKFH?=
- =?us-ascii?Q?dXIHN+VpQHjRCo//6waO3qcE90cYMQh6?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 557e760c-0323-4724-fdae-08da0cb06c35
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2022 09:35:09.9038
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q8zo8bE1qLDTkPPybnrmR4oRjdzQOvhMpPZ3YdPf6T5jSEmbYgKkFJ0DEto9pYBQcQlyYz8zxcbYxIwnz5c/gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8095
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/4] power: supply: max17042_battery: use ModelCfg refresh
+ on max17055
+Content-Language: en-US
+To:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
+Cc:     Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220318001048.20922-1-sebastian.krzyszkowiak@puri.sm>
+ <7080597.aeNJFYEL58@pliszka>
+ <5d43031e-382d-b12c-bba2-0e630fbec1ad@kernel.org>
+ <2957015.e9J7NaK4W3@pliszka>
+In-Reply-To: <2957015.e9J7NaK4W3@pliszka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On 20/03/2022 21:44, Sebastian Krzyszkowiak wrote:
+> On niedziela, 20 marca 2022 13:18:49 CET Krzysztof Kozlowski wrote:
+>> On 18/03/2022 20:58, Sebastian Krzyszkowiak wrote:
+>>> On piątek, 18 marca 2022 09:22:16 CET Krzysztof Kozlowski wrote:
+>>>> On 18/03/2022 01:10, Sebastian Krzyszkowiak wrote:
+>>>>> Unlike other models, max17055 doesn't require cell characterization
+>>>>> data and operates on smaller amount of input variables (DesignCap,
+>>>>> VEmpty, IChgTerm and ModelCfg). Input data can already be filled in
+>>>>> by max17042_override_por_values, however model refresh bit has to be
+>>>>> set after adjusting input variables in order to make them apply.
+>>>>>
+>>>>> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+>>>>> ---
+>>>>>
+>>>>>  drivers/power/supply/max17042_battery.c | 73 +++++++++++++++----------
+>>>>>  include/linux/power/max17042_battery.h  |  3 +
+>>>>>  2 files changed, 48 insertions(+), 28 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/power/supply/max17042_battery.c
+>>>>> b/drivers/power/supply/max17042_battery.c index
+>>>>> c019d6c52363..c39250349a1d 100644
+>>>>> --- a/drivers/power/supply/max17042_battery.c
+>>>>> +++ b/drivers/power/supply/max17042_battery.c
+>>>>> @@ -806,6 +806,13 @@ static inline void
+>>>>> max17042_override_por_values(struct max17042_chip *chip)>
+>>>>>
+>>>>>  	    (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055)) {
+>>>>>  		
+>>>>>  		max17042_override_por(map, MAX17047_V_empty, config-
+>>>>
+>>>> vempty);
+>>>>
+>>>>>  	}
+>>>>>
+>>>>> +
+>>>>> +	if (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055) {
+>>>>> +		max17042_override_por(map, MAX17055_ModelCfg, config-
+>>>>
+>>>> model_cfg);
+>>>>
+>>>>> +		// VChg is 1 by default, so allow it to be set to 0
+>>>>
+>>>> Consistent comment, so /* */
+>>>>
+>>>> I actually do not understand fully the comment and the code. You write
+>>>> entire model_cfg to MAX17055_ModelCfg and then immediately do it again,
+>>>> but with smaller mask. Why?
+>>>
+>>> That's because VChg is 1 on POR, and max17042_override_por doesn't do
+>>> anything when value equals 0 - which means that if the whole
+>>> config->model_cfg is 0, VChg won't get unset (which is needed for 4.2V
+>>> batteries).
+>>>
+>>> This could actually be replaced with a single regmap_write.
+>>
+>> I got it now. But if config->model_cfg is 0, should VChg be unset?
+> 
+> That's a good question.
+> 
+> max17042_override_por doesn't override the register value when the given value 
+> equals zero in order to not override POR defaults with unset platform data. 
+> This way one can set only the registers that they want to change in `config` 
+> and the rest are untouched. This, however, only works if we assume that zero 
+> means "don't touch", which isn't the case for ModelCfg.
+> 
+> On the Librem 5, we need to unset VChg bit because our battery is only being 
+> charged up to 4.2V. Allowing to unset this bit only without having to touch 
+> the rest of the register was the motivation behind the current version of this 
+> patch, however, thinking about it now I can see that it fails to do that in 
+> the opposite case - when the DT contains a simple-battery with maximum voltage 
+> higher than 4.25V, VChg will be set in config->model_cfg causing the whole 
+> register to be overwritten.
 
-The lpuart on i.MX93 is derived from i.MX7ULP with some industrial
-enhancements, it uses two compatible strings, so update the
-compatible string for i.MX93.
+This is actually nice description which could be put into a comment there.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
+> 
+> So, I see two possible solutions:
+> 
+> 1) move VChg handling to a separate variable in struct max17042_config_data. 
+> This way model_cfg can stay zero when there's no need to touch the rest of the 
+> register. This minimizes changes over current code.
+> 
+> 2) remove max17042_override_por_values in its current shape altogether and 
+> make it only deal with the values that are actually being set by the driver 
+> (and only extend it in the future as it gains more ability). Currently most of 
+> this function is only usable with platform data - is there actually any user 
+> of max17042 that would need to configure the gauge without DT in the mainline 
+> kernel? My quick search didn't find any. Do we need or want to keep platform 
+> data support at all?
+> 
+> I'm leaning towards option 2, as it seems to me that currently this driver is 
+> being cluttered quite a lot by what's essentially a dead code. Adding new 
+> parameters to read from DT for POR initialization (which is necessary for 
+> other models than MAX17055) should be rather easy, but trying to fit them into 
+> current platform_data-oriented code may be not.
 
-V2:
- Drop fsl,imx93-lpuart-v2, that is software controllable per Design team,
- so we may update driver for that.
- Update commit message
+I am in for removal of platform data.
 
- Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-index ff364bd0fbac..30eaa62e1aed 100644
---- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-@@ -23,7 +23,9 @@ properties:
-           - fsl,imx8qxp-lpuart
-           - fsl,imxrt1050-lpuart
-       - items:
--          - const: fsl,imx8ulp-lpuart
-+          - enum:
-+              - fsl,imx93-lpuart
-+              - fsl,imx8ulp-lpuart
-           - const: fsl,imx7ulp-lpuart
-       - items:
-           - enum:
--- 
-2.25.1
-
+Best regards,
+Krzysztof
