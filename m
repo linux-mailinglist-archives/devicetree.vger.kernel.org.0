@@ -2,130 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7A34E4F29
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 10:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB394E4F72
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 10:32:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236267AbiCWJXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 05:23:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44062 "EHLO
+        id S237178AbiCWJde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 05:33:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243380AbiCWJXN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 05:23:13 -0400
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2937375C0F;
-        Wed, 23 Mar 2022 02:21:44 -0700 (PDT)
-Received: by mail-ej1-f44.google.com with SMTP id p15so1544610ejc.7;
-        Wed, 23 Mar 2022 02:21:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=V7cFXLe0Ac3dhEHnygD54hmubbEibQ543cmeBXtuvAg=;
-        b=PK1qor4p6wuQJuAjI/qfuGWEp+WgcGKI5bHLEiS7iIQmu5MAcwQZ7WSxZgWG6rQSJD
-         cDC77lsb0RUeqJUmB1NtFPjF91b3SqkUpM0fJJigf5oxwsd7+eehKq9O7kAsrjn0l3E8
-         qY4wABXuFaPWiu4UFgKGrOlKa2tSNbdrmXLi/UTDvu7DZhQehvKY+TapsW0vH1o08BKU
-         23tC+VCF6UJZWMOT7vQA3JC1lPMhPVssnCyHhrIOPlWg2lE439vRdzr1MaiXfVHeQvYD
-         zsGrlk92+/rn+wJ8nnYUgL+fcByiODdcaK3gwtN/uIICdMxLtDwGqZYugb87hkpLpovu
-         si4g==
-X-Gm-Message-State: AOAM533Wafeoo4Wm19Bxf1pf6a8w2T+VhvCF7wdsLGCQjgs5yN6zDEQR
-        lvKU3f4baLVORnJK/OR9cOnapASx4Dc=
-X-Google-Smtp-Source: ABdhPJy7MV6xyddcHt6m3B0LTYQ3xvlfGk7tespcbjb8vqMugRQhoJZnMEfw7oV9V0zSoFdXZNS3bA==
-X-Received: by 2002:a17:906:68c2:b0:6b4:9f26:c099 with SMTP id y2-20020a17090668c200b006b49f26c099mr31260479ejr.41.1648027302702;
-        Wed, 23 Mar 2022 02:21:42 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id w6-20020a170906d20600b006ca00cb99e0sm9658170ejz.34.2022.03.23.02.21.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Mar 2022 02:21:42 -0700 (PDT)
-Message-ID: <65609100-3664-11e3-f229-c203e52888f0@kernel.org>
-Date:   Wed, 23 Mar 2022 10:21:40 +0100
+        with ESMTP id S233726AbiCWJdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 05:33:33 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D94C76D1AD;
+        Wed, 23 Mar 2022 02:32:02 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.41:35378.1509098416
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id 3405D100225;
+        Wed, 23 Mar 2022 17:31:58 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id 61937688d8bb45d78e3cf3b4744afb5f for robh@kernel.org;
+        Wed, 23 Mar 2022 17:32:02 CST
+X-Transaction-ID: 61937688d8bb45d78e3cf3b4744afb5f
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <f0db9bc0-ae9b-e86e-cc14-376dc40b86f4@189.cn>
+Date:   Wed, 23 Mar 2022 17:31:57 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add documentation for AM62 USB
- Wrapper module
+Subject: Re: [PATCH v11 7/7] drm/lsdc: add drm driver for loongson display
+ controller
 Content-Language: en-US
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20220323053524.7009-1-a-govindraju@ti.com>
- <20220323053524.7009-2-a-govindraju@ti.com>
- <f17f1f14-d78f-7b54-7fa7-ebf52c6da90a@kernel.org>
- <8b8dcc55-dda8-0715-ccff-22fbe84ff18a@ti.com>
-In-Reply-To: <8b8dcc55-dda8-0715-ccff-22fbe84ff18a@ti.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh@kernel.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kernel test robot <lkp@intel.com>
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-8-15330273260@189.cn>
+ <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2022 10:17, Aswath Govindraju wrote:
-> Hi Krzysztof,
 
-(...)
+On 2022/3/23 04:49, Rob Herring wrote:
+>> +
+>> +	if (state) {
+>> +		val = readb(li2c->dir_reg);
+>> +		val |= mask;
+>> +		writeb(val, li2c->dir_reg);
+>> +	} else {
+>> +		val = readb(li2c->dir_reg);
+>> +		val &= ~mask;
+>> +		writeb(val, li2c->dir_reg);
+>> +
+>> +		val = readb(li2c->dat_reg);
+>> +		if (state)
+> This condition is never true. We're in the 'else' because !state.
+>
+>> +			val |= mask;
+>> +		else
+>> +			val &= ~mask;
+>> +		writeb(val, li2c->dat_reg);
+> Shouldn't you set the data register low first and then change the
+> direction? Otherwise, you may be driving high for a moment. However, if
+> high is always done by setting the direction as input, why write the
+> data register each time? I'm assuming whatever is written to the dat_reg
+> is maintained regardless of pin state.
 
->>> +
->>> +  ti,syscon-phy-pll-refclk:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    items:
->>> +      - items:
->>> +          - description: Phandle to the SYSCON entry
->>> +          - description: USB phy control register offset within SYSCON
->>> +    description: Specifier for configuring frequency of ref clock input.
->>
->> This is a bit strange. The ref clock is the "ref" input clock, right? In
->> such case use clk_set_rate()... Using syscon for managing clocks is not
->> the proper way.
->>
-> 
-> The syscon property is not being used to set the ref clock frequency but
-> is rather being used to indicate the input clock frequency for USB PHY
-> operation. I think the description seems be misleading. I will update it
-> in the respin, to reflect the above description.
+To be honest, i have rewrite GPIO emulated i2c several times.
+Either give data first, then give the direction
+or give the direction first, then the data
+will be OK in practice.
 
-Yes, please, it will help.
+In the theory, the GPIO data should be given before the GPIO direction,
+I was told doing that way when learning Single-Chip Microcomputer (AT89S52).
 
-> 
->> Plus all the issues pointed out by Roger.
->>
->>> +
->>> +  '#address-cells':
->>> +    const: 2
->>> +
->>> +  '#size-cells':
->>> +    const: 2
->>
->> No children allowed?
->>
->> I understand this is a wrapper, which explains why you do not include
->> usb-hcd.yaml schema. But since it is a wrapper, what is it wrapping?
->>
-> 
-> Yes, there is a child node, which would be the dwc3-contoller node.
-> Would adding the child node too in the example help capture this better?
+But the high "MUST" be done by setting the direction as input.
+It is "MUST" not "CAN" because writing code as the following
+way works in practice.
 
-Yes, please, because then you will also spot errors when running
-dt_binding_check.
+         if (state) {
+                 val = readb(li2c->dir_reg);
+                 val |= mask;
+                 writeb(val, li2c->dir_reg);
+         } else {
+                // ...
+         }
 
-You need patternProperties for "^usb@[0-9a-f]+$" referencing Synopsys
-schema. Something like:
-Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+If the adjust the above code by first set the detection as output,
+then set the GPIO data register with high voltage level("1"). as
+the following demonstrate code,
 
+         if (state) {
+		/* First set this pin as output */
+		val = readb(li2c->dir_reg);
+		val |= mask;
+		writeb(val, li2c->dir_reg);
 
+		/* Then, set the state to high */
+		val = readb(li2c->dat_reg);
+		val |= mask;
+		writeb(val, li2c->dat_reg);
+         } else {
+                // ...
+         }
 
-Best regards,
-Krzysztof
+Then i2c6 will NOT work as exacted, i2c7 will work, so strangely.
+It may because the GPIO is open drained, not Push-pull output.
+Output high is achieved by externalpull up resistance on the PCB.
+
