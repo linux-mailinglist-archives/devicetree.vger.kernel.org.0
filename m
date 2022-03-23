@@ -2,187 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0676A4E5642
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 594EF4E5667
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238611AbiCWQYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:24:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
+        id S245476AbiCWQaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 12:30:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235186AbiCWQYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:24:15 -0400
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB877C791;
-        Wed, 23 Mar 2022 09:22:44 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id C72D5240006;
-        Wed, 23 Mar 2022 16:22:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1648052563;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=iU22Ut2bf3iPraCysIP/pzQ8KDzRQbmOe5f5yJ9SnL4=;
-        b=mHlIN0q0OCIRu9O+TqNRdjU5WYOxBxyqjpt2ib13jXmBQ5BJ7oXS1jhqPfFu46AZ1Absjy
-        u+RfEDOh5o8D4KeTLOJBRFf6R+4Da6k3jY28ikql5ynblTu1NmX9ZYrIUV1BDR4LXRKEz4
-        rZDbzMJKJojt3p8lg5U09k4mv4s2I9hEVau091RzySV+TWBHJgP8QawGBANx8zXZ9X1RFN
-        XcwtxFvwEwz4nmhQFAbVi2p4QhTDd2deaVRX4DGy+CsSoPyjv2MHcBUexSwFfuzMsHQ5R9
-        hoHQK3bX827EWZevGwG9auNzY7ZuzgHQ2jDptV1fDDhcWJb1gHfUaUTcZ6crSw==
-Date:   Wed, 23 Mar 2022 17:21:21 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] reset: add support for fwnode
-Message-ID: <20220323172121.220a26e9@fixe.home>
-In-Reply-To: <ba95a3fec9c726e2cd61665ac5d7f89d16232d60.camel@pengutronix.de>
-References: <20220323095022.453708-1-clement.leger@bootlin.com>
-        <20220323095022.453708-3-clement.leger@bootlin.com>
-        <ba95a3fec9c726e2cd61665ac5d7f89d16232d60.camel@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S245457AbiCWQaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:30:07 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A6B220F9
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:28:35 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id b24so2470431edu.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 09:28:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ImWjO9BliYkKUOP8R8MoJSDWIHefk+M95GmJN/O3O34=;
+        b=D2UctzQgO6u8cSXQTeksgdgZK6wjOHPjBkMPC9p5wqSUA+AdgVP/16rd4JTJ8QIZag
+         SshJ6nu7ov8y5JzysNeFebZxjMf7utn9Y+Aw2OyWwmqSGq/hiCHobFtyLWAOsZDfj9gS
+         gFFLq+3k6yXiIf6SYaRkWhmhEiLwP7Rmen5TuzJfJk4Cwx6mI9xuip43BIhi4mUsLPNX
+         hlfE/LCkYmc6FMGTQq0VqnkRt1+QSSSVDM2ZKtG7bRl7FnxpXTdXKt/IHLsoI72zw5ll
+         pmw29n6RpT9a4aihuIHAoSm6VMPd/kbVbWTavIfwnV/unUiGev67gdNv2UIdQ+6aXWPI
+         buSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ImWjO9BliYkKUOP8R8MoJSDWIHefk+M95GmJN/O3O34=;
+        b=3LEXdCYAflhSvpmveO8VYO+gZBDxUhdyZmLOu4xiFnsV48l89kaH3l8IW+Tu8PaolZ
+         6fSsSYX/sVkGtaeK2K8hJYzGzrmodnrLa3/GsWLKPbXoEd4AiUkJzLTSFDucHHIG/ui/
+         aLK/kkX8UxnFumLdoYJnf8U90QgjEFc/7z3MimiYUmDswA4JBaz5tXZVQq8oZHcva6Wb
+         ihUrxjje92SRklFiOhuIWcqDLrjzYmw/xipVnDPfsmBUfKmSyRgYa8Ojwm8R3N4l2FYP
+         vsbTevMkh5cKterVyFRCh8fGI6o6tCAN1OQrHO2JJUk5nZvJlw3BeWIrENCIU/8h082R
+         Js5g==
+X-Gm-Message-State: AOAM531j3J+HtQCCMK/7O7a3l5JHPl16m0V7s2gOdplS/KnraEsM124J
+        3qa9O/Z58CINE3q78bGKz++ZKQ==
+X-Google-Smtp-Source: ABdhPJwtqa9IXBn0CPhC3ymFTqHAs/EABke2Tqin8PNOz/NpPRz0s0cM0Mh30YdqnOx6zhroCOKA8w==
+X-Received: by 2002:a05:6402:2342:b0:419:e86:c7d5 with SMTP id r2-20020a056402234200b004190e86c7d5mr1185904eda.92.1648052914267;
+        Wed, 23 Mar 2022 09:28:34 -0700 (PDT)
+Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id z11-20020a50e68b000000b00412ec8b2180sm173306edm.90.2022.03.23.09.28.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Mar 2022 09:28:33 -0700 (PDT)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+X-Google-Original-From: Caleb Connolly <caleb@connolly.tech>
+To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH v13 0/9] iio: adc: introduce Qualcomm SPMI Round Robin ADC
+Date:   Wed, 23 Mar 2022 16:28:11 +0000
+Message-Id: <20220323162820.110806-1-caleb@connolly.tech>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, 23 Mar 2022 16:29:41 +0100,
-Philipp Zabel <p.zabel@pengutronix.de> a =C3=A9crit :
+The RRADC is responsible for reading data about the current and
+voltage from the USB or DC in jacks, it can also read the battery
+ID (resistence) and some temperatures. It is found on the PMI8998 and
+PM660 Qualcomm PMICs.
 
-> On Mi, 2022-03-23 at 10:50 +0100, Cl=C3=A9ment L=C3=A9ger wrote:
-> [...]
-> > diff --git a/drivers/reset/core.c b/drivers/reset/core.c
-> > index 61e688882643..f014da03b7c1 100644
-> > --- a/drivers/reset/core.c
-> > +++ b/drivers/reset/core.c
-> > @@ -4,6 +4,7 @@
-> > =C2=A0 *
-> > =C2=A0 * Copyright 2013 Philipp Zabel, Pengutronix
-> > =C2=A0 */
-> > +#include <linux/acpi.h>
-> > =C2=A0#include <linux/atomic.h>
-> > =C2=A0#include <linux/device.h>
-> > =C2=A0#include <linux/err.h>
-> > @@ -70,26 +71,49 @@ static const char *rcdev_name(struct
-> > reset_controller_dev *rcdev)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (rcdev->of_node)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return rcdev->of_node->full_name; =20
->=20
-> Could the above be removed, since reset_controller_register() set
-> rcdev->fwnode to of_fwnode_handle(rcdev->of_node) earlier?
+The RRADC has to calibrate some ADC values based on which chip fab
+the PMIC was produced in, to facilitate this the patches
+("mfd: qcom-spmi-pmic: expose the PMIC revid information to clients")
+and ("mfd: qcom-spmi-pmic: read fab id on supported PMICs")
+expose the PMIC revision information and fab_id as a struct and register
+them as driver data in the Qualcomm SPMI PMIC driver so that it can be
+read by the RRADC.
 
-Yes, this should work in all cases, the only difference is that
-fwnode_get_name() returns the basename of the of_node full_name field.
-This is potentially a change from what was displayed before. If you are
-ok with that, I'll drop these lines.
+The first 3 patches add support for looking up an SPMI device from a
+struct device_node, as well as introducing support for looking up the
+base USID of a Qcom PMIC, see patch comments for more details. These
+Address Bjorns comments on v2.
 
-[...]
+Changes since v12:
+ * Apply Krzysztof's suggestions to rradc DT binding docs.
 
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (rcdev->of_xlate) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0rcdev->fwnode_xlate =3D fwnode_of_reset_xlate; =20
->=20
-> It should be documented that .fwnode_xlate/.fwnode_reset_n_cells are
-> ignored if .of_xlate is set.
+Changes since v11:
+ * Remove debug logging which was left in ("mfd: qcom-spmi-pmic: expose the PMIC revid information to clients")
+ * Picked up Dmitry's Tested-by and Reviewed-by tags.
 
-Acked.
+Changes since v10:
+ * Don't inline spmi_device_from_of()
+Reported-by: kernel test robot <lkp@intel.com>
 
-[...]
+Changes since v9:
+ * Add back missing copyright, this driver is originally derived from
+   downstream (Thanks Manivannan).
 
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (id) {
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0index =3D of_property_match_string(node,
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "reset-name=
-s", id);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0index =3D fwnode_property_match_string(fwnode, "reset-=
-names", id);
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0if (index =3D=3D -EILSEQ)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-return ERR_PTR(index); =20
->=20
-> I don't think this is good enough any more. At least -ENOMEM is added
-> as a possible error return code by this change.
+Changes since v8:
+ * Drop Reported-by for the bugfix on previous revision reported by LKP
+ * Apply Jonathans suggestions
+ * Rework patch 2 ("expose the PMIC revid information to clients") to
+   handle PMICs with a single USID (thanks Dmitry)
 
-Yes indeed, errors are clearly not correctly handled anymore. At least
--EILSEQ won't be triggered.
->=20
-> [...]
-> > @@ -945,6 +989,9 @@ struct reset_control *__reset_control_get(struct de=
-vice *dev, const char *id,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (dev->of_node)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return __of_reset_control_get(dev->of_node, id, =
-index, shared,
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 optional, acquired); =20
->=20
-> Could the above be removed, given that __of_reset_control_get() just
-> wraps __fwnode_reset_control_get(), which is called right below:
+Changes since v7:
+ * Addressed Jonathans comments
+ * Fixed bug reported by LKP
 
-Oh yes, sorry for that. It can clearly be removed.
+Changes since v6:
+ * Fix printf format warning in rradc
 
-[...]
+Changes since v5:
+ * Add missing EXPORT_SYMBOL_GPL() to
+   ("spmi: add a helper to look up an SPMI device from a device node")
 
-> > =C2=A0 * @of_node: corresponding device tree node as phandle target
-> > + * @fwnode: corresponding firmware node as reference target
-> > =C2=A0 * @of_reset_n_cells: number of cells in reset line specifiers
-> > =C2=A0 * @of_xlate: translation function to translate from specifier as=
- found in the
-> > =C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 device tree to id as given to the reset control ops, defaults
-> > - *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 t=
-o :c:func:`of_reset_simple_xlate`.
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 t=
-o :c:func:`fwnode_of_reset_xlate`.
-> > + * @fwnode_reset_n_cells: number of cells in reset line reference spec=
-ifiers
-> > + * @fwnode_xlate: translation function to translate from reference spe=
-cifier as
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 found in the firmware node description to id as gi=
-ven to the
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 reset control ops, defaults to
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 :c:func:`fwnode_reset_simple_xlate`. =20
->=20
-> This should mention that .fwnode_xlate is ignored/overwritten when
-> .of_xlate is set.
+Changes since v4:
+ * Addressed Jonathan's comments on v4
+ * Reworked the qcom-spmi-pmic patches to properly walk the devicetree
+   to find the base USID. I've tested this on SDM845 which has two PMICs
+   (pm8998 and pmi8998) and I'm able to look up the PMIC revid from all
+   4 USIDs.
 
-Acked.
+Changes since v3:
+ * Split PMIC patch in two, rework to support function drivers on a
+   sibling USID
+ * Completely rework RRADC driver to make use of the modern IIO
+   framework. This required re-arranging a lot of the equations and
+   results in some lost precision, where relevant I've left comments to
+   explain this. I don't think any of it is significant enough to
+   justify doing post-processing in driver.
+	Thanks a lot Jonathan and John Stultz for helping me out with
+	this 
 
->=20
->=20
-> regards
-> Philipp
+Changes since v2:
+ * Add missing include (thanks kernel test robot :D)
+ * Rework some confusing function return values, specifically
+   rradc_read_status_in_cont_mode and rradc_prepare_batt_id_conversion
+   both of which didn't correctly handle "ret". This also bought up an
+   issue as the previous implementation didn't actually wait for the
+   channel to be ready. It doesn't seem like that's strictly necessary
+   (same data is reported if I wait for the status to be good or not)
+   but I've included it anyway for good measure.
 
-Regards,
+Changes since v1:
+ * Rework the RRADC driver based on Jonathan's feedback
+ * Pick up Rob's reviewed by for the dt-binding patch.
+ ---
+Caleb Connolly (9):
+  spmi: add a helper to look up an SPMI device from a device node
+  mfd: qcom-spmi-pmic: expose the PMIC revid information to clients
+  mfd: qcom-spmi-pmic: read fab id on supported PMICs
+  dt-bindings: iio: adc: document qcom-spmi-rradc
+  iio: adc: qcom-spmi-rradc: introduce round robin adc
+  arm64: dts: qcom: pmi8998: add rradc node
+  arm64: dts: qcom: sdm845-oneplus: enable rradc
+  arm64: dts: qcom: sdm845-db845c: enable rradc
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+ .../bindings/iio/adc/qcom,spmi-rradc.yaml     |   51 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |    8 +
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |    4 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |    4 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |    4 +
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/qcom-spmi-rradc.c             | 1021 +++++++++++++++++
+ drivers/mfd/qcom-spmi-pmic.c                  |  268 +++--
+ drivers/spmi/spmi.c                           |   17 +
+ include/linux/spmi.h                          |    3 +
+ include/soc/qcom/qcom-spmi-pmic.h             |   61 +
+ 12 files changed, 1364 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
+ create mode 100644 drivers/iio/adc/qcom-spmi-rradc.c
+ create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
+
+-- 
+2.35.1
+
