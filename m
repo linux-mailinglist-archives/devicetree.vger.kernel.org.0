@@ -2,350 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A494E53EC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4BE4E53F7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 15:07:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241441AbiCWOHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 10:07:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41288 "EHLO
+        id S241299AbiCWOIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 10:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239928AbiCWOHI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:07:08 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B79C6258;
-        Wed, 23 Mar 2022 07:05:38 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id v2so1188385qtc.5;
-        Wed, 23 Mar 2022 07:05:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HA7zjle6C3PsZP6fkux68piPzUwetE30nQWam1Bf1tc=;
-        b=JOt1pUF/PlgL822FjfTv28Z4Oxe63ubGnW4du3y4nVMZAqa13qCIQeTHnn41EYfABC
-         GDKWp9NSLWzLA0+3zKwU4wGqWGxJF6NVEIdyRXf4RL8lOZGz+d7+B4se7+uGCCEeIVTw
-         mVsQmVAewjqeYy0xbf39r1NXyauRLJPZhSx8JqV3qRmzQKp3OSxkI5fxEy0Nr//ugsbK
-         tdmylliQvUGSepMDCNNTn8toeK3/9cixJZvcJVv3HmJFCU/Eza7URcoR5sgZokJ0tolH
-         taywHAZOMEqfwLw5rYa45sbcCWokKVxhHzjYWq5F3Chb3QL1XzgfrUOkO7zjJszlfUeL
-         ZzwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HA7zjle6C3PsZP6fkux68piPzUwetE30nQWam1Bf1tc=;
-        b=wZ2ZoD5kDEG++4I0hScCKk9HL9jcCx8js3w9Ekxp67P1ei6nEl9CX/KihX+KjF7Cck
-         X5TXbjriDyShnimcOQXrWZevqbRjow17kgogJcsriVVJ5EBAQoPve/CtXCu6JjPAvQ/P
-         whnTAx6LsEFt19hI+IhQN+Ucn9eqyIvZLP7fU7Afy6dmLL8S4AaGUMy5KxHD0HHFc9QE
-         ygQ3amDkhxWqhsVa3RRsp9Zcp8aq10FhyGeMdR/ZhxMsFxylA6PRYJda3cB5ZBAvKLKN
-         /1sTYPSxC7a6j1RQ1uWyP5Ey5WdF4DItXsqrx+KtYpIJxNdr1QjmnhuO5KwVWjeIU8h8
-         BkgA==
-X-Gm-Message-State: AOAM53201N6acLdFMzmlEVo8HvADOBzjSJaqSX4AQfLAsDDGL+dpqWfB
-        /0/Awz56NmLd8g4Q6lsHePM4VlnSCGgR+fsaETo=
-X-Google-Smtp-Source: ABdhPJzfkF8AAeBkPonZ9KvV9V+959JIJBgxk62vEiMZc4nSc4cqtRRsFQvYt7eo9GwOQ0cJUYYZshAx5qrV+DvjdoY=
-X-Received: by 2002:ac8:5b50:0:b0:2e2:38d6:cb36 with SMTP id
- n16-20020ac85b50000000b002e238d6cb36mr867688qtw.311.1648044336798; Wed, 23
- Mar 2022 07:05:36 -0700 (PDT)
+        with ESMTP id S231337AbiCWOIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 10:08:53 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2136.outbound.protection.outlook.com [40.107.114.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085F07E093;
+        Wed, 23 Mar 2022 07:07:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OFmVJLh7kc+qK8qi8ZqpMvP2rM159x0VFqoMtsF3tOtUWkkzSt/B/AUlPJ21bpwSIutI+qza4opV2QCWYDoY9j10NuVooZrXLPNIk5m/cHAq9hbZpyOki2IvgIhioRbGQS6S2ZjiE+5EsMQvsMN/zey6+9n1aM8qqoJ7P0aW67fcfA92ukzotlxhQXI/ut7aGVWX0/wMxrOvPti5pEw2HPGDQpKHwzGUNplUldE1PhGV8HgH6ROwIvyJQRhk6YIPLecbwbp/uYiJpjlUvosMAO/Vc29mKNOW97TsxWF/l0NVCb3xDypCQ+zWXagcTxXggt4LU7cKFf2U7mveNoO7zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9kSqQpRtM2Ve4S0ZTYS0uxr17zq9v5ok6Y9euG23KR8=;
+ b=PFS4QWwaFVm1qa3Eb943Ann+IXUeGUGdOtJcvSfbgSd+8JnCTPXI1m1wuTdqDHJobbFIFA0r3UoD4nQhrBZ4s7QkGn/QpTQiBhQroly+h6nhBptOien1ceHxl75FlhB4SVAywgjJ7wxdp80sHkTyjTfTajtuaR60vefaBg92z2AoeAkdyD8LvHe3yG1UsXDU5G9PMBhfNs/89ezOMtCUB7JdqGFrj0Ck2nyzS6YatdITjcBVNnrqnM8wCWnTsa2K30vR7Fi9vz5BHipkQmxj++gdu1IHiBHMAE2ivmpRX87jHdD3PXzx6Qqt9MjL7ApvXEJCvyj40mu59HLfmxi3wg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9kSqQpRtM2Ve4S0ZTYS0uxr17zq9v5ok6Y9euG23KR8=;
+ b=IGkxhV0aLwr3zggC3MfzLofwmNQx4CmHFuChXLMv9Bu3rGXFA08CTWSQBj1kmtm6GGEegeKGTq+LTA7QfNbSHdEDivjjoQP9f8umjesGgr3rfQ4wBHba1v2UaH5hieUs8y7bsUmP5zS43mGXaIa/ZqRxiVm3TUN4Qq1yvkk75MI=
+Received: from TYYPR01MB7086.jpnprd01.prod.outlook.com (2603:1096:400:de::11)
+ by OS0PR01MB5634.jpnprd01.prod.outlook.com (2603:1096:604:b8::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Wed, 23 Mar
+ 2022 14:07:20 +0000
+Received: from TYYPR01MB7086.jpnprd01.prod.outlook.com
+ ([fe80::7120:d44f:518:6daa]) by TYYPR01MB7086.jpnprd01.prod.outlook.com
+ ([fe80::7120:d44f:518:6daa%8]) with mapi id 15.20.5081.024; Wed, 23 Mar 2022
+ 14:07:19 +0000
+From:   Phil Edworthy <phil.edworthy@renesas.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: RE: [PATCH 04/14] dt-bindings: clock: Add r9a09g011 CPG Clock
+ Definitions
+Thread-Topic: [PATCH 04/14] dt-bindings: clock: Add r9a09g011 CPG Clock
+ Definitions
+Thread-Index: AQHYPTp6tICEqKzGTkeF4ug71cB5rqzMy28AgAA3OJA=
+Date:   Wed, 23 Mar 2022 14:07:19 +0000
+Message-ID: <TYYPR01MB7086D2858A43824FEB9BFD51F5189@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+References: <20220321154232.56315-1-phil.edworthy@renesas.com>
+ <20220321154232.56315-5-phil.edworthy@renesas.com>
+ <b00a4cc8-c8b8-60ab-9891-e6cb44c8bf75@kernel.org>
+In-Reply-To: <b00a4cc8-c8b8-60ab-9891-e6cb44c8bf75@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c79486a2-62eb-4529-2a22-08da0cd671e3
+x-ms-traffictypediagnostic: OS0PR01MB5634:EE_
+x-microsoft-antispam-prvs: <OS0PR01MB56340562B876A6A47F3B5FC2F5189@OS0PR01MB5634.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: aO0zhRt3ge4sYfpfnELSny6pPEPX2AvdF48EzB0XuRpLmlIjyb+p+a0tmlhz+4xvV6eq2PkTSVmmVxQscSU5dHe3GUorX3vWXGu1N39qxn0xW8xlV4uBjcezsTphMIIxvTOfl3i1MqiHXTEnOiCECbEznndlCDmeQFahcVDEnVzw1XP8nN7I+MnhV9OzH4zLdhBBaPYG5A/9bgPhqi9Ml61k2Nwa0SsokUo8KhdTIcmE88/BSG4k+ucRuYxTNVpu64F5j2b6L2xdjYYCL4QfkOWL8SFP4RtNg34bZV4CUZK4wvtROifc9TKJgb8inFcmCO0TSE7XY9GGuLOvwKZsn78xKFU7QXuyQ3Zb55tcSxsW/q2a7Bx8CHiVcryzEVB93atICMozj9WUkvml2JqqURsLOjwamwCObFHrFzvig7ZO/hepV1ZB6mW9EmpECM95PK2IgvbBxEduWGoUZgCPRPERfakI+iySX4J9CyU+2NNGQILKnocMH5OwVC8qhyywnlwSr1T2fAWT7NOzmmQohQJjI/gSYAlLFqtv/wmVlPDcJCadG6aFM0SsqIohMjlMOrQ7ROaaJnC5pChyfcP2hXEQ/awi7/8UOx3rFzQX3zHYQiQsPTxxh33ffxdW3dFRD3IGUU0ajiq4jjxUs8gxn/vfBPH5GblRjq+4fXFRWZ7bsliMT9+I08TuhTjbXyJA1aqRzd7sEPvVyQFo/Wgr9w==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB7086.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(7696005)(5660300002)(6506007)(71200400001)(86362001)(9686003)(508600001)(186003)(26005)(107886003)(55016003)(53546011)(2906002)(66946007)(76116006)(316002)(52536014)(44832011)(38100700002)(33656002)(8936002)(38070700005)(64756008)(54906003)(110136005)(122000001)(66476007)(66446008)(4326008)(8676002)(83380400001)(66556008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VkhHZjdnSTF2WXJWbTkzU0t3VXh1emNyZzFrdXArdTFYYU9GWmJpK3ljcE1E?=
+ =?utf-8?B?cHhUaHpLVTJzeXYwR01TQWFKNG9VSGU3eElidUZlQm1JWUYzWEFMbjJjY0dt?=
+ =?utf-8?B?aWpieURxbUk0c1IybHVwMmQ4SGl3TVEzVmJnUitZR05UV3gyYUZtZGM0UjFU?=
+ =?utf-8?B?emZqM3BVbUcyVXhzYWE4OUpncUp0dzFKMUpMK1BGbGRNOXAzMkhzN0NWZWQ5?=
+ =?utf-8?B?RUhqS1AzRkJuYXY2bCszQXMzVE1LSUtNUkNEWGltenRZS0txaG5odFRKektw?=
+ =?utf-8?B?bXA4aUJuYVE2Q1hkTHJDcDJtaEU1cFpFeTVFUDlPdkRnUDlwbjI3RUJlMUdL?=
+ =?utf-8?B?ekc1Z3dNdlM5OEw4REFoOFBiUEtJME8rY0x5cW43dStkS29UQjd2MSt1clpI?=
+ =?utf-8?B?MVVLR01jbFgzRlhKeUpkSjh5dVh2S0hFVzN6NVoyT1ZudCsvYlBtaFZsMzhV?=
+ =?utf-8?B?WHRFVkJ3SmgvWC94ZGlVaTl4bDNHUUVVNm1GOFBIUG50NWJsaFFpR0gxUGF4?=
+ =?utf-8?B?Q0x5YStsckFRaERvY05xMDArdFkyc254TW04SjRiNUkxcVEvSXNGU0Q4WjNP?=
+ =?utf-8?B?K096b2cycGRJWHN0SC9ENlpGU0FPRnNBd2FUNUlLcDFhR2Z2S1NXVEdvcVpZ?=
+ =?utf-8?B?SEpOL1pLcjlQWUZnVWFEQklhMVpsVHBrWGs2ZEVESVlFZlkrNEptVXNCdWp1?=
+ =?utf-8?B?VjdZeUJNVW1vbEpBQnVVRWNlelJTSEU4TnNjdVE3NDBuVjFsT1liNUhYd0FP?=
+ =?utf-8?B?VUpUcTE3VWk4MDNrb0k5TmRmaThRSmdtWE8zT0FYRE9zcWdZdWh1MFM2N3p3?=
+ =?utf-8?B?dDY5cEN4STZPSG91WTZlYjFnaTdKZ0RtSVorT0VPc3dMeUN3bnJFalZKZ0p5?=
+ =?utf-8?B?N2tvbWNZdVNTRG1kK21HQ1BIT2FyNElCWjEzTncyL2VOSk1KMkMzc1g0cXUy?=
+ =?utf-8?B?bjREZk5iNHhjM1FGZjljY1hPRVVWcjRjOGlWVnVGM1VqeDFTQTVBTnk1ZjEw?=
+ =?utf-8?B?U2FUTHE3d1c2ODkzK214enVHUnB2WnRiYjZoYWhwNmJ2YUw4QThPMHl5anZx?=
+ =?utf-8?B?dkdmc1pWUm1CNVVqd3BBZE81OExHMW1JZFRMbVJMLzR3NkFkWENhSjJMT0dv?=
+ =?utf-8?B?ZVdKTUs1UjljR04rc0t4Z1BvcFNxN1pvZ1g0azRLR29JNndFSFp3QkJvcWFm?=
+ =?utf-8?B?WlQ0dXJCNGxUYTVSdlRJeGhMbU92akd2NjRQMCtINVo4bmRMazRzdm00SUJ3?=
+ =?utf-8?B?Unpqamg4b255SWZVNmEyVStLZWFEZ1YyZ1lXR2J0UzJVL2Y5VDk0YTVSZU9Q?=
+ =?utf-8?B?MjYvck1EYnNHWWNqOVJsVHMrcTZGVDdtTlFJRzdkMlJVZE5OTGY5NTNDMDRX?=
+ =?utf-8?B?VW9tZENObTN6eVZyYjVWU2FER2dtQXVMNGFsM1NCOEptbnVhbW1aNDczdkJC?=
+ =?utf-8?B?QlgzcGFUM0h4cGRZT2MvQ1RhTmJadmd3M1RKcDBRNisxalJ5YlRQbGVSazkv?=
+ =?utf-8?B?NktRRmFxSFZFMmxVYkdVaVJObzAxTUxXZG9hUzV3UnByMThmRm9VdWJZcVp0?=
+ =?utf-8?B?RkRLa3EydkVCdEJQWTlEVWhaNjM3bUxWelRPSUdsZWJaQzh2R3dlVFl1Z2Ez?=
+ =?utf-8?B?YnErekZrVlRsaWh0cUhUOTYwZm1RaGUvNnJuayt6YzFZT0R3bzlTRVl0RHN5?=
+ =?utf-8?B?aHMxWld2VDd6aTZDMGpmOW8yTlhXNm4wYmZiYnAzeklVVGhTRzdKcm0vQjVL?=
+ =?utf-8?B?MmRkOVEzSThzUkNPYVkva3BtS1lJRW1rMXVXcDVwaS9neG8wK21pQUhqQzRW?=
+ =?utf-8?B?QjNtOXkwK1NnYjdCbURhTDJ4NUZiWDNMQmJIYm92MENFd205eDdpZktZajFv?=
+ =?utf-8?B?c1RWTWk1OGFMeFF5bUJwNHc5SG1wVXgxd1VxS2lBVHRWaHptSGxpenNiejVU?=
+ =?utf-8?B?ZzFNd3J0QkVPbm5aSnFtUC9Ua08yZ2pHTFR3NGZTTDAvcHdPYVNMOTl0YnBh?=
+ =?utf-8?B?VFFKZ0tZbDNBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220311164628.378849-1-gengcixi@gmail.com> <20220311164628.378849-5-gengcixi@gmail.com>
-In-Reply-To: <20220311164628.378849-5-gengcixi@gmail.com>
-From:   Baolin Wang <baolin.wang7@gmail.com>
-Date:   Wed, 23 Mar 2022 22:06:23 +0800
-Message-ID: <CADBw62pX_f4BYO8uhN2BXrNuZpehx1Nb26xXdzv+22T+NNrr1A@mail.gmail.com>
-Subject: Re: [PATCH V2 4/7] iio: adc: sc27xx: add support for PMIC sc2720 and sc2721
-To:     Cixi Geng <gengcixi@gmail.com>
-Cc:     jic23@kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
-        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB7086.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c79486a2-62eb-4529-2a22-08da0cd671e3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2022 14:07:19.8812
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OL/2+7+cVCUu4OZFg31Lte1tUZV29n2PGjDQll40egW6j10yye/76hnBXUuV35X6HLGPW5fpxMQ70uO4PwBgJOT684pRG50uiPh5iENy++4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5634
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 12, 2022 at 12:47 AM Cixi Geng <gengcixi@gmail.com> wrote:
->
-> From: Cixi Geng <cixi.geng1@unisoc.com>
->
-> sc2720 and sc2721 is the product of sc27xx series.
->
-> Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
->
-> v2 changes:
->
-> 1. modify code by the baolin's comment
->
-> Reviewed-by: Baolin Wang <baolin.wang7@gmail.com>
-
-I think I did not add a reviewed-by tag for this patch before, please drop it.
-
->
-> 2.fix smatch warnings in sc27xx_adc_read()
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> ---
->  drivers/iio/adc/sc27xx_adc.c | 201 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 200 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
-> index 68629fbcfec5..2603ce313b07 100644
-> --- a/drivers/iio/adc/sc27xx_adc.c
-> +++ b/drivers/iio/adc/sc27xx_adc.c
-> @@ -9,11 +9,13 @@
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->
->  /* PMIC global registers definition */
->  #define SC2731_MODULE_EN               0xc08
->  #define SC27XX_MODULE_ADC_EN           BIT(5)
-> +#define SC2721_ARM_CLK_EN              0xc0c
->  #define SC2731_ARM_CLK_EN              0xc10
->  #define SC27XX_CLK_ADC_EN              BIT(5)
->  #define SC27XX_CLK_ADC_CLK_EN          BIT(6)
-> @@ -37,7 +39,9 @@
->  /* Bits and mask definition for SC27XX_ADC_CH_CFG register */
->  #define SC27XX_ADC_CHN_ID_MASK         GENMASK(4, 0)
->  #define SC27XX_ADC_SCALE_MASK          GENMASK(10, 9)
-> +#define SC2721_ADC_SCALE_MASK          BIT(5)
->  #define SC27XX_ADC_SCALE_SHIFT         9
-> +#define SC2721_ADC_SCALE_SHIFT         5
->
->  /* Bits definitions for SC27XX_ADC_INT_EN registers */
->  #define SC27XX_ADC_IRQ_EN              BIT(0)
-> @@ -67,8 +71,20 @@
->  #define SC27XX_RATIO_NUMERATOR_OFFSET  16
->  #define SC27XX_RATIO_DENOMINATOR_MASK  GENMASK(15, 0)
->
-> +/* ADC specific channel reference voltage 3.5V */
-> +#define SC27XX_ADC_REFVOL_VDD35                3500000
-> +
-> +/* ADC default channel reference voltage is 2.8V */
-> +#define SC27XX_ADC_REFVOL_VDD28                2800000
-> +
-> +enum sc27xx_pmic_type {
-> +       SC27XX_ADC,
-> +       SC2721_ADC,
-> +};
-> +
->  struct sc27xx_adc_data {
->         struct device *dev;
-> +       struct regulator *volref;
->         struct regmap *regmap;
->         /*
->          * One hardware spinlock to synchronize between the multiple
-> @@ -87,6 +103,7 @@ struct sc27xx_adc_data {
->   * in the device data structure.
->   */
->  struct sc27xx_adc_variant_data {
-> +       enum sc27xx_pmic_type pmic_type;
->         u32 module_en;
->         u32 clk_en;
->         u32 scale_shift;
-> @@ -188,6 +205,94 @@ static int sc27xx_adc_scale_calibration(struct sc27xx_adc_data *data,
->         return 0;
->  }
->
-> +static int sc2720_adc_get_ratio(int channel, int scale)
-> +{
-> +       switch (channel) {
-> +       case 14:
-> +               switch (scale) {
-> +               case 0:
-> +                       return SC27XX_VOLT_RATIO(68, 900);
-> +               case 1:
-> +                       return SC27XX_VOLT_RATIO(68, 1760);
-> +               case 2:
-> +                       return SC27XX_VOLT_RATIO(68, 2327);
-> +               case 3:
-> +                       return SC27XX_VOLT_RATIO(68, 3654);
-> +               default:
-> +                       return SC27XX_VOLT_RATIO(1, 1);
-> +               }
-> +       case 16:
-> +               switch (scale) {
-> +               case 0:
-> +                       return SC27XX_VOLT_RATIO(48, 100);
-> +               case 1:
-> +                       return SC27XX_VOLT_RATIO(480, 1955);
-> +               case 2:
-> +                       return SC27XX_VOLT_RATIO(480, 2586);
-> +               case 3:
-> +                       return SC27XX_VOLT_RATIO(48, 406);
-> +               default:
-> +                       return SC27XX_VOLT_RATIO(1, 1);
-> +               }
-> +       case 21:
-> +       case 22:
-> +       case 23:
-> +               switch (scale) {
-> +               case 0:
-> +                       return SC27XX_VOLT_RATIO(3, 8);
-> +               case 1:
-> +                       return SC27XX_VOLT_RATIO(375, 1955);
-> +               case 2:
-> +                       return SC27XX_VOLT_RATIO(375, 2586);
-> +               case 3:
-> +                       return SC27XX_VOLT_RATIO(300, 3248);
-> +               default:
-> +                       return SC27XX_VOLT_RATIO(1, 1);
-> +               }
-> +       default:
-> +               switch (scale) {
-> +               case 0:
-> +                       return SC27XX_VOLT_RATIO(1, 1);
-> +               case 1:
-> +                       return SC27XX_VOLT_RATIO(1000, 1955);
-> +               case 2:
-> +                       return SC27XX_VOLT_RATIO(1000, 2586);
-> +               case 3:
-> +                       return SC27XX_VOLT_RATIO(100, 406);
-> +               default:
-> +                       return SC27XX_VOLT_RATIO(1, 1);
-> +               }
-> +       }
-> +       return SC27XX_VOLT_RATIO(1, 1);
-> +}
-> +
-> +static int sc2721_adc_get_ratio(int channel, int scale)
-> +{
-> +       switch (channel) {
-> +       case 1:
-> +       case 2:
-> +       case 3:
-> +       case 4:
-> +               return scale ? SC27XX_VOLT_RATIO(400, 1025) :
-> +                       SC27XX_VOLT_RATIO(1, 1);
-> +       case 5:
-> +               return SC27XX_VOLT_RATIO(7, 29);
-> +       case 7:
-> +       case 9:
-> +               return scale ? SC27XX_VOLT_RATIO(100, 125) :
-> +                       SC27XX_VOLT_RATIO(1, 1);
-> +       case 14:
-> +               return SC27XX_VOLT_RATIO(68, 900);
-> +       case 16:
-> +               return SC27XX_VOLT_RATIO(48, 100);
-> +       case 19:
-> +               return SC27XX_VOLT_RATIO(1, 3);
-> +       default:
-> +               return SC27XX_VOLT_RATIO(1, 1);
-> +       }
-> +       return SC27XX_VOLT_RATIO(1, 1);
-> +}
-> +
->  static int sc2731_adc_get_ratio(int channel, int scale)
->  {
->         switch (channel) {
-> @@ -216,6 +321,34 @@ static int sc2731_adc_get_ratio(int channel, int scale)
->  /*
->   * According to the datasheet set specific value on some channel.
->   */
-> +static void sc2720_adc_scale_init(struct sc27xx_adc_data *data)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < SC27XX_ADC_CHANNEL_MAX; i++) {
-> +               switch (i) {
-> +               case 5:
-> +                       data->channel_scale[i] = 3;
-> +                       break;
-> +               case 7:
-> +               case 9:
-> +                       data->channel_scale[i] = 2;
-> +                       break;
-> +               case 13:
-> +                       data->channel_scale[i] = 1;
-> +                       break;
-> +               case 19:
-> +               case 30:
-> +               case 31:
-> +                       data->channel_scale[i] = 3;
-> +                       break;
-> +               default:
-> +                       data->channel_scale[i] = 0;
-> +                       break;
-> +               }
-> +       }
-> +}
-> +
->  static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
->  {
->         int i;
-> @@ -231,7 +364,7 @@ static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
->  static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
->                            int scale, int *val)
->  {
-> -       int ret;
-> +       int ret, ret_volref;
->         u32 tmp, value, status;
->
->         ret = hwspin_lock_timeout_raw(data->hwlock, SC27XX_ADC_HWLOCK_TIMEOUT);
-> @@ -240,6 +373,22 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
->                 return ret;
->         }
->
-> +       /*
-> +        * According to the sc2721 chip data sheet, the reference voltage of
-> +        * specific channel 30 and channel 31 in ADC module needs to be set from
-> +        * the default 2.8v to 3.5v.
-> +        */
-> +       if ((data->var_data->pmic_type == SC2721_ADC) && (channel == 30 || channel == 31)) {
-> +               ret = regulator_set_voltage(data->volref,
-> +                                       SC27XX_ADC_REFVOL_VDD35,
-> +                                       SC27XX_ADC_REFVOL_VDD35);
-> +               if (ret) {
-> +                       dev_err(data->dev, "failed to set the volref 3.5V\n");
-> +                       hwspin_unlock_raw(data->hwlock);
-
-Please remove duplicate code, just "goto unlock_adc". Then add a new
-label like "regultor_restore" to restore the regulator in the error
-path.
-
-> +                       return ret;
-> +               }
-> +       }
-> +
->         ret = regmap_update_bits(data->regmap, data->base + SC27XX_ADC_CTL,
->                                  SC27XX_ADC_EN, SC27XX_ADC_EN);
->         if (ret)
-> @@ -294,6 +443,18 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
->         regmap_update_bits(data->regmap, data->base + SC27XX_ADC_CTL,
->                            SC27XX_ADC_EN, 0);
->  unlock_adc:
-> +       if (data->var_data->pmic_type == SC2721_ADC) {
-> +               if ((channel == 30) || (channel == 31)) {
-> +                       ret_volref = regulator_set_voltage(data->volref,
-> +                                                   SC27XX_ADC_REFVOL_VDD28,
-> +                                                   SC27XX_ADC_REFVOL_VDD28);
-> +                       if (ret_volref) {
-> +                               dev_err(data->dev, "failed to set the volref 2.8V, ret_volref = 0x%x\n,ret_volref");
-> +                               ret = ret || ret_volref;
-> +                       }
-> +               }
-> +       }
-> +
->         hwspin_unlock_raw(data->hwlock);
->
->         if (!ret)
-> @@ -523,6 +684,7 @@ static void sc27xx_adc_disable(void *_data)
->  }
->
-
-
-
--- 
-Baolin Wang
+SGkgS3J6eXN6dG9mLA0KDQpUaGFua3MgZm9yIHRoZSByZXZpZXcuDQoNCk9uIDIzIE1hcmNoIDIw
+MjIgMTA6NDQsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDIxLzAzLzIwMjIgMTY6
+NDIsIFBoaWwgRWR3b3J0aHkgd3JvdGU6DQo+ID4gRGVmaW5lIFJaL1YyTSAoUjlBMDlHMDExKSBD
+bG9jayBQdWxzZSBHZW5lcmF0b3IgY29yZSBjbG9ja3MsIG1vZHVsZQ0KPiBjbG9jaw0KPiA+IG91
+dHB1dHMgKENQR19DTEtfT04qIHJlZ2lzdGVycyksIGFuZCByZXNldCBkZWZpbml0aW9ucyAoQ1BH
+X1JTVF8qDQo+ID4gcmVnaXN0ZXJzKSBpbiBTZWN0aW9uIDQ4LjUgKCJSZWdpc3RlciBEZXNjcmlw
+dGlvbiIpIG9mIHRoZSBSWi9WMk0NCj4gSGFyZHdhcmUNCj4gPiBVc2VyJ3MgTWFudWFsIChSZXYu
+IDEuMTAsIFNlcC4gMjAyMSkuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBQaGlsIEVkd29ydGh5
+IDxwaGlsLmVkd29ydGh5QHJlbmVzYXMuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBCaWp1IERhcyA8
+YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4gLS0tDQo+ID4gIGluY2x1ZGUvZHQtYmlu
+ZGluZ3MvY2xvY2svcjlhMDlnMDExLWNwZy5oIHwgMzM3ICsrKysrKysrKysrKysrKysrKysrKysN
+Cj4gPiAgMSBmaWxlIGNoYW5nZWQsIDMzNyBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3I5YTA5ZzAxMS1jcGcuaA0KPiA+DQo+
+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svcjlhMDlnMDExLWNwZy5o
+IGIvaW5jbHVkZS9kdC0NCj4gYmluZGluZ3MvY2xvY2svcjlhMDlnMDExLWNwZy5oDQo+ID4gbmV3
+IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmI4OGRiYjBkOGM0OQ0K
+PiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3I5
+YTA5ZzAxMS1jcGcuaA0KPiA+IEBAIC0wLDAgKzEsMzM3IEBADQo+ID4gKy8qIFNQRFgtTGljZW5z
+ZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkNCj4gPiArICoNCj4g
+PiArICogQ29weXJpZ2h0IChDKSAyMDIyIFJlbmVzYXMgRWxlY3Ryb25pY3MgQ29ycC4NCj4gPiAr
+ICovDQo+ID4gKyNpZm5kZWYgX19EVF9CSU5ESU5HU19DTE9DS19SOUEwOUcwMTFfQ1BHX0hfXw0K
+PiA+ICsjZGVmaW5lIF9fRFRfQklORElOR1NfQ0xPQ0tfUjlBMDlHMDExX0NQR19IX18NCj4gPiAr
+DQo+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9yZW5lc2FzLWNwZy1tc3NyLmg+DQo+
+IA0KPiBJbmNsdWRlIG9ubHkgaGVhZGVycyB3aGljaCB5b3UgdXNlIGhlcmUuIERvIHlvdSB1c2Ug
+aXQgZGlyZWN0bHkgaGVyZT8NCkFoLCBpdCB3YXMganVzdCB1c2VkIGJ5IG15IGR0c2kgZm9yIENQ
+R19DT1JFIGFuZCBDUEdfTU9EIGRlZmluaXRpb25zLg0KSSdsbCBtb3ZlZCB0aGUgaW5jbHVkZSB0
+byB0aGUgZHRzaS4NCg0KVGhhbmtzDQpQaGlsDQo=
