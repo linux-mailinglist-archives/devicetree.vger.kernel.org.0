@@ -2,103 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7AAA4E52C8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 14:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AE104E52D4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 14:11:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244170AbiCWNJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 09:09:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52052 "EHLO
+        id S244147AbiCWNNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 09:13:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244147AbiCWNJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 09:09:07 -0400
-Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com [192.185.51.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB23A76E3A
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 06:07:37 -0700 (PDT)
-Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
-        by gateway24.websitewelcome.com (Postfix) with ESMTP id D9EA6139B2
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 08:07:36 -0500 (CDT)
-Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
-        by cmsmtp with SMTP
-        id X0i8nlggk9AGSX0i8ngfgY; Wed, 23 Mar 2022 08:07:36 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=8+pfNUUQtuD5FnL4aaPjvVlw9+HwXVLMFMf5MupVubU=; b=VokFt6dzrRSC2AKV1MZngq3OL/
-        n0xPdGmYBC9TCUnGZKpxWyoaICvTSnxpd8buWdxP/faPIuDNvNCdqy5c1wqviKXmzykPG8dLPEOvD
-        /+7ixOiPElxQRHPi0Kf5c6quCAYftYFlviKu/kMt9SoZ6nFGbgTVDghVOzq8ntCggjShFaoAdMfNw
-        vo/lNgjZJ7JwLRCAuUGsUk8S8P0zhaq3GSOHTVupoU4jlIkVF1Uw/Wj4nCbiZUNYN27X1QwNUX3+s
-        l68n1Uiq5yev8T+xGiG7L91NOvlq8ZtIeDxG5E4xlr63YKrBr2ppTjm2ZYsN3Gqlfs/8RAtvsgfa+
-        X0lQztCg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54410)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@roeck-us.net>)
-        id 1nX0i8-0019B4-3l; Wed, 23 Mar 2022 13:07:36 +0000
-Message-ID: <d6c61a10-e671-3543-5653-ceb3d9ed60cf@roeck-us.net>
-Date:   Wed, 23 Mar 2022 06:07:33 -0700
+        with ESMTP id S243354AbiCWNNY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 09:13:24 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C617CDD8;
+        Wed, 23 Mar 2022 06:11:52 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-de3ca1efbaso1596647fac.9;
+        Wed, 23 Mar 2022 06:11:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=K4W6Y+CN8/9SzAkq0QdFDjJP1aWJA1yahZp6GBIYFME=;
+        b=y0t/czAvPZkiTOM6jr+Jor74Y26WJWaEYEU6rp4v/g9WHyCGb/e1CaGsyjHSj+QleT
+         kxRswsAzlOBrq2092RX16glm5eY1/9GWuvC2k02gRwNGcYRpYbR1phPYmXwSN6/1rDt2
+         Rmh3HNzgzWO96yUETDvm8n7vj/PKqs4Sw0TRNNO1r+MiXfKHtgbAKfVir1WL5NnNyYT9
+         GKVJtK8i43byoDGSCoc4nH7gR/8Mc06uV5OhIRfT3B/8pTSo077FbcgGPQNeR3yyon78
+         FBDDO5viGdFoBfYjb3hnmY4qLVNl64A2Jm20XT44F9gPfROQyqNJAlvPe+s+JNb+Yn6N
+         2/1Q==
+X-Gm-Message-State: AOAM5302W+1QNFi3dTpvkmrZxJUaHDJyq4NNLLLWT5ezOyMVlFI0ib1+
+        hh/wLwv9soK5De0M+gsVsA==
+X-Google-Smtp-Source: ABdhPJztrzqDz7pcATE6tXz438YRHf0Hzhlaxp7/q1WkwDhYorMA3clcu/PDqYYjVk/H2NNtrB4Z6Q==
+X-Received: by 2002:a05:6870:4411:b0:de:6c37:43b4 with SMTP id u17-20020a056870441100b000de6c3743b4mr2172391oah.25.1648041112279;
+        Wed, 23 Mar 2022 06:11:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t17-20020a9d7f91000000b005c925454e6fsm9996868otp.69.2022.03.23.06.11.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Mar 2022 06:11:51 -0700 (PDT)
+Received: (nullmailer pid 3935370 invoked by uid 1000);
+        Wed, 23 Mar 2022 13:11:49 -0000
+Date:   Wed, 23 Mar 2022 08:11:49 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sui Jingfeng <15330273260@189.cn>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v11 7/7] drm/lsdc: add drm driver for loongson display
+ controller
+Message-ID: <YjsclWsqGX3JrknM@robh.at.kernel.org>
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-8-15330273260@189.cn>
+ <Yjo2R5LQrRICr7dC@robh.at.kernel.org>
+ <9ea4d326-ad5f-4f2c-1609-4ca772699d1b@189.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4] watchdog: imx2_wdg: Allow ping on suspend
-Content-Language: en-US
-To:     Alistair Francis <alistair@alistair23.me>, shawnguo@kernel.org,
-        linux-watchdog@vger.kernel.org, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, festevam@gmail.com, robh+dt@kernel.org
-References: <20220323115752.360409-1-alistair@alistair23.me>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20220323115752.360409-1-alistair@alistair23.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1nX0i8-0019B4-3l
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54410
-X-Source-Auth: linux@roeck-us.net
-X-Email-Count: 5
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9ea4d326-ad5f-4f2c-1609-4ca772699d1b@189.cn>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/23/22 04:57, Alistair Francis wrote:
-> The i.MX watchdog cannot be disabled by software once it has been
-> enabled. This means that it can't be stopped before suspend.
+On Wed, Mar 23, 2022 at 12:12:43PM +0800, Sui Jingfeng wrote:
 > 
-> For systems that enter low power mode this is fine, as the watchdog will
-> be automatically stopped by hardware in low power mode. Not all i.MX
-> platforms support low power mode in the mainline kernel. For example the
-> i.MX7D does not enter low power mode and so will be rebooted 2 minutes
-> after entering sleep states.
-> 
-> This patch introduces a device tree property "fsl,ping-during-suspend"
-> that can be used to enable ping on suspend support for these systems.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> On 2022/3/23 04:49, Rob Herring wrote:
+> > > +/*
+> > > + * mainly for dc in ls7a1000 which have builtin gpio emulated i2c
+> > > + *
+> > > + * @index : output channel index, 0 for DVO0, 1 for DVO1
+> > > + */
+> > > +struct lsdc_i2c *lsdc_create_i2c_chan(struct device *dev, void *base, unsigned int index)
+> > > +{
+> > > +	char compat[32] = {0};
+> > > +	unsigned int udelay = 5;
+> > > +	unsigned int timeout = 2200;
+> > > +	int nr = -1;
+> > > +	struct i2c_adapter *adapter;
+> > > +	struct lsdc_i2c *li2c;
+> > > +	struct device_node *i2c_np;
+> > > +	int ret;
+> > > +
+> > > +	li2c = devm_kzalloc(dev, sizeof(*li2c), GFP_KERNEL);
+> > > +	if (!li2c)
+> > > +		return ERR_PTR(-ENOMEM);
+> > > +
+> > > +	li2c->index = index;
+> > > +	li2c->dev = dev;
+> > > +
+> > > +	if (index == 0) {
+> > > +		li2c->sda = 0x01;
+> > > +		li2c->scl = 0x02;
+> > > +	} else if (index == 1) {
+> > > +		li2c->sda = 0x04;
+> > > +		li2c->scl = 0x08;
+> > Just require this to be in DT rather than having some default.
+> > 
+> By design,  I am try very hard to let the code NOT fully  DT dependent. DT is nice , easy to learn and use.
+> But kernel side developer plan to follow UEFI + ACPI Specification on LS3A5000 + LS7A1000 platform. See [1]
+> There will no DT support then, provide a convention support  make the driver more flexible. I want the
+> driver works with minimal requirement. The driver just works on simple boards by put the following dc device
+> node in arch/mips/dts/loongson/loongson64g_4core_ls7a.dts,
 
-What is the difference to earlier versions ?
+Pick DT or ACPI for the platform, not both. We don't need to have both 
+in the kernel to support.
 
-Guenter
+Rob
