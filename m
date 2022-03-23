@@ -2,55 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 040A24E55F8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABDBF4E564E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 17:27:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245382AbiCWQIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 12:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44198 "EHLO
+        id S242099AbiCWQ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 12:28:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245380AbiCWQIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:08:40 -0400
-X-Greylist: delayed 22518 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 23 Mar 2022 09:07:08 PDT
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C1097C7A5;
-        Wed, 23 Mar 2022 09:07:08 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 408881BF209;
-        Wed, 23 Mar 2022 16:07:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1648051627;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Xv05aiR4hzSvY3jv3FGf0YL5cIGyfqch5Z4Gz9CQAc0=;
-        b=UMT61C+dM6p9/KXllJb5MLsiz61vMWnXa35kZYuMvcVRWfKSEd2LUr4RDm8WTyzYo83Hp0
-        +29PZ+fmj1cr5w8krRbEwySxZV7AI5T+au73jXJzzwKehtNuNczW42hFrFUAMkiNn+UVV1
-        p6xcEtkDG2iCUglRfno5luBq7xObPlafCxX1j46bBC4IGJa4SNv8udPBLEyGyeXRbwsQjV
-        RvsWD9vxLwzal2dzMhFEN0z2izRuveywQXOQBg4p2j4zwTYJDXk0CdZycpDzPpNfgpZr+1
-        A0rZnruEuez3MfWg80tCSfKzrApItbhH+MYwSxbc7so2bZg0fWoMwbkKlHm/Jg==
-Date:   Wed, 23 Mar 2022 17:05:45 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] add fwnode support to reset subsystem
-Message-ID: <20220323170545.79810f56@fixe.home>
-In-Reply-To: <d2d119b07cb51878904574ff14c8e4dd92c28907.camel@pengutronix.de>
-References: <20220323095022.453708-1-clement.leger@bootlin.com>
-        <d2d119b07cb51878904574ff14c8e4dd92c28907.camel@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S239650AbiCWQ2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 12:28:35 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DA3617A82;
+        Wed, 23 Mar 2022 09:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648052826; x=1679588826;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PSwOYGMNforfQR+WoxKFhheJUlLrBbUwxRMosTEqx44=;
+  b=Akd3HyMI3Pwb0dUhpq+jwo6RC5iAr53m3VO5hpAz4mp0oESl7COG1dVF
+   SldskjwYKiIRqQwcDyfXKJwmk1LlYQTACU3GxI6niUnfLfBYPIPsY1ZNP
+   FDyQyZZadyIq3TSY7Gz8Su57lvI5S1wdb1aauuoaTyDjIV2si84WQGhWq
+   knuVUluI0CqQdaWmlO2IJB6oz/jfUjgi2cif8KDsr5wJzwQI+p/pP2u42
+   +DFHCo4LCaQygEbSplsW60nib/7T9fdvHhWZFTAnTY6CTVhTZOKjiP1Eh
+   4ty70QKOicBfBNcdrFl1bK/wqwegTqqn9/+nsG1bX503iA96s82rz+imS
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10295"; a="240320471"
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
+   d="scan'208";a="240320471"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 09:21:22 -0700
+X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; 
+   d="scan'208";a="649495814"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 09:21:20 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nX3j1-005IPs-KU;
+        Wed, 23 Mar 2022 18:20:43 +0200
+Date:   Wed, 23 Mar 2022 18:20:43 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        "Rafael J.Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2 0/4] Shovel firmware specific code to appropriate
+ locations
+Message-ID: <YjtI22BnRjfNOVhG@smile.fi.intel.com>
+References: <20220323154737.169483-1-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220323154737.169483-1-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,109 +67,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, 23 Mar 2022 16:07:26 +0100,
-Philipp Zabel <p.zabel@pengutronix.de> a =C3=A9crit :
+On Wed, Mar 23, 2022 at 05:47:33PM +0200, Sakari Ailus wrote:
+> Hi folks,
+> 
+> This set moves the implementation of recently added device property API
+> functions to OF and ACPI frameworks, where the rest of such functionality
+> resides.
+> 
+> Compile tested.
 
-> Hi Cl=C3=A9ment,
->=20
-> On Mi, 2022-03-23 at 10:50 +0100, Cl=C3=A9ment L=C3=A9ger wrote:
-> > This series is part of a larger series which aims at adding fwnode
-> > support in multiple subsystems [1]. The goal of this series was to
-> > add support for software node in various subsystem but in a first
-> > time only the fwnode support had gained consensus and will be added
-> > to multiple subsystems. =20
->=20
-> Could you explain the purpose of this a little? From the referenced
-> mail it looks like this would be intended allow to register reset
-> controllers via software node? Are there any real systems where this
-> would be useful?
+Thanks!
 
-Hi Philipp and thanks for reviewing this series.
+It would be nice to use --base when creating a cover letter.
+Because it has been sent during merge window, I'm not sure
+what base you have chosen for it (v5.17 or latest Linus'
+master or ...).
 
-As you noticed, the initial goal of the primary series was to add
-fwnode support in order to allow registering devices with software
-nodes. Since a lot of subsystem are of-centric, It was needed to modify
-them to use fwnode and thus accept the use of software nodes.
+> The dependencies can be found in Rafael's devprop branch now.
+> 
+> changes since v1:
+> 
+> - Drop wrongly placed Depends-on: tag from the first patch.
+> 
+> - Drop IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode) check (3rd
+>   patch).
+> 
+> Sakari Ailus (4):
+>   device property: Convert device_{dma_supported,get_dma_attr} to fwnode
+>   ACPI: property: Move acpi_fwnode_device_get_match_data() up
+>   device property: Add iomap to fwnode operations
+>   device property: Add irq_get to fwnode operation
+> 
+>  drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
+>  drivers/base/property.c | 42 ++++++-----------------------------------
+>  drivers/of/property.c   | 30 +++++++++++++++++++++++++++++
+>  include/linux/fwnode.h  |  5 +++++
+>  4 files changed, 73 insertions(+), 40 deletions(-)
 
-The device I'm trying to support is a PCIe card that uses a lan9662
-SoC. This card is meant to be used an ethernet switch with 2 x RJ45
-ports and 2 x 10G SFPs. The lan966x SoCs can be used in two different
-ways:
+-- 
+With Best Regards,
+Andy Shevchenko
 
- - It can run Linux by itself, on ARM64 cores included in the SoC. This
-   use-case of the lan966x is currently being upstreamed, using a
-   traditional Device Tree representation of the lan996x HW blocks [1]
-   A number of drivers for the different IPs of the SoC have already
-   been merged in upstream Linux.
 
- - It can be used as a PCIe endpoint, connected to a separate platform
-   that acts as the PCIe root complex. In this case, all the devices
-   that are embedded on this SoC are exposed through PCIe BARs and the
-   ARM64 cores of the SoC are not used. Since this is a PCIe card, it
-   can be plugged on any platform, of any architecture supporting PCIe.
-
-Appart from adding software node support, the fwnode API would also
-allow to add ACPI support more easily later.
-
->=20
-> > For the moment ACPI node support is excluded from the fwnode support
-> > to avoid creating an unspecified ACPI reset device description. =20
->=20
-> Are there any plans or ongoing discussions to specify such a
-> description in the future? Right now I'm only aware of the ACPI _RST
-> method as used by this patch:
->=20
-> [1] https://lore.kernel.org/all/20220307135626.16673-1-kyarlagadda@nvidia=
-.com/
->=20
-
-On that side, I must say I'm not really competent regarding ACPI
-which I do not know enough to answer you on that point.
-
-The discussions we had with Mark Brown regarding fwnode ACPI support
-pointed out the fact that we should not create unwanted ACPI support by
-using the same descriptions/specifications that exists for the
-device-tree. In order to avoid that, we suggested to explicitely left
-out ACPI with this fwnode support. This will allow to specify that
-support later and integrate it in the subsystem that have been
-converted to fwnode.
-
-> > One question raised by this series is that I'm not sure if all reset
-> > drivers should be modified to use the new fwnode support or keep the
-> > existing device-tree support. Maintainer advice on that particular
-> > question will be welcome. =20
->=20
-> I would prefer not to have to switch all those small DT-only reset
-> controller drivers all over the tree from of_node to fwnode.
-
-That makes sense.
-
-> On the other hand, I think it would be good to avoid the direct of_node
-> assignment, possibly by letting devm_reset_controller_register()
-> initialize of_node or fwnode from the device for most cases, and by
-> adding of_reset_controller_register() and
-> fwnode_reset_controller_register() variants that take the node as an
-> argument for the rest.
-> That could allow to eventually get rid of the of_node pointer.
-
-Ok, I see that. Do you want this to be done in this series ?
-
->=20
-> For those drivers that provide their own .of_xlate, I'm not sure it
-> would make sense to force them to use .fwnode_xlate if they don't
-> already have a reason to use fwnode on their own.
-
-No indeed and that's why I added the fwnode_xlate -> of_xlate
-translation function, this will allow to keep the existing of_xlate
-support.
-
->=20
-> regards
-> Philipp
-
-Regards,
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
