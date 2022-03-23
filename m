@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 668AD4E588E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2973D4E5894
+	for <lists+devicetree@lfdr.de>; Wed, 23 Mar 2022 19:41:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238767AbiCWSl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 14:41:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52428 "EHLO
+        id S1343557AbiCWSnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 14:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232615AbiCWSl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:41:26 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FCC91E3F5;
-        Wed, 23 Mar 2022 11:39:56 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id k10so2584442oia.0;
-        Wed, 23 Mar 2022 11:39:56 -0700 (PDT)
+        with ESMTP id S240166AbiCWSnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 14:43:14 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC5289306;
+        Wed, 23 Mar 2022 11:41:44 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so2609217fac.7;
+        Wed, 23 Mar 2022 11:41:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=6IJ7cycfuyyCexwHrRxoU1gZ16ubOu37ElUcjTsxXYM=;
-        b=wlZNWcyX2BFTJj9jHXEEegh9pdiRdbQcA7vhY+po6PUKPujJpckeVlGJouvs5f3+ng
-         hUfOH3rRkZiP9QG9wWNSBjC58o/9gEj7Kx73uSCM36+XhP4Gj99jqXFHnQ9sJXzkN3C6
-         5DuURzfPpK9/eu1TiFDey9xdiVknNMh5Kf+8OYEi6ExhrShsHz5qeODsii6uclPqARx/
-         ttRCma6i5h+vTb9dL3HRbDQCYsX5qxijj++2NAR9yHHup+YAHFhCRzSozqumVm3eUydO
-         dqc7e12gcr8RT8WCbtOnJGwqggTKBAX64iy7y2V9uWY5RC+zaLDuwCF3jP8Pa9wjMTf8
-         CWUA==
-X-Gm-Message-State: AOAM533T9jH1gMKYp8lL07BoLXw2rPYsc19/5gSV1B8nbdvzFW9MvDf3
-        bwUaA5xULsHEkGykbet63w==
-X-Google-Smtp-Source: ABdhPJyHW8ZDlvYfWru61+0oXURh2510vlMRwO3N0Pu7nI+5UqvWri99WhDWPAfwIGOqucmbQllVuw==
-X-Received: by 2002:a05:6808:23c8:b0:2ec:cf83:612a with SMTP id bq8-20020a05680823c800b002eccf83612amr5479019oib.255.1648060795836;
-        Wed, 23 Mar 2022 11:39:55 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=QO/s30AeDsz4+7g7RPmSLLhafA+HggffAhCY8fOimp4=;
+        b=3bE7S3UYKrpZE0EiinDTtwb0iK1PYTHHVBi33ItjLkf7Z8MQSdXeCB6EOMfw8dzjH3
+         nf29ot7iUZoShxI8jwvtqCCTrzMt/5fw85tp3mYYDqwyw/rIZN3Xrycln1d+GkqMGNJ1
+         d+kUCS1uK7Cgt+8xiI9sYNb4O7q17AGrxsOkR8TlXbRPGCbFh0OzwCmpKPPpwW9j9QLe
+         ig3HjkIxrqYm9w9X8F9Z1Udd8eYroCilk/D9xbt0A7Zlyb2jrKfIYILVSdyKVCy1ZcNy
+         6HVcVVBg80ZjXqikRLCVrnnsf6R/cKdJMQ6NVVwsl3MI+URmkKVPnb2McDTfQQpi4ggL
+         WKBA==
+X-Gm-Message-State: AOAM530tASDtWspFOYDqrW74+oX2efld1SQPIPunlZnIW4ACpwh177w3
+        25Tq8iWIsjRQl6bkHCCCSViQl15SIw==
+X-Google-Smtp-Source: ABdhPJz5YJ2IIuFHvJtu1d/UgA2ZlStrJ3l8Wbd96hiER8iVwRTTGn6pTseDKC9xwVQeMOPlRHWnDw==
+X-Received: by 2002:a05:6870:eaa5:b0:da:b3f:2b45 with SMTP id s37-20020a056870eaa500b000da0b3f2b45mr5027313oap.228.1648060903981;
+        Wed, 23 Mar 2022 11:41:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j145-20020acaeb97000000b002d9f37166c1sm279431oih.17.2022.03.23.11.39.54
+        by smtp.gmail.com with ESMTPSA id p12-20020a4a95cc000000b003246cd15eaasm361216ooi.2.2022.03.23.11.41.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 11:39:55 -0700 (PDT)
-Received: (nullmailer pid 229564 invoked by uid 1000);
-        Wed, 23 Mar 2022 18:39:54 -0000
-Date:   Wed, 23 Mar 2022 13:39:54 -0500
+        Wed, 23 Mar 2022 11:41:42 -0700 (PDT)
+Received: (nullmailer pid 232472 invoked by uid 1000);
+        Wed, 23 Mar 2022 18:41:42 -0000
+Date:   Wed, 23 Mar 2022 13:41:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
-Cc:     Maxime Ripard <mripard@kernel.org>, linux-sunxi@lists.linux.dev,
-        Chen-Yu Tsai <wens@csie.org>, stable@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
         devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: arm: sunxi: add A20-olinuxino-lime2
- Revisions G/G1/G2
-Message-ID: <Yjtpev468IWa59fx@robh.at.kernel.org>
-References: <20220315095244.29718-1-ynezz@true.cz>
- <20220315095244.29718-4-ynezz@true.cz>
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] dt-bindings: clock: Add R9A07G043 CPG Clock and
+ Reset Definitions
+Message-ID: <Yjtp5gTD6PaKMqCW@robh.at.kernel.org>
+References: <20220315142644.17660-1-biju.das.jz@bp.renesas.com>
+ <20220315142644.17660-4-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220315095244.29718-4-ynezz@true.cz>
+In-Reply-To: <20220315142644.17660-4-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,14 +68,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Mar 2022 10:52:44 +0100, Petr Štetiar wrote:
-> Add DT bindings for A20-olinuxino-lime2 Revisions G/G1/G2 boards.
+On Tue, 15 Mar 2022 14:26:40 +0000, Biju Das wrote:
+> Define RZ/G2UL (R9A07G043U) Clock Pulse Generator Core Clock and module
+> clock outputs, as listed in Table 7.1.4.2 ("Clock List r0.51") and also
+> add Reset definitions referring to registers CPG_RST_* in Section 7.2.3
+> ("Register configuration") of the RZ/G2UL Hardware User's Manual (Rev.
+> 0.51, Nov. 2021).
 > 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Petr Štetiar <ynezz@true.cz>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> v2->v3:
+>  * Removed leading u/U from r9a07g043
+>  * renamed the file r9a07g043u-cpg.h->r9a07g043-cpg.h
+>  * Prepared Common Module Clock/Reset indices for RZ/G2UL and RZ/Five
+>  * Prepared RZ/G2UL specific Module Clock/Reset indices.
+> v1->v2:
+>  * No change
+> ---
+>  include/dt-bindings/clock/r9a07g043-cpg.h | 190 ++++++++++++++++++++++
+>  1 file changed, 190 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/r9a07g043-cpg.h
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
