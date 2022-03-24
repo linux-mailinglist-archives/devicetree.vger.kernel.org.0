@@ -2,84 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE83C4E63C6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 14:00:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96CE34E63F2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 14:16:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350361AbiCXNCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 09:02:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
+        id S1346345AbiCXNSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 09:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350354AbiCXNCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 09:02:00 -0400
-Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB93F90CEA;
-        Thu, 24 Mar 2022 06:00:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
-        Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-        Resent-Cc:Resent-Message-ID; bh=YG01IvqBzypFttWyr61/58YsVshIZUGldKDL1nfzsRk=;
-        t=1648126828; x=1649336428; b=DuhBj2JSpSD9rd/13a4sA3PxCrlZTitxsNZPmMuyP8GHczM
-        HbnJCN1qUqUa/FXw5hTf/MxZd61rL2ugJ2M6X0bAE/+6Hm0VAHZjkfU5Azw7cz17seJQpaVIADgJK
-        Lj6tC5YMLATzMVB78XYdl8kELZMHpxcVP2ZuWEcKV+95raCTwe49e+LyNCfmEEkNVHUPVby8Cvd8q
-        vb27xv6T4J/WgwpGCjJFdJAU4gvbHCfqjds+SfvP+QvkWLJngVELiktioaWiVTYuzpQDyRKtqa22q
-        RXR8SN9AaqL1Z2wz69tTzFBD+0Y5Iv2HC8Q70YUgfLqBVU4HB9X/GiaOE4+2QPcw==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.95)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1nXN4V-00HWDe-B6;
-        Thu, 24 Mar 2022 14:00:11 +0100
-Message-ID: <7f405d8d09a83954aa3411eff8b71ee687c7ec33.camel@sipsolutions.net>
-Subject: Re: [RFC v1 01/10] roadtest: import libvhost-user from QEMU
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        linux-kernel@vger.kernel.org
-Cc:     kernel@axis.com, devicetree@vger.kernel.org,
-        linux-um@lists.infradead.org, shuah@kernel.org,
-        brendanhiggins@google.com, linux-kselftest@vger.kernel.org,
-        jic23@kernel.org, linux-iio@vger.kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, linux-rtc@vger.kernel.org,
-        corbet@lwn.net, linux-doc@vger.kernel.org
-Date:   Thu, 24 Mar 2022 14:00:10 +0100
-In-Reply-To: <20220311162445.346685-2-vincent.whitchurch@axis.com>
-References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
-         <20220311162445.346685-2-vincent.whitchurch@axis.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
+        with ESMTP id S231977AbiCXNSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 09:18:20 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C2F5D5D9;
+        Thu, 24 Mar 2022 06:16:49 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so4855504fac.11;
+        Thu, 24 Mar 2022 06:16:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=L4yFfoTfZccYE7Di0YlYjA+29UIzoRBEMm0qGrq7xq0=;
+        b=pyWonZjOu8h2d1LF/imDL6nNHN71qqyZobbj2ihOkPo6OUo09bC2jk8Rr95oxvzyOO
+         n0nOFeGacSWCNPg/Pd8nFqsPW3c3lN5hErE3iMf41+ReawQStFqYoE/SJ6fHuPLAIm7E
+         Qlk6W2djiL6/N/7k+KTsuip3aGJYiW4PBxE6R51FvkxMyimGU0aoQ39/kUyYqbiazh3x
+         5NuLRq1szjfkDgovIsMm6bdmFD82gtl3xs8/Fh02INhGDM420FJbIMGrBvb+aKTmyh73
+         5tlKFcYLRmG4dCNU+ZgNk02+f3lw3e/d28yRApMcKkAwYUp3btfwlqJLlkvEPKmvcRJv
+         A8tQ==
+X-Gm-Message-State: AOAM53033C2yGb7TFTOyRcQbj4DmyPLtMXt5lv5xNKvpFekUBd8BWzXR
+        JyI/5+8cs1bntyQ9qTbfDQ==
+X-Google-Smtp-Source: ABdhPJyWCV888rnqVqehNYjSRgPdI4EiYHkWQq19im/ieDnEq2LtJ//jkVdiM9VQ0b2qos+XqrXknw==
+X-Received: by 2002:a05:6871:811:b0:dd:b8ea:6bb1 with SMTP id q17-20020a056871081100b000ddb8ea6bb1mr6479846oap.43.1648127808262;
+        Thu, 24 Mar 2022 06:16:48 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t10-20020a056830224a00b005cd9db03fabsm1296706otd.78.2022.03.24.06.16.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Mar 2022 06:16:47 -0700 (PDT)
+Received: (nullmailer pid 1905192 invoked by uid 1000);
+        Thu, 24 Mar 2022 13:16:46 -0000
+Date:   Thu, 24 Mar 2022 08:16:46 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 01/15] dt-bindings: clock: split qcom,gcc.yaml to
+ common and specific schema
+Message-ID: <YjxvPik3jaQHXIzt@robh.at.kernel.org>
+References: <20220224164831.21475-1-ansuelsmth@gmail.com>
+ <20220224164831.21475-2-ansuelsmth@gmail.com>
+ <CAL_JsqLduGK=CyAcgahswFfeA43vh+QPgRgcL4+=piOwWwvJRQ@mail.gmail.com>
+ <Yjt5QxZ4+kdwTtUH@Ansuel-xps.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-malware-bazaar: not-scanned
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yjt5QxZ4+kdwTtUH@Ansuel-xps.localdomain>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-03-11 at 17:24 +0100, Vincent Whitchurch wrote:
-> Import the libvhost-user from QEMU for use in the implementation of the
-> virtio devices in the roadtest backend.
+On Wed, Mar 23, 2022 at 08:47:15PM +0100, Ansuel Smith wrote:
+> On Wed, Mar 23, 2022 at 08:55:30AM -0500, Rob Herring wrote:
+> > On Thu, Feb 24, 2022 at 10:48 AM Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> > >
+> > > Split qcom,gcc.yaml to common and specific schema to use it as a
+> > > template for schema that needs to use the gcc bindings and require
+> > > to add additional bindings.
+> > >
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../bindings/clock/qcom,gcc-other.yaml        | 76 +++++++++++++++++++
+> > 
+> > This now throws errors in linux-next:
+> > 
+> > Traceback (most recent call last):
+> >   File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py",
+> > line 816, in resolve_from_url
+> >     document = self.resolve_remote(url)
+> >   File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py",
+> > line 923, in resolve_remote
+> >     result = json.loads(url.read().decode("utf-8"))
+> >   File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+> >     return _default_decoder.decode(s)
+> >   File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
+> >     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+> >   File "/usr/lib/python3.8/json/decoder.py", line 355, in raw_decode
+> >     raise JSONDecodeError("Expecting value", s, err.value) from None
+> > json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+> > During handling of the above exception, another exception occurred:
+> > Traceback (most recent call last):
+> >   File "/usr/local/bin/dt-doc-validate", line 70, in <module>
+> >     ret = check_doc(f)
+> >   File "/usr/local/bin/dt-doc-validate", line 36, in check_doc
+> >     for error in
+> > sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda
+> > e: e.linecol):
+> >   File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line
+> > 1016, in iter_schema_errors
+> >     meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
+> >   File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py",
+> > line 818, in resolve_from_url
+> >     raise exceptions.RefResolutionError(exc)
+> > jsonschema.exceptions.RefResolutionError: Expecting value: line 1
+> > column 1 (char 0)
+> > ./Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml:
+> > mapping values are not allowed in this context
+> >   in "<unicode string>", line 17, column 11
+> > 
+> > >  .../devicetree/bindings/clock/qcom,gcc.yaml   | 59 +-------------
+> > >  2 files changed, 80 insertions(+), 55 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+> > > new file mode 100644
+> > > index 000000000000..4e5903bcd70d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+> > > @@ -0,0 +1,76 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/clock/qcom,gcc-other.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Qualcomm Global Clock & Reset Controller Binding
+> > > +
+> > > +maintainers:
+> > > +  - Stephen Boyd <sboyd@kernel.org>
+> > > +  - Taniya Das <tdas@codeaurora.org>
+> > > +
+> > > +description:
+> > > +  Qualcomm global clock control module which supports the clocks, resets and
+> > > +  power domains.
+> > > +
+> > > +  See also:
+> > 
+> > I think the problem is here. You need a '|' after 'description' to
+> > preserve formatting and ignore what looks like a mapping.
+> >
 > 
+> Yes, I just sent a patch to fix this.
+> Out of curiosity, any idea why this wasn't flagged by an old run of
+> dt_binding_check? I totally remember running dt_binding_check on these
+> Documentation and I had no problem. There was a bug in the old version
+> and it does now correctly find these kind of errors?
 
-So hm, I wonder if this is the sensible thing to do?
+Not sure exactly, but I don't think there was any change. v3 didn't 
+have the issue and the bot checks didn't run on v4 or later. Probably 
+because it couldn't apply them.
 
-Not that I mind importing qemu code, but:
-
- 1) the implementation is rather complex in some places, and has support
-    for a LOT of virtio/vhost-user features that are really not needed
-    in these cases, for performance etc. It's also close to 4k LOC.
-
- 2) the implementation doesn't support time-travel mode which might come
-    in handy
-
-We have another implementation that might be simpler:
-https://github.com/linux-test-project/usfstl/blob/main/src/vhost.c
-
-but it probably has dependencies on other things in this library, but
-vhost.c itself is only ~1k LOC. (But I need to update it, I'm sure we
-have some unpublished bugfixes etc. in this code)
-
-johannes
+Rob
