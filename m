@@ -2,109 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E4514E5E54
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 06:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FBB74E5E6A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 07:03:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241230AbiCXF6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 01:58:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41000 "EHLO
+        id S242242AbiCXGFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 02:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232029AbiCXF6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 01:58:37 -0400
+        with ESMTP id S242051AbiCXGFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 02:05:10 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C48193988;
-        Wed, 23 Mar 2022 22:57:06 -0700 (PDT)
-X-UUID: eb6e6d1b03e74206b05e4b9be9c1a174-20220324
-X-UUID: eb6e6d1b03e74206b05e4b9be9c1a174-20220324
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2025374543; Thu, 24 Mar 2022 13:57:01 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 24 Mar 2022 13:57:00 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 24 Mar 2022 13:57:00 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <trevor.wu@mediatek.com>
-CC:     <aaronyu@google.com>, <alsa-devel@alsa-project.org>,
-        <angelogioacchino.delregno@collabora.com>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>,
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65EB6BF6F;
+        Wed, 23 Mar 2022 23:03:34 -0700 (PDT)
+X-UUID: 30a4a54c15d8410889edfc7f19c0a512-20220324
+X-UUID: 30a4a54c15d8410889edfc7f19c0a512-20220324
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <xinlei.lee@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 167960996; Thu, 24 Mar 2022 14:03:29 +0800
+Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 24 Mar 2022 14:03:27 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS34N1.mediatek.inc
+ (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Mar
+ 2022 14:03:26 +0800
+Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Thu, 24 Mar 2022 14:03:25 +0800
+From:   <xinlei.lee@mediatek.com>
+To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+        <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <linux-pwm@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>, <robh+dt@kernel.org>, <tiwai@suse.com>,
-        <tzungbi@google.com>, <yc.hung@mediatek.com>
-Subject: Re: [PATCH v4 3/6] ASoC: dt-bindings: mediatek: mt8195: merge mt8195 machine yaml
-Date:   Thu, 24 Mar 2022 13:57:00 +0800
-Message-ID: <20220324055700.28736-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220324053851.27350-4-trevor.wu@mediatek.com>
-References: <20220324053851.27350-4-trevor.wu@mediatek.com>
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <jitao.shi@mediatek.com>, <rex-bc.chen@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>
+Subject: [PATCH v4 0/6] Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format
+Date:   Thu, 24 Mar 2022 14:03:18 +0800
+Message-ID: <1648101804-3584-1-git-send-email-xinlei.lee@mediatek.com>
+X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Because the same binding components can be shared by all codecs
-> combinations, we only reserve one binding file for mt8195 machine driver
-> and rename to a generic name.
-> 
-> We use compatible string to separate different codec combination instead
-> of creating a new binding file for new codec combination.
-> 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
->---
+From: Xinlei Lee <xinlei.lee@mediatek.com>
 
-...snip...
+Changes since v3:
+1. Combine multiplexed socs into one entry
 
->diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359.yaml
->similarity index 87%
->rename from Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
->rename to Documentation/devicetree/bindings/sound/mt8195-mt6359.yaml
->index 8f177e02ad35..04953f5b44a4 100644
->--- a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
->+++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359.yaml
->@@ -1,10 +1,10 @@
-> # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> %YAML 1.2
-> ---
->-$id: http://devicetree.org/schemas/sound/mt8195-mt6359-rt1019-rt5682.yaml#
->+$id: http://devicetree.org/schemas/sound/mt8195-mt6359.yaml#
-> $schema: http://devicetree.org/meta-schemas/core.yaml#
-> 
->-title: Mediatek MT8195 with MT6359, RT1019 and RT5682 ASoC sound card driver
->+title: MediaTek MT8195 ASoC sound card driver
-> 
+Changes since v2:
+1. Modify the PWM name to DISP_PWM.
+2. Include pwm.yaml.
+3. Separate conversion files and add/remove operations.
 
-I also tested:
-'make dt_binding_check DT_CHECKER_FLAGS=-m DT_SCHEMA_FILES=Documentation/devicetree/bindings/sound/mt8195-mt6359.yaml'
-and it wotks fine.
+Changes since v1:
+1. Fixed formatting issues mentioned in the v1.
+2. Delete pwm-mtk-disp.txt.
+3. Add mtk_pwm dt_maintainers.
+4. Add "#pwm-cells" & power-domains properties.
+5. Make dt_checking successful.
 
-Reviewed-by: Miles Chen <miles.chen@mediatek.com> 
+Xinlei Lee (6):
+  dt-bindings: pwm: Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml
+    format
+  dt-bindings: pwm: Remove compatible for MediaTek MT8167
+  dt-bindings: pwm: Add compatible for MediaTek MT8183
+  dt-bindings: pwm: Add compatible for MediaTek MT8192
+  dt-bindings: pwm: Add compatible for MediaTek MT8195
+  dt-bindings: pwm: Add compatible for MediaTek MT8186
 
-> maintainers:
->   - Trevor Wu <trevor.wu@mediatek.com>
->@@ -14,7 +14,9 @@ description:
-> 
-> properties:
->   compatible:
->-    const: mediatek,mt8195_mt6359_rt1019_rt5682
->+    enum:
->+      - mediatek,mt8195_mt6359_rt1019_rt5682
->+      - mediatek,mt8195_mt6359_rt1011_rt5682
-> 
->   model:
->     $ref: /schemas/types.yaml#/definitions/string
->-- 
->2.18.0
->
->
+ .../bindings/pwm/mediatek,pwm-disp.yaml       | 69 +++++++++++++++++++
+ .../devicetree/bindings/pwm/pwm-mtk-disp.txt  | 44 ------------
+ 2 files changed, 69 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+
+-- 
+2.18.0
+
