@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2815D4E62C4
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E70704E62DE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238273AbiCXL5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 07:57:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54264 "EHLO
+        id S1346869AbiCXMDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 08:03:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343982AbiCXL5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:57:13 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54884275F0
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 04:55:41 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id bt26so7624793lfb.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 04:55:41 -0700 (PDT)
+        with ESMTP id S241040AbiCXMDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:03:04 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5A5A7764;
+        Thu, 24 Mar 2022 05:01:32 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a8so8635749ejc.8;
+        Thu, 24 Mar 2022 05:01:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=32M7oTSyOKeaf1CysC1hida7B7hRSXqH2Qo2sPYMO9o=;
-        b=GervhNkGgzo6q0SIVF78plM2Y7tJnDrD3UWvo6IdGmFUwiFJozGw27EoNeRo/f3+HI
-         n/4DJ3MPpIcPbkvQW+C0OV3DCLB8M85KPtXukjgZ6HJ8fXGgdTnD9J6iS5kGWxORuR23
-         gIkDlRjOOEK1JqYiu2fcBfzvH8EQPElPO7AT5SHLZNmktok0QtRjAp7gW1fPlQ2kio/7
-         7zbazcfXqyNqHA/BIt3qUupCcfrxrtMSeNNG2Bv2klt06enaexI2WbZKnbmOZj+1Rz6d
-         f8x3tUnp21vVvurAjGkZrAy+47V6dfKf4IXKGK7Y3p9e3yGXTkGD0G4fJUCJE+xtpMpL
-         XXag==
+        bh=nuEjM18NFC9m+DMIdfnC8bAfeSbsPDnsYC00cbxSyog=;
+        b=oGg85a/oNA32MV99mldPci1AdcqVmedXiLODuJTR+ISCXXfh+bU3SXxkfWg6fTrFix
+         FPTmUvlGN9DZMW1tD1v186I8W8gW+aY/xyJ0qdwQrml+ezB0+scHv4FSvmSi+Imcot1+
+         r/MKrFbG36Cb5YozzVu+6yxidvCOazpZ8iOqg6965Jh3qTtnVlmhDvd9lfQISGNFUP9A
+         wAQSWsLIkiIJQHpP7PihEC7AtKb7B86BvhGIsrrKEfpOcYywxD0a+xKoacGa+PHAWyfU
+         2+Fl1Xq6E+1Yvfs6+oU6zz4SiS/JWWWSKtU+xw1e6SWSMc0h/0ixmApkRuil1qWrBzA3
+         CMZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=32M7oTSyOKeaf1CysC1hida7B7hRSXqH2Qo2sPYMO9o=;
-        b=In5EQZhAizWYM3Px54rVCJ9Q54AJxwJj13KjfwOjLOo4d7u25uVRKz4g96d4+okve0
-         pWTokh2kw0MR2sozmED+KE/57WrNtQGkvYsJzH/nPcBEcW7dv1hb+cz/dwAF8JcPIg/J
-         Bu6LDbllXuMDVNZ3B3i1clJ1cATbm2y56eHZoIyc2aYX/to8hXexWfURrkt3uJjbTDnb
-         VEM3sv4IKVVoxPrNssqeH+YwIrTuMNagPOAMh1jrbKSdij4tkxDMUY45avk4BPg2jUSr
-         ktOYgNz/5wstWkdQzMHl3a+KQvclOJe+au8z1056Kcwj/mry+vC/KBrfUu9WycRdvmaE
-         1SfA==
-X-Gm-Message-State: AOAM532yLCFGVQjYnWpcutsWw1ZfTpAjB9iJQLh0IQEQD5L/1dSDvVQX
-        yacGala+kSR42mWCteFgkpfgLQ==
-X-Google-Smtp-Source: ABdhPJz4VOkKb9/awzSsxxP+26JXp48DHN5W+2ym/3IF32yD4FWcqh/X7ZVJA/dp3KMDu07/RRytVQ==
-X-Received: by 2002:a05:6512:38ca:b0:448:28c4:88c8 with SMTP id p10-20020a05651238ca00b0044828c488c8mr3365486lft.327.1648122939611;
-        Thu, 24 Mar 2022 04:55:39 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id p8-20020a2ea408000000b00247e5087157sm305327ljn.101.2022.03.24.04.55.37
+        bh=nuEjM18NFC9m+DMIdfnC8bAfeSbsPDnsYC00cbxSyog=;
+        b=M+3QVwTyH/0pYzqweBUCeWkliShlbANA9BrAa4OuVPQOG7D/W93C+llNjZUl8scEb5
+         VAznoa8RV9bRkaThNVy0g+SIyGYEbWUQz/U4+XwWuWMEzZvteeyU4tMP298J1Uv/wUyU
+         /kElVcNelSmJn95NZbavGbZbvUCaTYrlNtgAqYGoBk29NhPqs6hbuCPwa4YPdUaZ9edr
+         GacHy1BSWkDtcDZGAzti+hvcGaaItvuWcNDUy0TJDf6s8Fu6E38ZvQhQIgbK3+rF4CEq
+         qxqeo4fx+OJcaP4iB2CCrWr8TzO/spVT4t5dN7c4A/767LdGuqrR+DlczNeekhrLOWA2
+         46Mw==
+X-Gm-Message-State: AOAM532vSEbVf8qpyCrhdVZZCl4Ds0asSFjQL8CyNXZ9xgTldPY8GbCD
+        aqzLtiAQXLl6Jdy6CtDmShA=
+X-Google-Smtp-Source: ABdhPJzrW0qji+QJkSKZDeLk0VV+83wm1d4vZCMJ8ny5BJSXclaIGGWEwJcgWElkC7xZrak+JvNL0A==
+X-Received: by 2002:a17:906:9b85:b0:6db:ab80:7924 with SMTP id dd5-20020a1709069b8500b006dbab807924mr5395242ejc.160.1648123291338;
+        Thu, 24 Mar 2022 05:01:31 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u3-20020a17090657c300b006d01de78926sm1068822ejr.22.2022.03.24.05.01.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Mar 2022 04:55:37 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Rob Herring <robh@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH] dt-bindings: display/msm: another fix for the dpu-qcm2290 example
-Date:   Thu, 24 Mar 2022 14:55:36 +0300
-Message-Id: <20220324115536.2090818-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        Thu, 24 Mar 2022 05:01:28 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, kishon@ti.com,
+        vkoul@kernel.org, yifeng.zhao@rock-chips.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9] dt-bindings: soc: grf: add naneng combo phy register compatible
+Date:   Thu, 24 Mar 2022 13:01:22 +0100
+Message-Id: <20220324120122.1339-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make dpu-qcm2290 example really follow the defined schema:
-- Drop qcom,mdss compatible. It's only used for MDP5 devices.
-- Change display controller name to display-controller as specified in
-  the yaml
+Add Naneng combo phy register compatible.
 
-Reported-by: Rob Herring <robh@kernel.org>
-Cc: Loic Poulain <loic.poulain@linaro.org>
-Fixes: 164f69d9d45a ("dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/display/msm/dpu-qcm2290.yaml          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-index d31483a78eab..6fb7e321f011 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-@@ -160,7 +160,7 @@ examples:
-     mdss: mdss@5e00000 {
-         #address-cells = <1>;
-         #size-cells = <1>;
--        compatible = "qcom,qcm2290-mdss", "qcom,mdss";
-+        compatible = "qcom,qcm2290-mdss";
-         reg = <0x05e00000 0x1000>;
-         reg-names = "mdss";
-         power-domains = <&dispcc MDSS_GDSC>;
-@@ -180,7 +180,7 @@ examples:
-                  <&apps_smmu 0x421 0x0>;
-         ranges;
- 
--        mdss_mdp: mdp@5e01000 {
-+        mdss_mdp: display-controller@5e01000 {
-                 compatible = "qcom,qcm2290-dpu";
-                 reg = <0x05e01000 0x8f000>,
-                       <0x05eb0000 0x2008>;
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index b2ba7bed8..5079e9d24 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -15,6 +15,8 @@ properties:
+       - items:
+           - enum:
+               - rockchip,rk3288-sgrf
++              - rockchip,rk3568-pipe-grf
++              - rockchip,rk3568-pipe-phy-grf
+               - rockchip,rk3568-usb2phy-grf
+               - rockchip,rv1108-usbgrf
+           - const: syscon
 -- 
-2.35.1
+2.20.1
 
