@@ -2,40 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 041E24E9A2B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 16:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3EC4E9AED
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 17:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241046AbiC1Oz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 10:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40206 "EHLO
+        id S236986AbiC1PZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 11:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237495AbiC1Oz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 10:55:56 -0400
-X-Greylist: delayed 1198 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 28 Mar 2022 07:54:08 PDT
+        with ESMTP id S236621AbiC1PZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 11:25:52 -0400
 Received: from mail.baikalelectronics.ru (mail.baikalelectronics.com [87.245.175.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 977CCDF0F;
-        Mon, 28 Mar 2022 07:54:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 70F821FA55;
+        Mon, 28 Mar 2022 08:24:11 -0700 (PDT)
 Received: from mail.baikalelectronics.ru (unknown [192.168.51.25])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 9FBFB1E28FC;
-        Thu, 24 Mar 2022 04:09:18 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru 9FBFB1E28FC
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 4FFBD39CB77;
+        Thu, 24 Mar 2022 04:37:47 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru 4FFBD39CB77
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baikalelectronics.ru; s=mail; t=1648084158;
-        bh=KwgRwEaLuj9S7bcXvNqk9nfNR+7FKV+wml4/e4DFTxo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=ROn3Fxd7SVgCbaeh6EHEBzZUnw8DuOGGUcegQOYTAYZvEY3BVkS5M2U6zepKglqWd
-         9myfruuGLx7AYQj3Md1hvAY+74MZ5LG+KS8U3q2ruZyBLKiM28d7A7kbhUjHjFiwob
-         UwTBGx9Z1V4Mv7PW31AlvsxHa513RByGtX9NprIM=
+        d=baikalelectronics.ru; s=mail; t=1648085867;
+        bh=npWKFXQ+aTKYA0rxtP23gRryMV+pcKHHgb+hcyLfZ4w=;
+        h=From:To:CC:Subject:Date:From;
+        b=kOf+tkySlXIFnWE76NhNYeGggWB3++KRdK2KZy+slEWPKWi9SZKWX39a35HdvMqF9
+         e1AkiR+80qSZjwU2nZemuN1dGr04jfson8tNH/QLd4ID/OAnegtkUZrYbd8uXUJlJP
+         ZB0xMu0xMqWO2BqfPW4odfNykdGAxyneUJJypUys=
 Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 24 Mar 2022 04:09:18 +0300
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 24 Mar 2022 04:37:47 +0300
 From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
 To:     Jingoo Han <jingoohan1@gmail.com>,
         Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
+        Bjorn Helgaas <bhelgaas@google.com>
 CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Serge Semin <fancer.lancer@gmail.com>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
@@ -43,18 +38,16 @@ CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Rob Herring <robh@kernel.org>,
         =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        <linux-clk@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH 4/4] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
-Date:   Thu, 24 Mar 2022 04:09:05 +0300
-Message-ID: <20220324010905.15589-5-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220324010905.15589-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220324010905.15589-1-Sergey.Semin@baikalelectronics.ru>
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 00/16] PCI: dwc: Add dma-ranges/YAML-schema/Baikal-T1 support
+Date:   Thu, 24 Mar 2022 04:37:18 +0300
+Message-ID: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
@@ -65,247 +58,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-additional blocks with directly controlled reset signals. In particular it
-concerns DDR full and initial resets and various PCIe sub-domains resets.
-Let's add the direct reset assertion/de-assertion of the corresponding
-flags support into the Baikal-T1 CCU driver then. It will be required at
-least for the PCIe platform driver. Obviously the DDR controller isn't
-supposed to be fully reset in the kernel, so the corresponding controls
-are added just for the sake of the interface implementation completeness.
+This patchset is a third one in the series created in the framework of
+my Baikal-T1 PCIe/eDMA-related work:
+
+[1: In-progress] clk: Baikal-T1 DDR/PCIe resets and some xGMAC fixes
+Link: --submitted--
+[2: In-progress] PCI: dwc: Various fixes and cleanups
+Link: --submitted--
+[3: In-progress] PCI: dwc: Add dma-ranges/YAML-schema/Baikal-T1 support
+Link: --you are looking at it--
+[4: Stalling]    dmaengine: dw-edma: Add RP/EP local DMA controllers support
+Link: --being submitted afterwards--
+
+Note it is very recommended to merge the patchsets in the same order as
+they are listed in the set above in order to have them applied smoothly.
+Nothing prevents them from being reviewed synchronously though.
+
+This series is about adding new features to the DW PCIe Host/End-point
+driver. First of all we start from splitting up the DT-bindings into
+common properties schema and generic DW PCIe bindings definition. It's
+done to support the generic DW PCIe Host/End-point available platforms
+with adding a common YAML-schema to be reused by the platform-specific DW
+PCIe bindings. @Rob could you please take a look at that patch? I've got a
+problem with dt_bindings_check-ing the schema which is likely caused by
+the dt-schema parser misbehaviour. After that we suggest to add a more
+verbose link-up log message. Really printing link generation and width
+would be much more informative than just "link up". Then a series of
+IP-core version-related patches go, like using a native FourCC version
+representation, adding the IP-core auto-detection, adding better
+structured IP-core version/type interface. After that the
+platform-specific host de-initialization method is introduced. A series of
+iATU optimizations, cleanups and new features goes afterwards. In
+particular we suggest to drop some redundant enumerations, add iATU
+regions size detection procedure and then use the regions parameters to
+verify the requested by the platform iATU ranges/dma-ranges settings.
+After that the dma-ranges property support is added for the DW PCIe Host
+controllers. Then a structured set of the DW PCIe RP/EP specific clocks
+and resets names/IDs is introduced so to be re-used by the generic and new
+platforms. Note it is fully coherent with the DW PCIe controller manuals
+(see the patch log for details). Also note the patch doesn't affect the
+already available DW PCIe platform-specific code since it would be too
+risky for my to do the corresponding conversion, but the maintainers are
+welcome to do that. Finally at the series closure we introduce the
+Baikal-T1 PCIe interface support, which uses all the recently added
+features including the set of the generic clocks and resets names.
 
 Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
----
- drivers/clk/baikal-t1/ccu-rst.c     | 117 +++++++++++++++++++++++++++-
- drivers/clk/baikal-t1/ccu-rst.h     |   4 +
- include/dt-bindings/reset/bt1-ccu.h |   9 +++
- 3 files changed, 129 insertions(+), 1 deletion(-)
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: "Krzysztof Wilczyński" <kw@linux.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
-index 5e33c3ce962a..186a1491a7d9 100644
---- a/drivers/clk/baikal-t1/ccu-rst.c
-+++ b/drivers/clk/baikal-t1/ccu-rst.c
-@@ -25,17 +25,33 @@
- #include "ccu-div.h"
- #include "ccu-rst.h"
- 
-+#define CCU_SYS_DDR_BASE		0x02c
-+#define CCU_SYS_PCIE_BASE		0x144
-+
- #define CCU_RST_MAP(_rst_id, _clk_id)		\
- 	{					\
- 		.rst_id = _rst_id,		\
- 		.clk_id = _clk_id,		\
- 	}
- 
-+#define CCU_RST_DIR(_rst_id, _base, _ofs)	\
-+	{					\
-+		.rst_id = _rst_id,		\
-+		.base = _base,			\
-+		.ofs = _ofs			\
-+	}
-+
- struct ccu_rst_map {
- 	unsigned int rst_id;
- 	unsigned int clk_id;
- };
- 
-+struct ccu_rst_dir {
-+	unsigned int rst_id;
-+	unsigned int base;
-+	unsigned int ofs;
-+};
-+
- struct ccu_rst_data {
- 	struct device_node *np;
- 	struct regmap *sys_regs;
-@@ -46,6 +62,9 @@ struct ccu_rst_data {
- 	unsigned int rsts_map_num;
- 	const struct ccu_rst_map *rsts_map;
- 
-+	unsigned int rsts_dir_num;
-+	const struct ccu_rst_dir *rsts_dir;
-+
- 	unsigned int divs_num;
- 	struct ccu_div **divs;
- 
-@@ -81,6 +100,23 @@ static const struct ccu_rst_map sys_rst_map[] = {
- 	CCU_RST_MAP(CCU_SYS_APB_RST, CCU_SYS_APB_CLK),
- };
- 
-+/*
-+ * DDR and PCIe sub-domains can be reset with directly controlled reset
-+ * signals. I wouldn't suggest to reset the DDR controller though at least
-+ * while the Linux kernel is working.
-+ */
-+static const struct ccu_rst_dir sys_rst_dir[] = {
-+	CCU_RST_DIR(CCU_SYS_DDR_FULL_RST, CCU_SYS_DDR_BASE, 1),
-+	CCU_RST_DIR(CCU_SYS_DDR_INIT_RST, CCU_SYS_DDR_BASE, 2),
-+	CCU_RST_DIR(CCU_SYS_PCIE_PCS_PHY_RST, CCU_SYS_PCIE_BASE, 0),
-+	CCU_RST_DIR(CCU_SYS_PCIE_PIPE0_RST, CCU_SYS_PCIE_BASE, 4),
-+	CCU_RST_DIR(CCU_SYS_PCIE_CORE_RST, CCU_SYS_PCIE_BASE, 8),
-+	CCU_RST_DIR(CCU_SYS_PCIE_PWR_RST, CCU_SYS_PCIE_BASE, 9),
-+	CCU_RST_DIR(CCU_SYS_PCIE_STICKY_RST, CCU_SYS_PCIE_BASE, 10),
-+	CCU_RST_DIR(CCU_SYS_PCIE_NSTICKY_RST, CCU_SYS_PCIE_BASE, 11),
-+	CCU_RST_DIR(CCU_SYS_PCIE_HOT_RST, CCU_SYS_PCIE_BASE, 12),
-+};
-+
- static int ccu_rst_reset(struct reset_controller_dev *rcdev,
- 			 unsigned long idx)
- {
-@@ -92,12 +128,81 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * No CCU divider descriptor means having directly handled reset control,
-+	 * which is mapped into the CCU Divider registers.
-+	 */
- 	rst = &data->rsts[idx];
-+	if (!rst->div)
-+		return -EOPNOTSUPP;
-+
- 	return ccu_div_reset_domain(rst->div);
- }
- 
-+static int ccu_rst_set(struct ccu_rst_data *data,
-+		       unsigned long idx, bool high)
-+{
-+	struct ccu_rst *rst;
-+
-+	if (idx >= data->rsts_num) {
-+		pr_err("Invalid reset ID %lu specified\n", idx);
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * Having CCU divider descriptor means trigger-like reset control so
-+	 * direct assertion/de-assertion is unsupported.
-+	 */
-+	rst = &data->rsts[idx];
-+	if (rst->div)
-+		return high ? -EOPNOTSUPP : 0;
-+
-+	return regmap_update_bits(data->sys_regs, rst->reg_ctl,
-+				  rst->mask, high ? rst->mask : 0);
-+}
-+
-+static int ccu_rst_assert(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
-+
-+	return ccu_rst_set(data, idx, true);
-+}
-+
-+static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
-+			    unsigned long idx)
-+{
-+	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
-+
-+	return ccu_rst_set(data, idx, false);
-+}
-+
-+static int ccu_rst_status(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
-+	struct ccu_rst *rst;
-+	u32 val;
-+
-+	if (idx >= data->rsts_num) {
-+		pr_err("Invalid reset ID %lu specified\n", idx);
-+		return -EINVAL;
-+	}
-+
-+	rst = &data->rsts[idx];
-+	if (rst->div)
-+		return -EOPNOTSUPP;
-+
-+	regmap_read(data->sys_regs, rst->reg_ctl, &val);
-+
-+	return !!(val & rst->mask);
-+}
-+
- static const struct reset_control_ops ccu_rst_ops = {
- 	.reset = ccu_rst_reset,
-+	.assert = ccu_rst_assert,
-+	.deassert = ccu_rst_deassert,
-+	.status = ccu_rst_status,
- };
- 
- static int ccu_rst_of_idx_get(struct reset_controller_dev *rcdev,
-@@ -153,6 +258,8 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
- 	} else if (of_device_is_compatible(data->np, "baikal,bt1-ccu-sys")) {
- 		data->rsts_map_num = ARRAY_SIZE(sys_rst_map);
- 		data->rsts_map = sys_rst_map;
-+		data->rsts_dir_num = ARRAY_SIZE(sys_rst_dir);
-+		data->rsts_dir = sys_rst_dir;
- 	} else {
- 		pr_err("Incompatible DT node '%s' specified\n",
- 			of_node_full_name(data->np));
-@@ -160,7 +267,7 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
- 		goto err_kfree_data;
- 	}
- 
--	data->rsts_num = data->rsts_map_num;
-+	data->rsts_num = data->rsts_map_num + data->rsts_dir_num;
- 	data->rsts = kcalloc(data->rsts_num, sizeof(*data->rsts), GFP_KERNEL);
- 	if (!data->rsts) {
- 		ret = -ENOMEM;
-@@ -198,6 +305,14 @@ static int ccu_rst_init_desc(struct ccu_rst_data *data)
- 		}
- 	}
- 
-+	for (idx = 0; idx < data->rsts_dir_num; ++idx, ++rst) {
-+		const struct ccu_rst_dir *dir = &data->rsts_dir[idx];
-+
-+		rst->id = dir->rst_id;
-+		rst->reg_ctl = dir->base;
-+		rst->mask = BIT(dir->ofs);
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
-index 2ef82899dba8..58347dc8a504 100644
---- a/drivers/clk/baikal-t1/ccu-rst.h
-+++ b/drivers/clk/baikal-t1/ccu-rst.h
-@@ -33,10 +33,14 @@ struct ccu_rst_init_data {
-  * struct ccu_div - CCU Reset descriptor
-  * @id: Reset identifier.
-  * @div: Pointer to the CCU Divider descriptor (can be NULL).
-+ * @reg_ctl: reset control register base address.
-+ * @mask: reset flag within the control register.
-  */
- struct ccu_rst {
- 	unsigned int id;
- 	struct ccu_div *div;
-+	unsigned int reg_ctl;
-+	unsigned int mask;
- };
- 
- #ifdef CONFIG_CLK_BT1_CCU_RST
-diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
-index 3578e83026bc..c691efaa678f 100644
---- a/include/dt-bindings/reset/bt1-ccu.h
-+++ b/include/dt-bindings/reset/bt1-ccu.h
-@@ -21,5 +21,14 @@
- 
- #define CCU_SYS_SATA_REF_RST		0
- #define CCU_SYS_APB_RST			1
-+#define CCU_SYS_DDR_FULL_RST		2
-+#define CCU_SYS_DDR_INIT_RST		3
-+#define CCU_SYS_PCIE_PCS_PHY_RST	4
-+#define CCU_SYS_PCIE_PIPE0_RST		5
-+#define CCU_SYS_PCIE_CORE_RST		6
-+#define CCU_SYS_PCIE_PWR_RST		7
-+#define CCU_SYS_PCIE_STICKY_RST		8
-+#define CCU_SYS_PCIE_NSTICKY_RST	9
-+#define CCU_SYS_PCIE_HOT_RST		10
- 
- #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+Serge Semin (16):
+  dt-bindings: PCI: dwc: Define generic and native DT bindings
+  dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root Port bindings
+  PCI: dwc: Add more verbose link-up message
+  PCI: dwc: Convert to using native IP-core versions representation
+  PCI: dwc: Add IP-core version detection procedure
+  PCI: dwc: Introduce Synopsys IP-core versions/types interface
+  PCI: dwc: Add host de-initialization callback
+  PCI: dwc: Drop inbound iATU types enumeration - dw_pcie_as_type
+  PCI: dwc: Simplify in/outbound iATU setup methods
+  PCI: dwc: Drop iATU regions enumeration - dw_pcie_region_type
+  PCI: dwc: Add iATU regions size detection procedure
+  PCI: dwc: Verify in/out regions against iATU constraints
+  PCI: dwc: Check iATU in/outbound ranges setup methods status
+  PCI: dwc: Introduce dma-ranges property support for RC-host
+  PCI: dwc: Introduce generic platform clocks and resets sets
+  PCI: dwc: Add Baikal-T1 PCIe controller support
+
+ .../bindings/pci/baikal,bt1-pcie.yaml         | 148 ++++
+ .../bindings/pci/fsl,imx6q-pcie.yaml          |   5 +-
+ .../bindings/pci/hisilicon,kirin-pcie.yaml    |   4 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml       |   4 +-
+ .../bindings/pci/snps,dw-pcie-common.yaml     | 298 ++++++++
+ .../bindings/pci/snps,dw-pcie-ep.yaml         | 143 ++--
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml | 189 ++++--
+ .../bindings/pci/toshiba,visconti-pcie.yaml   |   2 +-
+ drivers/pci/controller/dwc/Kconfig            |   9 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pci-keystone.c     |  12 +-
+ drivers/pci/controller/dwc/pcie-bt1.c         | 638 ++++++++++++++++++
+ .../pci/controller/dwc/pcie-designware-ep.c   |  36 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 198 ++++--
+ drivers/pci/controller/dwc/pcie-designware.c  | 465 ++++++-------
+ drivers/pci/controller/dwc/pcie-designware.h  | 200 ++++--
+ drivers/pci/controller/dwc/pcie-intel-gw.c    |  10 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 18 files changed, 1857 insertions(+), 507 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-bt1.c
+
 -- 
 2.35.1
 
