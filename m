@@ -2,101 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 929604E5CA1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 02:11:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C35AB4E5CB2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 02:21:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234269AbiCXBMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 21:12:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57402 "EHLO
+        id S229908AbiCXBXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 21:23:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347100AbiCXBMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 21:12:44 -0400
-Received: from esa5.hgst.iphmx.com (esa5.hgst.iphmx.com [216.71.153.144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F0492313
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 18:11:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1648084273; x=1679620273;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=K/sJ8bKhUciZIRzZUdPxmJL072OHBKzj5AY5uZaH5KY=;
-  b=TW9j0MkOACrAZ0KyoFfij5bnReJbDO/t9K12BUAKVZ3rD+XIpB8DgpJK
-   LRcByKWa3I7KJgStseuZU0omlv7v03PTwpmhBM+9enDXz0Os+EkW0X+MO
-   hzd0xShOU4TrbBY+/RvOVVPyx27DaGWwSmfHR4S8THFlYpk0tj08URhk+
-   LTEHp3EMIgv0ZD5oMrJieuRn2x23Zl22Yz/oz1nUDIfbmrJLwBiZw02ym
-   wUxGBiFEhnRgmsegn51wsM5MhXdXYeLoTd8uZZNbr3pHwTjmNjPEDKBDW
-   6eIJ3PBYQTt7nbvVXawBo8qigOC0grQZJRp81FLbdsmIey/xhpB+xYfym
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,205,1643644800"; 
-   d="scan'208";a="196121333"
-Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 24 Mar 2022 09:11:12 +0800
-IronPort-SDR: mRxVpgNIm+w07nQZYR7GOTSn//j4ykj08dquzhZefF2rEut8Kf1xJlrA87Ust+3fCFZWa+tioq
- nIJnZ1UAPQ3BN0aqe2VBtCbAxzkVFEGxIgQo657A/z8I1/crTUin63zqmEDQz6//Byc745q0bo
- rf5rx1vE/cLVm46uynaE80UPslCesQFljrGVxOqcLdubXpABSfQmcj0aiH+1YWgvSeOpWkmLd6
- siNXe8dlUZT8zF06v7ZzVaS0nakqpJMdgm63P2URPvKMGrkpFCeKRNShPyTnCoepbv768DJBPl
- lzo+ubuZ9QnAyOd7Sc7YWiTA
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 17:43:05 -0700
-IronPort-SDR: HglgIdLFDMB3EyA5cjqaKS954TPBDIcUYinSSuVrsbDGkZthLGR+iM7HU107OEobZ23zCaJnHg
- 80TSh5jsaQBmna8wRwBPjPlwjyMl2Ox6gpfOYsj+wKJAmyTfn2HYX7tWDv5crJsTeGbuXtS9ZX
- 8BSyIYUDLC/NYyYp3Du86vhHO0Swqg9sTPui3h32SwQpzxKrMokgJ9XgUe2KgfnBr/n2g0wRmC
- DdjXagnqpzx5d+SPpxzJNbBlm+bxuEndkkuKy6pjl+kqRr3x5J+q/OSHUUGKi5h24CFndRs2RQ
- /uQ=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2022 18:11:13 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KP6cJ42jbz1SVnx
-        for <devicetree@vger.kernel.org>; Wed, 23 Mar 2022 18:11:12 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1648084271; x=1650676272; bh=K/sJ8bKhUciZIRzZUdPxmJL072OHBKzj5AY
-        5uZaH5KY=; b=hsGGWUJ0a5Vaz/7o4Nq+f774W1IerSJsvSoveT/AZB9F/670ZKf
-        +Jsu/5IPj5Cvq7qs5tP2YsWJPg0yAIHr/XW+xNORShkiSMN8UTKXsoObW7LD42uE
-        Gy2+KL3B6dUXNX3ZFNXKkhlaLWtOh0y3gDqV4GNHyQI8W8bdRSQjqJnF03pneiR9
-        3si9L/7jdXscINTi0Po1BPXbalFX6qPrcBbM3iHzjiZmtaCgvZc5jUTFQ+pj2Jn8
-        T7ZsHxk4w/4bImJihAOeAXM2ZlXI2flAfHtSVHupcC4PbFQ0CQgaLeFG/MOfhAUX
-        tQHEA6Fu1MHzwJhgEIy0EUcbzQadp4kIZrA==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id IeKAhhyGEz88 for <devicetree@vger.kernel.org>;
-        Wed, 23 Mar 2022 18:11:11 -0700 (PDT)
-Received: from [10.225.163.114] (unknown [10.225.163.114])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KP6cG20Ghz1Rvlx;
-        Wed, 23 Mar 2022 18:11:10 -0700 (PDT)
-Message-ID: <ff109d7a-e308-3ce0-b7aa-0905e101e5fd@opensource.wdc.com>
-Date:   Thu, 24 Mar 2022 10:11:09 +0900
+        with ESMTP id S241706AbiCXBWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 21:22:53 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8754292876;
+        Wed, 23 Mar 2022 18:21:22 -0700 (PDT)
+X-UUID: 30f434341d494016a6541dc722811b3a-20220324
+X-UUID: 30f434341d494016a6541dc722811b3a-20220324
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1814621215; Thu, 24 Mar 2022 09:21:16 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 24 Mar 2022 09:21:14 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Mar 2022 09:21:13 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>
+Subject: [PATCH net-next 0/1] modify PBL values in snps,dwmac.yaml
+Date:   Thu, 24 Mar 2022 09:21:11 +0800
+Message-ID: <20220324012112.7016-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH 04/21] ata: libahci_platform: Convert to using handy
- devm-ioremap methods
-Content-Language: en-US
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-5-Sergey.Semin@baikalelectronics.ru>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20220324001628.13028-5-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -104,67 +56,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/24/22 09:16, Serge Semin wrote:
-> Currently the IOMEM AHCI registers space is mapped by means of the
-> two functions invocation: platform_get_resource() is used to get the very
-> first memory resource and devm_ioremap_resource() is called to remap that
-> resource. Device-managed kernel API provides a handy wrapper to perform
-> the same in single function call: devm_platform_ioremap_resource().
+This patch should be applied befor the series:
+    "[PATCH net-next v13 0/7] MediaTek Ethernet Patches on MT8195"
+to avoid dtbo build failings.
 
-> 
-> While at it seeing many AHCI platform drivers rely on having the AHCI CSR
-> space marked with "ahci" name let's first try to find and remap the CSR
-> IO-mem with that name and only if it fails fallback to getting the very
-> first registers space platform resource.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  drivers/ata/libahci_platform.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> index 1bd2f1686239..8eabbb5f208c 100644
-> --- a/drivers/ata/libahci_platform.c
-> +++ b/drivers/ata/libahci_platform.c
-> @@ -404,11 +404,13 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
->  
->  	devres_add(dev, hpriv);
->  
-> -	hpriv->mmio = devm_ioremap_resource(dev,
-> -			      platform_get_resource(pdev, IORESOURCE_MEM, 0));
-> +	hpriv->mmio = devm_platform_ioremap_resource_byname(pdev, "ahci");
+@Rob, please review it, thanks very much.
 
-See __devm_ioremap_resource(): if there is no resource named "ahci" found,
-then this will print an error message ("invalid resource\n"). That may
-confuse users as this error message was not present before. So you may
-want to change this code to something like this:
+Biao Huang (1):
+  dt-bindings: net: snps,dwmac: modify available values of PBL
 
-/*
- * If the DT provided an "ahci" named resource, use it. Otherwise,
- * fallback to using the default first resource for the device node.
- */
-if (platform_get_resource_byname(pdev, IORESOURCE_MEM, "ahci"))
-	hpriv->mmio = devm_platform_ioremap_resource_byname(pdev, "ahci");
-else
-	hpriv->mmio = devm_platform_ioremap_resource(pdev, 0);
-if (IS_ERR(hpriv->mmio)) {
-	rc = PTR_ERR(hpriv->mmio);
-	goto err_out;
-}
-
->  	if (IS_ERR(hpriv->mmio)) {
-> -		rc = PTR_ERR(hpriv->mmio);
-> -		goto err_out;
-> +		hpriv->mmio = devm_platform_ioremap_resource(pdev, 0);
-> +		if (IS_ERR(hpriv->mmio)) {
-> +			rc = PTR_ERR(hpriv->mmio);
-> +			goto err_out;
-> +		}
->  	}
->  
->  	for (i = 0; i < AHCI_MAX_CLKS; i++) {
-
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 -- 
-Damien Le Moal
-Western Digital Research
+2.25.1
+
+
