@@ -2,137 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABF6F4E6449
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 14:45:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 943FA4E6465
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 14:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350549AbiCXNrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 09:47:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53516 "EHLO
+        id S1345774AbiCXNui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 09:50:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350545AbiCXNrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 09:47:00 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE138A332;
-        Thu, 24 Mar 2022 06:45:27 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r7so5597805wrc.0;
-        Thu, 24 Mar 2022 06:45:27 -0700 (PDT)
+        with ESMTP id S1345620AbiCXNuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 09:50:37 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B550CE17;
+        Thu, 24 Mar 2022 06:49:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=U7jmus7Yb7ewckakdZbh+zrWRQeITS2RgbYv0Y67GWg=;
-        b=gzHv0VLCXVWV0ZR+pCDVaifTnt2xvMAdsFsl8w95DSMoJ1T88SULhHElQ3awS6JOH1
-         sAFiTPyF02A/wK2lu1bQb1bf4lnj1/zLSVUpQGtrMXE2E9dneE9FTM9qWreuF+J3Cq9q
-         BzUWsRPeyzFoZYCpgumVyP8iZPXtIXqgb3Mh4BI2J8t2PfBZTRt9UfssZC8wsDofuitm
-         LgkpIt4SKY9dQMQKmgw72tdk/Nj0sECr9/oPpt24kF81aKDglAJW+SM4dHY3QWZ/yuF1
-         8r7aAD4B21oEKH6GP+w4RMXsb/qPzi8BMzBlBE087j7aeuNlNq1iWsd5gvEx5GO3V1sE
-         02aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=U7jmus7Yb7ewckakdZbh+zrWRQeITS2RgbYv0Y67GWg=;
-        b=0NEaPorxlbhAjrYiN6xqZkBVgODiVPQq9KKvhVvqek2ResHO5SrT6dHrpo5EDlK5id
-         +R6nJ0tZJlkKRPUjLbEf2xdTxYsBBf/2vIme7Ns2TLwzJE3QkRo/BaCWvfAz0kWK9Bdj
-         XMr5/kMMXylG9PKtGolDogr+ksBOsSiYX5b/Boc5AJXQ6R9QtOS6dBU0eWeANEnCDPXx
-         FHzSwPdlNSDzS1n5AdchxgkELtVFhfPkbx5DD4a5jAkvZ4avBvAmxHilI9da8lMRjX3R
-         QOoz6ScF9m+81eU5wetWeBiwaCs2fwsIrBJihNBV8gQXMBMmFl0Qc/e2r+iMslKh0/FQ
-         ZUYw==
-X-Gm-Message-State: AOAM5304WpMrVtXf9QofnOOfGmV536lh1Ji7RU5WSP7IvVJu7Gc2Erjx
-        Q+Yup/MmC8E7AxuoY09+7k0=
-X-Google-Smtp-Source: ABdhPJwf4ibqJhrkQ5dOYOJhnioj0+pyney17DM0J3kvZXrLHu4gfZbmJD51e6lLA6BntW7PkBExfg==
-X-Received: by 2002:adf:f943:0:b0:203:b456:c71d with SMTP id q3-20020adff943000000b00203b456c71dmr4678340wrr.568.1648129526345;
-        Thu, 24 Mar 2022 06:45:26 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id n37-20020a05600c3ba500b0038cc9d6ff5bsm2343196wms.4.2022.03.24.06.45.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 06:45:25 -0700 (PDT)
-Message-ID: <cc81f13f-fc83-d45d-4936-bec8ee58ba93@gmail.com>
-Date:   Thu, 24 Mar 2022 14:45:24 +0100
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648129744; x=1679665744;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=ISZkT7ez62uWWDwYq2cHf4s9T2fz9Gv58AVd0CvmmJA=;
+  b=OeVpqSta5zIxuud0mxBoyein1eOvDvt1laKF7gY1b/gKR6x2sXo+LZHO
+   yQknolA54jAu80kx5PZoiImNlx0kcMxVVbIYh1Xm0juh+vECjZNIpZolJ
+   hjyaR2SU74Ui0PuJ8T2mBHJM6ko8Q1Wa8H3CAD4WXhng7FIUKouTiUQmg
+   Q=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Mar 2022 06:49:04 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2022 06:49:03 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 24 Mar 2022 06:49:03 -0700
+Received: from [10.110.37.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 24 Mar
+ 2022 06:49:02 -0700
+Message-ID: <0419edf0-89ba-7db8-7f8f-7682d2af3e7c@quicinc.com>
+Date:   Thu, 24 Mar 2022 06:48:57 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 06/22] arm64: dts: mt8192: Add xhci node
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v1 1/3] ARM: dts: aspeed: Add video engine
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-7-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220318144534.17996-7-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Howard Chiu <howard_chiu@aspeedtech.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <SG2PR06MB2315C9F4348D39DA1A448852E6199@SG2PR06MB2315.apcprd06.prod.outlook.com>
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+In-Reply-To: <SG2PR06MB2315C9F4348D39DA1A448852E6199@SG2PR06MB2315.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Howard,
 
-
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add xhci node for mt8192 SoC.
+On 3/24/2022 12:27 AM, Howard Chiu wrote:
+> The ast2600 SoC has an embedded video engine
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Applied, thanks!
-
+> Signed-off-by: Howard Chiu <howard_chiu@aspeedtech.com>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 24 ++++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
+>   arch/arm/boot/dts/aspeed-g6.dtsi | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 28b93b76fe17..6bc36a4076f4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -10,6 +10,7 @@
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
-> +#include <dt-bindings/phy/phy.h>
->   #include <dt-bindings/power/mt8192-power.h>
+> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> index c32e87fad4dc..41d5087f7d92 100644
+> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> @@ -389,6 +389,17 @@ sbc: secure-boot-controller@1e6f2000 {
+>   				reg = <0x1e6f2000 0x1000>;
+>   			};
 >   
->   / {
-> @@ -718,6 +719,29 @@
->   			status = "disabled";
->   		};
->   
-> +		xhci: usb@11200000 {
-> +			compatible = "mediatek,mt8192-xhci",
-> +				     "mediatek,mtk-xhci";
-> +			reg = <0 0x11200000 0 0x1000>,
-> +			      <0 0x11203e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts-extended = <&gic GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			interrupt-names = "host";
-> +			phys = <&u2port0 PHY_TYPE_USB2>,
-> +			       <&u3port0 PHY_TYPE_USB3>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_SEL>,
-> +					  <&topckgen CLK_TOP_SSUSB_XHCI_SEL>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			clocks = <&infracfg CLK_INFRA_SSUSB>,
-> +				 <&infracfg CLK_INFRA_SSUSB_XHCI>,
-> +				 <&apmixedsys CLK_APMIXED_USBPLL>;
-> +			clock-names = "sys_ck", "xhci_ck", "ref_ck";
-> +			wakeup-source;
-> +			mediatek,syscon-wakeup = <&pericfg 0x420 102>;
-> +			status = "disabled";
-> +		};
+> +			video: video@1e700000 {
+> +				compatible = "aspeed,ast2600-video-engine";
+> +				reg = <0x1e700000 0x1000>;
+> +				clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
+> +					 <&syscon ASPEED_CLK_GATE_ECLK>;
+> +				clock-names = "vclk", "eclk";
+> +				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +				resets = <&syscon ASPEED_RESET_VIDEO>;
+
+Video engine reset is handled by clk-ast2600.c so you don't need to add
+'resets'.
+
+> +				status = "disabled";
+> +			};
 > +
->   		nor_flash: spi@11234000 {
->   			compatible = "mediatek,mt8192-nor";
->   			reg = <0 0x11234000 0 0xe0>;
+
+This node was already added back by this change.
+https://lore.kernel.org/all/CACPK8XfPPLoS=mhwbAHY4EfVad=1_dnhB+gaHBjPj1wWbWE4gg@mail.gmail.com/
+
+Cheers,
+
+-Jae
+
+>   			gpio0: gpio@1e780000 {
+>   				#gpio-cells = <2>;
+>   				gpio-controller;
