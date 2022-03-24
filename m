@@ -2,117 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 982264E67B5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDEE04E67C8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:27:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239137AbiCXRYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 13:24:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59718 "EHLO
+        id S1352275AbiCXR2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 13:28:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352237AbiCXRYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:24:46 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B84F71CB20;
-        Thu, 24 Mar 2022 10:23:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7406FB82335;
-        Thu, 24 Mar 2022 17:23:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7135C340EC;
-        Thu, 24 Mar 2022 17:23:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648142591;
-        bh=Ii6N9yX0cfvtlWGYsRFUlxpmnU5DBEOXCXBEVeUK1m4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dkUjRBS0vQTUg1Sz1AEMShGyKGTmbunTXyYN4gS3PEI7v7chIhQlEh4j9L7nEnwBW
-         EKYR8C3DHrHaONiYk/yFDenQDWCxLA6w24pOc5ybAZyPHJ3cnvNa0IYihNl7omVObg
-         8cNRIAidGUVpmu9Qbws+svgUr0wbTc9JhBF6cI0PdxAGBm1gk+tBjOKZ4EFAqxKHhB
-         Yj0QTkVK4AFTmN9JueLDEmjI44hjfzbBEEJ2aMip1SWLzb6XfWlfaHVh5jQAo2UI9x
-         Tzvhc1zpzZeJTEnKATnOiybc7/c9hI5aenkYyFKvCcuHGylL5/fJHHQFhne2tJgG/l
-         iW+VnVEFeutLQ==
-Date:   Thu, 24 Mar 2022 17:23:05 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     David Collins <quic_collinsd@quicinc.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        with ESMTP id S1352273AbiCXR2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:28:36 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 739CEB188E
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 10:27:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1648142823;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=liRbImRNW+7P8M0AFLGtjRyZSDyrWzFoWmyeKMsK9gQ=;
+        b=IbnPHM04nVp4Qk+wZ3Mr/uOBrbklP1oRkHjkCBvJKw2sHdJAdoj0ak98VJJlyLlHRtunKm
+        zbvFUhAlDH5cspAAMljz2x1rsawXSzBdPQjvMjSjk03zMsSKiOJuY1EhyArq8X/LBJaTDm
+        VSRZ39iYew86r+fwLfJwM07sJhJPWMM=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-589-bO4xCeU4MAa-Va3-7XciAQ-1; Thu, 24 Mar 2022 13:27:02 -0400
+X-MC-Unique: bO4xCeU4MAa-Va3-7XciAQ-1
+Received: by mail-qv1-f72.google.com with SMTP id z2-20020a056214060200b00440d1bc7815so4138781qvw.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 10:27:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=liRbImRNW+7P8M0AFLGtjRyZSDyrWzFoWmyeKMsK9gQ=;
+        b=3eOZivUU2isKV1BYWtR79Dk1dbhv2PSW3sNlTJrB3gN5muprNakxyerNLSbFGtg+ce
+         cm4bjHkkO010ifv1Q0pMn/kf2mUiN4Y/tunQRjVhlin5hvdfoDIlu4V2l5MGNK39THCw
+         gfjgQdVNkCNLtRo8A+orhaMMgNdybkRqyAgKuf+aNCrPkpr43tMnfyWpdqg+jmoTZoed
+         G5aEaWcBVOaGZ7ugPvU2exDfrN4Lb2rcz9AbYaYhawQy7U8dphzvZyuWWbdl0O+KdqU6
+         osCI8+GOnOOu1NkMbaJGGNvJDB30KSPcGX9X3QLP+IZ1KmU2Zs4nwFnx31sS7iNF/iPl
+         exEQ==
+X-Gm-Message-State: AOAM530s5KwSW+zxtNgkwxmOQNdfmO7IpJEECXjd6z4GRbFkHc5+B3wv
+        Kx8QxMDcKh5CC7qybEy8tgM5cofPkWeYjQuN/DJ80AyjFjBXqaNtYwh+/9KNKA/nEiF1+xuuawP
+        G6zbk88ctT1xwtme2V+qOGg==
+X-Received: by 2002:a05:620a:370c:b0:680:9d9e:ecfe with SMTP id de12-20020a05620a370c00b006809d9eecfemr3825808qkb.307.1648142821857;
+        Thu, 24 Mar 2022 10:27:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwoRa+4NSOlOggFdzYFCyPhvXbLJa7Ooafl0DS0H8lqYYl0wdhBQkyvH/e0Vt0LXWhsBn5ANQ==
+X-Received: by 2002:a05:620a:370c:b0:680:9d9e:ecfe with SMTP id de12-20020a05620a370c00b006809d9eecfemr3825800qkb.307.1648142821680;
+        Thu, 24 Mar 2022 10:27:01 -0700 (PDT)
+Received: from fedora.hitronhub.home (modemcable200.11-22-96.mc.videotron.ca. [96.22.11.200])
+        by smtp.gmail.com with ESMTPSA id bm21-20020a05620a199500b0067d5e6c7bd8sm1886515qkb.56.2022.03.24.10.27.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Mar 2022 10:27:00 -0700 (PDT)
+From:   Adrien Thierry <athierry@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Adrien Thierry <athierry@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Mike Tipton <quic_mdtipton@quicinc.com>
-Subject: Re: [PATCH v2 0/2] regulator: scmi: add support for registering SCMI
- regulators by name
-Message-ID: <Yjyo+Xk0txZs4T/Z@sirena.org.uk>
-References: <cover.1647909090.git.quic_collinsd@quicinc.com>
- <Yjm1wpcMZsZJJCuy@bogus>
- <eb03037b-e7c2-ea23-0bdb-27924ed54fa7@quicinc.com>
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gaston Gonzalez <gascoar@gmail.com>,
+        Ojaswin Mujoo <ojaswin98@gmail.com>,
+        linux-staging@lists.linux.dev
+Subject: [PATCH v2 0/2] Add support for bcm2711 in vchiq_arm
+Date:   Thu, 24 Mar 2022 13:26:45 -0400
+Message-Id: <20220324172647.167617-1-athierry@redhat.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="81Z0hAsjzpiu2TPf"
-Content-Disposition: inline
-In-Reply-To: <eb03037b-e7c2-ea23-0bdb-27924ed54fa7@quicinc.com>
-X-Cookie: Orders subject to approval.
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The goal of this patch series is to use the bcm2711 compatible string in
+vchiq_arm for the Raspberry Pi 4. This allows using the downstream device
+tree with the upstream kernel.
 
---81Z0hAsjzpiu2TPf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+---
+Changes since v1:
+- Removed duplicate compatible string for bcm2711 in
+  brcm,bcm2835-vchiq.yaml
 
-On Tue, Mar 22, 2022 at 06:12:33PM -0700, David Collins wrote:
+Adrien Thierry (2):
+  dt-bindings: soc: bcm: bcm2835-vchiq: Add support for bcm2711
+  staging: vchiq_arm: Use bcm2711 compatible string for bcm2711-based
+    RPi
 
-> Another problem is that, as with regulators, ID numbers could
-> unknowingly get out of sync between the platform and the agent.  Using
-> clock domain names for referencing fixes both issues.  This can be
+ .../devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml      | 5 +++++
+ arch/arm/boot/dts/bcm2711-rpi.dtsi                           | 1 +
+ .../staging/vc04_services/interface/vchiq_arm/vchiq_arm.c    | 5 +++++
+ 3 files changed, 11 insertions(+)
 
-This is just saying that the hard coded IDs that the firmware and kernel
-use to communicate can get out of sync which is true no matter if those
-IDs are strings or if they're numerical, either way it's an ABI which
-can be broken.
 
-> > If the IDs are correct like the names, it is guaranteed. I see this
-> > ID vs name is more for some maintenance convenience because somewhere
-> > something else needs to changes or moved away from existing way of
-> > maintenance.
+base-commit: ed4643521e6af8ab8ed1e467630a85884d2696cf
+-- 
+2.35.1
 
-> How do you quantify an ID number to physical regulator mapping as
-> "correct"?  What happens if the mapping must be changed on the SCMI
-> platform side (e.g. a PMIC was added or removed, or the order that
-> regulators are listed in needs to change)?  If the SCMI agent is blindly
-
-The whole point with the numbers being an ABI is that things must never
-be renumbered, just as if names are used the names can't be changed.  If
-the numbering is changing that just sounds like bugs on the platform
-side.  There's an implicit assumption in what you've written above that
-implementation details of the firmware should affect the IDs presented
-through SCMI which simply shouldn't be true, and indeed if the firmware
-can assign fixed strings it can just as well assign fixed numbers.
-
---81Z0hAsjzpiu2TPf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmI8qPgACgkQJNaLcl1U
-h9ADUgf9F+Vf4g7qBC+8QlTTVuL2G2gfodUp02z5tMeeey6bl+LR16pl2v9gT7hB
-p2CJjMjVg8NZYrrhb7BwEoibIRppAy02Ehy+FRZNXpLUNtrZjskye0LqYJW2nVnv
-r/XEam7moUDXHEhQWOGz8pY8PTTE66kMytsL4tWpK6ERwyHonh7kEuLRdY5s0JLT
-haW0CXliardrk2R8uh3+Zk40wyq2NW+AcGrBarTE9EaJVVjg2WcPWgAnCeBXgQxw
-fJ01Gyz3VeWZdk0XGD3+b8DejXOsi5ltsGRDbzZd6cusY76qGUL+XzyQMJLnYwzX
-J/ksIIO1L4uR2q+DYs9zCnueo1ahmQ==
-=u7Hy
------END PGP SIGNATURE-----
-
---81Z0hAsjzpiu2TPf--
