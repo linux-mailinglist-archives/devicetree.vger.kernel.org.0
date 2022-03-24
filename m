@@ -2,115 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 784404E6249
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:18:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2AD4E6299
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:40:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349743AbiCXLTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 07:19:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41406 "EHLO
+        id S1349841AbiCXLmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 07:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349728AbiCXLTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:19:10 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2DBDA66D4;
-        Thu, 24 Mar 2022 04:17:38 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22OB4h2Y015841;
-        Thu, 24 Mar 2022 07:17:19 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3f0denc07n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Mar 2022 07:17:19 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 22OBHIk5032741
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Mar 2022 07:17:18 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 24 Mar
- 2022 07:17:17 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 24 Mar 2022 07:17:17 -0400
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 22OBGjPg000657;
-        Thu, 24 Mar 2022 07:17:10 -0400
-From:   <alexandru.tachici@analog.com>
-To:     <andrew@lunn.ch>
-CC:     <o.rempel@pengutronix.de>, <alexandru.tachici@analog.com>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <hkallweit1@gmail.com>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
-        <netdev@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: [PATCH v5 7/7] dt-bindings: net: phy: Add 10-baseT1L 2.4 Vpp
-Date:   Thu, 24 Mar 2022 13:26:20 +0200
-Message-ID: <20220324112620.46963-8-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220324112620.46963-1-alexandru.tachici@analog.com>
-References: <20220324112620.46963-1-alexandru.tachici@analog.com>
+        with ESMTP id S240170AbiCXLmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:42:20 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CEF517F0;
+        Thu, 24 Mar 2022 04:40:48 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22OBehgJ126478;
+        Thu, 24 Mar 2022 06:40:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1648122043;
+        bh=3IuecUlfdO82n+x2FsLk8Ffzy6dPWUzYUpa5X3lPSso=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=aCuGVNKg5oKa4dTk7TFgW0qhXb9AZJJKJc3b3RPTjp2iRLyfAwgbhouV46g/za0ZV
+         OUZzcjiWW07AHnDECmJqJeSOpesk+J+TCVx5+RuVuwuBOhr8ZiCSJ8pA9zwBmuOaxp
+         THU3n6zP7LtKbJO4v/A+1LVeHZtwUDUHd34j+4lY=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22OBeheg090779
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 24 Mar 2022 06:40:43 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 24
+ Mar 2022 06:40:43 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 24 Mar 2022 06:40:43 -0500
+Received: from [10.24.69.236] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22OBedEB061384;
+        Thu, 24 Mar 2022 06:40:40 -0500
+Message-ID: <41f79aa5-1e04-53f8-ab21-85fe6039e24e@ti.com>
+Date:   Thu, 24 Mar 2022 17:10:39 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: WqPUrBxedtxsijG92gj85RHr3V-Z8Hug
-X-Proofpoint-ORIG-GUID: WqPUrBxedtxsijG92gj85RHr3V-Z8Hug
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-24_03,2022-03-24_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- malwarescore=0 mlxlogscore=791 priorityscore=1501 adultscore=0 bulkscore=0
- clxscore=1015 suspectscore=0 mlxscore=0 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2202240000
- definitions=main-2203240067
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add documentation for AM62 USB
+ Wrapper module
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20220324073425.18607-1-a-govindraju@ti.com>
+ <20220324073425.18607-2-a-govindraju@ti.com>
+ <93fe6a41-3b59-2fbc-6f95-833f337815ee@kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+In-Reply-To: <93fe6a41-3b59-2fbc-6f95-833f337815ee@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandru Tachici <alexandru.tachici@analog.com>
+Hi Krzysztof,
 
-Add a tristate property to advertise desired transmit level.
+On 24/03/22 16:37, Krzysztof Kozlowski wrote:
+> On 24/03/2022 08:34, Aswath Govindraju wrote:
+>> Add bindings for the TI's AM62 wrapper module for the Synopsys USBSS-DRD
+>> controller.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> ---
+>>
+>> Changes since v1:
+>> - made correction in grammer of clocks property description
+>>   and added maxItems in the interrupts property based on comments
+>>   received from Roger
+>> - corrected the title, fixed the description of
+>>   ti,syscon-phy-pll-refclk, added pattern properties and child node
+>>   in the example based on the comments from Krzysztof.
+>>
+>>  .../devicetree/bindings/usb/ti,am62-usb.yaml  | 117 ++++++++++++++++++
+>>  1 file changed, 117 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>> new file mode 100644
+>> index 000000000000..452bfdc6fb09
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>> @@ -0,0 +1,117 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/usb/ti,am62-usb.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI's AM62 wrapper module for the Synopsys USBSS-DRD controller
+>> +
+>> +maintainers:
+>> +  - Aswath Govindraju <a-govindraju@ti.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ti,am62-usb
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  ranges: true
+>> +
+>> +  power-domains:
+>> +    description:
+>> +      PM domain provider node and an args specifier containing
+>> +      the USB ISO device id value. See,
+>> +      Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    description: Clock phandle to usb2_refclk
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: ref
+>> +
+>> +  id-gpio:
+>> +    description:
+>> +      GPIO to be used as ID pin
+>> +    maxItems: 1
+> 
+> I have doubts about this. If you USB controller handles the ID pin, then
+> probably this should be moved to usb-connector.yaml. I did not see
+> id-gpio in any other USB controller blocks.
+> 
 
-If the device supports the 2.4 Vpp operating mode for 10BASE-T1L,
-as defined in 802.3gc, and the 2.4 Vpp transmit voltage operation
-is desired, property should be set to 1. This property is used
-to select whether Auto-Negotiation advertises a request to
-operate the 10BASE-T1L PHY in increased transmit level mode.
+Yes, the USB wrapper handles the ID pin operation only. It also reads
+the status of VBUS by reading a register from its MMR and not using a
+gpio. After evaluating the role the based on the states if id pin and
+VBUS, this role is communicated to the dwc3 core driver using extcon.
+There is no way for the dwc3 driver to detect the role on its own.
 
-If property is set to 1, the PHY shall advertise a request
-to operate the 10BASE-T1L PHY in increased transmit level mode.
-If property is set to zero, the PHY shall not advertise
-a request to operate the 10BASE-T1L PHY in increased transmit level mode.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- Documentation/devicetree/bindings/net/ethernet-phy.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+The usb-connector(drivers/usb/common/usb-conn-gpio.c) driver, seems to
+be implemented for driving the VBUS, based on ID and VBUS pin status.
+However, in case of the above implementation we need to communicate the
+detected role to the dwc3 core driver. Also, the wrapper does not
+control VBUS but it is the dwc3 core driver that drives the VBUS.
+Therefore, I think the usb-connector implementation cannot be used here.
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index ee42328a109d..ed1415a4381f 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -77,6 +77,15 @@ properties:
-     description:
-       Maximum PHY supported speed in Mbits / seconds.
- 
-+  phy-10base-t1l-2.4vpp:
-+    description: |
-+      tristate, request/disable 2.4 Vpp operating mode. The values are:
-+      0: Disable 2.4 Vpp operating mode.
-+      1: Request 2.4 Vpp operating mode from link partner.
-+      Absence of this property will leave configuration to default values.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    enum: [0, 1]
-+
-   broken-turn-around:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--- 
-2.25.1
+Thanks,
+Aswath
+
+> 
+> Best regards,
+> Krzysztof
 
