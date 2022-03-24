@@ -2,47 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 943FA4E6465
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 14:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C584E646C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 14:51:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345774AbiCXNui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 09:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38228 "EHLO
+        id S1350590AbiCXNwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 09:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345620AbiCXNuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 09:50:37 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B550CE17;
-        Thu, 24 Mar 2022 06:49:04 -0700 (PDT)
+        with ESMTP id S1350584AbiCXNwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 09:52:44 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69136A94C1;
+        Thu, 24 Mar 2022 06:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648129744; x=1679665744;
+  t=1648129872; x=1679665872;
   h=message-id:date:mime-version:subject:to:references:from:
    in-reply-to:content-transfer-encoding;
-  bh=ISZkT7ez62uWWDwYq2cHf4s9T2fz9Gv58AVd0CvmmJA=;
-  b=OeVpqSta5zIxuud0mxBoyein1eOvDvt1laKF7gY1b/gKR6x2sXo+LZHO
-   yQknolA54jAu80kx5PZoiImNlx0kcMxVVbIYh1Xm0juh+vECjZNIpZolJ
-   hjyaR2SU74Ui0PuJ8T2mBHJM6ko8Q1Wa8H3CAD4WXhng7FIUKouTiUQmg
-   Q=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Mar 2022 06:49:04 -0700
+  bh=Ny+OtPA6h21ghUzgKKjrwXzddS0ScrUMnjIeLdzE4yo=;
+  b=My+y2K/x7ZpOhDXZuJW+UVGDRqj1kzusmOch18J8+hsk416X6MEQsqyE
+   IyZwqyY8m0B5pfDB8G4uBz6UQmx4KYTXTKNzdjvAj4/avEdc1+TqwyHIY
+   YwJFnNhoabWvDF805NAn+bqua8iRDp/xpzQWFQNh4eK4ulmQn9Zej3sVe
+   0=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 24 Mar 2022 06:51:12 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2022 06:49:03 -0700
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2022 06:51:12 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 24 Mar 2022 06:49:03 -0700
+ 15.2.986.22; Thu, 24 Mar 2022 06:51:11 -0700
 Received: from [10.110.37.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 24 Mar
- 2022 06:49:02 -0700
-Message-ID: <0419edf0-89ba-7db8-7f8f-7682d2af3e7c@quicinc.com>
-Date:   Thu, 24 Mar 2022 06:48:57 -0700
+ 2022 06:51:10 -0700
+Message-ID: <527e9d9e-0dac-3a97-da83-068891a41381@quicinc.com>
+Date:   Thu, 24 Mar 2022 06:51:09 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v1 1/3] ARM: dts: aspeed: Add video engine
+Subject: Re: [PATCH v1 2/3] dt-bindings: clock: Add AST2600 video engine reset
+ definition
 Content-Language: en-US
 To:     Howard Chiu <howard_chiu@aspeedtech.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
@@ -53,9 +54,9 @@ To:     Howard Chiu <howard_chiu@aspeedtech.com>,
         <linux-arm-kernel@lists.infradead.org>,
         "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <SG2PR06MB2315C9F4348D39DA1A448852E6199@SG2PR06MB2315.apcprd06.prod.outlook.com>
+References: <SG2PR06MB2315F68B23BB0998B8F7E93EE6199@SG2PR06MB2315.apcprd06.prod.outlook.com>
 From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-In-Reply-To: <SG2PR06MB2315C9F4348D39DA1A448852E6199@SG2PR06MB2315.apcprd06.prod.outlook.com>
+In-Reply-To: <SG2PR06MB2315F68B23BB0998B8F7E93EE6199@SG2PR06MB2315.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.80.80.8]
@@ -71,47 +72,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Howard,
+
 
 On 3/24/2022 12:27 AM, Howard Chiu wrote:
-> The ast2600 SoC has an embedded video engine
+> Reset bit for VE is 6
 > 
 > Signed-off-by: Howard Chiu <howard_chiu@aspeedtech.com>
 > ---
->   arch/arm/boot/dts/aspeed-g6.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
+>   include/dt-bindings/clock/ast2600-clock.h | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index c32e87fad4dc..41d5087f7d92 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -389,6 +389,17 @@ sbc: secure-boot-controller@1e6f2000 {
->   				reg = <0x1e6f2000 0x1000>;
->   			};
->   
-> +			video: video@1e700000 {
-> +				compatible = "aspeed,ast2600-video-engine";
-> +				reg = <0x1e700000 0x1000>;
-> +				clocks = <&syscon ASPEED_CLK_GATE_VCLK>,
-> +					 <&syscon ASPEED_CLK_GATE_ECLK>;
-> +				clock-names = "vclk", "eclk";
-> +				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +				resets = <&syscon ASPEED_RESET_VIDEO>;
+> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
+> index 62b9520a00fd..a7d0ad9539eb 100644
+> --- a/include/dt-bindings/clock/ast2600-clock.h
+> +++ b/include/dt-bindings/clock/ast2600-clock.h
+> @@ -110,6 +110,7 @@
+>   #define ASPEED_RESET_PCIE_DEV_OEN	20
+>   #define ASPEED_RESET_PCIE_RC_O		19
+>   #define ASPEED_RESET_PCIE_RC_OEN	18
+> +#define ASPEED_RESET_VIDEO		6
 
-Video engine reset is handled by clk-ast2600.c so you don't need to add
-'resets'.
-
-> +				status = "disabled";
-> +			};
-> +
-
-This node was already added back by this change.
-https://lore.kernel.org/all/CACPK8XfPPLoS=mhwbAHY4EfVad=1_dnhB+gaHBjPj1wWbWE4gg@mail.gmail.com/
-
-Cheers,
+You don't need to add 'resets' for video node in DT so it wouldn't be
+needed.
 
 -Jae
 
->   			gpio0: gpio@1e780000 {
->   				#gpio-cells = <2>;
->   				gpio-controller;
+>   #define ASPEED_RESET_PCI_DP		5
+>   #define ASPEED_RESET_AHB		1
+>   #define ASPEED_RESET_SDRAM		0
