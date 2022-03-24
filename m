@@ -2,59 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99EBD4E62B0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDAB4E62BB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:53:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232989AbiCXLvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 07:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38846 "EHLO
+        id S1349880AbiCXLyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 07:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349846AbiCXLvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:51:19 -0400
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41FA9026B;
-        Thu, 24 Mar 2022 04:49:47 -0700 (PDT)
-Received: by mail-ed1-f53.google.com with SMTP id b24so5288237edu.10;
-        Thu, 24 Mar 2022 04:49:47 -0700 (PDT)
+        with ESMTP id S235216AbiCXLyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:54:44 -0400
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5B81ADAD;
+        Thu, 24 Mar 2022 04:53:11 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id u26so5289952eda.12;
+        Thu, 24 Mar 2022 04:53:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=nhtDJxx+rYit+5kY/+8k4LZTDafDnBdntGoPASkMFmE=;
-        b=UIsVUQiPPIFp3Lb3DFH3S+t2LmDEDdtWT+ph8OpPNYD1z5lZSpWaweBT+SHPXy4T+M
-         qyRbRLDaWWhqXZ3GxzLrdCW5qbCt7i1rkIqmLDpVbK3zCoi6g/kCRThpUwp8WodLFQ0n
-         lzBgE1XF3K+vNejtdtKPvvMC9Lj6vaFBd2Jdhz3lUtmI9wreSQG0XYp1b6flMiat5Zgm
-         aioCBLl886gwY7BEWTSsaQVU6TTmxtTityAk93YLEsPjwWiJ5hEJusOvdVZj6xDwfUAh
-         74IPeMXazPIRNe/XKcIXF2agnrcsX1jGACbhgkkHz1IDgsNHtOS/OBM3T5nlWQZwjNN7
-         Lczw==
-X-Gm-Message-State: AOAM533mEKua0VbgZ/6y8vo78VvKVECXaqvcQvM1OTJJEcCRZTwFUcZw
-        r5k1rdEDFey83/DpRgiS/lgb5Pz6E8JNQg==
-X-Google-Smtp-Source: ABdhPJzdEYTxDqX15SKQ9PEXbajaY2optQk5N/wMsVOMxwQLd2TzNpQ+j8Q59Vhl9DfQ7Z/NyKS8Kg==
-X-Received: by 2002:aa7:de96:0:b0:418:f9ca:67f6 with SMTP id j22-20020aa7de96000000b00418f9ca67f6mr6300917edv.25.1648122586128;
-        Thu, 24 Mar 2022 04:49:46 -0700 (PDT)
+        bh=5ltKLzd5hL5HQokDkXemnqLoOTjdJvhrUSmUGjXhOKY=;
+        b=v9UpqE5UxNDfqOhxObQvIBnuVCLY9yhQXbdUzcSOiOMW5TCoKJjlAr9whreuq1ySyf
+         OIhYXneLHk+b/o+GIiatNref+srnHspVNxSdGRlQpX9xf8ZXkCAJWJBV2/2riSSNikWA
+         +s7KZcy8of4oJanviNqJypSORH0XkjiDbfdHwzDsfZeEuapU+ziQ8gmQR1dhct1iuUhU
+         wM6dIaa9tAeTk//mcKX/lYZz/uQ7tj3X+GGc9LWnR5SRyEHVsP8AuwjLfqJF9aQXLrIR
+         yYhEhEXZpQ3V79fUARP3wQHZLXjlrxQn4UcMPyFaUA85AWLGySTRXoutwjLAsPcGzoQ0
+         P+cQ==
+X-Gm-Message-State: AOAM532vn62ZWuGlWLx33WDntRb1nZWaIa74lZSri8tbLFXfRA37VHlz
+        2SQCUPAlUPwhOtKSwqQZWp7yuvvSw17oRQ==
+X-Google-Smtp-Source: ABdhPJz6j4PqEWrxanuEP+vlNZkdiYyWicoY+CmwYGxtZYFcvjcm4oFtqKwL7YtAAZbwP55R+jzUxg==
+X-Received: by 2002:aa7:cd7a:0:b0:419:48ce:3a10 with SMTP id ca26-20020aa7cd7a000000b0041948ce3a10mr6228425edb.312.1648122790189;
+        Thu, 24 Mar 2022 04:53:10 -0700 (PDT)
 Received: from [192.168.0.156] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id v1-20020a1709064e8100b006e07d033572sm622970eju.33.2022.03.24.04.49.44
+        by smtp.googlemail.com with ESMTPSA id da23-20020a056402177700b0041394d8173csm1281621edb.31.2022.03.24.04.53.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 04:49:45 -0700 (PDT)
-Message-ID: <414f1ad8-8ee1-9913-c0e8-b4f66f3e7180@kernel.org>
-Date:   Thu, 24 Mar 2022 12:49:43 +0100
+        Thu, 24 Mar 2022 04:53:09 -0700 (PDT)
+Message-ID: <2b33798e-23c2-d4a5-171a-55c28bc40c40@kernel.org>
+Date:   Thu, 24 Mar 2022 12:53:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 2/7] ARM: dts: s5pv210: Adjust I2S entries to match spec
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add documentation for AM62 USB
+ Wrapper module
 Content-Language: en-US
-To:     Jonathan Bakker <xc-racer2@live.ca>, alim.akhtar@samsung.com
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CY4PR04MB0567E33A07D8761C2D485327CB179@CY4PR04MB0567.namprd04.prod.outlook.com>
- <CY4PR04MB056784D54ADDBB4F57F82D4ACB189@CY4PR04MB0567.namprd04.prod.outlook.com>
- <4ebe2bb9-4f92-2dff-6737-d057e5950b24@kernel.org>
- <f44c9881-6f7b-f4f5-8225-e0c74c83fab1@kernel.org>
- <CY4PR04MB05677B21384FCE2013EB1B94CB189@CY4PR04MB0567.namprd04.prod.outlook.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20220324073425.18607-1-a-govindraju@ti.com>
+ <20220324073425.18607-2-a-govindraju@ti.com>
+ <93fe6a41-3b59-2fbc-6f95-833f337815ee@kernel.org>
+ <41f79aa5-1e04-53f8-ab21-85fe6039e24e@ti.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <CY4PR04MB05677B21384FCE2013EB1B94CB189@CY4PR04MB0567.namprd04.prod.outlook.com>
+In-Reply-To: <41f79aa5-1e04-53f8-ab21-85fe6039e24e@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -68,52 +73,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2022 18:24, Jonathan Bakker wrote:
+On 24/03/2022 12:40, Aswath Govindraju wrote:
 > Hi Krzysztof,
 > 
-> On 2022-03-23 8:15 a.m., Krzysztof Kozlowski wrote:
->> On 23/03/2022 16:14, Krzysztof Kozlowski wrote:
->>> On 23/03/2022 16:03, Jonathan Bakker wrote:
->>>> Based on the device tree spec, clocks should be ordered tx/rx.
->>>> Re-order from rx/tx to avoid warnings when running make dtbs_check
->>>>
->>>> Additionally, the number of #sound-dai-cells should be 1, not 0
->>>>
->>>> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
->>>> ---
->>>>  arch/arm/boot/dts/s5pv210-aries.dtsi |  2 +-
->>>>  arch/arm/boot/dts/s5pv210.dtsi       | 18 +++++++++---------
->>>>  2 files changed, 10 insertions(+), 10 deletions(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/s5pv210-aries.dtsi b/arch/arm/boot/dts/s5pv210-aries.dtsi
->>>> index 70ff56daf4cb..503b5a50ef1a 100644
->>>> --- a/arch/arm/boot/dts/s5pv210-aries.dtsi
->>>> +++ b/arch/arm/boot/dts/s5pv210-aries.dtsi
->>>> @@ -644,7 +644,7 @@
->>>>  };
->>>>  
->>>>  &i2s0 {
->>>> -	dmas = <&pdma0 9>, <&pdma0 10>, <&pdma0 11>;
->>>> +	dmas = <&pdma0 10>, <&pdma0 9>, <&pdma0 11>;
->>>>  	status = "okay";
+> On 24/03/22 16:37, Krzysztof Kozlowski wrote:
+>> On 24/03/2022 08:34, Aswath Govindraju wrote:
+>>> Add bindings for the TI's AM62 wrapper module for the Synopsys USBSS-DRD
+>>> controller.
 >>>
->>> Except that fix that's the same commit as here:
->>> https://lore.kernel.org/all/20200907161141.31034-26-krzk@kernel.org/
->>> so just extend it.
+>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>> ---
 >>>
->>> sound-dai-cells should go to a separate commit. But are you sure they
->>> are correct? The Fascinate 4G seems to be using them as cells=0.
+>>> Changes since v1:
+>>> - made correction in grammer of clocks property description
+>>>   and added maxItems in the interrupts property based on comments
+>>>   received from Roger
+>>> - corrected the title, fixed the description of
+>>>   ti,syscon-phy-pll-refclk, added pattern properties and child node
+>>>   in the example based on the comments from Krzysztof.
+>>>
+>>>  .../devicetree/bindings/usb/ti,am62-usb.yaml  | 117 ++++++++++++++++++
+>>>  1 file changed, 117 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>>> new file mode 100644
+>>> index 000000000000..452bfdc6fb09
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>>> @@ -0,0 +1,117 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/usb/ti,am62-usb.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: TI's AM62 wrapper module for the Synopsys USBSS-DRD controller
+>>> +
+>>> +maintainers:
+>>> +  - Aswath Govindraju <a-govindraju@ti.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ti,am62-usb
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  ranges: true
+>>> +
+>>> +  power-domains:
+>>> +    description:
+>>> +      PM domain provider node and an args specifier containing
+>>> +      the USB ISO device id value. See,
+>>> +      Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    description: Clock phandle to usb2_refclk
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: ref
+>>> +
+>>> +  id-gpio:
+>>> +    description:
+>>> +      GPIO to be used as ID pin
+>>> +    maxItems: 1
 >>
->> See my previous patch and discussion:
->> https://lore.kernel.org/all/20200907161141.31034-10-krzk@kernel.org/
+>> I have doubts about this. If you USB controller handles the ID pin, then
+>> probably this should be moved to usb-connector.yaml. I did not see
+>> id-gpio in any other USB controller blocks.
 >>
 > 
-> Thanks, I'd totally forgotten about this series from the past.  I'll re-test
-> those commits and submit your copies of them in v2 if that's OK with you and
-> that they're confirmed functional?
+> Yes, the USB wrapper handles the ID pin operation only. It also reads
+> the status of VBUS by reading a register from its MMR and not using a
+> gpio. After evaluating the role the based on the states if id pin and
+> VBUS, this role is communicated to the dwc3 core driver using extcon.
+> There is no way for the dwc3 driver to detect the role on its own.
+> 
+> 
+> The usb-connector(drivers/usb/common/usb-conn-gpio.c) driver, seems to
+> be implemented for driving the VBUS, based on ID and VBUS pin status.
+> However, in case of the above implementation we need to communicate the
+> detected role to the dwc3 core driver. Also, the wrapper does not
+> control VBUS but it is the dwc3 core driver that drives the VBUS.
+> Therefore, I think the usb-connector implementation cannot be used here.
 
-My dma fixes change lacked this aries fix. The sound-dai-cells needed
-more rethinking.
+I don't think about usb-conn-gpio.c but using the binding generic
+binding for usb-X-connector and define a connector with ID.
+
+Actually Rob could help here.
+
+Rob,
+Should the id-gpio be modeled as a property in this glue/wrapper driver
+or rather as part of usb-connector child node?
 
 
 Best regards,
