@@ -2,68 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0A94E66B6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 17:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0DF34E66E3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 17:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351573AbiCXQOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 12:14:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43520 "EHLO
+        id S236831AbiCXQWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 12:22:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233340AbiCXQOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 12:14:10 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EA5A66DC;
-        Thu, 24 Mar 2022 09:12:35 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 912651F457D0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648138354;
-        bh=WCk4dzdn3DtFOiWPLHNJq946UphbiJkQG7+kTAtMZdM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=H2r7TNfTDpxaKSzjPVT4jB1Mv1PmRu810K99bdcoKktnGfjSaQNsCuuOOiOrROAv2
-         WAZjuaXdyr6MVvqBpeXb/Ppm5sc66G6BdQIgo65vRbdfRxZB5j3/tkddMZi80SRGGf
-         rSV+rwV3ON6wXU68DHcxIf0Mq/9JRaakWy9QRs2K97VEcX0abxRre8f5bGWrdMfZ96
-         rCu+B3ki5EreP4yUybGMhb7+JhNQlM3+UOzXFGhjRSLtbAXe2SCKfwf7c/qzTD9sAn
-         g3Bq+0E63Ezc0ptia0pnrXKKCceZk041QssxkgEIZw2Ow00o/vAqrwzfIOXCFAmfOr
-         IXBAtp09bIaZw==
-Message-ID: <d49177c6-651d-e445-4421-1078ba11efb8@collabora.com>
-Date:   Thu, 24 Mar 2022 17:12:31 +0100
+        with ESMTP id S1351548AbiCXQWR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 12:22:17 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 866339E9CB
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 09:20:43 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id j18so7358637wrd.6
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 09:20:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=u+XoZ+fuIL/ZPqi/MqDlAYN5/s61cbWyTsDVR6ShDXg=;
+        b=7x7yo5Bs1LpGDx1Z/m5ZaOu8cUAl21e7wWdU9yxKzW8vX0CjUGxZctK8KwWnscCoVZ
+         9LxP65DgHeKtf/hZGwB3qLTaAxg9dIFAjsyvDPXqNwfjZtUKy31VfYnkNC7UVPNVhb6p
+         DFWKacToNwykDGrrPa4EO7lI3DYAFLrP9A23HcrD22Cuy78HpnamrgybwQGMWkFwx1vF
+         I2bjpDirPChL6lZVg/QNemvqzmFlvAhQfsuXZ3ej8UrR1kv1YekCXLTJiHsiaXPrtTae
+         h+qV/ldDYsSEqJnAvk5LP5ZdsoTcHaGCBpcPUfGIqZo9CLNPQOMpHfRMEaa847gLl9Yx
+         aBsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=u+XoZ+fuIL/ZPqi/MqDlAYN5/s61cbWyTsDVR6ShDXg=;
+        b=wC3g8YjpSWzKPq7hxeiClmUuYHGUiLqvaNb3doMiDk3OlSxTMFGjzCnaL4lxCD8lGZ
+         x917uRE7w85Zhq4hHC5nxyWbDmLMWVcSjzZpSa2XBlWdZe4IujauyycJ4DFMQyy1iyyU
+         XB7vDYJ6nrNu4ALVXULgQ8p52RiKvLd0Cu1F+kDrXUXNJpptfPHvPP+nUBJf0MPjgZ6b
+         oB0DKRpDKdOdEl/ik/LtrPo4Q/s9lojdASEEXqFMgMHTF2FCCNW0fuJMIaA9NCrmSCzM
+         tIpT0yLMBZE0x57yxiAMbdyXSwpeqmcGeWwCfO/cHkXaVVwh+8KysTWnWXU4cv6VCXMl
+         1hLQ==
+X-Gm-Message-State: AOAM532XBjVT6ghfyCehu733+zZZzKMk/vM+DoE2g+KBD+LQyphtFVnR
+        NmWw6Y7uCV96OODE4i75vQy30w==
+X-Google-Smtp-Source: ABdhPJzeYjDJdSI+WUHT0aW2nK8ZdlM/pdZDaZr/eYh34FM+5W0i/XYyjvNvYiq5Hbek/iwW1aWLpQ==
+X-Received: by 2002:a05:6000:181a:b0:205:9051:ab6d with SMTP id m26-20020a056000181a00b002059051ab6dmr5239391wrh.191.1648138841944;
+        Thu, 24 Mar 2022 09:20:41 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id r2-20020a0560001b8200b00203dffb9598sm2914810wru.86.2022.03.24.09.20.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Mar 2022 09:20:41 -0700 (PDT)
+Date:   Thu, 24 Mar 2022 17:20:39 +0100
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 21/26] dt-bindings: crypto: convert rockchip-crypto to
+ yaml
+Message-ID: <YjyaV68mTsJAr9Xm@Red>
+References: <20220321200739.3572792-1-clabbe@baylibre.com>
+ <20220321200739.3572792-22-clabbe@baylibre.com>
+ <90ebea0b-1d67-98dc-2b49-a6e3b97a2c4a@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v4 5/6] ASoC: mediatek: mt8195: add machine support for
- max98390 and rt5682
-Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aaronyu@google.com, tzungbi@google.com,
-        miles.chen@mediatek.com, yc.hung@mediatek.com
-References: <20220324053851.27350-1-trevor.wu@mediatek.com>
- <20220324053851.27350-6-trevor.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220324053851.27350-6-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <90ebea0b-1d67-98dc-2b49-a6e3b97a2c4a@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/03/22 06:38, Trevor Wu ha scritto:
-> This patch adds support for mt8195 board with mt6359, max98390 and
-> rt5682.
+Le Tue, Mar 22, 2022 at 07:04:43PM +0100, Krzysztof Kozlowski a écrit :
+> On 21/03/2022 21:07, Corentin Labbe wrote:
+> > Convert rockchip-crypto to yaml
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> >  .../crypto/rockchip,rk3288-crypto.yaml        | 84 +++++++++++++++++++
+> >  .../bindings/crypto/rockchip-crypto.txt       | 28 -------
+> >  2 files changed, 84 insertions(+), 28 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > new file mode 100644
+> > index 000000000000..a6be89a1c890
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > @@ -0,0 +1,84 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip Electronics And Security Accelerator
+> > +
+> > +maintainers:
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - rockchip,rk3288-crypto
+> > +      - rockchip,rk3328-crypto
+> > +      - rockchip,rk3399-crypto
 > 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> Waaaait, what? Only rockchip,rk3288-crypto is in original bindings.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Hello
 
+Yes, my way is an error.
+Next time, I will split my patch in 2, first a 1 to 1 conversion, then a binding update.
 
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 4
+> > +
+> > +  clock-names:
+> > +    minItems: 4
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> 
+> You missed reset-names.
+> 
+> This patch is quite different than previous, in unexpected way. What
+> happened here?
+> 
+> > +
+> > +if:
+> 
+> Please define it after "allOf:", so it could be easily extended without
+> changing indentation.
+> 
+> > +  properties:
+> > +    compatible:
+> > +      const: rockchip,rk3399-crypto
+> > +then:
+> > +  properties:
+> > +    reg:
+> > +      minItems: 2
+> > +    interrupts:
+> > +      minItems: 2
+> 
+> List interrupts. This is really different than your v1. It also looks
+> different than original bindings and you did not mention any differences
+> here, nor in the commit msg. Either explain in commit msg all
+> differences (and why) or move them to separate commit.
+> 
+> You seem to change the bindings a lot (new properties, different
+> constraints, new compatibles), so this should all go to separate commit.
+> Now it is just confusing.
+> 
+> > +    clocks:
+> > +      minItems: 6
+> 
+> You need maxItems. Everywhere.
+> 
+> > +    clock-names:
+> > +      minItems: 6
+> 
+> List all items.
+> 
+> > +    resets:
+> > +      minItems: 6
+> > +else:
+> > +  if:
+> > +    properties:
+> > +      compatible:
+> > +        const: rockchip,rk3328-crypto
+> > +  then:
+> > +    properties:
+> > +      clocks:
+> > +        minItems: 3
+> > +      clock-names:
+> > +        minItems: 3
+> > +
+> 
+
+I have create a binding update patch (https://github.com/montjoie/linux/commit/da05ef9bb488c16cfd15a47054f5b1161829b6bf)
+But I have lot of problem, DT are not validating.
+Example: Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.example.dtb: crypto@ff8a0000: resets: [[4294967295, 174]] is too short
+
+I have tried also to set default resets/maxItems to 3 and setting it to 4 via an if. But I still got error like maxItems cannot be update after initial set.
+
+Any idea on why my new binding update patch is failling ?
+
+Regards
