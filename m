@@ -2,102 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F914E61D8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 11:35:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADBC04E61F3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 11:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240829AbiCXKhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 06:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49608 "EHLO
+        id S244346AbiCXKt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 06:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234052AbiCXKhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 06:37:12 -0400
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43CD6E343;
-        Thu, 24 Mar 2022 03:35:40 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id h23so5957169wrb.8;
-        Thu, 24 Mar 2022 03:35:40 -0700 (PDT)
+        with ESMTP id S242718AbiCXKtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 06:49:25 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC40AA1476;
+        Thu, 24 Mar 2022 03:47:53 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id g24so5566865lja.7;
+        Thu, 24 Mar 2022 03:47:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=0J0phj6AMm9UiRKwAINuoHI0saZ8K5+RIjVP4BiGyXI=;
+        b=W00tgU32BzYT8QLgeVcXl8t4GzABMp804DZT8qVYJWfBc/h/MwqASWjK/H7E55dO9S
+         vGbTCT41p6wwmNueLXPdk+fSUc8udFZn/GnSGl9K9eHZn1Ms4i+g6FKFk9++rUP+PPI1
+         /yS65327j6U+Q91NDdtof6r4Af5w8VvN3uXkRl7payULhsm3xi/wLV6TD/z/J5hn+uPB
+         wfuHz+C42EwmTphgB0DHXZGKdxYhj0i4M4JuAvLCaUZsPc4SpLNLekyrXVDJLlSQ30ln
+         10SneDCDPmi8igzRWPJcI2H9lr/7RAHeziu6Lc+N1M2ol8Zv/FmvZok5DcfYIBMeuAUx
+         dGXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Hl2300Q3yIYem3DeC+yC//jG0rxJse6f6bzV8oQgUaM=;
-        b=ntpYkL11pqS1uDnrG5GLYj2kGVH0oAkfy+4GEMgGEiXezRxPAj7CYovBiJtKllgRWH
-         8deT7boIS+q4Ha+uQpI0Rdap0mgkAL2ABnJ10FAQOPXhHW0p8ZsXRcgVfJC+Kf/yRMhj
-         DbwHuWO1cP8/B6cFxhsS9YejIAaaqptiE3kGIAJpz8ttP8fKHP63nhvQpO/uawLl7epk
-         5BVLh1BqYFVA2njF1IHntUyDcpCxvN/yVvAC75twPXjo9vnDGuTSxZZzzzMMD9cV5ZzA
-         LCmL5N4lWiDT/E3Cg4+BdcbMZaM3lqrsVf0eum21z4/Zb5YbnMFqjC4xJDJDujWLoIlR
-         Oygg==
-X-Gm-Message-State: AOAM5334uXguZa3bYLGkpBt0/2mCFpI0dxQf7MZrSYsK18ozTgZO8pe+
-        8DUcLorZ6Sj9jR2gviR1aCk=
-X-Google-Smtp-Source: ABdhPJwANYW3gavd2FfSPJq7cxASPsyPRneOA9YZPkOtAZJvpNCCGUbBtreV69ExMOluQQWYohSkSg==
-X-Received: by 2002:adf:fc47:0:b0:203:dda1:4311 with SMTP id e7-20020adffc47000000b00203dda14311mr3975119wrs.301.1648118139226;
-        Thu, 24 Mar 2022 03:35:39 -0700 (PDT)
-Received: from [192.168.0.156] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id z18-20020a5d6412000000b0020400dde72esm2233790wru.37.2022.03.24.03.35.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 03:35:38 -0700 (PDT)
-Message-ID: <18c791ce-059a-87a5-eaf4-057f8e232fe7@kernel.org>
-Date:   Thu, 24 Mar 2022 11:35:37 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0J0phj6AMm9UiRKwAINuoHI0saZ8K5+RIjVP4BiGyXI=;
+        b=1vN34ONauab3igrWeEDRVG2GpY1aPLu7CPIcKEWYKG6AF3yYYatxD+hlStUDdg4Yeg
+         2DHyTFvfI9fA2IhfYWk+uMGGlSCXJmJNZkCniRdBigdmH0Chon7J2mwj7+W06rmcL1+V
+         4erBgU0UNRr/ujyt6rYXDsMF9QRronYGsxRC5Vop2sxvqLkFaIt/ax7uSDdwGaKRbkg2
+         ZaK00xeSE9d8sjqfRKKqPk4sMCCK6xoAkuHzOJsCa/OLH45KAvMopEuJX6stKz5EkUCw
+         3InP6sU15XuMYw07EHxg/m45F/GNe4pU5olyUWm7thNfp4DWOzrwHyBIivJziNOn6+ZM
+         glag==
+X-Gm-Message-State: AOAM533iZ1RF/KrYaqzzfLnlcZthYiJ5WkYRNCH5MGUO4mtGr1sZE6PY
+        7y+GQla39IHTTg711K9L4jmA279R4Lwj8FOB6JU=
+X-Google-Smtp-Source: ABdhPJxvmZtFy+J+bFzyel0LLaX1+RiiFwWo/r3cr+oq0EQA4ui/aadInIzdparY+LLIAu38KrEIPRgcoBCKyW02w/0=
+X-Received: by 2002:a05:651c:b1e:b0:249:95d3:7832 with SMTP id
+ b30-20020a05651c0b1e00b0024995d37832mr3671439ljr.426.1648118872009; Thu, 24
+ Mar 2022 03:47:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/4] dt-bindings: cpufreq: mediatek: add mt8186 cpufreq
- dt-bindings
-Content-Language: en-US
-To:     Jia-Wei Chang <jia-wei.chang@mediatek.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, fan.chen@mediatek.com,
-        louis.yu@mediatek.com, roger.lu@mediatek.com,
-        Allen-yy.Lin@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        hsinyi@google.com,
-        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
-References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
- <20220307122151.11666-3-jia-wei.chang@mediatek.com>
- <d5c5e3f7-7f50-6c57-f82a-41d5494ea514@canonical.com>
- <c150e9ed7faa4c06f55f7d7623655b65c8575121.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <c150e9ed7faa4c06f55f7d7623655b65c8575121.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+References: <1647235924-15572-1-git-send-email-vincent.sunplus@gmail.com> <Yjth1mAtn/hX2Xvx@robh.at.kernel.org>
+In-Reply-To: <Yjth1mAtn/hX2Xvx@robh.at.kernel.org>
+From:   =?UTF-8?B?5pa96YyV6bS7?= <vincent.sunplus@gmail.com>
+Date:   Thu, 24 Mar 2022 18:48:41 +0800
+Message-ID: <CAPvp3RjPW1x-k4oA7QHHXm+QCNySMJLiR5TcqtCK-0geRtrd8A@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Add USB HOST OHCI driver for Sunplus SP7021 SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, stern@rowland.harvard.edu,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2022 10:42, Jia-Wei Chang wrote:
-> On Mon, 2022-03-07 at 19:59 +0100, Krzysztof Kozlowski wrote:
->> On 07/03/2022 13:21, Tim Chang wrote:
->>> 1. add cci property.
->>> 2. add example of MT8186.
->>
->> One logical change at a time. Are these related? Why entirely new
->> example just for "cci" node? Maybe this should be part of existing
->> example?
-> 
-> Yes, the cci property is required in some SoC, e.g. mt8183 and mt8186,
-> because cpu and cci share the same power supplies.
+Rob Herring <robh@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8824=E6=97=A5 =
+=E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=882:07=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, Mar 14, 2022 at 01:32:02PM +0800, Vincent Shih wrote:
+> > This is a patch series for USB HOST OHCI driver for Sunplus SP7021 SoC.
+> >
+> > Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+> > many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
+> > etc.) into a single chip. It is designed for industrial control.
+>
+> Looks to me like the generic-ohci binding and driver should work for
+> this?
+>
+The generic-ohci binding and driver did work for Sunplus SP7021.
+And do I need to submit the patch for the ohci driver and binding doc
+for Sunplus
+SP7021 SoC ?
 
-I asked why this cannot be part of existing example.
-
-> I will update the commit message and add an example of mt8186 to
-> present usage of cci.
-
-You added the example here, didn't you?
-
-Best regards,
-Krzysztof
+> Rob
