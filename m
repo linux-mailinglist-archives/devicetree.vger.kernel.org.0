@@ -2,116 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C40444E6991
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 21:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C88974E69AE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 21:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353148AbiCXUBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 16:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47348 "EHLO
+        id S1353236AbiCXUNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 16:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353097AbiCXUBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 16:01:41 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361208119B
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:00:07 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id 9so3525842iou.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:00:07 -0700 (PDT)
+        with ESMTP id S229908AbiCXUNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 16:13:40 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3D1ADD40
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:12:07 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-de3ca1efbaso6039637fac.9
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:12:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NIeb4/VCYD/DVpQS7+hcb33JtSGPsyNTOD4hJRIfFYg=;
-        b=ig2LZmT/ULNd6has1x+tgUYcp8IlB29NYiSSDQoLQq7e4dlU3i6HB1VA7Q9gZeYXWi
-         M3lCuAvR1UpnzsELZRdyf8bqrTPOEdmnFXOCBwKCPDfaxWan6BjVu9tXgGEHa9RSd8kr
-         owI6u9PErmK310L9agaXHuclkSSY1jcINq+B0=
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=fm33v815cGyvRnZSik/3qfh/le6zz0KlP6K6B+y0Ujw=;
+        b=j7BsnOzcEainxu4qHj53ZoSIQjjCWDVI5dpkX6Y3H7F6bGoLg+zwQ1mH1J+hSY+eBC
+         fUnpuDvR1s6e0lQ1cGONY7o0FhHRrOtx65byEMhBahgjGMhkzlr4QtW3ds3UgP7X1ZUC
+         bGMQzgtuDRbwkG8eX+c81M6n5aYkFSU2zHGkc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NIeb4/VCYD/DVpQS7+hcb33JtSGPsyNTOD4hJRIfFYg=;
-        b=sBonR7IEyv7jKfpEkJD7LNzN2h94oy3cTACUEdZ+5L3l2KWOQo/Kt2vet5wKgwCuRQ
-         uPdYg1BC46eZLQun2AIEuz7kylJWX6SQi1IbCy8++rpakCly/jIBGPfN9P341lB0Jo+j
-         3uufO+RuD9R09xSTxCjK+VZeW3YrOoOPyKZy4oa/BmsuueQ/phXQ2qIwsIm8LwMC4mFe
-         jUyIFbKejzimAKStZdABa74UwyFhNBb+KIUALLwyHD0E4Z7f3o7ImEkqRWeFkMri1kJB
-         K00q44qexNKOwlD7lqyUgehcevQkbMJ7LMImAe0jbucM4btbssKgpCHP/yfon0Gwu46P
-         knWA==
-X-Gm-Message-State: AOAM531ffbpSNF0epE+azjcgxYPZvt/UaiweplQpB8uX7HoC7M9sT/Aq
-        514UAR24/xAX2tj5GxeQMnpgtPGcqRcDeZaa
-X-Google-Smtp-Source: ABdhPJxBV8edG7DDsuEDabJPTcjcJT/Q4UzX4PDYqKv/613VPLWr03rOOF0U7jGomiwQcjGMa4HaCQ==
-X-Received: by 2002:a05:6638:f95:b0:314:58f9:5896 with SMTP id h21-20020a0566380f9500b0031458f95896mr3740559jal.228.1648152006464;
-        Thu, 24 Mar 2022 13:00:06 -0700 (PDT)
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com. [209.85.166.176])
-        by smtp.gmail.com with ESMTPSA id m5-20020a927105000000b002c60ed6d3afsm1938332ilc.69.2022.03.24.13.00.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 13:00:05 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id n16so3877546ile.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:00:05 -0700 (PDT)
-X-Received: by 2002:a05:6e02:20c4:b0:2c8:5b82:3035 with SMTP id
- 4-20020a056e0220c400b002c85b823035mr3583254ilq.220.1648152004944; Thu, 24 Mar
- 2022 13:00:04 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=fm33v815cGyvRnZSik/3qfh/le6zz0KlP6K6B+y0Ujw=;
+        b=g59LWqvz1W/CZD/EFeoQlz3+HsaZuZ3jLKl1feVFKhZ1W69XLKZq2wwcCpy4qfUgix
+         SmM7GXGgON/XCnDvDbimQGzlMzXBiaxiuppwWCtthWpk6b+W0JEtKkAmvutCBW4D/dZI
+         F4n1MGzmp23URhZNriTO5E2pbrCqwJrEMOeWgRq+6mTp7A4aCAWwDVTd1oLx5j7MLjAC
+         LtpAj/hpLx+2EZLcbcwagLh0QX6r0V4h28DhGcQYWlRVhJDjQpzsd+5Vx7fdQOdq//gO
+         mbjfpAarV11N4bc5v7sB2jUvJA17nmLrCkLO6ZBb5qN+h1oOhGsFpJGRua7mKu4+Xmjo
+         WQLw==
+X-Gm-Message-State: AOAM532/GY5UAMoIGV8HyhGmiOA9vsmyVMs2TvASSqQCVRU9TnIEpVhz
+        CcRO/+i89EwNqJ6eQgs+SiDAGsPqiRWPVa1rh9aRDA==
+X-Google-Smtp-Source: ABdhPJzKBovD/XnQBM2VJdM2UICBfRNvK7J2MglCmPB4nXDGNIsSoqA1flcavm/5l9LdPtrW0MWyu1WgO4fQQ3UEHWo=
+X-Received: by 2002:a05:6870:b69c:b0:dd:b74b:4099 with SMTP id
+ cy28-20020a056870b69c00b000ddb74b4099mr3107374oab.193.1648152727293; Thu, 24
+ Mar 2022 13:12:07 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 24 Mar 2022 15:12:06 -0500
 MIME-Version: 1.0
-References: <20220324101242.v1.1.Iebdb5af0db7d3d6364cb229a27cd7c668f1063ae@changeid>
-In-Reply-To: <20220324101242.v1.1.Iebdb5af0db7d3d6364cb229a27cd7c668f1063ae@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 24 Mar 2022 12:59:51 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XchtJx3ZsL4Bxj29b_-43E8p2fiJ5SBQSzbW8wp+gNfg@mail.gmail.com>
-Message-ID: <CAD=FV=XchtJx3ZsL4Bxj29b_-43E8p2fiJ5SBQSzbW8wp+gNfg@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add device tree for
- herobrine villager
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
+In-Reply-To: <20220324115536.2090818-1-dmitry.baryshkov@linaro.org>
+References: <20220324115536.2090818-1-dmitry.baryshkov@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 24 Mar 2022 15:12:06 -0500
+Message-ID: <CAE-0n519RudiM+BG722M_BKqb=9Qt1rPFH5eYE1=9Lut6H7o4A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display/msm: another fix for the dpu-qcm2290 example
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        Rob Herring <robh@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Mar 24, 2022 at 10:13 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+Quoting Dmitry Baryshkov (2022-03-24 04:55:36)
+> Make dpu-qcm2290 example really follow the defined schema:
+> - Drop qcom,mdss compatible. It's only used for MDP5 devices.
+> - Change display controller name to display-controller as specified in
+>   the yaml
 >
-> Add a basic device tree for the herobrine villager board.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Reported-by: Rob Herring <robh@kernel.org>
+> Cc: Loic Poulain <loic.poulain@linaro.org>
+> Fixes: 164f69d9d45a ("dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sc7280-herobrine-villager-r0.dts | 274 ++++++++++++++++++
->  2 files changed, 275 insertions(+)
 
-Question: how does this interact with the patch:
-
-https://lore.kernel.org/r/20220316172814.v1.3.Iad21bd53f3ac14956b8dbbf3825fc7ab29abdf97@changeid/
-
-Specifically, if that patch lands first don't you need to add a patch
-to turn on "pp3300_codec" ?
-
-I was also looking at whether we should be enabling the wf_cam
-regulators for villager. I believe that answer is "no", but _also_ I
-believe that we should be _disabling_ the uf_cam regulators for
-villager, right?
-
-
-> +                         "MOS_LAA_AS_EN",              /* 90 */
-> +                         "SD_CD_ODL",
-
-I was somewhat surprised that "SD_CD_ODL" was listed here since,
-diffing this with Herobrine, it appears that Villager doesn't have SD.
-I checked the schematics, though, and I can confirm that the GPIO is
-named this even if it just goes to a testpoint on the board. ;-) ...so
-I'm fine keeping it here.
-
--Doug
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
