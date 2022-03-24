@@ -2,145 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71BE34E68A7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E83084E68D7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:47:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344798AbiCXS3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 14:29:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33484 "EHLO
+        id S235900AbiCXSsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 14:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350138AbiCXS3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:29:37 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D984E22
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:28:01 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id lr4so2465312ejb.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:28:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+ygG+HH337q5v9sz6PqzrvY4iKgWE93C7S5i0O4f63g=;
-        b=oc8kTVbhwa6wJC/gXWdCu77hRiGAU4REtV7s9DWb3cpLca+yc8cuMzLzxSzy+v+GxU
-         U3bM2+ZjbgoFLF18bj3GlU9iSeUSayVsnczoCwX0VDcahl/YjTIEt0PxQsL03TSeC6Up
-         FabZWtlpAud5LOAXBRyg7zWRZcO2ow0PkmLss=
+        with ESMTP id S232392AbiCXSsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:48:46 -0400
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9364163D;
+        Thu, 24 Mar 2022 11:47:13 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id b19so7867581wrh.11;
+        Thu, 24 Mar 2022 11:47:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+ygG+HH337q5v9sz6PqzrvY4iKgWE93C7S5i0O4f63g=;
-        b=0OIB8D7Pv8UQi5ijwrPqk95vZS60lx0HXo1O+kZsee892YmFyVpUFvuSF9x/loWVIG
-         hBGfWAXVCNUGRBUWXbOsq5ekLL81YWBXOXBiIRo/Ogr1EWWxKug8tKi0yBmODqgwKEZk
-         rwQseIp2nYgtjLrJPbcjIq7/QfuGTgIt+oDrU2jKftO/T3EqiSa/FdyEiR1EKTJeib9y
-         3koSPiEHf8kaRh0oZHlVJTI38Ed/2qX2AZ+zmRTWC8bBnsYneZdKDm48/hw4kq45YVP9
-         kv6tcgz/UcBybP7k6TQXzpvRn3AjDb9sFJRc8d9kD7hCbCTiB07DNgwrbF5fURw1WQ68
-         TodQ==
-X-Gm-Message-State: AOAM533JP04tThiUtcSRpkJ24QxAp0fed5iTiNzTT99UMgmOsRcXE68n
-        gpHgcLs2j97pCVuvesiBeUCAGxWg/U93i+df
-X-Google-Smtp-Source: ABdhPJwgHaqGXMkexUwnp7A9XrY9ZkT8T4aNCSF+CowrvAef+YmjCpxqpYrLIj+8Sgp1cIavS9cLBw==
-X-Received: by 2002:a17:906:1153:b0:6df:d816:264a with SMTP id i19-20020a170906115300b006dfd816264amr6965498eja.546.1648146479497;
-        Thu, 24 Mar 2022 11:27:59 -0700 (PDT)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id jg15-20020a170907970f00b006e0466dcc42sm1455349ejc.134.2022.03.24.11.27.58
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KDJpjxd6iOA3qWDHcyReo9R0utRfpUnP8h7B7fwBi2g=;
+        b=3XuGON3DxzT6DBDjZK75nsDGsCeX+ECY+sdXsjA94aWIb2A+DGlQNnTf0Ye8i4Vjbr
+         0WF8mpGMqDFqxtdaB1la30Ca6KCbWzDMn9F9IKksddiQzvUdU22azYJm+IlClJbLAJbf
+         2/ZS5wRFgvCHAHPmb/AeXLyQ2J53Pbo7PcMOckCYfOg7MsOaRJMuZsJVuUkv6rudRX2q
+         WIuddjng85TaS2/tKgne6WPLFqvgcYPTySW8oQi9zNExo43XKQ9b8K1Sw/pRDh0T08v7
+         vr2NRDsRW1gcmvjN8QJBi3Hu/N5LqrxzMPyYqWc4WVitCzPyvWXGQS9rxaHUNqkFYGDE
+         3K3Q==
+X-Gm-Message-State: AOAM532eC/jr8/cSXbGvh6EBusMvLl5i9y43CrvQvCC+w3UM+wj0YLVC
+        /2de2OOog0ybO/JBNEk7dJlMUinNlsAG8A==
+X-Google-Smtp-Source: ABdhPJyosxIuUQaMs6KYbGUBTrKWWFzdvtClypQ8lyIFfEwbQZ22wFQ5SU62O0nK9gFjmopcNxDwPA==
+X-Received: by 2002:a5d:424d:0:b0:204:7fc:d6c6 with SMTP id s13-20020a5d424d000000b0020407fcd6c6mr5601658wrr.291.1648147632374;
+        Thu, 24 Mar 2022 11:47:12 -0700 (PDT)
+Received: from [192.168.0.158] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.googlemail.com with ESMTPSA id bj26-20020a0560001e1a00b0020597757ebcsm2186322wrb.7.2022.03.24.11.47.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 11:27:59 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id p26-20020a05600c1d9a00b0038ccbff1951so1781227wms.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:27:58 -0700 (PDT)
-X-Received: by 2002:a05:600c:4f10:b0:38c:ae36:d305 with SMTP id
- l16-20020a05600c4f1000b0038cae36d305mr15523519wmq.34.1648146478374; Thu, 24
- Mar 2022 11:27:58 -0700 (PDT)
+        Thu, 24 Mar 2022 11:47:11 -0700 (PDT)
+Message-ID: <fdf37f73-6b7a-a96d-6a42-35d870c96f35@kernel.org>
+Date:   Thu, 24 Mar 2022 19:47:10 +0100
 MIME-Version: 1.0
-References: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
- <20220324111335.2.I816014b6c62da5a33af5021f3cc35cea66552c00@changeid>
-In-Reply-To: <20220324111335.2.I816014b6c62da5a33af5021f3cc35cea66552c00@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 24 Mar 2022 11:27:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X_a9aU0ZvXg1AkGS5j1oKDJmPdZt0Hs22eEcWWczTe_A@mail.gmail.com>
-Message-ID: <CAD=FV=X_a9aU0ZvXg1AkGS5j1oKDJmPdZt0Hs22eEcWWczTe_A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/panel-edp: Add AUO B133UAN01
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: bcm: bcm2835-vchiq: Add support
+ for bcm2711
+Content-Language: en-US
+To:     Adrien Thierry <athierry@redhat.com>, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Gaston Gonzalez <gascoar@gmail.com>,
+        Ojaswin Mujoo <ojaswin98@gmail.com>,
+        linux-staging@lists.linux.dev
+References: <20220324172647.167617-1-athierry@redhat.com>
+ <20220324172647.167617-2-athierry@redhat.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220324172647.167617-2-athierry@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Mar 24, 2022 at 11:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Add support for the AUO B133UAN01 13.3" WUXGA panel.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+On 24/03/2022 18:26, Adrien Thierry wrote:
+> Add a new compatible string for BCM2711. This is the chip used on the
+> Raspberry Pi 4.
+> 
+> Signed-off-by: Adrien Thierry <athierry@redhat.com>
 > ---
-> output of edid-decode:
->
->   Block 0, Base EDID:
->     EDID Structure Version & Revision: 1.4
->     Vendor & Product Identification:
->       Manufacturer: AUO
->       Model: 34196
->       Made in: 2020
->     Basic Display Parameters & Features:
->       Digital display
->       Bits per primary color channel: 8
->       DisplayPort interface
->       Maximum image size: 29 cm x 18 cm
->       Gamma: 2.20
->       Supported color formats: RGB 4:4:4
->       First detailed timing includes the native pixel format and preferred refresh rate
->     Color Characteristics:
->       Red  : 0.6513, 0.3271
->       Green: 0.2900, 0.6279
->       Blue : 0.1503, 0.0517
->       White: 0.3134, 0.3291
->     Established Timings I & II: none
->     Standard Timings: none
->     Detailed Timing Descriptors:
->       DTD 1:  1920x1200   60.026 Hz   8:5    74.192 kHz 156.100 MHz (286 mm x 178 mm)
->                    Hfront   16 Hsync  16 Hback 152 Hpol N
->                    Vfront    3 Vsync  14 Vback  19 Vpol N
->       Manufacturer-Specified Display Descriptor (0x0f): 00 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 20 '............... '
->       Alphanumeric Data String: 'AUO'
->       Alphanumeric Data String: 'B133UAN01.0 '
->
->  drivers/gpu/drm/panel/panel-edp.c | 32 +++++++++++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
+> Changes since v1:
+> - Removed duplicate compatible string for bcm2711
+> 
+>  .../devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml      | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+> index e04439b3355b..9cb957facae0 100644
+> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+> @@ -27,6 +27,11 @@ properties:
+>                - brcm,bcm2836-vchiq
+>            - const: brcm,bcm2835-vchiq
+>  
+> +      - description: BCM2711 based boards
+> +        items:
+> +          - enum:
+> +              - brcm,bcm2711-vchiq
 
-I can review this patch and it can be landed if you really need it,
-but I'd prefer not to. Instead I'd rather see the panel added to
-_just_ the "edp_panels" structure. That maps the panel ID to the
-delays. If we do it that way:
-
-1. We don't need the binding.
-
-2. We don't need to hardcode the mode in this file.
-
-3. We support second sourcing the panel.
-
-4. We simplify our device tree files.
+This oneOf here - just to add description which is copy-paste of
+compatible - does not make sense. It should be just enum with
+compatibles. At least for 2711 and 2835 (and put them in alphabetical
+order).
 
 
-Let me know if we can just go that way. If we really have a reason to
-support the old hardcoded mode we can land something like this but I'd
-rather avoid it if possible.
-
-Also: note that even if we land this, adding the entry to the
-"edp_panels" structure would help future-proof us a bit.
-
--Doug
+Best regards,
+Krzysztof
