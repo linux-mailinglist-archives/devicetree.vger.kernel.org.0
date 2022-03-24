@@ -2,69 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E43F4E67AB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 982264E67B5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:23:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352205AbiCXRX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 13:23:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58288 "EHLO
+        id S239137AbiCXRYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 13:24:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243445AbiCXRX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:23:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AE2996B8;
-        Thu, 24 Mar 2022 10:21:54 -0700 (PDT)
+        with ESMTP id S1352237AbiCXRYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:24:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B84F71CB20;
+        Thu, 24 Mar 2022 10:23:13 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 003A9619AC;
-        Thu, 24 Mar 2022 17:21:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607D5C340EC;
-        Thu, 24 Mar 2022 17:21:53 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7406FB82335;
+        Thu, 24 Mar 2022 17:23:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7135C340EC;
+        Thu, 24 Mar 2022 17:23:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648142513;
-        bh=xLzfzYThBn01lrwpvVJEv2Gb/9OdefdCKN7vc1aeUEw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bv1u1/1it7BaXwJku7/IYXiuVhgsiXBhQa4EgtACA5qnP77ziBSr3FZu1eJWeFEGs
-         GjSaKFzuTC0XHywiUxlXa2LJEj/Sv3pWxlMSS9uXsLIKNG7cIvqB1DxZSgA8/tf1rg
-         iujsDrtoqMBoPErwsB2IzuVfdIlNVHcVnQn1fTR2Rq9X9rCN4fk0lTTYKFAWcpknWr
-         R1gwvpZMZgOiQ5hDiUVzcP9C64USoR9ACc4ro1CCeCT7yrwMYKiG+ti4t2vx/ZPuZH
-         yVwzwE6KrGqVYN42yDBXYkPpZ1C4BU+9KNkIrr3Yh58o8ZVW99f/ofvA3rOECDmDaa
-         mJ1BwG/AzO8fw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nXR9j-00GlL9-5w; Thu, 24 Mar 2022 17:21:51 +0000
-Date:   Thu, 24 Mar 2022 17:21:50 +0000
-Message-ID: <87lewz5kr5.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+        s=k20201202; t=1648142591;
+        bh=Ii6N9yX0cfvtlWGYsRFUlxpmnU5DBEOXCXBEVeUK1m4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dkUjRBS0vQTUg1Sz1AEMShGyKGTmbunTXyYN4gS3PEI7v7chIhQlEh4j9L7nEnwBW
+         EKYR8C3DHrHaONiYk/yFDenQDWCxLA6w24pOc5ybAZyPHJ3cnvNa0IYihNl7omVObg
+         8cNRIAidGUVpmu9Qbws+svgUr0wbTc9JhBF6cI0PdxAGBm1gk+tBjOKZ4EFAqxKHhB
+         Yj0QTkVK4AFTmN9JueLDEmjI44hjfzbBEEJ2aMip1SWLzb6XfWlfaHVh5jQAo2UI9x
+         Tzvhc1zpzZeJTEnKATnOiybc7/c9hI5aenkYyFKvCcuHGylL5/fJHHQFhne2tJgG/l
+         iW+VnVEFeutLQ==
+Date:   Thu, 24 Mar 2022 17:23:05 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     David Collins <quic_collinsd@quicinc.com>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        Biwen Li <biwen.li@nxp.com>, "Z.Q. Hou" <zhiqiang.hou@nxp.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: Re: [RFC PATCH devicetree 00/10] Do something about ls-extirq interrupt-map breakage
-In-Reply-To: <20220324171041.t5yoocinj6gizcc7@skbuf>
-References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
-        <87ilvrk1r0.wl-maz@kernel.org>
-        <20211214095853.4emzycaxkuqr4tun@skbuf>
-        <87czlzjxmz.wl-maz@kernel.org>
-        <20220324171041.t5yoocinj6gizcc7@skbuf>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: vladimir.oltean@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com, biwen.li@nxp.com, zhiqiang.hou@nxp.com, kurt@linutronix.de, linux@rasmusvillemoes.dk
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Mike Tipton <quic_mdtipton@quicinc.com>
+Subject: Re: [PATCH v2 0/2] regulator: scmi: add support for registering SCMI
+ regulators by name
+Message-ID: <Yjyo+Xk0txZs4T/Z@sirena.org.uk>
+References: <cover.1647909090.git.quic_collinsd@quicinc.com>
+ <Yjm1wpcMZsZJJCuy@bogus>
+ <eb03037b-e7c2-ea23-0bdb-27924ed54fa7@quicinc.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="81Z0hAsjzpiu2TPf"
+Content-Disposition: inline
+In-Reply-To: <eb03037b-e7c2-ea23-0bdb-27924ed54fa7@quicinc.com>
+X-Cookie: Orders subject to approval.
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -75,91 +66,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Mar 2022 17:10:42 +0000,
-Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
-> 
-> Hello Marc,
-> 
-> On Tue, Dec 14, 2021 at 10:20:36AM +0000, Marc Zyngier wrote:
-> > On Tue, 14 Dec 2021 09:58:54 +0000,
-> > Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
-> > > 
-> > > Hi Marc (with a c),
-> > > 
-> > > I wish the firmware for these SoCs was smart enough to be compatible
-> > > with the bindings that are in the kernel and provide a blob that the
-> > > kernel could actually use. Some work has been started there and this is
-> > > work in progress. True, I don't know what other OF-based firmware some
-> > > other customers may use, but I trust it isn't a lot more advanced than
-> > > what U-Boot currently has :)
-> > > 
-> > > Also, the machines may have been in the wild for years, but the
-> > > ls-extirq driver was added in November 2019. So not with the
-> > > introduction of the SoC device trees themselves. That isn't so long ago.
-> > > 
-> > > As for compatibility between old kernel and new DT: I guess you'll hear
-> > > various opinions on this one.
-> > > https://www.spinics.net/lists/linux-mips/msg07778.html
-> > > 
-> > > | > Are we okay with the new device tree blobs breaking the old kernel?
-> > > |
-> > > | From my point of view, newer device trees are not required to work on
-> > > | older kernel, this would impose an unreasonable limitation and the use
-> > > | case is very limited.
-> > 
-> > My views are on the opposite side. DT is an ABI, full stop. If you
-> > change something, you *must* guarantee forward *and* backward
-> > compatibility. That's because:
-> > 
-> > - you don't control how updatable the firmware is
-> > 
-> > - people may need to revert to other versions of the kernel because
-> >   the new one is broken
-> > 
-> > - there are plenty of DT users beyond Linux, and we are not creating
-> >   bindings for Linux only.
-> > 
-> > You may disagree with this, but for the subsystems I maintain, this is
-> > the rule I intent to stick to.
-> > 
-> > 	M.
-> > 
-> > -- 
-> > Without deviation from the norm, progress is not possible.
-> 
-> I was just debugging an interesting issue with an old kernel not working
-> with a new DT blob, and after figuring out what the problem was (is),
-> I remembered this message and I'm curious what you have to say about it.
-> 
-> I have this DT layout:
-> 
-> 	ethernet-phy@1 {
-> 		reg = <0x1>;
-> 		interrupts-extended = <&extirq 2 IRQ_TYPE_LEVEL_LOW>;
-> 	};
-> 
-> 	extirq: interrupt-controller@1ac {
-> 		compatible = "fsl,ls1021a-extirq";
-> 		<bla bla>
-> 	};
-> 
-> I booted the new DT blob (which has "interrupts-extended") on a kernel
-> where the ls-extirq driver did not exist. This had the result of
-> of_mdiobus_phy_device_register() -> of_irq_get() returning -EPROBE_DEFER
-> forever and ever. So the PHY driver in turn never probed, and Ethernet
-> was broken. So I had to delete the interrupts OF property to let the PHY
-> at least work in poll mode.
-> 
-> What went wrong here in your opinion?
 
-I'm not sure what you expect me to say here. You have a device that
-references an interrupt. The DT seems sound (I don't get why you think
-"interrupt-extended" is a problem here, but hey...).
+--81Z0hAsjzpiu2TPf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-If your kernel doesn't have a driver for the interrupt controller
-referenced here, what do you expect, other than things not working?
+On Tue, Mar 22, 2022 at 06:12:33PM -0700, David Collins wrote:
 
-	M.
+> Another problem is that, as with regulators, ID numbers could
+> unknowingly get out of sync between the platform and the agent.  Using
+> clock domain names for referencing fixes both issues.  This can be
 
--- 
-Without deviation from the norm, progress is not possible.
+This is just saying that the hard coded IDs that the firmware and kernel
+use to communicate can get out of sync which is true no matter if those
+IDs are strings or if they're numerical, either way it's an ABI which
+can be broken.
+
+> > If the IDs are correct like the names, it is guaranteed. I see this
+> > ID vs name is more for some maintenance convenience because somewhere
+> > something else needs to changes or moved away from existing way of
+> > maintenance.
+
+> How do you quantify an ID number to physical regulator mapping as
+> "correct"?  What happens if the mapping must be changed on the SCMI
+> platform side (e.g. a PMIC was added or removed, or the order that
+> regulators are listed in needs to change)?  If the SCMI agent is blindly
+
+The whole point with the numbers being an ABI is that things must never
+be renumbered, just as if names are used the names can't be changed.  If
+the numbering is changing that just sounds like bugs on the platform
+side.  There's an implicit assumption in what you've written above that
+implementation details of the firmware should affect the IDs presented
+through SCMI which simply shouldn't be true, and indeed if the firmware
+can assign fixed strings it can just as well assign fixed numbers.
+
+--81Z0hAsjzpiu2TPf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmI8qPgACgkQJNaLcl1U
+h9ADUgf9F+Vf4g7qBC+8QlTTVuL2G2gfodUp02z5tMeeey6bl+LR16pl2v9gT7hB
+p2CJjMjVg8NZYrrhb7BwEoibIRppAy02Ehy+FRZNXpLUNtrZjskye0LqYJW2nVnv
+r/XEam7moUDXHEhQWOGz8pY8PTTE66kMytsL4tWpK6ERwyHonh7kEuLRdY5s0JLT
+haW0CXliardrk2R8uh3+Zk40wyq2NW+AcGrBarTE9EaJVVjg2WcPWgAnCeBXgQxw
+fJ01Gyz3VeWZdk0XGD3+b8DejXOsi5ltsGRDbzZd6cusY76qGUL+XzyQMJLnYwzX
+J/ksIIO1L4uR2q+DYs9zCnueo1ahmQ==
+=u7Hy
+-----END PGP SIGNATURE-----
+
+--81Z0hAsjzpiu2TPf--
