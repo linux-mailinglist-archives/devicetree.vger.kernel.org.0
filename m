@@ -2,86 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEEC4E6326
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1BF64E6323
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:21:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348741AbiCXMVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 08:21:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52956 "EHLO
+        id S1350011AbiCXMVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 08:21:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350104AbiCXMUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:20:51 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E765A381AF;
-        Thu, 24 Mar 2022 05:19:10 -0700 (PDT)
-X-UUID: 6258cb461a494012984001847761f29c-20220324
-X-UUID: 6258cb461a494012984001847761f29c-20220324
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1483301356; Thu, 24 Mar 2022 20:19:06 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 24 Mar 2022 20:19:05 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Mar
- 2022 20:19:04 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 24 Mar 2022 20:19:04 +0800
-Message-ID: <77fe195475c67b092a0bd8b6b6515ee64938ea4f.camel@mediatek.com>
-Subject: Re: [PATCH 3/3] devfreq: mediatek: add platform data to support
- mt8186
-From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fan.chen@mediatek.com>,
-        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
-        <Allen-yy.Lin@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>,
-        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
-Date:   Thu, 24 Mar 2022 20:19:04 +0800
-In-Reply-To: <7f99b453-5510-d7f2-3d9b-b3ac3415fa62@canonical.com>
-References: <20220307122513.11822-1-jia-wei.chang@mediatek.com>
-         <20220307122513.11822-4-jia-wei.chang@mediatek.com>
-         <7f99b453-5510-d7f2-3d9b-b3ac3415fa62@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1346471AbiCXMVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:21:44 -0400
+Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB7B5F4DE
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 05:20:11 -0700 (PDT)
+Received: by mail-il1-x12e.google.com with SMTP id i1so3058322ila.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 05:20:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=icIOqRZ9bKWiRf4O3Fvj/VAX8Jm8HdX0IDdq+nzuY8o=;
+        b=i+Rg6J4nH7/NVBAVu0p4W67MTR/3YB6a74kP7+riUzXosJm4QibJSK9u8C8TKchmJy
+         gorf9GIrt1RwzNyePaiJDK5ngSIFmWDL5hwrlu/sXhwasQ+Ul90ph5Lsa8c7ki59puYl
+         svnDr9ecZ3ra0Hj5PoyS157YaN5528DreFx2dowXF8lv32JtutvvjmxAikNK7pOALGSC
+         PtWx18rkbVpUrrTaGG5SoO4QTcnDRcw4JqqK50gVdLd6ZZ0iG6B2lOoyusrWHBjtcXxF
+         CjFtRXu8HnB9ifswM1Han30XS+68ezcfICSI51jf5eN8O0ktf2ouWMSKD7J7+aRo10UU
+         Lj4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=icIOqRZ9bKWiRf4O3Fvj/VAX8Jm8HdX0IDdq+nzuY8o=;
+        b=g9M/sGCAOmOhROZ4ow8paGbDjE/46OWIc9LlI1m69t3PAnragqUBDEPBkL6d6d88X0
+         Bg2SnflDGxUvIWdYltW0utWW9p6fSffO3SdJfD0MXy7DMq80a2U6aj8E5/Baf99pPBxc
+         tTQF9878VYjcJiQukAfPIvgilIt7diVq4mFRYtzCqWfHsy4Nxdei0gc57wYgzFtJpfql
+         s4N8Fgl1Ht7dZUpSu1ryYrLBr1Xi+HBf1z3tCpecdZlz5NDT01KnLk0YaHCaQgS6Vpk4
+         GTKv4dXnKc0jIkeVuoBn+u9rjmSEJvmCB/tY2M3U4QKwQy77ULKNd9/W0/PAR05jpwyV
+         DJJQ==
+X-Gm-Message-State: AOAM530GuK69coFnQE9NWrnNn+NA+C9vWeoEZZOcGP646mFmI429z/oO
+        IxBvaUZI6YatwgM773Zcwn3RA7SuYF2VfBoF5en3Rw==
+X-Google-Smtp-Source: ABdhPJwuOL8QOaMy/XGlFFZGWo2sV44ld3xTySsm/sr+vDmfZu4DYlJaYI4TsfdU6SGThyioHKSBTzGlnV+R8k5tfbU=
+X-Received: by 2002:a92:c24f:0:b0:2c8:639c:2181 with SMTP id
+ k15-20020a92c24f000000b002c8639c2181mr2591736ilo.40.1648124411176; Thu, 24
+ Mar 2022 05:20:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20210928170919.691845-1-robert.marko@sartura.hr>
+In-Reply-To: <20210928170919.691845-1-robert.marko@sartura.hr>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Thu, 24 Mar 2022 13:20:00 +0100
+Message-ID: <CA+HBbNEDCZgBPs8tVYzcvR3SV1OONSemFjGV75tyiQwLMaMeiw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] arm64: dts: marvell: espressobin-ultra: fix
+ SPI-NOR config
+To:     Andrew Lunn <andrew@lunn.ch>, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-03-07 at 22:52 +0100, Krzysztof Kozlowski wrote:
-> On 07/03/2022 13:25, Tim Chang wrote:
-> > add specific platform data to support mt8186.
-> > 
-> 
-> You just added this driver in patch 2. No need to split such actions
-> because this is initial submission, so it can support two devices.
-> Squash with previous.
+On Tue, Sep 28, 2021 at 7:09 PM Robert Marko <robert.marko@sartura.hr> wrote:
+>
+> SPI config for the SPI-NOR is incorrect and completely breaking
+> reading/writing to the onboard SPI-NOR.
+>
+> SPI-NOR is connected in the single(x1) IO mode and not in the quad
+> (x4) mode.
+> Also, there is no need to override the max frequency from the DTSI
+> as the mx25u3235f that is used supports 104Mhz.
+>
+> Fixes: 3404fe15a60f ("arm64: dts: marvell: add DT for ESPRESSObin-Ultra")
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+> Changes in v3:
+> * Add Fixes tag
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 4 ----
+>  1 file changed, 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> index c5eb3604dd5b..610ff6f385c7 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> @@ -71,10 +71,6 @@ &sdhci1 {
+>
+>  &spi0 {
+>         flash@0 {
+> -               spi-max-frequency = <108000000>;
+> -               spi-rx-bus-width = <4>;
+> -               spi-tx-bus-width = <4>;
+> -
+>                 partitions {
+>                         compatible = "fixed-partitions";
+>                         #address-cells = <1>;
+> --
+> 2.31.1
+>
 
-Sure, I will squash this commit with previous one.
+Hi,
 
-> 
-> Best regards,
-> Krzysztof
+It would be great to get a review of the series or at least of this patch,
+otherwise, the SPI-NOR is unusable.
 
+Regards,
+Robert
+
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
