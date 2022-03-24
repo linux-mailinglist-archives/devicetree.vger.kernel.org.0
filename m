@@ -2,145 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D2A4E681C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:53:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C0164E685B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:06:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243869AbiCXRz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 13:55:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56796 "EHLO
+        id S236126AbiCXSI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 14:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234287AbiCXRz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:55:27 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4416D849;
-        Thu, 24 Mar 2022 10:53:54 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id p189so3198600wmp.3;
-        Thu, 24 Mar 2022 10:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TfVnUyN/hXuaNJUfYCszqrcV/Y41SovVpMRK9OnsasU=;
-        b=IfV7WXPL3p6XHd58K5LzFWiySP6JIds58NsWE+OjifmBanhApG5VNoHIjRg3EiZ6oE
-         q55n0/UVLf6fVQSeRo+NALJSfJCMDDf2fJKooTmVEYiOwQZNVxNl7WiQhH2ehRTmniD2
-         KDb1fot0vbkdM/AH8tLvzyGI5hoGS2fOg9evQ3RbcQXRUdYog3vC88TdYOKRw1719H0A
-         qWBde+evig3AheBAc7oNnF833Cx6d98Zp+j73DzmdXgGooo2GMf9RUUDKznvIpB4uz+O
-         BsjLnIfjxhY71YXJYFtdGKhpXQu8k1oY7pIrHvs5zTPMrInUhcEveJLVOwSKQqm8qqO+
-         eVEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=TfVnUyN/hXuaNJUfYCszqrcV/Y41SovVpMRK9OnsasU=;
-        b=fnAkc+zXKaCy1vZ6WUDf5ImGDuZoznMrqAbdcyQeo/caNCe+nekJaCYUC5fLgqsDNg
-         a5fwEB57Yt07U1kGsnkPvw2PENMpM5ccLkB4+dQM5Ygyt5TImtWgGRM0k8sR16nzD/yl
-         7bCHMKZO5jyYDjKTlisU43zuS1c3FW5JRCT1kybFy/+GDD9Vsp9wxky2fEJs9ndguOVi
-         R/V1xtEMHDkpbIOL+tDwUAkFa8XvINTzGo1BgJE6czNfBnxy+v7KsdrxUsdv9lTv3wGF
-         i2wuulc9ZBf5zFU4Sj54Y1yrqjM8mcA2Ec2EGOzh2xFPPCT875Js8RRCANojOALRGmAy
-         bknA==
-X-Gm-Message-State: AOAM53324AThyK28QSAzn+NcInvPoId4a2P3bXDrKx4zBaFk3N4iMYHO
-        mvaimNltwu2x4EM4j8ttnNk=
-X-Google-Smtp-Source: ABdhPJzFPTRXE56MSVLFfNGawg1yKq8+gZO3tliSVtZMhxzNCWb901NYb1XcroBFlWZ8yFguR6GipQ==
-X-Received: by 2002:a05:600c:3b02:b0:38c:9148:70dc with SMTP id m2-20020a05600c3b0200b0038c914870dcmr5811612wms.104.1648144433529;
-        Thu, 24 Mar 2022 10:53:53 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id v20-20020a7bcb54000000b0037fa63db8aasm6803998wmj.5.2022.03.24.10.53.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 10:53:53 -0700 (PDT)
-Message-ID: <90324c6f-e3ef-5b18-8779-8a11ca67039b@gmail.com>
-Date:   Thu, 24 Mar 2022 18:53:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 12/22] arm64: dts: mt8192: Add mmc device nodes
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        with ESMTP id S1352487AbiCXSI2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:08:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1A8B6E65;
+        Thu, 24 Mar 2022 11:06:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B19C61A82;
+        Thu, 24 Mar 2022 18:06:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D995C340EC;
+        Thu, 24 Mar 2022 18:06:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648145214;
+        bh=VB34RmWkNKi7pMneHjijxQjFaKafnbqhGLB3g+XF1nM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=EYj5g7//W378H5/85DEIu7OgQm27CNcQIL6hOq7JiWtZlStNLJmfAQJeduvBnU8nK
+         P9Fb0sCeyWh8cJ4fTl/4ytKLJuTBB4Jr4jR0/bOdqaSLuLLIn1QR/bP66bdCCOM9g8
+         9Qau/yjeD3YGD/WD8mxFRPeoYE7ZWTaPSz19qBUSIApgc9egmNPhImK6CMClbOBzMk
+         RtKI29OVFTYslExk3Ga2EhXxROFJrVjd5Xapdad7MRzi3qK/Pd7BgelaMCCXN7czAn
+         n83+EXSTUiz8mb6gGjrEdjyYaFQa0fyPeFEuLZGjID+KJQoY8YyxFai4A7Be26NqSF
+         r0aJJ+jOIjKZg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nXRrI-00GltS-5d; Thu, 24 Mar 2022 18:06:52 +0000
+Date:   Thu, 24 Mar 2022 18:06:51 +0000
+Message-ID: <87k0cj5io4.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-13-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220318144534.17996-13-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Biwen Li <biwen.li@nxp.com>, "Z.Q. Hou" <zhiqiang.hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [RFC PATCH devicetree 00/10] Do something about ls-extirq interrupt-map breakage
+In-Reply-To: <20220324173405.nusk6247ouvek46y@skbuf>
+References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
+        <87ilvrk1r0.wl-maz@kernel.org>
+        <20211214095853.4emzycaxkuqr4tun@skbuf>
+        <87czlzjxmz.wl-maz@kernel.org>
+        <20220324171041.t5yoocinj6gizcc7@skbuf>
+        <87lewz5kr5.wl-maz@kernel.org>
+        <20220324173405.nusk6247ouvek46y@skbuf>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: vladimir.oltean@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com, biwen.li@nxp.com, zhiqiang.hou@nxp.com, kurt@linutronix.de, linux@rasmusvillemoes.dk
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add mmc nodes for mt8192 SoC.
+On Thu, 24 Mar 2022 17:34:06 +0000,
+Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 34 +++++++++++++++++++++---
->   1 file changed, 30 insertions(+), 4 deletions(-)
+> On Thu, Mar 24, 2022 at 05:21:50PM +0000, Marc Zyngier wrote:
+> > On Thu, 24 Mar 2022 17:10:42 +0000,
+> > Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> > > 
+> > > Hello Marc,
+> > > 
+> > > On Tue, Dec 14, 2021 at 10:20:36AM +0000, Marc Zyngier wrote:
+> > > > On Tue, 14 Dec 2021 09:58:54 +0000,
+> > > > Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> > > > > 
+> > > > > Hi Marc (with a c),
+> > > > > 
+> > > > > I wish the firmware for these SoCs was smart enough to be compatible
+> > > > > with the bindings that are in the kernel and provide a blob that the
+> > > > > kernel could actually use. Some work has been started there and this is
+> > > > > work in progress. True, I don't know what other OF-based firmware some
+> > > > > other customers may use, but I trust it isn't a lot more advanced than
+> > > > > what U-Boot currently has :)
+> > > > > 
+> > > > > Also, the machines may have been in the wild for years, but the
+> > > > > ls-extirq driver was added in November 2019. So not with the
+> > > > > introduction of the SoC device trees themselves. That isn't so long ago.
+> > > > > 
+> > > > > As for compatibility between old kernel and new DT: I guess you'll hear
+> > > > > various opinions on this one.
+> > > > > https://www.spinics.net/lists/linux-mips/msg07778.html
+> > > > > 
+> > > > > | > Are we okay with the new device tree blobs breaking the old kernel?
+> > > > > |
+> > > > > | From my point of view, newer device trees are not required to work on
+> > > > > | older kernel, this would impose an unreasonable limitation and the use
+> > > > > | case is very limited.
+> > > > 
+> > > > My views are on the opposite side. DT is an ABI, full stop. If you
+> > > > change something, you *must* guarantee forward *and* backward
+> > > > compatibility. That's because:
+> > > > 
+> > > > - you don't control how updatable the firmware is
+> > > > 
+> > > > - people may need to revert to other versions of the kernel because
+> > > >   the new one is broken
+> > > > 
+> > > > - there are plenty of DT users beyond Linux, and we are not creating
+> > > >   bindings for Linux only.
+> > > > 
+> > > > You may disagree with this, but for the subsystems I maintain, this is
+> > > > the rule I intent to stick to.
+> > > > 
+> > > > 	M.
+> > > > 
+> > > > -- 
+> > > > Without deviation from the norm, progress is not possible.
+> > > 
+> > > I was just debugging an interesting issue with an old kernel not working
+> > > with a new DT blob, and after figuring out what the problem was (is),
+> > > I remembered this message and I'm curious what you have to say about it.
+> > > 
+> > > I have this DT layout:
+> > > 
+> > > 	ethernet-phy@1 {
+> > > 		reg = <0x1>;
+> > > 		interrupts-extended = <&extirq 2 IRQ_TYPE_LEVEL_LOW>;
+> > > 	};
+> > > 
+> > > 	extirq: interrupt-controller@1ac {
+> > > 		compatible = "fsl,ls1021a-extirq";
+> > > 		<bla bla>
+> > > 	};
+> > > 
+> > > I booted the new DT blob (which has "interrupts-extended") on a kernel
+> > > where the ls-extirq driver did not exist. This had the result of
+> > > of_mdiobus_phy_device_register() -> of_irq_get() returning -EPROBE_DEFER
+> > > forever and ever. So the PHY driver in turn never probed, and Ethernet
+> > > was broken. So I had to delete the interrupts OF property to let the PHY
+> > > at least work in poll mode.
+> > > 
+> > > What went wrong here in your opinion?
+> > 
+> > I'm not sure what you expect me to say here. You have a device that
+> > references an interrupt. The DT seems sound (I don't get why you think
+> > "interrupt-extended" is a problem here, but hey...).
+> > 
+> > If your kernel doesn't have a driver for the interrupt controller
+> > referenced here, what do you expect, other than things not working?
+> > 
+> > 	M.
+> > 
+> > -- 
+> > Without deviation from the norm, progress is not possible.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 6220d6962f58..2648f2847993 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1150,10 +1150,36 @@
->   			#clock-cells = <1>;
->   		};
->   
-> -		msdc: clock-controller@11f60000 {
-> -			compatible = "mediatek,mt8192-msdc";
-> -			reg = <0 0x11f60000 0 0x1000>;
-> -			#clock-cells = <1>;
+> I was just raising this as what I thought would be a simple and
+> non-controversial counter example to your remark "If you change something,
+> you *must* guarantee forward *and* backward compatibility."
 
-We don't need the msdc_axi_wrap clock and that's why we delete the node, 
-correct? In that case we could only disable the node, as DTS should describe the 
-HW as it is. Please also add a line in the commit message explaining that.
+If you change something *in the binding*, which was implicit in the
+context, and makes no sense out of context.
 
-Regards,
-Matthias
+> 
+> Practically speaking, what has happened is that the board DT appeared in
+> kernel N, the ls-extirq driver in kernel N+1, and the DT was updated to
+> enable PHY interrupts in kernel N+2. That DT update practically broke
+> kernel N from running correctly on DTs taken from kernel N+2 onwards.
+> This is the observable behavior, we can find as many justifications for
+> it as we wish.
 
-> +		mmc0: mmc@11f60000 {
-> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
-> +			reg = <0 0x11f60000 0 0x1000>, <0 0x11f50000 0 0x1000>;
-> +			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>,
-> +				 <&msdc_top CLK_MSDC_TOP_H_MST_0P>,
-> +				 <&msdc_top CLK_MSDC_TOP_SRC_0P>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC0>,
-> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
-> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
-> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
-> +				      "pclk_cg", "axi_cg", "ahb_cg";
-> +			status = "disabled";
-> +		};
-> +
-> +		mmc1: mmc@11f70000 {
-> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
-> +			reg = <0 0x11f70000 0 0x1000>, <0 0x11c70000 0 0x1000>;
-> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>,
-> +				 <&msdc_top CLK_MSDC_TOP_H_MST_1P>,
-> +				 <&msdc_top CLK_MSDC_TOP_SRC_1P>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
-> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC1>,
-> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
-> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
-> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
-> +				      "pclk_cg", "axi_cg", "ahb_cg";
-> +			status = "disabled";
->   		};
->   
->   		mfgcfg: clock-controller@13fbf000 {
+Well, you can also argue that the DT was broken at N and N+1 for not
+describing the HW correctly and completely. No binding has changed
+here. Your DT was incomplete, and someone fixed it for you.
+
+We can argue this things forever and a half. I've laid down the ground
+rules for the stuff I maintain. If you're not happy with this, you can
+fix it by either removing the NXP hardware from the tree, or taking
+over from me as the irqchip maintainer. I'd be perfectly happy with
+any (and even more, with both) of these outcomes.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
