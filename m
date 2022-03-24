@@ -2,94 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9685C4E64EB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 15:18:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 759834E6506
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 15:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350836AbiCXOTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 10:19:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55430 "EHLO
+        id S1350770AbiCXOZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 10:25:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350818AbiCXOTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 10:19:45 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B53413DD5;
-        Thu, 24 Mar 2022 07:18:13 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id v19-20020a056820101300b0032488bb70f5so796303oor.5;
-        Thu, 24 Mar 2022 07:18:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=GawCp05khlhl7cBgGdUQSxdDX5kHWZ23Unif+NFb2E8=;
-        b=uSU7SaPpc57OK5eRwSRa5AWGQ6OTGB2XSRXrlbH0NhzQsylA3ArsRpAzKzWJt/XNyv
-         FolpoHBgh8OcWtKznI4MMAYtaEO502U8lZddy6ikEhByDliA7Fd/e1KjApVYl40GMpIU
-         AeJLNxdqfjSIjOsknhZoIY1MNuKp2tgaAug5bxKMugbbWzU7pMgILj7ib/rnZ+GmGwIS
-         LrQYEpICG1xs+EcpuLQuhgyahYZe5JSGXv9szPGQtRtTRGKGkg7+H0MkNjbQdJs4O5l8
-         tau9pUMQeOWxrv30d1AxKxPbZvk9aUZXVOnOpu9mOOPjRhckKU0dM88QWmbGER1t++wo
-         0Nxg==
-X-Gm-Message-State: AOAM531FZN72GR0g/npjnQGfgoDMkSJvSyb5COkioCT/H6LQcapwP6wL
-        lRZBtEMeoyeE5IMRcd861w==
-X-Google-Smtp-Source: ABdhPJydWUBur9AjgFjFMbYu94DYLhx4H4z8qP983Tnwv9mK3HmPPALKdMbgHx4/yMucmO12mRUMMQ==
-X-Received: by 2002:a4a:dd15:0:b0:320:da3c:c342 with SMTP id m21-20020a4add15000000b00320da3cc342mr2033346oou.7.1648131492569;
-        Thu, 24 Mar 2022 07:18:12 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r129-20020acac187000000b002ef358c6e0esm1407558oif.49.2022.03.24.07.18.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Mar 2022 07:18:11 -0700 (PDT)
-Received: (nullmailer pid 1995387 invoked by uid 1000);
-        Thu, 24 Mar 2022 14:18:08 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     pabeni@redhat.com, devicetree@vger.kernel.org,
-        qiangqing.zhang@nxp.com, wg@grandegger.com, krzk+dt@kernel.org,
-        festevam@gmail.com, davem@davemloft.net, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org, linux-can@vger.kernel.org,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        ulf.hansson@linaro.org, mkl@pengutronix.de,
-        Peng Fan <peng.fan@nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, robh+dt@kernel.org,
-        linux-mmc@vger.kernel.org, netdev@vger.kernel.org,
-        linux-imx@nxp.com
-In-Reply-To: <20220324042024.26813-5-peng.fan@oss.nxp.com>
-References: <20220324042024.26813-1-peng.fan@oss.nxp.com> <20220324042024.26813-5-peng.fan@oss.nxp.com>
-Subject: Re: [PATCH 4/4] dt-bindings: net: imx-dwmac: introduce nvmem property
-Date:   Thu, 24 Mar 2022 09:18:08 -0500
-Message-Id: <1648131488.621544.1995386.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S1350769AbiCXOZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 10:25:09 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469667938C
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 07:23:31 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 800833200FA9;
+        Thu, 24 Mar 2022 10:23:28 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 24 Mar 2022 10:23:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=BAtPvAjSsi0nB6PDOyaklBbscwTc5uTvowGLL4
+        pcVqw=; b=BBPaR+Fvvl+JvOzRjkvSf+DONBCzVF15WuJfF3HjSyk90cFy/UXVO2
+        xTHAP0aYWNGN/ptB/+fEfUG/bPBmDm3b6lDboJMMNHti6xhcKov31o5XcvkRLXxL
+        ev4lMR9KeOGw71UyTHVNKpUpurwKnb5ptBxAmzrGvVImSmQIHyCI0mhFuq7ulcRP
+        ErOpbAhJfLZK1+1R/6wLQNzgBkkcrKDx8Jz+EPWhtTIpT3FTzhiDNoVllzAHv5HH
+        nA4ByWKLGunvJVb6lNIPuhdGERnYRd0w/afJEFPybNZA3gFrU0KodAJKa9gnvTCm
+        zw0STCmKgIzfmB9/wP/lqGm8gXnzs6rw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=BAtPvAjSsi0nB6PDO
+        yaklBbscwTc5uTvowGLL4pcVqw=; b=NJL83sDtHTj9BSo+P1EjWsc/3b10qaxn4
+        P0M9dRPc5lT92dJQz0SwROKKIvTBmb8cSV2wB0uxpU0yfUp7pyUszQ5kU8JhVqGE
+        1xlljLYoIVxx8TR2w3ddZ5FLh5C04VU3jd5NaS2R0pVb4I68wgyRAiGQLU1/51+k
+        mwmwIGt+m3IZxY8Sn1xL5QaGJyq6kJrC4pnYBJrvBM0vI4Nqea7yTihIFrjXSfRV
+        /FhHjADI+0aPVJTgJ2P14z0xrxGA03NgtHsQw83OIy9ii5MxTgmAP3xSgLH09rh5
+        I4cPGhY51igCSqMhBYBPoBEbL8blrk4DVwIlwNI04EPmCF3GGrXSw==
+X-ME-Sender: <xms:3n48YgNB_ksH9apvykhRB4m7dVUdH2tE26DPSrt38ndKOPrrPEZVAA>
+    <xme:3n48Ym98ZJp_wxCL6n0xvadIRJuQzJuWF4IZwGBApTSiQ6NU8-sJ461uE_7K5b_nT
+    rWSpLFd6u-339F_tG4>
+X-ME-Received: <xmr:3n48YnQNSfQMMxrZrd7-DIBp1JqB6TMHcSyv7uAGXujOuALB9IJbVvUJcSohizubIi6vUXSGOjy0m43O_UUZtogLjQymsKsBGzbLJNE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudegledgheelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:3n48YoteBOlXOBDsaqF1OimX7k5Py5Wy-nh7ngRwUNxQ2TW9HsV5gg>
+    <xmx:3n48YofnNBLh9JlHSZNa-kaV55fZFwCZ-7OwElaUU1SodCwON1QnOQ>
+    <xmx:3n48Ys165EsiuH9LOEnpFzmHFr8ctiNgH8bpMDFxwXQYHd8RwzT3SA>
+    <xmx:4H48Yn-gmKPIcfhvTKVy9qVaGCyGOaQYLQdaNAjIY1F3Sd41fIm5ow>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 24 Mar 2022 10:23:26 -0400 (EDT)
+Date:   Thu, 24 Mar 2022 15:23:24 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Vasut <marex@denx.de>, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <20220324142324.monalktzzpypu74x@houat>
+References: <20220323154823.839469-1-maxime@cerno.tech>
+ <YjuFO45Gr1vmKxWG@pendragon.ideasonboard.com>
+ <20220324081819.niz4pdqu3j7n2ivh@houat>
+ <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kq735fu2dw67hzsc"
+Content-Disposition: inline
+In-Reply-To: <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Mar 2022 12:20:24 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> To i.MX8M Family variants, dwmac maybe fused out. Bootloader could use
-> this property to read out the fuse value and mark the node status
-> at runtime.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+--kq735fu2dw67hzsc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+On Thu, Mar 24, 2022 at 03:43:42PM +0200, Laurent Pinchart wrote:
+> On Thu, Mar 24, 2022 at 09:18:19AM +0100, Maxime Ripard wrote:
+> > On Wed, Mar 23, 2022 at 10:38:19PM +0200, Laurent Pinchart wrote:
+> > > Hi Maxime,
+> > >=20
+> > > (CC'ing Sakari)
+> > >=20
+> > > Thank you for the patch.
+> > >=20
+> > > On Wed, Mar 23, 2022 at 04:48:23PM +0100, Maxime Ripard wrote:
+> > > > MIPI-DSI devices, if they are controlled through the bus itself, ha=
+ve to
+> > > > be described as a child node of the controller they are attached to.
+> > > >=20
+> > > > Thus, there's no requirement on the controller having an OF-Graph o=
+utput
+> > > > port to model the data stream: it's assumed that it would go from t=
+he
+> > > > parent to the child.
+> > > >=20
+> > > > However, some bridges controlled through the DSI bus still require =
+an
+> > > > input OF-Graph port, thus requiring a controller with an OF-Graph o=
+utput
+> > > > port. This prevents those bridges from being used with the controll=
+ers
+> > > > that do not have one without any particular reason to.
+> > > >=20
+> > > > Let's drop that requirement.
+> > >=20
+> > > I'm sure this won't come as a surprise, I'm very much opposed to this
+> > > change, for two reasons.
+> > >=20
+> > > First, ports are part of the hardware, even if they're not connected.=
+ It
+> > > thus simplifies handling in drivers if they're always present.
+> > >=20
+> > > Then, and that's the most important reason, I think it's a mistake not
+> > > to model the DSI data connection using OF graph unconditionally, even
+> > > when the DSI sink device is also controlled through the DSI bus (using
+> > > DCS) and is in that case a child of the DSI source device in the DT
+> > > hierarchy.
+> >=20
+> > That's the way we do for any other device though. You never addressed
+> > that comment, but it's very much the same that occurs for i2c or spi
+> > controllers and their device. They all get their data from the parent
+> > bus. I don't see you advocate for using OF-Graph for those devices.
+>=20
+> Those are different, there's no data stream independent of the control
+> communications.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1608879
+Fine, then you have Ethernet PHYs, or any MMIO device that does DMA.
 
+> > > The device tree describes a control hierarchy between devices. OF gra=
+ph
+> > > overlays on top of that a data transfer graph. The two are different
+> > > concepts, and the fact that DSI can sometimes be used as a control bus
+> > > doesn't change the concept. Using OF graph unconditionally to describe
+> > > the data connections for DSI leads to less variation in the device tr=
+ee
+> > > structure, and thus less complexity in the implementation. We're
+> > > suffering from the fact we haven't made it a requirement in the first
+> > > place, which can't be fixed due to ABI breakage constraints, but let's
+> > > not acknowledge it as a good idea.
+> >=20
+> > Honestly, it doesn't matter one bit.
+> >=20
+> > We have a huge discrepancy here today, and only a couple of bridges have
+> > that arbitrary restriction. The situation you don't want to acknowledge
+> > is the de-facto standard, by the generic binding and by what all the
+> > bridges and panels are implementing. Even panel-simple-dsi is doing it.
+> > So it's very much there already.
+>=20
+> It's here, and I think we should move away from it for new DSI sinks.
+> I'd like OF graph to be used consistently for new drivers. We can't
+> change existing DT bindings and drivers to drop support for the
+> non-OF-graph description due to ABI stability, but we can avoid
+> repeating the mistake going forward.
+>
+> > What I'm trying to address here is that some controllers that do
+> > everything right can't be used because that restriction is completely
+> > arbitrary and in opposition to the consensus. And they can't be used
+> > *today*.
+> >=20
+> > If we want to change that consensus, fine, but we should still have one.
+> > Having some bridges enforcing custom rules for no reason is very much
+> > unacceptable.
+> >=20
+> > And changing that consensus won't happen overtime, we'll have to take
+> > care of the backward compatibility, etc. So it won't fix the issue that
+> > we can't use any bridge with any controller any time soon.
+>=20
+> I don't think that's the issue at hand here. You can still use a
+> non-OF-graph DT event if the nodes for the two bridges affected by this
+> patch define a port@0. It can just be left unconnected.
+>=20
+> I do agree it will cause some DT bindings for DCS-based DSI sinks to
+> have ports will others won't. If your concern is that all DT bindings
+> should be coherent, would you be OK with a patch that makes the sink
+> port mandatory in all DT bindings for DSI bridges and panels (and fixes
+> the mainline DT sources accordingly to make sure they validate) ? The
+> port would not be connected of course (at least when used with DSI
+> source drivers that don't use OF graph today). That would make DT
+> bindings coherent, and would be a first step towards using OF graph
+> everywhere.
 
-ethernet@30bf0000: nvmem-cell-names:0: 'fused' was expected
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dt.yaml
+I'm trying to fix a (recent) mistake/cargo-cult in new bindings. That
+discussion is not going to be fairly controversial and I don't see how
+that can be solved quickly. So, as a second step, why not. But this one
+needs to come first.
 
+Maxime
+
+--kq735fu2dw67hzsc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYjx+3AAKCRDj7w1vZxhR
+xRLoAQCTIpIMWpib5N/OdprcjAAx1ppjIy53NN2C7tfT3MMDHgEA2nt3GKD2CVrB
+mj/pjIsjnm83gSZpQyfBwM99I9RCJAM=
+=SFux
+-----END PGP SIGNATURE-----
+
+--kq735fu2dw67hzsc--
