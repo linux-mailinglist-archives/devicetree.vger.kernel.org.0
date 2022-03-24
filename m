@@ -2,135 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FF84E689F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71BE34E68A7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:28:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343580AbiCXS2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 14:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60214 "EHLO
+        id S1344798AbiCXS3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 14:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233548AbiCXS2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:28:20 -0400
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3BDEB7C52;
-        Thu, 24 Mar 2022 11:26:48 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id m30so7858691wrb.1;
-        Thu, 24 Mar 2022 11:26:48 -0700 (PDT)
+        with ESMTP id S1350138AbiCXS3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:29:37 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D984E22
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:28:01 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id lr4so2465312ejb.11
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:28:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+ygG+HH337q5v9sz6PqzrvY4iKgWE93C7S5i0O4f63g=;
+        b=oc8kTVbhwa6wJC/gXWdCu77hRiGAU4REtV7s9DWb3cpLca+yc8cuMzLzxSzy+v+GxU
+         U3bM2+ZjbgoFLF18bj3GlU9iSeUSayVsnczoCwX0VDcahl/YjTIEt0PxQsL03TSeC6Up
+         FabZWtlpAud5LOAXBRyg7zWRZcO2ow0PkmLss=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ll8lTEzX7b6jQhE2gytfK7yWoO7uXMFriD9yXNvHFxA=;
-        b=pc9foDc8dCFqm7VQIpAcoKtPeoqWCIlBdxVU9aPoC0YD/SWqKY91YiohYUvESizT/f
-         uy4VAF7oioWUSePuK6qEaiFpqc87ZlKGVqK0FpXL3SqGNzlHx8w8o7FzDmXggmwGYcGh
-         zq6A3AkiroI90hwTGExxrOuHVs6mbt1jD74KPbICdHe82FShJxjyULCFgqkrJ0CVnzQW
-         ddyP2Bc7RxdXcX2Ue7nf9pfI2/u4KGQQFuZwfzRKZIeOtIACRpgl3wGJ4tsUAy/IQOc2
-         JW/1p6Tjczn+7w/hnwdz8aPbaY4fyim1kC6ef0iUJMjFhU6InbHwqaxfMjXB0UHhELRd
-         OAdw==
-X-Gm-Message-State: AOAM533g3yvyGERlCBPzNUlZ6uN1iTmxhP6MF9YCfmVMxgNE43KV6Kwe
-        Y/DnCRb0bBUUgUS3cRrv5/Q=
-X-Google-Smtp-Source: ABdhPJyk9Ii8AQjHwYY3xi67+Wyfe9bye7WPGut9xFho/54di6GA0bmhFtFrG3MCqfnv4Bylbidwcg==
-X-Received: by 2002:a05:6000:1704:b0:203:d857:aa7a with SMTP id n4-20020a056000170400b00203d857aa7amr5430360wrc.513.1648146407177;
-        Thu, 24 Mar 2022 11:26:47 -0700 (PDT)
-Received: from [192.168.0.158] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id a4-20020a05600c348400b0038cd743830esm1459999wmq.29.2022.03.24.11.26.46
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+ygG+HH337q5v9sz6PqzrvY4iKgWE93C7S5i0O4f63g=;
+        b=0OIB8D7Pv8UQi5ijwrPqk95vZS60lx0HXo1O+kZsee892YmFyVpUFvuSF9x/loWVIG
+         hBGfWAXVCNUGRBUWXbOsq5ekLL81YWBXOXBiIRo/Ogr1EWWxKug8tKi0yBmODqgwKEZk
+         rwQseIp2nYgtjLrJPbcjIq7/QfuGTgIt+oDrU2jKftO/T3EqiSa/FdyEiR1EKTJeib9y
+         3koSPiEHf8kaRh0oZHlVJTI38Ed/2qX2AZ+zmRTWC8bBnsYneZdKDm48/hw4kq45YVP9
+         kv6tcgz/UcBybP7k6TQXzpvRn3AjDb9sFJRc8d9kD7hCbCTiB07DNgwrbF5fURw1WQ68
+         TodQ==
+X-Gm-Message-State: AOAM533JP04tThiUtcSRpkJ24QxAp0fed5iTiNzTT99UMgmOsRcXE68n
+        gpHgcLs2j97pCVuvesiBeUCAGxWg/U93i+df
+X-Google-Smtp-Source: ABdhPJwgHaqGXMkexUwnp7A9XrY9ZkT8T4aNCSF+CowrvAef+YmjCpxqpYrLIj+8Sgp1cIavS9cLBw==
+X-Received: by 2002:a17:906:1153:b0:6df:d816:264a with SMTP id i19-20020a170906115300b006dfd816264amr6965498eja.546.1648146479497;
+        Thu, 24 Mar 2022 11:27:59 -0700 (PDT)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
+        by smtp.gmail.com with ESMTPSA id jg15-20020a170907970f00b006e0466dcc42sm1455349ejc.134.2022.03.24.11.27.58
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 11:26:46 -0700 (PDT)
-Message-ID: <a222efb1-4f95-d65d-919b-ed55c5448c9a@kernel.org>
-Date:   Thu, 24 Mar 2022 19:26:45 +0100
+        Thu, 24 Mar 2022 11:27:59 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id p26-20020a05600c1d9a00b0038ccbff1951so1781227wms.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:27:58 -0700 (PDT)
+X-Received: by 2002:a05:600c:4f10:b0:38c:ae36:d305 with SMTP id
+ l16-20020a05600c4f1000b0038cae36d305mr15523519wmq.34.1648146478374; Thu, 24
+ Mar 2022 11:27:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: ti,elm: Add support for AM64 ELM
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, miquel.raynal@bootlin.com,
-        robh+dt@kernel.org
-Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, nm@ti.com,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220323111851.4699-1-rogerq@kernel.org>
- <20220323111851.4699-3-rogerq@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220323111851.4699-3-rogerq@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+References: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
+ <20220324111335.2.I816014b6c62da5a33af5021f3cc35cea66552c00@changeid>
+In-Reply-To: <20220324111335.2.I816014b6c62da5a33af5021f3cc35cea66552c00@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 24 Mar 2022 11:27:46 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X_a9aU0ZvXg1AkGS5j1oKDJmPdZt0Hs22eEcWWczTe_A@mail.gmail.com>
+Message-ID: <CAD=FV=X_a9aU0ZvXg1AkGS5j1oKDJmPdZt0Hs22eEcWWczTe_A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/panel-edp: Add AUO B133UAN01
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/03/2022 12:18, Roger Quadros wrote:
-> TI's AM64 SoC has the Error Locator Module. Add compatible and
-> related properties to support ELM on AM64 SoC.
-> 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Hi,
+
+On Thu, Mar 24, 2022 at 11:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Add support for the AUO B133UAN01 13.3" WUXGA panel.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  .../devicetree/bindings/mtd/ti,elm.yaml       | 27 ++++++++++++++++++-
->  1 file changed, 26 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/ti,elm.yaml b/Documentation/devicetree/bindings/mtd/ti,elm.yaml
-> index 24ed0fb84204..bc01d35ce605 100644
-> --- a/Documentation/devicetree/bindings/mtd/ti,elm.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/ti,elm.yaml
-> @@ -17,7 +17,9 @@ description:
->  properties:
->    compatible:
->      items:
-> -      - const: ti,am3352-elm
-> +      - enum:
-> +          - ti,am3352-elm
-> +          - ti,am64-elm
->  
->    reg:
->      maxItems: 1
-> @@ -25,6 +27,17 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  clocks:
-> +    maxItems: 1
-> +    description: Functional clock.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fck
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
->    ti,hwmods:
->      description:
->        Name of the HWMOD associated with ELM. This is for legacy
-> @@ -37,6 +50,18 @@ required:
->    - reg
->    - interrupts
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,am64-elm
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - power-domains
+> output of edid-decode:
+>
+>   Block 0, Base EDID:
+>     EDID Structure Version & Revision: 1.4
+>     Vendor & Product Identification:
+>       Manufacturer: AUO
+>       Model: 34196
+>       Made in: 2020
+>     Basic Display Parameters & Features:
+>       Digital display
+>       Bits per primary color channel: 8
+>       DisplayPort interface
+>       Maximum image size: 29 cm x 18 cm
+>       Gamma: 2.20
+>       Supported color formats: RGB 4:4:4
+>       First detailed timing includes the native pixel format and preferred refresh rate
+>     Color Characteristics:
+>       Red  : 0.6513, 0.3271
+>       Green: 0.2900, 0.6279
+>       Blue : 0.1503, 0.0517
+>       White: 0.3134, 0.3291
+>     Established Timings I & II: none
+>     Standard Timings: none
+>     Detailed Timing Descriptors:
+>       DTD 1:  1920x1200   60.026 Hz   8:5    74.192 kHz 156.100 MHz (286 mm x 178 mm)
+>                    Hfront   16 Hsync  16 Hback 152 Hpol N
+>                    Vfront    3 Vsync  14 Vback  19 Vpol N
+>       Manufacturer-Specified Display Descriptor (0x0f): 00 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 20 '............... '
+>       Alphanumeric Data String: 'AUO'
+>       Alphanumeric Data String: 'B133UAN01.0 '
+>
+>  drivers/gpu/drm/panel/panel-edp.c | 32 +++++++++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 
-Are these new properties also valid for am3352?
+I can review this patch and it can be landed if you really need it,
+but I'd prefer not to. Instead I'd rather see the panel added to
+_just_ the "edp_panels" structure. That maps the panel ID to the
+delays. If we do it that way:
 
-> +
->  additionalProperties: false
->  
->  examples:
+1. We don't need the binding.
+
+2. We don't need to hardcode the mode in this file.
+
+3. We support second sourcing the panel.
+
+4. We simplify our device tree files.
 
 
-Best regards,
-Krzysztof
+Let me know if we can just go that way. If we really have a reason to
+support the old hardcoded mode we can land something like this but I'd
+rather avoid it if possible.
+
+Also: note that even if we land this, adding the entry to the
+"edp_panels" structure would help future-proof us a bit.
+
+-Doug
