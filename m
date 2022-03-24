@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A00DA4E6787
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E43F4E67AB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:21:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352152AbiCXROs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 13:14:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33702 "EHLO
+        id S1352205AbiCXRX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 13:23:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352150AbiCXROr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:14:47 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8756462C9
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 10:13:14 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id w8so5404184pll.10
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 10:13:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0mQxXl3IUoM71PHunQDIs/uYH0ecjxl6kBSX5PydshU=;
-        b=PR8vVqWSgmRxma6zdIHfJJRPnwMgW5f7KtLWJ8pM9M0Jxs708+ozLXGTQHZU6qr6rb
-         BL1+YsLfIWV8kpABIe3AEnTJ3nPs11wVxWo5qnFsJRcQh3rFicWf/P+qzSK9px1RJTla
-         mAfxVktRQIAWA0ftZxl9kHxPrXxNuSVpvJrjM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0mQxXl3IUoM71PHunQDIs/uYH0ecjxl6kBSX5PydshU=;
-        b=vJ2GMN4qqldjyhlxjTMdmyJ0OATTxTMADLLssYhmzCazKhkR8Gjz7RmMBoggNuFLyG
-         HXKBfttNQGRyiT1zw3OejwZ5sUFN+zZ7lr5uSCRx7DsiHJwEoNAJvuQUukSz6npUrsdU
-         Kgop9WDAmmJei09LFG1S5HfMt9ElBVFYqyWqZDCe1Dzs6ViysJ9faJ3bD6jdc+trk5Mg
-         OOwxuEHEh83fj9fHFfZ7cJXAkVckSJQDvx5RMB+J+lKazhOP5ds/mMlHkGl8s4QTbyj6
-         neLblEsh4Y+kNikJ+r5gckMjFsN5LB5x2knMiE4xw4sm7SzA/N55Uhp/nBy6wV8hzFzD
-         +kmw==
-X-Gm-Message-State: AOAM532eK+p6yLBmgF+ZjtLHsXEbZa21T00fo2AaN2LmHmIX2KokODid
-        TGeF2IMXX5z39FxOmVlKHBjetw==
-X-Google-Smtp-Source: ABdhPJwiC/suyfJX/D3iiWymapPQqrTskqgo+UCEAEuKCvm5HoGDHiI8+ctExEpiDwd4xk7qMOsfRg==
-X-Received: by 2002:a17:902:c745:b0:153:b0e:8586 with SMTP id q5-20020a170902c74500b001530b0e8586mr6751037plq.9.1648141993490;
-        Thu, 24 Mar 2022 10:13:13 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:690f:642:3ebe:c89d])
-        by smtp.gmail.com with UTF8SMTPSA id c18-20020a056a000ad200b004f0f9696578sm4662409pfl.141.2022.03.24.10.13.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 10:13:13 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add device tree for herobrine villager
-Date:   Thu, 24 Mar 2022 10:13:09 -0700
-Message-Id: <20220324101242.v1.1.Iebdb5af0db7d3d6364cb229a27cd7c668f1063ae@changeid>
-X-Mailer: git-send-email 2.35.1.1021.g381101b075-goog
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S243445AbiCXRX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:23:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AE2996B8;
+        Thu, 24 Mar 2022 10:21:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 003A9619AC;
+        Thu, 24 Mar 2022 17:21:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607D5C340EC;
+        Thu, 24 Mar 2022 17:21:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648142513;
+        bh=xLzfzYThBn01lrwpvVJEv2Gb/9OdefdCKN7vc1aeUEw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bv1u1/1it7BaXwJku7/IYXiuVhgsiXBhQa4EgtACA5qnP77ziBSr3FZu1eJWeFEGs
+         GjSaKFzuTC0XHywiUxlXa2LJEj/Sv3pWxlMSS9uXsLIKNG7cIvqB1DxZSgA8/tf1rg
+         iujsDrtoqMBoPErwsB2IzuVfdIlNVHcVnQn1fTR2Rq9X9rCN4fk0lTTYKFAWcpknWr
+         R1gwvpZMZgOiQ5hDiUVzcP9C64USoR9ACc4ro1CCeCT7yrwMYKiG+ti4t2vx/ZPuZH
+         yVwzwE6KrGqVYN42yDBXYkPpZ1C4BU+9KNkIrr3Yh58o8ZVW99f/ofvA3rOECDmDaa
+         mJ1BwG/AzO8fw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nXR9j-00GlL9-5w; Thu, 24 Mar 2022 17:21:51 +0000
+Date:   Thu, 24 Mar 2022 17:21:50 +0000
+Message-ID: <87lewz5kr5.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Biwen Li <biwen.li@nxp.com>, "Z.Q. Hou" <zhiqiang.hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [RFC PATCH devicetree 00/10] Do something about ls-extirq interrupt-map breakage
+In-Reply-To: <20220324171041.t5yoocinj6gizcc7@skbuf>
+References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
+        <87ilvrk1r0.wl-maz@kernel.org>
+        <20211214095853.4emzycaxkuqr4tun@skbuf>
+        <87czlzjxmz.wl-maz@kernel.org>
+        <20220324171041.t5yoocinj6gizcc7@skbuf>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: vladimir.oltean@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com, biwen.li@nxp.com, zhiqiang.hou@nxp.com, kurt@linutronix.de, linux@rasmusvillemoes.dk
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,308 +75,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic device tree for the herobrine villager board.
+On Thu, 24 Mar 2022 17:10:42 +0000,
+Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> 
+> Hello Marc,
+> 
+> On Tue, Dec 14, 2021 at 10:20:36AM +0000, Marc Zyngier wrote:
+> > On Tue, 14 Dec 2021 09:58:54 +0000,
+> > Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> > > 
+> > > Hi Marc (with a c),
+> > > 
+> > > I wish the firmware for these SoCs was smart enough to be compatible
+> > > with the bindings that are in the kernel and provide a blob that the
+> > > kernel could actually use. Some work has been started there and this is
+> > > work in progress. True, I don't know what other OF-based firmware some
+> > > other customers may use, but I trust it isn't a lot more advanced than
+> > > what U-Boot currently has :)
+> > > 
+> > > Also, the machines may have been in the wild for years, but the
+> > > ls-extirq driver was added in November 2019. So not with the
+> > > introduction of the SoC device trees themselves. That isn't so long ago.
+> > > 
+> > > As for compatibility between old kernel and new DT: I guess you'll hear
+> > > various opinions on this one.
+> > > https://www.spinics.net/lists/linux-mips/msg07778.html
+> > > 
+> > > | > Are we okay with the new device tree blobs breaking the old kernel?
+> > > |
+> > > | From my point of view, newer device trees are not required to work on
+> > > | older kernel, this would impose an unreasonable limitation and the use
+> > > | case is very limited.
+> > 
+> > My views are on the opposite side. DT is an ABI, full stop. If you
+> > change something, you *must* guarantee forward *and* backward
+> > compatibility. That's because:
+> > 
+> > - you don't control how updatable the firmware is
+> > 
+> > - people may need to revert to other versions of the kernel because
+> >   the new one is broken
+> > 
+> > - there are plenty of DT users beyond Linux, and we are not creating
+> >   bindings for Linux only.
+> > 
+> > You may disagree with this, but for the subsystems I maintain, this is
+> > the rule I intent to stick to.
+> > 
+> > 	M.
+> > 
+> > -- 
+> > Without deviation from the norm, progress is not possible.
+> 
+> I was just debugging an interesting issue with an old kernel not working
+> with a new DT blob, and after figuring out what the problem was (is),
+> I remembered this message and I'm curious what you have to say about it.
+> 
+> I have this DT layout:
+> 
+> 	ethernet-phy@1 {
+> 		reg = <0x1>;
+> 		interrupts-extended = <&extirq 2 IRQ_TYPE_LEVEL_LOW>;
+> 	};
+> 
+> 	extirq: interrupt-controller@1ac {
+> 		compatible = "fsl,ls1021a-extirq";
+> 		<bla bla>
+> 	};
+> 
+> I booted the new DT blob (which has "interrupts-extended") on a kernel
+> where the ls-extirq driver did not exist. This had the result of
+> of_mdiobus_phy_device_register() -> of_irq_get() returning -EPROBE_DEFER
+> forever and ever. So the PHY driver in turn never probed, and Ethernet
+> was broken. So I had to delete the interrupts OF property to let the PHY
+> at least work in poll mode.
+> 
+> What went wrong here in your opinion?
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+I'm not sure what you expect me to say here. You have a device that
+references an interrupt. The DT seems sound (I don't get why you think
+"interrupt-extended" is a problem here, but hey...).
 
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../dts/qcom/sc7280-herobrine-villager-r0.dts | 274 ++++++++++++++++++
- 2 files changed, 275 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+If your kernel doesn't have a driver for the interrupt controller
+referenced here, what do you expect, other than things not working?
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f9e6343acd03..f1b597512352 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-new file mode 100644
-index 000000000000..d543fd4d02f4
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-@@ -0,0 +1,274 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Villager board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7280-herobrine.dtsi"
-+
-+/ {
-+	model = "Google Villager (rev0+)";
-+	compatible = "google,villager", "qcom,sc7280";
-+};
-+
-+/* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
-+
-+ap_tp_i2c: &i2c0 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	trackpad: trackpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tp_int_odl>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+
-+		hid-descr-addr = <0x20>;
-+		vcc-supply = <&pp3300_z1>;
-+
-+		wakeup-source;
-+	};
-+};
-+
-+/* For nvme */
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+/* For nvme */
-+&pcie1_phy {
-+	status = "okay";
-+};
-+
-+/* For eMMC */
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+/* PINCTRL - BOARD-SPECIFIC */
-+
-+/*
-+ * Methodology for gpio-line-names:
-+ * - If a pin goes to herobrine board and is named it gets that name.
-+ * - If a pin goes to herobrine board and is not named, it gets no name.
-+ * - If a pin is totally internal to Qcard then it gets Qcard name.
-+ * - If a pin is not hooked up on Qcard, it gets no name.
-+ */
-+
-+&pm8350c_gpios {
-+	gpio-line-names = "FLASH_STROBE_1",		/* 1 */
-+			  "AP_SUSPEND",
-+			  "PM8008_1_RST_N",
-+			  "",
-+			  "",
-+			  "",
-+			  "PMIC_EDP_BL_EN",
-+			  "PMIC_EDP_BL_PWM",
-+			  "";
-+};
-+
-+&tlmm {
-+	gpio-line-names = "AP_TP_I2C_SDA",		/* 0 */
-+			  "AP_TP_I2C_SCL",
-+			  "SSD_RST_L",
-+			  "PE_WAKE_ODL",
-+			  "AP_SAR_SDA",
-+			  "AP_SAR_SCL",
-+			  "PRB_SC_GPIO_6",
-+			  "TP_INT_ODL",
-+			  "HP_I2C_SDA",
-+			  "HP_I2C_SCL",
-+
-+			  "GNSS_L1_EN",			/* 10 */
-+			  "GNSS_L5_EN",
-+			  "SPI_AP_MOSI",
-+			  "SPI_AP_MISO",
-+			  "SPI_AP_CLK",
-+			  "SPI_AP_CS0_L",
-+			  /*
-+			   * AP_FLASH_WP is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_OD.
-+			   */
-+			  "AP_FLASH_WP",
-+			  "",
-+			  "AP_EC_INT_L",
-+			  "",
-+
-+			  "UF_CAM_RST_L",		/* 20 */
-+			  "WF_CAM_RST_L",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "",
-+			  "PM8008_IRQ_1",
-+			  "HOST2WLAN_SOL",
-+			  "WLAN2HOST_SOL",
-+			  "MOS_BT_UART_CTS",
-+			  "MOS_BT_UART_RFR",
-+
-+			  "MOS_BT_UART_TX",		/* 30 */
-+			  "MOS_BT_UART_RX",
-+			  "PRB_SC_GPIO_32",
-+			  "HUB_RST_L",
-+			  "",
-+			  "",
-+			  "AP_SPI_FP_MISO",
-+			  "AP_SPI_FP_MOSI",
-+			  "AP_SPI_FP_CLK",
-+			  "AP_SPI_FP_CS_L",
-+
-+			  "AP_EC_SPI_MISO",		/* 40 */
-+			  "AP_EC_SPI_MOSI",
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "LCM_RST_L",
-+			  "EARLY_EUD_N",
-+			  "",
-+			  "DP_HOT_PLUG_DET",
-+			  "IO_BRD_MLB_ID0",
-+			  "IO_BRD_MLB_ID1",
-+
-+			  "IO_BRD_MLB_ID2",		/* 50 */
-+			  "SSD_EN",
-+			  "TS_I2C_SDA_CONN",
-+			  "TS_I2C_CLK_CONN",
-+			  "TS_RST_CONN",
-+			  "TS_INT_CONN",
-+			  "AP_I2C_TPM_SDA",
-+			  "AP_I2C_TPM_SCL",
-+			  "PRB_SC_GPIO_58",
-+			  "PRB_SC_GPIO_59",
-+
-+			  "EDP_HOT_PLUG_DET_N",		/* 60 */
-+			  "FP_TO_AP_IRQ_L",
-+			  "",
-+			  "AMP_EN",
-+			  "CAM0_MCLK_GPIO_64",
-+			  "CAM1_MCLK_GPIO_65",
-+			  "WF_CAM_MCLK",
-+			  "PRB_SC_GPIO_67",
-+			  "FPMCU_BOOT0",
-+			  "UF_CAM_SDA",
-+
-+			  "UF_CAM_SCL",			/* 70 */
-+			  "",
-+			  "",
-+			  "WF_CAM_SDA",
-+			  "WF_CAM_SCL",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "FP_RST_L",
-+			  "PCIE1_CLKREQ_ODL",
-+
-+			  "EN_PP3300_DX_EDP",		/* 80 */
-+			  "SC_GPIO_81",
-+			  "FORCED_USB_BOOT",
-+			  "WCD_RESET_N",
-+			  "MOS_WLAN_EN",
-+			  "MOS_BT_EN",
-+			  "MOS_SW_CTRL",
-+			  "MOS_PCIE0_RST",
-+			  "MOS_PCIE0_CLKREQ_N",
-+			  "MOS_PCIE0_WAKE_N",
-+
-+			  "MOS_LAA_AS_EN",		/* 90 */
-+			  "SD_CD_ODL",
-+			  "",
-+			  "",
-+			  "MOS_BT_WLAN_SLIMBUS_CLK",
-+			  "MOS_BT_WLAN_SLIMBUS_DAT0",
-+			  "HP_MCLK",
-+			  "HP_BCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+
-+			  "HP_LRCLK",			/* 100 */
-+			  "HP_IRQ",
-+			  "",
-+			  "",
-+			  "GSC_AP_INT_ODL",
-+			  "EN_PP3300_CODEC",
-+			  "AMP_BCLK",
-+			  "AMP_DIN",
-+			  "AMP_LRCLK",
-+			  "UIM1_DATA_GPIO_109",
-+
-+			  "UIM1_CLK_GPIO_110",		/* 110 */
-+			  "UIM1_RESET_GPIO_111",
-+			  "PRB_SC_GPIO_112",
-+			  "UIM0_DATA",
-+			  "UIM0_CLK",
-+			  "UIM0_RST",
-+			  "UIM0_PRESENT_ODL",
-+			  "SDM_RFFE0_CLK",
-+			  "SDM_RFFE0_DATA",
-+			  "WF_CAM_EN",
-+
-+			  "FASTBOOT_SEL_0",		/* 120 */
-+			  "SC_GPIO_121",
-+			  "FASTBOOT_SEL_1",
-+			  "SC_GPIO_123",
-+			  "FASTBOOT_SEL_2",
-+			  "SM_RFFE4_CLK_GRFC_8",
-+			  "SM_RFFE4_DATA_GRFC_9",
-+			  "WLAN_COEX_UART1_RX",
-+			  "WLAN_COEX_UART1_TX",
-+			  "PRB_SC_GPIO_129",
-+
-+			  "LCM_ID0",			/* 130 */
-+			  "LCM_ID1",
-+			  "",
-+			  "SDR_QLINK_REQ",
-+			  "SDR_QLINK_EN",
-+			  "QLINK0_WMSS_RESET_N",
-+			  "SMR526_QLINK1_REQ",
-+			  "SMR526_QLINK1_EN",
-+			  "SMR526_QLINK1_WMSS_RESET_N",
-+			  "PRB_SC_GPIO_139",
-+
-+			  "SAR1_IRQ_ODL",		/* 140 */
-+			  "SAR0_IRQ_ODL",
-+			  "PRB_SC_GPIO_142",
-+			  "",
-+			  "WCD_SWR_TX_CLK",
-+			  "WCD_SWR_TX_DATA0",
-+			  "WCD_SWR_TX_DATA1",
-+			  "WCD_SWR_RX_CLK",
-+			  "WCD_SWR_RX_DATA0",
-+			  "WCD_SWR_RX_DATA1",
-+
-+			  "DMIC01_CLK",			/* 150 */
-+			  "DMIC01_DATA",
-+			  "DMIC23_CLK",
-+			  "DMIC23_DATA",
-+			  "",
-+			  "",
-+			  "EC_IN_RW_ODL",
-+			  "HUB_EN",
-+			  "WCD_SWR_TX_DATA2",
-+			  "",
-+
-+			  "",				/* 160 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "",				/* 170 */
-+			  "MOS_BLE_UART_TX",
-+			  "MOS_BLE_UART_RX",
-+			  "",
-+			  "",
-+			  "";
-+};
+	M.
+
 -- 
-2.35.1.1021.g381101b075-goog
-
+Without deviation from the norm, progress is not possible.
