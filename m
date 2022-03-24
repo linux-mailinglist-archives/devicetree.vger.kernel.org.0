@@ -2,77 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42AA74E5C3F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 01:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECB294E5C70
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 01:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239410AbiCXASM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Mar 2022 20:18:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38268 "EHLO
+        id S241654AbiCXAxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Mar 2022 20:53:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346965AbiCXASK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 20:18:10 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9157B271;
-        Wed, 23 Mar 2022 17:16:39 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id h23so4373575wrb.8;
-        Wed, 23 Mar 2022 17:16:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=natHNZDL8CZ9WaP9Cr9II4XN3FO23Y20ExCvAU3XTrg=;
-        b=q6SZ6TLiAU/ytjxnIlO9T8oYxvX4bJsfMshpdVHqelZJik8DV/ooiEyu93XnF2JZdk
-         Ao6mtjzEN7IfgFcCxVQOnoSORuBCw43MdVX/KOF3HBFOUz3QZ4Ewhv2R+ZL99qO+iJtg
-         XM5fFgPUgPHbAQboYWdws6/B75Mt4Em9d6twn29DMX6quTraIxA/ppgpUFxPOGL2t62g
-         PMcpvVi+JzVx80fwVCJkVIVFwBDEINDl9XSHe2gg/EIlIM2dDSSRFIpYKlyf21XraC9P
-         1WOY3OTF5g3mtXURPOj3avazd7B/dd8r9j0TJ67XrizV/prLlxD37q3RGb3o83bHJRc4
-         TD9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=natHNZDL8CZ9WaP9Cr9II4XN3FO23Y20ExCvAU3XTrg=;
-        b=oatvXZrsuM9unq740PLLBSBH+Fq9KJKt71EKl5Yc7ztQOA1avlu8k2MuTr96pge0v4
-         HY1yppuXLuOTP6YUIzZg5/TiJ76VTQTEiN4rVyeic0TRuN1go8rzb8xQpURWJqIJ4I1E
-         vmZiisNIfdzxOrwL4Gxp1br07kMJgFjXqR3fYaT89+HFobZq15z0dwkmrjMZG4k4Bwb5
-         X9mSDj5kaHWrE1lm71WfXB/E2KgAaSzrwPwAI+/UZo1/dWzOyNkwlVPqApvT9Hb7wrt4
-         WNsP8bTB+g3/qPp5/bC0IFEVTGKyb4MLHDYB9ay+EiblseVMryaXrnkJcyDjyuhN/yMl
-         ulCA==
-X-Gm-Message-State: AOAM530Pjq5qpNiyELnm/UZOJ7OaClWS3MX/R0FUbQgiT8ojosgn2IJw
-        UriCb3ForiLAHMJgGWWldsc=
-X-Google-Smtp-Source: ABdhPJwjviwdFIZ4cE6Bb9jEfkwK8jjjTkyZR43ngrQFxViPtlKP2325Wc/JM2NSJsSfaIRmHkTrlA==
-X-Received: by 2002:a5d:618c:0:b0:204:2f:2c1a with SMTP id j12-20020a5d618c000000b00204002f2c1amr2139009wru.709.1648080998003;
-        Wed, 23 Mar 2022 17:16:38 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
-        by smtp.gmail.com with ESMTPSA id j16-20020a05600c191000b0038c9249ffdesm1212660wmq.9.2022.03.23.17.16.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 17:16:37 -0700 (PDT)
-Date:   Wed, 23 Mar 2022 20:47:15 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
+        with ESMTP id S230220AbiCXAxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Mar 2022 20:53:50 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F4D90FDF;
+        Wed, 23 Mar 2022 17:52:14 -0700 (PDT)
+X-UUID: 9be1904981d042b891cc123de4c0a5b3-20220324
+X-UUID: 9be1904981d042b891cc123de4c0a5b3-20220324
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1488320240; Thu, 24 Mar 2022 08:52:10 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 24 Mar 2022 08:52:09 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Mar 2022 08:52:08 +0800
+Message-ID: <6a2f52d2a173a9127ea517c81c3c1c5fe7b2b009.camel@mediatek.com>
+Subject: Re: [PATCH net-next v13 5/7] net: dt-bindings: dwmac: Convert
+ mediatek-dwmac to DT schema
+From:   Biao Huang <biao.huang@mediatek.com>
 To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 01/15] dt-bindings: clock: split qcom,gcc.yaml to
- common and specific schema
-Message-ID: <Yjt5QxZ4+kdwTtUH@Ansuel-xps.localdomain>
-References: <20220224164831.21475-1-ansuelsmth@gmail.com>
- <20220224164831.21475-2-ansuelsmth@gmail.com>
- <CAL_JsqLduGK=CyAcgahswFfeA43vh+QPgRgcL4+=piOwWwvJRQ@mail.gmail.com>
+CC:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>, <dkirjanov@suse.de>
+Date:   Thu, 24 Mar 2022 08:52:08 +0800
+In-Reply-To: <CAL_Jsq+6XKvS5RcE6j9vRd3JL-Wbi-O6BrcoGQ5xV0Q2ZG8EMw@mail.gmail.com>
+References: <20220314075713.29140-1-biao.huang@mediatek.com>
+         <20220314075713.29140-6-biao.huang@mediatek.com>
+         <CAL_Jsq+6XKvS5RcE6j9vRd3JL-Wbi-O6BrcoGQ5xV0Q2ZG8EMw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLduGK=CyAcgahswFfeA43vh+QPgRgcL4+=piOwWwvJRQ@mail.gmail.com>
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,109 +69,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 08:55:30AM -0500, Rob Herring wrote:
-> On Thu, Feb 24, 2022 at 10:48 AM Ansuel Smith <ansuelsmth@gmail.com> wrote:
-> >
-> > Split qcom,gcc.yaml to common and specific schema to use it as a
-> > template for schema that needs to use the gcc bindings and require
-> > to add additional bindings.
-> >
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Dear Rob,
+
+	Sorry for the failings.
+
+	"snps,txpbl"/"snps,rxpbl" are limited to enum [2,4,8] in
+snps,dwmac.yaml, but the hardware allows 1,2,4,8,16 or 32 according to
+datasheet.
+
+	I'll submit another patch to modify enum in snps,dwmac.yaml.
+
+Regards!
+Biao
+
+On Wed, 2022-03-23 at 09:00 -0500, Rob Herring wrote:
+> On Mon, Mar 14, 2022 at 2:57 AM Biao Huang <biao.huang@mediatek.com>
+> wrote:
+> > 
+> > Convert mediatek-dwmac to DT schema, and delete old mediatek-
+> > dwmac.txt.
+> > And there are some changes in .yaml than .txt, others almost keep
+> > the same:
+> >   1. compatible "const: snps,dwmac-4.20".
+> >   2. delete "snps,reset-active-low;" in example, since driver
+> > remove this
+> >      property long ago.
+> >   3. add "snps,reset-delay-us = <0 10000 10000>" in example.
+> >   4. the example is for rgmii interface, keep related properties
+> > only.
+> > 
+> > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
 > > ---
-> >  .../bindings/clock/qcom,gcc-other.yaml        | 76 +++++++++++++++++++
+> >  .../bindings/net/mediatek-dwmac.txt           |  91 ----------
+> >  .../bindings/net/mediatek-dwmac.yaml          | 155
+> > ++++++++++++++++++
+> >  2 files changed, 155 insertions(+), 91 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/net/mediatek-
+> > dwmac.txt
+> >  create mode 100644 Documentation/devicetree/bindings/net/mediatek-
+> > dwmac.yaml
 > 
-> This now throws errors in linux-next:
+> Now failing in linux-next:
 > 
-> Traceback (most recent call last):
->   File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py",
-> line 816, in resolve_from_url
->     document = self.resolve_remote(url)
->   File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py",
-> line 923, in resolve_remote
->     result = json.loads(url.read().decode("utf-8"))
->   File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
->     return _default_decoder.decode(s)
->   File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
->     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
->   File "/usr/lib/python3.8/json/decoder.py", line 355, in raw_decode
->     raise JSONDecodeError("Expecting value", s, err.value) from None
-> json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-> During handling of the above exception, another exception occurred:
-> Traceback (most recent call last):
->   File "/usr/local/bin/dt-doc-validate", line 70, in <module>
->     ret = check_doc(f)
->   File "/usr/local/bin/dt-doc-validate", line 36, in check_doc
->     for error in
-> sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda
-> e: e.linecol):
->   File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line
-> 1016, in iter_schema_errors
->     meta_schema = cls.resolver.resolve_from_url(schema['$schema'])
->   File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py",
-> line 818, in resolve_from_url
->     raise exceptions.RefResolutionError(exc)
-> jsonschema.exceptions.RefResolutionError: Expecting value: line 1
-> column 1 (char 0)
-> ./Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml:
-> mapping values are not allowed in this context
->   in "<unicode string>", line 17, column 11
+> /builds/robherring/linux-
+> dt/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb:
+> ethernet@1101c000: snps,txpbl:0:0: 1 is not one of [2, 4, 8]
+>  From schema: /builds/robherring/linux-
+> dt/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+> /builds/robherring/linux-
+> dt/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb:
+> ethernet@1101c000: snps,rxpbl:0:0: 1 is not one of [2, 4, 8]
+>  From schema: /builds/robherring/linux-
+> dt/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 > 
-> >  .../devicetree/bindings/clock/qcom,gcc.yaml   | 59 +-------------
-> >  2 files changed, 80 insertions(+), 55 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> > new file mode 100644
-> > index 000000000000..4e5903bcd70d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> > @@ -0,0 +1,76 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/qcom,gcc-other.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Global Clock & Reset Controller Binding
-> > +
-> > +maintainers:
-> > +  - Stephen Boyd <sboyd@kernel.org>
-> > +  - Taniya Das <tdas@codeaurora.org>
-> > +
-> > +description:
-> > +  Qualcomm global clock control module which supports the clocks, resets and
-> > +  power domains.
-> > +
-> > +  See also:
 > 
-> I think the problem is here. You need a '|' after 'description' to
-> preserve formatting and ignore what looks like a mapping.
->
+> Rob
 
-Yes, I just sent a patch to fix this.
-Out of curiosity, any idea why this wasn't flagged by an old run of
-dt_binding_check? I totally remember running dt_binding_check on these
-Documentation and I had no problem. There was a bug in the old version
-and it does now correctly find these kind of errors?
-
-> > +  - dt-bindings/clock/qcom,gcc-apq8084.h
-> > +  - dt-bindings/reset/qcom,gcc-apq8084.h
-> > +  - dt-bindings/clock/qcom,gcc-ipq4019.h
-> > +  - dt-bindings/clock/qcom,gcc-ipq6018.h
-> > +  - dt-bindings/reset/qcom,gcc-ipq6018.h
-> > +  - dt-bindings/clock/qcom,gcc-ipq806x.h (qcom,gcc-ipq8064)
-> > +  - dt-bindings/reset/qcom,gcc-ipq806x.h (qcom,gcc-ipq8064)
-> > +  - dt-bindings/clock/qcom,gcc-msm8939.h
-> > +  - dt-bindings/clock/qcom,gcc-msm8953.h
-> > +  - dt-bindings/reset/qcom,gcc-msm8939.h
-> > +  - dt-bindings/clock/qcom,gcc-msm8660.h
-> > +  - dt-bindings/reset/qcom,gcc-msm8660.h
-> > +  - dt-bindings/clock/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
-> > +  - dt-bindings/reset/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
-> > +  - dt-bindings/clock/qcom,gcc-mdm9607.h
-> > +  - dt-bindings/clock/qcom,gcc-mdm9615.h
-> > +  - dt-bindings/reset/qcom,gcc-mdm9615.h
-> > +  - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
-
--- 
-	Ansuel
