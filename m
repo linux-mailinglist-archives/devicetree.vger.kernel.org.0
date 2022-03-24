@@ -2,148 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 799124E5EA3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 07:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90E054E5EAA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 07:25:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344813AbiCXGY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 02:24:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52286 "EHLO
+        id S242272AbiCXG1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 02:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242262AbiCXGYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 02:24:25 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B497C96818;
-        Wed, 23 Mar 2022 23:22:50 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id j83so3965861oih.6;
-        Wed, 23 Mar 2022 23:22:50 -0700 (PDT)
+        with ESMTP id S242173AbiCXG1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 02:27:25 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F316DEDA;
+        Wed, 23 Mar 2022 23:25:54 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id b130so1638961pga.13;
+        Wed, 23 Mar 2022 23:25:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=rdzl6Jf6niYa4MMeejzQkrqz2P7au8ACLXhQDsT0pBI=;
-        b=EO8K1z8BS/6PReRIIFoQ+Sduaw9R2peQUYTyIFAutGKVo+RcXyF/uo+vSXXVndxwBN
-         l+ih26tIUR214XE/aObvcvzckQtXCHvy3kjpY6Qb5B3LAF8bSME3g2j+2uUhIe+qht3X
-         gIW8pi6/DghC0Quq2jjcaFOUqvSad4Mexv0hPKo01oMQvF2sn5HtYKRbwPa6fLN8SCJd
-         9NxRVMDNAYIS5vBlWCD/1xLIVanxtLEiHvzfFK9k2o+XhLZlb1w4yKX7F5y5iSinwI+p
-         1DLYpjyBFzSVINqcz4iSsshrwU7P8Y367+KPQ9k8LePCBumRIP1VpKPm96ybfsF3oFAW
-         DqiQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dwDYUTHimQOgoxdkP8sjUxdcESsR/QK5BJW0KPL4v+M=;
+        b=pGphB0wGqeHh0tXFHs9/r2BIMpxutQtSbYKLKe3d+08y+zJTH030ndCKamAQQuqFSx
+         WtDfAJwybEaGIjL9n/UfJ5DEK7kfiZk1a1of6Ts6LX17eT1eOuhEFMIaqMO3PCZFoyiE
+         D/KuJ0isIQYcfACmWYEzQYo+jNITKZIQI4AyyuWz+a14q/w+zU44rJsGn0DYhwuwY+Sv
+         Wlj69HoE8Ruxt73jXKPH4iW3KgmYg6olr6zKQmKsVnl++t4zD0vKVif2/1RR8WUcsOoz
+         CTYZcxz1mpKCL/LmaIrh1jnLzGxFY0CPzLO8hAdl38WnYKYZLUZkhnk1eE5yy7h/Eyq2
+         +jYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rdzl6Jf6niYa4MMeejzQkrqz2P7au8ACLXhQDsT0pBI=;
-        b=kEZBK4HDhdJUPYYLlbgblfpCFW+arMkYdhPaR0Hen/T4704gAm4W+nxXx0Si60anbu
-         SkcHorRB4OrN8ClQxifxJ70JSBE5c6SDWWBMzVIrgAKOzU43Fr3jngou4ujOr69e4loa
-         ljUxw2veMW3yld8blLWCgbzixSt+V0QlrxW7jxFAaSTCwLzR3BqjTdY84Zf/EKOe238e
-         Q5q2Cp5RSZb4ZMTXZsRpeR3SzEkVP1Ew2yzMNBfwcMCXJcLBqMDCJvMEkAertUQEj73l
-         iOpi5k0A7JNDroYNWVyavz5N9awvEo0LwRaZaIftN9+Ca67MffWQRNTx1WiBAVYohW0h
-         S5Dg==
-X-Gm-Message-State: AOAM532cVZVMsMBH1hV3W7xy1PNzEGFQGaGVKPJfdkkpDuYUJ3fzVn7r
-        iIgKCfcOxGJdT1TIjtc/hdPUvBaMiJrIMnloVL4BdyPfOgI0bSZy
-X-Google-Smtp-Source: ABdhPJwkl1nlYBOxuy2+4DJvoCItRF5uKq2+SVGIlCrOWlibkxJsklVyDYmabbg/+sNw0PITKUiGcz44TvUP2jJeS3k=
-X-Received: by 2002:aca:61c1:0:b0:2ec:d091:ff53 with SMTP id
- v184-20020aca61c1000000b002ecd091ff53mr6584829oib.235.1648102969953; Wed, 23
- Mar 2022 23:22:49 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dwDYUTHimQOgoxdkP8sjUxdcESsR/QK5BJW0KPL4v+M=;
+        b=y8kFYDnG/pp9cRJ4+n4/xchwFsnVZdLd3JXy5xgtH3leapEAPe7QZql5ceeggPdh2h
+         ck+jd9NrHkNUsCSh2pSXXRWXC+5/SCZbRVrj9vrvjZGm0vFMzkyQyCaYHdDZnwrH3Pm7
+         3FkLk8WhPnYU0bl4Zo2R7PnHf0ezzLOCQxrc+AWPcb9cOz0vuhA6mluQkWuQSVNCetaA
+         JR+qxeYM4U8ghd6xDBJ+ZVt5+f19mra5huCXK+Ra67IJB7B2axdBNQ+CGykQRkuFB0AA
+         FtFDOY0iUq7xi71tZ59bneZRvrLMwEtoV0JUcGfplwWpNwbvpDWZ8p4NStwABWeVzDuV
+         C/Yg==
+X-Gm-Message-State: AOAM532G1n0RwFVzTtdztuQMdl/Aw9rPdai1EIctPyPpsEoJZJ3SYDYl
+        VyEC7JKLGWSSbBD8DAA/gZQ=
+X-Google-Smtp-Source: ABdhPJxfRsmaap5/p4sWElWvELb49XKGWxiVS20Y8jWLuFnhXpOyQVwz+ldkHm5/uH7/ZY+CB7KEeQ==
+X-Received: by 2002:a65:604a:0:b0:375:5cc8:7458 with SMTP id a10-20020a65604a000000b003755cc87458mr2863442pgp.205.1648103154065;
+        Wed, 23 Mar 2022 23:25:54 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id h6-20020a636c06000000b00363a2533b17sm1466081pgc.8.2022.03.23.23.25.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Mar 2022 23:25:53 -0700 (PDT)
+Date:   Thu, 24 Mar 2022 11:55:47 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: spear13xx: Update SPI dma properties
+Message-ID: <20220324062547.GA15504@9a2d8922b8f1>
+References: <20220323175920.93155-1-singh.kuldeep87k@gmail.com>
+ <20220324023904.h2qfxzxlznggbsyr@vireshk-i7>
 MIME-Version: 1.0
-References: <20220311164628.378849-1-gengcixi@gmail.com> <20220311164628.378849-2-gengcixi@gmail.com>
- <6e4f64dc-bb3d-0e05-0380-7e6f3b1a823c@kernel.org>
-In-Reply-To: <6e4f64dc-bb3d-0e05-0380-7e6f3b1a823c@kernel.org>
-From:   Cixi Geng <gengcixi@gmail.com>
-Date:   Thu, 24 Mar 2022 14:22:13 +0800
-Message-ID: <CAF12kFuKnm2qenvpmKhCVD4T+d=0SyruzdpJ5FX1RS8gvqbyNA@mail.gmail.com>
-Subject: Re: [PATCH V2 1/7] dt-bindings:iio:adc: add sprd,ump9620-adc dtbindings
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     jic23@kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
-        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220324023904.h2qfxzxlznggbsyr@vireshk-i7>
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2022=E5=B9=B43=E6=9C=8820=E6=
-=97=A5=E5=91=A8=E6=97=A5 22:50=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 11/03/2022 17:46, Cixi Geng wrote:
-> > From: Cixi Geng <cixi.geng1@unisoc.com>
-> >
-> > sprd,ump9620-adc is one variant of sc27xx series, add ump9620 in
-> > dtbindings.
-> >
-> > Signed-off-by: Chunyan Zhang <zhang.lyra@gmail.com>
-> > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+On Thu, Mar 24, 2022 at 08:09:04AM +0530, Viresh Kumar wrote:
+> On 23-03-22, 23:29, Kuldeep Singh wrote:
+> > Reorder dmas and dma-names property for spi controller node to make it
+> > compliant with bindings.
+> > 
+> > Fixes: 6e8887f60f60 ("ARM: SPEAr13xx: Pass generic DW DMAC platform data from DT")
+> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
 > > ---
-> >  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 30 +++++++++++++++++--
-> >  1 file changed, 27 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.=
-yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > index caa3ee0b4b8c..331b08fb1761 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >        - sprd,sc2723-adc
-> >        - sprd,sc2730-adc
-> >        - sprd,sc2731-adc
-> > +      - sprd,ump9620-adc
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -37,9 +38,32 @@ properties:
-> >      maxItems: 2
-> >
-> >    nvmem-cell-names:
-> > -    items:
-> > -      - const: big_scale_calib
-> > -      - const: small_scale_calib
->
-> Please test your changes with dt_binding_check and dtbs_check. Your
-> change looks not complete - you have still nvmem-cells =3D 2.
->
-Hi Krzysztof
-I test all is PASS on my local.  could you tell how did you test?
-my_logs:
-cixi.geng1@tj10039pcu:~/upsteatming/linux$ make DT_CHECKER_FLAGS=3D-m
-dt_binding_check &>dt_check.log
-cixi.geng1@tj10039pcu:~/upsteatming/linux$ cat dt_check.log |grep sprd,sc27=
-20
-  DTEX    Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.example=
-.dts
-  DTC     Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.example=
-.dt.yaml
-  CHECK   Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.example=
-.dt.yaml
-cixi.geng1@tj10039pcu:~/upsteatming/linux$ tuxmake -C ${kernel_src} -b
-${topdir}/obj/gcc -o ${topdir}/dist/gcc -a $ARCH -t gcc  -K
-CONFIG_ARCH_${PLAT}=3Dy -K CONFIG_MFD_SC27XX_PMIC=3Dy -K
-CONFIG_SC27XX_ADC=3Dy
+> > v2:
+> > - Add fixes tag
+> > - Remove 1/2 patch from series as it's not required
+> > - v1 discussion link:
+> >   https://lore.kernel.org/linux-devicetree/20220312180615.68929-2-singh.kuldeep87k@gmail.com/
+> > 
+> >  arch/arm/boot/dts/spear13xx.dtsi | 5 ++---
+> >  1 file changed, 2 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/spear13xx.dtsi b/arch/arm/boot/dts/spear13xx.dtsi
+> > index c87b881b2c8b..45f0b2a33e02 100644
+> > --- a/arch/arm/boot/dts/spear13xx.dtsi
+> > +++ b/arch/arm/boot/dts/spear13xx.dtsi
+> > @@ -284,9 +284,8 @@ spi0: spi@e0100000 {
+> >  				#size-cells = <0>;
+> >  				interrupts = <0 31 0x4>;
+> >  				status = "disabled";
+> > -				dmas = <&dwdma0 4 0 0>,
+> > -					<&dwdma0 5 0 0>;
+> > -				dma-names = "tx", "rx";
+> > +				dmas = <&dwdma0 5 0 0>, <&dwdma0 4 0 0>;
+> > +				dma-names = "rx", "tx";
+> >  			};
+> >  
+> >  			rtc@e0580000 {
+> 
+> Rob,
+> 
+> I tried to ask this at V1 as well [1]. Why do we need a patch like
+> this ? Isn't this a DT tooling issue, where it is asking for a fixed
+> order of values ?
 
-I: config: PASS in 0:00:00.000549
-I: default: PASS in 0:10:20.931602
-I: kernel: PASS in 0:01:10.643458
-I: xipkernel: SKIP in 0:00:00.003244
-I: modules: PASS in 0:00:35.658938
-I: dtbs: PASS in 0:00:18.696416
-I: dtbs-legacy: SKIP in 0:00:00.005625
-I: debugkernel: PASS in 0:00:11.541855
-I: headers: PASS in 0:00:11.778253
-I: build output in /home/cixi.geng1/upsteatming/dist/gcc
+Fixed order of values is important in case of properties like
+compatibles etc. In case of dma-names, yes order shouldn't matter here.
 
+This patch is more of appeasing dtbs_check warning rather than fixing
+something. It's safe to go with this patch.
+I am not sure if there's a provision to exclude dma-names from fix
+ordering checks. Rob can help here in providing better insights.
 
->
-> Best regards,
-> Krzysztof
+- Kuldeep
