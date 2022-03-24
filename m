@@ -2,235 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61ABC4E604C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 09:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB794E6095
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 09:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241890AbiCXI2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 04:28:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60886 "EHLO
+        id S1349029AbiCXIqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 04:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346386AbiCXI2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 04:28:09 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2093.outbound.protection.outlook.com [40.107.113.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75CB49BAF7;
-        Thu, 24 Mar 2022 01:26:33 -0700 (PDT)
+        with ESMTP id S1349007AbiCXIqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 04:46:30 -0400
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D86C9BBBF
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 01:44:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1648111498; x=1679647498;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=/QRl/rokUdExRKDMOr0VeOOj4QxFtmyc+DKyCgb8htQ=;
+  b=nboL0VE8BxdTREKQrPVz1s0TKCpZ6Pjl7rB4B8qG1KOUM4BUjrqZ7cZq
+   VJGiIoLsY3l/KBfFcOwTQMdQWxTJcCzz//1VYUtikTlolhE3FBlA/PUew
+   hetFa4NZrGE5cIcUaqKCcCL51SrIyS66wZSO+Z072/pBt2CY8mNxdX1t/
+   fLQOUwFdaXHVD35fSlaQrgD9GcB8lrMps8WccGkFrwM/CUj2Tosl1gJY2
+   SYskQVgiZqfGvxOI9ew1wzJi+RkZy6WHdLCwbN348cu3NWgJcIe2HvWUw
+   bC0ut0kvrW5zIlBdta0xHp+wAs2HJXbu1O7cCJ8vjhNcWK4d3oPi/f61/
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,206,1643644800"; 
+   d="scan'208";a="195048875"
+Received: from mail-dm6nam10lp2103.outbound.protection.outlook.com (HELO NAM10-DM6-obe.outbound.protection.outlook.com) ([104.47.58.103])
+  by ob1.hgst.iphmx.com with ESMTP; 24 Mar 2022 16:44:57 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BXC6chHM8ZxzEj/HGK3SEVUOR64kGiLUHiukc757R4COF6jdCUXncW48vFPoBJAUbbXLHmfgLnfWmpJRpwl8kY3XfdFON+V9Gt0gZ2vWPVGrgs3pbc32eJDAOrAsJYOTrYEL7gREVgjq8HMIjRNcs6wwNs5/Phqttx9OH6ygVML/rlGKBYlmMjxhcA3pzLcbpk7Ryp0QiU12mYqCicB4xrv03vQ9mCATIpQ+seJw7eXMnhdttNcILYQOvaM9LBD+EDr6A4pHwaXu7zRtfmguUu+IEvJlg4JUMBG15Jszm9gorCD6n3kbNyg365svpluc6fl/KTg5vBq1V1FmBOEwZw==
+ b=i5gA815W/lb70+RfkMvxdSHAI/U5jDAxHh23mblSHhBR0v3KeIIc16j5K/bk/tjMPomVlT5l3vgb6lPgAbaNfszq2vDjChmjNTE+FsD0vUQSbKNXMp9uqh0wHtQNmSL6iNUwmRIKx72pXDK/tpOcXBw0G+A83zwxjhHMvCSdaGzfQyF4YLQ/+odo7C2A5mVjcwjv3pSes8rF52xc6IRuwtvoltvlW7cgunb3sOEG64UXccL9ruRiI3zcWizbZr5y6ghnDmEQECLTgGxbyZZS58dvEI+9g07LT9GhO1kJzI1rIcQLWjUMjYvuB3t22N/6a/qcJTZrzfoktHNctfADSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6OoAbMtEoZFevP5djIifWY8zNgaIZsfbkZ0sX82r0yI=;
- b=CKjXqV8Sv/HKyOM4h67jf2lFm9nDiVjrSCsBH7bWDSrtu0v/J3n3Jl5CDl+nz0hLprLCTOhBT2Sgh7VZ3rcWj213IACoYmUsKnL60FtFf88zJmrxe+l1PBPbcHbreaZ31ImgUwUYmQTspiJKWaJ/PQVeEdKJ0kdTtVJWm9mXuscdNZbPJ4NUR2XTjVERNLAlnrvD6BpQHC9w/SY5vhwOgRQi2w9mNcKr7Wnin+MTjyh8UKSxOa5Pcu6nCcDrPTJI3Tu2+QIGx9pCTIQFwycOU1Yb5fNfNOXjwb+XeVcqa82QfJnu5TlKQyCpdqFmwfXYrLFW+CTtT02Zo0d4c2lsmA==
+ bh=/QRl/rokUdExRKDMOr0VeOOj4QxFtmyc+DKyCgb8htQ=;
+ b=ZI+59/1pBuO4PXPXxyqEw7Nw9LSMUD/57IMzvL753a7WmQIje8sQHFF9UY8erMyu/NK+aTv5vF6cGpIthl2uCvlt1ulmRQkwCLAJh0DON0VhFFORqkNQbPo/oSaEenNvB6Qru9CgPqfj98WP8W4GSGbBqDQ6tAPGIgD5jBjmjKCDkLsT/Y2FhM3Ln83KVIqyMqSOtiFaQUzIFJmePuWkFBp2ZqW+g1pj8oLtav8KtpsxK7HwC+atOOBf6N7MEf5wj0n3Ku0OCGnh0LWy1u9Edq7j3EFjOqRROKd9a5JLnfieKWox2HTfA+I8vaNnaZkLEN9KdpFfzeL5TDEWZ2rWdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6OoAbMtEoZFevP5djIifWY8zNgaIZsfbkZ0sX82r0yI=;
- b=I00cdNvovZ230eg1ACpTCrPcxBnu/iYlg887ExKYoi+zgvbFnF9Hf63w1sYutmjp7sN+/fm9qiRFaPpgZOTVpQBa1sx4m8n9x9LJSroRE78cdtgRMf68a1CCxTYyGcFbcJ9co1u9T79BRw9m2zx8ptcuwmn4yvDoYNqCRTtcJKs=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYAPR01MB4671.jpnprd01.prod.outlook.com (2603:1096:404:126::11) with
+ bh=/QRl/rokUdExRKDMOr0VeOOj4QxFtmyc+DKyCgb8htQ=;
+ b=VC7L/VWxf5K6FG3ocg36+1dR4QSs8nUe9EKShnRSTW+ACOYqEZ/0U9DsX/dHYQbfA74RGmVIG5jl39mnqNszQrV5rjfL0nVoIcYI1tbMrXV8+6DHm6fSpqUV5eXlzpfRYFZI1YoQG0joYLW5hcWZ3HNzE63uv0Ur8awlu6hfPgQ=
+Received: from PH0PR04MB7158.namprd04.prod.outlook.com (2603:10b6:510:8::18)
+ by BN8PR04MB5651.namprd04.prod.outlook.com (2603:10b6:408:73::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17; Thu, 24 Mar
- 2022 08:26:30 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::7ccd:4eb0:e2ae:fca8]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::7ccd:4eb0:e2ae:fca8%3]) with mapi id 15.20.5102.018; Thu, 24 Mar 2022
- 08:26:30 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Thu, 24 Mar
+ 2022 08:44:54 +0000
+Received: from PH0PR04MB7158.namprd04.prod.outlook.com
+ ([fe80::995b:363e:8d1c:49af]) by PH0PR04MB7158.namprd04.prod.outlook.com
+ ([fe80::995b:363e:8d1c:49af%6]) with mapi id 15.20.5102.017; Thu, 24 Mar 2022
+ 08:44:54 +0000
+From:   Niklas Cassel <Niklas.Cassel@wdc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+CC:     "damien.lemoal@opensource.wdc.com" <damien.lemoal@opensource.wdc.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
- DSI TX bindings
-Thread-Topic: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
- DSI TX bindings
-Thread-Index: AQHYN739eKkm02BV80+gG/89zR29V6zNVP+AgAABAfCAADmtAIAAsI7g
-Date:   Thu, 24 Mar 2022 08:26:30 +0000
-Message-ID: <OS0PR01MB59222B817D5C4FEA8A8C372186199@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220314161004.14765-1-biju.das.jz@bp.renesas.com>
- <20220314161004.14765-2-biju.das.jz@bp.renesas.com>
- <YjtkMxC0X7mMvMKX@robh.at.kernel.org>
- <TYCPR01MB593341D2E966F3C60ADAC8E986189@TYCPR01MB5933.jpnprd01.prod.outlook.com>
- <YjuVbBck5RE79EPl@robh.at.kernel.org>
-In-Reply-To: <YjuVbBck5RE79EPl@robh.at.kernel.org>
-Accept-Language: en-GB, en-US
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2] riscv: dts: canaan: Fix SPI3 bus width
+Thread-Topic: [PATCH v2] riscv: dts: canaan: Fix SPI3 bus width
+Thread-Index: AQHYMvBeFV3VWYd5AEiJlbzlm2Re1KzOUPuA
+Date:   Thu, 24 Mar 2022 08:44:54 +0000
+Message-ID: <Yjwvhfo/mQ6z/VSv@x1-carbon>
+References: <20220308132806.96095-1-Niklas.Cassel@wdc.com>
+In-Reply-To: <20220308132806.96095-1-Niklas.Cassel@wdc.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+ header.d=none;dmarc=none action=none header.from=wdc.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b555b99e-c2fe-4f1a-a0e4-08da0d6fffb6
-x-ms-traffictypediagnostic: TYAPR01MB4671:EE_
-x-microsoft-antispam-prvs: <TYAPR01MB46718966A5609F856912B75086199@TYAPR01MB4671.jpnprd01.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: d7f6bc2f-d074-46fb-152d-08da0d7291be
+x-ms-traffictypediagnostic: BN8PR04MB5651:EE_
+x-microsoft-antispam-prvs: <BN8PR04MB56519ECC6F64916F3E0B46F9F2199@BN8PR04MB5651.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: B7Ps99Uzig5PYQxfjf+RhYkD/QlWIvJfopNjOzRP+E6eN5ldRNl0TQ8kvaDEvQOne/9NTUvbp2QE/YpFOPq5RHLgmphbmEOy+7duLN4QQHUIjAUzGJMHautHos8XS2fKK6XqqA61o1xj6mR04cjiiDkeeiFisXwcf6MY7I310jF9H1ifdFoDa0q7zL0NbHdLy3Jn0FmOTk3dPTBUevp9+SItl+N531pHFZT6toiOEonErT56oT3Wq68GhtAQf+F2YMoZmik3myWYrkoC4Wutx7Rw/coI4ZC4X95c1TvopPo+3VUCzRwOSMFSGi4eJHJGjOqEfZyPf/IYewFTbP3MyOp4oVNU/be5yRuuhHPPyCr0bQlcr231JuNa6iCBmPbIlIIz0Ps8vNgL+ytaTL0cyhW/B4BC7eGwL8662F5Mr9DN0CQJDscAxsfUWX5hH/M5auMliOsZ+PKD8WeR3QwP1luLeB9DhmZrdQqmz6qW4chtCIYNr8TknqaT24jvZI7TA0anR+uBnKGe4qXd7LobTHQC+BJ8jaSo/6KLbYfE1/bD+l372w9S7W1azRJgCIOH2zaoi1piPdEazleyUBWjXGvpPPB56aEqBI3f3bl20EXvi0HXOFM1L7iYKDt9Dh4UXWzWVNuoE8AOQlnJJ40GGT3tC+CeMLVyR5o0roeEcOJRGhzz0+z6mpCG/Xh2r1LrMg5W+C7T70TNkjJ4GFC4kkJWpAT7PADkSTRKIQ/uMO6wyiJKsFC+j9rXRVYmc4UNpEL1yLHrgCalKsum49O8v+U6eMo97t2IDI9NoCKNFAep7lexdA6W3nvoIVczMMTiuv93Wc5DRcMEYkR1/vxzQQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(7696005)(9686003)(86362001)(6506007)(4326008)(508600001)(966005)(71200400001)(66946007)(83380400001)(26005)(38070700005)(186003)(66556008)(8936002)(52536014)(38100700002)(5660300002)(2906002)(55016003)(122000001)(54906003)(33656002)(316002)(66446008)(64756008)(76116006)(8676002)(6916009)(66476007);DIR:OUT;SFP:1102;
+x-microsoft-antispam-message-info: pL+D4r3zTUkLq+QYj8XZ8pa7GMEWGHwGu+7mhrHkj4SG7RuODsbtYggU9CtkoxdqJRd2rGpYvLhbxUnyLXB8ihs+tuYLJEq8nkAvVRUU9phQn0B9XPreuQIOlIici80r5WiC8qWJRdeFbKH4efFQN2tKy+VCBk/jqHDp0l7l9uZKCG0R207HRTHenQDJYRFeGAb3V+KWfmScoh1WG0p1Pbu4ZBGfaMRMV7t59fYjcPuQ0WJ5yhB4ZLK15XyzhHx7nP2nGvr9HI/glu1Qe+2iZHAoQNCN9+8B8s+dZ4dQcvZMrA4hLmSwkn4+eK9W3hJWC+tjaA5r7gUpOuR7Sc0IP9dJiycoVEQYWzlnLCgWzA4XlkJ5GYUEfqaxTHepO/7t/KrlemCEkcHwauV+uejIBn1DeJsyOITt85kt2pT0PbjJnE89hzcFHRGRMZilLsQ+a+bV1iRA9RkBjlgTMDkdeEsQ9bwSP6Mwis5EQ7e2bY/9iOPqKT9A8EW0R4zxMdr2y/Dbm8CNMWBCSs0AFgYqKcxZTNjHHw1JTsTDTw673x0D1k/SwKSUGfiC3oeJEKQWZCIqlIDCVqxiD8ZUGagBdMuD8uSracO/4GyJGPsPKd6UiA2/WYYWUSx0SB/ATimRMUiWg3uOxhxBSLdvwp+iHIiye+0VqQP8nV8EK+hEIhrh9w1wsjEUygWc08Rx2aZcWhdVGZtZKpzsWha3K2cQmXnMdI0gVOFN9mMsAft6F/+C2TCKTzfgOD4NLurYdGbqdK8KxbTMWSt9XyeE5/ZEQKBpMdixWN9W0RVCxsM/tiZ7i0GdfLVpEqe6+GM/xy3+
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR04MB7158.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(66556008)(6506007)(64756008)(66446008)(66476007)(38070700005)(5660300002)(38100700002)(83380400001)(110136005)(54906003)(4744005)(91956017)(6512007)(122000001)(316002)(86362001)(82960400001)(2906002)(33716001)(8676002)(26005)(186003)(66946007)(76116006)(9686003)(8936002)(4326008)(966005)(6486002)(508600001)(71200400001)(15398625002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Qoiuv1mcvmlZu6EA3Z01pO398px18XBf69RL42vX/6ay8hz43a5raXg/mMOo?=
- =?us-ascii?Q?1wP3bi2RSmbF642gb2RutCe6gu/1h2jDWMAT34x6BM2hXzQIM6xmS/qHq+3P?=
- =?us-ascii?Q?lOuVz6iXXbhg7BqIswi2L6OZTjszyJIfLWIWQOLaGa1ZQ/VZfpNHdW+Efc5Q?=
- =?us-ascii?Q?n1jS3/VeASzu9m6vI83Opf7O7dGaEVteqhA2w6XhYflYAj9dr1UkncIINL+P?=
- =?us-ascii?Q?TO6E91/ydNBZYfTkhz5JhEkw8gYlmFuuch4GCEoU7yw9wvGVgbGuTq22q1Fz?=
- =?us-ascii?Q?kONiJ0tCB/sw1BorockwLRw87M0GumPd6oHwoinFgygstykiH/OWmdwRWgEF?=
- =?us-ascii?Q?XjTxMQEeOovmlerMIfmqG8lvx2XdGVZ4ESUV/1591hXwn4TwAFfs1yAHkn5B?=
- =?us-ascii?Q?e0WvqkyKkkBjiF2WGQtg0fSYX3a5QV23L4jc40vl1sLIXZta10ynjc6MaCSy?=
- =?us-ascii?Q?nz4uQ+WSwH1XFdeBV3SITT+FFmKG34gFyRAFM4EKXsh/eYw7A9h6DYau4ksK?=
- =?us-ascii?Q?+LWTh7TPSZ8yCg5IyqkjthDIEQoPRgKcZvGNq3gJCyJpb884tqKw4UqoZh2B?=
- =?us-ascii?Q?iBDxMvvoidRV1pJ8h4LIf2l+80dJzNqHc42SX8PY0fL3fsDr/qFlS5+488P/?=
- =?us-ascii?Q?U7hH+hT4wCTLXjXMbc8v6cVH9Tfc6KFMzr7Rgl43IIRZDcnrIvWRVyIhqLVM?=
- =?us-ascii?Q?LVlym75nyLPtFqwN7cHu2pPIMD/TEtVee1nYznV4sq1k9OGaoxuz3Nl/gs5P?=
- =?us-ascii?Q?D//cMDu7u7pOpCpMDr+nSwlOP2EkR6tSf/S5QxpvCvaLTWKlwnlvymF6Mcoc?=
- =?us-ascii?Q?ASZbs11R940YBMXbsmMP33YgnI9bKkubl7DMtajU3xBhXrJvXfQuGHGWE6at?=
- =?us-ascii?Q?xNtxvsj5JhsbuSWSPDdFN52OjieDa5Eg0j8Kfjv+GJM+EU8EsUhSQRzgjEZI?=
- =?us-ascii?Q?nxey85BIU2BnL4oGwUmFoS2fCHw1y9rRLU5nXv4Oq1dkHBTrTbB0sOjTgIQy?=
- =?us-ascii?Q?4R6s8uG23O8GdBAhI/zcuhX/D9Pvsf5w3SpgdifUjEN0Jl3zTFs1GSgyW9Bg?=
- =?us-ascii?Q?HzFlzWS7L0rPshWNNVDsDvD0RnaLkzXvtIYJZx6hOyLvU6S1grmlyez0FwjI?=
- =?us-ascii?Q?ougxVBsDK5w+c5OBoulQs4sYrFpxYDAsbzV8v/nSGMiKvEM0xWqO0MhaKkck?=
- =?us-ascii?Q?XBAYn24Qh6iT+VZyqD1M7yT0fH88fzBRkCcQDcBC7IXKohgTDLh+6Lx730yU?=
- =?us-ascii?Q?yV+mqC/Lb5e5jTdJJZ9wVALrKFc9uV+aqlVME2OnhEUxwOe+rKy1bRKstBDF?=
- =?us-ascii?Q?fq3AQ6/hIRHm2fKCDrivoJiPxSblaD5UcwuDtd69WxOKAWrcv01EyqpiEyYc?=
- =?us-ascii?Q?DQez2FcfjgEAslNmFfd8qwH3X21YNgJg3DOgdBoI/S3ZRbxflFgrt6bLH37v?=
- =?us-ascii?Q?kwLiPazQNmKv84OW1WAaoGqegAAuKzV2wwY7V0ZiRX2KZMD+n5PjnA=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?uQ6TH2pnTQ/smKhHME6OlRBPLKxgCQqNAlLMw4slLWh8gdwx/fSe05ldKSCl?=
+ =?us-ascii?Q?ZjF3/VXonykIm+4mre5D+fDGynpVQCPEOLcb1LBrY/fKPnj+WwUy9XgRtThr?=
+ =?us-ascii?Q?wVxI2ur0qXVuFU2EVO0+2X7adEVw5wbvDKQMN892G2jRdF7Zusx0uI9YzIyq?=
+ =?us-ascii?Q?vDmyOM4/Syf4HQrnhJbx/d2sB82+1NdcR7suZ0VE30dtkd/blh3L7O/kL4kj?=
+ =?us-ascii?Q?0Wai1cqI3sLNIsTOoGjdFc/j76OyeJYJB/IA+hyR9gija0eiSE7DfgRhcbbE?=
+ =?us-ascii?Q?f1JHTSAPDwJhjvPqCmT3jAnNk7QZzbrrJW1DwF6kuWSztkvzYesvL8rDYvCf?=
+ =?us-ascii?Q?qPO+zMy+qJ6LAMoWzxuGjeEU6AqqFDINiyFWmtPF/QhwYD33hE6DQYZa/PUF?=
+ =?us-ascii?Q?stpQQ9PNP72qZ6hAboekqU4RPzPFF2+ZpcJYjiPffY71NXeBWXupiiPiYLHz?=
+ =?us-ascii?Q?dZyWQpqRyqZVe3i+oXlYQKLDUqQaEcLI0miltNv7JCBT8tu/vNthE786vJW+?=
+ =?us-ascii?Q?xEEBsI12ya6diEAmo1Xywao9PP/dNlxqu2TOfbuyBv57t4j7YXsW6/991nOd?=
+ =?us-ascii?Q?td7ezXRXAOadAXSGmvEXf/fXTzrIqfpFehArQgTJAhbMePFxP3ZZj5rsvCxT?=
+ =?us-ascii?Q?bRkN2SGn6BqftTWmcvdfGTfmKtQPa2VBNFUyW+VmkLZfOCDhviYwIGYF7af6?=
+ =?us-ascii?Q?P5rZOExk8hFvxJITBS29OyCCQOVSIm58vPBka5MV2gpdgN7V9OKqoZlZvi+H?=
+ =?us-ascii?Q?r4cuchHPO0GVPMdvye0DZZ499A7bowsfHwAgqS6ZAbyBXvMmnzthxbJddkVl?=
+ =?us-ascii?Q?r1FBRuuOTtbMwY0LM89gTjKr4I/r7ExpajdjdvoCTqjbbsILXLrX3IKTXAPe?=
+ =?us-ascii?Q?m+1S35loUu/blAffjNMYUlo7eBp22dHmMTDvD5GwtWGDSqw0YZ/uLiCRL9gU?=
+ =?us-ascii?Q?Ho3/Dkq0506kallDmJney7h4j3Wu4O6igToACRzJtm0hOANigDQKTAIC/0xD?=
+ =?us-ascii?Q?NGqAfgqpKs6qxbhm3cpElX+HWHJBvDe0ACWdxOK0g9GmoazUOIGi/KJsxdfe?=
+ =?us-ascii?Q?itCbABG+DLX7jWTMgyw8cp03KNV0WsNgT1JD41J61ebF9EmDT3beKQdxQ4y+?=
+ =?us-ascii?Q?Fvc0I6hvuGny7SeTwDTQJfpqpXeGrItdXIXdZN86dSyCt0cjI7sKaGuR3SSg?=
+ =?us-ascii?Q?o7jf8M5Fs1mXlzNpF7/FhfeH3zXrqDzvdmT7pZWDNEr4r1/MGkKxFxi3OljP?=
+ =?us-ascii?Q?gmTBJcsS03v5zsRvvoYEejni5aL8VmYQ1CACyeSPGRTzRjIIeAvY4Y2siQ9v?=
+ =?us-ascii?Q?dbudZ3je0NWBezGZ8lXLbnDGR/AQoX1CmEzaAb8K+AFvtp9BTQ0LlXUyzO3I?=
+ =?us-ascii?Q?0ALx/eYqHU/XtFr8cSGtocMo4hyY8v4/MtecK5yQisJIfwJzBiANRzcjmlwF?=
+ =?us-ascii?Q?ku/7AmPyBK+JRhg1ikNfZOJgC7UdyuaQ3j81FK94/iTLIWEGA6gJHQPpV2+u?=
+ =?us-ascii?Q?NJZAyEdVfxn2/+HY56CNwKisOhStMYBfiLbqlbSZoDs/yiTfpD5PS+z+bVFR?=
+ =?us-ascii?Q?pL1aF/2eYT+3/nhOnYtY5WWlCX4vmbv6fFRcmUVfeAQtmAHt00kAuKtgJ+9R?=
+ =?us-ascii?Q?p/iBvBYjPFoHWiPjyUWXAcmLDu5zRZ1m5WrlABmP6VpUrkc6iB0egEayd6+i?=
+ =?us-ascii?Q?n1g5gNFhkFjXQ2GkWpMRBIf/FMwBDsHpowByo8I7UJrEz4p/uRwpsosglU+c?=
+ =?us-ascii?Q?y8OGTOM6MM+qSkv8WQv6m4xW3Nms4ww=3D?=
 Content-Type: text/plain; charset="us-ascii"
+Content-ID: <8BBCC1A4AC4B4D4D94E5E819272DBA94@namprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
+X-OriginatorOrg: wdc.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b555b99e-c2fe-4f1a-a0e4-08da0d6fffb6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2022 08:26:30.8411
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR04MB7158.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7f6bc2f-d074-46fb-152d-08da0d7291be
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2022 08:44:54.7839
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: loEKpWRAtqYZrVMdvMJW0Ftt4EbOFPut0+Yd6lrvPLsyzHkf3MubPhQHfAy9qeS7fUfzGLwodJP5q3OGwt51kEx1cnUxbBV9GwsebmK6kEQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB4671
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: 2JoF94C9tuyvuUPYVjQ5kpj/Jd9O1I0A1EtU4crSi+Cxn+WnBWVdGGfvxYnujJfnLQ657xUs7gIjNY7a10PgJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR04MB5651
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-> Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L
-> MIPI DSI TX bindings
+On Tue, Mar 08, 2022 at 02:28:05PM +0100, Niklas Cassel wrote:
+> From: Niklas Cassel <niklas.cassel@wdc.com>
 >=20
-> On Wed, Mar 23, 2022 at 06:26:31PM +0000, Biju Das wrote:
-> > Hi Rob,
-> >
-> > Thanks for the feedback.
-> >
-> > > Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: Document
-> > > RZ/G2L MIPI DSI TX bindings
-> > >
-> > > On Mon, Mar 14, 2022 at 04:10:02PM +0000, Biju Das wrote:
-> > > > The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family
-> SoC's.
-> > > > It can operate in DSI mode, with up to four data lanes.
-> > > >
-> > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > ---
-> > > > RFC->v1:
-> > > >  * Added a ref to dsi-controller.yaml.
-> > > > RFC:-
-> > > >  *
-> > > > ---
-> > > >  .../bindings/display/bridge/renesas,dsi.yaml  | 146
-> > > > ++++++++++++++++++
-> > > >  1 file changed, 146 insertions(+)  create mode 100644
-> > > > Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > > >
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yam
-> > > > l
-> > > > b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yam
-> > > > l
-> > > > new file mode 100644
-> > > > index 000000000000..74bc3782d230
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi
-> > > > +++ .yam
-> > > > +++ l
-> > > > @@ -0,0 +1,146 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
-> > > > +1.2
-> > > > +---
-> > > > +$id:
-> > > > +
-> > > > +title: Renesas RZ/G2L MIPI DSI Encoder
-> > > > +
-> > > > +maintainers:
-> > > > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > > > +
-> > > > +description: |
-> > > > +  This binding describes the MIPI DSI encoder embedded in the
-> > > > +Renesas
-> > > > +  RZ/G2L family of SoC's. The encoder can operate in DSI mode
-> > > > +with up
-> > > > +  to four data lanes.
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: ../dsi-controller.yaml#
-> > >
-> > > Full path preferred:
-> > >
-> > > /schemas/display/dsi-controller.yaml#
-> >
-> > OK. Will fix this.
-> >
-> > >
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - renesas,rzg2l-mipi-dsi # RZ/G2L and RZ/V2L
-> > > > +
-> > > > +  reg:
-> > > > +    items:
-> > > > +      - description: Link register
-> > > > +      - description: D-PHY register
-> > >
-> > > D-PHY is not a separate block?
-> >
-> > Basically D-PHY is integrated inside MIPI-DSI Tx module.
-> >
-> > MIPI-DSI Tx module consists of MIPI DSI-2 Host controller (LINK) and
-> > MIPI D-PHY Tx(D-PHY).
-> >
-> > That is the reason I have modelled like this.
-> >
-> > Is this model ok or am I missing something here? Please let me know.
+> According to the K210 Standalone SDK Programming guide:
+> https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalon=
+e_programming_guide_20190311144158_en.pdf
 >=20
-> I don't know the details of the h/w so I can't say. We do see blocks with
-> a phy modeled as 1 block only to need to separate them when the phy part
-> changes in the next process node. I imagine we have it done both ways for
-> DSI + D-PHY.
+> Section 15.4.3.3:
+> SPI0 and SPI1 supports: standard, dual, quad and octal transfers.
+> SPI3 supports: standard, dual and quad transfers (octal is not supported)=
+.
+>=20
+> In order to support quad transfers (Quad SPI), SPI3 must have four IO wir=
+es
+> connected to the SPI flash.
+>=20
+> Update the device tree to specify the correct bus width.
+>=20
+> Tested on maix bit, maix dock and maixduino, which all have the same
+> SPI flash (gd25lq128d) connected to SPI3. maix go is untested, but it
+> would not make sense for this k210 board to be designed differently.
+>=20
+> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+> ---
 
-Yes, Please see [1] and [2], where (DSI + D-PHY) modelled as single block.
+Hello Palmer,
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tre=
-e/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml=
-?h=3Dnext-20220323
+any chance of this getting picked up?
 
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tre=
-e/drivers/gpu/drm/rcar-du/rcar_mipi_dsi.c?h=3Dnext-20220323
 
-Regards,
-Biju
+Kind regards,
+Niklas=
