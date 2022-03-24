@@ -2,227 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 759834E6506
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 15:23:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A993B4E6520
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 15:29:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350770AbiCXOZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 10:25:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40926 "EHLO
+        id S1350927AbiCXOaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 10:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350769AbiCXOZJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 10:25:09 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469667938C
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 07:23:31 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 800833200FA9;
-        Thu, 24 Mar 2022 10:23:28 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 24 Mar 2022 10:23:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; bh=BAtPvAjSsi0nB6PDOyaklBbscwTc5uTvowGLL4
-        pcVqw=; b=BBPaR+Fvvl+JvOzRjkvSf+DONBCzVF15WuJfF3HjSyk90cFy/UXVO2
-        xTHAP0aYWNGN/ptB/+fEfUG/bPBmDm3b6lDboJMMNHti6xhcKov31o5XcvkRLXxL
-        ev4lMR9KeOGw71UyTHVNKpUpurwKnb5ptBxAmzrGvVImSmQIHyCI0mhFuq7ulcRP
-        ErOpbAhJfLZK1+1R/6wLQNzgBkkcrKDx8Jz+EPWhtTIpT3FTzhiDNoVllzAHv5HH
-        nA4ByWKLGunvJVb6lNIPuhdGERnYRd0w/afJEFPybNZA3gFrU0KodAJKa9gnvTCm
-        zw0STCmKgIzfmB9/wP/lqGm8gXnzs6rw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=BAtPvAjSsi0nB6PDO
-        yaklBbscwTc5uTvowGLL4pcVqw=; b=NJL83sDtHTj9BSo+P1EjWsc/3b10qaxn4
-        P0M9dRPc5lT92dJQz0SwROKKIvTBmb8cSV2wB0uxpU0yfUp7pyUszQ5kU8JhVqGE
-        1xlljLYoIVxx8TR2w3ddZ5FLh5C04VU3jd5NaS2R0pVb4I68wgyRAiGQLU1/51+k
-        mwmwIGt+m3IZxY8Sn1xL5QaGJyq6kJrC4pnYBJrvBM0vI4Nqea7yTihIFrjXSfRV
-        /FhHjADI+0aPVJTgJ2P14z0xrxGA03NgtHsQw83OIy9ii5MxTgmAP3xSgLH09rh5
-        I4cPGhY51igCSqMhBYBPoBEbL8blrk4DVwIlwNI04EPmCF3GGrXSw==
-X-ME-Sender: <xms:3n48YgNB_ksH9apvykhRB4m7dVUdH2tE26DPSrt38ndKOPrrPEZVAA>
-    <xme:3n48Ym98ZJp_wxCL6n0xvadIRJuQzJuWF4IZwGBApTSiQ6NU8-sJ461uE_7K5b_nT
-    rWSpLFd6u-339F_tG4>
-X-ME-Received: <xmr:3n48YnQNSfQMMxrZrd7-DIBp1JqB6TMHcSyv7uAGXujOuALB9IJbVvUJcSohizubIi6vUXSGOjy0m43O_UUZtogLjQymsKsBGzbLJNE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudegledgheelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:3n48YoteBOlXOBDsaqF1OimX7k5Py5Wy-nh7ngRwUNxQ2TW9HsV5gg>
-    <xmx:3n48YofnNBLh9JlHSZNa-kaV55fZFwCZ-7OwElaUU1SodCwON1QnOQ>
-    <xmx:3n48Ys165EsiuH9LOEnpFzmHFr8ctiNgH8bpMDFxwXQYHd8RwzT3SA>
-    <xmx:4H48Yn-gmKPIcfhvTKVy9qVaGCyGOaQYLQdaNAjIY1F3Sd41fIm5ow>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 24 Mar 2022 10:23:26 -0400 (EDT)
-Date:   Thu, 24 Mar 2022 15:23:24 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>, Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
- port for DSI devices
-Message-ID: <20220324142324.monalktzzpypu74x@houat>
-References: <20220323154823.839469-1-maxime@cerno.tech>
- <YjuFO45Gr1vmKxWG@pendragon.ideasonboard.com>
- <20220324081819.niz4pdqu3j7n2ivh@houat>
- <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
+        with ESMTP id S1350948AbiCXOaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 10:30:07 -0400
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F9713CC1;
+        Thu, 24 Mar 2022 07:28:35 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id r7so5777438wrc.0;
+        Thu, 24 Mar 2022 07:28:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=f48oD3A4pzq9XiG2BbQysIkG06YGH9C2RvCqIx0bChc=;
+        b=wVM4OJEtdlOgJOOuVZt+XdiRulV3sFr5uQ+VMi+BA3+i2+iPDz3Bo0BMz49uE8A7ZH
+         5zSaenzkAeoF1VmL8fIkBx4um5pFezG7WqHswU0OwJ809KiCAO9wwbzUL05qLngxjtyB
+         UcHcEAaUu4CsQAXU2MOmTPe+MbV+uIZUgOVE4Ci1WxjidbC7eQly6Sxvg6qqQ2d8Vi1Z
+         Uxz1tO4EZABEkwHiN4uEnZW2iL4XYFC2JfthlTzgT6x3A9O6wpnod1rEo15euxI8dPEP
+         pZRo/+F8dO7NiCTZi8kBCC879TxW/QFJnK14NK7A50TfXXHTTznhM+FPf59I9yd0ToyZ
+         COJw==
+X-Gm-Message-State: AOAM533Jbn++AtjbbZb7gPT7Bx5Tm5csZeNUdA3ZAN4OoFDEaKMAAwhJ
+        HnzTyBLW2OsMhz1nfkNMICQ=
+X-Google-Smtp-Source: ABdhPJxC7cHhryRpYCMgAM7q7W5uOJdQCZlwQDTLeZoCHnCN5lDxPV2JZJbSiwb2nh5mJiPljPmH5Q==
+X-Received: by 2002:a5d:6c65:0:b0:204:119d:37e2 with SMTP id r5-20020a5d6c65000000b00204119d37e2mr4648532wrz.635.1648132113605;
+        Thu, 24 Mar 2022 07:28:33 -0700 (PDT)
+Received: from [192.168.0.157] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.googlemail.com with ESMTPSA id y15-20020a056000168f00b002057a9f9f5csm3449789wrd.31.2022.03.24.07.28.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Mar 2022 07:28:32 -0700 (PDT)
+Message-ID: <f7493d93-6c8a-efa9-1f2c-a0003a6d43b2@kernel.org>
+Date:   Thu, 24 Mar 2022 15:28:31 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kq735fu2dw67hzsc"
-Content-Disposition: inline
-In-Reply-To: <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,rk3188-cru.txt to
+ YAML
+Content-Language: en-US
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220324133229.24035-1-jbx6244@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220324133229.24035-1-jbx6244@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/03/2022 14:32, Johan Jonker wrote:
+> Current dts files with RK3188/RK3066 'cru' nodes are manually verified.
+> In order to automate this process rockchip,rk3188-cru.txt has to be
+> converted to YAML.
+> 
+> Changed:
+>   Add properties to fix notifications by clocks.yaml for example:
+>     clocks
+>     assigned-clock-rates
+>     assigned-clocks
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../bindings/clock/rockchip,rk3188-cru.txt    | 61 --------------
+>  .../bindings/clock/rockchip,rk3188-cru.yaml   | 81 +++++++++++++++++++
+>  2 files changed, 81 insertions(+), 61 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.txt
+> deleted file mode 100644
+> index 7f368530a..000000000
+> --- a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.txt
+> +++ /dev/null
+> @@ -1,61 +0,0 @@
+> -* Rockchip RK3188/RK3066 Clock and Reset Unit
+> -
+> -The RK3188/RK3066 clock controller generates and supplies clock to various
+> -controllers within the SoC and also implements a reset controller for SoC
+> -peripherals.
+> -
+> -Required Properties:
+> -
+> -- compatible: should be "rockchip,rk3188-cru", "rockchip,rk3188a-cru" or
+> -			"rockchip,rk3066a-cru"
+> -- reg: physical base address of the controller and length of memory mapped
+> -  region.
+> -- #clock-cells: should be 1.
+> -- #reset-cells: should be 1.
+> -
+> -Optional Properties:
+> -
+> -- rockchip,grf: phandle to the syscon managing the "general register files"
+> -  If missing pll rates are not changeable, due to the missing pll lock status.
+> -
+> -Each clock is assigned an identifier and client nodes can use this identifier
+> -to specify the clock which they consume. All available clocks are defined as
+> -preprocessor macros in the dt-bindings/clock/rk3188-cru.h and
+> -dt-bindings/clock/rk3066-cru.h headers and can be used in device tree sources.
+> -Similar macros exist for the reset sources in these files.
+> -
+> -External clocks:
+> -
+> -There are several clocks that are generated outside the SoC. It is expected
+> -that they are defined using standard clock bindings with following
+> -clock-output-names:
+> - - "xin24m" - crystal input - required,
+> - - "xin32k" - rtc clock - optional,
+> - - "xin27m" - 27mhz crystal input on rk3066 - optional,
+> - - "ext_hsadc" - external HSADC clock - optional,
+> - - "ext_cif0" - external camera clock - optional,
+> - - "ext_rmii" - external RMII clock - optional,
+> - - "ext_jtag" - externalJTAG clock - optional
+> -
+> -Example: Clock controller node:
+> -
+> -	cru: cru@20000000 {
+> -		compatible = "rockchip,rk3188-cru";
+> -		reg = <0x20000000 0x1000>;
+> -		rockchip,grf = <&grf>;
+> -
+> -		#clock-cells = <1>;
+> -		#reset-cells = <1>;
+> -	};
+> -
+> -Example: UART controller node that consumes the clock generated by the clock
+> -  controller:
+> -
+> -	uart0: serial@10124000 {
+> -		compatible = "snps,dw-apb-uart";
+> -		reg = <0x10124000 0x400>;
+> -		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> -		reg-shift = <2>;
+> -		reg-io-width = <1>;
+> -		clocks = <&cru SCLK_UART0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+> new file mode 100644
+> index 000000000..136a9771e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/rockchip,rk3188-cru.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip RK3188/RK3066 Clock and Reset Unit (CRU)
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description: |
+> +  The RK3188/RK3066 clock controller generates and supplies clocks to various
+> +  controllers within the SoC and also implements a reset controller for SoC
+> +  peripherals.
+> +  Each clock is assigned an identifier and client nodes can use this identifier
+> +  to specify the clock which they consume. All available clocks are defined as
+> +  preprocessor macros in the dt-bindings/clock/rk3188-cru.h and
+> +  dt-bindings/clock/rk3066-cru.h headers and can be used in device tree sources.
+> +  Similar macros exist for the reset sources in these files.
+> +  There are several clocks that are generated outside the SoC. It is expected
+> +  that they are defined using standard clock bindings with following
+> +  clock-output-names:
+> +    - "xin24m"    - crystal input                 - required
+> +    - "xin32k"    - RTC clock                     - optional
+> +    - "xin27m"    - 27mhz crystal input on RK3066 - optional
+> +    - "ext_hsadc" - external HSADC clock          - optional
+> +    - "ext_cif0"  - external camera clock         - optional
+> +    - "ext_rmii"  - external RMII clock           - optional
+> +    - "ext_jtag"  - external JTAG clock           - optional
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3066a-cru
+> +      - rockchip,rk3188-cru
+> +      - rockchip,rk3188a-cru
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 1
 
---kq735fu2dw67hzsc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You need maxItems. Would be also nice to describe what should be here as
+input
 
-On Thu, Mar 24, 2022 at 03:43:42PM +0200, Laurent Pinchart wrote:
-> On Thu, Mar 24, 2022 at 09:18:19AM +0100, Maxime Ripard wrote:
-> > On Wed, Mar 23, 2022 at 10:38:19PM +0200, Laurent Pinchart wrote:
-> > > Hi Maxime,
-> > >=20
-> > > (CC'ing Sakari)
-> > >=20
-> > > Thank you for the patch.
-> > >=20
-> > > On Wed, Mar 23, 2022 at 04:48:23PM +0100, Maxime Ripard wrote:
-> > > > MIPI-DSI devices, if they are controlled through the bus itself, ha=
-ve to
-> > > > be described as a child node of the controller they are attached to.
-> > > >=20
-> > > > Thus, there's no requirement on the controller having an OF-Graph o=
-utput
-> > > > port to model the data stream: it's assumed that it would go from t=
-he
-> > > > parent to the child.
-> > > >=20
-> > > > However, some bridges controlled through the DSI bus still require =
-an
-> > > > input OF-Graph port, thus requiring a controller with an OF-Graph o=
-utput
-> > > > port. This prevents those bridges from being used with the controll=
-ers
-> > > > that do not have one without any particular reason to.
-> > > >=20
-> > > > Let's drop that requirement.
-> > >=20
-> > > I'm sure this won't come as a surprise, I'm very much opposed to this
-> > > change, for two reasons.
-> > >=20
-> > > First, ports are part of the hardware, even if they're not connected.=
- It
-> > > thus simplifies handling in drivers if they're always present.
-> > >=20
-> > > Then, and that's the most important reason, I think it's a mistake not
-> > > to model the DSI data connection using OF graph unconditionally, even
-> > > when the DSI sink device is also controlled through the DSI bus (using
-> > > DCS) and is in that case a child of the DSI source device in the DT
-> > > hierarchy.
-> >=20
-> > That's the way we do for any other device though. You never addressed
-> > that comment, but it's very much the same that occurs for i2c or spi
-> > controllers and their device. They all get their data from the parent
-> > bus. I don't see you advocate for using OF-Graph for those devices.
->=20
-> Those are different, there's no data stream independent of the control
-> communications.
 
-Fine, then you have Ethernet PHYs, or any MMIO device that does DMA.
+> +
+> +  assigned-clock-rates:
+> +    minItems: 1
+> +    maxItems: 64
+> +
+> +  assigned-clocks:
+> +    minItems: 1
+> +    maxItems: 64
 
-> > > The device tree describes a control hierarchy between devices. OF gra=
-ph
-> > > overlays on top of that a data transfer graph. The two are different
-> > > concepts, and the fact that DSI can sometimes be used as a control bus
-> > > doesn't change the concept. Using OF graph unconditionally to describe
-> > > the data connections for DSI leads to less variation in the device tr=
-ee
-> > > structure, and thus less complexity in the implementation. We're
-> > > suffering from the fact we haven't made it a requirement in the first
-> > > place, which can't be fixed due to ABI breakage constraints, but let's
-> > > not acknowledge it as a good idea.
-> >=20
-> > Honestly, it doesn't matter one bit.
-> >=20
-> > We have a huge discrepancy here today, and only a couple of bridges have
-> > that arbitrary restriction. The situation you don't want to acknowledge
-> > is the de-facto standard, by the generic binding and by what all the
-> > bridges and panels are implementing. Even panel-simple-dsi is doing it.
-> > So it's very much there already.
->=20
-> It's here, and I think we should move away from it for new DSI sinks.
-> I'd like OF graph to be used consistently for new drivers. We can't
-> change existing DT bindings and drivers to drop support for the
-> non-OF-graph description due to ABI stability, but we can avoid
-> repeating the mistake going forward.
->
-> > What I'm trying to address here is that some controllers that do
-> > everything right can't be used because that restriction is completely
-> > arbitrary and in opposition to the consensus. And they can't be used
-> > *today*.
-> >=20
-> > If we want to change that consensus, fine, but we should still have one.
-> > Having some bridges enforcing custom rules for no reason is very much
-> > unacceptable.
-> >=20
-> > And changing that consensus won't happen overtime, we'll have to take
-> > care of the backward compatibility, etc. So it won't fix the issue that
-> > we can't use any bridge with any controller any time soon.
->=20
-> I don't think that's the issue at hand here. You can still use a
-> non-OF-graph DT event if the nodes for the two bridges affected by this
-> patch define a port@0. It can just be left unconnected.
->=20
-> I do agree it will cause some DT bindings for DCS-based DSI sinks to
-> have ports will others won't. If your concern is that all DT bindings
-> should be coherent, would you be OK with a patch that makes the sink
-> port mandatory in all DT bindings for DSI bridges and panels (and fixes
-> the mainline DT sources accordingly to make sure they validate) ? The
-> port would not be connected of course (at least when used with DSI
-> source drivers that don't use OF graph today). That would make DT
-> bindings coherent, and would be a first step towards using OF graph
-> everywhere.
+Both assigned-xxx should not be necessary. Did you try validate the dtbs
+without these?
 
-I'm trying to fix a (recent) mistake/cargo-cult in new bindings. That
-discussion is not going to be fairly controversial and I don't see how
-that can be solved quickly. So, as a second step, why not. But this one
-needs to come first.
+I guess you added "clocks" above because of these, so you need to
+correct the DTS because asigned-xxx depend on clocks property.
 
-Maxime
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "general register files" (GRF),
+> +      if missing pll rates are not changeable, due to the missing pll lock status.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    cru: cru@20000000 {
 
---kq735fu2dw67hzsc
-Content-Type: application/pgp-signature; name="signature.asc"
+Node name: clock-controller
 
------BEGIN PGP SIGNATURE-----
+> +      compatible = "rockchip,rk3188-cru";
+> +      reg = <0x20000000 0x1000>;
+> +      rockchip,grf = <&grf>;
+> +      #clock-cells = <1>;
+> +      #reset-cells = <1>;
+> +    };
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYjx+3AAKCRDj7w1vZxhR
-xRLoAQCTIpIMWpib5N/OdprcjAAx1ppjIy53NN2C7tfT3MMDHgEA2nt3GKD2CVrB
-mj/pjIsjnm83gSZpQyfBwM99I9RCJAM=
-=SFux
------END PGP SIGNATURE-----
 
---kq735fu2dw67hzsc--
+Best regards,
+Krzysztof
