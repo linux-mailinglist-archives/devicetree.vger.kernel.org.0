@@ -2,206 +2,374 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6647C4E6780
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A00DA4E6787
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 18:13:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352126AbiCXRMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 13:12:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59386 "EHLO
+        id S1352152AbiCXROs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 13:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236380AbiCXRMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:12:17 -0400
-Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50058.outbound.protection.outlook.com [40.107.5.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27439B0D3F;
-        Thu, 24 Mar 2022 10:10:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knzpXPBDQfM+TsdyHrOyOtAMYzIptM+GYLRgiXTDQHnbdwlSevU6Ol09K1DeWqHCMC2Arfsx5CsiT+8HHa1qDPc4eZQyj0sFqiZc632TBm+dF9TbHQc5IybYccpATUACHRcc1tI4FDS1fUU5MXZRJEe4Mzjy1R3540xdrQ1u1BRV7xPozpDIV/GFm7sM+jPShYEmYPQGZjD+rnFUOVgR1xXfxy4JEN3vQgwyXkQ21KP8OnGzQ4nBRv26m8m1LdCofs8dsEvRQBo9WGG5lpXmlLQu0u+/NYqZAxXeF5qrt1gQVJJFJuVOj4kYhrH+ZgjEl2pLVHf2cPdUpGCUdh66pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WsoT3HSJPoRsVwC1bBp1HaTco/IZrUMAp8z/OQYoq6E=;
- b=JmFE4fTAE2JJVtPLubt3Gx37z3+oHeP20xAEvIVmrxcOKlbvsZbhWMi1vdEJ0yu9qmC4w5CXoOXg4Vjlb0TYUwOJ41P15qn2Akdpg6PJAeYs71+zRkpmWok/qHYEHyPpoB7i5qLo4AAONUDDNMPuBlJ5E6cHptrJEhZKD15nGSNfq7wSICPG0Z0HoHIH1G6g7ODch6senfVg/dCOejDps2XyiY+mlDrVYBIQQ25euYXz2OhKcrDv6QpS8HOQAZH3CXtbwf8PIKDw/Mi5V8D+d6+CCN0UKJjhtFWMkbdi3rrYh6dFUGv/eGY/MEA3Z62cCaRMMSfTRx1UQEQz7RE7jg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WsoT3HSJPoRsVwC1bBp1HaTco/IZrUMAp8z/OQYoq6E=;
- b=m1dV58i5uOw8IM9dmPfd4CRY7iPN0/dnWEqhxfUiaBQOiWR6UGiAa6Ti9/gIQWMjX6KPMH8HcQicRRe1pKOit4PsmFo/B+VJaqYZeDv3b4Erp7fjNrJ67J9y8d2TdZrMiK3CyOjGhXOo30Ddm0PlRv3irCGm3uKKK5goyUe/Qhk=
-Received: from AM0PR04MB5121.eurprd04.prod.outlook.com (2603:10a6:208:c1::16)
- by PAXPR04MB8943.eurprd04.prod.outlook.com (2603:10a6:102:20e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.18; Thu, 24 Mar
- 2022 17:10:42 +0000
-Received: from AM0PR04MB5121.eurprd04.prod.outlook.com
- ([fe80::4502:5fbf:8bf2:b7bd]) by AM0PR04MB5121.eurprd04.prod.outlook.com
- ([fe80::4502:5fbf:8bf2:b7bd%7]) with mapi id 15.20.5102.018; Thu, 24 Mar 2022
- 17:10:42 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        Biwen Li <biwen.li@nxp.com>, "Z.Q. Hou" <zhiqiang.hou@nxp.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: Re: [RFC PATCH devicetree 00/10] Do something about ls-extirq
- interrupt-map breakage
-Thread-Topic: [RFC PATCH devicetree 00/10] Do something about ls-extirq
- interrupt-map breakage
-Thread-Index: AQHX8ItO3xtQxxPJV0yONti9mp5846wxrpCAgAASv4CAAAYSAICdm7aA
-Date:   Thu, 24 Mar 2022 17:10:42 +0000
-Message-ID: <20220324171041.t5yoocinj6gizcc7@skbuf>
-References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
- <87ilvrk1r0.wl-maz@kernel.org> <20211214095853.4emzycaxkuqr4tun@skbuf>
- <87czlzjxmz.wl-maz@kernel.org>
-In-Reply-To: <87czlzjxmz.wl-maz@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 70e93d56-a54c-4be9-5847-08da0db93a5c
-x-ms-traffictypediagnostic: PAXPR04MB8943:EE_
-x-microsoft-antispam-prvs: <PAXPR04MB894331948C92449B6A1AAC97E0199@PAXPR04MB8943.eurprd04.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TiWUBkxrujNdf8QJkA2WTRgT7YuefEOQYV9LuzWZHBbC1XErfoktNFhPvAXXpdjFZbYvxD3Ma7bvKd7RjfFdksaiAnIziK/DRjw9OKKcoMd4PfpRGXg9rPFuMnkzrMoetjGm1UaF6K6tW/HwDBmu78E7ZZNIemtcMXP5OY28PDEf0i/uXgSZUsyd26rsmQNOy5UMwcXBJQc4afECTHmil6djRLQ8uJoQquQbWi0CQBpSSuJsl4iGPJJWNf6kSzQUC5S+hZzgLScftQqQQAHpYx7me4pQfp1Kkq8y4Jm+etSBb4bQRbza9ApW2Iz9mC9xljR1Hnn080FmEWTl2Yxz6j/9OBBFVM8CERywX3/+kYda8AIcZTyiSoeA10gIxSDnM9Y6KZv+cZWT+qrjOE+Re+RzDOfJlIRyeEztx3hj9n99UZt9YzglHj5F3kbTOiNJbXCNc4wsR/495XLQm11XLvL/fTt8aIru8slWYgazr9HaSa70YC/+ZoxRGCOfb03vhtsA/mbSBOq4dB9vhYfbTesiNXsvJcfElMw/VMXyPHGUplo2Ym+B1MHAa9n217iBXqZzVcdEQmmi4hdCYNWWLtgdeAufxAAQIm/eyDRMKYYDXAjEvntf9jjCVshLxHpmf1g5+jr+gMUem71RBEU+jWDHxqrYKZZGLIzwxsXtgTSwLEsJeg3xi+4hiZDhPpcoRZY4LMdFFmHLOHFUYQ1jAz/Zjzgn39XRZnVBmKrG14SP8rFUUFfeW95vS8QnBpN8GT+vZaGHFC5W9iz3h5LgR3yWOoe66tuF3v3PvnQzZyQ=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB5121.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(54906003)(83380400001)(71200400001)(38100700002)(6916009)(122000001)(33716001)(6506007)(8936002)(91956017)(4326008)(1076003)(76116006)(44832011)(9686003)(6512007)(8676002)(66556008)(64756008)(66446008)(66946007)(66476007)(86362001)(2906002)(5660300002)(38070700005)(508600001)(186003)(26005)(316002)(966005)(6486002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?m2ENI57NJVNnVxGVY72BqCITUSc+uzZ73PF2DVKGVu+1vq61uvBG9uZ+Y32b?=
- =?us-ascii?Q?T0NZM1kM/LucsRu1QvA5INu/BOkYV/jw4HmdfGPsClOBgzxeDmG1hTSLCGJH?=
- =?us-ascii?Q?IisDDq5bAunOqOBMsqbQnHdzHx2yv1s5tNRCaW/Y4fnVryQ0dCtESQ/LtXrn?=
- =?us-ascii?Q?I+UPDoeW8AnbM7GRNaQ0d1zhqeLQ+lxJ8xtPg/pgVm61LloAi6fu0ZkoG0pj?=
- =?us-ascii?Q?8HKSa879TXGxB12dROj3Iwv0qSEp+yxVleWax3rNlWuaCi5Ojp3cHPGhwLsX?=
- =?us-ascii?Q?UE/GEf94I5HXJsBbArNxvEMHnnevpKi0dC+AQlUn53yNwlY/CUBPx1EG/rcC?=
- =?us-ascii?Q?G0BTQDJ0qqglAVNCBorMwOiz+Manf7LJicwsUOIXp8UcF7ZfG01KAhFePNdX?=
- =?us-ascii?Q?Zi+92lKkHaEkMo21Fr2PkKPTHDV1RAYZF6I+9KfwvmExj/2g78oIibZ5wlzq?=
- =?us-ascii?Q?zWaMptLEAlMVxtM/qGiO+ptynmzWTUM97mnjp4R9m/ZdgbnkH550gnNxbeHk?=
- =?us-ascii?Q?PrbVaH099rwxJi/GP9bO3xijpnKN0yWXJJOK7KikBeQ0a39gJD5P8YsmHXLp?=
- =?us-ascii?Q?Vkn04y5H76NA7NFZCxMdeQhI5XNofqOEvGOCaxZr4ZbL7YGblLJe/al593yF?=
- =?us-ascii?Q?yro3otc/ZTnOO1hwz4943wV3vaUAX/JFExvg00rJ0UKtgLgyHb0oRgyylNNH?=
- =?us-ascii?Q?DmtES9/JcI8osdp9LxVqZx9PUw3RKxkzIRPdYreO6Dsh8hq3shK7CKWQ4v3f?=
- =?us-ascii?Q?gcyKBhKpity2xM+sfNb7Fu9kQyp2sHIZZMN0NFTWR23xDayE0z9C5AFuk1r1?=
- =?us-ascii?Q?gdIE4oqNn4WiGVnH+rAmEs6slvCNe4RygPShh3SdQoh7ZKzjTXF1fjWb/UYb?=
- =?us-ascii?Q?lfQtCGs4DKbBMznoBoA1qvu2ZmZLSAcS+NaamiLTm/TVuDJC0IFjNsN1O8+C?=
- =?us-ascii?Q?Jgo+CQmWH7FxD6An7mjXhZhGFPgw4ls9cYWy/UuAHoTl2x3RB7A6OCVK13Lq?=
- =?us-ascii?Q?rmZuiZfbv1KLlnFaDdpLbPj5gk6HhqdCyjwNkEGymuiRNsL7x02yGlyCOsE9?=
- =?us-ascii?Q?y+bWhvx0d+PeWBQVtkKddxREdWSHDlNuIBo5DTaMR9SgiJTHHA8Ion3ZKjhL?=
- =?us-ascii?Q?PrRzTWXnl8ejGv5w5/LPLSft25vLgqv+bl+FnI+1/BbKVCMiP2tBHp2cCfzt?=
- =?us-ascii?Q?qvKO0sR7vV9+8JYLZltL2QPdlnPr4pjNxcdr3Jc4XkW9QSxGuYoIue7xTXPK?=
- =?us-ascii?Q?BpjYhMDa8ulupKjiEuisy39b++r8B8C/CET7Q7o8kDjm/qzrSTLGHWqAHD9x?=
- =?us-ascii?Q?IFK73WUS/AOXkWJYWjvACtUuFCFok/pCfsXNixIyfjmST7v8nikG84TQ8S70?=
- =?us-ascii?Q?QT4d1medeo6pLqDOvNKsV+JN5Cml2AvygjRib2yQv20rjhlR6f79TatOzPfB?=
- =?us-ascii?Q?6OQWD+uk6dBfK4GTG8X/aGW/WGGqIkWDxETlQ3zDHpBRgX6pZ7IAbS1ZBfg6?=
- =?us-ascii?Q?kQPUV4ZsOsr2KC1hz79WFGtnm6KhdXCtX/Dgp8osnT4q5jIQG56e2qwTXef6?=
- =?us-ascii?Q?Ost90ZTCEJQyJmy87p7S6BEF/JyoToAs+QQRs0VJrVh5k600cdkJrZxECWle?=
- =?us-ascii?Q?iBGJ8W7uuMrfeNiT7Ud9xkL6s5YVJE7CoGUlQOeDLkma80Ny4OmjRHVfTDwk?=
- =?us-ascii?Q?MmMvJLdA5qRB0TL8KqoFSs4OV7OgCvvxNVacFIIdkB/JM1UphOk94T0P15dX?=
- =?us-ascii?Q?5H31KCDtCP1VAGxWFUjUB3wwsOOnh58=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <6DBB7331E2362343BAA66A3CE2CCC873@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1352150AbiCXROr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 13:14:47 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8756462C9
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 10:13:14 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id w8so5404184pll.10
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 10:13:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0mQxXl3IUoM71PHunQDIs/uYH0ecjxl6kBSX5PydshU=;
+        b=PR8vVqWSgmRxma6zdIHfJJRPnwMgW5f7KtLWJ8pM9M0Jxs708+ozLXGTQHZU6qr6rb
+         BL1+YsLfIWV8kpABIe3AEnTJ3nPs11wVxWo5qnFsJRcQh3rFicWf/P+qzSK9px1RJTla
+         mAfxVktRQIAWA0ftZxl9kHxPrXxNuSVpvJrjM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0mQxXl3IUoM71PHunQDIs/uYH0ecjxl6kBSX5PydshU=;
+        b=vJ2GMN4qqldjyhlxjTMdmyJ0OATTxTMADLLssYhmzCazKhkR8Gjz7RmMBoggNuFLyG
+         HXKBfttNQGRyiT1zw3OejwZ5sUFN+zZ7lr5uSCRx7DsiHJwEoNAJvuQUukSz6npUrsdU
+         Kgop9WDAmmJei09LFG1S5HfMt9ElBVFYqyWqZDCe1Dzs6ViysJ9faJ3bD6jdc+trk5Mg
+         OOwxuEHEh83fj9fHFfZ7cJXAkVckSJQDvx5RMB+J+lKazhOP5ds/mMlHkGl8s4QTbyj6
+         neLblEsh4Y+kNikJ+r5gckMjFsN5LB5x2knMiE4xw4sm7SzA/N55Uhp/nBy6wV8hzFzD
+         +kmw==
+X-Gm-Message-State: AOAM532eK+p6yLBmgF+ZjtLHsXEbZa21T00fo2AaN2LmHmIX2KokODid
+        TGeF2IMXX5z39FxOmVlKHBjetw==
+X-Google-Smtp-Source: ABdhPJwiC/suyfJX/D3iiWymapPQqrTskqgo+UCEAEuKCvm5HoGDHiI8+ctExEpiDwd4xk7qMOsfRg==
+X-Received: by 2002:a17:902:c745:b0:153:b0e:8586 with SMTP id q5-20020a170902c74500b001530b0e8586mr6751037plq.9.1648141993490;
+        Thu, 24 Mar 2022 10:13:13 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:690f:642:3ebe:c89d])
+        by smtp.gmail.com with UTF8SMTPSA id c18-20020a056a000ad200b004f0f9696578sm4662409pfl.141.2022.03.24.10.13.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Mar 2022 10:13:13 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add device tree for herobrine villager
+Date:   Thu, 24 Mar 2022 10:13:09 -0700
+Message-Id: <20220324101242.v1.1.Iebdb5af0db7d3d6364cb229a27cd7c668f1063ae@changeid>
+X-Mailer: git-send-email 2.35.1.1021.g381101b075-goog
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB5121.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70e93d56-a54c-4be9-5847-08da0db93a5c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2022 17:10:42.4806
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: M6Lcui9FPuRH2KCENrejI/RdKp3lfY6FFaA5/R2/lwPSbPa94LbcZ0nvrEBwftM5X9l7NoGHm0w+ua4zplOWBw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8943
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marc,
+Add a basic device tree for the herobrine villager board.
 
-On Tue, Dec 14, 2021 at 10:20:36AM +0000, Marc Zyngier wrote:
-> On Tue, 14 Dec 2021 09:58:54 +0000,
-> Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
-> >=20
-> > Hi Marc (with a c),
-> >=20
-> > I wish the firmware for these SoCs was smart enough to be compatible
-> > with the bindings that are in the kernel and provide a blob that the
-> > kernel could actually use. Some work has been started there and this is
-> > work in progress. True, I don't know what other OF-based firmware some
-> > other customers may use, but I trust it isn't a lot more advanced than
-> > what U-Boot currently has :)
-> >=20
-> > Also, the machines may have been in the wild for years, but the
-> > ls-extirq driver was added in November 2019. So not with the
-> > introduction of the SoC device trees themselves. That isn't so long ago=
-.
-> >=20
-> > As for compatibility between old kernel and new DT: I guess you'll hear
-> > various opinions on this one.
-> > https://www.spinics.net/lists/linux-mips/msg07778.html
-> >=20
-> > | > Are we okay with the new device tree blobs breaking the old kernel?
-> > |
-> > | From my point of view, newer device trees are not required to work on
-> > | older kernel, this would impose an unreasonable limitation and the us=
-e
-> > | case is very limited.
->=20
-> My views are on the opposite side. DT is an ABI, full stop. If you
-> change something, you *must* guarantee forward *and* backward
-> compatibility. That's because:
->=20
-> - you don't control how updatable the firmware is
->=20
-> - people may need to revert to other versions of the kernel because
->   the new one is broken
->=20
-> - there are plenty of DT users beyond Linux, and we are not creating
->   bindings for Linux only.
->=20
-> You may disagree with this, but for the subsystems I maintain, this is
-> the rule I intent to stick to.
->=20
-> 	M.
->=20
-> --=20
-> Without deviation from the norm, progress is not possible.
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
-I was just debugging an interesting issue with an old kernel not working
-with a new DT blob, and after figuring out what the problem was (is),
-I remembered this message and I'm curious what you have to say about it.
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/sc7280-herobrine-villager-r0.dts | 274 ++++++++++++++++++
+ 2 files changed, 275 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
 
-I have this DT layout:
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index f9e6343acd03..f1b597512352 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -85,6 +85,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r0.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+new file mode 100644
+index 000000000000..d543fd4d02f4
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+@@ -0,0 +1,274 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Villager board device tree source
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++/dts-v1/;
++
++#include "sc7280-herobrine.dtsi"
++
++/ {
++	model = "Google Villager (rev0+)";
++	compatible = "google,villager", "qcom,sc7280";
++};
++
++/* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
++
++ap_tp_i2c: &i2c0 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	trackpad: trackpad@2c {
++		compatible = "hid-over-i2c";
++		reg = <0x2c>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&tp_int_odl>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++
++		hid-descr-addr = <0x20>;
++		vcc-supply = <&pp3300_z1>;
++
++		wakeup-source;
++	};
++};
++
++/* For nvme */
++&pcie1 {
++	status = "okay";
++};
++
++/* For nvme */
++&pcie1_phy {
++	status = "okay";
++};
++
++/* For eMMC */
++&sdhc_1 {
++	status = "okay";
++};
++
++/* PINCTRL - BOARD-SPECIFIC */
++
++/*
++ * Methodology for gpio-line-names:
++ * - If a pin goes to herobrine board and is named it gets that name.
++ * - If a pin goes to herobrine board and is not named, it gets no name.
++ * - If a pin is totally internal to Qcard then it gets Qcard name.
++ * - If a pin is not hooked up on Qcard, it gets no name.
++ */
++
++&pm8350c_gpios {
++	gpio-line-names = "FLASH_STROBE_1",		/* 1 */
++			  "AP_SUSPEND",
++			  "PM8008_1_RST_N",
++			  "",
++			  "",
++			  "",
++			  "PMIC_EDP_BL_EN",
++			  "PMIC_EDP_BL_PWM",
++			  "";
++};
++
++&tlmm {
++	gpio-line-names = "AP_TP_I2C_SDA",		/* 0 */
++			  "AP_TP_I2C_SCL",
++			  "SSD_RST_L",
++			  "PE_WAKE_ODL",
++			  "AP_SAR_SDA",
++			  "AP_SAR_SCL",
++			  "PRB_SC_GPIO_6",
++			  "TP_INT_ODL",
++			  "HP_I2C_SDA",
++			  "HP_I2C_SCL",
++
++			  "GNSS_L1_EN",			/* 10 */
++			  "GNSS_L5_EN",
++			  "SPI_AP_MOSI",
++			  "SPI_AP_MISO",
++			  "SPI_AP_CLK",
++			  "SPI_AP_CS0_L",
++			  /*
++			   * AP_FLASH_WP is crossystem ABI. Schematics
++			   * call it BIOS_FLASH_WP_OD.
++			   */
++			  "AP_FLASH_WP",
++			  "",
++			  "AP_EC_INT_L",
++			  "",
++
++			  "UF_CAM_RST_L",		/* 20 */
++			  "WF_CAM_RST_L",
++			  "UART_AP_TX_DBG_RX",
++			  "UART_DBG_TX_AP_RX",
++			  "",
++			  "PM8008_IRQ_1",
++			  "HOST2WLAN_SOL",
++			  "WLAN2HOST_SOL",
++			  "MOS_BT_UART_CTS",
++			  "MOS_BT_UART_RFR",
++
++			  "MOS_BT_UART_TX",		/* 30 */
++			  "MOS_BT_UART_RX",
++			  "PRB_SC_GPIO_32",
++			  "HUB_RST_L",
++			  "",
++			  "",
++			  "AP_SPI_FP_MISO",
++			  "AP_SPI_FP_MOSI",
++			  "AP_SPI_FP_CLK",
++			  "AP_SPI_FP_CS_L",
++
++			  "AP_EC_SPI_MISO",		/* 40 */
++			  "AP_EC_SPI_MOSI",
++			  "AP_EC_SPI_CLK",
++			  "AP_EC_SPI_CS_L",
++			  "LCM_RST_L",
++			  "EARLY_EUD_N",
++			  "",
++			  "DP_HOT_PLUG_DET",
++			  "IO_BRD_MLB_ID0",
++			  "IO_BRD_MLB_ID1",
++
++			  "IO_BRD_MLB_ID2",		/* 50 */
++			  "SSD_EN",
++			  "TS_I2C_SDA_CONN",
++			  "TS_I2C_CLK_CONN",
++			  "TS_RST_CONN",
++			  "TS_INT_CONN",
++			  "AP_I2C_TPM_SDA",
++			  "AP_I2C_TPM_SCL",
++			  "PRB_SC_GPIO_58",
++			  "PRB_SC_GPIO_59",
++
++			  "EDP_HOT_PLUG_DET_N",		/* 60 */
++			  "FP_TO_AP_IRQ_L",
++			  "",
++			  "AMP_EN",
++			  "CAM0_MCLK_GPIO_64",
++			  "CAM1_MCLK_GPIO_65",
++			  "WF_CAM_MCLK",
++			  "PRB_SC_GPIO_67",
++			  "FPMCU_BOOT0",
++			  "UF_CAM_SDA",
++
++			  "UF_CAM_SCL",			/* 70 */
++			  "",
++			  "",
++			  "WF_CAM_SDA",
++			  "WF_CAM_SCL",
++			  "",
++			  "",
++			  "EN_FP_RAILS",
++			  "FP_RST_L",
++			  "PCIE1_CLKREQ_ODL",
++
++			  "EN_PP3300_DX_EDP",		/* 80 */
++			  "SC_GPIO_81",
++			  "FORCED_USB_BOOT",
++			  "WCD_RESET_N",
++			  "MOS_WLAN_EN",
++			  "MOS_BT_EN",
++			  "MOS_SW_CTRL",
++			  "MOS_PCIE0_RST",
++			  "MOS_PCIE0_CLKREQ_N",
++			  "MOS_PCIE0_WAKE_N",
++
++			  "MOS_LAA_AS_EN",		/* 90 */
++			  "SD_CD_ODL",
++			  "",
++			  "",
++			  "MOS_BT_WLAN_SLIMBUS_CLK",
++			  "MOS_BT_WLAN_SLIMBUS_DAT0",
++			  "HP_MCLK",
++			  "HP_BCLK",
++			  "HP_DOUT",
++			  "HP_DIN",
++
++			  "HP_LRCLK",			/* 100 */
++			  "HP_IRQ",
++			  "",
++			  "",
++			  "GSC_AP_INT_ODL",
++			  "EN_PP3300_CODEC",
++			  "AMP_BCLK",
++			  "AMP_DIN",
++			  "AMP_LRCLK",
++			  "UIM1_DATA_GPIO_109",
++
++			  "UIM1_CLK_GPIO_110",		/* 110 */
++			  "UIM1_RESET_GPIO_111",
++			  "PRB_SC_GPIO_112",
++			  "UIM0_DATA",
++			  "UIM0_CLK",
++			  "UIM0_RST",
++			  "UIM0_PRESENT_ODL",
++			  "SDM_RFFE0_CLK",
++			  "SDM_RFFE0_DATA",
++			  "WF_CAM_EN",
++
++			  "FASTBOOT_SEL_0",		/* 120 */
++			  "SC_GPIO_121",
++			  "FASTBOOT_SEL_1",
++			  "SC_GPIO_123",
++			  "FASTBOOT_SEL_2",
++			  "SM_RFFE4_CLK_GRFC_8",
++			  "SM_RFFE4_DATA_GRFC_9",
++			  "WLAN_COEX_UART1_RX",
++			  "WLAN_COEX_UART1_TX",
++			  "PRB_SC_GPIO_129",
++
++			  "LCM_ID0",			/* 130 */
++			  "LCM_ID1",
++			  "",
++			  "SDR_QLINK_REQ",
++			  "SDR_QLINK_EN",
++			  "QLINK0_WMSS_RESET_N",
++			  "SMR526_QLINK1_REQ",
++			  "SMR526_QLINK1_EN",
++			  "SMR526_QLINK1_WMSS_RESET_N",
++			  "PRB_SC_GPIO_139",
++
++			  "SAR1_IRQ_ODL",		/* 140 */
++			  "SAR0_IRQ_ODL",
++			  "PRB_SC_GPIO_142",
++			  "",
++			  "WCD_SWR_TX_CLK",
++			  "WCD_SWR_TX_DATA0",
++			  "WCD_SWR_TX_DATA1",
++			  "WCD_SWR_RX_CLK",
++			  "WCD_SWR_RX_DATA0",
++			  "WCD_SWR_RX_DATA1",
++
++			  "DMIC01_CLK",			/* 150 */
++			  "DMIC01_DATA",
++			  "DMIC23_CLK",
++			  "DMIC23_DATA",
++			  "",
++			  "",
++			  "EC_IN_RW_ODL",
++			  "HUB_EN",
++			  "WCD_SWR_TX_DATA2",
++			  "",
++
++			  "",				/* 160 */
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "",				/* 170 */
++			  "MOS_BLE_UART_TX",
++			  "MOS_BLE_UART_RX",
++			  "",
++			  "",
++			  "";
++};
+-- 
+2.35.1.1021.g381101b075-goog
 
-	ethernet-phy@1 {
-		reg =3D <0x1>;
-		interrupts-extended =3D <&extirq 2 IRQ_TYPE_LEVEL_LOW>;
-	};
-
-	extirq: interrupt-controller@1ac {
-		compatible =3D "fsl,ls1021a-extirq";
-		<bla bla>
-	};
-
-I booted the new DT blob (which has "interrupts-extended") on a kernel
-where the ls-extirq driver did not exist. This had the result of
-of_mdiobus_phy_device_register() -> of_irq_get() returning -EPROBE_DEFER
-forever and ever. So the PHY driver in turn never probed, and Ethernet
-was broken. So I had to delete the interrupts OF property to let the PHY
-at least work in poll mode.
-
-What went wrong here in your opinion?=
