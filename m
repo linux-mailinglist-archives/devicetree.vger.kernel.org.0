@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D247D4E6873
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 667544E6878
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:14:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352531AbiCXSPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 14:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51424 "EHLO
+        id S1352554AbiCXSPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 14:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243844AbiCXSPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:15:30 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F206D19A
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:13:58 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id jx9so5387322pjb.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:13:57 -0700 (PDT)
+        with ESMTP id S1352553AbiCXSPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:15:31 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4CD6D4EA
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:13:59 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id n18so5590299plg.5
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 11:13:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HHPqncxkqirx9UajzpUXlOLkpGtduK2UPDvTzwuMyCs=;
-        b=iOtzSX+H9de688dVz/qNPuCWiXSV1D4QI1YkVp7rX5G38Jzz3geU3YB9dCZe/FpLqJ
-         zKEU5m8vdHwXvx+Ns0LzB5WzUJgIHmwybUdgFyB3SM/biVNEYi2xmOUy5x1R3+e5bepU
-         Brk9DElK3dy4e6ZO2mzmOJl3nYzF8D/3yF35M=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=DqE74bYvnQjtQl1h8zT8Qxi0bYFi9X6KwVw8BvoUs9k=;
+        b=iqvGHLpjcwYMzNRonyEnyQfKAXmVSknoFJsSf8mHI6KfwPUUubkVp6+0N3uICMLNn+
+         XJnADWqioKWUsis+Apv5BoLNBqh0Bz+q5LBYru9hEvx+XbYZIMxOPmjiBh7QuJkCEXYu
+         rgutDgqGlwMxI/K5n3MOLZxT0Cg0ulMtf9tCI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HHPqncxkqirx9UajzpUXlOLkpGtduK2UPDvTzwuMyCs=;
-        b=i6V253F07F9Fn309dfEpq3oA0aRMgb/fcMMM5QvJYE1HVtABROOpbv+4XsPD3Bxfun
-         XTdGe7rNkvg7JtBWkU3o68Ufl/3cCNZR2/9bpY7/5gbEhkgPMQRoAt+cPoxd3TKkcHL+
-         ML7QZMs+0vjZVpuLCoZfQJwJdA/7TWsNSJt+JD3J+3CwJPzkvKr7G0RwODiRbZv/u08Z
-         cRlmPjNVr3QhsfruECC//ZHWqoEYlVYoLD2EbU3ZeV/jR0YIsON0xe+7SLpN6EP9E+is
-         a5KYEwo2/5vrbRD1+P6C4Feq0bNZOf6CrGOAAzkZMFeq0/h/cyoSv9bnaCLTXzbCVXS/
-         28YA==
-X-Gm-Message-State: AOAM533scz1Bd4qSYXjM78bzlO2wfuzvgMvYsgVDFsut//ktBLtnmbm6
-        +3st4nVtA79ALdXdX0xvfV5ZbQ==
-X-Google-Smtp-Source: ABdhPJxewwppL8AGwnT6G0Q+WCq1TVWp2U7l0C+hU5Wl0eQUF98UycSVVL480aPn/bAE4kIdTdySnA==
-X-Received: by 2002:a17:90a:9294:b0:1b9:48e9:a030 with SMTP id n20-20020a17090a929400b001b948e9a030mr19671566pjo.200.1648145637432;
-        Thu, 24 Mar 2022 11:13:57 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=DqE74bYvnQjtQl1h8zT8Qxi0bYFi9X6KwVw8BvoUs9k=;
+        b=hhbik468uDHfV2vxx0a+CbR+JYwilA4vdM08Df7yfermwUMgqpelq+8o8ft0uaZ6sa
+         kPvkecraPdv2c9HfwoBFYNq1AyuAsXcurBQMXOQeAI6WkS/e0L0fPyV/nfw5spDlXq6q
+         FLhRurjI3wExIMlwcRKhqswM3qYePUQT8aQhoR+SDWRRZPY2BeD1sb+4kjqlNx1bIPY0
+         ZGwiT8m7FbF6YPQonAi9T5ZFh/Uynq2bEeOO7AOqKZL0OrmAWWLrhiOH3MPbw3dIWMay
+         jpbt7xs5kFfRza49KX/n7jHsUd5CNH2L0sAQOSAYm0XLlJN6ypKCM35REQLi/TasKFEE
+         bhPA==
+X-Gm-Message-State: AOAM530/AeU3R9MbK+9IHXX+YDKaw44tl6xJLxRUEC+Jw2CZJVCT0kvL
+        vFD1yt+IOTVZJpk3rWb18XRDdw==
+X-Google-Smtp-Source: ABdhPJwl+9iizA/7VS4py19ZQQL8nOVQwIVPAuANK2tocHeAj34TUxxoGKjGWlVQY/2sXBkUbWacjw==
+X-Received: by 2002:a17:902:7204:b0:153:bffb:f348 with SMTP id ba4-20020a170902720400b00153bffbf348mr7156564plb.147.1648145639356;
+        Thu, 24 Mar 2022 11:13:59 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:690f:642:3ebe:c89d])
-        by smtp.gmail.com with UTF8SMTPSA id w6-20020a17090a460600b001bf355e964fsm9913554pjg.0.2022.03.24.11.13.56
+        by smtp.gmail.com with UTF8SMTPSA id z12-20020a17090a398c00b001c5f926f293sm3698261pjb.3.2022.03.24.11.13.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 11:13:57 -0700 (PDT)
+        Thu, 24 Mar 2022 11:13:59 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -53,10 +53,12 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
 Cc:     Douglas Anderson <dianders@chromium.org>,
         linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH 1/2] dt-bindings: display: simple: Add AUO B133UAN01 panel
-Date:   Thu, 24 Mar 2022 11:13:51 -0700
-Message-Id: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
+Subject: [PATCH 2/2] drm/panel-edp: Add AUO B133UAN01
+Date:   Thu, 24 Mar 2022 11:13:52 -0700
+Message-Id: <20220324111335.2.I816014b6c62da5a33af5021f3cc35cea66552c00@changeid>
 X-Mailer: git-send-email 2.35.1.1021.g381101b075-goog
+In-Reply-To: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
+References: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -69,28 +71,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for the AUO B133UAN01 panel. It is 13.3" TFT LCD panel
-with WUXGA (1920x1200) resolution.
+Add support for the AUO B133UAN01 13.3" WUXGA panel.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
+output of edid-decode:
 
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+  Block 0, Base EDID:
+    EDID Structure Version & Revision: 1.4
+    Vendor & Product Identification:
+      Manufacturer: AUO
+      Model: 34196
+      Made in: 2020
+    Basic Display Parameters & Features:
+      Digital display
+      Bits per primary color channel: 8
+      DisplayPort interface
+      Maximum image size: 29 cm x 18 cm
+      Gamma: 2.20
+      Supported color formats: RGB 4:4:4
+      First detailed timing includes the native pixel format and preferred refresh rate
+    Color Characteristics:
+      Red  : 0.6513, 0.3271
+      Green: 0.2900, 0.6279
+      Blue : 0.1503, 0.0517
+      White: 0.3134, 0.3291
+    Established Timings I & II: none
+    Standard Timings: none
+    Detailed Timing Descriptors:
+      DTD 1:  1920x1200   60.026 Hz   8:5    74.192 kHz 156.100 MHz (286 mm x 178 mm)
+                   Hfront   16 Hsync  16 Hback 152 Hpol N
+                   Vfront    3 Vsync  14 Vback  19 Vpol N
+      Manufacturer-Specified Display Descriptor (0x0f): 00 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 20 '............... '
+      Alphanumeric Data String: 'AUO'
+      Alphanumeric Data String: 'B133UAN01.0 '
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 1eb9dd4f8f58..e5cd45c81d02 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -49,6 +49,8 @@ properties:
-       - auo,b133han05
-         # AU Optronics Corporation 13.3" FHD (1920x1080) color TFT-LCD panel
-       - auo,b133htn01
-+        # AU Optronics Corporation 13.3" WUXGA (1920x1200) color TFT-LCD panel
-+      - auo,b133uan01
-         # AU Optronics Corporation 13.3" WXGA (1366x768) TFT LCD panel
-       - auo,b133xtn01
-         # AU Optronics Corporation 14.0" FHD (1920x1080) color TFT-LCD panel
+ drivers/gpu/drm/panel/panel-edp.c | 32 +++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index e15e62f235d8..2e71dcb734aa 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1043,6 +1043,35 @@ static const struct panel_desc auo_b133htn01 = {
+ 	},
+ };
+ 
++static const struct drm_display_mode auo_b133uan01_mode = {
++	.clock = 156100,
++	.hdisplay = 1920,
++	.hsync_start = 1920 + 16,
++	.hsync_end = 1920 + 16 + 16,
++	.htotal = 1920 + 16 + 16 + 152,
++	.vdisplay = 1200,
++	.vsync_start = 1200 + 3,
++	.vsync_end = 1200 + 3 + 14,
++	.vtotal = 1200 + 3 + 14 + 19,
++	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
++};
++
++static const struct panel_desc auo_b133uan01 = {
++	.modes = &auo_b133uan01_mode,
++	.num_modes = 1,
++	.bpc = 8,
++	.size = {
++		.width = 291,
++		.height = 195,
++	},
++
++	.delay = {
++		.hpd_reliable = 200,
++		.enable = 50,
++		.unprepare = 500,
++	},
++};
++
+ static const struct drm_display_mode auo_b133xtn01_mode = {
+ 	.clock = 69500,
+ 	.hdisplay = 1366,
+@@ -1720,6 +1749,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "auo,b133htn01",
+ 		.data = &auo_b133htn01,
++	}, {
++		.compatible = "auo,b133uan01",
++		.data = &auo_b133uan01,
+ 	}, {
+ 		.compatible = "auo,b133xtn01",
+ 		.data = &auo_b133xtn01,
 -- 
 2.35.1.1021.g381101b075-goog
 
