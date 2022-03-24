@@ -2,255 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFB274E6592
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 15:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C7A4E65A8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 15:50:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236316AbiCXOqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 10:46:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48218 "EHLO
+        id S243117AbiCXOvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 10:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235849AbiCXOqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 10:46:52 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB73CA8EE5;
-        Thu, 24 Mar 2022 07:45:18 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id q20so2872283wmq.1;
-        Thu, 24 Mar 2022 07:45:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=M/f8y/26l32WvTxIaHNU9NsW+ax20B3YgWzAaAZO6Mo=;
-        b=UE4m2c67FnKibQK1QU98/UtSQNv3yQUQD3OZ4iuZTaCkDrnaL8cBSt4nB9yB/3YFet
-         6LpI3mZBnPV/OBZrP3wleWoJLQbHlir64S7QeIjLF71/DtDLwDkNZgeRrVWTp9L89WJf
-         kMViLRyhKx4+1AYaqwLDHEPislGseQm/ZzqJA4MIdCA+ChCp2+gOnL7EQx4kXNsgubrd
-         z3AJWf+jaE+cqBOBSYb+ilBwqk3CHfRvoNDEeS+mTjENDFsjc6MMJEpkhjCTDl+CJn+x
-         diIue72mp0ZbSBNN4JNyEJa9pge17td2txR9bz6+Nhxoz4Yhc2RZvZ8GsjQjjEYdWIIP
-         GsUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=M/f8y/26l32WvTxIaHNU9NsW+ax20B3YgWzAaAZO6Mo=;
-        b=j1nEgXxfBZd7l0nPsjJhL+CFZOomG5gVdBBph78ueRmVt5ZNScT3v+s0XQTepeExEN
-         eceXw9qlYRjKH1z5Tc+Kz29YyAtNn9baED8nIhs+n8jrTnJ0A4HdKBIk59EEfSzxjOqv
-         i+HIN/HqmH7gq2EtiacYj308IoSBGypImi7rSJBSiDfd3Y8LzsX9oK96q22Sskac5l24
-         JOggwtSI78+iKTYTGgZR4V7htWCy5BGH6JthCZymYSkzbXu5hI2dPLwoILHT2g7NXYis
-         gZmK6gHRirQHd1lBt4+VZP/OjxkQXG5fhMuyGGFyhfIYsLEIiGwHCisQYNSRfp3VgldE
-         tfzw==
-X-Gm-Message-State: AOAM5331lPyQE6UqpXQpJfe2IE+GIWFWUEmyV4B/+yc0cZnA9Le4BUO1
-        2xVFtzfGWonxl383IX8CeWg=
-X-Google-Smtp-Source: ABdhPJwtm+jCnY1o081n9jxBevzG/xtKrtYGckQi6oRARJ8rLE7tnoVwr7G3c/GIJj01lcGz5pqfHA==
-X-Received: by 2002:a7b:cd01:0:b0:38c:9142:2006 with SMTP id f1-20020a7bcd01000000b0038c91422006mr14718045wmj.4.1648133117227;
-        Thu, 24 Mar 2022 07:45:17 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id f11-20020a7bcc0b000000b0037e0c362b6dsm2298003wmh.31.2022.03.24.07.45.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 07:45:16 -0700 (PDT)
-Message-ID: <e4f414a6-2a18-1f46-d8c0-c070d63e5326@gmail.com>
-Date:   Thu, 24 Mar 2022 15:45:15 +0100
+        with ESMTP id S243204AbiCXOvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 10:51:42 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE91A776A
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 07:50:09 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7DCEB1844;
+        Thu, 24 Mar 2022 15:50:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1648133406;
+        bh=uOpaJNZVauwK05172GhfKNUNKgFRbgGH7yj9+o0lj5Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d19DYSU0WzvRtPR3X5Lo1lgetzzW/H4RcKtIqJvw+Xr6Lw44MGB+ceubU2iH30rcY
+         5q2WYVSEl8qBHw37DnutdOSlaSlFUgOaoHkEusvoZieQpnjzLEuFh8hWVKYLP1PEIv
+         cHOixDBQNRW4aq5rCjwi8qkzyVHeQKcX0LK8yq8M=
+Date:   Thu, 24 Mar 2022 16:50:04 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Vasut <marex@denx.de>, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <YjyFHGQw6SiL6UHA@pendragon.ideasonboard.com>
+References: <20220323154823.839469-1-maxime@cerno.tech>
+ <YjuFO45Gr1vmKxWG@pendragon.ideasonboard.com>
+ <20220324081819.niz4pdqu3j7n2ivh@houat>
+ <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
+ <20220324142324.monalktzzpypu74x@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-8-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v4 07/22] arm64: dts: mt8192: Add audio-related nodes
-In-Reply-To: <20220318144534.17996-8-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220324142324.monalktzzpypu74x@houat>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Maxime,
 
-
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add audio-related nodes in audsys for mt8192 SoC.
->   - Move audsys node in ascending order.
->   - Increase the address range's length from 0x1000 to 0x2000.
+On Thu, Mar 24, 2022 at 03:23:24PM +0100, Maxime Ripard wrote:
+> On Thu, Mar 24, 2022 at 03:43:42PM +0200, Laurent Pinchart wrote:
+> > On Thu, Mar 24, 2022 at 09:18:19AM +0100, Maxime Ripard wrote:
+> > > On Wed, Mar 23, 2022 at 10:38:19PM +0200, Laurent Pinchart wrote:
+> > > > Hi Maxime,
+> > > > 
+> > > > (CC'ing Sakari)
+> > > > 
+> > > > Thank you for the patch.
+> > > > 
+> > > > On Wed, Mar 23, 2022 at 04:48:23PM +0100, Maxime Ripard wrote:
+> > > > > MIPI-DSI devices, if they are controlled through the bus itself, have to
+> > > > > be described as a child node of the controller they are attached to.
+> > > > > 
+> > > > > Thus, there's no requirement on the controller having an OF-Graph output
+> > > > > port to model the data stream: it's assumed that it would go from the
+> > > > > parent to the child.
+> > > > > 
+> > > > > However, some bridges controlled through the DSI bus still require an
+> > > > > input OF-Graph port, thus requiring a controller with an OF-Graph output
+> > > > > port. This prevents those bridges from being used with the controllers
+> > > > > that do not have one without any particular reason to.
+> > > > > 
+> > > > > Let's drop that requirement.
+> > > > 
+> > > > I'm sure this won't come as a surprise, I'm very much opposed to this
+> > > > change, for two reasons.
+> > > > 
+> > > > First, ports are part of the hardware, even if they're not connected. It
+> > > > thus simplifies handling in drivers if they're always present.
+> > > > 
+> > > > Then, and that's the most important reason, I think it's a mistake not
+> > > > to model the DSI data connection using OF graph unconditionally, even
+> > > > when the DSI sink device is also controlled through the DSI bus (using
+> > > > DCS) and is in that case a child of the DSI source device in the DT
+> > > > hierarchy.
+> > > 
+> > > That's the way we do for any other device though. You never addressed
+> > > that comment, but it's very much the same that occurs for i2c or spi
+> > > controllers and their device. They all get their data from the parent
+> > > bus. I don't see you advocate for using OF-Graph for those devices.
+> > 
+> > Those are different, there's no data stream independent of the control
+> > communications.
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 134 ++++++++++++++++++++++-
->   1 file changed, 128 insertions(+), 6 deletions(-)
+> Fine, then you have Ethernet PHYs, or any MMIO device that does DMA.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 6bc36a4076f4..40cf6dacca3e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -742,6 +742,134 @@
->   			status = "disabled";
->   		};
->   
-> +		audsys: syscon@11210000 {
-> +			compatible = "mediatek,mt8192-audsys", "syscon";
-> +			reg = <0 0x11210000 0 0x2000>;
-> +			#clock-cells = <1>;
+> > > > The device tree describes a control hierarchy between devices. OF graph
+> > > > overlays on top of that a data transfer graph. The two are different
+> > > > concepts, and the fact that DSI can sometimes be used as a control bus
+> > > > doesn't change the concept. Using OF graph unconditionally to describe
+> > > > the data connections for DSI leads to less variation in the device tree
+> > > > structure, and thus less complexity in the implementation. We're
+> > > > suffering from the fact we haven't made it a requirement in the first
+> > > > place, which can't be fixed due to ABI breakage constraints, but let's
+> > > > not acknowledge it as a good idea.
+> > > 
+> > > Honestly, it doesn't matter one bit.
+> > > 
+> > > We have a huge discrepancy here today, and only a couple of bridges have
+> > > that arbitrary restriction. The situation you don't want to acknowledge
+> > > is the de-facto standard, by the generic binding and by what all the
+> > > bridges and panels are implementing. Even panel-simple-dsi is doing it.
+> > > So it's very much there already.
+> > 
+> > It's here, and I think we should move away from it for new DSI sinks.
+> > I'd like OF graph to be used consistently for new drivers. We can't
+> > change existing DT bindings and drivers to drop support for the
+> > non-OF-graph description due to ABI stability, but we can avoid
+> > repeating the mistake going forward.
+> >
+> > > What I'm trying to address here is that some controllers that do
+> > > everything right can't be used because that restriction is completely
+> > > arbitrary and in opposition to the consensus. And they can't be used
+> > > *today*.
+> > > 
+> > > If we want to change that consensus, fine, but we should still have one.
+> > > Having some bridges enforcing custom rules for no reason is very much
+> > > unacceptable.
+> > > 
+> > > And changing that consensus won't happen overtime, we'll have to take
+> > > care of the backward compatibility, etc. So it won't fix the issue that
+> > > we can't use any bridge with any controller any time soon.
+> > 
+> > I don't think that's the issue at hand here. You can still use a
+> > non-OF-graph DT event if the nodes for the two bridges affected by this
+> > patch define a port@0. It can just be left unconnected.
+> > 
+> > I do agree it will cause some DT bindings for DCS-based DSI sinks to
+> > have ports will others won't. If your concern is that all DT bindings
+> > should be coherent, would you be OK with a patch that makes the sink
+> > port mandatory in all DT bindings for DSI bridges and panels (and fixes
+> > the mainline DT sources accordingly to make sure they validate) ? The
+> > port would not be connected of course (at least when used with DSI
+> > source drivers that don't use OF graph today). That would make DT
+> > bindings coherent, and would be a first step towards using OF graph
+> > everywhere.
+> 
+> I'm trying to fix a (recent) mistake/cargo-cult in new bindings. That
+> discussion is not going to be fairly controversial and I don't see how
+> that can be solved quickly. So, as a second step, why not. But this one
+> needs to come first.
 
-New line here please.
+I don't think we need to flip the switch in one go, even on the DT
+binding side, we could agree on a direction for new bindings and then
+migrate the existing ones. The migration time should be minimized
+though, I agree about your cargo cult comment though, it's painful. And
+it shouldn't be difficult to convert all DT bindings in one go if we
+decide to do so. Changing drivers would be more complex, but that
+doesn't need to be tied to the bindings.
 
-> +			afe: mt8192-afe-pcm {
-> +				compatible = "mediatek,mt8192-audio";
-> +				interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				resets = <&watchdog 17>;
-> +				reset-names = "audiosys";
-> +				mediatek,apmixedsys = <&apmixedsys>;
-> +				mediatek,infracfg = <&infracfg>;
-> +				mediatek,topckgen = <&topckgen>;
-> +				power-domains = <&spm MT8192_POWER_DOMAIN_AUDIO>;
-> +				clocks = <&audsys CLK_AUD_AFE>,
+tl;dr: I'm fine dropping the required port@0 here short term to avoid
+divergence in bindings, as long as it won't be used as an argument
+against me in the future to make port@0 mandatory again :-)
 
-There are many more clocks then in the bindings, can please fix that.
 
+-- 
 Regards,
-Matthias
 
-> +					 <&audsys CLK_AUD_DAC>,
-> +					 <&audsys CLK_AUD_DAC_PREDIS>,
-> +					 <&audsys CLK_AUD_ADC>,
-> +					 <&audsys CLK_AUD_ADDA6_ADC>,
-> +					 <&audsys CLK_AUD_22M>,
-> +					 <&audsys CLK_AUD_24M>,
-> +					 <&audsys CLK_AUD_APLL_TUNER>,
-> +					 <&audsys CLK_AUD_APLL2_TUNER>,
-> +					 <&audsys CLK_AUD_TDM>,
-> +					 <&audsys CLK_AUD_TML>,
-> +					 <&audsys CLK_AUD_NLE>,
-> +					 <&audsys CLK_AUD_DAC_HIRES>,
-> +					 <&audsys CLK_AUD_ADC_HIRES>,
-> +					 <&audsys CLK_AUD_ADC_HIRES_TML>,
-> +					 <&audsys CLK_AUD_ADDA6_ADC_HIRES>,
-> +					 <&audsys CLK_AUD_3RD_DAC>,
-> +					 <&audsys CLK_AUD_3RD_DAC_PREDIS>,
-> +					 <&audsys CLK_AUD_3RD_DAC_TML>,
-> +					 <&audsys CLK_AUD_3RD_DAC_HIRES>,
-> +					 <&infracfg CLK_INFRA_AUDIO>,
-> +					 <&infracfg CLK_INFRA_AUDIO_26M_B>,
-> +					 <&topckgen CLK_TOP_AUDIO_SEL>,
-> +					 <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
-> +					 <&topckgen CLK_TOP_MAINPLL_D4_D4>,
-> +					 <&topckgen CLK_TOP_AUD_1_SEL>,
-> +					 <&topckgen CLK_TOP_APLL1>,
-> +					 <&topckgen CLK_TOP_AUD_2_SEL>,
-> +					 <&topckgen CLK_TOP_APLL2>,
-> +					 <&topckgen CLK_TOP_AUD_ENGEN1_SEL>,
-> +					 <&topckgen CLK_TOP_APLL1_D4>,
-> +					 <&topckgen CLK_TOP_AUD_ENGEN2_SEL>,
-> +					 <&topckgen CLK_TOP_APLL2_D4>,
-> +					 <&topckgen CLK_TOP_APLL_I2S0_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S1_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S2_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S3_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S4_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S5_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S6_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S7_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S8_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL_I2S9_M_SEL>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV0>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV1>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV2>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV3>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV4>,
-> +					 <&topckgen CLK_TOP_APLL12_DIVB>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV5>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV6>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV7>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV8>,
-> +					 <&topckgen CLK_TOP_APLL12_DIV9>,
-> +					 <&topckgen CLK_TOP_AUDIO_H_SEL>,
-> +					 <&clk26m>;
-> +				clock-names = "aud_afe_clk",
-> +					      "aud_dac_clk",
-> +					      "aud_dac_predis_clk",
-> +					      "aud_adc_clk",
-> +					      "aud_adda6_adc_clk",
-> +					      "aud_apll22m_clk",
-> +					      "aud_apll24m_clk",
-> +					      "aud_apll1_tuner_clk",
-> +					      "aud_apll2_tuner_clk",
-> +					      "aud_tdm_clk",
-> +					      "aud_tml_clk",
-> +					      "aud_nle",
-> +					      "aud_dac_hires_clk",
-> +					      "aud_adc_hires_clk",
-> +					      "aud_adc_hires_tml",
-> +					      "aud_adda6_adc_hires_clk",
-> +					      "aud_3rd_dac_clk",
-> +					      "aud_3rd_dac_predis_clk",
-> +					      "aud_3rd_dac_tml",
-> +					      "aud_3rd_dac_hires_clk",
-> +					      "aud_infra_clk",
-> +					      "aud_infra_26m_clk",
-> +					      "top_mux_audio",
-> +					      "top_mux_audio_int",
-> +					      "top_mainpll_d4_d4",
-> +					      "top_mux_aud_1",
-> +					      "top_apll1_ck",
-> +					      "top_mux_aud_2",
-> +					      "top_apll2_ck",
-> +					      "top_mux_aud_eng1",
-> +					      "top_apll1_d4",
-> +					      "top_mux_aud_eng2",
-> +					      "top_apll2_d4",
-> +					      "top_i2s0_m_sel",
-> +					      "top_i2s1_m_sel",
-> +					      "top_i2s2_m_sel",
-> +					      "top_i2s3_m_sel",
-> +					      "top_i2s4_m_sel",
-> +					      "top_i2s5_m_sel",
-> +					      "top_i2s6_m_sel",
-> +					      "top_i2s7_m_sel",
-> +					      "top_i2s8_m_sel",
-> +					      "top_i2s9_m_sel",
-> +					      "top_apll12_div0",
-> +					      "top_apll12_div1",
-> +					      "top_apll12_div2",
-> +					      "top_apll12_div3",
-> +					      "top_apll12_div4",
-> +					      "top_apll12_divb",
-> +					      "top_apll12_div5",
-> +					      "top_apll12_div6",
-> +					      "top_apll12_div7",
-> +					      "top_apll12_div8",
-> +					      "top_apll12_div9",
-> +					      "top_mux_audio_h",
-> +					      "top_clk26m_clk";
-> +			};
-> +		};
-> +
->   		nor_flash: spi@11234000 {
->   			compatible = "mediatek,mt8192-nor";
->   			reg = <0 0x11234000 0 0xe0>;
-> @@ -757,12 +885,6 @@
->   			status = "disable";
->   		};
->   
-> -		audsys: clock-controller@11210000 {
-> -			compatible = "mediatek,mt8192-audsys", "syscon";
-> -			reg = <0 0x11210000 0 0x1000>;
-> -			#clock-cells = <1>;
-> -		};
-> -
->   		i2c3: i2c@11cb0000 {
->   			compatible = "mediatek,mt8192-i2c";
->   			reg = <0 0x11cb0000 0 0x1000>,
+Laurent Pinchart
