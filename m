@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57FE14E613D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 10:44:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E01C04E6146
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 10:47:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349331AbiCXJqB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 24 Mar 2022 05:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33222 "EHLO
+        id S1345897AbiCXJt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 05:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349327AbiCXJqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 05:46:01 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F0EA9BB84
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 02:44:29 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nXK10-0005rl-8j; Thu, 24 Mar 2022 10:44:22 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nXK0w-002fO9-LZ; Thu, 24 Mar 2022 10:44:21 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nXK0y-0003BF-MV; Thu, 24 Mar 2022 10:44:20 +0100
-Message-ID: <66a8bb8aebf2a6683aca4303f6b6bf598ed7afd0.camel@pengutronix.de>
-Subject: Re: [PATCH 2/2] reset: add support for fwnode
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Thu, 24 Mar 2022 10:44:20 +0100
-In-Reply-To: <20220323172121.220a26e9@fixe.home>
-References: <20220323095022.453708-1-clement.leger@bootlin.com>
-         <20220323095022.453708-3-clement.leger@bootlin.com>
-         <ba95a3fec9c726e2cd61665ac5d7f89d16232d60.camel@pengutronix.de>
-         <20220323172121.220a26e9@fixe.home>
+        with ESMTP id S239549AbiCXJt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 05:49:28 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C8856C0B;
+        Thu, 24 Mar 2022 02:47:54 -0700 (PDT)
+X-UUID: 906a8ac4647c4f778edaaec8b06d2341-20220324
+X-UUID: 906a8ac4647c4f778edaaec8b06d2341-20220324
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1951271556; Thu, 24 Mar 2022 17:47:49 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 24 Mar 2022 17:47:48 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Mar
+ 2022 17:47:47 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Mar 2022 17:47:47 +0800
+Message-ID: <c3b5fc807465c4ed3b01b518c2582069683f5a13.camel@mediatek.com>
+Subject: Re: [PATCH 3/4] cpufreq: mediatek: clean up cpufreq driver
+From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <fan.chen@mediatek.com>,
+        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
+        <Allen-yy.Lin@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+Date:   Thu, 24 Mar 2022 17:47:47 +0800
+In-Reply-To: <0fa44005-158b-74ee-f4ff-f2694ffce38a@canonical.com>
+References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
+         <20220307122151.11666-4-jia-wei.chang@mediatek.com>
+         <0fa44005-158b-74ee-f4ff-f2694ffce38a@canonical.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,42 +68,145 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2022-03-23 at 17:21 +0100, Clément Léger wrote:
-> Le Wed, 23 Mar 2022 16:29:41 +0100,
-> Philipp Zabel <p.zabel@pengutronix.de> a écrit :
-> 
-> > On Mi, 2022-03-23 at 10:50 +0100, Clément Léger wrote:
-> > [...]
-> > > diff --git a/drivers/reset/core.c b/drivers/reset/core.c
-> > > index 61e688882643..f014da03b7c1 100644
-> > > --- a/drivers/reset/core.c
-> > > +++ b/drivers/reset/core.c
-> > > @@ -4,6 +4,7 @@
-> > >   *
-> > >   * Copyright 2013 Philipp Zabel, Pengutronix
-> > >   */
-> > > +#include <linux/acpi.h>
-> > >  #include <linux/atomic.h>
-> > >  #include <linux/device.h>
-> > >  #include <linux/err.h>
-> > > @@ -70,26 +71,49 @@ static const char *rcdev_name(struct
-> > > reset_controller_dev *rcdev)
-> > >         if (rcdev->of_node)
-> > >                 return rcdev->of_node->full_name;  
+On Mon, 2022-03-07 at 20:02 +0100, Krzysztof Kozlowski wrote:
+> On 07/03/2022 13:21, Tim Chang wrote:
+> > cleanup of naming, print log and comments.
 > > 
-> > Could the above be removed, since reset_controller_register() set
-> > rcdev->fwnode to of_fwnode_handle(rcdev->of_node) earlier?
+> > Signed-off-by: Jia-Wei Chang <
+> > jia-wei.chang@mediatek.corp-partner.google.com>
+> > ---
+> >  drivers/cpufreq/mediatek-cpufreq.c | 487 ++++++++++++++-----------
+> > ----
+> >  1 file changed, 233 insertions(+), 254 deletions(-)
+> > 
+> > diff --git a/drivers/cpufreq/mediatek-cpufreq.c
+> > b/drivers/cpufreq/mediatek-cpufreq.c
+> > index 8e9d706d8081..3f00c7eb01f1 100644
+> > --- a/drivers/cpufreq/mediatek-cpufreq.c
+> > +++ b/drivers/cpufreq/mediatek-cpufreq.c
+> > @@ -1,7 +1,6 @@
+> >  // SPDX-License-Identifier: GPL-2.0-only
+> >  /*
+> > - * Copyright (c) 2015 Linaro Ltd.
+> > - * Author: Pi-Cheng Chen <pi-cheng.chen@linaro.org>
+> > + * Copyright (C) 2022 MediaTek Inc.
 > 
-> Yes, this should work in all cases, the only difference is that
-> fwnode_get_name() returns the basename of the of_node full_name
-> field.
-> This is potentially a change from what was displayed before. If you are
-> ok with that, I'll drop these lines.
+> Removal of authorship and existing copyrights does not fit into
+> "clean
+> up". Please explain this thoroughly.
 
-Yes, that should be fine. rcdev_name() is currently only used in
-warnings that let driver developers know which reset controller they
-used incorrectly.
+This is my mistake.
+I will keep it as before and add myself as a new author.
 
-regards
-Philipp
+> 
+> >   */
+> >  
+> >  #include <linux/clk.h>
+> > @@ -22,7 +21,7 @@
+> >  #define VOLT_TOL		(10000)
+> >  
+> >  /*
+> > - * The struct mtk_cpu_dvfs_info holds necessary information for
+> > doing CPU DVFS
+> > + * The struct mtk_cpufreq_drv holds necessary information for
+> > doing CPU DVFS
+> >   * on each CPU power/clock domain of Mediatek SoCs. Each CPU
+> > cluster in
+> >   * Mediatek SoCs has two voltage inputs, Vproc and Vsram. In some
+> > cases the two
+> >   * voltage inputs need to be controlled under a hardware
+> > limitation:
+> > @@ -32,7 +31,7 @@
+> >   * needs to be switched to another stable PLL clock temporarily
+> > until
+> >   * the original PLL becomes stable at target frequency.
+> >   */
+> > -struct mtk_cpu_dvfs_info {
+> > +struct mtk_cpufreq_drv {
+> >  	struct cpumask cpus;
+> >  	struct device *cpu_dev;
+> >  	struct regulator *proc_reg;
+> > @@ -40,45 +39,45 @@ struct mtk_cpu_dvfs_info {
+> >  	struct clk *cpu_clk;
+> >  	struct clk *inter_clk;
+> >  	struct list_head list_head;
+> > -	int intermediate_voltage;
+> > +	int inter_voltage;
+> >  	bool need_voltage_tracking;
+> > -	int old_vproc;
+> > -	struct mutex lock; /* avoid notify and policy race condition */
+> > +	int old_voltage;
+> > +	struct mutex lock;  /* avoid notify and policy race condition
+> > */
+> >  	struct notifier_block opp_nb;
+> >  	int opp_cpu;
+> >  	unsigned long opp_freq;
+> >  };
+> >  
+> > -static LIST_HEAD(dvfs_info_list);
+> > +static LIST_HEAD(drv_list);
+> >  
+> > -static struct mtk_cpu_dvfs_info *mtk_cpu_dvfs_info_lookup(int cpu)
+> > +static struct mtk_cpufreq_drv *mtk_cpufreq_drv_lookup(int cpu)
+> >  {
+> > -	struct mtk_cpu_dvfs_info *info;
+> > +	struct mtk_cpufreq_drv *drv;
+> >  
+> > -	list_for_each_entry(info, &dvfs_info_list, list_head) {
+> > -		if (cpumask_test_cpu(cpu, &info->cpus))
+> > -			return info;
+> > +	list_for_each_entry(drv, &drv_list, list_head) {
+> > +		if (cpumask_test_cpu(cpu, &drv->cpus))
+> > +			return drv;>  	}
+> >  
+> >  	return NULL;
+> >  }
+> >  
+> > -static int mtk_cpufreq_voltage_tracking(struct mtk_cpu_dvfs_info
+> > *info,
+> > -					int new_vproc)
+> > +static int mtk_cpufreq_voltage_tracking(struct mtk_cpufreq_drv
+> > *drv,
+> > +					int new_voltage)
+> >  {
+> > -	struct regulator *proc_reg = info->proc_reg;
+> > -	struct regulator *sram_reg = info->sram_reg;
+> > -	int old_vproc, old_vsram, new_vsram, vsram, vproc, ret;
+> > -
+> > -	old_vproc = regulator_get_voltage(proc_reg);
+> > -	if (old_vproc < 0) {
+> > -		pr_err("%s: invalid Vproc value: %d\n", __func__,
+> > old_vproc);
+> > -		return old_vproc;
+> > +	struct regulator *proc_reg = drv->proc_reg;
+> > +	struct regulator *sram_reg = drv->sram_reg;
+> > +	int old_voltage, old_vsram, new_vsram, vsram, voltage, ret;
+> > +
+> > +	old_voltage = regulator_get_voltage(proc_reg);
+> > +	if (old_voltage < 0) {
+> > +		pr_err("%s: invalid vproc value: %d\n", __func__,
+> > old_voltage);
+> > +		return old_voltage;
+> 
+> 
+> Several different changes in one commit. Please read the document
+> "Submitting patches".
+> 
+> (...)
+
+Sorry for my ignorance.
+I will split the changes and send one change in one commit.
+
+> 
+> > -MODULE_AUTHOR("Pi-Cheng Chen <pi-cheng.chen@linaro.org>");
+> > +MODULE_AUTHOR("Jia-Wei Chang <jia-wei.chang@mediatek.com>");
+> 
+> Ekhm, why? He was not the author?
+
+This is my mistake.
+I will keep it as before and add myself as a new author.
+
+> 
+> Best regards,
+> Krzysztof
 
