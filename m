@@ -2,107 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9249D4E6241
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E63CA4E625C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 12:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349713AbiCXLSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 07:18:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39316 "EHLO
+        id S1349840AbiCXLXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 07:23:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349715AbiCXLSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:18:34 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B303A66D0
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 04:17:03 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1nXLSe-0005xo-30; Thu, 24 Mar 2022 12:17:00 +0100
-Message-ID: <ecc8cee6-e890-278e-2916-e7fd45276e6f@pengutronix.de>
-Date:   Thu, 24 Mar 2022 12:16:58 +0100
+        with ESMTP id S242748AbiCXLWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 07:22:55 -0400
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D7C558B;
+        Thu, 24 Mar 2022 04:21:23 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id lr4so41755ejb.11;
+        Thu, 24 Mar 2022 04:21:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=vCtXvC6NKv02vJBz9LwhC/wnC/pxcDKfv/yu+jbUxCw=;
+        b=WnO7W+D4zCkjflkpcOP6eubCKOXUG6KE9hdKLdtEuHdptehxDwpXj2+qGniJaBTKIp
+         DinDQwothfNOcKDlBMZ8SQf2wlnnmcNdkYIcd5I3fI6CumuDlTQRge6ZiKF+nr8bZ2r5
+         ELkMmHIKQipkIlLTjdWwLP9Z2HuZaAmrE3PPMKimlIYYkG9DpAEXh/hS3BsXf8DVK7ot
+         uedAtZ5M6vmGHfW5YYR4XHASL+CI03fnRu65Uvz6xSTMojjWJP4poOqzln5cKs3Jzuih
+         O8KyKYVEsISybRwuFl042cQCQdx2cZco0tnZee5J0BAyAk+eptpem/8W07teWN6MCF6K
+         yOUg==
+X-Gm-Message-State: AOAM5323g5yljcOwtN9l/p40SrEQvqC9Z5sUdRIjHDXsilL7QWdSbOAd
+        L0/UJ4r2s1K8MQ6UZvFdMuQ=
+X-Google-Smtp-Source: ABdhPJyCTxGliZdVLfNGUT8I7TgpabWX5335rJB94c1ko8edVYQAv0GtvE97R3/yB5clVvYbu1npPQ==
+X-Received: by 2002:a17:907:c05:b0:6db:f118:8834 with SMTP id ga5-20020a1709070c0500b006dbf1188834mr5284672ejc.536.1648120881620;
+        Thu, 24 Mar 2022 04:21:21 -0700 (PDT)
+Received: from [192.168.0.156] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.googlemail.com with ESMTPSA id a18-20020a1709063e9200b006e0527baa77sm996889ejj.92.2022.03.24.04.21.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Mar 2022 04:21:20 -0700 (PDT)
+Message-ID: <b15567c7-98e9-2d01-d1a5-7675136c625d@kernel.org>
+Date:   Thu, 24 Mar 2022 12:21:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 0/4] dt-bindings: imx: add nvmem property
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: clock: fix dt_binding_check error for
+ qcom,gcc-other.yaml
 Content-Language: en-US
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, Peng Fan <peng.fan@nxp.com>,
-        netdev@vger.kernel.org, s.hauer@pengutronix.de,
-        linux-mmc@vger.kernel.org, qiangqing.zhang@nxp.com,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        robh+dt@kernel.org, mkl@pengutronix.de, linux-imx@nxp.com,
-        kernel@pengutronix.de, kuba@kernel.org, krzk+dt@kernel.org,
-        pabeni@redhat.com, shawnguo@kernel.org, davem@davemloft.net,
-        wg@grandegger.com, festevam@gmail.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-References: <20220324042024.26813-1-peng.fan@oss.nxp.com>
- <20220324111104.cd7clpkzzedtcrja@pengutronix.de>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20220324111104.cd7clpkzzedtcrja@pengutronix.de>
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220323194248.26970-1-ansuelsmth@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220323194248.26970-1-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 24.03.22 12:11, Uwe Kleine-König wrote:
-> I'd rather not have that in an official binding as the syntax is
-> orthogonal to status = "..." but the semantic isn't. Also if we want
-> something like that, I'd rather not want to adapt all bindings, but
-> would like to see this being generic enough to be described in a single
-> catch-all binding.
-
-Cc += Srini who maintains the NVMEM bindings.
-
-> I also wonder if it would be nicer to abstract that as something like:
+On 23/03/2022 20:42, Ansuel Smith wrote:
+> qcom,gcc-other Documentation lacks a '|' for the description. This cause
+> dt_binding_check to incorrectly parse "See also:" as a new value.
+> Add the missing '|' to correctly parse the description.
 > 
-> 	/ {
-> 		fuse-info {
-> 			compatible = "otp-fuse-info";
+> Fixes: a03965ed1310 ("dt-bindings: clock: split qcom,gcc.yaml to common and specific schema")
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> 			flexcan {
-> 				devices = <&flexcan1>, <&flexcan2>;
-> 				nvmem-cells = <&flexcan_disabled>;
-> 				nvmem-cell-names = "disabled";
-> 			};
-> 
-> 			m7 {
-> 				....
-> 			};
-> 		};
-> 	};
-> 
-> as then the driver evaluating this wouldn't need to iterate over the
-> whole dtb but just over this node. But I'd still keep this private to
-> the bootloader and not describe it in the generic binding.
 
-I like this, but being for bootloader consumption only doesn't mean that
-this shouldn't be documented upstream. It's fine to have the binding,
-even if Linux isn't expected to implement it.
+Reported-by: Rob Herring <robh@kernel.org>
 
-Cheers,
-Ahmad
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> 
-> Just my 0.02€
-> Uwe
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
