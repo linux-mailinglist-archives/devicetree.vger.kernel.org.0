@@ -2,146 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 974BC4E6349
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C81A4E635D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:29:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344537AbiCXMZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 08:25:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43462 "EHLO
+        id S1347588AbiCXMaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 08:30:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347661AbiCXMZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:25:48 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4A27B55F
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 05:24:15 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id e189so4696891oia.8
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 05:24:15 -0700 (PDT)
+        with ESMTP id S241594AbiCXMa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:30:29 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F20A94EC;
+        Thu, 24 Mar 2022 05:28:58 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id w4so6386242wrg.12;
+        Thu, 24 Mar 2022 05:28:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WDPX0+3GMlf6QJlR+ewe/Ogxr+oTRBt5Zt4FhKaxj2E=;
-        b=slsIM+02eON3vkvBU5snLTTy6X05KNjNLFO23kfcaqzwJk6o2OemvfwWUtXgr3EYeW
-         vvz7w9oCB2vWi6KhbksERa8zbbE9SssEW7KzEE4U97bjMQKcqYtdrRchrrOZqL8xAOwJ
-         ni6iALOyZlKWmt9lj5Af9s5yr5VUQvjWnk6LJTNyvWicZTPxXswHJIhKgA7wIIoz8CzL
-         Uu2e7d7ULvLgqr71qf2qVV+9JRNROLnfAZRh93AtVqFyOYsNuK9Y6RdTFpwWDJdfYkps
-         GRIRpMM0jGaBOUXvC4RPrShIU5mwVQPwz2qvH84FlhQARe3w6YgLLuNExsDl9WA9sgmd
-         Tsag==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0ov3ZR+ak5DEDpTymdl0/BQjBNtuGJXsPc9qEMjlbkQ=;
+        b=hVtw6rp+xuX0d32ARb62dUhqM4R3VC5pofs48O+4O920vt8CSq/sMLpt+8+LAZTn6e
+         VIElYkUtW8LSN1yoQMFd2i9puNjj5gYEvYDBOb3SSsgi3tPQAHlmFxSvRgtvszbt6FyO
+         NmOZEEZDK1GdAONx5AAxdMlRMLuKDF0uAD55768LvcmNbHzBYo4INUMN+su5fvumLCJ1
+         7ktrUpLJEE/CMXKFSi0V3hAuB4a5tjC8+ZX/61G0VwG54/3FBkrPk9WXLZmeRHMYXL8P
+         XdaRpRUztUdXn2sXDoBLQN3klBO9J8OPo2ShA+q9B8maZSx5U5yC9a+7/BJ9zNKLqQix
+         g6Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WDPX0+3GMlf6QJlR+ewe/Ogxr+oTRBt5Zt4FhKaxj2E=;
-        b=jSCTIp5HsaDkyjHmZXHp48b+zVARF/PmPm8k9z16O+7WLOe3mCK6oh27be8T3Swi/l
-         5mXNcsN0LCeHnUFSBOf8Jhr1gBnWQm3h2XEK0LmX4zaur5qorDPXAZq3zt8VdXiqu4a1
-         iFjhYGxR7WR/pCjUcXiqxO6Kipu5Ns6CxhpC9j9IV218AZj6xqonuDPkzchEPDCPFuSP
-         DK1INtX19oe/s5DSxwMkTaKKA7dO7uUZO4WOEaNapjd4+GPNDfVqhe7mdMcRCu0JEDM5
-         dwHLXnuEHFcep5oEnFbuk4CPMZOzBi0PYAb7MGF6AHoyvcGbP1xomnIRPxet8aC+wAgQ
-         nmzQ==
-X-Gm-Message-State: AOAM5310TmlUsa/o+KOWa86ISc86gA5HCb0cwQsprQUoG+iOAIBTf7iC
-        DofHlz/vyppaU1bRTV/nk5JV0w==
-X-Google-Smtp-Source: ABdhPJxFC30LckdJgrfBJ4HLWRxwSgGQLgzu1DyMb/xfn/cVcj96ffS5bhy/z6vtp9khRXkMmYLZkQ==
-X-Received: by 2002:a05:6808:18a4:b0:2da:5b12:840a with SMTP id bi36-20020a05680818a400b002da5b12840amr7135895oib.241.1648124654388;
-        Thu, 24 Mar 2022 05:24:14 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id s41-20020a05683043a900b005cdb244c9c3sm803803otv.47.2022.03.24.05.24.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Mar 2022 05:24:13 -0700 (PDT)
-Date:   Thu, 24 Mar 2022 05:25:36 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, maz@kernel.org,
-        quic_mkshah@quicinc.com, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sm8150: Add pdc interrupt
- controller node
-Message-ID: <YjxjQNAjWBwpiTgE@ripper>
-References: <20220226184028.111566-1-bhupesh.sharma@linaro.org>
- <20220226184028.111566-4-bhupesh.sharma@linaro.org>
- <YjC8bfY2U1WyV8FY@builder.lan>
- <CAH=2NtzHfqiFi8NKqQ=m24buzVsMT392ObOQ6ahT5BXB=fv6Hw@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0ov3ZR+ak5DEDpTymdl0/BQjBNtuGJXsPc9qEMjlbkQ=;
+        b=JIE/7IGhW+VHth6LxugJU6ZeMFGOdKbfrvRmH5mPN01Fgao3WWDa6r9+9kJ4GVJv3f
+         v63iKoRTIvxt7ebaCYhR/C+nvYXTv089dWMN9/daWb+Ta8Xi6uts7dwrdYlNXyiqQpHx
+         l3LfeYGamFbhV0P5URFwusEU3EE1pDiU4Y5QSHdqWC8cPOtSNqrkGwCxLh+7Dwqsh7f/
+         2ZEj4WhnukhbXCnnQcLahe5heS+MUWaJNfiPmMkKt6vhxwT/mafGqodH2o8keKSYLcEX
+         8L0bpmTcQRxMltzTGD7VcPCQEcp7moW88LjUd0B10nRpWf4Bgxvbrs1Kbw6FWWiCVsS+
+         W3Hg==
+X-Gm-Message-State: AOAM5330URMBCb+Z5MS+DxsL6+K393gROTNGF8T1dmTEjQPYRtvIGMgQ
+        5UTizzDOGxBG9+Qrsudn5wg=
+X-Google-Smtp-Source: ABdhPJzsygHW9SyBpZIAEvN/v/Oz7TkRtXHqmlOfpcjumaG0XM8yQr5RnjRWRQydHA0frLg8LXHT8A==
+X-Received: by 2002:a05:6000:168e:b0:204:fe5:a55 with SMTP id y14-20020a056000168e00b002040fe50a55mr4282985wrd.453.1648124936591;
+        Thu, 24 Mar 2022 05:28:56 -0700 (PDT)
+Received: from [192.168.0.32] ([137.101.87.65])
+        by smtp.gmail.com with ESMTPSA id i74-20020adf90d0000000b0020373ba7beesm3913847wri.0.2022.03.24.05.28.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Mar 2022 05:28:56 -0700 (PDT)
+Message-ID: <0bd165e6-6d2c-7586-44c3-9c257843600f@gmail.com>
+Date:   Thu, 24 Mar 2022 13:28:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAH=2NtzHfqiFi8NKqQ=m24buzVsMT392ObOQ6ahT5BXB=fv6Hw@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 05/22] arm64: dts: mt8192: Add usb-phy node
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>
+References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
+ <20220318144534.17996-6-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220318144534.17996-6-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 16 Mar 22:51 PDT 2022, Bhupesh Sharma wrote:
 
-> Hi Bjorn,
-> 
-> Thanks for your review.
-> 
-> On Tue, 15 Mar 2022 at 21:48, Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Sat 26 Feb 12:40 CST 2022, Bhupesh Sharma wrote:
-> >
-> > > Add pdc interrupt controller for sm8150.
-> > >
-> > > Cc: Maulik Shah <quic_mkshah@quicinc.com>
-> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Cc: Vinod Koul <vkoul@kernel.org>
-> > > Cc: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 10 ++++++++++
-> > >  1 file changed, 10 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > index 6012322a5984..aaeacd379460 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> > > @@ -1626,6 +1626,16 @@ system-cache-controller@9200000 {
-> > >                       interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
-> > >               };
-> > >
-> > > +             pdc: interrupt-controller@b220000 {
-> > > +                     compatible = "qcom,sm8150-pdc", "qcom,pdc";
-> > > +                     reg = <0 0x0b220000 0 0x400>;
-> > > +                     qcom,pdc-ranges = <0 480 94>, <94 609 31>,
-> > > +                                       <125 63 1>;
-> >
-> > When I look at the platform documentation I get the impression that this
-> > should be: <0 480 94>, <94 609 32>;
-> >
-> > Can you confirm that the last signal is correctly described?
-> 
-> Yes, I confirmed by double checking the entries in downstream 'pdc-sm8150.c'.
-> The pdc pins in the 2nd range start from 94 and end at 124, so a total
-> of 31 entries, but both 94 and 124 pins included.
-> 
-> Or, am I missing something?
-> 
 
-Thanks for double checking, let's follow the downstream kernel.
-I will merge the patch as you proposed it.
-
-Thanks,
-Bjorn
-
-> Thanks,
-> Bhupesh
+On 18/03/2022 15:45, Allen-KH Cheng wrote:
+> Add xhci node for mt8192 SoC.
 > 
-> > > +                     #interrupt-cells = <2>;
-> > > +                     interrupt-parent = <&intc>;
-> > > +                     interrupt-controller;
-> > > +             };
-> > > +
-> > >               ufs_mem_hc: ufshc@1d84000 {
-> > >                       compatible = "qcom,sm8150-ufshc", "qcom,ufshc",
-> > >                                    "jedec,ufs-2.0";
-> > > --
-> > > 2.35.1
-> > >
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+
+Applied, thanks!
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 195d50894df4..28b93b76fe17 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -875,6 +875,28 @@
+>   			#clock-cells = <1>;
+>   		};
+>   
+> +		u3phy0: t-phy@11e40000 {
+> +			compatible = "mediatek,mt8192-tphy",
+> +				     "mediatek,generic-tphy-v2";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x11e40000 0x1000>;
+> +
+> +			u2port0: usb-phy@0 {
+> +				reg = <0x0 0x700>;
+> +				clocks = <&clk26m>;
+> +				clock-names = "ref";
+> +				#phy-cells = <1>;
+> +			};
+> +
+> +			u3port0: usb-phy@700 {
+> +				reg = <0x700 0x900>;
+> +				clocks = <&clk26m>;
+> +				clock-names = "ref";
+> +				#phy-cells = <1>;
+> +			};
+> +		};
+> +
+>   		i2c0: i2c@11f00000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11f00000 0 0x1000>,
