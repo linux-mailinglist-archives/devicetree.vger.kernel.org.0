@@ -2,124 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E054E5EAA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 07:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 842054E5EE0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 07:45:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242272AbiCXG1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 02:27:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33340 "EHLO
+        id S241878AbiCXGqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 02:46:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242173AbiCXG1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 02:27:25 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F316DEDA;
-        Wed, 23 Mar 2022 23:25:54 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id b130so1638961pga.13;
-        Wed, 23 Mar 2022 23:25:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=dwDYUTHimQOgoxdkP8sjUxdcESsR/QK5BJW0KPL4v+M=;
-        b=pGphB0wGqeHh0tXFHs9/r2BIMpxutQtSbYKLKe3d+08y+zJTH030ndCKamAQQuqFSx
-         WtDfAJwybEaGIjL9n/UfJ5DEK7kfiZk1a1of6Ts6LX17eT1eOuhEFMIaqMO3PCZFoyiE
-         D/KuJ0isIQYcfACmWYEzQYo+jNITKZIQI4AyyuWz+a14q/w+zU44rJsGn0DYhwuwY+Sv
-         Wlj69HoE8Ruxt73jXKPH4iW3KgmYg6olr6zKQmKsVnl++t4zD0vKVif2/1RR8WUcsOoz
-         CTYZcxz1mpKCL/LmaIrh1jnLzGxFY0CPzLO8hAdl38WnYKYZLUZkhnk1eE5yy7h/Eyq2
-         +jYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dwDYUTHimQOgoxdkP8sjUxdcESsR/QK5BJW0KPL4v+M=;
-        b=y8kFYDnG/pp9cRJ4+n4/xchwFsnVZdLd3JXy5xgtH3leapEAPe7QZql5ceeggPdh2h
-         ck+jd9NrHkNUsCSh2pSXXRWXC+5/SCZbRVrj9vrvjZGm0vFMzkyQyCaYHdDZnwrH3Pm7
-         3FkLk8WhPnYU0bl4Zo2R7PnHf0ezzLOCQxrc+AWPcb9cOz0vuhA6mluQkWuQSVNCetaA
-         JR+qxeYM4U8ghd6xDBJ+ZVt5+f19mra5huCXK+Ra67IJB7B2axdBNQ+CGykQRkuFB0AA
-         FtFDOY0iUq7xi71tZ59bneZRvrLMwEtoV0JUcGfplwWpNwbvpDWZ8p4NStwABWeVzDuV
-         C/Yg==
-X-Gm-Message-State: AOAM532G1n0RwFVzTtdztuQMdl/Aw9rPdai1EIctPyPpsEoJZJ3SYDYl
-        VyEC7JKLGWSSbBD8DAA/gZQ=
-X-Google-Smtp-Source: ABdhPJxfRsmaap5/p4sWElWvELb49XKGWxiVS20Y8jWLuFnhXpOyQVwz+ldkHm5/uH7/ZY+CB7KEeQ==
-X-Received: by 2002:a65:604a:0:b0:375:5cc8:7458 with SMTP id a10-20020a65604a000000b003755cc87458mr2863442pgp.205.1648103154065;
-        Wed, 23 Mar 2022 23:25:54 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id h6-20020a636c06000000b00363a2533b17sm1466081pgc.8.2022.03.23.23.25.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Mar 2022 23:25:53 -0700 (PDT)
-Date:   Thu, 24 Mar 2022 11:55:47 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: spear13xx: Update SPI dma properties
-Message-ID: <20220324062547.GA15504@9a2d8922b8f1>
-References: <20220323175920.93155-1-singh.kuldeep87k@gmail.com>
- <20220324023904.h2qfxzxlznggbsyr@vireshk-i7>
+        with ESMTP id S234676AbiCXGqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 02:46:53 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08FA8FE5D;
+        Wed, 23 Mar 2022 23:45:21 -0700 (PDT)
+X-UUID: 40113750ef7644dbaaaf5bc4b387da36-20220324
+X-UUID: 40113750ef7644dbaaaf5bc4b387da36-20220324
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 931368873; Thu, 24 Mar 2022 14:45:15 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 24 Mar 2022 14:45:14 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Mar
+ 2022 14:45:13 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Mar 2022 14:45:13 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>
+CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
+Subject: [v7 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Date:   Thu, 24 Mar 2022 14:45:07 +0800
+Message-ID: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220324023904.h2qfxzxlznggbsyr@vireshk-i7>
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 08:09:04AM +0530, Viresh Kumar wrote:
-> On 23-03-22, 23:29, Kuldeep Singh wrote:
-> > Reorder dmas and dma-names property for spi controller node to make it
-> > compliant with bindings.
-> > 
-> > Fixes: 6e8887f60f60 ("ARM: SPEAr13xx: Pass generic DW DMAC platform data from DT")
-> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> > ---
-> > v2:
-> > - Add fixes tag
-> > - Remove 1/2 patch from series as it's not required
-> > - v1 discussion link:
-> >   https://lore.kernel.org/linux-devicetree/20220312180615.68929-2-singh.kuldeep87k@gmail.com/
-> > 
-> >  arch/arm/boot/dts/spear13xx.dtsi | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/spear13xx.dtsi b/arch/arm/boot/dts/spear13xx.dtsi
-> > index c87b881b2c8b..45f0b2a33e02 100644
-> > --- a/arch/arm/boot/dts/spear13xx.dtsi
-> > +++ b/arch/arm/boot/dts/spear13xx.dtsi
-> > @@ -284,9 +284,8 @@ spi0: spi@e0100000 {
-> >  				#size-cells = <0>;
-> >  				interrupts = <0 31 0x4>;
-> >  				status = "disabled";
-> > -				dmas = <&dwdma0 4 0 0>,
-> > -					<&dwdma0 5 0 0>;
-> > -				dma-names = "tx", "rx";
-> > +				dmas = <&dwdma0 5 0 0>, <&dwdma0 4 0 0>;
-> > +				dma-names = "rx", "tx";
-> >  			};
-> >  
-> >  			rtc@e0580000 {
-> 
-> Rob,
-> 
-> I tried to ask this at V1 as well [1]. Why do we need a patch like
-> this ? Isn't this a DT tooling issue, where it is asking for a fixed
-> order of values ?
+From: Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
 
-Fixed order of values is important in case of properties like
-compatibles etc. In case of dma-names, yes order shouldn't matter here.
+The series reuses mt8192-mt6359-rt10150rt5682.c for supporting machine
+driver with rt1015p speaker amplifier and rt5682s headset codec.
 
-This patch is more of appeasing dtbs_check warning rather than fixing
-something. It's safe to go with this patch.
-I am not sure if there's a provision to exclude dma-names from fix
-ordering checks. Rob can help here in providing better insights.
+Changes from v6:
+  - "speaker-codec" changes to "speaker-codecs" due to there may be two
+    speaker codec.
 
-- Kuldeep
+Changes from v5:
+  - "mediatek,headset-codec" and "mediatek,speaker-codec" drop prefix
+    and move to properties from patternProperties.
+
+Changes form v4:
+  - split a large patch into three small patches for easy reviewing
+  - correct coding style
+
+Changes from v3:
+  - fix build error: too many arguments for format
+    [-Werror-format-extra-args]
+
+Changes from v2:
+  - fix build warnings such as "data argument not used by format string"
+
+Changes from v1:
+  - uses the snd_soc_of_get_dai_link_codecs to complete the
+  configuration of dai_link's codecs
+  - uses definitions to simplifies card name and compatible name
+
+Jiaxin Yu (4):
+  ASoC: dt-bindings: mt8192-mt6359: add new compatible and new
+    properties
+  ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
+  ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
+  ASoC: mediatek: mt8192: support rt1015p_rt5682s
+
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    |  32 +++
+ sound/soc/mediatek/Kconfig                    |   1 +
+ .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 201 +++++++++++-------
+ 3 files changed, 156 insertions(+), 78 deletions(-)
+
+-- 
+2.18.0
+
