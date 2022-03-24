@@ -2,96 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E70704E62DE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 226594E62F6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 13:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346869AbiCXMDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 08:03:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40716 "EHLO
+        id S229728AbiCXMMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 08:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241040AbiCXMDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:03:04 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5A5A7764;
-        Thu, 24 Mar 2022 05:01:32 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a8so8635749ejc.8;
-        Thu, 24 Mar 2022 05:01:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nuEjM18NFC9m+DMIdfnC8bAfeSbsPDnsYC00cbxSyog=;
-        b=oGg85a/oNA32MV99mldPci1AdcqVmedXiLODuJTR+ISCXXfh+bU3SXxkfWg6fTrFix
-         FPTmUvlGN9DZMW1tD1v186I8W8gW+aY/xyJ0qdwQrml+ezB0+scHv4FSvmSi+Imcot1+
-         r/MKrFbG36Cb5YozzVu+6yxidvCOazpZ8iOqg6965Jh3qTtnVlmhDvd9lfQISGNFUP9A
-         wAQSWsLIkiIJQHpP7PihEC7AtKb7B86BvhGIsrrKEfpOcYywxD0a+xKoacGa+PHAWyfU
-         2+Fl1Xq6E+1Yvfs6+oU6zz4SiS/JWWWSKtU+xw1e6SWSMc0h/0ixmApkRuil1qWrBzA3
-         CMZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nuEjM18NFC9m+DMIdfnC8bAfeSbsPDnsYC00cbxSyog=;
-        b=M+3QVwTyH/0pYzqweBUCeWkliShlbANA9BrAa4OuVPQOG7D/W93C+llNjZUl8scEb5
-         VAznoa8RV9bRkaThNVy0g+SIyGYEbWUQz/U4+XwWuWMEzZvteeyU4tMP298J1Uv/wUyU
-         /kElVcNelSmJn95NZbavGbZbvUCaTYrlNtgAqYGoBk29NhPqs6hbuCPwa4YPdUaZ9edr
-         GacHy1BSWkDtcDZGAzti+hvcGaaItvuWcNDUy0TJDf6s8Fu6E38ZvQhQIgbK3+rF4CEq
-         qxqeo4fx+OJcaP4iB2CCrWr8TzO/spVT4t5dN7c4A/767LdGuqrR+DlczNeekhrLOWA2
-         46Mw==
-X-Gm-Message-State: AOAM532vSEbVf8qpyCrhdVZZCl4Ds0asSFjQL8CyNXZ9xgTldPY8GbCD
-        aqzLtiAQXLl6Jdy6CtDmShA=
-X-Google-Smtp-Source: ABdhPJzrW0qji+QJkSKZDeLk0VV+83wm1d4vZCMJ8ny5BJSXclaIGGWEwJcgWElkC7xZrak+JvNL0A==
-X-Received: by 2002:a17:906:9b85:b0:6db:ab80:7924 with SMTP id dd5-20020a1709069b8500b006dbab807924mr5395242ejc.160.1648123291338;
-        Thu, 24 Mar 2022 05:01:31 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id u3-20020a17090657c300b006d01de78926sm1068822ejr.22.2022.03.24.05.01.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Mar 2022 05:01:28 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, kishon@ti.com,
-        vkoul@kernel.org, yifeng.zhao@rock-chips.com,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v9] dt-bindings: soc: grf: add naneng combo phy register compatible
-Date:   Thu, 24 Mar 2022 13:01:22 +0100
-Message-Id: <20220324120122.1339-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        with ESMTP id S1349954AbiCXMMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 08:12:51 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB15DA8891;
+        Thu, 24 Mar 2022 05:11:15 -0700 (PDT)
+X-UUID: 207443c495114ac884bd24a5c9e6cbfc-20220324
+X-UUID: 207443c495114ac884bd24a5c9e6cbfc-20220324
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 88857433; Thu, 24 Mar 2022 20:11:09 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 24 Mar 2022 20:11:08 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Mar
+ 2022 20:11:08 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 24 Mar 2022 20:11:08 +0800
+Message-ID: <13482b1b4244df5c0c0a4d6a60cdb2a7ba88500a.camel@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: devfreq: mediatek: add mtk cci devfreq
+ dt-bindings
+From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fan.chen@mediatek.com>,
+        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
+        <Allen-yy.Lin@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+Date:   Thu, 24 Mar 2022 20:11:08 +0800
+In-Reply-To: <bf418e08-2e32-5e61-abd8-abb0d8f5c080@canonical.com>
+References: <20220307122513.11822-1-jia-wei.chang@mediatek.com>
+         <20220307122513.11822-2-jia-wei.chang@mediatek.com>
+         <bf418e08-2e32-5e61-abd8-abb0d8f5c080@canonical.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Naneng combo phy register compatible.
+Dear Krzysztof,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Thanks for your comments.
+Pardon me for my late reply.
 
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index b2ba7bed8..5079e9d24 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -15,6 +15,8 @@ properties:
-       - items:
-           - enum:
-               - rockchip,rk3288-sgrf
-+              - rockchip,rk3568-pipe-grf
-+              - rockchip,rk3568-pipe-phy-grf
-               - rockchip,rk3568-usb2phy-grf
-               - rockchip,rv1108-usbgrf
-           - const: syscon
--- 
-2.20.1
+On Mon, 2022-03-07 at 22:42 +0100, Krzysztof Kozlowski wrote:
+> On 07/03/2022 13:25, Tim Chang wrote:
+> > add devicetree binding of mtk cci devfreq on MediaTek SoC.
+> 
+> Start with capital letter.
+
+Sure, I will update it for the whole series in next version.
+
+> 
+> > 
+> > Signed-off-by: Jia-Wei Chang <
+> > jia-wei.chang@mediatek.corp-partner.google.com>
+> 
+> This does not match your From. Please fix this in all your
+> submissions.
+
+Sure, I will update it for the whole series in next version.
+
+> 
+> > ---
+> >  .../devicetree/bindings/devfreq/mtk-cci.yaml  | 73
+> > +++++++++++++++++++
+> >  1 file changed, 73 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/devfreq/mtk-
+> > cci.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml 
+> > b/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> > new file mode 100644
+> > index 000000000000..e64ac4c56758
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> > @@ -0,0 +1,73 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/devfreq/mtk-cci.yaml*__;Iw!!CTRNKA9wMg0ARbw!2apx_16V_XMrl28ae1aDO3-2WFga3xJiACU_40mgGydrumBmFuHcQFpW_LnX6DHny5Zpig$
+> >  
+> > +$schema: 
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!2apx_16V_XMrl28ae1aDO3-2WFga3xJiACU_40mgGydrumBmFuHcQFpW_LnX6DEPqkDN4g$
+> >  
+> > +
+> > +title: Mediatek Cache Coherent Interconnect (CCI) Devfreq driver
+> > Device Tree Bindings
+> 
+> Similarly to your other patches - the title describes hardware.
+> Please
+> fix it in all your submissions of all your series.
+
+Sure, I will fix them in the next version.
+
+> 
+> Remove "driver Device Tree Bindings". "Devfreq" is Linuxism, so this
+> maybe "bus frequency scaling"? Although later you call the device
+> node
+> as cci.
+
+Should I use "Binding for MediaTek's Cache Coherent Interconnect (CCI)
+frequency and voltage scaling" as new title?
+
+> 
+> > +
+> > +maintainers:
+> > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > +
+> > +description: |
+> > +  This module is used to create CCI DEVFREQ.
+> > +  The performance will depend on both CCI frequency and CPU
+> > frequency.
+> > +  For MT8186, CCI co-buck with Little core.
+> > +  Contain CCI opp table for voltage and frequency scaling.
+> 
+> Half of this description (first and last sentence) does not describe
+> the
+> actual hardware. Please describe hardware, not driver.
+
+Sure, I will fix it in the next version.
+
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: "mediatek,mt8186-cci"
+> 
+> No need for quotes.
+
+Sure, I will fix it in the next version.
+
+> 
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description:
+> > +          The first one is the multiplexer for clock input of CPU
+> > cluster.
+> > +      - description:
+> > +          The other is used as an intermediate clock source when
+> > the original
+> > +          CPU is under transition and not stable yet.
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: "cci"
+> > +      - const: "intermediate"
+> 
+> No need for quotes.
+
+Sure, I will fix it in the next version.
+
+> 
+> > +
+> > +  operating-points-v2:
+> > +    description:
+> > +      For details, please refer to
+> > +      Documentation/devicetree/bindings/opp/opp-v2.yaml
+> > +
+> > +  opp-table: true
+> 
+> Same comments as your CPU freq bindings apply.
+
+mtk-cci-devfreq is a new driver and its arch is same as mediatek-
+cpufreq so that the properties of mtk-cci are refer to mediatek-cpufreq 
+bindings.
+operating-point-v2 is used to determine the voltage and frequency of
+dvfs which is further utilized by mtk-cci-devfreq.
+
+> 
+> > +
+> > +  proc-supply:
+> > +    description:
+> > +      Phandle of the regulator for CCI that provides the supply
+> > voltage.
+> > +
+> > +  sram-supply:
+> > +    description:
+> > +      Phandle of the regulator for sram of CCI that provides the
+> > supply
+> > +      voltage. When present, the cci devfreq driver needs to do
+> > +      "voltage tracking" to step by step scale up/down Vproc and
+> > Vsram to fit
+> > +      SoC specific needs. When absent, the voltage scaling flow is
+> > handled by
+> > +      hardware, hence no software "voltage tracking" is needed.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - clocks
+> > +  - clock-names
+> > +  - operating-points-v2
+> > +  - proc-supply
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/mt8186-clk.h>
+> > +    cci: cci {
+> 
+> Node names should be generic and describe type of device. Are you
+> sure
+> this is a CCI? Maybe "interconnect" suits it better?
+
+Yes, this is a CCI and it is generic type of device like CPU in my
+opinion.
+If my understanding is correct, CCI is more suitable.
+
+> 
+> > +      compatible = "mediatek,mt8186-cci";
+> > +      clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>, <&apmixedsys
+> > CLK_APMIXED_MAINPLL>;
+> > +      clock-names = "cci", "intermediate";
+> > +      operating-points-v2 = <&cci_opp>;
+> > +      proc-supply = <&mt6358_vproc12_reg>;
+> > +      sram-supply = <&mt6358_vsram_proc12_reg>;
+> > +    };
+> 
+> 
+> Best regards,
+> Krzysztof
 
