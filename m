@@ -2,69 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A794E60B1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 09:53:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1DD84E6103
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 10:20:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349037AbiCXIzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 04:55:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47300 "EHLO
+        id S1349175AbiCXJWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 05:22:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344839AbiCXIzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 04:55:00 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 005C86C96E
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 01:53:26 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id w21so1024120wra.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 01:53:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dYsVFhCrdFzymQrW11VWatLy1IpiH7e9KgAVON6gbDw=;
-        b=063VACslaS0QkYsACr4TW0iC0t4e+PNhn6Yyx34AqDoKkwGvGnJXLNe1ohXcWWBDIP
-         OZFnAj2CheZsZEo+kcqH0g8dN1FePndHLe0XBS05hHNB85Ggg9mzU0N56RRRNVv8za2X
-         kMu8qsWIokhYI/vf+Gwjg33CGkY52MYVEpai+fqi07rH3aRzuMmsnPi1X+oZrMZ0NBtW
-         cjlj1r0KGSYfJADu/I2DiSD/U9P7CAqmiyc3H+0UxcyySfHo94GL74kLUvwCrlFpCfYe
-         hND/L+W3MSIGUVVRB5TbGTm2n44KZRRnaIVHhQkRskNIkN2kw0UTaQ4sFPJOHeCd515z
-         l7AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dYsVFhCrdFzymQrW11VWatLy1IpiH7e9KgAVON6gbDw=;
-        b=0/CC6qaSCeVPBgDqHdn6PbjWZmzDKcN59HwbOu7svJlaoIEucPhraBPoYlslpFR3WD
-         kQ71qRNV7JvfMh65dUoGM4lGR8TuurXKtUq4dA1/0K43vW6fSxvJ5VGxLMX0iT8iikkn
-         nmNrKtVibGHT1kuNa5lhI+0aXf8sW59CE9zHSJseA6TnHX4TUlEkWIBKAk2NOuJhpNhi
-         pW6lhw0/UalRQm7Si/vnPEzxlhwMeo267kbKZoHhOlGGscVqCNduihrNCy7FapY/yTNS
-         qxmN39wheY6UVaGAsVvMxK1SHVVITxU+SUEGfJWnwugE7dkvDN0MjqNbFvfj438pRcyV
-         0DUw==
-X-Gm-Message-State: AOAM5317h4Z8XpRI30dj9ZzgXywWDk3AMuPEntMiNHJFWm9wQyB1XhNY
-        Ys47vKFd2S4j1s4d8aYWGlr6rg==
-X-Google-Smtp-Source: ABdhPJzKEKzpOf8nBNRu121896sO6b4YUiYtj9LnK0GChJVTz9htGZgmRX9zziTMIJWkkxjX7MvV5Q==
-X-Received: by 2002:a5d:6c69:0:b0:205:8472:e251 with SMTP id r9-20020a5d6c69000000b002058472e251mr3662954wrz.227.1648112005283;
-        Thu, 24 Mar 2022 01:53:25 -0700 (PDT)
-Received: from bojack.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id c7-20020adffb07000000b002058a53f359sm2036154wrr.58.2022.03.24.01.53.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Mar 2022 01:53:24 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     robert.foss@linaro.org, andrzej.hajda@intel.com,
-        Nicolas Belin <nbelin@baylibre.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org, jonas@kwiboo.se,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Laurent.pinchart@ideasonboard.com, jernej.skrabec@gmail.com
-Subject: Re: [PATCH 0/3] drm: bridge: it66121: Add audio support
-Date:   Thu, 24 Mar 2022 09:53:22 +0100
-Message-Id: <164811198461.361879.12488552321734676872.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220316135733.173950-1-nbelin@baylibre.com>
-References: <20220316135733.173950-1-nbelin@baylibre.com>
+        with ESMTP id S232772AbiCXJWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 05:22:24 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31D7C5F4FC;
+        Thu, 24 Mar 2022 02:20:51 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C685760005;
+        Thu, 24 Mar 2022 09:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1648113650;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=CDd5bvBOgJNE2ytXtdK2RZTlUwQIpquV3qJmoWMbk88=;
+        b=hPwp5w4WxcIyRQcVbCEwNC52okhKdKA4EUdP+PHuHN33g/Z3k2NsQSvOtmR+/Jmy1W9pSq
+        xzsF11YXmw61VD6jeTorClvo7JDrHYrsWze0C2al+JRI91/wprOfFgeEovNHh+2BLEQVYa
+        1gW8BUscRy4VpscvT1FnlI9gRy874fs7kQp85qZxhvN/1gS0p+kRyUqZy2JbwJajCHptfq
+        Tul/9hQCMMTT/lriMAMYOGfUqOiAsPYn+bWdefFhdwa8fse24ztyyH3UNtsudMHiYN1zMm
+        jYSRpFQ7CP9tFs+H3wZ7l2AdTuJ9cTj7sTeI0WNmJe/mKUwEG5t+3appwuWWLg==
+Date:   Thu, 24 Mar 2022 10:19:29 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] reset: add support for fwnode
+Message-ID: <20220324101929.00f51f01@fixe.home>
+In-Reply-To: <20220323172121.220a26e9@fixe.home>
+References: <20220323095022.453708-1-clement.leger@bootlin.com>
+        <20220323095022.453708-3-clement.leger@bootlin.com>
+        <ba95a3fec9c726e2cd61665ac5d7f89d16232d60.camel@pengutronix.de>
+        <20220323172121.220a26e9@fixe.home>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,27 +59,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Le Wed, 23 Mar 2022 17:21:21 +0100,
+Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> a =C3=A9crit :
 
-On Wed, 16 Mar 2022 14:57:30 +0100, Nicolas Belin wrote:
-> This patch series adds the audio support on the it66121 HDMI bridge.
-> 
-> Patch 1 updates the ITE 66121 HDMI bridge bindings in order to support
-> audio.
-> 
-> Patch 2 sets the register page length or window length of the ITE 66121
-> HDMI bridge to 0x100 according to the documentation.
-> 
-> [...]
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (id) {
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0index =3D of_property_match_string(node,
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "reset-n=
+ames", id);
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0index =3D fwnode_property_match_string(fwnode, "res=
+et-names", id);
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0if (index =3D=3D -EILSEQ)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+return ERR_PTR(index);   =20
+> >=20
+> > I don't think this is good enough any more. At least -ENOMEM is added
+> > as a possible error return code by this change. =20
+>=20
+> Yes indeed, errors are clearly not correctly handled anymore. At least
+> -EILSEQ won't be triggered.
+> >=20
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+By the way, even after looking at this more carefully, I'm not sure to
+understand why there is a special handling for -EILSEQ ? From what I
+understand, EILSEQ is returned in case the device tree is malformed
+(string longer than returned property length) but why is it handled
+differently in this case ?
 
-[1/3] dt-bindings: display: bridge: it66121: Add audio support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=cc2f2df48a17980e815fa09a43b81861f7ebad85
-[2/3] drm: bridge: it66121: Fix the register page length
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=003a1bd6a2a55c16cb2451153533dbedb12bebec
-[3/3] drm: bridge: it66121: Add audio support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e0fd83dbe92426e4f09b01111d260d2a7dc72fdb
+Thanks,
 
--- 
-Neil
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
