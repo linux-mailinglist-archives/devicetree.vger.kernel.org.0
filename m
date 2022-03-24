@@ -2,127 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6791E4E6683
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 16:59:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C6C4E66AB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 17:10:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351506AbiCXP7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 11:59:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59878 "EHLO
+        id S234603AbiCXQLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 12:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351522AbiCXP7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 11:59:32 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E0BADD7A;
-        Thu, 24 Mar 2022 08:57:44 -0700 (PDT)
-Received: from localhost.localdomain ([81.221.85.15]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1N0WTY-1oIcbr2d1A-00wVDS;
- Thu, 24 Mar 2022 16:57:28 +0100
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Olof Johansson <olof@lixom.net>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 10/10] arm64: dts: imx8mm-verdin: add sd1 sleep pinctrl
-Date:   Thu, 24 Mar 2022 16:56:49 +0100
-Message-Id: <20220324155649.285924-11-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220324155649.285924-1-marcel@ziswiler.com>
-References: <20220324155649.285924-1-marcel@ziswiler.com>
+        with ESMTP id S1351552AbiCXQLq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 12:11:46 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC9B2981F;
+        Thu, 24 Mar 2022 09:10:13 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 644EC1F4588F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1648138211;
+        bh=EwHy9mWfSuvvqMimVBgvIfNMqN76TuyvYhpTkRpZ2mY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YbwjaZuSY3rU3Yk34+j0IN39Nb0q9CbL2386wWKs6DQDuScq7BoiG/R1eZtGHpVPP
+         1Mg8LvlcNYHAwZ6OvFhRirYcEebf7Q262A+kMh3t3jVqA8WGpa9tsqWAhoTlu0Jwxl
+         ECZvz5TWxtJr/C8UUvGzoOqLdqzUCYEHExLvKrNY4+4UCk9vFIg0rEPprIuHg4i31E
+         fUtdDqlvq9QLgv3bmn3HQuRmi+tDjc77o0vd40iYf9rttMuzRfqfX42AcWxn6crrHD
+         ZCHo3m1TckA+Jn2XXesjXA2CY48xu5kp8EYNQaZOEgbODYkwWO1B50uVqywZ6JfJsj
+         gdX3Dy4O2aWSQ==
+Message-ID: <18525f9a-e5b3-f6c2-e88f-3e0c5b789cad@collabora.com>
+Date:   Thu, 24 Mar 2022 17:10:07 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:WIrHfN3/v5DuBXh1t3yffOL9Tw5KZ5XlFYczKupNGYPAq+n7WrD
- DANHRumWHhXIDVaf5JkUfT73VjmJ3TxuLZLkvYoo+whWoIpDQDlfGTZkKXwNSlX6QrvCWRN
- JSwyuxdjOSsQnE7ioFOyD3AP4IqtET8rzkithDHYiNVUDifnkxX8xFv2MgIN68tCuxTTbHO
- FpUEyqMuarciUkQLdUIUA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:jTvlto+j76Q=:H8J00gum5WgD7Mb3KULfw8
- x5bhjAs6fgiFIVkMO+yilqNZUYUfRk4FzUllQQGohPGBRq1mI/fnylRIHXoEVxKYUezhamNje
- 8SC9L6FGlKwCCtUJtncClymECLE4QfY1NiSEoaoA7Uvq3DAFC00fS/3s9Ff8CGxGWU6EsVR99
- lQx0/5TQB9OsIkbyU7VRXK0KwN10wen31Plupp4JNA2/+rrjomCTshNzMJWIrlRowlhhkuOKe
- +GUCZmVrGBcM8jKfUGvzk9jrmNBVu12HujwXfLUyvtDDcS0kbcz2oc1M2AIRhnfnEq+dTgCWO
- mcJHg0IaMeKFo6LB+WkCGY7tDstDH9llnAARQO0PO1SG4FXYsMDy6ICc3SpMrMBg8mv95fUVY
- rKFbM3iplHc3IoqK1X5MFRNSkxFxDdAoe4tCbtpVYbUvpJiiNIV4ZKGfQ+h2iK//kdj9blf/2
- n+07MaVOBzmY/l6jErS3w1G4nMzyOHUqpRQ/Bt9BDkGXQfoYy9j73TtJxpYI2CpJqV87Lex56
- 0Dj/3tsTSceyeqiu5IgENy1baytJNmpOE/8djt5kYa1kNZ7fv/1oFrQ4c+QiPUJApvjwLuLqe
- 2GYzaX6H9BS8wmvHBETqadgirPnyiLNSMyQzb7BxMivs7oM+WEE4c5SN6HOmD9p/kSVaY6/ei
- ngVGJZPb/D6yxdTX13Uoq+DExZd58ngmIvK2O19uoBuApOfsI87p6FegtTpqhEp5ykWKGTL6t
- 6BsX+JWnkwjW5eAw
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v4 2/6] ASoC: mediatek: mt8195: merge machine driver
+Content-Language: en-US
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, aaronyu@google.com, tzungbi@google.com,
+        miles.chen@mediatek.com, yc.hung@mediatek.com
+References: <20220324053851.27350-1-trevor.wu@mediatek.com>
+ <20220324053851.27350-3-trevor.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220324053851.27350-3-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Il 24/03/22 06:38, Trevor Wu ha scritto:
+> Because most functions can be reused in different codec combinations,
+> mt8195 machine drivers are combined to one common file.
+> 
+> The model and compatible string are used to decide which codecs are
+> being used.
+> 
+> As a result, We can prevent from copy-paste functions when new codec
+> combination is introduced.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 
-Add SD1 sleep pinctrl to avoid backfeeding during sleep.
+Thanks for this much appreciated big cleanup!
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
-
- .../boot/dts/freescale/imx8mm-verdin.dtsi     | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 97dd7a00d63b..eafa88d980b3 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -757,10 +757,11 @@ &usdhc2 {
- 	bus-width = <4>;
- 	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
- 	disable-wp;
--	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
- 	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_cd>;
- 	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
- 	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_cd_sleep>;
- 	vmmc-supply = <&reg_usdhc2_vmmc>;
- };
- 
-@@ -1174,6 +1175,11 @@ pinctrl_usdhc2_cd: usdhc2cdgrp {
- 			<MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x6>;	/* SODIMM 84 */
- 	};
- 
-+	pinctrl_usdhc2_cd_sleep: usdhc2cdslpgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x0>;	/* SODIMM 84 */
-+	};
-+
- 	pinctrl_usdhc2_pwr_en: usdhc2pwrengrp {
- 		fsl,pins =
- 			<MX8MM_IOMUXC_NAND_CLE_GPIO3_IO5		0x6>;	/* SODIMM 76 */
-@@ -1216,6 +1222,18 @@ pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
- 			<MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x96>;
- 	};
- 
-+	/* Avoid backfeeding with removed card power */
-+	pinctrl_usdhc2_sleep: usdhc2slpgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x0>,
-+			<MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x0>,
-+			<MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x0>,
-+			<MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0>,
-+			<MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0>,
-+			<MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0>,
-+			<MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0>;
-+	};
-+
- 	/*
- 	 * On-module Wi-Fi/BT or type specific SDHC interface
- 	 * (e.g. on X52 extension slot of Verdin Development Board)
--- 
-2.34.1
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
