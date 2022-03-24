@@ -2,140 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D904E68DC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 19:49:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 894A94E6910
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 20:09:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352735AbiCXSvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 14:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36624 "EHLO
+        id S242820AbiCXTKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 15:10:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232392AbiCXSvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 14:51:06 -0400
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E479814B7;
-        Thu, 24 Mar 2022 11:49:34 -0700 (PDT)
-Received: by mail-ej1-f45.google.com with SMTP id qa43so10968903ejc.12;
-        Thu, 24 Mar 2022 11:49:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=aTjAKQGCfPlJln9zd/tK8o/KaPUGxIgYbJ689zU84Xk=;
-        b=l9dUaEWi1Ud+Lyu6tDVSjlrZ6qvX06MHgBWYVHDRdAteNU4CsSVNe+oGVgoYfrt9gn
-         T9gdWGUxxRxyjaUfssVfGO2LxqoWF4yj5qXPKnC/atgRl3MI7YTQ5F1Jd3nxfBKDadrH
-         oMa8D6nLxaFZjqpWnP7kApiddccJdrCRvDirB27Ln9r6xEYchv/cIsli39nQhY52nErQ
-         pWYCZmcDqIASoRCO6lEWegn1ECVW8tiuz7WaTemRiR/rOxkCPzkdS65YsqiSxxl7tp8G
-         rDPM6B95sTsw07Xtwv9bOmiiLACxoGwDIa22x1tXvRkFUIyBSkcBF8Ok12bouNTIDTCk
-         fsyw==
-X-Gm-Message-State: AOAM5324+Ux8ulOGFg8Au3NlguZILvlkXNXqg89IEDERI6y4HCQpziLL
-        CTvhJL8I2rla07TTbetmDrY=
-X-Google-Smtp-Source: ABdhPJx0yh4i61OuUX1h2uflP+3ycICGo/1ZDlu+iOzHHl7m9S9G/8D1Sb3SQLu3dYc1Ps79Pnn4Mg==
-X-Received: by 2002:a17:907:d0d:b0:6df:e215:313d with SMTP id gn13-20020a1709070d0d00b006dfe215313dmr7206776ejc.309.1648147772500;
-        Thu, 24 Mar 2022 11:49:32 -0700 (PDT)
-Received: from [192.168.0.158] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id k16-20020a17090646d000b006e093439cdfsm467351ejs.89.2022.03.24.11.49.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 11:49:31 -0700 (PDT)
-Message-ID: <7d87aee4-1aa8-4e3a-4f67-9ae3981f261e@kernel.org>
-Date:   Thu, 24 Mar 2022 19:49:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/2] staging: vchiq_arm: Use bcm2711 compatible string
- for bcm2711-based RPi
+        with ESMTP id S1347107AbiCXTKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 15:10:40 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2051.outbound.protection.outlook.com [40.107.20.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C08AF1D7;
+        Thu, 24 Mar 2022 12:09:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VVuCcQ+XV3lumVtQHfoT/Lkt+R0vwRUszuZfj4HKaPrdBMDURGAxp8A0dp9svHYeGYQUhramsB/wQ6jMdJqPd/hsT39qbWJ98p0Mcwskd0DX8pTzwTj9HNpV+GxV35M3qfSrgwyd8HCHeAl4RZPMN5weH0npBSRQTscf2fSbna+VSdGg/A3+JSo5O9S0AKHZRqmYX/9dafLmItRhApjWNMKrMUBPIVgjG5DG/gf5fxk+hzMRSv8HSNnlge3fIFUuj4HZMUc1vk7by3EFNLfMJ2O58J99j+PHsE+wNXb7yET26/B/40/UBFAFGC+JM+Cd2p57rS4hpnGP/HVPihvx6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SxgZIOZJPqbZJHkOt6elgbz43Ypr/GIaVlr85fRaovM=;
+ b=dniDbD6yb6dpk68gdUb7Dl03Q325yb+aGKVJ+eydjRSqvQWSnpvFmTvU4e1qNOjzjVFlDVdVIkVBPZLolc7ze9NZmvPXH0vzWLSBBMGMIrvcFutZfw3My9QnCAeI/ju8NlQ4rCTaKALZszg/T3W0IbweaiIOMlKiQt2mOkylGAsBvrtigqHU2hhBNVeMK5JLhqAlfyQOOaeK0cCtM30g4UeioXH75c0chTo3kugf7mVQAYjJbYlRqC8qK7YSpUE4AA8z4/Byz+/qbpZohXXmHlcY4iHXD5atbRS6dORvqS9XBEn0Exg6KyXp5RSPX6xY1XNuozVehNtD1cazvI0Iew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SxgZIOZJPqbZJHkOt6elgbz43Ypr/GIaVlr85fRaovM=;
+ b=POxno3+9ea89GUJTAik1Rx6fufkPZK9K9C7Z8R3ah18Nvm7OC0ie0KyiTjf+PkavYq8E3+K2jEqtX3/Cs4wIFrJ8yCyvZ6rpM2TH+eMjSAi7aNabBfDHpEdFZ0gPE/F+/zMk9uniGOOhtqkNdsoPN2O+k92f41xKYYzRdeSCrgU=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by PA4PR04MB7885.eurprd04.prod.outlook.com (2603:10a6:102:ce::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.18; Thu, 24 Mar
+ 2022 19:09:05 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::f090:8a7e:c1e1:3d8e]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::f090:8a7e:c1e1:3d8e%3]) with mapi id 15.20.5102.019; Thu, 24 Mar 2022
+ 19:09:05 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Marc Zyngier <maz@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Biwen Li <biwen.li@nxp.com>, "Z.Q. Hou" <zhiqiang.hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [RFC PATCH devicetree 00/10] Do something about ls-extirq
+ interrupt-map breakage
+Thread-Topic: [RFC PATCH devicetree 00/10] Do something about ls-extirq
+ interrupt-map breakage
+Thread-Index: AQHX8ItO3xtQxxPJV0yONti9mp5846wxrpCAgAASv4CAAAYSAICdm7aAgAADHQCAAANtgIAACSeAgAARYgA=
+Date:   Thu, 24 Mar 2022 19:09:05 +0000
+Message-ID: <20220324190904.boo2izjc3mym2wkh@skbuf>
+References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
+ <87ilvrk1r0.wl-maz@kernel.org> <20211214095853.4emzycaxkuqr4tun@skbuf>
+ <87czlzjxmz.wl-maz@kernel.org> <20220324171041.t5yoocinj6gizcc7@skbuf>
+ <87lewz5kr5.wl-maz@kernel.org> <20220324173405.nusk6247ouvek46y@skbuf>
+ <87k0cj5io4.wl-maz@kernel.org>
+In-Reply-To: <87k0cj5io4.wl-maz@kernel.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Adrien Thierry <athierry@redhat.com>, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Gaston Gonzalez <gascoar@gmail.com>,
-        Ojaswin Mujoo <ojaswin98@gmail.com>,
-        linux-staging@lists.linux.dev
-References: <20220324172647.167617-1-athierry@redhat.com>
- <20220324172647.167617-3-athierry@redhat.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220324172647.167617-3-athierry@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8fcc42c2-5494-4611-6378-08da0dc9c40f
+x-ms-traffictypediagnostic: PA4PR04MB7885:EE_
+x-microsoft-antispam-prvs: <PA4PR04MB7885FDE3039F77ACC2D80AC8E0199@PA4PR04MB7885.eurprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0KGoUD3UJsU8X5rm5C2rvDbdyZ7rmq3Skg1f/rgZxhKe6/jwFPZcazb1ttqx1OdVfYRtkakrDtKAp2WDYf3KRIk5FW2Gx+qhJqI3dBvtQ9NLbs4ETYurRi5lXfWHQQRGUbl7U12rG6rgPsXa5yT7S/CCGxxyRlNKNTt8S0FXG+h31lzdsymlbfpZRqGm1olGyhb99cR7bi0sVgD3NCKKVg3Pg2vlfeO3p3qjLBJVqKNp/oyHjUXtDW7QVQQX+r/hKiGFJy2x0yRVG6QWEipRBc/gLzlNUCYfHzuJ70zV0AxyvTGawf4Z8Is00sLFUSHhb3hi53DimHQUDcVPe5EwH0DnvgtAEblzoyU2TglzPfQvQmWdgbRcB4YYk1Vm+Rxn24coeMFGSJ3kcRg7YHp2lwnTZLHTVJPmz0Q07DTlrJssM3rC5pS/gVfvqTfBCdM/ooS9ql23+vcEdJpm1mUwOIyxQLU/FhejKeGXuHI8SE+yO6WFKox178Vuh1hFOUdImJawLBKiy72B72jokXxvwae/3gjCivlQafOZfy5T6zcFL0vleOroWBIXJjvJGkfH8wA9BjTxVyt0up86H+LtxD6mO6tdz828J10t0HX6MlPZHjAmc8nQSa0yU7RSqqicG+wgMAipNx1VyACw2Jf31UjF3iDsxKK55i30QjCM10/gwiyYH8ax7QVI+Pn3QXx8Pj6oB3PwxB9grj5X8RMv6Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(7916004)(366004)(33716001)(86362001)(54906003)(316002)(6916009)(8936002)(2906002)(122000001)(76116006)(66946007)(38100700002)(5660300002)(44832011)(8676002)(38070700005)(66556008)(64756008)(66476007)(4326008)(186003)(66446008)(6512007)(26005)(83380400001)(1076003)(6486002)(9686003)(6506007)(508600001)(71200400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WdgyX/BYGLvs9MttU5659kGJ0BbmZoIMwV2eus7+nEDqlI7WzJrfBHhqUCyW?=
+ =?us-ascii?Q?cNh35hmS/Ryem6hIBE6jYehjXI6yEUUIz3mRf4ganUIP4aKsE99slnhiZKl8?=
+ =?us-ascii?Q?4XJnH+dLEYJNtnUFhi8P2uKzlbivBxwux1t2swebwhSEpHJZH2m560lYaiM1?=
+ =?us-ascii?Q?22ocRCN3dDXJ1n4TeE7xL/CFIdXC7Dy0Ri+B6oC0T12M8mlTZduyAmblpjRS?=
+ =?us-ascii?Q?xuUsF/9XVtBoqP78jCUIxu0clAqT0zr0aVZUT+RhVzWslJHuXoEJDCFpxzgh?=
+ =?us-ascii?Q?ZsR6jZNdvjSfsBrfOHx16memXKs7QQ4cm/SRDJvWW7VFk2kftbyLS3IV7LUQ?=
+ =?us-ascii?Q?uhV36pZuTzYSDDxVhgYLdJBmAcslmDsoXawiugFMRT9SVlxr0ww02mPcLG6J?=
+ =?us-ascii?Q?GNErEP9cPuqxUWGVIrlA/ejLjDXZ5vGei8PfJyNtN9OMJiI8dZXLgSZI69bG?=
+ =?us-ascii?Q?2ODZkA6yIlgWnxbNfwjPUafo4uAyPfe4LquSUKJ7n4iF03ITubB5us9KXJmy?=
+ =?us-ascii?Q?18ZZzEQc36xW4a0POt+fKxUc9UVmJm8Vx/W26pQtHWE+iTkOnnm8uxf7XTvz?=
+ =?us-ascii?Q?rsPp6mRMsewFWYVrBL9ODPzJ8PSYPN3dsHltIdm40yh0suxV+x93Cl9IJXdf?=
+ =?us-ascii?Q?FrC3qGM2YfGp1pWmDSwkajPfx5IJXCKRfBsPKucfZEFgNxYFRY/Vg4basSxG?=
+ =?us-ascii?Q?s3as5uqDhFeqemlgfV8l8Dvw1TjtcjGOUqZv72xzWBu2+8gd3+6MkvKWYevz?=
+ =?us-ascii?Q?QWBqyDpqOYtONF+DWmdsBDYKilwOqweNcAU3cOD7HwZBccMJo7P0MSw8L1sG?=
+ =?us-ascii?Q?XuQQqGBqDXmqDHzNb1uL5aH2349E3n9Z09amp4fnddZcSRi5ight/+wsEsnr?=
+ =?us-ascii?Q?hJsIhSbW/oFVZpSblGr0P99AE/sZylbwgw2aOZ4ydaMVJH86B2k2qbnGv9bl?=
+ =?us-ascii?Q?7xnHnmfSqiTY7eQ5mwgbLdy5q/EeJ7p0qfw7Y4f44Omyv3TfTqAgUU0an+t8?=
+ =?us-ascii?Q?o5Wdn3N69ynchJjXPIbLzrNjQQmjWMZRDNMhdEm6Una8dVRzw3+CrpBA8NsH?=
+ =?us-ascii?Q?SPGDpgmlMRJmE3JcVyU7zEufqwRFdb0kq1DO8OZXcwKnlVeoPWBOZFdSJUSK?=
+ =?us-ascii?Q?kFPNd/82G5zKmMNxWcEZT9aDnqPUr0zEvdIpLCLavDMz58ziM4bNCF6+uGYe?=
+ =?us-ascii?Q?mhj4KrANusx0l6gTripbImBD8Gg7JsjUxbDqQShyRLpsZnECv0Dc5wMiKPfw?=
+ =?us-ascii?Q?Zlk2OfbIv2YWgYUxM2c2cANuXrD/h6FnBHbBgTlCIhvMSm9QmWqAbkz2v9Xm?=
+ =?us-ascii?Q?p1F2eNtyA72jh/AkN/kLa8SZQdE/n8evTea4EU2Nwx2xjFN0srbOF3a8UIZS?=
+ =?us-ascii?Q?uGoaRWqh9ODblc9MpUoVSyiT7zQ2ZLTe4ou9+BIz52Hj+6DquG/SkLs0SLYB?=
+ =?us-ascii?Q?lfk2bUCMhxLvJkE7c4qTngKAD5h2gTlTHfyJS1p6bvU6MhYiAJL4VBx4CM6d?=
+ =?us-ascii?Q?dMbbH+QROhNoFTwLOF1GCXzSGf7zwQVAxhEmfjRaNhMGUg3g5Kf1VatzJJWI?=
+ =?us-ascii?Q?4Mih2+tBg+tLa2Z1WCarDGHdcMC8GhIidrUXvcgBH1PooE6OZM1hgt/nTUyN?=
+ =?us-ascii?Q?F/4UD15YAAn/i/IXVhKYx04tqka/QcsTttm6VElaxeJPFoUU3V0lek2PyFTE?=
+ =?us-ascii?Q?LExqvtHzGq0IKbuKGSn1hQa4dmylJCGvdw8kNvoIqraUt5e9qLb1oFDDtFeT?=
+ =?us-ascii?Q?lhyZu6aS65qJYY6MbLhKkdGW534xbME=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <1A717D3C3ADEB242B058C277FE6E21E7@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8fcc42c2-5494-4611-6378-08da0dc9c40f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2022 19:09:05.4183
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YsuBSI+mb4HpMJ0x+6miMeqRkB22rH/SLXCC0zUu4BBBYiocdhSuWMXiPcYxMMlmvXZlwnTCi5M2BCNLnz82vw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7885
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/03/2022 18:26, Adrien Thierry wrote:
-> Use bcm2711 compatible string in vchiq driver and device tree for
-> bcm2711-based Raspberry Pi (Raspberry Pi 4). This is consistent with
-> what the downstream device tree uses, and allows running the vchiq
-> driver on the upstream kernel with the downstream device tree.
-> 
-> Signed-off-by: Adrien Thierry <athierry@redhat.com>
-> ---
->  arch/arm/boot/dts/bcm2711-rpi.dtsi                           | 1 +
+On Thu, Mar 24, 2022 at 06:06:51PM +0000, Marc Zyngier wrote:
+> > I was just raising this as what I thought would be a simple and
+> > non-controversial counter example to your remark "If you change somethi=
+ng,
+> > you *must* guarantee forward *and* backward compatibility."
+>=20
+> If you change something *in the binding*, which was implicit in the
+> context, and makes no sense out of context.
+>=20
+> > Practically speaking, what has happened is that the board DT appeared i=
+n
+> > kernel N, the ls-extirq driver in kernel N+1, and the DT was updated to
+> > enable PHY interrupts in kernel N+2. That DT update practically broke
+> > kernel N from running correctly on DTs taken from kernel N+2 onwards.
+> > This is the observable behavior, we can find as many justifications for
+> > it as we wish.
+>=20
+> Well, you can also argue that the DT was broken at N and N+1 for not
+> describing the HW correctly and completely. No binding has changed
+> here. Your DT was incomplete, and someone fixed it for you.
+>=20
+> We can argue this things forever and a half. I've laid down the ground
+> rules for the stuff I maintain. If you're not happy with this, you can
+> fix it by either removing the NXP hardware from the tree, or taking
+> over from me as the irqchip maintainer. I'd be perfectly happy with
+> any (and even more, with both) of these outcomes.
 
-DTS is always separate, independent of device drivers. If you mix them,
-it's usually a sign of ABI breakage or compatibility issues, so don't
-mix them.
+Ok, my intention wasn't to inflame you even though the way in which I
+presented the problem might have suggested otherwise.
 
->  .../staging/vc04_services/interface/vchiq_arm/vchiq_arm.c    | 5 +++++
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/bcm2711-rpi.dtsi b/arch/arm/boot/dts/bcm2711-rpi.dtsi
-> index ca266c5d9f9b..c868d1dcaba7 100644
-> --- a/arch/arm/boot/dts/bcm2711-rpi.dtsi
-> +++ b/arch/arm/boot/dts/bcm2711-rpi.dtsi
-> @@ -70,5 +70,6 @@ blconfig: nvram@0 {
->  };
->  
->  &vchiq {
-> +	compatible = "brcm,bcm2711-vchiq";
+With my developer hat I still don't agree with you even with the
+additional clarification you've made that you were referring only to
+bindings and not to any and all DT changes. The reason being that the DT
+blob is a whole, and it doesn't matter if there's a regression because
+of a binding change or something else, you still need to be prepared to
+update it, sometimes in lockstep with the kernel, like it or not.
 
-This looks weird. Is BCM2711 on Raspberry Pi 4 different than other
-BCM2711? Commit msg also does not explain this.
-
-
->  	interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
->  };
-> diff --git a/drivers/staging/vc04_services/interface/vchiq_arm/vchiq_arm.c b/drivers/staging/vc04_services/interface/vchiq_arm/vchiq_arm.c
-> index 3a2e4582db8e..136c664132f4 100644
-> --- a/drivers/staging/vc04_services/interface/vchiq_arm/vchiq_arm.c
-> +++ b/drivers/staging/vc04_services/interface/vchiq_arm/vchiq_arm.c
-> @@ -81,6 +81,10 @@ static struct vchiq_drvdata bcm2836_drvdata = {
->  	.cache_line_size = 64,
->  };
->  
-> +static struct vchiq_drvdata bcm2711_drvdata = {
-> +	.cache_line_size = 64,
-> +};
-> +
->  struct vchiq_arm_state {
->  	/* Keepalive-related data */
->  	struct task_struct *ka_thread;
-> @@ -1748,6 +1752,7 @@ void vchiq_platform_conn_state_changed(struct vchiq_state *state,
->  static const struct of_device_id vchiq_of_match[] = {
->  	{ .compatible = "brcm,bcm2835-vchiq", .data = &bcm2835_drvdata },
->  	{ .compatible = "brcm,bcm2836-vchiq", .data = &bcm2836_drvdata },
-> +	{ .compatible = "brcm,bcm2711-vchiq", .data = &bcm2711_drvdata },
-
-Just re-use bcm2836_drvdata instead of duplicating it.
-
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, vchiq_of_match);
-
-
-Best regards,
-Krzysztof
+But as a user, I just wanted to get an opinion from you what can we do
+to deal better with this situation: optional interrupt provided by
+device with missing driver, which of_irq_get() doesn't seem to understand.
+There are more angles to this than just "new DT with old kernel". It can
+also be new kernel, but ls-extirq driver disabled, and I still see that
+as a kernel <-> DT compatibility concern.=
