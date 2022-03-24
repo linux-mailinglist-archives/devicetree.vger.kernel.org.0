@@ -2,111 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 891834E6A0A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 21:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 059894E6A2F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Mar 2022 22:20:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347285AbiCXUzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 16:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42862 "EHLO
+        id S1355147AbiCXVVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 17:21:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353759AbiCXUzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 16:55:05 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4AB525EB0
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:53:31 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id yy13so11616358ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:53:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aFSr1woZwQXcWxiIeXMBTdkSmylSGPSvw4l7QhCcJdk=;
-        b=UWOwijb6tG4M9q5CzVe8FLlKtNmcdWmo3x+k5WAD0Lt4E7cx8AILpBG8mEMI+DnmqR
-         WL38ld57I7KlKmg/69QrQdqARexREhJnmXWz1eZsisBYV0TJxrVX+c7li7f8/tBXOD7O
-         y54nz6+M26mmk6N5pwX7PTdnHSVcUN2rsLmQE=
+        with ESMTP id S1355160AbiCXVVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 17:21:35 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0845A58829;
+        Thu, 24 Mar 2022 14:20:02 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id i23-20020a9d6117000000b005cb58c354e6so4193855otj.10;
+        Thu, 24 Mar 2022 14:20:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aFSr1woZwQXcWxiIeXMBTdkSmylSGPSvw4l7QhCcJdk=;
-        b=6c9tmmM5KW9OkGj8tPmgH6AJOxSGcNXevZBA7VaeZckreJWtrg0TMlP+8UVXg+aW3R
-         scyYrT8t8GIBgoBQ74OX9fxOrhhMPDJtq9jlXofiaIIYA20qODxpvAQS2eoKkhImRt7k
-         WLRZYMzPpLPemuub21L961qvRYEGVsOA9lyigSgLru3fchvxGFA8AObtqcnhqzbR/FV/
-         UvYcy1tCKG5ALxrBI3hy7PphQGpFa6tpCs9ovUfaVPJxEm//sLaqFCr1sltHzZm73BN6
-         97DOwD3/znRYv16ZiRnVnlFievsn7BMf0v+Yb+Xx5cHqI/0pL1RgxmNOQkY9qyexjmWh
-         37Fg==
-X-Gm-Message-State: AOAM531VHnDXvd4idqFHdO8df3/JbuMr+sjQ0DsfYE3+woy4JjP2KRyD
-        S7ExCAOfSBVGu+6ZbR4aAxbH/OSYoJuZy0Ku
-X-Google-Smtp-Source: ABdhPJwD7hDacuBm3gvUO7POsTF1vp185Pxn0RK/hrnnbOXNO+QbDNdcspeT3jJn/xCKPh0Rx8OB1A==
-X-Received: by 2002:a17:906:3cea:b0:6da:ea45:ea9e with SMTP id d10-20020a1709063cea00b006daea45ea9emr7695869ejh.574.1648155209463;
-        Thu, 24 Mar 2022 13:53:29 -0700 (PDT)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id do8-20020a170906c10800b006dfe680dbfcsm1574964ejc.43.2022.03.24.13.53.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Mar 2022 13:53:28 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id k124-20020a1ca182000000b0038c9cf6e2a6so3309616wme.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 13:53:28 -0700 (PDT)
-X-Received: by 2002:a1c:7518:0:b0:37c:7eb:f255 with SMTP id
- o24-20020a1c7518000000b0037c07ebf255mr15649886wmc.29.1648155208026; Thu, 24
- Mar 2022 13:53:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
-In-Reply-To: <20220324111335.1.I1131d63cbefbfa9ff107a284e2e51f880c5bf7c8@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 24 Mar 2022 13:53:16 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XG-JqqjcoAUoLWHjOyOSQMxD2vyXi9WVJNSaUawtvthg@mail.gmail.com>
-Message-ID: <CAD=FV=XG-JqqjcoAUoLWHjOyOSQMxD2vyXi9WVJNSaUawtvthg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add AUO B133UAN01 panel
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=nZWBFSxF5EcD/7zsReIxioOFi/XH9lIHO9AjBk+DuYQ=;
+        b=nE9Ow8k5hgST1QdGtELUdJ8kKHfSfPGRUplZWzHdvjV3GY8jr/Ccl95o9YXY76oHFQ
+         mmyXX+U7h/KbwVVesDr/rqKmOaLub8ER5oWVV0NfslO/DE8lrBFH5C/mYCdmf/yyxzPk
+         BuwOEGsiHFDKE3vsjkPf0hlEtDQYrBzUwh9JhNLKhP96TBMfatvMopvWf9gkWrwxiXhv
+         1qqtmpxRsElsiHoOlC5oz735+D/6OvMhSLNzSAmzQjTATrtgQz6kOOKgo4vjMhM5LPjW
+         XTTCzHQgCnBGRqZjRxAz8+xvPq4dE3/q5DuU36RCjGfpiALMzRPQDfzTk9lit6wHSYtU
+         ex4w==
+X-Gm-Message-State: AOAM5311zvWso6A/iItgK707GXHoPum5nhNWsYHoU16otWmV18HjZ3Nl
+        NuO/rM9yzJFs0/Al5yA2lQ==
+X-Google-Smtp-Source: ABdhPJyODYrocQIME0OAE9G5smC2auk9j+xSOw5TB2oty2nbpPQU2zFSF3ULc0wpM/GONsqTcT7sJw==
+X-Received: by 2002:a9d:7319:0:b0:5cd:121e:e11 with SMTP id e25-20020a9d7319000000b005cd121e0e11mr3043744otk.148.1648156801286;
+        Thu, 24 Mar 2022 14:20:01 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t10-20020a056830224a00b005cd9db03fabsm1806726otd.78.2022.03.24.14.19.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Mar 2022 14:20:00 -0700 (PDT)
+Received: (nullmailer pid 2592144 invoked by uid 1000);
+        Thu, 24 Mar 2022 21:19:59 -0000
+Date:   Thu, 24 Mar 2022 16:19:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        LKML <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fei Shao <fshao@chromium.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        "roy-cw.yeh" <roy-cw.yeh@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
+        DTML <devicetree@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: Re: [PATCH v2 0/4] Fix MediaTek display dt-bindings issues
+Message-ID: <Yjzgf10zAhrkpYde@robh.at.kernel.org>
+References: <20220309134702.9942-1-jason-jh.lin@mediatek.com>
+ <CAL_Jsq+=hTKTjB8rR77_uQYKDWHzLyTdeU7zbixSCZCNrdmNvg@mail.gmail.com>
+ <CAAOTY__kzL8YuGo-oKct4c_bL-Ch5rW8wBpkhOXkK+a10gNXVg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAOTY__kzL8YuGo-oKct4c_bL-Ch5rW8wBpkhOXkK+a10gNXVg@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Mar 24, 2022 at 09:25:44PM +0800, Chun-Kuang Hu wrote:
+> Hi, Rob:
+> 
+> Rob Herring <robh@kernel.org> 於 2022年3月23日 週三 下午10:10寫道：
+> >
+> > On Wed, Mar 9, 2022 at 7:47 AM jason-jh.lin <jason-jh.lin@mediatek.com> wrote:
+> > >
+> > > The vdosys0 series carried a nice dt-bindings conversion of the old
+> > > txt documentation for the entire mediatek-drm driver, but some of
+> > > the issues in there weren't seen.
+> > >
+> > > This series is fixing all of the issues pointed out by a
+> > > `dt_binding_check` run, followed by `dtbs_check`.
+> > >
+> > > Change in v2:
+> > > - remove mediatek,ethdr.yaml file
+> > > - change include header of mediatek,ovl-2l.yaml from mt8173 to mt8183
+> > >
+> > > AngeloGioacchino Del Regno (3):
+> > >   dt-bindings: display: mediatek, mutex: Fix mediatek, gce-events type
+> > >   dt-bindings: display: mediatek, ovl: Fix 'iommu' required property
+> > >     typo
+> > >   dt-bindings: display: mediatek: Fix examples on new bindings
+> > >
+> > > jason-jh.lin (1):
+> > >   Revert "dt-bindings: display: mediatek: add ethdr definition for
+> > >     mt8195"
+> >
+> > Can this series get applied soon? linux-next is still broken.
+> >
+> > If it hits Linus' tree, I will be applying them.
+> 
+> I've applied this series to my tree [1], but now is merge window, so I
+> plan to send this series through Dave's tree after 5.18-rc1. Would
+> this be too late for you?
 
-On Thu, Mar 24, 2022 at 11:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Add binding for the AUO B133UAN01 panel. It is 13.3" TFT LCD panel
-> with WUXGA (1920x1200) resolution.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index 1eb9dd4f8f58..e5cd45c81d02 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -49,6 +49,8 @@ properties:
->        - auo,b133han05
->          # AU Optronics Corporation 13.3" FHD (1920x1080) color TFT-LCD panel
->        - auo,b133htn01
-> +        # AU Optronics Corporation 13.3" WUXGA (1920x1200) color TFT-LCD panel
-> +      - auo,b133uan01
+Yes, people base their development on -rc1 and it would be nice to have 
+a functional tree.
 
-Breadcrumbs to save Rob Herring from responding is that we're moving
-to do this using the eDP autodetect feature instead of adding a new
-compatible. v2 is at:
+There's not really any need to wait to send fixes.
 
-https://lore.kernel.org/r/20220324134819.v2.1.I816014b6c62da5a33af5021f3cc35cea66552c00@changeid/
-
--Doug
+Rob
