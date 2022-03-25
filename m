@@ -2,143 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C5154E78DA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 17:24:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 191F34E78EC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 17:30:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355616AbiCYQZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 12:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
+        id S244589AbiCYQcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 12:32:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354899AbiCYQZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 12:25:44 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BAF70851;
-        Fri, 25 Mar 2022 09:24:09 -0700 (PDT)
-Received: by mail-ej1-f54.google.com with SMTP id o10so16432911ejd.1;
-        Fri, 25 Mar 2022 09:24:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=60DYi1ncM2j6YrJ9+xc2tJcVqmdNibjYDu1dqzMc90U=;
-        b=6b+zWG0SPdul3gDL5kbK9ATbvXHjrfPbSn9TMz1h7BmiLU9PEI2utivYeYfEBVgCGI
-         VyWuCxMVIkG08JR0zjny32sOUK7EREu5nXiTzRMmEm5gvezOGeqv5qFYaRrjnby7xzd4
-         NHH1jPhP/0wNjyjf7yY6nvyc5XWT7VHqpRl1HIpclJ053LtLUwM21fw5CjcrBVYRCAMV
-         zI5mrq/DTKfHALjXaZvoeDFEW8MXdsS8KEhVMeUbJURAxB8Tu7wqaieZI9ta6RSGC1hw
-         IXYXnT9+lDWbM31FsiOT/nJwK/v2mSnzZ3tj7/UJngPCByYYU3GoXZ7fCz93I4ixoJ7M
-         rVFA==
-X-Gm-Message-State: AOAM531PQlWO+QvorPZBpf8KI06Pbc7O1Z6cyGlDiONdE+2SgV7cdqH9
-        AnceS866rcZU95RkQtv6mQx9cZ8EiGA=
-X-Google-Smtp-Source: ABdhPJzjldhgEdYua2CoNIuh/dJSlmVw42Q3Lpn4a09I41O1mZibUTcrs4YHyXIE0BApFuhGH4lXMA==
-X-Received: by 2002:a17:907:9621:b0:6d7:355d:6da5 with SMTP id gb33-20020a170907962100b006d7355d6da5mr12540109ejc.195.1648225447869;
-        Fri, 25 Mar 2022 09:24:07 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id d2-20020a1709067a0200b006df8c996b36sm2484988ejo.26.2022.03.25.09.24.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Mar 2022 09:24:07 -0700 (PDT)
-Message-ID: <23160ef7-359e-40a6-847c-7547760f041a@kernel.org>
-Date:   Fri, 25 Mar 2022 17:24:06 +0100
+        with ESMTP id S241341AbiCYQcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 12:32:09 -0400
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42FF44E38B;
+        Fri, 25 Mar 2022 09:30:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648225835; x=1679761835;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=IsvoGIwKuaSZVlp8CRIX2eressldpJyF130eHQPZqvU=;
+  b=HkjH/sMgSOiN973AFECdoFopbBJCZlIq9xYMZN8xJda/9nUQwtoYPwsY
+   SFfAqkLVvau2vEnZ7nhX1Tof+yhVu6wn6WkTvjZYAvElsrHOckL2vg6+J
+   cLFCn1ZSABnvjDSValyZHq7HESZELE9sa+UgNazi/GoZ6EuaSraPIudWa
+   jnmS4QLzyZHk5BnAJD6dZuX7lRKr3zl3eQcT3U1TY+Jykbv3bxYXxWx5A
+   M10/eCtZgmMin0z9MrLAqEXfA1SAGhxTCMN9WeMsJz8oWS7Ny+ulLc7kU
+   x4UocNev4iRPjRExEMpUrol97dJXPFJVbv82Ox5RoZbRIh4JaZgWq4Br6
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10297"; a="319375621"
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; 
+   d="scan'208";a="319375621"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2022 09:30:34 -0700
+X-IronPort-AV: E=Sophos;i="5.90,209,1643702400"; 
+   d="scan'208";a="520255143"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2022 09:30:29 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nXmoz-006Ugu-HS;
+        Fri, 25 Mar 2022 18:29:53 +0200
+Date:   Fri, 25 Mar 2022 18:29:53 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 6/9] i2c: fwnode: add fwnode_find_i2c_adapter_by_node()
+Message-ID: <Yj3uATh/pkTyYTUi@smile.fi.intel.com>
+References: <20220325113148.588163-1-clement.leger@bootlin.com>
+ <20220325113148.588163-7-clement.leger@bootlin.com>
+ <Yj3TSBEY/P7d8XJj@smile.fi.intel.com>
+ <20220325160927.30e5aef8@fixe.home>
+ <Yj3mO/Co/RdlZnV+@smile.fi.intel.com>
+ <20220325170439.75ce012d@fixe.home>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: ti,elm: Convert to yaml
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, miquel.raynal@bootlin.com,
-        robh+dt@kernel.org
-Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, nm@ti.com,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220325123707.22020-1-rogerq@kernel.org>
- <20220325123707.22020-2-rogerq@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220325123707.22020-2-rogerq@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220325170439.75ce012d@fixe.home>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/03/2022 13:37, Roger Quadros wrote:
-> Convert elm.txt to ti,elm.yaml.
+On Fri, Mar 25, 2022 at 05:04:39PM +0100, Clément Léger wrote:
+> Le Fri, 25 Mar 2022 17:56:43 +0200,
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> a écrit :
+
+...
+
+> > P.S. Interesting enough that Mika is listed as I2C ACPI maintainer and his
+> > email is not in the Cc. Please, check how you form Cc list for this series
+> > and include all parties next time.
 > 
-> hwmod framework use is deprecated for new platforms
-> so mark it so.
-> 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  Documentation/devicetree/bindings/mtd/elm.txt | 16 -------
->  .../devicetree/bindings/mtd/ti,elm.yaml       | 47 +++++++++++++++++++
->  2 files changed, 47 insertions(+), 16 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/elm.txt
->  create mode 100644 Documentation/devicetree/bindings/mtd/ti,elm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/elm.txt b/Documentation/devicetree/bindings/mtd/elm.txt
-> deleted file mode 100644
-> index 59ddc61c1076..000000000000
-> --- a/Documentation/devicetree/bindings/mtd/elm.txt
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -Error location module
-> -
-> -Required properties:
-> -- compatible: Must be "ti,am3352-elm"
-> -- reg: physical base address and size of the registers map.
-> -- interrupts: Interrupt number for the elm.
-> -
-> -Optional properties:
-> -- ti,hwmods: Name of the hwmod associated to the elm
-> -
-> -Example:
-> -elm: elm@0 {
-> -	compatible = "ti,am3352-elm";
-> -	reg = <0x48080000 0x2000>;
-> -	interrupts = <4>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/mtd/ti,elm.yaml b/Documentation/devicetree/bindings/mtd/ti,elm.yaml
-> new file mode 100644
-> index 000000000000..e36452b742c0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/ti,elm.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/ti,elm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments Error Location Module (ELM).
-> +
-> +maintainers:
-> +  - Roger Quadros <rogerq@kernel.org>
-> +
-> +description:
-> +  ELM module is used together with GPMC and NAND Flash to detect
-> +  errors and the location of the error based on BCH algorithms
-> +  so they can be corrected if possible.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,am3352-elm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
+> I'm using get_maintainers.pl which does not return Mika nor Jarkko. I
+> was using --nogit which probably ruled out some contributors but not
+> them apparently.
 
-make dtbs complains, but it will be fixed in patch #2, so looks good:
+Yeah, in this case it seems some heuristics has to be used...
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Best regards,
-Krzysztof
