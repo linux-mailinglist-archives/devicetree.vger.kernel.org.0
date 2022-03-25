@@ -2,133 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D434E6D80
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 05:51:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D4B54E6E98
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 08:14:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355112AbiCYEwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 00:52:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60534 "EHLO
+        id S1350856AbiCYHPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 03:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240824AbiCYEwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 00:52:36 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2057.outbound.protection.outlook.com [40.107.93.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3937D2BC7;
-        Thu, 24 Mar 2022 21:51:03 -0700 (PDT)
+        with ESMTP id S232578AbiCYHPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 03:15:37 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2116.outbound.protection.outlook.com [40.107.223.116])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C29B715D;
+        Fri, 25 Mar 2022 00:14:03 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bVfJbLCCheqvm3Ll13SPb+8KhMRREO9gcMV1CEOctCBCXbMIR/NPTDsJ5e5KmWoXn+1xeRSYcSzRKkT3x22kF/TDTS+htpdkJEQ9eHAFAVSTRGzoKEy/TgnQn+vz0VRcaIVCfUW87SYk/vS/xaF1YajVxkSgYWb04bmQxm1mYZwXMTau62FdUjUSElr4erwcMGY7dvikS1ACCV5mNd8OrwDakUUdyfLlfl8TICQvg1m7vg32tIHEtAdMfJDpMEYBVbENXFSr9IYrs6e5gJo83fFKTx7OyJlK/gy38lgO1V7WkeSx2eY3QDOO02PkDAmqScePMKBQc/9VLzPNcK8bYw==
+ b=PcRireziNS3gclKefjPGdFSF45gZqP5xGIXTIHCSPM3c29CVAjqA2L32oZlD5exe+XLd84a95CRH4XFnVngDtXqld+lOqnEQA92Vqa02oAjCBySUjc0iLruITnFCu/M0j2UTf3E1+DCxz7V7mNCUZ2B2mYYQ12a8s+g7mOwwWPmleRxSAnCZjR0L7xcfuaZO5pdxTZ3a96ghMs2cU6gqdv8g9P3jJMdmmCZryIge7XLxp48QNPSrZ7PvRX2zydrxJgb+L36MzR9iMdymkLYBCOVftBs4AkaYgvZeF3vE2V5+8aEF8U52d4MaXz1EkIFCNkxcUKucvtT2f+kGKxFKug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f3W1Tz5N1DZVT23C8kVUdIGeNdZI8QE0Lfgn5fOMOkQ=;
- b=Z21UQAQH6KaefhjpWArlHAotLQJ6qWJBjsPJl+wnwHlbiWjt7bkVIS+HXXfC0GiiaLQ6eI7bnr8FM+LsAtCZRsCSriwYDAjZ7lz0lOyoWbPyER3f5OaVIy2pvNi4I+qAk/0I+vb5DYCi9/llRrL2a0QtkFehtyQ2YOGTyZmmyMuweM1oVqFib2EMVn6wSd5vvTWsTQ/8WOQ/r4dq0aKNcpHcanEah/4gPYSlD+geubaj7CGDCpfwN4ST+4BH0ZDyGWoZPI/Acvxcr8MfnEN0Np87Ct45OBDFNZjDDIom5LZqkAQLvwIUVolVYte3x1xk7TGAEwwx0LZwJPgNUtesYg==
+ bh=/+rHPSWDbxtPst8YSxjh0RxwE13AyBRS+LbQSI1YrTk=;
+ b=Yuh/uQOB7dLCuUMCivn4sfygMW+Rms1RKtCcY6usPXKiPPpkKvUMGCmAuqz6FVw2d7YDGJ6CCMtXzlQ2QdeAaVWu0pd8mdSChZ/brEGNsJLP/dilaGAe7qUC838MLA6+DDdyyYDg5fw6cyMhj3g/GZwXuDQf6sIZB6XNlb3vKhCLbeZ1pmGZ32jTNOLubArKdxeuneW5vsU3a0oWVp7KXSreGFlif7MeL5PIBS1cnb0VoR1z4E+i1Sk0afy5caTDBSW4/H9hlmfoN8dmCO8ftYSb2Vk0HAGdmUIZS78BxSR2OwRr2ElonzEtdhJrCv1QeLhTqBVC0PbpQ1iUyR0PQg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f3W1Tz5N1DZVT23C8kVUdIGeNdZI8QE0Lfgn5fOMOkQ=;
- b=PMfZn1JIyFG5MvT6uXEtKhV9Im5uEEkM6JwhF5hI3yABlBvM3dmiF8iRXvPVYvSMqMXDcS8Y3Z/G7sM4R8hUs3LQ92nz7VPw75WpDWdrzsSLD3b9r4iUHPWWPDs2NvBSArPgY34Jzn67zQOmUAjJIaENCa/tS1UCIbWIk4Y+f1Ijc/PoUgmPAs5Pk0HyrrL1IL08P9o8ruGbJ6ZZ4zwIX+GR+i5d8pZOVyq4iUOf0dzvvks98f5aov+SBpksuOOMBbrvpX/eSTVBDRnl6Goxg8thpZ5PvFZLmhPumV3Q2yGOlDlB8npAZrxhIaJNd5dU+Ae5guFJXFo7BggR5L3w7A==
+ bh=/+rHPSWDbxtPst8YSxjh0RxwE13AyBRS+LbQSI1YrTk=;
+ b=moaYhi3g7P35Npmw+FrlFrKPC/hqQM7/AEvIojfsLM+nFQvYQIyEe5lMZP/R3q3wvRptN2UjFOlqoE0mj/ab6amez17WMqn1z3tZNdddUrQWnTZO2o+hMDKQRc8VANfiFhSnwnlGeJKBtZ7Afk8PXZqi0RJUMPryXn1Js9fPVrY=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SA0PR12MB4349.namprd12.prod.outlook.com (2603:10b6:806:98::21)
- by DM5PR12MB2552.namprd12.prod.outlook.com (2603:10b6:4:b5::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.18; Fri, 25 Mar
- 2022 04:51:01 +0000
-Received: from SA0PR12MB4349.namprd12.prod.outlook.com
- ([fe80::e15c:41ca:1c76:2ef]) by SA0PR12MB4349.namprd12.prod.outlook.com
- ([fe80::e15c:41ca:1c76:2ef%3]) with mapi id 15.20.5102.019; Fri, 25 Mar 2022
- 04:51:01 +0000
-Message-ID: <981610f0-374a-b18f-8e3a-445b20edb257@nvidia.com>
-Date:   Fri, 25 Mar 2022 10:20:49 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [Patch v5 1/4] memory: tegra: Add memory controller channels
- support
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ BYAPR01MB4086.prod.exchangelabs.com (2603:10b6:a03:56::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5081.17; Fri, 25 Mar 2022 07:14:01 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6%7]) with mapi id 15.20.5102.019; Fri, 25 Mar 2022
+ 07:14:01 +0000
+Message-ID: <449ef91b-42b1-804e-bc52-a85249b9da77@os.amperecomputing.com>
+Date:   Fri, 25 Mar 2022 14:13:45 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.6.0
+Subject: Re: [PATCH v7 7/9] dt-bindings: mfd: Add bindings for Ampere Altra
+ SMPro MFD driver
 Content-Language: en-US
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220316092525.4554-1-amhetre@nvidia.com>
- <20220316092525.4554-2-amhetre@nvidia.com>
- <83bc4c12-13e3-d239-3845-a3541b1fbb2a@gmail.com>
-From:   Ashish Mhetre <amhetre@nvidia.com>
-In-Reply-To: <83bc4c12-13e3-d239-3845-a3541b1fbb2a@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220321081355.6802-1-quan@os.amperecomputing.com>
+ <20220321081355.6802-8-quan@os.amperecomputing.com>
+ <766931c9-6647-19c5-24d8-9b8fb3ab58d6@kernel.org>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <766931c9-6647-19c5-24d8-9b8fb3ab58d6@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1PR0101CA0044.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:22::30) To SA0PR12MB4349.namprd12.prod.outlook.com
- (2603:10b6:806:98::21)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2P153CA0033.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:190::21) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 270a3736-4bc3-4617-9a02-08da0e1b0f37
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2552:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB255265B63C96C02CE8AF25EECA1A9@DM5PR12MB2552.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: cc01ccf1-ee1b-45dd-a16a-08da0e2f0917
+X-MS-TrafficTypeDiagnostic: BYAPR01MB4086:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR01MB40867984BF603875945DFBAFF21A9@BYAPR01MB4086.prod.exchangelabs.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uKXAS20V0qsAzd0EPq+3MgNyeIQ3/VpT/IXOtXD4DxqxXtQ5FOeLjHTHnaZ9TPnJ5RyWD/mpWG/OAaJ+Bw3PwzJ4zgjBEihg4vk2RqCnouq8HTnzw2d1GFkB9cuxl9MzkkJCY+o7K/ngFIJeae0W09Gi9eOV8Qj6SmOTsyxX9RdpRxUJOncrBqpLHpthrbQpP0NYMtIVYtZxPSqz7rRk6RrFO3OlevViR+i+JmqQ2xBcGHkNKap24z0Vfbef818aLZA/1XIBlS6qxfqSnCqnvskSCVs66CvRiW0eJs66Dvz0AUcE86YSBqkIHXCCh33TgEvdhNBcdsBHmtiiQS0NEEhnU2p4qHqAXZQsfcde25Fva+hALVqLkRtPSmOOuwIjbwco82HknMDqX9lcCTzQJ/xOMWpbHDVw22Kx0vP3EuJZDkkSlpibP0tDdWTmKiD7qh2KfmMv+NilAX5GVLvG9+W82Tp7LAWwjt+jZa4p/qTUev6GvhsXlF4OyRSCqHxXgIWa9iRV6l1rHk4MNBJRrQ/XHKR0+YD1JLNVODgbUFFya884Jm9mpKf2SHNmeRTmncULTZNt6FX0JzHhuzU2lf0IojblN3S7MWg7jU1ljr1eFLrq8d3FrhzICYQuaHqMfQSvlL6ljbJLS/KV1I6ClXYZkFeMKxe9FJ3JTbUIS1fFJ/Vw+144zcnBEf5QdhlVx4JjM/KHYVu5TFIRBCnB2ji8ss1YWkiN/pejzFpFZLY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR12MB4349.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66556008)(6666004)(66476007)(186003)(26005)(2906002)(316002)(6486002)(83380400001)(8936002)(5660300002)(36756003)(4326008)(31686004)(8676002)(66946007)(6512007)(86362001)(31696002)(508600001)(2616005)(6506007)(38100700002)(107886003)(53546011)(55236004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: kSgnyV24Ww5K1JmLvmrCL9Cjv4OmmNeR/bLhs9rQ2B077DmgPzhSQJV4CS2D9vSNI5LPugf0FgdUiByJ7EGbq9NfxGZDY+b5aH8IXkWgm4QNWuV8tblr4xGHc5Tw1i3LbHSlQjyHz2gpZwKI3E+TV84pQQ0gXb2ISYm5nJ9S65OhmKTkFYqV2wioI6F8J8yuXzgfVf9OKKU8ixkdygrlbLu8ij2rAO+EfCZ8FAWrG1DbjSuRi8JAQjLoYqG3kqmOSpATmZhoh2s8hUUDicqPgzyV+hwJ7KOyIoUXmCHHYMDHprYcQfcMIRtgygNxWk4Gj1hM/E0l0O9ieQtQs/1CaF8Mg/o7jW1eJKazIqdkxuQsd/IiaiPpwa0U4gfK5/BslWBGPQ0aS+AHOX7TkcEna4pSTdTKG3TDN3jbZ9GRwjGqP+aYPwforz5vd5nt5NpUZhtapXa/bVtUD2Fd5NuTPZ37ZsHdgOiazBdulPfkA/AZw2DrSpLovV4EzzIMjDT3sNDgVvFAlsuMqGpMdJUeh1pG5L5epOHbBOxeg0dXwOhgBJbMBlj/iea96WXPpg/O7CmhDRoFFm8FRQpeiHYM0fbc775vFcv02VL/MgP54mMwH/YOVMJoIgoHZLH8PxinFv5zobpEQLlnZZLcWz33LI4sp/ewbBwjfPMJHAmunOXV3SZvIn4TOcFAZSqaK6V7w6iABNepQ+8iMAJfvP/97Weg7wGZf0aXI8NHrLM3ub28iV/EvHh2xUzBJliAt5TDTHsq5GxDZNM3RPDoJLvjfe3lFdCl+ZOS1f/5GDjvtc/dWKA6Pp1wVlHT1dAn59Dq00rm+//NDbN/+zFABkDy3PtgLfuaTdGH21CBpAp8hROzulOF5Bd6QZQhMZwqjXO/
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(26005)(8936002)(186003)(316002)(54906003)(2616005)(5660300002)(4326008)(7416002)(110136005)(38100700002)(38350700002)(31696002)(31686004)(66946007)(52116002)(53546011)(6486002)(107886003)(6512007)(66476007)(8676002)(66556008)(83380400001)(86362001)(966005)(921005)(2906002)(6666004)(508600001)(6506007)(43740500002);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NGxTNWdib3hib3N2dVBTNHh2T1JobWNoYXJpU05oL2NyeWI4SlVvQjFuVno5?=
- =?utf-8?B?Q3JGU3VqTjFFZTN2Mzlac2xhRjRVblZrYml0QXBzY09LdG5seWp4RzAvMVJ4?=
- =?utf-8?B?TDFlSGliQmlMNnN4VHZUYTVuazRNVjQ1RXVjK3JIT1dsSEw1VWhWdVphbGtL?=
- =?utf-8?B?RlJjaWhSTjB5VG44K2ZLS2IzbVVRblpwZDVCNVl2YzVFQ1FmRzhkTmhVUmRI?=
- =?utf-8?B?SnU0VlVnQjAyYzVmbTNFZHBpYThEV05OTGEvTlcvdFdvUFFZME44T0h2Z2Zt?=
- =?utf-8?B?WlVDa0JQdHJnSmZ1amJ4QmxJQjNCdVhNcW9HbVJZQmlscmdtMW95ZG1WVkdT?=
- =?utf-8?B?R1dhOWF0alkwM0JtOEZxSmtmemY5Uko3SVNVeXRUcEo1cG9ibDJkZTZ3TFJV?=
- =?utf-8?B?NnlGR2pjT2EzRkQ1eG9Bdm5CVkQ2V3FNUGYrb3dDS053VEpQRURDcUdZZlNH?=
- =?utf-8?B?TmE2dU4wYW9EeStZWlhSbmtPSWdqUWNMeVB4Z25HVmRnRmZINDkvSTRxelpN?=
- =?utf-8?B?OWo2WTE3djBpdUFzdXQzTUtxSTdXbWxsSVNpdm80QTRFYk1pdmFWckJYNTJr?=
- =?utf-8?B?dDBHQzFGU3lpWXRvTVRQaGJQd3d1UFVLWkladzhpTTg1ZWhaSFBRWm1IYVFs?=
- =?utf-8?B?NktaMUJrN051RE1NZGlNQzZqOE51REk2VmZudUE1VmZtb25NMnBscXJaeUdo?=
- =?utf-8?B?K1NCRXZ2WWdEYkRPZ1d1elN4cEkwMjV4L0ZLT3p4dHhyQlZwMnphYVBZOWhF?=
- =?utf-8?B?SFdtRThNSW5YT0E3N01Bb1I3SFR0eWd3T0hHNHp1ODJxK1pKcWt6UzVHRjVn?=
- =?utf-8?B?d050TU40dlNKNXY3bGNPbm9ENEU5R1dJMUp2amhFeHRDcWFqWnB2QmFjNCtC?=
- =?utf-8?B?YU1ZUWZJakNSZitQN2tmbVgyNWsxK0VPcExRRWlJVTN6bSt5VGpDc3RoaGc2?=
- =?utf-8?B?NExHdUZEN0czT2V1dER0ZGVtYjl4bXM2b1ROblFDeUJCSjVXVTBFZTRJUFVl?=
- =?utf-8?B?UGE4Q1gvN2U4MzB2Z1NFWlFHa3RLTG15SUtDdkdlY2haclpxU1ZncFRNVk8z?=
- =?utf-8?B?REl4M0hIWDJraTNoYWQzM0dOZHVUUVZQb0d5V2c2TExFRmVZVDdXdU9HYlhm?=
- =?utf-8?B?MjFQbkczcW5ZcGgycHJrWnZNcTJIWW8xOUR1cEpWNUJ3VExoWk54ZVJSKzJJ?=
- =?utf-8?B?WmtoQXhmZW9HSk9Fa3REWmMwTmFkMnhRVE04aUVSVEEyWmhrc2lOZmdGTWpH?=
- =?utf-8?B?MG8wWEFEZFV3R1NVYjdEOUZtUlh5VEFPNE1YWmdjYlpUbXNYempvSW4yeHpS?=
- =?utf-8?B?dTdSS3lIMzFvM0VTV3huODh3Ry9KL2QreGZzVnNPRFA1ckxLRFRnK0VPcDNq?=
- =?utf-8?B?bmlKRmk0eTZVbHNJblJqZDFkcWlDcmx6WUlHSFdWUFN6TkVPSW1kZnEzNU4r?=
- =?utf-8?B?YWc3Sk1pK09SdTRQd2g5d28xU0ZpUFFNaGZaVEd1dUlpS2hPRk44QkFNWjgw?=
- =?utf-8?B?Ty83cGc2MzBCOVZZNDhpMWJpd2ltQ25UZUM0OE8zL29TSWs5SkFTQzVwNGll?=
- =?utf-8?B?YzhDZHU5ek1SbmRXRjRHZHJsVUVnV2VoKytHejE1bm5OcW1HakZzSHBoQnRm?=
- =?utf-8?B?QlJzenNPS0twQUdLb3JSQ2pjZEEwU3ZVTzZ6b04yT296NXp4ZGZzNzExdHJX?=
- =?utf-8?B?eDBVRVNmdVRkd2Y3cnBoblJSREpMSkRXYXMrdnFFQUZRdk42Y1RBekI5cGdK?=
- =?utf-8?B?UTNvK2FOT3BjT1lqOGgvRmpmYnRwbFR0clpLN2pZeU5PU1hWOGxySWR0ZFlB?=
- =?utf-8?B?TXVOa1dtK01RbGdQUzlibzBySmRVa3BhUFBiWXNuSkhlMXpGZEVGSzZuajJa?=
- =?utf-8?B?Ky9XaDhQVW9Lb2RrZTB4bWNEcGUrV3p0bHhLVDVydWRGb2orSlFsQ3lFRjlt?=
- =?utf-8?B?bFNVSVFpR0owZXBsN3pheWN6cVZRZ0ZuT3V0ZEt5ZTU5VW5TSGJ1QkY5UGto?=
- =?utf-8?B?WFo3SWVkdVc0cFNqbjRsNU93SnAvNVBOcnhLOE01Mm5ERXFsVTI0NVRYbThL?=
- =?utf-8?B?YlBIQ0JNOWlUZTBtQnFzNDRqdFcxUGJjRGtvU2JNYkhKWUtURk8yUG9kbzFC?=
- =?utf-8?B?RFVQeDJxNG44Z2hqWEx4d3ZBUFY4ektqRWIzaUpvL2dSRmJvdWJqZWZkYjA4?=
- =?utf-8?B?a1dtdUFaeUZYU0RXMnNxZmVyb2RkQTllc2NWM1Y1aXB3Q040MUxBY0hpVThj?=
- =?utf-8?B?SERGdXNrbk1SVGI1ZXpTQVZ4cXJtYWovVG1oTnk1SlBtZkpSYkhMbWs2V0Jt?=
- =?utf-8?B?N1pyMzlqdks1RHkrVXVwYzNHZUlRd1Q2TFZmRm03RksxNG94Ui9uQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 270a3736-4bc3-4617-9a02-08da0e1b0f37
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4349.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0t5dS81K0FITWtZK0xMbXlza2FtRnNPdDQwZlNCQWx6ZHE5SUR0M0lKQTB6?=
+ =?utf-8?B?c3FlaTFubVF5bm1DS2Y3R0ZIVC8yYlduUllYVW9zVUFHSmF3T3JOSDk2Q1A4?=
+ =?utf-8?B?U2VJK2NNWTdUY0oxZFZlelRQSWk5RmYwRHFUWm5nTXpGSURSYjF1UGRLUndo?=
+ =?utf-8?B?U21pZ1BwTnVWZkhxUDcycGJVUHIrRE9UUnE2N3ArdythMTFXbmNlTjFwQU9G?=
+ =?utf-8?B?V3JBdDVWMEN4VHE3MStLd1pYaXVJTlhUUWhqaVFuNTF6UDM0ZmtRNlJkYXRn?=
+ =?utf-8?B?QlF1dHJlcG9wUUJWamYrVzZLWXhBU0hHeitERXVlNDUwNmd5VEJ3c2VFWkgx?=
+ =?utf-8?B?Zm5LLzVGWE9PRzRxWStocUdwS2Q2eUdhZnJUdTBTSjRQbk5FSGpDaEdCOWE3?=
+ =?utf-8?B?VU02V3ppZk1obndjYTVRZk5TdnZaNE53bStPVEpkYU81dlZIeVVQMldBUzd6?=
+ =?utf-8?B?ZjNqTXZEczVKSlFQVXZCanQ5RlEwK1g5d2M1TXF1NDlrNE9VRWxkcVk3RitZ?=
+ =?utf-8?B?UEFZK2c3QU9pd0pKTmpyYjB6MXVGWUl2dEx5VHphWHhuOTZVc2NPSFcrSHFV?=
+ =?utf-8?B?TTZadVNjY2ZJbG1IaFJGYWZKQ0RzY0hCRUpnVXN4ZkZPU3BsK0xzWThHRi9L?=
+ =?utf-8?B?WU9ZQURucEtEbUxPeCtnRjZoRWwrVmxVOTdMOE1IdWVqRmZLOU9Ca3JRdFR1?=
+ =?utf-8?B?SG5GdFIyd09LNU10SDRob3BnRXVwdkNHUlBTaldWR1EzOWFIMEQyNnNyamh3?=
+ =?utf-8?B?bDBvUTg3QW9TcDhlNU5CKy9VN09laVZXajMwU0J2U0o1UGhnanFSOE8yRVFl?=
+ =?utf-8?B?V015L3Nmckt0K21BUjhHbExFMjd0aUh6cktXK0ZDa05ranVCaUJlRUtCYUx3?=
+ =?utf-8?B?ZC9CWU5LSjUyT05SOVBJa2kvNkVJVWVpU0VJckdKMDRQVHNLOWQyWEFsL2hz?=
+ =?utf-8?B?Z0xCWGlOSlRPM2g4c3ZvVVo2d1JoWml0NTFFTi9NTjV4MmxUTm9OWlI5UHJP?=
+ =?utf-8?B?REgyZ1UyOTFWQTZPeVUzM281c2ZoRGgvdU12KzdVaHN5RTZDd1FhREd4WS9t?=
+ =?utf-8?B?VTdTTFYxWUg1SmovcCtJVXp1aGExY2RQblN4M0N2T2ROcXVxcGFBT3pqR2Zv?=
+ =?utf-8?B?M2Vra05vWHF6WGVVazYxc2VITmxVUHI3Q3B5ck9iV0JLVE8rV1E5endQLzJH?=
+ =?utf-8?B?dGZYMThmMHJrL3YyWmF0cDk0Y1F3ekZHRjlhK2J5NmRTOWI1OGRTSnVza1l2?=
+ =?utf-8?B?V3JSM053TjJNZTllYXpZbDBlUzM4NDFYSDZvQ1hYZHEwMExjbmpXdnRINHhC?=
+ =?utf-8?B?ZCtKMmFXRHgva0ZEdHl0djR1bjhEUWEvTWZ0THdobTRsckNRNnhIUHp5MjZI?=
+ =?utf-8?B?M1NBbU1sZWI1eW1rSXFQbkpuYUMxZnJER3VlSmU1SnZiQlVRRHZ3eCtNYlJV?=
+ =?utf-8?B?NEJEZ0xvWGhobGh0dXdNVitSbEU5NEp6dDNnWG1ScndTeTdtVlc0bUpkRkZT?=
+ =?utf-8?B?ei9mZytzdmFpdG9TN1U2Tk01S24yUUhNSEZWU0VaSnE2SWFxV2MyMk1KSko1?=
+ =?utf-8?B?dGY1bDlwR2djSnkzY3pxVGF2RWo4RWVJWWJXSUhRZUVkVi9FL2huUmo2cU5a?=
+ =?utf-8?B?bzlIVktJSTFRYzdJNTNFSkg2MythU3NBdFJuOTNpaWN0MU81QUg0SEREWUtI?=
+ =?utf-8?B?UC91VFJEbis4eCsxd1FYdU9LcFRwcGxrSzlpVWl1QmhqNVFQOWk4bW1SYlNR?=
+ =?utf-8?B?NXgvbXJXWGlTRTNCV3d1dUJ5M2VBM3hxcnBSQ2xET2xUcC9ISWVQS0JvVHJY?=
+ =?utf-8?B?bklNK082WkVxS3BBSWk5WjRTdUlvNmRNdnBkMktmV3ZYTElxKzVBMXR5ZWps?=
+ =?utf-8?B?UHNWL0J5U0ZsSyt6aVREU1U5U3oyZFB3UVU2SGJneFBGRmxLRjZORzRPMWxL?=
+ =?utf-8?B?ekd6c3RNdi9Hd1d4NUw4c25lQUhsTEpsTmFJdWYrbVdrRStqOUpxL2FieHJI?=
+ =?utf-8?Q?go0oiFKO578pSBPTvn2oaW2s1opYtI=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc01ccf1-ee1b-45dd-a16a-08da0e2f0917
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2022 04:51:01.2628
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2022 07:14:01.3748
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2opI/iAqQMH4y211/K4B6hdRY1RX9nRrTumuF/MFODcVusG5YgWPmGWS2eIF3ZjpyujFyDPvwYcZhh/I0MpnZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2552
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: hoDioqU6lvEyc5KBK+BlXwF0gkK/Lb2VjDF7gLMjsv3m3I1tD7VEQPOkMyeFDxEmsQ0AOrASl0BOfvoo0TT1OJbt7RyI52UYJOlgploZEHE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR01MB4086
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -137,111 +147,72 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 3/19/2022 9:12 PM, Dmitry Osipenko wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> 16.03.2022 12:25, Ashish Mhetre пишет:
->>  From tegra186 onwards, memory controller support multiple channels.
->> Add support for mapping address spaces of these channels.
->> Make sure that number of channels are as expected on each SOC.
->> During error interrupts from memory controller, appropriate registers
->> from these channels need to be accessed for logging error info.
+On 21/03/2022 17:08, Krzysztof Kozlowski wrote:
+> On 21/03/2022 09:13, Quan Nguyen wrote:
+>> Adds device tree bindings for SMPro MFD driver found on the Mt.Jade
+>> hardware reference platform with Ampere's Altra Processor family.
 >>
->> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+>> The SMpro co-processor on Ampere Altra processor family is to monitor
+>> and report various data included hwmon-related info, RAS errors, and
+>> other miscellaneous information.
+>>
+>> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
 >> ---
->>   drivers/memory/tegra/mc.c       |  6 ++++
->>   drivers/memory/tegra/tegra186.c | 52 +++++++++++++++++++++++++++++++++
->>   drivers/memory/tegra/tegra194.c |  1 +
->>   drivers/memory/tegra/tegra234.c |  1 +
->>   include/soc/tegra/mc.h          |  7 +++++
->>   5 files changed, 67 insertions(+)
+>> Changes in v7:
+>>    + None
 >>
->> diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
->> index bf3abb6d8354..3cda1d9ad32a 100644
->> --- a/drivers/memory/tegra/mc.c
->> +++ b/drivers/memory/tegra/mc.c
->> @@ -749,6 +749,12 @@ static int tegra_mc_probe(struct platform_device *pdev)
->>        if (IS_ERR(mc->regs))
->>                return PTR_ERR(mc->regs);
+>> Changes in v6:
+>>    + None
 >>
->> +     if (mc->soc->ops && mc->soc->ops->map_regs) {
->> +             err = mc->soc->ops->map_regs(mc, pdev);
->> +             if (err < 0)
->> +                     return err;
->> +     }
->> +
->>        mc->debugfs.root = debugfs_create_dir("mc", NULL);
+>>   .../devicetree/bindings/mfd/ampere,smpro.yaml | 48 +++++++++++++++++++
+>>   1 file changed, 48 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
 >>
->>        if (mc->soc->ops && mc->soc->ops->probe) {
->> diff --git a/drivers/memory/tegra/tegra186.c b/drivers/memory/tegra/tegra186.c
->> index 3d153881abc1..a8a45e6ff1f1 100644
->> --- a/drivers/memory/tegra/tegra186.c
->> +++ b/drivers/memory/tegra/tegra186.c
->> @@ -139,11 +139,62 @@ static int tegra186_mc_probe_device(struct tegra_mc *mc, struct device *dev)
->>        return 0;
->>   }
->>
->> +static int tegra186_mc_map_regs(struct tegra_mc *mc,
->> +                             struct platform_device *pdev)
->> +{
->> +     struct device_node *np = pdev->dev.parent->of_node;
->> +     int num_dt_channels, reg_cells = 0;
->> +     struct resource *res;
->> +     int i, ret;
->> +     u32 val;
+>> diff --git a/Documentation/devicetree/bindings/mfd/ampere,smpro.yaml b/Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+>> new file mode 100644
+>> index 000000000000..c29d975c1bc3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/ampere,smpro.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +     ret = of_property_read_u32(np, "#address-cells", &val);
->> +     if (ret) {
->> +             dev_err(&pdev->dev, "missing #address-cells property\n");
->> +             return ret;
->> +     }
+>> +title: Ampere Altra SMPro firmware driver
 >> +
->> +     reg_cells = val;
+>> +maintainers:
+>> +  - Quan Nguyen <quan@os.amperecomputing.com>
 >> +
->> +     ret = of_property_read_u32(np, "#size-cells", &val);
->> +     if (ret) {
->> +             dev_err(&pdev->dev, "missing #size-cells property\n");
->> +             return ret;
->> +     }
+>> +description: |
+>> +  Ampere Altra SMPro firmware may contain different blocks like hardware
+>> +  monitoring, error monitoring and other miscellaneous features.
 >> +
->> +     reg_cells += val;
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ampere,smpro
 >> +
->> +     num_dt_channels = of_property_count_elems_of_size(pdev->dev.of_node, "reg",
->> +                                                       reg_cells * sizeof(u32));
->> +     /*
->> +      * On tegra186 onwards, memory controller support multiple channels.
->> +      * Apart from regular memory controller channels, there is one broadcast
->> +      * channel and one for stream-id registers.
->> +      */
->> +     if (num_dt_channels < mc->soc->num_channels + 2) {
->> +             dev_warn(&pdev->dev, "MC channels are missing, please update\n");
+>> +  reg:
+>> +    description:
+>> +      I2C device address.
+>> +    maxItems: 1
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
 > 
-> Update what?
+> Why do you need address/size cells? Is the binding not complete? The
+> commit description does not mention such case.
 > 
->> +             return 0;
->> +     }
->> +
->> +     mc->mcb_regs = devm_platform_get_and_ioremap_resource(pdev, 1, &res);
-> 
-> Can't we name each reg bank individually in the DT and then use
-> devm_platform_ioremap_resource_byname()?
-> 
-That can be done but I think current logic will be better as we can
-simply ioremap them by running in loop and assigning the mc_regs array.
-Otherwise there will be like 17 ioremap_byname() individual calls for
-Tegra194 and Tegra234.
-Will it be fine having that many ioremap_byname() calls?
-Also, Tegra186 has 5 channels which are less than Tegra194 and Tegra234.
-If we go with ioremap_byname() then we'll have to differentiate number
-of ioremap_byname() calls.
 
-> ...
->> @@ -212,6 +217,8 @@ struct tegra_mc {
->>        struct tegra_smmu *smmu;
->>        struct gart_device *gart;
->>        void __iomem *regs;
->> +     void __iomem *mcb_regs;
->> +     void __iomem *mc_regs[MC_MAX_CHANNELS];
-> 
-> s/mc_regs/ch_regs/ ?
+Thanks Krzysztof for the comment.
+The address/size cells are indeed not used. The child drivers are 
+instantiated by the parent MFD and there is no child nodes in DT. This 
+part will be removed in my next version.
+
+- Quan
