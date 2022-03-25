@@ -2,100 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B1B74E7492
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 14:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C2174E74CF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 15:06:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353908AbiCYN6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 09:58:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
+        id S1353987AbiCYOH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 10:07:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354852AbiCYN6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 09:58:37 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A731CD0A95;
-        Fri, 25 Mar 2022 06:56:59 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 7BF251F462D8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648216618;
-        bh=Yok8IySePES7GFEb7QlYbVFKQbSvbM5xHMo/W3KrAq8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cDEsB6HTdtC52vnOaCKRXIafRpo7nxqy/2Oa0yrR4JXs9qtk/T8396sW+rAyfBxaw
-         mYwB3sGaJfCApzeUrgW+8vTivI92GxysMcYC2LPSzev7/rZ3phzhXe9lPSnx+gGMOu
-         cbnpJa+lUFw+4qyK4J52LCBcv6MohniLreUx2pqmESFXAPALS/yWqhMMsllKYUD/js
-         uECfcs9tGxleYYheriFqEFGDh9npoooDm1o4YPNZ2SSEOu5y/KCgzuhuxvdcqxeJvx
-         zBFDoD77T8V4WLbIoCtGJLzwmMOihpzQTkpKe0EMfBJOuSLdTpzu1uepku7r6jRACp
-         p/ZMZUIeXu6zw==
-Message-ID: <d9f14221-b0ad-9853-e9c8-a35d9111549b@collabora.com>
-Date:   Fri, 25 Mar 2022 10:56:48 -0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v4] arm64: dts: imx8mn-bsh-smm-s2pro: Add tlv320aic31xx
- audio card node
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-References: <20220323135601.42435-1-ariel.dalessandro@collabora.com>
- <CAOMZO5D4_WboF4S0dgSLD1m15a13c2irK2yjDV4C77_Wb15=2w@mail.gmail.com>
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-In-Reply-To: <CAOMZO5D4_WboF4S0dgSLD1m15a13c2irK2yjDV4C77_Wb15=2w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1359311AbiCYOHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 10:07:48 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51ABD8F5D;
+        Fri, 25 Mar 2022 07:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648217174; x=1679753174;
+  h=from:to:cc:subject:date:message-id;
+  bh=P5x3GDc7b1j4avQHoAkawHiZA9YIIrO8jwjSyUccRNM=;
+  b=rR/0vBT35NGkPaFCByy0CdgiQqRIY5NXqr61ANM/wK0o+BbY+EoN0Tkd
+   AmCvFmmaGLirazcCyXw89lnZZQIKZSzoeShbybkg7uPRiiQEt1ms8Slsz
+   BhTxHH4kL6bvJJyS92hI/2tFhnaGC3m6I0hZ7vhFJDa5IFm35RgSrjcdZ
+   E=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 25 Mar 2022 07:06:13 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 25 Mar 2022 07:06:12 -0700
+X-QCInternal: smtphost
+Received: from hu-vnivarth-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.111.166])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 25 Mar 2022 19:36:00 +0530
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3994820)
+        id 9A3BE44C3; Fri, 25 Mar 2022 19:35:58 +0530 (+0530)
+From:   Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     quic_msavaliy@quicinc.com, dianders@chromium.org,
+        Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+Subject: [PATCH V2] arm64: dts: qcom: sc7280-idp: Configure cts sleep pinctrl to bias-bus-hold
+Date:   Fri, 25 Mar 2022 19:35:45 +0530
+Message-Id: <1648217145-725-1-git-send-email-quic_vnivarth@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
+WLAN rail was leaking power during RBSC/sleep even after turning BT off.
+Change sleep pinctrl configuration to handle same.
 
-On 3/25/22 10:49, Fabio Estevam wrote:
-> On Wed, Mar 23, 2022 at 10:56 AM Ariel D'Alessandro
-> <ariel.dalessandro@collabora.com> wrote:
->>
->> BSH SystemMaster (SMM) S2 PRO board comes with an audio card based on
->> tlv320aic31xx family codec.
->>
->> The audio card exposes two playback devices, one of them using the EASRC
->> (Enhanced Asynchronous Sample Rate Converter) module. Note that this
->> would require SDMA and EASRC firmware in order to work.
->>
->> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
->> ---
-> 
-> What are the changes in v4?
+Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+---
+v2: used bias-bus-hold as per review comments
+v1: intial patch used bias-disable
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-* Fixed the sound-tlv320aic31xx audio-codec property to point to the
-right codec node <&tlv320dac3101>
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index d623d71..80ab2d8 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -516,10 +516,10 @@
+ 		pins = "gpio28";
+ 		function = "gpio";
+ 		/*
+-		 * Configure a pull-down on CTS to match the pull of
+-		 * the Bluetooth module.
++		 * Configure a bus-hold on CTS to lower power usage
++		 * when BT is turned off.
+ 		 */
+-		bias-pull-down;
++		bias-bus-hold;
+ 	};
+ 
+ 	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
+-- 
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
 
-* Reordered properties in tlv320dac3101, and removed clock-names property.
-
-> 
-> I see you removed 'clock-names' so this looks good:
-
-Indeed.
-
-> 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-
-Thanks!
