@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C7F44E7B76
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:20:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10ED74E7B63
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229459AbiCYXti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 19:49:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
+        id S229487AbiCYX6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 19:58:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiCYXth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 19:49:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B52532ED5;
-        Fri, 25 Mar 2022 16:48:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DE7B861301;
-        Fri, 25 Mar 2022 23:48:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 683BEC004DD;
-        Fri, 25 Mar 2022 23:48:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648252082;
-        bh=bVEYqWWkC9PUJo4OJT2wRbEodCot5lPTmYZu9YU7slA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Yd83BjBbgktdVSBUEbRBbyN2eOw+1tRty3i4i3FzoeKokmvmLqiTKPtyP2e3EbxDB
-         FUyWG09HtVB/GeZikT7q2ipGpztQqMssQKRJF4DO8ulZjqLyx8Um6aXo4ZdPobv88E
-         +OenpS4Ay28G8qLHT8wcpGVCJeJrK6uYbYoCYTQz4dnDQeCLQo6F5/HnPLaKDbAhj9
-         BHsv+XCrwk8aQjId0IKIKRHJw0MzAPLgLT1Ycllt4XDW+kBqVMUXfZt1coPagb4zhO
-         VB2/HVqKQCUxpkjz2A6DQLC3fH7/313wV0hzoYjROVHrPyHg98w/xVHs+0cvP0iYSH
-         +v9TgvTOVtHsw==
-Date:   Fri, 25 Mar 2022 16:48:00 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Mark Brown <broonie@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mukesh Savaliya <msavaliy@codeaurora.org>,
-        Akash Asthana <akashast@codeaurora.org>,
-        Bayi Cheng <bayi.cheng@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, netdev@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix missing '/schemas' in $ref paths
-Message-ID: <20220325164800.3c7f1c71@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20220325215652.525383-1-robh@kernel.org>
-References: <20220325215652.525383-1-robh@kernel.org>
+        with ESMTP id S229611AbiCYX6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 19:58:52 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52171C4B2B
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 16:57:17 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id k10so9915036oia.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 16:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=dF3l/8rJJ88LI3L212eeEG8ChpweezAO/LgHhM3ZshQ=;
+        b=IeUnfdUCh/hMpGj/86bCARzVHdx7A0/M758wB5N+YBqiwITGU/UMajpA+bIKH8FvQk
+         UvD/5mDMHzvnvQDD04I7Sxc6O4xBhabU9J975QdlSPfm4fDHOLmqriQvOrjVadhBCxnG
+         VWSTEg3+VYcdunuWZORjVCfwlQKvOQZrvjL4k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=dF3l/8rJJ88LI3L212eeEG8ChpweezAO/LgHhM3ZshQ=;
+        b=wVWbIUchf7wVpIl4m298scRZci0DZjyMCxhTVzBaVIJwAyjDbmvhFsopZQtS85OHTQ
+         nnLopYYJPjUGMlZ3v0E1U8MYJMBqGX+OlAQDJQHqVvvuLYwcPVRTB3TQvu+VxkQNSscC
+         8utVf1EQpglpi0H9VmgR7E0bxf4aBQxw4wc+Nkt6QTRwCv8gbumUXnSOnZlnWGvsi0TB
+         NOo1CFHDAcByADwTzfrKIhJHCV453v3m74nWvZgTZMhBs2d8lSfLJsno9WCO91tb9u84
+         m5wsHDo+pP2JK7nVEcsf+m9CIBJw9f80jcMtT9W+2QVftXDd0d/yLpy9r62l9jEeSd2R
+         3x+g==
+X-Gm-Message-State: AOAM531375nzmZ9rNvYd/5yaLaoAu9WcQO6UzTZmlVq5gSIROX5kd7mE
+        J6XSLtV0JGEnkS6pkt9vYg/frTGotUbqAgBjUJ/jNwOZQtE=
+X-Google-Smtp-Source: ABdhPJxVy6FgKQgiwDbcajisI+cryeaKQbx6Bp/0sq0F7ILX2/ChyP3eGOieS+1wfca8VtaBeJelhvBHfhqzcbCaVkQ=
+X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
+ n62-20020acabd41000000b002ecff42814fmr6896182oif.63.1648252637219; Fri, 25
+ Mar 2022 16:57:17 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 25 Mar 2022 18:57:16 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20220325220827.3719273-2-gwendal@chromium.org>
+References: <20220325220827.3719273-1-gwendal@chromium.org> <20220325220827.3719273-2-gwendal@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 25 Mar 2022 18:57:16 -0500
+Message-ID: <CAE-0n52MOeHL8ZVrtiPPt+r+Jib0WrJJQ6Tmkqrdt-a=ZuE7FQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] iio: sx9324: Fix default precharge internal
+ resistance register
+To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
+        robh+dt@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,19 +67,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Mar 2022 16:56:52 -0500 Rob Herring wrote:
-> Absolute paths in $ref should always begin with '/schemas'. The tools
-> mostly work with it omitted, but for correctness the path should be
-> everything except the hostname as that is taken from the schema's $id
-> value. This scheme is defined in the json-schema spec.
-> 
-> Cc: Hector Martin <marcan@marcan.st>
-> Cc: Sven Peter <sven@svenpeter.dev>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Vivien Didelot <vivien.didelot@gmail.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Vladimir Oltean <olteanv@gmail.com>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Jakub Kicinski <kuba@kernel.org>
+Quoting Gwendal Grignou (2022-03-25 15:08:20)
+> Fix the default value for the register that set the resistance:
+> it has to be 0x10.
+>
+> Fixes: 4c18a890dff8d ("iio:proximity:sx9324: Add SX9324 support")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> ---
 
-Acked-by: Jakub Kicinski <kuba@kernel.org>
+I'd appreciate if you can carry forward tags next time. Then I know
+where to focus on things that have changed.
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
