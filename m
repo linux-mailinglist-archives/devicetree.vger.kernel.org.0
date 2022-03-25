@@ -2,117 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70764E7B94
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80FCB4E7BB4
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:21:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbiCYTno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 15:43:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52278 "EHLO
+        id S229595AbiCYT1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 15:27:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbiCYTnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 15:43:19 -0400
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408143E983D;
-        Fri, 25 Mar 2022 12:17:03 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-dacc470e03so9036016fac.5;
-        Fri, 25 Mar 2022 12:17:03 -0700 (PDT)
+        with ESMTP id S229591AbiCYT0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 15:26:54 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532CF2A9127
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:00:07 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id l7-20020a05600c1d0700b0038c99618859so9523268wms.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:00:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:reply-to:content-language
+         :from:subject:to:content-transfer-encoding;
+        bh=K/nr+QQRdsVf9ua9IBdWL5viBqMPKcy7T57XqP2vuso=;
+        b=M1bKP9XP/cRGN3sGLgiedCNYBiftaNJIRDOT2BZ1wgsdPYrRqWRMxpqD4upPOQrvHp
+         bG+pmUiw5yrzRQc3SJkJNLR4fd4LHCdcf/pHBn7UjfAnG0LEkRZ255qyBOtj/Q1FAJGp
+         KOdJ12f4t9TUCb7HFgwWxDQdeO5qWjIblK+hvN25bXMhWNQ6yccY4A1vdSxr+7chlT+v
+         fNGCwKDsg58WR79nXznqrCFph6KOxk66xUcgw5TORf+JnSjEO32ygk2IAG9AuR9Uc6kS
+         S6PyBQ3a8Cc7Q+kTmDztb+hVnFdpdvApg8DeU87pa0eA6XzQpkcwlWCEPOWC+48S83WD
+         lUnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=TD21QR0lMMXUO0nMDIjOEtGgypHb96HYAdoM26wDIGs=;
-        b=Kawmhyol/R7LaoFp/f4ylvTPV4fSXjgAM8+vi/6h2/Qe9TTxRs7JIskH2WahJPQOBB
-         SJThg9Iz8uSpArJ1cIR+wOSvDuhiGXWSOXh4VsEIdnDklfDPxz4fFz6uvACXpofPcIeH
-         NmvI3xYkBo6u6rGmSWlpJ5GVIL6HMLCOpbdenOXDNiGjazFG9Zf4eHfwtTjMmzHuGAKu
-         F4/Srdj6JWVSO0lrzWcimlS3UQcX5z3D8O+ZxIi/APyHh7JaKBKW9K2cj9E3a/uV7osc
-         k1mfTFNy5MKgxM7uuWjqCc3MHrllFgXPih4pYow8yZJDC40DsHJ0hqYGyQOY+1u8pysQ
-         adgA==
-X-Gm-Message-State: AOAM5338MAkNLlTofiN94UdNWJkwFssMxCYishZfQOYNf828+2lmkeHc
-        qiAi/JAzxPGWxZ0VSxvV0Dtl9AM84Q==
-X-Google-Smtp-Source: ABdhPJxRhOXEGGu66qd3lltmMOUhaUE/Q4GESm8rEHbUQJkl8rylAaxB9T48w92FhlgVax8cPtc3MA==
-X-Received: by 2002:a54:480b:0:b0:2ef:8e00:155b with SMTP id j11-20020a54480b000000b002ef8e00155bmr7912769oij.164.1648233804356;
-        Fri, 25 Mar 2022 11:43:24 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k4-20020a9d4b84000000b005b2310ebdffsm3052644otf.54.2022.03.25.11.43.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Mar 2022 11:43:23 -0700 (PDT)
-Received: (nullmailer pid 210218 invoked by uid 1000);
-        Fri, 25 Mar 2022 18:43:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     deller@gmx.de, linux-fbdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        vkoul@kernel.org, jitao.shi@mediatek.com, mripard@kernel.org,
-        matthias.bgg@gmail.com, kishon@ti.com,
-        linux-phy@lists.infradead.org, airlied@linux.ie,
-        markyacoub@google.com, chunfeng.yun@mediatek.com,
-        robh+dt@kernel.org, Markus Schneider-Pargmann <msp@baylibre.com>,
-        dri-devel@lists.freedesktop.org, ck.hu@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        angelogioacchino.delregno@collabora.com, chunkuang.hu@kernel.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        tzimmermann@suse.de, p.zabel@pengutronix.de,
-        maarten.lankhorst@linux.intel.com, daniel@ffwll.ch
-In-Reply-To: <20220325171511.23493-3-granquet@baylibre.com>
-References: <20220325171511.23493-1-granquet@baylibre.com> <20220325171511.23493-3-granquet@baylibre.com>
-Subject: Re: [PATCH 02/22] dt-bindings: mediatek,dp: Add Display Port binding
-Date:   Fri, 25 Mar 2022 13:43:22 -0500
-Message-Id: <1648233802.138910.210217.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:reply-to
+         :content-language:from:subject:to:content-transfer-encoding;
+        bh=K/nr+QQRdsVf9ua9IBdWL5viBqMPKcy7T57XqP2vuso=;
+        b=qyj1PBXYd9GZ7i5o+z8bnf9MSNeFaVCpjujaQ+Q3Vipt7ibD22XtCP0dnWfsKYSHXm
+         2RoCdwu8haEYOJKLpGBqypOhp6RVz9I081AZ+Ve62QpFMwHG0/zuiExEQVvpH5hhxn5R
+         9p9oRdDN6qdhT5/Mih9ledtGEVIBM1Zs9mw9nYeVHtI0sjZIqPw7i6OESe7KNt3MwW2Z
+         ENNvPW/gOu/kFdnB4L9fozhOLiKgojLHHZrdemaaAmA1uQO6Ps5yzpNUkZLbseCQgnF5
+         n/P18Iw+vMXboc843LS8+q2CF0aDCKKXnnIJ9xV+aE6NHYcNSwrSIpdYyQ0WTqa1Js1b
+         PTgg==
+X-Gm-Message-State: AOAM533WZQCGDlaibzRi93NrZb0A+zbL5/R3MHZKG3RfsgtghW+81pe2
+        5rUt8Seak2/CcfMyET+62F8=
+X-Google-Smtp-Source: ABdhPJwIYlQTnr6OaxGkz6M+tt1sDahF0TfS+o/Bou4tbFA/n4UG4t4CXov0G1yf2fSQCf0Yq3oJfA==
+X-Received: by 2002:a1c:7517:0:b0:38c:8722:9bc6 with SMTP id o23-20020a1c7517000000b0038c87229bc6mr21126952wmc.2.1648234805845;
+        Fri, 25 Mar 2022 12:00:05 -0700 (PDT)
+Received: from [192.168.43.21] ([197.234.221.192])
+        by smtp.gmail.com with ESMTPSA id v124-20020a1cac82000000b0037c3d08e0e7sm9116737wme.29.2022.03.25.11.59.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Mar 2022 12:00:04 -0700 (PDT)
+Message-ID: <efcd3ec2-2132-e1c8-e980-f0e813b790fc@gmail.com>
+Date:   Fri, 25 Mar 2022 19:59:53 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 6.2; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Reply-To: domleblancbiz@gmail.com
+Content-Language: fr
+From:   invest infot <investinfot84@gmail.com>
+Subject: donation
+To:     destinataires inconnus:;
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: Yes, score=5.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,RCVD_IN_SBL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: *  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
+        *      [197.234.221.192 listed in zen.spamhaus.org]
+        * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:32e listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [investinfot84[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [investinfot84[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.8 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Mar 2022 18:14:51 +0100, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This controller is present on several mediatek hardware. Currently
-> mt8195 and mt8395 have this controller without a functional difference,
-> so only one compatible field is added.
-> 
-> The controller can have two forms, as a normal display port and as an
-> embedded display port.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../display/mediatek/mediatek,dp.yaml         | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> 
+Obrigado por me responder, me deixou muito feliz. É de fato uma doação de 152.000 €. E eu faço isso porque meu pai espiritual me aconselhou a ter mais esperança eu já sei minha data de validade (fim da minha existência nesta terra) claro que sou um crente cristão mas a ciência é mais avançada .
+  Agora eu quero que você me fale sobre você em poucas linhas: Eu faço esta doação porque meu pai espiritual me aconselhou, eu sou um cristão sem filhos, então por que então morrer com tudo o que tenho?
+Foi por isso que comecei a procurar a pessoa certa que pudesse administrar bem meus bens mesmo depois da minha morte.
+Então me diga uma vez se você receber este presente, o que você vai fazer primeiro? Você gosta de crianças? O que o próximo amor significa para você? Por favor, responda-me para que eu possa colocá-lo em contato com meu cartório para estabelecer os documentos para permitir que você cuide do herdeiro legal do meu imóvel.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dts:24:18: fatal error: dt-bindings/power/mt8195-power.h: No such file or directory
-   24 |         #include <dt-bindings/power/mt8195-power.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1398: dt_binding_check] Error 2
+Obrigado pela compreensão e esperando para ler de você
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1609494
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Cordialmente.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Thank you for answering me, it made me very happy. It is indeed a donation of 152,000 €. And I do it because my spiritual father advised me to have more hope I already know my expiry date (end of my existence on this earth) of course I am a Christian believer but science is more advanced .
+  Now I want you to tell me about yourself in a few lines: I make this donation because my spiritual father advised me, I am a childless Christian so why then die with everything I have?
+That's why I started looking for the right person who could manage my assets well even after my death.
+So tell me once if you receive this gift, what are you going to do first? Do you like children? What does next love mean to you? Please answer me so that I can put you in contact with my notary to establish the documents to allow you to take care of the legal heir of my property.
 
-pip3 install dtschema --upgrade
 
-Please check and re-submit.
+
+Thank you for understanding and waiting to read from you
+
+
+
+Cordially.
 
