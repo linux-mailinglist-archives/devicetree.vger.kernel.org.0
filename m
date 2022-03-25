@@ -2,51 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8D84E7800
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BAB24E77D7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235194AbiCYPgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 11:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45400 "EHLO
+        id S1353787AbiCYPgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 11:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377221AbiCYPdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:33:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9191C1AF1D
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:28:39 -0700 (PDT)
+        with ESMTP id S1378527AbiCYPex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:34:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5232BF5C
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:33:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DA52460A76
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 15:28:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C8FAC36AE3;
-        Fri, 25 Mar 2022 15:28:36 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BD819B828F6
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 15:33:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1895C340F3;
+        Fri, 25 Mar 2022 15:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648222118;
-        bh=8T7ayo2DFmY5/GapiJuUagoFTrppEfE7ODMb7Q9gk6c=;
+        s=k20201202; t=1648222394;
+        bh=2n8SZxW/c+uKNScbsLPpkBSsbkkXDn51crnHh0yts1w=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=b/unoUPVgGFfIhqBgnDXoWBtvtNGW+yIh//WWOQZ0F4GEzcaHOxNfPwVsjT6GWUZo
-         Zt/KZQgGZwuDBSpOCm+ZS8M3P3epK6gU/SsDH+fE5u4vhxGI3dUP53KME5Xwk2GGgu
-         fgJhALvTF05TO0OYrG8KmBKjoX8KEZahXtVWM/3iGBJCO2QB4bLiwgOWjZFTPcs69r
-         GNC4Vg6FZipsbHcgp2wboUdtnCdCWZpDkfDONFWzWv0dgIx4gFRg+IdezVFH3pIdZz
-         M9Bm26oD94+o5Zx8Cwsr0Vrrb96uUEdIb9/YOvNCDORmh7BavjpYECGt58qUrw6y37
-         0Yt4+VglBatyw==
+        b=F26rIHztqZl9eGZku9QIjKCIILKpD+fw6vTwrZ7eNUVjwrYnavFhOqv/3coM+4Yc3
+         /797kFY7Qg+DJJY+V1fluQZkS4xHGG2eSJNo9VPN20FJ/OMNu8Aldb3FciJ9WsDqVZ
+         RGtPG8Te4VDMRbsWQr3Cqzuh6UTxlAnaR2tCw3Bb34hdEZyflqNdqGuaUAwn4jybkd
+         ipumTHsCKzJz51MiA8cbEwndU1Tb8oyiTCDZANPYl3OmpK0gwkrbbe1fAmohaRqNkB
+         q2PjBCgcCatgV+WGniGSZFFzzDTJyLoW4vlYLbsXkOTvdtuqWPQ52YmaJ5z1D9dRjF
+         F6zuohaxwd+nQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>
-Subject: [PATCH v1 2/2] ARM: dts: at91: Describe regulators on at91sam9g20ek
-Date:   Fri, 25 Mar 2022 15:27:15 +0000
-Message-Id: <20220325152715.1597893-3-broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>
+Cc:     alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v1 6/7] ASoC: wm8731: Convert DT bindings to YAML format
+Date:   Fri, 25 Mar 2022 15:31:20 +0000
+Message-Id: <20220325153121.1598494-7-broonie@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220325152715.1597893-1-broonie@kernel.org>
-References: <20220325152715.1597893-1-broonie@kernel.org>
+In-Reply-To: <20220325153121.1598494-1-broonie@kernel.org>
+References: <20220325153121.1598494-1-broonie@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1923; h=from:subject; bh=8T7ayo2DFmY5/GapiJuUagoFTrppEfE7ODMb7Q9gk6c=; b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBiPd9S+Yaw6iywbVEowt+x7l3ydWfR0WdLuOWLiDtW sru9UCmJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCYj3fUgAKCRAk1otyXVSH0AabB/ 0QxMbBJMVJXlm6/nBoz0h8hnvihpU761qOjhRWKYWzaAigYvp2lErbo4+I4OWY+QDzt+BrerLSPwjY 0TjWpJn/BWqUEfBmB6GvaZMyrwF5fmoI5f5M0ZgfQh0PFXEI0NKHbQSnTe5v9x+ZztqJVhxSXKcVWn oS3pQSzf0O+8WRsKoZNv3Gn9C9jlh2u1z6mNys5VGv3YdRkXbGaIQXXY46zEhsAvEOTmsXSBDx+KGW cQqpEJ7GXaktJ/O/llxFbxpteCji257mFunYuryhdxL0uL5+nvgxQErt0wAI/q1D+lIHCoJSdEr+KS qfoDDxV7W3OBm3aUJE+iVM/EXSSU1j
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4272; h=from:subject; bh=2n8SZxW/c+uKNScbsLPpkBSsbkkXDn51crnHh0yts1w=; b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBiPeBHO9ZXU/9OFKM3UQF17aC9qjtZqidSyQ+uGa4a /kxT82uJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCYj3gRwAKCRAk1otyXVSH0NzSCA CDv94myW3KiuJnWu2P+bkOK3LKLY+xHrIVubeIzbMFzM8690rO0XC0AmGSE/DqwGrXeIQgAyN7+SU5 vvXcfXJaX0PZRVoSyyYxKwvYmwYGbgdAL/0imsXfLGNK6UMzOsICZOb6L63EymfcREY5dSllHu+AOf LrIYmeWQLHDWK2Q2IgNOZQYQvpiyFYf2r4jWO6T1vtyuGGP3pELVl9fUso9mijJcww3DlR/5MW74mN Rj0D3BgkbaDT7SjHt6jwAM77/9RIXmkJuLkqlBMiQrUqMAWkp02TxGkFyTRBlfK2bSV49wpTqLUPN0 C8GjXYaAxTQEUl2EKcnha3IKDx0IRl
 X-Developer-Key: i=broonie@kernel.org; a=openpgp; fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -59,68 +56,156 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The at91sam9g20ek has no software controllable regulators, only some fixed
-discrete regulators, but they are there and currently the wm8731 driver
-does try to use them. Show the supplies in the DT and map them for the
-wm8731 so things start up cleanly.
+Convert the WM8731 DT bindings to YAML format, including addition of
+documentation for the regulator and clock bindings which the driver has
+had for some time but which were not covered in the bindings document.
 
 Signed-off-by: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
 ---
- arch/arm/boot/dts/at91sam9g20ek_common.dtsi | 36 +++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ .../devicetree/bindings/sound/wlf,wm8731.yaml | 97 +++++++++++++++++++
+ .../devicetree/bindings/sound/wm8731.txt      | 27 ------
+ 2 files changed, 97 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8731.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8731.txt
 
-diff --git a/arch/arm/boot/dts/at91sam9g20ek_common.dtsi b/arch/arm/boot/dts/at91sam9g20ek_common.dtsi
-index ca03685f0f08..88cf3ab40aa6 100644
---- a/arch/arm/boot/dts/at91sam9g20ek_common.dtsi
-+++ b/arch/arm/boot/dts/at91sam9g20ek_common.dtsi
-@@ -225,6 +225,11 @@ wm8731: wm8731@1b {
- 			clock-names = "mclk";
- 			assigned-clocks = <&pmc PMC_TYPE_SYSTEM 8>;
- 			assigned-clock-rates = <12000000>;
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8731.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8731.yaml
+new file mode 100644
+index 000000000000..e7220e8b49f0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8731.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/wlf,wm8731.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			HPVDD-supply = <&vcc_dac>;
-+			AVDD-supply = <&vcc_dac>;
-+			DCVDD-supply = <&reg_3v3>;
-+			DBVDD-supply = <&reg_3v3>;
- 		};
- 	};
- 
-@@ -260,4 +265,35 @@ sound {
- 		atmel,ssc-controller = <&ssc0>;
- 		atmel,audio-codec = <&wm8731>;
- 	};
++title: Wolfson Microelectromics WM8731 audio CODEC
 +
-+	reg_5v: fixedregulator0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
++maintainers:
++  - patches@opensource.cirrus.com
 +
-+	reg_3v3: fixedregulator1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		vin-supply = <&reg_5v>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
++description: |
++  Wolfson Microelectronics WM8731 audio CODEC
 +
-+	reg_1v: fixedregulator2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1V";
-+		vin-supply = <&reg_5v>;
-+		regulator-min-microvolt = <1000000>;
-+		regulator-max-microvolt = <1000000>;
-+	};
++  Pins on the device (for linking into audio routes):
++    * LOUT: Left Channel Line Output
++    * ROUT: Right Channel Line Output
++    * LHPOUT: Left Channel Headphone Output
++    * RHPOUT: Right Channel Headphone Output
++    * LLINEIN: Left Channel Line Input
++    * RLINEIN: Right Channel Line Input
++    * MICIN: Microphone Input
 +
-+	vcc_dac: fixedregulator3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_DAC";
-+		vin-supply = <&reg_3v3>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
- };
++properties:
++  compatible:
++    enum:
++      - wlf,wm8731
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  clocks:
++    description: Clock provider for MCLK pin.
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: mclk
++
++  AVDD-supply:
++    description: Analog power supply regulator on the AVDD pin.
++
++  HPVDD-supply:
++    description: Headphone power supply regulator on the HPVDD pin.
++
++  DBVDD-supply:
++    description: Digital buffer supply regulator for the DBVDD pin.
++
++  DCVDD-supply:
++    description: Digital core supply regulator for the DCVDD pin.
++
++  spi-max-frequency: true
++
++additionalProperties: false
++
++required:
++  - reg
++  - compatible
++  - AVDD-supply
++  - HPVDD-supply
++  - DBVDD-supply
++  - DCVDD-supply
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        wm8731_i2c: codec@0 {
++            compatible = "wlf,wm8731";
++            reg = <0>;
++            spi-max-frequency = <12500000>;
++
++            AVDD-supply = <&avdd_reg>;
++            HPVDD-supply = <&hpvdd_reg>;
++            DCVDD-supply = <&dcvdd_reg>;
++            DBVDD-supply = <&dbvdd_reg>;
++        };
++    };
++  - |
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        wm8731_spi: codec@1b {
++            compatible = "wlf,wm8731";
++            reg = <0x1b>;
++
++            AVDD-supply = <&avdd_reg>;
++            HPVDD-supply = <&hpvdd_reg>;
++            DCVDD-supply = <&dcvdd_reg>;
++            DBVDD-supply = <&dbvdd_reg>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8731.txt b/Documentation/devicetree/bindings/sound/wm8731.txt
+deleted file mode 100644
+index f660d9bb0e69..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8731.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-WM8731 audio CODEC
+-
+-This device supports both I2C and SPI (configured with pin strapping
+-on the board).
+-
+-Required properties:
+-
+-  - compatible : "wlf,wm8731"
+-
+-  - reg : the I2C address of the device for I2C, the chip select
+-          number for SPI.
+-
+-Example:
+-
+-wm8731: codec@1a {
+-	compatible = "wlf,wm8731";
+-	reg = <0x1a>;
+-};
+-
+-Available audio endpoints for an audio-routing table:
+- * LOUT: Left Channel Line Output
+- * ROUT: Right Channel Line Output
+- * LHPOUT: Left Channel Headphone Output
+- * RHPOUT: Right Channel Headphone Output
+- * LLINEIN: Left Channel Line Input
+- * RLINEIN: Right Channel Line Input
+- * MICIN: Microphone Input
 -- 
 2.30.2
 
