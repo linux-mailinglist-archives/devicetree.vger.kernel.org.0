@@ -2,179 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 332E74E7297
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 12:59:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB0F94E72AD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 13:03:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356628AbiCYMBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 08:01:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58826 "EHLO
+        id S1353007AbiCYME5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 08:04:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358158AbiCYMAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 08:00:55 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A8751FCE2;
-        Fri, 25 Mar 2022 04:59:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648209556; x=1679745556;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=Zb562oKu4RF+IsQLMY3xmQ9qdSlgjD71uneHcYeDDPk=;
-  b=A+GhG1Kw+m/reKCeYAt1uIadnhkvLM6GYdQ+Lscu0oNx+hXdCtSNbubY
-   FXU5z48leTcX6pJvQdmfNBXZgXw3RXqUQ5xVfvz7WmDbCCx4iSWw2Vbyv
-   2RC/Z1n8nJlWxRWtxo7tA+RD97I+/5j9XYHG70W09JrcVTXt3zMzH+hgR
-   g=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 25 Mar 2022 04:59:16 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2022 04:59:15 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 25 Mar 2022 04:59:15 -0700
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 25 Mar 2022 04:59:10 -0700
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V8 7/7] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-Date:   Fri, 25 Mar 2022 17:28:11 +0530
-Message-ID: <1648209491-30165-8-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1648209491-30165-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1648209491-30165-1-git-send-email-quic_c_skakit@quicinc.com>
+        with ESMTP id S1358249AbiCYMEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 08:04:54 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF452558C;
+        Fri, 25 Mar 2022 05:03:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6C048B82828;
+        Fri, 25 Mar 2022 12:03:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B302CC340E9;
+        Fri, 25 Mar 2022 12:03:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648209796;
+        bh=78i4ZvBr8mrRT5MUgR6xw5y5tehZmMaII08aMDCZ7AE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ERALGrRKHbXizKJCwQCwZw7DZyp1WG7jt1b9yK2/NE1whQ3GOpMlzCPbeEuAdX/Cn
+         R+tVOElt43CDEqUQxJ45LR3RmXBwGl1CXmsuSHyeu+T0FDOww7DwZLs1Y6PutL2VfO
+         99JEDyFhRTQxIDjBlzgdB1eDcexod2uMETtrx1p5M7SLo/oe7FdXp2iBn0wb7GzAeX
+         26ul/MVQ3o2Pnsq2q35n24Hhe2F9QJw0b0Qan/LomJdYI4MLlXXK002VdAuGNAExxz
+         /yvT8HtHSx2S8sJ54WSSWL4Kutb7nRRadJ+yNr+yBxpRnvRv24NGYzCL4+X/qjAnrv
+         7Lj0RrnYltn6Q==
+Message-ID: <55ecfc8a-a3e5-e0b5-6e6d-bf9ad93d141f@kernel.org>
+Date:   Fri, 25 Mar 2022 14:03:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/3] dt-bindings: mtd: ti,elm: Convert to yaml
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>, miquel.raynal@bootlin.com,
+        robh+dt@kernel.org
+Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, nm@ti.com,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220323111851.4699-1-rogerq@kernel.org>
+ <20220323111851.4699-2-rogerq@kernel.org>
+ <622e5de3-12b3-0f5f-1c1b-6e062c39a626@kernel.org>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <622e5de3-12b3-0f5f-1c1b-6e062c39a626@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm8008_infra and pm8008_regulators support for sc7280 idp.
+Hi Krzysztof,
 
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
----
-Changes in V6:
- - No changes.
+On 24/03/2022 20:24, Krzysztof Kozlowski wrote:
+> On 23/03/2022 12:18, Roger Quadros wrote:
+>> Convert elm.txt to ti,elm.yaml.
+>>
+>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>> ---
+>>  Documentation/devicetree/bindings/mtd/elm.txt | 16 -------
+>>  .../devicetree/bindings/mtd/ti,elm.yaml       | 48 +++++++++++++++++++
+>>  2 files changed, 48 insertions(+), 16 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/mtd/elm.txt
+>>  create mode 100644 Documentation/devicetree/bindings/mtd/ti,elm.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/elm.txt b/Documentation/devicetree/bindings/mtd/elm.txt
+>> deleted file mode 100644
+>> index 59ddc61c1076..000000000000
+>> --- a/Documentation/devicetree/bindings/mtd/elm.txt
+>> +++ /dev/null
+>> @@ -1,16 +0,0 @@
+>> -Error location module
+>> -
+>> -Required properties:
+>> -- compatible: Must be "ti,am3352-elm"
+>> -- reg: physical base address and size of the registers map.
+>> -- interrupts: Interrupt number for the elm.
+>> -
+>> -Optional properties:
+>> -- ti,hwmods: Name of the hwmod associated to the elm
+>> -
+>> -Example:
+>> -elm: elm@0 {
+>> -	compatible = "ti,am3352-elm";
+>> -	reg = <0x48080000 0x2000>;
+>> -	interrupts = <4>;
+>> -};
+>> diff --git a/Documentation/devicetree/bindings/mtd/ti,elm.yaml b/Documentation/devicetree/bindings/mtd/ti,elm.yaml
+>> new file mode 100644
+>> index 000000000000..24ed0fb84204
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/ti,elm.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mtd/ti,elm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Texas Instruments Error Location Module (ELM).
+>> +
+>> +maintainers:
+>> +  - Roger Quadros <rogerq@kernel.org>
+>> +
+>> +description:
+>> +  ELM module is used together with GPMC and NAND Flash to detect
+>> +  errors and the location of the error based on BCH algorithms
+>> +  so they can be corrected if possible.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+> 
+> No items, just const.
 
-Changes in V7:
- - No Changes.
+OK.
 
-Changes in V8:
- - Add an extra phandle "pm8008_bus" and then include pm8008 dtsi files inside it.
- - Remove output-high from pm8008_active node.
+> 
+>> +      - const: ti,am3352-elm
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  ti,hwmods:
+>> +    description:
+>> +      Name of the HWMOD associated with ELM. This is for legacy
+>> +      platforms only.
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    deprecated: true
+> 
+> It was not deprecated before. Could you explain it in commit msg because
+> it is not a conversion only.
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 70 ++++++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
+OK I will mention that hwmod usage is not recommended for new platforms.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b8..0843e92 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -263,6 +263,67 @@
- 	};
- };
- 
-+pm8008_bus: &i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+};
-+
-+&pm8008_bus {
-+	#include "pm8008-infra.dtsi"
-+	#include "pm8008-regulators.dtsi"
-+};
-+
-+&pm8008_infra {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pm8008_active>;
-+
-+	reset-gpios = <&pm8350c_gpios 4 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&pm8008_regulators {
-+	vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+	vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+	vdd_l5-supply = <&vreg_bob>;
-+	vdd_l6-supply = <&vreg_bob>;
-+	vdd_l7-supply = <&vreg_bob>;
-+};
-+
-+&pm8008_l1 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1300000>;
-+};
-+
-+&pm8008_l2 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1250000>;
-+};
-+
-+&pm8008_l3 {
-+	regulator-min-microvolt = <1650000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l4 {
-+	regulator-min-microvolt = <1504000>;
-+	regulator-max-microvolt = <1600000>;
-+};
-+
-+&pm8008_l5 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l6 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l7 {
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3544000>;
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -375,6 +436,15 @@
- 	drive-strength = <2>;
- };
- 
-+&pm8350c_gpios {
-+	pm8008_active: pm8008-active {
-+		pins = "gpio4";
-+		function = "normal";
-+		bias-disable;
-+		power-source = <0>;
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
--- 
-2.7.4
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    elm: elm@0 {
+> 
+> This is error correction, right? So generic node name "ecc"?
+> 
+>> +        compatible = "ti,am3352-elm";
+>> +        reg = <0x0 0x2000>;
+>> +        interrupts = <4>;
+>> +    };
+> 
+> 
+> Best regards,
+> Krzysztof
 
+cheers,
+-roger
