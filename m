@@ -2,172 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 781434E7256
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 12:34:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C60104E727B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 12:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357124AbiCYLgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 07:36:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55104 "EHLO
+        id S1357538AbiCYL4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 07:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357112AbiCYLgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 07:36:00 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64336D4460;
-        Fri, 25 Mar 2022 04:34:20 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5637A20013;
-        Fri, 25 Mar 2022 11:34:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1648208058;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=HUpLm117R6qk/dVKFhWwKw0DOB6khYAmxgji50KW67s=;
-        b=Yip7aUAf6QKSRIUfebg75F7lbIEZuHnFlsuQ5u1HR5EQawmloYET9ySHQVEDTlokV2pCPG
-        BBeDo3NiHiugqObDF8eZ95WFAo5KF/GHG7AsF0XZC1hVPWxgJLE7AJomQNu9gKR+RNAP9P
-        MbAYFDjtSZnTrJJ/abL22Ki1SBehfPJfXvqWtVTPHVnYdc8dz7byYWT/AXPRjmTvn9z4Y7
-        chIoIrAI6upZJTfrGjU4ooYk9fQ0pokDLsXu5wNc6VTHyYl89szRg1ap8/YblkHdGs65u2
-        zHSDt++i26DnlQYh7Yjbmz7I7iVIf1NMBQQcGWuH73ys75wc5ZEqY1EeYW8Iqg==
-From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>
-Cc:     Hans de Goede <hdegoede@redhat.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-Subject: [PATCH v3 9/9] i2c: mux: add support for fwnode
-Date:   Fri, 25 Mar 2022 12:31:48 +0100
-Message-Id: <20220325113148.588163-10-clement.leger@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220325113148.588163-1-clement.leger@bootlin.com>
-References: <20220325113148.588163-1-clement.leger@bootlin.com>
+        with ESMTP id S1357525AbiCYL4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 07:56:31 -0400
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36260BCB6;
+        Fri, 25 Mar 2022 04:54:57 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id r13so10520843wrr.9;
+        Fri, 25 Mar 2022 04:54:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wfO/NgKZ7H/qKA+QCI+ODq0tIwjvgLb32lCfr243Wio=;
+        b=PjQ72ppjZJv71Q7Lsc1DCsD3OBT8iqTJclAni1GB8mJK9rjfbf+zXcupuTU554blja
+         FEKWJw7In4hw4MOVjiUKiWE7gBN3h/X36neZVFv2TZ4rBfePUTsCERymzVc4KajSs2tC
+         /sH5hRGAjQAHOyj4veDG0+0szQOCXKj5U4om4dlPbhs3aQfuZYdxHTIhI8fxXhZ+PM5l
+         us6BJoRoTm+qEXFLdNuQ+vh6zn72RDa7uiX9f3hkaKVVzRT1hlqO7oY6g/IG8SOi7z5J
+         X3dJ6BZfV4i2PFgbEpL1S3kfSOUwslQ9FnOEgCL7Es1x5EUvVdVS34wtZ0Xf7wUXqfTQ
+         0EZA==
+X-Gm-Message-State: AOAM531heWHSszkjgUnWbdohoompHROB41pnU9XaT4/ETFs5WicqncqB
+        TsdNhDvAORr9r4ipe/2NIAk=
+X-Google-Smtp-Source: ABdhPJyqx1hl6cEgGobyDAh7rmlx2h8IO+ILO7En01TltDi+G500EhEPBMZCB2sr6uU1h34LFuv1pw==
+X-Received: by 2002:adf:fc06:0:b0:204:975:acfb with SMTP id i6-20020adffc06000000b002040975acfbmr8958788wrr.486.1648209295383;
+        Fri, 25 Mar 2022 04:54:55 -0700 (PDT)
+Received: from [192.168.0.159] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.googlemail.com with ESMTPSA id p2-20020a1c7402000000b0038159076d30sm8261916wmc.22.2022.03.25.04.54.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Mar 2022 04:54:54 -0700 (PDT)
+Message-ID: <86f96cb1-aca4-2c55-fb34-ed35582af2f9@kernel.org>
+Date:   Fri, 25 Mar 2022 12:54:53 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: xenon: Convert to JSON schema
+Content-Language: en-US
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        ulf.hansson@linaro.org, robh+dt@kernel.org, huziji@marvell.com,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220325000745.1708610-1-chris.packham@alliedtelesis.co.nz>
+ <20220325000745.1708610-3-chris.packham@alliedtelesis.co.nz>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220325000745.1708610-3-chris.packham@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify i2c_mux_add_adapter() to use the fwnode API to create mux
-adapters with fwnode based devices. This allows to have a node agnostic
-support for i2c muxes.
+On 25/03/2022 01:07, Chris Packham wrote:
+> Convert the marvell,xenon-sdhci binding to JSON schema. Currently the
+> in-tree dts files don't validate because they use sdhci@ instead of mmc@
+> as required by the generic mmc-controller schema.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     Changes in v3:
+>     - Don't accept ap807 without ap806
+>     - Add ref: string for pad-type
+>     Changes in v2:
+>     - Update MAINTAINERS entry
+>     - Incorporate feedback from Krzysztof
+> 
+>  .../bindings/mmc/marvell,xenon-sdhci.txt      | 173 -----------
+>  .../bindings/mmc/marvell,xenon-sdhci.yaml     | 272 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 273 insertions(+), 174 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> 
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
----
- drivers/i2c/i2c-mux.c | 39 ++++++++++++++++++---------------------
- 1 file changed, 18 insertions(+), 21 deletions(-)
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/drivers/i2c/i2c-mux.c b/drivers/i2c/i2c-mux.c
-index 774507b54b57..98d735349bd6 100644
---- a/drivers/i2c/i2c-mux.c
-+++ b/drivers/i2c/i2c-mux.c
-@@ -24,7 +24,7 @@
- #include <linux/i2c-mux.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
--#include <linux/of.h>
-+#include <linux/property.h>
- #include <linux/slab.h>
- #include <linux/sysfs.h>
- 
-@@ -347,38 +347,35 @@ int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
- 	else
- 		priv->adap.class = class;
- 
--	/*
--	 * Try to populate the mux adapter's of_node, expands to
--	 * nothing if !CONFIG_OF.
--	 */
--	if (muxc->dev->of_node) {
--		struct device_node *dev_node = muxc->dev->of_node;
--		struct device_node *mux_node, *child = NULL;
-+	/* Try to populate the mux adapter's device node */
-+	if (dev_fwnode(muxc->dev) && !has_acpi_companion(muxc->dev)) {
-+		struct fwnode_handle *dev_node = dev_fwnode(muxc->dev);
-+		struct fwnode_handle *mux_node, *child = NULL;
- 		u32 reg;
- 
- 		if (muxc->arbitrator)
--			mux_node = of_get_child_by_name(dev_node, "i2c-arb");
-+			mux_node = fwnode_get_named_child_node(dev_node, "i2c-arb");
- 		else if (muxc->gate)
--			mux_node = of_get_child_by_name(dev_node, "i2c-gate");
-+			mux_node = fwnode_get_named_child_node(dev_node, "i2c-gate");
- 		else
--			mux_node = of_get_child_by_name(dev_node, "i2c-mux");
-+			mux_node = fwnode_get_named_child_node(dev_node, "i2c-mux");
- 
- 		if (mux_node) {
- 			/* A "reg" property indicates an old-style DT entry */
--			if (!of_property_read_u32(mux_node, "reg", &reg)) {
--				of_node_put(mux_node);
-+			if (!fwnode_property_read_u32(mux_node, "reg", &reg)) {
-+				fwnode_handle_put(mux_node);
- 				mux_node = NULL;
- 			}
- 		}
- 
- 		if (!mux_node)
--			mux_node = of_node_get(dev_node);
-+			mux_node = fwnode_handle_get(dev_node);
- 		else if (muxc->arbitrator || muxc->gate)
--			child = of_node_get(mux_node);
-+			child = fwnode_handle_get(mux_node);
- 
- 		if (!child) {
--			for_each_child_of_node(mux_node, child) {
--				ret = of_property_read_u32(child, "reg", &reg);
-+			fwnode_for_each_child_node(mux_node, child) {
-+				ret = fwnode_property_read_u32(child, "reg", &reg);
- 				if (ret)
- 					continue;
- 				if (chan_id == reg)
-@@ -386,8 +383,8 @@ int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
- 			}
- 		}
- 
--		priv->adap.dev.of_node = child;
--		of_node_put(mux_node);
-+		device_set_node(&priv->adap.dev, child);
-+		fwnode_handle_put(mux_node);
- 	}
- 
- 	/*
-@@ -444,7 +441,7 @@ void i2c_mux_del_adapters(struct i2c_mux_core *muxc)
- 	while (muxc->num_adapters) {
- 		struct i2c_adapter *adap = muxc->adapter[--muxc->num_adapters];
- 		struct i2c_mux_priv *priv = adap->algo_data;
--		struct device_node *np = adap->dev.of_node;
-+		struct fwnode_handle *fwnode = dev_fwnode(&adap->dev);
- 
- 		muxc->adapter[muxc->num_adapters] = NULL;
- 
-@@ -454,7 +451,7 @@ void i2c_mux_del_adapters(struct i2c_mux_core *muxc)
- 
- 		sysfs_remove_link(&priv->adap.dev.kobj, "mux_device");
- 		i2c_del_adapter(adap);
--		of_node_put(np);
-+		fwnode_handle_put(fwnode);
- 		kfree(priv);
- 	}
- }
--- 
-2.34.1
-
+Best regards,
+Krzysztof
