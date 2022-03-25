@@ -2,104 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 409804E7840
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 641DF4E7832
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:44:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354918AbiCYPpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 11:45:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
+        id S1346476AbiCYPpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 11:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377905AbiCYPoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:44:09 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C816649900
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:41:35 -0700 (PDT)
+        with ESMTP id S1377957AbiCYPoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:44:18 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE9575F62
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:42:43 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id k25-20020a056830151900b005b25d8588dbso5751522otp.4
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:42:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648222895; x=1679758895;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IFcwkw0ChYMrKdMzLxdkJFRH7VV3hwdHok6sJeSzKZc=;
-  b=RmIhZiE+je4nAxlVWCcQ7EIq9AcCjf9VvuUPZgI4uKHaWZdF0c2C8Pk5
-   GdVtERmZxYe+fhhHksyaRmLlzsCd3IUTJZk1/LOyrkK1n4ypN/6te47+7
-   AJpOnZmAnvroGnzBlsPfcNiZbhNys8AVINdw/hgPn3/R6spTyOYOVWUuz
-   0=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 25 Mar 2022 08:41:35 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2022 08:41:35 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 25 Mar 2022 08:41:34 -0700
-Received: from maru.qualcomm.com (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 25 Mar
- 2022 08:41:33 -0700
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>, Andrew Lunn <andrew@lunn.ch>
-CC:     Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>,
-        "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>
-Subject: [PATCH v2 5/5] ARM: dts: aspeed-g6: fix SPI1/SPI2 quad pin group
-Date:   Fri, 25 Mar 2022 08:40:48 -0700
-Message-ID: <20220325154048.467245-6-quic_jaehyoo@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220325154048.467245-1-quic_jaehyoo@quicinc.com>
-References: <20220325154048.467245-1-quic_jaehyoo@quicinc.com>
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=y+mMvimQyRReQzRmfPyQugpTb6KG//ze5sefX1RwzhQ=;
+        b=KEOJLdQ4cdEZxgsF3zBF9Ye2G1hZitw7712GCu1+psLG5lYYcqVhFc3hVFweWwrEjY
+         oTyog9ZPYy6+sCLYPHGjl5LLTwwUIerWjM1jmd/9HknBXGXgjbD+KSVyGL+15zqKKIzQ
+         pGQNjZGXzEDOM9g2mdBcqdMsb7hHunZ9kdYBg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=y+mMvimQyRReQzRmfPyQugpTb6KG//ze5sefX1RwzhQ=;
+        b=crkmgKJP0ORj8xqfBXDCrvRYwVNMgSFj52DCPmtYFWAgZzeTSFLad17O5HHn8IIN4i
+         W2P90C2djbc2Mn3rR6aNOGFHeS/wlhXvtQvyyoqTVDlr2FYwhPbLXKHYIf43+KgAcS4k
+         RhzUdj6d/lgmgXR5cOu2AK3xD+GU8m/o8eS7hvlH50LfPTiIQ5AmLqZAsBGeIXldKM9R
+         +BEJOFEFwan4H+QrWdSMXaUAqTqfvEgA66o01o3H6X16XYTnmmPjSIJrOjqyzGaX4EUv
+         Jxi2veGPKDVvaYIhSd5iGxdfKTA/W7bPODA4MTpYd7ZBc/ZX/T7tt6loeYhERYeuZ8C7
+         oeeQ==
+X-Gm-Message-State: AOAM530X+SCMcZ4OUPtdC2dbLzDhMU/qE0q/12a2TnZ+3pyQVpJgz6Ph
+        hzIqaF/XnhmbTP9xy4FCfj90RI7Mdpss5PyQBLZ/QA==
+X-Google-Smtp-Source: ABdhPJwJ5Gq+nN3wnkjwmbTENOeA32A+fUspgT2HrNlzuSrTrJWLFo0Sp9DqVPbF7c9Pm2B0FHJmuD0002UbyLd9osA=
+X-Received: by 2002:a05:6830:61b:b0:5cc:e44:7dc3 with SMTP id
+ w27-20020a056830061b00b005cc0e447dc3mr4431819oti.159.1648222963153; Fri, 25
+ Mar 2022 08:42:43 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 25 Mar 2022 10:42:42 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220325081100.1.I9f06fec63b978699fe62591fec9e5ac31bb3a69d@changeid>
+References: <20220325081100.1.I9f06fec63b978699fe62591fec9e5ac31bb3a69d@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 25 Mar 2022 10:42:42 -0500
+Message-ID: <CAE-0n50hUGbH7_khhbsg3fbX_MCK0gEoStk-3xoUzje_a1=KQQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280-herobrine: Audio codec wants
+ 1.8V, not 1.62V
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix incorrect function mappings in pinctrl_qspi1_default and
-pinctrl_qspi2_default since there function should be SPI1 and
-SPI2 respectively.
+Quoting Douglas Anderson (2022-03-25 08:11:05)
+> The L2C rail on herobrine boards is intended to go to the audio
+> codec. Let's override the 1.62V specified in the qcard.dtsi file to be
+> 1.8V.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 
-Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-Fixes: f510f04c8c83 ("ARM: dts: aspeed: Add AST2600 pinmux nodes")
----
-Changes in v2:
- * None.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
- arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+>
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index dc17f2079695..c2075f3e7c4b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -339,6 +339,16 @@ keyboard_backlight: keyboard-backlight {
+>  ts_avdd:      &pp3300_left_in_mlb {};
+>  vreg_edp_3p3: &pp3300_left_in_mlb {};
+>
+> +/* Regulator overrides from Qcard */
 
-diff --git a/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi b/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-index 47c3fb137cbc..7cd4f075e325 100644
---- a/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi
-@@ -653,12 +653,12 @@ pinctrl_pwm9g1_default: pwm9g1_default {
- 	};
- 
- 	pinctrl_qspi1_default: qspi1_default {
--		function = "QSPI1";
-+		function = "SPI1";
- 		groups = "QSPI1";
- 	};
- 
- 	pinctrl_qspi2_default: qspi2_default {
--		function = "QSPI2";
-+		function = "SPI2";
- 		groups = "QSPI2";
- 	};
- 
--- 
-2.25.1
+This one isn't in ALL CAPS? :)
 
+> +
+> +/*
+> + * Herobrine boards only use l2c to power an external audio codec (like
+> + * alc5682) and we want that to be at 1.8V, not at some slightly lower voltage.
+> + */
+> +&vreg_l2c_1p8 {
+> +       regulator-min-microvolt = <1800000>;
+> +};
+> +
+>  /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
