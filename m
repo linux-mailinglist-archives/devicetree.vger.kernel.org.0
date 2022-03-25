@@ -2,98 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9531D4E6B6C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 01:08:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C844E6B80
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 01:10:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356858AbiCYAJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 20:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54442 "EHLO
+        id S1345328AbiCYAML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 20:12:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244418AbiCYAJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 20:09:31 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB5BBBE07
-        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 17:07:57 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 0D5682C0A90;
-        Fri, 25 Mar 2022 00:07:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1648166874;
-        bh=aYjeFGv6acnlGqYDx9smCRVPVxIhi92QWCR4UE4tuMs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=smdjxlwI8752LX6sLQi1zIRo5tZcmkNybwWGJzHl5Br688TmMAtt3noYpCJ3Q0G6n
-         BYsnSruBqzuUHz/nOtD+NmiO7FsqN+E0or9pJnrpjDAlNNsvVCUOcMUQsWPLKqeGfB
-         ul7Dxqukx5Tg01YKdSF0d4x2Gka53Nr2g6MVnt/oB8CHwBSbDT5SSEwZmmWf67bO+e
-         zBgrEbLhM6U6WzNbG94hJ1ujmks4wBhFd5H6JCn42PIuudgoRZRPFYMYnlxX01VnuC
-         jXnRtEVfKdi0+jZc8YZNTXJnWjMnjngrX3Zw2cZoEFJ1DaURDrVEhPbluOd8mGCD9m
-         2wFXIGIZ5rhTg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B623d07d90002>; Fri, 25 Mar 2022 13:07:53 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 9FB9E13EE9C;
-        Fri, 25 Mar 2022 13:07:53 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 96AB92A2679; Fri, 25 Mar 2022 13:07:49 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, huziji@marvell.com,
-        andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v3 3/3] dt-bindings: mmc: xenon: add marvell,sdhci-xenon compatible
-Date:   Fri, 25 Mar 2022 13:07:45 +1300
-Message-Id: <20220325000745.1708610-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220325000745.1708610-1-chris.packham@alliedtelesis.co.nz>
-References: <20220325000745.1708610-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S1357044AbiCYAMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 20:12:10 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99DF931BD
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 17:10:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=z2w+Bxs2/VRoeScopCDbR6v7XAjkBNcqZU6yJFnJG2k=; b=wCdbhYa/qaFCBRTDPAGP2abac+
+        1OhvNWePi54RuNmgcvfI+jdx6l3Dx7vvfrzSfuO771vJf/+dDJ77Qtomvyp3AMrnpY9mDO+l4bT+v
+        7ZztxNXlAcawyKH68figgoQ0vv0JMtDLf19zixWHwj/CwG2U8EuHhTOmKVxMfqKkvAg8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nXXX2-00CWt7-2O; Fri, 25 Mar 2022 01:10:20 +0100
+Date:   Fri, 25 Mar 2022 01:10:20 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH] ARM: dts: aspeed: add Nuvia DC-SCM BMC
+Message-ID: <Yj0IbLsebBvZdaZE@lunn.ch>
+References: <20220324164551.359570-1-quic_jaehyoo@quicinc.com>
+ <YjzhT4gOJ9SKy6q+@lunn.ch>
+ <88849423-c4a5-0a68-1900-72196395704e@quicinc.com>
+ <Yjzub26okJosPkXC@lunn.ch>
+ <a70bde19-3ded-d8ae-51ff-ec37fa803b06@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=khTjyptZaKf2Ay8TfSgA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a70bde19-3ded-d8ae-51ff-ec37fa803b06@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The armada-37xx SoC dtsi includes this as a compatible string. Add it to
-the dt-binding.
+> The clock delay I mentioned is added into u-boot bootloader in a
+> patch I'm currently trying to submit.
+> https://lore.kernel.org/all/20220324165530.359668-1-quic_jaehyoo@quicinc.com/
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+Do you mean this:
 
-Notes:
-    Changes in v3:
-    - new
++&scu {
++	mac0-clk-delay = <0x1d 0x1c
++			  0x10 0x17
++			  0x10 0x17>;
++	mac1-clk-delay = <0x1d 0x10
++			  0x10 0x10
++			  0x10 0x10>;
++	mac2-clk-delay = <0x0a 0x04
++			  0x08 0x04
++			  0x08 0x04>;
++	mac3-clk-delay = <0x0a 0x04
++			  0x08 0x04
++			  0x08 0x04>;
 
- .../devicetree/bindings/mmc/marvell,xenon-sdhci.yaml          | 4 ++++
- 1 file changed, 4 insertions(+)
+So the MAC is adding the delay. In that case, setting phy-mode to
+rgmii is O.K, but it would be nice to add a comment in DT that the
+bootloader is setting up the MAC to insert the delay.
 
-diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.ya=
-ml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-index 326ac3fa36b5..776bed5046fa 100644
---- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-@@ -31,6 +31,10 @@ properties:
-           - const: marvell,armada-ap807-sdhci
-           - const: marvell,armada-ap806-sdhci
-=20
-+      - items:
-+          - const: marvell,armada-3700-sdhci
-+          - const: marvell,sdhci-xenon
-+
-   reg:
-     minItems: 1
-     maxItems: 2
---=20
-2.35.1
-
+	   Andrew
