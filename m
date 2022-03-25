@@ -2,146 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E79E04E7D1A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD2B4E7E0A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:23:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231675AbiCYTto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 15:49:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55728 "EHLO
+        id S229500AbiCYTZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 15:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232109AbiCYTsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 15:48:03 -0400
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9640ABE00;
-        Fri, 25 Mar 2022 12:36:46 -0700 (PDT)
-Received: by mail-ed1-f54.google.com with SMTP id g20so10357724edw.6;
-        Fri, 25 Mar 2022 12:36:46 -0700 (PDT)
+        with ESMTP id S229491AbiCYTZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 15:25:52 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DA33E06C6;
+        Fri, 25 Mar 2022 11:57:45 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id t21so4252240oie.11;
+        Fri, 25 Mar 2022 11:57:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ayOYjTZU6HmufvMH+uKYpu/1dCIaQ5A33lYHz9+DMm4=;
+        b=X+FNOez4egUGi+RaEDC5o5ifCxnPeAfq9cKoQQXRcF/X2s6qCcDabfodEZqtqP/0od
+         lcKDpg5zdyKA0VfQxajowo2N9HrIRQBF1bBCnHD2DkeibXkuGPEgOt/UZGMsOcCk0gYL
+         Prm8lhECgBMpAltiHAWJIMm2YO91CQDkFYQssH6ntOXpAWz4JChc3Gb4CrUDQmh5uvsS
+         P3yCPBbSUoWo5SXyWtNxbVV/B8OxseinYxnd6EcJk/8egWfeCX2KLAKfdZXFur5oZWIf
+         ol1ErG6sBtdoxsbv6c1zkZOtjZNrrYbybeS6kSTlU0snIT+/4aXoexhXhIMNsG1rQt7p
+         SV+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+IQOL/i3pOvSW6gL8acHIjGAB8zIBWe2pJauIvLBYZw=;
-        b=Jpg3SFWpcGh+acolcJXQrC8Vd1srCmtpuOfqxFA3X06ggAkJ/Jtj/Tjzkx1LTb2yq0
-         WW7ytd0qzqXhnOu8ykX7dAoqOvu3kV2xTXoxfzhMCjO9gu32FpxU1wTKrbuxsl5NlK2C
-         4B7NBRJZ5XGXhnTJZL/mIhlcM38zAwYtwAZ+hs3aMH3DMzrYKesUOHOE1+a0RXWrKqQ/
-         SCP8nc3Eo8lmOB3vVepsvMMFcBFBLZs39ey9nafL6Pnj2t0dpNiW6fZKASniAcIW9gBi
-         MNnJsI8JaakB/jJR3G7buEKrVCpi+f02ToiE0widEIR7lPuvmsIkTaq9667x++yj+Z8z
-         c/iA==
-X-Gm-Message-State: AOAM5327RPpM6kyHVTS2ut1hC2CH45AKirwbrbIKNIgWBDsk6DLaw1f8
-        r8UpHECdif+cijYUqC4c5Q4z4ncPQNALRg==
-X-Google-Smtp-Source: ABdhPJxMwXvlpL+4JyEmyf1bVymPZHtcHyRrXsWs0hxmehdLZOEYA6fVeuX2XFBlMV/UWRok9ezgvg==
-X-Received: by 2002:a50:9fad:0:b0:419:f22:46db with SMTP id c42-20020a509fad000000b004190f2246dbmr14492584edf.354.1648229797742;
-        Fri, 25 Mar 2022 10:36:37 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id g4-20020a170906520400b006e0b798a0b8sm490009ejm.94.2022.03.25.10.36.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Mar 2022 10:36:37 -0700 (PDT)
-Message-ID: <da463ecb-e4ac-6e9c-c3a6-775d5c853807@kernel.org>
-Date:   Fri, 25 Mar 2022 18:36:35 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ayOYjTZU6HmufvMH+uKYpu/1dCIaQ5A33lYHz9+DMm4=;
+        b=GlIXq6Gb1BKDxXo2c8Pwq6YifU1LlF0FfjVvYUes8NAdJUzzNgHPScZrjtwL2rZPLZ
+         w8g5ibhSPXl2D+lWrX1XU3Ip8DQM6h3hE4k9D36tKDBJzjYn3JDyBEqpYtOMFFclLrIw
+         mY8fUJR2Eyie1YIWCnb7gMt3bFlzU+65U9z8afQ3n6epCraCHBhKQgLkrj6jeuKBA90Y
+         /EKe5qPIGQYd8i8rPfw+EEEnrSykhy2BiezzqU7YminyZevn8HX4xZr8jE5G+CtkDtPQ
+         A954rnE8i6NMWHwZ3PJF0D55XRBFSphOlWR5oaX3DbTVA4BNEWKyJI7LRK/4p9oqB61g
+         wrmg==
+X-Gm-Message-State: AOAM533whwhD8LJdQAT6YmxpwMjY1X+EvLsHVQvOIAg8Na1nO4VyZkPR
+        bzoVcaliqR26dIdjgreoz9ydjxRc+OQ=
+X-Google-Smtp-Source: ABdhPJw3p6wgf3puKfvwDvOdglHa/WYaO+uhShtAN0fwz7BRG4eEy82IN781iCaO/bIGRTwjoMTc+w==
+X-Received: by 2002:a17:90b:33cd:b0:1c6:5db5:5ff9 with SMTP id lk13-20020a17090b33cd00b001c65db55ff9mr14110308pjb.197.1648229912288;
+        Fri, 25 Mar 2022 10:38:32 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id pi2-20020a17090b1e4200b001c7b15928e0sm6737763pjb.23.2022.03.25.10.38.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Mar 2022 10:38:32 -0700 (PDT)
+Date:   Fri, 25 Mar 2022 23:08:26 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        SoC Team <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] ARM: dts: spear13xx: Update SPI dma properties
+Message-ID: <20220325173826.GA70042@9a2d8922b8f1>
+References: <20220323175920.93155-1-singh.kuldeep87k@gmail.com>
+ <20220324023904.h2qfxzxlznggbsyr@vireshk-i7>
+ <20220324062547.GA15504@9a2d8922b8f1>
+ <20220325015849.sazvlevnvdqj5z42@vireshk-i7>
+ <CAK8P3a0Q8eOTeRmd5-G8rNCKAcH+4HReCsOAGKd4Vq30C9TaEA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 03/22] dt-bindings: mediatek,dp_phy: Add Display Port PHY
- binding
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de, matthias.bgg@gmail.com,
-        chunfeng.yun@mediatek.com, kishon@ti.com, vkoul@kernel.org,
-        deller@gmx.de, ck.hu@mediatek.com, jitao.shi@mediatek.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        markyacoub@google.com
-References: <20220325171511.23493-1-granquet@baylibre.com>
- <20220325171511.23493-4-granquet@baylibre.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220325171511.23493-4-granquet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0Q8eOTeRmd5-G8rNCKAcH+4HReCsOAGKd4Vq30C9TaEA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/03/2022 18:14, Guillaume Ranquet wrote:
-> This phy controller is embedded in the Display Port Controller on mt8195 SoCs.
+On Fri, Mar 25, 2022 at 10:11:41AM +0100, Arnd Bergmann wrote:
+> On Fri, Mar 25, 2022 at 2:58 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > On 24-03-22, 11:55, Kuldeep Singh wrote:
+> > > Fixed order of values is important in case of properties like
+> > > compatibles etc. In case of dma-names, yes order shouldn't matter here.
+> > >
+> > > This patch is more of appeasing dtbs_check warning rather than fixing
+> > > something.
+> >
+> > Exactly my point. We have seen similar type of issues with other tools, like
+> > coccinelle, earlier and such patches were rejected as the kernel was just fine
+> > and tooling needs to be fixed.
+> >
+> > > It's safe to go with this patch.
+> > > I am not sure if there's a provision to exclude dma-names from fix
+> > > ordering checks. Rob can help here in providing better insights.
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> ---
->  .../bindings/phy/mediatek,dp-phy.yaml         | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,dp-phy.yaml
+> I think it's a question of the scale of the warnings: my understanding is that
+> there are only a handful of dts files that trigger the warning at all, and it
+> would be rather hard to change the tooling around this. Since the proposed
+> dts change is clearly harmless, I don't mind applying it.
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dp-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,dp-phy.yaml
-> new file mode 100644
-> index 000000000000..4180d40f4fa7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,dp-phy.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2022 MediaTek
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/mediatek,dp-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Display Port PHY binding
+> Kuldeep, you have probably looked at all dts files in the kernel, can you
+> say how many of them are affected by the dma property reordering?
 
-Skip "binding"
+I have checked spi-pl022.yaml as of now and this was the only one which
+was affected with dma ordering.
 
-> +
-> +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
-> +  - Jitao shi <jitao.shi@mediatek.com>
-> +
-> +description: |
-> +  Device tree bindings for the Mediatek (embedded) Display Port PHY
-> +  present on some Mediatek SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8195-dp-phy
-> +
-> +  regmap:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to the Display Port node.
+For all dts files, I can definitely give a try and will come up with
+some numbers. Please note, there are still bindings left to be converted
+to yaml format, so won't be able to catch those cases.
 
-Need a vendor prefix and descriptive suffix (e.g. mediatek,dp-syscon).
-
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - regmap
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dp_phy: dp_phy {
-
-Generic node name: just phy. Also underscores shoulk not be in node name.
-
-> +      compatible = "mediatek,mt8195-dp-phy";
-> +      regmap = <&dp_tx>;
-> +      #phy-cells = <0>;
-> +    };
-
-
-Best regards,
-Krzysztof
+- Kuldeep
