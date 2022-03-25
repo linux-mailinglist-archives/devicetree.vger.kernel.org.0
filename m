@@ -2,191 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 521074E7485
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 14:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E55F4E746B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 14:45:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358145AbiCYNxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 09:53:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44566 "EHLO
+        id S1354504AbiCYNqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 09:46:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354224AbiCYNxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 09:53:47 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11F7D0A94
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 06:52:10 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t25so13488274lfg.7
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 06:52:10 -0700 (PDT)
+        with ESMTP id S1358054AbiCYNql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 09:46:41 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E82AFD0802;
+        Fri, 25 Mar 2022 06:45:05 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id p10so7605312lfa.12;
+        Fri, 25 Mar 2022 06:45:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gOz+6Jxgi4s/aMhrYK7cy8+f432CABX9+S0xakAnHqY=;
-        b=N3uhTkSoAhpdcH0K9ce+7Zd2W0nvWZhX9pG5rSFFU8rLbtBT/XC1CXLSlH+1vk9kzu
-         4mlDtldSOeRHo6HikkOr3+q33eoqytnVuzi8kEmzL6qRHtCfkXWX7sFUeP5bTxxGwvDF
-         1w8JeKXKER0xIkg+HAXcPJZqJCJXg1T2ErHwQ=
+         :cc:content-transfer-encoding;
+        bh=U7RXOe2HEKPXL9d1M0pQtidpwu68u/vbgF3NH6dmjFg=;
+        b=F+AVndHHKDeOx9JeDmGsP4LYRRMgOWPEMkd7CRfMDgVLqKUklS5outZNV1y6MqCemk
+         UK+wUsjnMuWrYRH87p7Bt0feSKM/95GleOVWdf7oll2eUH+ply2qzI944CQk9Id0Vmqw
+         aa0vWG4IutIl3oKLCL1Nx+OEglTaVYftcxitz5+yZK+QYxv16G/Qfm8x7R466TBvEZS2
+         fque7ov69l6K30VSGWafgAAxzlL7s4WEiCnLUBW6tlGut8F+vh4zUMKH7rg6sRP3LMkS
+         H+zpQ7gartEGh4p7R4ltQor7XO8uLySUB1KEC/kDxK6Uq8Fdfg6xwoaekeNEfy3zw6nL
+         PzgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gOz+6Jxgi4s/aMhrYK7cy8+f432CABX9+S0xakAnHqY=;
-        b=O0Zv7MnTuwVFXkXhALKgNETKLfHQyE5I1SeaPwoHcRVxrF3cLD6u0FRbX9VB6WhQ9t
-         1aKlka/d3GC0niKri2wNOIXkr6aoijiRV1R/vi6DxdkJM+MtuuI7VozybVo3Sf9bFvVF
-         oMrTe/2TzY1cUnI837aLlW/lZaQL3Ly/KTVifeYX/v3pJ+mxQCm+ajRMyHQw4+2c7Ub2
-         zcqzmD36BdFodLM1wfMVH76sLDpv3Hr3V1NVHoo6EovoYiYCj2IZtDGPomgchk5te4MG
-         qfdDI4Fa0Z9Q3SVT1Y+lXse7Rk5Wrm0yKFy4aDYVHRb2EO7wgYUQel3qprcRoXgwclsy
-         wQGw==
-X-Gm-Message-State: AOAM532IE7IqW3TehuhZGgTFwZFvKDRYMjZdMh7RED5ctnl+/cIoLK24
-        7dyg0WWtEU5GshUAJpa0t0PB1GMhK43qGuhj6bw=
-X-Google-Smtp-Source: ABdhPJx8W93xd6Zz6Mt7Hlb8XtnADrFgQ3Ad/54QpdAWZcVo+fW3bqrCxzpxY4xXrpu6kwTYDnT+bQ==
-X-Received: by 2002:a19:e048:0:b0:448:2caa:7ed2 with SMTP id g8-20020a19e048000000b004482caa7ed2mr8118314lfj.449.1648216328925;
-        Fri, 25 Mar 2022 06:52:08 -0700 (PDT)
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com. [209.85.167.54])
-        by smtp.gmail.com with ESMTPSA id g7-20020a2eb5c7000000b002497a261f02sm702524ljn.41.2022.03.25.06.52.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Mar 2022 06:52:08 -0700 (PDT)
-Received: by mail-lf1-f54.google.com with SMTP id bt26so13498121lfb.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 06:52:08 -0700 (PDT)
-X-Received: by 2002:adf:fc47:0:b0:203:dda1:4311 with SMTP id
- e7-20020adffc47000000b00203dda14311mr9264199wrs.301.1648215886319; Fri, 25
- Mar 2022 06:44:46 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=U7RXOe2HEKPXL9d1M0pQtidpwu68u/vbgF3NH6dmjFg=;
+        b=Zd/V0W46DwfzZGhHVU0dxzhPViYd8KN98OCrBnFTMd2b84jkVT2gwkZg33ncK9P17Y
+         LzGGNuMe6Kz4VMePF8t13n/o6O7jnDNYWx9QMsstxLEJVfb17jo3u1bDlmQsxhT81iL5
+         qlrqk3uLgAzTKmCdt5GJa/OxP08cYG3jLwKXhIqpO6Bmi2lFO2L4bt6Vz9HlQU/TxvpK
+         k+2gdbpT0KjkMyyd0R5KLTk5j/bFbTUJaQVn8cwW7WF4WxokxDyhxKpqkDzqMfL8RkGH
+         +ZindAHh/jXsgssOZ8vOa+nKrobXaiINvPcZqX4gsyh2Il/cFAkwDbYsH0LIQq9xgoex
+         qsIg==
+X-Gm-Message-State: AOAM532Mtop/Gl5AWUuaTnACVq1Tkn59WR6Mj3rXYnT+XAwElFOT8WSh
+        GTHKx6Q9xGCUSi1FHe4nRFXZVhx+yOM/BM2AKaA=
+X-Google-Smtp-Source: ABdhPJw58yvTNAGSPofxofaYH3q15H1XOulhcu6A38UJbbTasvfZ25ge/9VoASATCmGhSzOo8eVmzO8YASZwrsq9SqM=
+X-Received: by 2002:ac2:555e:0:b0:44a:3cfa:3fde with SMTP id
+ l30-20020ac2555e000000b0044a3cfa3fdemr7744276lfk.448.1648215904036; Fri, 25
+ Mar 2022 06:45:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com>
- <1647452154-16361-3-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=XM1njMY63SCC3yNoA9Uvu+_3xLGkC5OWoLjR-0KnmhWg@mail.gmail.com> <MW4PR02MB7186E881ABC0620E0A62154EE11A9@MW4PR02MB7186.namprd02.prod.outlook.com>
-In-Reply-To: <MW4PR02MB7186E881ABC0620E0A62154EE11A9@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 25 Mar 2022 06:44:33 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VWaMx9UsXTktjd3Ryo3g0-XY2N9oCNz_kQoJN6gzKAoA@mail.gmail.com>
-Message-ID: <CAD=FV=VWaMx9UsXTktjd3Ryo3g0-XY2N9oCNz_kQoJN6gzKAoA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/9] arm64: dts: qcom: sc7280: Add support for eDP
- panel on CRD
-To:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
+References: <1648170401-6351-1-git-send-email-u0084500@gmail.com>
+ <1648170401-6351-2-git-send-email-u0084500@gmail.com> <d9b883d2-8269-8419-3bcd-3761074bea96@kernel.org>
+In-Reply-To: <d9b883d2-8269-8419-3bcd-3761074bea96@kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Fri, 25 Mar 2022 21:44:52 +0800
+Message-ID: <CADiBU3_06mCfBFXc5XAaeNd+G=Yf4MK5Ze429H8iUm=kpFMa5A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add binding for Richtek
+ RT5759 DCDC converter
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
+        lkml <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        quic_vproddut <quic_vproddut@quicinc.com>
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, Mar 25, 2022 at 6:41 AM Sankeerth Billakanti (QUIC)
-<quic_sbillaka@quicinc.com> wrote:
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8825=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:14=E5=AF=AB=E9=81=93=EF=BC=
+=9A
 >
-> > -----Original Message-----
-> > From: Doug Anderson <dianders@chromium.org>
-> > Sent: Friday, March 18, 2022 10:51 PM
-> > To: Sankeerth Billakanti (QUIC) <quic_sbillaka@quicinc.com>
-> > Cc: dri-devel <dri-devel@lists.freedesktop.org>; linux-arm-msm <linux-arm-
-> > msm@vger.kernel.org>; freedreno <freedreno@lists.freedesktop.org>;
-> > LKML <linux-kernel@vger.kernel.org>; open list:OPEN FIRMWARE AND
-> > FLATTENED DEVICE TREE BINDINGS <devicetree@vger.kernel.org>; Rob Clark
-> > <robdclark@gmail.com>; Sean Paul <seanpaul@chromium.org>; Stephen
-> > Boyd <swboyd@chromium.org>; quic_kalyant <quic_kalyant@quicinc.com>;
-> > Abhinav Kumar (QUIC) <quic_abhinavk@quicinc.com>; Kuogee Hsieh (QUIC)
-> > <quic_khsieh@quicinc.com>; Andy Gross <agross@kernel.org>;
-> > bjorn.andersson@linaro.org; Rob Herring <robh+dt@kernel.org>;
-> > krzk+dt@kernel.org; Sean Paul <sean@poorly.run>; David Airlie
-> > <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; Thierry Reding
-> > <thierry.reding@gmail.com>; Sam Ravnborg <sam@ravnborg.org>;
-> > dmitry.baryshkov@linaro.org; quic_vproddut <quic_vproddut@quicinc.com>
-> > Subject: Re: [PATCH v5 2/9] arm64: dts: qcom: sc7280: Add support for eDP
-> > panel on CRD
+> On 25/03/2022 02:06, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
 > >
-> > Hi,
+> > Add bindings for Richtek RT5759 high-performance DCDC converter.
 > >
-> > On Wed, Mar 16, 2022 at 10:36 AM Sankeerth Billakanti
-> > <quic_sbillaka@quicinc.com> wrote:
-> > >
-> > > Enable support for eDP interface via aux_bus on CRD platform.
-> > >
-> > > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> > > ---
-> > >
-> > > Changes in v5:
-> > >   - Change the order of patches
-> > >   - Remove the backlight nodes
-> > >   - Remove the bias setting
-> > >   - Fix compilation issue
-> > >   - Model VREG_EDP_BP for backlight power
-> > >
-> > > Changes in v4:
-> > >   - Create new patch for name changes
-> > >   - Remove output-low
-> > >
-> > > Changes in v3:
-> > >   - Sort the nodes alphabetically
-> > >   - Use - instead of _ as node names
-> > >   - Place the backlight and panel nodes under root
-> > >   - Change the name of edp_out to mdss_edp_out
-> > >   - Change the names of regulator nodes
-> > >   - Delete unused properties in the board file
-> > >
-> > >
-> > > Changes in v2:
-> > >   - Sort node references alphabetically
-> > >   - Improve readability
-> > >   - Move the pwm pinctrl to pwm node
-> > >   - Move the regulators to root
-> > >   - Define backlight power
-> > >   - Remove dummy regulator node
-> > >   - Cleanup pinctrl definitions
-> > >
-> > >  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 93
-> > > +++++++++++++++++++++++++++++++++
-> > >  1 file changed, 93 insertions(+)
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  .../regulator/richtek,rt5759-regulator.yaml        | 90 ++++++++++++++=
+++++++++
+> >  1 file changed, 90 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/regulator/richtek=
+,rt5759-regulator.yaml
 > >
-> > At a high level, I'd expect your patch to be based upon Matthias's series, AKA
-> > the 4 patches from:
-> >
-> > https://lore.kernel.org/r/20220316172814.v1.1.I2deda8f2cd6adfbb525a97d8f
-> > ee008a8477b7b0e@changeid/
-> >
-> > I'll leave it up to you about whether you care to support eDP on the old
-> > CRD1/2 or just on CRD3. Personally I'd think CRD3 would be enough.
-> >
-> > Then, I'd expect your patch to mostly incorporate
-> > <https://crrev.com/c/3379844>, though that patch was written before aux-
-> > bus support so the panel would need to go in a different place.
-> >
-> > Stephen already gave some comments and basing on Matthias's patches will
-> > be a pretty big change, so I probably won't comment lots more.
-> >
-> >
+> > diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5759=
+-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt575=
+9-regulator.yaml
+> > new file mode 100644
+> > index 00000000..c24b583
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5759-regula=
+tor.yaml
+> > @@ -0,0 +1,90 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/richtek,rt5759-regulator.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Richtek RT5759 High Performance DCDC Concverter
 >
-> I rebased my change on top of Matthias's changes now. We are discussing about the qcard changes internally to understand the way ahead.
-> I believe all my current changes are localized to the crd-r3 files only for the qyalcomm crd3.1
+> typo: Converter
 >
-> I want to have a different series for c and dt changes to expedite review process. May I separate the c changes from this series?
+Ack in next.
+> > +
+> > +maintainers:
+> > +  - ChiYuan Huang <cy_huang@richtek.com>
+> > +
+> > +description: |
+> > +  The RT5759 is a high-performance, synchronous step-down DC-DC conver=
+ter that
+> > +  can deliver up to 9A output current from 3V to 6.5V input supply, Th=
+e output
+> > +  voltage can be programmable with I2C controlled 7-Bit VID.
+> > +
+> > +  Datasheet is available at
+> > +  https://www.richtek.com/assets/product_file/RT5759/DS5759-00.pdf
+> > +
+> > +allOf:
+> > +  - $ref: regulator.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - richtek,rt5759
+> > +      - richtek,rt5759a
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  regulator-allowed-modes:
+> > +    description: |
+> > +      buck allowed operating mode
+> > +        0: auto mode (PSKIP: pulse skipping)
+> > +        1: force pwm mode
+> > +    items:
+> > +      enum: [0, 1]
+> > +
+> > +  richtek,watchdog-enable:
+> > +    description: enable the external watchdog reset pin listening
+> > +    type: boolean
+> > +
+> > +if:
+>
+> This should be inside allOf. Move allOf here,
+>
+Ack in next.
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: richtek,rt5759
+> > +then:
+> > +  properties:
+> > +    richtek,watchdog-enable: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  # example 1 for RT5759
+> > +  - |
+> > +    i2c {
+> > +      #address-cells =3D <1>;
+> > +      #size-cells =3D <0>;
+> > +
+> > +      rt5759@62 {
+>
+> Generic node name, so pmic.
+>
+As my understanding, 'pmic' means there must be multiple channels of
+buck or ldo.
+But  rt5759 is only one channel buck converter.
 
-I'd have no problems with that. They go into different trees and if it
-makes it easier to get a new version of the driver out while you're
-figuring out what to do about the dts then I'd say let's do it.
-
--Doug
+> > +        compatible =3D "richtek,rt5759";
+> > +        reg =3D <0x62>;
+> > +        regulator-name =3D "rt5759-buck";
+> > +        regulator-min-microvolt =3D <600000>;
+> > +        regulator-max-microvolt =3D <1500000>;
+> > +        regulator-boot-on;
+> > +      };
+> > +    };
+> > +  # example 2 for RT5759A
+> > +  - |
+> > +    i2c {
+> > +      #address-cells =3D <1>;
+> > +      #size-cells =3D <0>;
+> > +
+> > +      rt5759a@62 {
+>
+> Ditto
+>
+> > +        compatible =3D "richtek,rt5759a";
+> > +        reg =3D <0x62>;
+> > +        regulator-name =3D "rt5759a-buck";
+> > +        regulator-min-microvolt =3D <600000>;
+> > +        regulator-max-microvolt =3D <1725000>;
+> > +        regulator-boot-on;
+> > +        richtek,watchdog-enable;
+> > +      };
+> > +    };
+>
+>
+> Best regards,
+> Krzysztof
