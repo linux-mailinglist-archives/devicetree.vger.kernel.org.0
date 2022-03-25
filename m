@@ -2,244 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EAD04E785B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B534E7865
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:51:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352081AbiCYPtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 11:49:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44620 "EHLO
+        id S234183AbiCYPwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 11:52:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbiCYPtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:49:14 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD983879E;
-        Fri, 25 Mar 2022 08:47:39 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id r13so11408763wrr.9;
-        Fri, 25 Mar 2022 08:47:39 -0700 (PDT)
+        with ESMTP id S1355088AbiCYPwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:52:46 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8E850E22;
+        Fri, 25 Mar 2022 08:51:12 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bu29so14169190lfb.0;
+        Fri, 25 Mar 2022 08:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=I0UNyg7SfBu7IB1Z/cqaLgfxg/zRvB23e6ickTd/N9Y=;
-        b=JTtWFtj/0KLA/PTK/TZYRCNDaXJche2t4L3ZOXbW/ASrtI0gMPSIgluwBd7+xGt+2x
-         uwYq4/keJ3jHhn3eS7NiBtlNNmcj0KTEl/7+GCRHRKYMCqEK/9lfLNbXhjGyxRtlnPGD
-         Pv3eHAoIUewOFQHVYlo/P79AqwCh4rZwFQu7C6x5PyuwAqtluq6sVq0HJpOkJqtzR7l+
-         sqbuHjfxnEa/6RlVWvfqUPq1reL0T+2MyGNcH7BEmixjJFpkZ3ts6prhiJvoDOWa+st9
-         7rJ3/zxFXTS9XGET1yRuZrIwH1u8nNghL9KkJYaAEaSotDo/qYfhVunHhnURGQRw2c7p
-         qNog==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=pH8jwkRR2EBSUE876H5S83gYnfy8uK8O5IjEsxRnLlk=;
+        b=DNDLfbQoCb/zunj4ZqdeaJuNrYTMjuCDMSvXZSrglNSepFYVmmIbt317vvDltErA9o
+         wyPV0MExvHn5YqN2/K8J5ZNRByzWCGo7AaLz02Xa5cORnK5z0USKRdQkMVWOb9IUELPa
+         a/2DUW0P+uJMzolyHdKEHGmuasMPe44wOlWVx6rW3v5GYiORiBO/IijYJ77VTwLQ3hOg
+         bULoTeB1qxnqwz28BmjRv4SypQmcpgHlmQCdm3PNAAWWBaZrwvUsoxFUP+kEMaIsk9eB
+         ppuHH5+0LKb0b9Bin0M0x6Yb/IjhBVX4kx9Eb3wyY4wYZJ7hucbjEh7ewZINAQRxcDBp
+         aQyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=I0UNyg7SfBu7IB1Z/cqaLgfxg/zRvB23e6ickTd/N9Y=;
-        b=8RRGOBURSpqcWTNgo5+zQzwEuNt67zDnQaWEv06OJQCTuWglFFRzca41sRb0oUQ02h
-         +986fNwW0nrluF1XUDw1Yhb4pl6jQ7Mc5mHgVLAaOQ2pWTGa+NuWKf04K7NnjrZfUDtt
-         T+XCVSHws/LYdbvYa9OI8Ws3gRDlRf0B1eoVVKpcfZzmAEOG1tRh5sPkVhwZ1IvkISx+
-         Dm5y1ybragxyuLjBCk47If8WXrl8skHsjhYvsaPTDxN56ekW02rx8e5Xi/x+E4BqyOYw
-         A21tMauDu5lroyiI7MIhdIon3jH/MOApIijPT/7wP2V3PFMdE6+M9hWOOIc443gtKQSU
-         RSeA==
-X-Gm-Message-State: AOAM532meZD6elWqBGfkQ8vVZyqd48RNVVZw7A+mQ9wg4d+XCOjIyTrt
-        +DHTHATf6XoUSUZy9Lq/DOs=
-X-Google-Smtp-Source: ABdhPJwlWs6hYo1HdTyCT7cOb+sHkPRysj8SXKISJJLWLFm5ARhQ9NWiMthV08TCaO5RdTX5ZL7tKg==
-X-Received: by 2002:adf:f28d:0:b0:203:f161:55ac with SMTP id k13-20020adff28d000000b00203f16155acmr9718468wro.209.1648223258190;
-        Fri, 25 Mar 2022 08:47:38 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id r4-20020a05600c35c400b0038cbd8c41e9sm7504769wmq.12.2022.03.25.08.47.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Mar 2022 08:47:37 -0700 (PDT)
-Message-ID: <09b8c4d2-6cdd-b41b-4913-f9f2f7f4d7c7@gmail.com>
-Date:   Fri, 25 Mar 2022 16:47:36 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=pH8jwkRR2EBSUE876H5S83gYnfy8uK8O5IjEsxRnLlk=;
+        b=8OOLieyyH754dgcvzJC+xSjGjOF94tQCKadTszcpcemkNBLnDeVZnwk0FkSKahPGyT
+         LotoXfGEe7kY9FJ7cnLTcnywk4S+Ftppp95G3u3HyzRoAr4TQwFQ72c/zjhYntpCfHD0
+         PTz34rvXDnOw/LcqtihvgAVeonJEoOJ3zuWTUrwyXhlqw7nTiK3mDuMNPHYf3cEvj/qo
+         KhAPflZTKOy5pE8GnJx7UsGCjfJo0yHPvUiXf9nad84HcdIemxsz5JgApCm0UWRBr4cc
+         FN/9oqRpm7oeVr9O2T2dVQBF/2on4XmtLBOQ/lbAV68D8Gc3pahdsyjNAqdL21+/N4FE
+         PD4g==
+X-Gm-Message-State: AOAM533eU3m5Z1OS+GXwNgxFiI9ofRwA28ruxWlzIc7iWgaCnKYpJnZi
+        p/srYaJnnvnH8rpeCQ0BsvMmUZf+Q5ZzRpQAc0E=
+X-Google-Smtp-Source: ABdhPJw8IWmEFgLYLrbS+ujzLt5zuVCEr0hbSOk5olz5mM3DUEjyefQBcko1zTzzL7inkkp6PgBBIANwN6YoPGmXtV4=
+X-Received: by 2002:ac2:4d5b:0:b0:44a:14c9:89fb with SMTP id
+ 27-20020ac24d5b000000b0044a14c989fbmr8288719lfp.345.1648223470693; Fri, 25
+ Mar 2022 08:51:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-19-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v4 18/22] arm64: dts: mt8192: Add display nodes
-In-Reply-To: <20220318144534.17996-19-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <1648170401-6351-1-git-send-email-u0084500@gmail.com>
+ <1648170401-6351-3-git-send-email-u0084500@gmail.com> <d2b431f8-9197-4a42-4ee2-4e771e20e0aa@kernel.org>
+ <CADiBU39RGQj1-+yK18mZf3MR78KACKqb2kAxkCFKGXKpJ6Nqxw@mail.gmail.com>
+ <e4a15ceb-c013-96be-48d1-e65267400463@kernel.org> <CADiBU3-gwsh5v1NLUYr_ovXwpUxQqgR61f-Jpc3G-zHs_yV4uw@mail.gmail.com>
+ <03999953-77c5-0272-7477-ab8a069b3671@kernel.org>
+In-Reply-To: <03999953-77c5-0272-7477-ab8a069b3671@kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Fri, 25 Mar 2022 23:50:59 +0800
+Message-ID: <CADiBU38zYM1Rw2inTJ_Pu2eWKKqp2Ybb-_+JUJfxfmLNu=kYvw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] regulator: rt5759: Add support for Richtek RT5759
+ DCDC converter
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8825=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8811:37=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> On 25/03/2022 15:59, ChiYuan Huang wrote:
+> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=88=
+25=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:47=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> >>
+> >>>>> +
+> >>>>> +static const struct of_device_id __maybe_unused rt5759_device_tabl=
+e[] =3D {
+> >>>>
+> >>>> I don't think this can be __maybe_unused. It is always referenced vi=
+a
+> >>>> of_match_table, isn't it?
+> >>>>
+> >>> I think it can declared as '__maybe_unused'.
+> >>> If 'of_device_id' is unused, then in probe stage,
+> >>> 'of_device_get_match_data' will return NULL.
+> >>
+> >> But your of_device_id cannot be unused. It is always referenced.
+> >>
+> > I'm not sure, but your assumption is based on 'CONFIG_OF', right?
+> > Only if 'CONFIG_OF' is not defined, then it'll be really unused.
+>
+> Is it possible to build this driver without CONFIG_OF? Did you try it?
+>
+No, my development board always  use device tree that's defined CONFIG_OF.
 
-
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add display nodes for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 111 +++++++++++++++++++++++
->   1 file changed, 111 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index a77d405dd508..59183fb6c80b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1205,6 +1205,13 @@
->   			#clock-cells = <1>;
->   		};
->   
-> +		mutex: mutex@14001000 {
-> +			compatible = "mediatek,mt8192-disp-mutex";
-> +			reg = <0 0x14001000 0 0x1000>;
-> +			interrupts = <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&mmsys CLK_MM_DISP_MUTEX0>;
-
-We are missing power-domains property.
-
-> +		};
-> +
->   		smi_common: smi@14002000 {
->   			compatible = "mediatek,mt8192-smi-common";
->   			reg = <0 0x14002000 0 0x1000>;
-> @@ -1236,6 +1243,110 @@
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   		};
->   
-> +		ovl0: ovl@14005000 {
-> +			compatible = "mediatek,mt8192-disp-ovl";
-> +			reg = <0 0x14005000 0 0x1000>;
-> +			interrupts = <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-> +			iommus = <&iommu0 M4U_PORT_L0_OVL_RDMA0>,
-> +				 <&iommu0 M4U_PORT_L0_OVL_RDMA0_HDR>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +		};
-> +
-> +		ovl_2l0: ovl@14006000 {
-> +			compatible = "mediatek,mt8192-disp-ovl-2l";
-> +			reg = <0 0x14006000 0 0x1000>;
-> +			interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_OVL0_2L>;
-> +			iommus = <&iommu0 M4U_PORT_L1_OVL_2L_RDMA0>,
-> +				 <&iommu0 M4U_PORT_L1_OVL_2L_RDMA0_HDR>;
-
-olv and ovl-2l binding mention that the node should be a sibling of mmsys, but 
-this does not hold anymore, correct? Chun-Kuang can you help to fix the binding 
-description?
-
-> +		};
-> +
-> +		rdma0: rdma@14007000 {
-> +			compatible = "mediatek,mt8192-disp-rdma";
-> +			reg = <0 0x14007000 0 0x1000>;
-> +			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-> +			iommus = <&iommu0 M4U_PORT_L0_DISP_RDMA0>;
-> +			mediatek,larb = <&larb0>;
-> +			mediatek,rdma-fifo-size = <5120>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-
-Same here, bindings says it should be a sibling of mmsys. Apart from that the 
-maximal rdma-fifo-size isn't specified for all SoCs including mt1892.
-
-> +		};
-> +
-> +		color0: color@14009000 {
-> +			compatible = "mediatek,mt8192-disp-color",
-> +				     "mediatek,mt8173-disp-color";
-> +			reg = <0 0x14009000 0 0x1000>;
-> +			interrupts = <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_COLOR0>;
-> +		};
-
-Same here, binding description needs fixed, please check for other bindings as 
-well. The node here looks good.
-
-> +
-> +		ccorr0: ccorr@1400a000 {
-> +			compatible = "mediatek,mt8192-disp-ccorr";
-> +			reg = <0 0x1400a000 0 0x1000>;
-> +			interrupts = <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-> +		};
-> +
-> +		aal0: aal@1400b000 {
-> +			compatible = "mediatek,mt8192-disp-aal",
-> +				     "mediatek,mt8193-disp-aal";
-> +			reg = <0 0x1400b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_AAL0>;
-> +		};
-> +
-> +		gamma0: gamma@1400c000 {
-> +			compatible = "mediatek,mt8192-disp-gamma",
-> +				     "mediatek,mt8183-disp-gamma";
-> +			reg = <0 0x1400c000 0 0x1000>;
-> +			interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-> +		};
-> +
-> +		postmask0: postmask@1400d000 {
-> +			compatible = "mediatek,mt8192-disp-postmask";
-> +			reg = <0 0x1400d000 0 0x1000>;
-> +			interrupts = <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_POSTMASK0>;
-> +			iommus = <&iommu0 M4U_PORT_L0_DISP_POSTMASK0>;
-
-No iommus mentioned in binding description.
-
-Regards,
-Matthias
-
-> +		};
-> +
-> +		dither0: dither@1400e000 {
-> +			compatible = "mediatek,mt8192-disp-dither",
-> +				     "mediatek,mt8183-disp-dither";
-> +			reg = <0 0x1400e000 0 0x1000>;
-> +			interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-> +		};
-> +
-> +		ovl_2l2: ovl@14014000 {
-> +			compatible = "mediatek,mt8192-disp-ovl-2l";
-> +			reg = <0 0x14014000 0 0x1000>;
-> +			interrupts = <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_OVL2_2L>;
-> +			iommus = <&iommu0 M4U_PORT_L1_OVL_2L_RDMA2>,
-> +				 <&iommu0 M4U_PORT_L1_OVL_2L_RDMA2_HDR>;
-> +		};
-> +
-> +		rdma4: rdma@14015000 {
-> +			compatible = "mediatek,mt8192-disp-rdma";
-> +			reg = <0 0x14015000 0 0x1000>;
-> +			interrupts = <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DISP_RDMA4>;
-> +			iommus = <&iommu0 M4U_PORT_L1_DISP_RDMA4>;
-> +			mediatek,rdma-fifo-size = <2048>;
-> +		};
-> +
->   		dpi0: dpi@14016000 {
->   			compatible = "mediatek,mt8192-dpi";
->   			reg = <0 0x14016000 0 0x1000>;
+But theoretically, you can also check of_device.h, if CONFIG_OF is not
+defined, 'of_device_get_match_data' always return NULL.
+If so, my usage is still right.
+> Best regards,
+> Krzysztof
