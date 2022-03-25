@@ -2,195 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59FBC4E6C78
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 03:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 165DF4E6C7F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 03:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357711AbiCYCWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 22:22:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55964 "EHLO
+        id S237443AbiCYCZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 22:25:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244651AbiCYCWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 22:22:47 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2137.outbound.protection.outlook.com [40.107.255.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991B4B188A;
-        Thu, 24 Mar 2022 19:21:10 -0700 (PDT)
+        with ESMTP id S235156AbiCYCZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 22:25:13 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2098.outbound.protection.outlook.com [40.92.21.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23706C1FF;
+        Thu, 24 Mar 2022 19:23:39 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=astcoqpozIxCXNF+sRX77GrHT61n9jbBJx0oX5z3fbXPZr8xCSmGmYa/45uM6UybVWRr5NCD/b8Wauqa71JFD961urubusR/d28Hw4Sj89WXP299MUj7QLKC48Gn4edJWE0gfd17WFSL/kFEvVT60rfEoy8nk0yDQBTu6DlQ+TULuJDaCZJQUwubuq6HjWFjhsUHmFEmPrkBWrk8Y3oyjGwbZnS2euKjTsw6rqkJs7TVOJG5S26rqyg9S4SUYy3UkEftIZcXxUKK1fIQvIHZ6hi5N4iEm/CccaFikl4uJTeg4iJrXOpGgdEBxANSRerFO7v7zs+Obny6HXkTdf99Wg==
+ b=cOZRTbIDRhoXCt+XwmNDE/8lVDGW+CIdbEwe0Hm7lOtyxaItA9N7RDXV6AQ+AhKygGd5LY/pze2UPZsfYbiSb7V/Jp4kQOsQc4nI3QjmE6Qcw+QQbbh0fJdpC15d9jLhn439zObIFJF98QX/QbR0jKLn949AjnPeyV3d96DS8XNh+ioSJKmzJG7kUOFfCsOrWSwlKbP9iBxHzTGqUdnc9TvqbjOmEhKAbbHEKUt9j3kiUGNGsDMPEIOf479GL+01MrcYvRn5ZguGzI0/+r7l+b6dq/soyjTQzScyTz9n/NhDTm5mxy6YMn18yI+1FVS44wKlhFl54zg3VYdHBFZDxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s3mlccGpZGMnrg8RyoEjEFeAM66gDb9ojzhSp7QdL4Q=;
- b=leOgh+BYlTvHPhXOw35jbLHqkbZIEFy5efTTwbS/xe1oh/NbQHWSKbgAw/NSmis3aJmXXmOR0YlJX28Usnz0O3VYLskj8j3q+EF83QOEr4YzMc9fcVPW7sjbb1L1UdgwTHA0f/PxngSOQ6MKjcqBVIQBZ0ooDGd5Ds5X031l7sQyynI1HMYKKaRq2Q356FO8TwJ/z8XqwLR31+6PjVmxhMKkowDqBd+Ha3zYkDBdMITKTAG3gOgKJU9yiQcnDs7pf8bPWqwwWl/iRP/2JU5RsUUk9MDUzNpImKWwHlY7ptbcCtlttFozzPGjmZx02LFOMyvM1UfIaAH0SzkUwdovzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s3mlccGpZGMnrg8RyoEjEFeAM66gDb9ojzhSp7QdL4Q=;
- b=x8bl/TkuRkbGRX3PQPXfTK1b89KdQWNSYIJDx98M70dhoGU1zHMyu94luD+7tCmlBcM0ZI12JtU/ni1cWT2g5wYxhvCpeHjcGBBskDnkqqHzEOas4QROnK7dHSotDMwlGwRqPVfvGqEEMIIIXvOUXAwAyHeyqBb6vodN4ZKbyfIxkkYDaqSiZNmjwQKeu4uwZDyJwmI9IJUJaaR0+fOCx8S8+l8KFnOFokzhGAEiN46OIY9LNVgZMDPnliCs20RabZzoaKIgDAlxGzSPYSy/8EJU9m9J1B1/MIsL31xvg3wnStv1lfa1RbXqHDWCR3UEgW2Y3mP/nJE6igR9WelmZQ==
-Received: from HK0PR06MB2307.apcprd06.prod.outlook.com (2603:1096:203:46::19)
- by SEYPR06MB5374.apcprd06.prod.outlook.com (2603:1096:101:69::13) with
+ bh=TM2BA1KNZ284jm826Q36hrgubyHLIzmQMZClZBZcyR8=;
+ b=bvjrJXQeTUiUtnvEVz1pLvZH4rJ8gNfH7VP1v1xVE8y1PRAlc/y26Wvly/dXHLrlSwpTVJYPWEEx6BPDiyRRLTfsrtYOrF+aiOlGExpf9vahAUEj1VjW4rZbNT3Z0GiQVZvZ17TPkj2i27oBxvQsYnatyuxblawZa9IZxzGXLl2OUi+2YOBEyL0dzusoO4OtPyhw/HlOxwOLKkiRhsJU2ljsaMl70C+Qia1tCf8YX6uy123Kc/69H22JkOAAFd9ruyTUi85i7hbbsqGU61huqr1sVCe745zDh+2QkKEegV9aJaZuIhKTLBeRxKQavh2Gle18j3aizyAI4mkpIFawPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from CY4PR04MB0567.namprd04.prod.outlook.com (2603:10b6:903:b1::20)
+ by CH0PR04MB8002.namprd04.prod.outlook.com (2603:10b6:610:f8::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Fri, 25 Mar
- 2022 02:21:07 +0000
-Received: from HK0PR06MB2307.apcprd06.prod.outlook.com
- ([fe80::e89b:474d:4944:ca2a]) by HK0PR06MB2307.apcprd06.prod.outlook.com
- ([fe80::e89b:474d:4944:ca2a%6]) with mapi id 15.20.5102.019; Fri, 25 Mar 2022
- 02:21:07 +0000
-From:   Howard Chiu <howard_chiu@aspeedtech.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Troy Lee <troy_lee@aspeedtech.com>
-Subject: [PATCH v2] ARM: dts: aspeed: ast2600-evb: Support KVM
-Thread-Topic: [PATCH v2] ARM: dts: aspeed: ast2600-evb: Support KVM
-Thread-Index: Adg/68fK4pllKk/wTtW7PW2KKw5/Xg==
-Date:   Fri, 25 Mar 2022 02:21:07 +0000
-Message-ID: <HK0PR06MB2307383743B9AE1D714A899BE61A9@HK0PR06MB2307.apcprd06.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 944c993d-ef46-416e-03ae-08da0e061ed3
-x-ms-traffictypediagnostic: SEYPR06MB5374:EE_
-x-microsoft-antispam-prvs: <SEYPR06MB537468B184ED998BF187517BE61A9@SEYPR06MB5374.apcprd06.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: qWx2p1g3n6yXIV0cheD3h7OR9MtvpD7Dt7z8oL+ZCAhqeRQz8lGxh4KnOn51O07zdOvyhY2+YZ44PPJmQR9b29qDdN4TcwRkEOy0a4N9f2nhUfGRxcTGop0uFb2p7RNj+JA5GlT9FKi3pBFfZn8IiEDmH1fzsQb0VSRhe7tm55GsZqFeWqV4RuT8fAatDpVHHhhUW5iAH1w+l7LVE6kLfpeleLqxClkTlOpcECNp/hKlcV7T+n/QlRiEqtMVLPOHCEgoHSgTKt53cLQPE18yUhlj7vbZDLoTTDIpekYI9t+WSlwwke8IYqNdexa2p2CUlPyq4TMGIxSCf23w8QZ8Md84Exi8PTHj/cV9rH94r7w6QlqSD7fVRg63a7tNRtE9dlIh110x93UiicBEftETwXWZxKirzN4rc/V+uS/vbBWO08svojh4AJAOmSkxwrVlpEjNSMxhXpsS/FnVVdzG6MzFc43uJX5GiQLGNfkpBL5HP4eE7x4x4d0x0xDKdmUDZOvLPF5B6o/QQ2c0QUELSjDlZJ/BKEwHWCaqax3cStFGcS0EELCOoezvI5ugNTtgvyQkqfHeazPa+SbM5+gzrJkuL44d9gDMPM13Go234lM5otK4Rvo4lV7yFdZsJQ/5YuSAAc6xCpMsW66ZBZcGiE05BuFbpD7X2GevqL7Syr2B1LQRitGOPeb3BxnkmzDKFNFC7YYdtYeS/Czdvw0aQg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB2307.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(346002)(39850400004)(376002)(366004)(396003)(136003)(83380400001)(9686003)(508600001)(8936002)(110136005)(64756008)(38070700005)(5660300002)(66446008)(66476007)(7696005)(33656002)(6506007)(71200400001)(26005)(107886003)(186003)(55016003)(122000001)(66556008)(316002)(38100700002)(52536014)(8676002)(4326008)(76116006)(2906002)(66946007)(86362001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RfotvJ/iQjEEtv4nQnIxGt3x9/8PHyUvpJWJ26+78UVcTUUqM05Y81+IWfGD?=
- =?us-ascii?Q?UB4GwsFft5FDq49xWzyExts3MwRqopglhx09cfc2IgOep0LW3VzSKj7t+vKU?=
- =?us-ascii?Q?GMrTciLH+cq1IE5sakdr4+0LeWJ9w6YZHEAYWI4pM6MqcfJbC6vs0vrm4qCx?=
- =?us-ascii?Q?YC4aaJUEm4So/J0q1pFD8tGckbOqR+UfuCEzvXhUSbgWjaVy+5eycDAxrT0/?=
- =?us-ascii?Q?VwZ6vxh19MRMF9Qr2JzR1PnF2gW11fR+jYWcctTtn2ocB5Irh+Y5NcsSBy6Z?=
- =?us-ascii?Q?nSa5FFO4E23J8a+IZ6CEj5xQAYqkvV7JRq7tr8NPVExc0vVIy6mgYsPYDvi9?=
- =?us-ascii?Q?xmXHnBBYI1bphkty0DzEedfqE9ihRnCWe09oJhSMG19KD+ZF9gnqAjLmf3vU?=
- =?us-ascii?Q?/jgY5umKx92fYLSdb2y1PLInuMEDt8CdSdcO6bpI9w4Gw9HUfPVETbqkTjl8?=
- =?us-ascii?Q?tju5D10/igB/MwqtTr9f08x2mmGzWY7OIEf5z64pt5tvYj3BhHae30axeG9N?=
- =?us-ascii?Q?3VJCjFNN2WIJyed3kfMVn+MboiJjrHbDAOKq8tVrMkeIJ/EhUjguDVbqD3ys?=
- =?us-ascii?Q?j05R65RfutX/aZEbLO1GJ6JwBcHgIG6GAsuNCADCgVueCnimYJXU80LJcgvT?=
- =?us-ascii?Q?MKmRO8UM65TY7wXh0A3fTqp3fS00eHL0wVT7uwEW02001yeBHaguNi1hioLC?=
- =?us-ascii?Q?ovS3LISWC66FT/D0Tdti4/t7cUuBZQA96tTg07hJq3gtIpd2rHCPPJ+yG947?=
- =?us-ascii?Q?WzIkr8r2WdTk5FC1/IQUZ64Q94kUfXvQhkxai/hvocC0+sJ/522KcT7nDsRt?=
- =?us-ascii?Q?1Y58i9xC1AcI1F0ghVZipKXrwUiVEor9PEyUJnVGB0r9PCRZQLrT0fRiT6hx?=
- =?us-ascii?Q?SDCmeHg5qazjD6wBbEWw14cOkCxElymxiY7EQ4aANjcD87HJywy+uHqWJqwg?=
- =?us-ascii?Q?WfZhNS6eZLxs27Ou4r7xslrc7rEDsEonv/WxZaSOxeP+XGVku6J3+kEUgBqI?=
- =?us-ascii?Q?uuzT/jYdIZN/8r+jFTPo9KerCTr1qR/HqGY15IA8vLJVlHgs+xpf/UPxvEL8?=
- =?us-ascii?Q?9Sw0qUGxunP1lDTKyHDlTUZezA1DRUtwajDnNoEj+UMn1WzUMjwlnXNGobm8?=
- =?us-ascii?Q?aC/UXpxkQQVnuahGLq5YDgXclOHHryvMk0+RAPsujtfFDzb7ywAg3fkDCw8Q?=
- =?us-ascii?Q?eu9uu9+iJdpwG3K2Vee1YKNjbs1LPoxXRw+9PhSFztRLTcNWyGetiOwfBwTz?=
- =?us-ascii?Q?Og0/m6QmanXSfQ+qi3n8Jp+L5L1RBCYt35kNAHtetF90/kxz+AkOiZ5JMeuU?=
- =?us-ascii?Q?xwUc8XAQjDkoIzcvGvt9XXWE3knKpBL9H3ejrQd1ugL2v8GfLAOu/b/lvmiO?=
- =?us-ascii?Q?ovOrB9/POnC/2gfycxeLCJsrmvx2VpUbvy9C9Fd/wP+ZXZwh37UXKg/O47Wg?=
- =?us-ascii?Q?hsbrsLXFJqY4WcnUCUWfRgRhGQcfGF+d8fxw/JzqkhUiblLW9jvKaQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17; Fri, 25 Mar
+ 2022 02:23:37 +0000
+Received: from CY4PR04MB0567.namprd04.prod.outlook.com
+ ([fe80::451b:e5ed:c1a3:4070]) by CY4PR04MB0567.namprd04.prod.outlook.com
+ ([fe80::451b:e5ed:c1a3:4070%5]) with mapi id 15.20.5102.016; Fri, 25 Mar 2022
+ 02:23:37 +0000
+Subject: Re: [PATCH 7/7] ARM: dts: s5pv210: Add charger support in Aries
+To:     Krzysztof Kozlowski <krzk@kernel.org>, alim.akhtar@samsung.com
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <CY4PR04MB0567E33A07D8761C2D485327CB179@CY4PR04MB0567.namprd04.prod.outlook.com>
+ <20220323150311.26699-1-xc-racer2@live.ca>
+ <CY4PR04MB05671BD0A7FF349E8B04EE84CB189@CY4PR04MB0567.namprd04.prod.outlook.com>
+ <2eee2611-d618-3fe2-4315-c57a26de6b21@kernel.org>
+ <CY4PR04MB0567BD17C2EED0CAFA044020CB189@CY4PR04MB0567.namprd04.prod.outlook.com>
+ <c96f889e-cbd0-4221-fcff-ef0cf93236d2@kernel.org>
+From:   Jonathan Bakker <xc-racer2@live.ca>
+Message-ID: <CY4PR04MB0567DDA596E9E124C80DBF0DCB1A9@CY4PR04MB0567.namprd04.prod.outlook.com>
+Date:   Thu, 24 Mar 2022 19:23:35 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <c96f889e-cbd0-4221-fcff-ef0cf93236d2@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-TMN:  [sFvN5UMRvW/s8VlRi56DERPc/rSPFt6tuMzKdLx/ARNTxpI+koQIz5CyWYC2UhkA]
+X-ClientProxiedBy: MW4PR03CA0025.namprd03.prod.outlook.com
+ (2603:10b6:303:8f::30) To CY4PR04MB0567.namprd04.prod.outlook.com
+ (2603:10b6:903:b1::20)
+X-Microsoft-Original-Message-ID: <c4095185-7861-479c-6041-b81d63e58aef@live.ca>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 926553a0-9239-41e6-16fb-08da0e0677f8
+X-MS-TrafficTypeDiagnostic: CH0PR04MB8002:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iwS1E8T/lA2yzojDeDl1U2P01hxHLVMiD8fn4LtkyG3hwpu+aMqC8G4ljk7E4T0Nq+8FZnclWd0ha448uoyQ/GN34bKPeTCOqCQBzJqCD5Q7jzKbcgaCdulioK9Q0BeBSlOttIo/lOamsGPkYxR5XCVtqYiqsDIdIbhGQu4pT8lAIUKbL+50ooKVf9W3yLcK7ksGJjQ6sgwAJB8GMY25dhnycVMmEwTzxu3TXLZB+vJc6znwZi8jIFFCVtDtBuySQo2dOeWWEXVZAQMzVcMHX8EhmVTEAsBJY0IqQQAcTagb8Tz1PL45qO4OXFV4yugRjWLDOtDVgM/5Z0nxVHoLaldEuSzWGX73ngUB4gC0hCjaNQ0l3YnipJiwGrfBjZhyKsgeWZBXFj4w9FLPbKmmXdE8bJhezUWBEWEls69KHJ83kkMUqE/BdRyYlUHPEJVLJfqeec9P5FQHBZZC+Tr9GSJTthf02BLPA9Egxl6EXVKgdtuVWoZkgNmd39NbmAzwp5ayI5fSdCq7DeWZFajg3U4944MDzDAe7V0B9+5ytghHVeLT0uXWYp0SbBYwp5Z2FzyOEfM9HnDMwKkMZFs/Ag==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUtWakd4Z0R2NDdybkZPNDU5R3hiMjBTdHV3bDdLNUUvSkdmclRXdTB1WGFI?=
+ =?utf-8?B?MzY0bHl5N2NYRjBSejFqS0hLbk5qZDNITEliK0s5N1U0ZHNOVEtGOG9QSDRq?=
+ =?utf-8?B?TjIzN0YwR2RmR0h1TVBNemhXN1c5eWEzamhSWTFjR0JURGZSQWhLR25neFVT?=
+ =?utf-8?B?RmIwa1IrNS8zWmpKZmtNSDFOQUcrbFVLUjRpTy9OdXFIeEJzK3dKVU0vTnZh?=
+ =?utf-8?B?L1lDczh0RzJodHpmTjVJK1VVNFF4cWFjVmdXSXVCU0ZzUitjYk5NV244YzRL?=
+ =?utf-8?B?ZEVYeldWcU9McjNBT1B2T09PQlI3OTlNMzhWdkFsRkxBZElXY2w0SUhOVjF6?=
+ =?utf-8?B?L3N0V1hWYXpPNlJsd3NpazJCcmJUK2pnSWxVYitGc1FHc0FqZktpY09HQVM0?=
+ =?utf-8?B?RXpNQm1wbWNpWHcrTnNKLzU2cFJTSlVlMUdicnJ5aXkzL3BuaHFxL3VvNUFE?=
+ =?utf-8?B?SDRXbm55VmZNSGJjbFdFWTc2dll1ZHFXRlFCSGx0QklLdmdJYWpnSkN3UktT?=
+ =?utf-8?B?K0NJdUlSekZWU2IwenIwcGttZDBnUisxR3VaMEt3cm8zUWtleCtSVVNCYjd4?=
+ =?utf-8?B?cFFFOEN3YndibGJHNXNHYStYZ0NIa2pCZ0VmV0RKMTRGa3cyWWpROU9TUkRC?=
+ =?utf-8?B?TEdIM2tyZS93OGdTTWIvbHBRT3l1dm1Vb0toS1Noa0d4ZElrYkM4K01zM0Nq?=
+ =?utf-8?B?cncwSk4wNFZ6SHVGTTg3cFdpY1VJWmtDMjBvMkdMMkt4RTVwOTZ2Q1dNRk05?=
+ =?utf-8?B?dlRUcjdGSG52ayt4MTJwUkpZeGk0blQzSFZ6VXJ2bnIwM1ZQQ3VkWWc4cEM3?=
+ =?utf-8?B?d1FRUWtTS1RYR3MrZVhhSmV4SlkwNE9QbXZSYk5NRS9XaWF4eEtXNlhSdldY?=
+ =?utf-8?B?Y1JoRndrWm9udk5rZWNHZis1Q1dlOHk5K1Z0R3cwaUtHZ29nWm0rYlVqVG85?=
+ =?utf-8?B?dkp6cmNxcHdqM0cxWWlqRnFPeXZBN1U2UlVmYWZHWWV4Q0tCWHVYdDFaazhR?=
+ =?utf-8?B?Ymo5VFdHbTdJUjk5TXJRem5Ua05jOCt0UGRSM1cyRVpkdWpZOXE4WXpHMWlC?=
+ =?utf-8?B?SkxLUndid1VPVmR6N1hUcGFpckp6Mi9NNmk5aHFmNFdXMkNyNEhWZ0lDMGlP?=
+ =?utf-8?B?WnB5WmwyTktDRG9BWGQxM0d1cCtqVGVlQk5ldWIwOGk4aVc4K0k1V1JMa2R1?=
+ =?utf-8?B?Y0xSdDdZUUpTSVJsazdvVFA1NUpMeVdmemgwdC94d1ZUZmoyWGxoZTM0Q2x3?=
+ =?utf-8?B?ZVh6VXNYWkl5UEdIdDBIOFdoWlc1Tk1EeGFDZkx2dXNvT0NaQWloMFFPbEtO?=
+ =?utf-8?B?b0JQZUhDaURqb1hSSmphOVdxakExQkRZM1h6RVZkVC8wVG54b3FnNjhvMlNQ?=
+ =?utf-8?B?azlQU1NzREd5QzgyS210WXo3WDdNNnIzaDFORzg1a0xwR215UHMvOGRWYjZQ?=
+ =?utf-8?B?ZG5rYUczdElCZkZ2RWVsK3dKR3lQTXFOWWVtbXZERXoyMHpNN0lHTjNERTds?=
+ =?utf-8?B?YS9WNklWN1VwZW9ZZUZTTTEwN0RuMHZjTVZ6NXpzbXE0c0Nmd1RvMmt4aWNk?=
+ =?utf-8?B?c2NSK3VsWHg0anE1NmpsdjZpMEYxVVZpWDdOUkRzbkFnTGFncFlDYnlvZVBF?=
+ =?utf-8?B?WDRENlZrUU10cE5TWGFybXdnMWg2cVZnK1h3Y0pUNVdEK3hWZldmaUFTSXhS?=
+ =?utf-8?B?NkJia0NOMHRjVHdWZUlvbFZnZG1rSGk2bGcyV2NucW9RbFBCdXdmWkNWNndH?=
+ =?utf-8?B?UXdmM0ZkNk1FR0tYVHFxMFhsWjNrTElRR3ROTWZSaG5MM0Q0V2YvbFB1YVlo?=
+ =?utf-8?B?NDQ3bFkxWXg2N3RKclc1eXRKRlIwRjBNcmpUaW82cVdTRW5QQXRRVTBlZ0Vt?=
+ =?utf-8?B?d3VDb1ZxaEg3UDNHZmFOS2pUYTJOZ0dwdGNXcHR4cnNITDZXdFhla1cwSVNY?=
+ =?utf-8?B?RmZrZnF1ejNwT2ZBOUlYbDNXM0JRd0lUNHRmazZ4RjdheUdiOTIzV3QweHpw?=
+ =?utf-8?Q?LzFYgjUhpcuCbbf+kqMSYq51ycJA2o=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-edb50.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 926553a0-9239-41e6-16fb-08da0e0677f8
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR04MB0567.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB2307.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 944c993d-ef46-416e-03ae-08da0e061ed3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2022 02:21:07.4834
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2022 02:23:37.8717
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nsGx7OksytZBpX/2wV3wF8jEleV+DKkr/RMqbPz/d85uHE0TpPS80rdctpMBLSi3Z9vymfd6Odk8UYL2JO4Rgq8UxD5S9hB5uWslhnNx2iM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5374
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR04MB8002
+X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable video engine and reserve memory for it.
-Enable USB/vHUB for HID support
+Hi Krzysztof,
 
-Signed-off-by: Howard Chiu <howard_chiu@aspeedtech.com>
----
-Change since v1:=20
-1. Remove video engine node and reset definition.
+On 2022-03-24 4:47 a.m., Krzysztof Kozlowski wrote:
+> On 23/03/2022 18:20, Jonathan Bakker wrote:
+>>
+>>
+>> On 2022-03-23 8:31 a.m., krzk@kernel.org wrote:
+>>> On 23/03/2022 16:03, Jonathan Bakker wrote:
+>>>> Add charger-manager support to Aries boards to allow safe
+>>>> charging of the battery without the need for userspace control.
+>>>>
+>>>> Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+>>>> ---
+>>>>  arch/arm/boot/dts/s5pv210-fascinate4g.dts | 162 ++++++++++++++++++++++
+>>>>  arch/arm/boot/dts/s5pv210-galaxys.dts     | 144 +++++++++++++++++++
+>>>>  2 files changed, 306 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/s5pv210-fascinate4g.dts b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+>>>> index 7427c84f1126..9530231b7a70 100644
+>>>> --- a/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+>>>> +++ b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+>>>> @@ -57,6 +57,168 @@
+>>>>  		pinctrl-0 = <&main_micbias_ena>;
+>>>>  	};
+>>>>  
+>>>> +	thermal-zones {
+>>>> +		batt_thermal: batt-thermal {
+>>>> +			polling-delay-passive = <60000>; /* 60 seconds */
+>>>
+>>> There is no passive cooling device, so why do you need it?
+>>>
+>>
+>> The charger manager code needs a passive cooling device, so that's
+>> why this is present here.
+>>
+>>>> +			polling-delay = <600000>; /* 600 seconds */
+>>>> +
+>>>> +			thermal-sensors = <&batt_thermistor>;
+>>>> +		};
+>>>> +	};
+>>>> +
+>>>> +	batt_thermistor: thermal-sensor-0 {
+>>>> +		compatible = "generic-adc-thermal";
+>>>> +		#thermal-sensor-cells = <0>;
+>>>> +		io-channels = <&adc 6>;
+>>>> +		io-channel-names = "sensor-channel";
+>>>> +
+>>>> +		temperature-lookup-table = <
+>>>> +			(-20000) 1859
+>>>> +			(-19000) 1846
+>>>> +			(-18000) 1832
+>>>> +			(-17000) 1818
+>>>> +			(-16000) 1804
+>>>> +			(-15000) 1790
+>>>> +			(-14000) 1773
+>>>> +			(-13000) 1756
+>>>> +			(-12000) 1739
+>>>> +			(-11000) 1722
+>>>> +			(-10000) 1705
+>>>> +			(-9000) 1691
+>>>> +			(-8000) 1677
+>>>> +			(-7000) 1663
+>>>> +			(-6000) 1649
+>>>> +			(-5000) 1635
+>>>> +			(-4000) 1550
+>>>> +			(-3000) 1510
+>>>> +			(-2000) 1500
+>>>> +			(-1000) 1490
+>>>> +			0 1480
+>>>> +			1000 1470
+>>>> +			2000 1460
+>>>> +			3000 1450
+>>>> +			4000 1430
+>>>> +			5000 1420
+>>>> +			6000 1406
+>>>> +			7000 1386
+>>>> +			8000 1366
+>>>> +			9000 1346
+>>>> +			10000 1326
+>>>> +			11000 1302
+>>>> +			12000 1278
+>>>> +			13000 1254
+>>>> +			14000 1230
+>>>> +			15000 1206
+>>>> +			16000 1182
+>>>> +			17000 1158
+>>>> +			18000 1134
+>>>> +			19000 1110
+>>>> +			20000 1086
+>>>> +			21000 1059
+>>>> +			22000 1035
+>>>> +			23000 1011
+>>>> +			24000 987
+>>>> +			25000 963
+>>>> +			26000 937
+>>>> +			27000 913
+>>>> +			28000 889
+>>>> +			29000 865
+>>>> +			30000 841
+>>>> +			31000 816
+>>>> +			32000 794
+>>>> +			33000 772
+>>>> +			34000 750
+>>>> +			35000 728
+>>>> +			36000 708
+>>>> +			37000 690
+>>>> +			38000 672
+>>>> +			39000 654
+>>>> +			40000 636
+>>>> +			41000 616
+>>>> +			42000 599
+>>>> +			43000 580
+>>>> +			44000 565
+>>>> +			45000 548
+>>>> +			46000 529
+>>>> +			47000 512
+>>>> +			48000 495
+>>>> +			49000 478
+>>>> +			50000 461
+>>>> +			51000 440
+>>>> +			52000 431
+>>>> +			53000 416
+>>>> +			54000 405
+>>>> +			55000 396
+>>>> +			56000 375
+>>>> +			57000 360
+>>>> +			58000 347
+>>>> +			59000 334
+>>>> +			60000 325
+>>>> +			61000 311
+>>>> +			62000 303
+>>>> +			63000 296
+>>>> +			64000 290
+>>>> +			65000 279
+>>>> +			66000 265
+>>>> +			67000 254
+>>>> +			68000 240
+>>>> +			69000 220
+>>>> +			70000 206>;
+>>>> +	};
+>>>> +
+>>>> +	charger_manager: charger-manager-0 {
+>>>> +		compatible = "charger-manager";
+>>>
+>>> Sorry, this is not a hardware. It's a hack to configure kernel charging
+>>> driver via DT which was made deprecated.
+>>
+>> Thanks, I missed the deprecation notice in the binding file.
+>>
+>> What would be the better way of creating a functional charging system?
+>> A new device-specific driver?
+> 
+> I am not sure, but maybe you could use charger-manager, just configure
+> it from user-space (or add such features). Better ask power supply
+> maintainer. But anyway charger-manager is mostly abandoned. I don't
+> think anyone develops it.
+> 
 
- arch/arm/boot/dts/aspeed-ast2600-evb.dts | 39 +++++++++++++++++++-----
- 1 file changed, 31 insertions(+), 8 deletions(-)
+Yeah, I made it so that it could be probed a year and a half ago, but
+there's been very little use of it - there's no in-tree users of it that
+I can tell.
 
-diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/a=
-speed-ast2600-evb.dts
-index b7eb552640cb..d535a711bf5a 100644
---- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-+++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-@@ -23,6 +23,19 @@ memory@80000000 {
- 		reg =3D <0x80000000 0x80000000>;
- 	};
-=20
-+	reserved-memory {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <1>;
-+		ranges;
-+
-+		video_engine_memory: video {
-+			size =3D <0x04000000>;
-+			alignment =3D <0x01000000>;
-+			compatible =3D "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+
- 	vcc_sdhci0: regulator-vcc-sdhci0 {
- 		compatible =3D "regulator-fixed";
- 		regulator-name =3D "SDHCI0 Vcc";
-@@ -250,14 +263,6 @@ &fsim0 {
- 	status =3D "okay";
- };
-=20
--&ehci1 {
--	status =3D "okay";
--};
--
--&uhci {
--	status =3D "okay";
--};
--
- &sdc {
- 	status =3D "okay";
- };
-@@ -300,3 +305,21 @@ &sdhci1 {
- 	vqmmc-supply =3D <&vccq_sdhci1>;
- 	clk-phase-sd-hs =3D <7>, <200>;
- };
-+
-+&ehci1 {
-+	status =3D "okay";
-+};
-+
-+&uhci {
-+	status =3D "okay";
-+};
-+
-+&vhub {
-+	status =3D "okay";
-+	pinctrl-names =3D "default";
-+};
-+
-+&video {
-+	status =3D "okay";
-+	memory-region =3D <&video_engine_memory>;
-+};
---=20
-2.25.1
+>>  Userspace monitoring of temperature/connected
+>> device and extensions to the max8998 driver for enabling/disabling/configuring
+>> charging via the power supply subsystem instead of the regulator subsystem?
+>> Something else?
+> 
+> Enabling charging via regulators was done only for some drivers, I think
+> for charger-manager. I don't think it is the recommended way now.
+> 
+> Everything should be controlled rather via power supply from user-space.
+> 
+> How postmarketos or lineageos are doing it?
+> 
 
+It's quite varied, but I can't find any examples of a userspace
+daemon watching temperature/connection type, although it should be
+fairly simple to implement.  A few examples:
+
+- Maemo Leste uses a plugin to their MCE daemon to shutdown on low battery
+- postmarketOS uses whatever is in kernel and whatever the DE provides to shutdown
+on low battery
+ - It also has a power stats collecting software, IIRC, although this might be DE
+specific
+- LineageOS/Android has healthd, but this appears to be more for gathering stats
+
+In terms of in-tree examples, there's quite the variety:
+
+- The AB8500 driver (used in some STE phones) is fairly similar situation,
+with separate fuelgauge, charger and temperature drivers bound together by
+an "algorithm" driver that checks temperatures and what is connected (very
+similar to charger-manager, but specific to that HW).
+- Nokia N900 has temperature reading integrated, but no shutoff
+- Pinephone/Pinetab appears to have separate USB/AC charger drivers and
+a battery driver, but no temperature monitoring.
+
+So it rather looks like there's no consensus.  I guess I'll do some more research
+and drop this patch for now.
+
+Thanks,
+Jonathan
+
+>>
+>> The way I understand the charging system, there is
+>>
+>> - The fuelgauge (max17042)
+>> - The max8998 charger portion, including the ability to vary the current
+>> - The thermistor for checking battery temperature
+>> - The FSA9480 to determine what sort of cable is connected
+>>
+> 
+> Best regards,
+> Krzysztof
+> 
