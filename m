@@ -2,104 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05BE34E7675
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:14:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC2EB4E7731
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:26:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350540AbiCYPPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 11:15:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34166 "EHLO
+        id S1376637AbiCYP1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 11:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377374AbiCYPOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:14:16 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64B3652D8
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:11:50 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id s11so6641691pfu.13
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:11:50 -0700 (PDT)
+        with ESMTP id S1378880AbiCYP0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:26:00 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40EF3673EE;
+        Fri, 25 Mar 2022 08:22:29 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id r1so6434806qvr.12;
+        Fri, 25 Mar 2022 08:22:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AA0RIphE1PJLLtUanm5oTog2K49TCs//CGuoWg4e8Hs=;
-        b=hzanffi7zrkFiMc7YDN8omOPXMSW+M0ZOEfvqWuXPxCrcNdflUTtNYfzG6eR5hMpsr
-         CWFF/nfWfOH0KtxqtX+80udGtxAKFMABFLKwqvI+U1QD2fFIYpTf3QyyKOQ8SSJilGmI
-         0x/CLU0IR8aNmQdf2uzRTG/1wjrnmeaeG7eBg=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Nr3DeqonwwMb9/SDbQnlHBzrqz5hNGIQ0bi9+OQD5LE=;
+        b=I8ihO790T510KhQJWcw/xy+FXCvvY800WdiGxnAuxv+9UIxYIcbk5qRfa96ASujkqD
+         YnLZBrFUJdko3+qJHqcLnJ8YKCVn03Dt9d/vk7FYZbZJjzTmr8cfAe80fjbtx2Ufao3T
+         g820Zhc8CIFXmNolov7zEknYK3M08mP4OzHHiE0lBjG7BC+7SM0opObd0cvKjoEXz0O6
+         xw68ll2dP6cmRcgZjAA3QlD8qZ7zRsT3iMwzMmmUcEg1U+DEVYbuQtxaqW9Ol/yqDS+s
+         roA+gOkfJ8pbbZrGvRTH+Lk4oWUoJW/uGpdSgoCZwV4eulIV/XjaAfPm4rjAk1aFmxhI
+         tO0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=AA0RIphE1PJLLtUanm5oTog2K49TCs//CGuoWg4e8Hs=;
-        b=ROzHnndmYzzNLIz/hGJ2vwc23guoTTY2B51vmo3T+XLuBJgqCSyY52GkdB85hmHixT
-         ygbyva5lgFc+Z1LONi9yJ0IfxWAZv0nzsYkbU/oL169tVFo/4JudHgOf+RcM1f+7E03c
-         Ds6mft7uEqEUbuB8WtapDM//i15uHaUpRpyxgjwZFUXYT2Ncn4Og82Y93KcVhaa4/nTi
-         CVlv2VL+Anu7pQs5aKPrrb6hgWcopllMOWBmu2pjpqYyOhIS0R6RaZJSoODtkRGhpYc0
-         YGBAIGFnlNjTzrrM8eagSLRjOqT5HZaxhQJT8IsclIWbwYl8TGWJhbKyMcfYfqxdLzCx
-         abog==
-X-Gm-Message-State: AOAM530BiQrhBIUeydQDxVABmyhI0KT5rVirs4G1+lG/ky1bN02c1DeV
-        ipNPe0LVG/mri7jbiGEdORqhDg==
-X-Google-Smtp-Source: ABdhPJz3TexA8bi1jVv6urswawRRrftx4duACSg9G5izC8NbIevfzzjsI+39mHC+vogvBFcZz2ffvg==
-X-Received: by 2002:a05:6a00:9a7:b0:4fa:ebe8:a4b3 with SMTP id u39-20020a056a0009a700b004faebe8a4b3mr9621244pfg.11.1648221110411;
-        Fri, 25 Mar 2022 08:11:50 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:c95f:cacc:f8c:e361])
-        by smtp.gmail.com with ESMTPSA id o15-20020a17090a168f00b001bf66741097sm6399479pja.16.2022.03.25.08.11.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Mar 2022 08:11:49 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7280-herobrine: Audio codec wants 1.8V, not 1.62V
-Date:   Fri, 25 Mar 2022 08:11:05 -0700
-Message-Id: <20220325081100.1.I9f06fec63b978699fe62591fec9e5ac31bb3a69d@changeid>
-X-Mailer: git-send-email 2.35.1.1021.g381101b075-goog
+        bh=Nr3DeqonwwMb9/SDbQnlHBzrqz5hNGIQ0bi9+OQD5LE=;
+        b=i3OeIKmIUd/cfGjY0FV1+PjiS5Y1vWtMj0PZmJxZeXq1w8Zrsak7891SuAEtAuiq3H
+         sy3qqgM87fUS3lLI1WgqQ33HTbCWhTJ6WS4Xfm1EFDDcCBkTW/vSFFPcKVfSIAabIYAe
+         S+UZUzEuiDwBpvCVr3O0qO7kWO6cIRbaPoITeIFPhQk8dRqQQqWmGqgxdKRfwg9m1dPT
+         X/kbXgWMgpYoqiJPSgRPbOA/YR2p0n2aa/ERgxb45AK/PJbx2w1ouL7Vh05o1ooIQWWF
+         RJUIMu5rQPVZsJj2fZzRl1CQ8zIO3SWd0I+MYMgu03UDSrcm7+oBozWZRGyvHzjLYO99
+         6NqQ==
+X-Gm-Message-State: AOAM5313k4E5NMLx/+p3TngrfwxE9VGv5ltrSyBzXC6WNdYYxRYWOpfy
+        eV6gN/rZczn09fJg/VI7pZ4=
+X-Google-Smtp-Source: ABdhPJytk6+Rgin+foiO9o9b3FUr7XdAI6fUfyHnb/q+96PuY8usYRfj3OG1kDe0fWKXu9O0cBZuiw==
+X-Received: by 2002:ad4:5a11:0:b0:441:1485:33ff with SMTP id ei17-20020ad45a11000000b00441148533ffmr9233225qvb.127.1648221748311;
+        Fri, 25 Mar 2022 08:22:28 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id j8-20020a05622a038800b002e236535929sm5327375qtx.32.2022.03.25.08.22.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Mar 2022 08:22:27 -0700 (PDT)
+Message-ID: <70350446-9e89-3c7b-d515-22cb2ed5a9ca@gmail.com>
+Date:   Fri, 25 Mar 2022 16:22:24 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 16/22] arm64: dts: mt8192: Add vcodec lat and core
+ nodes
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>
+References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
+ <20220318144534.17996-17-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220318144534.17996-17-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The L2C rail on herobrine boards is intended to go to the audio
-codec. Let's override the 1.62V specified in the qcard.dtsi file to be
-1.8V.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On 18/03/2022 15:45, Allen-KH Cheng wrote:
+> Add vcodec lat and core nodes for mt8192 SoC.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 61 ++++++++++++++++++++++++
+>   1 file changed, 61 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 63893779b193..71ad3adeed51 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -1285,6 +1285,67 @@
+>   			power-domains = <&spm MT8192_POWER_DOMAIN_ISP2>;
+>   		};
+>   
+> +		vcodec_dec: vcodec-dec@16000000 {
+> +			compatible = "mediatek,mt8192-vcodec-dec";
+> +			reg = <0 0x16000000 0 0x1000>;	/* VDEC_SYS */
+> +			mediatek,scp = <&scp>;
+> +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0 0 0 0x16000000 0 0x26000>;
+> +
+> +			vcodec_lat: vcodec-lat@10000 {
+> +				compatible = "mediatek,mtk-vcodec-lat";
+> +				reg = <0x0 0x10000 0 0x800>;		/* VDEC_MISC */
+> +				interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> +				iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> +					 <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +					 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> +					 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> +					 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+> +					 <&topckgen CLK_TOP_MAINPLL_D4>;
+> +				clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> +					      "vdec-vdec", "vdec-top";
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index dc17f2079695..c2075f3e7c4b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -339,6 +339,16 @@ keyboard_backlight: keyboard-backlight {
- ts_avdd:      &pp3300_left_in_mlb {};
- vreg_edp_3p3: &pp3300_left_in_mlb {};
- 
-+/* Regulator overrides from Qcard */
-+
-+/*
-+ * Herobrine boards only use l2c to power an external audio codec (like
-+ * alc5682) and we want that to be at 1.8V, not at some slightly lower voltage.
-+ */
-+&vreg_l2c_1p8 {
-+	regulator-min-microvolt = <1800000>;
-+};
-+
- /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
- 
- ap_i2c_tpm: &i2c14 {
--- 
-2.35.1.1021.g381101b075-goog
+Clock names do not match binding description. We have superfluous "vdec-" 
+prefix. Same holds for mtk-vcodec-core. Anway I applied that patch as the driver 
+does not care about the clock name. In any case it would be good if you could 
+send a follow-up patch to fix the clock name.
 
+Applied, thanks
+
+> +				assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +				assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +				power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+> +			};
+> +
+> +			vcodec_core: vcodec-core@25000 {
+> +				compatible = "mediatek,mtk-vcodec-core";
+> +				reg = <0 0x25000 0 0x1000>;	/* VDEC_CORE_MISC */
+> +				interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+> +				iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+> +					 <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+> +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +					 <&vdecsys CLK_VDEC_VDEC>,
+> +					 <&vdecsys CLK_VDEC_LAT>,
+> +					 <&vdecsys CLK_VDEC_LARB1>,
+> +					 <&topckgen CLK_TOP_MAINPLL_D4>;
+> +				clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> +					      "vdec-vdec", "vdec-top";
+> +				assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +				assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +				power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+> +			};
+> +		};
+> +
+>   		larb5: larb@1600d000 {
+>   			compatible = "mediatek,mt8192-smi-larb";
+>   			reg = <0 0x1600d000 0 0x1000>;
