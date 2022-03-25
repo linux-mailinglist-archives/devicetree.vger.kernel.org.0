@@ -2,146 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 093094E70CE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 11:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA0DA4E7108
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 11:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241222AbiCYKLh convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Mar 2022 06:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33526 "EHLO
+        id S1358782AbiCYKUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 06:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358714AbiCYKL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 06:11:29 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867045715E;
-        Fri, 25 Mar 2022 03:09:54 -0700 (PDT)
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 22P8oIMP016467;
-        Fri, 25 Mar 2022 10:09:16 GMT
-Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com [169.51.49.98])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3f0gnk1qrh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Mar 2022 10:09:16 +0000
-Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
-        by ppma03ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 22P9w5Ql004280;
-        Fri, 25 Mar 2022 10:09:13 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
-        by ppma03ams.nl.ibm.com with ESMTP id 3ew6t94x4f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Mar 2022 10:09:13 +0000
-Received: from d06av25.portsmouth.uk.ibm.com (d06av25.portsmouth.uk.ibm.com [9.149.105.61])
-        by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 22PA9Bq149348926
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 25 Mar 2022 10:09:11 GMT
-Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8E84011C04A;
-        Fri, 25 Mar 2022 10:09:11 +0000 (GMT)
-Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E24A211C04C;
-        Fri, 25 Mar 2022 10:09:10 +0000 (GMT)
-Received: from smtp.tlslab.ibm.com (unknown [9.101.4.1])
-        by d06av25.portsmouth.uk.ibm.com (Postfix) with SMTP;
-        Fri, 25 Mar 2022 10:09:10 +0000 (GMT)
-Received: from yukon.ibmuc.com (unknown [9.171.95.248])
-        by smtp.tlslab.ibm.com (Postfix) with ESMTP id 4A760220158;
-        Fri, 25 Mar 2022 11:09:09 +0100 (CET)
-From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-To:     linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai@quantatw.com>,
-        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-Subject: [PATCH v4 11/11] mtd: spi-nor: aspeed: set the decoding size to at least 2MB for AST2600
-Date:   Fri, 25 Mar 2022 11:08:49 +0100
-Message-Id: <20220325100849.2019209-12-clg@kaod.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220325100849.2019209-1-clg@kaod.org>
-References: <20220325100849.2019209-1-clg@kaod.org>
+        with ESMTP id S239222AbiCYKUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 06:20:38 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5BAB6E35F
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 03:19:04 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id o10so14428313ejd.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 03:19:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=txfMDWQceDbgmOrEc+CTlnZSlzPPay3e29bbmFGpskI=;
+        b=aY/UlNLKFcwQI01npAcjm/L7wOLzS2xJ9Zw+MT1p3HNACImlKg70WPLKtmacFC5gTb
+         Xoc4FrJdHP7PQLoY0UEuhuaX5Vwyqrktj7Wa2sBTQwFhDG6gUhJ3ul8LMrL4sCHZ68sd
+         l+aY4QkwQfvVu5ngmZ70I9/AhkbFbwIkCrLZqSNqZh8notZEpsidKFpSagPFlPM33Qrh
+         MCCSJuO/jpN81ZAdQdvKAvnW8yjUimN2YyiH5G933lvB5D89+1LvRivokfNBdrebDj1/
+         oG1UgkYqp4+32YQtoBGYC7OQstec+bwYQfqoXyQj5uTSkDt7jZ/3mDQzNEahw80oQ6vn
+         pKrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=txfMDWQceDbgmOrEc+CTlnZSlzPPay3e29bbmFGpskI=;
+        b=W+GgzPhNG/kqmHOBuzaS5qj4jA0KEVLrXnpSiFnB4Q2PibxbD9gvTj+yAY4z1V7NGa
+         6Gx4zQniLA6W/Jvx2BJExP1Hmlyq16YBdApAm11kP8kWDRtxOEAUPyim1+DfGKyPeKKS
+         swsBomM/7EOzP2mqYKQGFLyVxHie1uLiPvwYsoz3GWqHI+ANOi+B39L0ALMYJ2oNlaBv
+         GKjnXkyzR4x9wPQp2+yDpAKSbQD7ZItfe+lF0Kk+0fPjHFALbkPFWYTOz8p5nh9j2Ltb
+         NbxzzHLjbWBmI2ZQ6GMkLVLImoiYZJOQApGK3S+UpUGc/Pf9DKe/eK2dHUJG4uV4DGn8
+         JjbQ==
+X-Gm-Message-State: AOAM532aKCLFb0UX8v4a40FdiMONCbbsX0cUWmFhwxNOxGrIpCLNkswh
+        sJ4u1quOBQciAAlo6eix+MXtZg==
+X-Google-Smtp-Source: ABdhPJyIbsV/hWkQgXdZIzsB8nheQMLmBqixJtiigslgQjtIJpHte/2eaEQGBql+3YZPSHhcRqh45g==
+X-Received: by 2002:a17:906:5245:b0:6b8:78e0:5649 with SMTP id y5-20020a170906524500b006b878e05649mr11152534ejm.520.1648203543499;
+        Fri, 25 Mar 2022 03:19:03 -0700 (PDT)
+Received: from localhost.localdomain (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id hr13-20020a1709073f8d00b006dff3a69572sm2122695ejc.5.2022.03.25.03.19.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Mar 2022 03:19:03 -0700 (PDT)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sm6350: Add wifi node
+Date:   Fri, 25 Mar 2022 11:18:40 +0100
+Message-Id: <20220325101841.172304-1-luca.weiss@fairphone.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: dLn_uyNuaBgXXxkKZwl1H-aVA55JLQjM
-X-Proofpoint-ORIG-GUID: dLn_uyNuaBgXXxkKZwl1H-aVA55JLQjM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-25_02,2022-03-24_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 spamscore=0 bulkscore=0 priorityscore=1501 mlxscore=0
- mlxlogscore=896 clxscore=1034 suspectscore=0 malwarescore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203250057
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Potin Lai <potin.lai@quantatw.com>
+Add a node describing the wifi hardware found on sm6350.
 
-In AST2600, the unit of SPI CEx decoding range register is 1MB, and end
-address offset is set to the acctual offset - 1MB. If the flash only has
-1MB, the end address will has same value as start address, which will
-causing unexpected errors.
-
-This patch set the decoding size to at least 2MB to avoid decoding errors.
-
-Tested:
-root@bletchley:~# dmesg | grep "aspeed-smc 1e631000.spi: CE0 window"
-[   59.328134] aspeed-smc 1e631000.spi: CE0 window resized to 2MB (AST2600 Decoding)
-[   59.343001] aspeed-smc 1e631000.spi: CE0 window [ 0x50000000 - 0x50200000 ] 2MB
-root@bletchley:~# devmem 0x1e631030
-0x00100000
-
-Signed-off-by: Potin Lai <potin.lai@quantatw.com>
-[ clg : Ported on new spi-mem driver ]
-Signed-off-by: Cédric Le Goater <clg@kaod.org>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- drivers/spi/spi-aspeed-smc.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/drivers/spi/spi-aspeed-smc.c b/drivers/spi/spi-aspeed-smc.c
-index 660451667a39..227797e13997 100644
---- a/drivers/spi/spi-aspeed-smc.c
-+++ b/drivers/spi/spi-aspeed-smc.c
-@@ -466,6 +466,8 @@ static int aspeed_spi_set_window(struct aspeed_spi *aspi,
-  *   is correct.
-  */
- static const struct aspeed_spi_data ast2500_spi_data;
-+static const struct aspeed_spi_data ast2600_spi_data;
-+static const struct aspeed_spi_data ast2600_fmc_data;
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 9ad30086cfcd..1e2810021b30 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -1267,6 +1267,28 @@ frame@17c2d000 {
+ 			};
+ 		};
  
- static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
- 					 u32 local_offset, u32 size)
-@@ -489,6 +491,17 @@ static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
- 			 chip->cs, size >> 20);
- 	}
- 
-+	/*
-+	 * The decoding size of AST2600 SPI controller should set at
-+	 * least 2MB.
-+	 */
-+	if ((aspi->data == &ast2600_spi_data || aspi->data == &ast2600_fmc_data) &&
-+	    size < SZ_2M) {
-+		size = SZ_2M;
-+		dev_info(aspi->dev, "CE%d window resized to %dMB (AST2600 Decoding)",
-+			 chip->cs, size >> 20);
-+	}
++		wifi: wifi@18800000 {
++			compatible = "qcom,wcn3990-wifi";
++			reg = <0 0x18800000 0 0x800000>;
++			reg-names = "membase";
++			memory-region = <&wlan_fw_mem>;
++			interrupts = <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&apps_smmu 0x20 0x1>;
++			qcom,msa-fixed-perm;
++			status = "disabled";
++		};
 +
- 	aspeed_spi_get_windows(aspi, windows);
- 
- 	/* Adjust this chip window */
+ 		apps_rsc: rsc@18200000 {
+ 			compatible = "qcom,rpmh-rsc";
+ 			label = "apps_rsc";
 -- 
-2.34.1
+2.35.1
 
