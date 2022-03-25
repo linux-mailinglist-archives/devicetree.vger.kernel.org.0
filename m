@@ -2,188 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E824E7DD7
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:23:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8236F4E7D75
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233356AbiCYVY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 17:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
+        id S233629AbiCYV6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 17:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233363AbiCYVY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 17:24:56 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5CA20C2CA;
-        Fri, 25 Mar 2022 14:23:21 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-d39f741ba0so9294582fac.13;
-        Fri, 25 Mar 2022 14:23:21 -0700 (PDT)
+        with ESMTP id S233577AbiCYV6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 17:58:31 -0400
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E66E237F6;
+        Fri, 25 Mar 2022 14:56:55 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id i8-20020a4a6f48000000b00324ada4b9d9so1536740oof.11;
+        Fri, 25 Mar 2022 14:56:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AMIxKTHOocv7P7mjlTg/cziGQ3ni+gwA2uTnznijLXs=;
-        b=av4MQMqnylrcEiaeRVh7qAKjbmqQ/lEIHYseXeanfhsWeuqYBCXqZnGHAnbF0btRXs
-         uvT14FJO+zV87Xtvn90/EOHVRtH9MLp250fjfzWHGPYy2M+hp7TcPS+rdLH9CZeYKqSD
-         cM0wWKTuJ95/pa2+cGuiFJAsZLq8hsJenaIFVBpLDkTQAL92uM3gVzgvuDlfMmuCuJ0a
-         RxgcW2TljhbvxC0wKputbx8CR5NzVFY6e0gZUYozY45P7VXGYMpcPFgzk75BrEQvPrug
-         kLRYgPxlsyHtllFGb1Dvs6UjCiuBV5MW6D0Eca8ZwlgGjGBRHbwMJEOM7FXgEgQtP5Ho
-         vacQ==
-X-Gm-Message-State: AOAM5326j/iyMfi0j86qEWbkk7F0B7KfIlHUruARqryy5VKeS+lbUpFa
-        6v+FwEIewiJ/jBH41NQMPQ==
-X-Google-Smtp-Source: ABdhPJxPDx6D9hSAOFwDrZoFRwtDy8TBaPpEGzhIXk15tERJysKzIfhoFTO6nQ4zlbK5Cl3pvCblDw==
-X-Received: by 2002:a05:6870:328d:b0:da:b3f:2b2b with SMTP id q13-20020a056870328d00b000da0b3f2b2bmr9743355oac.202.1648243400680;
-        Fri, 25 Mar 2022 14:23:20 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 89-20020a9d0be2000000b005ae194ec5absm3110323oth.15.2022.03.25.14.23.19
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=07QZdweVT8s+Pmvjh4pehebYkWYellXCpkQyazdEVlM=;
+        b=sJw/ngKR1FWs4daVNO1mrysf3hbCoNILglv/IBhYayn0UTMGxIs99DuYFvp+mfXVvs
+         XWRicdvFduurnRGuxxcJG4CT9qdc/OgceQtA7V6xsn56RowfQkkyp+/LJyf0l/OSf6zm
+         yTB3m/eiARJW4ZVUmYC3zMm6J7zsshZHnFWrkrM8E7e1zlWBdZtgOnPRqYlCS6oF/C9o
+         9vIaieV9zlCJw4ntA5VkKiybQGYyecDP9XZDpORiP24g+O2/u/gqjf8pFazxVhE1n7FL
+         IhNRMvbYu3rga295TgzgeVMJbj/0jCRi8qatj9h80bbWs5cWZ0q1t3fv2oypkw9sfAHP
+         kK8g==
+X-Gm-Message-State: AOAM5324AJuewbE7PNR/RSNL7lHoEqVYUZkVCl47u66o/yWW7mmfPD18
+        wqrGJG2V7LVDqwuBAOHEnbFIhykyZg==
+X-Google-Smtp-Source: ABdhPJzBZvXkR78XCZZ9Avn8UFj380HuRR3U/MKpgPGtSQdKJX3E0Ybiwo6MLU11DIhd07X+mmSXbQ==
+X-Received: by 2002:a4a:ac01:0:b0:324:910a:5d04 with SMTP id p1-20020a4aac01000000b00324910a5d04mr4861546oon.87.1648245414547;
+        Fri, 25 Mar 2022 14:56:54 -0700 (PDT)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id r81-20020acaf354000000b002ecf46e8016sm3380537oih.51.2022.03.25.14.56.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Mar 2022 14:23:19 -0700 (PDT)
-Received: (nullmailer pid 477388 invoked by uid 1000);
-        Fri, 25 Mar 2022 21:23:18 -0000
-Date:   Fri, 25 Mar 2022 16:23:18 -0500
+        Fri, 25 Mar 2022 14:56:53 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>, Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: timer: Document arm, cortex-a7-timer
- in arch timer
-Message-ID: <Yj4yxjQ2rQ4HW4uR@robh.at.kernel.org>
-References: <20220317191527.96237-1-singh.kuldeep87k@gmail.com>
- <20220317191527.96237-3-singh.kuldeep87k@gmail.com>
- <558f0c92-c499-daca-e1ad-2b16137f8c06@arm.com>
- <20220317212508.GB99538@9a2d8922b8f1>
- <Yjd23Gro6B6zWCrO@robh.at.kernel.org>
- <44f3abe1-09a2-657f-7637-afa34781709b@arm.com>
- <20220323183544.GA95717@9a2d8922b8f1>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mukesh Savaliya <msavaliy@codeaurora.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Bayi Cheng <bayi.cheng@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, netdev@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: Fix missing '/schemas' in $ref paths
+Date:   Fri, 25 Mar 2022 16:56:52 -0500
+Message-Id: <20220325215652.525383-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220323183544.GA95717@9a2d8922b8f1>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 12:05:44AM +0530, Kuldeep Singh wrote:
-> On Mon, Mar 21, 2022 at 11:52:27AM +0000, Robin Murphy wrote:
-> > On 2022-03-20 18:47, Rob Herring wrote:
-> > > On Fri, Mar 18, 2022 at 02:55:08AM +0530, Kuldeep Singh wrote:
-> > > > On Thu, Mar 17, 2022 at 08:25:12PM +0000, Robin Murphy wrote:
-> > > > > On 2022-03-17 19:15, Kuldeep Singh wrote:
-> > > > > > Renesas RZ/N1D platform uses compatible "arm,cortex-a7-timer" in
-> > > > > > conjugation with "arm,armv7-timer". Since, initial entry is not
-> > > > > > documented, it start raising dtbs_check warnings.
-> > > > > > 
-> > > > > > ['arm,cortex-a7-timer', 'arm,armv7-timer'] is too long
-> > > > > > 'arm,cortex-a7-timer' is not one of ['arm,armv7-timer', 'arm,armv8-timer']
-> > > > > > 'arm,cortex-a7-timer' is not one of ['arm,cortex-a15-timer']
-> > > > > > 
-> > > > > > Document this compatible to address it. The motivation to add this
-> > > > > > change is taken from an already existing entry "arm,cortex-a15-timer".
-> > > > > > Please note, this will not hurt any arch timer users.
-> > > > > 
-> > > > > Eh, if it's never been documented or supported, I say just get rid of it.
-> > > > > The arch timer interface is by definition part of a CPU, and we can tell
-> > > > > what the CPU is by reading its ID registers. Indeed that's how the driver
-> > > > > handles the non-zero number of CPU-specific errata that already exist - we
-> > > > > don't need compatibles for that.
-> > > > > 
-> > > > > In some ways it might have been nice to have *SoC-specific* compatibles
-> > > > > given the difficulty some integrators seem to have had in wiring up a stable
-> > > > > count *to* the interface, but it's not like they could be magically added to
-> > > > > already-deployed DTs after a bug is discovered, and nor could we have
-> > > > > mandated them from day 1 just in case and subsequently maintained a binding
-> > > > > that is just an ever-growing list of every SoC. Oh well.
-> > > > 
-> > > > Robin, A similar discussion was already done on v1 thread. Please see
-> > > > below for details:
-> > > > https://lore.kernel.org/linux-devicetree/20220317065925.GA9158@9a2d8922b8f1/
-> > > > https://lore.kernel.org/linux-devicetree/726bde76-d792-febf-d364-6eedeb748c3b@canonical.com/
-> > > > 
-> > > > And final outcome of discussion turns out to add this compatible string.
-> > > 
-> > > I agree with Robin on dropping. More specific here is not useful. If
-> > > we're going to add some cores, then we should add every core
-> > > implementation.
-> 
-> Sure Rob, I will drop A7/15-timer entry from compatibles.
-> This means only two entries i.e arm,armv7/8-timer will be there under
-> compatibles now.
-> 
-> I actually added A7-timer because A15-timer was already present in
-> binding. Since, it was added by you that's why I added this one.
-> I will update compatibles accordingly as you said above.
+Absolute paths in $ref should always begin with '/schemas'. The tools
+mostly work with it omitted, but for correctness the path should be
+everything except the hostname as that is taken from the schema's $id
+value. This scheme is defined in the json-schema spec.
 
-The A15 compatible is likely there because upstream dts files used it 
-and it's a judgement call of supporting in the schema vs. making dts 
-changes. Just like the PL022. Maybe there are A7 cases, but fewer to 
-fix. I don't remember.
+Cc: Hector Martin <marcan@marcan.st>
+Cc: Sven Peter <sven@svenpeter.dev>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Vivien Didelot <vivien.didelot@gmail.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Mukesh Savaliya <msavaliy@codeaurora.org>
+Cc: Akash Asthana <akashast@codeaurora.org>
+Cc: Bayi Cheng <bayi.cheng@mediatek.com>
+Cc: Chuanhong Guo <gch981213@gmail.com>
+Cc: Min Guo <min.guo@mediatek.com>
+Cc: netdev@vger.kernel.org
+Cc: linux-spi@vger.kernel.org
+Cc: linux-usb@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml   | 2 +-
+ Documentation/devicetree/bindings/net/dsa/dsa-port.yaml       | 2 +-
+ Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml  | 2 +-
+ .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml         | 2 +-
+ Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 2 +-
+ Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml       | 2 +-
+ Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml      | 4 ++--
+ Documentation/devicetree/bindings/usb/mediatek,musb.yaml      | 2 +-
+ 8 files changed, 9 insertions(+), 9 deletions(-)
 
-So no real object to removing it, but I can think of better things to 
-work on. Here's a list of most occurring compatibles with no schema[1]. 
-Or find a platform and work towards getting 0 warnings.
+diff --git a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+index b6b5d3a912b3..0dc957a56d35 100644
+--- a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
++++ b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+@@ -42,7 +42,7 @@ patternProperties:
+     description:
+       The individual power management domains within this controller
+     type: object
+-    $ref: /power/apple,pmgr-pwrstate.yaml#
++    $ref: /schemas/power/apple,pmgr-pwrstate.yaml#
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+index e60867c7c571..07a85f7b17e0 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+@@ -15,7 +15,7 @@ description:
+   Ethernet switch port Description
+ 
+ allOf:
+-  - $ref: "http://devicetree.org/schemas/net/ethernet-controller.yaml#"
++  - $ref: /schemas/net/ethernet-controller.yaml#
+ 
+ properties:
+   reg:
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+index a776cd37c297..95fcb43675d6 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+@@ -103,7 +103,7 @@ patternProperties:
+                  supports up to 50MHz, up to four chip selects, programmable
+                  data path from 4 bits to 32 bits and numerous protocol
+                  variants.
+-    $ref: /spi/spi-controller.yaml#
++    $ref: /schemas/spi/spi-controller.yaml#
+ 
+     properties:
+       compatible:
+diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+index be3cc7faed53..41e60fe4b09f 100644
+--- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+@@ -18,7 +18,7 @@ description: |
+   capability of this controller.
+ 
+ allOf:
+-  - $ref: /spi/spi-controller.yaml#
++  - $ref: /schemas/spi/spi-controller.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+index 055524fe8327..5a60fba14bba 100644
+--- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
++++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+@@ -16,7 +16,7 @@ description: The QSPI controller allows SPI protocol communication in single,
+   as NOR flash.
+ 
+ allOf:
+-  - $ref: /spi/spi-controller.yaml#
++  - $ref: /schemas/spi/spi-controller.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml b/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
+index fe014020da69..a3ab1a1f1eb4 100644
+--- a/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
++++ b/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
+@@ -44,7 +44,7 @@ description: |
+   compatibility.
+ 
+ allOf:
+-  - $ref: /spi/spi-controller.yaml#
++  - $ref: /schemas/spi/spi-controller.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+index 77db1233516e..df766f8de872 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+@@ -132,7 +132,7 @@ properties:
+     default: host
+ 
+   connector:
+-    $ref: /connector/usb-connector.yaml#
++    $ref: /schemas/connector/usb-connector.yaml#
+     description:
+       Connector for dual role switch, especially for "gpio-usb-b-connector"
+     type: object
+@@ -191,7 +191,7 @@ properties:
+ patternProperties:
+   "^usb@[0-9a-f]+$":
+     type: object
+-    $ref: /usb/mediatek,mtk-xhci.yaml#
++    $ref: /schemas/usb/mediatek,mtk-xhci.yaml#
+     description:
+       The xhci should be added as subnode to mtu3 as shown in the following
+       example if the host mode is enabled.
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,musb.yaml b/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
+index 03d62d60ce5f..11a33f9b1f17 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
+@@ -63,7 +63,7 @@ properties:
+     maxItems: 1
+ 
+   connector:
+-    $ref: /connector/usb-connector.yaml#
++    $ref: /schemas/connector/usb-connector.yaml#
+     description: Connector for dual role switch
+     type: object
+ 
+-- 
+2.32.0
 
-
-> > Yeah, what I was trying to convey is that a compatible like
-> > "arm,cortex-a76-timer" has the problem of being both too specific *and* not
-> > specific enough to be genuinely useful *for the particular case of the arch
-> > timer*. It's an architectural interface, where the actual functional
-> > features are described through the interface itself, so the purpose of the
-> > DT entry is really just to indicate that the standard interface is present
-> > and describe how its externally-routed interrupts are wired up.
-> > 
-> > However, it's also true that implementations of standard functionality
-> > sometimes have bugs that software needs to know about, but in order for
-> > specific DT compatibles to be useful in that respect they really need to
-> > identify the *exact* implementation, e.g. to know that
-> > "arm,cortex-a76-r0p0-timer" has a bug which needs working around, but
-> > "arm,cortex-a76-r4p0-timer" does not. There might be cases where every known
-> > version of a CPU is equally affected (e.g. Cortex-A73), but it doesn't hold
-> > as a general assumption. Furthermore as mentioned, the other class of bugs
-> > which affect this interface are not in the CPU's implementation of the
-> > interface at all, but in the external SoC logic that provides the counter
-> > value, and therefore it can be identification of the overall SoC that
-> > matters regardless of which CPU IP(s) may be present.
-> > 
-> > If we'd had the benefit of 10 years worth of hindsight 10 years ago, we
-> > probably wouldn't have defined "arm,cortex-a15-timer" either. However the
-> > fact that we can't erase the legacy of that decision doesn't make an
-> > argument for repeating it now.
-> > 
-> > > If one has a big.LITTLE system with A15/A7 what would be the right
-> > > compatible value?
-> > > 
-> > > > 
-> > > > I see people with different set of perspective in regard to whether keep
-> > > > compatible string or not. We should have some sort of evidences to
-> > > > support claims so that next time when similar situation arises, we'll be
-> > > > aware beforehand how to proceed.
-> > > 
-> > > Every situation tends to be different.
-> > 
-> > Indeed, I certainly don't have a personal perspective of "delete all the
-> > bindings!" in general - only when they're truly redundant (functionally, any
-> > driver that can touch the arch timer registers can also read the CPU ID
-> > registers, but even in the DT there should already be compatibles for the
-> > CPUs themselves).
-> 
-> Thanks Robin for providing inputs.
-> I agree with your opinion of having soc specific compatibles which is
-> also mentioned under dos and dont's of bindings and other cases will
-> require investigation though.
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bindings.html
-
-There's always exceptions to guidelines. This is one of them.
-
-Rob
-
-[1] https://gitlab.com/robherring/linux-dt/-/jobs/2250856818#L7769
