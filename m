@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A284E7DA8
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CD7B4E7CB4
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:22:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231983AbiCYUBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 16:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56932 "EHLO
+        id S231197AbiCYUN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 16:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231938AbiCYUAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 16:00:55 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7A5F182AE4
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:51:08 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id r8so9289191oib.5
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:51:08 -0700 (PDT)
+        with ESMTP id S231261AbiCYUN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 16:13:56 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 458DF46640
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 13:12:21 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-2e612af95e3so94230507b3.9
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 13:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=eUek1jmX1h1x8PcNcflTTCV7rdiqXP/FImxouF9eXrk=;
-        b=MuYU2U53+0XditHV3+xMmufekP83Q86clHPRUFiYJI5c83MMgqsqZU6OE0iD7uqI1D
-         bq5BpO0h+DDnBW2dzr+T0KLiCp0GgYfvXmXPzjeUTmIwglTcDMjx2JTa8I15roXjfJQr
-         QDYKF7wfPMDa6WIjm4l4EenX4il5h6oLp4L78=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YT2o1xxdFf9OVHBJJGoL9aS2UVDgV96wgaPQnf59u3A=;
+        b=iUDT/G3LEcGf/5tagjP8eFjsGsyOBph1oCwiAU9SRpn47LJA8MWoC2ZnwxrjbSPjMm
+         NMgbwZLb++g0JJFq9rSNRDfuiuAAY8Rb8mEl15bFUi/1axDz0mqVDBjWIOF7rWkJktPB
+         GVLthy7ZRekp5ux4Y2DFI5hfRTVn6an7IoJvpEJSJ/9e6g+VV6/TIh6v+e0YKsPg/ANl
+         u9+Q/qattDvEkHp5i6SesaOU1SOYG0BE3BKYCSAklaOO+5ljSccec5A3gP/LLOHHRLHW
+         2IrIx4x8ygD2EPSpIa9BNu8dVIUcFM2jbwLpeByGektKecBFHNoOwvOwoDpGWDgslNFr
+         atGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=eUek1jmX1h1x8PcNcflTTCV7rdiqXP/FImxouF9eXrk=;
-        b=ofsbhUgY7LO17/1ta8WPxXjhCKrhu88ka6TEYhse+FNGGfI9M6WwhsyUKHpKhQh9oI
-         p4rvsy8kGn8EH6vuKVYrXCFGVgGwLhWB/SLfnZumistSTzIGT/su2MXz9wBMkGb6j3F/
-         V8uTkDphOsAedlL+Si7dinYooRip9VRsKGaQWLd4uhWRvv1KOE3UsQdLBT/F/wjiyxG6
-         o8Iz/9sKzb5Pqhk1gnV+OzArrAwKlOwUPPagc/XwqjjaFYNiCg6ICxlvqik6S5ahOKbS
-         kI3Jvv6UmhFXik1WpR3/yV4k7lJ2mFJeNhcOkf8w0cL5/NXEXTpo30S+AVkQCt3Nh0Pk
-         yoYQ==
-X-Gm-Message-State: AOAM532pNob+SCbgJGeAFqwPnvj6eYpbCFg9W74RZogN654q6FATFDkX
-        u8pyv9TfTAUBERs+UkQm2cW4qKKt4N5M+U8kAqlKIg==
-X-Google-Smtp-Source: ABdhPJxjJgDkwaOL+igFbYKoHRlPcGxtCqcdt2HqSpDefQv8NNUO1BG5eOIgAhxWNNRmCDuEqZtRbL5DhxFUglZ6hXs=
-X-Received: by 2002:aca:a9c8:0:b0:2da:45b6:b796 with SMTP id
- s191-20020acaa9c8000000b002da45b6b796mr5910648oie.193.1648237866373; Fri, 25
- Mar 2022 12:51:06 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 25 Mar 2022 14:51:05 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YT2o1xxdFf9OVHBJJGoL9aS2UVDgV96wgaPQnf59u3A=;
+        b=AR0S7Cf36uC5j6nnmJXSjDWF63MDcGAcPTdcBc88mAJJNTpyLQ10DQ8oZiyhuNB8Kn
+         yehzYTPR+hVXtxsWRJAVYwQ/qTsErvRF1NTxFKenoXfiY+j4Il01d6EbOmTFIJVsHOWo
+         XfRGThEH1tn84gST/aci6psvf5OqtpcusbQeB5phxHoLQjAWsUPar/IwvMhpEsMxnNdg
+         81TcGI93SSJpN8qvgdIelVMbyKmyK2ftkXf+g/d7Hfy9be6o96TPlYxiUUr9bp4DVZi0
+         BlADWkPgZUKYvCUsinl8u22m/0uvskch650lf8jsdmj4iXs/a3mzsKO6svez20dwxY7h
+         r1aQ==
+X-Gm-Message-State: AOAM531tHU7Sr6Q8vjHWZiwKS9NWPVBvaBTl1HzNcGTSI6706QJuNzRN
+        tMBP8eWJVMOgNqKJdmMMwFb8OH23rY7etMb7a+YXvw==
+X-Google-Smtp-Source: ABdhPJxUBffdaPMdxHWCaYq0Qr6rteF2S4TUamYdP1nuniOmrgv1lq5txO6UeJxGVYZr0OiLkvNRfbesOoqWq1bIo24=
+X-Received: by 2002:a81:164a:0:b0:2e6:8e4b:7487 with SMTP id
+ 71-20020a81164a000000b002e68e4b7487mr12654258yww.437.1648239140546; Fri, 25
+ Mar 2022 13:12:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <MW4PR02MB718635E7712D44094E6E91F3E11A9@MW4PR02MB7186.namprd02.prod.outlook.com>
-References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com>
- <1647452154-16361-3-git-send-email-quic_sbillaka@quicinc.com>
- <CAE-0n52Uzo47N5QzoKOwny3XTrArA4nM-KPqAVxAPewSAyNOWw@mail.gmail.com> <MW4PR02MB718635E7712D44094E6E91F3E11A9@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 25 Mar 2022 14:51:05 -0500
-Message-ID: <CAE-0n500xV_SA_-KQ4Sh-8PV=rfaXxrMBAh5tnVpjCMD+VEyqg@mail.gmail.com>
-Subject: RE: [PATCH v5 2/9] arm64: dts: qcom: sc7280: Add support for eDP
- panel on CRD
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     "robdclark@gmail.com" <robdclark@gmail.com>,
-        "seanpaul@chromium.org" <seanpaul@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "sean@poorly.run" <sean@poorly.run>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        quic_vproddut <quic_vproddut@quicinc.com>
+References: <20220304135134.47827-1-yann.gautier@foss.st.com>
+ <20220304135134.47827-2-yann.gautier@foss.st.com> <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
+ <0bc53018-fce4-4104-fa47-6e60d2367d69@foss.st.com>
+In-Reply-To: <0bc53018-fce4-4104-fa47-6e60d2367d69@foss.st.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 25 Mar 2022 21:12:09 +0100
+Message-ID: <CACRpkdYMWXEX6dpT0aUrCrFd-8-U35OG9Zmpkfty=zMH=mQqbA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: mmci: add a property to disable DMA LLI
+To:     Yann Gautier <yann.gautier@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Ludovic Barre <ludovic.barre@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Grzegorz Szymaszek <gszymaszek@short.pl>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,25 +79,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sankeerth Billakanti (QUIC) (2022-03-25 06:30:58)
->
->
-> > > +       vdda-1p2-supply = <&vreg_l6b_1p2>;
-> > > +       vdda-0p9-supply = <&vreg_l10c_0p8>;
-> > > +
-> > > +       aux-bus {
-> >
-> > Can this move to sc7280.dtsi and get a phandle?
-> >
->
-> Okay, I will move this to sc7280.dtsi like below.
-> Shall I define the required properties under &mdss_edp_panel node in the sc7280-crd3.dts?
+On Tue, Mar 15, 2022 at 9:26 AM Yann Gautier <yann.gautier@foss.st.com> wrote:
 
-The below patch looks good.
+> The STM32 variant uses an internal DMA, and the DMA functions are in its
+> dedicated file. So I was planning to do the same as what is done in
+> meson-gx-mmc.c: using a bounce buffer to copy from/to in case DMA
+> constraints are not fulfilled. Not sure it can help for Ux500.
+>
+> Ulf, before I send my new series (although it is not ready yet), would
+> you be OK with the bounce buffer idea?
 
->
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3283,6 +3283,18 @@
->
->                                 status = "disabled";
+Would it not be better if the bounce buffer is something available
+for all MMCI variants and not restricted to the STM32 DMA add-on?
+
+What I'm thinking is that this is a problem with the MMCI hardware
+rather than with the DMA hardware, so the problem kind of gets
+fixed in the wrong place if the bounce buffer is in the DMA add-on
+code.
+
+Maybe this is how you fixed it in later patches, I'll take a look.
+
+Yours,
+Linus Walleij
