@@ -2,125 +2,297 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80FCB4E7BB4
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E525B4E7B74
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:20:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbiCYT1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 15:27:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58600 "EHLO
+        id S229825AbiCYT3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 15:29:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbiCYT0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 15:26:54 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532CF2A9127
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:00:07 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id l7-20020a05600c1d0700b0038c99618859so9523268wms.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:00:07 -0700 (PDT)
+        with ESMTP id S229829AbiCYT3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 15:29:00 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974061945DC
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 12:03:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:reply-to:content-language
-         :from:subject:to:content-transfer-encoding;
-        bh=K/nr+QQRdsVf9ua9IBdWL5viBqMPKcy7T57XqP2vuso=;
-        b=M1bKP9XP/cRGN3sGLgiedCNYBiftaNJIRDOT2BZ1wgsdPYrRqWRMxpqD4upPOQrvHp
-         bG+pmUiw5yrzRQc3SJkJNLR4fd4LHCdcf/pHBn7UjfAnG0LEkRZ255qyBOtj/Q1FAJGp
-         KOdJ12f4t9TUCb7HFgwWxDQdeO5qWjIblK+hvN25bXMhWNQ6yccY4A1vdSxr+7chlT+v
-         fNGCwKDsg58WR79nXznqrCFph6KOxk66xUcgw5TORf+JnSjEO32ygk2IAG9AuR9Uc6kS
-         S6PyBQ3a8Cc7Q+kTmDztb+hVnFdpdvApg8DeU87pa0eA6XzQpkcwlWCEPOWC+48S83WD
-         lUnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:reply-to
-         :content-language:from:subject:to:content-transfer-encoding;
-        bh=K/nr+QQRdsVf9ua9IBdWL5viBqMPKcy7T57XqP2vuso=;
-        b=qyj1PBXYd9GZ7i5o+z8bnf9MSNeFaVCpjujaQ+Q3Vipt7ibD22XtCP0dnWfsKYSHXm
-         2RoCdwu8haEYOJKLpGBqypOhp6RVz9I081AZ+Ve62QpFMwHG0/zuiExEQVvpH5hhxn5R
-         9p9oRdDN6qdhT5/Mih9ledtGEVIBM1Zs9mw9nYeVHtI0sjZIqPw7i6OESe7KNt3MwW2Z
-         ENNvPW/gOu/kFdnB4L9fozhOLiKgojLHHZrdemaaAmA1uQO6Ps5yzpNUkZLbseCQgnF5
-         n/P18Iw+vMXboc843LS8+q2CF0aDCKKXnnIJ9xV+aE6NHYcNSwrSIpdYyQ0WTqa1Js1b
-         PTgg==
-X-Gm-Message-State: AOAM533WZQCGDlaibzRi93NrZb0A+zbL5/R3MHZKG3RfsgtghW+81pe2
-        5rUt8Seak2/CcfMyET+62F8=
-X-Google-Smtp-Source: ABdhPJwIYlQTnr6OaxGkz6M+tt1sDahF0TfS+o/Bou4tbFA/n4UG4t4CXov0G1yf2fSQCf0Yq3oJfA==
-X-Received: by 2002:a1c:7517:0:b0:38c:8722:9bc6 with SMTP id o23-20020a1c7517000000b0038c87229bc6mr21126952wmc.2.1648234805845;
-        Fri, 25 Mar 2022 12:00:05 -0700 (PDT)
-Received: from [192.168.43.21] ([197.234.221.192])
-        by smtp.gmail.com with ESMTPSA id v124-20020a1cac82000000b0037c3d08e0e7sm9116737wme.29.2022.03.25.11.59.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Mar 2022 12:00:04 -0700 (PDT)
-Message-ID: <efcd3ec2-2132-e1c8-e980-f0e813b790fc@gmail.com>
-Date:   Fri, 25 Mar 2022 19:59:53 +0100
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648234980; x=1679770980;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=1zO031c3bJsSsxrOVnDvFQQB+5zdijL2awpPTUIWSmA=;
+  b=gSA/1vHjpKwFMm1HmgA0cQWujvQBHn4uteUE4TcfjXQzQUgr/eqDh0Pz
+   Ky7n4Rja+CG4FJNjDmw+mKKl1kFvkc+PSDM5QN0GMzKsOd+2Uo+1PBRGn
+   JaJGacy+81GBRtjF3Ru+H6XqkmoWce7CUgXtwACTh3MwcbXHKnmiA4v9Q
+   Y=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 25 Mar 2022 12:03:00 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2022 12:02:59 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 25 Mar 2022 12:02:59 -0700
+Received: from maru.qualcomm.com (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 25 Mar
+ 2022 12:02:58 -0700
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>, Andrew Lunn <andrew@lunn.ch>
+CC:     Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>,
+        "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>
+Subject: [PATCH v3] ARM: dts: aspeed: add Nuvia DC-SCM BMC
+Date:   Fri, 25 Mar 2022 12:02:47 -0700
+Message-ID: <20220325190247.468079-1-quic_jaehyoo@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.2; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Reply-To: domleblancbiz@gmail.com
-Content-Language: fr
-From:   invest infot <investinfot84@gmail.com>
-Subject: donation
-To:     destinataires inconnus:;
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: Yes, score=5.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,RCVD_IN_SBL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Report: *  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
-        *      [197.234.221.192 listed in zen.spamhaus.org]
-        * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:32e listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [investinfot84[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [investinfot84[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.8 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Obrigado por me responder, me deixou muito feliz. É de fato uma doação de 152.000 €. E eu faço isso porque meu pai espiritual me aconselhou a ter mais esperança eu já sei minha data de validade (fim da minha existência nesta terra) claro que sou um crente cristão mas a ciência é mais avançada .
-  Agora eu quero que você me fale sobre você em poucas linhas: Eu faço esta doação porque meu pai espiritual me aconselhou, eu sou um cristão sem filhos, então por que então morrer com tudo o que tenho?
-Foi por isso que comecei a procurar a pessoa certa que pudesse administrar bem meus bens mesmo depois da minha morte.
-Então me diga uma vez se você receber este presente, o que você vai fazer primeiro? Você gosta de crianças? O que o próximo amor significa para você? Por favor, responda-me para que eu possa colocá-lo em contato com meu cartório para estabelecer os documentos para permitir que você cuide do herdeiro legal do meu imóvel.
+From: Graeme Gregory <quic_ggregory@quicinc.com>
 
+Add initial version of device tree for Nuvia DC-SCM BMC which is
+equipped with Aspeed AST2600 BMC SoC.
 
+Signed-off-by: Graeme Gregory <quic_ggregory@quicinc.com>
+Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+---
+Changes in v3:
+* Added 'stdout-path'. (Krzysztof)
 
-Obrigado pela compreensão e esperando para ler de você
+Changes in v2:
+* Added a comment to explain 'rgmii' phy mode setting. (Andrew)
 
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts | 190 ++++++++++++++++++
+ 2 files changed, 191 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
 
-
-Cordialmente.
-
-Thank you for answering me, it made me very happy. It is indeed a donation of 152,000 €. And I do it because my spiritual father advised me to have more hope I already know my expiry date (end of my existence on this earth) of course I am a Christian believer but science is more advanced .
-  Now I want you to tell me about yourself in a few lines: I make this donation because my spiritual father advised me, I am a childless Christian so why then die with everything I have?
-That's why I started looking for the right person who could manage my assets well even after my death.
-So tell me once if you receive this gift, what are you going to do first? Do you like children? What does next love mean to you? Please answer me so that I can put you in contact with my notary to establish the documents to allow you to take care of the legal heir of my property.
-
-
-
-Thank you for understanding and waiting to read from you
-
-
-
-Cordially.
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 7c16f8a2b738..e63cd6ed0faa 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1546,6 +1546,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-bmc-lenovo-hr630.dtb \
+ 	aspeed-bmc-lenovo-hr855xg2.dtb \
+ 	aspeed-bmc-microsoft-olympus.dtb \
++	aspeed-bmc-nuvia-dc-scm.dtb \
+ 	aspeed-bmc-opp-lanyang.dtb \
+ 	aspeed-bmc-opp-mihawk.dtb \
+ 	aspeed-bmc-opp-mowgli.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts b/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
+new file mode 100644
+index 000000000000..f4a97cfb0f23
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
+@@ -0,0 +1,190 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++// Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
++
++/dts-v1/;
++
++#include "aspeed-g6.dtsi"
++
++/ {
++	model = "Nuvia DC-SCM BMC";
++	compatible = "nuvia,dc-scm-bmc", "aspeed,ast2600";
++
++	aliases {
++		serial4 = &uart5;
++	};
++
++	chosen {
++		stdout-path = &uart5;
++		bootargs = "console=ttyS4,115200n8";
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x40000000>;
++	};
++};
++
++&mdio3 {
++	status = "okay";
++
++	ethphy3: ethernet-phy@1 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <1>;
++	};
++};
++
++&mac2 {
++	status = "okay";
++
++	/* Bootloader sets up the MAC to insert delay */
++	phy-mode = "rgmii";
++	phy-handle = <&ethphy3>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii3_default>;
++};
++
++&mac3 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rmii4_default>;
++
++	use-ncsi;
++};
++
++&rtc {
++	status = "okay";
++};
++
++&fmc {
++	status = "okay";
++
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bmc";
++		spi-max-frequency = <133000000>;
++#include "openbmc-flash-layout-64.dtsi"
++	};
++
++	flash@1 {
++		status = "okay";
++		m25p,fast-read;
++		label = "alt-bmc";
++		spi-max-frequency = <133000000>;
++#include "openbmc-flash-layout-64-alt.dtsi"
++	};
++};
++
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bios";
++		spi-max-frequency = <133000000>;
++	};
++};
++
++&gpio0 {
++	gpio-line-names =
++	/*A0-A7*/	"","","","","","","","",
++	/*B0-B7*/	"BMC_FLASH_MUX_SEL","","","","","","","",
++	/*C0-C7*/	"","","","","","","","",
++	/*D0-D7*/	"","","","","","","","",
++	/*E0-E7*/	"","","","","","","","",
++	/*F0-F7*/	"","","","","","","","",
++	/*G0-G7*/	"","","","","","","","",
++	/*H0-H7*/	"","","","","","","","",
++	/*I0-I7*/	"","","","","","","","",
++	/*J0-J7*/	"","","","","","","","",
++	/*K0-K7*/	"","","","","","","","",
++	/*L0-L7*/	"","","","","","","","",
++	/*M0-M7*/	"","","","","","","","",
++	/*N0-N7*/	"BMC_FWSPI_RST_N","","GPIO_1_BMC_3V3","","","","","",
++	/*O0-O7*/	"JTAG_MUX_A","JTAG_MUX_B","","","","","","",
++	/*P0-P7*/	"","","","","","","","",
++	/*Q0-Q7*/	"","","","","","","","",
++	/*R0-R7*/	"","","","","","","","",
++	/*S0-S7*/	"","","","","","","","",
++	/*T0-T7*/	"","","","","","","","",
++	/*U0-U7*/	"","","","","","","","",
++	/*V0-V7*/	"","","","SCMFPGA_SPARE_GPIO1_3V3",
++			"SCMFPGA_SPARE_GPIO2_3V3","SCMFPGA_SPARE_GPIO3_3V3",
++			"SCMFPGA_SPARE_GPIO4_3V3","SCMFPGA_SPARE_GPIO5_3V3",
++	/*W0-W7*/	"","","","","","","","",
++	/*X0-X7*/	"","","","","","","","",
++	/*Y0-Y7*/	"","","","","","","","",
++	/*Z0-Z7*/	"","","","","","","","",
++	/*AA0-AA7*/	"","","","","","","","",
++	/*AB0-AB7*/	"","","","","","","","",
++	/*AC0-AC7*/	"","","","","","","","";
++};
++
++&gpio1 {
++	gpio-line-names =
++	/*A0-A7*/	"GPI_1_BMC_1V8","","","","","",
++			"SCMFPGA_SPARE_GPIO1_1V8","SCMFPGA_SPARE_GPIO2_1V8",
++	/*B0-B7*/	"SCMFPGA_SPARE_GPIO3_1V8","SCMFPGA_SPARE_GPIO4_1V8",
++			"SCMFPGA_SPARE_GPIO5_1V8","","","","","",
++	/*C0-C7*/	"","","","","","","","",
++	/*D0-D7*/	"","BMC_SPI1_RST_N","BIOS_FLASH_MUX_SEL","",
++			"","TPM2_PIRQ_N","TPM2_RST_N","",
++	/*E0-E7*/	"","","","","","","","";
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&i2c4 {
++	status = "okay";
++};
++
++&i2c5 {
++	status = "okay";
++};
++
++&i2c6 {
++	status = "okay";
++};
++
++&i2c7 {
++	status = "okay";
++};
++
++&i2c8 {
++	status = "okay";
++};
++
++&i2c9 {
++	status = "okay";
++};
++
++&i2c10 {
++	status = "okay";
++};
++
++&i2c12 {
++	status = "okay";
++};
++
++&i2c13 {
++	status = "okay";
++};
++
++&i2c14 {
++	status = "okay";
++};
++
++&i2c15 {
++	status = "okay";
++};
++
++&vhub {
++	status = "okay";
++};
+-- 
+2.25.1
 
