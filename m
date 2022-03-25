@@ -2,177 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D524E7092
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 11:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 735294E70CC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 11:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358705AbiCYKJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 06:09:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52424 "EHLO
+        id S1358732AbiCYKLg convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Mar 2022 06:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358714AbiCYKJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 06:09:04 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2061f.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1b::61f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76866D0AA7;
-        Fri, 25 Mar 2022 03:07:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VPhhjkHW9u89X/hpbQKIZKPxAOGR9PLbmHuazlAahg8NKzxPPAoOLlq7wjl4DZDOegZkLH/XccjKpgma63X/mqNa1EBZSRg7nwru+qejhgjoU68YljRfUP6A9mYQfjqQdsRPLFhcxjv2LhWT8wsz4WOqI/cujgsKeXpUmgxEafdfBDKmktTi1JH/3NOJvnJLzL/18a1ySlLVg1RnpDCfrwchVvr8e6iLy0rpLFbyWh8p2svP5O6omXIUxwRkiAZKzajzZWFV3TMqmcY3i8g6OYVpWuEnBls2YhwmHY6QCId+6Q0OAtOYShVC3kHYouF/2kfd5wTLoI7/xkal1sY6vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0HdY9LKxv1qDEYwd6t9TdtGe3VbROnKxWygh7r8u9sQ=;
- b=DJWAmy8aFyIgwM1LvnhK12Zy/9Q71+tTNYI8yL2UBBDKHin6QYoGR+yrwIsXFBNCobTJ1LTI5JpCZu3yjRl6nM4oqjmG071C9Pq/JN7jXOEkrzJdaieayCBZWbdHkyBV8iSGwO2rd2h4IpoXBnuLnRUr5T0Qb+35i1bDixhlor40FIUk+paEvZWnSzNUE4rht+0XaEZx6VpTA6eIWGyBWvnaDDtT3tQF2cN+kenoWz7W7P3WsAbslR3FBA4bm4ocDWTAy/ALxcK4K0IHsyzzXRNYy+/3To7l+Qe1/eiFNTBPnA94FQgke9CVbCqj+ngDve63kJ6jWceKlpkMeLEcfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 139.15.153.200) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=in.bosch.com;
- dmarc=pass (p=reject sp=none pct=100) action=none header.from=in.bosch.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=in.bosch.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0HdY9LKxv1qDEYwd6t9TdtGe3VbROnKxWygh7r8u9sQ=;
- b=F+M7loNeqm2QXcg6fNPdKQQ16brEhFPyjG8V/joBRYr9PbiBnQLjSoUl1DxduM8psgRLGXE3xxDaYmFTaRQaDPR902UEBnZh1LX/+yZhxAxMFH7LxkzAojFrbsxqjgi1t6o6rhZljs7Qy+l4vas1+CN+DRPJERtgsyVk/qQLF78=
-Received: from AS9PR06CA0027.eurprd06.prod.outlook.com (2603:10a6:20b:462::15)
- by DB7PR10MB2329.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:27::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Fri, 25 Mar
- 2022 10:07:05 +0000
-Received: from VE1EUR03FT023.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:20b:462:cafe::41) by AS9PR06CA0027.outlook.office365.com
- (2603:10a6:20b:462::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16 via Frontend
- Transport; Fri, 25 Mar 2022 10:07:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.200)
- smtp.mailfrom=in.bosch.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=in.bosch.com;
-Received-SPF: Pass (protection.outlook.com: domain of in.bosch.com designates
- 139.15.153.200 as permitted sender) receiver=protection.outlook.com;
- client-ip=139.15.153.200; helo=eop.bosch-org.com;
-Received: from eop.bosch-org.com (139.15.153.200) by
- VE1EUR03FT023.mail.protection.outlook.com (10.152.18.133) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5102.18 via Frontend Transport; Fri, 25 Mar 2022 10:07:05 +0000
-Received: from SI-EXCAS2001.de.bosch.com (10.139.217.202) by eop.bosch-org.com
- (139.15.153.200) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2375.24; Fri, 25 Mar
- 2022 11:07:04 +0100
-Received: from SI-HUB2000.de.bosch.com (10.4.103.108) by
- SI-EXCAS2001.de.bosch.com (10.139.217.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.24; Fri, 25 Mar 2022 11:07:04 +0100
-Received: from localhost.localdomain (10.167.1.162) by SI-HUB2000.de.bosch.com
- (10.4.103.108) with Microsoft SMTP Server id 15.1.2375.24; Fri, 25 Mar 2022
- 11:07:01 +0100
-From:   <Gireesh.Hiremath@in.bosch.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>,
-        <tony@atomide.com>, <bcousson@baylibre.com>
-CC:     <sjoerd.simons@collabora.co.uk>, <VinayKumar.Shettar@in.bosch.com>,
-        <Govindaraji.Sivanantham@in.bosch.com>,
-        <anaclaudia.dias@de.bosch.com>, <Gireesh.Hiremath@in.bosch.com>
-Subject: [PATCH 15/15] ARM: dts: am335x: Guardian: Update comments
-Date:   Fri, 25 Mar 2022 10:06:13 +0000
-Message-ID: <20220325100613.1494-16-Gireesh.Hiremath@in.bosch.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220325100613.1494-1-Gireesh.Hiremath@in.bosch.com>
-References: <20220325100613.1494-1-Gireesh.Hiremath@in.bosch.com>
+        with ESMTP id S1358700AbiCYKL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 06:11:28 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6993A5716A;
+        Fri, 25 Mar 2022 03:09:51 -0700 (PDT)
+Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 22P9ZM8W013340;
+        Fri, 25 Mar 2022 10:09:00 GMT
+Received: from ppma04ams.nl.ibm.com (63.31.33a9.ip4.static.sl-reverse.com [169.51.49.99])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 3f0t26v3s7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 25 Mar 2022 10:09:00 +0000
+Received: from pps.filterd (ppma04ams.nl.ibm.com [127.0.0.1])
+        by ppma04ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 22P9xLMJ008133;
+        Fri, 25 Mar 2022 10:08:56 GMT
+Received: from b06cxnps3075.portsmouth.uk.ibm.com (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
+        by ppma04ams.nl.ibm.com with ESMTP id 3ew6t94x2w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 25 Mar 2022 10:08:56 +0000
+Received: from d06av24.portsmouth.uk.ibm.com (mk.ibm.com [9.149.105.60])
+        by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 22PA8sGt53281182
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 25 Mar 2022 10:08:54 GMT
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 51E1D42042;
+        Fri, 25 Mar 2022 10:08:54 +0000 (GMT)
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id AC0BF42041;
+        Fri, 25 Mar 2022 10:08:53 +0000 (GMT)
+Received: from smtp.tlslab.ibm.com (unknown [9.101.4.1])
+        by d06av24.portsmouth.uk.ibm.com (Postfix) with SMTP;
+        Fri, 25 Mar 2022 10:08:53 +0000 (GMT)
+Received: from yukon.ibmuc.com (unknown [9.171.95.248])
+        by smtp.tlslab.ibm.com (Postfix) with ESMTP id E21EB220121;
+        Fri, 25 Mar 2022 11:08:51 +0100 (CET)
+From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
+To:     linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
+Subject: [PATCH v4 00/11] spi: spi-mem: Convert Aspeed SMC driver to spi-mem
+Date:   Fri, 25 Mar 2022 11:08:38 +0100
+Message-Id: <20220325100849.2019209-1-clg@kaod.org>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: JU0KiGmldJHd887xHBSDyergg_o_ZDeg
+X-Proofpoint-GUID: JU0KiGmldJHd887xHBSDyergg_o_ZDeg
+Content-Transfer-Encoding: 8BIT
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.167.1.162]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6fefaa06-ff7b-4bd6-96a2-08da0e473702
-X-MS-TrafficTypeDiagnostic: DB7PR10MB2329:EE_
-X-Microsoft-Antispam-PRVS: <DB7PR10MB23293A6751A1B2DAC6927BBAA61A9@DB7PR10MB2329.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 32WeyDASrA3qXp86dN9ePa4zU8754fhO0N+8ekFNgB0NQRVFhHX5Qiq1VofBq1paSlHYPYbcJ/EL6s+Ys+0qbktz/4n8GLyKI/pH4aTY23Hib0o8F7rro8WSqV7I39yw/m+7402SwFXsBkm5WGaglvrVj11BM1Uxkpr6/XFiw8ObCzyR8mp/d8LN/O84QLF7h3TGUMml1zeLF0LPXNS4z4MUJyh7ib2IyS3OrrI8Dfk+CHhiij+fEmuys9UobJAehtIGUMPD7m/8IaCgmySC5DgWDMY9/Hc7PBLUyMxc1AtG7oScxRpY9DRARn+sNQBA1WJige8TjSiKaVoaBBTTdDEk/UGjxO7StxgoWImHP9i1Bk6W+/MaTbhswcGjXk8ApCGAPEc1wPAiy8KcXCc3DPb7TmLbM1H3KBNIkfe58VjgVJEKbuu0l4YFo1bnKp0ucAZmhWKV/e5m0UotJwfxh9Z+i2mxQK579/6D+oAFrQnitfv94o/OQMy7CQWmVfoWKSPULvLjmgrcJ3PzrCzGhMXpdK/BThyujXgR+liJ0Gxw5yERS6Afge83rK0xLqpWCvoBXKjIUv5675amOqs9df0ubR7PuaZgqwSupjRwCQS2M1/4eSEIMC31Q+pJgU8I+HTxeeJDklolVYNckZ2+QTB/065LkjyIpVAOeuVyJqEI4CuaRaosxXo9ncBg37bPZ+STnK4o8x1S5SS52lVw0Q==
-X-Forefront-Antispam-Report: CIP:139.15.153.200;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(2876002)(2906002)(1076003)(186003)(8676002)(107886003)(5660300002)(16526019)(356005)(336012)(8936002)(82310400004)(4326008)(47076005)(2616005)(40460700003)(6666004)(70586007)(70206006)(83380400001)(26005)(81166007)(82960400001)(54906003)(86362001)(316002)(36860700001)(110136005)(508600001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: in.bosch.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2022 10:07:05.3841
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fefaa06-ff7b-4bd6-96a2-08da0e473702
-X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.200];Helo=[eop.bosch-org.com]
-X-MS-Exchange-CrossTenant-AuthSource: VE1EUR03FT023.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR10MB2329
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-25_02,2022-03-24_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=999 suspectscore=0 phishscore=0 clxscore=1034 impostorscore=0
+ malwarescore=0 spamscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2202240000
+ definitions=main-2203250057
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+Hi,
 
-* Add comment to improve readability
+This series adds a new SPI driver using the spi-mem interface for the
+Aspeed static memory controllers of the AST2600, AST2500 and AST2400
+SoCs.
 
-Signed-off-by: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
----
- arch/arm/boot/dts/am335x-guardian.dts | 24 +++++++++++++++---------
- 1 file changed, 15 insertions(+), 9 deletions(-)
+ * AST2600 Firmware SPI Memory Controller (FMC)
+ * AST2600 SPI Flash Controller (SPI1 and SPI2)
+ * AST2500 Firmware SPI Memory Controller (FMC)
+ * AST2500 SPI Flash Controller (SPI1 and SPI2)
+ * AST2400 New Static Memory Controller (also referred as FMC)
+ * AST2400 SPI Flash Controller (SPI)
 
-diff --git a/arch/arm/boot/dts/am335x-guardian.dts b/arch/arm/boot/dts/am335x-guardian.dts
-index cc56b4510930..1a7e187b1953 100644
---- a/arch/arm/boot/dts/am335x-guardian.dts
-+++ b/arch/arm/boot/dts/am335x-guardian.dts
-@@ -535,8 +535,8 @@
+It is based on the current OpenBMC kernel driver [1], using directly
+the MTD SPI-NOR interface and on a patchset [2] previously proposed
+adding support for the AST2600 only. This driver takes a slightly
+different approach to cover all 6 controllers.
+
+It does not make use of the controller register disabling Address and
+Data byte lanes because is not available on the AST2400 SoC. We could
+introduce a specific handler for new features available on recent SoCs
+if needed. As there is not much difference on performance, the driver
+chooses the common denominator: "User mode" which has been heavily
+tested in [1]. "User mode" is also used as a fall back method when
+flash device mapping window is too small.
+
+Problems to address with spi-mem were the configuration of the mapping
+windows and the calibration of the read timings. The driver handles
+them in the direct mapping handler when some knowledge on the size of
+the flash device is know. It is not perfect but not incorrect either.
+The algorithm is one from [1] because it doesn't require the DMA
+registers which are not available on all controllers.
+
+Direct mapping for writes is not supported (yet). I have seen some
+corruption with writes and I preferred to use the safer and proven
+method of the initial driver [1]. We can improve that later.
+
+The driver supports Quad SPI RX transfers on the AST2600 SoC but it
+didn't have the expected results. Therefore it is not activated yet.
+There are some issues on the pinctrl to investigate first. 
+
+Tested on:
  
- 	i2c0_pins: pinmux_i2c0_pins {
- 		pinctrl-single,pins = <
--			AM33XX_IOPAD(0x988, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x98c, PIN_INPUT_PULLUP | MUX_MODE0)
-+			AM33XX_IOPAD(0x988, PIN_INPUT_PULLUP | MUX_MODE0) /* i2c0_sda.i2c0_sda */
-+			AM33XX_IOPAD(0x98c, PIN_INPUT_PULLUP | MUX_MODE0) /* i2c0_scl.i2c0_scl */
- 		>;
- 	};
+ * OpenPOWER Palmetto (AST2400)
+ * Facebook Wedge 100 BMC (AST2400) by Tao Ren <rentao.bupt@gmail.com>
+ * Evaluation board (AST2500) 
+ * Inspur FP5280G2 BMC (AST2500) by John Wang <wangzq.jn@gmail.com>
+ * Facebook Backpack CMM BMC (AST2500) by Tao Ren <rentao.bupt@gmail.com>
+ * OpenPOWER Witherspoon (AST2500)
+ * Evaluation board (AST2600 A0 and A3)
+ * Rainier board (AST2600)
  
-@@ -668,28 +668,34 @@
- 
- 	mmc1_pins: pinmux_mmc1_pins {
- 		pinctrl-single,pins = <
--			AM33XX_IOPAD(0x8f0, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x8f4, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x8f8, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x8fc, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x900, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x904, PIN_INPUT_PULLUP | MUX_MODE0)
--			AM33XX_IOPAD(0x960, PIN_INPUT | MUX_MODE7)
-+			AM33XX_IOPAD(0x8f0, PIN_INPUT_PULLUP | MUX_MODE0)  /* mmc0_dat3.mmc0_dat3 */
-+			AM33XX_IOPAD(0x8f4, PIN_INPUT_PULLUP | MUX_MODE0)  /* mmc0_dat2.mmc0_dat2 */
-+			AM33XX_IOPAD(0x8f8, PIN_INPUT_PULLUP | MUX_MODE0)  /* mmc0_dat1.mmc0_dat1 */
-+			AM33XX_IOPAD(0x8fc, PIN_INPUT_PULLUP | MUX_MODE0)  /* mmc0_dat0.mmc0_dat0 */
-+			AM33XX_IOPAD(0x900, PIN_INPUT_PULLUP | MUX_MODE0)  /* mmc0_clk.mmc0_clk */
-+			AM33XX_IOPAD(0x904, PIN_INPUT_PULLUP | MUX_MODE0)  /* mmc0_cmd.mmc0_cmd */
-+			AM33XX_IOPAD(0x960, PIN_INPUT | MUX_MODE7)         /* GPIO0_6 */
- 		>;
- 	};
- 
- 	spi0_pins: pinmux_spi0_pins {
- 		pinctrl-single,pins = <
-+			/* SPI0_CLK  - spi0_clk.spi */
- 			AM33XX_IOPAD(0x950, PIN_OUTPUT_PULLDOWN | MUX_MODE0)
-+			/* SPI0_MOSI - spi0_d0.spi0 */
- 			AM33XX_IOPAD(0x954, PIN_OUTPUT_PULLUP | MUX_MODE0)
-+			/* SPI0_MISO - spi0_d1.spi0 */
- 			AM33XX_IOPAD(0x958, PIN_INPUT_PULLUP | MUX_MODE0)
-+			/* SPI0_CS0 - spi */
- 			AM33XX_IOPAD(0x95c, PIN_OUTPUT_PULLUP | MUX_MODE0)
- 		>;
- 	};
- 
- 	uart0_pins: pinmux_uart0_pins {
- 		pinctrl-single,pins = <
-+			/* uart0_rxd.uart0_rxd */
- 			AM33XX_IOPAD(0x970, PIN_INPUT_PULLUP | MUX_MODE0)
-+			/* uart0_txd.uart0_txd */
- 			AM33XX_IOPAD(0x974, PIN_OUTPUT_PULLDOWN | MUX_MODE0)
- 		>;
- 	};
+[1] https://github.com/openbmc/linux/blob/dev-5.15/drivers/mtd/spi-nor/controllers/aspeed-smc.c
+[2] https://patchwork.ozlabs.org/project/linux-aspeed/list/?series=212394
+
+Thanks,
+
+C. 
+
+Changes in v4:
+
+  - Rebased on 5.18 
+  - Removal of the SPI-NOR base driver (we had enough tests)
+  - Fix for small size flash devices on AST2600 (Potin)
+
+Changes in v3:
+
+ - Fixed compile warning on aspeed_spi_dirmap_read() prototype reported
+   by kernel test robot 
+ - Removed unnecessary entry in ast2600-fmc.yaml
+ - New patch from Tao to set spi-max-frequency on all FMC devices
+
+Changes in v2:
+
+ - Fixed dt_binding_check warnings (Rob)
+ - New entry in MAINTAINERS 
+ - Addressed Lukas comments regarding the SPI controller registration
+   and device removal. Checked with driver bind/unbind   
+ - Introduced setup and cleanup handlers and removed routine looping
+   on the DT children properties (Pratyush)
+ - Clarified in commit log requirements for training.
+ - Removed defconfig changes of patch 1 since they were reverted in
+   the last patch (Joel)
+
+Cédric Le Goater (9):
+  ARM: dts: aspeed: Adjust "reg" property of FMC/SPI controllers
+  dt-bindings: spi: Add Aspeed SMC controllers device tree binding
+  spi: spi-mem: Convert Aspeed SMC driver to spi-mem
+  spi: aspeed: Add support for direct mapping
+  spi: aspeed: Adjust direct mapping to device size
+  spi: aspeed: Workaround AST2500 limitations
+  spi: aspeed: Add support for the AST2400 SPI controller
+  spi: aspeed: Calibrate read timings
+  ARM: dts: aspeed: Enable Dual SPI RX transfers
+
+Potin Lai (1):
+  mtd: spi-nor: aspeed: set the decoding size to at least 2MB for
+    AST2600
+
+Tao Ren (1):
+  ARM: dts: aspeed-g4: Set spi-max-frequency for all flashes
+
+ drivers/mtd/spi-nor/controllers/aspeed-smc.c  |  910 -------------
+ drivers/spi/spi-aspeed-smc.c                  | 1197 +++++++++++++++++
+ .../devicetree/bindings/mtd/aspeed-smc.txt    |   51 -
+ .../bindings/spi/aspeed,ast2600-fmc.yaml      |   87 ++
+ MAINTAINERS                                   |   10 +
+ arch/arm/boot/dts/aspeed-g4.dtsi              |   16 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   16 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi              |   17 +-
+ drivers/mtd/spi-nor/controllers/Kconfig       |   10 -
+ drivers/mtd/spi-nor/controllers/Makefile      |    1 -
+ drivers/spi/Kconfig                           |   11 +
+ drivers/spi/Makefile                          |    1 +
+ 12 files changed, 1339 insertions(+), 988 deletions(-)
+ delete mode 100644 drivers/mtd/spi-nor/controllers/aspeed-smc.c
+ create mode 100644 drivers/spi/spi-aspeed-smc.c
+ delete mode 100644 Documentation/devicetree/bindings/mtd/aspeed-smc.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+
 -- 
-2.20.1
+2.34.1
 
