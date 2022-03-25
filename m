@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D03B54E6B56
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 00:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A804E6B70
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 01:08:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356643AbiCXXvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Mar 2022 19:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37014 "EHLO
+        id S1356845AbiCYAJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Mar 2022 20:09:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357833AbiCXXuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 19:50:22 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEACD3B3F3;
-        Thu, 24 Mar 2022 16:48:49 -0700 (PDT)
-X-UUID: b9ac444f49c447358efb66243cb64152-20220325
-X-UUID: b9ac444f49c447358efb66243cb64152-20220325
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2025605287; Fri, 25 Mar 2022 07:48:45 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 25 Mar 2022 07:48:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 25 Mar 2022 07:48:43 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <xinlei.lee@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <devicetree@vger.kernel.org>,
-        <jitao.shi@mediatek.com>, <lee.jones@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-pwm@vger.kernel.org>,
-        <matthias.bgg@gmail.com>, <rex-bc.chen@mediatek.com>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v4,1/6] dt-bindings: pwm: Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format
-Date:   Fri, 25 Mar 2022 07:48:43 +0800
-Message-ID: <20220324234843.20641-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <1648101804-3584-2-git-send-email-xinlei.lee@mediatek.com>
-References: <1648101804-3584-2-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S1356834AbiCYAJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Mar 2022 20:09:31 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE5B6BBE03
+        for <devicetree@vger.kernel.org>; Thu, 24 Mar 2022 17:07:57 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id EEA742C0185;
+        Fri, 25 Mar 2022 00:07:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1648166874;
+        bh=+SFIg7fa1NM+TS4dHaC6vNTZ/+6jBhDgLI6tjzA8d38=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ts/jmE7Rbz810AoCpY10+PncVMhVT0f9cKSm0zyN4lgXR/a/IECAbpHt1pz9CtXQ1
+         7BKfbnalfXM8c9j1maBWzDvApzSxzMFw3ei9tKmj3/6pUil/ZcsO2Fy35H/tPZmr5A
+         15sXb2sPegqzvnS6pOOb5UkTA7aiIBRIoZBjICwgpEqi9yWVD0GTX3Dib/DYZWNRc1
+         +W+1v+o8lq1Py7M8R5JGC62ySbm1x+1SiVSWfRFePp61oWwZTTaxi2XS1UTuqGDyVX
+         MY4E2QjsmGRiZwxOvx/To1jZPlHsxrY8nUNXkQRIoM5I4/ShYNU2ySM63ZFo33Xwzp
+         GZk/eWFKMuvsw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B623d07d90000>; Fri, 25 Mar 2022 13:07:53 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 98E9213EDD7;
+        Fri, 25 Mar 2022 13:07:53 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 8DAF62A2679; Fri, 25 Mar 2022 13:07:49 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, huziji@marvell.com,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v3 0/3] mmc: xenon: Convert to JSON schema
+Date:   Fri, 25 Mar 2022 13:07:42 +1300
+Message-Id: <20220325000745.1708610-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=gY6W4IOjc_lc-HF-ILsA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format as suggested by maintainer
-> 
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/pwm/mediatek,pwm-disp.yaml       | 65 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-mtk-disp.txt  | 44 -------------
->  2 files changed, 65 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> new file mode 100644
-> index 000000000000..f844695d605a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/mediatek,pwm-disp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek DISP_PWM Controller Device Tree Bindings
+This series converts the xenon-sdhci-binding to JSON schema. There are so=
+me
+schema violations with the clock nodes for the existing dts. It's unclear
+whether the ap806/ap807 actually need the 2nd clock but the change that
+introduced the requirement to the old binding was fairly explicit about t=
+his
+being required for cp110 and ap806.
 
-s/Mediatek/MediaTek/
+Chris Packham (3):
+  arm64: dts: marvell: Update sdhci node names to match schema
+  dt-bindings: mmc: xenon: Convert to JSON schema
+  dt-bindings: mmc: xenon: add marvell,sdhci-xenon compatible
 
-Thanks,
-Miles
-> +
-> +maintainers:
-> +  - Jitao Shi <jitao.shi@mediatek.com>
-> +  - Xinlei Lee <xinlei.lee@mediatek.com>
-> +
-> +allOf:
+ .../bindings/mmc/marvell,xenon-sdhci.txt      | 173 -----------
+ .../bindings/mmc/marvell,xenon-sdhci.yaml     | 276 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   4 +-
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi |   2 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   2 +-
+ 6 files changed, 281 insertions(+), 178 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-s=
+dhci.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-s=
+dhci.yaml
+
+--=20
+2.35.1
+
