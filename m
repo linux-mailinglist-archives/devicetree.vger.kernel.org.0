@@ -2,119 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 813A24E7730
-	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BACD54E77D1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Mar 2022 16:37:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376625AbiCYP1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 11:27:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49744 "EHLO
+        id S1345213AbiCYPfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 11:35:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378884AbiCYP0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:26:00 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4CA6542D;
-        Fri, 25 Mar 2022 08:24:24 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id kl29so6467926qvb.2;
-        Fri, 25 Mar 2022 08:24:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=enC4Cm+VFbMXJ8ZY/YefPUBsSjow27Oy9HPQpG1Rb48=;
-        b=ACrIBionqSd/X6CKhpsW/3KWWBv+AQcW1cxaymUjdMARjWL8SmgP0GEnEsBCNL5RVC
-         fMNUcitspAP6r5FV360aMEy5nPmT2FucG1cYyQcolMW/nCLo4gI/DnmzNQN8Exjfe3gg
-         IPiP98sy+i44dBw6flJIZ8DaTJKgRYAEHSGFfuY0qNf2yatCdMgpSjhHbcJrvZYEFM5r
-         WoTkoW0z4Q8YPwsv+7qOFhLDaus5BHshWUuMra/JzT2QWAsr7Ge4zlFOtIvXUxexue9P
-         dhMsBIrznUZuk7MLHrK1wtBs7MpBCx1vN+URf3+muTPXIypmxlExuR3e/6V0q3EfrN/z
-         4uMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=enC4Cm+VFbMXJ8ZY/YefPUBsSjow27Oy9HPQpG1Rb48=;
-        b=LfuhV2YohWU72OeYV0cLjD1Ya21ZRbP2UA6z066SroI1FF7jAz8mwrjsHd2foJV0fE
-         6U6nLfku7TfSvRS3WuSAmkpyM+lbADw100DiR7oFZdSqcK0afL8ida5+XQ5h0Sge9vxV
-         tgRIMTo5z3EnwijCHVMuhW4lkYPCZ5TFu+ki6C05F+mpZv/AZiMZjcO/443ClvrXwGUq
-         nWaEIJPEhlQty07Hh8uP8clmXCOMa7aBmq+Nre4cMlaLl2Vj514HizcujR+QOyESYmqD
-         xGBpksMw0C6m9FQ7xOjZTUQElaMTwsFIGDk0NSrpXHIsa1DTRe4ReLX6RgPYnPDKuXc5
-         LCJA==
-X-Gm-Message-State: AOAM533DGzDVA3QBeOfgCA1FiuWillgDCqmJ51zjEzE4X8L6L0kjLDnT
-        9WIOgvR5vK6iLKV/kk6BijA=
-X-Google-Smtp-Source: ABdhPJwcFW7IuU2aDnnWZG2xVtc3QsgNnIq+THxh/PTZSZpAQDxVb1uGYe++SdRidNjxvcwGmijVMw==
-X-Received: by 2002:a05:6214:20a5:b0:440:f648:997d with SMTP id 5-20020a05621420a500b00440f648997dmr9582604qvd.130.1648221864117;
-        Fri, 25 Mar 2022 08:24:24 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id k1-20020ac85fc1000000b002e1c6420790sm5742466qta.40.2022.03.25.08.24.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Mar 2022 08:24:23 -0700 (PDT)
-Message-ID: <019b1a59-7531-75cf-3b86-d2798ca9823a@gmail.com>
-Date:   Fri, 25 Mar 2022 16:24:20 +0100
+        with ESMTP id S1377155AbiCYPdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 11:33:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5907E19C08
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 08:28:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 16063B8288D
+        for <devicetree@vger.kernel.org>; Fri, 25 Mar 2022 15:28:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4596C340E9;
+        Fri, 25 Mar 2022 15:28:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648222113;
+        bh=L1Z6Za1aEKMOiJGWukUtcTk4fT19c9ZafdifB0eS2lo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uyWqbqXuArSKGWKVYuT3AYpsbSz+hgCuAOcuSc0JbJZsZWT8DBT7MiNhxQuWtgs1w
+         VMUmFKCKLUKH1EOi0zPjZTPEvxZiheUz4mYkb+GNTqtZXztjQL2MY4CTMDVPtTWEVy
+         D5FmY24W7VDDxFw+yYEBZK+Vf0eUwvw21fVm+3dcj0lqY1SR/1ykXGI8tiIAhhDZ1G
+         DSodDmqNlAAzz4yXIj3dYamX+t9ryeEj5PdirYvg9e2ETtEBtV+82nVKuk9o7NaAF+
+         JVVATKzA0nv8Z3/MTGGdkZ76fCCk6WGOYnJUl/layhiRVs1U108MlygtJx76VXM/Vp
+         sXHan9+pgTQMw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>
+Subject: [PATCH v1 0/2] ARM: dts: at91: Fixes for AT91SAM9G20-EK audio DTS
+Date:   Fri, 25 Mar 2022 15:27:13 +0000
+Message-Id: <20220325152715.1597893-1-broonie@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 17/22] arm64: dts: mt8192: Add dpi node
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-18-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220318144534.17996-18-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1039; h=from:subject; bh=L1Z6Za1aEKMOiJGWukUtcTk4fT19c9ZafdifB0eS2lo=; b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBiPd9QrcWueG7eGoUwpbNL9YbdjRgP55Anp96OGUTd drlz6BCJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCYj3fUAAKCRAk1otyXVSH0GZXB/ 9JvnacRLmLhDBP69a4D3bc0VLN0mdP3DadtMFZELuXjgwKd5Qi8oTt7spA993trgibK/1laNJa/3Yb tV8ELOX+F+eeAdzpqyjGDt77OOaxB2L5vbXtfvtPGT0/wKz7iwrFF3CHQQCM9mU+Uv5vGdDzSWUYq8 rCMhnr4RKJ+0blGfmp1tzG8Xq/TVU17kW0D8Bq8UIFodrFdYoNRJQAjIfdYma8wrrS7K5UWvnnNgjT AMMTYzGgO0JGveI7Llmp8sRriNrWfl4EwetED11wMVvdHOyTbbnCcY/SDI4FPzCM4NDgVn8dAuVmql KK+cgPyJpiJ0rtwvl+9HEl8maCITLA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp; fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The DT description for the audio subsystem on the AT91SAM9G20-EK
+reference board is a bit bitrotted, the clocking for the WM8731 audio
+CODEC is not described. Previously this was handled in the machine
+driver but at some point in the transition to the common clock framework
+that code was broken and rendered mostly redundant so the first patch
+adds a mapping of the MCLK on the CODEC which is used via existing code
+in it's driver.
+
+We also have some warnings on both the WM8731 and the MMC from the
+regulator framework since the supplies on the board aren't described.
+These don't fundamentally matter since they are fixed voltage regulators
+and not controlled by software at runtime but it's nicer to fix them.
+
+Mark Brown (2):
+  ARM: dts: at91: Map MCLK for wm8731 on at91sam9g20ek
+  ARM: dts: at91: Describe regulators on at91sam9g20ek
+
+ arch/arm/boot/dts/at91sam9g20ek_common.dtsi | 42 +++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
 
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add dpi node for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 71ad3adeed51..a77d405dd508 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1236,6 +1236,17 @@
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   		};
->   
-> +		dpi0: dpi@14016000 {
-> +			compatible = "mediatek,mt8192-dpi";
-> +			reg = <0 0x14016000 0 0x1000>;
-> +			interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&mmsys CLK_MM_DPI_DPI0>,
-> +				 <&mmsys CLK_MM_DISP_DPI0>,
-> +				 <&apmixedsys CLK_APMIXED_TVDPLL>;
-> +			clock-names = "pixel", "engine", "pll";
-> +			status = "disabled";
+base-commit: f443e374ae131c168a065ea1748feac6b2e76613
+-- 
+2.30.2
 
-We are missing the output port node here.
-
-Regards,
-Matthias
-
-> +		};
-> +
->   		iommu0: m4u@1401d000 {
->   			compatible = "mediatek,mt8192-m4u";
->   			reg = <0 0x1401d000 0 0x1000>;
