@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F674E7C0E
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3494E7CC5
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 01:22:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233222AbiCYVMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 17:12:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
+        id S233314AbiCYVMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 17:12:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233160AbiCYVMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 17:12:08 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC0313F1B;
-        Fri, 25 Mar 2022 14:10:32 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id q129so9514425oif.4;
-        Fri, 25 Mar 2022 14:10:32 -0700 (PDT)
+        with ESMTP id S231745AbiCYVMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 17:12:38 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD731FF412;
+        Fri, 25 Mar 2022 14:11:03 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id w127so9487607oig.10;
+        Fri, 25 Mar 2022 14:11:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2TNPm4s2d/avyYNyKgm5CxLZb9xC2asaX7pXzx+AArg=;
-        b=cgy+ob/SRo1Q8TXRDKbL9YzvHkS36vX62SWvhhqgWXz2wrw2Tdun0pNa/ekFC9sPy8
-         cC9M/AxDfBdQUULWnhZJXu9TryTrIlTKRYM7dx3NEPq1t1YUbvawoe3Z57ubCVe/oxn8
-         +HTQDnE4Hu2JZbzTjdsvg+p8MaYdlAUb+G5U6RCnQXz67pDzH7VWgdwv7FWd39pEWH+F
-         5vXrhCGWj0RkWbo1YAtAmmEOQx2JZ3gVE8JtOrgA0LoWUxuqk8AVHj84Vr9UhaPSn3jK
-         Xi/6QpKfwGvDvR7ShQ6w7usEdHQErn/ybLiX6kBv5P6A4+W3nsGbk3TdGyXaZerTyLCV
-         XYsg==
-X-Gm-Message-State: AOAM5319SO71D9ZsWmzsN5N2j1Jvv+VHqFtVDIzbRA48sQfTqhXnsH4t
-        IS4YZ5iojhI+EoPkCeArzPEOnxmZvg==
-X-Google-Smtp-Source: ABdhPJzcixabbXOwrUOVtS0coroIVjXvK0Wc/6jAmqmd0HOfLzrGJXCVH1qVrBh5a/RGQrQbiaYViw==
-X-Received: by 2002:aca:1712:0:b0:2ec:e1a4:1ad1 with SMTP id j18-20020aca1712000000b002ece1a41ad1mr11155141oii.78.1648242632075;
-        Fri, 25 Mar 2022 14:10:32 -0700 (PDT)
+        bh=wXvBLN2YPI/f+mwgNpVUSPw3vc7vaslW8j6BkDAkPkw=;
+        b=5yVFPYFVS/tIzDi0a9ZxGo5qJfpMOsEpodTqe7HVQb77GpyQCti0jT0NIGDNA6LoHQ
+         dFxli7rK6VXnwjqNRNpg3zv9vACIdfHArhvWNPVqzkmTwQ73au+ylEfD8om8qsbnHK1e
+         cWYXuMzNMn9dIy2kceK1oEKCUrfI3ms9KfHkkERZa/1/jit65VYQxOI6mIgukZYxg4A4
+         m+DFGPEvPpSPDjCf0jwoMdd8ytTrbQ3a2IPgOsifuv+pDSx92qPLZtwlaGVb/v+2gpCm
+         mD/PFOkeUvHKJS5AcwgyA7JL0M92TfScdHrbqUUnkQcBUgjXAsOpot69l1dg80bpHyq9
+         815g==
+X-Gm-Message-State: AOAM533lqbX31IXv5s0k3N2/ktd4BN8dUKh90tQhnh3SkBsWq4XoBLf3
+        u6nz2qIeuer8z7SChl1oow==
+X-Google-Smtp-Source: ABdhPJz/WMdnAOINviqJND5zDMeL1o27zVTXARwz/Cw5GDE6nIi94HXm4B8MMoxqz03bNIsAqu/rNQ==
+X-Received: by 2002:a05:6808:9b9:b0:2ef:7562:1586 with SMTP id e25-20020a05680809b900b002ef75621586mr6372651oig.261.1648242662763;
+        Fri, 25 Mar 2022 14:11:02 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m13-20020a9d7acd000000b005cda59325e6sm3069602otn.60.2022.03.25.14.10.30
+        by smtp.gmail.com with ESMTPSA id c26-20020a4ae25a000000b0031c268c5436sm3028104oot.16.2022.03.25.14.11.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Mar 2022 14:10:31 -0700 (PDT)
-Received: (nullmailer pid 459339 invoked by uid 1000);
-        Fri, 25 Mar 2022 21:10:30 -0000
-Date:   Fri, 25 Mar 2022 16:10:30 -0500
+        Fri, 25 Mar 2022 14:11:01 -0700 (PDT)
+Received: (nullmailer pid 460214 invoked by uid 1000);
+        Fri, 25 Mar 2022 21:11:01 -0000
+Date:   Fri, 25 Mar 2022 16:11:01 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Samuel Holland <samuel@sholland.org>,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: Re: [PATCH v2 02/12] dt-bindings: watchdog: sunxi: clarify clock
- support
-Message-ID: <Yj4vxqRSKR+rcBLO@robh.at.kernel.org>
-References: <20220317162349.739636-1-andre.przywara@arm.com>
- <20220317162349.739636-3-andre.przywara@arm.com>
+To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stefan Roese <sr@denx.de>
+Subject: Re: [PATCH 2/2] dt-bindings: altr,msgdma: update my email address
+Message-ID: <Yj4v5c3nTdOhgyU7@robh.at.kernel.org>
+References: <85c4174fa162bd946ccf3e08dcfc9b83cfe69b5c.1647539776.git.olivier.dautricourt@orolia.com>
+ <dc3decf1dae172c688017bd3ada2ad2b7d060c1e.1647539776.git.olivier.dautricourt@orolia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220317162349.739636-3-andre.przywara@arm.com>
+In-Reply-To: <dc3decf1dae172c688017bd3ada2ad2b7d060c1e.1647539776.git.olivier.dautricourt@orolia.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -74,26 +63,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Mar 2022 16:23:39 +0000, Andre Przywara wrote:
-> Most Allwinner SoCs have just one input clock to drive the watchdog
-> peripheral. So far this is the 24 MHz "HOSC" oscillator, divided down
-> internally to 32 KHz.
-> The F1C100 series watchdog however uses the unchanged 32 KHz "LOSC" as
-> its only clock input, which has the same effect, but let's the binding
-> description mismatch.
+On Thu, 17 Mar 2022 18:56:56 +0100, Olivier Dautricourt wrote:
+> This email should now be used to contact me.
 > 
-> Change the binding description to name the clocks more loosely, so both
-> the LOSC and divided HOSC match the description. As the fixed clock names
-> now make less sense, drop them from SoCs supporting just one clock
-> input, they were not used by any DT anyway.
-> 
-> For the newer SoCs, supporting a choice of two input clocks, we keep
-> both the description and clock-names requirement.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
 > ---
->  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 20 ++++++++-----------
->  1 file changed, 8 insertions(+), 12 deletions(-)
+>  Documentation/devicetree/bindings/dma/altr,msgdma.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
