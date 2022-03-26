@@ -2,65 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EFC74E8069
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 11:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA1F4E8096
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 12:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232512AbiCZK3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Mar 2022 06:29:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53898 "EHLO
+        id S232686AbiCZLlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Mar 2022 07:41:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232498AbiCZK3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 06:29:03 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143852F008;
-        Sat, 26 Mar 2022 03:27:24 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id pv16so19793609ejb.0;
-        Sat, 26 Mar 2022 03:27:24 -0700 (PDT)
+        with ESMTP id S229498AbiCZLlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 07:41:32 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813B74EA2C;
+        Sat, 26 Mar 2022 04:39:56 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id j13so10711072plj.8;
+        Sat, 26 Mar 2022 04:39:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gJNCNvpGXaKqAIHCO4xhB5jgrMlxJtcGqvg3RJwepb0=;
-        b=e5zTOtzJnmdhJkaAaFuUx/AE7i2r+pjg25hvt7Q9BAm0aLXz+Pya5CERaYqqHGe/U4
-         m33dcJci2qtdSm06qzqu2A7KnvKd6A3hVj6+orDhWN3ZS3hZ/vhSMy7ZkB/ICDhdYBel
-         e54GubObSnz6MFNTiIs7JBh9Tycvf0LKiLvVTn/cPvyM762L6vTf5EOi02nTcy4cb/ys
-         qdESkukJXCQjvSWoRkb32/ZQHb6geFATHurqumVCr+iIMUrBbyVOdePlFA17WpUgc2HH
-         0FtsX4YWiokgo/+1qArfyU1pdMeMbozO/pOIPV1kB+m3KNfMa71XiBJwMbyYuSRiuo+x
-         8lDA==
+        h=from:to:cc:subject:date:message-id;
+        bh=tia7fK4nc/ANrfG8lyg/ABwGBOiv7qC/2FHjWGl9d/8=;
+        b=O2HpT1g/76KqlcnfA8zcoSg92GyPGII5TRrUJivHd58veRfeL5Z3M4MYOt/oy48nc4
+         xAfJdsi+8SHZm++eAT362IKZrjElK7niOXYZ0ttVK6UWd97CZeoZmpTc2w8WBjAuIvgR
+         +nLMLz3zViX3++38C98TudKnSpyk1vWGJz+ZI7Ka8Swr8QIyM0g8vX+F9x2veA9i3hhX
+         A672sxIthWWsbtMRQH/JcQgP7LBl9jwaoyv2KWwawSj3NIN1mZG8j3f2j3869NZTGPeG
+         uCOHYrPT6x5y+BoDgtW9Nf1INHr9CGnleMZxfEEqW54KkG4KZer5C7Ut1vy3QL5pq4ez
+         vfzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gJNCNvpGXaKqAIHCO4xhB5jgrMlxJtcGqvg3RJwepb0=;
-        b=1y69HvImrInVPx3bSAAm9vf3YImotZ8rf151tMNEPykKyfXy39TWde/HI9UWoIp5Vj
-         TX1c15IJam6Y2CDJawcjRag4XM2GmIyod6rQhjDZT7LBkSOs5swXgJjOEOpq3o3jFNva
-         mCnzYN6JQEGJhXFDAPb9h4kIDHrVM04+WF1zycnOPkMVIdolhQJuuEUAl5+/uyCXWV9p
-         5t4hY4QuVWU5ewxydlY2pVQSWOnG2Owj4y9GUpUVz8Bo+F4fB37YsLgWuyfLQKCQe6yP
-         VHPb87utV82QwAnsEp83rqtB9a9sWoJjVCsgzJv6aVLdZ+5acxMAIJxJavxAX/u0KPIB
-         r8IA==
-X-Gm-Message-State: AOAM531Par1vYIxbJYuhcekzrDwg3naTLCsyrrtI4/erwLRt/y8Fb+eB
-        yi0k+bdfe2gyPEvK4ANvRos=
-X-Google-Smtp-Source: ABdhPJy0S/ltddHS/J3q+F7pW5ZG5TpKypxxoNl0N8StWaIdHuTYgh2FBFDRufdwyts3L1HsOZiD8A==
-X-Received: by 2002:a17:907:1c10:b0:6da:6316:d009 with SMTP id nc16-20020a1709071c1000b006da6316d009mr16427209ejc.621.1648290442568;
-        Sat, 26 Mar 2022 03:27:22 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id g23-20020a17090670d700b006ccfd4163f7sm3209021ejk.206.2022.03.26.03.27.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Mar 2022 03:27:22 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] arm64: dts: rockchip: add clocks property to cru node rk3399
-Date:   Sat, 26 Mar 2022 11:27:12 +0100
-Message-Id: <20220326102712.20906-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220326102712.20906-1-jbx6244@gmail.com>
-References: <20220326102712.20906-1-jbx6244@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=tia7fK4nc/ANrfG8lyg/ABwGBOiv7qC/2FHjWGl9d/8=;
+        b=vkv2YZpPeIQedZSmsxXbi2Z5W3TgVTupGOdiHjNR8CJBoLoa3Vmp9HK2B6ULx0kHoA
+         TXss3RcUNZn6s9gO1kFc4kgWcSLRCFheUbXUsTqnqQBoCdV/TKyEfT+dR39FjTOlHoEU
+         piu7A/NQ2dky8UTQ8ETsHm/1C7P36O6AxLO0uxVb+2sdlZ2wi88e8UaZs2JlZr7cVaOZ
+         YTyl4+G1bALfE8NEjVdn73OaCGKrswhP/RFhAPdU43JoYZ2KxknKX9ot4GN2GGjNZl1h
+         7l4vEuRFxTzBx1iYhlv7UarelLexMZoi9zGKNo5B9Nof5hVPSFYr9iy4uTX7Ui3zDen0
+         ng5g==
+X-Gm-Message-State: AOAM533T/Bgjew79FIM977BN+YgBKyMRxIKZTMgRtC534n2QUM6slBIV
+        TBhMTuwURMGTAJm+9BZeQ42P3DqC5jk=
+X-Google-Smtp-Source: ABdhPJzWorglYLMrgJbfU8duaTDY2yB2zqS+A0F08KUCi0s04JZrkIN9Q+pCa6AdV0pVuYes2mSdbA==
+X-Received: by 2002:a17:902:c64b:b0:153:f75d:253e with SMTP id s11-20020a170902c64b00b00153f75d253emr16554380pls.48.1648294795784;
+        Sat, 26 Mar 2022 04:39:55 -0700 (PDT)
+Received: from RD-1129-20047.dynamic.kbronet.com.tw (180-176-43-246.dynamic.kbronet.com.tw. [180.176.43.246])
+        by smtp.gmail.com with ESMTPSA id s1-20020a056a00178100b004f731a1a952sm9884926pfg.168.2022.03.26.04.39.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 26 Mar 2022 04:39:55 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org
+Cc:     lgirdwood@gmail.com, cy_huang@richtek.com, gene_chen@richtek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] Add Richtek RT5759 buck converter support
+Date:   Sat, 26 Mar 2022 19:39:46 +0800
+Message-Id: <1648294788-11758-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
@@ -71,27 +63,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clocks property to rk3399 cru node to fix warnings like:
-'clocks' is a dependency of 'assigned-clocks'.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+This patch series add Richtek RT5759 buck converter support.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 01c08a2aa..16fc6e5f1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1426,6 +1426,8 @@
- 	cru: clock-controller@ff760000 {
- 		compatible = "rockchip,rk3399-cru";
- 		reg = <0x0 0xff760000 0x0 0x1000>;
-+		clocks = <&xin24m>;
-+		clock-names = "xin24m";
- 		rockchip,grf = <&grf>;
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
+since V2
+- Fix typo in title description.
+- Put allOf and if/then to be together.
+- Change node name to generic 'regulator'.
+- Remove seperate wdt_enable variable.
+- Add of_match_ptr in struct driver of_match_table declaration.
+
+ChiYuan Huang (2):
+  dt-bindings: regulator: Add binding for Richtek RT5759 DCDC converter
+  regulator: rt5759: Add support for Richtek RT5759 DCDC converter
+
+ .../regulator/richtek,rt5759-regulator.yaml        |  90 +++++
+ drivers/regulator/Kconfig                          |  10 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/rt5759-regulator.c               | 369 +++++++++++++++++++++
+ 4 files changed, 470 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5759-regulator.yaml
+ create mode 100644 drivers/regulator/rt5759-regulator.c
+
 -- 
-2.20.1
+2.7.4
 
