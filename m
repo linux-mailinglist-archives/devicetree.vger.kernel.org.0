@@ -2,106 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 567414E7E57
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 02:07:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D76F24E7E7D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 02:56:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbiCZBJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Mar 2022 21:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44284 "EHLO
+        id S230143AbiCZB6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Mar 2022 21:58:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiCZBJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 21:09:26 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D7D15AACA;
-        Fri, 25 Mar 2022 18:07:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7D95DB82AC9;
-        Sat, 26 Mar 2022 01:07:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A5EEC340F3;
-        Sat, 26 Mar 2022 01:07:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648256869;
-        bh=TIGvi3NJoXI4BDEsPWY9lofzwK2or8+/7/y/4eCc4hY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mQIdq0/fEGsYHcR5YP4RYOjabvCiuT170bwmJJdm2m9AlK07akRPdgTSF7Mr6Jpmp
-         E/aV2KNE+IDpnJUigkDdDz4NgwfaiLd488baaBGkseNYhJ0PpTjdBhbvedV+Q9BqwP
-         U6O7F8YPF46LlAI0c9Y757XE2fE9QW7WNdIGQVJ4U59AXflDkOI48xZknjqlV/x5Nw
-         Y+8j5LUuudkGkI33GEjQ5wQrCcPX2NyQVbohgr3TOslC4CJt+X/FzNW/QqiPjrae3E
-         +B3iWlC/Bh0GM/40RLbYERV0bDtAl3ylDEGCxfMQeFVrDVxFq2ponIm9oz+S+UvGGV
-         5i9qTaAaf9/gg==
-Date:   Sat, 26 Mar 2022 01:07:45 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S230080AbiCZB6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Mar 2022 21:58:18 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8842C1C9B;
+        Fri, 25 Mar 2022 18:56:38 -0700 (PDT)
+X-UUID: 13a92cc6e8ee4622a5c2a0918b44ec45-20220326
+X-UUID: 13a92cc6e8ee4622a5c2a0918b44ec45-20220326
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1780893580; Sat, 26 Mar 2022 09:56:28 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Sat, 26 Mar 2022 09:56:27 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 26 Mar 2022 09:56:26 +0800
+Message-ID: <2ceb84aec51252cfb254525900480cc380fc2c03.camel@mediatek.com>
+Subject: Re: [PATCH v4 2/2] phy: mediatek: Add PCIe PHY driver
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] regulator: rt5759: Add support for Richtek RT5759
- DCDC converter
-Message-ID: <Yj5nYUeizlmlbX4O@sirena.org.uk>
-References: <d2b431f8-9197-4a42-4ee2-4e771e20e0aa@kernel.org>
- <CADiBU39RGQj1-+yK18mZf3MR78KACKqb2kAxkCFKGXKpJ6Nqxw@mail.gmail.com>
- <e4a15ceb-c013-96be-48d1-e65267400463@kernel.org>
- <CADiBU3-gwsh5v1NLUYr_ovXwpUxQqgR61f-Jpc3G-zHs_yV4uw@mail.gmail.com>
- <03999953-77c5-0272-7477-ab8a069b3671@kernel.org>
- <CADiBU38zYM1Rw2inTJ_Pu2eWKKqp2Ybb-_+JUJfxfmLNu=kYvw@mail.gmail.com>
- <cf67f944-47a7-f3b5-9d83-f0f51dc4e954@kernel.org>
- <Yj3oXuijuZY1gG9X@sirena.org.uk>
- <d2f220ae-c62c-a7f7-23cc-c33956c2eeaf@kernel.org>
- <CADiBU3-3QLi5PVUymk_VCbF+-uVSqjoP9jLGL+R=PQ-S=Y=_AA@mail.gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Wei-Shun Chang <weishunc@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Sat, 26 Mar 2022 09:56:26 +0800
+In-Reply-To: <be06e57d-302e-e641-a134-c45ea89a6a6b@collabora.com>
+References: <20220323065608.27426-1-jianjun.wang@mediatek.com>
+         <20220323065608.27426-3-jianjun.wang@mediatek.com>
+         <be06e57d-302e-e641-a134-c45ea89a6a6b@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="V/BI/lkc+CDzOVUK"
-Content-Disposition: inline
-In-Reply-To: <CADiBU3-3QLi5PVUymk_VCbF+-uVSqjoP9jLGL+R=PQ-S=Y=_AA@mail.gmail.com>
-X-Cookie: <Omnic> another .sig addition
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2022-03-25 at 15:15 +0100, AngeloGioacchino Del Regno wrote:
+> Il 23/03/22 07:56, Jianjun Wang ha scritto:
+> > Add PCIe GEN3 PHY driver support on MediaTek chipsets.
+> > 
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > ---
+> >   drivers/phy/mediatek/Kconfig        |  11 ++
+> >   drivers/phy/mediatek/Makefile       |   1 +
+> >   drivers/phy/mediatek/phy-mtk-pcie.c | 272
+> > ++++++++++++++++++++++++++++
+> >   3 files changed, 284 insertions(+)
+> >   create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
+> > 
+> 
+> ..snip..
+> 
+> > diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c
+> > b/drivers/phy/mediatek/phy-mtk-pcie.c
+> > new file mode 100644
+> > index 000000000000..44a2ad8d324e
+> > --- /dev/null
+> > +++ b/drivers/phy/mediatek/phy-mtk-pcie.c
+> > @@ -0,0 +1,272 @@
+> 
+> ..snip..
+> 
+> > +/**
+> > + * struct mtk_pcie_phy - PCIe phy driver main structure
+> > + * @dev: pointer to device
+> > + * @phy: pointer to generic phy
+> > + * @sif_base: IO mapped register base address of system interface
+> > + * @data: pointer to SoC dependent data
+> > + * @sw_efuse_en: software eFuse enable status
+> > + * @efuse_glb_intr: internal resistor selection of TX bias current
+> > data
+> > + * @efuse: pointer to eFues data for each lane
+> 
+> Oops! There's a typo! "eFues" => "eFuse"
+> 
+> After fixing this typo,
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
 
---V/BI/lkc+CDzOVUK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks!
 
-On Sat, Mar 26, 2022 at 08:58:47AM +0800, ChiYuan Huang wrote:
+> 
+> P.S.: Many thanks for the kerneldoc documentation!!!!
+> 
+> > + */
+> > +struct mtk_pcie_phy {
+> > +	struct device *dev;
+> > +	struct phy *phy;
+> > +	void __iomem *sif_base;
+> > +	const struct mtk_pcie_phy_data *data;
+> > +
+> > +	bool sw_efuse_en;
+> > +	u32 efuse_glb_intr;
+> > +	struct mtk_pcie_lane_efuse *efuse;
+> > +};
+> 
+> 
 
-> I tried to remove only __maybe_unused and build with x86 config  that
-> CONFIG_OF=n.
-> There's no warning or error message when compiling the rt5759 source code.
-
-> If so, I will remove only '__maybe_unused'.
-> May I ask whether 'of_match_ptr'  need to be added or not?
-
-If you add of_match_ptr() (which is a little better, though it's
-a tiny different either way) then you shouldn't remove
-__maybe_unused - the thing here is that the __maybe_unused is
-needed because of_match_ptr() is used.
-
---V/BI/lkc+CDzOVUK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmI+Z2AACgkQJNaLcl1U
-h9A8sgf+JM/GnGsh3SVVaRW5txEsbM9CDUDAOWyw0CTnyFLRdM4ufVz+2b13t9dz
-NtHUqEso2RiwWuoIihvgsD9u/cpjtSumnTkL17VXjdQBkoJThnYum1kpYtTNWSgU
-tjBv+dy6H6FMjkjwEwFEFpneA9bmHLM6bZbVSVFUzS4dWI8tRt8QkydAno9ZG+cN
-KiKIcqHeovCLQ5rxxg7o3pruR0EhDw5+Q/XPLGVktaA0+zUczrXq8w4Yq/X9Bp4O
-wFpM/viaW5t8GT6HiwXjH4yo10Mw/tBdJsZLgJdrK50QMEd+9uH+igIiphKdCfsm
-zmRJTlcu86kg0NJ3izdat6MIPfZQWA==
-=88Yr
------END PGP SIGNATURE-----
-
---V/BI/lkc+CDzOVUK--
