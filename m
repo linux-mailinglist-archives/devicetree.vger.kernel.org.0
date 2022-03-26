@@ -2,83 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE584E7FF9
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 09:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2CB4E7FFF
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 09:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231650AbiCZIP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Mar 2022 04:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44756 "EHLO
+        id S231442AbiCZI0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Mar 2022 04:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231317AbiCZIPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 04:15:55 -0400
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 422D41CABD3;
-        Sat, 26 Mar 2022 01:14:19 -0700 (PDT)
-Received: by mail-ej1-f51.google.com with SMTP id p15so19361808ejc.7;
-        Sat, 26 Mar 2022 01:14:19 -0700 (PDT)
+        with ESMTP id S230032AbiCZI0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 04:26:14 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC1E208319;
+        Sat, 26 Mar 2022 01:24:36 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id k21so16891694lfe.4;
+        Sat, 26 Mar 2022 01:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=baD/hy7UqUwQ+dS5FFULxwEB9FIM9FTZhKUu9Qvd7wc=;
+        b=gqtohLPJoIjzNVG85trDDWdJUwTmp22O8os9KywNzpz/c7GSl69ysNTdTrBYL7lo1G
+         rUswZINZCsHrIVXmOwccLM5xu7AV1iZtYsxV4gZxyisHjrJkgVo7KMjtQjVLCQafEwtc
+         kKCNFitQ/7z2nteerLrMkGXDG0nNn9eMmIAk1jxv62zfajC02FnwBw85wpQi3FEkdqQd
+         KMFvx14lUBweVU29yCZhyf4KQdVxJ+ujomzu55tB46GekSmeh9GFCxIpL/XdRUr/8/qN
+         hgruZ3TJYutId+8HZ5AVyaRg7oAjMW8dcGBXhdUd6FJM/U2wk2hYPUQr6kHwywQrdh/l
+         mTBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=T8ebr2iFGoh7ryNOjBQ98YHXu8uvdUYMxvGrKpFpiQU=;
-        b=dpOqmcq7OTfTzp+vXSbWmrrPoyRh9tuAzAd3nhLaq/plb3IyK772zhhBvZj/mhLOpz
-         ylGlVK/NFISLKdLcc/57ruZrfHb73iI/tvNe/B7zytyoX3smRfGInIiPKX2zSMZffh1f
-         lYLylJZnJIqC9G9nc40+mIbrtcCe3gZc/AT3UIAy+LdGqwN1znny/YwHFcHYGC8WUS3m
-         CVadlzuPRPCrywOyi/+OSJMYCR/6/qt5KkJuH8mBovvhLsc9u4LIZi07RJ7BL+BoZ9hf
-         4nBjycQmuYPQwIQmXS5dfNQUO+XJu2CWgRkteUtzxrdl0tMswi0uIegaRYhqRaaXB3rG
-         w7kQ==
-X-Gm-Message-State: AOAM530GGv8m2fT/r7ocGSp43VXPqSk6q0yX1Y+MTqtqDpOFGgfvtGc+
-        RTLHlcmnVglTbuz21odHMgJOwJ1fRcfRMw==
-X-Google-Smtp-Source: ABdhPJziycJCmOI8ifnO12TtKmV3cON6H184IhBIaccU6Xwb1dxUxQjhgncFsXLalZs3koHg4AKxDg==
-X-Received: by 2002:a17:906:58d3:b0:6da:bdb2:2727 with SMTP id e19-20020a17090658d300b006dabdb22727mr15838125ejs.549.1648282457756;
-        Sat, 26 Mar 2022 01:14:17 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id hp12-20020a1709073e0c00b006e02924bf20sm3265161ejc.117.2022.03.26.01.14.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Mar 2022 01:14:17 -0700 (PDT)
-Message-ID: <c1e9175e-e33d-ec51-4d9a-ce5c441a0ba4@kernel.org>
-Date:   Sat, 26 Mar 2022 09:14:16 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=baD/hy7UqUwQ+dS5FFULxwEB9FIM9FTZhKUu9Qvd7wc=;
+        b=snF/lhA4CJ/oftggIZwY06Yne3TZMM9u2NL/siYWC4AP2BnRKJ1GrSyK3PsU3ttzi5
+         tW98P6VviGRUCQC3kP/Wet6XwJc/hAakCaRMmwVjBT9lELSACqMZa0qL/ZL8NoJvwrwx
+         fyQ8rwY8t20UXc8i8Z3HhIRmHRKFazD4QjEpafwV41GMS36XZxr2NFEE1kcQKdZ7l5Zj
+         5cjBaGDP9kaLIprTVOgMBz7Yia2llxaQk6+ytUcMJmLn2t6X0Ws5jkkrRbAkEGv0Imz5
+         1TjXubcoWnj7erVaRY21wo8POvvjvqYMAsrHNLuCkzobqA71omRHsEq/aY/MrS7pG6Pj
+         gomA==
+X-Gm-Message-State: AOAM530w6r3G7Dk9iPRJG/a0pgyvAZ5lVkL08GO5eziDtsepXJOYC9Ni
+        CbqoN1ga/+Y3K54/eAkRpRvv/z5swjq2/AiUGjs=
+X-Google-Smtp-Source: ABdhPJxzulhonwSSggDUXNivoTSltzywgZ6stL57WymfdoYG0jquIP/FDjem5JM/YsvrvUEaZ5agAVzFZdHq7ZpTMyA=
+X-Received: by 2002:ac2:4d5b:0:b0:44a:14c9:89fb with SMTP id
+ 27-20020ac24d5b000000b0044a14c989fbmr10987259lfp.345.1648283074411; Sat, 26
+ Mar 2022 01:24:34 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: mtd: ti,elm: Add support for AM64 ELM
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, miquel.raynal@bootlin.com,
-        robh+dt@kernel.org
-Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, nm@ti.com,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220326080726.30372-1-rogerq@kernel.org>
- <20220326080726.30372-3-rogerq@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220326080726.30372-3-rogerq@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <d2b431f8-9197-4a42-4ee2-4e771e20e0aa@kernel.org>
+ <CADiBU39RGQj1-+yK18mZf3MR78KACKqb2kAxkCFKGXKpJ6Nqxw@mail.gmail.com>
+ <e4a15ceb-c013-96be-48d1-e65267400463@kernel.org> <CADiBU3-gwsh5v1NLUYr_ovXwpUxQqgR61f-Jpc3G-zHs_yV4uw@mail.gmail.com>
+ <03999953-77c5-0272-7477-ab8a069b3671@kernel.org> <CADiBU38zYM1Rw2inTJ_Pu2eWKKqp2Ybb-_+JUJfxfmLNu=kYvw@mail.gmail.com>
+ <cf67f944-47a7-f3b5-9d83-f0f51dc4e954@kernel.org> <Yj3oXuijuZY1gG9X@sirena.org.uk>
+ <d2f220ae-c62c-a7f7-23cc-c33956c2eeaf@kernel.org> <CADiBU3-3QLi5PVUymk_VCbF+-uVSqjoP9jLGL+R=PQ-S=Y=_AA@mail.gmail.com>
+ <Yj5nYUeizlmlbX4O@sirena.org.uk> <CADiBU38O6zdp5KYt90KgrZKJwAzBqPoaYQYehAJ=wS42NyVcjQ@mail.gmail.com>
+ <de9ff5a7-ebcf-d08f-486b-5334be8fb703@kernel.org>
+In-Reply-To: <de9ff5a7-ebcf-d08f-486b-5334be8fb703@kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Sat, 26 Mar 2022 16:24:22 +0800
+Message-ID: <CADiBU38Jo8n3m-BQ_3aCnapc2X=boQQS2PEKcGjPNfGHLMT=gQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] regulator: rt5759: Add support for Richtek RT5759
+ DCDC converter
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>, gene_chen@richtek.com,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2022 09:07, Roger Quadros wrote:
-> TI's AM64 SoC has the Error Locator Module. Add compatible and
-> related properties to support ELM on AM64 SoC.
-> 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  .../devicetree/bindings/mtd/ti,elm.yaml       | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8826=
+=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=884:13=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On 26/03/2022 08:55, ChiYuan Huang wrote:
+> > Mark Brown <broonie@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=8826=E6=
+=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=889:07=E5=AF=AB=E9=81=93=EF=BC=9A
+> >>
+> >> On Sat, Mar 26, 2022 at 08:58:47AM +0800, ChiYuan Huang wrote:
+> >>
+> >>> I tried to remove only __maybe_unused and build with x86 config  that
+> >>> CONFIG_OF=3Dn.
+> >>> There's no warning or error message when compiling the rt5759 source =
+code.
+> >>
+> >>> If so, I will remove only '__maybe_unused'.
+> >>> May I ask whether 'of_match_ptr'  need to be added or not?
+> >>
+> >> If you add of_match_ptr() (which is a little better, though it's
+> >> a tiny different either way) then you shouldn't remove
+> >> __maybe_unused - the thing here is that the __maybe_unused is
+> >> needed because of_match_ptr() is used.
+> >
+> > Sorry, I'm confused.
+> > Originally, Krzysztof's opinion is to tell me why 'of_device_id' is
+> > declared as '__maybe_unused'.
+> > That's why I mentioned that the return value  about of_device_get_match=
+_data'
+>
+> Your answer is not related to my question. of_device_get_match_data()
+> has nothing to do with __maybe_unused...
+>
+> > And now we're talking about to add 'of_match_ptr' in struct driver
+> > of_match_table.
+>
+> Because this is one of the solutions.
+>
+> >
+> > Back to the original topic, two ways can solve this.
+> > 1) only remove '__maybe_unused' in of_device_id
+> > 2) keep '__maybe_unused' in of_device_id, and add of_match_ptr for
+> > of_match_table.
+> > But option 2 seems conflict with Krzysztof's gueestion.
+> >
+> > May I ask which option you suggested?
+>
+> Option two does not conflict my suggestion. I pointed out that having
+> ONLY maybe_unused is incorrect. I pointed the mistake. Nothing more... I
+> said that there are two ways to solve it later, just choose one. I don't
+> know why do we talk about such basic issue for so long. This should be
+> one email from my side and one confirmation from you...
+>
+> Obviously maybe_unused it has to be removed if you do not add
+> of_match_ptr. But if you intend to add of_match_ptr, then things change..=
+.
+>
+> Just for the record of choosing between options (which I also mentioned
+> that there are two solutions) - having no of_match_ptr allows to match
+> with ACPI PRP0001 (AFAIU also when !OF).
+>
+Ok, I think the way to add 'of_match_ptr' and keep '__maybe_unused' is
+more formal.
+I'll choose that one.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-
-Best regards,
-Krzysztof
+Ack in next.
+Thanks.
+>
+> Best regards,
+> Krzysztof
