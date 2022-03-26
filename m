@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E7FB4E83D0
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 20:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B85F4E841E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 21:18:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234741AbiCZTmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Mar 2022 15:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40460 "EHLO
+        id S235391AbiCZUTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Mar 2022 16:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234745AbiCZTmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 15:42:17 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0ED412E74B;
-        Sat, 26 Mar 2022 12:40:40 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S235107AbiCZUTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 16:19:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9401EEDA;
+        Sat, 26 Mar 2022 13:18:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id E4F5A22246;
-        Sat, 26 Mar 2022 20:40:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1648323635;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=ZKJiQOoIfnoR4SoBeTOO/J+vFzjnMtA36ogD7pHyfFE=;
-        b=hiCCJuqLV5S9qnCI9uFM8gL/mao1h+3FgGcseLa1IGb7UKjAhNhlF4CidvZNJkQAvD8cnh
-        FvmEsBZzymbsr8DH4aMP6OsOuRuSHLhN39bzdYlLQG/rjHAOe42B45bf/BLm+FEAvPCCI8
-        cwl2Cutu5cpWmxcfvJU1rUHQlHEWTUY=
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] ARM: dts: lan966x: fix sys_clk frequency
-Date:   Sat, 26 Mar 2022 20:40:28 +0100
-Message-Id: <20220326194028.2945985-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CF26A60DE1;
+        Sat, 26 Mar 2022 20:17:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3A4F7C340ED;
+        Sat, 26 Mar 2022 20:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648325879;
+        bh=BVqk7238peYt4cidbb7ajSxzxB9Dqb5cSuWdvZkpUCc=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=Ak4xalgGDaxOoH/7Bu1RePGILZ4YY8kDsma86S0SnnLesuMHiNYg94ZOPbIooA9JB
+         4a54K3SEXDyBTlUdtvrGEnv6tab963vdP7lbIJFJwrhTg2yKKRS4Vcf/edXNyC/5Bp
+         ygiUyYMOz2uVikvXYGNt2XU9Bk/VDJ0Fm+DJl1Rc4bZc1yWHndpgzx6AwcXk5mFxm3
+         O1RLSRU467EvDj1wdQrWxcVmy4XgPRL3FTZPMSwL7gK+rHPJgrmHoTtW/BgB4RllXs
+         fd9AOaPsc9JXO1S5NoN1QGPqN22sbAaueSK4p8PDswUn3kZdCCvq+u7EHJLuDu+TIk
+         lNA84PXn2+Hfw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 2823DE6D44B;
+        Sat, 26 Mar 2022 20:17:59 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v5.18
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <Yjy1narVcf4pTiDG@robh.at.kernel.org>
+References: <Yjy1narVcf4pTiDG@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <Yjy1narVcf4pTiDG@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.18
+X-PR-Tracked-Commit-Id: 6b49f3409a090c8e9d1f46ff2705c479b45a54d4
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 9bf3fc5007856d5ca76d6e7a4652e3b67b683241
+Message-Id: <164832587916.7233.7920610075225337690.pr-tracker-bot@kernel.org>
+Date:   Sat, 26 Mar 2022 20:17:59 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sys_clk frequency is 165.625MHz. The register reference of the
-Generic Clock controller lists the CPU clock as 600MHz, the DDR clock as
-300MHz and the SYS clock as 162.5MHz. This is wrong. It was first
-noticed during the fan driver development and it was measured and
-verified via the CLK_MON output of the SoC which can be configured to
-output sys_clk/64.
+The pull request you sent on Thu, 24 Mar 2022 13:17:01 -0500:
 
-The core PLL settings (which drives the SYS clock) seems to be as
-follows:
-  DIVF = 52
-  DIVQ = 3
-  DIVR = 1
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.18
 
-With a refernce clock of 25MHz, this means we have a post divider clock
-  Fpfd = Fref / (DIVR + 1) = 25MHz / (1 + 1) = 12.5MHz
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/9bf3fc5007856d5ca76d6e7a4652e3b67b683241
 
-The resulting VCO frequency is then
-  Fvco = Fpfd * (DIVF + 1) * 2 = 12.5MHz * (52 + 1) * 2 = 1325MHz
+Thank you!
 
-And the output frequency is
-  Fout = Fvco / 2^DIVQ = 1325MHz / 2^3 = 165.625Mhz
-
-This all adds up to the constrains of the PLL:
-    10MHz <= Fpfd <= 200MHz
-    20MHz <= Fout <= 1000MHz
-  1000MHz <= Fvco <= 2000MHz
-
-Fixes: 290deaa10c50 ("ARM: dts: add DT for lan966 SoC and 2-port board pcb8291")
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm/boot/dts/lan966x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-index 14c9cb3c0f3b..03045ec4aca4 100644
---- a/arch/arm/boot/dts/lan966x.dtsi
-+++ b/arch/arm/boot/dts/lan966x.dtsi
-@@ -38,7 +38,7 @@ clocks {
- 		sys_clk: sys_clk {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
--			clock-frequency = <162500000>;
-+			clock-frequency = <165625000>;
- 		};
- 
- 		cpu_clk: cpu_clk {
 -- 
-2.30.2
-
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
