@@ -2,85 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97F144E8974
-	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 21:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D7B4E8978
+	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 21:02:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbiC0TDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Mar 2022 15:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36182 "EHLO
+        id S230431AbiC0TEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Mar 2022 15:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiC0TDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 15:03:01 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B15DB6D;
-        Sun, 27 Mar 2022 12:01:22 -0700 (PDT)
-Received: by mail-ej1-f54.google.com with SMTP id j15so24514656eje.9;
-        Sun, 27 Mar 2022 12:01:22 -0700 (PDT)
+        with ESMTP id S229751AbiC0TEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 15:04:15 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ACC7140D4;
+        Sun, 27 Mar 2022 12:02:36 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id j15so24518185eje.9;
+        Sun, 27 Mar 2022 12:02:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kA48y2HXjqj25T0IDSVplJZk1xExHaagDZIM0X0POGU=;
+        b=HQyBU3Y4eyFwnc9ahSty/SHtBQR0l4T5z30Iaw7sPwZxEiZHLFgqcMq8XSlzluMC4X
+         QERKdGVSzhiUT5bLJfYTPccVEcvEfIJ14S6dfyLx+jmSx9pZVqRzXHDptnWhrmFSxvv6
+         gld1gXtkn2cemadcSG5soGuoeEwhBe4rfzxb0f/c74TC/E4GECEoCtx4xIwyruYPXR6n
+         8LyfvvGnRUsblW947aLpdmJYI+v+XbfVn7fv3sG6dZQuteMCKgZbAMD5hOAmHdY9YA5P
+         2n02PSgxeOYrQPE3BJ8W7GckrNFw5leo6fdXaK+4hFUHG2NJLaInXOAWcnRLnigqTFLM
+         bHIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=oSZ9o3rrdLDk+/nykPJO7ULpAAzpvgfrHQm7KAVfDx4=;
-        b=SoVovB+KUOXNbje/DFq/jLIWd41/VYbAXiOmg38wU8sSSkv8XUtroZ425qk/ktmMf5
-         MFl3NPzz1Xiu/3Gzr032+SkM25h3qqIJD5ER0aqei0kbK52o4o+050g7iARLsljFno4W
-         Ngqz6K1+BHy1m8mMkEfn18S8gzxEfGOGsbDbU9TcuaSeyD09AQ3uqdstvODgS0bIZ/Di
-         R6Ias7YKSnyekE67RtH6wLcpv7rdWbLF8tN40XANS0w0Q5y5W/uymGDwDGBHb48XsXJo
-         clNQBLGfldihFdSwM27yjgPlwbx9VyOv/IqruG2Qx0NF88izi3iBKtoTCv/f2NeG2oaT
-         JiZw==
-X-Gm-Message-State: AOAM5309imTBsQDWxp4Sbif9shvnPIhTXgML0+x76ELXUv1kYgIc/LW3
-        HJq7KAZ87rGWs1QyuoszXYM=
-X-Google-Smtp-Source: ABdhPJyoNDg+QXSiSpdghTFWR535+B0wbdFJaNGQ+L/T+mFoDxLKKgK1Iet6vj2n3XFyVtUeIxlPGQ==
-X-Received: by 2002:a17:906:4795:b0:6e0:78b8:42f6 with SMTP id cw21-20020a170906479500b006e078b842f6mr21528641ejc.88.1648407680670;
-        Sun, 27 Mar 2022 12:01:20 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id n19-20020a170906165300b006a625c583b9sm4911278ejd.155.2022.03.27.12.01.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Mar 2022 12:01:19 -0700 (PDT)
-Message-ID: <59ba4191-2e9f-7fdf-13e3-f1e924d70992@kernel.org>
-Date:   Sun, 27 Mar 2022 21:01:19 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kA48y2HXjqj25T0IDSVplJZk1xExHaagDZIM0X0POGU=;
+        b=jmzUL3tUNCsRYAW0KkrZzw6kofXaAxNUzam/nf6jDhmW+eVA1TPdiyEG8wtxv2ridA
+         IB4h2er2Gl/11pRENshhImAt/iU4HQrCo+wG1IIayuokp/Q2/jr1zKw3i/5BQk7VXFo5
+         j7LIHXGPTXiE5NTJrN3ZH35ZK5/9wDX+PpCAwNlUEpcAwtSp3erMfzM3qiL+VBkStsYj
+         Tv2Q1tZXY3HvtVaDaYltEfQpo7aTs9oypqHtXGDc/z1nMKjDRD0Zq1bYorUoat3rMIkQ
+         BWNZxZ2BTV6NCkI9onrs1uV5Oz4EfhgkZ6n076swxLn7zqDcixwoKKbzKHfCyiHtXtPC
+         vA1Q==
+X-Gm-Message-State: AOAM533ATHi0YPlX7k+d5XL/kLqw4fBdyp7kfZhiZ2e9s8axJwmJQufx
+        Ouobrf5F/EVRI76armGqUu2FLhGuq0yz1nVpYUw=
+X-Google-Smtp-Source: ABdhPJzirTH9/1YtP5SVBpqCJMYl08ZB1cYfp6bCIVm3LSwRTQTubHsEoYrEOBozFmqsYMN3k5ScunZdiJ7ltGlpZBc=
+X-Received: by 2002:a17:907:968e:b0:6db:aed5:43c8 with SMTP id
+ hd14-20020a170907968e00b006dbaed543c8mr23318941ejc.636.1648407754845; Sun, 27
+ Mar 2022 12:02:34 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add binding for Richtek
- RT5759 DCDC converter
-Content-Language: en-US
-To:     cy_huang <u0084500@gmail.com>, broonie@kernel.org,
-        robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com, gene_chen@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1648294788-11758-1-git-send-email-u0084500@gmail.com>
- <1648294788-11758-2-git-send-email-u0084500@gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <1648294788-11758-2-git-send-email-u0084500@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220325220827.3719273-1-gwendal@chromium.org> <20220325220827.3719273-2-gwendal@chromium.org>
+In-Reply-To: <20220325220827.3719273-2-gwendal@chromium.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 27 Mar 2022 22:01:58 +0300
+Message-ID: <CAHp75VfYmXoWtG-Reu+Yqt4bOY4rCvFiMVdU_em5Akm3WGw+KQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] iio: sx9324: Fix default precharge internal
+ resistance register
+To:     Gwendal Grignou <gwendal@chromium.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Stable <stable@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2022 12:39, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Add bindings for Richtek RT5759 high-performance DCDC converter.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  .../regulator/richtek,rt5759-regulator.yaml        | 90 ++++++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5759-regulator.yaml
-> 
+On Sat, Mar 26, 2022 at 12:34 AM Gwendal Grignou <gwendal@chromium.org> wrote:
+>
+> Fix the default value for the register that set the resistance:
+> it has to be 0x10.
 
+Has to be according to what? Datasheet? Reverse engineering?
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+...
 
+> +#define SX9324_REG_AFE_CTRL8_RSVD      0x10
 
-Best regards,
-Krzysztof
+Seems like a BIT() mask here. Also I don't think it's a good idea to
+put RSVD. Does it mean "reserved"? Is it really how it's written in
+the datasheet?
+
+-- 
+With Best Regards,
+Andy Shevchenko
