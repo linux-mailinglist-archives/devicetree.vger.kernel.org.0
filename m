@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB6DC4E89A9
-	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 21:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E639D4E89B2
+	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 21:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234253AbiC0TYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Mar 2022 15:24:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
+        id S233478AbiC0T2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Mar 2022 15:28:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbiC0TYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 15:24:48 -0400
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0C862E5;
-        Sun, 27 Mar 2022 12:23:09 -0700 (PDT)
-Received: by mail-wr1-f41.google.com with SMTP id w4so17381011wrg.12;
-        Sun, 27 Mar 2022 12:23:09 -0700 (PDT)
+        with ESMTP id S231214AbiC0T2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 15:28:03 -0400
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481F74FC54;
+        Sun, 27 Mar 2022 12:26:23 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso1700417wme.5;
+        Sun, 27 Mar 2022 12:26:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Zgcx8aJm5CfWxpMNK/GioBCzvGQ41eUiuqee3qCSfhc=;
-        b=M9MWCLh6Wo9rGV3arzmTCJxyy6HDvwMGmNsUo13eH5gizftMNlzKw9TaqDIBpAzHM1
-         /BytlUeTaDMskgzL6h5ytpSi9f/QOUwkUlnzEY6xMVROgRClNu7DhY3/+99eizQP027z
-         eE6uunWLS+b7y50gquXyzkxUztcyhzBDmsUPY+KdIFtP3tbbacoHx8qRw3735cWuAVpq
-         GBKaLsGvV/3JwvpFaeoAqtQV6s/js+JEomPu3I7/G5J2cahRc1+AprdDfO52b/IXqQ6p
-         jM4EGKejmqqbLm5WPwgTBGO5AG1U5CGF7vAxL0AF1RunEiJF/p+Uavoi0moBisct8Nd3
-         xbzw==
-X-Gm-Message-State: AOAM532Zp/u/QbNREPSSTF5whX/4P75x4HxCAonyFKWZt7nGKFp2qLXa
-        gF9K60QSmppNPsQGBB6+eJE=
-X-Google-Smtp-Source: ABdhPJwz74EFMZa+aN8vziOQkfDg08cVKNG3OJ+6CvuTEeqEJYNYitYqQ29X3l9Zsc2s/FNi/3XGtQ==
-X-Received: by 2002:a5d:6da8:0:b0:205:8537:af57 with SMTP id u8-20020a5d6da8000000b002058537af57mr18060098wrs.80.1648408987696;
-        Sun, 27 Mar 2022 12:23:07 -0700 (PDT)
+        bh=3QD6ZpwAjHhu9Cg8+tAjiF0wBOXuxBwFvAYXKqVnCP8=;
+        b=bqBAmROjaj6dp1fKAP+uUDKg9r3C7iKcN/YybJFDqYLvL7uPnWZBJXjp2PnLdoyVyz
+         5+BH6hj3J6mcdT5O7iqnLAW2YThMVSwV2PuFTIjcSM7jDBLdVg6P4os17Q5druAXgRx5
+         N2tcapLIioODdMUnQy2P8RitxwfDSkuVYSoZIgQjQ28XyQnx7elpM5xV9uS452229vk1
+         SibNx431lHCB/cNwkgmkuOqTbfAe/NowWosgF2v82tie3bYGEfM2Yj3ad8f8aQpYYfoN
+         xqAnT0eng/vRMcaqAhUSDoEQoyTMW4KsKG3mMOk5VFJ4ac0hGpAivegn9uAk7IFPVrIX
+         YbvA==
+X-Gm-Message-State: AOAM533coegxavtQRTXmmZcQPTX2jWHR06bJXHEKQWRg5FAp37nRHPju
+        TE11Hh3FDe1f/88s1Wlyv8U=
+X-Google-Smtp-Source: ABdhPJx4oXRvNQH0bPygBY3AD1ZODz5GvySPKM3zK8vf/TlTM3Q4YMHaCKde0o7vkYtw+/VZ2BImXA==
+X-Received: by 2002:a05:600c:1987:b0:38c:beb2:7e2b with SMTP id t7-20020a05600c198700b0038cbeb27e2bmr21009128wmq.1.1648409181776;
+        Sun, 27 Mar 2022 12:26:21 -0700 (PDT)
 Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id a6-20020a05600c224600b0038cbfb9cfbcsm11595292wmm.47.2022.03.27.12.23.05
+        by smtp.googlemail.com with ESMTPSA id i14-20020a0560001ace00b00203da1fa749sm16819662wry.72.2022.03.27.12.26.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Mar 2022 12:23:06 -0700 (PDT)
-Message-ID: <0ed1a650-d3e3-6ee1-05db-b3760b3cd245@kernel.org>
-Date:   Sun, 27 Mar 2022 21:23:05 +0200
+        Sun, 27 Mar 2022 12:26:21 -0700 (PDT)
+Message-ID: <aaed94ae-047d-b16c-3d9b-7e431a212b82@kernel.org>
+Date:   Sun, 27 Mar 2022 21:26:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v1 12/12] ARM: imxrt_defconfig: Add i.MXRT1170
+Subject: Re: [PATCH 1/5] dt-bindings: mmc: imx-esdhc: Update compatible
+ fallbacks
 Content-Language: en-US
-To:     Jesse Taube <mr.bossman075@gmail.com>, linux-imx@nxp.com
-Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, aisheng.dong@nxp.com, stefan@agner.ch,
-        linus.walleij@linaro.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
-        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
-        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
-        cniedermaier@dh-electronics.com, clin@suse.com,
-        giulio.benetti@benettiengineering.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-References: <20220326144313.673549-1-Mr.Bossman075@gmail.com>
- <20220326144313.673549-13-Mr.Bossman075@gmail.com>
+To:     Adam Ford <aford173@gmail.com>, linux-mmc@vger.kernel.org
+Cc:     haibo.chen@nxp.com, aford@beaconembedded.com,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220327123835.28329-1-aford173@gmail.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220326144313.673549-13-Mr.Bossman075@gmail.com>
+In-Reply-To: <20220327123835.28329-1-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -74,11 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2022 15:43, Jesse Taube wrote:
-> Add i.MXRT1170 pinctrl, clocks and USB to imxrt_defconfig.
+On 27/03/2022 14:38, Adam Ford wrote:
+> The SDHC controller in the imx8mn and imx8mp have the same controller
+> as the imx8mm which is slightly different than that of the imx7d.
+> Using the fallback of the imx8mm enables the controllers to support
+> HS400-ES which is not available on the imx7d. After discussion with NXP,
+> it turns out that the imx8qm should fall back to the imx8qxp, because
+> those have some additional flags not present in the imx8mm.
+> 
+> Suggested-by: haibo.chen@nxp.com
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+> V2:  Added suggested-by note and imx8qxp updates.
+> ---
+>  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml   | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+> 
 
-You add many more i.IMX unrelated functions, like USB gadgets. Please
-explain in commit msg why do you need them.
+YAML and logic looks good, although I did not check the actual hardware
+properties.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 
 Best regards,
