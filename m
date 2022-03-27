@@ -2,114 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9EC4E87F3
-	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 16:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7684E8807
+	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 16:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235629AbiC0ODx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Mar 2022 10:03:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
+        id S235720AbiC0OUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Mar 2022 10:20:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232854AbiC0ODx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 10:03:53 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40724BBAF;
-        Sun, 27 Mar 2022 07:02:14 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id e4so13108411oif.2;
-        Sun, 27 Mar 2022 07:02:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ESfFqUyi5DO4us9FBeXvh3yFju448DlfeiezEoyiJ+o=;
-        b=zRavEkAQC7+tAFvAOIu28Nf3SK/FN9v/8RNnMCTbWahTuqEprUC8VY4jFr5CMpRL5M
-         HrrUmfnzvADBbOSOAsNpe7Xonq4G+qCLk41T7GBR20eJkNiDJ689v8tznZvcfYXrhCQR
-         nzCPQ9u7IyRVjz+RTNgs/Awde1FgR4ShItXyHoR9kXAW0txy6XjVz09gj4ivh4EhZpMI
-         6iKUl/jGJCW6F6gT/HfxssX6VTfco7zpWcU7O68MQhvMhOM/hlY0duW5GeKwpST0Yq3S
-         M+Eu/fL2QjsDX+KjMksiiRS/sBwaedJz7vqh8mq+YB+IEAEYy31KDLF1D6BWYtObnHlW
-         D79g==
-X-Gm-Message-State: AOAM533Jkr59Yyq4x1hHVjAz4kjOG+1q8hyuNYVTfp9GrbnWSKSITMD+
-        JkvqmglGgCKcyKd+C8RuEQ==
-X-Google-Smtp-Source: ABdhPJxdXmCXwfJxnUC4f+8NgXNJS8r1JCu8KDUQA7dtspjSpD7unbMjCem5Kdi/CNB+OZol7qMxhA==
-X-Received: by 2002:a54:4516:0:b0:2ec:8ee8:90c3 with SMTP id l22-20020a544516000000b002ec8ee890c3mr13594539oil.81.1648389733902;
-        Sun, 27 Mar 2022 07:02:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 15-20020a056870004f00b000def9984dc9sm445438oaz.7.2022.03.27.07.02.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Mar 2022 07:02:13 -0700 (PDT)
-Received: (nullmailer pid 4042147 invoked by uid 1000);
-        Sun, 27 Mar 2022 14:02:11 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sui Jingfeng <15330273260@189.cn>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Roland Scheidegger <sroland@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-kernel@vger.kernel.org, Qing Zhang <zhangqing@loongson.cn>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        David Airlie <airlied@linux.ie>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Zack Rusin <zackr@vmware.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>
-In-Reply-To: <20220327113846.2498146-4-15330273260@189.cn>
-References: <20220327113846.2498146-1-15330273260@189.cn> <20220327113846.2498146-4-15330273260@189.cn>
-Subject: Re: [PATCH v12 3/6] dt-bindings: display: Add Loongson display controller
-Date:   Sun, 27 Mar 2022 09:02:11 -0500
-Message-Id: <1648389731.700898.4042146.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235719AbiC0OUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 10:20:09 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034702BC6;
+        Sun, 27 Mar 2022 07:18:30 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 565A42223E;
+        Sun, 27 Mar 2022 16:18:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1648390708;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PxpDUOFhL1SUBSr62jPOsTrvlFFA+tZHwHKSyP7WhK4=;
+        b=H2SpbtP2QOiCk5fjg/c5u3qOTsQcD+LpFr571qZLPTdAsN7QXMTnMX50tKKAKW95kh9Jvo
+        2r4sbkKxaCIYEF5Fps5LD67IQ9tt0S8kIryN6M7fvaN17MVUncArPt4M4/KubUfZu2XwO+
+        8w6RtVP8UZjktefKXNKeahygcJedMUs=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sun, 27 Mar 2022 16:18:28 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 4/4] hwmon: add driver for the Microchip LAN966x SoC
+In-Reply-To: <2442b460-4c6d-0ac9-af08-ae4c25aed812@roeck-us.net>
+References: <20220326192347.2940747-1-michael@walle.cc>
+ <20220326192347.2940747-5-michael@walle.cc>
+ <2442b460-4c6d-0ac9-af08-ae4c25aed812@roeck-us.net>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <9aab54bc48284c9e20cd76085cb9d83a@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Mar 2022 19:38:43 +0800, Sui Jingfeng wrote:
-> Add DT bindings and simple usages for Loongson display controller
-> found in LS7A1000 bridges chip and LS2k1000 SoC.
+Am 2022-03-27 03:34, schrieb Guenter Roeck:
+
+>> +	/*
+>> +	 * Data is given in pulses per second. According to the hwmon ABI we
+>> +	 * have to assume two pulses per revolution.
 > 
-> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
-> ---
->  .../loongson/loongson,display-controller.yaml | 322 ++++++++++++++++++
->  1 file changed, 322 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+> The hwmon ABI doesn't make any such assumptions. It wants to see RPM,
+> that is all. Pulses per revolution is a fan property.
+
+There is fanY_pulses according to 
+Documentation/ABI/testing/sysfs-class-hwmon:
+
+   Should only be created if the chip has a register to configure
+   the number of pulses. In the absence of such a register (and
+   thus attribute) the value assumed by all devices is 2 pulses
+   per fan revolution.
+
+The hardware returns just the pulses per second. Doesn't that
+mean I have to divide that value by two?
+
+>> +	 */
+>> +	*val = FIELD_GET(FAN_CNT_DATA, data) * 60 / 2;
+
+.. otherwise this should then be
+*val = FIELD_GET(FAN_CNT_DATA, data) * 60;
+
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int lan966x_hwmon_read_pwm(struct device *dev, long *val)
+>> +{
+>> +	struct lan966x_hwmon *hwmon = dev_get_drvdata(dev);
+>> +	unsigned int data;
+>> +	int ret;
+>> +
+>> +	ret = regmap_read(hwmon->regmap_fan, FAN_CFG, &data);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	*val = FIELD_GET(FAN_CFG_DUTY_CYCLE, data);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int lan966x_hwmon_read_pwm_freq(struct device *dev, long *val)
+>> +{
+>> +	struct lan966x_hwmon *hwmon = dev_get_drvdata(dev);
+>> +	unsigned long rate = clk_get_rate(hwmon->clk);
 > 
+> Is that a dynamic frequency ? If not, it would be better to read it 
+> once
+> and store it in struct lan966x_hwmon.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+yes it is configurable, actually. See lan966x_hwmon_write_pwm_freq().
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.example.dt.yaml: display-controller@6,1: 'ports' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1609879
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-michael
