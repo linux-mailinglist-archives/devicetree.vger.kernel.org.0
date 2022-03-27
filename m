@@ -2,92 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFB014E8469
-	for <lists+devicetree@lfdr.de>; Sat, 26 Mar 2022 22:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64BB04E84CB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Mar 2022 01:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbiCZVbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Mar 2022 17:31:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58034 "EHLO
+        id S229726AbiC0AvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Mar 2022 20:51:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbiCZVbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 17:31:40 -0400
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101FC15FCC;
-        Sat, 26 Mar 2022 14:30:03 -0700 (PDT)
-Received: by mail-ed1-f49.google.com with SMTP id h1so12927695edj.1;
-        Sat, 26 Mar 2022 14:30:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7H//OQ3peeZo6cFkBAqd2bvidUOeWSddr0qVAjJHEkk=;
-        b=ToKx5GFSWbdebqWwDP5bXXXoseEHeeq+9zfq1GCuStROox2Wq1AXIH7Vpbc31ZtVlW
-         1hTI1gSW2PCcMVFwUkW12Vi89+YE0gFQ0Sxk6FooqIkC3gDu2Qc64v6jltJaUDRJ2zs1
-         BLD7pw1DN+Og6ClNX1low0b1vP/rOHGnA9xo5S7ie9oPUETvqRVictrWqIfxZ+EA3RCV
-         VP9jzqGQSwOBevMTU0oZMfPj4DEtpaYrSTZSptgWAEgG+7i2hHuMC0yXDwwq/N+shnKU
-         8aCRsa0iz9JW/9BcBVUhUjWlhwu4M5zBG/NSVj1Tts+ZYjgdUiN3qNpFo0Zk444j5bIl
-         tatw==
-X-Gm-Message-State: AOAM530jjYx8xC8PJ3gHB+EC9+0hFM3U8+f/CnyDzMTqa34lFWTIkAJk
-        7gzEUDy0L81Y1Aujrxot5GE=
-X-Google-Smtp-Source: ABdhPJwdup7W+e8oCpUfyH1DfPFRegqIKYsj2TkC1DZLAN5hn9CCubKrNb7IkbBYOsLudYhnXw3P3Q==
-X-Received: by 2002:aa7:d58e:0:b0:419:c121:ea33 with SMTP id r14-20020aa7d58e000000b00419c121ea33mr5846197edq.256.1648330201522;
-        Sat, 26 Mar 2022 14:30:01 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.googlemail.com with ESMTPSA id pk9-20020a170906d7a900b006e05b7ce40csm3864675ejb.221.2022.03.26.14.29.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Mar 2022 14:30:00 -0700 (PDT)
-Message-ID: <a6d8ab4e-c863-1dce-249b-e3971cdaf930@kernel.org>
-Date:   Sat, 26 Mar 2022 22:29:56 +0100
+        with ESMTP id S231383AbiC0AvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Mar 2022 20:51:22 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2470AFD29;
+        Sat, 26 Mar 2022 17:49:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648342185; x=1679878185;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dxvmqHpgoKoSM3oeOZwtiuPqLp1SG2yKyDRHdmBQRhY=;
+  b=Iqt2TuDSkkylBukBgbO192w9RKlwzfswKC3nD1Xxtmr9N9MpX9c5MvmL
+   qASsBhcTmqmSL9GTaX7QoANfxJMZ3PXMB7rj+gax8IziQ/Q09gJw7KliO
+   4QRrT2CGQs89+NhEjBggk6fxMooytIFlYobrLtzIr8NRefRdQrKT6/Olc
+   /A6FePzN5EYchQUvYGVizTdRplRPNEkCpDB+oXJx1K8ZnjkUZwRG9lzfl
+   ewRBuf7YNvCZEctqSNHnjsLIGmQEb5KW7LNtnGElRLF1SwcBFfr7nwLCI
+   dw9SHKBXXk27MXF5aDfyeobXfWkH+PBaV0mOJlOWKOvw+rZwuB5TekKJA
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10298"; a="238748202"
+X-IronPort-AV: E=Sophos;i="5.90,214,1643702400"; 
+   d="scan'208";a="238748202"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Mar 2022 17:49:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,214,1643702400"; 
+   d="scan'208";a="602403742"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 26 Mar 2022 17:49:42 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nYH6D-0000ZH-Ok; Sun, 27 Mar 2022 00:49:41 +0000
+Date:   Sun, 27 Mar 2022 08:49:39 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Michael Walle <michael@walle.cc>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     kbuild-all@lists.01.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v1 2/4] hwmon: (bt1-pvt) use generic polynomial functions
+Message-ID: <202203270834.xEWniPdY-lkp@intel.com>
+References: <20220326192347.2940747-3-michael@walle.cc>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: clock: convert
- rockchip,rk3288-cru.txt to YAML
-Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220326120942.24008-1-jbx6244@gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220326120942.24008-1-jbx6244@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220326192347.2940747-3-michael@walle.cc>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/03/2022 13:09, Johan Jonker wrote:
-> Current dts files with RK3288 'cru' nodes are manually verified.
-> In order to automate this process rockchip,rk3288-cru.txt has to be
-> converted to YAML.
-> 
-> Changed:
->   Add properties to fix notifications by clocks.yaml for example:
->     clocks
->     clock-names
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../bindings/clock/rockchip,rk3288-cru.txt    | 67 ---------------
->  .../bindings/clock/rockchip,rk3288-cru.yaml   | 83 +++++++++++++++++++
->  2 files changed, 83 insertions(+), 67 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
-> 
+Hi Michael,
 
+I love your patch! Yet something to improve:
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on robh/for-next linus/master v5.17 next-20220325]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Michael-Walle/hwmon-add-lan9668-driver/20220327-032606
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+config: ia64-allyesconfig (https://download.01.org/0day-ci/archive/20220327/202203270834.xEWniPdY-lkp@intel.com/config)
+compiler: ia64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/51d4d93c8777a757e21386aa76ccc128a6bd85af
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Michael-Walle/hwmon-add-lan9668-driver/20220327-032606
+        git checkout 51d4d93c8777a757e21386aa76ccc128a6bd85af
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=ia64 SHELL=/bin/bash
 
-Best regards,
-Krzysztof
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   ia64-linux-ld: drivers/hwmon/bt1-pvt.o: in function `pvt_read_data':
+   bt1-pvt.c:(.text+0xa32): undefined reference to `polynomial_calc'
+   ia64-linux-ld: drivers/hwmon/bt1-pvt.o: in function `pvt_write_limit':
+   bt1-pvt.c:(.text+0xae2): undefined reference to `polynomial_calc'
+>> ia64-linux-ld: bt1-pvt.c:(.text+0xb22): undefined reference to `polynomial_calc'
+   ia64-linux-ld: drivers/hwmon/bt1-pvt.o: in function `pvt_hwmon_read':
+   bt1-pvt.c:(.text+0x2532): undefined reference to `polynomial_calc'
+   ia64-linux-ld: bt1-pvt.c:(.text+0x2732): undefined reference to `polynomial_calc'
+   ia64-linux-ld: drivers/hwmon/bt1-pvt.o:bt1-pvt.c:(.text+0x27e2): more undefined references to `polynomial_calc' follow
+   `adc3xxx_i2c_remove' referenced in section `.data' of sound/soc/codecs/tlv320adc3xxx.o: defined in discarded section `.exit.text' of sound/soc/codecs/tlv320adc3xxx.o
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
