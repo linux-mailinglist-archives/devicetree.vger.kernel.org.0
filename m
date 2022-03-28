@@ -2,66 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E05624E8C9D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 05:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44B674E8CBB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 05:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232718AbiC1DbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Mar 2022 23:31:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
+        id S230317AbiC1EBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 00:01:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbiC1DbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 23:31:17 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C750A1B1;
-        Sun, 27 Mar 2022 20:29:32 -0700 (PDT)
-X-UUID: ef2f024e960a44cbb8fc45a148b95aea-20220328
-X-UUID: ef2f024e960a44cbb8fc45a148b95aea-20220328
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 770176710; Mon, 28 Mar 2022 11:29:26 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 28 Mar 2022 11:29:24 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 28 Mar 2022 11:29:24 +0800
-Message-ID: <f52fbaec28ae53667ba101a05406b62e5970eec1.camel@mediatek.com>
-Subject: Re: [PATCH v16 3/8] dt-bindings: arm: mediatek: mmsys: add mt8195
- SoC binding
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <hsinyi@chromium.org>, <fshao@chromium.org>,
-        <moudy.ho@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>, <nancy.lin@mediatek.com>,
-        <singo.chang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 28 Mar 2022 11:29:24 +0800
-In-Reply-To: <1daa3b8dabb97017d0f92437a81b250f8375544c.camel@mediatek.com>
-References: <20220307032859.3275-1-jason-jh.lin@mediatek.com>
-         <20220307032859.3275-4-jason-jh.lin@mediatek.com>
-         <1daa3b8dabb97017d0f92437a81b250f8375544c.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229627AbiC1EBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 00:01:15 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022D5433A3;
+        Sun, 27 Mar 2022 20:59:34 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: krisman)
+        with ESMTPSA id DAC9B1F42E3D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1648439973;
+        bh=p5kFKkno7W8Otr+MEWs2MZhZGWjZxlAPNrorp3vcRNg=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=My6E3QlN7FcjxmfTvX/c1wcXd90XrxliEgJQI9mTs+dDK4g532bhf6jeJU4cHhpeS
+         bDhiVMHbh6agyEwnuI4LY6+5D3nmDjZAtAq4n8K6+nW5xk8kjN84QwhyWW2tHqYLrg
+         D3uUGaJKkaWSqWcsxWx6o5F/RLQPjsHxLA/aC3D1EkJnUkhnjB0l6Ua+yzCqW58mhq
+         TxfuHpglNpHqReT9r8Z4AJ+38k4i43K6eJ51tVoUzQue6IDPk5/g/foRRJtP0KqlbB
+         UyOv/2pFB6XA/O20XhG5+54r6iJ7FJoyeauSdzO/JrzS3v88vWjnj2WxGC9uAhwj35
+         OYq/mbx5Dos/w==
+From:   Gabriel Krisman Bertazi <krisman@collabora.com>
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        Zhigang.Shi@liteon.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, alvaro.soliverez@collabora.com
+Subject: Re: [PATCH 3/3] iio: light: Add support for ltrf216a sensor
+Organization: Collabora
+References: <20220325103014.6597-1-shreeya.patel@collabora.com>
+        <20220325103014.6597-4-shreeya.patel@collabora.com>
+Date:   Sun, 27 Mar 2022 23:59:28 -0400
+In-Reply-To: <20220325103014.6597-4-shreeya.patel@collabora.com> (Shreeya
+        Patel's message of "Fri, 25 Mar 2022 16:00:14 +0530")
+Message-ID: <878rsusp5r.fsf@collabora.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,75 +54,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi CK,
+Shreeya Patel <shreeya.patel@collabora.com> writes:
 
-Thanks for the reviews.
+> From: Zhigang Shi <Zhigang.Shi@liteon.com>
+>
+> Add initial support for ltrf216a ambient light sensor.
+>
+> Datasheet :-
+> https://gitlab.steamos.cloud/shreeya/iio/-/blob/main/LTR-F216A-QT.pdf
+> +	struct ltrf216a_data *data = iio_priv(indio_dev);
+> +
+> +	ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, 0);
+> +	if (ret < 0)
+> +		dev_err(&data->client->dev, "Error writing LTRF216A_MAIN_CTRL\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int ltrf216a_set_it_time(struct ltrf216a_data *data, int itime)
 
-On Fri, 2022-03-18 at 14:43 +0800, CK Hu wrote:
-> Hi, Jason:
-> 
-> On Mon, 2022-03-07 at 11:28 +0800, jason-jh.lin wrote:
-> > There are 2 mmsys, namely vdosys0 and vdosys1 in mt8195.
-> > Each of them is bound to a display pipeline, so add their
-> > definition in mtk-mmsys documentation with 2 compatibles.
-> 
-> Could one vdosys be union of vdosys0 and vdosys1? In MT8173, one
-> mmsys
-> support multiple pipeline. Describe more in commit message to support
-> that two vdosys are necessary.
-> 
-> Regards,
-> CK
-> 
+ltrf216a_set_int_time instad of it_time?  although, ltr501 also uses
+"it" instead of "int" on the function name..
 
-In the SoC before, such as mt8173, it has 2 pipelines binding to one
-mmsys with the same clock driver and the same power domain.
+> +
+> +static int ltrf216a_get_lux(struct ltrf216a_data *data)
+> +{
+> +	int greendata, cleardata, lux;
+> +
+> +	greendata = ltrf216a_read_data(data, LTRF216A_ALS_DATA_0);
+> +	cleardata = ltrf216a_read_data(data, LTRF216A_CLEAR_DATA_0);
+> +
+> +	if (greendata < 0 || cleardata < 0)
+> +		lux = 0;
+> +	else
+> +		lux = greendata * 8 * WIN_FAC / data->als_gain_fac / data->int_time_fac / 10;
 
-In mt8195, 2 pipelines are binding to different mmsys, such as vdosys0
-and vdosys1. Each mmsys uses different clock drivers and different
-power domain.
+This could be rewritten to avoid most of the divisions.
 
-Since each mmsys has its own clock, I have tried to differentiate
-vppsys0, vppsys1, vdosys0, vdosys1 by the clock names.
-Then I can use one mmsys compatible name for all of them.
+But it also doesn't fit the calculation shown in page 20 on the
+datasheet.
 
-I'll apply this method at the next version.
-And also sync with Nancy(vdosys1) and Roy(vppsys0, vppsys1).
+I suspect that 8 was calculated from a specific Window Factor (~1.77),
+which is specific to one device, but I'm not sure.  The datasheet
+formula is:
 
-Regards,
-Jason-JH.Lin
+lux = (ALS_DATA_X * 0.45 * window_factor) / (gain * int_time)
 
-> > 
-> > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        |
-> > 2
-> > ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > index 6c2c3edcd443..c5ba515cb0d7 100644
-> > ---
-> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > +++
-> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > @@ -32,6 +32,8 @@ properties:
-> >                - mediatek,mt8186-mmsys
-> >                - mediatek,mt8192-mmsys
-> >                - mediatek,mt8365-mmsys
-> > +              - mediatek,mt8195-vdosys0
-> > +              - mediatek,mt8195-vdosys1
-> >            - const: syscon
-> >        - items:
-> >            - const: mediatek,mt7623-mmsys
-> 
-> 
+Shouldn't WIN_FAC be a configurable parameter, instead of constant?
+
 -- 
-Jason-JH Lin <jason-jh.lin@mediatek.com>
-
+Gabriel Krisman Bertazi
