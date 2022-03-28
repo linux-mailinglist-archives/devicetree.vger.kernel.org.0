@@ -2,113 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 109924E968F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B2C4E96BB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242454AbiC1M30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 08:29:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55666 "EHLO
+        id S237082AbiC1Mgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 08:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232800AbiC1M3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:29:25 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05244D605;
-        Mon, 28 Mar 2022 05:27:44 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id j18so20132587wrd.6;
-        Mon, 28 Mar 2022 05:27:44 -0700 (PDT)
+        with ESMTP id S232505AbiC1Mgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:36:47 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F8D6424
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 05:35:07 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id n18so14644921plg.5
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 05:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JbGAok762R8eBf1hqPVfuq1fu8O4b6lICrVhcAOXnnY=;
-        b=eDh8olkgVMK3UTpO18awHgIc3Ed1jsfRMZAreLXkhBIlEA7DeVZ1QaLXRVgqazyhZG
-         Y6kvkvxAUwxy8MKoK65O2iq8YCwLPmqQ+3l5aOa3tWqqdnxJMSxGg7IGW65JFrEycRlR
-         es6W82+/BH70jMdcVTDB/o778CCgAQvrwY1jEFzkPry8R0yfOl0n9lgD717vx/XyluUB
-         nNFbpYcQS01CHq0N5yK3ivzIodKMnvg1qxWeSt+865nFs/tES+bXuTGtT/fqcF42IXnV
-         FZNgTEakz22bqP1JaQFIPFL4D+l/1CEZbON+UfbNprd1gMoMmdmJTtvPtfYc+Nli8a7u
-         v39g==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tmswMDps1ywZiXtPbHvuyFB9pUA9D/JCoJ8KtD2p8NY=;
+        b=k6kHxjfSdtLA1q9vGwHChBfYcsiSDvGLz1vO5swrltnQ4KZkh529jbi7dGLJeb0X5x
+         57Z12cHKQE03Xb8GmVGYGr6MfszM6Gg8olsZ/WQeQZpOMyObw9LuDL4xyXor6aBVZw8B
+         JsWJ+TR+tLu2eDvEKM8TG+W2idwn74Y41BdqdBnCk3tSOgbz3aGpvaZNwIV24HmuFljr
+         4ce/pVSc00ZOXZK6mPZldajweqoCZuEhuqBybmTtNXofJNa69gi1J6vzb/PKkEXxreDz
+         s4piqLjTQepFlEbC+kiBoRjHmwCBTGWfZ6yvmT0om7Ufn/KgN6AniwdUSYjTL0WGX87X
+         ENOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=JbGAok762R8eBf1hqPVfuq1fu8O4b6lICrVhcAOXnnY=;
-        b=i3Acjqw0AC278lwSytd6C25cuzGgPfa5zlUP7lut1MLwLVeWoKmUmrQs5H+T0aOykv
-         POnqH2TEhyw/znW8teWwKSe6W198/LS2sLCCY+g8YHzazx1NNrKOneWZygXpVNnD3Db4
-         kcyJV43biR5Op5a1JRhBoa5VkexS0w4TgsEhOVMzPzVhy3ifGhDKcjfKGkHQjoWym7N3
-         LCoshf1Q19lxoE/kWNnxQdVGetY6FzCPN8FFA9wv2eemxrUG4OM59MBdpnqF3cqGWE1M
-         pvERvyk1eS/UFHYh1aWvRX91W/5Qks+6O9zy5GMpy5WidC1ikc37Bp+XRWdFXLV+cn5p
-         /kqw==
-X-Gm-Message-State: AOAM533+D/1kQverk5XPDpjRhR4FGb0ewgPu3uAL7v1oCzsE2GaS645h
-        Va9C1P7WYMiq8Nri62lrHKc=
-X-Google-Smtp-Source: ABdhPJyJhWj9ZIEO6fsrHVxsB2RCiBoanzZrq0bKdtFkggensDubXGrxlX1xOnXys9deFbRpSsu4Rw==
-X-Received: by 2002:adf:eec1:0:b0:1e3:1e0a:72f0 with SMTP id a1-20020adfeec1000000b001e31e0a72f0mr23809347wrp.524.1648470463325;
-        Mon, 28 Mar 2022 05:27:43 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id m13-20020a05600c3b0d00b0038cda9f92fasm10725613wms.0.2022.03.28.05.27.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 05:27:42 -0700 (PDT)
-Message-ID: <a48706db-cdc9-2a1d-0abb-08dd961c17e9@gmail.com>
-Date:   Mon, 28 Mar 2022 14:27:41 +0200
+        bh=tmswMDps1ywZiXtPbHvuyFB9pUA9D/JCoJ8KtD2p8NY=;
+        b=XclU3Mh+xSAdNWGsd804UFFbZ2INMM3Rtnlpgf1PoM+mJPQymRsUahaBp+gfL4xn2g
+         xEk360bJyhxK/YiuHe5DGVRkx3wGQOWaVaXd0EYeMhAfGoo2RSIpWYbjY4Q7QQf46I+B
+         89v+ZRsPMjrQxGuH8IZ6jb750o3RoZnWPEZQcbeW/5H3fboAb4A05X4fBg4K+m+mByNv
+         8uqLNoYY8xs8D2lGO7rnX7srDDML3GCkopxsJeCSsnvyomMmDY/4uvxON8AY9T9wd69x
+         FxoM5ZbOz8qbfDGyQDCVOSvQ9dnHtvUW3HqTDvunSIx7/DTAO99O2EOhvXlJvM1a1C/m
+         rACQ==
+X-Gm-Message-State: AOAM531Cu40GYnqYfJ6u210OiTqIRGEQhtJKdL17irY54O45u9OMBXwP
+        H6nF0KxzVb0kzawDN0sr14Rndg==
+X-Google-Smtp-Source: ABdhPJyM5z7w60kSuEMNprE4M2nsF1pBug3mz2WMhZUHkwXPJeWQcyYnQCZQjdchcEONqIGYSpgkoQ==
+X-Received: by 2002:a17:90a:a018:b0:1c6:5dac:3da with SMTP id q24-20020a17090aa01800b001c65dac03damr29012038pjp.195.1648470906480;
+        Mon, 28 Mar 2022 05:35:06 -0700 (PDT)
+Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id h12-20020a056a00170c00b004fab8f3244esm16314597pfc.28.2022.03.28.05.35.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Mar 2022 05:35:06 -0700 (PDT)
+From:   Andy Chiu <andy.chiu@sifive.com>
+To:     radhey.shyam.pandey@xilinx.com, robert.hancock@calian.com,
+        michal.simek@xilinx.com, andrew@lunn.ch
+Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, linux@armlinux.org.uk, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Andy Chiu <andy.chiu@sifive.com>
+Subject: [PATCH v6 net 0/4] Fix broken link on Xilinx's AXI Ethernet in SGMII mode
+Date:   Mon, 28 Mar 2022 20:32:34 +0800
+Message-Id: <20220328123238.2569322-1-andy.chiu@sifive.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v11 1/3] dt-bindings: arm: mediatek: Add mt8195 pericfg
- compatible
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
-References: <20220216113131.13145-1-tinghan.shen@mediatek.com>
- <20220216113131.13145-2-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220216113131.13145-2-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Ethernet driver use phy-handle to reference the PCS/PMA PHY. This
+could be a problem if one wants to configure an external PHY via phylink,
+since it use the same phandle to get the PHY. To fix this, introduce a
+dedicated pcs-handle to point to the PCS/PMA PHY and deprecate the use
+of pointing it with phy-handle. A similar use case of pcs-handle can be
+seen on dpaa2 as well.
 
+--- patch v5 ---
+ - Re-applying the v4 patch on the net tree.
+ - Describes the pcs-handle DT binding at ethernet-controller level.
+--- patch v6 ---
+ - Remove "preferrably" to clearify usage of pcs_handle.
 
-On 16/02/2022 12:31, Tinghan Shen wrote:
-> Add mt8195 pericfg compatible to binding document.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Andy Chiu (4):
+  net: axienet: setup mdio unconditionally
+  net: axienet: factor out phy_node in struct axienet_local
+  dt-bindings: net: add pcs-handle attribute
+  net: axiemac: use a phandle to reference pcs_phy
 
-Applied, thanks!
+ .../bindings/net/ethernet-controller.yaml     |  6 ++++
+ .../bindings/net/xilinx_axienet.txt           |  8 ++++-
+ drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 --
+ .../net/ethernet/xilinx/xilinx_axienet_main.c | 33 ++++++++++---------
+ 4 files changed, 31 insertions(+), 18 deletions(-)
 
-> ---
->   .../devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml       | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml
-> index 8723dfe34bab..611f666f359d 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml
-> @@ -26,6 +26,7 @@ properties:
->                 - mediatek,mt8135-pericfg
->                 - mediatek,mt8173-pericfg
->                 - mediatek,mt8183-pericfg
-> +              - mediatek,mt8195-pericfg
->                 - mediatek,mt8516-pericfg
->             - const: syscon
->         - items:
+-- 
+2.34.1
+
