@@ -2,51 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44B674E8CBB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 05:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2BD74E8D0A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 06:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230317AbiC1EBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 00:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
+        id S237979AbiC1EV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 00:21:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiC1EBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 00:01:15 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022D5433A3;
-        Sun, 27 Mar 2022 20:59:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: krisman)
-        with ESMTPSA id DAC9B1F42E3D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648439973;
-        bh=p5kFKkno7W8Otr+MEWs2MZhZGWjZxlAPNrorp3vcRNg=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=My6E3QlN7FcjxmfTvX/c1wcXd90XrxliEgJQI9mTs+dDK4g532bhf6jeJU4cHhpeS
-         bDhiVMHbh6agyEwnuI4LY6+5D3nmDjZAtAq4n8K6+nW5xk8kjN84QwhyWW2tHqYLrg
-         D3uUGaJKkaWSqWcsxWx6o5F/RLQPjsHxLA/aC3D1EkJnUkhnjB0l6Ua+yzCqW58mhq
-         TxfuHpglNpHqReT9r8Z4AJ+38k4i43K6eJ51tVoUzQue6IDPk5/g/foRRJtP0KqlbB
-         UyOv/2pFB6XA/O20XhG5+54r6iJ7FJoyeauSdzO/JrzS3v88vWjnj2WxGC9uAhwj35
-         OYq/mbx5Dos/w==
-From:   Gabriel Krisman Bertazi <krisman@collabora.com>
-To:     Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        Zhigang.Shi@liteon.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, alvaro.soliverez@collabora.com
-Subject: Re: [PATCH 3/3] iio: light: Add support for ltrf216a sensor
-Organization: Collabora
-References: <20220325103014.6597-1-shreeya.patel@collabora.com>
-        <20220325103014.6597-4-shreeya.patel@collabora.com>
-Date:   Sun, 27 Mar 2022 23:59:28 -0400
-In-Reply-To: <20220325103014.6597-4-shreeya.patel@collabora.com> (Shreeya
-        Patel's message of "Fri, 25 Mar 2022 16:00:14 +0530")
-Message-ID: <878rsusp5r.fsf@collabora.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
+        with ESMTP id S233804AbiC1EV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 00:21:56 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF9D4A912;
+        Sun, 27 Mar 2022 21:20:16 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 7D4955C0114;
+        Mon, 28 Mar 2022 00:20:14 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 28 Mar 2022 00:20:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=LWULiqUBy94G+z
+        Vt5d3sDbXHmVDkBVmNPR0kMei1vp4=; b=U8FZF16IK/JaTMPDzm9qioZrE4gK1Q
+        QBhTnK833pkrwvJm5hFCE1Hy3hBuw9NJAqAQEYmkPDaxO1oqF0etgf/XolZj1p6W
+        jXq9rzVWWTqDLpMFxD//8dH4mv3X1te/haSTxVbkw8td+FrpQNFh+EIkqCUcUVYH
+        4IvBRktce+VeFD6P0UK2M2JT+ZDjJanOCAl91+aT5MEQeMzFBlJ+9ZN7U1irZbyG
+        +5Dfi/5vYgicE552nlvL5TIRoNS3SGeETgSALOTjYFvGbVOI5iNqUG6Qcn1abHmP
+        DXCItCjijjJYOWSBP0t2ZaPGWnc2W3X0ZwkuddmzaCYLMTywUy59cxmw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=LWULiqUBy94G+zVt5d3sDbXHmVDkBVmNPR0kMei1v
+        p4=; b=iZtYcskpMu7aXQzeDD9Igr/yA3hzLx1qtL8FKN+N3M19VmS3Pxt4lybeK
+        6LwXNDLTkW2PgUDHalDoFkHrajbGzCjhlG2JDskXgrUok8Hw5H07/3hq0YsYHnNz
+        etuPsGhonr9gipBgnUEabww5Nz+UMsRyczmLJ/omMWhrEUrJ/4aXQ0zxVTSojQJg
+        HoFMKYhB+Xbbisc7DbNrIiYqvs690xxc1vV8yTgndrl3amfIrXVrTCHwyyEIqsk7
+        AmxjBe77KSCppOgCxA3CBXAuxM7tYapqY+DcrrtGE3OW/CE5Zt2JrOTdYntpL5sj
+        Cn1ecuFY2F0kp1eHOsiJh0IuHpYvQ==
+X-ME-Sender: <xms:fTdBYijEn6_dqxoawuoBKj0-WciUuUJ3P840iGP8xN7-OXFSEjlY5w>
+    <xme:fTdBYjCRGB4jF2EsAF9UFmuNVePfzFyg9JPQTNtT5OCbVuogKSUV-JZetQBvNqmPj
+    lv9jXt3jEtQVOlSqQ>
+X-ME-Received: <xmr:fTdBYqFJh1IYkIRwdHQN5IWksfVztlq8qkdpD6jIqhxAHysRfMJNpXpMMlJLqu51yEduV3XSFNeQbBg9sLMOFkZVxWS5LAoaTccL5_WHXpXfS10KJwv9uoHylQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudehiedgkedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
+    uefgtedtgeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:fTdBYrRrEHMC6Ljq8ZbS_bPqxoO5_o14vgN_-MlrMy6IRIHYP26zlg>
+    <xmx:fTdBYvxX9VwGDl67N41o1kWClIH5OfuMwiv6ngrW126QWTYEMA13Fg>
+    <xmx:fTdBYp56uSbFFiByTLC25a-dCImaz7KKdPH65KKEAiKD3NFCixwKCg>
+    <xmx:fjdBYkIPNcg3CWkoxmY5E7sXPan-3VIgcvnp2KmScA8o-K8S53FRkQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 28 Mar 2022 00:20:12 -0400 (EDT)
+Subject: Re: [PATCH v2 01/12] dt-bindings: watchdog: sunxi: fix F1C100s
+ compatible
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-watchdog@vger.kernel.org
+References: <20220317162349.739636-1-andre.przywara@arm.com>
+ <20220317162349.739636-2-andre.przywara@arm.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <0a8f1844-55ed-7672-6e95-d919d31f5237@sholland.org>
+Date:   Sun, 27 Mar 2022 23:20:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+In-Reply-To: <20220317162349.739636-2-andre.przywara@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,53 +97,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Shreeya Patel <shreeya.patel@collabora.com> writes:
+On 3/17/22 11:23 AM, Andre Przywara wrote:
+> The F1C100 series actually features a newer generation watchdog IP, so
+> the compatible string was wrong.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-> From: Zhigang Shi <Zhigang.Shi@liteon.com>
->
-> Add initial support for ltrf216a ambient light sensor.
->
-> Datasheet :-
-> https://gitlab.steamos.cloud/shreeya/iio/-/blob/main/LTR-F216A-QT.pdf
-> +	struct ltrf216a_data *data = iio_priv(indio_dev);
-> +
-> +	ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, 0);
-> +	if (ret < 0)
-> +		dev_err(&data->client->dev, "Error writing LTRF216A_MAIN_CTRL\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int ltrf216a_set_it_time(struct ltrf216a_data *data, int itime)
-
-ltrf216a_set_int_time instad of it_time?  although, ltr501 also uses
-"it" instead of "int" on the function name..
-
-> +
-> +static int ltrf216a_get_lux(struct ltrf216a_data *data)
-> +{
-> +	int greendata, cleardata, lux;
-> +
-> +	greendata = ltrf216a_read_data(data, LTRF216A_ALS_DATA_0);
-> +	cleardata = ltrf216a_read_data(data, LTRF216A_CLEAR_DATA_0);
-> +
-> +	if (greendata < 0 || cleardata < 0)
-> +		lux = 0;
-> +	else
-> +		lux = greendata * 8 * WIN_FAC / data->als_gain_fac / data->int_time_fac / 10;
-
-This could be rewritten to avoid most of the divisions.
-
-But it also doesn't fit the calculation shown in page 20 on the
-datasheet.
-
-I suspect that 8 was calculated from a specific Window Factor (~1.77),
-which is specific to one device, but I'm not sure.  The datasheet
-formula is:
-
-lux = (ALS_DATA_X * 0.45 * window_factor) / (gain * int_time)
-
-Shouldn't WIN_FAC be a configurable parameter, instead of constant?
-
--- 
-Gabriel Krisman Bertazi
+Reviewed-by: Samuel Holland <samuel@sholland.org>
