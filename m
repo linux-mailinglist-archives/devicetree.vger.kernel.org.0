@@ -2,166 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56A8E4EA31E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 00:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3A304EA361
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 01:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiC1WiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 18:38:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57178 "EHLO
+        id S230155AbiC1XET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 19:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbiC1WiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 18:38:18 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851AB47560;
-        Mon, 28 Mar 2022 15:36:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648506995; x=1680042995;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=afYqVHwiHVNSeLXUeEU0q+YnDh0ucsP8xpVz/aFfAqM=;
-  b=Bg54M+NwP0JxtedEsdJJfdpXljr+mi8RW5G353Yd2Xb8/m5mGRPLRoIt
-   yk3Fd3Fx+Vf7YbRwvb9IO1IAaCJ7m9dLAcKkafSjLTHURjMftDg7w9vfb
-   fnj18iz/l/KhmMpAjEfP68k8Ps3Q1oCJrQhvHD1WXri7m6pfOqVL9krJ4
-   lCPQoqvb53eXHp2FVnFOP41LgWEC0JrYR0z6X6H+uy4gja5kJ1YxYem+V
-   tgYX/CoVb9PJQik4aWX/FhGAUH+mAYpNnd26WIUQA2NW0YzhpIi2vmjVa
-   8Gl/E+HXHkr2GIsFGhc++BFzQY4YOM3tyP7F1M7hpfS6x3cOldtHeCytE
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10300"; a="239711139"
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; 
-   d="scan'208";a="239711139"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2022 15:36:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,218,1643702400"; 
-   d="scan'208";a="652411975"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 28 Mar 2022 15:36:31 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nYxyQ-0002N8-VQ; Mon, 28 Mar 2022 22:36:30 +0000
-Date:   Tue, 29 Mar 2022 06:36:14 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 05/21] ata: libahci_platform: Convert to using devm bulk
- clocks API
-Message-ID: <202203290643.0ExdJphD-lkp@intel.com>
-References: <20220324001628.13028-6-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220324001628.13028-6-Sergey.Semin@baikalelectronics.ru>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230221AbiC1XER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 19:04:17 -0400
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F2E965EB
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 16:02:35 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 9F6E23200A3E;
+        Mon, 28 Mar 2022 19:02:34 -0400 (EDT)
+Received: from imap49 ([10.202.2.99])
+  by compute5.internal (MEProxy); Mon, 28 Mar 2022 19:02:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=7Z809kOqQ0V9ZOMvNmiE5h/Jj5R3NMwEJGmgHm
+        y8fXY=; b=DjGiEPLzgb2RmfAEuj8RVpjH2wqVR3VjZIvDEFyWYwQo/mkb/NceyP
+        YRnVdJYNmI7PYZUDgoMC6Au3jab43fbZLnxaguK+rPowtTE3897BH78r5mKSSZnC
+        iu3+tnO8ZD2o1ldjZ3G9uiU/0oXpkBr1AOxeBzAgrsvqILZR/4bz7wJwso3pGTcg
+        CKHBBGsJlPpGOkelNDfT9kzJpClPVuSrdJ5L+AZZg9jU2CTuduzpyLHUkcHfPDnJ
+        WtbI+bZ6mkHez1jvDA9y9mI4poBNLBJqvbfgB7hBQCrJfqv/ceAzJ0rUL/FOLrJM
+        LuurvtKlC0P82Vgop3Oiud7xgbsF4zWA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=7Z809kOqQ0V9ZOMvN
+        miE5h/Jj5R3NMwEJGmgHmy8fXY=; b=QhGB0DRvmlVppp1e+tNlooSnH2RVN/YzY
+        rMUyaqxTQWNdSBbnyBSrMXVPONDmJSHGM3nE2Gp7bbxzlIA3gZcfl9HXAcjjmHdG
+        tJaGutfn0rcdpkPndnvBQ0ewvOhRw9kEDIwIOZO85i3vq1LsDtpHOknzk8Y/R8jt
+        Thpr4UJ9nzsXV5q17Bz/ovuH6pfQ15j6RIN+/0z9MqQwq+G4p4K+b2wjMcMwdv5b
+        OxY/2uK+PFvjzCsKZVBzYXh29ieoKDkRrIWhRx0LM6edfneg+fPYPS4FxhD2Kq5y
+        Nmk0KNINmXxG00in3ippaKjqQD/zXel00WMfCAfQVmdWWSWDk1+JQ==
+X-ME-Sender: <xms:ij5CYoMdipS5IwdogZLMsKjOgKeKPQLp6ng5MAuXmaArfU2A0BnClQ>
+    <xme:ij5CYu9eDGy7fPPITWZxfvz1cKiSxPaOIHfbZ-E8dGtFM-d6tW1QAnSt16-uyBO_N
+    rmHxhynqdQttHJ2bw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudehkedgudeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:ij5CYvR9Q9zZFJ1_Hul9B-LbnlKJM1kZsuYTxFRUBWy8hqXrqU-K3w>
+    <xmx:ij5CYgtFuWWjwPtFzxduMijiO_btUPqIth2kkFPB0_dhFmwiqwO2pw>
+    <xmx:ij5CYgcMUjCMr7r5Dn7pX0O4Y6Iw58wXDP50sSt81EoUMhuq0-yzwg>
+    <xmx:ij5CYoTpFfbkKJwipgy02ZPaE1OJIE4UlocQzs_xsfFOXXJJVIo3Gg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id F169DF60440; Mon, 28 Mar 2022 19:02:33 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-4911-g925b585eab-fm-20220323.003-g925b585e
+Mime-Version: 1.0
+Message-Id: <1898df07-f66c-4452-91a2-eaa8a5b48095@www.fastmail.com>
+In-Reply-To: <0645f716-d664-4e48-577e-57251c1c3f58@quicinc.com>
+References: <20220325154048.467245-1-quic_jaehyoo@quicinc.com>
+ <20220325154048.467245-3-quic_jaehyoo@quicinc.com>
+ <c846fd5f-56e0-4289-af2c-42603c1abda2@www.fastmail.com>
+ <0645f716-d664-4e48-577e-57251c1c3f58@quicinc.com>
+Date:   Tue, 29 Mar 2022 09:31:46 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>, "Andrew Lunn" <andrew@lunn.ch>
+Cc:     "Jamie Iles" <quic_jiles@quicinc.com>,
+        "Graeme Gregory" <quic_ggregory@quicinc.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 2/5] pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
+Content-Type: text/plain
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
-
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on v5.17]
-[also build test ERROR on next-20220328]
-[cannot apply to axboe-block/for-next robh/for-next linus/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220328-234809
-base:    f443e374ae131c168a065ea1748feac6b2e76613
-config: arm-buildonly-randconfig-r005-20220327 (https://download.01.org/0day-ci/archive/20220329/202203290643.0ExdJphD-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 0f6d9501cf49ce02937099350d08f20c4af86f3d)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/28cf1dcfb31bfca35af403a8774d0d880923fab3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220328-234809
-        git checkout 28cf1dcfb31bfca35af403a8774d0d880923fab3
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/ata/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/ata/ahci_dm816.c:72:6: error: invalid argument type 'struct clk_bulk_data' to unary expression
-           if (!hpriv->clks[1]) {
-               ^~~~~~~~~~~~~~~
->> drivers/ata/ahci_dm816.c:77:29: error: passing 'struct clk_bulk_data' to parameter of incompatible type 'struct clk *'
-           refclk_rate = clk_get_rate(hpriv->clks[1]);
-                                      ^~~~~~~~~~~~~~
-   include/linux/clk.h:584:40: note: passing argument to parameter 'clk' here
-   unsigned long clk_get_rate(struct clk *clk);
-                                          ^
-   2 errors generated.
 
 
-vim +72 drivers/ata/ahci_dm816.c
+On Tue, 29 Mar 2022, at 01:11, Jae Hyun Yoo wrote:
+> On 3/27/2022 8:18 PM, Andrew Jeffery wrote:
+>> 
+>> 
+>> On Sat, 26 Mar 2022, at 02:10, Jae Hyun Yoo wrote:
+>>> FWSPIDQ2 and FWSPIDQ3 are not part of FWSPI18 interface so remove
+>>> FWQSPID group in pinctrl. These pins must be used with the FWSPI
+>>> pins that are dedicated for boot SPI interface which provides
+>>> same 3.3v logic level.
+>>>
+>>> Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+>>> Fixes: 2eda1cdec49f ("pinctrl: aspeed: Add AST2600 pinmux support")
+>>> ---
+>>> Changes in v2:
+>>>   * None.
+>>>
+>>>   drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 14 +++-----------
+>>>   1 file changed, 3 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>>> b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>>> index a3fa03bcd9a3..54064714d73f 100644
+>>> --- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>>> +++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>>> @@ -1236,18 +1236,12 @@ FUNC_GROUP_DECL(SALT8, AA12);
+>>>   FUNC_GROUP_DECL(WDTRST4, AA12);
+>>>
+>>>   #define AE12 196
+>>> -SIG_EXPR_LIST_DECL_SEMG(AE12, FWSPIDQ2, FWQSPID, FWSPID,
+>>> -			SIG_DESC_SET(SCU438, 4));
+>>>   SIG_EXPR_LIST_DECL_SESG(AE12, GPIOY4, GPIOY4);
+>>> -PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, FWSPIDQ2),
+>>> -	  SIG_EXPR_LIST_PTR(AE12, GPIOY4));
+>>> +PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, GPIOY4));
+>>>
+>>>   #define AF12 197
+>>> -SIG_EXPR_LIST_DECL_SEMG(AF12, FWSPIDQ3, FWQSPID, FWSPID,
+>>> -			SIG_DESC_SET(SCU438, 5));
+>>>   SIG_EXPR_LIST_DECL_SESG(AF12, GPIOY5, GPIOY5);
+>>> -PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, FWSPIDQ3),
+>>> -	  SIG_EXPR_LIST_PTR(AF12, GPIOY5));
+>>> +PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, GPIOY5));
+>>>
+>>>   #define AC12 198
+>>>   SSSF_PIN_DECL(AC12, GPIOY6, FWSPIABR, SIG_DESC_SET(SCU438, 6));
+>>> @@ -1520,9 +1514,8 @@ SIG_EXPR_LIST_DECL_SEMG(Y4, EMMCDAT7, EMMCG8,
+>>> EMMC, SIG_DESC_SET(SCU404, 3));
+>>>   PIN_DECL_3(Y4, GPIO18E3, FWSPIDMISO, VBMISO, EMMCDAT7);
+>>>
+>>>   GROUP_DECL(FWSPID, Y1, Y2, Y3, Y4);
+>>> -GROUP_DECL(FWQSPID, Y1, Y2, Y3, Y4, AE12, AF12);
+>>>   GROUP_DECL(EMMCG8, AB4, AA4, AC4, AA5, Y5, AB5, AB6, AC5, Y1, Y2, Y3,
+>>> Y4);
+>>> -FUNC_DECL_2(FWSPID, FWSPID, FWQSPID);
+>>> +FUNC_DECL_1(FWSPID, FWSPID);
+>> 
+>> Really this is the FWSPI18 group now? The FWSPID name never made sense.
+>> I'm not sure what I was thinking.
+>
+> Yes, it's now the FWSPI18 which is described as 'debug SPI' in the
+> datasheet. Corresponding SCU500[3] bit is also described as that 'the
+> bit is for verification and testing only'. Probably, you was thinking
+> 'D' as in 'Debug' for the FWSPID naming.
 
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   60  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   61  static int ahci_dm816_phy_init(struct ahci_host_priv *hpriv, struct device *dev)
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   62  {
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   63  	unsigned long refclk_rate;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   64  	int mpy;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   65  	u32 val;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   66  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   67  	/*
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   68  	 * We should have been supplied two clocks: the functional and
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   69  	 * keep-alive clock and the external reference clock. We need the
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   70  	 * rate of the latter to calculate the correct value of MPY bits.
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   71  	 */
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14  @72  	if (!hpriv->clks[1]) {
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   73  		dev_err(dev, "reference clock not supplied\n");
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   74  		return -EINVAL;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   75  	}
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   76  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14  @77  	refclk_rate = clk_get_rate(hpriv->clks[1]);
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   78  	if ((refclk_rate % 100) != 0) {
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   79  		dev_err(dev, "reference clock rate must be divisible by 100\n");
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   80  		return -EINVAL;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   81  	}
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   82  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   83  	mpy = ahci_dm816_get_mpy_bits(refclk_rate);
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   84  	if (mpy < 0) {
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   85  		dev_err(dev, "can't calculate the MPY bits value\n");
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   86  		return -EINVAL;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   87  	}
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   88  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   89  	/* Enable the PHY and configure the first HBA port. */
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   90  	val = AHCI_DM816_PHY_MPY(mpy) | AHCI_DM816_PHY_LOS(1) |
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   91  	      AHCI_DM816_PHY_RXCDR(4) | AHCI_DM816_PHY_RXEQ(1) |
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   92  	      AHCI_DM816_PHY_TXSWING(3) | AHCI_DM816_PHY_ENPLL(1);
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   93  	writel(val, hpriv->mmio + AHCI_DM816_P0PHYCR_REG);
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   94  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   95  	/* Configure the second HBA port. */
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   96  	val = AHCI_DM816_PHY_LOS(1) | AHCI_DM816_PHY_RXCDR(4) |
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   97  	      AHCI_DM816_PHY_RXEQ(1) | AHCI_DM816_PHY_TXSWING(3);
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   98  	writel(val, hpriv->mmio + AHCI_DM816_P1PHYCR_REG);
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14   99  
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14  100  	return 0;
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14  101  }
-df46e6a4c06c89 Bartosz Golaszewski 2017-03-14  102  
+I suspect it was also to do with some lack of detail in the early data sheets :)
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+>
+>> Actually, I think it's worth squashing this with 3/5 so it's a proper
+>> fix rather than separate remove/add?
+>
+> Two reasons I separated them.
+> 1. Author is different.
+> 2. 2/5 is a bug fix and 3/5 introduces a new pinmux.
+
+Okay, I'm not terribly fussed.
+
+>
+>>>   FUNC_GROUP_DECL(VB, Y1, Y2, Y3, Y4);
+>>>   FUNC_DECL_3(EMMC, EMMCG1, EMMCG4, EMMCG8);
+>>>   /*
+>>> @@ -1918,7 +1911,6 @@ static const struct aspeed_pin_group
+>>> aspeed_g6_groups[] = {
+>>>   	ASPEED_PINCTRL_GROUP(FSI2),
+>>>   	ASPEED_PINCTRL_GROUP(FWSPIABR),
+>>>   	ASPEED_PINCTRL_GROUP(FWSPID),
+>>> -	ASPEED_PINCTRL_GROUP(FWQSPID),
+>> 
+>> We should also remove the function (not just the group).
+>
+> Still worth to keep FWSPID to support SCU500[3] - Boot from debug SPI.
+> FWSPID would work on single and dual data mode only.
+
+I guess, yeah, though the only use case I see for it is a temporary 
+devicetree change to account for someone setting the strap pin into the 
+debug state. I don't see a reason to support it beyond that, but that said
+we still need to support it for that use case.
+
+Andrew
