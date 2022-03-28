@@ -2,83 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 480734E902B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 10:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CEC54E9036
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 10:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235315AbiC1Ibu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 04:31:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58114 "EHLO
+        id S239386AbiC1IfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 04:35:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233720AbiC1Ibt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 04:31:49 -0400
-X-Greylist: delayed 66 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 28 Mar 2022 01:30:06 PDT
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 362D413D32;
-        Mon, 28 Mar 2022 01:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1648456208;
-  x=1679992208;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6lodqU722XqqMCnjzMd3/cpwy1KHIQLMRjx1NSCdEKA=;
-  b=dK0NkDNIrE+1O1Mr6UHChku4GO1I8+QNjRKCSdMBzYDCBIo8jD2EcKqa
-   MbrwOk5EwyMQZmga5eBqxqdLtzBsN0o7D+4YCB7Gp8TTGw0FEhC8zFWFI
-   dSduFBklVQ4xJThQbSNCaC8TlJ4NIchnQf2BANEr8lZ02NJZlH1JYOTva
-   pdVgIoTx/umKDQ6MAffb9e47m0fx74YMfO+wrFknWVFtjGeWbHi7M9grQ
-   fLDy5RRCiClaLJ3yZb6kCsVx+dpkmpeAKAXoyL7dc85od4NQ8ehN+yVpr
-   65ABdKdAeITuZeNCa+8Zy3YhCMn3MAbxgghjW4q52RLjeDEAyoYn2DXu6
-   g==;
-Date:   Mon, 28 Mar 2022 10:28:58 +0200
-From:   Jesper Nilsson <jesper.nilsson@axis.com>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S239382AbiC1IfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 04:35:17 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3BD11BE8D;
+        Mon, 28 Mar 2022 01:33:36 -0700 (PDT)
+X-UUID: 515039d302a24b61a4a1d3226784934f-20220328
+X-UUID: 515039d302a24b61a4a1d3226784934f-20220328
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 983933162; Mon, 28 Mar 2022 16:33:30 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 28 Mar 2022 16:33:29 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 28 Mar
+ 2022 16:33:29 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 28 Mar 2022 16:33:29 +0800
+Message-ID: <345fd758319f318738fe55d298bd5056320a130e.camel@mediatek.com>
+Subject: Re: [PATCH v9 09/22] drm/mediatek: dpi: implement a swap_input
+ toggle in SoC config
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Guillaume Ranquet <granquet@baylibre.com>, <airlied@linux.ie>,
+        <angelogioacchino.delregno@collabora.com>,
+        <chunfeng.yun@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <ck.hu@mediatek.com>, <daniel@ffwll.ch>, <deller@gmx.de>,
+        <jitao.shi@mediatek.com>, <kishon@ti.com>, <krzk+dt@kernel.org>,
+        <maarten.lankhorst@linux.intel.com>, <matthias.bgg@gmail.com>,
+        <mripard@kernel.org>, <p.zabel@pengutronix.de>,
+        <robh+dt@kernel.org>, <tzimmermann@suse.de>, <vkoul@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-actions@lists.infradead.org" 
-        <linux-actions@lists.infradead.org>,
-        "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-        "linux-amlogic@lists.infradead.org" 
-        <linux-amlogic@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@axis.com>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-rpi-kernel@lists.infradead.org" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "chrome-platform@lists.linux.dev" <chrome-platform@lists.linux.dev>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "kernel@dh-electronics.com" <kernel@dh-electronics.com>,
-        "linux-mediatek@lists.infradead.org" 
+        <linux-fbdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-mediatek@lists.infradead.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-unisoc@lists.infradead.org" <linux-unisoc@lists.infradead.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>,
-        "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>
-Subject: Re: [RFC PATCH 1/1] ARM/arm64: categorize dts in arm dir and fix
- dependency in arm64
-Message-ID: <20220328082858.GJ7371@axis.com>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <20220328000915.15041-2-ansuelsmth@gmail.com>
+        <linux-phy@lists.infradead.org>, <markyacoub@google.com>
+Date:   Mon, 28 Mar 2022 16:33:29 +0800
+In-Reply-To: <20220327223927.20848-10-granquet@baylibre.com>
+References: <20220327223927.20848-1-granquet@baylibre.com>
+         <20220327223927.20848-10-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220328000915.15041-2-ansuelsmth@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,SUSPICIOUS_RECIPS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,22 +64,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ansuel,
+On Mon, 2022-03-28 at 00:39 +0200, Guillaume Ranquet wrote:
+> Adds a bit of flexibility to support SoCs without swap_input support
+> 
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index 545a1337cc89..454f8563efae 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -126,6 +126,7 @@ struct mtk_dpi_conf {
+>  	const u32 *output_fmts;
+>  	u32 num_output_fmts;
+>  	bool is_ck_de_pol;
+> +	bool swap_input_support;
+>  	const struct mtk_dpi_yc_limit *limit;
+>  };
+>  
+> @@ -378,18 +379,21 @@ static void mtk_dpi_config_color_format(struct
+> mtk_dpi *dpi,
+>  	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
+>  		mtk_dpi_config_yuv422_enable(dpi, false);
+>  		mtk_dpi_config_csc_enable(dpi, true);
+> -		mtk_dpi_config_swap_input(dpi, false);
+> +		if (dpi->conf->swap_input_support)
+> +			mtk_dpi_config_swap_input(dpi, false);
+>  		mtk_dpi_config_channel_swap(dpi,
+> MTK_DPI_OUT_CHANNEL_SWAP_BGR);
+>  	} else if ((format == MTK_DPI_COLOR_FORMAT_YCBCR_422) ||
+>  		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
+>  		mtk_dpi_config_yuv422_enable(dpi, true);
+>  		mtk_dpi_config_csc_enable(dpi, true);
+> -		mtk_dpi_config_swap_input(dpi, true);
+> +		if (dpi->conf->swap_input_support)
+> +			mtk_dpi_config_swap_input(dpi, true);
+>  		mtk_dpi_config_channel_swap(dpi,
+> MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+>  	} else {
+>  		mtk_dpi_config_yuv422_enable(dpi, false);
+>  		mtk_dpi_config_csc_enable(dpi, false);
+> -		mtk_dpi_config_swap_input(dpi, false);
+> +		if (dpi->conf->swap_input_support)
+> +			mtk_dpi_config_swap_input(dpi, false);
+>  		mtk_dpi_config_channel_swap(dpi,
+> MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+>  	}
+>  }
+> @@ -808,6 +812,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
+>  	.output_fmts = mt8173_output_fmts,
+>  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+>  	.is_ck_de_pol = true,
+> +	.swap_input_support = true,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
+> @@ -819,6 +824,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
+>  	.output_fmts = mt8173_output_fmts,
+>  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+>  	.is_ck_de_pol = true,
+> +	.swap_input_support = true,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
+> @@ -829,6 +835,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
+>  	.output_fmts = mt8183_output_fmts,
+>  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
+>  	.is_ck_de_pol = true,
+> +	.swap_input_support = true,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
+> @@ -839,6 +846,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
+>  	.output_fmts = mt8173_output_fmts,
+>  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+>  	.is_ck_de_pol = true,
+> +	.swap_input_support = true,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
 
-On Mon, Mar 28, 2022 at 02:09:15AM +0200, Ansuel Smith wrote:
-> - Categorize every dts in arm directory in subdirectory
-> - Fix Makefile to address for the arm subdirectory
-> - Fix any arm64 dependency
-> [...]
->  arch/arm/boot/dts/axix/Makefile               |    3 +
->  .../boot/dts/{ => axix}/artpec6-devboard.dts  |    0
->  arch/arm/boot/dts/{ => axix}/artpec6.dtsi     |    0
+Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 
-All ARTPEC platforms should be in a directory called "axis".
-Otherwise LGTM.
-
-Thanks!
-
-/^JN - Jesper Nilsson
--- 
-               Jesper Nilsson -- jesper.nilsson@axis.com
