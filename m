@@ -2,70 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B56624E9C4F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EA44E9C5D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242280AbiC1QfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 12:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40448 "EHLO
+        id S242478AbiC1QhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 12:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238904AbiC1QfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:35:00 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695BA7648;
-        Mon, 28 Mar 2022 09:33:18 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id e189so16151635oia.8;
-        Mon, 28 Mar 2022 09:33:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bIvjLAN1WghVKdHbiAwbpiS4KUlO9J5lK2uou4RVILk=;
-        b=4BuMH9UC17PguaV7KVJJqo4LZHm4VxTwZQ3azrARHcBzitgGWODEb3IuIXHryl09Q1
-         PHaRtwISpRuw28cShPTwqWLLFh7u7Kf6lp2nRJXrKXQ9SrzTt2xkRC+LC8RWE8/3Q78k
-         yYSACNPIxAk3HmJwe6x295vWxb02lfeMTeshxV2f1pQWc+zy3AdgzfFKKPb3nB+C54Wl
-         1OVH3WCZxz2Wv3rntn6tQvi5d9beZDsDnPQ64uXi1D0e45vNcfYi3Sty1Imrp4cBRshp
-         hpde1HBbm95O1T56LfCUAWRpyYjJgvNlOAZm7M0o4E5JfQeXpVLrRIYZ9i1diSYMl0VU
-         39nQ==
-X-Gm-Message-State: AOAM533GjdNXKY4KDptnJoLLywK33KVjrlY8NuTPLNeK75esrMK0Eeu7
-        ejVBq6tWoln0o2EjEQtjDg==
-X-Google-Smtp-Source: ABdhPJwNVh5RZ1sp9MXlR5GlreRlGRTmHJKVh03oTfj9pol2juq4vLORJb84KwOjAAWD3ibi6+xCCg==
-X-Received: by 2002:a05:6808:1059:b0:2ed:b699:7f2e with SMTP id c25-20020a056808105900b002edb6997f2emr909oih.240.1648485197630;
-        Mon, 28 Mar 2022 09:33:17 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t15-20020a056808158f00b002e331356c87sm7218218oiw.39.2022.03.28.09.33.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 09:33:16 -0700 (PDT)
-Received: (nullmailer pid 2515489 invoked by uid 1000);
-        Mon, 28 Mar 2022 16:33:15 -0000
-Date:   Mon, 28 Mar 2022 11:33:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        mripard@kernel.org, p.zabel@pengutronix.de, tzimmermann@suse.de,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: Re: [PATCH v9 02/22] dt-bindings: mediatek,dp: Add Display Port
- binding
-Message-ID: <YkHjS9ToXqyliItf@robh.at.kernel.org>
-References: <20220327223927.20848-1-granquet@baylibre.com>
- <20220327223927.20848-3-granquet@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220327223927.20848-3-granquet@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S233943AbiC1QhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:37:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C7F2606E3
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:35:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A5AEE61483
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 16:35:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4AEC004DD;
+        Mon, 28 Mar 2022 16:35:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648485337;
+        bh=Bll15YJCV3NEHAf9DjC+S6pLaySgAtZIx1YauCjLUNg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=deOmDomAaTxuOWT4w3CGnQlR/kV7/ANe+58LVWpO2Z0jrkrLoK0Z7LlNVncjRn+aK
+         NRWaEKMykFH5A6/cb64cJe6r6KVSbz6gBYi3C3TQyZfmMZjTlrOz5Inex8r5K7VNb4
+         KZwhPtyXiSbaCA1qgbKDmf0JC05alu0Z3rNpcbBgluzf2FuLwIO5RKzx/58YD+yM5a
+         J4f/Ole5LSjbMlDo9jIpg+F+NU86t60QBZPTcdXNZE451YWj8MatCR58nt4zhKLKqR
+         +79DsNPHd9/fh+AGmeDlp+LWhcNAX5pAi07mEfE2KCNpQS620U3iFgxI8Y4zzL4zRz
+         CycjD235jbhFA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nYsL8-00HT5p-Gs; Mon, 28 Mar 2022 17:35:34 +0100
+Date:   Mon, 28 Mar 2022 17:35:34 +0100
+Message-ID: <87fsn2f31l.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rui Miguel Silva <rui.silva@linaro.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: arm: add corstone1000 device tree
+In-Reply-To: <20220325133655.4177977-3-rui.silva@linaro.org>
+References: <20220325133655.4177977-1-rui.silva@linaro.org>
+        <20220325133655.4177977-3-rui.silva@linaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: rui.silva@linaro.org, liviu.dudau@arm.com, sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,54 +69,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 12:39:07AM +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On Fri, 25 Mar 2022 13:36:55 +0000,
+Rui Miguel Silva <rui.silva@linaro.org> wrote:
 > 
-> This controller is present on several mediatek hardware. Currently
-> mt8195 and mt8395 have this controller without a functional difference,
-> so only one compatible field is added.
+> Corstone1000 is a platform from arm, which includes pre
+> verified Corstone SSE710 sub-system that combines Cortex-A and
+> Cortex-M processors [0].
 > 
-> The controller can have two forms, as a normal display port and as an
-> embedded display port.
+> These device trees contains the necessary bits to support the
+> Corstone 1000 FVP (Fixed Virtual Platform) [1] and the
+> FPGA MPS3 board Cortex-A35 implementation at Cortex-A35 host
+> side of this platform. [2]
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> 0: https://documentation-service.arm.com/static/619e02b1f45f0b1fbf3a8f16
+> 1: https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps
+> 2: https://documentation-service.arm.com/static/61f3f4d7fa8173727a1b71bf
+> 
+> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
 > ---
->  .../display/mediatek/mediatek,dp.yaml         | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+>  arch/arm64/boot/dts/arm/Makefile              |   1 +
+>  arch/arm64/boot/dts/arm/corstone1000-fvp.dts  |  31 ++++
+>  arch/arm64/boot/dts/arm/corstone1000-mps3.dts |  38 +++++
+>  arch/arm64/boot/dts/arm/corstone1000.dtsi     | 151 ++++++++++++++++++
+>  4 files changed, 221 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+>  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-mps3.dts
+>  create mode 100644 arch/arm64/boot/dts/arm/corstone1000.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
+> index 4382b73baef5..d908e96d7ddc 100644
+> --- a/arch/arm64/boot/dts/arm/Makefile
+> +++ b/arch/arm64/boot/dts/arm/Makefile
+> @@ -6,3 +6,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += juno.dtb juno-r1.dtb juno-r2.dtb juno-scmi.dtb ju
+>  dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
+>  dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
+>  dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
+> +dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
+> diff --git a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
 > new file mode 100644
-> index 000000000000..802cc406c72b
+> index 000000000000..8f6ce94b4d5a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2022, Arm Limited. All rights reserved.
+> + * Copyright (c) 2022, Linaro Limited. All rights reserved.
+> + *
+> + */
 > +
-> +title: Mediatek Display Port Controller
+> +/dts-v1/;
 > +
-> +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
-> +  - Jitao shi <jitao.shi@mediatek.com>
+> +#include "corstone1000.dtsi"
 > +
-> +description: |
-> +  Device tree bindings for the Mediatek (embedded) Display Port controller
-> +  present on some Mediatek SoCs.
+> +/ {
+> +	model = "ARM Corstone1000 FVP (Fixed Virtual Platform)";
+> +	compatible = "arm,corstone1000-fvp";
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,mt8195-dp-tx
-> +      - const: syscon
+> +	ethernet: eth@4010000 {
+> +		compatible = "smsc,lan91c111";
+> +		reg = <0x40100000 0x10000>;
+> +		phy-mode = "mii";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_SPI 116 (GIC_CPU_MASK_SIMPLE(4) |
+> +			      IRQ_TYPE_LEVEL_HIGH)>;
 
-Add something to the above description to convince me this is a syscon. 
+-ENOPARSE. Please read the GIC binding.
 
-If you need a regmap, the driver can create one. 'syscon' is really only 
-needed if there's not a specific driver.
+> +		reg-io-width = <2>;
+> +		smsc,irq-push-pull;
+> +	};
+> +
+> +};
+> +
+> +&refclk {
+> +	clock-frequency = <50000000>;
+> +};
+> diff --git a/arch/arm64/boot/dts/arm/corstone1000-mps3.dts b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
+> new file mode 100644
+> index 000000000000..922253f0af07
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
 
-Rob
+[...]
+
+> +	gic: interrupt-controller@1c000000 {
+> +		compatible = "arm,gic-400";
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <0>;
+> +		interrupt-controller;
+> +		reg =	<0x1c010000 0x1000>,
+> +			<0x1c02f000 0x2000>,
+> +			<0x1c04f000 0x1000>,
+> +			<0x1c06f000 0x2000>;
+> +		interrupts = <1 9 0xf08>;
+
+Why 4 CPUs? You only have 1. The rest of the file seems to use the
+symbolic encoding, so please pick one or the other, but don't mix
+them.
+
+[...]
+
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts =	<GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
+> +				 IRQ_TYPE_LEVEL_LOW)>,
+> +				<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
+> +				 IRQ_TYPE_LEVEL_LOW)>,
+> +				<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
+> +				 IRQ_TYPE_LEVEL_LOW)>,
+> +				<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
+> +				 IRQ_TYPE_LEVEL_LOW)>;
+
+Same question.
+
+> +	};
+> +
+> +	refclk: refclk@1a220000 {
+> +		compatible = "arm,armv7-timer-mem";
+> +		reg = <0x1a220000  0x1000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		frame@1a230000 {
+> +			frame-number = <0>;
+> +			interrupts = <GIC_SPI 2 (GIC_CPU_MASK_SIMPLE(4) |
+> +				      IRQ_TYPE_LEVEL_HIGH)>;
+
+This makes no sense either.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
