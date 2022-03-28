@@ -2,180 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CDC44E96EA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F994E9700
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239478AbiC1Mre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 08:47:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
+        id S242683AbiC1MxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 08:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237500AbiC1Mre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:47:34 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5273E4D638;
-        Mon, 28 Mar 2022 05:45:53 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id u26so16736479eda.12;
-        Mon, 28 Mar 2022 05:45:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5GzAXCiHKn740WB88VYaXEioW9TMP9IG2kbGPT2sCHE=;
-        b=FM8dC5tQYBxg/a9sOblYTVnlbCPwqFdeyQ5ziyOF1PY3H389hZlkzBLbqqy8MwXXAf
-         A+dJ+5NOCrBZejlUxbBgQKMOG76kY43DIhH7GNulNDyEM2BWJCrTyjf/fCrvdVV4zNUA
-         0xUtrt5k4+5+zra4dHdxU7U0iCMWR13OIruhPGOnrjXswbQFT97Fqp5PP3oZUw7el4Mg
-         Sajnpa+xlRqcHYjW/IFTWvlC0Y1LNc38/xUHs6XEG17/JhozHq+3IF3NrsdcdOvrF8mj
-         mU/J6sIX1KmyXwzXQrdyPTsx+QbZuik7yZiPsB4vGQeO4Wd/DsLQJ/Xp1Aj4bp1m3KYj
-         4+4g==
+        with ESMTP id S242635AbiC1Mwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:52:50 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF023ED3E;
+        Mon, 28 Mar 2022 05:51:08 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-de3ca1efbaso15056127fac.9;
+        Mon, 28 Mar 2022 05:51:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5GzAXCiHKn740WB88VYaXEioW9TMP9IG2kbGPT2sCHE=;
-        b=Rws3CDUSt6cqfSqau94G/bKM2rCWbapsoLdf2yBrhIL4gVPXhat6RUjaOBQBC8uJMf
-         SgBNFJ5FMThUPhFFXo3II/Zf/phGfJ3m8XuPV2DjwSRk/Yrly/2Sa1fM9x480muRl9xQ
-         4IWWog/r5M+JQLp+LrV7ZCzBHUPzUhNA0x4tg8B7FeIMdWfIrTfjN3As3NCyiwiCBv/x
-         1Q1fPbMzxCO6e2mVUJn0k+eVXZ6NEgVMXbKr3adjN4g3hMqZbIdOsLoza4Leij7WVxV3
-         cpDcZYmDFED6BtYwozVkJs+SFrbgGXlSYGgYg6/+jnLGwJqD2t85pQuxKiCvgRgyAznx
-         9o5g==
-X-Gm-Message-State: AOAM532NtK8rFw8Cr+ikqrrTO3AzklaYUODPurlc/5oI94qdbfZFUjtu
-        UPB3xg6HY2jdh+vjs8OlfvxMdPOHTnWBPyvVpfs=
-X-Google-Smtp-Source: ABdhPJz90iB17mVjeopA5CGT2QyLyR4w0yF6S9hmFgwrdk/BNJza7oZqY0QP8HkpjT6efjW64Ha/d+eWXtCw8wKKMHY=
-X-Received: by 2002:aa7:c64c:0:b0:418:ecf7:afaa with SMTP id
- z12-20020aa7c64c000000b00418ecf7afaamr16277961edr.38.1648471551479; Mon, 28
- Mar 2022 05:45:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220327123835.28329-1-aford173@gmail.com> <20220327123835.28329-3-aford173@gmail.com>
- <c964bf2c-f7bf-451c-1691-02903f20c634@pengutronix.de> <CAHCN7xL05pBK0uK7zuE7Uq4P9Rzo6bHbJdbOt5XnQRB7Sh3msw@mail.gmail.com>
- <74e74ea8-1554-bf08-b0ea-36e77259cb18@pengutronix.de> <5c24c12b-3a12-1e18-9f03-2c54cad30bf9@kernel.org>
-In-Reply-To: <5c24c12b-3a12-1e18-9f03-2c54cad30bf9@kernel.org>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 28 Mar 2022 07:45:40 -0500
-Message-ID: <CAHCN7xJ28t3igV8uHWfLxJx6wWkwzojg-d0QTTZM9jdfGCbTzw@mail.gmail.com>
-Subject: Re: [PATCH 3/5] arm64: dts: imx8mp: Enable HS400-ES
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=YKxyUK+Nou4xViHDx8TkfPYtGoA/VwvXE7HQXU1aq8I=;
+        b=uGEGFy03xxAvRqNyUMlVHsjmP42NeryTXBBNTGQkGysZ49e3LGGf1JVYFSMvuQ/wne
+         j6K5VrJdfNxPlsnTMn0EAroBTRQki8VXBly3HGnKKgFx4ACvuXvWrnAKtLih+MXFPxPY
+         +mKGoEWgrz416l/CSbZsILZQqNX1mAhengWe8PTScUeaeC2xYHqdElwVNrPX0mWKlbIy
+         uccPJbrzEvWrY3RkpRMHj9uF7Van2R99kJsYsiI5S0Po6f4FEbHvfLwUbWCmB8cwjAq3
+         nLDg8LAbrUO/EnBgg/0A6iTjLi8+YMLhWgCschGaByfLCd2T+8Jraido+gNMbWZfysuh
+         cg8w==
+X-Gm-Message-State: AOAM530uv5A6V6vymiQyeDONB/3stKkMy74hILXIfCMIquyrgpIWNUJO
+        qMDXxqCqKInBJA5wJwUnVPoQbQSVQQ==
+X-Google-Smtp-Source: ABdhPJx44lE4vp2aYCeZ7I/lyjmousbKuU1sEX5HIWJFpKqkaVPGdwLqNEmBm4TX4iixQSE+3S145A==
+X-Received: by 2002:a05:6871:694:b0:dd:a43e:fca4 with SMTP id l20-20020a056871069400b000dda43efca4mr15486919oao.77.1648471867780;
+        Mon, 28 Mar 2022 05:51:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y67-20020a4a4546000000b0032476e1cb40sm6811033ooa.25.2022.03.28.05.51.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Mar 2022 05:51:07 -0700 (PDT)
+Received: (nullmailer pid 2153569 invoked by uid 1000);
+        Mon, 28 Mar 2022 12:51:05 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Guillaume Ranquet <granquet@baylibre.com>
+Cc:     mripard@kernel.org, airlied@linux.ie, tzimmermann@suse.de,
+        maarten.lankhorst@linux.intel.com, chunfeng.yun@mediatek.com,
+        krzk+dt@kernel.org, linux-phy@lists.infradead.org,
+        matthias.bgg@gmail.com, chunkuang.hu@kernel.org,
+        jitao.shi@mediatek.com, vkoul@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, kishon@ti.com,
+        linux-fbdev@vger.kernel.org, daniel@ffwll.ch,
+        angelogioacchino.delregno@collabora.com,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        p.zabel@pengutronix.de, linux-mediatek@lists.infradead.org,
+        deller@gmx.de, linux-arm-kernel@lists.infradead.org,
+        markyacoub@google.com, ck.hu@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20220327223927.20848-3-granquet@baylibre.com>
+References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-3-granquet@baylibre.com>
+Subject: Re: [PATCH v9 02/22] dt-bindings: mediatek,dp: Add Display Port binding
+Date:   Mon, 28 Mar 2022 07:51:05 -0500
+Message-Id: <1648471865.772251.2153568.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 6:49 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 28/03/2022 13:09, Ahmad Fatoum wrote:
-> > Hello Adam,
-> >
-> > On 28.03.22 12:47, Adam Ford wrote:
-> >> On Mon, Mar 28, 2022 at 2:20 AM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
-> >>>
-> >>> Hello Adam,
-> >>>
-> >>> On 27.03.22 14:38, Adam Ford wrote:
-> >>>> The SDHC controller in the imx8mp has the same controller
-> >>>> as the imx8mm which supports HS400-ES. Change the compatible
-> >>>> fallback to imx8mm to enable it.
-> >>>
-> >>> I believe that's a shortcoming of the Linux driver, which should explicitly list
-> >>> fsl,imx8mp-usdhc in its compatibles and enable HS400-ES for it.
-> >>>
-> >>> I find dropping compatibles problematic, because like Linux matching
-> >>> fsl,imx8mm-usdhc, but not fsl,imx8mp-usdhc, other software may match
-> >>> fsl,imx7d-usdhc, but not fsl,imx8[mp]-usdhc.
-> >>>
-> >>> I'd prefer that either the kernel driver gains extra compatibles or that
-> >>> the DTS lists extra compatibles and we refrain from dropping existing
-> >>> (correct) ones.
-> >>>
-> >>
-> >> I would argue that imx7d is not correct since the IP blocks between
-> >> imx7d and imx8mm have different flags/quirks.  One of which includes
-> >> HS400-ES, but there are other differences as well.
-> >
-> > The DTS currently says that an fsl,imx7d-usdhc is a subset of an
-> > fsl,imx8mm-usdhc. So a driver could treat both HW the exact same
-> > by focusing on the i.MX7D parts. Linux apparently did exactly
-> > that so far. Is this not accurate?
-> >
-> >
-> >>> What do you think?
-> >>
-> >> From my understanding of the fallback compatibility strings is to
-> >> avoid having to add more and more compatible strings to the drivers
-> >> when they do not serve a functional purpose. Based On a conversation
-> >> with Krzysztof [1], he suggested we update the YAML file based on the
-> >> fallback, but he wanted NXP to give their feedback as to what the
-> >> right fallback strings should be.  Haibo from NXP sent me a hierarchy
-> >> [1] which is what I used to update the YAML file.  Based on the YAML
-> >> file, the fallback in each DTSI file was updated to ensure the use of
-> >> the proper IP block.
-> >
-> > Myself I am in favor of moving to three compatibles instead of dropping one.
-> > For some theoretical fsl,imx8mf-usdhc that's supposed to be exactly the same
-> > as a fsl,imx8mm-usdhc, I don't mind omitting the fsl,imx7d-usdhc compatible,
-> > but for existing device trees, this may introduce needless potential breakage
-> > for other software that also uses Linux device trees.
-> >
->
-> Affecting existing users is indeed a concern with this approach, because
-> in-kernel DTS might be used in other projects as well.
->
-> I still cannot find here the answer whether fsl,imx8mm-usdhc is actually
-> compatible with fsl,imx7d-usdhc. It's not about driver, but about
-> hardware and programming model. imx8mm can support additional features
-> and still be compatible with imx7d. However if any flags of imx7d are
-> actually not valid for imx8mm, then it's different case.
+On Mon, 28 Mar 2022 00:39:07 +0200, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This controller is present on several mediatek hardware. Currently
+> mt8195 and mt8395 have this controller without a functional difference,
+> so only one compatible field is added.
+> 
+> The controller can have two forms, as a normal display port and as an
+> embedded display port.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
+>  .../display/mediatek/mediatek,dp.yaml         | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+> 
 
-The imx7d flags are:
- ESDHC_FLAG_USDHC
-ESDHC_FLAG_STD_TUNING
- ESDHC_FLAG_HAVE_CAP1
-ESDHC_FLAG_HS200
- ESDHC_FLAG_HS400
- ESDHC_FLAG_STATE_LOST_IN_LPMODE
- ESDHC_FLAG_BROKEN_AUTO_CMD23,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-The imx8mm flags are:
- ESDHC_FLAG_USDHC
- ESDHC_FLAG_STD_TUNING
- ESDHC_FLAG_HAVE_CAP1
-ESDHC_FLAG_HS200
- ESDHC_FLAG_HS400
- ESDHC_FLAG_HS400_ES
- ESDHC_FLAG_STATE_LOST_IN_LPMODE
+yamllint warnings/errors:
 
-It does not have the ESDHC_FLAG_BROKEN_AUTO_CMD23 that is present in the imx7d.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dts:24:18: fatal error: dt-bindings/power/mt8195-power.h: No such file or directory
+   24 |         #include <dt-bindings/power/mt8195-power.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1398: dt_binding_check] Error 2
 
-Maybe Haibo can comment on whether or not that would be an issue for the 8m[mnp]
+doc reference errors (make refcheckdocs):
 
-I will defer to Krzysztof and Haibo as to the proper method that we
-should add HS400-ES.  I don't have an issue adding the imx8mn or
-imx8mp compatible flags to the esdhc driver if that's the decision.
-If that is the decision, my follow-up question would be how the YAML
-should look, and if it needs to change at all.
+See https://patchwork.ozlabs.org/patch/1609955
 
-adam
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
->
->
-> Best regards,
-> Krzysztof
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
