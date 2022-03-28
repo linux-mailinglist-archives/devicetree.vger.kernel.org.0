@@ -2,84 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2160E4E9C63
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA7D4E9C8F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242539AbiC1Qjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 12:39:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53192 "EHLO
+        id S237853AbiC1Qpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 12:45:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234987AbiC1Qjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:39:40 -0400
-Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com [192.185.51.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5E662BFC
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:37:59 -0700 (PDT)
-Received: from cm16.websitewelcome.com (cm16.websitewelcome.com [100.42.49.19])
-        by gateway24.websitewelcome.com (Postfix) with ESMTP id 58AEDEDF32
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 11:37:59 -0500 (CDT)
-Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
-        by cmsmtp with SMTP
-        id YsNTnmLcCXvvJYsNTnzgo8; Mon, 28 Mar 2022 11:37:59 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=hiAxs7IHF0rwd27wBXL1/c9LFYx80jZfA+vxRKssdAY=; b=4hM99fFLGFCXB5cJDY8lo4Y7ea
-        GLASzNOoPWsqoULbaTlRGwjF/QOLLXlc8yi+MGAwcm/I8HKXRe/BSYh9ey0j0XfdgxiWyxUqScm9P
-        NLU3vUDD8AeKyBm/Pnw2nCiaob8IL7rHA9LLPel/dE/dimFV29Xlngfi1EFf4tXp40gWBYPFxVc57
-        Jcird/H9E1noQxQ7lwoZmneXID0oSrCWLMfz5mojNKE1MWOO+KsWprsdYPaFACatosIn5XRwmriny
-        7z5Dkqt+Sgv7rgS0MR2r0hmuKSR9e0E5UXYPmQrJqyvhgYl8uWcEDIQr3PxBB1r0v8sw4p+CLG5oX
-        xNBQC7jg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54532)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@roeck-us.net>)
-        id 1nYsNS-001jY7-Ud; Mon, 28 Mar 2022 16:37:59 +0000
-Message-ID: <0b818aa2-e776-3554-8d7b-79fd856e2e1f@roeck-us.net>
-Date:   Mon, 28 Mar 2022 09:37:57 -0700
+        with ESMTP id S242615AbiC1Qpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:45:50 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42EB3205C3
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:44:06 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id e22so12258950qvf.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:44:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZFIdehZrTxdj/RvUPXGwNiJz0CBRPSutTAor/H+cLso=;
+        b=HY7BqZqay1vHlPzQoQMjzcnyQyiXyRjGp+TAREShAf3pydiqV7DKYRaYQoqT77XomN
+         95E7RQUXQwKi69JGzrCjskWWNF3VvTACp2QapXR/gcLtFij4dmvrqC42wjHDRht+Dxwb
+         qrIJkT4BC1sa/5QqCEZkCH+19SGG/vuhKj0p/2nrtMZgOoINM+J0EN7chOuZyCcc4kGp
+         BLWLjETKDhQZZGTerzv3Gytz8FVyy1LGew3BsoJfUBA122woOjL/N4+SDb/dJnBMc26y
+         6gtJ4loim8gQik4TgrcYztnMPkWzZvgrTAlLASvqNfzpk87vgb//cv2hRAzehoBw8tDz
+         8ISA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZFIdehZrTxdj/RvUPXGwNiJz0CBRPSutTAor/H+cLso=;
+        b=GDCR8Bk8tS6KPhXA6Lve/NKjHvzdgMLxDV7a2+dfR1jAQf6wQCGWIBmNLbFkv2E/jw
+         sDQEvI/PVpX8n3q0Aqf2AMXPNbcJlp93N+cDuIUjrgrPNNCI1yG5lPiPrAQj0TCS5FzD
+         XH4F98P9vZgl+ODRgN18rY4WBHD6Sh7sFNuDIbKU8x002JaRxZdcn3cIUeYF9GhBo4+Y
+         oNzOsI7ME7z7RxPzUEGGde5yB5+nnNWFvPvgkdQfSuthseziDCo/y3zINXmbY+yRfIAH
+         PL6q8nXGTXLuok7bkF+tPkIAw2utRivaKk4iR/QiLBZMFAzu0D+qG2tGvZBy6MsfdCwh
+         kdPw==
+X-Gm-Message-State: AOAM530Q7/Fw8l7SfZbEUPHWPjhUPvxHma493XGq4olwx06HKtCP7WFf
+        YekQISXAoWESKok+0Cx12BidAiDitkpL2J9ODW+EKA==
+X-Google-Smtp-Source: ABdhPJzliM5etgMj0wPTZaXVmyqbng42nS8uHRrcWTfKZ4sLgNctWWdu5gzWqP4wan4eEECcgE1dx/vzA6PVuddrJ4s=
+X-Received: by 2002:a0c:b2cb:0:b0:435:cb61:322e with SMTP id
+ d11-20020a0cb2cb000000b00435cb61322emr21682847qvf.122.1648485844212; Mon, 28
+ Mar 2022 09:44:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+References: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 28 Mar 2022 19:43:53 +0300
+Message-ID: <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: msm: dsi: remove address/size cells
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220326192347.2940747-1-michael@walle.cc>
- <20220326192347.2940747-5-michael@walle.cc>
- <2442b460-4c6d-0ac9-af08-ae4c25aed812@roeck-us.net>
- <9aab54bc48284c9e20cd76085cb9d83a@walle.cc>
- <4455ca4c-1ebb-41df-5f04-72a48e8ca7dc@roeck-us.net>
- <4e5c78ce651c258a4be33c01ec07a0c3@walle.cc>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v1 4/4] hwmon: add driver for the Microchip LAN966x SoC
-In-Reply-To: <4e5c78ce651c258a4be33c01ec07a0c3@walle.cc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1nYsNS-001jY7-Ud
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54532
-X-Source-Auth: linux@roeck-us.net
-X-Email-Count: 28
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,45 +73,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/28/22 04:28, Michael Walle wrote:
-> Am 2022-03-27 20:22, schrieb Guenter Roeck:
->> On 3/27/22 07:18, Michael Walle wrote:
->>> Am 2022-03-27 03:34, schrieb Guenter Roeck:
->>>
->>>>> +    /*
->>>>> +     * Data is given in pulses per second. According to the hwmon ABI we
->>>>> +     * have to assume two pulses per revolution.
->>>>
->>>> The hwmon ABI doesn't make any such assumptions. It wants to see RPM,
->>>> that is all. Pulses per revolution is a fan property.
->>>
->>> There is fanY_pulses according to Documentation/ABI/testing/sysfs-class-hwmon:
->>>
->>>    Should only be created if the chip has a register to configure
->>>    the number of pulses. In the absence of such a register (and
->>>    thus attribute) the value assumed by all devices is 2 pulses
->>>    per fan revolution.
->>>
->>> The hardware returns just the pulses per second. Doesn't that
->>> mean I have to divide that value by two?
->>>
->>
->> The above refers to hardware which reports RPM.
->>
->> It is up to the driver to calculate and return RPM. How you do it is your
->> decision. Drivers should report the most likely correct RPM value to
->> userspace, one that rarely needs manual adjustment. Almost all fans
->> report two pulses per revolution, so normally that assumption is used
->> to convert PPM to RPM. That isn't mandated (or supposed to be mandated)
->> by the ABI. I would call it common sense.
->>
->> I'll be happy to accept a patch clarifying this.
-> 
-> Where would that go? into the sysfs abi description of the
-> fanY_input?
-> 
+On Mon, 28 Mar 2022 at 18:30, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> The DSI node is not a bus and the children do not have unit addresses.
+>
+> Reported-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-For example.
+NAK.
+DSI panels are children of the DSI device tree node with the reg = <0>; address.
+This is the convention used by other platforms too (see e.g.
+arch/arm64/boot/dts/freescale/imx8mq-evk.dts).
 
-Thanks,
-Guenter
+With the DSI split link it is possible to attach two panels to a
+single DSI host, so addresses are necessary.
+
+> ---
+>  .../bindings/display/msm/dsi-controller-main.yaml          | 7 -------
+>  1 file changed, 7 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index 7095ec3c890d..57f238f72326 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -51,10 +51,6 @@ properties:
+>    phy-names:
+>      const: dsi
+>
+> -  "#address-cells": true
+> -
+> -  "#size-cells": true
+> -
+>    syscon-sfpb:
+>      description: A phandle to mmss_sfpb syscon node (only for DSIv2).
+>      $ref: "/schemas/types.yaml#/definitions/phandle"
+> @@ -154,9 +150,6 @@ examples:
+>             reg = <0x0ae94000 0x400>;
+>             reg-names = "dsi_ctrl";
+>
+> -           #address-cells = <1>;
+> -           #size-cells = <0>;
+> -
+>             interrupt-parent = <&mdss>;
+>             interrupts = <4>;
+>
+> --
+> 2.32.0
+>
+
+
+-- 
+With best wishes
+Dmitry
