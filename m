@@ -2,153 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 220884E90AE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 11:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 046064E90CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 11:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239618AbiC1JDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 05:03:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57812 "EHLO
+        id S239662AbiC1JMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 05:12:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239614AbiC1JDu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 05:03:50 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754A053E14
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 02:02:08 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220328090205epoutp035296433d42b91b957df296007bb93fcf~gf_58akp21714517145epoutp03o
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:02:05 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220328090205epoutp035296433d42b91b957df296007bb93fcf~gf_58akp21714517145epoutp03o
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1648458125;
-        bh=eF3iknj3DFZy4JaEdicp6aGFJOG1Z9lY5FCFTX5urrE=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=gqvmNjmvPjtnfj/XYX4rghceIHBtZWtoFUBG8vZ+ntaaQCd1tN78ebAftTqGzFj4g
-         WsfwC9oD7EdRBLknlWSeiDS2O3OZiaWxuOSmfpCWhS1d85bDJq9pzrwmao8ZyiMPpy
-         oEUzcSrgzrcXIPT8afab2+wErs0mZtDSGfjJyafM=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220328090205epcas2p46d90d925fa6c81d906e1c5c372b2a6d5~gf_5WBIOh2027020270epcas2p4s;
-        Mon, 28 Mar 2022 09:02:05 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.91]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4KRmsj6GtHz4x9QT; Mon, 28 Mar
-        2022 09:02:01 +0000 (GMT)
-X-AuditID: b6c32a47-831ff700000063c4-a2-62417988c360
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        8F.7A.25540.88971426; Mon, 28 Mar 2022 18:02:00 +0900 (KST)
-Mime-Version: 1.0
-Subject: Re: [PATCH 0/5] Add support for Axis, ARTPEC-8 PCIe driver
-Reply-To: wangseok.lee@samsung.com
-Sender: =?UTF-8?B?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-From:   =?UTF-8?B?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        =?UTF-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <0716d9e4-24e1-d16c-162c-00a8664296e1@kernel.org>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220328090200epcms2p8637d2a2e09a3a627be776586b80c8adf@epcms2p8>
-Date:   Mon, 28 Mar 2022 18:02:00 +0900
-X-CMS-MailID: 20220328090200epcms2p8637d2a2e09a3a627be776586b80c8adf
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFJsWRmVeSWpSXmKPExsWy7bCmmW5HpWOSwcKnBhZLmjIsXh7StJh/
-        5ByrxfNDs5gtPrWoWlx42sNm8XLWPTaL8+c3sFs09PxmtTjy5iOzxf7jK5ksLu+aw2Zxdt5x
-        NosJq76xWLz5/YLd4tziTIvWvUfYLXbeOcHsIOSxZt4aRo/r6wI8Fmwq9di0qpPN48mV6Uwe
-        m5fUe/RtWcXocfzGdiaPz5vkAjijsm0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3M
-        lRTyEnNTbZVcfAJ03TJzgF5RUihLzCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gV
-        J+YWl+al6+WlllgZGhgYmQIVJmRn/PnwnKlgnkTFvf1zWBoYj4h3MXJySAiYSFz4sImxi5GL
-        Q0hgB6PE90X7gBwODl4BQYm/O4RBaoQFnCX+3W5lBrGFBJQkdqyZxwwRt5b4NOUyC4jNJmAp
-        cbH1IdgcEYFvTBKzf7xiA3GYBW4zS8x//p4FYhuvxIz2p1C2tMT25VsZQWxOATuJD997WCHi
-        GhI/lvUyQ9iiEjdXv2WHsd8fm88IYYtItN47C1UjKPHg526ouJTEgieHoOZUS+z/+5sJwm5g
-        lOi/nwrymISAvsSO68YgYV4BX4me6fvASlgEVIF+74Na5SJxauI0MJtZQFti2cLXzCCtzAKa
-        Eut36UNMUZY4cgvuqYaNv9nR2cwCfBIdh//CxXfMewJ1jJrEvJU7mScwKs9CBPQsJLtmIexa
-        wMi8ilEstaA4Nz212KjAGB63yfm5mxjBiVrLfQfjjLcf9A4xMnEwHmKU4GBWEuGVPWufJMSb
-        klhZlVqUH19UmpNafIjRFOjLicxSosn5wFyRVxJvaGJpYGJmZmhuZGpgriTO65WyIVFIID2x
-        JDU7NbUgtQimj4mDU6qBKSbZyKc810Pt4bHASe8fnha75MIhtXTRnF07/91eIeTwX1trE8uM
-        A28DYtUTHrlGae9WrzW1qP7Tl1DJLLBw4YNUPi2rOu6lvatXf2jYfMs6s19kt+YjiyVTqzt1
-        /xkcDno0Yd3ej884IpczfEzPesud2e4b5uZ0+bXXm/1TfWXnmx9srLu+cY0Dm+meq/OOWDa6
-        iZQHS8uXP9a3O/JrT8vCsm9/vhbwr5/i2bn0/qm1R5tXT+86/+L2U/aZkv3u/yQOl+un7Wds
-        miM/+b7VuflFV622/Ap927zIX0hH8+XMbWrT/+ssP5fxyaupfdOTeybld259nP0nK7/ZTI79
-        f2NlZNoy+R9mLwqXeXob3FViKc5INNRiLipOBACCdAQSXQQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1
-References: <0716d9e4-24e1-d16c-162c-00a8664296e1@kernel.org>
-        <20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p7>
-        <CGME20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p8>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S235827AbiC1JMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 05:12:14 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D08E33298C;
+        Mon, 28 Mar 2022 02:10:31 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22S8I2C3021091;
+        Mon, 28 Mar 2022 11:09:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=UolRXFi1I14ir1Ch6J57znz3cxW4eMqAUfWlUw0jpEY=;
+ b=7MVe3dwAcQqziXyBh5k8o7pmkTW9nAHwVg6W9SKKHKF/fYE32XBMAh4O8iLdArQbc2Tr
+ D35MdCrSz29mobpZ7ZeOPKZi8a0F77WSlAbGfeXye7kklohU/9KlO4autAVjf8Khb4Ab
+ v+ax5V/rRjsJBo8bNmwemEfMirLn866wlTz7sjcZIdh4oIZYg5O8Jdt4PQR2sDg00p7s
+ 2szD6jM+QBfKZB3ubAEFKNrHCF8MEZmfDpi3WJfaAcUVW0MTePC4gd9FLnb/Sr/POD+I
+ 6xKoPTMpuWrIsdY5LnCFuEZ02nzLIO+arSQExXojnAcwiNQez6+kIGpNn4VrB2ncZJSZ /Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3f1u240a9k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Mar 2022 11:09:43 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D09C610002A;
+        Mon, 28 Mar 2022 11:09:40 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9F04221B51E;
+        Mon, 28 Mar 2022 11:09:40 +0200 (CEST)
+Received: from [10.201.21.201] (10.75.127.44) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 28 Mar
+ 2022 11:09:39 +0200
+Message-ID: <fef4e5dd-d843-ea37-7701-bcfac9d1c9b5@foss.st.com>
+Date:   Mon, 28 Mar 2022 11:09:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [Linux-stm32] [RFC PATCH 1/1] ARM/arm64: categorize dts in arm
+ dir and fix dependency in arm64
+Content-Language: en-US
+To:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-actions@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+        <linux-omap@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@axis.com>, <linux-aspeed@lists.ozlabs.org>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <chrome-platform@lists.linux.dev>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <kernel@dh-electronics.com>, <linux-mediatek@lists.infradead.org>,
+        <openbmc@lists.ozlabs.org>, <linux-tegra@vger.kernel.org>,
+        <linux-oxnas@groups.io>, <linux-arm-msm@vger.kernel.org>,
+        <linux-unisoc@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <20220328000915.15041-2-ansuelsmth@gmail.com>
+From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20220328000915.15041-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-28_03,2022-03-28_01,2022-02-23_01
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,SUSPICIOUS_RECIPS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> --------- Original Message ---------
-> Sender : Krzysztof Kozlowski=C2=A0<krzk=40kernel.org>=0D=0A>=20Date=20:=
-=202022-03-28=2016:12=20(GMT+9)=0D=0A>=20Title=20:=20Re:=20=5BPATCH=200/5=
-=5D=20Add=20support=20for=20Axis,=20ARTPEC-8=20PCIe=20driver=0D=0A>=20=0D=
-=0A>=20On=C2=A028/03/2022=C2=A003:44,=C2=A0=EC=9D=B4=EC=99=95=EC=84=9D=C2=
-=A0wrote:=0D=0A>=20>=C2=A0This=C2=A0series=C2=A0patches=C2=A0include=C2=A0n=
-ewly=C2=A0PCIe=C2=A0support=C2=A0for=C2=A0Axis=C2=A0ARTPEC-8=C2=A0SoC.=0D=
-=0A>=20>=C2=A0ARTPEC-8=C2=A0is=C2=A0the=C2=A0SoC=C2=A0platform=C2=A0of=C2=
-=A0Axis=C2=A0Communications.=0D=0A>=20>=C2=A0PCIe=C2=A0controller=C2=A0driv=
-er=C2=A0and=C2=A0phy=C2=A0driver=C2=A0have=C2=A0been=C2=A0newly=C2=A0added.=
-=0D=0A>=20>=C2=A0There=C2=A0is=C2=A0also=C2=A0a=C2=A0new=C2=A0MAINTAINER=C2=
-=A0in=C2=A0the=C2=A0addition=C2=A0of=C2=A0phy=C2=A0driver.=0D=0A>=20>=C2=A0=
-PCIe=C2=A0controller=C2=A0is=C2=A0designed=C2=A0based=C2=A0on=C2=A0Design-W=
-are=C2=A0PCIe=C2=A0controller=C2=A0IP=0D=0A>=20>=C2=A0and=C2=A0PCIe=C2=A0ph=
-y=C2=A0is=C2=A0desinged=C2=A0based=C2=A0on=C2=A0SAMSUNG=C2=A0PHY=C2=A0IP.=
-=0D=0A>=20>=C2=A0It=C2=A0also=C2=A0includes=C2=A0modifications=C2=A0to=C2=
-=A0the=C2=A0Design-Ware=C2=A0controller=C2=A0driver=C2=A0to=C2=A0=0D=0A>=20=
->=C2=A0run=C2=A0the=C2=A064bit-based=C2=A0ARTPEC-8=C2=A0PCIe=C2=A0controlle=
-r=C2=A0driver.=0D=0A>=20>=C2=A0It=C2=A0consists=C2=A0of=C2=A06=C2=A0patches=
-=C2=A0in=C2=A0total.=0D=0A>=20>=C2=A0=0D=0A>=20>=C2=A0This=C2=A0series=C2=
-=A0has=C2=A0been=C2=A0tested=C2=A0on=C2=A0AXIS=C2=A0SW=C2=A0bring-up=C2=A0b=
-oard=C2=A0=0D=0A>=20>=C2=A0with=C2=A0ARTPEC-8=C2=A0chipset.=0D=0A>=20=0D=0A=
->=20You=C2=A0lost=C2=A0mail=C2=A0threading.=C2=A0This=C2=A0makes=C2=A0readi=
-ng=C2=A0this=C2=A0difficult=C2=A0for=C2=A0us.=C2=A0Plus=0D=0A>=20you=C2=A0s=
-ent=C2=A0something=C2=A0non-applicable=C2=A0(patch=C2=A0=232),=C2=A0so=C2=
-=A0please=C2=A0resend.=0D=0A>=20=0D=0A>=20Knowing=C2=A0recent=C2=A0Samsung=
-=C2=A0reluctance=C2=A0to=C2=A0extend=C2=A0existing=C2=A0drivers=C2=A0and=C2=
-=A0always=0D=0A>=20duplicate,=C2=A0please=C2=A0provide=C2=A0description/ana=
-lysis=C2=A0why=C2=A0this=C2=A0driver=C2=A0cannot=C2=A0be=0D=0A>=20combined=
-=C2=A0with=C2=A0existing=C2=A0driver.=C2=A0The=C2=A0answer=C2=A0like:=C2=A0=
-we=C2=A0need=C2=A0several=C2=A0syscon=0D=0A>=20because=C2=A0we=C2=A0do=C2=
-=A0not=C2=A0implement=C2=A0other=C2=A0frameworks=C2=A0(like=C2=A0interconne=
-ct)=C2=A0are=C2=A0not=0D=0A>=20valid.=0D=0A>=20=0D=0A>=20Best=C2=A0regards,=
-=0D=0A>=20Krzysztof=0D=0A=0D=0AHello,=20Krzysztof=0D=0AThanks=20for=20your=
-=20review.=0D=0A=0D=0Apatch=232=20was=20sent=20to=20the=20wrong=20format=20=
-so=20sent=20again.=0D=0ASorry=20for=20causing=20confusion.=0D=0A=0D=0AThis=
-=20patch=20is=20specialized=20in=20Artpec-8,=20=0D=0Athe=20SoC=20Platform=
-=20of=20Axis=20Communication,=20and=20is=20newly=20applied.=0D=0ASince=20th=
-e=20target=20SoC=20platform=20is=20different=20from=20the=20driver=20previo=
-usly=20=0D=0Aused=20by=20Samsung,=20it=20is=20difficult=20to=20merge=20with=
-=20the=20existing=20driver.=0D=0A=0D=0AThanks.
+Hi Ansuel
+
+On 3/28/22 02:09, Ansuel Smith wrote:
+> - Categorize every dts in arm directory in subdirectory
+> - Fix Makefile to address for the arm subdirectory
+> - Fix any arm64 dependency
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+
+>  create mode 100644 arch/arm/boot/dts/st/Makefile
+>  rename arch/arm/boot/dts/{ => st}/spear1310-evb.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear1310.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear1340-evb.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear1340.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear13xx.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear300-evb.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear300.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear310-evb.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear310.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear320-evb.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear320-hmi.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear320.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear320s.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear3xx.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear600-evb.dts (100%)
+>  rename arch/arm/boot/dts/{ => st}/spear600.dtsi (100%)
+
+
+All SPEAr device tree should go into stm sub-directory, as this platform is a STMicroelectronics one
+as STi or STM32.
+
+Thanks
+
+Patrice
+
+>  create mode 100644 arch/arm/boot/dts/st_ericsson/Makefile
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ab8500.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ab8505.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-db8500.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-db8520.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-db9500.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-dbx5x0-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-dbx5x0.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-ab8500.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-family-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-stuib.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-tvk1281618-r2.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-tvk1281618-r3.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href520-tvk.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefprev60-stuib.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefprev60-tvk.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefprev60.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefv60plus-stuib.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefv60plus-tvk.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefv60plus.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-nhk15.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-s8815.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-stn8815.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-snowball.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-codina.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-gavini.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-golden.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-janice.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-kyle.dts (100%)
+>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-skomer.dts (100%)
+>  create mode 100644 arch/arm/boot/dts/stm/Makefile
+>  create mode 120000 arch/arm/boot/dts/stm/armv7-m.dtsi
+>  rename arch/arm/boot/dts/{ => stm}/st-pincfg.h (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih407-b2120.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih407-clock.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih407-family.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih407-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih407.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih410-b2120.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih410-b2260.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih410-clock.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih410-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih410.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih418-b2199.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih418-b2264.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih418-clock.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stih418.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stihxxx-b2120.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32429i-eval.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32746g-eval.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f4-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f429-disco.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f429-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f429.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f469-disco.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f469-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f469.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f7-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f746-disco.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f746-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f746.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f769-disco.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32f769-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32h7-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32h743.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32h743i-disco.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32h743i-eval.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32h750.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32h750i-art-pi.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp13-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp131.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp133.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp135.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp135f-dk.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp13xc.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp13xf.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp151.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp153.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp153c-dhcom-drc02.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-avenger96.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-dhcor-avenger96.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-dk1.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1-ctouch2.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1-edimm2.2.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-iot-box.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-microgea-stm32mp1-microdev2.0.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-microgea-stm32mp1.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-stinger96.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-stinger96.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-dhcom-pdk2.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-dhcom-picoitx.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-dk2.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-ed1.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-emsbc-argon.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-emstamp-argon.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-ev1.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-lxa-mc1.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-odyssey-som.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-odyssey.dts (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xc.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-drc02.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-pdk2.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-picoitx.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-som.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcor-avenger96.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcor-io1v8.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcor-som.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dkx.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-osd32.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxaa-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxab-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxac-pinctrl.dtsi (100%)
+>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxad-pinctrl.dtsi (100%)
