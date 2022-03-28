@@ -2,66 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28EA44E9C5D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2160E4E9C63
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242478AbiC1QhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 12:37:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49762 "EHLO
+        id S242539AbiC1Qjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 12:39:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233943AbiC1QhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:37:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C7F2606E3
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:35:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A5AEE61483
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 16:35:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4AEC004DD;
-        Mon, 28 Mar 2022 16:35:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648485337;
-        bh=Bll15YJCV3NEHAf9DjC+S6pLaySgAtZIx1YauCjLUNg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=deOmDomAaTxuOWT4w3CGnQlR/kV7/ANe+58LVWpO2Z0jrkrLoK0Z7LlNVncjRn+aK
-         NRWaEKMykFH5A6/cb64cJe6r6KVSbz6gBYi3C3TQyZfmMZjTlrOz5Inex8r5K7VNb4
-         KZwhPtyXiSbaCA1qgbKDmf0JC05alu0Z3rNpcbBgluzf2FuLwIO5RKzx/58YD+yM5a
-         J4f/Ole5LSjbMlDo9jIpg+F+NU86t60QBZPTcdXNZE451YWj8MatCR58nt4zhKLKqR
-         +79DsNPHd9/fh+AGmeDlp+LWhcNAX5pAi07mEfE2KCNpQS620U3iFgxI8Y4zzL4zRz
-         CycjD235jbhFA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        with ESMTP id S234987AbiC1Qjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:39:40 -0400
+Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com [192.185.51.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5E662BFC
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:37:59 -0700 (PDT)
+Received: from cm16.websitewelcome.com (cm16.websitewelcome.com [100.42.49.19])
+        by gateway24.websitewelcome.com (Postfix) with ESMTP id 58AEDEDF32
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 11:37:59 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id YsNTnmLcCXvvJYsNTnzgo8; Mon, 28 Mar 2022 11:37:59 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=hiAxs7IHF0rwd27wBXL1/c9LFYx80jZfA+vxRKssdAY=; b=4hM99fFLGFCXB5cJDY8lo4Y7ea
+        GLASzNOoPWsqoULbaTlRGwjF/QOLLXlc8yi+MGAwcm/I8HKXRe/BSYh9ey0j0XfdgxiWyxUqScm9P
+        NLU3vUDD8AeKyBm/Pnw2nCiaob8IL7rHA9LLPel/dE/dimFV29Xlngfi1EFf4tXp40gWBYPFxVc57
+        Jcird/H9E1noQxQ7lwoZmneXID0oSrCWLMfz5mojNKE1MWOO+KsWprsdYPaFACatosIn5XRwmriny
+        7z5Dkqt+Sgv7rgS0MR2r0hmuKSR9e0E5UXYPmQrJqyvhgYl8uWcEDIQr3PxBB1r0v8sw4p+CLG5oX
+        xNBQC7jg==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54532)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nYsL8-00HT5p-Gs; Mon, 28 Mar 2022 17:35:34 +0100
-Date:   Mon, 28 Mar 2022 17:35:34 +0100
-Message-ID: <87fsn2f31l.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Rui Miguel Silva <rui.silva@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        (envelope-from <linux@roeck-us.net>)
+        id 1nYsNS-001jY7-Ud; Mon, 28 Mar 2022 16:37:59 +0000
+Message-ID: <0b818aa2-e776-3554-8d7b-79fd856e2e1f@roeck-us.net>
+Date:   Mon, 28 Mar 2022 09:37:57 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: arm: add corstone1000 device tree
-In-Reply-To: <20220325133655.4177977-3-rui.silva@linaro.org>
-References: <20220325133655.4177977-1-rui.silva@linaro.org>
-        <20220325133655.4177977-3-rui.silva@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: rui.silva@linaro.org, liviu.dudau@arm.com, sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220326192347.2940747-1-michael@walle.cc>
+ <20220326192347.2940747-5-michael@walle.cc>
+ <2442b460-4c6d-0ac9-af08-ae4c25aed812@roeck-us.net>
+ <9aab54bc48284c9e20cd76085cb9d83a@walle.cc>
+ <4455ca4c-1ebb-41df-5f04-72a48e8ca7dc@roeck-us.net>
+ <4e5c78ce651c258a4be33c01ec07a0c3@walle.cc>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v1 4/4] hwmon: add driver for the Microchip LAN966x SoC
+In-Reply-To: <4e5c78ce651c258a4be33c01ec07a0c3@walle.cc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nYsNS-001jY7-Ud
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54532
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 28
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,137 +87,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Mar 2022 13:36:55 +0000,
-Rui Miguel Silva <rui.silva@linaro.org> wrote:
+On 3/28/22 04:28, Michael Walle wrote:
+> Am 2022-03-27 20:22, schrieb Guenter Roeck:
+>> On 3/27/22 07:18, Michael Walle wrote:
+>>> Am 2022-03-27 03:34, schrieb Guenter Roeck:
+>>>
+>>>>> +    /*
+>>>>> +     * Data is given in pulses per second. According to the hwmon ABI we
+>>>>> +     * have to assume two pulses per revolution.
+>>>>
+>>>> The hwmon ABI doesn't make any such assumptions. It wants to see RPM,
+>>>> that is all. Pulses per revolution is a fan property.
+>>>
+>>> There is fanY_pulses according to Documentation/ABI/testing/sysfs-class-hwmon:
+>>>
+>>>    Should only be created if the chip has a register to configure
+>>>    the number of pulses. In the absence of such a register (and
+>>>    thus attribute) the value assumed by all devices is 2 pulses
+>>>    per fan revolution.
+>>>
+>>> The hardware returns just the pulses per second. Doesn't that
+>>> mean I have to divide that value by two?
+>>>
+>>
+>> The above refers to hardware which reports RPM.
+>>
+>> It is up to the driver to calculate and return RPM. How you do it is your
+>> decision. Drivers should report the most likely correct RPM value to
+>> userspace, one that rarely needs manual adjustment. Almost all fans
+>> report two pulses per revolution, so normally that assumption is used
+>> to convert PPM to RPM. That isn't mandated (or supposed to be mandated)
+>> by the ABI. I would call it common sense.
+>>
+>> I'll be happy to accept a patch clarifying this.
 > 
-> Corstone1000 is a platform from arm, which includes pre
-> verified Corstone SSE710 sub-system that combines Cortex-A and
-> Cortex-M processors [0].
+> Where would that go? into the sysfs abi description of the
+> fanY_input?
 > 
-> These device trees contains the necessary bits to support the
-> Corstone 1000 FVP (Fixed Virtual Platform) [1] and the
-> FPGA MPS3 board Cortex-A35 implementation at Cortex-A35 host
-> side of this platform. [2]
-> 
-> 0: https://documentation-service.arm.com/static/619e02b1f45f0b1fbf3a8f16
-> 1: https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps
-> 2: https://documentation-service.arm.com/static/61f3f4d7fa8173727a1b71bf
-> 
-> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
-> ---
->  arch/arm64/boot/dts/arm/Makefile              |   1 +
->  arch/arm64/boot/dts/arm/corstone1000-fvp.dts  |  31 ++++
->  arch/arm64/boot/dts/arm/corstone1000-mps3.dts |  38 +++++
->  arch/arm64/boot/dts/arm/corstone1000.dtsi     | 151 ++++++++++++++++++
->  4 files changed, 221 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-fvp.dts
->  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-mps3.dts
->  create mode 100644 arch/arm64/boot/dts/arm/corstone1000.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-> index 4382b73baef5..d908e96d7ddc 100644
-> --- a/arch/arm64/boot/dts/arm/Makefile
-> +++ b/arch/arm64/boot/dts/arm/Makefile
-> @@ -6,3 +6,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += juno.dtb juno-r1.dtb juno-r2.dtb juno-scmi.dtb ju
->  dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
-> +dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> new file mode 100644
-> index 000000000000..8f6ce94b4d5a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> @@ -0,0 +1,31 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Arm Limited. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited. All rights reserved.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "corstone1000.dtsi"
-> +
-> +/ {
-> +	model = "ARM Corstone1000 FVP (Fixed Virtual Platform)";
-> +	compatible = "arm,corstone1000-fvp";
-> +
-> +	ethernet: eth@4010000 {
-> +		compatible = "smsc,lan91c111";
-> +		reg = <0x40100000 0x10000>;
-> +		phy-mode = "mii";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_SPI 116 (GIC_CPU_MASK_SIMPLE(4) |
-> +			      IRQ_TYPE_LEVEL_HIGH)>;
 
--ENOPARSE. Please read the GIC binding.
+For example.
 
-> +		reg-io-width = <2>;
-> +		smsc,irq-push-pull;
-> +	};
-> +
-> +};
-> +
-> +&refclk {
-> +	clock-frequency = <50000000>;
-> +};
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000-mps3.dts b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
-> new file mode 100644
-> index 000000000000..922253f0af07
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
-
-[...]
-
-> +	gic: interrupt-controller@1c000000 {
-> +		compatible = "arm,gic-400";
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <0>;
-> +		interrupt-controller;
-> +		reg =	<0x1c010000 0x1000>,
-> +			<0x1c02f000 0x2000>,
-> +			<0x1c04f000 0x1000>,
-> +			<0x1c06f000 0x2000>;
-> +		interrupts = <1 9 0xf08>;
-
-Why 4 CPUs? You only have 1. The rest of the file seems to use the
-symbolic encoding, so please pick one or the other, but don't mix
-them.
-
-[...]
-
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts =	<GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
-> +				 IRQ_TYPE_LEVEL_LOW)>,
-> +				<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
-> +				 IRQ_TYPE_LEVEL_LOW)>,
-> +				<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
-> +				 IRQ_TYPE_LEVEL_LOW)>,
-> +				<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
-> +				 IRQ_TYPE_LEVEL_LOW)>;
-
-Same question.
-
-> +	};
-> +
-> +	refclk: refclk@1a220000 {
-> +		compatible = "arm,armv7-timer-mem";
-> +		reg = <0x1a220000  0x1000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		frame@1a230000 {
-> +			frame-number = <0>;
-> +			interrupts = <GIC_SPI 2 (GIC_CPU_MASK_SIMPLE(4) |
-> +				      IRQ_TYPE_LEVEL_HIGH)>;
-
-This makes no sense either.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Thanks,
+Guenter
