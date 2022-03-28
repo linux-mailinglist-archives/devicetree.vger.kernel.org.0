@@ -2,762 +2,363 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADC94E9AE6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 17:24:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54604E98E7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 16:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236506AbiC1PZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 11:25:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44912 "EHLO
+        id S243606AbiC1OGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 10:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236277AbiC1PZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 11:25:52 -0400
-Received: from mail.baikalelectronics.ru (mail.baikalelectronics.com [87.245.175.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B1F7621823;
-        Mon, 28 Mar 2022 08:24:08 -0700 (PDT)
-Received: from mail.baikalelectronics.ru (unknown [192.168.51.25])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id A133B1E492F;
-        Thu, 24 Mar 2022 04:38:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru A133B1E492F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baikalelectronics.ru; s=mail; t=1648085881;
-        bh=j3ugxfclMIHWPxva7dSIBFeJTGU2CFuK3jg+xZXybn4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=Fr0ytzbqocY/pOBijN+LJZ45FSTBlOCbFYE2mUlWr0jZ2El4odKzvF6RIiR1KQxCs
-         HBk89Ym0LLt6Mf7ULPCinhrD9YYV1PmgK3FXdhSr4061pT6m84XXnrNu+kOtlL5nM+
-         KC4icqjcXN4i6sz5lWr+Bnv8QGAib4e8ylfmBQow=
-Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 24 Mar 2022 04:38:01 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 16/16] PCI: dwc: Add Baikal-T1 PCIe controller support
-Date:   Thu, 24 Mar 2022 04:37:34 +0300
-Message-ID: <20220324013734.18234-17-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S243612AbiC1OGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 10:06:35 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1DDC1AF13;
+        Mon, 28 Mar 2022 07:04:53 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id b188so15646690oia.13;
+        Mon, 28 Mar 2022 07:04:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=wjlC7VI8VSHn4u2U3bNT+2Bp82GXz7t+fQc3WvVU2pE=;
+        b=eVrg9AsDBspqIec9o9I7ISELhkJnFK2vS5CuZmjs7Hz/M0V1mvIq35+OEKh7h6RGgN
+         LdrZSa4/VYdfW4kc9O9We+4q+UkRaVSx1e9BZStQqPHqnFQXCtJy0gIc1bK6JJDKDJHt
+         Kxoa1ykooFbi0Fq7K0+JpUI/Kh7VDnmS8yYZkgd+f1cKdpFC7plinXIcMKA6ffhqnGj/
+         tGTG1y9Ur9lqYnayBaNr9HclyZxMwEpqd2E6qIMBAA+/WZtdrDeVtofbSbPhNa4u4ceM
+         wWLxRTnUKn9k481b1R2CjJ+bPX4kW0/WpYLRoWt0dLLaEG6oJ2WRd6hnZFHyP/tz7J1m
+         Jjig==
+X-Gm-Message-State: AOAM530kN35e5N2WPMfB0lqNXXHlXX4DwdSoXd0qQEg5aXC8EDT0KZhb
+        lBBTUyHT21GoPAgh+e6QTw==
+X-Google-Smtp-Source: ABdhPJyQCpjBt0qShQxXAXo4lmM2Fg8t6lv7Wyal0l065pNkwsGOBGi1w4bgmTgk2R5t9wJiw6//Jg==
+X-Received: by 2002:a05:6808:1115:b0:2ec:e103:99c8 with SMTP id e21-20020a056808111500b002ece10399c8mr11738255oih.194.1648476292958;
+        Mon, 28 Mar 2022 07:04:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ej35-20020a056870f72300b000d75f1d9b8asm6453003oab.55.2022.03.28.07.04.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Mar 2022 07:04:51 -0700 (PDT)
+Received: (nullmailer pid 2275748 invoked by uid 1000);
+        Mon, 28 Mar 2022 14:04:50 -0000
+Date:   Mon, 28 Mar 2022 09:04:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sui Jingfeng <15330273260@189.cn>
+Cc:     Qing Zhang <zhangqing@loongson.cn>,
+        David Airlie <airlied@linux.ie>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-kernel@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        devicetree@vger.kernel.org, suijingfeng <suijingfeng@loongson.cn>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-mips@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v11 5/7] dt-bindings: display: Add Loongson display
+ controller
+Message-ID: <YkHAgkGvsWQ+2Gbh@robh.at.kernel.org>
+References: <20220321162916.1116541-1-15330273260@189.cn>
+ <20220321162916.1116541-6-15330273260@189.cn>
+ <YjkITWpbnCmhKaX+@robh.at.kernel.org>
+ <f7eb61bc-6784-c77a-083f-7408c0a17e05@189.cn>
+ <Yjo3umi9bJ0xb2Gl@robh.at.kernel.org>
+ <199a2869-cd83-d24e-0ad0-25d15d76fc13@189.cn>
+ <YjsamuFslv6qlQMZ@robh.at.kernel.org>
+ <ac75aeff-1fca-f46f-1043-8437ef845ff9@189.cn>
+ <YjxxhNnmqteTIEOa@robh.at.kernel.org>
+ <165597c7-3ac3-9d32-a70f-95214b242e0b@189.cn>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <165597c7-3ac3-9d32-a70f-95214b242e0b@189.cn>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Baikal-T1 SoC is equipped with DWC PCIe v4.60a host controller. It can be
-trained to work up to Gen.3 speed over up to x4 lanes. The host controller
-is attached to the DW PCIe 3.0 PCS via the PIPE-4 interface, which in its
-turn is connected to the DWC 10G PHY. The whole system is supposed to be
-fed up with four clock sources: DBI peripheral clock, AXI application
-clocks and external PHY/core reference clock generating the 100MHz signal.
-In addition to that the platform provide a way to reset each part of the
-controller: sticky/non-sticky bits, host controller core, PIPE interface,
-PCS/PHY and Hot/Power reset signal. The driver also provides a way to
-handle the GPIO-based PERST# signal.
+On Sat, Mar 26, 2022 at 06:04:46PM +0800, Sui Jingfeng wrote:
+> 
+> On 2022/3/24 21:26, Rob Herring wrote:
+> > On Thu, Mar 24, 2022 at 09:48:19AM +0800, Sui Jingfeng wrote:
+> > > On 2022/3/23 21:03, Rob Herring wrote:
+> > > > On Wed, Mar 23, 2022 at 11:38:55AM +0800, Sui Jingfeng wrote:
+> > > > > On 2022/3/23 04:55, Rob Herring wrote:
+> > > > > > On Tue, Mar 22, 2022 at 10:33:45AM +0800, Sui Jingfeng wrote:
+> > > > > > > On 2022/3/22 07:20, Rob Herring wrote:
+> > > > > > > > On Tue, Mar 22, 2022 at 12:29:14AM +0800, Sui Jingfeng wrote:
+> > > > > > > > > From: suijingfeng <suijingfeng@loongson.cn>
+> > > > > > > > > 
+> > > > > > > > Needs a commit message.
+> > > > > > > > 
+> > > > > > > > > Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+> > > > > > > > > Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+> > > > > > > > Same person? Don't need both emails.
+> > > > > > > Yes,  suijingfeng@loongson.cn is my company's email. But it can not be used
+> > > > > > > to send patches to dri-devel,
+> > > > > > > 
+> > > > > > > when send patches with this email, the patch will not be shown on patch
+> > > > > > > works.
+> > > > > > > 
+> > > > > > > Emails  are either blocked or got  rejected  by loongson's mail server.  It
+> > > > > > > can only receive emails
+> > > > > > > 
+> > > > > > > from you and other people, but not dri-devel. so have to use my personal
+> > > > > > > email(15330273260@189.cn) to send patches.
+> > > > > > > 
+> > > > > > > > > ---
+> > > > > > > > >      .../loongson/loongson,display-controller.yaml | 230 ++++++++++++++++++
+> > > > > > > > >      1 file changed, 230 insertions(+)
+> > > > > > > > >      create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+> > > > > > > > > 
+> > > > > > > > > diff --git a/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+> > > > > > > > > new file mode 100644
+> > > > > > > > > index 000000000000..7be63346289e
+> > > > > > > > > --- /dev/null
+> > > > > > > > > +++ b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+> > > > > > > > > @@ -0,0 +1,230 @@
+> > > > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > > > +%YAML 1.2
+> > > > > > > > > +---
+> > > > > > > > > +$id: http://devicetree.org/schemas/display/loongson/loongson,display-controller.yaml#
+> > > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > > +
+> > > > > > > > > +title: Loongson LS7A1000/LS2K1000/LS2K0500 Display Controller Device Tree Bindings
+> > > > > > > > > +
+> > > > > > > > > +maintainers:
+> > > > > > > > > +  - Sui Jingfeng <suijingfeng@loongson.cn>
+> > > > > > > > > +
+> > > > > > > > > +description: |+
+> > > > > > > > > +
+> > > > > > > > > +  Loongson display controllers are simple which require scanout buffers
+> > > > > > > > > +  to be physically contiguous. LS2K1000/LS2K0500 is a SOC, only system
+> > > > > > > > > +  memory is available. LS7A1000/LS7A2000 is bridge chip which is equipped
+> > > > > > > > > +  with a dedicated video RAM which is 64MB or more, precise size can be
+> > > > > > > > > +  read from the PCI BAR 2 of the GPU device(0x0014:0x7A15) in the bridge
+> > > > > > > > > +  chip.
+> > > > > > > > > +
+> > > > > > > > > +  LSDC has two display pipes, each way has a DVO interface which provide
+> > > > > > > > > +  RGB888 signals, vertical & horizontal synchronisations, data enable and
+> > > > > > > > > +  the pixel clock. LSDC has two CRTC, each CRTC is able to scanout from
+> > > > > > > > > +  1920x1080 resolution at 60Hz. Each CRTC has two FB address registers.
+> > > > > > > > > +
+> > > > > > > > > +  For LS7A1000, there are 4 dedicated GPIOs whose control register is
+> > > > > > > > > +  located at the DC register space. They are used to emulate two way i2c,
+> > > > > > > > > +  One for DVO0, another for DVO1.
+> > > > > > > > > +
+> > > > > > > > > +  LS2K1000 and LS2K0500 SoC grab i2c adapter from other module, either
+> > > > > > > > > +  general purpose GPIO emulated i2c or hardware i2c in the SoC.
+> > > > > > > > > +
+> > > > > > > > > +  LSDC's display pipeline have several components as below description,
+> > > > > > > > > +
+> > > > > > > > > +  The display controller in LS7A1000:
+> > > > > > > > > +     ___________________                                     _________
+> > > > > > > > > +    |            -------|                                   |         |
+> > > > > > > > > +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monitor |
+> > > > > > > > > +    |  _   _     -------|        ^             ^            |_________|
+> > > > > > > > > +    | | | | |    -------|        |             |
+> > > > > > > > > +    | |_| |_|    | i2c0 <--------+-------------+
+> > > > > > > > > +    |            -------|
+> > > > > > > > > +    |   DC IN LS7A1000  |
+> > > > > > > > > +    |  _   _     -------|
+> > > > > > > > > +    | | | | |    | i2c1 <--------+-------------+
+> > > > > > > > > +    | |_| |_|    -------|        |             |             _________
+> > > > > > > > > +    |            -------|        |             |            |         |
+> > > > > > > > > +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Panel  |
+> > > > > > > > > +    |            -------|                                   |_________|
+> > > > > > > > > +    |___________________|
+> > > > > > > > > +
+> > > > > > > > > +  Simple usage of LS7A1000 with LS3A4000 CPU:
+> > > > > > > > > +
+> > > > > > > > > +    +------+            +-----------------------------------+
+> > > > > > > > > +    | DDR4 |            |  +-------------------+            |
+> > > > > > > > > +    +------+            |  | PCIe Root complex |   LS7A1000 |
+> > > > > > > > > +       || MC0           |  +--++---------++----+            |
+> > > > > > > > > +  +----------+  HT 3.0  |     ||         ||                 |
+> > > > > > > > > +  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+> > > > > > > > > +  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+> > > > > > > > > +  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+> > > > > > > > > +       || MC1           +---------------|--|----------------+
+> > > > > > > > > +    +------+                            |  |
+> > > > > > > > > +    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+> > > > > > > > > +    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+> > > > > > > > > +                      +-------+                      +------+
+> > > > > > > > > +
+> > > > > > > > > +  The display controller in LS2K1000/LS2K0500:
+> > > > > > > > > +     ___________________                                     _________
+> > > > > > > > > +    |            -------|                                   |         |
+> > > > > > > > > +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monitor |
+> > > > > > > > > +    |  _   _     -------|        ^              ^           |_________|
+> > > > > > > > > +    | | | | |           |        |              |
+> > > > > > > > > +    | |_| |_|           |     +------+          |
+> > > > > > > > > +    |                   <---->| i2c0 |<---------+
+> > > > > > > > > +    |   DC IN LS2K1000  |     +------+
+> > > > > > > > > +    |  _   _            |     +------+
+> > > > > > > > > +    | | | | |           <---->| i2c1 |----------+
+> > > > > > > > > +    | |_| |_|           |     +------+          |            _________
+> > > > > > > > > +    |            -------|        |              |           |         |
+> > > > > > > > > +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Panel  |
+> > > > > > > > > +    |            -------|                                   |_________|
+> > > > > > > > > +    |___________________|
+> > > > > > > > > +
+> > > > > > > > > +properties:
+> > > > > > > > > +  $nodename:
+> > > > > > > > > +    pattern: "^display-controller@[0-9a-f],[0-9a-f]$"
+> > > > > > > > > +
+> > > > > > > > > +  compatible:
+> > > > > > > > > +    oneOf:
+> > > > > > > > > +      - items:
+> > > > > > > > > +          - enum:
+> > > > > > > > > +              - loongson,ls7a1000-dc
+> > > > > > > > > +              - loongson,ls2k1000-dc
+> > > > > > > > > +              - loongson,ls2k0500-dc
+> > > > > > > > > +
+> > > > > > > > > +  reg:
+> > > > > > > > > +    maxItems: 1
+> > > > > > > > > +
+> > > > > > > > > +  interrupts:
+> > > > > > > > > +    maxItems: 1
+> > > > > > > > > +
+> > > > > > > > > +  '#address-cells':
+> > > > > > > > > +    const: 1
+> > > > > > > > > +
+> > > > > > > > > +  '#size-cells':
+> > > > > > > > > +    const: 0
+> > > > > > > > > +
+> > > > > > > > > +  i2c-gpio@0:
+> > > > > > > > > +    description: |
+> > > > > > > > > +      Built-in GPIO emulate i2c exported for external display bridge
+> > > > > > > > If you have i2c-gpio, that belongs at the DT top-level, not here.
+> > > > > > > > 
+> > > > > > > > > +      configuration, onitor detection and edid read back etc, for ls7a1000
+> > > > > > > > > +      only. Its compatible must be lsdc,i2c-gpio-0. The reg property can be
+> > > > > > > > No, there's a defined i2c-gpio compatible already.
+> > > > > > > This is different from the i2c-gpio already defined under drivers/i2c/busses/i2c-gpio.c,
+> > > > > > > By design, my i2c-gpio is vendor specific properties, lsdc device driver create the i2c
+> > > > > > > adapter at runtime. These are 4 dedicated GPIOs whose control register is located at the
+> > > > > > > LSDC register space, not general purpose GPIOs with separate control register resource.
+> > > > > > > So i think it is the child node of display-controller@6,1, it belongs to LSDC.
+> > > > > > > It seems that put it at the DT top-level break the hierarchy and relationship.
+> > > > > > Okay, I see. Then just 'i2c' for the node names. You need a reference to
+> > > > > > i2c-controller.yaml for these nodes too.
+> > > > > > 
+> > > > > > The compatible should not have an index in it.
+> > > > > OK, i will fix this at the next version. thanks.
+> > > > > > > > > +      used to specify a I2c adapter bus number, if you don't specify one
+> > > > > > > > > +      i2c driver core will dynamically assign a bus number. Please specify
+> > > > > > > > Bus numbers are a linux detail not relevant to DT binding.
+> > > > > > > > 
+> > > > > > > > > +      it only when its bus number matters. Bus number greater than 6 is safe
+> > > > > > > > > +      because ls7a1000 bridge have 6 hardware I2C controller integrated.
+> > > > > > > > > +
+> > > > > > > > > +  i2c-gpio@1:
+> > > > > > > > > +    description: |
+> > > > > > > > > +      Built-in GPIO emulate i2c exported for external display bridge
+> > > > > > > > > +      configuration, onitor detection and edid read back etc, for ls7a1000
+> > > > > > > > > +      only. Its compatible must be lsdc,i2c-gpio-1.
+> > > > > > > > > +
+> > > > > > > > > +  ports:
+> > > > > > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > > > > > +
+> > > > > > > > > +    properties:
+> > > > > > > > > +      port@0:
+> > > > > > > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > > > > > > +        description: output port node connected with DPI panels or external encoders, with only one endpoint.
+> > > > > > > > > +
+> > > > > > > > > +      port@1:
+> > > > > > > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > > > > > > +        description: output port node connected with DPI panels or external encoders, with only one endpoint.
+> > > > > > > > > +
+> > > > > > > > > +    required:
+> > > > > > > > > +      - port@0
+> > > > > > > > > +      - port@1
+> > > > > > > > > +
+> > > > > > > > > +required:
+> > > > > > > > > +  - compatible
+> > > > > > > > > +  - reg
+> > > > > > > > > +  - interrupts
+> > > > > > > > > +  - ports
+> > > > > > > > > +
+> > > > > > > > > +additionalProperties: false
+> > > > > > > > > +
+> > > > > > > > > +examples:
+> > > > > > > > > +  - |
+> > > > > > > > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > > > > > > > +    bus {
+> > > > > > > > > +
+> > > > > > > > > +        #address-cells = <3>;
+> > > > > > > > > +        #size-cells = <2>;
+> > > > > > > > > +        #interrupt-cells = <2>;
+> > > > > > > > > +
+> > > > > > > > > +        display-controller@6,1 {
+> > > > > > > > > +            compatible = "loongson,ls7a1000-dc";
+> > > > > > > > > +            reg = <0x3100 0x0 0x0 0x0 0x0>;
+> > > > > > > > > +            interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > > > > > +
+> > > > > > > > > +            #address-cells = <1>;
+> > > > > > > > > +            #size-cells = <0>;
+> > > > > > > > > +
+> > > > > > > > > +            i2c-gpio@0 {
+> > > > > > > > > +                compatible = "lsdc,i2c-gpio-0";
+> > > > > > > > > +                reg = <6>;
+> > > > > > 'reg' needs to be documented with some description of what 6 and 7
+> > > > > > represent. If they are the control register offset, then make the
+> > > > > > address translatable (use 'ranges' and define the size).
+> > > > > By design, the reg property is used to specify a I2c adapter bus number,
+> > > > > if we don't specify one, i2c driver core will dynamically assign a bus number.
+> > > > > then the nr of the i2c adapter will started from 0. I want is start from 6
+> > > > > to avoid potential conflict feature hardware I2C driver.
+> > > > > 
+> > > > > Because LS7A1000 bridge chip have 6 hardware I2C controller integrated,
+> > > > > but its driver is not up-streamed yet. By default these hardware I2C controller's
+> > > > > nr is started from 0.
+> > > > Linux's numbering doesn't belong in DT. So no, you can't use 'reg' in
+> > > > that way.
+> > > Then,  can i use something like lsdc,nr = <6> ?
+> > > > > Even through i2c driver core can dynamically generate a number, i still want it
+> > > > > to be fixed and keep consistent and explicit. That is, i2c6 is for display pipe 0,
+> > > > > i2c7 is for display pipe 1. This follow the convention and flexible enough.
+> > > > You may want that, but that is not how the kernel works. Specific
+> > > > numbers are not guaranteed. I'm sure you've seen this for disks, network
+> > > > interfaces, etc.
+> > > > 
+> > > > Rob
+> > > 2c_bit_add_numbered_bus() will guarantee it for you as long as If no devices
+> > > have pre-been declared for this bus.
+> > > 
+> > > you can read the comment of 2c_bit_add_numbered_bus() at
+> > > drivers/i2c/i2c-core-base.c
+> > I didn't say it wasn't possible. It is not best practice. Grep
+> > i2c_bit_add_numbered_bus and see how many users there are.
+> 
+> i2c-gpio.c at drivers/i2c/busses/ just do the same thing.
 
-Note due to the Baikal-T1 MMIO peculiarity we have to implement the DBI
-interface accessors which make sure the IO is dword-aligned.
+No, the id for i2c-gpio nodes (any DT node without 'reg') will be -1 
+which means dynamically assigned.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
----
- drivers/pci/controller/dwc/Kconfig    |   9 +
- drivers/pci/controller/dwc/Makefile   |   1 +
- drivers/pci/controller/dwc/pcie-bt1.c | 638 ++++++++++++++++++++++++++
- 3 files changed, 648 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-bt1.c
 
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index 62ce3abf0f19..771b8b146623 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -222,6 +222,15 @@ config PCIE_ARTPEC6_EP
- 	  Enables support for the PCIe controller in the ARTPEC-6 SoC to work in
- 	  endpoint mode. This uses the DesignWare core.
- 
-+config PCIE_BT1
-+	tristate "Baikal-T1 PCIe controller"
-+	depends on MIPS_BAIKAL_T1 || COMPILE_TEST
-+	depends on PCI_MSI_IRQ_DOMAIN
-+	select PCIE_DW_HOST
-+	help
-+	  Enables support for the PCIe controller in the Baikal-T1 SoC to work
-+	  in host mode. It's based on the Synopsys DWC PCIe v4.60a IP-core.
-+
- config PCIE_ROCKCHIP_DW_HOST
- 	bool "Rockchip DesignWare PCIe controller"
- 	select PCIE_DW
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index 8ba7b67f5e50..bf5c311875a1 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -3,6 +3,7 @@ obj-$(CONFIG_PCIE_DW) += pcie-designware.o
- obj-$(CONFIG_PCIE_DW_HOST) += pcie-designware-host.o
- obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
- obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
-+obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
- obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
- obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
- obj-$(CONFIG_PCIE_FU740) += pcie-fu740.o
-diff --git a/drivers/pci/controller/dwc/pcie-bt1.c b/drivers/pci/controller/dwc/pcie-bt1.c
-new file mode 100644
-index 000000000000..8cb6a9b3e39d
---- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-bt1.c
-@@ -0,0 +1,638 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 BAIKAL ELECTRONICS, JSC
-+ *
-+ * Authors:
-+ *   Vadim Vlasov <Vadim.Vlasov@baikalelectronics.ru>
-+ *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-+ *
-+ * Baikal-T1 PCIe controller driver
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/pci.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <linux/types.h>
-+
-+#include "pcie-designware.h"
-+
-+/* Baikal-T1 System CCU control registers */
-+#define BT1_CCU_PCIE_CLKC			0x140
-+#define BT1_CCU_PCIE_REQ_PCS_CLK		BIT(16)
-+#define BT1_CCU_PCIE_REQ_MAC_CLK		BIT(17)
-+#define BT1_CCU_PCIE_REQ_PIPE_CLK		BIT(18)
-+
-+#define BT1_CCU_PCIE_RSTC			0x144
-+#define BT1_CCU_PCIE_REQ_LINK_RST		BIT(13)
-+#define BT1_CCU_PCIE_REQ_SMLH_RST		BIT(14)
-+#define BT1_CCU_PCIE_REQ_PHY_RST		BIT(16)
-+#define BT1_CCU_PCIE_REQ_CORE_RST		BIT(24)
-+#define BT1_CCU_PCIE_REQ_STICKY_RST		BIT(26)
-+#define BT1_CCU_PCIE_REQ_NSTICKY_RST		BIT(27)
-+
-+#define BT1_CCU_PCIE_PMSC			0x148
-+#define BT1_CCU_PCIE_LTSSM_STATE_MASK		GENMASK(5, 0)
-+#define BT1_CCU_PCIE_LTSSM_DET_QUIET		0x00
-+#define BT1_CCU_PCIE_LTSSM_DET_ACT		0x01
-+#define BT1_CCU_PCIE_LTSSM_POLL_ACT		0x02
-+#define BT1_CCU_PCIE_LTSSM_POLL_COMP		0x03
-+#define BT1_CCU_PCIE_LTSSM_POLL_CONF		0x04
-+#define BT1_CCU_PCIE_LTSSM_PRE_DET_QUIET	0x05
-+#define BT1_CCU_PCIE_LTSSM_DET_WAIT		0x06
-+#define BT1_CCU_PCIE_LTSSM_CFG_LNKWD_START	0x07
-+#define BT1_CCU_PCIE_LTSSM_CFG_LNKWD_ACEPT	0x08
-+#define BT1_CCU_PCIE_LTSSM_CFG_LNNUM_WAIT	0x09
-+#define BT1_CCU_PCIE_LTSSM_CFG_LNNUM_ACEPT	0x0a
-+#define BT1_CCU_PCIE_LTSSM_CFG_COMPLETE		0x0b
-+#define BT1_CCU_PCIE_LTSSM_CFG_IDLE		0x0c
-+#define BT1_CCU_PCIE_LTSSM_RCVR_LOCK		0x0d
-+#define BT1_CCU_PCIE_LTSSM_RCVR_SPEED		0x0e
-+#define BT1_CCU_PCIE_LTSSM_RCVR_RCVRCFG		0x0f
-+#define BT1_CCU_PCIE_LTSSM_RCVR_IDLE		0x10
-+#define BT1_CCU_PCIE_LTSSM_L0			0x11
-+#define BT1_CCU_PCIE_LTSSM_L0S			0x12
-+#define BT1_CCU_PCIE_LTSSM_L123_SEND_IDLE	0x13
-+#define BT1_CCU_PCIE_LTSSM_L1_IDLE		0x14
-+#define BT1_CCU_PCIE_LTSSM_L2_IDLE		0x15
-+#define BT1_CCU_PCIE_LTSSM_L2_WAKE		0x16
-+#define BT1_CCU_PCIE_LTSSM_DIS_ENTRY		0x17
-+#define BT1_CCU_PCIE_LTSSM_DIS_IDLE		0x18
-+#define BT1_CCU_PCIE_LTSSM_DISABLE		0x19
-+#define BT1_CCU_PCIE_LTSSM_LPBK_ENTRY		0x1a
-+#define BT1_CCU_PCIE_LTSSM_LPBK_ACTIVE		0x1b
-+#define BT1_CCU_PCIE_LTSSM_LPBK_EXIT		0x1c
-+#define BT1_CCU_PCIE_LTSSM_LPBK_EXIT_TOUT	0x1d
-+#define BT1_CCU_PCIE_LTSSM_HOT_RST_ENTRY	0x1e
-+#define BT1_CCU_PCIE_LTSSM_HOT_RST		0x1f
-+#define BT1_CCU_PCIE_LTSSM_RCVR_EQ0		0x20
-+#define BT1_CCU_PCIE_LTSSM_RCVR_EQ1		0x21
-+#define BT1_CCU_PCIE_LTSSM_RCVR_EQ2		0x22
-+#define BT1_CCU_PCIE_LTSSM_RCVR_EQ3		0x23
-+#define BT1_CCU_PCIE_SMLH_LINKUP		BIT(6)
-+#define BT1_CCU_PCIE_RDLH_LINKUP		BIT(7)
-+#define BT1_CCU_PCIE_PM_LINKSTATE_L0S		BIT(8)
-+#define BT1_CCU_PCIE_PM_LINKSTATE_L1		BIT(9)
-+#define BT1_CCU_PCIE_PM_LINKSTATE_L2		BIT(10)
-+#define BT1_CCU_PCIE_L1_PENDING			BIT(12)
-+#define BT1_CCU_PCIE_REQ_EXIT_L1		BIT(14)
-+#define BT1_CCU_PCIE_LTSSM_RCVR_EQ		BIT(15)
-+#define BT1_CCU_PCIE_PM_DSTAT_MASK		GENMASK(18, 16)
-+#define BT1_CCU_PCIE_PM_PME_EN			BIT(20)
-+#define BT1_CCU_PCIE_PM_PME_STATUS		BIT(21)
-+#define BT1_CCU_PCIE_AUX_PM_EN			BIT(22)
-+#define BT1_CCU_PCIE_AUX_PWR_DET		BIT(23)
-+#define BT1_CCU_PCIE_WAKE_DET			BIT(24)
-+#define BT1_CCU_PCIE_TURNOFF_REQ		BIT(30)
-+#define BT1_CCU_PCIE_TURNOFF_ACK		BIT(31)
-+
-+#define BT1_CCU_PCIE_GENC			0x14c
-+#define BT1_CCU_PCIE_LTSSM_EN			BIT(1)
-+#define BT1_CCU_PCIE_DBI2_MODE			BIT(2)
-+#define BT1_CCU_PCIE_MGMT_EN			BIT(3)
-+#define BT1_CCU_PCIE_RXLANE_FLIP_EN		BIT(16)
-+#define BT1_CCU_PCIE_TXLANE_FLIP_EN		BIT(17)
-+#define BT1_CCU_PCIE_SLV_XFER_PEND		BIT(24)
-+#define BT1_CCU_PCIE_RCV_XFER_PEND		BIT(25)
-+#define BT1_CCU_PCIE_DBI_XFER_PEND		BIT(26)
-+#define BT1_CCU_PCIE_DMA_XFER_PEND		BIT(27)
-+
-+#define BT1_CCU_PCIE_LTSSM_LINKUP(_pmsc) \
-+({ \
-+	int __state = FIELD_GET(BT1_CCU_PCIE_LTSSM_STATE_MASK, _pmsc); \
-+	__state >= BT1_CCU_PCIE_LTSSM_L0 && __state <= BT1_CCU_PCIE_LTSSM_L2_WAKE; \
-+})
-+
-+/* Baikal-T1 PCIe specific control registers */
-+#define BT1_PCIE_AXI2MGM_LANENUM		0xd04
-+#define BT1_PCIE_AXI2MGM_LANESEL_MASK		GENMASK(3, 0)
-+
-+#define BT1_PCIE_AXI2MGM_ADDRCTL		0xd08
-+#define BT1_PCIE_AXI2MGM_PHYREG_ADDR_MASK	GENMASK(20, 0)
-+#define BT1_PCIE_AXI2MGM_READ_FLAG		BIT(29)
-+#define BT1_PCIE_AXI2MGM_DONE			BIT(30)
-+#define BT1_PCIE_AXI2MGM_BUSY			BIT(31)
-+
-+#define BT1_PCIE_AXI2MGM_WRITEDATA		0xd0c
-+#define BT1_PCIE_AXI2MGM_WDATA			GENMASK(15, 0)
-+
-+#define BT1_PCIE_AXI2MGM_READDATA		0xd10
-+#define BT1_PCIE_AXI2MGM_RDATA			GENMASK(15, 0)
-+
-+/* General Baikal-T1 PCIe interface resources */
-+#define BT1_PCIE_NUM_CLKS			ARRAY_SIZE(bt1_pcie_clks)
-+#define BT1_PCIE_NUM_APP_RSTS			ARRAY_SIZE(bt1_pcie_app_rsts)
-+#define BT1_PCIE_NUM_CORE_RSTS			ARRAY_SIZE(bt1_pcie_core_rsts)
-+
-+enum bt1_pcie_core_rst {
-+	BT1_PCIE_NON_STICKY_RST,
-+	BT1_PCIE_STICKY_RST,
-+	BT1_PCIE_CORE_RST,
-+	BT1_PCIE_PIPE_RST,
-+	BT1_PCIE_PHY_RST,
-+	BT1_PCIE_HOT_RST,
-+	BT1_PCIE_PWR_RST,
-+};
-+
-+static const enum dw_pcie_clk bt1_pcie_clks[] = {
-+	DW_PCIE_DBI_CLK, DW_PCIE_MSTR_CLK, DW_PCIE_SLV_CLK, DW_PCIE_REF_CLK
-+};
-+
-+static const enum dw_pcie_app_rst bt1_pcie_app_rsts[] = {
-+	DW_PCIE_MSTR_RST, DW_PCIE_SLV_RST
-+};
-+
-+static const enum dw_pcie_core_rst bt1_pcie_core_rsts[] = {
-+	[BT1_PCIE_NON_STICKY_RST] = DW_PCIE_NON_STICKY_RST,
-+	[BT1_PCIE_STICKY_RST] = DW_PCIE_STICKY_RST,
-+	[BT1_PCIE_CORE_RST] = DW_PCIE_CORE_RST,
-+	[BT1_PCIE_PIPE_RST] = DW_PCIE_PIPE_RST,
-+	[BT1_PCIE_PHY_RST] = DW_PCIE_PHY_RST,
-+	[BT1_PCIE_HOT_RST] = DW_PCIE_HOT_RST,
-+	[BT1_PCIE_PWR_RST] = DW_PCIE_PWR_RST,
-+};
-+
-+struct bt1_pcie {
-+	struct dw_pcie dw;
-+	struct platform_device *pdev;
-+	struct regmap *sys_regs;
-+
-+	struct clk_bulk_data clks[BT1_PCIE_NUM_CLKS];
-+	struct reset_control_bulk_data app_rsts[BT1_PCIE_NUM_APP_RSTS];
-+	struct reset_control_bulk_data core_rsts[BT1_PCIE_NUM_CORE_RSTS];
-+	struct gpio_desc *pe_rst;
-+};
-+#define to_bt1_pcie(_dw) container_of(_dw, struct bt1_pcie, dw)
-+
-+/*
-+ * Baikal-T1 MMIO space must be read/written by the dword-aligned
-+ * instructions. Note the methods are optimized to have the dword operations
-+ * performed with minimum overhead as the most frequently used ones.
-+ */
-+static int bt1_pcie_read_mmio(void __iomem *addr, int size, u32 *val)
-+{
-+	unsigned int ofs = (uintptr_t)addr & 0x3;
-+
-+	if (!IS_ALIGNED((uintptr_t)addr, size))
-+		return PCIBIOS_BAD_REGISTER_NUMBER;
-+
-+	*val = readl(addr - ofs) >> ofs * BITS_PER_BYTE;
-+	if (size == 4) {
-+		return PCIBIOS_SUCCESSFUL;
-+	} else if (size == 2) {
-+		*val &= 0xffff;
-+		return PCIBIOS_SUCCESSFUL;
-+	} else if (size == 1) {
-+		*val &= 0xff;
-+		return PCIBIOS_SUCCESSFUL;
-+	}
-+
-+	return PCIBIOS_BAD_REGISTER_NUMBER;
-+}
-+
-+static int bt1_pcie_write_mmio(void __iomem *addr, int size, u32 val)
-+{
-+	unsigned int ofs = (uintptr_t)addr & 0x3;
-+	u32 tmp, mask;
-+
-+	if (!IS_ALIGNED((uintptr_t)addr, size))
-+		return PCIBIOS_BAD_REGISTER_NUMBER;
-+
-+	if (size == 4) {
-+		writel(val, addr);
-+		return PCIBIOS_SUCCESSFUL;
-+	} else if (size == 2 || size == 1) {
-+		mask = GENMASK(size * BITS_PER_BYTE - 1, 0);
-+		tmp = readl(addr - ofs) & ~(mask << ofs * BITS_PER_BYTE);
-+		tmp |= (val & mask) << ofs * BITS_PER_BYTE;
-+		writel(tmp, addr - ofs);
-+		return PCIBIOS_SUCCESSFUL;
-+	}
-+
-+	return PCIBIOS_BAD_REGISTER_NUMBER;
-+}
-+
-+static u32 bt1_pcie_read_dbi(struct dw_pcie *pci, void __iomem *base, u32 reg,
-+			     size_t size)
-+{
-+	int ret;
-+	u32 val;
-+
-+	ret = bt1_pcie_read_mmio(base + reg, size, &val);
-+	if (ret != PCIBIOS_SUCCESSFUL) {
-+		dev_err(pci->dev, "Read DBI address failed\n");
-+		return ~0U;
-+	}
-+
-+	return val;
-+}
-+
-+static void bt1_pcie_write_dbi(struct dw_pcie *pci, void __iomem *base, u32 reg,
-+			       size_t size, u32 val)
-+{
-+	int ret;
-+
-+	ret = bt1_pcie_write_mmio(base + reg, size, val);
-+	if (ret != PCIBIOS_SUCCESSFUL)
-+		dev_err(pci->dev, "Write DBI address failed\n");
-+}
-+
-+static void bt1_pcie_write_dbi2(struct dw_pcie *pci, void __iomem *base, u32 reg,
-+				size_t size, u32 val)
-+{
-+	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-+	int ret;
-+
-+	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-+			   BT1_CCU_PCIE_DBI2_MODE, BT1_CCU_PCIE_DBI2_MODE);
-+
-+	ret = bt1_pcie_write_mmio(base + reg, size, val);
-+	if (ret != PCIBIOS_SUCCESSFUL)
-+		dev_err(pci->dev, "Write DBI2 address failed\n");
-+
-+	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-+			   BT1_CCU_PCIE_DBI2_MODE, 0);
-+}
-+
-+static int bt1_pcie_start_ltssm(struct dw_pcie *pci)
-+{
-+	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-+	u32 val;
-+	int ret;
-+
-+	/*
-+	 * Enable LTSSM and make sure it was able to establish both PHY and
-+	 * data links. This procedure shall work fine to reach 2.5 GT/s speed.
-+	 */
-+	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-+			   BT1_CCU_PCIE_LTSSM_EN, BT1_CCU_PCIE_LTSSM_EN);
-+
-+	ret = regmap_read_poll_timeout(btpci->sys_regs, BT1_CCU_PCIE_PMSC, val,
-+				       (val & BT1_CCU_PCIE_SMLH_LINKUP),
-+				       1000, 1000000);
-+	if (ret) {
-+		dev_err(pci->dev, "LTSSM failed to set PHY link up\n");
-+		return ret;
-+	}
-+
-+	ret = regmap_read_poll_timeout(btpci->sys_regs, BT1_CCU_PCIE_PMSC, val,
-+				       (val & BT1_CCU_PCIE_RDLH_LINKUP),
-+				       1000, 1000000);
-+	if (ret) {
-+		dev_err(pci->dev, "LTSSM failed to set data link up\n");
-+		return ret;
-+	}
-+
-+	/*
-+	 * Activate direct speed change after the link is established in an
-+	 * attempt to reach a higher bus performance (up to Gen.3 - 8.0 GT/s).
-+	 * This is required at least to get 8.0 GT/s speed.
-+	 */
-+	val = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
-+	val |= PORT_LOGIC_SPEED_CHANGE;
-+	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
-+
-+	ret = regmap_read_poll_timeout(btpci->sys_regs, BT1_CCU_PCIE_PMSC, val,
-+				       BT1_CCU_PCIE_LTSSM_LINKUP(val),
-+				       1000, 1000000);
-+	if (ret)
-+		dev_err(pci->dev, "LTSSM failed to get into L0 state\n");
-+
-+	return ret;
-+}
-+
-+static void bt1_pcie_stop_ltssm(struct dw_pcie *pci)
-+{
-+	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-+
-+	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-+			   BT1_CCU_PCIE_LTSSM_EN, 0);
-+}
-+
-+struct dw_pcie_ops bt1_pcie_dw_ops = {
-+	.read_dbi = bt1_pcie_read_dbi,
-+	.write_dbi = bt1_pcie_write_dbi,
-+	.write_dbi2 = bt1_pcie_write_dbi2,
-+	.start_link = bt1_pcie_start_ltssm,
-+	.stop_link = bt1_pcie_stop_ltssm,
-+};
-+
-+static int bt1_pcie_get_res(struct bt1_pcie *btpci)
-+{
-+	struct device *dev = btpci->dw.dev;
-+	int ret;
-+
-+	/* AXI-interface is configured with 64-bit address bus width */
-+	ret = dma_coerce_mask_and_coherent(&btpci->dw.pp.bridge->dev,
-+					   DMA_BIT_MASK(64));
-+	if (ret) {
-+		ret = dma_set_mask_and_coherent(&btpci->dw.pp.bridge->dev,
-+						DMA_BIT_MASK(32));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* These CSRs are in MMIO so we won't check the regmap-methods status */
-+	btpci->sys_regs = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
-+	if (IS_ERR(btpci->sys_regs))
-+		return dev_err_probe(dev, PTR_ERR(btpci->sys_regs),
-+				     "Failed to get syscon\n");
-+
-+	ret = devm_clk_bulk_get(dev, BT1_PCIE_NUM_CLKS, btpci->clks);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get clocks\n");
-+
-+	ret = devm_reset_control_bulk_get_exclusive(dev, BT1_PCIE_NUM_APP_RSTS,
-+						    btpci->app_rsts);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get app resets\n");
-+
-+	ret = devm_reset_control_bulk_get_exclusive(dev, BT1_PCIE_NUM_CORE_RSTS,
-+						    btpci->core_rsts);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get core resets\n");
-+
-+	btpci->pe_rst = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(btpci->pe_rst))
-+		return dev_err_probe(dev, PTR_ERR(btpci->pe_rst),
-+				     "Failed to get PERST#\n");
-+
-+	return 0;
-+}
-+
-+static void bt1_pcie_full_stop_bus(struct bt1_pcie *btpci, bool init)
-+{
-+	struct device *dev = btpci->dw.dev;
-+	int ret;
-+
-+	/* Disable LTSSM for sure */
-+	regmap_update_bits(btpci->sys_regs, BT1_CCU_PCIE_GENC,
-+			   BT1_CCU_PCIE_LTSSM_EN, 0);
-+
-+	/*
-+	 * Application reset controls are trigger-based so de-assert the core
-+	 * resets only.
-+	 */
-+	ret = reset_control_bulk_assert(BT1_PCIE_NUM_CORE_RSTS, btpci->core_rsts);
-+	if (ret)
-+		dev_err(dev, "Failed to assert core resets\n");
-+
-+	/*
-+	 * Clocks are disabled by default at least in accordance with the clk
-+	 * enable counter value on init stage.
-+	 */
-+	if (!init)
-+		clk_bulk_disable_unprepare(BT1_PCIE_NUM_CLKS, btpci->clks);
-+
-+	/* The peripheral devices are unavailable anyway so reset them too */
-+	gpiod_set_value_cansleep(btpci->pe_rst, 1);
-+
-+	/* Make sure the reset is settled */
-+	usleep_range(1, 10);
-+}
-+
-+/*
-+ * Implements the cold reset procedure in accordance with the reference manual
-+ * and available PM signals.
-+ */
-+static int bt1_pcie_cold_start_bus(struct bt1_pcie *btpci)
-+{
-+	struct device *dev = btpci->dw.dev;
-+	u32 val;
-+	int ret;
-+
-+	/* First get out of the Power/Hot reset state */
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_PWR_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert PHY reset\n");
-+		return ret;
-+	}
-+
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_HOT_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert hot reset\n");
-+		goto err_assert_pwr_rst;
-+	}
-+
-+	/* Wait for the PM-core to stop requesting the PHY reset */
-+	ret = regmap_read_poll_timeout(btpci->sys_regs, BT1_CCU_PCIE_RSTC, val,
-+				       !(val & BT1_CCU_PCIE_REQ_PHY_RST), 1, 1000);
-+	if (ret) {
-+		dev_err(dev, "Timed out waiting for PM to stop PHY resetting\n");
-+		goto err_assert_hot_rst;
-+	}
-+
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_PHY_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert PHY reset\n");
-+		goto err_assert_hot_rst;
-+	}
-+
-+	/* Clocks can be now enabled, but the ref one is crucial at this stage */
-+	ret = clk_bulk_prepare_enable(BT1_PCIE_NUM_CLKS, btpci->clks);
-+	if (ret) {
-+		dev_err(dev, "Failed to enable ref clocks\n");
-+		goto err_assert_phy_rst;
-+	}
-+
-+	/* Wait for the PM to stop requesting the controller core reset */
-+	ret = regmap_read_poll_timeout(btpci->sys_regs, BT1_CCU_PCIE_RSTC, val,
-+				       !(val & BT1_CCU_PCIE_REQ_CORE_RST), 1, 1000);
-+	if (ret) {
-+		dev_err(dev, "Timed out waiting for PM to stop core resetting\n");
-+		goto err_clk_disable;
-+	}
-+
-+	/* PCS-PIPE interface and controller core can be now activated */
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_PIPE_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert PIPE reset\n");
-+		goto err_clk_disable;
-+	}
-+
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_CORE_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert core reset\n");
-+		goto err_assert_pipe_rst;
-+	}
-+
-+	/* It's recommended to reset the core and application logic together */
-+	ret = reset_control_bulk_reset(BT1_PCIE_NUM_APP_RSTS, btpci->app_rsts);
-+	if (ret) {
-+		dev_err(dev, "Failed to reset app domain\n");
-+		goto err_assert_core_rst;
-+	}
-+
-+	/* Sticky/Non-sticky CSR flags can be now unreset too */
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_STICKY_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert sticky reset\n");
-+		goto err_assert_core_rst;
-+	}
-+
-+	ret = reset_control_deassert(btpci->core_rsts[BT1_PCIE_NON_STICKY_RST].rstc);
-+	if (ret) {
-+		dev_err(dev, "Failed to deassert non-sticky reset\n");
-+		goto err_assert_sticky_rst;
-+	}
-+
-+	/* Activate the PCIe bus peripheral devices */
-+	gpiod_set_value_cansleep(btpci->pe_rst, 0);
-+
-+	/* Make sure the state is settled (LTSSM is still disabled though) */
-+	usleep_range(1, 10);
-+
-+	return 0;
-+
-+err_assert_sticky_rst:
-+	reset_control_assert(btpci->core_rsts[BT1_PCIE_STICKY_RST].rstc);
-+
-+err_assert_core_rst:
-+	reset_control_assert(btpci->core_rsts[BT1_PCIE_CORE_RST].rstc);
-+
-+err_assert_pipe_rst:
-+	reset_control_assert(btpci->core_rsts[BT1_PCIE_PIPE_RST].rstc);
-+
-+err_clk_disable:
-+	clk_bulk_disable_unprepare(BT1_PCIE_NUM_CLKS, btpci->clks);
-+
-+err_assert_phy_rst:
-+	reset_control_assert(btpci->core_rsts[BT1_PCIE_PHY_RST].rstc);
-+
-+err_assert_hot_rst:
-+	reset_control_assert(btpci->core_rsts[BT1_PCIE_HOT_RST].rstc);
-+
-+err_assert_pwr_rst:
-+	reset_control_assert(btpci->core_rsts[BT1_PCIE_PWR_RST].rstc);
-+
-+	return ret;
-+}
-+
-+static int bt1_pcie_host_init(struct pcie_port *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-+	int ret;
-+
-+	ret = bt1_pcie_get_res(btpci);
-+	if (ret)
-+		return ret;
-+
-+	bt1_pcie_full_stop_bus(btpci, true);
-+
-+	return bt1_pcie_cold_start_bus(btpci);
-+}
-+
-+static void bt1_pcie_host_deinit(struct pcie_port *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct bt1_pcie *btpci = to_bt1_pcie(pci);
-+
-+	bt1_pcie_full_stop_bus(btpci, false);
-+}
-+
-+struct dw_pcie_host_ops bt1_pcie_host_ops = {
-+	.host_init = bt1_pcie_host_init,
-+	.host_deinit = bt1_pcie_host_deinit,
-+};
-+
-+static struct bt1_pcie *bt1_pcie_create_data(struct platform_device *pdev)
-+{
-+	struct bt1_pcie *btpci;
-+	int i;
-+
-+	btpci = devm_kzalloc(&pdev->dev, sizeof(*btpci), GFP_KERNEL);
-+	if (!btpci)
-+		return ERR_PTR(-ENOMEM);
-+
-+	btpci->pdev = pdev;
-+
-+	for (i = 0; i < BT1_PCIE_NUM_CLKS; ++i)
-+		btpci->clks[i].id = dw_pcie_clk_name(bt1_pcie_clks[i]);
-+
-+	for (i = 0; i < BT1_PCIE_NUM_APP_RSTS; ++i)
-+		btpci->app_rsts[i].id = dw_pcie_app_rst_name(bt1_pcie_app_rsts[i]);
-+
-+	for (i = 0; i < BT1_PCIE_NUM_CORE_RSTS; ++i)
-+		btpci->core_rsts[i].id = dw_pcie_core_rst_name(bt1_pcie_core_rsts[i]);
-+
-+	platform_set_drvdata(pdev, btpci);
-+
-+	return btpci;
-+}
-+
-+static int bt1_pcie_add_dw_port(struct bt1_pcie *btpci)
-+{
-+	struct device *dev = &btpci->pdev->dev;
-+	int ret;
-+
-+	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-+	if (ret)
-+		return ret;
-+
-+	btpci->dw.version = DW_PCIE_VER_460A;
-+	btpci->dw.dev = dev;
-+	btpci->dw.ops = &bt1_pcie_dw_ops;
-+
-+	btpci->dw.pp.num_vectors = MAX_MSI_IRQS;
-+	btpci->dw.pp.ops = &bt1_pcie_host_ops;
-+
-+	ret = dw_pcie_host_init(&btpci->dw.pp);
-+	if (ret)
-+		dev_err_probe(dev, ret, "Failed to initialize DWC PCIe host\n");
-+
-+	return ret;
-+}
-+
-+static void bt1_pcie_del_dw_port(struct bt1_pcie *btpci)
-+{
-+	dw_pcie_host_deinit(&btpci->dw.pp);
-+}
-+
-+static int bt1_pcie_probe(struct platform_device *pdev)
-+{
-+	struct bt1_pcie *btpci;
-+
-+	btpci = bt1_pcie_create_data(pdev);
-+	if (IS_ERR(btpci))
-+		return PTR_ERR(btpci);
-+
-+	return bt1_pcie_add_dw_port(btpci);
-+}
-+
-+static int bt1_pcie_remove(struct platform_device *pdev)
-+{
-+	struct bt1_pcie *btpci = platform_get_drvdata(pdev);
-+
-+	bt1_pcie_del_dw_port(btpci);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id bt1_pcie_of_match[] = {
-+	{ .compatible = "baikal,bt1-pcie" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, bt1_pcie_of_match);
-+
-+static struct platform_driver bt1_pcie_driver = {
-+	.probe = bt1_pcie_probe,
-+	.remove = bt1_pcie_remove,
-+	.driver = {
-+		.name	= "bt1-pcie",
-+		.of_match_table = bt1_pcie_of_match,
-+	},
-+};
-+module_platform_driver(bt1_pcie_driver);
-+
-+MODULE_AUTHOR("Serge Semin <Sergey.Semin@baikalelectronics.ru>");
-+MODULE_DESCRIPTION("Baikal-T1 PCIe driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.35.1
+> + nvidia,bpmp-bus-id: + $ref: /schemas/types.yaml#/definitions/uint32 +
+> description: Indicates the I2C bus number this DT node represents, + as
+> defined by the BPMP firmware.
 
+The key difference is the numbering is defined by the BPMP firmware.
+
+
+> > Even if the kernel allows specifying bus numbers,your Linux bus numbers don't
+> > belong in DT.
+> 
+> Again, Does does devicetree specification prohibit this?
+
+No. The spec is not the last word on what's allowed or not. Lots of 
+patterns exist already which we can't change, but that doesn't mean they 
+should be copied by new users.
+
+Rob
