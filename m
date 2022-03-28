@@ -2,103 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1464E9EE0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 20:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 701F14E9EFC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 20:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238740AbiC1SX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 14:23:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
+        id S240407AbiC1Sdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 14:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234885AbiC1SX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 14:23:29 -0400
+        with ESMTP id S237113AbiC1Sdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 14:33:53 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A91728E08;
-        Mon, 28 Mar 2022 11:21:48 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CEA5EBED;
+        Mon, 28 Mar 2022 11:32:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EC96160F4B;
-        Mon, 28 Mar 2022 18:21:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50F83C34112;
-        Mon, 28 Mar 2022 18:21:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 983CA611EA;
+        Mon, 28 Mar 2022 18:32:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BBD2C340F0;
+        Mon, 28 Mar 2022 18:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648491707;
-        bh=/hes25yU3YvOd5H4gdqZgtO6BmQMj0GOVhwieQHFZC8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Y3QBOeE45tCdVprMsjGLhZlFYzWBlJSWFm+ayqCtpno9EM3H/L8qTyfR82lNHNj5d
-         j3FaXSvSjdUBIZWYEw3TMFnz7Acw/ekopa8kgWViL4E9TYOk7kDHN8iECu6x0Aa9kw
-         WeFWsjp0s7xF8A/XERp4kPA7KUuk8NbazZId2klK+rp9jeQvKmTSyIC3+HEX1/BjYN
-         +pmQ0Np5twFrrOQUlqXdtUjIwEuZk6Nd6NJl3Fn4ryqacVqt5hn4kScj4xYWV3KJcx
-         BMS72Wa/+Imo4F6uxou6AtZjm/BblVKTw3un+ZLzMu0/hmvpLljjE8HjNk7d6XZJmK
-         olceDM7ZW4Z/w==
-Received: by mail-ej1-f45.google.com with SMTP id dr20so30407118ejc.6;
-        Mon, 28 Mar 2022 11:21:47 -0700 (PDT)
-X-Gm-Message-State: AOAM532+dqQd39r6FHLVhuLiSUQPf3xsB8g/mjmaCBOk0oJmVqGyO9v5
-        i1VFlRvkdcjHobCt8t4Z7HUW4Ud0b6yu41C7TQ==
-X-Google-Smtp-Source: ABdhPJyBS6Yqu8DRRebdgTJ8I6WtYN5VWc6v7Ptjdf8OtDush1axetkjF2N3WNYaWT7JCDrp9+ia9rMS2pC0YQOyHHg=
-X-Received: by 2002:a17:906:5418:b0:6df:a07f:764b with SMTP id
- q24-20020a170906541800b006dfa07f764bmr28174092ejo.27.1648491705248; Mon, 28
- Mar 2022 11:21:45 -0700 (PDT)
+        s=k20201202; t=1648492331;
+        bh=qTJLwlHIWwP5+DZq5BGQzbEGxvcxsBdd85KV4h6WqpI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OMy5p4bwpv+sG05puY/dpOhz9ypxUvmCeyDMkoTWMl10RTF08relfzTYGCROzpOAd
+         POh3wBAcf/VcCcOhl0v0QT+hMgKMGnhZrSBmbCO64TISvszUPv1/R2HvTsyzVqbYSc
+         LL8uYBu6Zo2X2h1AEQMeTiEnPFqDFItqLXJ3WykdLkhQ2RUN2fwlvErXpoh7xCqxr5
+         vCu1qe/nSZwfYFqakjtivLjA6O6hqihbJk8NoC3JWGARq3Y2qZ7C2SXs/UYqCVImNS
+         SK/T9B81DsGmzhD4INH9Rw09vqst4Hf1I+ziwgczt7pWLuUaWkRQBceCLjWR/Ub9p7
+         NGZsPMinE4C7A==
+Message-ID: <90520a06-8c18-dbed-627b-afe9824cacc0@kernel.org>
+Date:   Mon, 28 Mar 2022 20:32:02 +0200
 MIME-Version: 1.0
-References: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
- <YkHtY9absUjmqmW7@matsya> <12b0056b-8032-452b-f325-6f36037b5a80@linaro.org>
-In-Reply-To: <12b0056b-8032-452b-f325-6f36037b5a80@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 28 Mar 2022 13:21:33 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+6rx0UU6ryH+z_8KLQqKKuhTCnh=Oft2F03bcze+EV0Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+6rx0UU6ryH+z_8KLQqKKuhTCnh=Oft2F03bcze+EV0Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: msm: dsi: remove address/size cells
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/5] dt-bindings: phy: Add ARTPEC-8 PCIe phy
+Content-Language: en-US
+To:     wangseok.lee@samsung.com,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>
+Cc:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>,
+        =?UTF-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
+References: <CGME20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
+ <20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 12:18 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 28/03/2022 19:16, Vinod Koul wrote:
-> > On 28-03-22, 19:43, Dmitry Baryshkov wrote:
-> >> On Mon, 28 Mar 2022 at 18:30, Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>
-> >>> The DSI node is not a bus and the children do not have unit addresses.
-> >>>
-> >>> Reported-by: Vinod Koul <vkoul@kernel.org>
-> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> NAK.
-> >> DSI panels are children of the DSI device tree node with the reg = <0>; address.
-> >> This is the convention used by other platforms too (see e.g.
-> >> arch/arm64/boot/dts/freescale/imx8mq-evk.dts).
-> >
-> > So we should add reg = 0, i will update my dtsi fix
-> >
->
-> To "ports" node? No. The reg=0 is for children of the bus, so the
-> panels. How to combine both without warnings - ports and panel@0 - I
-> don't know yet...
+On 28/03/2022 10:43, 이왕석 wrote:
+> Add description to support Axis, ARTPEC-8 SoC.
+> ARTPEC-8 is the SoC platform of Axis Communications
+> and PCIe phy is designed based on SAMSUNG PHY.
+> 
+> Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
+> ---
+>  .../bindings/phy/axis,artpec8-pcie-phy.yaml        | 67 ++++++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
+> new file mode 100644
+> index 0000000..f5f4166
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/axis,artpec8-pcie-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARTPEC-8 SoC PCIe PHY Device Tree Bindings
 
-I don't think that should case a warning. Or at least it's one we turn off.
+s/Device Tree Bindings//
 
-Rob
+> +
+> +maintainers:
+> +  - Jesper Nilsson <jesper.nilsson@axis.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: axis,artpec8-pcie-phy
+> +
+> +  reg:
+> +    items:
+> +      - description: PHY registers.
+> +      - description: PHY coding sublayer registers.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: phy
+> +      - const: pcs
+> +
+> +  clocks:
+> +    items:
+> +      - description: PCIe PHY reference clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+> +
+> +required:
+> +  - compatible
+> +  - "#phy-cells"
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - samsung,fsys-sysreg
+
+It seems you copied some things from some other bindings, so please
+clean it up to really fit your device.
+
+Best regards,
+Krzysztof
