@@ -2,74 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F87F4E9A68
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 17:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D971F4E9AAF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 17:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244255AbiC1PKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 11:10:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
+        id S244382AbiC1POA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 11:14:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244254AbiC1PKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 11:10:34 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7522327FDA
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 08:08:52 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id i4so2013284wrb.5
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 08:08:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HNhb7r/LKhCf7ktLcFjFiDUTXjUe/4x79E9mxzYgx1o=;
-        b=nU9yW6rS1+26VMUlhMihK742eYLWAVyY979qq0i723Yt0460w264cwqXztxkZOkG+h
-         is9yHp/h1rhhIWWeSonnZ3mHkbnocnMtWU7OgxJMgi7WsOZ7mk9QjfqiqaTeb8FYfRoD
-         wt+mn5mi1uACHCSlrwZ8QdiftYf4xz5sTLmpid/vi/r7tg98sQCAztFNBLm3W5pBCgsW
-         35EtfR9NF3I/0jRVZnnjZKAIy9CNCnV90QGW1dGx5Qivq5acPVG1m3u1aSRWp8Cyox2z
-         1GVrUfHL74T0GCFMDnKZ74ioszI7iJzafgluJlCXcAlgV/Cu9LoBMGOD6xKDbuOjdAbi
-         7T9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HNhb7r/LKhCf7ktLcFjFiDUTXjUe/4x79E9mxzYgx1o=;
-        b=flQouG9ALXHRdyH4fL7fG0M0cN5z6UcgcqY4Q/tIcPmdjnO5m5AGbrux0gYe8Ce2wj
-         9+JIAm7jswberYklDOMnNBej3o0cN8zVx1SwJPtErBnmGdTJB8+enBNM+HnsANj+0dB/
-         n/M+lm9qG9vBatV3/uGINTCSYD4uqiz4CRq8xdca0BYsKNfLTphAPnBpthxNwhUBt0fL
-         ai+Atx9XWxfSkN9TnsanTWOjPlHs5ekNykhsGlXTUHCRJZD26Of/R0sShJx4S1kJfhqo
-         H1EMokxjiH/hx8vp/xWI+Q+Sacz02QmLufwBHi8PpBwmzO4W1V1lunt5kRfW0Uj0d78E
-         mQiw==
-X-Gm-Message-State: AOAM530P+SX/Dh6GSRBp+iHMwh3nISot+ndkZ6T+YFPUkQqawY/uS6IY
-        CXSTx/MaayoF1XP1jP+aDNrTtA==
-X-Google-Smtp-Source: ABdhPJzOOgAJZIkk8oY7G+cG8+D3hzrGwhDFaIVXQH1eROLtVBHDaxuSvZlweoB8VjB++jcWWG18rw==
-X-Received: by 2002:adf:e342:0:b0:1f0:648f:c32b with SMTP id n2-20020adfe342000000b001f0648fc32bmr23857646wrj.204.1648480131068;
-        Mon, 28 Mar 2022 08:08:51 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id 2-20020a1c1902000000b00380d3873d6asm12256243wmz.43.2022.03.28.08.08.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 08:08:50 -0700 (PDT)
-Message-ID: <ae06ecc3-da1e-ddf2-3d20-c9f1cbed5550@linaro.org>
-Date:   Mon, 28 Mar 2022 17:08:49 +0200
+        with ESMTP id S244641AbiC1PNs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 11:13:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1587C1C91F
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 08:12:08 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nYr1f-000069-Io; Mon, 28 Mar 2022 17:11:23 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nYr1a-003cTC-IZ; Mon, 28 Mar 2022 17:11:21 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nYr1a-008XKv-6S; Mon, 28 Mar 2022 17:11:18 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Date:   Mon, 28 Mar 2022 17:10:53 +0200
+Message-Id: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8250: move qup-opp-table out of
- soc node
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220328143035.519909-1-vkoul@kernel.org>
- <20220328143035.519909-4-vkoul@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220328143035.519909-4-vkoul@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,25 +56,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2022 16:30, Vinod Koul wrote:
-> The soc node expects all the nodes to have unit addresses. The
-> qup-opp-table does not have that which causes warnings:
-> 
-> arch/arm64/boot/dts/qcom/sm8250.dtsi:916.32-933.5:
-> 	Warning (simple_bus_reg): /soc@0/qup-opp-table:
-> 	missing or empty reg/ranges property
-> 
-> Move the qup-opp-table out of soc node to fix these warnings
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 38 ++++++++++++++--------------
->  1 file changed, 19 insertions(+), 19 deletions(-)
-> 
+This is v9 of the VOP2 series. Biggest change this time is that I marked
+the hclk_vo as critical instead of enabling it in the HDMI driver. Also
+a little bugfix is included for a bug in setting up the layer mixer,
+reported by Andy Yan.
+
+Note that this series depends on these patches:
+
+clk: rk3568: Add CLK_SET_RATE_PARENT to the HDMI reference clock
+clk: rk3568: drop CLK_SET_RATE_PARENT from dclk_vop*
+clk: rockchip: rk3568: Add more PLL rates
+
+These are not included in this series as they are already applied by
+Heiko. They haven't hit mainline yet, you can pick them from v4 of this
+series.
+
+Sascha
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes since v8:
+- make hclk_vo a critical clock instead of enabling it in the hdmi driver
+- Fix vop2_setup_layer_mixer(), reported by Andy Yan
+- Limit planes possible_crtcs to actually existing crtcs
+- simplify vop2_create_crtc() a bit
 
+Changes since v7:
+- rename hclk to niu
 
-Best regards,
-Krzysztof
+Changes since v6:
+- Move of_graph parsing out of runtime code to initialization
+
+Changes since v5:
+- Add new patch to fix dw-hdmi of_graph binding
+- Drop "drm/encoder: Add of_graph port to struct drm_encoder" and solve
+  issue internally in the driver
+- make checkpatch cleaner
+
+Changes since v4:
+- Reorder patches in a way that binding/dts/driver patches are closer together
+- Drop clk patches already applied by Heiko
+
+Changes since v3:
+- added changelog to each patch
+- Add 4k support to hdmi driver
+- rebase on v5.17-rc1
+
+Changes since v2:
+- Add pin names to HDMI supply pin description
+- Add hclk support to HDMI driver
+- Dual license rockchip-vop2 binding, update binding
+- Add HDMI connector to board dts files
+- drop unnecessary gamma_lut registers from vop2
+- Update dclk_vop[012] clock handling, no longer hacks needed
+- Complete regmap conversion
+
+Changes since v1:
+- drop all unnecessary waiting for frames within atomic modeset and plane update
+- Cluster subwin support removed
+- gamma support removed
+- unnecessary irq_lock removed
+- interrupt handling simplified
+- simplified zpos handling
+- drop is_alpha_support(), use fb->format->has_alpha instead
+- use devm_regulator_get() rather than devm_regulator_get_optional() for hdmi regulators
+- Use fixed number of planes per video port
+- Drop homegrown regmap code from vop2 driver (not complete yet)
+- Add separate include file for vop2 driver to not pollute the vop include
+
+Andy Yan (1):
+  drm: rockchip: Add VOP2 driver
+
+Benjamin Gaignard (1):
+  dt-bindings: display: rockchip: dw-hdmi: Add compatible for rk3568
+    HDMI
+
+Douglas Anderson (2):
+  drm/rockchip: dw_hdmi: Use auto-generated tables
+  drm/rockchip: dw_hdmi: Set cur_ctr to 0 always
+
+Michael Riesch (1):
+  arm64: dts: rockchip: enable vop2 and hdmi tx on quartz64a
+
+Nickey Yang (1):
+  drm/rockchip: dw_hdmi: add default 594Mhz clk for 4K@60hz
+
+Sascha Hauer (17):
+  clk: rk3568: Mark hclk_vo as critical
+  drm/rockchip: Embed drm_encoder into rockchip_decoder
+  drm/rockchip: Add crtc_endpoint_id to rockchip_encoder
+  drm/rockchip: dw_hdmi: rename vpll clock to reference clock
+  dt-bindings: display: rockchip: dw-hdmi: use "ref" as clock name
+  arm64: dts: rockchip: rk3399: rename HDMI ref clock to 'ref'
+  drm/rockchip: dw_hdmi: add rk3568 support
+  drm/rockchip: dw_hdmi: add regulator support
+  dt-bindings: display: rockchip: dw-hdmi: Add regulator support
+  drm/rockchip: dw_hdmi: drop mode_valid hook
+  dt-bindings: display: rockchip: dw-hdmi: Make unwedge pinctrl optional
+  arm64: dts: rockchip: rk356x: Add VOP2 nodes
+  arm64: dts: rockchip: rk356x: Add HDMI nodes
+  arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
+  drm/rockchip: Make VOP driver optional
+  dt-bindings: display: rockchip: Add binding for VOP2
+  dt-bindings: display: rockchip: dw-hdmi: fix ports description
+
+ .../display/rockchip/rockchip,dw-hdmi.yaml    |   46 +-
+ .../display/rockchip/rockchip-vop2.yaml       |  140 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |    2 +-
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |   47 +
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      |    4 +
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   47 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |    4 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   83 +
+ drivers/clk/rockchip/clk-rk3568.c             |    1 +
+ drivers/gpu/drm/rockchip/Kconfig              |   14 +
+ drivers/gpu/drm/rockchip/Makefile             |    4 +-
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   |   32 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |   18 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.h        |    2 +-
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |   17 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  276 +-
+ drivers/gpu/drm/rockchip/inno_hdmi.c          |   32 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        |   34 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |   36 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |   20 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |    2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   15 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 2688 +++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  477 +++
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |   26 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  281 ++
+ include/dt-bindings/soc/rockchip,vop2.h       |   14 +
+ 27 files changed, 4167 insertions(+), 195 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+ create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
+
+-- 
+2.30.2
+
