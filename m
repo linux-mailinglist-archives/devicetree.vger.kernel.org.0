@@ -2,192 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 403504E9059
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 10:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E8E4E907B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 10:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235537AbiC1IpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 04:45:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35600 "EHLO
+        id S235656AbiC1IvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 04:51:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239467AbiC1IpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 04:45:05 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CAC32EDE
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 01:43:24 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220328084322epoutp03bf446d10af750ee6e438b04e7db7f204~gfujpyhwE3011030110epoutp039
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 08:43:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220328084322epoutp03bf446d10af750ee6e438b04e7db7f204~gfujpyhwE3011030110epoutp039
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1648457002;
-        bh=q+HVAoGqH/dia7eZTAEaFllANNuLtxUgWBVlfJGeTSQ=;
-        h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=LG+3W0XjKQkNCoam+k7N+jbx410o6MAgKY9rSTgvUzw4BIlMxjHeeAYiqY1f2vx00
-         svMuaeSeARxzifT6+NhxZbwjGdYTWCnfdsbCUblXAoY/xKCjZ8HZqxs5WzyjI4K54u
-         KQpNNs5krEUEP8KxKeJ0gZ+4d/MBTKNq4SUtvq+k=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220328084321epcas2p4beb7cee7ab047cdbeb9531b88c180a5b~gfui0S8EY1900419004epcas2p4o;
-        Mon, 28 Mar 2022 08:43:21 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.88]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4KRmS76nKyz4x9Q4; Mon, 28 Mar
-        2022 08:43:19 +0000 (GMT)
-X-AuditID: b6c32a46-be9ff70000023ea8-c7-62417527a335
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E1.4C.16040.72571426; Mon, 28 Mar 2022 17:43:19 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH 2/5] dt-bindings: phy: Add ARTPEC-8 PCIe phy
-Reply-To: wangseok.lee@samsung.com
-Sender: =?UTF-8?B?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-From:   =?UTF-8?B?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        =?UTF-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
-Date:   Mon, 28 Mar 2022 17:43:19 +0900
-X-CMS-MailID: 20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603
+        with ESMTP id S233393AbiC1IvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 04:51:25 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E604248C;
+        Mon, 28 Mar 2022 01:49:43 -0700 (PDT)
+X-UUID: a89e698ef5b54476859e923c5fb1fd57-20220328
+X-UUID: a89e698ef5b54476859e923c5fb1fd57-20220328
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 315161075; Mon, 28 Mar 2022 16:49:38 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 28 Mar 2022 16:49:37 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 28 Mar
+ 2022 16:49:36 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 28 Mar 2022 16:49:36 +0800
+Message-ID: <736a7f6710f1ea31eff4abcc3d9c3ff79a1f0ddb.camel@mediatek.com>
+Subject: Re: [PATCH v9 16/22] drm/meditek: dpi: Add matrix_sel helper
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Guillaume Ranquet <granquet@baylibre.com>, <airlied@linux.ie>,
+        <angelogioacchino.delregno@collabora.com>,
+        <chunfeng.yun@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <ck.hu@mediatek.com>, <daniel@ffwll.ch>, <deller@gmx.de>,
+        <jitao.shi@mediatek.com>, <kishon@ti.com>, <krzk+dt@kernel.org>,
+        <maarten.lankhorst@linux.intel.com>, <matthias.bgg@gmail.com>,
+        <mripard@kernel.org>, <p.zabel@pengutronix.de>,
+        <robh+dt@kernel.org>, <tzimmermann@suse.de>, <vkoul@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <markyacoub@google.com>
+Date:   Mon, 28 Mar 2022 16:49:36 +0800
+In-Reply-To: <20220327223927.20848-17-granquet@baylibre.com>
+References: <20220327223927.20848-1-granquet@baylibre.com>
+         <20220327223927.20848-17-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMJsWRmVeSWpSXmKPExsWy7bCmua56qWOSwbJ9phZLmjIsXh7StJh/
-        5ByrxfNDs5gtPrWoWlx42sNm8XLWPTaLhp7frBZH3nxktth/fCWTxeVdc9gszs47zmYxYdU3
-        Fos3v1+wW5xbnGnRuvcIu8XOOyeYHQQ91sxbw+hxfV2Ax4JNpR6bVnWyeTy5Mp3JY/OSeo++
-        LasYPY7f2M7k8XmTXABnVLZNRmpiSmqRQmpecn5KZl66rZJ3cLxzvKmZgaGuoaWFuZJCXmJu
-        qq2Si0+ArltmDtAXSgpliTmlQKGAxOJiJX07m6L80pJUhYz84hJbpdSClJwC8wK94sTc4tK8
-        dL281BIrQwMDI1OgwoTsjLPn9rIXNApVNDytb2C8wtvFyMkhIWAiceTyZJYuRi4OIYEdjBJr
-        /rQzdzFycPAKCEr83SEMUiMsYCPxZ/dsZhBbSEBJYseaecwQcWuJT1Mus4DYbAKWEhdbHzKC
-        zBEROMskcfPudlYQh1ngNrPE/OfvWSC28UrMaH8KZUtLbF++lRHC1pD4sayXGcIWlbi5+i07
-        jP3+2HyoGhGJ1ntnoWoEJR783A0Vl5JY8OQQK4RdLbH/728mCLuBUaL/firIMxIC+hI7rhuD
-        hHkFfCWeXpoFNoZFQFVi9+lOqHIXiVsX94DFmQXkJba/nQMOB2YBTYn1u/QhpihLHLkF90jD
-        xt/s6GxmAT6JjsN/4eI75j2Bmq4mMW/lTmaIMTISW1/6T2BUmoUI51lI1s5CWLuAkXkVo1hq
-        QXFuemqxUYERPGaT83M3MYJTs5bbDsYpbz/oHWJk4mA8xCjBwawkwit71j5JiDclsbIqtSg/
-        vqg0J7X4EKMp0MMTmaVEk/OB2SGvJN7QxNLAxMzM0NzI1MBcSZzXK2VDopBAemJJanZqakFq
-        EUwfEwenVANT8SPd/vvnGiYfSV8UIqD0/snco60XVt32vLC4y+rKSfbJLwRafNPeFt8OUvsf
-        03Lijnj6dO1asfCiY3XLJkgJpc708PJUKvP/lcP9t4ohdfvVcCHtt58ZXidVvrlzZO0KowfX
-        /r0JWNgwq7qTzbhLwc7ov2SLtvKFPMVfK58b3u1kTvzsPK/vTPb6lZtOvBE9e+qd6vnTkxf0
-        zOT1mHtvtbBEpEQfK8fZPazMLveu7Dr57v1up8ehgXu62GtCdus+Vd19LbDw7FtjhtzKfc22
-        nkW7Hi7eefPE5H+O/c+nvN/z2rt3TiinzDbvEI/Il/OThWf3Zi10y1Z4ceH//+o7r7KKrmo3
-        7/pe/0z2lt4DNyWW4oxEQy3mouJEAM2QofZWBAAA
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603
-References: <CGME20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add description to support Axis, ARTPEC-8 SoC.
-ARTPEC-8 is the SoC platform of Axis Communications
-and PCIe phy is designed based on SAMSUNG PHY.
+On Mon, 2022-03-28 at 00:39 +0200, Guillaume Ranquet wrote:
+> Add a mtk_dpi_matrix_sel() helper to update the DPI_MATRIX_SET
+> register depending on the color format.
+> 
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index 8198d3cf23ac..82f97c687652 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -385,6 +385,25 @@ static void mtk_dpi_config_disable_edge(struct
+> mtk_dpi *dpi)
+>  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
+> EDGE_SEL_EN);
+>  }
+>  
+> +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum
+> mtk_dpi_out_color_format format)
+> +{
+> +	u32 matrix_sel = 0;
+> +
+> +	switch (format) {
+> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
+> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
+> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
+> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
+> +	case MTK_DPI_COLOR_FORMAT_XV_YCC:
+> +		if (dpi->mode.hdisplay <= 720)
+> +			matrix_sel = 0x2;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
+> INT_MATRIX_SEL_MASK);
+> +}
+> +
+>  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+>  					enum mtk_dpi_out_color_format
+> format)
+>  {
+> @@ -392,6 +411,7 @@ static void mtk_dpi_config_color_format(struct
+> mtk_dpi *dpi,
+>  	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
+>  		mtk_dpi_config_yuv422_enable(dpi, false);
+>  		mtk_dpi_config_csc_enable(dpi, true);
+> +		mtk_dpi_matrix_sel(dpi, format);
+>  		if (dpi->conf->swap_input_support)
+>  			mtk_dpi_config_swap_input(dpi, false);
+>  		mtk_dpi_config_channel_swap(dpi,
+> MTK_DPI_OUT_CHANNEL_SWAP_BGR);
+> @@ -399,6 +419,7 @@ static void mtk_dpi_config_color_format(struct
+> mtk_dpi *dpi,
+>  		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
+>  		mtk_dpi_config_yuv422_enable(dpi, true);
+>  		mtk_dpi_config_csc_enable(dpi, true);
+> +		mtk_dpi_matrix_sel(dpi, format);
+>  		if (dpi->conf->swap_input_support)
+>  			mtk_dpi_config_swap_input(dpi, true);
+>  		mtk_dpi_config_channel_swap(dpi,
+> MTK_DPI_OUT_CHANNEL_SWAP_RGB);
 
-Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
----
- .../bindings/phy/axis,artpec8-pcie-phy.yaml        | 67 ++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
+Hello Guillaume,
 
-diff --git a/Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
-new file mode 100644
-index 0000000..f5f4166
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/axis,artpec8-pcie-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARTPEC-8 SoC PCIe PHY Device Tree Bindings
-+
-+maintainers:
-+  - Jesper Nilsson <jesper.nilsson@axis.com>
-+
-+properties:
-+  compatible:
-+    const: axis,artpec8-pcie-phy
-+
-+  reg:
-+    items:
-+      - description: PHY registers.
-+      - description: PHY coding sublayer registers.
-+
-+  reg-names:
-+    items:
-+      - const: phy
-+      - const: pcs
-+
-+  clocks:
-+    items:
-+      - description: PCIe PHY reference clock
-+
-+  clock-names:
-+    items:
-+      - const: ref_clk
-+
-+required:
-+  - compatible
-+  - "#phy-cells"
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+  - samsung,fsys-sysreg
-+  - num-lanes
-+
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    artec8 {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pcie_phy: pcie-phy@16c80000 {
-+            compatible = "samsung,artpec8-pcie-phy";
-+            #phy-cells = <0>;
-+            reg = <0x0 0x16c80000 0x0 0x2000>,
-+                    <0x0 0x16c90000 0x0 0x1000>;
-+            reg-names = "phy", "pcs";
-+            clocks = <&clock_cmu_fsys 53>;
-+            clock-names = "ref_clk";
-+            samsung,fsys-sysreg = <&syscon_fsys>;
-+            num-lanes = <2>;
-+        };
-+    };
-+...
--- 
-2.9.5
+Thanks for your patch.
+I have one question:
+Do this setting affect the dpi for previous SoCs?
+(8183, 8192, or 8186)
+If we can confirm the original register setting for this offset in
+8183/8192/8186, I think we can clarify this question.
+
+BRs,
+Rex
+
