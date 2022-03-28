@@ -2,108 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B72A54E9706
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A494E9729
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242632AbiC1MxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 08:53:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34968 "EHLO
+        id S242759AbiC1M63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 08:58:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242650AbiC1Mwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:52:54 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51B523ED3E;
-        Mon, 28 Mar 2022 05:51:14 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-de3ca1efbaso15056351fac.9;
-        Mon, 28 Mar 2022 05:51:14 -0700 (PDT)
+        with ESMTP id S242734AbiC1M63 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:58:29 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DFF35D185
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 05:56:41 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id 12so15443573oix.12
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 05:56:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nUNeQRWmWl+TZHkgO/Bfhuvrv+aI+JQn8rKQMeqArOI=;
+        b=m+B3K7ugZ5OAwYa4pyAM9MlQpst948jVTgcf1Y1DXPlHSs7fsNeWABNxCtZMHaFTom
+         M6L+NnEK2r0by4LhkY88o1Lr5iTTKxYOGTYGNcgVeBy2jNQ5drrBoCYIosGgtfuMAyMT
+         6Sp4QDPgvgzF5Vvp0f2Jryl9Y/HgmP5ZxTY5g/VbQHo9uNsNojYGAgxFJRaX7KhQQpe6
+         5qz38TC8XZ5gDVcO0ub8Pn5Vu+SnA1CnAJDgrUbF+9RECxqacP8icdDzwtS0VK/PQ+GK
+         M9YKnj6UyWFAGoogXRQ3w3CllA+3b2e9qSTLmHQz9VH+qvCze3I6hNO9UcTdk6OENW4I
+         s2DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=tvIH566M2naDeof99DqDztnAH/aJCYf9hZLfUroAlzE=;
-        b=w41tTtAVuegvnrp0qRRXn9YnoJUB51KVGMXwWNnhZ7qynC2ZlKhiSJFr0x+/xzcbGK
-         kb2ymzDVOo51SV4hG0Jw7q7dYtQqhVDZWhRvcP8lxlw+gYeL7maHCahyoB5dM8+MK2Lf
-         yjFnPPxCTL+wqWWgstC68PtB5fhqxcCJfwcYkGudOF5MfjRAb/SCWg/EMOv8p71xis8d
-         Cty69ku5gxZKKzSN/2MfNxustSMlGjsoP7rLrrpZOlakYH1iNoE8dooJy2ywmE21I7q8
-         xpm5F8cOw79YCJ7zWmMD9wYHaiqIQmFIVnUBe7XuGUp2evwjgcfVxcJYSOPjCjKTt0+4
-         ZTWw==
-X-Gm-Message-State: AOAM533Xr7lE+7RjY0CSNNxdwxAFg6rht0MZNltxZ4ObkREGmf5HGy7T
-        95ZQuzeJvvgILCHaZKFx+A==
-X-Google-Smtp-Source: ABdhPJxHZ3DRiUohCXK1pGQxTd+pIpKejsX9Ww6u1GMMfHC1FdeHxhL7RxOkTMJMno7hIeqlfFYuOA==
-X-Received: by 2002:a05:6871:b22:b0:dd:9eeb:4292 with SMTP id fq34-20020a0568710b2200b000dd9eeb4292mr14997931oab.223.1648471873557;
-        Mon, 28 Mar 2022 05:51:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m187-20020aca58c4000000b002ef721352easm7183219oib.14.2022.03.28.05.51.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 05:51:12 -0700 (PDT)
-Received: (nullmailer pid 2153572 invoked by uid 1000);
-        Mon, 28 Mar 2022 12:51:05 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-Cc:     "kernel@axis.com" <kernel@axis.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        =?utf-8?b?7KCE66y46riw?= <moonki.jun@samsung.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>
-In-Reply-To: <20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
-References: <CGME20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3> <20220328084319epcms2p3670d7836bb111e0d9c648aeebfde8603@epcms2p3>
-Subject: Re: [PATCH 2/5] dt-bindings: phy: Add ARTPEC-8 PCIe phy
-Date:   Mon, 28 Mar 2022 07:51:05 -0500
-Message-Id: <1648471865.787623.2153571.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nUNeQRWmWl+TZHkgO/Bfhuvrv+aI+JQn8rKQMeqArOI=;
+        b=bqCX+Qc8/BjTYK/ei2KlKBBMht+GIDvz220AXR+X4aEu/Q9QoiNv5HehpLRx422bSx
+         WTq6HgmtmKMqX8wr4Zj3z8PsSmPByUVEOI3UR01KlX/aA4q4sDFFZnhPikv/PtZ5T0DE
+         RTByfC+hAS9C8wd5uH15S5Wlm6B3X+1pk6vY0j7x09CisDD4eFl4em8PmuDgkpIjFNG2
+         SJV2hKaFNSlvyaZ6p1q2I6NofIH6+MbRB7vemvraGPaPunSV5kjrpBlf2RdjRmlWKFT0
+         qM8mGJyznMksM2iSYKknhA747dfr4S/TvIob3hRwqXwUEqzJYThWLE2833c0KgfKemen
+         2VsQ==
+X-Gm-Message-State: AOAM532p2Ox6HqsIwqiZhnoE6W3uQw6neD59x3wd4AGdj0UiQlch2cDv
+        qEI6krtwpBw0p/4IgT0iQrJvgnMj85/ZW0IGhpdwCQ==
+X-Google-Smtp-Source: ABdhPJy+/WTUEiWMY2nCszzkHBUZVRno2ywz0YzqRMh1SKkAwlsfmwZu23hYZkAgED3lpMRz+KxKiki8mNI/Co/iqdM=
+X-Received: by 2002:a05:6808:1b25:b0:2da:32ff:ab73 with SMTP id
+ bx37-20020a0568081b2500b002da32ffab73mr11475623oib.285.1648472201037; Mon, 28
+ Mar 2022 05:56:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220323180022.864567-1-andy.chiu@sifive.com> <20220323180022.864567-4-andy.chiu@sifive.com>
+ <Yj4Wl0zmDtnbxgDb@lunn.ch>
+In-Reply-To: <Yj4Wl0zmDtnbxgDb@lunn.ch>
+From:   Andy Chiu <andy.chiu@sifive.com>
+Date:   Mon, 28 Mar 2022 20:54:32 +0800
+Message-ID: <CABgGipWYUjti1B-kx5nThKNw_WgyeOVeS9rVcWjXFKneKnyx2w@mail.gmail.com>
+Subject: Re: [PATCH v5 net 3/4] dt-bindings: net: add pcs-handle attribute
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     radhey.shyam.pandey@xilinx.com,
+        Robert Hancock <robert.hancock@calian.com>,
+        michal.simek@xilinx.com, davem@davemloft.net, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, Greentime Hu <greentime.hu@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Mar 2022 17:43:19 +0900, 이왕석 wrote:
-> Add description to support Axis, ARTPEC-8 SoC.
-> ARTPEC-8 is the SoC platform of Axis Communications
-> and PCIe phy is designed based on SAMSUNG PHY.
-> 
-> Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
-> ---
->  .../bindings/phy/axis,artpec8-pcie-phy.yaml        | 67 ++++++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
-> 
+Thanks for the suggestion. I have included this in the v6 patch.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Andy
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.example.dt.yaml:0:0: /example-0/artec8/pcie-phy@16c80000: failed to match any schema with compatible: ['samsung,artpec8-pcie-phy']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1610068
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+On Sat, Mar 26, 2022 at 3:23 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > + - pcs-handle:         Phandle to the internal PCS/PMA PHY in SGMII or 1000Base-X
+> > +               modes, where "pcs-handle" should be preferably used to point
+> > +               to the PCS/PMA PHY, and "phy-handle" should point to an
+> > +               external PHY if exists.
+>
+> Since this is a new property, you don't have any backwards
+> compatibility to worry about, don't use 'preferably'. It should point
+> to the PCS/PCA PHY and anything else is wrong for this new property.
+>
+>    Andrew
