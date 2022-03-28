@@ -2,164 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD9A4E8EBC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 09:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 943794E8EBE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 09:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238785AbiC1HM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 03:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40276 "EHLO
+        id S238749AbiC1HNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 03:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238775AbiC1HM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 03:12:56 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3353A52B1E;
-        Mon, 28 Mar 2022 00:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648451476; x=1679987476;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=hr4f8+cDsK/h1Ds3oISluWXp24833q1CFkEor44/K6Q=;
-  b=U29/bqMo0Hh1c43uPU/2sYccfRgEkLJBoTHTzaNm4E7TbFQEeGTomytG
-   f9YQ3lCTkPmYk8A8S0sB0O5a3bd8SL/pagrPtx41N6GEgZsYt9oD5EdSM
-   rqNRDFFTzeme9mIDNZmTe3vni9TA7vsKquurKneDSsz0Y7h4wFhtb5OEo
-   g=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 28 Mar 2022 00:11:16 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2022 00:11:16 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 28 Mar 2022 00:11:15 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 28 Mar 2022 00:11:12 -0700
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
-Subject: [PATCH v3] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
-Date:   Mon, 28 Mar 2022 12:40:57 +0530
-Message-ID: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229457AbiC1HNo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 03:13:44 -0400
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D3D52B1E;
+        Mon, 28 Mar 2022 00:12:04 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id yy13so26683308ejb.2;
+        Mon, 28 Mar 2022 00:12:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=A3bAA5yAZfqHAOyYK98ovGqRH+yACNii1ofYKDFYNqg=;
+        b=SXOqE1mP/YO/ovpX34cLKYdTIcBIsutbGgPpSiFPff3k5JvrikxkLwj5Tuk5OJgtUX
+         7S9dpeDWGd0j9nFdJyV+dALO1FS6c5qZ5kox1cA+yACYV/ZPsGS7Mpsk2B//PDZpEgOQ
+         LcPmD7IpD8sGTqLFHgfpflMezGS2iUWVOvXNvlGdcbdMKaRpcadoT8+6V2xMbdWbhc4M
+         Zbk6ACQENHNcMixiKlt1dWvyTaW8WDWJkKJMKer8iL9qzEx6wMCcK9CPaG7dztHpdVwV
+         0Dj3sDlnXDfkW0h/LzE4LaaO5O8L9qgzfTVUDPWY9H4R/kyOpjT79D3LruNc4kzI+9ma
+         dfgA==
+X-Gm-Message-State: AOAM5300cgio2qvW4rndw/jc9ydU7TN4u8ZRYentjRa/fw3K+N3sin7V
+        aqb4L+F3gLjdIBZGb9LXkME=
+X-Google-Smtp-Source: ABdhPJyliJObAr4tF6MXCnCS1jZfcLUkeUAIEsIcEMEblJ5vxk1/HfCR8+JpaG+PrOtqQCO+7FboMg==
+X-Received: by 2002:a17:907:7ea5:b0:6e1:13c3:e35f with SMTP id qb37-20020a1709077ea500b006e113c3e35fmr2857957ejc.99.1648451521451;
+        Mon, 28 Mar 2022 00:12:01 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.googlemail.com with ESMTPSA id j8-20020aa7c0c8000000b0041934547989sm6540772edp.55.2022.03.28.00.11.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Mar 2022 00:12:00 -0700 (PDT)
+Message-ID: <0716d9e4-24e1-d16c-162c-00a8664296e1@kernel.org>
+Date:   Mon, 28 Mar 2022 09:11:59 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 0/5] Add support for Axis, ARTPEC-8 PCIe driver
+Content-Language: en-US
+To:     wangseok.lee@samsung.com,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>
+Cc:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>,
+        =?UTF-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
+References: <CGME20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p7>
+ <20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p7>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p7>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DTS node for WCN6750 WiFi chipset.
+On 28/03/2022 03:44, 이왕석 wrote:
+> This series patches include newly PCIe support for Axis ARTPEC-8 SoC.
+> ARTPEC-8 is the SoC platform of Axis Communications.
+> PCIe controller driver and phy driver have been newly added.
+> There is also a new MAINTAINER in the addition of phy driver.
+> PCIe controller is designed based on Design-Ware PCIe controller IP
+> and PCIe phy is desinged based on SAMSUNG PHY IP.
+> It also includes modifications to the Design-Ware controller driver to 
+> run the 64bit-based ARTPEC-8 PCIe controller driver.
+> It consists of 6 patches in total.
+> 
+> This series has been tested on AXIS SW bring-up board 
+> with ARTPEC-8 chipset.
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-Depends on:
-- https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/
-- https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/
+You lost mail threading. This makes reading this difficult for us. Plus
+you sent something non-applicable (patch #2), so please resend.
 
-Changes from V2:
-- Changes based on DT binding concerns
-- Rebased on ToT
+Knowing recent Samsung reluctance to extend existing drivers and always
+duplicate, please provide description/analysis why this driver cannot be
+combined with existing driver. The answer like: we need several syscon
+because we do not implement other frameworks (like interconnect) are not
+valid.
 
-Changes from V1:
-- Corrected the case for hex values
-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
- 2 files changed, 53 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 069ffbc37bc4..a82e9aa7bdc5 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -551,3 +551,10 @@ &remoteproc_wpss {
- 	status = "okay";
- };
- 
-+&wifi {
-+	status = "okay";
-+	wifi-firmware {
-+		iommus = <&apps_smmu 0x1c02 0x1>;
-+	};
-+};
-+
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index b757e8ad1199..dfd9fa077903 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -85,6 +85,11 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		wlan_ce_mem: memory@4cd000 {
-+			no-map;
-+			reg = <0x0 0x4cd000 0x0 0x1000>;
-+		};
-+
- 		hyp_mem: memory@80000000 {
- 			reg = <0x0 0x80000000 0x0 0x600000>;
- 			no-map;
-@@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		wifi: wifi@17a10040 {
-+			compatible = "qcom,wcn6750-wifi";
-+			reg = <0 0x17a10040 0 0x0>;
-+			iommus = <&apps_smmu 0x1c00 0x1>;
-+			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
-+			qcom,rproc = <&remoteproc_wpss>;
-+			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
-+			status = "disabled";
-+		};
-+
- 		pcie1: pci@1c08000 {
- 			compatible = "qcom,pcie-sc7280";
- 			reg = <0 0x01c08000 0 0x3000>,
--- 
-2.35.1
-
+Best regards,
+Krzysztof
