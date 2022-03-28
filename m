@@ -2,212 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E023A4E92FB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 13:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D734E9301
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 13:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234838AbiC1LIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 07:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56240 "EHLO
+        id S233183AbiC1LLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 07:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233540AbiC1LIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 07:08:24 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7065955224;
-        Mon, 28 Mar 2022 04:06:40 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id a1so19805486wrh.10;
-        Mon, 28 Mar 2022 04:06:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5zRnuOddM/pnWASo81ZkoEvRnzsP8QPd1DZ1UKdPT4s=;
-        b=TvR0RF4TSiqYGppaBCf3IX0Ss0m3JX0VcGIFPCXzP3QMvO6MmzrY6msrSb0inupxxS
-         ecyJfWtZUcxFWt3sQsvtuHHccIPyaGdqtcvOuWJx3w4tgn49DyGAxEegJB4xF4gfo/xb
-         F85fJG/tPjNn7mMNSrPaBItoYbIbs2XCNPgP+svEYUttrmrN1J+Px7lsmKO59WOB+XAd
-         5eOtnGF5GY4yMTAXsYOyP5RsPo2YkD1IqWw5x0do+FlZj8icNXksB4NtcLPhlk+9XkFp
-         7bzfYW2FYnSoFvU42nMltjFqnbCzqvIcjU6/o/X7QQjLZ+oJhhaP2/JokNTumxlmHnh/
-         wKLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5zRnuOddM/pnWASo81ZkoEvRnzsP8QPd1DZ1UKdPT4s=;
-        b=cIK+EswJnWtH69hv2PScXp8AjU/y8V+bsopDKhJ93Cz5HFps5W4gwLiIh27tYbW+qu
-         ijqnoDebj+zvhbZVeTdxYAtv+aRCPSCjLypXpjNZedFvnrQ9I4F22v1WvCBrQr0CMy2m
-         On/qlaM6Z+tqvAHwvip/fKiR7QRuB8X5BKvXmLVjzfuhhEnIRzPtUphxuFofONVIMGlh
-         jQmi47Nkdy1VX65WYQLGBruxfQMeWevEKoPeerL4+j4i9OO+ZzswkaXV2GmCxQDUq7Xz
-         KGwsNI3OLz+31uD4T+bN26yy7IPBWkPERLsd5zqK3GcTMlvZr6YzdBOx7rckcZ0Dug47
-         yo7A==
-X-Gm-Message-State: AOAM533JDBbAl1TKNis/YpQtCZrDzaNESGhgFrwrNG7ehyPG1KQaGw0f
-        6DpAQpvZVnXNP2P0hzVn1cc=
-X-Google-Smtp-Source: ABdhPJx7rpc/toOY4+iILxDNjbBaHiG5lJc9/4OUSNSkreGSfS2g+0AIDa2rLFDWRYiR8xh8/HtdcQ==
-X-Received: by 2002:adf:e744:0:b0:204:213:ae40 with SMTP id c4-20020adfe744000000b002040213ae40mr23462516wrn.344.1648465598948;
-        Mon, 28 Mar 2022 04:06:38 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id h9-20020a05600c350900b0038cbcbcf994sm11873706wmq.36.2022.03.28.04.06.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 04:06:38 -0700 (PDT)
-Message-ID: <c62c29d1-e373-a0f2-482b-98c70cf22b4b@gmail.com>
-Date:   Mon, 28 Mar 2022 13:06:37 +0200
+        with ESMTP id S230080AbiC1LLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 07:11:13 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470C51A81D
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 04:09:32 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1nYnFX-0000jR-1o; Mon, 28 Mar 2022 13:09:27 +0200
+Message-ID: <74e74ea8-1554-bf08-b0ea-36e77259cb18@pengutronix.de>
+Date:   Mon, 28 Mar 2022 13:09:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 21/22] arm64: dts: mt8192: Add gce info for display
- nodes
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 3/5] arm64: dts: imx8mp: Enable HS400-ES
 Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+To:     Adam Ford <aford173@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-22-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220318144534.17996-22-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+References: <20220327123835.28329-1-aford173@gmail.com>
+ <20220327123835.28329-3-aford173@gmail.com>
+ <c964bf2c-f7bf-451c-1691-02903f20c634@pengutronix.de>
+ <CAHCN7xL05pBK0uK7zuE7Uq4P9Rzo6bHbJdbOt5XnQRB7Sh3msw@mail.gmail.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <CAHCN7xL05pBK0uK7zuE7Uq4P9Rzo6bHbJdbOt5XnQRB7Sh3msw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Adam,
+
+On 28.03.22 12:47, Adam Ford wrote:
+> On Mon, Mar 28, 2022 at 2:20 AM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
+>>
+>> Hello Adam,
+>>
+>> On 27.03.22 14:38, Adam Ford wrote:
+>>> The SDHC controller in the imx8mp has the same controller
+>>> as the imx8mm which supports HS400-ES. Change the compatible
+>>> fallback to imx8mm to enable it.
+>>
+>> I believe that's a shortcoming of the Linux driver, which should explicitly list
+>> fsl,imx8mp-usdhc in its compatibles and enable HS400-ES for it.
+>>
+>> I find dropping compatibles problematic, because like Linux matching
+>> fsl,imx8mm-usdhc, but not fsl,imx8mp-usdhc, other software may match
+>> fsl,imx7d-usdhc, but not fsl,imx8[mp]-usdhc.
+>>
+>> I'd prefer that either the kernel driver gains extra compatibles or that
+>> the DTS lists extra compatibles and we refrain from dropping existing
+>> (correct) ones.
+>>
+> 
+> I would argue that imx7d is not correct since the IP blocks between
+> imx7d and imx8mm have different flags/quirks.  One of which includes
+> HS400-ES, but there are other differences as well.
+
+The DTS currently says that an fsl,imx7d-usdhc is a subset of an
+fsl,imx8mm-usdhc. So a driver could treat both HW the exact same
+by focusing on the i.MX7D parts. Linux apparently did exactly
+that so far. Is this not accurate?
 
 
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add gce info for display nodes
-> - It's required to get drivers' CMDQ support
+>> What do you think?
+> 
+> From my understanding of the fallback compatibility strings is to
+> avoid having to add more and more compatible strings to the drivers
+> when they do not serve a functional purpose. Based On a conversation
+> with Krzysztof [1], he suggested we update the YAML file based on the
+> fallback, but he wanted NXP to give their feedback as to what the
+> right fallback strings should be.  Haibo from NXP sent me a hierarchy
+> [1] which is what I used to update the YAML file.  Based on the YAML
+> file, the fallback in each DTSI file was updated to ensure the use of
+> the proper IP block.
+
+Myself I am in favor of moving to three compatibles instead of dropping one.
+For some theoretical fsl,imx8mf-usdhc that's supposed to be exactly the same
+as a fsl,imx8mm-usdhc, I don't mind omitting the fsl,imx7d-usdhc compatible,
+but for existing device trees, this may introduce needless potential breakage
+for other software that also uses Linux device trees.
+
+Cheers,
+Ahmad
+
+> 
+> adam
+> 
+> [1] - https://lore.kernel.org/linux-arm-kernel/CAHCN7xLWoUGi-jfxR2a0gvEFkPT3USUEb+8U3CCqCb5wWEJ8xw@mail.gmail.com/T/
+> 
+>>
+>> Cheers,
+>> Ahmad
+>>
+>>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>>> ---
+>>>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 6 +++---
+>>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> index 794d75173cf5..d5ee1520f1fe 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> @@ -769,7 +769,7 @@ i2c6: i2c@30ae0000 {
+>>>                       };
+>>>
+>>>                       usdhc1: mmc@30b40000 {
+>>> -                             compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
+>>> +                             compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc";
+>>>                               reg = <0x30b40000 0x10000>;
+>>>                               interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+>>>                               clocks = <&clk IMX8MP_CLK_DUMMY>,
+>>> @@ -783,7 +783,7 @@ usdhc1: mmc@30b40000 {
+>>>                       };
+>>>
+>>>                       usdhc2: mmc@30b50000 {
+>>> -                             compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
+>>> +                             compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc";
+>>>                               reg = <0x30b50000 0x10000>;
+>>>                               interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+>>>                               clocks = <&clk IMX8MP_CLK_DUMMY>,
+>>> @@ -797,7 +797,7 @@ usdhc2: mmc@30b50000 {
+>>>                       };
+>>>
+>>>                       usdhc3: mmc@30b60000 {
+>>> -                             compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
+>>> +                             compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc";
+>>>                               reg = <0x30b60000 0x10000>;
+>>>                               interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>>>                               clocks = <&clk IMX8MP_CLK_DUMMY>,
+>>
+>>
+>> --
+>> Pengutronix e.K.                           |                             |
+>> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 > 
 
-What keeps us from adding that in the display nodes in patch 18/22 of this 
-series? When doing so, please mention in the commit message that we then need to 
-add the GCE to the mmsys node.
 
-Regards,
-Matthias
-
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 08e0dd2483d1..f0f0f067c023 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1203,6 +1203,9 @@
->   		mmsys: syscon@14000000 {
->   			compatible = "mediatek,mt8192-mmsys", "syscon";
->   			reg = <0 0x14000000 0 0x1000>;
-> +			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST 1>,
-> +				 <&gce 1 CMDQ_THR_PRIO_HIGHEST 1>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->   			#clock-cells = <1>;
->   			#reset-cells = <1>;
->   		};
-> @@ -1212,6 +1215,8 @@
->   			reg = <0 0x14001000 0 0x1000>;
->   			interrupts = <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH 0>;
->   			clocks = <&mmsys CLK_MM_DISP_MUTEX0>;
-> +			mediatek,gce-events = <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_0>,
-> +					      <CMDQ_EVENT_DISP_STREAM_DONE_ENG_EVENT_1>;
->   		};
->   
->   		smi_common: smi@14002000 {
-> @@ -1253,6 +1258,7 @@
->   			iommus = <&iommu0 M4U_PORT_L0_OVL_RDMA0>,
->   				 <&iommu0 M4U_PORT_L0_OVL_RDMA0_HDR>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x5000 0x1000>;
->   		};
->   
->   		ovl_2l0: ovl@14006000 {
-> @@ -1263,6 +1269,7 @@
->   			clocks = <&mmsys CLK_MM_DISP_OVL0_2L>;
->   			iommus = <&iommu0 M4U_PORT_L1_OVL_2L_RDMA0>,
->   				 <&iommu0 M4U_PORT_L1_OVL_2L_RDMA0_HDR>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x6000 0x1000>;
->   		};
->   
->   		rdma0: rdma@14007000 {
-> @@ -1274,6 +1281,7 @@
->   			mediatek,larb = <&larb0>;
->   			mediatek,rdma-fifo-size = <5120>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x7000 0x1000>;
->   		};
->   
->   		color0: color@14009000 {
-> @@ -1283,6 +1291,7 @@
->   			interrupts = <GIC_SPI 258 IRQ_TYPE_LEVEL_HIGH 0>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   			clocks = <&mmsys CLK_MM_DISP_COLOR0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x9000 0x1000>;
->   		};
->   
->   		ccorr0: ccorr@1400a000 {
-> @@ -1291,6 +1300,7 @@
->   			interrupts = <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   			clocks = <&mmsys CLK_MM_DISP_CCORR0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xa000 0x1000>;
->   		};
->   
->   		aal0: aal@1400b000 {
-> @@ -1300,6 +1310,7 @@
->   			interrupts = <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   			clocks = <&mmsys CLK_MM_DISP_AAL0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xb000 0x1000>;
->   		};
->   
->   		gamma0: gamma@1400c000 {
-> @@ -1309,6 +1320,7 @@
->   			interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   			clocks = <&mmsys CLK_MM_DISP_GAMMA0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
->   		};
->   
->   		postmask0: postmask@1400d000 {
-> @@ -1318,6 +1330,7 @@
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   			clocks = <&mmsys CLK_MM_DISP_POSTMASK0>;
->   			iommus = <&iommu0 M4U_PORT_L0_DISP_POSTMASK0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
->   		};
->   
->   		dither0: dither@1400e000 {
-> @@ -1327,6 +1340,7 @@
->   			interrupts = <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH 0>;
->   			power-domains = <&spm MT8192_POWER_DOMAIN_DISP>;
->   			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
->   		};
->   
->   		dsi0: dsi@14010000 {
-> @@ -1351,6 +1365,7 @@
->   			clocks = <&mmsys CLK_MM_DISP_OVL2_2L>;
->   			iommus = <&iommu0 M4U_PORT_L1_OVL_2L_RDMA2>,
->   				 <&iommu0 M4U_PORT_L1_OVL_2L_RDMA2_HDR>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x4000 0x1000>;
->   		};
->   
->   		rdma4: rdma@14015000 {
-> @@ -1361,6 +1376,7 @@
->   			clocks = <&mmsys CLK_MM_DISP_RDMA4>;
->   			iommus = <&iommu0 M4U_PORT_L1_DISP_RDMA4>;
->   			mediatek,rdma-fifo-size = <2048>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x5000 0x1000>;
->   		};
->   
->   		dpi0: dpi@14016000 {
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
