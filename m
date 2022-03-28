@@ -2,96 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E404E8B65
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 03:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6815E4E8B8E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 03:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237202AbiC1BCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Mar 2022 21:02:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51044 "EHLO
+        id S234171AbiC1B1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Mar 2022 21:27:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237190AbiC1BCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 21:02:31 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AC2424ECDC;
-        Sun, 27 Mar 2022 18:00:50 -0700 (PDT)
-Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net [81.96.50.79])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 627B4140197;
-        Mon, 28 Mar 2022 00:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1648428630;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=EGfRjZnta91pDqb00FS0IyJHpRVsoSTogbe12bpoSb4=;
-        b=X2zG46B5pNwGoT2nQfsdZaf9YtNrhXf8GJcEiWdevtF2Cm6PHVN0aslA0XeQHeQsnXffpP
-        4zkZbszn7nISfJH8uRfhYZzXd0xZvY/eliL/ukQjDWcLR7igIDsWkSD0QOynje6lLG/y0n
-        yp2Q+GNFhUsOWbUasS1mqbuZYZfeYUM=
-From:   Caleb Connolly <kc@postmarketos.org>
-To:     Caleb Connolly <kc@postmarketos.org>,
+        with ESMTP id S229812AbiC1B1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 21:27:34 -0400
+X-Greylist: delayed 64 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 27 Mar 2022 18:25:55 PDT
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 519F833A22
+        for <devicetree@vger.kernel.org>; Sun, 27 Mar 2022 18:25:55 -0700 (PDT)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 28 Mar 2022 10:24:46 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 9A7692058B50;
+        Mon, 28 Mar 2022 10:24:46 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 28 Mar 2022 10:24:46 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 1EC2BB62B7;
+        Mon, 28 Mar 2022 10:24:45 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martijn@brixit.nl,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Subject: [PATCH 4/4] arm64: dts: rockchip: rk3399: add an input enable pinconf
-Date:   Mon, 28 Mar 2022 01:50:05 +0100
-Message-Id: <20220328005005.72492-5-kc@postmarketos.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220328005005.72492-1-kc@postmarketos.org>
-References: <20220328005005.72492-1-kc@postmarketos.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH] dt-bindings: reset: Add parent "resets" property as optional
+Date:   Mon, 28 Mar 2022 10:24:38 +0900
+Message-Id: <1648430678-21631-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a pinconf to configure pins as input-enable.
+LD11 mio reset controller has a reset lines from system controller.
+Add parent "resets" property to fix the following warning.
 
-Signed-off-by: Caleb Connolly <kc@postmarketos.org>
+  uniphier-ld11-global.dt.yaml: reset: 'resets' does not match any of the regexes: 'pinctrl-[0-9]+'
+      From schema: Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml
+
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../devicetree/bindings/reset/socionext,uniphier-reset.yaml    | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 080457a68e3c..9b111bd89f0a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -2188,6 +2188,22 @@ pcfg_output_low: pcfg-output-low {
- 			output-low;
- 		};
+diff --git a/Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml b/Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml
+index 377a7d242323..f2a848c74f1e 100644
+--- a/Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml
+@@ -55,6 +55,9 @@ properties:
+   "#reset-cells":
+     const: 1
  
-+		pcfg_input_enable: pcfg-input-enable {
-+			input-enable;
-+		};
++  resets:
++    minItems: 1
 +
-+		pcfg_input_pull_up: pcfg-input-pull-up {
-+			input-enable;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+		};
-+
-+		pcfg_input_pull_down: pcfg-input-pull-down {
-+			input-enable;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+		};
-+
- 		clock {
- 			clk_32k: clk-32k {
- 				rockchip,pins = <0 RK_PA0 2 &pcfg_pull_none>;
+ additionalProperties: false
+ 
+ required:
 -- 
-2.35.1
+2.25.1
 
