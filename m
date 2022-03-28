@@ -2,140 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC554E9C1C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 141744E9C29
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 18:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240751AbiC1QVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 12:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57722 "EHLO
+        id S241956AbiC1QYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 12:24:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238330AbiC1QVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:21:04 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB666286CA
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:19:21 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id w127so16096260oig.10
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 09:19:21 -0700 (PDT)
+        with ESMTP id S238203AbiC1QYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 12:24:25 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C022FFEA;
+        Mon, 28 Mar 2022 09:22:44 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id w17-20020a056830111100b005b22c584b93so11009532otq.11;
+        Mon, 28 Mar 2022 09:22:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=vW4v9OBWVf9F8JZF4dpJV9gM99E7La/GPmHi75psITE=;
-        b=Z1nmxWWl7J31o9S4vHZnVJPX4yfNI6cNffY0J8nVLnC1uPK6aBwTaZVuAk+C3j8aju
-         h/lksM4PYFJyGskrGdyyh43Y/sVCrnC6EE+C19XmnHhd7uj1Z43QFP+wfQNVMXin46DP
-         RXuf7pTKWgcEbJjv+tKFd/cwznRj91w94nVcSkx01HVlYiE124z8mmnjxs/kApVLiGaj
-         FQc/j5F6679AwrDmQjbU/rqrmbFHj7Kgb9/q4mPX+aoH1/1oCOS/dwzVoxEMUFaTCFhd
-         kTiS4egcfnfXealjx9nbVNqeNKGR3ttxJjIWq2BjBCHFv6TNotyt1QSt8n5TcEMBTPcW
-         RMaA==
-X-Gm-Message-State: AOAM5302XwajclI0UX7gcbpzet4zLWcq428ngRcHq9O5Mx/T9gyhLSfx
-        syIP86jMOlFtvwgA93+iyA==
-X-Google-Smtp-Source: ABdhPJyHGyfEdk9HjsAEd48GMX2ItCKLaBiPerKnwYpQTh5Wz9QGheUFg9WsB+Nf55KgXnmD6YlVgg==
-X-Received: by 2002:a54:450e:0:b0:2ef:3c3f:f61d with SMTP id l14-20020a54450e000000b002ef3c3ff61dmr12220862oil.99.1648484361154;
-        Mon, 28 Mar 2022 09:19:21 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=J1jMR9dXB4EBClhx/VkwbBtXY45OnmdTpgwd1QsgBQ0=;
+        b=MhE+obHAa1C9fRo/5Blx9G6NbyqbnNQUzkUnOEuBMPi9fODml7nwUVMmZvjD8UpCO/
+         18KVdmtxCZcpNqwfpHZa2GHAnH9R8e0srvxbDzg1z4iLWHp5SlOrD40oCaFh71Y61quu
+         Dw+O7FXP7rM17uopU6UWBvJFsQUAGHLySh8z+M+EgR5thQs1RmwitNwn/Px6ZJ9GZOkH
+         PrPxfC0KHTfXXXZQedxuDTxbld2M4/mYFnpkLwDMTNJnxtnYnduAhrmthUmczR4Xj28o
+         ABm7uDcntb0PeDLp2GEAXT+QWcDbTbiS9xoSVHNrpd+LltcgnbCFo9mF6Aba8WOTs7aa
+         dk7A==
+X-Gm-Message-State: AOAM531NKXQMArL80WAFpRVChgbrs3lLgvsLGer3h2g+yFvnryWoVC6g
+        ZvVMiR0SSed5STLsQodDtA==
+X-Google-Smtp-Source: ABdhPJxrUjcZd0pzxFr4q2rWryMDDV/OHhC+GnOG4OjChVysYlaPrNdSQQtr2s79Mp1NPLmf4hpKdg==
+X-Received: by 2002:a05:6830:1f5b:b0:5a2:2ec7:4ea4 with SMTP id u27-20020a0568301f5b00b005a22ec74ea4mr10412065oth.206.1648484563468;
+        Mon, 28 Mar 2022 09:22:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e12-20020a4aa60c000000b00324bb45d7ecsm6653479oom.48.2022.03.28.09.19.19
+        by smtp.gmail.com with ESMTPSA id e4-20020a056808148400b002d9be41b179sm7702224oiw.50.2022.03.28.09.22.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 09:19:20 -0700 (PDT)
-Received: (nullmailer pid 2492249 invoked by uid 1000);
-        Mon, 28 Mar 2022 16:19:18 -0000
-Date:   Mon, 28 Mar 2022 11:19:18 -0500
+        Mon, 28 Mar 2022 09:22:42 -0700 (PDT)
+Received: (nullmailer pid 2497885 invoked by uid 1000);
+        Mon, 28 Mar 2022 16:22:41 -0000
+Date:   Mon, 28 Mar 2022 11:22:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rui Miguel Silva <rui.silva@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: add corstone1000 platform
-Message-ID: <YkHgBshQv0w1YS0t@robh.at.kernel.org>
-References: <20220325133655.4177977-1-rui.silva@linaro.org>
- <20220325133655.4177977-2-rui.silva@linaro.org>
- <5c00707d-4e15-ef6b-2916-8d5bde5498d8@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: uniphier: Convert uniphier-pcie.txt to
+ json-schema
+Message-ID: <YkHg0UeS9kPOW6Kf@robh.at.kernel.org>
+References: <1648433498-23450-1-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5c00707d-4e15-ef6b-2916-8d5bde5498d8@kernel.org>
+In-Reply-To: <1648433498-23450-1-git-send-email-hayashi.kunihiko@socionext.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 25, 2022 at 06:29:05PM +0100, Krzysztof Kozlowski wrote:
-> On 25/03/2022 14:36, Rui Miguel Silva wrote:
-> > Add bindings to describe the FPGA in a prototyping board
-> > (MPS3) implementation and the Fixed Virtual Platform
-> > implementation of the ARM Corstone1000 platform.
-> > 
-> > Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
-> > ---
-> >  .../bindings/arm/arm,corstone1000.yaml        | 45 +++++++++++++++++++
-> >  1 file changed, 45 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml b/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
-> > new file mode 100644
-> > index 000000000000..a77f88223801
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
-> > @@ -0,0 +1,45 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/arm,corstone1000.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ARM Corstone1000 Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Vishnu Banavath <vishnu.banavath@arm.com>
-> > +  - Rui Miguel Silva <rui.silva@linaro.org>
-> > +
-> > +description: |+
-> > +  ARM's Corstone1000 includes pre-verified Corstone SSE-710 subsystem that
-> > +  provides a flexible compute architecture that combines Cortex‑A and Cortex‑M
-> > +  processors.
-> > +
-> > +  Support for Cortex‑A32, Cortex‑A35 and Cortex‑A53 processors. Two expansion
-> > +  systems for M-Class (or other) processors for adding sensors, connectivity,
-> > +  video, audio and machine learning at the edge System and security IPs to build
-> > +  a secure SoC for a range of rich IoT applications, for example gateways, smart
-> > +  cameras and embedded systems.
-> > +
-> > +  Integrated Secure Enclave providing hardware Root of Trust and supporting
-> > +  seamless integration of the optional CryptoCell™-312 cryptographic
-> > +  accelerator.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: '/'
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: Corstone1000 MPS3 it has 1 Cortex-A35 CPU core in a FPGA
-> > +          implementation of the Corstone1000 in the MPS3 prototyping board. See
-> > +          ARM document DAI0550.
-> > +        items:
-> > +          - const: arm,corstone1000-mps3
+On Mon, Mar 28, 2022 at 11:11:38AM +0900, Kunihiko Hayashi wrote:
+> Convert the file into a JSON description at the yaml format.
 > 
-> If I understood correctly your description and DAI0550, the MPS3 board
-> is a board with Corstone 100, so you miss here compatible for the chip
-> (e.g. arm,corstone1000).
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  .../bindings/pci/socionext,uniphier-pcie.yaml | 100 ++++++++++++++++++
+>  .../devicetree/bindings/pci/uniphier-pcie.txt |  82 --------------
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 101 insertions(+), 83 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/uniphier-pcie.txt
 > 
-> I guess similar pattern for the FVP, so both should be combined within
-> an enum (skipping all this description).
+> diff --git a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+> new file mode 100644
+> index 000000000000..57176f62f955
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/socionext,uniphier-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Socionext UniPhier PCIe host controller
+> +
+> +description: |
+> +  UniPhier PCIe host controller is based on the Synopsys DesignWare
+> +  PCI core. It shares common features with the PCIe DesignWare core and
+> +  inherits common properties defined in
+> +  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
+> +
+> +maintainers:
+> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - socionext,uniphier-pcie
+> +
+> +  reg:
+> +    minItems: 3
+> +    maxItems: 4
+> +
+> +  reg-names:
+> +    oneOf:
+> +      - items:
+> +          - const: dbi
+> +          - const: link
+> +          - const: config
+> +      - items:
+> +          - const: dbi
+> +          - const: link
+> +          - const: config
+> +          - const: atu
 
-Corstone1000 is a collection of IP that would be the basis for an SoC. 
-These 2 are FVP and FPGA implementations of corstone1000 with additional 
-IP to make them usable (e.g. USB and ethernet). Each one as a whole is 
-a one off AIUI. So I don't think they really fit into our board plus SoC 
-compatible patten and are fine as-is.
+You can have just the 2nd list plus 'minItems: 3' to do the same thing.
 
-Rob
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  num-viewport: true
+> +
+> +  num-lanes: true
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    const: pcie-phy
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - resets
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie: pcie@66000000 {
+> +        compatible = "socionext,uniphier-pcie";
+> +        reg-names = "dbi", "link", "config";
+> +        reg = <0x66000000 0x1000>, <0x66010000 0x10000>, <0x2fff0000 0x10000>;
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        clocks = <&sys_clk 24>;
+> +        resets = <&sys_rst 24>;
+> +        num-lanes = <1>;
+> +        num-viewport = <1>;
+> +        bus-range = <0x0 0xff>;
+> +        device_type = "pci";
+> +        ranges = <0x81000000 0 0x00000000  0x2ffe0000  0 0x00010000>,
+> +                 <0x82000000 0 0x00000000  0x20000000  0 0x0ffe0000>;
+> +        phy-names = "pcie-phy";
+> +        phys = <&pcie_phy>;
+> +        #interrupt-cells = <1>;
+> +        interrupt-names = "dma", "msi";
+> +        interrupts = <0 224 4>, <0 225 4>;
+> +        interrupt-map-mask = <0 0 0  7>;
+> +        interrupt-map = <0 0 0  1  &pcie_intc 0>,
+> +                        <0 0 0  2  &pcie_intc 1>,
+> +                        <0 0 0  3  &pcie_intc 2>,
+> +                        <0 0 0  4  &pcie_intc 3>;
+> +
+> +        pcie_intc: legacy-interrupt-controller {
+> +            interrupt-controller;
+> +            #interrupt-cells = <1>;
+> +            interrupt-parent = <&gic>;
+> +            interrupts = <0 226 4>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pci/uniphier-pcie.txt b/Documentation/devicetree/bindings/pci/uniphier-pcie.txt
+> deleted file mode 100644
+> index 359585db049f..000000000000
+> --- a/Documentation/devicetree/bindings/pci/uniphier-pcie.txt
+> +++ /dev/null
+> @@ -1,82 +0,0 @@
+> -Socionext UniPhier PCIe host controller bindings
+> -
+> -This describes the devicetree bindings for PCIe host controller implemented
+> -on Socionext UniPhier SoCs.
+> -
+> -UniPhier PCIe host controller is based on the Synopsys DesignWare PCI core.
+> -It shares common functions with the PCIe DesignWare core driver and inherits
+> -common properties defined in
+> -Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
+> -
+> -Required properties:
+> -- compatible: Should be "socionext,uniphier-pcie".
+> -- reg: Specifies offset and length of the register set for the device.
+> -	According to the reg-names, appropriate register sets are required.
+> -- reg-names: Must include the following entries:
+> -    "dbi"    - controller configuration registers
+> -    "link"   - SoC-specific glue layer registers
+> -    "config" - PCIe configuration space
+> -    "atu"    - iATU registers for DWC version 4.80 or later
+> -- clocks: A phandle to the clock gate for PCIe glue layer including
+> -	the host controller.
+> -- resets: A phandle to the reset line for PCIe glue layer including
+> -	the host controller.
+> -- interrupts: A list of interrupt specifiers. According to the
+> -	interrupt-names, appropriate interrupts are required.
+> -- interrupt-names: Must include the following entries:
+> -    "dma" - DMA interrupt
+> -    "msi" - MSI interrupt
+> -
+> -Optional properties:
+> -- phys: A phandle to generic PCIe PHY. According to the phy-names, appropriate
+> -	phys are required.
+> -- phy-names: Must be "pcie-phy".
+> -
+> -Required sub-node:
+> -- legacy-interrupt-controller: Specifies interrupt controller for legacy PCI
+> -	interrupts.
+> -
+> -Required properties for legacy-interrupt-controller:
+> -- interrupt-controller: identifies the node as an interrupt controller.
+> -- #interrupt-cells: specifies the number of cells needed to encode an
+> -	interrupt source. The value must be 1.
+> -- interrupt-parent: Phandle to the parent interrupt controller.
+> -- interrupts: An interrupt specifier for legacy interrupt.
+> -
+> -Example:
+> -
+> -	pcie: pcie@66000000 {
+> -		compatible = "socionext,uniphier-pcie", "snps,dw-pcie";
+> -		status = "disabled";
+> -		reg-names = "dbi", "link", "config";
+> -		reg = <0x66000000 0x1000>, <0x66010000 0x10000>,
+> -		      <0x2fff0000 0x10000>;
+> -		#address-cells = <3>;
+> -		#size-cells = <2>;
+> -		clocks = <&sys_clk 24>;
+> -		resets = <&sys_rst 24>;
+> -		num-lanes = <1>;
+> -		num-viewport = <1>;
+> -		bus-range = <0x0 0xff>;
+> -		device_type = "pci";
+> -		ranges =
+> -		/* downstream I/O */
+> -			<0x81000000 0 0x00000000  0x2ffe0000  0 0x00010000
+> -		/* non-prefetchable memory */
+> -			 0x82000000 0 0x00000000  0x20000000  0 0x0ffe0000>;
+> -		#interrupt-cells = <1>;
+> -		interrupt-names = "dma", "msi";
+> -		interrupts = <0 224 4>, <0 225 4>;
+> -		interrupt-map-mask = <0 0 0  7>;
+> -		interrupt-map = <0 0 0  1  &pcie_intc 0>,	/* INTA */
+> -				<0 0 0  2  &pcie_intc 1>,	/* INTB */
+> -				<0 0 0  3  &pcie_intc 2>,	/* INTC */
+> -				<0 0 0  4  &pcie_intc 3>;	/* INTD */
+> -
+> -		pcie_intc: legacy-interrupt-controller {
+> -			interrupt-controller;
+> -			#interrupt-cells = <1>;
+> -			interrupt-parent = <&gic>;
+> -			interrupts = <0 226 4>;
+> -		};
+> -	};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4cc47b2dbdc9..c1d377be991c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15337,7 +15337,7 @@ PCIE DRIVER FOR SOCIONEXT UNIPHIER
+>  M:	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>  L:	linux-pci@vger.kernel.org
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/pci/uniphier-pcie*
+> +F:	Documentation/devicetree/bindings/pci/socionext,uniphier-pcie*
+>  F:	drivers/pci/controller/dwc/pcie-uniphier*
+>  
+>  PCIE DRIVER FOR ST SPEAR13XX
+> -- 
+> 2.25.1
+> 
+
