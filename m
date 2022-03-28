@@ -2,93 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D371D4EA079
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 21:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B65EC4EA122
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 22:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344123AbiC1TvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 15:51:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41982 "EHLO
+        id S235927AbiC1UJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 16:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345649AbiC1TuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 15:50:02 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A205DB13;
-        Mon, 28 Mar 2022 12:47:45 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 84FAD83F7E;
-        Mon, 28 Mar 2022 21:47:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1648496862;
-        bh=Cjl9mSicvUiED0u0YTBFHqN+vdDBzVXFMydlI4w/oTI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JZV8+nHqD4JMDUBF/Yv2Rh/vXeYOeZmiYm7aWhEuw9/qZzvB8v1dX0hl9W4eAnMb5
-         zuOH6UUXNXlQso7UvOzcs7vbr782EkbDTMa6wgrk1JSy66HFy+gCCciTw0lySmhAN3
-         nNtmlhT4yAoGylbqfmaOxvJtJ4eV0JevQ8DDIRG0nuhqfqa5WRdhfm+jpx2SxMHCYH
-         RJnDdcliCnZdctL1pnl5ffiRPfEzA/+uCwPLbGX0wtAr8hJqU0HETBZEoJq7n0QL+Z
-         iLQNxaoZay75xZVjRAzvMdKQGdXibS6efmxKOv0ffD7Wmf1di7VscDlhTDudFCdHcs
-         mOzO7B3uWkg2g==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-iio@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 02/10] dt-bindings: iio: adc: ti,ads1015: Add TLA2024 compatible string
-Date:   Mon, 28 Mar 2022 21:47:17 +0200
-Message-Id: <20220328194725.149150-2-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220328194725.149150-1-marex@denx.de>
-References: <20220328194725.149150-1-marex@denx.de>
+        with ESMTP id S1344313AbiC1UHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 16:07:53 -0400
+Received: from esa3.hgst.iphmx.com (esa3.hgst.iphmx.com [216.71.153.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418D25F26D
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 13:06:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1648497970; x=1680033970;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=uORNMvPmP6/EGG6KNMeYZz0EehS8+XAJTLN+nowe+gk=;
+  b=ruBaEJ3Pb7GVcFb4DXH9b8Raans1zxWdb3e2YhyN9g5xgUc1QxmaweYH
+   /XxUTA7za6CrqeYUxFd5AGsDwn7cYdDbfjkb5kA7mpO6pm8CZIQHciR5e
+   RnZ+HFfSmUDa1s4YRi5eKFYy2ODxbOhTWagURNjS3QX6zSgmocI/p0dOV
+   iWNH76manSjI4hTgp906R5JFyqDKhssCt/Pyp0HDZhvhvw/AuwXWz7V7G
+   QiIrE7FLF+JTPPXgIKAx1G2m9eXDQDcO4D0c9Hbgsaq0oCyXwvjfKcIjT
+   J2K4HhXglfhkQ7765kqffcEwA+Cg6YgViAvN7sgf1JkS6jCnJrbQ126DA
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,218,1643644800"; 
+   d="scan'208";a="201320409"
+Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 29 Mar 2022 04:06:10 +0800
+IronPort-SDR: Q/ZwW05WSb2E1Nbrr5+F+8km0cQ/uDsdnOeoKwt30g9uvpkviZkAPUDxUZFiRArjiTuGq3acL8
+ oEJGkcfholNFXiEjy/ebDsbMG+aR2NFN5SouZi39gM01roltjMpKs33Cdvo+Jo1/nej6JA9ja0
+ Zqu7bwJ+YdOnWxu31DSeRzhxnhI3eSbmQf29UijyTSQuHHxfh7QxsTrROWCgOzMgCxoENab2GX
+ JfSXEcN/BPZ9u3bNNMT9t7hw3RFECAdtk+/FLr2FVWqotD3KaG8wFLtNsdINHmu2xdj4RoxWUK
+ 8zxkBzYKsLiz/qFgd//jSnh1
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Mar 2022 12:37:02 -0700
+IronPort-SDR: cVHqV7iRkTJQBhEznbymoiw/43qfNa8HOiqXBj/pGjB50jAX1G8yrRORye1z9Vo0ZDeOx4eF5Q
+ vP/muCMppK29J9oG3HF/6xKEHL6D12JnUv7kT/cS6Eqf4aWhxw+0MW8qWXXLu1rlwvcMLOlcGa
+ MPqhyUomcgEqsBoiSLgvfP7g44b5MfBOVSwkXMuc/5AApyzMFkse3jqclPuL/DWI7ZHSjyXZcJ
+ 4Bpg3gXtpY/PvLXKZ3QWFrekdjrDM979O7adR8dU/BgQF6luHjRY/KKoU0XzywEWL4d2Y34Cog
+ Q8g=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Mar 2022 13:06:11 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4KS3c161bNz1SHwl
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 13:06:09 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1648497966; x=1651089967; bh=uORNMvPmP6/EGG6KNMeYZz0EehS8+XAJTLN
+        +nowe+gk=; b=Hybu7y8DH6ioZErSyJ6RlBbJhAJpuXbAvqdAMfXLkWLsp5DOaX2
+        /mdmXKdqgX+GB51IXQpiFQ8RJ3vAUoR0gPZr5ne5MsxHwrlUvkKoRo+EJeyytb9W
+        v/nH9CPaCgA9n9D2EsPrIzKPPcwEK0k58hxoHCbdKuU5iDlY95b9b95SQS3JY1nM
+        /nMjZR24EzwRjLGdJC5xn02vfb51oan3JVx/HDkKWSGKMpzV3uxAXwn1xSUAQiWO
+        O9SYjSfSYOCPhrxO5d9jjxB428F1UmXK2XIQiA0ugcr9xKV33Fe7VZEhL7FOTCj4
+        MivuogtqZS4DWepss7JAqJb9eYYywpCuqHw==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id j1yE9H6077fd for <devicetree@vger.kernel.org>;
+        Mon, 28 Mar 2022 13:06:06 -0700 (PDT)
+Received: from [10.225.163.121] (unknown [10.225.163.121])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4KS3bx2qwMz1Rvlx;
+        Mon, 28 Mar 2022 13:06:05 -0700 (PDT)
+Message-ID: <382eecca-f225-5272-b9d7-134c7baae4ae@opensource.wdc.com>
+Date:   Tue, 29 Mar 2022 05:06:03 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 00/21] ata: ahci: Add DWC/Baikal-T1 AHCI SATA support
+Content-Language: en-US
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ti,tla2024 compatible string. This device is compatible with
-ADS1015 except it has no on-chip comparator.
+On 3/24/22 09:16, Serge Semin wrote:
+[...]
+> After the denoted above functionality is added we can finally introduce
+> the Baikal-T1 AHCI SATA controller support into the DWC AHCI SATA driver.
+> The controller is based on the DWC AHCI SATA IP-core v4.10a and can work
+> well with the generic DWC AHCI driver. The only peculiarity of it is
+> connected with the SATA Ports reference clock source. It can be supplied
+> either from the internal SoC PLL or from the chip pads. Currently we have
+> to prefer selecting the signal coming from the pads if the corresponding
+> clock source is specified because the link doesn't get stably established
+> when the internal clock signal is activated. In addition the platform has
+> trigger-based reset signals so the corresponding flag must be passed to
+> the generic AHCI-resource getter.
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Andy Shevchenko <andy@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
-V2: Add AB from Krzysztof
-V3: No change
-V4: No change
-V5: No change
----
- Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml | 1 +
- 1 file changed, 1 insertion(+)
+I am assuming this is "v2" of your patches. Please add this version number
+to your patch titles ("[PATCH v2]") and add a changelog here in the cover
+letter.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
-index c31c80989cc9a..a3b79438a13a5 100644
---- a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
-@@ -18,6 +18,7 @@ properties:
-     enum:
-       - ti,ads1015
-       - ti,ads1115
-+      - ti,tla2024
- 
-   reg:
-     maxItems: 1
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+> Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: linux-ide@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> 
+> Serge Semin (21):
+>   dt-bindings: ata: sata: Extend number of SATA ports
+>   dt-bindings: ata: Convert AHCI-bindings to DT schema
+>   ata: libahci_platform: Explicitly set rc on devres_alloc failure
+>   ata: libahci_platform: Convert to using handy devm-ioremap methods
+>   ata: libahci_platform: Convert to using devm bulk clocks API
+>   ata: libahci_platform: Add function returning a clock-handle by id
+>   ata: libahci_platform: Sanity check the DT child nodes number
+>   ata: libahci_platform: Parse ports-implemented property in resources
+>     getter
+>   ata: libahci_platform: Introduce reset assertion/deassertion methods
+>   dt-bindings: ata: ahci: Add platform capability properties
+>   ata: libahci: Extend port-cmd flags set with port capabilities
+>   ata: libahci: Discard redundant force_port_map parameter
+>   ata: libahci: Don't read AHCI version twice in the save-config method
+>   ata: ahci: Convert __ahci_port_base to accepting hpriv as arguments
+>   ata: ahci: Introduce firmware-specific caps initialization
+>   dt-bindings: ata: ahci: Add DWC AHCI SATA controller DT schema
+>   ata: ahci: Add DWC AHCI SATA controller support
+>   dt-bindings: ata: ahci: Add Baikal-T1 AHCI SATA controller DT schema
+>   ata: ahci-dwc: Add platform-specific quirks support
+>   ata: ahci-dwc: Add Baikal-T1 AHCI SATA interface support
+>   MAINTAINERS: Add maintainers for DWC AHCI SATA driver
+> 
+>  .../devicetree/bindings/ata/ahci-common.yaml  | 176 ++++++
+>  .../devicetree/bindings/ata/ahci-platform.txt |  79 ---
+>  .../bindings/ata/baikal,bt1-ahci.yaml         | 132 +++++
+>  .../devicetree/bindings/ata/generic-ahci.yaml |  98 ++++
+>  .../devicetree/bindings/ata/sata-common.yaml  |   7 +-
+>  .../bindings/ata/snps,dwc-ahci.yaml           | 121 ++++
+>  MAINTAINERS                                   |   9 +
+>  drivers/ata/Kconfig                           |  11 +
+>  drivers/ata/Makefile                          |   1 +
+>  drivers/ata/ahci.c                            |   4 +-
+>  drivers/ata/ahci.h                            |  21 +-
+>  drivers/ata/ahci_dwc.c                        | 525 ++++++++++++++++++
+>  drivers/ata/ahci_mtk.c                        |   2 -
+>  drivers/ata/ahci_platform.c                   |   5 -
+>  drivers/ata/ahci_st.c                         |   3 -
+>  drivers/ata/libahci.c                         |  63 ++-
+>  drivers/ata/libahci_platform.c                | 234 +++++---
+>  include/linux/ahci_platform.h                 |   8 +-
+>  18 files changed, 1321 insertions(+), 178 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/ata/ahci-common.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.txt
+>  create mode 100644 Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
+>  create mode 100644 Documentation/devicetree/bindings/ata/generic-ahci.yaml
+>  create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+>  create mode 100644 drivers/ata/ahci_dwc.c
+> 
+
+
 -- 
-2.35.1
-
+Damien Le Moal
+Western Digital Research
