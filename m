@@ -2,172 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E718B4E8C85
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 05:18:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E05624E8C9D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 05:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232989AbiC1DUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Mar 2022 23:20:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35862 "EHLO
+        id S232718AbiC1DbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Mar 2022 23:31:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230495AbiC1DUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 23:20:16 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13A4F13F25
-        for <devicetree@vger.kernel.org>; Sun, 27 Mar 2022 20:18:36 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 76A155C00EF;
-        Sun, 27 Mar 2022 23:18:35 -0400 (EDT)
-Received: from imap49 ([10.202.2.99])
-  by compute5.internal (MEProxy); Sun, 27 Mar 2022 23:18:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; bh=sjzRwe+i0dJfsZHh+Yw21DnuDdIQXrGz53BXl1
-        zcHYI=; b=l5ngCRHMS3I74prq3hsF2qNcAN4/b+Wllq2tAcfDxEyf3cfHM9vkOD
-        wENQTvocKCPF6oi6KOxglAN4QBNN+NLx+mh+qiXmQmZEk0/4gl/pjeW/KXtCeHdN
-        V8xLCQUndrn4fQxu8a+aA/rrZDllottvze418qQkldik5NvNgJsZGjTYiK1cVz6a
-        gBN1qH86RhJrAe5y/TXIJhfVGy3VNGL/l3TZsgmeKZvZfckSY5hKmR8r4GsV/JNH
-        oYxRtO+WcGFPTlHN/6/qhFvQ6Easg2zYEIhYorENpY+BGN1ec+5UHzRokDzDEplh
-        D9rAjfF2z68jrVJ8hht2dzIVKjUBX2vg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=sjzRwe+i0dJfsZHh+
-        Yw21DnuDdIQXrGz53BXl1zcHYI=; b=TXLtIrp6LzdS8Tcg2TmXRN8LBw43b1/M7
-        IepCo+6y06+T4Q6u9Xv3sdB21ajF1XGPftpZQMI3azjtqgOWUwiSeGvlqbn/FAt7
-        HVkEF+VLNh/JZn37SpcjNVwyz9dkGqLes5nrVaoK+sFfvZa7/TB6MEbOAzOEE+K0
-        rfEo7/E6JY/hoVO1ghQQV37fwoAxPhSd9Yrjr1Y9Ut/pMzlcNtyDRhO2k5O4r8sT
-        aCY7/zpjQnhgG2ErltN/NuEmUcvxud1u0VQkZySzRfI2T3CSOoWF8F/l0sor/O7v
-        StAdlNAHAs3CtftAswJiNRjdGggSWzYj3AljHT9DSPDGFBoUtzYcw==
-X-ME-Sender: <xms:CylBYnUgPuf0VZ9_bImdUekIgNm4H7ZFVsqOvpFahsWix_lHovSXtA>
-    <xme:CylBYvkLb_DAr9HED1zu9XMcgJ-ilsoYOT-kYnWYzl8HWhPiPnd9cbLr8jAC7v2vt
-    oD1sBLB4xW4qhXosA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudehiedgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepvdffudfgudeivdfgffevueelkeekjeekudejfeelgeeivdevhfdtudfh
-    gedvgfehnecuffhomhgrihhnpehinhhfrhgruggvrggurdhorhhgnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgu
-    rdgruh
-X-ME-Proxy: <xmx:CylBYjYn9hK7Ol4leZbaTchVL5DjFpx1IEwcVzpt07iquLHxcA9HQQ>
-    <xmx:CylBYiWitHgsFyxfeWiA3MavdRgzn3wKBYWZHNECm_p7PI2Do9rXHA>
-    <xmx:CylBYhkM9nrMjpGM01GfpUJXhl2sqT8xG-3YgQlSAWRf10GGidFL6g>
-    <xmx:CylBYvaMeHNBAEjwsIN9H8IVtFEi-yXFo1DifHyahE2WhkLD91sCIA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 2DBFEF6043F; Sun, 27 Mar 2022 23:18:35 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4911-g925b585eab-fm-20220323.003-g925b585e
-Mime-Version: 1.0
-Message-Id: <c846fd5f-56e0-4289-af2c-42603c1abda2@www.fastmail.com>
-In-Reply-To: <20220325154048.467245-3-quic_jaehyoo@quicinc.com>
-References: <20220325154048.467245-1-quic_jaehyoo@quicinc.com>
- <20220325154048.467245-3-quic_jaehyoo@quicinc.com>
-Date:   Mon, 28 Mar 2022 13:48:14 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>, "Andrew Lunn" <andrew@lunn.ch>
-Cc:     "Jamie Iles" <quic_jiles@quicinc.com>,
-        "Graeme Gregory" <quic_ggregory@quicinc.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH v2 2/5] pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230218AbiC1DbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Mar 2022 23:31:17 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C750A1B1;
+        Sun, 27 Mar 2022 20:29:32 -0700 (PDT)
+X-UUID: ef2f024e960a44cbb8fc45a148b95aea-20220328
+X-UUID: ef2f024e960a44cbb8fc45a148b95aea-20220328
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 770176710; Mon, 28 Mar 2022 11:29:26 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 28 Mar 2022 11:29:24 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 28 Mar 2022 11:29:24 +0800
+Message-ID: <f52fbaec28ae53667ba101a05406b62e5970eec1.camel@mediatek.com>
+Subject: Re: [PATCH v16 3/8] dt-bindings: arm: mediatek: mmsys: add mt8195
+ SoC binding
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <hsinyi@chromium.org>, <fshao@chromium.org>,
+        <moudy.ho@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>, <nancy.lin@mediatek.com>,
+        <singo.chang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 28 Mar 2022 11:29:24 +0800
+In-Reply-To: <1daa3b8dabb97017d0f92437a81b250f8375544c.camel@mediatek.com>
+References: <20220307032859.3275-1-jason-jh.lin@mediatek.com>
+         <20220307032859.3275-4-jason-jh.lin@mediatek.com>
+         <1daa3b8dabb97017d0f92437a81b250f8375544c.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi CK,
 
+Thanks for the reviews.
 
-On Sat, 26 Mar 2022, at 02:10, Jae Hyun Yoo wrote:
-> FWSPIDQ2 and FWSPIDQ3 are not part of FWSPI18 interface so remove
-> FWQSPID group in pinctrl. These pins must be used with the FWSPI
-> pins that are dedicated for boot SPI interface which provides
-> same 3.3v logic level.
->
-> Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-> Fixes: 2eda1cdec49f ("pinctrl: aspeed: Add AST2600 pinmux support")
-> ---
-> Changes in v2:
->  * None.
->
->  drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 14 +++-----------
->  1 file changed, 3 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c 
-> b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-> index a3fa03bcd9a3..54064714d73f 100644
-> --- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-> +++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
-> @@ -1236,18 +1236,12 @@ FUNC_GROUP_DECL(SALT8, AA12);
->  FUNC_GROUP_DECL(WDTRST4, AA12);
+On Fri, 2022-03-18 at 14:43 +0800, CK Hu wrote:
+> Hi, Jason:
 > 
->  #define AE12 196
-> -SIG_EXPR_LIST_DECL_SEMG(AE12, FWSPIDQ2, FWQSPID, FWSPID,
-> -			SIG_DESC_SET(SCU438, 4));
->  SIG_EXPR_LIST_DECL_SESG(AE12, GPIOY4, GPIOY4);
-> -PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, FWSPIDQ2),
-> -	  SIG_EXPR_LIST_PTR(AE12, GPIOY4));
-> +PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, GPIOY4));
+> On Mon, 2022-03-07 at 11:28 +0800, jason-jh.lin wrote:
+> > There are 2 mmsys, namely vdosys0 and vdosys1 in mt8195.
+> > Each of them is bound to a display pipeline, so add their
+> > definition in mtk-mmsys documentation with 2 compatibles.
 > 
->  #define AF12 197
-> -SIG_EXPR_LIST_DECL_SEMG(AF12, FWSPIDQ3, FWQSPID, FWSPID,
-> -			SIG_DESC_SET(SCU438, 5));
->  SIG_EXPR_LIST_DECL_SESG(AF12, GPIOY5, GPIOY5);
-> -PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, FWSPIDQ3),
-> -	  SIG_EXPR_LIST_PTR(AF12, GPIOY5));
-> +PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, GPIOY5));
+> Could one vdosys be union of vdosys0 and vdosys1? In MT8173, one
+> mmsys
+> support multiple pipeline. Describe more in commit message to support
+> that two vdosys are necessary.
 > 
->  #define AC12 198
->  SSSF_PIN_DECL(AC12, GPIOY6, FWSPIABR, SIG_DESC_SET(SCU438, 6));
-> @@ -1520,9 +1514,8 @@ SIG_EXPR_LIST_DECL_SEMG(Y4, EMMCDAT7, EMMCG8, 
-> EMMC, SIG_DESC_SET(SCU404, 3));
->  PIN_DECL_3(Y4, GPIO18E3, FWSPIDMISO, VBMISO, EMMCDAT7);
+> Regards,
+> CK
 > 
->  GROUP_DECL(FWSPID, Y1, Y2, Y3, Y4);
-> -GROUP_DECL(FWQSPID, Y1, Y2, Y3, Y4, AE12, AF12);
->  GROUP_DECL(EMMCG8, AB4, AA4, AC4, AA5, Y5, AB5, AB6, AC5, Y1, Y2, Y3, 
-> Y4);
-> -FUNC_DECL_2(FWSPID, FWSPID, FWQSPID);
-> +FUNC_DECL_1(FWSPID, FWSPID);
 
-Really this is the FWSPI18 group now? The FWSPID name never made sense. 
-I'm not sure what I was thinking.
+In the SoC before, such as mt8173, it has 2 pipelines binding to one
+mmsys with the same clock driver and the same power domain.
 
-Actually, I think it's worth squashing this with 3/5 so it's a proper 
-fix rather than separate remove/add?
+In mt8195, 2 pipelines are binding to different mmsys, such as vdosys0
+and vdosys1. Each mmsys uses different clock drivers and different
+power domain.
 
->  FUNC_GROUP_DECL(VB, Y1, Y2, Y3, Y4);
->  FUNC_DECL_3(EMMC, EMMCG1, EMMCG4, EMMCG8);
->  /*
-> @@ -1918,7 +1911,6 @@ static const struct aspeed_pin_group 
-> aspeed_g6_groups[] = {
->  	ASPEED_PINCTRL_GROUP(FSI2),
->  	ASPEED_PINCTRL_GROUP(FWSPIABR),
->  	ASPEED_PINCTRL_GROUP(FWSPID),
-> -	ASPEED_PINCTRL_GROUP(FWQSPID),
+Since each mmsys has its own clock, I have tried to differentiate
+vppsys0, vppsys1, vdosys0, vdosys1 by the clock names.
+Then I can use one mmsys compatible name for all of them.
 
-We should also remove the function (not just the group).
+I'll apply this method at the next version.
+And also sync with Nancy(vdosys1) and Roy(vppsys0, vppsys1).
 
-Andrew
+Regards,
+Jason-JH.Lin
 
->  	ASPEED_PINCTRL_GROUP(FWSPIWP),
->  	ASPEED_PINCTRL_GROUP(GPIT0),
->  	ASPEED_PINCTRL_GROUP(GPIT1),
-> -- 
-> 2.25.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > 
+> > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        |
+> > 2
+> > ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > index 6c2c3edcd443..c5ba515cb0d7 100644
+> > ---
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > +++
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
+> > l
+> > @@ -32,6 +32,8 @@ properties:
+> >                - mediatek,mt8186-mmsys
+> >                - mediatek,mt8192-mmsys
+> >                - mediatek,mt8365-mmsys
+> > +              - mediatek,mt8195-vdosys0
+> > +              - mediatek,mt8195-vdosys1
+> >            - const: syscon
+> >        - items:
+> >            - const: mediatek,mt7623-mmsys
+> 
+> 
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
+
