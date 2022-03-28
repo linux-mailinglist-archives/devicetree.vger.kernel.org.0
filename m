@@ -2,88 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3C0A4E92BC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 12:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 837774E92DD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 12:57:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240350AbiC1Ktb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 06:49:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32972 "EHLO
+        id S240408AbiC1K65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 06:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234251AbiC1Kta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 06:49:30 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7462954F9E;
-        Mon, 28 Mar 2022 03:47:50 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id d7so19744485wrb.7;
-        Mon, 28 Mar 2022 03:47:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=S4BUcd6hJObrfpqKxdRcJRoKACX0pcH5PLnHV9ghRjU=;
-        b=B9rhYXNFCJG8FVrCwa5K+POuffvNj9XzTQKCajpz8pCCAe58zDB/aU9DL5fqtqJWAI
-         ky54WS/d9TWKJ7aQI2ZqzXMkcPHxKAbOnYADOVDTZRl4K4EZ6nKuXHMRMOUlTa3pZvcK
-         Y8cetVauSkzbUxvUnWzmQRJ7x7hfdMpVLYHTE3/Ae2k2izID9wHS/jw5EaXtUzwHEHAR
-         K1L5smUPkm9azb41ja7r0hy1dRp/X4/xrOgLDr5HfLY+yO2hJuHnUmcoNrEBPPoA5ZAp
-         n8/SKRsojeJxYPxX0tjb6jEnopKhJ1kNHYloxuyu3SfO3NpPdbAhGWlCkOMUqOnXfwdd
-         bWzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=S4BUcd6hJObrfpqKxdRcJRoKACX0pcH5PLnHV9ghRjU=;
-        b=MgQ9hkrNTF0XIh4KZe7OFFYt1qcn9S5VIKWMqz6EY1/rj05xMb1KzbmSKK5SYaV0ku
-         Jlpe9ut6mp7fIfl6cP36XE5Lf6tv48/fE0xFkurmyMa9NlyLS90l8mra71ApOKem21dL
-         Ivo2dGich+jHWbQXxjPZ7E3ldEGnG0ICZO4emxBSbrP4HAdplfg0ATNhUNlar1pIa48l
-         hLMg7wFxD7etBnpjp5t7DlAZ3xxTim1jiX+by62jbHcdWVJGw8VQbA+W14per9mun7zj
-         aB0CQ5tXUzeuEBgZxGMEPd0M+GApWXSHJkGG4QmQEKiZf7GlLLDVZEWGtQtaK7Jq2aij
-         c/Ww==
-X-Gm-Message-State: AOAM530neTTLBkY6DhP7gPueUe349GYlkH/wJEa+YS04EiwcLI7l40l6
-        gXJdNJRME4NBGKTa98lgyfA=
-X-Google-Smtp-Source: ABdhPJxpNsUPF4FVDfJw3TgkeBx1g5iROwUOuCmVKrZ2Kp8QiOuC95uyQZ19znx7Kf29FzrQ8qx3og==
-X-Received: by 2002:a5d:404c:0:b0:203:ea4e:3c07 with SMTP id w12-20020a5d404c000000b00203ea4e3c07mr22646484wrp.597.1648464468913;
-        Mon, 28 Mar 2022 03:47:48 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id l19-20020a05600c4f1300b0038cb924c3d7sm11665275wmq.45.2022.03.28.03.47.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 03:47:48 -0700 (PDT)
-Message-ID: <c5eeca79-38b6-eb9f-1d78-1685aa1cca6c@gmail.com>
-Date:   Mon, 28 Mar 2022 12:47:46 +0200
+        with ESMTP id S240404AbiC1K64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 06:58:56 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E66854FB1
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 03:57:16 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nYn3Z-0007p7-Ak; Mon, 28 Mar 2022 12:57:05 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nYn3S-003ZJS-Pa; Mon, 28 Mar 2022 12:57:01 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nYn3U-00CLH0-MM; Mon, 28 Mar 2022 12:57:00 +0200
+Date:   Mon, 28 Mar 2022 12:56:59 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nikita Travkin <nikita@trvn.ru>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
+        masneyb@onstation.org, sean.anderson@seco.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, kernel@pengutronix.de
+Subject: Re: [PATCH v6 2/2] pwm: Add clock based PWM output driver
+Message-ID: <20220328105659.mg3pxbqynlufaq6z@pengutronix.de>
+References: <20220220115030.23772-1-nikita@trvn.ru>
+ <20220220115030.23772-3-nikita@trvn.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <20220328000915.15041-2-ansuelsmth@gmail.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [RFC PATCH 1/1] ARM/arm64: categorize dts in arm dir and fix
- dependency in arm64
-In-Reply-To: <20220328000915.15041-2-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUSPICIOUS_RECIPS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zpe7c3j5delfyhju"
+Content-Disposition: inline
+In-Reply-To: <20220220115030.23772-3-nikita@trvn.ru>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -91,51 +58,158 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--zpe7c3j5delfyhju
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 28/03/2022 02:09, Ansuel Smith wrote:
-> - Categorize every dts in arm directory in subdirectory
-> - Fix Makefile to address for the arm subdirectory
-> - Fix any arm64 dependency
-> 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Hello,
+
+just a few minor things left to criticize, see below.
+
+On Sun, Feb 20, 2022 at 04:50:30PM +0500, Nikita Travkin wrote:
+> Some systems have clocks exposed to external devices. If the clock
+> controller supports duty-cycle configuration, such clocks can be used as
+> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
+> similar way and an "opposite" driver already exists (clk-pwm). Add a
+> driver that would enable pwm devices to be used via clk subsystem.
+>=20
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> --
+>=20
+> Changes in v2:
+>  - Address Uwe's review comments:
+>    - Round set clk rate up
+>    - Add a description with limitations of the driver
+>    - Disable and unprepare clock before removing pwmchip
+> Changes in v3:
+>  - Use 64bit version of div round up
+>  - Address Uwe's review comments:
+>    - Reword the limitations to avoid incorrect claims
+>    - Move the clk_enabled flag assignment
+>    - Drop unnecessary statements
+> Changes in v5:
+>  - add missed returns
+> Changes in v6:
+>  - Unprepare the clock on error
+>  - Drop redundant limitations points
 > ---
-[...]
->   arch/arm/boot/dts/mediatek/Makefile           |   14 +
->   .../boot/dts/{ => mediatek}/mt2701-evb.dts    |    0
->   .../boot/dts/{ => mediatek}/mt2701-pinfunc.h  |    0
->   arch/arm/boot/dts/{ => mediatek}/mt2701.dtsi  |    0
->   arch/arm/boot/dts/{ => mediatek}/mt6323.dtsi  |    0
->   .../boot/dts/{ => mediatek}/mt6580-evbp1.dts  |    0
->   arch/arm/boot/dts/{ => mediatek}/mt6580.dtsi  |    0
->   .../mt6582-prestigio-pmt5008-3g.dts           |    0
->   arch/arm/boot/dts/{ => mediatek}/mt6582.dtsi  |    0
->   .../dts/{ => mediatek}/mt6589-aquaris5.dts    |    0
->   .../{ => mediatek}/mt6589-fairphone-fp1.dts   |    0
->   arch/arm/boot/dts/{ => mediatek}/mt6589.dtsi  |    0
->   .../boot/dts/{ => mediatek}/mt6592-evb.dts    |    0
->   arch/arm/boot/dts/{ => mediatek}/mt6592.dtsi  |    0
->   arch/arm/boot/dts/{ => mediatek}/mt7623.dtsi  |    0
->   .../dts/{ => mediatek}/mt7623a-rfb-emmc.dts   |    0
->   .../dts/{ => mediatek}/mt7623a-rfb-nand.dts   |    0
->   arch/arm/boot/dts/{ => mediatek}/mt7623a.dtsi |    0
->   .../mt7623n-bananapi-bpi-r2.dts               |    0
->   .../dts/{ => mediatek}/mt7623n-rfb-emmc.dts   |    0
->   arch/arm/boot/dts/{ => mediatek}/mt7623n.dtsi |    0
->   .../boot/dts/{ => mediatek}/mt7629-rfb.dts    |    0
->   arch/arm/boot/dts/{ => mediatek}/mt7629.dtsi  |    0
->   .../boot/dts/{ => mediatek}/mt8127-moose.dts  |    0
->   arch/arm/boot/dts/{ => mediatek}/mt8127.dtsi  |    0
->   .../boot/dts/{ => mediatek}/mt8135-evbp1.dts  |    0
->   arch/arm/boot/dts/{ => mediatek}/mt8135.dtsi  |    0
+>  drivers/pwm/Kconfig   |  10 +++
+>  drivers/pwm/Makefile  |   1 +
+>  drivers/pwm/pwm-clk.c | 139 ++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 150 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-clk.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 21e3b05a5153..daa2491a4054 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -140,6 +140,16 @@ config PWM_BRCMSTB
+>  	  To compile this driver as a module, choose M Here: the module
+>  	  will be called pwm-brcmstb.c.
+> =20
+> +config PWM_CLK
+> +	tristate "Clock based PWM support"
+> +	depends on HAVE_CLK || COMPILE_TEST
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Can you really compile this driver if HAVE_CLK isn't available?
 
-Would it be possible to also script a fix for the MAINTAINERS file?
+> +	help
+> +	  Generic PWM framework driver for outputs that can be
+> +	  muxed to clocks.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-clk.
+> +
+>  config PWM_CLPS711X
+>  	tristate "CLPS711X PWM support"
+>  	depends on ARCH_CLPS711X || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 708840b7fba8..4a860103c470 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -10,6 +10,7 @@ obj-$(CONFIG_PWM_BCM_KONA)	+=3D pwm-bcm-kona.o
+>  obj-$(CONFIG_PWM_BCM2835)	+=3D pwm-bcm2835.o
+>  obj-$(CONFIG_PWM_BERLIN)	+=3D pwm-berlin.o
+>  obj-$(CONFIG_PWM_BRCMSTB)	+=3D pwm-brcmstb.o
+> +obj-$(CONFIG_PWM_CLK)		+=3D pwm-clk.o
+>  obj-$(CONFIG_PWM_CLPS711X)	+=3D pwm-clps711x.o
+>  obj-$(CONFIG_PWM_CRC)		+=3D pwm-crc.o
+>  obj-$(CONFIG_PWM_CROS_EC)	+=3D pwm-cros-ec.o
+> diff --git a/drivers/pwm/pwm-clk.c b/drivers/pwm/pwm-clk.c
+> new file mode 100644
+> index 000000000000..52c9923368cb
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-clk.c
+> @@ -0,0 +1,139 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Clock based PWM controller
+> + *
+> + * Copyright (c) 2021 Nikita Travkin <nikita@trvn.ru>
+> + *
+> + * This is an "adapter" driver that allows PWM consumers to use
+> + * system clocks with duty cycle control as PWM outputs.
+> + *
+> + * Limitations:
+> + * - Due to the fact that exact behavior depends on the underlying
+> + *   clock driver, various limitations are possible.
+> + * - Underlying clock may not be able to give 0% or 100% duty cycle
+> + *   (constant off or on), exact behavior will depend on the clock.
+> + * - When the PWM is disabled, the clock will be disabled as well,
+> + *   line state will depend on the clock.
 
-$ git grep "arch\/arm\/boot\/dts" MAINTAINERS |wc -l
+ - The clk API doesn't expose the necessary calls to implement
+   .get_state().
 
-101
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/math64.h>
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/clk.h>
+> +#include <linux/pwm.h>
+> +
+> +struct pwm_clk_chip {
+> +	struct pwm_chip chip;
+> +	struct clk *clk;
+> +	bool clk_enabled;
+> +};
+> +
+> +#define to_pwm_clk_chip(_chip) container_of(_chip, struct pwm_clk_chip, =
+chip)
+> +
+> +static int pwm_clk_apply(struct pwm_chip *pwm_chip, struct pwm_device *p=
+wm,
+> +			 const struct pwm_state *state)
+> +{
+> +	struct pwm_clk_chip *chip =3D to_pwm_clk_chip(pwm_chip);
 
+I'd prefer this was not called chip, as this is how struct pwm_chip
+variables are called usually. My suggestion is:
 
-Regards,
-Matthias
+	chip -> pcchip
+	pwm_chip -> chip
+
+Best regards
+Uwe
+
+--zpe7c3j5delfyhju
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmJBlHgACgkQwfwUeK3K
+7AnV+wf/W/+AhU1gkXLv2Q0K4DimCQX+pTB0fUdT5XL0akpyUJXbjlJtaoOfHkXJ
+iL5XCi4n54Om8cdfi9nRWKSt6HqbUXvjw4oEfHAKhF8TBC1NC3ltmcBxsnFgkeE9
+gmnvsYEQTan8OTsx9Cp6rqe6/YFoTaf1Qt25amwlTGTUYNslNtkF6dNNNegjmhUW
+7/uabQTTcwFIby2S7S+s7odPwp7VSmW7gHwNVFTVPKm5Cnkc1h9SGyvI1NJC0QMf
+Y3986avTkBvJBuudVKvDZcQuC66DhWcEvfxWvEdCgBEOFElY32cUoaofAnyrDwBz
+nSNOPCxKkzJwqWlcIr0sZsoAwbEYKQ==
+=KQ6n
+-----END PGP SIGNATURE-----
+
+--zpe7c3j5delfyhju--
