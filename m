@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CBE4E92E1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 12:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF2C84E92F6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 13:01:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240420AbiC1K7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 06:59:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60192 "EHLO
+        id S240466AbiC1LDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 07:03:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240419AbiC1K7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 06:59:25 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0357454FB4;
-        Mon, 28 Mar 2022 03:57:45 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id h23so19771195wrb.8;
-        Mon, 28 Mar 2022 03:57:44 -0700 (PDT)
+        with ESMTP id S240471AbiC1LDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 07:03:22 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3851E5522D;
+        Mon, 28 Mar 2022 04:01:42 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id p189so8145588wmp.3;
+        Mon, 28 Mar 2022 04:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=GGvSFlPXU872KWgGig8qcLQpk/W2IByUtUFzj9tQrwE=;
-        b=AA55u6uE5y4cKgL4pCCZV88DledptqdMiXNeg8qobCmiht5JRGekM6Ndl/JKoKZo90
-         YXdYQai7+hqxjNkVcyqQLQC/T3Q17krM4q6gJGOTi3X8WLGum74tp8hoTM0lKa5E0Ldk
-         83Uk3MOK4vo72r0btFuWz5nBX7+QmJCSb5NT34lLPl5JSHpwn5FhH0Ds0cdZUO+aXpc/
-         +FoWBf/BJJS6pyEgAp35Mw5gLRdGx+b/pBH4Y7oh5L+SAJxEilAjSmUREZAYdyysLE5r
-         FeTbq1CeU8+yan26uhIGV4ko5g0xveeDXIYRWhVvZKuMtZWiSRM/1C19GNzeBO8mDY8l
-         A6hw==
+        bh=ykS4CFll+H8Op4I03/7dYBqilBTYX83XNgnoe/3NCaQ=;
+        b=Tga44SEmd85Vio2pvHqbRpA9ki7G9bZleXwfWn8CAc7+fIoER46ZP5xU23nXz53Muw
+         dWkEuYJbyTSGubrEopIW+asPWzQaClUbHjuygPfqyhtTIuAl0Kw5p4NGl2HJU0r49ilp
+         1+iLpL66KNyapj5/oAV9kW9zx3NaXNS0AaBpORa2YaaNG02WGcuiGNUEIg8lhOfXFgQR
+         QmUpXdbmdTQPbV+HtaU1c1BV9ohGsrS6l1lJoMcsocKDsXbjPn3dSJBJpjYzEztsAigv
+         hcZ2H7F90xgtvGiT98lZx+yrtcNpy3pxq5U9E800+jpo4dI6+uRBX7o7ycyBHncpOPD/
+         OA3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=GGvSFlPXU872KWgGig8qcLQpk/W2IByUtUFzj9tQrwE=;
-        b=XQ/QepoumhyFcdU7w+4jYFDPzDlLAJ/wPomYXP+dfXpQsSGIF0jTPycUtBEQCpI20+
-         cTYIFxrILFcJ4Gc/rjcLbX5jNOC0qdoae4VTw8NaVSQ2T1j+vJcTZa9Sc0/ZIZ60/ymJ
-         paMK/kBTozjTh5rQtnbikqtZ9KPtAuxpmVA9WfDkIY/4Fdd/eoq2RKC0Ws5t0UJixj3E
-         Oc9fgYsF86PjT1bzpXHzLAAr7x/ie/oNLycQXVKrxDcD7nPwMmWwnryq/ti2eo/2Turj
-         hsMGKbB4CWUIUT+woI/bRE1I7FgDLKcecWcL/wYM2LDWyrHSWhIns9kUYDUu0iz8uuty
-         Dosg==
-X-Gm-Message-State: AOAM53265tqjhPAaown9hKj+RAJWZdGCgy+fJXEIq26m9YazUGJ0KDm+
-        djYk7d+H1KrVywIWDWlXbOI=
-X-Google-Smtp-Source: ABdhPJxH6AnH4UIVT8ZaKUAIGV7UzNt4wvXzbencOS83G8zgcWCHLqOF/SpFWk2ojiP9ntq09Pg/NQ==
-X-Received: by 2002:adf:ebc7:0:b0:1ee:945a:ffb4 with SMTP id v7-20020adfebc7000000b001ee945affb4mr23153658wrn.641.1648465063551;
-        Mon, 28 Mar 2022 03:57:43 -0700 (PDT)
+        bh=ykS4CFll+H8Op4I03/7dYBqilBTYX83XNgnoe/3NCaQ=;
+        b=axFXBacc6jlqOSIoEZoppx3NZBUNAJpHu308ucG0x3AuF7p1ZDYYpfrlDduMn1lirN
+         SfJsZ2nGy+w+fGnrhfZKQtFaQ+kytaRZ1ECllTDJr/QYSjspqA0Ss1BAsnTK2ZR7bK0N
+         hcJAV0KOvCHwUh1XG3KP95RZpj5YQ0CdS844QPlthj2rKUy4rmwHpYjQJ+Bu/t2UAfIK
+         9HqeujfRPkvhz875BxcEDkCfCUCUDSQIlaYZXUiMgnEJlueHaLKUJDplFR6DgxqBh6IC
+         E9hZvO8BEfuZs4sIBdk+VnW53v/lNPMurYAgVNyGyrnLVN4+PIRnhN4wSFGz/26OXh2f
+         L7rw==
+X-Gm-Message-State: AOAM530LcyRli2/9s/be9ALRhLprruLLUudxj9Mn/HBPS5n/iAV+kdZI
+        1JEZMhGK5IjJwtUhUefNh/Y=
+X-Google-Smtp-Source: ABdhPJz+3FYb0vlsoBwsGqN15gEbC63jvqxk7dxSUOipeu2cUeO5/VB4TypAZM8vKCUZng5dwSUO5w==
+X-Received: by 2002:a05:600c:4ec8:b0:38c:90fb:d3bf with SMTP id g8-20020a05600c4ec800b0038c90fbd3bfmr25380404wmq.0.1648465300738;
+        Mon, 28 Mar 2022 04:01:40 -0700 (PDT)
 Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id y11-20020a056000168b00b002041af9a73fsm13920567wrd.84.2022.03.28.03.57.42
+        by smtp.gmail.com with ESMTPSA id b3-20020adfd1c3000000b00205820686dasm13960361wrd.5.2022.03.28.04.01.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 03:57:42 -0700 (PDT)
-Message-ID: <b6f3be8a-6582-0cb5-5563-58f87e265bd6@gmail.com>
-Date:   Mon, 28 Mar 2022 12:57:41 +0200
+        Mon, 28 Mar 2022 04:01:40 -0700 (PDT)
+Message-ID: <3f786a4d-146f-f378-df19-6903727d27b7@gmail.com>
+Date:   Mon, 28 Mar 2022 13:01:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 19/22] arm64: dts: mt8192: Add the mmsys reset bit to
- reset the dsi0
+Subject: Re: [PATCH v4 20/22] arm64: dts: mt8192: Add dsi node
 Content-Language: en-US
 To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -66,9 +65,9 @@ Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
         Ryder Lee <ryder.lee@kernel.org>,
         Hui Liu <hui.liu@mediatek.com>
 References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-20-allen-kh.cheng@mediatek.com>
+ <20220318144534.17996-21-allen-kh.cheng@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220318144534.17996-20-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220318144534.17996-21-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,26 +83,57 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Reset the DSI hardware is needed to prevent different settings between
-> the bootloader and the kernel.
+> Add dsi ndoe for mt8192 SoC.
 > 
 > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-
-Applied thanks
-
 > ---
->   include/dt-bindings/reset/mt8192-resets.h | 3 +++
->   1 file changed, 3 insertions(+)
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
 > 
-> diff --git a/include/dt-bindings/reset/mt8192-resets.h b/include/dt-bindings/reset/mt8192-resets.h
-> index be9a7ca245b9..764ca9910fa9 100644
-> --- a/include/dt-bindings/reset/mt8192-resets.h
-> +++ b/include/dt-bindings/reset/mt8192-resets.h
-> @@ -27,4 +27,7 @@
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 59183fb6c80b..08e0dd2483d1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -13,6 +13,7 @@
+>   #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
+>   #include <dt-bindings/phy/phy.h>
+>   #include <dt-bindings/power/mt8192-power.h>
+> +#include <dt-bindings/reset/mt8192-resets.h>
+>   #include <dt-bindings/reset/ti-syscon.h>
 >   
->   #define MT8192_TOPRGU_SW_RST_NUM				23
+>   / {
+> @@ -1203,6 +1204,7 @@
+>   			compatible = "mediatek,mt8192-mmsys", "syscon";
+>   			reg = <0 0x14000000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+>   		};
 >   
-> +/* MMSYS resets */
-> +#define MT8192_MMSYS_SW0_RST_B_DISP_DSI0			15
+>   		mutex: mutex@14001000 {
+> @@ -1327,6 +1329,20 @@
+>   			clocks = <&mmsys CLK_MM_DISP_DITHER0>;
+>   		};
+>   
+> +		dsi0: dsi@14010000 {
+> +			compatible = "mediatek,mt8183-dsi";
+> +			reg = <0 0x14010000 0 0x1000>;
+> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&mmsys CLK_MM_DSI0>,
+> +				 <&mmsys CLK_MM_DSI_DSI0>,
+> +				 <&mipi_tx0>;
+> +			clock-names = "engine", "digital", "hs";
+> +			resets = <&mmsys MT8192_MMSYS_SW0_RST_B_DISP_DSI0>;
+> +			phys = <&mipi_tx0>;
+> +			phy-names = "dphy";
+> +			status = "disabled";
+
+We are missing the output port node.
+
+Regards,
+Matthias
+
+> +		};
 > +
->   #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8192 */
+>   		ovl_2l2: ovl@14014000 {
+>   			compatible = "mediatek,mt8192-disp-ovl-2l";
+>   			reg = <0 0x14014000 0 0x1000>;
