@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00004E9FCC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 21:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D6474E9FCE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 21:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245696AbiC1TeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 15:34:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53558 "EHLO
+        id S245705AbiC1Tei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 15:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233677AbiC1TeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 15:34:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 050CC5DE4E;
-        Mon, 28 Mar 2022 12:32:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9265B61291;
-        Mon, 28 Mar 2022 19:32:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3CFBC340F3;
-        Mon, 28 Mar 2022 19:32:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648495940;
-        bh=hsj7vpD6VzgwgqTGJwuQLzl4hvMkV3jhPtqSZ0sfeDk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SNrCTUVspAbKGzkl/lkX7LEl6vPIPwqohKfQS9j4wkOpVeD4AC+KSvULMyl9G55Jg
-         cvfYgsKOx6Hu8vQjstDuuVmtLUToCxVMBhEA7FrUd5cZIm75Qm+TeRN9RS4aPKnQ8s
-         4VdTQMh25Fzqi23HYRD5azwSQUL4od4FBcYQ/fGPYvBUJXJjbspEqr29SZYyM1f0wB
-         ZVDQ0hnYEbkmvCEmJc0CRniluyzKwTE0RE7mMXVz3f34vh8LVY8Ic7yvjqtJelPsvg
-         1p3dQa/I00QKG5gziprxkUBf0YEhl/dnQRJSI8QDwxDggof97taB5T49zkVWsy22d/
-         cmkv6heGq2EfQ==
-Received: by mail-ej1-f48.google.com with SMTP id o10so30824503ejd.1;
-        Mon, 28 Mar 2022 12:32:20 -0700 (PDT)
-X-Gm-Message-State: AOAM532Vt9SL/rAbaUw2fVxZBHBUACmcNubMghaB6Dncb4XhBzOJ9gN7
-        kaQv/Kdvr6DHo0Xl2T35jEwBempx0RUVYS0vOA==
-X-Google-Smtp-Source: ABdhPJzS6HE1I5dwIXHt3Z8+oNfExeRu/Ld613R99JBEBBtqUIPwWmfatFTRXQVhLFWR4Q056OlfLe821+lCv3qLtzU=
-X-Received: by 2002:a17:906:58ce:b0:6da:b548:1bbb with SMTP id
- e14-20020a17090658ce00b006dab5481bbbmr29647735ejs.14.1648495939083; Mon, 28
- Mar 2022 12:32:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru> <20220324001628.13028-3-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220324001628.13028-3-Sergey.Semin@baikalelectronics.ru>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 28 Mar 2022 14:32:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKnnVKmCA6he_A-OAgu1xD1bjHBy4_eXf64q2LJ9+L3_g@mail.gmail.com>
-Message-ID: <CAL_JsqKnnVKmCA6he_A-OAgu1xD1bjHBy4_eXf64q2LJ9+L3_g@mail.gmail.com>
-Subject: Re: [PATCH 02/21] dt-bindings: ata: Convert AHCI-bindings to DT schema
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S245706AbiC1Tei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 15:34:38 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC1B5EDF3;
+        Mon, 28 Mar 2022 12:32:55 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-d39f741ba0so16330550fac.13;
+        Mon, 28 Mar 2022 12:32:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=qi1/iRVX2o56RajS038DTkQnMYFIqNJyGlTn7qT/vnE=;
+        b=VqG3MTe9aQHgHFiyVe/XIUJED9iSdoCrQskTG0jvsZ6WwP2IgwVdX/jB4H/h7cV7p9
+         qYBSoPl3azcOXCPw0WbCZMcR8ZBPVZQrkU7lj1qD3JW9WfCj9bU3DYM7vhlDsyiEd1dx
+         HjQqYoFWhd+B1w0Aj8+luzU/9hwiIfn1HcgDdoGwTPutKDpKTpRMpCmT0HYMr+g3D0GH
+         eaeEImrNQ/DVZLV7DhVfZyNBpcmnOieStumLX/sKqf7Bdv2e0aKCMWjlmbUSs+XIb6ns
+         1iKNOdGM+nGrCsAtfCIvVnrERrdcZ801HpXnOnEbBSKzWXdH+gOt8X2qpV0DFtAIBtsQ
+         wybg==
+X-Gm-Message-State: AOAM530KcA4w3KANnx/fGPdWr4OlLbnHFyD4uqW/5q22Qg/8qiYEEIWa
+        b9A75Vxbl/QaxWwfKKGxDw==
+X-Google-Smtp-Source: ABdhPJxelsJuZKvNDqXqbdtpVcqj2hhC/IWmVUvfUfaQE3pkQENG6wZl2YUURhi6HbMnu+rhbitS0w==
+X-Received: by 2002:a05:6870:d207:b0:de:1872:fe43 with SMTP id g7-20020a056870d20700b000de1872fe43mr384712oac.242.1648495974312;
+        Mon, 28 Mar 2022 12:32:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b002ef960f65b3sm7630145oih.25.2022.03.28.12.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Mar 2022 12:32:52 -0700 (PDT)
+Received: (nullmailer pid 2851319 invoked by uid 1000);
+        Mon, 28 Mar 2022 19:32:50 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Cc:     laurent.pinchart@ideasonboard.com, robh+dt@kernel.org,
+        hverkuil-cisco@xs4all.nl, alexander.stein@ew.tq-group.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        tomi.valkeinen@ideasonboard.com, mchehab@kernel.org,
+        nicolas@ndufresne.ca, stanimir.varbanov@linaro.org
+In-Reply-To: <20220328141309.177611-8-xavier.roumegue@oss.nxp.com>
+References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com> <20220328141309.177611-8-xavier.roumegue@oss.nxp.com>
+Subject: Re: [PATCH v4 7/9] media: dt-bindings: media: Add i.MX8MP DW100 binding
+Date:   Mon, 28 Mar 2022 14:32:50 -0500
+Message-Id: <1648495970.732437.2851318.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,49 +61,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 7:16 PM Serge Semin
-<Sergey.Semin@baikalelectronics.ru> wrote:
->
-> Currently the DT bindings of Generic AHCI Controllers are described by
-> means of the legacy text file. Since such format is deprecated in favor of
-> the DT schema. Let's convert the Generic AHCI Controllers bindings file
-> then to the corresponding yaml files. There will be two of them: a DT
-> schema with a set of properties applied to all AHCI-compatible devices,
-> and a DT schema validating an AHCI-controller on a generic platform. So if
-> a controller conforms to the Serial ATA AHCI interface specification with
-> just peculiar platform environment settings like clock sources, PHYs,
-> power regulators or resets, then the generic AHCI bindings should work for
-> it. Otherwise a dedicated DT-schema needs to be created.
->
-> So a common AHCI SATA controller DT-node is supposed to be equipped with
-> at least compatible, reg and interrupts properties. It can optionally
-> contain clocks, resets, {ahci,target,phy}-supply and phys phandles. In
-> addition the property "ports-implemented" can be specified in order to
-> define the number of implemented SATA ports. An AHCI SATA controller
-> DT-node can also have a set of sub-nodes representing its ports, for each
-> of which an individual power source and PHY phandle can be specified.
->
-> Note we have omitted the next compatible strings
-> "marvell,armada-380-ahci", "marvell,armada-3700-ahci", "snps,dwc-ahci",
-> "snps,spear-ahci" since the corresponding controllers are handled by the
-> dedicated drivers now, thus are supposed to have their own DT-schema
-> defined. dma-coherent has also been discarded since it's a generic
-> property and is evaluated by the dt-schema parser.
->
-> Also note that if there is the "reg-names" property specified for a AHCI
-> DT-node then it is supposed to at least have the "ahci" sub-string as an
-> indicator of the AHCI-compatible registers space.
->
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+On Mon, 28 Mar 2022 16:13:07 +0200, Xavier Roumegue wrote:
+> Add DT binding documentation for the Vivante DW100 dewarper engine found
+> on NXP i.MX8MP SoC
+> 
+> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../devicetree/bindings/ata/ahci-common.yaml  | 110 ++++++++++++++++++
->  .../devicetree/bindings/ata/ahci-platform.txt |  79 -------------
->  .../devicetree/bindings/ata/generic-ahci.yaml |  89 ++++++++++++++
->  3 files changed, 199 insertions(+), 79 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ata/ahci-common.yaml
->  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/generic-ahci.yaml
+>  .../devicetree/bindings/media/nxp,dw100.yaml  | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,dw100.yaml
+> 
 
-This has already been converted and is in Linus' tree now for v5.18.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/nxp,dw100.example.dts:25:18: fatal error: dt-bindings/power/imx8mp-power.h: No such file or directory
+   25 |         #include <dt-bindings/power/imx8mp-power.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/media/nxp,dw100.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1398: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1610196
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
