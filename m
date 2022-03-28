@@ -2,121 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 704D74E9098
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 10:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9334E90B2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 11:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239584AbiC1I4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 04:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41294 "EHLO
+        id S232087AbiC1JEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 05:04:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239589AbiC1I4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 04:56:52 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807C053E19
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 01:55:12 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id t40so5989236uad.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 01:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XVsPS/VhdyaBsd9atLVudcFUKqEC9P8EvF6rDaB8yFU=;
-        b=OSqpQCrlKuq1ygWxipYT3Of9HBAb88KQ9TOJlYuLb2/hGVpSDprsgb6uWgqbh3hh98
-         vsxGCoSmwwbiMb/1jrmEDn1hHoeY6N21aXGTFcL6mzAPwPSpbGdasPKMR7/lx8tM8Dcu
-         zDqMOBhm8ZczDMkDasuHpB7m/C5XBna2TilwA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XVsPS/VhdyaBsd9atLVudcFUKqEC9P8EvF6rDaB8yFU=;
-        b=GGZbKJoPWJNd5JdDuU6x2UDNuBM7ylppdylpQZHe0loE0ESJn6zuCJhj04c01NRGOh
-         c/A6DzE1kNJ0EuRFpPIoi5Gfk81tuYk5ZsjdNW85BlRIhfuG0S4Sl+/sgCf0mYrCjy88
-         pZ2BnIAXR8e7OJkHiz2m8kmPtX5LNTAxPMDaeqqRgTrinnqFclHRsLpMvoz58PInPsIN
-         RVUGg/UIJP5bGCex1sTVp/R+I1gwDKFZ6LGJ8yETa8XkzA79SgdttpveAOdG8s3m8nn7
-         C6th1JBOeGTjaVJrXUdOrUOsuSeFP3r8Qbf311M+amWy7Pefv/jZZrulHVBvsUP6vbRM
-         XX/A==
-X-Gm-Message-State: AOAM530kU5cTCw/2t/qpoHGADIGihvzsqB6WTbJpM5nZa1fmMmZRpWJS
-        bnuH6u3j1VAndMzFu14mubNeNpF/EVL4YR6YCksa6w==
-X-Google-Smtp-Source: ABdhPJyfvYib4PeBvldMr45WaNJUn9d0szw+m4r3gQvhxDYWf7h78gUBTUR4Tz9aV7SCUvVQadsOTy78MLEja6PP/v4=
-X-Received: by 2002:ab0:2695:0:b0:352:5fc9:4132 with SMTP id
- t21-20020ab02695000000b003525fc94132mr9194787uao.29.1648457711122; Mon, 28
- Mar 2022 01:55:11 -0700 (PDT)
+        with ESMTP id S238671AbiC1JEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 05:04:10 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 18A9653E0C;
+        Mon, 28 Mar 2022 02:02:26 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.43:54834.655473141
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+        by 189.cn (HERMES) with SMTP id D96DF1002BE;
+        Mon, 28 Mar 2022 17:01:59 +0800 (CST)
+Received: from  ([172.27.8.53])
+        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id 3f3720f820be42faa0e22b914cbd3427 for lkp@intel.com;
+        Mon, 28 Mar 2022 17:02:25 CST
+X-Transaction-ID: 3f3720f820be42faa0e22b914cbd3427
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 172.27.8.53
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <efc756c5-9ea3-66df-4885-82f57ff31b1f@189.cn>
+Date:   Mon, 28 Mar 2022 17:01:52 +0800
 MIME-Version: 1.0
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
-In-Reply-To: <20220328000915.15041-1-ansuelsmth@gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Mon, 28 Mar 2022 17:55:00 +0900
-Message-ID: <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-omap@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,SUSPICIOUS_RECIPS,T_SCC_BODY_TEXT_LINE,
-        WEIRD_QUOTING autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v13 5/6] drm/loongson: add drm driver for loongson display
+ controller
+Content-Language: en-US
+To:     kernel test robot <lkp@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <error27@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+References: <20220328022835.2508587-5-15330273260@189.cn>
+ <202203281653.wiRaycuD-lkp@intel.com>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <202203281653.wiRaycuD-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ansuel
 
-On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+On 2022/3/28 16:51, kernel test robot wrote:
+> Hi Sui,
 >
-> Hi,
-> as the title say, the intention of this ""series"" is to finally categorize
-> the ARM dts directory in subdirectory for each oem.
+> Thank you for the patch! Perhaps something to improve:
+>
+> [auto build test WARNING on drm/drm-next]
+> [also build test WARNING on robh/for-next linus/master v5.17 next-20220328]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Sui-Jingfeng/MIPS-Loongson64-dts-update-the-display-controller-device-node/20220328-103101
+> base:   git://anongit.freedesktop.org/drm/drm drm-next
+> config: microblaze-randconfig-s032-20220328 (https://download.01.org/0day-ci/archive/20220328/202203281653.wiRaycuD-lkp@intel.com/config)
+> compiler: microblaze-linux-gcc (GCC) 11.2.0
+> reproduce:
+>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>          chmod +x ~/bin/make.cross
+>          # apt-get install sparse
+>          # sparse version: v0.6.4-dirty
+>          # https://github.com/intel-lab-lkp/linux/commit/836c0ab646f65b0a8c6574b5d2495c8617e96545
+>          git remote add linux-review https://github.com/intel-lab-lkp/linux
+>          git fetch --no-tags linux-review Sui-Jingfeng/MIPS-Loongson64-dts-update-the-display-controller-device-node/20220328-103101
+>          git checkout 836c0ab646f65b0a8c6574b5d2495c8617e96545
+>          # save the config file to linux build tree
+>          mkdir build_dir
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/gpu/drm/loongson/
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+>
+> sparse warnings: (new ones prefixed by >>)
+>>> drivers/gpu/drm/loongson/lsdc_i2c.c:179:23: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void [noderef] __iomem *dir_reg @@     got void * @@
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:179:23: sparse:     expected void [noderef] __iomem *dir_reg
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:179:23: sparse:     got void *
+>>> drivers/gpu/drm/loongson/lsdc_i2c.c:180:23: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void [noderef] __iomem *dat_reg @@     got void * @@
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:180:23: sparse:     expected void [noderef] __iomem *dat_reg
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:180:23: sparse:     got void *
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:252:23: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void [noderef] __iomem *dir_reg @@     got void * @@
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:252:23: sparse:     expected void [noderef] __iomem *dir_reg
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:252:23: sparse:     got void *
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:253:23: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void [noderef] __iomem *dat_reg @@     got void * @@
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:253:23: sparse:     expected void [noderef] __iomem *dat_reg
+>     drivers/gpu/drm/loongson/lsdc_i2c.c:253:23: sparse:     got void *
+> --
+>>> drivers/gpu/drm/loongson/lsdc_pci_drv.c:185:61: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void *reg_base @@     got void [noderef] __iomem *reg_base @@
+>     drivers/gpu/drm/loongson/lsdc_pci_drv.c:185:61: sparse:     expected void *reg_base
+>     drivers/gpu/drm/loongson/lsdc_pci_drv.c:185:61: sparse:     got void [noderef] __iomem *reg_base
+> --
+>>> drivers/gpu/drm/loongson/lsdc_output.c:232:63: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void *reg_base @@     got void [noderef] __iomem *reg_base @@
+>     drivers/gpu/drm/loongson/lsdc_output.c:232:63: sparse:     expected void *reg_base
+>     drivers/gpu/drm/loongson/lsdc_output.c:232:63: sparse:     got void [noderef] __iomem *reg_base
+>
+> vim +179 drivers/gpu/drm/loongson/lsdc_i2c.c
+>
+>     129	
+>     130	struct lsdc_i2c *lsdc_of_create_i2c_adapter(struct device *parent,
+>     131						    void *reg_base,
+>     132						    struct device_node *i2c_np)
+>     133	{
+>     134		unsigned int udelay = 5;
+>     135		unsigned int timeout = 2200;
+>     136		int nr = -1;
+>     137		struct i2c_adapter *adapter;
+>     138		struct lsdc_i2c *li2c;
+>     139		u32 sda, scl;
+>     140		int ret;
+>     141	
+>     142		li2c = kzalloc(sizeof(*li2c), GFP_KERNEL);
+>     143		if (!li2c)
+>     144			return ERR_PTR(-ENOMEM);
+>     145	
+>     146		spin_lock_init(&li2c->reglock);
+>     147	
+>     148		ret = of_property_read_u32(i2c_np, "loongson,sda", &sda);
+>     149		if (ret) {
+>     150			dev_err(parent, "No sda pin number provided\n");
+>     151			return ERR_PTR(ret);
+>     152		}
+>     153	
+>     154		ret = of_property_read_u32(i2c_np, "loongson,scl", &scl);
+>     155		if (ret) {
+>     156			dev_err(parent, "No scl pin number provided\n");
+>     157			return ERR_PTR(ret);
+>     158		}
+>     159	
+>     160		ret = of_property_read_u32(i2c_np, "loongson,nr", &nr);
+>     161		if (ret) {
+>     162			int id;
+>     163	
+>     164			if (ret == -EINVAL)
+>     165				dev_dbg(parent, "no nr provided\n");
+>     166	
+>     167			id = of_alias_get_id(i2c_np, "i2c");
+>     168			if (id >= 0)
+>     169				nr = id;
+>     170		}
+>     171	
+>     172		li2c->sda = 1 << sda;
+>     173		li2c->scl = 1 << scl;
+>     174	
+>     175		/* Optional properties which made the driver more flexible */
+>     176		of_property_read_u32(i2c_np, "loongson,udelay", &udelay);
+>     177		of_property_read_u32(i2c_np, "loongson,timeout", &timeout);
+>     178	
+>   > 179		li2c->dir_reg = reg_base + LS7A_DC_GPIO_DIR_REG;
+>   > 180		li2c->dat_reg = reg_base + LS7A_DC_GPIO_DAT_REG;
+>     181	
+>     182		li2c->bit.setsda = ls7a_i2c_set_sda;
+>     183		li2c->bit.setscl = ls7a_i2c_set_scl;
+>     184		li2c->bit.getsda = ls7a_i2c_get_sda;
+>     185		li2c->bit.getscl = ls7a_i2c_get_scl;
+>     186		li2c->bit.udelay = udelay;
+>     187		li2c->bit.timeout = usecs_to_jiffies(timeout);
+>     188		li2c->bit.data = li2c;
+>     189	
+>     190		adapter = &li2c->adapter;
+>     191		adapter->algo_data = &li2c->bit;
+>     192		adapter->owner = THIS_MODULE;
+>     193		adapter->class = I2C_CLASS_DDC;
+>     194		adapter->dev.parent = parent;
+>     195		adapter->nr = nr;
+>     196		adapter->dev.of_node = i2c_np;
+>     197	
+>     198		snprintf(adapter->name, sizeof(adapter->name), "gpio-i2c-%d", nr);
+>     199	
+>     200		i2c_set_adapdata(adapter, li2c);
+>     201	
+>     202		ret = i2c_bit_add_numbered_bus(adapter);
+>     203		if (ret) {
+>     204			if (i2c_np)
+>     205				of_node_put(i2c_np);
+>     206	
+>     207			kfree(li2c);
+>     208			return ERR_PTR(ret);
+>     209		}
+>     210	
+>     211		dev_info(parent, "sda=%u, scl=%u, nr=%d, udelay=%u, timeout=%u\n",
+>     212			 li2c->sda, li2c->scl, nr, udelay, timeout);
+>     213	
+>     214		ret = devm_add_action_or_reset(parent, lsdc_of_release_i2c_adapter, li2c);
+>     215		if (ret)
+>     216			return NULL;
+>     217	
+>     218		return li2c;
+>     219	}
+>     220	
 
-While I agree with this change and think it's for the good (browsing
-the ARM dts directory at the moment is frustrating..) I think
-buildroot and others need to be told about this as it'll potentially
-break their kernel build scripting for ARM and probably messes up the
-configs they have for existing boards.
+Hi,  my driver will not used on microblaze arch,
 
->  arch/arm/boot/dts/mstart/Makefile             |   10 +
->  .../mstar-infinity-breadbee-common.dtsi       |    0
->  .../mstar-infinity-msc313-breadbee_crust.dts  |    0
->  .../{ => mstart}/mstar-infinity-msc313.dtsi   |    0
->  .../boot/dts/{ => mstart}/mstar-infinity.dtsi |    0
->  .../mstar-infinity2m-ssd201-som2d01.dtsi      |    0
->  ...nfinity2m-ssd202d-100ask-dongshanpione.dts |    0
->  .../mstar-infinity2m-ssd202d-miyoo-mini.dts   |    0
->  .../mstar-infinity2m-ssd202d-ssd201htv2.dts   |    0
->  .../mstar-infinity2m-ssd202d-unitv2.dts       |    0
->  ...sd202d-wirelesstag-ido-sbc2d06-v1b-22w.dts |    0
->  ...ity2m-ssd202d-wirelesstag-ido-som2d01.dtsi |    0
->  .../mstar-infinity2m-ssd202d.dtsi             |    0
->  .../mstar-infinity2m-ssd20xd.dtsi             |    0
->  .../dts/{ => mstart}/mstar-infinity2m.dtsi    |    0
->  .../mstar-infinity3-msc313e-breadbee.dts      |    0
->  .../{ => mstart}/mstar-infinity3-msc313e.dtsi |    0
->  .../dts/{ => mstart}/mstar-infinity3.dtsi     |    0
->  .../mstar-mercury5-ssc8336n-midrived08.dts    |    0
->  .../{ => mstart}/mstar-mercury5-ssc8336n.dtsi |    0
->  .../boot/dts/{ => mstart}/mstar-mercury5.dtsi |    0
->  arch/arm/boot/dts/{ => mstart}/mstar-v7.dtsi  |    0
+what does this warnings means, do i need to fix this?
 
-s/mstart/mstar/
-
-Cheers,
-
-Daniel
