@@ -2,262 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7D9A4E9614
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 13:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C274D4E9648
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 14:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238584AbiC1MBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 08:01:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36672 "EHLO
+        id S242334AbiC1MNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 08:13:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241809AbiC1MBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:01:24 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D282C116B;
-        Mon, 28 Mar 2022 04:59:42 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id bg10so28144465ejb.4;
-        Mon, 28 Mar 2022 04:59:42 -0700 (PDT)
+        with ESMTP id S242336AbiC1MNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 08:13:32 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2134.outbound.protection.outlook.com [40.107.94.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5114665F;
+        Mon, 28 Mar 2022 05:11:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aaH5d7McdU+Yn/Ai+jiSRfjftVyt2ZF+EjSgJNMnSG8X6d4E6qswuqUzwE2jk0QdJ7MgavI+Wq6BdJ4+lGC1kKyFfv3/ZVWa0Tp8xTdz3DoORun/9MjAOGsrKjyTkCaCdKV4tVQVDfG8ttqKHJooTTQWiHI35eWofsmgphw7JLL6SFu6/+gYVwBqPcv/y8B6ZypTiwTEtvK/KE3rR/XHjByytuyft4xXVIzZ8E2nkwp8HywMXuO5EN6s74OkWbWlD848HJdkImRwRQnjECkKql5Mauq6KP6EDN4e4ZHG5FMMuEhCyBuXdDjm4ts01Pmb8A158zqfzz5AVL8MnLENQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z4MTvm4JmgiDo2YA6SVD5iA1/bjimKuv2vxvwvv09t0=;
+ b=OldxORZGfqjP7QrGY+x23KhhincpI23SUaBRrMT4b0ISr/x7scPyXqRkMRe0v+7fzeytd+QgJe0KtVM3d7oTH7zbyGjdJgRVIoMd4UXFH3Mf5LxkQDo5OqRYU9WJXyW/O3TPNB4BTiwP2g13GPosSTZInvaWH/+cu+KjtKPvcjFL6APa3uAoBvdnOUjZ0VQt7z7AomKGST7CF/YD/M2nH9134HPZWo0sj8P0RsrVGaBpvdk6wN0RTIftn6tA9nuAOflcyDYxR1zj/D4GthOIUgm/g8GRKTRdXapoltjn1AbK8pG3rNZcT8dWz8/rbBPemGixcUKLy0577mp17WDuDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Ze/m2vpSHnRCFApl36JFy8UvWyMkN8Q8xJDfS9/vOsQ=;
-        b=NVOXoLAv+phJR/OXqllZcD5b1Fb56JYg3bpa9CyubfWoBO1WHvjfTDV45sk6lAT8Fy
-         7t009RHWxiiHqBKnz/OeQuqQmXSCOcVYaXqLTiGiASfhycyiNyEFoUiPQZUsxarV74gK
-         EhdNs8Ll/Sv/A7aqkcPJrL1WXaa/SyK4WORC78JxBpCteMPOv8tFjbmuBOhaI2hiioYQ
-         zlTctUJcXcIcVntfbCHEOJXr8PjiDoUyFKlkig+4SFg2C13BlGNwT+QPFNe1swUJVUQi
-         ECSzsfOHlRzKZo6tPYChgj4YND8eh2r+yggI6cBl6P8sqPujf7WDxjSttAM5bNwcqPqT
-         xGLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ze/m2vpSHnRCFApl36JFy8UvWyMkN8Q8xJDfS9/vOsQ=;
-        b=cD86yMTD9muWFdQiR2ciVdjUpIoLeyQyYRuUEqYs/xsG7MOz6XVtHr9J4dkNCDr5oj
-         yFSbUP/TcSM4v6arONwDeGf6otmAt8qNtqtN9212PgDy5y1yYGGqdOo7rmkSsNg6Bey1
-         eOic0NKPKC1Vqeh5BUVUSTN4FyYFY/ZE8WI064mg3hrphuA9YOUd9I9k4i1J542A3eYV
-         Izdkoi7MREpUYw3U0etsR3NJBcyLrPrfUWZEqrbJLjT4Pn+GaE/gmID8hk+rPnCC3VDd
-         tHJc7FHTo7rsTI/T8qMm60l/CD7vY7u+5gLXWD35m+EmP64eyzkF6vFgIJi9A9fN/Fx6
-         dS9A==
-X-Gm-Message-State: AOAM530WF6NflH9SMZCBfqWgHJrD0kPz+io5GTII1yWze6wfrVaiBba2
-        /Zr6k5EsbJnkqQwpBPst58M=
-X-Google-Smtp-Source: ABdhPJyPqxtkyOhDlzlQWoqBpr2/PWiXxO8oiWRGFKkhtuHhlxy5u1G+w790Mbqi41xojqATEHav1w==
-X-Received: by 2002:a17:907:2162:b0:6df:ec76:af98 with SMTP id rl2-20020a170907216200b006dfec76af98mr17316920ejb.314.1648468781204;
-        Mon, 28 Mar 2022 04:59:41 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-69-170.ip85.fastwebnet.it. [93.42.69.170])
-        by smtp.gmail.com with ESMTPSA id j9-20020a170906534900b006df9b29eaf1sm5867876ejo.8.2022.03.28.04.59.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 04:59:40 -0700 (PDT)
-Date:   Mon, 28 Mar 2022 13:59:40 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Patrice CHOTARD <patrice.chotard@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
-        linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Subject: Re: [Linux-stm32] [RFC PATCH 1/1] ARM/arm64: categorize dts in arm
- dir and fix dependency in arm64
-Message-ID: <YkGjLPN7tjVeckEO@Ansuel-xps.localdomain>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <20220328000915.15041-2-ansuelsmth@gmail.com>
- <fef4e5dd-d843-ea37-7701-bcfac9d1c9b5@foss.st.com>
- <238c6d7b-a61c-d09e-9377-8f49dad40eeb@foss.st.com>
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z4MTvm4JmgiDo2YA6SVD5iA1/bjimKuv2vxvwvv09t0=;
+ b=Q5oqnmzF1JqeZy0dBsPFnivpyljznzVghIJlfGFPFuWrr6XkiS9StzRDTfV3/Ay55Ap4tn8he6PTdaBiYrxg7ky4i8mKWTAkJyACMyJdZ6/o7z4zWO9ZVSSLyD9gPyDTvW/vYy8qJij3ckFavOAjXKku8bf3uNSL7Fmz/Y8TuI8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by DM6PR04MB4170.namprd04.prod.outlook.com (2603:10b6:5:9c::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Mon, 28 Mar
+ 2022 12:11:51 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::a865:6d10:c4a9:1142]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::a865:6d10:c4a9:1142%9]) with mapi id 15.20.5102.023; Mon, 28 Mar 2022
+ 12:11:51 +0000
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     robert.foss@linaro.org, bliang@analogixsemi.com,
+        qwen@analogixsemi.com, Xin Ji <xji@analogixsemi.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 2/4] dt-bindings: media: video-interfaces: Add new bus-type
+Date:   Mon, 28 Mar 2022 20:09:53 +0800
+Message-Id: <20220328120956.1848795-2-xji@analogixsemi.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220328120956.1848795-1-xji@analogixsemi.com>
+References: <20220328120956.1848795-1-xji@analogixsemi.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: HK2PR0302CA0005.apcprd03.prod.outlook.com
+ (2603:1096:202::15) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <238c6d7b-a61c-d09e-9377-8f49dad40eeb@foss.st.com>
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUSPICIOUS_RECIPS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 178f3af2-9997-4cf0-91fb-08da10b423f3
+X-MS-TrafficTypeDiagnostic: DM6PR04MB4170:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR04MB41704D299AD804588053A645C71D9@DM6PR04MB4170.namprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QbAAFsCNPp7TBFFyjAzwoVob7Ij6B6MKVGdERtn2sYCsD7wZq2dw0vmKqGhp5OgXCOoBOjWthlAVV4gnB+8dAC9EOY+xlTfGVxSvxiPGGVwizrny6QxjPzl6Ns8uDnNbig/DTi3RiaOTHemzmYTetAJKXdhPrBRK0IqpJc57mCL3ZSd3ObmAxDSm+zVd6SaUDM0nuPFsjZDrajcR/FXoXP3C527E8zXfMJobS43NX3+1l1/xsGidn9EaAAAF8xL3ooci5CR2A2nVsD0yBbF8OlBtX/pzKbPfreM2Ylm3TPs0ZwfTZscYRqxr+pwWqS/xUsW+/FCVq7FXmT5q+EJIjsVOVNIO1HNClH3EAl5XuXr34yzeBnawkdpMfkYRJFJHVNdDpdyBO8W4pZdQj3z6MxX4jsrQv+FufOJxpKdkQIwF7E4+yfZVdclPJbS7xwNmk/eOmmo8anEOF22FoNT+bY5ByWO/n2S88nIRKCqDEc9WWOWqhPMCb+4bL4N0+9Swa4Yk9Mx+t30EG6KPtRO1M2zribX6z7CL5snLuWNFJJqJsGZ5DOdACqYgAiRQNUR+ojY0o7ZZv3jr0MotffeCjLJUlKxdE5I9Fvmc5zoKs9zHKecyQ3AuaRkVLkpCNlli5Pn5AHydV6RmL/cs6YSv/dsLch9GosrO/0x1svCGYlfWF2KmoIGnX0SBUIAXACrDnbmJj5sHPXb3i5bcHWhx1g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(8936002)(8676002)(4744005)(2906002)(110136005)(5660300002)(38100700002)(316002)(38350700002)(66476007)(4326008)(86362001)(52116002)(55236004)(66946007)(186003)(6512007)(1076003)(26005)(66556008)(2616005)(6486002)(6506007)(36756003)(508600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8mbb3aUsKOGYxKuDzHVLQWS6KWSwTfizkBVC2EmwSvM8pYL3C7oauclamcnd?=
+ =?us-ascii?Q?9Lf4pENPBa2As0XDNP5nHATb2t4voKu8ObsgHmDGt8ku2tW5LSFzt6vbGwHU?=
+ =?us-ascii?Q?QtmhQ6Ke5gEEGyWRvfv7ho3magkSsCxtSx7ZnJjWXg0pQikVbrHtrSuRRp8U?=
+ =?us-ascii?Q?wi5iChLM3MG7Mj3eciE7nPVLZyIO1K7CVAjZ96ZKqASIfAbELXFhh0UocvmV?=
+ =?us-ascii?Q?M0C/HMrqKrn+7AQMJoN3EDQ5wVy+gDgVCm3TQZBcMOEzhnMEN6mv2rgb1Uip?=
+ =?us-ascii?Q?MgMX3/mKu4Djve00+At1tuXYqx6Hd1GVDCjCoftU3o3lohocUbkTYrnihojW?=
+ =?us-ascii?Q?Pj2xb4xIImQNVONNqMNhvVdCl2vltOV2Vss0LiQwZZQpHFfV3+EU90dfxVAW?=
+ =?us-ascii?Q?K1h8slNnY9fBejL+UWGL4rkybwAoByrldAwOw6yzTsum6qhP0pOuvT40PRYj?=
+ =?us-ascii?Q?uQAPNAiO8nzsj7lVMViHP2b7aqvHxZ/6SqNFSrmnG5VhbZd67J3Ch+rXzBM5?=
+ =?us-ascii?Q?LBrznTBmqZt7lPXTvj0rgGsb59gPQT5TTbUamHXw8SalC99fXW6BeCGsD3st?=
+ =?us-ascii?Q?cx5Jq1+kPaLIBUppr+Kd2chlBkYTwCtkQABD7dEiY3Qtqu3rnuESVMK4x5i7?=
+ =?us-ascii?Q?SwdNjIT6fhO91Byk5dMr99zsykXT0niPrEzNzzEIn/nd/0yoCaunZalbz/qN?=
+ =?us-ascii?Q?+KjF5s/c0igguGO0wXp/qhV74/uVgPRsLR6QoOSpdZIo7YzOBLvgJRcZDrkb?=
+ =?us-ascii?Q?LBpsf/h4QyDxiIT3QBSKdNRQTNnYaFFXaNSRL+eqCH4EKjPlHujsA8mKD5g5?=
+ =?us-ascii?Q?4eM3IAdWKuehhI8IlucGOf45N+bMawNZEQUQafdxZL1Ow0SiYuszuUiyhflr?=
+ =?us-ascii?Q?0DQj0sjcqYrzaY4OnJvb0Y3KB91Nqd5MY32REtQZwaSMb8cmdzvfIlJEloUL?=
+ =?us-ascii?Q?jPQtcpkz0RKIoNyB6en9uNSs6ML0twlpHnmPSwKPTc4DBsLsgRpcuLNDvAwQ?=
+ =?us-ascii?Q?ZwI2aqghNvNSw75WMDL/E8wuQDnNC832hNiFNMuBsWWRPizoOkpN8iVTyZha?=
+ =?us-ascii?Q?ykMqSAYnRhIMliWUg5dwyyu6bG3HGF27nVMToQgKU9VGfNxIJ71yuIGUNoBD?=
+ =?us-ascii?Q?sHdpWgcgbq+6m85pqLRehTu/ZczmJYay7waCiVlJVN/r3iv/cBTU/Q2f/xEO?=
+ =?us-ascii?Q?8Vu6COjWPXKbu0y/WN6D+7xujnA+nlEs0tHI7c0B4blJC4XnXOYAMnLMEWXr?=
+ =?us-ascii?Q?oLjz4QpZRwBSo65V1D8e3f5XJzi6SEms/dR5bDe18QgN+3CdW3BHI3dd8bp2?=
+ =?us-ascii?Q?wX1oFVjptKjhA1kAQhd2lu2fJLthC3V7tLkHp9aECPLIP+wYmsNK9BwvvdgR?=
+ =?us-ascii?Q?sW2xGWreh4ruxZxzpa49Dl8s+p8jxt9HF0uyF1wW2zmBhe54N1uhV+WsyypK?=
+ =?us-ascii?Q?o3ns7PLfgUTF63MnCYaqKCn/hPL0U5u5HCBVVV0m+tYeAtkuJaWfdm8kX66y?=
+ =?us-ascii?Q?azRRqDGfzknv6xyAvqhVUSOqaXOs15JMVtO2h0YPGdQwIE9viqmn0A169URw?=
+ =?us-ascii?Q?8GrDtc994U82PM+a5ALPIGaoP7KWJX/iuce1BAXvjFK9u3qlXGKq4HxVPLSQ?=
+ =?us-ascii?Q?Y7fe8OuZdR7yTUxKqUNnXTdeBUm0uNuSRl3k3am0GUBsd/9DVs2bLQ4uzQXE?=
+ =?us-ascii?Q?bkvQDJOph3BjowAvw4ta2GgXQ0m6P6VjnL5WMGM41EcG3OW7VS+AoXQvLdrg?=
+ =?us-ascii?Q?026UiG3+KA=3D=3D?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 178f3af2-9997-4cf0-91fb-08da10b423f3
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2022 12:11:51.0919
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q65S/0ieyIQU8gFoIOpQDlJASvH2UMMTOrRSMdxE3/mFhhxKifS+0+X8KAz5JyywOBXTNV8ASy9NnGYwu0Twrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB4170
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 11:20:00AM +0200, Patrice CHOTARD wrote:
-> 
-> 
-> On 3/28/22 11:09, Patrice CHOTARD wrote:
-> > Hi Ansuel
-> > 
-> > On 3/28/22 02:09, Ansuel Smith wrote:
-> >> - Categorize every dts in arm directory in subdirectory
-> >> - Fix Makefile to address for the arm subdirectory
-> >> - Fix any arm64 dependency
-> >>
-> >> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > 
-> >>  create mode 100644 arch/arm/boot/dts/st/Makefile
-> >>  rename arch/arm/boot/dts/{ => st}/spear1310-evb.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear1310.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear1340-evb.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear1340.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear13xx.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear300-evb.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear300.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear310-evb.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear310.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear320-evb.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear320-hmi.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear320.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear320s.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear3xx.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear600-evb.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st}/spear600.dtsi (100%)
-> > 
-> > 
-> > All SPEAr device tree should go into stm sub-directory, as this platform is a STMicroelectronics one
-> > as STi or STM32.
-> 
-> Just got an internal discussion, all STMicroelectronics platform should go into "st" sub-directory, and not in "stm" as indicated in my previous e-mail. ;-)
-> 
-> Patrice
->
+No properly bus-type for DPI video bus, add bus-type 7 for it.
 
-Noted will do the change. If you notice other wrong categorization, feel
-free to write a big list so I can fix them. In short merge stm in the st
-directory. (arch_sti and arch_stm32)
-Aside from that they are all correct right?
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+---
+ Documentation/devicetree/bindings/media/video-interfaces.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > 
-> > Thanks
-> > 
-> > Patrice
-> > 
-> >>  create mode 100644 arch/arm/boot/dts/st_ericsson/Makefile
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ab8500.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ab8505.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-db8500.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-db8520.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-db9500.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-dbx5x0-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-dbx5x0.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-ab8500.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-family-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-stuib.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-tvk1281618-r2.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href-tvk1281618-r3.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-href520-tvk.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefprev60-stuib.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefprev60-tvk.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefprev60.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefv60plus-stuib.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefv60plus-tvk.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-hrefv60plus.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-nhk15.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-s8815.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-nomadik-stn8815.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-snowball.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-codina.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-gavini.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-golden.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-janice.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-kyle.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => st_ericsson}/ste-ux500-samsung-skomer.dts (100%)
-> >>  create mode 100644 arch/arm/boot/dts/stm/Makefile
-> >>  create mode 120000 arch/arm/boot/dts/stm/armv7-m.dtsi
-> >>  rename arch/arm/boot/dts/{ => stm}/st-pincfg.h (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih407-b2120.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih407-clock.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih407-family.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih407-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih407.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih410-b2120.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih410-b2260.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih410-clock.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih410-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih410.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih418-b2199.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih418-b2264.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih418-clock.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stih418.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stihxxx-b2120.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32429i-eval.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32746g-eval.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f4-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f429-disco.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f429-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f429.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f469-disco.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f469-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f469.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f7-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f746-disco.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f746-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f746.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f769-disco.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32f769-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32h7-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32h743.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32h743i-disco.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32h743i-eval.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32h750.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32h750i-art-pi.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp13-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp131.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp133.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp135.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp135f-dk.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp13xc.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp13xf.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp151.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp153.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp153c-dhcom-drc02.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-avenger96.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-dhcor-avenger96.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-dk1.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1-ctouch2.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1-edimm2.2.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-icore-stm32mp1.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-iot-box.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-microgea-stm32mp1-microdev2.0.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-microgea-stm32mp1.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-stinger96.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157a-stinger96.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-dhcom-pdk2.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-dhcom-picoitx.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-dk2.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-ed1.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-emsbc-argon.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-emstamp-argon.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-ev1.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-lxa-mc1.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-odyssey-som.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp157c-odyssey.dts (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xc.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-drc02.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-pdk2.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-picoitx.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcom-som.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcor-avenger96.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcor-io1v8.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dhcor-som.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-dkx.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xx-osd32.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxaa-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxab-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxac-pinctrl.dtsi (100%)
-> >>  rename arch/arm/boot/dts/{ => stm}/stm32mp15xxad-pinctrl.dtsi (100%)
-
+diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+index 4391dce2caee..68c3b9871cf3 100644
+--- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
++++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+@@ -93,6 +93,7 @@ properties:
+       - 4 # MIPI CSI-2 D-PHY
+       - 5 # Parallel
+       - 6 # BT.656
++      - 7 # DPI
+     description:
+       Data bus type.
+ 
 -- 
-	Ansuel
+2.25.1
+
