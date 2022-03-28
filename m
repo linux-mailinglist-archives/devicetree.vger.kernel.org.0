@@ -2,80 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 984424E9D02
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 19:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF9E24E9D19
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 19:11:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244166AbiC1RGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 13:06:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45856 "EHLO
+        id S244436AbiC1RNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 13:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239634AbiC1RGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 13:06:10 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C194CD57
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 10:04:29 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id r13so30012710ejd.5
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 10:04:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6yQeqxmAC2aKz5WWofRTiroUa0cIPCXtz1ZK19EhWKo=;
-        b=daxWCLSzVHGVhchsUZ6+YMjYVs1b6Fsm+tcDdFellj+t2WgqgjOdKLAWci/CZA5kTt
-         YpUbcI/aiNTyqKr5AatPYmITMGtorqn7ES0eJ6ftJukevTX7gjRktmyM2KYU+jPIuMOo
-         lRr1gySh1tvjJkDAfaSn+RFfZxDEI0XgwVFKQ3Jd0UwbgXJ421CA6h4nu98pFsDLh3iS
-         Uplm1/6F6IsS2NZY2tmoLWY6NxpGAtzxX7vCCefkJ0eCtUEmzhGnTDDG9HvdC85/RgeI
-         UmWlJrwlG+6aq9Gb59jmhagnkKLRvqeRsGPRkeNA/rmK3hTybLGNWQPHfY5ejaZOnwWR
-         nyqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6yQeqxmAC2aKz5WWofRTiroUa0cIPCXtz1ZK19EhWKo=;
-        b=L09lJqCuLaz7uqpw9Iychq3Tw32tSgky73J/hGdSKsZ9WnF3yoxpTT4hMS6Jyy/Ico
-         Yu9bp9TDOxUPNaxXJURtm/9eY34eiFZokGpqQPfobKIAnqBSSvw7xfYGsJ0/M1zakUQr
-         EaoMRaxnhh28NWwjGeGBd0XAoySLv4kWss0TKY8g6J0u0fAWh/gTlX1roZ1jTCJmlYfz
-         6mfvvClkWoPPyxhv4XZcOqtSj09iTTBia7TwpHB5OUg3TFOUZgcK9vf/klsMr7JUP0Un
-         hXYOBkowsqU+12giN7FbKpnvmbTFMzHLMNT+r4lHX4JYAn3BE/uAUANRo7ZfzStf641H
-         HV+A==
-X-Gm-Message-State: AOAM530uE1m4Qj2izprjJz1/NzjD4FCbAoX5g6pcX6DekzTSzcuKdleB
-        Au0pbv8KOp+cXDFSUBunPpztJg==
-X-Google-Smtp-Source: ABdhPJxOIHwbCP7io7cxTbL5Y9HAi1K2LbIG9adPMWYOr5vMxk3eG/GDERE2ELL/JaPwcEKHwv7GGQ==
-X-Received: by 2002:a17:907:7704:b0:6cf:48ac:b4a8 with SMTP id kw4-20020a170907770400b006cf48acb4a8mr29021497ejc.305.1648487067801;
-        Mon, 28 Mar 2022 10:04:27 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id 20-20020a17090601d400b006caff964e30sm6108433ejj.19.2022.03.28.10.04.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 10:04:27 -0700 (PDT)
-Message-ID: <41fe6179-5628-6393-01c1-918baccec176@linaro.org>
-Date:   Mon, 28 Mar 2022 19:04:26 +0200
+        with ESMTP id S236364AbiC1RNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 13:13:07 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1543289B6;
+        Mon, 28 Mar 2022 10:11:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6AA9AB81178;
+        Mon, 28 Mar 2022 17:11:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 070B3C340F0;
+        Mon, 28 Mar 2022 17:11:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648487484;
+        bh=nhTbLdAHeywYHwvCNkja4sDro8JXug829PcpuFzlDJk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=irEz5nnEiL5PElg4GKAhNWH/5pSi9xMv4h49LCdjFso8H/c9dO1ZJ8dM9XQaG+S6R
+         KeVmjwIrlw8/a4IfumbyhEdaTBb1ElxlwoGDTfvN03yMph+6z/JGLXhznakY9/9SCh
+         KiwCYZwUpgTgBb3DT5dIV9+nKgGr5YkWcT89hCtOG9mjWijqEd4a9tYLnYu83IU40q
+         gAFOd4lBYPKPQrx6d4qJ6wx1zo1crzOSl6b26vnZFWZSJfimVrhbJAl91UH4N2oiDs
+         FYPgjxeBoZaNcQwPrS0kUhaKI7qazb/wxW811fwwpbFiWFklWPLjXnws4S2txwibWP
+         q6sft0MPftGsQ==
+Date:   Mon, 28 Mar 2022 22:41:18 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8450: rename interconnect nodes
+Message-ID: <YkHsNtF8oGqE0g2i@matsya>
+References: <20220328143035.519909-1-vkoul@kernel.org>
+ <20220328143035.519909-2-vkoul@kernel.org>
+ <784aa271-5c95-3675-07e1-25b495d9eb80@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: display: msm: dsi: remove address/size cells
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-References: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <784aa271-5c95-3675-07e1-25b495d9eb80@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,25 +57,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2022 18:43, Dmitry Baryshkov wrote:
-> On Mon, 28 Mar 2022 at 18:30, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> The DSI node is not a bus and the children do not have unit addresses.
->>
->> Reported-by: Vinod Koul <vkoul@kernel.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 28-03-22, 17:07, Krzysztof Kozlowski wrote:
+> On 28/03/2022 16:30, Vinod Koul wrote:
+> > clk-virt and mc-virt interconnect nodes were named interconnect@0 and
+> > interconnect@1. That is incorrect as we don't have unit addresses 0/1
+> > for these node.
+> > 
+> > This causes warning:
+> > arch/arm64/boot/dts/qcom/sm8450.dtsi:255.27-259.4:
+> > 	Warning (unit_address_vs_reg): /interconnect@0:
+> > 	node has a unit name, but no reg or ranges property
+> > arch/arm64/boot/dts/qcom/sm8450.dtsi:261.26-265.4:
+> > 	Warning (unit_address_vs_reg): /interconnect@1:
+> > 	node has a unit name, but no reg or ranges property
+> > arch/arm64/boot/dts/qcom/sm8450.dtsi:255.27-259.4:
+> > 	Warning (unique_unit_address_if_enabled): /interconnect@0:
+> > 	duplicate unit-address (also used in node /soc@0)
+> > 
+> > Rename the nodes to interconnect-0 and interconnect-1 to fix the
+> > warning.
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> NAK.
-> DSI panels are children of the DSI device tree node with the reg = <0>; address.
-> This is the convention used by other platforms too (see e.g.
-> arch/arm64/boot/dts/freescale/imx8mq-evk.dts).
-> 
-> With the DSI split link it is possible to attach two panels to a
-> single DSI host, so addresses are necessary.
+> The DT schema will still need to be fixed because it expects 'reg' address.
 
-Yes, I noticed it slightly after I sent the patch. :(
+Yes will update that as well..
 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+Thanks
+
+-- 
+~Vinod
