@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E9D34E9307
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 13:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D62A4E952B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 13:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240490AbiC1LMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 07:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38950 "EHLO
+        id S241668AbiC1Lks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 07:40:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235254AbiC1LM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 07:12:29 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582454A918;
-        Mon, 28 Mar 2022 04:10:49 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id u16so19845511wru.4;
-        Mon, 28 Mar 2022 04:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YO5Ybs7Z8BiVv4Kteu2ySFfAWcGUm1ja/kydyOFD7Lg=;
-        b=CKEsQTLqEPzq7MUVFUaoxlvKXGwAhnE1F7Y+/DcQg0ZaGnS8BOvynke/Wy+JfmqqjZ
-         zzzdxZvLMEEbqabznWzGTrzJBRVDaI63vAwHRpV+g6tORgc9QOW30PPsd9ANuHFaeIDz
-         vfmKYz9p9i08+PDK5Mnp16ajjhLiTeoLW/CfRML9RWqSGG9dkYZ6+Y2eXuAkYaq9oj1F
-         Tw45Fmb86AgV2C2EE76qszAWfB3KXH49uRpsfJhl4OgnI2+VHFbI+gwvjBFFsjZdBm+g
-         BRxTV3W0PA7zGdLbk7rhdZg4cqlmYzzg7beFXVaaxnFikxYOGFUwAxjEBN/YAUGDInKv
-         YDdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YO5Ybs7Z8BiVv4Kteu2ySFfAWcGUm1ja/kydyOFD7Lg=;
-        b=DS8LB7f+9+eNrQdnwmc4OC9K5P1OAsY201DCTHY/1G4kuF5MnyeReTRprHfQ2jtPHN
-         Hz6rglCy9Ye5its9Ep4E9impLbk17pkKM7g40zzhf0B3bkO2Tr0TFNOwzYzKSq7jmYiC
-         c5Ta0XXqXJaDSx+1cQTqbGd4Ng1mvl25yYhkzVXPtA4+lldIzOwibYrqNfawoeyRosPa
-         RCujKHPLdak6UVAnpR5JLMOJFTQAU83aK+jDe/iGtxE238mlMQDYVAIAz/yOLEzsmM7m
-         tKmZr3yOx6aICQsI12EjbPvj9V/e84IT23cUazzrTR7Xh/kAFPCkynqa7GsgIAjYrPsQ
-         H/2g==
-X-Gm-Message-State: AOAM5318VkpnN4MpHFtHS0Gsm1pBHgfgVgoQBZTpOCJS8/VsjaO1C51j
-        bAjURqEJccUwj6cqtV11veg=
-X-Google-Smtp-Source: ABdhPJzaAxJbsNW/3r4U3icUncEmZem0++QDKaBkIhG8tcgajESrnxuVR3yF/nCbwWz4+TMjtqn6fQ==
-X-Received: by 2002:adf:d1e7:0:b0:205:8909:a67f with SMTP id g7-20020adfd1e7000000b002058909a67fmr22485894wrd.66.1648465847967;
-        Mon, 28 Mar 2022 04:10:47 -0700 (PDT)
-Received: from [192.168.0.32] ([137.101.87.65])
-        by smtp.gmail.com with ESMTPSA id r13-20020adfbb0d000000b00203e0efdd3bsm12270763wrg.107.2022.03.28.04.10.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 04:10:46 -0700 (PDT)
-Message-ID: <51f8baea-6562-1d6b-c409-9c362f0b2fc5@gmail.com>
-Date:   Mon, 28 Mar 2022 13:10:45 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 22/22] arm64: dts: mt8192: Add pwm node
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        with ESMTP id S242031AbiC1LeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 07:34:01 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2258D100A;
+        Mon, 28 Mar 2022 04:25:14 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id F38102223A;
+        Mon, 28 Mar 2022 13:25:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1648466711;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=1QO+CuCRXM0SAPBpiNzGRIWNurP+FMMvJMul6jNgdPs=;
+        b=oTHgXPkgVOAYx4mmLCgcEoTmB1sOTfbaYE2/zva0NeCFSBtkckRC+XXpuEggymiH51MktB
+        NiwPFMACoXPfBZhomCMZp1wxqI37CPxcFeDeQQ480VQwKn23u56OrezF7YyrzSxqhhBPQs
+        TVxIpd3uEGDxjMOINN17TeNMphD0psM=
+From:   Michael Walle <michael@walle.cc>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-23-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220318144534.17996-23-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 0/4] hwmon: add lan9668 driver
+Date:   Mon, 28 Mar 2022 13:25:01 +0200
+Message-Id: <20220328112505.3025374-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add a temperature and fan controller driver for the Microchip LAN9668 SoC.
 
+The temperature sensor uses a polynomial to calculate the actual
+temperature. Fortunately, the bt1-pvt already has such a calculation.
+It seems that the LAN9668 uses the same Analog Bits sensor as the
+BT1 although with a different characteristic. To be able to reuse the
+code move it to lib/ as it seems pretty generic to calculate any
+polynomial using integers only, which might also be used by other parts
+of the kernel. Another option might be to move the code to hwmon-poly.c,
+I'm not sure. Thoughts?
 
-On 18/03/2022 15:45, Allen-KH Cheng wrote:
-> Add pwm node for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index f0f0f067c023..ea98b2230f18 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -625,6 +625,17 @@
->   			status = "disabled";
->   		};
->   
-> +		pwm0: pwm@1100e000 {
-> +			compatible = "mediatek,mt8183-disp-pwm";
-> +			reg = <0 0x1100e000 0 0x1000>;
-> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH 0>;
+I also plan on submitting patches to add temperature sensor support for
+the GPYxxx and LAN8814 PHYs which also use polynomial_calc().
 
-Binding description is missing interrupt property. Remeber that the DT should 
-describe the HW, so we need to update the binding description.
-I just wonder what the IRQ signals, as it is not used by the driver. Definitely 
-a good candidate to make the commit message more sound. So please add it there.
+The last two patches adds the actual driver and the dt-binding for it.
 
-Thanks!
-Matthias
+changes since v1:
+ - add doc string to polynomial_calc(), moved the comment
+   into the function.
+ - add missing "select POLYNOMIAL" to the bt1_pvt driver
+   Kconfig symbol
+ - add hwmon driver documentation
+ - cache sys_clk rate during probe
+ - add missing ERR_CAST()
+ - adapted comment for the PPS->RPM calculation
+ - add temporary variable in lan966x_hwmon_read_pwm_freq()
 
-> +			#pwm-cells = <2>;
-> +			clocks = <&topckgen CLK_TOP_DISP_PWM_SEL>,
-> +				 <&infracfg CLK_INFRA_DISP_PWM>;
-> +			clock-names = "main", "mm";
-> +			status = "disabled";
-> +		};
-> +
->   		spi1: spi@11010000 {
->   			compatible = "mediatek,mt8192-spi",
->   				     "mediatek,mt6765-spi";
+Michael Walle (4):
+  lib: add generic polynomial calculation
+  hwmon: (bt1-pvt) use generic polynomial functions
+  dt-bindings: hwmon: add Microchip LAN966x bindings
+  hwmon: add driver for the Microchip LAN966x SoC
+
+ .../bindings/hwmon/microchip,lan966x.yaml     |  53 +++
+ Documentation/hwmon/lan966x.rst               |  47 +++
+ drivers/hwmon/Kconfig                         |  13 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/bt1-pvt.c                       |  50 +--
+ drivers/hwmon/lan966x-hwmon.c                 | 390 ++++++++++++++++++
+ include/linux/polynomial.h                    |  35 ++
+ lib/Kconfig                                   |   3 +
+ lib/Makefile                                  |   2 +
+ lib/polynomial.c                              | 108 +++++
+ 10 files changed, 665 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,lan966x.yaml
+ create mode 100644 Documentation/hwmon/lan966x.rst
+ create mode 100644 drivers/hwmon/lan966x-hwmon.c
+ create mode 100644 include/linux/polynomial.h
+ create mode 100644 lib/polynomial.c
+
+-- 
+2.30.2
+
