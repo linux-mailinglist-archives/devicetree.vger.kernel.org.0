@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D6474E9FCE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 21:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 203164EA09F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 21:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245705AbiC1Tei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 15:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53912 "EHLO
+        id S1343690AbiC1Tvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 15:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245706AbiC1Tei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 15:34:38 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC1B5EDF3;
-        Mon, 28 Mar 2022 12:32:55 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-d39f741ba0so16330550fac.13;
-        Mon, 28 Mar 2022 12:32:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=qi1/iRVX2o56RajS038DTkQnMYFIqNJyGlTn7qT/vnE=;
-        b=VqG3MTe9aQHgHFiyVe/XIUJED9iSdoCrQskTG0jvsZ6WwP2IgwVdX/jB4H/h7cV7p9
-         qYBSoPl3azcOXCPw0WbCZMcR8ZBPVZQrkU7lj1qD3JW9WfCj9bU3DYM7vhlDsyiEd1dx
-         HjQqYoFWhd+B1w0Aj8+luzU/9hwiIfn1HcgDdoGwTPutKDpKTpRMpCmT0HYMr+g3D0GH
-         eaeEImrNQ/DVZLV7DhVfZyNBpcmnOieStumLX/sKqf7Bdv2e0aKCMWjlmbUSs+XIb6ns
-         1iKNOdGM+nGrCsAtfCIvVnrERrdcZ801HpXnOnEbBSKzWXdH+gOt8X2qpV0DFtAIBtsQ
-         wybg==
-X-Gm-Message-State: AOAM530KcA4w3KANnx/fGPdWr4OlLbnHFyD4uqW/5q22Qg/8qiYEEIWa
-        b9A75Vxbl/QaxWwfKKGxDw==
-X-Google-Smtp-Source: ABdhPJxelsJuZKvNDqXqbdtpVcqj2hhC/IWmVUvfUfaQE3pkQENG6wZl2YUURhi6HbMnu+rhbitS0w==
-X-Received: by 2002:a05:6870:d207:b0:de:1872:fe43 with SMTP id g7-20020a056870d20700b000de1872fe43mr384712oac.242.1648495974312;
-        Mon, 28 Mar 2022 12:32:54 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b002ef960f65b3sm7630145oih.25.2022.03.28.12.32.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 12:32:52 -0700 (PDT)
-Received: (nullmailer pid 2851319 invoked by uid 1000);
-        Mon, 28 Mar 2022 19:32:50 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-Cc:     laurent.pinchart@ideasonboard.com, robh+dt@kernel.org,
-        hverkuil-cisco@xs4all.nl, alexander.stein@ew.tq-group.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        tomi.valkeinen@ideasonboard.com, mchehab@kernel.org,
-        nicolas@ndufresne.ca, stanimir.varbanov@linaro.org
-In-Reply-To: <20220328141309.177611-8-xavier.roumegue@oss.nxp.com>
-References: <20220328141309.177611-1-xavier.roumegue@oss.nxp.com> <20220328141309.177611-8-xavier.roumegue@oss.nxp.com>
-Subject: Re: [PATCH v4 7/9] media: dt-bindings: media: Add i.MX8MP DW100 binding
-Date:   Mon, 28 Mar 2022 14:32:50 -0500
-Message-Id: <1648495970.732437.2851318.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1345653AbiC1TuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 15:50:04 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB95B65;
+        Mon, 28 Mar 2022 12:47:45 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 0F64383F7D;
+        Mon, 28 Mar 2022 21:47:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1648496862;
+        bh=eNaPFGNFNc1sKelaNjDEWR3YYyLoKTdtvyHaR1Eu4vY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=e097iEkQY49L1NxFV/bgDU3Y+lM6afUEmME3HphNfYHbS2JUn8vNrZY4RQx6VT0+5
+         ywqsJWRSIad8mOzVKXydEmXBI1ugz+p99p4fnSeJug/tYPhPlhv0JGIrr9IwXZVB2Z
+         +cCuThvQRJBPBzOT/yzWv3Non9zIPvG/rbtET+9KyyGN76smtcmnIdzSbwLEAa8DLz
+         PV7bPIorTIDdFLXr+uSmT/MCUS3mT+sNlLgXN3V20dGRP+gLxGVD676OL+J66P99pz
+         8rLZ8NOhIDruodi5ClO2k+GfRE8iJg8xg0LFfKfnCG8VqZBfhUa7H0EEbOjzoHunyT
+         BI0QFc+SKYJTw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-iio@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v5 01/10] dt-bindings: iio: adc: ti,ads1015: Add missing ADS1115 compatible string
+Date:   Mon, 28 Mar 2022 21:47:16 +0200
+Message-Id: <20220328194725.149150-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Mar 2022 16:13:07 +0200, Xavier Roumegue wrote:
-> Add DT binding documentation for the Vivante DW100 dewarper engine found
-> on NXP i.MX8MP SoC
-> 
-> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../devicetree/bindings/media/nxp,dw100.yaml  | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,dw100.yaml
-> 
+Add missing ti,ads1115 compatible string. This compatible string is
+supported by the Linux kernel driver and the ads1015 is a 12bit ADC
+while ads1115 is 16bit ADC. Add the missing compatible string.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Andy Shevchenko <andy@kernel.org>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+---
+V2: Add AB from Krzysztof
+V3: No change
+V4: No change
+V5: No change
+---
+ Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/nxp,dw100.example.dts:25:18: fatal error: dt-bindings/power/imx8mp-power.h: No such file or directory
-   25 |         #include <dt-bindings/power/imx8mp-power.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/media/nxp,dw100.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1398: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1610196
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+index 2c2d01bbc296d..c31c80989cc9a 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/adc/ti,ads1015.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: TI ADS1015 4 channel I2C analog to digital converter
++title: TI ADS1015/ADS1115 4 channel I2C analog to digital converter
+ 
+ maintainers:
+   - Daniel Baluta <daniel.baluta@nxp.com>
+@@ -15,7 +15,9 @@ description: |
+ 
+ properties:
+   compatible:
+-    const: ti,ads1015
++    enum:
++      - ti,ads1015
++      - ti,ads1115
+ 
+   reg:
+     maxItems: 1
+-- 
+2.35.1
 
