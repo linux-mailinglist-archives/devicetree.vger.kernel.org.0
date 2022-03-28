@@ -2,73 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E124E9B2C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 17:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52C434E9B6E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 17:46:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238014AbiC1PdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 11:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42060 "EHLO
+        id S239184AbiC1Pq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 11:46:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235445AbiC1PdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 11:33:06 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21AB05D64E
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 08:31:26 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id o10so29512027ejd.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 08:31:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XVOdqtYpNwqLWJc4Ni5fAaD2U0widdST+YuPSsDvcoE=;
-        b=IQMm759QFEPImiACJ3TGGCTHB3IELcopOlUDoSvauStFHz4MaTX2LwwOGHGdfLjajk
-         Edf7FKVRQ61ssawAJddyaJFEqxk+UT3wvr6Axw6pa76AAmhHuQBAXIEXTS/zgLdQfdZA
-         sPQzEUAhFKo6F9P+xO/KZgjFT4Qa9QxhHM5V2nY481/FFMxLnlLHdZmNLc4btyeRDqah
-         rq5JpRo2enI69rZUHjo1Z75ro8x5lYiv7pqTxRSXdAs4JtERgOL+us4LYsLrd/Hmc/Sk
-         ++6dM0HAX9NVBWovfjsOnvqxf3KNaHP6tXFtCmBLn6lOkTCYLWpRMDijqHfO9/tDX+vL
-         y69g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=XVOdqtYpNwqLWJc4Ni5fAaD2U0widdST+YuPSsDvcoE=;
-        b=vxFQ/2JfFfseG9CydPU0N7QMhi8eQmBrsTTUeAVngItPYt6GJKv70sjucWPT9lm3x1
-         +56qJwO0TGjAgpbI8VWssmoD8pFdqJHED6gBTX4vEOZIlUnldt5ZnoSCvTaMvDLjuVUq
-         Y7GdOZN5svLQFktfPrPcNG1lfwTBVu5dFPRrjvlgLc4LEwgVAcNJ2d++5Rv/tf81OZhZ
-         YxGbmmehU2BRQ+YMxRw9Cs2juZSvVfrj9XbbEMzjpPPhoprdB2zC/nGKP2MnlH12Q57y
-         z4uTwVH6A+Wnl4MFPeOUgZLoO8MZcCECB1Mi7Rm4NCWEaaqD/S312RD+wB8QusNqhZvr
-         TsYw==
-X-Gm-Message-State: AOAM533u5HufrcdGSgSP/yjTWeLdCLlX5jCGKbmMO0QZ/HBaJbzV0I5r
-        8YHIcCXwAgMB/g31a2TOk8JB1w==
-X-Google-Smtp-Source: ABdhPJwnNW5LR0Gjv8RcjkHQy3MYxUIcpD+Okgnjnsl2Orn1ckdKLdXfSAas4GHG2hGm1N3O1blXfA==
-X-Received: by 2002:a17:907:6e17:b0:6da:83a3:c27a with SMTP id sd23-20020a1709076e1700b006da83a3c27amr28069230ejc.415.1648481484632;
-        Mon, 28 Mar 2022 08:31:24 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id b8-20020a170906728800b006e0351df2dcsm6085838ejl.70.2022.03.28.08.31.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Mar 2022 08:31:24 -0700 (PDT)
-Message-ID: <9277ab24-cbd0-f972-5a08-2faad2662f32@linaro.org>
-Date:   Mon, 28 Mar 2022 17:31:23 +0200
+        with ESMTP id S239298AbiC1PqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 11:46:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F2D04C7A2;
+        Mon, 28 Mar 2022 08:44:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 33DA6B81123;
+        Mon, 28 Mar 2022 15:44:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE5B6C004DD;
+        Mon, 28 Mar 2022 15:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648482278;
+        bh=bVwuxMR1FNIryjiDvIXdi9f+NUSMKrjmUQq6FdKXor8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=I+mXUJEaHR9d0bwysioVzxtU17wrckU+sj8J+vCUMXI3+mZ5IL3NvplD9Tmqliw5b
+         VMvY8sWSdaAfTdlY3vPFcCvltz1VT6gS1PDK6Ll1d+24jIse2UPucFPT5IiPARzAmU
+         3/wBfa+2+HG5vJWxzLi5SKxBic9jcGA0pgA8D+WgLTFlFSpS5/vxq1J7ULz+V5UOop
+         0ZFRvg343SeWzE+1t92wLS7rG5gEUod4BZyzNA5mKCfJugZgfGP8fP3AOOB0BR/wxZ
+         tPbEkN3Kdm5UlBelQIZ8q+wvYyun0QmQeLGGdHSGPswXp6/G7clumKRTAks8JFqGIb
+         XMJkMggW8YULA==
+Date:   Mon, 28 Mar 2022 16:44:31 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, thierry.reding@gmail.com,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/6] ASoC: tegra: Add Tegra186 based ASRC driver
+Message-ID: <YkHX3/8BbXo4obWI@sirena.org.uk>
+References: <1648447526-14523-1-git-send-email-spujar@nvidia.com>
+ <1648447526-14523-3-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8250: remove address cells from
- dsi nodes
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220328143035.519909-1-vkoul@kernel.org>
- <20220328143035.519909-7-vkoul@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220328143035.519909-7-vkoul@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Q6kdKZClj14YwsHl"
+Content-Disposition: inline
+In-Reply-To: <1648447526-14523-3-git-send-email-spujar@nvidia.com>
+X-Cookie: What hath Bob wrought?
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,23 +60,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2022 16:30, Vinod Koul wrote:
-> The child of dsi nodes do not have unit address, this causes warnings:
-> 
-> arch/arm64/boot/dts/qcom/sm8250.dtsi:3249.22-3301.6:
-> 	Warning (avoid_unnecessary_addr_size): /soc@0/mdss@ae00000/dsi@ae94000:
-> 	unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-> 
-> arch/arm64/boot/dts/qcom/sm8250.dtsi:3322.22-3374.6:
-> 	Warning (avoid_unnecessary_addr_size): /soc@0/mdss@ae00000/dsi@ae96000:
-> 	unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-> 
-> So remove #address-cells/#size-cells for dsi nodes.
 
-Looks good.
+--Q6kdKZClj14YwsHl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Mar 28, 2022 at 11:35:22AM +0530, Sameer Pujar wrote:
 
+> +	regcache_cache_only(asrc->regmap, false);
+> +	regcache_sync(asrc->regmap);
+> +
+> +	/* Setup global registers */
+> +	regmap_write(asrc->regmap, TEGRA186_ASRC_GLOBAL_SOFT_RESET, 0x1);
+> +	regmap_write(asrc->regmap, TEGRA186_ASRC_GLOBAL_SCRATCH_ADDR,
+> +		     TEGRA186_ASRC_ARAM_START_ADDR);
+> +	regmap_write(asrc->regmap, TEGRA186_ASRC_GLOBAL_INT_MASK, 0x01);
+> +	regmap_write(asrc->regmap, TEGRA186_ASRC_GLOBAL_ENB,
+> +		     TEGRA186_ASRC_GLOBAL_EN);
+> +	regmap_write(asrc->regmap, TEGRA186_ASRC_GLOBAL_INT_CLEAR, 0x01);
 
-Best regards,
-Krzysztof
+This seems weird - we resync the cache, then do a soft reset (which
+presumably desyncs the cache) and then explicitly restore a bunch of
+things (hopefully everything that was in the cached state?).  This is
+certainly very much not idiomatic and looks worrying.  Are you sure that
+the device is getting anything out of the register cache?
+
+> +static int tegra186_asrc_put_ratio_source(struct snd_kcontrol *kcontrol,
+> +					  struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct soc_enum *asrc_private =
+> +		(struct soc_enum  *)kcontrol->private_value;
+> +	struct snd_soc_component *cmpnt = snd_soc_kcontrol_component(kcontrol);
+> +	struct tegra186_asrc *asrc = snd_soc_component_get_drvdata(cmpnt);
+> +	unsigned int id = asrc_private->reg / TEGRA186_ASRC_STREAM_STRIDE;
+> +
+> +	asrc->lane[id].ratio_source = ucontrol->value.enumerated.item[0];
+> +
+> +	regmap_update_bits(asrc->regmap, asrc_private->reg,
+> +			   TEGRA186_ASRC_STREAM_RATIO_TYPE_MASK,
+> +			   asrc->lane[id].ratio_source);
+> +
+> +	return 1;
+> +}
+
+This should only return 1 if the value actually changed, you can use
+regmap_update_bits_check() to detect the change.  Current mixer-test
+ought to spot this.
+
+> +static const struct snd_kcontrol_new tegra186_asrc_controls[] = {
+> +	/* Controls for integer part of ratio */
+> +	SOC_SINGLE_EXT("Ratio1 Integer Part",
+> +		       ASRC_STREAM_REG(TEGRA186_ASRC_RATIO_INT_PART, 0),
+> +		       0, TEGRA186_ASRC_STREAM_RATIO_INT_PART_MASK, 0,
+> +		       tegra186_asrc_get_ratio_int,
+> +		       tegra186_asrc_put_ratio_int),
+
+Can't the driver work out the ratios based on...
+
+> +	/* Source of ratio provider */
+> +	SOC_ENUM_EXT("Ratio1 Source", src_select1,
+> +		     tegra186_asrc_get_ratio_source,
+> +		     tegra186_asrc_put_ratio_source),
+
+...the sources?  Or does it need to be configured before either side is
+ready in which case this might be the best we can do for now.
+
+--Q6kdKZClj14YwsHl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJB194ACgkQJNaLcl1U
+h9DJPQf/TvXk6oi+ijY9O9IQ133Gu9xWGWV+7fiQYkIlAtddglEabfYOJxtLVKuV
+xgm5SIaEfWvUPj3kevurFVLxyTvAZhpI8KfamsiUlRKjlK6IkKEsfx6yhYY9tvLn
+6QDMj18+mr1VrQNDyrlFRpuV8anPmnuHmXAJBb3gM4HSxM48Dn0uQyLgxkRwL9Ke
+X/j54DAQE8SAlTMafIfz24xWmojIyEyEY6CHIVrxfYqhJGIv24fQoIgA9P+b1vMW
+NmIlXb4oJ+TveCsUJBwRiwRzV8TIqoErgLkcReVThoeIf5yMz2smnJ7QltwRb+QN
+8BxNA3n76o2Idu8GGTH3RLmDwzHjhA==
+=G6cv
+-----END PGP SIGNATURE-----
+
+--Q6kdKZClj14YwsHl--
