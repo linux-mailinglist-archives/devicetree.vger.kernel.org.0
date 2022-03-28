@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26AA14E9F2C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 20:52:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A2D4E9F31
+	for <lists+devicetree@lfdr.de>; Mon, 28 Mar 2022 20:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245306AbiC1Sxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 14:53:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        id S237565AbiC1SzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 14:55:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245305AbiC1Sxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 14:53:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA359644DD;
-        Mon, 28 Mar 2022 11:52:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 64C526121C;
-        Mon, 28 Mar 2022 18:52:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD98C004DD;
-        Mon, 28 Mar 2022 18:52:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648493528;
-        bh=u5yZg0ynUEhZ3+K56tIjbNb4wQz9q4pZXSSN0Va1QRM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dHuq3HQI76JS7or/PSye/mbCBLHhmsQ8iHfU2Iz1h9HijDrIAaghYkjPOwwyBQWGB
-         h+BarIKxRpEDThmdQC9RYTThbn+QRn0B6XcmPQaO4RpXu8g0TQdOc8mF5CYRSNcPEu
-         vu9LEJpmPd0SQA7PptXC0rnZvaMJF+Gfp2DHy4Z/RTyoYfHhLGj4Ww9H512tGipZNI
-         slfAMUq/f7bP6OmJOIgfN/nQKdUP7D4Ep0KIV4vgPU1H9hfxrjgjZSWdeU8Jx2SqL8
-         ee9Jksk8v4rGeeXyf0c+vhPmjhMJcqEF4HqJmmRsgvnLilEOoL4ZoDXF2kUkQUczNe
-         //KVxsqiYnTRg==
-Message-ID: <35d98937-40cb-7f57-ab53-49153aa5ce7d@kernel.org>
-Date:   Mon, 28 Mar 2022 20:52:02 +0200
+        with ESMTP id S245329AbiC1SzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 14:55:16 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCCF1B855
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 11:53:33 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id pv16so30655258ejb.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 11:53:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=of31JbXORDeHdHam9ibeujdbRpu90rcdHTXqJLVkyNg=;
+        b=HN8BGCiPD2Vr2BxwsvzuYwa0W9x80vgZAJYxpMiiCzdkql68NffIfNSJNUUNyu8H+F
+         s69fnkCIfAsj1YPk8Yyw158wm27kbD2Bx4TPnjXG0HUUf7H3EPxRS34NTj3fP7CSAOGw
+         QZTswN+nWSrPu/8eU8DP/Y9bnKIq/ppTtXiQO2BpGyZs6VIb/QyuqTkcgQM1Up98l6Mb
+         b9vW2K0PDdP5xUnehtuJASaknEjfXL+JU8rogMCyJWXdugZB7b2aoUTmKNK2rc3vdlsT
+         d2AJFC7pzE1ZbOlET7Pze9DBmiqnOuHioyo0GvuuouXzyv13+jIHYB7fzy3NRZ2y3uQc
+         y/fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=of31JbXORDeHdHam9ibeujdbRpu90rcdHTXqJLVkyNg=;
+        b=uttstUfTlf8lgc+jgdeid0yBpc5oVVOwKJ7kKfoQJjHfB3na423iBLma11YIU/Eclm
+         03tUKXuaJM6mMKq+QclUC6/94wFOYl5IY/bSxs379DGGwKvGaE4K7ZFzUcNFlNDMn5rL
+         XvuC+bubnHeUmI7o/TKgqn+WN2v2JqckSgaor9Gr5mgykZH+GiT4thsrxVq2WmeK6AOl
+         1PgWwwpJU0y4Snd+Ua7aIPbrjH3XydzLi9AuSCXOsucsrqM7g0RTmbjxrOFJQpY9FWcg
+         iy9mxmzO3a0ZSjMbMtHF/86wleI+M25duwd1oD7fMaQ4my+ylUc2JcaiXk62N5B0dOgF
+         azdw==
+X-Gm-Message-State: AOAM5339K/s6GLLkEDiuKukmwoL+YaUV3UZdclcZq2j3Gudpr0C9xqMJ
+        kdbUsulkgb/N/84q0jYCCmVJfw==
+X-Google-Smtp-Source: ABdhPJw7CM/SHgFzeFhitNhooE1p7ZhIrNQbPiZZ+5Gxt8JwGu4Da4yOt4KuJ7PqnPrLtmMXn2iTWg==
+X-Received: by 2002:a17:906:9b89:b0:6da:ac6b:e785 with SMTP id dd9-20020a1709069b8900b006daac6be785mr30179433ejc.295.1648493612434;
+        Mon, 28 Mar 2022 11:53:32 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id jg22-20020a170907971600b006df9ff416ccsm6088959ejc.137.2022.03.28.11.53.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Mar 2022 11:53:32 -0700 (PDT)
+Message-ID: <d706c302-4604-e43c-864f-bccac1280363@linaro.org>
+Date:   Mon, 28 Mar 2022 20:53:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 3/5] PCI: axis: Add ARTPEC-8 PCIe controller driver
+Subject: Re: [PATCH 1/3] dt-bindings: phy: uniphier-usb2: Add vbus-supply
 Content-Language: en-US
-To:     wangseok.lee@samsung.com,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>
-Cc:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        =?UTF-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
-References: <CGME20220328021453epcms2p15977e72b6c96253ecaefcb71e6d2acfe@epcms2p1>
- <20220328021453epcms2p15977e72b6c96253ecaefcb71e6d2acfe@epcms2p1>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220328021453epcms2p15977e72b6c96253ecaefcb71e6d2acfe@epcms2p1>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1648433152-23126-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1648433152-23126-2-git-send-email-hayashi.kunihiko@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1648433152-23126-2-git-send-email-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/03/2022 04:14, 이왕석 wrote:
-> Add support Axis, ARTPEC-8 SoC.
-> ARTPEC-8 is the SoC platform of Axis Communications.
-> This is based on arm64 and support GEN4 & 2lane.
-> This PCIe controller is based on DesignWare Hardware core
-> and uses DesignWare core functions to implement the driver.
-> This is based on driver/pci/controller/dwc/pci-exynos.c
+On 28/03/2022 04:05, Kunihiko Hayashi wrote:
+> UniPhier USB2 PHY controller can apply vbus-supply.
+> Add "vbus-supply" property to fix the following warning.
 > 
-> Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
+>   uniphier-pro4-ace.dtb: usb-glue: phy@2: 'vbus-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+>       From schema: Documentation/devicetree/bindings/phy/socionext,uniphier-usb2-phy.yaml
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  drivers/pci/controller/dwc/Kconfig        |  31 +
->  drivers/pci/controller/dwc/Makefile       |   1 +
->  drivers/pci/controller/dwc/pcie-artpec8.c | 912 ++++++++++++++++++++++++++++++
->  3 files changed, 944 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-artpec8.c
-> 
+>  .../devicetree/bindings/phy/socionext,uniphier-usb2-phy.yaml   | 3 +++
+>  1 file changed, 3 insertions(+)
 
-I took a look at the your driver and at existing PCIe Exynos driver.
-Unfortunately PCIe Exynos driver is in poor shape, really poor. This
-would explain that maybe it's better to have new driver instead of
-merging them, especially that hardware is different. Although I am still
-waiting for some description of these differences...
 
-I said that Exynos PCIe looks poor... but what is worse, it looks like
-you based on it so you copied or some bad patterns it had.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Except this the driver has several coding style issues, so please be
-sure to run checkpatch, sparse and smatch before sending it.
-
-Please work on this driver to make it close to Linux coding style, so
-there will be no need for us, reviewers, focus on basic stuff.
-
-Optionally, send all this to staging. :)
 
 Best regards,
 Krzysztof
