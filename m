@@ -2,516 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD534EAFB3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 16:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A23C4EAFBD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 17:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237914AbiC2O61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 10:58:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47870 "EHLO
+        id S238202AbiC2PCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 11:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236761AbiC2O61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 10:58:27 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBCE13859F;
-        Tue, 29 Mar 2022 07:56:43 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id r7so24101958wrc.0;
-        Tue, 29 Mar 2022 07:56:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=R/qQDmqImOsdqxPn8kuDcCeLYVlLH8EffIXUnNSpyQM=;
-        b=lJfjaVRzk35z2+VKzfty+4hdth58zBEjfWrgOS1uOVjbxTgywUo814hEGTppw9/b/D
-         j+0HXCGxz3/bHOIYGUIwaFK3U20rT2bcJSnk97q4Ot7JYxcXtS3cHcBsAzck2Sw73D/u
-         VkhCdFzujMt55oJrPy7/F9sffWjVL1z12Vg/5xRQtVhiflY0Yitfd6zDO9a9Qw9jY4AF
-         awQFOxwl2wexF0hWRCSizYYgH596zgI49uZOIDAqQ/gOxFD8H9K80c539CKVZSWIBC17
-         AH+2emkw7ecp4dV2QCdOtUfEy59LMsA/v0e/a2TT+axOCvDgb8DphsfwArx2MfgQXUpk
-         i+mg==
+        with ESMTP id S235770AbiC2PCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 11:02:24 -0400
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD7D17C431;
+        Tue, 29 Mar 2022 08:00:41 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id o20-20020a9d7194000000b005cb20cf4f1bso12918648otj.7;
+        Tue, 29 Mar 2022 08:00:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=R/qQDmqImOsdqxPn8kuDcCeLYVlLH8EffIXUnNSpyQM=;
-        b=Oo5Tv1/bVfm75igeZ9aTlxUCPu+WFAn9C0v5JJc+piK/HlIdkcxZAQ4fxW9VhbykRD
-         KN1J0Nh7u+E+x+hH62902KvhRRB6HMseB75pTSi8vTOs6FQ85yTiSyS2DD1Wills5KEU
-         RvExr/Dbzr3vVBm+ywSxrJZYxwFK7Q/otGPiUbMee0+ZTdeKqJC5HOB7gdcB92VzkXBc
-         6ltRm5lVDqcLB5Jp9yeuD3KTUwD/CmEphc8OUhJxeBwwLX50A84f/vv5TBA8yY3lSN6s
-         LLDTQe+QCod9o10ZZ3NMkYIMcYMQhXg4t7yiUbyfNT5R7dze+m2o5RlYhP+jGsgLWsmD
-         wEyg==
-X-Gm-Message-State: AOAM533KFpxdwE5WUPTFUouwdMKSlQbkjtNLE5cQX1JVGt9DYq6BZpjm
-        p6aK68GcyePaGvVjg+TXv2k=
-X-Google-Smtp-Source: ABdhPJyKGT67Vbh5PboaqGSuksq4cMFneOsrDjUNzk68xxXW3hnsa9Wf0OJuOlGS5HoN5wwIbu35ng==
-X-Received: by 2002:a05:6000:10ca:b0:205:9b86:7976 with SMTP id b10-20020a05600010ca00b002059b867976mr29258611wrx.542.1648565802446;
-        Tue, 29 Mar 2022 07:56:42 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m3-20020a5d6243000000b001e33760776fsm15028121wrv.10.2022.03.29.07.56.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 07:56:41 -0700 (PDT)
-Message-ID: <e06b7f3e-fbc7-63ab-c7b9-0c879cb10807@gmail.com>
-Date:   Tue, 29 Mar 2022 16:56:40 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ATnw6PEqyAxFDklqcM0ljDLZ/jMZkSYwbsmucfTRygY=;
+        b=aZ33l3mMTBrOqfw6DCMSFq9dSSMwQKF6sgNfgiYTtf/7u+23lrpDyTDx4+af05o3fJ
+         piL5l1f40ScP8S+2dtiSqTZf79dXxUH1EiYh8pAS5tQAU2tpMGOosAyAUfTOkRJ8cwLq
+         +BdtTmDLdxqQCbWBzktw/Y2QiYsS7t56cieZqIJuZjg9OX3q+s+9ZmqtbpdK0WQRmrjB
+         zzF0WXcYjKbzXzAA93+DgEeXWWuUpjbFaxywGobqdaIXOf7ic5yCziLF13qKDfOYbFEa
+         MIQmPs/lk5ePijXOJwPATVdfKkiaOJyARHKbpkmGfo11vpdjSUg4koS8PRQVzcN+TNAI
+         EI1A==
+X-Gm-Message-State: AOAM531cH/NNCrAGgphvsToS8e8spgbspKvBtcqscdjhJS1iy9cuEOIi
+        1pSpehd2ritXX8uQylKpvg==
+X-Google-Smtp-Source: ABdhPJyNJO0gA0k/KVdjVen1vXFioSf2B/kpcozdjb4xczFxoGU93vUVOmtUWW6a5SaJpCAnXw0XyA==
+X-Received: by 2002:a05:6830:3c1:b0:5b0:3e3d:b788 with SMTP id p1-20020a05683003c100b005b03e3db788mr1260223otc.179.1648566040718;
+        Tue, 29 Mar 2022 08:00:40 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i7-20020a9d6247000000b005cdd13c217asm5626239otk.48.2022.03.29.08.00.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Mar 2022 08:00:39 -0700 (PDT)
+Received: (nullmailer pid 665655 invoked by uid 1000);
+        Tue, 29 Mar 2022 15:00:38 -0000
+Date:   Tue, 29 Mar 2022 10:00:38 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 04/16] PCI: dwc: Convert to using native IP-core versions
+ representation
+Message-ID: <YkMfFrKzz5eHPMrJ@robh.at.kernel.org>
+References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324013734.18234-5-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: Add Mediatek SoC MT8186 dts and
- evaluation board and Makefile
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     hsinyi@chromium.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org
-References: <20220311130732.22706-1-allen-kh.cheng@mediatek.com>
- <20220311130732.22706-5-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220311130732.22706-5-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220324013734.18234-5-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/03/2022 14:07, Allen-KH Cheng wrote:
-> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+On Thu, Mar 24, 2022 at 04:37:22AM +0300, Serge Semin wrote:
+> Since DWC PCIe v4.70a the controller version can be read from the
+> PORT_LOGIC.PCIE_VERSION_OFF register. Version is represented in the FourCC
+> format [1]. It's standard versioning approach for the Synopsys DWC
+> IP-cores. Moreover some of the DWC kernel drivers already make use of it
+> to fixup version-dependent functionality (See DWC USB3, Stmicro STMMAC or
+> recent DW SPI driver). In order to preserve the standard version
+> representation and prevent the data conversion back and forth, we suggest
+> to preserve the native version representation in the DWC PCIe driver too
+> in the same way as it has already been done in the rest of the DWC
+> drivers. IP-core version reading from the CSR will be introduced in the
+> next commit together with a simple macro-based API to use it.
 > 
-> Add basic chip support for Mediatek MT8186.
+> [1] https://en.wikipedia.org/wiki/FourCC
 > 
-
-Thanks for your patch. I would love to wait a bit longer to see if we can get 
-the clock driver accepted. This way we could get rid of all the dummy clocks 
-defined in here.
-
-Please send a new version once the clock driver is accepeted by Stephen, or ping 
-this series in a few month.
-
-Thanks,
-Matthias
-
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > ---
->   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->   arch/arm64/boot/dts/mediatek/mt8186-evb.dts |  24 ++
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 356 ++++++++++++++++++++
->   3 files changed, 381 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+>  drivers/pci/controller/dwc/pci-keystone.c    | 12 ++++++------
+>  drivers/pci/controller/dwc/pcie-designware.c |  8 ++++----
+>  drivers/pci/controller/dwc/pcie-designware.h | 10 +++++++++-
+>  drivers/pci/controller/dwc/pcie-intel-gw.c   |  4 ++--
+>  drivers/pci/controller/dwc/pcie-tegra194.c   |  2 +-
+>  5 files changed, 22 insertions(+), 14 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 8c1e18032f9f..d32fdcf9afc6 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -37,5 +37,6 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-> new file mode 100644
-> index 000000000000..eb23d1f19f87
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-> @@ -0,0 +1,24 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2022 MediaTek Inc.
-> + */
-> +/dts-v1/;
-> +#include "mt8186.dtsi"
+> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> index 1c2ee4e13f1c..ec65355dd29b 100644
+> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> @@ -109,7 +109,7 @@ struct ks_pcie_of_data {
+>  	enum dw_pcie_device_mode mode;
+>  	const struct dw_pcie_host_ops *host_ops;
+>  	const struct dw_pcie_ep_ops *ep_ops;
+> -	unsigned int version;
+> +	u32 version;
+>  };
+>  
+>  struct keystone_pcie {
+> @@ -1069,19 +1069,19 @@ static int ks_pcie_am654_set_mode(struct device *dev,
+>  
+>  static const struct ks_pcie_of_data ks_pcie_rc_of_data = {
+>  	.host_ops = &ks_pcie_host_ops,
+> -	.version = 0x365A,
+> +	.version = DW_PCIE_VER_365A,
+>  };
+>  
+>  static const struct ks_pcie_of_data ks_pcie_am654_rc_of_data = {
+>  	.host_ops = &ks_pcie_am654_host_ops,
+>  	.mode = DW_PCIE_RC_TYPE,
+> -	.version = 0x490A,
+> +	.version = DW_PCIE_VER_490A,
+
+This version should be readable, so get rid of hardcoding it here.
+
+>  };
+>  
+>  static const struct ks_pcie_of_data ks_pcie_am654_ep_of_data = {
+>  	.ep_ops = &ks_pcie_am654_ep_ops,
+>  	.mode = DW_PCIE_EP_TYPE,
+> -	.version = 0x490A,
+> +	.version = DW_PCIE_VER_490A,
+>  };
+>  
+>  static const struct of_device_id ks_pcie_of_match[] = {
+> @@ -1114,12 +1114,12 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+>  	struct device_link **link;
+>  	struct gpio_desc *gpiod;
+>  	struct resource *res;
+> -	unsigned int version;
+>  	void __iomem *base;
+>  	u32 num_viewport;
+>  	struct phy **phy;
+>  	u32 num_lanes;
+>  	char name[10];
+> +	u32 version;
+>  	int ret;
+>  	int irq;
+>  	int i;
+> @@ -1233,7 +1233,7 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+>  		goto err_get_sync;
+>  	}
+>  
+> -	if (pci->version >= 0x480A)
+> +	if (pci->version >= DW_PCIE_VER_480A)
+>  		ret = ks_pcie_am654_set_mode(dev, mode);
+>  	else
+>  		ret = ks_pcie_set_mode(dev);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index f1693e25afcb..c21373c6cb51 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -289,7 +289,7 @@ static void dw_pcie_prog_outbound_atu_unroll(struct dw_pcie *pci, u8 func_no,
+>  	val = type | PCIE_ATU_FUNC_NUM(func_no);
+>  	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr))
+>  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
+> -	if (pci->version == 0x490A)
+> +	if (pci->version == DW_PCIE_VER_490A)
+>  		val = dw_pcie_enable_ecrc(val);
+>  	dw_pcie_writel_ob_unroll(pci, index, PCIE_ATU_UNR_REGION_CTRL1, val);
+>  	dw_pcie_writel_ob_unroll(pci, index, PCIE_ATU_UNR_REGION_CTRL2,
+> @@ -336,7 +336,7 @@ static void __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+>  			   upper_32_bits(cpu_addr));
+>  	dw_pcie_writel_dbi(pci, PCIE_ATU_LIMIT,
+>  			   lower_32_bits(limit_addr));
+> -	if (pci->version >= 0x460A)
+> +	if (pci->version >= DW_PCIE_VER_460A)
+>  		dw_pcie_writel_dbi(pci, PCIE_ATU_UPPER_LIMIT,
+>  				   upper_32_bits(limit_addr));
+>  	dw_pcie_writel_dbi(pci, PCIE_ATU_LOWER_TARGET,
+> @@ -345,9 +345,9 @@ static void __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+>  			   upper_32_bits(pci_addr));
+>  	val = type | PCIE_ATU_FUNC_NUM(func_no);
+>  	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr) &&
+> -	    pci->version >= 0x460A)
+> +	    pci->version >= DW_PCIE_VER_460A)
+>  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
+> -	if (pci->version == 0x490A)
+> +	if (pci->version == DW_PCIE_VER_490A)
+>  		val = dw_pcie_enable_ecrc(val);
+>  	dw_pcie_writel_dbi(pci, PCIE_ATU_CR1, val);
+>  	dw_pcie_writel_dbi(pci, PCIE_ATU_CR2, PCIE_ATU_ENABLE);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 7d6e9b7576be..5be43c662176 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -20,6 +20,14 @@
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+>  
+> +/* DWC PCIe IP-core versions (native support since v4.70a) */
+> +#define DW_PCIE_VER_365A		0x3336352a
+> +#define DW_PCIE_VER_460A		0x3436302a
+> +#define DW_PCIE_VER_470A		0x3437302a
+> +#define DW_PCIE_VER_480A		0x3438302a
+> +#define DW_PCIE_VER_490A		0x3439302a
+> +#define DW_PCIE_VER_520A		0x3532302a
+
+Create a macro to form these so we can do:
+
+DW_PCIE_VER('5', '2', '0', 'A')
+
 > +
-> +/ {
-> +	model = "MediaTek MT8186 evaluation board";
-> +	compatible = "mediatek,mt8186-evb", "mediatek,mt8186";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:921600n8";
-> +	};
-> +
-> +	memory {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0x80000000>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> new file mode 100644
-> index 000000000000..aa45c75b18c7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -0,0 +1,356 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2022 MediaTek Inc.
-> + * Author: Allen-KH Cheng <allenn-kh.cheng@mediatek.com>
-> + */
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
-> +
-> +/ {
-> +	compatible = "mediatek,mt8186";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	clk13m: oscillator0 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <13000000>;
-> +		clock-output-names = "clk13m";
-> +	};
-> +
-> +	clk26m: oscillator1 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <26000000>;
-> +		clock-output-names = "clk26m";
-> +	};
-> +
-> +	clk32k: oscillator2 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32000>;
-> +		clock-output-names = "clk32k";
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@000 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55", "arm,armv8";
-> +			reg = <0x0000>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu1: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55", "arm,armv8";
-> +			reg = <0x0100>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu2: cpu@200 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55", "arm,armv8";
-> +			reg = <0x0200>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu3: cpu@300 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55", "arm,armv8";
-> +			reg = <0x0300>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu4: cpu@400 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55", "arm,armv8";
-> +			reg = <0x0400>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu5: cpu@500 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a55", "arm,armv8";
-> +			reg = <0x0500>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2000000000>;
-> +			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-> +			next-level-cache = <&l2_0>;
-> +		};
-> +
-> +		cpu6: cpu@600 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a75", "arm,armv8";
-> +			reg = <0x0600>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2050000000>;
-> +			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-> +			next-level-cache = <&l2_1>;
-> +		};
-> +
-> +		cpu7: cpu@700 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a75", "arm,armv8";
-> +			reg = <0x0700>;
-> +			enable-method = "psci";
-> +			clock-frequency = <2050000000>;
-> +			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-> +			next-level-cache = <&l2_1>;
-> +		};
-> +
-> +		cpu-map {
-> +			cluster0 {
-> +				core0 {
-> +					cpu = <&cpu0>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu1>;
-> +				};
-> +
-> +				core2 {
-> +					cpu = <&cpu2>;
-> +				};
-> +
-> +				core3 {
-> +					cpu = <&cpu3>;
-> +				};
-> +
-> +				core4 {
-> +					cpu = <&cpu4>;
-> +				};
-> +
-> +				core5 {
-> +					cpu = <&cpu5>;
-> +				};
-> +			};
-> +
-> +			cluster1 {
-> +				core0 {
-> +					cpu = <&cpu6>;
-> +				};
-> +
-> +				core1 {
-> +					cpu = <&cpu7>;
-> +				};
-> +			};
-> +		};
-> +
-> +		idle-states {
-> +			entry-method = "arm,psci";
-> +
-> +			cpuoff_l: cpu-off-l {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x00010001>;
-> +				local-timer-stop;
-> +				entry-latency-us = <50>;
-> +				exit-latency-us = <100>;
-> +				min-residency-us = <1600>;
-> +			};
-> +
-> +			cpuoff_b: cpu-off-b {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x00010001>;
-> +				local-timer-stop;
-> +				entry-latency-us = <50>;
-> +				exit-latency-us = <100>;
-> +				min-residency-us = <1400>;
-> +			};
-> +
-> +			clusteroff_l: cluster-off-l {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x01010001>;
-> +				local-timer-stop;
-> +				entry-latency-us = <100>;
-> +				exit-latency-us = <250>;
-> +				min-residency-us = <2100>;
-> +			};
-> +
-> +			clusteroff_b: cluster-off-b {
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x01010001>;
-> +				local-timer-stop;
-> +				entry-latency-us = <100>;
-> +				exit-latency-us = <250>;
-> +				min-residency-us = <1900>;
-> +			};
-> +		};
-> +
-> +		l2_0: l2-cache0 {
-> +			compatible = "cache";
-> +			next-level-cache = <&l3_0>;
-> +		};
-> +
-> +		l2_1: l2-cache1 {
-> +			compatible = "cache";
-> +			next-level-cache = <&l3_0>;
-> +		};
-> +
-> +		l3_0: l3-cache {
-> +			compatible = "cache";
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	timer: timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +		clock-frequency = <13000000>;
-> +	};
-> +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		ranges;
-> +
-> +		gic: interrupt-controller@c000000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			#redistributor-regions = <1>;
-> +			interrupt-parent = <&gic>;
-> +			interrupt-controller;
-> +			reg = <0 0x0c000000 0 0x40000>, // distributor
-> +			      <0 0x0c040000 0 0x200000>; // redistributor
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		watchdog: watchdog@10007000 {
-> +			compatible = "mediatek,mt8186-wdt",
-> +				     "mediatek,mt6589-wdt";
-> +			mediatek,disable-extrst;
-> +			reg = <0 0x10007000 0 0x1000>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		systimer: timer@10017000 {
-> +			compatible = "mediatek,mt8186-timer",
-> +				     "mediatek,mt6765-timer";
-> +			reg = <0 0x10017000 0 0x1000>;
-> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk13m>;
-> +		};
-> +
-> +		uart0: serial@11002000 {
-> +			compatible = "mediatek,mt8186-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11002000 0 0x1000>;
-> +			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk26m>, <&clk26m>;
-> +			clock-names = "baud", "bus";
-> +		};
-> +
-> +		uart1: serial@11003000 {
-> +			compatible = "mediatek,mt8186-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11003000 0 0x1000>;
-> +			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk26m>, <&clk26m>;
-> +			clock-names = "baud", "bus";
-> +			status = "disabled";
-> +		};
-> +
-> +		uart2: serial@11018000 {
-> +			compatible = "mediatek,mt8186-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11018000 0 0x1000>;
-> +			interrupts = <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk26m>, <&clk26m>;
-> +			clock-names = "baud", "bus";
-> +			status = "disabled";
-> +		};
-> +
-> +		mmc0: mmc@11230000 {
-> +			compatible = "mediatek,mt8186-mmc",
-> +				     "mediatek,mt8183-mmc";
-> +			reg = <0 0x11230000 0 0x1000>,
-> +			      <0 0x11cd0000 0 0x1000>;
-> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk26m>, <&clk26m>, <&clk26m>,
-> +				 <&clk26m>;
-> +			clock-names = "source", "hclk", "source_cg", "ahb_clk";
-> +			status = "disabled";
-> +		};
-> +
-> +		mmc1: mmc@11240000 {
-> +			compatible = "mediatek,mt8186-mmc",
-> +				     "mediatek,mt8183-mmc";
-> +			reg = <0 0x11240000 0 0x1000>,
-> +			      <0 0x11c90000 0 0x1000>;
-> +			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk26m>, <&clk26m>, <&clk26m>;
-> +			clock-names = "source", "hclk", "source_cg";
-> +			status = "disabled";
-> +		};
-> +
-> +		u3phy0: t-phy@11c80000 {
-> +			compatible = "mediatek,mt8186-tphy",
-> +				     "mediatek,generic-tphy-v2";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x0 0x11c80000 0x1000>;
-> +
-> +			u2port1: usb2-phy1@0 {
-> +				reg = <0x0 0x700>;
-> +				clocks = <&clk26m>;
-> +				clock-names = "ref";
-> +				#phy-cells = <1>;
-> +			};
-> +
-> +			u3port1: usb3-phy1@700 {
-> +				reg = <0x700 0x900>;
-> +				clocks = <&clk26m>;
-> +				clock-names = "ref";
-> +				#phy-cells = <1>;
-> +			};
-> +		};
-> +
-> +		u3phy1: t-phy@11ca0000 {
-> +			compatible = "mediatek,mt8186-tphy",
-> +				     "mediatek,generic-tphy-v2";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0x0 0x11ca0000 0x1000>;
-> +
-> +			u2port0: usb-phy@0 {
-> +				reg = <0x0 0x700>;
-> +				clocks = <&clk26m>;
-> +				clock-names = "ref";
-> +				#phy-cells = <1>;
-> +				mediatek,discth = <0x8>;
-> +			};
-> +		};
-> +	};
-> +};
+>  /* Parameters for the waiting for link up routine */
+>  #define LINK_WAIT_MAX_RETRIES		10
+>  #define LINK_WAIT_USLEEP_MIN		90000
+> @@ -269,7 +277,7 @@ struct dw_pcie {
+>  	struct pcie_port	pp;
+>  	struct dw_pcie_ep	ep;
+>  	const struct dw_pcie_ops *ops;
+> -	unsigned int		version;
+> +	u32			version;
+>  	int			num_lanes;
+>  	int			link_gen;
+>  	u8			n_fts[2];
+> diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
+> index 5ba144924ff8..786af2ba379f 100644
+> --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
+> +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
+> @@ -59,7 +59,7 @@
+>  #define RESET_INTERVAL_MS		100
+>  
+>  struct intel_pcie_soc {
+> -	unsigned int	pcie_ver;
+> +	u32	pcie_ver;
+>  };
+>  
+>  struct intel_pcie {
+> @@ -395,7 +395,7 @@ static const struct dw_pcie_host_ops intel_pcie_dw_ops = {
+>  };
+>  
+>  static const struct intel_pcie_soc pcie_data = {
+> -	.pcie_ver =		0x520A,
+> +	.pcie_ver =		DW_PCIE_VER_520A,
+>  };
+>  
+>  static int intel_pcie_probe(struct platform_device *pdev)
+> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+> index b1b5f836a806..6f1330ed63e5 100644
+> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+> @@ -1981,7 +1981,7 @@ static int tegra194_pcie_probe(struct platform_device *pdev)
+>  	pci->ops = &tegra_dw_pcie_ops;
+>  	pci->n_fts[0] = N_FTS_VAL;
+>  	pci->n_fts[1] = FTS_VAL;
+> -	pci->version = 0x490A;
+> +	pci->version = DW_PCIE_VER_490A;
+>  
+>  	pp = &pci->pp;
+>  	pp->num_vectors = MAX_MSI_IRQS;
+> -- 
+> 2.35.1
+> 
