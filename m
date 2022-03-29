@@ -2,74 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E4874EAAF4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 025774EAB00
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234942AbiC2KFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 06:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
+        id S234970AbiC2KIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 06:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234947AbiC2KFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:05:33 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903525C650;
-        Tue, 29 Mar 2022 03:03:49 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so945664wmb.4;
-        Tue, 29 Mar 2022 03:03:49 -0700 (PDT)
+        with ESMTP id S232312AbiC2KIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:08:24 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0C2127589;
+        Tue, 29 Mar 2022 03:06:42 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so949563wmb.4;
+        Tue, 29 Mar 2022 03:06:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XP58J9nMiUBKKZ2mEHu2elDVfOboIj5PiONcCMCt6ic=;
-        b=Yq4sbY+zwUknZYkTIlOVDWtB1bNtPagOZTtgT+2I2V6upHPE6NIOT3L9S27Sx3I/nz
-         bio/avRpFO0w5U5XECzAzLC3az+PrWr7pSssQ/xJN88fnPTBrMKhd+6QqBjuSAIDKJ1R
-         3FrFVS+HUJpZ1BT5HBH8JXJmW2OYL82dENzmIYwQUfTMCi/fAdJrxk2dD8+s+IDs5ZVi
-         54z7C6/HBUWl/N3wRalHWceNxICXqSnmCSkWIqaCs+BQxR8VJDsPLfVJMEj5utTb10R3
-         FgAhPK2IuYpcMppLKB9iXpS+/zIQsSefUrpWdz7iRWN4NR5I08aSY/n1y0aZoo/2OElH
-         bFCQ==
+        bh=gJYdJOur1iY6XbbeGXFj0ECGEHoJkzCeSnRWw+1akAE=;
+        b=g1SGsbd/jLtCfDq6yzASjQLg1D1Di4TRzjMb5UiIfrE9WiDmnp4ps8sIblZUNtYLhl
+         BEYp/E3cwcQ3Zx0+p3QoptHL3A/ppqsLefEG80tXSSwr+mpdP4i1AcDwb/671KD/V7Or
+         SrBc47ULMLUb19cniOzsSHJIDLc2hutPluz+X07qok/90+UjDzhv6DSHFkWqgCReRafg
+         8hQGGxrcX5P2AlRlhAUeG7o275fLN5UY/luSiQ/PippZc5scePfD88DWfB5YY4mbajP2
+         /wEv07hBPdodolgvcwPf/ryO4mcjf2pm6CqHleQKRp4LwbU9hZS+Lg1pg+jJITwfzWUK
+         5rMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=XP58J9nMiUBKKZ2mEHu2elDVfOboIj5PiONcCMCt6ic=;
-        b=V2kOzdoxgi9I5bGchb1BAXT8uUoCwhVQXSz3Djg5ZK5E4PaLLd8I+5bSWQ/2iSwwNf
-         D1mkUwPMsX2DFhIK3dicRN3m3vVzsJfcc3N/VTuVWCLFDe7ISG0FZSfLla8x4THIXcjQ
-         5TM75ynM9mgAIEY5esJ69bNdN6x0M3leNAi3L034vP9MEW3Ta1rlbFBOAatexqASzG0X
-         mHft9rIgOmap4XLni7WfKc2gtXoWP+TpCqqstGuEZV+dEBkM332UIt4A0b7q1F5iFz2Z
-         oNb++SKRgpY/Nw4iO11UC8Huea1WW+ifHaEH9qNdAxm20SbU43wTrefT48vHaCzRVYmS
-         c0Og==
-X-Gm-Message-State: AOAM533B5y4a7fqN34xTwErW/rlf8CqkJ1xdwMSzTlMWYCwWUOCVsC3o
-        OeGd3CMWd+G3A4ilIybJpNMd2dII+Eq5AQ==
-X-Google-Smtp-Source: ABdhPJztz045tZLfgkeJcC3u6Zv7to81fyJuQrvXjzft9fCaGBH8M6rHdf7cy+6YBfYM8gLnYA366A==
-X-Received: by 2002:a05:600c:34ce:b0:38c:a579:944a with SMTP id d14-20020a05600c34ce00b0038ca579944amr5773450wmq.113.1648548228053;
-        Tue, 29 Mar 2022 03:03:48 -0700 (PDT)
+        bh=gJYdJOur1iY6XbbeGXFj0ECGEHoJkzCeSnRWw+1akAE=;
+        b=tJUfPXpB3D2Xr+ifPFHavkeZNEPQfTtJn/OUXgNNdDNK7IJJvF28uxxd3HaUo5EoVl
+         DU3BecZu54cfnnrUnz4gbwCDeYy475OG/I5eEv1ayFd8Mx/EX4N966VkSRN6OYQ3qMZL
+         huOOgIHooNwpXcdJO3lzCWKt6VjlC675C9CDeICyDrvWVZfFonlA16xSs7Gd40B6sVTo
+         OL7W0l+nS77jrGDwSJ6U7XlgmaeVhBHZssjRicRpVvjCMTCnrYv6JkjBdU+ld5L4QBYN
+         WF4KkMsSnfX0T3+GHWOxQabWecMGtPSvmCXWLaMfGf/wNx5cgnsBkMgl9g+8Q2TfX6tp
+         CI3A==
+X-Gm-Message-State: AOAM533VsGwlnV6P5hUppzwI4BcK6mAItODsRNu2yon+FtI4iBdCf5Kb
+        /TM+8NycYzU1/kB4h6W7Tgk=
+X-Google-Smtp-Source: ABdhPJw/yl37bo84CH0/pwnTrqSkLHICdBHbZfyNAKleJ5pkLbBWcMtajlzC2TVgbnU7tHyn6wt30Q==
+X-Received: by 2002:a05:600c:a47:b0:37c:965:2b6f with SMTP id c7-20020a05600c0a4700b0037c09652b6fmr5636166wmq.31.1648548400811;
+        Tue, 29 Mar 2022 03:06:40 -0700 (PDT)
 Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id b8-20020a05600c4e0800b0038c6c37efc3sm1811134wmq.12.2022.03.29.03.03.46
+        by smtp.gmail.com with ESMTPSA id a11-20020a5d456b000000b0020406ce0e06sm14201716wrc.94.2022.03.29.03.06.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 03:03:47 -0700 (PDT)
-Message-ID: <ea6868cc-6650-9b69-e328-6b0d31069191@gmail.com>
-Date:   Tue, 29 Mar 2022 12:03:46 +0200
+        Tue, 29 Mar 2022 03:06:39 -0700 (PDT)
+Message-ID: <6dafde7d-17c6-bd25-dbe8-7f7acf80fd91@gmail.com>
+Date:   Tue, 29 Mar 2022 12:06:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 22/22] arm64: dts: mt8192: Add pwm node
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
 Content-Language: en-US
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
+To:     Tony Lindgren <tony@atomide.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-23-allen-kh.cheng@mediatek.com>
- <51f8baea-6562-1d6b-c409-9c362f0b2fc5@gmail.com>
- <6ab86a35394879cf35fd9d780f8b7ab1695c931b.camel@mediatek.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+        chrome-platform@lists.linux.dev,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org,
+        linux-tegra <linux-tegra@vger.kernel.org>, linux-oxnas@groups.io,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-unisoc@lists.infradead.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-realtek-soc@lists.infradead.org
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+ <YkK691VG6ON/6Ysn@atomide.com>
+ <CAMuHMdXDDNTgBdJTa8+H1H5v1gAarp07xxWu_E1JL8mXS8HPMg@mail.gmail.com>
+ <YkLXTWdZ3zASxr4H@atomide.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <6ab86a35394879cf35fd9d780f8b7ab1695c931b.camel@mediatek.com>
+In-Reply-To: <YkLXTWdZ3zASxr4H@atomide.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,72 +102,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 29/03/2022 08:51, allen-kh.cheng wrote:
+On 29/03/2022 11:54, Tony Lindgren wrote:
+> * Geert Uytterhoeven <geert@linux-m68k.org> [220329 09:02]:
+>> On Tue, Mar 29, 2022 at 10:03 AM Tony Lindgren <tony@atomide.com> wrote:
+>>> For example, I have a pile of pending omap clock clean-up dts patches
+>>> posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
+>>> redoing or fixing up the patches with sed :)
+>>
+>> Git merge/rebase/cherry-pick should handle renames fine?
 > 
-> Hi Matthias,
-> 
-> On Mon, 2022-03-28 at 13:10 +0200, Matthias Brugger wrote:
->>
->> On 18/03/2022 15:45, Allen-KH Cheng wrote:
->>> Add pwm node for mt8192 SoC.
->>>
->>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->>> ---
->>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 +++++++++++
->>>    1 file changed, 11 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> index f0f0f067c023..ea98b2230f18 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> @@ -625,6 +625,17 @@
->>>    			status = "disabled";
->>>    		};
->>>    
->>> +		pwm0: pwm@1100e000 {
->>> +			compatible = "mediatek,mt8183-disp-pwm";
->>> +			reg = <0 0x1100e000 0 0x1000>;
->>> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH
->>> 0>;
->>
->> Binding description is missing interrupt property. Remeber that the
->> DT should
->> describe the HW, so we need to update the binding description.
->> I just wonder what the IRQ signals, as it is not used by the driver.
->> Definitely
->> a good candidate to make the commit message more sound. So please add
->> it there.
->>
->> Thanks!
->> Matthias
->>
-> 
-> For interrupt property, we will send anther patch to update binding
-> and add some information for IRQ into commit message in next version.
+> Possibly.. Not sure I'd count on that based on my earlier experiences
+> though :)
 > 
 
-Thanks. Would you mind to send the dt-bindings updates in a series together with 
-the patches from this series that needs changes? This way it will be easier to 
-track the dependencies.
+Yes. If this could be split up in per silicon-vendor patches, the maintainer 
+could take them. Although it might be a pain to soc maintainers to resolve small 
+conflicts when merging that branches.
 
-Please beware to send dt-binding patches as first of the series, so that Rob 
-Herring can find the rather quick.
+Just my 5 cents.
 
-Thanks!
 Matthias
-
-> Thanks,
-> Allen
-> 
->>> +			#pwm-cells = <2>;
->>> +			clocks = <&topckgen CLK_TOP_DISP_PWM_SEL>,
->>> +				 <&infracfg CLK_INFRA_DISP_PWM>;
->>> +			clock-names = "main", "mm";
->>> +			status = "disabled";
->>> +		};
->>> +
->>>    		spi1: spi@11010000 {
->>>    			compatible = "mediatek,mt8192-spi",
->>>    				     "mediatek,mt6765-spi";
-> 
