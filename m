@@ -2,205 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 836704EA983
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A7F4EA9C7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234087AbiC2IqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 04:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40632 "EHLO
+        id S234206AbiC2IwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 04:52:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233614AbiC2IqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:46:16 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AED615A216
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:44:32 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id j18so23690907wrd.6
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:44:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Htf510lK0K0COaDanUWn9grVtQC7hoD/BNW+qqmuIzY=;
-        b=ydBG1SsWkporM4icCaqCFjTWkROmyeZ3Ob2QMeUEysrgdC5VYUgoGRvr4YNO9iM4IE
-         Q35Kd0kUOiX8ntz3z8DvfqgdwqJvlTg3LEfM5rxB2jEj9t4Xnmj8mLV+cObDjIbfc6XV
-         D8iskwAMbGIHPwVuHwzVfISuyCPF70kHf6V4h/PAjqrILHZk34gFraz9T+xsFxuQMXgP
-         Xts8GamC1I0k0AI6yB1cft2NSAVgv/UQ6Tiacv+tP6HGXlw/jxZ3vWp8jtnkYB/OZerU
-         v72nRUIU8p6F/mTy/4p7xT7/geVhhU1OetUz2uL3JDjNUdIQFzwgVSQ+TLVgCQHi1sZI
-         OZUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Htf510lK0K0COaDanUWn9grVtQC7hoD/BNW+qqmuIzY=;
-        b=znP+NWhPdpaADjJ6ejr0+dsAQHMrK+Es+6m4MEgBXBMvs01L+BtvLtH6LmzfMKim4d
-         ETHhD39AUEk9FWR6d83yTO0pgfukYro6+3pg4JAvFhm+WDpoYpTSxEa5NQB2uKTwrau+
-         xPPXBFY2SpnO69pVlomV3hLIPFkULhGfWqiVkzj4yyBZjVlA7ZRPQ71MeV+1EhpMuKAR
-         P4Qmr55Pwt6V/fOGkdvIJvPWRsofi1P/nRj7KNgTa1jmV+4G5EDgsJPlhh9a9x6iXgNs
-         b8d0B6OG1VbGJRAVhVFoXAXKfd62KgYAMBHdQzPhfJPj1NwF8x7qrw137fG2eaCRS1/5
-         Yxlw==
-X-Gm-Message-State: AOAM533PboSXGIGtXq9iQZ0uEv3v6rPxaPrTGY9d/4RbkAzJlvbAlrUw
-        /sESEVD8NgAuoLHLbDJnCAQZrg==
-X-Google-Smtp-Source: ABdhPJxOxk74gcWW7ZlOUIH21Esvp3h7kP/TrINagIG08xeGiSbVPKvEo/5GjZ/XH8OljMI9dvwPqw==
-X-Received: by 2002:adf:df8c:0:b0:203:e4f3:920 with SMTP id z12-20020adfdf8c000000b00203e4f30920mr29736954wrl.461.1648543470930;
-        Tue, 29 Mar 2022 01:44:30 -0700 (PDT)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id z18-20020a5d6412000000b0020400dde72esm14180734wru.37.2022.03.29.01.44.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 01:44:30 -0700 (PDT)
-Message-ID: <ae78d199-a782-75ed-5178-c9757be79f5d@linaro.org>
-Date:   Tue, 29 Mar 2022 09:44:28 +0100
+        with ESMTP id S231714AbiC2IwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:52:21 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173574C43B
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:50:38 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2254083FB2;
+        Tue, 29 Mar 2022 10:50:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1648543836;
+        bh=/iNkyPW4hMZbgSpJLXu+gqRjp9kX7pepjun2VfQ6vdo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=y12tY+4PV1djQyxRkyin1sO5YDIbVV7aHji3HdDZ1TFL8w2KJOGB9WPl1muwQJXQR
+         p9jKby55+DnHp7sWl4ZOHTa0+NdLuACrAg04NjIdbXmm0dduHbH8zCocjs4wzlR+3V
+         8TSIfIZJJI27f7YOSFNFSYOGa24bWuI4Q2Jf+DPeRZHcVTmMx0pz4UI3pNdQ4k0Hi/
+         SzIT2dlARo5SiLfq7v93uABq9WUFQ1qCpTw2dNfN3yiE+5N/5h9U12n2JVo0Z7azpV
+         HnUtN3X4QdzZbdAAKpKbu2SEXAQfpL6V3u5cOR4Adx+NG5SgT53aYYiZrpl0fWmSri
+         bQ+w1FWSPG0LA==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     l.stach@pengutronix.de, Marek Vasut <marex@denx.de>,
+        Rob Herring <robh@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: [PATCH v5 01/11] dt-bindings: display: bridge: tc358867: Document DPI output support
+Date:   Tue, 29 Mar 2022 10:50:05 +0200
+Message-Id: <20220329085015.39159-2-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220329085015.39159-1-marex@denx.de>
+References: <20220329085015.39159-1-marex@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8250: move wcd938x node out of
- soc node
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220328143035.519909-1-vkoul@kernel.org>
- <20220328143035.519909-6-vkoul@kernel.org>
- <0b43c297-d0d6-f38f-9609-47fca856aa6d@linaro.org> <YkHssmiGup+LdIBC@matsya>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <YkHssmiGup+LdIBC@matsya>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The TC358767/TC358867/TC9595 are all capable of operating in multiple
+modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
+DPI output port, which can now be connected both as input and output.
 
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+Tested-by: Lucas Stach <l.stach@pengutronix.de> # In both DPI to eDP and DSI to DPI mode.
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: - Rebase on next-20220217
+V3: - No change
+V4: - Add AB by Rob, RB/TB by Lucas
+V5: - No change
+---
+ .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 28/03/2022 18:13, Vinod Koul wrote:
-> On 28-03-22, 17:21, Krzysztof Kozlowski wrote:
->> On 28/03/2022 16:30, Vinod Koul wrote:
->>> The soc node expects all the nodes to have unit addresses. The wcd codec
->>> node does not have that which causes warnings:
->>>
->>> arch/arm64/boot/dts/qcom/sm8250-mtp.dts:631.17-648.4:
->>> Warning (simple_bus_reg): /soc@0/codec: missing or empty reg/ranges property
->>>
->>> Move wcd node out of soc to fix this
->>>
->>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 40 ++++++++++++-------------
->>>   1 file changed, 19 insertions(+), 21 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
->>> index fb99cc2827c7..3876a94b49a9 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
->>> @@ -156,6 +156,25 @@ vreg_s6c_0p88: smpc6-regulator {
->>>   		regulator-always-on;
->>>   		vin-supply = <&vph_pwr>;
->>>   	};
->>> +
->>> +	wcd938x: codec {
->>
->> This probably should be under "sound" node. Anyway having it under soc
->> seemed incorrect.
-> 
-> yeah it might make sense to be under sound. I think this is a slimbus
-> codec (right Srini..?) and this should be under slim node..
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+index f1541cc052977..5cfda6f2ba69c 100644
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+@@ -61,8 +61,8 @@ properties:
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: |
+-            DPI input port. The remote endpoint phandle should be a
+-            reference to a valid DPI output endpoint node
++            DPI input/output port. The remote endpoint phandle should be a
++            reference to a valid DPI output or input endpoint node.
+ 
+       port@2:
+         $ref: /schemas/graph.yaml#/properties/port
+-- 
+2.35.1
 
-wcd938x can be moved out of soc node but not under sound as it is.
-
-If we plan to move external codecs under sound node then sound node has 
-to be converted in to a simple-bus I guess. If we do that we have to 
-make sure that we are consistent across all the qcom dts. This does 
-sound correct either.
-
-Currently sound node is only used for sound-card, sound card uses LPASS 
-IP which is part of SoC along with external or internal codecs.
-
-I am not 100% sure moving aggregate devices like sound card which uses 
-SoC components along with external components out of soc node is the 
-right choice.
-
-Moving sound out of soc node might also add some regressions as sound 
-device is sometimes used to allocate dma memory, so we have to be 
-careful with this move.
-
-The reason why sound node is empty in SoC is because the wiring of dais 
-are board specific. We could add compatible string to soc sound node if 
-that helps clear some confusion.
-> 
->>
->> I actually wonder where this wcd9380 sits? What type of bus?
-
-WCD938x codec has two parts wcd938x-tx and wcd938x-rx which are under 
-there respective SoundWire bus.
-
-We can not move wcd938x-tx and wcd938x-rx out of there bus nodes which 
-result with no device enumeration.
-
---srini
-
-
-
->>
->>
->>> +		compatible = "qcom,wcd9380-codec";
->>> +		#sound-dai-cells = <1>;
->>> +		reset-gpios = <&tlmm 32 0>;
->>> +		vdd-buck-supply = <&vreg_s4a_1p8>;
->>> +		vdd-rxtx-supply = <&vreg_s4a_1p8>;
->>> +		vdd-io-supply = <&vreg_s4a_1p8>;
->>> +		vdd-mic-bias-supply = <&vreg_bob>;
->>> +		qcom,micbias1-microvolt = <1800000>;
->>> +		qcom,micbias2-microvolt = <1800000>;
->>> +		qcom,micbias3-microvolt = <1800000>;
->>> +		qcom,micbias4-microvolt = <1800000>;
->>> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
->>> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
->>> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
->>> +		qcom,rx-device = <&wcd_rx>;
->>> +		qcom,tx-device = <&wcd_tx>;
->>> +	};
->>>   };
->>>   
->>>   &adsp {
->>> @@ -627,27 +646,6 @@ &slpi {
->>>   	firmware-name = "qcom/sm8250/slpi.mbn";
->>>   };
->>>   
->>> -&soc {
->>> -	wcd938x: codec {
->>> -		compatible = "qcom,wcd9380-codec";
->>> -		#sound-dai-cells = <1>;
->>> -		reset-gpios = <&tlmm 32 0>;
->>> -		vdd-buck-supply = <&vreg_s4a_1p8>;
->>> -		vdd-rxtx-supply = <&vreg_s4a_1p8>;
->>> -		vdd-io-supply = <&vreg_s4a_1p8>;
->>> -		vdd-mic-bias-supply = <&vreg_bob>;
->>> -		qcom,micbias1-microvolt = <1800000>;
->>> -		qcom,micbias2-microvolt = <1800000>;
->>> -		qcom,micbias3-microvolt = <1800000>;
->>> -		qcom,micbias4-microvolt = <1800000>;
->>> -		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
->>> -		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
->>> -		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
->>> -		qcom,rx-device = <&wcd_rx>;
->>> -		qcom,tx-device = <&wcd_tx>;
->>> -	};
->>> -};
->>> -
->>>   &sound {
->>>   	compatible = "qcom,sm8250-sndcard";
->>>   	model = "SM8250-MTP-WCD9380-WSA8810-VA-DMIC";
->>
->>
->> Best regards,
->> Krzysztof
-> 
