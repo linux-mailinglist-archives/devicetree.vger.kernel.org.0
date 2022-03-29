@@ -2,126 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F84B4EAF8F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 16:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 685F54EAF9C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 16:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238102AbiC2Osw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 10:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40776 "EHLO
+        id S238100AbiC2OwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 10:52:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238100AbiC2Ost (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 10:48:49 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AEC5A94C5;
-        Tue, 29 Mar 2022 07:47:06 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-de3ca1efbaso18917452fac.9;
-        Tue, 29 Mar 2022 07:47:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aNacSkhtv5IJOB39+Ynb54nY/qoQFWMGRXyHWBxG+7Y=;
-        b=0MJS3FKGQvT25KuuUgAQeQGNkykjGu/RIiMwo6dA5wLxx6ZBkFh1S8qgyxkuahZIDb
-         nelr8V2XbEQAF9PI4ZdWOpsJjhnfNp9hR5Jd5nTE+xjXK+3gs6Diu/BUFbVV3jY/BaYQ
-         wRcmbFXoNXCFD8bJ6KwX7N2GBUlXlu61MFU/74rDUTDFeJg2VqID1T8KM4oStyLGSGKW
-         nNqY3fDxIRGls9BIoOvcD0DiQxwcwce7G+S8fDdXlMLNh6sWhHxWNyQ1889lBtxxAxlj
-         0/LFDPwlwhI/8cX37KNnB4ddF5O3iDV16RKfb0ZDeGKVhwpxq/lJfa07SNXtyKUgUCPK
-         AWsw==
-X-Gm-Message-State: AOAM532/FOEz4i/Zsep+mBKewRjtCZzEleOaOfhSPxv8Pjy6nBWAHCtM
-        c3QKK5biSX5s6fkDmbCxqbikRv34cQ==
-X-Google-Smtp-Source: ABdhPJxlmvBOjomcLq2SRUquEzBWLffZw3P2b+KP+xjs/3Rn7ha/syyvw9fwqdrvqE9O1XpHRRdK9g==
-X-Received: by 2002:a05:6870:e253:b0:dd:a40e:ae92 with SMTP id d19-20020a056870e25300b000dda40eae92mr1619644oac.233.1648565225325;
-        Tue, 29 Mar 2022 07:47:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h8-20020a056830400800b005cdceb42261sm6068792ots.66.2022.03.29.07.47.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 07:47:04 -0700 (PDT)
-Received: (nullmailer pid 643208 invoked by uid 1000);
-        Tue, 29 Mar 2022 14:47:02 -0000
-Date:   Tue, 29 Mar 2022 09:47:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/16] PCI: dwc: Add more verbose link-up message
-Message-ID: <YkMb5lT91ZveLTgg@robh.at.kernel.org>
-References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
- <20220324013734.18234-4-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S235720AbiC2OwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 10:52:16 -0400
+Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CB84DF4F;
+        Tue, 29 Mar 2022 07:50:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+        Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+        Resent-Cc:Resent-Message-ID; bh=S+Tu0Dayg2CTLGhBbl0yg+lgxmDq6qIFjiz7b1KSHxM=;
+        t=1648565433; x=1649775033; b=luoiZwb+tWrBpkhXN5hEJMnMh+15TqG7ksUZ7LkStX5WoCY
+        OzpGNC7aRxwKABLZRLR5knBVrisB7NumgCrGs1tpZzvyAYciERjW9oBwNjZXT/pfNEjlkOHtDlzI9
+        5UwGYhOwnQNZSseP0Fl65/swtIn2wrp3s0Ro6KCw1tRXVDTqaob7uT8nrzhuNRffxKUPUhPe/XxMC
+        hRvShE/5O7LXMjBnedWOMZecqsLcN44n8jiLllpNJeMpuDOT97AlXhzPJcOCdQcLHOE/LQoKHzXdu
+        Pqq5j+SJ+9IhRu6D79kUK3Sy86K1OUzRB3tVgBDqPMIkm3oq3IamSf4lpRozjloA==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+        (Exim 4.95)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1nZDAg-0021FO-OZ;
+        Tue, 29 Mar 2022 16:50:10 +0200
+Message-ID: <5b39d572e619c812109af7a1b8028bfb8353efda.camel@sipsolutions.net>
+Subject: Re: [RFC v1 07/10] iio: light: opt3001: add roadtest
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
+        "shuah@kernel.org" <shuah@kernel.org>,
+        "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Date:   Tue, 29 Mar 2022 16:50:09 +0200
+In-Reply-To: <20220329144319.GA4474@axis.com>
+References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
+         <20220311162445.346685-8-vincent.whitchurch@axis.com>
+         <CAFd5g47O2PbqaUZRoioRROtywTm=6t7cVgHqO7qc0ZGewQk16A@mail.gmail.com>
+         <20220318154927.GA32172@axis.com>
+         <1e61b0f21794e67fb4e87dc41fab90829d3c7cd6.camel@sipsolutions.net>
+         <20220329144319.GA4474@axis.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220324013734.18234-4-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-malware-bazaar: not-scanned
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 04:37:21AM +0300, Serge Semin wrote:
-> Printing just "link up" isn't that much informative especially when it
-> comes to working with the PCI Express bus. Even if the link is up, due to
-> multiple reasons the bus performance can degrade to slower speeds or to
-> narrower width than both Root Port and its partner is capable of. In that
-> case it would be handy to know the link specifications as early as
-> possible. So let's add a more verbose message to the busy-wait link-state
-> method, which will contain the link speed generation and the PCIe bus
-> width in case if the link up state is discovered. Otherwise an error will
-> be printed to the system log.
+On Tue, 2022-03-29 at 16:43 +0200, Vincent Whitchurch wrote:
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 22 +++++++++++++++-----
->  1 file changed, 17 insertions(+), 5 deletions(-)
+> I'm aware of vhost-user, but AFAICS QEMU needs glue for each device type
+> to be able to actually hook up vhost-user implementations to the devices
+> it exposes to the guest via the virtio PCI device.  See e.g.
+> hw/virtio/vhost-user-i2c-pci.c and hw/virtio/vhost-user-i2c.c in QEMU.
+
+Oh, I wasn't aware of that.
+
+> That is what I meant was missing for virtio-gpio, there seems to be an
+> in-progress patch set for that here though:
+>  https://lore.kernel.org/all/cover.1641987128.git.viresh.kumar@linaro.org/
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 6e81264fdfb4..f1693e25afcb 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -528,14 +528,26 @@ int dw_pcie_wait_for_link(struct dw_pcie *pci)
->  
->  	/* Check if the link is up or not */
->  	for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
-> -		if (dw_pcie_link_up(pci)) {
-> -			dev_info(pci->dev, "Link up\n");
-> -			return 0;
-> -		}
-> +		if (dw_pcie_link_up(pci))
-> +			break;
-> +
->  		usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
->  	}
->  
-> -	dev_info(pci->dev, "Phy link never came up\n");
-> +	if (retries < LINK_WAIT_MAX_RETRIES) {
-> +		u32 offset, val;
-> +
-> +		offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> +		val = dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKSTA);
-> +
-> +		dev_info(pci->dev, "PCIe Gen.%u x%u link up\n",
-> +			 FIELD_GET(PCI_EXP_LNKSTA_CLS, val),
-> +			 FIELD_GET(PCI_EXP_LNKSTA_NLW, val));
+> Similarly, glue for something like arch/um/drivers/virt-pci.c does not
+> exist in QEMU.
+> 
+> Or perhaps you are implying that hw/virtio/vhost-user-i2c* in QEMU are
+> not strictly needed?
 
-Given these are standard registers can we do this in the core code? The 
-main issue I think is that the config space accessors don't work until 
-you create the bus struct. That still should be early enough.
+I _thought_ that was the case, but honestly, that was just from reading
+about it, not looking at the code. Thinking about it though, I don't
+need special glue in UML, just passing the device ID on the command
+line? So not sure what they need the glue for. Looking at the code, it's
+not really much though? Not sure, I guess you need somebody more
+familiar with qemu here, sorry.
 
-I think it is possible some implementations don't report the link state 
-in these registers. Maybe we don't really need to care.
+> > Wohoo! This makes me very happy, finally somebody else who uses it :-)
+> 
+> Yes, thanks for that feature, it works well to speed up tests and also
+> has a knack for triggering race conditions (the RTC use-after-free for
+> example).
+> 
+> Time travel however sometimes triggers some WARN_ONs from the core
+> timekeeping code. I haven't seen them when running the test suites, but
+> they show up if the system under UML is idle for several (wall time)
+> seconds.  I haven't had a chance to investigate it further though, but I
+> can dig up the splats if you are interested.
 
-Rob
+Oh, I haven't seen that, and I'm pretty sure I've had systems idle for
+very long periods of time passing inside (think weeks) ...
+
+So yeah, if you have some splats (ideally with corresponding kernel
+configs), I'd be interested.
+
+johannes
