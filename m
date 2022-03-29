@@ -2,124 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED794EA889
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 09:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA6F4EA8AE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 09:49:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230234AbiC2Hcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 03:32:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47506 "EHLO
+        id S233532AbiC2HsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 03:48:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiC2Hcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 03:32:52 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5BC240BA
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 00:31:09 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id bn33so22293944ljb.6
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 00:31:09 -0700 (PDT)
+        with ESMTP id S233465AbiC2Hr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 03:47:59 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9479D1C391E;
+        Tue, 29 Mar 2022 00:46:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=XWnk+pKdZJqmV62/h657OWIHY82bAb8Z3BgjqTiOLz4=;
-        b=ZCavqCdVJwYtGfT81BfsVjv2DbWIBe15YHPAb2is2LlqnbovkJCrWB7jH14nRSJsbc
-         1PeyPqzQYMIhT03U54XHuSToZmfYPBcMumixdH39LypobqzQ+YGKtqjXV/Hu9zm+Mgcv
-         6gZyCzkU5ySSErh38hFZ8tOjr54LdLAsmBoW45UOoFqVTMOq0mG2Zq55SaaYQBPI1PIp
-         DQohnuBitjJ7L1+05TsrmaqyziJ5QwMZZFuVe+LAj6hxFW2gv8+ZjVg9zsMGdbV6Hiv5
-         NqQGtElNtHViCHkWeFk28wQyGb41x63um96QvtKx/rq3bXRIszv79P8E2F1rv7X2ODfS
-         +hfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=XWnk+pKdZJqmV62/h657OWIHY82bAb8Z3BgjqTiOLz4=;
-        b=JXAh1v00fBy2ehvDw0wj4qBpRiXpry6Oj8spQEX/gxG3GdwCGFbvLnwtLNHETHwlFO
-         ajAy4/BT/TDtw9U6RIyv5sYdTMbgB7wRNIVr/OEcBfbNwVGQnIE2UWje04NoZMsovWuq
-         qtpVvQBaszffyNTR3tCaZLOXbOOBEcbNZWKavHhKwRK0HbpbyEcZE6oqBA7ZZVykWEa8
-         Pej5nCHlAmxXZI8WgwwSQdcuo7g+mYeEvCCGMvJ6TEctaA5cvmFi1OulB12ElxeMtWMh
-         pC3PCFtNAE+GX64GfqV2Np4Y/nWICXHW0x0lmPE5UrvmjqpY5lcBI93ZiYPWrXnpUx1o
-         Xadg==
-X-Gm-Message-State: AOAM532I3/bSWLkQAbFE6A9Bzfo270IPyC5rCBySxrBAbsbqFhCqpwt5
-        xAJNNuT8LH/E4LwmfdL6xao=
-X-Google-Smtp-Source: ABdhPJyT5tL6mJoGz4sCX2mi3mIH2uu0ICIFJhwPC75SzUetOpN8XKJFv4/ZDm10r94iaB6qmCbJlw==
-X-Received: by 2002:a2e:b179:0:b0:24a:d3da:8691 with SMTP id a25-20020a2eb179000000b0024ad3da8691mr1412035ljm.392.1648539067518;
-        Tue, 29 Mar 2022 00:31:07 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id l18-20020a194952000000b00445bf2c3b83sm1898047lfj.58.2022.03.29.00.31.05
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 29 Mar 2022 00:31:07 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220328151116.2034635-1-s.hauer@pengutronix.de>
-Date:   Tue, 29 Mar 2022 09:31:01 +0200
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648539976; x=1680075976;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Iv6eZyi8BlLuO8dorNPKusST5FRIAaRdbW31rrkLVqQ=;
+  b=TjsIx33f2xk8A92Y4tAPJG7akur8lRbSPGNt48DPFv/bHHHghB3nbkV2
+   hKV9x1Qaqy/sqXSHyBkd+in8yTWtxWU0R0w44Y8JTuSF2Fd2mAdGTWCMk
+   ZDHPLHyanVjrypWyDQ2DyNV7FUFdoRZSzMa+PgzSKmWTxFCkR3uSWLJ5Q
+   M=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 29 Mar 2022 00:46:16 -0700
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 00:46:16 -0700
+Received: from mingxue-gv.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 29 Mar 2022 00:46:14 -0700
+Date:   Tue, 29 Mar 2022 15:46:11 +0800
+From:   Minghao Xue <quic_mingxue@quicinc.com>
+To:     "Michael S. Tsirkin" <mst@redhat.com>
+CC:     <jasowang@redhat.com>, <robh+dt@kernel.org>,
+        <jean-philippe@linaro.org>,
+        <virtualization@lists.linux-foundation.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_ztu@quicinc.com>, <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: virtio: mmio: add optional
+ wakeup-source property
+Message-ID: <20220329074610.GA20342@mingxue-gv.qualcomm.com>
+References: <20220325015945.GA17578@mingxue-gv.qualcomm.com>
+ <20220328164228-mutt-send-email-mst@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220328164228-mutt-send-email-mst@kernel.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Mar 28, 2022 at 04:42:59PM -0400, Michael S. Tsirkin wrote:
+> On Fri, Mar 25, 2022 at 09:59:45AM +0800, Minghao Xue wrote:
+> > Some systems want to set the interrupt of virtio_mmio device
+> > as a wakeup source. On such systems, we'll use the existence
+> > of the "wakeup-source" property as a signal of requirement.
+> > 
+> > Signed-off-by: Minghao Xue <quic_mingxue@quicinc.com>
+> 
+> I don't have enough of a clue about dt to review this.
+> Pls get some acks from people with DT expertise.
+> 
+Hi Michael,
+I had a discussion with Krzysztof on the first version of patch. And we've
+got aligned. 
 
+Regards,
+Minghao
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 28.03.2022, o godz. 17:10:
->=20
->=20
-> Changes since v8:
-> - make hclk_vo a critical clock instead of enabling it in the hdmi =
-driver
-> - Fix vop2_setup_layer_mixer(), reported by Andy Yan
-> - Limit planes possible_crtcs to actually existing crtcs
->=20
->=20
-
-Sascha,
-
-FYI:
-I was hoping v9 will fix green screen issue i see when video player =
-wants to draw to nv12 capable drm plane.
-It look issue is still present :-(
-
-You can easily reproduce with modetest utility:
-
-modetest -P 43@67:1920x1080@NV12=20
-
-gives green screen.
-
-however if you do:
-
-modetest #43 (green screen)
-modetest #49  (ok)
-
-then
-
-modetest #43=20
-
-gives expected result ("rainbow" picture on screen)
-
-let me know if i can do any extra tests helping you to fix issue
-=20
-br
-
-
+> > ---
+> > v1 -> v2: rename property from "virtio,wakeup" to "wakeup-source"
+> > 
+> >  Documentation/devicetree/bindings/virtio/mmio.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > index 4b7a027..160b21b 100644
+> > --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > @@ -31,6 +31,10 @@ properties:
+> >      description: Required for devices making accesses thru an IOMMU.
+> >      maxItems: 1
+> >  
+> > +  wakeup-source:
+> > +    type: boolean
+> > +    description: Required for setting irq of a virtio_mmio device as wakeup source.
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > -- 
+> > 2.7.4
+> 
