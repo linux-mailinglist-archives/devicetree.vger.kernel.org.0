@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0664EB629
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 00:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7854EB63C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 00:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238120AbiC2WmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 18:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
+        id S233672AbiC2W57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 18:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238115AbiC2WmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 18:42:07 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E554232124
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 15:40:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=PxyNmMt5ONNYHyxLLGMyMlfMpM/UgYfSZnRTd62LJ8k=; b=fJfbS1Q5ksMU7mTDv9H7gbRg39
-        3e6Gam9Q0DHoNix6X875cwTYyUHTis7WnqD0JOEqLfSESA/6lQnCOn6siiH6/Wr7N4q1c7nC6dP52
-        kqG9Klk7opXMF3rhx+5nSgvWgjRIPxo/h+q9TE4YyvaB4iPjTUTkKc+f10PN27aK/SVI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nZKVZ-00DEOT-Aa; Wed, 30 Mar 2022 00:40:13 +0200
-Date:   Wed, 30 Mar 2022 00:40:13 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rui Miguel Silva <rui.silva@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: smsc,lan91c111 convert to schema
-Message-ID: <YkOKzeURVvotgAHq@lunn.ch>
-References: <20220329213519.801033-1-rui.silva@linaro.org>
- <20220329213519.801033-2-rui.silva@linaro.org>
+        with ESMTP id S238783AbiC2W55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 18:57:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E8C1FF218;
+        Tue, 29 Mar 2022 15:56:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2D620B81AC0;
+        Tue, 29 Mar 2022 22:56:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4853BC340ED;
+        Tue, 29 Mar 2022 22:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648594570;
+        bh=ksuq1R8pSpjJONhoUKRGAf+f3bC+JKVtq1dWnWz3wNU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=IEEH07hp4AwMgoIeNeOBPvNW99HUs9/erJvbuIyH0Ken+cf7aXHjsNJyR/OtWd+++
+         b3/ySZiyOwGfBRKFOMhL5CHvzf7LvKjEM0TK/gEcIoFjQud5xxHFYX1ioBnnBxyLzd
+         wLmn/5MOszcCuBmiZH/1lJxSk2EZvaHhB+qe0ctvk1WkmPKSfFEKALd84XvbzwTUUh
+         MhyKVApRE87yj53FaptWGgbmwuCPcM7AVzOdPuNDiR42Cy1o9loL3/wnhI43zZTjcs
+         oXW7iHXWfLqPdS1ixDyIV+3IoD/bmzGa4dxe9eKQebH31MOnccUbKpHKQlX2wTve8p
+         dh6GFb5/MuFCw==
+Date:   Tue, 29 Mar 2022 15:56:09 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     andrew@lunn.ch
+Cc:     Andy Chiu <andy.chiu@sifive.com>, radhey.shyam.pandey@xilinx.com,
+        robert.hancock@calian.com, michal.simek@xilinx.com,
+        davem@davemloft.net, pabeni@redhat.com, robh+dt@kernel.org,
+        linux@armlinux.org.uk, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Greentime Hu <greentime.hu@sifive.com>
+Subject: Re: [PATCH v7 net 4/4] net: axiemac: use a phandle to reference
+ pcs_phy
+Message-ID: <20220329155609.674caa9c@kernel.org>
+In-Reply-To: <20220329024921.2739338-5-andy.chiu@sifive.com>
+References: <20220329024921.2739338-1-andy.chiu@sifive.com>
+        <20220329024921.2739338-5-andy.chiu@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220329213519.801033-2-rui.silva@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 10:35:17PM +0100, Rui Miguel Silva wrote:
-> Convert the smsc lan91c9x and lan91c1xx controller device tree
-> bindings documentation to json-schema.
+On Tue, 29 Mar 2022 10:49:21 +0800 Andy Chiu wrote:
+> In some SGMII use cases where both a fixed link external PHY and the
+> internal PCS/PMA PHY need to be configured, we should explicitly use a
+> phandle "pcs-phy" to get the reference to the PCS/PMA PHY. Otherwise, the
+> driver would use "phy-handle" in the DT as the reference to both the
+> external and the internal PCS/PMA PHY.
 > 
-> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
-> ---
->  .../bindings/net/smsc,lan91c111.yaml          | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
+> In other cases where the core is connected to a SFP cage, we could still
+> point phy-handle to the intenal PCS/PMA PHY, and let the driver connect
+> to the SFP module, if exist, via phylink.
+> 
+> Fixes: 1a02556086fc (net: axienet: Properly handle PCS/PMA PHY for 1000BaseX mode)
+> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
+> Reviewed-by: Robert Hancock <robert.hancock@calian.com>
 
-Hi Rui
+I'm not sure if this is a fix or adding support for a new configuration.
+Andrew, WDYT?
 
-It is normal to also remove the contents of the .txt file and add a
-single line that points to the .yaml file.
-
-       Andrew
+If it really is a fix and needs to be backported we should take patch 2
+out of this series, and post it separately later. Refactoring does not
+belong in stable trees.
