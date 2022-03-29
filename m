@@ -2,134 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 476844EA7CD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 08:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0B5F4EA7DF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 08:32:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232974AbiC2GYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 02:24:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53382 "EHLO
+        id S233039AbiC2Gdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 02:33:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232286AbiC2GYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 02:24:18 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97078248791
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 23:22:33 -0700 (PDT)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220329062227epoutp01e43d95c9ad671ddeb8da9da68404b30f~gxcznYvqw1920219202epoutp01i
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 06:22:27 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220329062227epoutp01e43d95c9ad671ddeb8da9da68404b30f~gxcznYvqw1920219202epoutp01i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1648534947;
-        bh=N51PSQTtmOXZTnikqsTn+4JvQLS/DokmO4Rw6FKKyok=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=Zm+j0moQXMFHEM9s3rgQzuSVNMrePZu3S+KbcNC3NV9ZoEoi2z82im0RZ6eNcfwiS
-         28RTCfV3jXnqUUqzK5DBRFB8Rim9XAxLSbkApSYO0BPInI62UVhs1ltcLaKszhGiG7
-         Ezin9uemqyIwQ+6KDo/5PF/oD0zGhhgg6cszB1so=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220329062226epcas2p42c9e83f9fefb9ef9276a3575005cdfc2~gxcy7dADK1074710747epcas2p4N;
-        Tue, 29 Mar 2022 06:22:26 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.68]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4KSKH411lvz4x9Q1; Tue, 29 Mar
-        2022 06:22:24 +0000 (GMT)
-X-AuditID: b6c32a45-4fdff700000228cc-17-6242a59cdbf1
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D2.48.10444.C95A2426; Tue, 29 Mar 2022 15:22:20 +0900 (KST)
-Mime-Version: 1.0
-Subject: Re: [PATCH 4/5] phy: Add ARTPEC-8 PCIe PHY driver
-Reply-To: wangseok.lee@samsung.com
-Sender: =?UTF-8?B?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-From:   =?UTF-8?B?7J207JmV7ISd?= <wangseok.lee@samsung.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        =?UTF-8?B?7KCE66y46riw?= <moonki.jun@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <da2351be-1fca-4269-cb7b-9dcd6a01b2dc@kernel.org>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220329062220epcms2p2e66ed043478fd6c40906863cead7e8de@epcms2p2>
-Date:   Tue, 29 Mar 2022 15:22:20 +0900
-X-CMS-MailID: 20220329062220epcms2p2e66ed043478fd6c40906863cead7e8de
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJJsWRmVeSWpSXmKPExsWy7bCmhe6cpU5JBtP36lgsacqweHlI02L+
-        kXOsFs8PzWK2+NSianHhaQ+bxctZ99gszp/fwG7R0POb1eLIm4/MFvuPr2SyuLxrDpvF2XnH
-        2SwmrPrGYvHm9wt2i3OLMy1a9x5ht9h55wSzg5DHmnlrGD2urwvwWLCp1GPTqk42jydXpjN5
-        bF5S79G3ZRWjx/Eb25k8Pm+SC+CMyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQw
-        V1LIS8xNtVVy8QnQdcvMAXpFSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgXqBX
-        nJhbXJqXrpeXWmJlaGBgZApUmJCd0fnhO3vBAd6Knp6ZzA2MXbxdjJwcEgImEteftrJ1MXJx
-        CAnsYJTYuXsvkMPBwSsgKPF3hzBIjbCAlcS+xknMILaQgJLEjjXzmCHi1hKfplxmAbHZBCwl
-        LrY+ZASZIyLwjUli9o9XYEOZBW4zS8x//p4FYhuvxIz2p1C2tMT25VsZQWxOATuJd0vnMEPE
-        NSR+LOuFskUlbq5+yw5jvz82nxHCFpFovXcWqkZQ4sHP3VBxKYkFTw6xQtjVEvv//maCsBsY
-        Jfrvp4I8JiGgL7HjujHEj74SX1tqQCpYBFQl7va8hep0kbh87xDYRGYBbYllC18zg5QzC2hK
-        rN+lDzFEWeLILbifGjb+ZkdnMwvwSXQc/gsX3zHvCdQtahLzVu5knsCoPAsRzrOQ7JqFsGsB
-        I/MqRrHUguLc9NRiowJDeNQm5+duYgSnaS3XHYyT337QO8TIxMF4iFGCg1lJhFf2rH2SEG9K
-        YmVValF+fFFpTmrxIUZToC8nMkuJJucDM0VeSbyhiaWBiZmZobmRqYG5kjivV8qGRCGB9MSS
-        1OzU1ILUIpg+Jg5OqQamuZV1MxT3WKRyfJi6OPiK5SHpfsnJHz7eW7k1tODkgbedG521ZFY/
-        O8B0fNrbGeE5TCFpphPb5lq0L9bNshRWyw/cvjzkyYpps8s/dH8VS9Yv/eFaceQG4yqNO3Pn
-        d90P3/O+Jfi845+7m/bMEX2ScvG0x7v2bU8+3Y49nyTHJtCfb2fEI1Pz0oJ1xR2TNgmXOTl3
-        zy0TlEtcnnrc7vLk3Qcs1tYKbCtIScm/Elb989xaJU3D4+ruaU8XdNvs4GhlttHiO1bF3hDz
-        NmtCu8/9inzX7/M9627pKCu57ZWX5HeWX9FQfevW3pzmrNvKq+Ye83/lX7r5zqvKC2XGFrkP
-        ai5O/nghWjHqc8FcxdO3lFiKMxINtZiLihMBF+7RclwEAAA=
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220328021832epcms2p6b6294b824c64404c437d0fd7f09369a4
-References: <da2351be-1fca-4269-cb7b-9dcd6a01b2dc@kernel.org>
-        <20220328021832epcms2p6b6294b824c64404c437d0fd7f09369a4@epcms2p6>
-        <CGME20220328021832epcms2p6b6294b824c64404c437d0fd7f09369a4@epcms2p2>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230358AbiC2Gdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 02:33:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB608199E02;
+        Mon, 28 Mar 2022 23:31:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8947EB815AA;
+        Tue, 29 Mar 2022 06:31:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FD40C2BBE4;
+        Tue, 29 Mar 2022 06:31:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648535517;
+        bh=qQdEegtTay97bdLFpDoQhHXRXAb8Gb7e6nlf1kKCkVk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XC8bQVeQEmhTJk/J+uyEhRZ4t4eJ4J5h0wqWTevizVDXWn0WM/OeI65K9IhfoPNoN
+         W/xSTBLECpgkuX85RagScxcKu0QM6GQU305VIkG0DXsxm1UBzhrlI1J8KzgUOg7X+r
+         WWX8Iq+sQjENxQt7jEzFKg9HhjAmk3lIVnPZbAlqdsx51JU4hhrUyCWmwqTHUbqQVx
+         Ab7nb8ByDqBxvdE5F+Sv1BABrZjJ+BJOADiCxhioMsJehaF6xraVtQ85f7XJKCUh50
+         LuXe+ALG9iGEORdqEf87r0r0dj1U8oEd8sX5JoOPp7pf1iNTsgJ9clgzrBcZ2A7rnb
+         WUr0CD89snmVw==
+Date:   Tue, 29 Mar 2022 12:01:52 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: display: msm: dsi: remove address/size cells
+Message-ID: <YkKmPSesQfS6RLCD@matsya>
+References: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
+ <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
+ <YkHtY9absUjmqmW7@matsya>
+ <12b0056b-8032-452b-f325-6f36037b5a80@linaro.org>
+ <CAL_Jsq+6rx0UU6ryH+z_8KLQqKKuhTCnh=Oft2F03bcze+EV0Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+6rx0UU6ryH+z_8KLQqKKuhTCnh=Oft2F03bcze+EV0Q@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> --------- Original Message ---------
-> Sender : Krzysztof Kozlowski=C2=A0<krzk=40kernel.org>=0D=0A>=20Date=20:=
-=202022-03-28=2022:09=20(GMT+9)=0D=0A>=20Title=20:=20Re:=20=5BPATCH=204/5=
-=5D=20phy:=20Add=20ARTPEC-8=20PCIe=20PHY=20driver=0D=0A>=20=C2=A0=0D=0A>=20=
-On=C2=A028/03/2022=C2=A004:18,=C2=A0=EC=9D=B4=EC=99=95=EC=84=9D=C2=A0wrote:=
-=0D=0A>>=C2=A0Add=C2=A0support=C2=A0Axis,=C2=A0ARTPEC-8=C2=A0SoC.=0D=0A>>=
-=C2=A0ARTPEC-8=C2=A0is=C2=A0the=C2=A0SoC=C2=A0platform=C2=A0of=C2=A0Axis=C2=
-=A0Communications.=0D=0A>>=C2=A0This=C2=A0is=C2=A0based=C2=A0on=C2=A0arm64=
-=C2=A0and=C2=A0support=C2=A0GEN4=C2=A0&=C2=A02lane.=0D=0A>>=C2=A0This=C2=A0=
-driver=C2=A0provides=C2=A0PHY=C2=A0interface=C2=A0for=C2=A0ARTPEC-8=C2=A0So=
-C=C2=A0PCIe=C2=A0controller,=0D=0A>>=C2=A0based=C2=A0on=C2=A0Samsung=C2=A0P=
-CIe=C2=A0PHY=C2=A0IP.=0D=0A>>=C2=A0=0D=0A>=20=0D=0A>=20You=C2=A0already=C2=
-=A0sent=C2=A0it=C2=A0on=C2=A028th=C2=A0of=C2=A0January=C2=A0and=C2=A0did=C2=
-=A0not=C2=A0respond=C2=A0to=C2=A0my=C2=A0comments.=0D=0A>=20=0D=0A>=20Pleas=
-e=C2=A0do=C2=A0not=C2=A0resend=C2=A0same/similar=C2=A0code,=C2=A0but=C2=A0i=
-nstead=C2=A0respond=C2=A0to=C2=A0comments=0D=0A>=20received=C2=A0earlier.=
-=0D=0A>=20=0D=0A>=20Best=C2=A0regards,=0D=0A>=20Krzysztof=0D=0AHello,=20Krz=
-ysztof=0D=0A=0D=0AYes,=20you=20are=20right.=0D=0AI=20have=20sent=20a=20patc=
-h=20set=20this=20time,=20=0D=0Aincluding=20parts=20that=20need=20to=20be=20=
-modified=20in=20the=20previously=20sent=20patch.=0D=0APlease=20ignore=20pre=
-viously=20sent=20patch=20and=20refer=20to=20the=20new=20patch=20set.=0D=0AI=
-=20also=20replied=20to=20the=20previous=20e-mail,=0D=0Abut=20the=20email=20=
-address=20was=20wrong=20and=20returned.=0D=0A=0D=0AThanks.
+On 28-03-22, 13:21, Rob Herring wrote:
+> On Mon, Mar 28, 2022 at 12:18 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 28/03/2022 19:16, Vinod Koul wrote:
+> > > On 28-03-22, 19:43, Dmitry Baryshkov wrote:
+> > >> On Mon, 28 Mar 2022 at 18:30, Krzysztof Kozlowski
+> > >> <krzysztof.kozlowski@linaro.org> wrote:
+> > >>>
+> > >>> The DSI node is not a bus and the children do not have unit addresses.
+> > >>>
+> > >>> Reported-by: Vinod Koul <vkoul@kernel.org>
+> > >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > >>
+> > >> NAK.
+> > >> DSI panels are children of the DSI device tree node with the reg = <0>; address.
+> > >> This is the convention used by other platforms too (see e.g.
+> > >> arch/arm64/boot/dts/freescale/imx8mq-evk.dts).
+> > >
+> > > So we should add reg = 0, i will update my dtsi fix
+> > >
+> >
+> > To "ports" node? No. The reg=0 is for children of the bus, so the
+> > panels. How to combine both without warnings - ports and panel@0 - I
+> > don't know yet...
+> 
+> I don't think that should case a warning. Or at least it's one we turn off.
+
+Well in this case I think we might need a fix:
+Here is the example quoted in the binding. We have ports{} and then the
+two port@0 and port@1 underneath.
+
+So it should be okay to drop #address-cells/#size-cells from dsi node
+but keep in ports node...
+
+Thoughts...?
+
+
+     dsi@ae94000 {
+           compatible = "qcom,mdss-dsi-ctrl";
+           reg = <0x0ae94000 0x400>;
+           reg-names = "dsi_ctrl";
+
+           #address-cells = <1>;
+           #size-cells = <0>;
+
+           interrupt-parent = <&mdss>;
+           interrupts = <4>;
+
+           clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+                    <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+                    <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
+                    <&dispcc DISP_CC_MDSS_ESC0_CLK>,
+                    <&dispcc DISP_CC_MDSS_AHB_CLK>,
+                    <&dispcc DISP_CC_MDSS_AXI_CLK>;
+           clock-names = "byte",
+                         "byte_intf",
+                         "pixel",
+                         "core",
+                         "iface",
+                         "bus";
+
+           phys = <&dsi0_phy>;
+           phy-names = "dsi";
+
+           assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
+           assigned-clock-parents = <&dsi_phy 0>, <&dsi_phy 1>;
+
+           power-domains = <&rpmhpd SC7180_CX>;
+           operating-points-v2 = <&dsi_opp_table>;
+
+           ports {
+                  #address-cells = <1>;
+                  #size-cells = <0>;
+
+                  port@0 {
+                          reg = <0>;
+                          dsi0_in: endpoint {
+                                   remote-endpoint = <&dpu_intf1_out>;
+                          };
+                  };
+
+                  port@1 {
+                          reg = <1>;
+                          dsi0_out: endpoint {
+                                   remote-endpoint = <&sn65dsi86_in>;
+                                   data-lanes = <0 1 2 3>;
+                          };
+                  };
+           };
+     };
+
+> 
+> Rob
+
+-- 
+~Vinod
