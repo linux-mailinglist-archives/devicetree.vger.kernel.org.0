@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 621F64EAC81
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 13:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6774EAC87
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 13:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235983AbiC2Lnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 07:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44530 "EHLO
+        id S236000AbiC2LpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 07:45:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235250AbiC2Lnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 07:43:46 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974DC986CA
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:42:03 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id l9-20020a05600c4f0900b0038ccd1b8642so1059081wmq.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:42:03 -0700 (PDT)
+        with ESMTP id S235996AbiC2LpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 07:45:06 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41FD65C6
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:43:22 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id h23so24376248wrb.8
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:43:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=fn3HErbG840xG/1DKf1d2N6ycfhrWzL++y+Zz1CDgxE=;
-        b=A6EragmFzz3EYNnm8I82VYWua3eXUT9qcZVuJQFeiLO+cc5t2h+KlWVF9LPy7eCWF/
-         D6KG0X5veZP48rwSL5Zra3r8CFZW53W0HFFO6XYwfGwUE3eAPS1hzsbYblKMjxt0eWfE
-         8aYJxfqvdaA1M6ozoBLp8gODm8f0nKwNnq1fZLyLr8LkymQ2r43oOyKlL+aXqwDVYfPZ
-         wmyVWybFtiZ9AuIkXlGA+pGgrIp2nwwHJdwBT7By+EuQqY2GBW/l+lv6ToYTOlCib84k
-         cncfkrPcCRDtNjt7YA3+4+wAopwNJPY/giu2SF/OqLxsyMQUbSUaR4TdnQGBgGjjHBec
-         h5Tg==
+        bh=B/lDSRmBt45ew7slN8pGHqNMcMQbF9rbjhPBwDXjCYQ=;
+        b=pNjNmuRreTl0CTr39zOVQwrheRMDsU81PfQLCqwPmqVnaGzMEDTBUK0mQlmQ6+0Jaw
+         ZHZ9nngJ95xQ09Ws3DREeamVFTVS1JTXo9EiQce4XCdlfNwDNxb72RjcY+CPculwyezx
+         QbY9+2blqFt2yejbMciRwZt3ZRedCh9rnnHh5xWmkuVy+TjYLmlEna3WRCfQNeaAXHqT
+         VsaZcvzSojKsvcYUpcRU8CLlQEY9SvmYRa90xshcjaT35XnOWpiY8mRQQFswiSSUFNdM
+         YR4CIrWNBxoQoWqU3y2UTuw39M70Bzgx5xytJzwQYL/Xr6NLUqzjKEV9wdnoDvg1imAa
+         Zq3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=fn3HErbG840xG/1DKf1d2N6ycfhrWzL++y+Zz1CDgxE=;
-        b=cwOKRoOGRLM6qM1JU6HmPPnbCsm5ODSWIWF35bdeTNdncYZU6r5ihSm6rDLDIYZCfl
-         C6AtJOgv7TfOP2/KD5ysAYWVkUhlyjN/Iw1Wu37DUFmxRbRaaxcBxR7Xf7aooT/9S36j
-         4XRctUqdaQPsBEWTULJBZUjm0w0NPgThIEKKDxLmWLl7v83irhdrxvf+lSv+exV089iX
-         fyPAP+L0o/qq+w4ZDvVkXJXPQ1Nx/4fl4VuTEP9HoOD1ha1QhoonzBVEBUVrU10eVUed
-         fXeQHN4426Q68TZ2LDafsE21rSKaQdwvBmR7DbS2Db4Nkbz4xtXjIcCUU3yQUzXPzt0R
-         tJeA==
-X-Gm-Message-State: AOAM531p+OWfmczPOAdCNS5RvqmaIBt+aVRy5PatKEwnGgCu8l8u/159
-        uDTtYS7Suiq1bHta9QjpydujDg==
-X-Google-Smtp-Source: ABdhPJzOwx9Bn0AwRaBTztslHHWpRbx/LvUGOgOn/gOyid0v0Tw2biM6UgFrN4vigQJNapEEpwX+rQ==
-X-Received: by 2002:a05:600c:1d0f:b0:38c:8ff8:e703 with SMTP id l15-20020a05600c1d0f00b0038c8ff8e703mr6339433wms.202.1648554122148;
-        Tue, 29 Mar 2022 04:42:02 -0700 (PDT)
+        bh=B/lDSRmBt45ew7slN8pGHqNMcMQbF9rbjhPBwDXjCYQ=;
+        b=Ur+VLgJPVrrgRddEpeFwdMnoumpOyaSdtBTQQZ7z8uJMbWUovWAHQ9p7iqdH0Li1P/
+         BtmPvzoPmmGDxj7kc1mwTKObydyMHPGMJtjt25MnpD9jqTncfIUJjGzIz9lNl2ME2bzK
+         XvwhPdsKiXcV9XIofEpnJW8cuoK5AV0s0ml6IBZOqahGblrNcsqO7iT8tanBA2pURsIK
+         QeIMJ8Y+3ynGA+51EsHjdgFjVpb87iDIayRFct4llzeJCASZUITsNHEdeoI35RxyL3e0
+         H4/P/LbZCSc0G+mDBP3G7fqXJvuxWNYGtXRxgV3yJCU7J2WnKURwe/a7cXH+dvk7fJdi
+         KNoQ==
+X-Gm-Message-State: AOAM5338JeZ1VypbdX88DhEhPN+pBV7BS6YuczxtZt/lptJ2bmmaJ9nC
+        pL7VugSpKlTukGIreC8EY21sqQ==
+X-Google-Smtp-Source: ABdhPJypjAXnuentZlRpL2zBiRpa923vpXbWo7NUVcxVtz+EmSJ4zia7oIlJmVSKa0y8npilo+lpCQ==
+X-Received: by 2002:adf:fbc6:0:b0:203:8dff:f49e with SMTP id d6-20020adffbc6000000b002038dfff49emr30167362wrs.72.1648554201399;
+        Tue, 29 Mar 2022 04:43:21 -0700 (PDT)
 Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id o14-20020a5d47ce000000b00203e0a21c16sm17397744wrc.3.2022.03.29.04.42.01
+        by smtp.gmail.com with ESMTPSA id i9-20020a5d5849000000b002058631cfacsm15436766wrf.61.2022.03.29.04.43.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 04:42:01 -0700 (PDT)
-Message-ID: <9e1aed7c-a702-2ee7-f3f7-f2f3e2b17e29@linaro.org>
-Date:   Tue, 29 Mar 2022 13:42:00 +0200
+        Tue, 29 Mar 2022 04:43:20 -0700 (PDT)
+Message-ID: <5ea0386f-5322-4efd-c0d0-0ba0ff526bae@linaro.org>
+Date:   Tue, 29 Mar 2022 13:43:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: convert rockchip,
- rk3288-cru.txt to YAML
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: convert rockchip,
+ rk3188-cru.txt to YAML
 Content-Language: en-US
 To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
         zhangqing@rock-chips.com
@@ -62,9 +62,9 @@ Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
         sboyd@kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220329113657.4567-1-jbx6244@gmail.com>
+References: <20220329111323.3569-1-jbx6244@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220329113657.4567-1-jbx6244@gmail.com>
+In-Reply-To: <20220329111323.3569-1-jbx6244@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,9 +77,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2022 13:36, Johan Jonker wrote:
-> Current dts files with RK3288 'cru' nodes are manually verified.
-> In order to automate this process rockchip,rk3288-cru.txt has to be
+On 29/03/2022 13:13, Johan Jonker wrote:
+> Current dts files with RK3188/RK3066 'cru' nodes are manually verified.
+> In order to automate this process rockchip,rk3188-cru.txt has to be
 > converted to YAML.
 > 
 > Changed:
@@ -89,13 +89,11 @@ On 29/03/2022 13:36, Johan Jonker wrote:
 > 
 > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
+> 
 
-You missed my review tag. The changes between v1 and v2 were minor, so
-please always include it in your next versions or resends.
-
+It's the second patchset without my review. What's happening here?
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
