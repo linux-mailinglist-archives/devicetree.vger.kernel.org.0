@@ -2,53 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 615124EA8D6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 09:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AF154EA8E7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232185AbiC2HzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 03:55:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48444 "EHLO
+        id S233701AbiC2ICR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 04:02:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231993AbiC2HzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 03:55:22 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E08DA4E3B4;
-        Tue, 29 Mar 2022 00:53:29 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 727F580F9;
-        Tue, 29 Mar 2022 07:51:24 +0000 (UTC)
-Date:   Tue, 29 Mar 2022 10:53:27 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-omap@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel@lists.infradead.org,
-        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
-        linux-unisoc@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-realtek-soc@lists.infradead.org
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Message-ID: <YkK691VG6ON/6Ysn@atomide.com>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+        with ESMTP id S232939AbiC2ICQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:02:16 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB7701EC4B
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:00:32 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id dr20so33344649ejc.6
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+uk8AzkPR+i6sZoorwmR9wgRQDw7+TFP3D119VcOmrE=;
+        b=gYK2W/6b0+HzW5noH3ibvMHAFaSjfIBjku92dC03u1C9lNzZU7Xkl8LGFEP+f/zSa+
+         X+hAopxmm48S3FnkQF8eX2gVIzJFhSdARXlaidd80BRGyVQKjghX3WbW0jf9bAUquomT
+         6mtyEhJlpbQyNc6PMrygbTbCBuRfto5sYm0Xf7+Sb/mAzgeMTKocGp7LqB465WuKpWdD
+         zqGUFjwVANgEZx3FH8ewaU9fFtaC6uWK/A2eeQnD4I8Fa8MoZDb2iJk6pcrRBFTisRyO
+         OulRPp3LlxIvN2CyesRIBoxQSKyMNxY6GIFnWmPc/icFAESozkuudebGZbPHQ0BWrDVq
+         jVOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+uk8AzkPR+i6sZoorwmR9wgRQDw7+TFP3D119VcOmrE=;
+        b=VuEod7xVjp748TC3UzUIX1Qh3TaqrxbdNU8Q0D1KEejr0o3A9u5V9MAiY0vU80ekHQ
+         NUBa/qExmXm7IVA9vrq+vsVNOKGalpRBtApkna1PBo+/03zvpy8wxtxoasQKsBsWk7vI
+         Q8ZdTy8E0YKKhb/FijUcmx+RMWXpPgjrhg6rmaIYFa/WBghn1VgGZlzlNunRZR/8CY3Z
+         9KBpJMI4TAQRcKfl00VrSO3RrD0XCcWS1QAXA7v7WMfBnz9x3aWyMBBlJhIzMYs22SoD
+         m+zebisekzSg3Pk5llUgSbHhwp66GXtdyZx+SaeZeNAPEw3VMYTqufRvtBKOIbP1cY+8
+         tMpg==
+X-Gm-Message-State: AOAM533Yz7dKwfxY6M24tcdQ+EsHXXoQUuM4Z4QjA3OUF0AmGgOmxcEY
+        Va1fLvkrWX74G2EQINP9gesBfA==
+X-Google-Smtp-Source: ABdhPJwmvS8Euc5V6qwM9HJtgNyBoBR1jRJ/H88JjdEc9dOVPFykuv2rRB3ITEGiCJhHvy3w52286g==
+X-Received: by 2002:a17:906:29db:b0:6df:ec76:af80 with SMTP id y27-20020a17090629db00b006dfec76af80mr33428342eje.177.1648540831519;
+        Tue, 29 Mar 2022 01:00:31 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id z5-20020a1709063a0500b006da8fa9526esm6855669eje.178.2022.03.29.00.59.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Mar 2022 01:00:08 -0700 (PDT)
+Message-ID: <a35529be-d9cb-9913-76aa-653faed87b54@linaro.org>
+Date:   Tue, 29 Mar 2022 09:59:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: virtio: mmio: add optional
+ wakeup-source property
+Content-Language: en-US
+To:     Minghao Xue <quic_mingxue@quicinc.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>
+Cc:     jasowang@redhat.com, robh+dt@kernel.org, jean-philippe@linaro.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_ztu@quicinc.com
+References: <20220325015945.GA17578@mingxue-gv.qualcomm.com>
+ <20220328164228-mutt-send-email-mst@kernel.org>
+ <20220329074610.GA20342@mingxue-gv.qualcomm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220329074610.GA20342@mingxue-gv.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,38 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-* Daniel Palmer <daniel@0x0f.com> [220328 08:53]:
-> Hi Ansuel
+On 29/03/2022 09:46, Minghao Xue wrote:
+> On Mon, Mar 28, 2022 at 04:42:59PM -0400, Michael S. Tsirkin wrote:
+>> On Fri, Mar 25, 2022 at 09:59:45AM +0800, Minghao Xue wrote:
+>>> Some systems want to set the interrupt of virtio_mmio device
+>>> as a wakeup source. On such systems, we'll use the existence
+>>> of the "wakeup-source" property as a signal of requirement.
+>>>
+>>> Signed-off-by: Minghao Xue <quic_mingxue@quicinc.com>
+>>
+>> I don't have enough of a clue about dt to review this.
+>> Pls get some acks from people with DT expertise.
+>>
+> Hi Michael,
+> I had a discussion with Krzysztof on the first version of patch. And we've
+> got aligned. 
 > 
-> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
-> >
-> > Hi,
-> > as the title say, the intention of this ""series"" is to finally categorize
-> > the ARM dts directory in subdirectory for each oem.
-> 
-> While I agree with this change and think it's for the good (browsing
-> the ARM dts directory at the moment is frustrating..) I think
-> buildroot and others need to be told about this as it'll potentially
-> break their kernel build scripting for ARM and probably messes up the
-> configs they have for existing boards.
 
-Yeah.. And ideally this would be done in smaller steps as these will
-conflict with all the other pending patches.
+I thought I reviewed this and provided an ack, but apparently I did not.
+Sorry for late response.
 
-For example, I have a pile of pending omap clock clean-up dts patches
-posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
-redoing or fixing up the patches with sed :)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-What I'd like to have see is that at some point when suitable we move
-one machine at a time with a script if possible.. Maybe the dtb files
-generated would need to remain in the current directory until all of
-the machine dts files are moved? That should help with the build
-scripting too probably :)
-
-In general I like the idea though and I think we should do it.
-
-Regards,
-
-Tony
+Best regards,
+Krzysztof
