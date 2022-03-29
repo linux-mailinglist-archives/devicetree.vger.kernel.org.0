@@ -2,96 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E2844EB1DA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 18:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61B704EB239
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 18:50:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239647AbiC2QcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 12:32:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
+        id S239906AbiC2Qvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 12:51:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239658AbiC2QcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 12:32:14 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C8B24221E;
-        Tue, 29 Mar 2022 09:30:30 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id h4so13554614edr.3;
-        Tue, 29 Mar 2022 09:30:30 -0700 (PDT)
+        with ESMTP id S234954AbiC2Qvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 12:51:50 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC15252797
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 09:50:06 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id p15so36325224ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 09:50:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rup4gmFVRMm1Db1xKcQ9C4DJyayglE33FgITP93feZI=;
-        b=f8zqtGcfvk0wEpNaAgaCylr34j14R+MDTTY9qugHrR1MIk/oAlUmCHAAvTannf6ZUz
-         sLY36RDHN0pt3a7GCMLxHiNojdB3MLuSBUkzIZVRHTWGX8DquOLPps7qp5PIyNinj13i
-         58KwUPz25LTZe2Di6xx4zhdb7FBfiDAevjCdMJ2J5oNvt+Rahrnk5wf/XJAxuPp10CMI
-         Z3tQ7GMhTvu/hyfb0/8je/fK7yqsHvbZv3PrmOf4GL7WrhCZiMSzH2g85ObyMspop5Kc
-         vRtkCdcF0QXVz/ZXU4dI+I6PNZm2YhPBZsVRXsi9ZelyDjWZvTA4Qf+PO7RUCWIH3GJW
-         0lyw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3W39tC2e+e4XlENh3geReI/CxfG4scvOcsFNszfM2k4=;
+        b=ySG+mixvItTpHny21aTnBnKz+TP6aGDVpHG5nZS5Rd0Tb52jAYKdBGgZaJDE0/8bXr
+         FkmjdkptNzOvdefZvgAiIdDYcCPwMYf0P0BP0klpKVeoZ/zZoyVfbtIeq+3Cp7kgRKSE
+         Pads40KqXEJvZ1Hx5Ul05VMlYoDrtSoRRWKhAcbP1qpGnKpZXO/HrsXV//iT6zsmogoE
+         sARUk5j21HdviVg9F+ARHjnDqn5JBLx0/Ry/Mn0QGJnnBUToAQyri++1kLyz9x7ZGjEJ
+         XmVJMXt234cCaIHxx0EHLEcC8TTMZmyiiiljhTLMewQQBEw1kVdyCyfXBaLZzam+cr18
+         BsKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rup4gmFVRMm1Db1xKcQ9C4DJyayglE33FgITP93feZI=;
-        b=IMOsVFrgVkzpt2smsoDhDnqswo8LzWWhtHNQzSNuftUk3ggRkNFKUJl4WpZc7zHKUD
-         dPLRizjChI5xdqJF6mByXSoqysrEEOche0m7MRdzL+BrK0wbFNerCfrUkX9WUz09VyMZ
-         pHPHSQMwM35DOTm6zoeBiqMq3WUDmILuVm7nB6WdYLWpwuL2LdRFPvHo4etQ1E1S0V5B
-         nFdtq6Yi0erGU2KHLNPvin+8waObf6pfMMc+IPBuub90oDcN4wwl9MHGZaAv5PJ2oYdA
-         ZQ5xoTjy+Tt+n2SptUGNUra08HhuDwGhUQ78cP2T0HeQoUYaJ4j1kpce3nNH/e0p1Qgj
-         U1nQ==
-X-Gm-Message-State: AOAM532VuZ+mXCuvqcvoQF1nif37YGD0udkDxbbqehp2WaBFLF8bcQnJ
-        LxucGJwGivvkbBPUYEJHSuc=
-X-Google-Smtp-Source: ABdhPJzTy7FW/+WGlMtP1pToBeoHtes0f1brjP90ukaULF4+ONZLw0bw81tdrnAqoB2Cm4GbqnRReA==
-X-Received: by 2002:a50:d90f:0:b0:418:8a5a:14b2 with SMTP id t15-20020a50d90f000000b004188a5a14b2mr5538105edj.241.1648571429156;
-        Tue, 29 Mar 2022 09:30:29 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id k26-20020a056402049a00b004197b0867e0sm8601179edv.42.2022.03.29.09.30.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 09:30:28 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de, zhangqing@rock-chips.com
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] arm64: rockchip: add clocks property to cru node rk3328
-Date:   Tue, 29 Mar 2022 18:30:16 +0200
-Message-Id: <20220329163016.27458-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220329163016.27458-1-jbx6244@gmail.com>
-References: <20220329163016.27458-1-jbx6244@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3W39tC2e+e4XlENh3geReI/CxfG4scvOcsFNszfM2k4=;
+        b=rx8qNcN1QgDIsHtAQlojLAtamRjvDpZBnsddaPcWQOptA/niekKIvyT1e0hnupF9WI
+         eVZu2jtkvP7ydl8fEu6QBSraV8v39HWcqUXu7FcFCy6rov4KqGNnt5D0wEju6Sh1sggv
+         VQCgtFPikOkpn6WL4aztvn06YVnWmfhTam0T/GXUYaguogGkYHJbPhjmojSdQpjsLHFW
+         JW1RxQ10ab5X0E1rqS6w6YJmIGHJmva+WoJl8vs23cSNYU5lvfzEAxpXPPNa+O+mMNdB
+         8xWLL0Wnww8RsC7AtjCEfK26ChtuPyhTHs+XCLrw7YpAs/x6Pe+KbtbDnFaMwzX953Jj
+         cpZw==
+X-Gm-Message-State: AOAM5302mU+px15Zg1A02hhKGMtGJhD9BsUIb3NFuDltsLwmJt43j+iZ
+        /k+f1H90x6Cn72BKtcRA+nGmrg==
+X-Google-Smtp-Source: ABdhPJyv5/j1KLCPW2EGMkODOgQaFZJ8INemE/1yDu/Q4K7LSfV1gStbxYZglireUgGSfjH+MeW7Pg==
+X-Received: by 2002:a17:907:7f8b:b0:6e0:612b:38fd with SMTP id qk11-20020a1709077f8b00b006e0612b38fdmr35710600ejc.552.1648572604849;
+        Tue, 29 Mar 2022 09:50:04 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id n13-20020a170906724d00b006cedd6d7e24sm7237928ejk.119.2022.03.29.09.50.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Mar 2022 09:50:04 -0700 (PDT)
+Message-ID: <85ed0e5b-0c6f-aea0-ea89-522591d85420@linaro.org>
+Date:   Tue, 29 Mar 2022 18:50:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus
+ SP7021
+Content-Language: en-US
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, lhjeff911@gmail.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, tony.huang@sunplus.com, lh.kuo@sunplus.com
+References: <cover.1648551070.git.tonyhuang.sunplus@gmail.com>
+ <abd34a74bf56e04050868c63d030552a9af210f4.1648551070.git.tonyhuang.sunplus@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <abd34a74bf56e04050868c63d030552a9af210f4.1648551070.git.tonyhuang.sunplus@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clocks property to rk3328 cru node to fix warnings like:
-'clocks' is a dependency of 'assigned-clocks'
+On 29/03/2022 16:42, Tony Huang wrote:
+> Add mmc yaml file for Sunplus SP7021
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+s/mmc/MMC/
+s/yaml/YAML/
+And a full stop.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 73418fd2f..8ceac0388 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -758,6 +758,8 @@
- 	cru: clock-controller@ff440000 {
- 		compatible = "rockchip,rk3328-cru";
- 		reg = <0x0 0xff440000 0x0 0x1000>;
-+		clocks = <&xin24m>;
-+		clock-names = "xin24m";
- 		rockchip,grf = <&grf>;
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
--- 
-2.20.1
+Please rebase your changes on recent Linux kernel, because you skip
+Cc-ing me all the time, so I assume you have some old Maintainers file.
 
+> 
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> ---
+> Changes in v5:
+>  - Addressed comments from Krzysztof.
+> 
+>  .../devicetree/bindings/mmc/sunplus,mmc.yaml       | 64 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 ++
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml b/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+> new file mode 100644
+> index 0000000..92537d0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Ltd. Co. 2021
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/sunplus,mmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sunplus MMC Controller
+> +
+> +maintainers:
+> +  - Tony Huang <tonyhuang.sunplus@gmail.com>
+> +  - Li-hao Kuo <lhjeff911@gmail.com>
+> +
+> +allOf:
+> +  - $ref: "mmc-controller.yaml"
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sunplus,sp7021-mmc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  max-frequency: true
+
+I think you do not need this.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mmc0: mmc@9c003b00 {
+> +        compatible = "sunplus,mmc-v2";
+> +        reg = <0x9c003b00 0x180>;
+> +        interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clkc 0x4e>;
+> +        resets = <&rstc 0x3e>;
+> +        bus-width = <8>;
+> +        max-frequency = <52000000>;
+> +        non-removable;
+> +        disable-wp;
+> +        cap-mmc-highspeed;
+> +        mmc-ddr-3_3v;
+> +        no-sdio;
+> +        no-sd;
+> +    };
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fb18ce7..42498b2 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18242,6 +18242,12 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/dlink/sundance.c
+>  
+> +SUNPLUS MMC DRIVER
+> +M:	Tony Huang <tonyhuang.sunplus@gmail.com>
+> +M:	Li-hao Kuo <lhjeff911@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/mmc/sunplu,mmc.yaml
+
+I pointed this already for your v4.
+
+> +
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  M:	Rich Felker <dalias@libc.org>
+
+
+Best regards,
+Krzysztof
