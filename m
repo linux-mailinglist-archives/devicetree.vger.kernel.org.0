@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD784EAAEA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:01:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E4874EAAF4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233383AbiC2KDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 06:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54846 "EHLO
+        id S234942AbiC2KFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 06:05:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234963AbiC2KC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:02:59 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3734C7AE;
-        Tue, 29 Mar 2022 03:01:15 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id i4so5175834wrb.5;
-        Tue, 29 Mar 2022 03:01:15 -0700 (PDT)
+        with ESMTP id S234947AbiC2KFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:05:33 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903525C650;
+        Tue, 29 Mar 2022 03:03:49 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so945664wmb.4;
+        Tue, 29 Mar 2022 03:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=m4FFYC8lGa0e93GEJjlQ3+QnjPXNWGNWcnEAZzCv3sM=;
-        b=jzmwQJqPkQjtYfqpaahPYRUlFjFgaqh7YzFgssx0NHXJTapk2V8SYRsKVYC9G/h49H
-         HfULIJdloYL6DUiwFsRGc8Uy57P61i0CsSGjglbAYxfutxhv1rUxpZQ4GlCah/F89GUO
-         fHMLYxAAlLEE8wwPybLM4RluCyfcfdW6y5V3xkifbbeFP0ZZiT3GkHHmDkdaYTVwys/+
-         Bk4yFgvnIVTsQL+9XEAMwotecAivJ4JcyyhbYajW9Q6u2wSeRQKvVR9evne+8eHx4Mzf
-         7RhAcdfqACvmIiVDyT6Eg013w+YGid733dW8LFdAFP1cP6JfHS9cjwOOGw1eSqgLu1iG
-         U9rQ==
+        bh=XP58J9nMiUBKKZ2mEHu2elDVfOboIj5PiONcCMCt6ic=;
+        b=Yq4sbY+zwUknZYkTIlOVDWtB1bNtPagOZTtgT+2I2V6upHPE6NIOT3L9S27Sx3I/nz
+         bio/avRpFO0w5U5XECzAzLC3az+PrWr7pSssQ/xJN88fnPTBrMKhd+6QqBjuSAIDKJ1R
+         3FrFVS+HUJpZ1BT5HBH8JXJmW2OYL82dENzmIYwQUfTMCi/fAdJrxk2dD8+s+IDs5ZVi
+         54z7C6/HBUWl/N3wRalHWceNxICXqSnmCSkWIqaCs+BQxR8VJDsPLfVJMEj5utTb10R3
+         FgAhPK2IuYpcMppLKB9iXpS+/zIQsSefUrpWdz7iRWN4NR5I08aSY/n1y0aZoo/2OElH
+         bFCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=m4FFYC8lGa0e93GEJjlQ3+QnjPXNWGNWcnEAZzCv3sM=;
-        b=0UlwpLlqUKJaNt17ZT74XaP/UiLwhzf69UMj9dAPvlCdqBWUFGbjDstLAdGobU6VzO
-         vSsYZwUGF4TrTpZ8cVozAtihQ2ZJ49jwzB6N0DTzhu/DwfUQY2xuLGJ0z0FlLRkvruj9
-         EQIS59DDr9sj9F6eErbkZSuflsA3XmyJx0y/iDDx4mt4p3JCLFQxMoSrO6s3UiNY+jC9
-         BoLV4ssxI3PCCuIEJCpHWQpS9iKnXffoEodet5otmkGZ99uErHRM0VV1WRid9tPlzKao
-         sLqdnKKyWvkeo95C1/Pfi4ArixvkXo3Xqcw8H2KJcyPWJD25uhILDPbDhe2NaQ4utTKo
-         rN0A==
-X-Gm-Message-State: AOAM532dgPwm+xqxbwUmG+K3YkZ8zT8dlqz/BFj8qHf0IS1CoCOjtwT3
-        3W+Lbe+uObGO0IzRwgV4l7Q=
-X-Google-Smtp-Source: ABdhPJzC16Ey35nHO2vMO312+0ONaIEcW00CaKl7lSRzySNcL2ia+eHDyeaf5+/WYV/KFiwFKrKiWA==
-X-Received: by 2002:adf:efd2:0:b0:203:db42:c56c with SMTP id i18-20020adfefd2000000b00203db42c56cmr29329158wrp.698.1648548073504;
-        Tue, 29 Mar 2022 03:01:13 -0700 (PDT)
+        bh=XP58J9nMiUBKKZ2mEHu2elDVfOboIj5PiONcCMCt6ic=;
+        b=V2kOzdoxgi9I5bGchb1BAXT8uUoCwhVQXSz3Djg5ZK5E4PaLLd8I+5bSWQ/2iSwwNf
+         D1mkUwPMsX2DFhIK3dicRN3m3vVzsJfcc3N/VTuVWCLFDe7ISG0FZSfLla8x4THIXcjQ
+         5TM75ynM9mgAIEY5esJ69bNdN6x0M3leNAi3L034vP9MEW3Ta1rlbFBOAatexqASzG0X
+         mHft9rIgOmap4XLni7WfKc2gtXoWP+TpCqqstGuEZV+dEBkM332UIt4A0b7q1F5iFz2Z
+         oNb++SKRgpY/Nw4iO11UC8Huea1WW+ifHaEH9qNdAxm20SbU43wTrefT48vHaCzRVYmS
+         c0Og==
+X-Gm-Message-State: AOAM533B5y4a7fqN34xTwErW/rlf8CqkJ1xdwMSzTlMWYCwWUOCVsC3o
+        OeGd3CMWd+G3A4ilIybJpNMd2dII+Eq5AQ==
+X-Google-Smtp-Source: ABdhPJztz045tZLfgkeJcC3u6Zv7to81fyJuQrvXjzft9fCaGBH8M6rHdf7cy+6YBfYM8gLnYA366A==
+X-Received: by 2002:a05:600c:34ce:b0:38c:a579:944a with SMTP id d14-20020a05600c34ce00b0038ca579944amr5773450wmq.113.1648548228053;
+        Tue, 29 Mar 2022 03:03:48 -0700 (PDT)
 Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id v1-20020adf9e41000000b00205c3d212easm4214242wre.51.2022.03.29.03.01.12
+        by smtp.gmail.com with ESMTPSA id b8-20020a05600c4e0800b0038c6c37efc3sm1811134wmq.12.2022.03.29.03.03.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 03:01:12 -0700 (PDT)
-Message-ID: <c2ae5400-5a5e-2aa7-c282-6132ba332200@gmail.com>
-Date:   Tue, 29 Mar 2022 12:01:11 +0200
+        Tue, 29 Mar 2022 03:03:47 -0700 (PDT)
+Message-ID: <ea6868cc-6650-9b69-e328-6b0d31069191@gmail.com>
+Date:   Tue, 29 Mar 2022 12:03:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 17/22] arm64: dts: mt8192: Add dpi node
+Subject: Re: [PATCH v4 22/22] arm64: dts: mt8192: Add pwm node
 Content-Language: en-US
 To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,11 +65,11 @@ Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
         Ryder Lee <ryder.lee@kernel.org>,
         Hui Liu <hui.liu@mediatek.com>
 References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-18-allen-kh.cheng@mediatek.com>
- <019b1a59-7531-75cf-3b86-d2798ca9823a@gmail.com>
- <e4edbb8d599fe202aa89f4dea88e6addfbeb4e0d.camel@mediatek.com>
+ <20220318144534.17996-23-allen-kh.cheng@mediatek.com>
+ <51f8baea-6562-1d6b-c409-9c362f0b2fc5@gmail.com>
+ <6ab86a35394879cf35fd9d780f8b7ab1695c931b.camel@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <e4edbb8d599fe202aa89f4dea88e6addfbeb4e0d.camel@mediatek.com>
+In-Reply-To: <6ab86a35394879cf35fd9d780f8b7ab1695c931b.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,13 +84,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 29/03/2022 09:45, allen-kh.cheng wrote:
+On 29/03/2022 08:51, allen-kh.cheng wrote:
+> 
 > Hi Matthias,
 > 
-> On Fri, 2022-03-25 at 16:24 +0100, Matthias Brugger wrote:
+> On Mon, 2022-03-28 at 13:10 +0200, Matthias Brugger wrote:
 >>
 >> On 18/03/2022 15:45, Allen-KH Cheng wrote:
->>> Add dpi node for mt8192 SoC.
+>>> Add pwm node for mt8192 SoC.
 >>>
 >>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 >>> ---
@@ -99,52 +100,56 @@ On 29/03/2022 09:45, allen-kh.cheng wrote:
 >>>
 >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
 >>> b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> index 71ad3adeed51..a77d405dd508 100644
+>>> index f0f0f067c023..ea98b2230f18 100644
 >>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
 >>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> @@ -1236,6 +1236,17 @@
->>>    			power-domains = <&spm
->>> MT8192_POWER_DOMAIN_DISP>;
+>>> @@ -625,6 +625,17 @@
+>>>    			status = "disabled";
 >>>    		};
 >>>    
->>> +		dpi0: dpi@14016000 {
->>> +			compatible = "mediatek,mt8192-dpi";
->>> +			reg = <0 0x14016000 0 0x1000>;
->>> +			interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH
+>>> +		pwm0: pwm@1100e000 {
+>>> +			compatible = "mediatek,mt8183-disp-pwm";
+>>> +			reg = <0 0x1100e000 0 0x1000>;
+>>> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH
 >>> 0>;
->>> +			clocks = <&mmsys CLK_MM_DPI_DPI0>,
->>> +				 <&mmsys CLK_MM_DISP_DPI0>,
->>> +				 <&apmixedsys CLK_APMIXED_TVDPLL>;
->>> +			clock-names = "pixel", "engine", "pll";
->>> +			status = "disabled";
 >>
->> We are missing the output port node here.
+>> Binding description is missing interrupt property. Remeber that the
+>> DT should
+>> describe the HW, so we need to update the binding description.
+>> I just wonder what the IRQ signals, as it is not used by the driver.
+>> Definitely
+>> a good candidate to make the commit message more sound. So please add
+>> it there.
 >>
->> Regards,
+>> Thanks!
 >> Matthias
 >>
 > 
-> We will add output port in mt8192-asurada.dtsi (inlude mt8192.dtsi) for
-> board level.
+> For interrupt property, we will send anther patch to update binding
+> and add some information for IRQ into commit message in next version.
 > 
 
-Got it, patch now applied.
+Thanks. Would you mind to send the dt-bindings updates in a series together with 
+the patches from this series that needs changes? This way it will be easier to 
+track the dependencies.
 
-> Do we need to add any futher information in binding?
-> 
+Please beware to send dt-binding patches as first of the series, so that Rob 
+Herring can find the rather quick.
 
-Hm, probably we should mark the output port as optional? Can you check how other 
-bindings manage that?
-
-Thanks,
+Thanks!
 Matthias
 
 > Thanks,
 > Allen
 > 
+>>> +			#pwm-cells = <2>;
+>>> +			clocks = <&topckgen CLK_TOP_DISP_PWM_SEL>,
+>>> +				 <&infracfg CLK_INFRA_DISP_PWM>;
+>>> +			clock-names = "main", "mm";
+>>> +			status = "disabled";
 >>> +		};
 >>> +
->>>    		iommu0: m4u@1401d000 {
->>>    			compatible = "mediatek,mt8192-m4u";
->>>    			reg = <0 0x1401d000 0 0x1000>;
+>>>    		spi1: spi@11010000 {
+>>>    			compatible = "mediatek,mt8192-spi",
+>>>    				     "mediatek,mt6765-spi";
 > 
