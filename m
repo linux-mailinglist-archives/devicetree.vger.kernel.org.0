@@ -2,107 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA6F4EA8AE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 09:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 615124EA8D6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 09:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233532AbiC2HsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 03:48:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48314 "EHLO
+        id S232185AbiC2HzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 03:55:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233465AbiC2Hr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 03:47:59 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9479D1C391E;
-        Tue, 29 Mar 2022 00:46:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648539976; x=1680075976;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Iv6eZyi8BlLuO8dorNPKusST5FRIAaRdbW31rrkLVqQ=;
-  b=TjsIx33f2xk8A92Y4tAPJG7akur8lRbSPGNt48DPFv/bHHHghB3nbkV2
-   hKV9x1Qaqy/sqXSHyBkd+in8yTWtxWU0R0w44Y8JTuSF2Fd2mAdGTWCMk
-   ZDHPLHyanVjrypWyDQ2DyNV7FUFdoRZSzMa+PgzSKmWTxFCkR3uSWLJ5Q
-   M=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 29 Mar 2022 00:46:16 -0700
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 00:46:16 -0700
-Received: from mingxue-gv.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 29 Mar 2022 00:46:14 -0700
-Date:   Tue, 29 Mar 2022 15:46:11 +0800
-From:   Minghao Xue <quic_mingxue@quicinc.com>
-To:     "Michael S. Tsirkin" <mst@redhat.com>
-CC:     <jasowang@redhat.com>, <robh+dt@kernel.org>,
-        <jean-philippe@linaro.org>,
-        <virtualization@lists.linux-foundation.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_ztu@quicinc.com>, <krzk@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: virtio: mmio: add optional
- wakeup-source property
-Message-ID: <20220329074610.GA20342@mingxue-gv.qualcomm.com>
-References: <20220325015945.GA17578@mingxue-gv.qualcomm.com>
- <20220328164228-mutt-send-email-mst@kernel.org>
+        with ESMTP id S231993AbiC2HzW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 03:55:22 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E08DA4E3B4;
+        Tue, 29 Mar 2022 00:53:29 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 727F580F9;
+        Tue, 29 Mar 2022 07:51:24 +0000 (UTC)
+Date:   Tue, 29 Mar 2022 10:53:27 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-omap@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
+        linux-rpi-kernel@lists.infradead.org,
+        chrome-platform@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
+        openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
+        linux-oxnas@groups.io, linux-arm-msm@vger.kernel.org,
+        linux-unisoc@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-realtek-soc@lists.infradead.org
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+Message-ID: <YkK691VG6ON/6Ysn@atomide.com>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220328164228-mutt-send-email-mst@kernel.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 04:42:59PM -0400, Michael S. Tsirkin wrote:
-> On Fri, Mar 25, 2022 at 09:59:45AM +0800, Minghao Xue wrote:
-> > Some systems want to set the interrupt of virtio_mmio device
-> > as a wakeup source. On such systems, we'll use the existence
-> > of the "wakeup-source" property as a signal of requirement.
-> > 
-> > Signed-off-by: Minghao Xue <quic_mingxue@quicinc.com>
+Hi,
+
+* Daniel Palmer <daniel@0x0f.com> [220328 08:53]:
+> Hi Ansuel
 > 
-> I don't have enough of a clue about dt to review this.
-> Pls get some acks from people with DT expertise.
+> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> >
+> > Hi,
+> > as the title say, the intention of this ""series"" is to finally categorize
+> > the ARM dts directory in subdirectory for each oem.
 > 
-Hi Michael,
-I had a discussion with Krzysztof on the first version of patch. And we've
-got aligned. 
+> While I agree with this change and think it's for the good (browsing
+> the ARM dts directory at the moment is frustrating..) I think
+> buildroot and others need to be told about this as it'll potentially
+> break their kernel build scripting for ARM and probably messes up the
+> configs they have for existing boards.
+
+Yeah.. And ideally this would be done in smaller steps as these will
+conflict with all the other pending patches.
+
+For example, I have a pile of pending omap clock clean-up dts patches
+posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
+redoing or fixing up the patches with sed :)
+
+What I'd like to have see is that at some point when suitable we move
+one machine at a time with a script if possible.. Maybe the dtb files
+generated would need to remain in the current directory until all of
+the machine dts files are moved? That should help with the build
+scripting too probably :)
+
+In general I like the idea though and I think we should do it.
 
 Regards,
-Minghao
 
-> > ---
-> > v1 -> v2: rename property from "virtio,wakeup" to "wakeup-source"
-> > 
-> >  Documentation/devicetree/bindings/virtio/mmio.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
-> > index 4b7a027..160b21b 100644
-> > --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
-> > +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
-> > @@ -31,6 +31,10 @@ properties:
-> >      description: Required for devices making accesses thru an IOMMU.
-> >      maxItems: 1
-> >  
-> > +  wakeup-source:
-> > +    type: boolean
-> > +    description: Required for setting irq of a virtio_mmio device as wakeup source.
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > -- 
-> > 2.7.4
-> 
+Tony
