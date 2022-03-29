@@ -2,109 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1204EAFE2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 17:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BFA84EAFF7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 17:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238272AbiC2PJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 11:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33236 "EHLO
+        id S238323AbiC2PKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 11:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238276AbiC2PJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 11:09:43 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 566341EF5DB;
-        Tue, 29 Mar 2022 08:07:59 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id lr4so27352892ejb.11;
-        Tue, 29 Mar 2022 08:07:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=k7V/AdbtuTpQjKQKuRE/DdQ8tDFVesLcfjc5DCvosMQ=;
-        b=kGiY4tb+xGIQRdl+/8PFqwgQ4fTQZmhxcTdZuggrruf6V0o6YtxYMBesBVR2vAwWmM
-         q1bfRdPTBBah2FodC+hww1SZCOb2DCWoqCAnUQwMUUbzLOZ4Xh9zjlbE9xdhmPrKrIRo
-         MebMdMZfDuwbOJN/bTLxm/R9WHDXW2ybB/Oa5rKIsCQ8hNhHq/5yFTPjSv7hrVfNBtKC
-         /h1NWty8q+WV2r7bg4mbyO3nb55uADLf8J+0MoWtRqnCzklkn7m8j6NV59lhuohT0rwB
-         1UWgofotsBTExoauAmrTu0vWrf/uuX9cRkvN1lqar+kxgqTbR79h2j+KjWQiNDQcVA9T
-         H5jw==
+        with ESMTP id S238318AbiC2PKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 11:10:41 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F89C203A6B;
+        Tue, 29 Mar 2022 08:08:57 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-d39f741ba0so18992548fac.13;
+        Tue, 29 Mar 2022 08:08:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=k7V/AdbtuTpQjKQKuRE/DdQ8tDFVesLcfjc5DCvosMQ=;
-        b=6oVyOd3HAReuKThxhyzlQGjFF0n5Y3Fn/ma1G7a6jcPtbig8bDjdDsrqGo0tjc5tQo
-         AL6PndeZCsoY3SPsSM3KYkRkts/nHKt//Bkz7+/Eody8TxbPHhc0xWwManRzs9R2jede
-         eabMyFaVaHGABP27cH0nM6jzvRjy6liJuh8omr0WIMz1XHcuGe1y0ShKHO00rLebMDuq
-         8jnaF5ZPV/O7itROWEW+3Q0TPOzuxN/8JYTvvrpcH+kgpmTHU/+/tAnlqIX/p8+JNA9k
-         5LxyCaOr0sEnhsgxHAmxyFDmMdo4eW+Rf/hE1yzPC/IVhXTKY3ATg0AyyzeyEyCXxJjq
-         aBVQ==
-X-Gm-Message-State: AOAM532DShXJAgBGf4g9cCTK8vOEkiTWaMDTkfKt1paIxjSF5LH4oe7t
-        oaU8flrvdadt2Xwve923O6I=
-X-Google-Smtp-Source: ABdhPJzXbIomNhFkSZPsDocHiKap3lA3plyPy2CFIhy0FEuXIDdP4JvO30XCZ/ljVHLEF0QyEYJz/Q==
-X-Received: by 2002:a17:906:c0d6:b0:6ca:457e:f1b7 with SMTP id bn22-20020a170906c0d600b006ca457ef1b7mr35045283ejb.399.1648566476904;
-        Tue, 29 Mar 2022 08:07:56 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id eq7-20020a056402298700b00419d8d46a8asm3261643edb.39.2022.03.29.08.07.55
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9MI9Y0hjLEdGkyBn4a4gJ7Wyi0ARALBjm+l4Te7k6eY=;
+        b=rt+pi0heUTMFlD3lSIoBTXXHeO9bYGwc/dHBsA0GoEbjCw1g9TjfHyHNIbnWBaP/oR
+         +awkseq5+l7PTjuEx/5pkdouqzYCBZe+1bNOavfVshq9roa6HullT9YWOk4IjW4274As
+         HU9exJOTzNM9AZPeN62MN5Wtu7DvC/Ax1oglSj8MHS3lRlclxzaP+4k0wpfgZHMHZOgt
+         TD0mOWvNJl4khK6wgFq74/SkyIajpK+rv5wzhzlR0uAOUtcnJag5uWg6Pne+nAsUqdqV
+         5tjqCu0tHu8xK7a2GfPImxUWiAsCeS6ZfZ6gyZtbTuoJXZ50hiZyVF47W8kHP/Bm8bYL
+         G00Q==
+X-Gm-Message-State: AOAM532j/ZTECFkpRN66voVlsAoLcd7IhBRvoE0NZOiSZMzxwI83Oikc
+        518t12we3pMwaIkRFfb4jg==
+X-Google-Smtp-Source: ABdhPJzRxexG0L1mdf99NN5f59K5nX3DNtXTbLk6WqzsW6LOT2KNboRu9Ho4Ve3cYaW1RXUHrNkTOw==
+X-Received: by 2002:a05:6870:461d:b0:de:4705:7fe8 with SMTP id z29-20020a056870461d00b000de47057fe8mr29959oao.221.1648566536694;
+        Tue, 29 Mar 2022 08:08:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g8-20020a9d2d88000000b005b238f7551csm8724772otb.53.2022.03.29.08.08.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 08:07:56 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de, zhangqing@rock-chips.com
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: rockchip: add clocks property to cru nodes rk3399
-Date:   Tue, 29 Mar 2022 17:07:42 +0200
-Message-Id: <20220329150742.22093-6-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220329150742.22093-1-jbx6244@gmail.com>
-References: <20220329150742.22093-1-jbx6244@gmail.com>
+        Tue, 29 Mar 2022 08:08:55 -0700 (PDT)
+Received: (nullmailer pid 680061 invoked by uid 1000);
+        Tue, 29 Mar 2022 15:08:53 -0000
+Date:   Tue, 29 Mar 2022 10:08:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/16] PCI: dwc: Add IP-core version detection procedure
+Message-ID: <YkMhBdrd9Bq4hzjq@robh.at.kernel.org>
+References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324013734.18234-6-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220324013734.18234-6-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clocks property to rk3399 cru nodes to fix warnings like:
-'clocks' is a dependency of 'assigned-clocks'.
+On Thu, Mar 24, 2022 at 04:37:23AM +0300, Serge Semin wrote:
+> Since DWC PCIe v4.70a the controller version and version type can be read
+> from the PORT_LOGIC.PCIE_VERSION_OFF and PORT_LOGIC.PCIE_VERSION_TYPE_OFF
+> registers respectively. Seeing the generic code has got version-dependent
+> parts let's use these registers to find out the controller version.  The
+> detection procedure is executed for both RC and EP modes right after the
+> platform-specific initialization. We can't do that earlier since the
+> glue-drivers can perform the DBI-related setups there including the bus
+> reference clocks activation, without which the CSRs just can't be read.
+> 
+> Note the CSRs content is zero on the older DWC PCIe controller. In that
+> case we have no choice but to rely on the platform setup.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   |  2 ++
+>  .../pci/controller/dwc/pcie-designware-host.c |  2 ++
+>  drivers/pci/controller/dwc/pcie-designware.c  | 24 +++++++++++++++++++
+>  drivers/pci/controller/dwc/pcie-designware.h  |  6 +++++
+>  4 files changed, 34 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 7c9315fffe24..3b981d13cca9 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -645,6 +645,8 @@ int dw_pcie_ep_init_complete(struct dw_pcie_ep *ep)
+>  	u32 reg;
+>  	int i;
+>  
+> +	dw_pcie_version_detect(pci);
+> +
+>  	hdr_type = dw_pcie_readb_dbi(pci, PCI_HEADER_TYPE) &
+>  		   PCI_HEADER_TYPE_MASK;
+>  	if (hdr_type != PCI_HEADER_TYPE_NORMAL) {
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 8364ea234e88..8f0d473ff770 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -398,6 +398,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  		}
+>  	}
+>  
+> +	dw_pcie_version_detect(pci);
+> +
+>  	dw_pcie_iatu_detect(pci);
+>  
+>  	dw_pcie_setup_rc(pp);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index c21373c6cb51..49c494d82042 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -16,6 +16,30 @@
+>  #include "../../pci.h"
+>  #include "pcie-designware.h"
+>  
+> +void dw_pcie_version_detect(struct dw_pcie *pci)
+> +{
+> +	u32 ver;
+> +
+> +	/* The content of the CSR is zero on DWC PCIe older than v4.70a */
+> +	ver = dw_pcie_readl_dbi(pci, PCIE_VERSION_NUMBER);
+> +	if (!ver)
+> +		return;
+> +
+> +	if (pci->version && pci->version != ver)
+> +		dev_warn(pci->dev, "Versions don't match (%08x != %08x)\n",
+> +			 pci->version, ver);
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+Trust the h/w is correct until we have a known case where it isn't. Just 
+read the h/w reg if pci->version is zero.
 
-Changed V2:
-  add clocks to pmucru node
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+I would suspect as-is this will give some warnings. No doubt there is 
+some platform with multiple revs of Si that didn't change their version 
+in the driver. Or the author just guessed on the version that picked the 
+right paths in the driver.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 01c08a2aa..56af1a1d6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1416,6 +1416,8 @@
- 	pmucru: clock-controller@ff750000 {
- 		compatible = "rockchip,rk3399-pmucru";
- 		reg = <0x0 0xff750000 0x0 0x1000>;
-+		clocks = <&xin24m>;
-+		clock-names = "xin24m";
- 		rockchip,grf = <&pmugrf>;
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
-@@ -1426,6 +1428,8 @@
- 	cru: clock-controller@ff760000 {
- 		compatible = "rockchip,rk3399-cru";
- 		reg = <0x0 0xff760000 0x0 0x1000>;
-+		clocks = <&xin24m>;
-+		clock-names = "xin24m";
- 		rockchip,grf = <&grf>;
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
--- 
-2.20.1
-
+Rob
