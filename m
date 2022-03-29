@@ -2,153 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 382EC4EAE27
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 15:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C9C4EAE2F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 15:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236153AbiC2NLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 09:11:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33082 "EHLO
+        id S231203AbiC2NQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 09:16:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235616AbiC2NLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 09:11:31 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BDA5DF10;
-        Tue, 29 Mar 2022 06:09:48 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id z9-20020a05683020c900b005b22bf41872so12715970otq.13;
-        Tue, 29 Mar 2022 06:09:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pgmVS6Ri5wIx578wOnaD17/Gk0HO8xT8dcbeURwXcvM=;
-        b=jGGraEXM6HEYbCh2s7/DHpL1QheO2q0stI0MN4yYrXbH8Cwki/ZhPMQ3WLd2VEzGTm
-         g1/e/63CHpcCTwUtl01im/IsYQ37vEZMu3q0/XJ6uo7Zqs5oGmWczCreze6PHM1U66M0
-         j7trzPNoorEP1TEoYjdzT5LCOkXwdw/JBOSTrEjRaWzf50zdAcOOf8taM1hUM2oXjNNX
-         cxDIGhDTZjBd7rp3CFkYYKfud3f4k1i0fssNgdvV9V6TzF3qw4jV5zYroCWKtk245iJ9
-         gDe8bRRlvVqLLhgjq00lglqKuNk2RfiwyHYDpnvVu/tjVbvvoEvH65MaIJeDn1iDEbbS
-         tDbQ==
-X-Gm-Message-State: AOAM533+KjdCvgu91Lp/UMZtzbP5gz60/kN95sYuHSZVMHrYolt+hv4m
-        w1FZmRZblCpZ9lGkG1IYmg==
-X-Google-Smtp-Source: ABdhPJxz1vLRb+ULvjznOE3SueYbicXZjpLRanPIOSO+cxvPbO6krkNLY2qTn6KPl8CwI3JDJM2gsQ==
-X-Received: by 2002:a9d:5614:0:b0:5b2:5fe3:8f1c with SMTP id e20-20020a9d5614000000b005b25fe38f1cmr1052711oti.229.1648559387820;
-        Tue, 29 Mar 2022 06:09:47 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id li20-20020a056871421400b000deaa91898fsm6115814oab.40.2022.03.29.06.09.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 06:09:46 -0700 (PDT)
-Received: (nullmailer pid 482676 invoked by uid 1000);
-        Tue, 29 Mar 2022 13:09:45 -0000
-Date:   Tue, 29 Mar 2022 08:09:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        angelogioacchino.delregno@collabora.com,
-        Yong Wu <yong.wu@mediatek.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3, 03/10] dt-bindings: media: mtk-vcodec: Adds encoder
- cores dt-bindings for mt8195
-Message-ID: <YkMFGbgYq5DhLjt8@robh.at.kernel.org>
-References: <20220317082230.23622-1-irui.wang@mediatek.com>
- <20220317082230.23622-4-irui.wang@mediatek.com>
- <Yj4s0zcHxz3U3wlc@robh.at.kernel.org>
- <ab2b24eeb51048227ad7b2ac659617a7da5b2e45.camel@mediatek.com>
- <YkG8ka1xY2k+HWi1@robh.at.kernel.org>
- <e41e909f85e3891edb6b66d7d5a810af103113c8.camel@mediatek.com>
+        with ESMTP id S230181AbiC2NQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 09:16:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CAC639B;
+        Tue, 29 Mar 2022 06:14:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 20FE86154F;
+        Tue, 29 Mar 2022 13:14:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04873C2BBE4;
+        Tue, 29 Mar 2022 13:14:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648559668;
+        bh=BUiGfVpPE2VIxewXuuuW8TDfj0IZzmLt4jyDJzc1e4U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PFKK2Ka2bFipYV22HyUJrbCDmogkwW+lH79Dg+PzXreiSriWdCq93ecnnzo89S/dj
+         zrr/xhohQhOTYaTGNu5Nx8Wpk2kt1d+jnvUn1MvV2Zi2XYSEqmaRWjCBrCpdMstBXV
+         PvwwDvXA3xOk+a7K8ardNiyCNM9VHkz7UPuERDZ26bCknQk38AKdO9B8DNYDHqgTDR
+         Z6Oah3FflPvUgl0WdZm4yfaUOkWyS+wiMQxbz9camg5juIzOmjLcBlpDiTUvEohMm0
+         sQsvTPlMTX2B4tIBJckvDK536G8BEDXT7wbXtc916DKWj6YsA0L3pWBaRiEpQEl2sE
+         MqwS7XwTcSm4A==
+Message-ID: <d4c477b3-0cf2-e495-6a54-5fcd0301cc14@kernel.org>
+Date:   Tue, 29 Mar 2022 15:14:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e41e909f85e3891edb6b66d7d5a810af103113c8.camel@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: xenon: Convert to JSON schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     andrew@lunn.ch, ulf.hansson@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzk+dt@kernel.org, huziji@marvell.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <20220329000231.3544810-1-chris.packham@alliedtelesis.co.nz>
+ <20220329000231.3544810-3-chris.packham@alliedtelesis.co.nz>
+ <1648554629.870840.350362.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <1648554629.870840.350362.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 09:26:37AM +0800, Irui Wang wrote:
-> Dear Rob,
+On 29/03/2022 13:50, Rob Herring wrote:
+> On Tue, 29 Mar 2022 13:02:31 +1300, Chris Packham wrote:
+>> Convert the marvell,xenon-sdhci binding to JSON schema. Currently the
+>> in-tree dts files don't validate because they use sdhci@ instead of mmc@
+>> as required by the generic mmc-controller schema.
+>>
+>> The compatible "marvell,sdhci-xenon" was not documented in the old
+>> binding but it accompanies the of "marvell,armada-3700-sdhci" in the
+>> armada-37xx SoC dtsi so this combination is added to the new binding
+>> document.
+>>
+>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+>> ---
+>>
+>> Notes:
+>>     Changes in v4:
+>>     - Add review from Krzysztof
+>>     - Squash in addition of marvell,sdhci-xenon with an explanation in the
+>>       commit message
+>>     Changes in v3:
+>>     - Don't accept ap807 without ap806
+>>     - Add ref: string for pad-type
+>>     Changes in v2:
+>>     - Update MAINTAINERS entry
+>>     - Incorporate feedback from Krzysztof
+>>
+>>  .../bindings/mmc/marvell,xenon-sdhci.txt      | 173 -----------
+>>  .../bindings/mmc/marvell,xenon-sdhci.yaml     | 275 ++++++++++++++++++
+>>  MAINTAINERS                                   |   2 +-
+>>  3 files changed, 276 insertions(+), 174 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.txt
+>>  create mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+>>
 > 
-> Many thanks for your attention.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> On Mon, 2022-03-28 at 08:48 -0500, Rob Herring wrote:
-> > On Sat, Mar 26, 2022 at 10:00:55AM +0800, Irui Wang wrote:
-> > > Dear Rob,
-> > > 
-> > > Thanks for your review and comments.
-> > > 
-> > > On Fri, 2022-03-25 at 15:57 -0500, Rob Herring wrote:
-> > > > On Thu, Mar 17, 2022 at 04:22:23PM +0800, Irui Wang wrote:
-> > > > > Adds encoder cores dt-bindings for mt8195.
-
-[...]
-
-> > > > > +      mediatek,core-id:
-> > > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > +        description: |
-> > > > > +          Current encoder core id.
-> > > > 
-> > > > What is this for and what does its value correspond to in the
-> > > > h/w.
-> > > > We 
-> > > > generally don't do made up indices in DT.
-> > > 
-> > > It's for encoder core id, core@1a020000 must be core-0, 
-> > > core@1b020000
-> > > must be core-1, we add this property in each child node, so we can 
-> > > get core-id in drivers. If it can't ref "uint32" types yaml, would 
-> > > you mind giving some more suggestions ?
-> > 
-> > I still don't understand why it is needed. What is 'core-0'?
-> > 
-> > Is there some functional difference between the cores? If so,
-> > describe 
-> > that difference.
-> > 
-> > Rob
+> yamllint warnings/errors:
 > 
-> They are two different pieces of hardware, it's our encoder hardware
-> design. There are two encoder hardware cores inside MT8195, named core0
-> and core1(we can rename it, but core id should be declared),
-> for core0, its module base address is 0x1A02_0000, uses IOMMU
-> "vdo0_iommu" and power domain "POWER_DOMAIN_VENC",
-> for core1, its module base address is 0x1B02_0000, uses IOMMU
-> "vpp_iommu" and power domain "POWER_DOMAIN_VENC_CORE1".
-> So the two encoder cores have their own base, IRQ, clock, power, etc.
-> Each core can encode independently, moreover, they can work together
-> for higher performance. 
-> We will describe more details in YAML about it if it's OK for you.
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dt.yaml: mmc@aa0000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['marvell,armada-3700-sdhci'] is too short
+> 	'marvell,armada-3700-sdhci' is not one of ['marvell,armada-cp110-sdhci', 'marvell,armada-ap806-sdhci']
+> 	'marvell,armada-ap807-sdhci' was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dt.yaml: mmc@ab0000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['marvell,armada-3700-sdhci'] is too short
+> 	'marvell,armada-3700-sdhci' is not one of ['marvell,armada-cp110-sdhci', 'marvell,armada-ap806-sdhci']
+> 	'marvell,armada-ap807-sdhci' was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> 
+> doc reference errors (make refcheckdocs):
 
-All the resources you list are in the child nodes, so you don't need 0 
-and 1 numbering for those. 
+Chris, your own dt binding does not pass it's check (example)...
 
-Looking at the driver patches, the only thing I see distinguishing 
-core numbers is this:
+After updating the compatibles, you need to check the example. The
+examples are anyway duplicating common stuff, so half of them could be
+removed.
 
-"frame#0 uses core#0, frame#1 uses core#1, frame#2 uses core#0...,
 
-Lock the device and enable the clock by used core, for sequence
-header encoding, it always uses core#0."
-
-Is this a requirement in the h/w or just what the driver picked? IOW, 
-could frame#0 use core#1?
-
-Rob
+Best regards,
+Krzysztof
