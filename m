@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91A7F4EA9C7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1481C4EA9C8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234206AbiC2IwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 04:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
+        id S234207AbiC2IwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 04:52:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231714AbiC2IwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:52:21 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173574C43B
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:50:38 -0700 (PDT)
+        with ESMTP id S234209AbiC2IwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:52:22 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9214B4C7AA
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:50:39 -0700 (PDT)
 Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2254083FB2;
+        by phobos.denx.de (Postfix) with ESMTPSA id AB48483FB5;
         Tue, 29 Mar 2022 10:50:36 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1648543836;
-        bh=/iNkyPW4hMZbgSpJLXu+gqRjp9kX7pepjun2VfQ6vdo=;
+        s=phobos-20191101; t=1648543837;
+        bh=w3eqjtmimpuk6Dm7HKnrnO7NcTl4iXt0otP/1Wg8+9U=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=y12tY+4PV1djQyxRkyin1sO5YDIbVV7aHji3HdDZ1TFL8w2KJOGB9WPl1muwQJXQR
-         p9jKby55+DnHp7sWl4ZOHTa0+NdLuACrAg04NjIdbXmm0dduHbH8zCocjs4wzlR+3V
-         8TSIfIZJJI27f7YOSFNFSYOGa24bWuI4Q2Jf+DPeRZHcVTmMx0pz4UI3pNdQ4k0Hi/
-         SzIT2dlARo5SiLfq7v93uABq9WUFQ1qCpTw2dNfN3yiE+5N/5h9U12n2JVo0Z7azpV
-         HnUtN3X4QdzZbdAAKpKbu2SEXAQfpL6V3u5cOR4Adx+NG5SgT53aYYiZrpl0fWmSri
-         bQ+w1FWSPG0LA==
+        b=bTHfaqJfcFFmKXpbz2t9zhyAu4waxvIebM4HBNxWXNtbihFElkxggvaEpTF8z2GpL
+         B6MNkD+RESMFiDF4lDEBcz36+tm0DUaFPDXiI2X8CzL5zyTERp3sxzs8hyLbYA5ew+
+         kjJvs+QA8ZRbr1jSIe6inblBWpzuJSOjumkI1wJt57rjPr3PMO1K4Gg2Fd8DT8O5+a
+         NjTgBP3jVqicaze5cdo9SIsWxZBFaNvJ+FyQhfd55pfaclgsO3AWK5MRrVvTk6ChM8
+         UIsoNz3IiI49RvaxW7EiRlOPnLfsxz9ZN089qvMjhuM0ormEd88W5FBEIhyboAB0Qn
+         hDo6IAAvOF/bQ==
 From:   Marek Vasut <marex@denx.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     l.stach@pengutronix.de, Marek Vasut <marex@denx.de>,
@@ -39,9 +39,9 @@ Cc:     l.stach@pengutronix.de, Marek Vasut <marex@denx.de>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 01/11] dt-bindings: display: bridge: tc358867: Document DPI output support
-Date:   Tue, 29 Mar 2022 10:50:05 +0200
-Message-Id: <20220329085015.39159-2-marex@denx.de>
+Subject: [PATCH v5 02/11] dt-bindings: display: bridge: tc358867: Document DSI data-lanes property
+Date:   Tue, 29 Mar 2022 10:50:06 +0200
+Message-Id: <20220329085015.39159-3-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220329085015.39159-1-marex@denx.de>
 References: <20220329085015.39159-1-marex@denx.de>
@@ -59,12 +59,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TC358767/TC358867/TC9595 are all capable of operating in multiple
-modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
-DPI output port, which can now be connected both as input and output.
+It is necessary to specify the number of connected/used DSI data lanes when
+using the DSI input port of this bridge. Document the 'data-lanes' property
+of the DSI input port.
 
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Lucas Stach <l.stach@pengutronix.de>
 Tested-by: Lucas Stach <l.stach@pengutronix.de> # In both DPI to eDP and DSI to DPI mode.
 Signed-off-by: Marek Vasut <marex@denx.de>
 Cc: Jonas Karlman <jonas@kwiboo.se>
@@ -76,29 +76,46 @@ Cc: Sam Ravnborg <sam@ravnborg.org>
 Cc: devicetree@vger.kernel.org
 To: dri-devel@lists.freedesktop.org
 ---
-V2: - Rebase on next-20220217
-V3: - No change
-V4: - Add AB by Rob, RB/TB by Lucas
+V3: - New patch
+V4: - Add RB by Rob, AB/TB by Lucas
 V5: - No change
 ---
- .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../display/bridge/toshiba,tc358767.yaml       | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-index f1541cc052977..5cfda6f2ba69c 100644
+index 5cfda6f2ba69c..ed280053ec62b 100644
 --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
 +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -61,8 +61,8 @@ properties:
+@@ -53,11 +53,27 @@ properties:
+ 
+     properties:
+       port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
+         description: |
+             DSI input port. The remote endpoint phandle should be a
+             reference to a valid DSI output endpoint node
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
        port@1:
          $ref: /schemas/graph.yaml#/properties/port
          description: |
--            DPI input port. The remote endpoint phandle should be a
--            reference to a valid DPI output endpoint node
-+            DPI input/output port. The remote endpoint phandle should be a
-+            reference to a valid DPI output or input endpoint node.
- 
-       port@2:
-         $ref: /schemas/graph.yaml#/properties/port
 -- 
 2.35.1
 
