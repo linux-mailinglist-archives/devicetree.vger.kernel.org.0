@@ -2,62 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF5A4EB6F3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 01:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A2C4EB6F8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 01:48:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233414AbiC2Xph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 19:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43186 "EHLO
+        id S240929AbiC2XuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 19:50:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiC2Xph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 19:45:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF6ADFDE7
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 16:43:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E952360C44
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 23:43:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C14CC36AE2
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 23:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648597432;
-        bh=2nAUqSFanbBaaW6KEpWotDLeC5ACkBBVsF6/FqW2Izk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qhCaj9l9f0Pzx6MrI/e1AHjyMOSiyPsrnc9tojcaj0ifaiqWz4t6H848mpFpvPPxR
-         gB0PX9XjrnMtw8UJsEYLBCZAprE5dqqvr8b/rwn4xE6uzVZLfxFJINMvm2e90vj/X/
-         NqBgvceMBncJt/PEzgP1nUL+oaXnYquBKm/qVuNkkOleGb4OtoYCzfEzWWDxK3n3N6
-         nYN6BawC6lXPgIb3L/6RFxM/fN472f5KBIJgpw9dUcx3Vp3inIf6MNDjUFauXyhQRz
-         D6ry1MZZPYEyqg61sPDAYsN2+UQrpJbI7Rui0Qd4CFTaReZ55xee/RHYJQVPxM/kPj
-         PI2UNWco+kRvg==
-Received: by mail-ej1-f44.google.com with SMTP id bi12so38265218ejb.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 16:43:52 -0700 (PDT)
-X-Gm-Message-State: AOAM53051kNwVrK5UntQxw19h3tq6kG6KK0aqa8e8eRI9gTf92iUg/qA
-        bQu7UurPqEMrY59CVtKQkr/ts2ff2ogY+67FEA==
-X-Google-Smtp-Source: ABdhPJykK9/0tOIVSYiSP0SL+Av110luJAmVEAGtAyxFHWow18L+iO2I9LkQzuu4zuZXp3BdXR+vXGvo5EUZkWbeewo=
-X-Received: by 2002:a17:906:d204:b0:6d6:df17:835e with SMTP id
- w4-20020a170906d20400b006d6df17835emr36631070ejz.20.1648597430572; Tue, 29
- Mar 2022 16:43:50 -0700 (PDT)
+        with ESMTP id S240992AbiC2XuC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 19:50:02 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3431E9BBB6;
+        Tue, 29 Mar 2022 16:48:16 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id EC0281F40F3A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1648597694;
+        bh=5RCxnQpK5I7Y2zWLKGLxBiVPTh/yCn+uO0KyYdxQQQ8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=a9w3F/vzA0sFlOCcLd85ycKnYywA+CP5LeOCfthZ1gDdaKR6rF7wb+pGb1w3Lzsxb
+         8sKZMKFgzrGhqWiKyZhCBP7uOCaZF2rASpfVv1lDWpm/C6Xt7K67TGxiMUSg6S+/he
+         PK40aipOdT3Am2PfAWvr/S08mVe9IdvC++qY7+BIm/X12tiJMw6OB/8oo7mM9H0cB8
+         /4+gpdn+u+thh9lB0dL8yVtGxPULDQDas6PMYX53E5B4ZV6nBFBxbiaP0ygVJ9Vvx8
+         xXAcf1mdKKJGAbgf+K4GQw+GjQ+yMA46G0hGGJoeI0furZEDcXIJNvh9CWQMRe19+w
+         UF73voLivci6A==
+Message-ID: <22eb6b37-3bcd-71ab-f99f-dc059043b56b@collabora.com>
+Date:   Wed, 30 Mar 2022 02:48:11 +0300
 MIME-Version: 1.0
-References: <20220329213519.801033-1-rui.silva@linaro.org> <20220329213519.801033-2-rui.silva@linaro.org>
-In-Reply-To: <20220329213519.801033-2-rui.silva@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 29 Mar 2022 18:43:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLavmG2rtXL9EN86uhxYbhr7CbKj+43Ji7qRCKbAMu-bw@mail.gmail.com>
-Message-ID: <CAL_JsqLavmG2rtXL9EN86uhxYbhr7CbKj+43Ji7qRCKbAMu-bw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: smsc,lan91c111 convert to schema
-To:     Rui Miguel Silva <rui.silva@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v5 1/4] memory: tegra: Add memory controller channels
+ support
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220316092525.4554-1-amhetre@nvidia.com>
+ <20220316092525.4554-2-amhetre@nvidia.com>
+ <83bc4c12-13e3-d239-3845-a3541b1fbb2a@gmail.com>
+ <981610f0-374a-b18f-8e3a-445b20edb257@nvidia.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <981610f0-374a-b18f-8e3a-445b20edb257@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,89 +60,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 4:35 PM Rui Miguel Silva <rui.silva@linaro.org> wrote:
->
-> Convert the smsc lan91c9x and lan91c1xx controller device tree
-> bindings documentation to json-schema.
->
-> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
-> ---
->  .../bindings/net/smsc,lan91c111.yaml          | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
->
-> diff --git a/Documentation/devicetree/bindings/net/smsc,lan91c111.yaml b/Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
-> new file mode 100644
-> index 000000000000..5976f4fa4a80
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/smsc,lan91c111.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Smart Mixed-Signal Connectivity (SMSC) LAN91C9x/91C1xx Controller
-> +
-> +maintainers:
-> +  - Nicolas Pitre <nico@fluxnic.net>
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: smsc,lan91c111
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg-shift: true
-> +
-> +  reg-io-width:
-> +    enum: [ 1, 2, 4 ]
-> +    default: 2
-> +
-> +  reset-gpios:
-> +    description: GPIO connected to control RESET pin
-> +    maxItems: 1
-> +
-> +  power-gpios:
-> +    description: GPIO connect to control PWRDEWN pin
-> +    maxItems: 1
-> +
-> +  pxa-u16-align4:
-> +    description: put in place the workaround the force all u16 writes to be
-> +      32 bits aligned
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: true
-
-This is only allowed on incomplete, common schemas. Instead use:
-
-unevaluatedProperties: false
-
-As that allows for properties defined in ethernet-controller.yaml.
-
-> +
-> +examples:
-> +  - |
-> +    ethernet@4010000 {
-> +          compatible = "smsc,lan91c111";
-> +          reg = <0x40100000 0x10000>;
-> +          phy-mode = "mii";
-> +          interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-> +          reg-io-width = <2>;
-> +    };
-> --
-> 2.35.1
->
+On 3/25/22 07:50, Ashish Mhetre wrote:
+> 
+> 
+> On 3/19/2022 9:12 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> 16.03.2022 12:25, Ashish Mhetre пишет:
+>>>  From tegra186 onwards, memory controller support multiple channels.
+>>> Add support for mapping address spaces of these channels.
+>>> Make sure that number of channels are as expected on each SOC.
+>>> During error interrupts from memory controller, appropriate registers
+>>> from these channels need to be accessed for logging error info.
+>>>
+>>> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+>>> ---
+>>>   drivers/memory/tegra/mc.c       |  6 ++++
+>>>   drivers/memory/tegra/tegra186.c | 52 +++++++++++++++++++++++++++++++++
+>>>   drivers/memory/tegra/tegra194.c |  1 +
+>>>   drivers/memory/tegra/tegra234.c |  1 +
+>>>   include/soc/tegra/mc.h          |  7 +++++
+>>>   5 files changed, 67 insertions(+)
+>>>
+>>> diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
+>>> index bf3abb6d8354..3cda1d9ad32a 100644
+>>> --- a/drivers/memory/tegra/mc.c
+>>> +++ b/drivers/memory/tegra/mc.c
+>>> @@ -749,6 +749,12 @@ static int tegra_mc_probe(struct platform_device
+>>> *pdev)
+>>>        if (IS_ERR(mc->regs))
+>>>                return PTR_ERR(mc->regs);
+>>>
+>>> +     if (mc->soc->ops && mc->soc->ops->map_regs) {
+>>> +             err = mc->soc->ops->map_regs(mc, pdev);
+>>> +             if (err < 0)
+>>> +                     return err;
+>>> +     }
+>>> +
+>>>        mc->debugfs.root = debugfs_create_dir("mc", NULL);
+>>>
+>>>        if (mc->soc->ops && mc->soc->ops->probe) {
+>>> diff --git a/drivers/memory/tegra/tegra186.c
+>>> b/drivers/memory/tegra/tegra186.c
+>>> index 3d153881abc1..a8a45e6ff1f1 100644
+>>> --- a/drivers/memory/tegra/tegra186.c
+>>> +++ b/drivers/memory/tegra/tegra186.c
+>>> @@ -139,11 +139,62 @@ static int tegra186_mc_probe_device(struct
+>>> tegra_mc *mc, struct device *dev)
+>>>        return 0;
+>>>   }
+>>>
+>>> +static int tegra186_mc_map_regs(struct tegra_mc *mc,
+>>> +                             struct platform_device *pdev)
+>>> +{
+>>> +     struct device_node *np = pdev->dev.parent->of_node;
+>>> +     int num_dt_channels, reg_cells = 0;
+>>> +     struct resource *res;
+>>> +     int i, ret;
+>>> +     u32 val;
+>>> +
+>>> +     ret = of_property_read_u32(np, "#address-cells", &val);
+>>> +     if (ret) {
+>>> +             dev_err(&pdev->dev, "missing #address-cells property\n");
+>>> +             return ret;
+>>> +     }
+>>> +
+>>> +     reg_cells = val;
+>>> +
+>>> +     ret = of_property_read_u32(np, "#size-cells", &val);
+>>> +     if (ret) {
+>>> +             dev_err(&pdev->dev, "missing #size-cells property\n");
+>>> +             return ret;
+>>> +     }
+>>> +
+>>> +     reg_cells += val;
+>>> +
+>>> +     num_dt_channels =
+>>> of_property_count_elems_of_size(pdev->dev.of_node, "reg",
+>>> +                                                       reg_cells *
+>>> sizeof(u32));
+>>> +     /*
+>>> +      * On tegra186 onwards, memory controller support multiple
+>>> channels.
+>>> +      * Apart from regular memory controller channels, there is one
+>>> broadcast
+>>> +      * channel and one for stream-id registers.
+>>> +      */
+>>> +     if (num_dt_channels < mc->soc->num_channels + 2) {
+>>> +             dev_warn(&pdev->dev, "MC channels are missing, please
+>>> update\n");
+>>
+>> Update what?
+>>
+>>> +             return 0;
+>>> +     }
+>>> +
+>>> +     mc->mcb_regs = devm_platform_get_and_ioremap_resource(pdev, 1,
+>>> &res);
+>>
+>> Can't we name each reg bank individually in the DT and then use
+>> devm_platform_ioremap_resource_byname()?
+>>
+> That can be done but I think current logic will be better as we can
+> simply ioremap them by running in loop and assigning the mc_regs array.
+> Otherwise there will be like 17 ioremap_byname() individual calls for
+> Tegra194 and Tegra234.
+> Will it be fine having that many ioremap_byname() calls?
+> Also, Tegra186 has 5 channels which are less than Tegra194 and Tegra234.
+> If we go with ioremap_byname() then we'll have to differentiate number
+> of ioremap_byname() calls.
+for (i = 0; i < mc->soc->num_channels; i++) {
+	sprintf(name, "mc%u", i);
+	err = devm_platform_ioremap_resource_byname(dev, name);
+	...
+}
