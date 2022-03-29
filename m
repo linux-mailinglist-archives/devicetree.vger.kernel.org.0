@@ -2,120 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1481C4EA9C8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 511E64EA9BE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 10:51:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbiC2IwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 04:52:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
+        id S234213AbiC2Iwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 04:52:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234209AbiC2IwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:52:22 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9214B4C7AA
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 01:50:39 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id AB48483FB5;
-        Tue, 29 Mar 2022 10:50:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1648543837;
-        bh=w3eqjtmimpuk6Dm7HKnrnO7NcTl4iXt0otP/1Wg8+9U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bTHfaqJfcFFmKXpbz2t9zhyAu4waxvIebM4HBNxWXNtbihFElkxggvaEpTF8z2GpL
-         B6MNkD+RESMFiDF4lDEBcz36+tm0DUaFPDXiI2X8CzL5zyTERp3sxzs8hyLbYA5ew+
-         kjJvs+QA8ZRbr1jSIe6inblBWpzuJSOjumkI1wJt57rjPr3PMO1K4Gg2Fd8DT8O5+a
-         NjTgBP3jVqicaze5cdo9SIsWxZBFaNvJ+FyQhfd55pfaclgsO3AWK5MRrVvTk6ChM8
-         UIsoNz3IiI49RvaxW7EiRlOPnLfsxz9ZN089qvMjhuM0ormEd88W5FBEIhyboAB0Qn
-         hDo6IAAvOF/bQ==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     l.stach@pengutronix.de, Marek Vasut <marex@denx.de>,
-        Rob Herring <robh@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 02/11] dt-bindings: display: bridge: tc358867: Document DSI data-lanes property
-Date:   Tue, 29 Mar 2022 10:50:06 +0200
-Message-Id: <20220329085015.39159-3-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220329085015.39159-1-marex@denx.de>
-References: <20220329085015.39159-1-marex@denx.de>
+        with ESMTP id S234203AbiC2Iwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 04:52:35 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 451374D9E8;
+        Tue, 29 Mar 2022 01:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1648543850; x=1680079850;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=0r3zs2np5g1OGyfR5AfBJmzryAoR1xJqsqcoDejQqWU=;
+  b=yk4zhCNfipUX7eRQzl/UWFsl14TkWgV2nFyQ/JLuu6mnldU1Qx+kirAp
+   HLM8rwpAp6PWXxOKFxbhKl6Hs1XrckSBku5ZWXzHO2Sflw/U1Kb8vOv46
+   VbynjfzxLp+Owgf/x9Qk2FSbxb6ySmn/gEjlF83HAidCgv37I+YYfZWFx
+   8arXK4lidSDelocVshQlRpnyUWoHlbgM5kxJRuCXuYVsKfwU0QRAhpUh0
+   aRKwX98fKthGl/CZztXDOkMfjqYL/wbG0Imu2rced0IOEw4agUjJ5KCf9
+   T+XnH6gB5ZmpDt2G31geY8en+lD7dZNIcvvVGPavFtdgmQeFSJltAH1tB
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,219,1643698800"; 
+   d="scan'208";a="158497460"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Mar 2022 01:50:48 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 29 Mar 2022 01:50:48 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Tue, 29 Mar 2022 01:50:41 -0700
+Message-ID: <4ff4f171-c5f8-87af-aad1-5e7686292288@microchip.com>
+Date:   Tue, 29 Mar 2022 10:50:38 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
+Content-Language: en-US
+To:     Daniel Palmer <daniel@0x0f.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Santiago Esteban <Santiago.Esteban@microchip.com>,
+        Cristian Birsan <Cristian.Birsan@microchip.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        <linux-actions@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+        <linux-omap@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@axis.com>, <linux-aspeed@lists.ozlabs.org>,
+        <linux-rpi-kernel@lists.infradead.org>,
+        <chrome-platform@lists.linux.dev>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <kernel@dh-electronics.com>, <linux-mediatek@lists.infradead.org>,
+        <openbmc@lists.ozlabs.org>, <linux-tegra@vger.kernel.org>,
+        <linux-oxnas@groups.io>, <linux-arm-msm@vger.kernel.org>,
+        <linux-unisoc@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is necessary to specify the number of connected/used DSI data lanes when
-using the DSI input port of this bridge. Document the 'data-lanes' property
-of the DSI input port.
+Ansuel, All,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Lucas Stach <l.stach@pengutronix.de>
-Tested-by: Lucas Stach <l.stach@pengutronix.de> # In both DPI to eDP and DSI to DPI mode.
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Maxime Ripard <maxime@cerno.tech>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V3: - New patch
-V4: - Add RB by Rob, AB/TB by Lucas
-V5: - No change
----
- .../display/bridge/toshiba,tc358767.yaml       | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+On 28/03/2022 at 10:55, Daniel Palmer wrote:
+> Hi Ansuel
+> 
+> On Mon, 28 Mar 2022 at 09:09, Ansuel Smith <ansuelsmth@gmail.com> wrote:
+>>
+>> Hi,
+>> as the title say, the intention of this ""series"" is to finally categorize
+>> the ARM dts directory in subdirectory for each oem.
+> 
+> While I agree with this change and think it's for the good (browsing
+> the ARM dts directory at the moment is frustrating..) I think
+> buildroot and others need to be told about this as it'll potentially
+> break their kernel build scripting for ARM and probably messes up the
+> configs they have for existing boards.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-index 5cfda6f2ba69c..ed280053ec62b 100644
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -53,11 +53,27 @@ properties:
- 
-     properties:
-       port@0:
--        $ref: /schemas/graph.yaml#/properties/port
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-         description: |
-             DSI input port. The remote endpoint phandle should be a
-             reference to a valid DSI output endpoint node
- 
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: |
+This aspect mustn't be underestimated and I anticipate lots of issues 
+during a long time on this particular topic of "build systems".
+
+Another aspect is CI and public or private testing farms we all have 
+running.
+
+These aspects always refrained me to change anything in the naming 
+scheme of our DT files, but if we go in this direction, we must really 
+be prepared and I'm still not convince it's worth it...
+
+
+If this has to happen, I would also like to queue some file name changes 
+to do all modifications in one go in order to lower the annoyance level 
+of those who would need to adapt to those changes.
+
+BTW, is there a common scheme for dts/dtsi file naming? Is it more 
+enforced in one way or another for arm64 in a sense that I can take some 
+norm as an example?
+
+[..]
+
+Best regards,
+   Nicolas
+
+
+
 -- 
-2.35.1
-
+Nicolas Ferre
