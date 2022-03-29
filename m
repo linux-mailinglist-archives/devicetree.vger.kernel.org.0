@@ -2,142 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0EC4EB53B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 23:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 193684EB55F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 23:35:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233747AbiC2V2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 17:28:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56238 "EHLO
+        id S232660AbiC2VhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 17:37:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229998AbiC2V2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 17:28:12 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254EA2274E6;
-        Tue, 29 Mar 2022 14:26:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648589188; x=1680125188;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=RMvn66UyUzs7mgsM9+a4ywvQPdjRgsacm9kdwxNHKkY=;
-  b=OTairNGWabxP3MIKs+vJLlsWdI8YmbsUJUaH/O/5WFP5XnUYPIQPSvLC
-   BOerHO2kj3/BAthtEbgkmOS/4NN2eE4MeXK/V/9kD5YH/25hh6eaS4p+V
-   5HyWLOBa3+ZSpO1nynsf9REeE50mhxlUdq2YhRzzLa3VZkhz7Rl0PUtPd
-   +1jsZTCO+e0Vq3i4whv3+0xeduByxShwCf9wtAS+Lx5260XRE+J9Ffqzw
-   JOHJkgsinjtD0RI7MmJDgbkCwyHyyl7r+w6bC/1gkIJB229Ecbv7zgNre
-   C6Q+6MWD1MTjtWIOjZ19rdKnyO/ZF7/L8aFQoffBJOHBhfx6tvAOVmlEV
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="259565452"
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; 
-   d="scan'208";a="259565452"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 14:26:27 -0700
-X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; 
-   d="scan'208";a="639497307"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 14:26:26 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id B7835206F4;
-        Wed, 30 Mar 2022 00:26:24 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.94.2)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1nZJMd-002Spv-7D; Wed, 30 Mar 2022 00:26:55 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     linux-media@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, robh@kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: Convert Dongwoon dw9807-vcm bindings to json-schema
-Date:   Wed, 30 Mar 2022 00:26:54 +0300
-Message-Id: <20220329212654.587451-3-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220329212654.587451-1-sakari.ailus@linux.intel.com>
-References: <20220329212654.587451-1-sakari.ailus@linux.intel.com>
+        with ESMTP id S234704AbiC2VhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 17:37:20 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E72239320
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 14:35:36 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id u16so26649320wru.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 14:35:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mNvIsUiTlb/UgEAh3BT2IZcJ/xQ2yLcpvEo7njvqhiI=;
+        b=wjHdYG97UGxjmWrCbpHJYSsg0uRZYnPBBwhv71PT9BQH0YepjjavPzuqzMP4hwd6TV
+         9ZnTe7dkj6IY8JO14xi7ibQ8BvbtyeGEDYGzYGBBtz4IgGhNHfm3dw60ThkF9uuuBSNX
+         rcyzizib2yDH5A8sw8jUTUZdX3lXO4VzsQu8dMrxOZrtle+KQ43Ng0AAg3XHKpZZldQ0
+         ctp2XQkJKiw0M7VDIinU/H2jChIIJ7XeReYimaontzMR4K9nLI9+xViiLRqj/zWKw1hn
+         HmVKbNm+Yj/M6evPsPQdrFy7zrUmGPKr7R5MmQG0zHyF0aGY59J6A4xF4mlh7ByhdUZz
+         iXFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mNvIsUiTlb/UgEAh3BT2IZcJ/xQ2yLcpvEo7njvqhiI=;
+        b=yyyCsI0Mtjblbiq54Q6EfoxIlyJ6Yk/FZqKNnjxn5z1u7bsDJCzNkmelyKm5IhyMYI
+         m15+gxMb7TWee1rnTD15y9Pvpq/XkND99UtLUGRRBLDw6J4uVtuJlVtzQkGnfnSPTHiZ
+         0wm5o6vL46tAB6+yaLCHwMorTgpuXMhJiqfg1ZUzJ2iez//6q5aB+5mKLUhBtTyLpAcy
+         iC3fePPCG2INOqSqzhHBqLJ0UitSxfO9pQEVfx4gSOnr6fcQJKOP8VwQH+Cl+pZsmcXC
+         5Jb+m1MWp18Ro9XQ4/81UUeEgqQ8ChTbCn1QfZjkoXg/azyb1vdo0jTHfKNZ0EmX3+US
+         Sj0A==
+X-Gm-Message-State: AOAM532CXFos6siaedKnRGynrJtV1xHyJfdpjkzuYU/87YhdsBLhDHwN
+        3CQWPQiWnmuADQB8eEDflrPUfA==
+X-Google-Smtp-Source: ABdhPJwzRqtpVIisoJXt1TE7wY1xV7on1tTuCjIbIRiDfz9/5BvDiNveTdGn2UPs3O4dgNwYHsJRbg==
+X-Received: by 2002:adf:8128:0:b0:203:e32d:4d03 with SMTP id 37-20020adf8128000000b00203e32d4d03mr33882747wrm.540.1648589735423;
+        Tue, 29 Mar 2022 14:35:35 -0700 (PDT)
+Received: from arch-thunder.local (a109-49-33-111.cpe.netcabo.pt. [109.49.33.111])
+        by smtp.gmail.com with ESMTPSA id f1-20020a1c6a01000000b0038c9f6a3634sm3121081wmc.7.2022.03.29.14.35.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Mar 2022 14:35:35 -0700 (PDT)
+From:   Rui Miguel Silva <rui.silva@linaro.org>
+To:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rui Miguel Silva <rui.silva@linaro.org>
+Subject: [PATCH v2 0/3] arm64: dts: add corstone1000 device tree
+Date:   Tue, 29 Mar 2022 22:35:16 +0100
+Message-Id: <20220329213519.801033-1-rui.silva@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the old text based dw9807-vcm chip DT bindings to json-schema.
+Add device tree and correspondent binding for ARM corstone1000
+[0] platform for FVP (Fixed Virtual Platform) and FPGA MPS3
+prototyping board implementation of this system.
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- .../media/i2c/dongwoon,dw9807-vcm.txt         |  9 ----
- .../media/i2c/dongwoon,dw9807-vcm.yaml        | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 9 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
+Cheers,
+   Rui
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
-deleted file mode 100644
-index c4701f1eaaf63..0000000000000
---- a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
-+++ /dev/null
-@@ -1,9 +0,0 @@
--Dongwoon Anatech DW9807 voice coil lens driver
--
--DW9807 is a 10-bit DAC with current sink capability. It is intended for
--controlling voice coil lenses.
--
--Mandatory properties:
--
--- compatible: "dongwoon,dw9807-vcm"
--- reg: I2C slave address
-diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
-new file mode 100644
-index 0000000000000..0cf153ed547fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2018, 2021 Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9807-vcm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Dongwoon Anatech DW9807 voice coil lens driver
-+
-+maintainers:
-+  - Sakari Ailus <sakari.ailus@linux.intel.com>
-+
-+description: |
-+  DW9807 is a 10-bit DAC with current sink capability. It is intended for
-+  controlling voice coil lenses.
-+
-+properties:
-+
-+  compatible:
-+    const: "dongwoon,dw9807-vcm"
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        lens@e {
-+            compatible = "dongwoon,dw9807-vcm";
-+            reg = <0x0e>;
-+        };
-+    };
-+...
+v1 [1] ->v2:
+Rob Herring:
+ - change license to dual
+ - distinguish cpu entry for fvp and mps3
+ - mmio nodes in simple-bus
+ - refactor mhu entries
+ - add secure-status to secure world only accessible mhu
+ - add smsc,lan91c111 binding patch to avoid dtbs_check
+   warnings
+
+Marc Zyngier:
+ - fixed SPI cpu mask invalid entries
+ - reduce the mask to the existing cpu count (4->1)
+ - change one interrupt to symbolic enconding
+
+0: https://documentation-service.arm.com/static/619e02b1f45f0b1fbf3a8f16
+1: https://lore.kernel.org/linux-devicetree/20220325133655.4177977-1-rui.silva@linaro.org/
+
+
+Rui Miguel Silva (3):
+  dt-bindings: net: smsc,lan91c111 convert to schema
+  dt-bindings: arm: add corstone1000 platform
+  arm64: dts: arm: add corstone1000 device tree
+
+ .../bindings/arm/arm,corstone1000.yaml        |  45 +++++
+ .../bindings/net/smsc,lan91c111.yaml          |  59 +++++++
+ arch/arm64/boot/dts/arm/Makefile              |   1 +
+ arch/arm64/boot/dts/arm/corstone1000-fvp.dts  |  27 +++
+ arch/arm64/boot/dts/arm/corstone1000-mps3.dts |  36 ++++
+ arch/arm64/boot/dts/arm/corstone1000.dtsi     | 161 ++++++++++++++++++
+ 6 files changed, 329 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
+ create mode 100644 arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+ create mode 100644 arch/arm64/boot/dts/arm/corstone1000-mps3.dts
+ create mode 100644 arch/arm64/boot/dts/arm/corstone1000.dtsi
+
 -- 
-2.30.2
+2.35.1
 
