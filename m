@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FAD94EA57C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 04:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 903644EA584
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 04:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231264AbiC2CxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 22:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48108 "EHLO
+        id S231268AbiC2CxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 22:53:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbiC2CxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 22:53:16 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F56D1B3707
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 19:51:34 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id z16so14629600pfh.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 19:51:34 -0700 (PDT)
+        with ESMTP id S230475AbiC2CxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 22:53:18 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4AC01B3707
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 19:51:36 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id s8so14598334pfk.12
+        for <devicetree@vger.kernel.org>; Mon, 28 Mar 2022 19:51:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=u2HTizkCJuXJ03mQ/U2QTBOmCXttnZ8qvqDtLWSDfbI=;
-        b=aW/KmZgmPudQ45/FDIsfnesPJq6KJpZiHzEaktEktsOA9iujonrv39xeKmIo7Q5clE
-         JStRgYE68Ahq+i3Ep+bYIH9VDufHoZZYJapD7Vg/0QEg3LaHnA5IYbsi9P+z/qerEJ6o
-         XSx5wAiK46qlzH8jJvVO0Qr6nfHRFRYdbr8R6EfvdOTjUjH9CUBZFjeRWYE8YwH9N+c5
-         PlQVHBu7Rd+6doY65/rW2MaaWPRJMlEbvbrp6hQpiJfNc7qulq0w4jqEEwUGpsyuYKro
-         LVjAkIJUhxMh7mnNm62pIzX6s+KDXb20igIsyTlfK8s522vrKfW01ojueEE5ar/XTxuY
-         MZZQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=18aEhZqxqni23oeSOiNVFxkklmTsPbag40eOHFXJhw4=;
+        b=kKdY1AZb7fKL9iY/FdwTBa37vrBkrrH30evEfYQ01+MS4yIuYBeQs0cLp/L1+edmuu
+         hezLQAReiit3wsioUujFm/yjMc+PUl5toX9YEvhfplEav42cz5QrRsHhZHHlnlA9RS0J
+         utmoHYjgEgMpiFxRuGMdxEtFPCSrZfa9wE25Usifjj6Skp6Qtc0LNOC5M0i/2hBIUkVX
+         ZRJfGx+70V8hm2T6eEodsucp9xPuMROOoIMMRUrAIVzG69+wpdcC2AhiUsLltIYG5hNn
+         h1xLuE3KR7ISDObCtlaYTWGUzpC5QvxKjiJ2fcHg6DgOm76yx4QZVDlBu8UgxlsXkzxs
+         kSXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=u2HTizkCJuXJ03mQ/U2QTBOmCXttnZ8qvqDtLWSDfbI=;
-        b=ZmGk4CKLtC/s48RxEA1c3moTnlr1uJZ1bXknCMeI+9V5b3myPi7nKcFmU2rtlWDldT
-         MWOAmm2JMyeObYUPe/9qc1wH/O0mxw7t+VxCYjtiaGbMVpCVNbpRXrakl2zX9/fWMD0W
-         PBWtWW3a8/L7dFyn0jCC60AdXfo8j+U8hZylpS0EyGmS+jijgGONA+xJX7g94UI6Dn5w
-         03U4+uWf0wSKcNdGhPhvoD/vMdl6PiKR0Bl4KGbteC+EOmSZvNmMXuinyOuTX9Xvgs/i
-         DI44TyD8PLq39ePDhPnKpNIOOFymk4Q5mWHQ1hBV3qGgOGvAgNhEQJpNUd4ipSOwcf+j
-         Q/3A==
-X-Gm-Message-State: AOAM532L5EvZGOiSlEWkxgdm/SHzmn1ixhMOE1aeecD89/mAb09Vt1yY
-        5VCWeuu6/osj9AU501+bfppR4UxWm7qtSLXM
-X-Google-Smtp-Source: ABdhPJzIlLZjCyUlnIl8RV5iat1BLKtNnFXi9mip9/4Vw79Fsch9eHT0egEOKBxM9RNOxO7Q9dmUBQ==
-X-Received: by 2002:a05:6a00:24d2:b0:4fb:1b6d:ee7d with SMTP id d18-20020a056a0024d200b004fb1b6dee7dmr17414606pfv.36.1648522293605;
-        Mon, 28 Mar 2022 19:51:33 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=18aEhZqxqni23oeSOiNVFxkklmTsPbag40eOHFXJhw4=;
+        b=KRqPsSFpfzy9XUgxwFAW8Z7jbo9o/wrQqLsATukFqm/IKCqvx1/TZr/ZOY/C7QnTeF
+         zxjsV5foD1Ahw0ZLu6siy5OMRhj6Xecj5dibLhXKXDO1Q3BidZeuVG2nuAddKVo95z7s
+         hemD5vDsFCPKdQhY9FUIbVIwocY89HDfEi7F+9IyV+no4W0EHE93vFHE8N0OWoKhaT7I
+         VN+1ZRB9XAjKmoGFXFIW8E8i8j3fazFqvs9CldxUAScqpsVWmZz1B77t5sUDFMUO10Rn
+         5QgkKpMWtFyKN6IMVowI5z6u3mK46iERY752NUXkNvBedX6AqQrsfIx3UMfjLebXZjQR
+         YCvw==
+X-Gm-Message-State: AOAM5322QPKnPbPooVT1tkZXrEShtgkz5C4b+k5W4lJD6yS+KbClvlrQ
+        RcPg9dNQGjL5+4nfuHueR+eQsw==
+X-Google-Smtp-Source: ABdhPJz7aObK2yWpJIgjdfrEy6zk/GWdVoGyZl/AA5FMJxv7fHBbQHiTIZVWOhST53EL0Ja52wlVxg==
+X-Received: by 2002:a63:6f4c:0:b0:386:4801:a83e with SMTP id k73-20020a636f4c000000b003864801a83emr400506pgc.184.1648522296296;
+        Mon, 28 Mar 2022 19:51:36 -0700 (PDT)
 Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id f14-20020a63380e000000b0038253c4d5casm14136053pga.36.2022.03.28.19.51.31
+        by smtp.gmail.com with ESMTPSA id f14-20020a63380e000000b0038253c4d5casm14136053pga.36.2022.03.28.19.51.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 19:51:33 -0700 (PDT)
+        Mon, 28 Mar 2022 19:51:36 -0700 (PDT)
 From:   Andy Chiu <andy.chiu@sifive.com>
 To:     kuba@kernel.org, radhey.shyam.pandey@xilinx.com,
         robert.hancock@calian.com, michal.simek@xilinx.com, andrew@lunn.ch
 Cc:     davem@davemloft.net, pabeni@redhat.com, robh+dt@kernel.org,
         linux@armlinux.org.uk, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, robh@kernel.org,
-        Andy Chiu <andy.chiu@sifive.com>
-Subject: [PATCH v7 net 0/4] Fix broken link on Xilinx's AXI Ethernet in SGMII mode
-Date:   Tue, 29 Mar 2022 10:49:17 +0800
-Message-Id: <20220329024921.2739338-1-andy.chiu@sifive.com>
+        Andy Chiu <andy.chiu@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>
+Subject: [PATCH v7 net 1/4] net: axienet: setup mdio unconditionally
+Date:   Tue, 29 Mar 2022 10:49:18 +0800
+Message-Id: <20220329024921.2739338-2-andy.chiu@sifive.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220329024921.2739338-1-andy.chiu@sifive.com>
+References: <20220329024921.2739338-1-andy.chiu@sifive.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,33 +73,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Ethernet driver use phy-handle to reference the PCS/PMA PHY. This
-could be a problem if one wants to configure an external PHY via phylink,
-since it use the same phandle to get the PHY. To fix this, introduce a
-dedicated pcs-handle to point to the PCS/PMA PHY and deprecate the use
-of pointing it with phy-handle. A similar use case of pcs-handle can be
-seen on dpaa2 as well.
+The call to axienet_mdio_setup should not depend on whether "phy-node"
+pressents on the DT. Besides, since `lp->phy_node` is used if PHY is in
+SGMII or 100Base-X modes, move it into the if statement. And the next patch
+will remove `lp->phy_node` from driver's private structure and do an
+of_node_put on it right away after use since it is not used elsewhere.
 
---- patch v5 ---
- - Re-apply the v4 patch on the net tree.
- - Describe the pcs-handle DT binding at ethernet-controller level.
---- patch v6 ---
- - Remove "preferrably" to clearify usage of pcs_handle.
---- patch v7 ---
- - Rebase the patch on latest net/master
+Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
+Reviewed-by: Robert Hancock <robert.hancock@calian.com>
+---
+ drivers/net/ethernet/xilinx/xilinx_axienet_main.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-Andy Chiu (4):
-  net: axienet: setup mdio unconditionally
-  net: axienet: factor out phy_node in struct axienet_local
-  dt-bindings: net: add pcs-handle attribute
-  net: axiemac: use a phandle to reference pcs_phy
-
- .../bindings/net/ethernet-controller.yaml     |  6 ++++
- .../bindings/net/xilinx_axienet.txt           |  8 ++++-
- drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 --
- .../net/ethernet/xilinx/xilinx_axienet_main.c | 33 ++++++++++---------
- 4 files changed, 31 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+index c7eb05e4a6bf..78a991bbbcf9 100644
+--- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
++++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+@@ -2064,15 +2064,14 @@ static int axienet_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto cleanup_clk;
+ 
+-	lp->phy_node = of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
+-	if (lp->phy_node) {
+-		ret = axienet_mdio_setup(lp);
+-		if (ret)
+-			dev_warn(&pdev->dev,
+-				 "error registering MDIO bus: %d\n", ret);
+-	}
++	ret = axienet_mdio_setup(lp);
++	if (ret)
++		dev_warn(&pdev->dev,
++			 "error registering MDIO bus: %d\n", ret);
++
+ 	if (lp->phy_mode == PHY_INTERFACE_MODE_SGMII ||
+ 	    lp->phy_mode == PHY_INTERFACE_MODE_1000BASEX) {
++		lp->phy_node = of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
+ 		if (!lp->phy_node) {
+ 			dev_err(&pdev->dev, "phy-handle required for 1000BaseX/SGMII\n");
+ 			ret = -EINVAL;
 -- 
 2.34.1
 
