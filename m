@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E29384EAC6E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 13:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA374EAC73
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 13:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235938AbiC2LjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 07:39:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53306 "EHLO
+        id S235940AbiC2Lke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 07:40:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235932AbiC2LjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 07:39:05 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68524A5EB1
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:37:22 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id a17so20350071edm.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:37:22 -0700 (PDT)
+        with ESMTP id S232263AbiC2Lkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 07:40:33 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6EF201B5
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:38:50 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id p15so34505864ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 04:38:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=l0r3JgCO3FtKvN2I9Yh8k+M/10iLyA3rxE8G9DgUQqQ=;
-        b=T1ZSBwbNp5/bx/hLwNmz6+X0yRzcXRob38czJiW3qJbRoOrvIbriCGq5LZXqxQinfz
-         1JEJB5rxT5q+uPtzPQLQiXAdv+osQfHo7vcOUtTK9+WIuFyt4eQ9RBo7wtNyiMo7o/3/
-         t2/YI3n6bcRhrawbfsDrxrNBB0qonRXDQUHbuFIbq2qH+qzHSzxYo1U8QVMXqGm9c6fY
-         HfIswWeQt6aIwoT5RHztmgNOGAWv2Uq7/W0oaGC+gIzcTzt3bB1691y/bxi0cF76unoS
-         P+WBL0k/XQ/7KHcaOQ7zqV6sNpSD/wtLnwm0G+5sx/gahQYbh/GFyBOLNxJJqs2vDoaZ
-         6b/w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zq7C4iKRvGebllBAZvWIf+7v5FAFoQ2UwNc++oi/Xyk=;
+        b=fQrU6QtWl2BlvbvHbYiCFBDjiB5efV4HULcyfbCoE3DWWFazC6Po7Tbxaougb/ju4n
+         YrEfnbVA1Cz95GiJGigQZE9PxLsnILqrr1Lz7kaAPXWmNa3m80YCuDqUecx4h8z7U0Fg
+         WG3M8H+J9ZZDLYZR1cat2kr/vfprHjmWvAKgv5acLY9K1MQ5a9bsqSrtJFy3FLh9UFS7
+         Xki1BQf8g4TrKyGDubNB0a3+nfQ/VRwmMo2ntrl/sy92x6WuWuXx+n/BYKC8jfnEyAGb
+         K9qZH17zwFilagAutbdCK36WKie4tx5/Au93FlARoSjiQFn7b1tPyVIwlyERsWWWanCJ
+         0Xaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=l0r3JgCO3FtKvN2I9Yh8k+M/10iLyA3rxE8G9DgUQqQ=;
-        b=8Aga7whkosVWJjg1zyfcAWBURdYPZQe5//053woJhUoVMFHuaPLvW/1MMsRUqcYqic
-         6k2lHOdWNqvDGYU5EsBHp0nwcj84lyEJjCyR86cTlm7mRRmVyvquoJZgoB36AAzvbMdj
-         SyOpliekqdvuoq6+Rnh+fyJhQ6ZqH3xcnQzn6ZH6UjvaVb6A+wDw3bXm00H9s5hCjodG
-         4oC0xFxokfwuneo3QuBS2yIoKRJIWyn0xmWuV1UogOuc4eQs7DsEdAbqOPeUewTFVfT1
-         FDd6hKvlhaRB3VrqCPfAmy3QfSfuiDvkU8kZxmfdMQ/3aHwR1ePeS9tgcBaCFXtCRY2a
-         qYNw==
-X-Gm-Message-State: AOAM530lEdGhkyStXUPjVr8WWA0znI0mfBIYDm5mwCMV9utDPb/E0dAg
-        tdkvHwnhIo8vf1p/HkIBF5mPBQ==
-X-Google-Smtp-Source: ABdhPJxpfNhBlPrjt3o8ugtryIQLLyZycfkmYvi3txadjZuDKS/h08TwobYJVRBdy50jV/oEj47AOA==
-X-Received: by 2002:a05:6402:1d51:b0:418:bd81:78b3 with SMTP id dz17-20020a0564021d5100b00418bd8178b3mr3887542edb.46.1648553840951;
-        Tue, 29 Mar 2022 04:37:20 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id h8-20020a1709066d8800b006e09a49a713sm5521002ejt.159.2022.03.29.04.37.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 04:37:20 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        bh=zq7C4iKRvGebllBAZvWIf+7v5FAFoQ2UwNc++oi/Xyk=;
+        b=1aTeq51TpdpQbvOKqSlQ9eMoQls64OYoW8oUMnvTpyVNxQOTtts74UxvFKig08XTpu
+         9MKCML6EFrL7UZRsNjuRT/ACIzW3JO0yOXEK7wSlX+vk2Pnqrmok2LT9tr9/8P93b7GH
+         qxsf57A4S8G6E6ciEGK2wvWSz/uC45geGXnTApH8wbyNYpCHmfHVOJbRoK734hCdSEGq
+         cCmHDhBzpax/LjI2v4Lz5M35nNE3hbmitMK10pirF04xf/s/DFjYvczEbjEi0s2jAUXM
+         xGYVzzvP9mSzdk+e/GPtZUpxqhXQwTBfyswBq5OSLyQ7c5J5G+I1tVpbV42a5Rlr2qCg
+         Yq3g==
+X-Gm-Message-State: AOAM533PQOYXKNmT1YpC5+3VrERmh0mtVg6INU6G3cRoEchY5+E7G8Pp
+        mD/dwYIx+e3u9jHHNfFpkZuhJQ==
+X-Google-Smtp-Source: ABdhPJwm2Fi3ujst5BqI4idBxlwsi1QPSj+C52k/wNTafoARGRJny3jh/mBSuUURm9rD8YsQh9roHg==
+X-Received: by 2002:a17:907:6d19:b0:6db:89c8:52e3 with SMTP id sa25-20020a1709076d1900b006db89c852e3mr34739534ejc.754.1648553929117;
+        Tue, 29 Mar 2022 04:38:49 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id dt6-20020a170907728600b006dff778258csm7065347ejc.32.2022.03.29.04.38.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Mar 2022 04:38:48 -0700 (PDT)
+Message-ID: <42f07e63-107a-f8f5-1a44-9a93705516ba@linaro.org>
+Date:   Tue, 29 Mar 2022 13:38:47 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 4/4] spi: dt-bindings: qcom,spi-qup: convert to dtschema
+Content-Language: en-US
 To:     linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: [PATCH] dt-bindings: qcom: update maintainers (drop Akash and Mukesh)
-Date:   Tue, 29 Mar 2022 13:37:17 +0200
-Message-Id: <20220329113718.254642-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220329112902.252937-1-krzysztof.kozlowski@linaro.org>
+ <20220329112902.252937-5-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220329112902.252937-5-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,48 +79,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to Akash Asthana and Mukesh Savaliya bounce (550: Recipient
-address rejected: User unknown in virtual alias table), so switch
-maintainers to Andy and Bjorn (as Qualcomm platform maintainers).
+On 29/03/2022 13:29, Krzysztof Kozlowski wrote:
+> Convert the Qualcomm Universal Peripheral (QUP) Serial Peripheral
+> Interface (SPI) bindings to DT Schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/spi/qcom,spi-qup.txt  | 103 ------------------
+>  .../devicetree/bindings/spi/qcom,spi-qup.yaml |  82 ++++++++++++++
+>  2 files changed, 82 insertions(+), 103 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qup.yaml
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml  | 4 ++--
- Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+I forgot to update the path in
+Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-index 1ca081b1664e..1bc12b6a7e01 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-@@ -7,8 +7,8 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: GENI Serial Engine QUP Wrapper Controller
- 
- maintainers:
--  - Mukesh Savaliya <msavaliy@codeaurora.org>
--  - Akash Asthana <akashast@codeaurora.org>
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
- 
- description: |
-  Generic Interface (GENI) based Qualcomm Universal Peripheral (QUP) wrapper
-diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-index 055524fe8327..e009cb3e6dc9 100644
---- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-@@ -8,8 +8,8 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Qualcomm Quad Serial Peripheral Interface (QSPI)
- 
- maintainers:
--  - Mukesh Savaliya <msavaliy@codeaurora.org>
--  - Akash Asthana <akashast@codeaurora.org>
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
- 
- description: The QSPI controller allows SPI protocol communication in single,
-   dual, or quad wire transmission modes for read/write access to slaves such
--- 
-2.32.0
+I will send a v2 ~tomorrow.
 
+Best regards,
+Krzysztof
