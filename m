@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F554EAADE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 11:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD784EAAEA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234852AbiC2KA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 06:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43888 "EHLO
+        id S233383AbiC2KDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 06:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231864AbiC2KA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:00:27 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68ABF3BF91;
-        Tue, 29 Mar 2022 02:58:44 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id r13so23969444wrr.9;
-        Tue, 29 Mar 2022 02:58:44 -0700 (PDT)
+        with ESMTP id S234963AbiC2KC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:02:59 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3734C7AE;
+        Tue, 29 Mar 2022 03:01:15 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id i4so5175834wrb.5;
+        Tue, 29 Mar 2022 03:01:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Cqxr6OhCLAeis14Ai1MXs5IbZsdF6NcwLCK9JA8OCCk=;
-        b=APkLu1nrcJCt/DUy6IoHQg+vXFfPUQpIBuInTdRsn9n+DSItES39e8hU5u3bRelbyB
-         RymW7jdF2JhdotCR/QQ8OAdIj1/IPVJT3LXE7aiQ8rb+UPFgIdpFOk4U3DtB7q1wXliw
-         8EgXvGen5NVyIzI5lgOQB7WSMNfyP9yN2RpYRxYm31LxnREzsSyd1tFUkQBRXjYWZu7o
-         adexctW1y40/DCBI7WHJL6o0EY3bKZ/CY0zixRissxuynDmho4ND2RwV+qddNCW7QFWN
-         Idce5bpc1guxX9+YSz309F2GuQNMRf4M3ZjEEKTMUK+Iumyrk8itZSVBpBVQRl+jl4kD
-         XBMw==
+        bh=m4FFYC8lGa0e93GEJjlQ3+QnjPXNWGNWcnEAZzCv3sM=;
+        b=jzmwQJqPkQjtYfqpaahPYRUlFjFgaqh7YzFgssx0NHXJTapk2V8SYRsKVYC9G/h49H
+         HfULIJdloYL6DUiwFsRGc8Uy57P61i0CsSGjglbAYxfutxhv1rUxpZQ4GlCah/F89GUO
+         fHMLYxAAlLEE8wwPybLM4RluCyfcfdW6y5V3xkifbbeFP0ZZiT3GkHHmDkdaYTVwys/+
+         Bk4yFgvnIVTsQL+9XEAMwotecAivJ4JcyyhbYajW9Q6u2wSeRQKvVR9evne+8eHx4Mzf
+         7RhAcdfqACvmIiVDyT6Eg013w+YGid733dW8LFdAFP1cP6JfHS9cjwOOGw1eSqgLu1iG
+         U9rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Cqxr6OhCLAeis14Ai1MXs5IbZsdF6NcwLCK9JA8OCCk=;
-        b=C1J/DyGkTE9RhJMj5aaimMhJuuBB/qRuPnQ0ONyiJtEDRZoCWN6gWZqe7O6TsApQ17
-         mp3bKZgxl3R9yJ38QqqY25z0F8XnpuSDbs1h2K5FiZ0CZGwYqdT7XC/k17z7+iLe5e0d
-         e3rCBBY1ByI+ZiSbnaqeXRvwNqKaY3kk5JpbuoU6cMNj3m50YS9l01DbsHaxWeng0qPq
-         lyYUo1dhy2gzodCh/YmwV8tSAd/Ixzq/wpzwegzTvtIPTjb9p40vMx8Zudjhow8U7gSi
-         HRdbxtSB8EikdNkekQSpLJOCeaVX3Prk8ACZHp03xWybLhSr5t4v9a/x09smrlWgFqDr
-         I6kg==
-X-Gm-Message-State: AOAM533+KDG7Ome39VsnMH1AFMLaz7niwcHX5doPqzPnpPPwrnXHAmOX
-        SoPQ7ods4KL0GUDBO8+TfUY=
-X-Google-Smtp-Source: ABdhPJzxnYdYXMhuUZ0oZHT2rxzYUX+MKBj+eCpNozcEdgx5kp2txaItFhIM1PdWk5f+lsuYwpzm3g==
-X-Received: by 2002:a5d:588c:0:b0:205:7f17:3901 with SMTP id n12-20020a5d588c000000b002057f173901mr29825326wrf.359.1648547922831;
-        Tue, 29 Mar 2022 02:58:42 -0700 (PDT)
+        bh=m4FFYC8lGa0e93GEJjlQ3+QnjPXNWGNWcnEAZzCv3sM=;
+        b=0UlwpLlqUKJaNt17ZT74XaP/UiLwhzf69UMj9dAPvlCdqBWUFGbjDstLAdGobU6VzO
+         vSsYZwUGF4TrTpZ8cVozAtihQ2ZJ49jwzB6N0DTzhu/DwfUQY2xuLGJ0z0FlLRkvruj9
+         EQIS59DDr9sj9F6eErbkZSuflsA3XmyJx0y/iDDx4mt4p3JCLFQxMoSrO6s3UiNY+jC9
+         BoLV4ssxI3PCCuIEJCpHWQpS9iKnXffoEodet5otmkGZ99uErHRM0VV1WRid9tPlzKao
+         sLqdnKKyWvkeo95C1/Pfi4ArixvkXo3Xqcw8H2KJcyPWJD25uhILDPbDhe2NaQ4utTKo
+         rN0A==
+X-Gm-Message-State: AOAM532dgPwm+xqxbwUmG+K3YkZ8zT8dlqz/BFj8qHf0IS1CoCOjtwT3
+        3W+Lbe+uObGO0IzRwgV4l7Q=
+X-Google-Smtp-Source: ABdhPJzC16Ey35nHO2vMO312+0ONaIEcW00CaKl7lSRzySNcL2ia+eHDyeaf5+/WYV/KFiwFKrKiWA==
+X-Received: by 2002:adf:efd2:0:b0:203:db42:c56c with SMTP id i18-20020adfefd2000000b00203db42c56cmr29329158wrp.698.1648548073504;
+        Tue, 29 Mar 2022 03:01:13 -0700 (PDT)
 Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id p23-20020a1c5457000000b0038c98c12ea9sm1812512wmi.1.2022.03.29.02.58.41
+        by smtp.gmail.com with ESMTPSA id v1-20020adf9e41000000b00205c3d212easm4214242wre.51.2022.03.29.03.01.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 02:58:42 -0700 (PDT)
-Message-ID: <9e4e1905-6c43-44c6-e812-58d802baf88b@gmail.com>
-Date:   Tue, 29 Mar 2022 11:58:41 +0200
+        Tue, 29 Mar 2022 03:01:12 -0700 (PDT)
+Message-ID: <c2ae5400-5a5e-2aa7-c282-6132ba332200@gmail.com>
+Date:   Tue, 29 Mar 2022 12:01:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 16/22] arm64: dts: mt8192: Add vcodec lat and core
- nodes
+Subject: Re: [PATCH v4 17/22] arm64: dts: mt8192: Add dpi node
 Content-Language: en-US
 To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -66,11 +65,11 @@ Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
         Ryder Lee <ryder.lee@kernel.org>,
         Hui Liu <hui.liu@mediatek.com>
 References: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
- <20220318144534.17996-17-allen-kh.cheng@mediatek.com>
- <70350446-9e89-3c7b-d515-22cb2ed5a9ca@gmail.com>
- <af19b42faf9a510578e48d6f497e7d2069327195.camel@mediatek.com>
+ <20220318144534.17996-18-allen-kh.cheng@mediatek.com>
+ <019b1a59-7531-75cf-3b86-d2798ca9823a@gmail.com>
+ <e4edbb8d599fe202aa89f4dea88e6addfbeb4e0d.camel@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <af19b42faf9a510578e48d6f497e7d2069327195.camel@mediatek.com>
+In-Reply-To: <e4edbb8d599fe202aa89f4dea88e6addfbeb4e0d.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,164 +84,67 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 29/03/2022 11:09, allen-kh.cheng wrote:
+On 29/03/2022 09:45, allen-kh.cheng wrote:
 > Hi Matthias,
 > 
-> On Fri, 2022-03-25 at 16:22 +0100, Matthias Brugger wrote:
+> On Fri, 2022-03-25 at 16:24 +0100, Matthias Brugger wrote:
 >>
 >> On 18/03/2022 15:45, Allen-KH Cheng wrote:
->>> Add vcodec lat and core nodes for mt8192 SoC.
+>>> Add dpi node for mt8192 SoC.
 >>>
 >>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 >>> ---
->>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 61
->>> ++++++++++++++++++++++++
->>>    1 file changed, 61 insertions(+)
+>>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 11 +++++++++++
+>>>    1 file changed, 11 insertions(+)
 >>>
 >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
 >>> b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> index 63893779b193..71ad3adeed51 100644
+>>> index 71ad3adeed51..a77d405dd508 100644
 >>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
 >>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> @@ -1285,6 +1285,67 @@
+>>> @@ -1236,6 +1236,17 @@
 >>>    			power-domains = <&spm
->>> MT8192_POWER_DOMAIN_ISP2>;
+>>> MT8192_POWER_DOMAIN_DISP>;
 >>>    		};
 >>>    
->>> +		vcodec_dec: vcodec-dec@16000000 {
->>> +			compatible = "mediatek,mt8192-vcodec-dec";
->>> +			reg = <0 0x16000000 0 0x1000>;	/* VDEC_SYS
->>> */
->>> +			mediatek,scp = <&scp>;
->>> +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
->>> +			#address-cells = <2>;
->>> +			#size-cells = <2>;
->>> +			ranges = <0 0 0 0x16000000 0 0x26000>;
->>> +
->>> +			vcodec_lat: vcodec-lat@10000 {
->>> +				compatible = "mediatek,mtk-vcodec-lat";
->>> +				reg = <0x0 0x10000 0 0x800>;		
->>> /* VDEC_MISC */
->>> +				interrupts = <GIC_SPI 426
->>> IRQ_TYPE_LEVEL_HIGH 0>;
->>> +				iommus = <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
->>> +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
->>> +					 <&vdecsys_soc
->>> CLK_VDEC_SOC_VDEC>,
->>> +					 <&vdecsys_soc
->>> CLK_VDEC_SOC_LAT>,
->>> +					 <&vdecsys_soc
->>> CLK_VDEC_SOC_LARB1>,
->>> +					 <&topckgen
->>> CLK_TOP_MAINPLL_D4>;
->>> +				clock-names = "vdec-sel", "vdec-soc-
->>> vdec", "vdec-soc-lat",
->>> +					      "vdec-vdec", "vdec-top";
+>>> +		dpi0: dpi@14016000 {
+>>> +			compatible = "mediatek,mt8192-dpi";
+>>> +			reg = <0 0x14016000 0 0x1000>;
+>>> +			interrupts = <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH
+>>> 0>;
+>>> +			clocks = <&mmsys CLK_MM_DPI_DPI0>,
+>>> +				 <&mmsys CLK_MM_DISP_DPI0>,
+>>> +				 <&apmixedsys CLK_APMIXED_TVDPLL>;
+>>> +			clock-names = "pixel", "engine", "pll";
+>>> +			status = "disabled";
 >>
->> Clock names do not match binding description. We have superfluous
->> "vdec-"
->> prefix. Same holds for mtk-vcodec-core. Anway I applied that patch as
->> the driver
->> does not care about the clock name. In any case it would be good if
->> you could
->> send a follow-up patch to fix the clock name.
+>> We are missing the output port node here.
 >>
->> Applied, thanks
+>> Regards,
+>> Matthias
 >>
 > 
-> Sorry, This is our mistake. those clk names should not append "vdec-"
-> prefix from Rob's suggestion [1]. ('vdec-' is redundant)
-> 
-> Please drop this patch in v5.18-next/dts64.  I will send the corrected
-> version.
+> We will add output port in mt8192-asurada.dtsi (inlude mt8192.dtsi) for
+> board level.
 > 
 
-Ok, I dropped the commit from the branch for now.
+Got it, patch now applied.
 
-> I apologize any inconvenience caused.
+> Do we need to add any futher information in binding?
 > 
 
-No worries.
+Hm, probably we should mark the output port as optional? Can you check how other 
+bindings manage that?
 
-Regards,
+Thanks,
 Matthias
 
-> [1] https://lore.kernel.org/all/YYFCaHI%2FDASUz+Vu@robh.at.kernel.org/
-> 
 > Thanks,
 > Allen
 > 
->>> +				assigned-clocks = <&topckgen
->>> CLK_TOP_VDEC_SEL>;
->>> +				assigned-clock-parents = <&topckgen
->>> CLK_TOP_MAINPLL_D4>;
->>> +				power-domains = <&spm
->>> MT8192_POWER_DOMAIN_VDEC>;
->>> +			};
->>> +
->>> +			vcodec_core: vcodec-core@25000 {
->>> +				compatible = "mediatek,mtk-vcodec-
->>> core";
->>> +				reg = <0 0x25000 0 0x1000>;	/*
->>> VDEC_CORE_MISC */
->>> +				interrupts = <GIC_SPI 425
->>> IRQ_TYPE_LEVEL_HIGH 0>;
->>> +				iommus = <&iommu0
->>> M4U_PORT_L4_VDEC_MC_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_UFO_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_PP_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_PRED_RD_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_PRED_WR_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_PPWRAP_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_TILE_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_VLD_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_VLD2_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_AVC_MV_EXT>,
->>> +					 <&iommu0
->>> M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
->>> +				clocks = <&topckgen CLK_TOP_VDEC_SEL>,
->>> +					 <&vdecsys CLK_VDEC_VDEC>,
->>> +					 <&vdecsys CLK_VDEC_LAT>,
->>> +					 <&vdecsys CLK_VDEC_LARB1>,
->>> +					 <&topckgen
->>> CLK_TOP_MAINPLL_D4>;
->>> +				clock-names = "vdec-sel", "vdec-soc-
->>> vdec", "vdec-soc-lat",
->>> +					      "vdec-vdec", "vdec-top";
->>> +				assigned-clocks = <&topckgen
->>> CLK_TOP_VDEC_SEL>;
->>> +				assigned-clock-parents = <&topckgen
->>> CLK_TOP_MAINPLL_D4>;
->>> +				power-domains = <&spm
->>> MT8192_POWER_DOMAIN_VDEC2>;
->>> +			};
 >>> +		};
 >>> +
->>>    		larb5: larb@1600d000 {
->>>    			compatible = "mediatek,mt8192-smi-larb";
->>>    			reg = <0 0x1600d000 0 0x1000>;
+>>>    		iommu0: m4u@1401d000 {
+>>>    			compatible = "mediatek,mt8192-m4u";
+>>>    			reg = <0 0x1401d000 0 0x1000>;
 > 
