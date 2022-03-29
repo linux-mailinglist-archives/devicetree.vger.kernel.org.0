@@ -2,149 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48DCB4EB2BA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 19:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 619864EB2CA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 19:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235372AbiC2RfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 13:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35546 "EHLO
+        id S240261AbiC2Rlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 13:41:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240220AbiC2RfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 13:35:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9374855B4;
-        Tue, 29 Mar 2022 10:33:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3CF31B81813;
-        Tue, 29 Mar 2022 17:33:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0C62C2BBE4;
-        Tue, 29 Mar 2022 17:33:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648575212;
-        bh=ImLZ7XYxLjoICwbUH/PGLevWhdjBi7z3FcW2zXFX7As=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J1V62gRYOch4F0yLlbgyUFLr6jdpkJPQwAr/s77QZ97iUxIMZ6l6lsIUwSOCItZ7X
-         bHkE+vGYsAHLEgGQ653AwiJTIvABNWRGTy0xuUbNqTrdmju6ZxlItK3W3HNsnk+hpu
-         nF9BoeMtE1PSIW/pdF04mpPDxrhT1hAm+FEazkyjUwjMGnqOLoOM/DaSTQBfrAPK0T
-         zQ66Xfq8SujJVGdsaw5BDW3Eji87gcOodHF80jAhDs+XwLsi1DBztMVjyFGA+VB3Dg
-         B0dLhBS9r+uv1DYIS0GeMxGYrwy5DBeDM2cOgPk0rtS0poi/z46W/I48qOxH2FqoKf
-         QZ+RfzzJ4BSBA==
-Date:   Tue, 29 Mar 2022 23:03:22 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Yann Gautier <yann.gautier@foss.st.com>, ulf.hansson@linaro.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Ludovic Barre <ludovic.barre@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
-        Grzegorz Szymaszek <gszymaszek@short.pl>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: mmci: add a property to disable
- DMA LLI
-Message-ID: <20220329173322.GC58120@thinkpad>
-References: <20220304135134.47827-1-yann.gautier@foss.st.com>
- <20220304135134.47827-2-yann.gautier@foss.st.com>
- <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
- <0bc53018-fce4-4104-fa47-6e60d2367d69@foss.st.com>
- <20220329153114.GA58120@thinkpad>
- <71b10ce2-7b87-14d5-c8e4-3a4598c889e0@foss.st.com>
+        with ESMTP id S240268AbiC2Rlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 13:41:51 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F8E2A24C
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 10:40:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648575607; x=1680111607;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=L9a82y/lcvJzSe4xQ687SKzEc2I5M+TduJKXm5ghFVg=;
+  b=w6nva+UjYBn901tXLVAM6M0qezzKMaBCBV65XWlhJZRvFtZo4f08OnnK
+   PvJGWT6/3nZJ/UFLNp1uMEkH3NPSYJg9VbqhSjlU4Ef7BPk7+eSUIqbO9
+   gHLuKktPdY1wmSr9+jao176IBpMb0qXMR0F6tPnP4Q9TGNG2BlNAkQ3TC
+   I=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 29 Mar 2022 10:40:07 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 10:40:06 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 29 Mar 2022 10:40:06 -0700
+Received: from maru.qualcomm.com (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 29 Mar
+ 2022 10:40:05 -0700
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>
+CC:     Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>,
+        "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>
+Subject: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
+Date:   Tue, 29 Mar 2022 10:39:25 -0700
+Message-ID: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <71b10ce2-7b87-14d5-c8e4-3a4598c889e0@foss.st.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 06:00:26PM +0200, Yann Gautier wrote:
-> On 3/29/22 17:31, Manivannan Sadhasivam wrote:
-> > On Tue, Mar 15, 2022 at 09:26:01AM +0100, Yann Gautier wrote:
-> > > On 3/14/22 23:43, Linus Walleij wrote:
-> > > > "On Fri, Mar 4, 2022 at 2:52 PM Yann Gautier <yann.gautier@foss.st.com> wrote:
-> > > > 
-> > > > > On STMicroelectronics variant of PL18x, the DMA Linked Lists are supported
-> > > > > starting from revision v2 of the peripheral. But it has limitations,
-> > > > > as all the buffers should be aligned on block size (except the last one).
-> > > > > But this cannot be guaranteed with SDIO. We should then have a property
-> > > > > to disable the support of LLI.
-> > > > > 
-> > > > > Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
-> > > > 
-> > > > Actually I think this is present also on the ux500 variants. See:
-> > > > commit 2253ed4b36dc876d1598c4dab5587e537ec68c34
-> > > > "mmc: mmci: Support any block sizes for ux500v2 and qcom variant"
-> > > > 
-> > > > Spot the variant data "dma_power_of_2".
-> > > > 
-> > > > So whatever property you add
-> > > > to the variant data (not in the device tree please) should
-> > > > be added to the ux500 variants as well, it will *VERY* likely
-> > > > have a problem with LLI elements not being a power of 2
-> > > > as it is the ancestor of later STMicro variants.
-> > > > 
-> > > > It might actually be the reason for some annoying WiFi error
-> > > > messages I have seen :/
-> > > > 
-> > > > Yours,
-> > > > Linus Walleij
-> > > 
-> > > Hi Linus,
-> > > 
-> > > The STM32 variant uses an internal DMA, and the DMA functions are in its
-> > > dedicated file. So I was planning to do the same as what is done in
-> > > meson-gx-mmc.c: using a bounce buffer to copy from/to in case DMA
-> > > constraints are not fulfilled. Not sure it can help for Ux500.
-> > > 
-> 
-> Hi Mani,
-> 
-> > 
-> > Irrelevant to this patch: May I know why the internal DMA cannot be represented
-> > as a dmaengine driver? We started seeing these internal DMA implementations in
-> > the other subsystems as well with pointers towards MMC core [1].
-> 
-> As for Prabhakar's answer, the IDMA here is inside our IP, and not used in
-> any other IP. So I'm not sure it is really relevant to move that to another
-> dmaengine driver.
-> 
+I’m sending this patch series to fix current issues in AST2600 pinmux
+settings while enabling quad mode SPI support.
 
-Okay, I think this justification makes sense. I was worried of DMA IPs that get
-sandwiched into many peripherals like the one on Renesas platforms. It turned
-out that each subsystem has to add internal DMA support for it :/
+FWSPI18 pins are basically 1.8v logic pins that are different from the
+dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins can’t
+be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
 
-Ulf, your thoughts?
+Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl dtsi to
+make it able to enable quad mode on SPI1 and SPI2 interfaces.
+
+With this series, quad mode pinmux can be set like below.
+
+FW SPI:
+&fmc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_fwqspi_default>;
+}
+
+SPI1:
+&spi1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_qspi1_default>;
+}
+
+SPI2:
+&spi2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_qspi2_default>;
+}
+
+Please review.
 
 Thanks,
-Mani
+Jae
 
-> > 
-> > Thanks,
-> > Mani
-> 
-> Best regards,
-> Yann
-> 
-> > 
-> > [1] https://lore.kernel.org/all/CA+V-a8tfUgvzPyMe_FHuz=8mmC6dPHP7E=e+nCzOey04vCcAkg@mail.gmail.com/
-> > 
-> > > Ulf, before I send my new series (although it is not ready yet), would you
-> > > be OK with the bounce buffer idea?
-> > > 
-> > > 
-> > > Best regards,
-> > > Yann
-> 
+Changes in v3:
+ * Added bindings patches. (Andrew)
+
+Changes in v2:
+ * Rebased it on the latest.
+
+Jae Hyun Yoo (5):
+  ARM: dts: aspeed-g6: remove FWQSPID group in pinctrl dtsi
+  pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
+  dt-bindings: pinctrl: aspeed-g6: remove FWQSPID group
+  dt-bindings: pinctrl: aspeed-g6: add FWQSPI function/group
+  ARM: dts: aspeed-g6: fix SPI1/SPI2 quad pin group
+
+Johnny Huang (2):
+  pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
+  ARM: dts: aspeed-g6: add FWQSPI group in pinctrl dtsi
+
+ .../pinctrl/aspeed,ast2600-pinctrl.yaml         |  4 ++--
+ arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi        | 10 +++++-----
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c      | 17 ++++++++---------
+ 3 files changed, 15 insertions(+), 16 deletions(-)
+
+-- 
+2.25.1
+
