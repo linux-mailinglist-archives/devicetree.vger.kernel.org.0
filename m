@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D8A4EA45B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 03:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F8E4EA467
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 03:06:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbiC2BCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Mar 2022 21:02:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60762 "EHLO
+        id S229491AbiC2BFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Mar 2022 21:05:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiC2BCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 21:02:21 -0400
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1488D23F9C3;
-        Mon, 28 Mar 2022 18:00:39 -0700 (PDT)
-Received: by mail-oo1-f50.google.com with SMTP id p34-20020a4a95e5000000b003248d73d460so2851731ooi.1;
-        Mon, 28 Mar 2022 18:00:39 -0700 (PDT)
+        with ESMTP id S229570AbiC2BFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Mar 2022 21:05:04 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653D3D49;
+        Mon, 28 Mar 2022 18:03:22 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so17161125fac.7;
+        Mon, 28 Mar 2022 18:03:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qsEldasqSmPH+uyKPG9uvo/NU8uKdGNTwdCF9sy/D/E=;
-        b=6HFD1myHIe4Oz25NBwXFDddKLJRZMwBSBAVE/VIiTPdolT6SHLA3IgJCDaLeH8W2gc
-         0vmrfcpQS7+F0J5xD0OIAXWM7/ZYLziHJ1FJEKgSX9GPGCRAJJ7kmQ01Hr4HiQG6Lp9z
-         ayboApYop9rqWom+nsHmtys7HRY+j8yP9K8PBIqDms8m7pqmSK3dkIHxrmpAz0SJQ08H
-         +1+OEhTdC3/KnomS7/6O5iBHhk+EfUT+mOXunEAR3ISq8FCpKAMiyjulmwnTg+BAY4Q5
-         CgVOHRXLudbj/6TxTcq8aLHUemwXHJn1qCB7EGl6hDcJk31nzrnL1HdPQQIf9iwaaK+x
-         RUCQ==
-X-Gm-Message-State: AOAM533pVxyNNY+03LvCwKqpeajRp3B3fFYHO9bkXMXkY5t73AsfuwTS
-        h2LWHgELpNvobDwAn7/3vyz26DSxDA==
-X-Google-Smtp-Source: ABdhPJygqRqHhRk4OiSo6iQBjfgsT2QvY6ZZ2r8mczpG9SMPz5GWtegFSl3boIRZpO//0kXJL1k3YA==
-X-Received: by 2002:a4a:1784:0:b0:324:5b06:dd0d with SMTP id 126-20020a4a1784000000b003245b06dd0dmr75661ooe.77.1648515638332;
-        Mon, 28 Mar 2022 18:00:38 -0700 (PDT)
+        bh=WqdeoowukI4GOOScgfXJxtzumhshPQliLbbvvYlwjuE=;
+        b=JaLz7WclRVXI38iw8fVHlWWKYxNqI4rFkjIRKEqxSfVnRT3Qet/VVAqK29isPvSDx/
+         knGXLj8pgVdLXAviiNmr8k5STP7fYKmMcx5tuydGAai12+ggcal5NW7IwsPLEgYgyIuV
+         CrbrdPQRgtS+aaysfxf5kJc/ARhnI+7EWOHZZtaI9Xdytm1gshByMMKMv5Me3JaTH2eS
+         BHaVti3SXwO1uVBcpRqU7Up95bnQIfeIzofoQdGv7XULBE6sGsgiO3TAgXfqxajFkcxL
+         IzMKm2r7kQB1F1EDNolCGKFzCeZHpfJ9DZB83VyQBIeB0G6RNizToa4C+1j+Ct9rk5d4
+         Z64w==
+X-Gm-Message-State: AOAM533zNCEv+rzUoZ227ISBE+Q+EO0Rng0bo/EUhvtbtZvwl3DXEFa5
+        5G+eeC2KghjtsA4RZzvluGphc7Fnew==
+X-Google-Smtp-Source: ABdhPJxVw7hTnrsgTjFG/lNeL9wfFbY+EmJgV5O2no4mHIVJi5WnXqNYiLrxCo6nPwg0hewhyQe2Ww==
+X-Received: by 2002:a05:6870:f104:b0:da:b3f:2b62 with SMTP id k4-20020a056870f10400b000da0b3f2b62mr956039oac.257.1648515799891;
+        Mon, 28 Mar 2022 18:03:19 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r205-20020acadad6000000b002ef824213c9sm8044301oig.55.2022.03.28.18.00.36
+        by smtp.gmail.com with ESMTPSA id 12-20020a05687012cc00b000de97cc1beesm6529315oam.43.2022.03.28.18.03.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Mar 2022 18:00:37 -0700 (PDT)
-Received: (nullmailer pid 3398741 invoked by uid 1000);
-        Tue, 29 Mar 2022 01:00:36 -0000
-Date:   Mon, 28 Mar 2022 20:00:36 -0500
+        Mon, 28 Mar 2022 18:03:19 -0700 (PDT)
+Received: (nullmailer pid 3403807 invoked by uid 1000);
+        Tue, 29 Mar 2022 01:03:18 -0000
+Date:   Mon, 28 Mar 2022 20:03:18 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, broonie@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        alsa-devel@alsa-project.org, krzysztof.kozlowski@canonical.com,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH 3/3] ASoC: dt-bindings: lpass-cpu: Update clocks and
- power domain names for sc7280 platform
-Message-ID: <YkJaNJT2yt6UpBZG@robh.at.kernel.org>
-References: <1647852981-27895-1-git-send-email-quic_srivasam@quicinc.com>
- <1647852981-27895-4-git-send-email-quic_srivasam@quicinc.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 02/14] dt-bindings: arm: renesas: Document Renesas RZ/V2M
+ System Configuration
+Message-ID: <YkJa1oLSEP8R4U6y@robh.at.kernel.org>
+References: <20220321154232.56315-1-phil.edworthy@renesas.com>
+ <20220321154232.56315-3-phil.edworthy@renesas.com>
+ <a51dec7d-4dfd-5603-3d34-a40b0fd9ec08@kernel.org>
+ <TYYPR01MB70862B27A67D868B196A70E7F5189@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+ <4297b8c2-1958-9abb-7d93-0e6d283b6194@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1647852981-27895-4-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <4297b8c2-1958-9abb-7d93-0e6d283b6194@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,79 +70,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 02:26:21PM +0530, Srinivasa Rao Mandadapu wrote:
-> Update required clock-names used for MI2S primary path, VA macro's
-> codec memory path and HDMI path in sc7280 based platforms.
-> Update power domain names required for sc7280 platforms.
+On Wed, Mar 23, 2022 at 03:54:42PM +0100, Krzysztof Kozlowski wrote:
+> On 23/03/2022 15:44, Phil Edworthy wrote:
+> > Hi Krzysztof,
+> > 
+> > Thanks for the review.
+> > 
+> > On 23 March 2022 10:42, Krzysztof Kozlowski wrote:
+> >> On 21/03/2022 16:42, Phil Edworthy wrote:
+> >>> Add DT binding documentation for System Configuration (SYS) found on
+> >>> RZ/V2M SoC's.
+> >>>
+> >>> SYS block contains the SYS_VERSION register which can be used to
+> >> retrieve
+> >>> SoC version information.
+> >>>
+> >>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> >>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >>
+> >> Could you send reviewed-by tags publicly? Maybe there was internal
+> >> review, maybe not and it was just copy-pasted to all submissions...
+> > Yes, it was reviewed internally.
+> > We've done it like this for a while, I'll see what we can do to change
+> > the way we do it. Would just copying the person who reviewed it be
+> > enough?
+> > 
+> >>> ---
+> >>>  .../bindings/arm/renesas,rzv2m-sys.yaml       | 39 +++++++++++++++++++
+> >>>  1 file changed, 39 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/arm/renesas,rzv2m-
+> >> sys.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/arm/renesas,rzv2m-
+> >> sys.yaml b/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..1a58906336b8
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/arm/renesas,rzv2m-sys.yaml
+> >>> @@ -0,0 +1,39 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: "http://devicetree.org/schemas/arm/renesas,rzv2m-sys.yaml#"
+> >>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >>> +
+> >>> +title: Renesas RZ/V2M System Configuration (SYS)
+> >>> +
+> >>> +maintainers:
+> >>> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> >>> +
+> >>> +description:
+> >>> +  The RZ/V2M System Configuration (SYS) performs system control of the
+> >> LSI
+> >>> +  and supports the following functions,
+> >>> +  - LSI version
+> >>> +  - 34-bit address space access function
+> >>> +  - PCIe related settings
+> >>> +  - WDT stop control
+> >>> +  - Temperature sensor (TSU) monitor
+> >>
+> >> Usually all these are separate devices, so what does it mean that SYS is
+> >> supporting these functions? Is it related to other Renesas System
+> >> Controllers? For example
+> >> Documentation/devicetree/bindings/power/renesas,apmu.yaml
+> >> ?
+> >> Why one is in power and one in arm subdirectory? Maybe you should extend
+> >> existing one?
+> > 
+> > SYS looks like somewhere to put registers that don't have a logical home.
+> > There are lots of little bits, I just listed the main functions.
+> > On other Renesas SoCs, it's similar but they include power related
+> > registers. Actually, I originally put it in the power directory, then
+> > moved it.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml       | 17 ++++++++++++++---
->  1 file changed, 14 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-> index 2c81efb..e9a5330 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-> @@ -38,8 +38,8 @@ properties:
->      maxItems: 7
->  
->    clock-names:
-> -    minItems: 3
-> -    maxItems: 7
-> +    minItems: 1
-> +    maxItems: 10
->  
->    interrupts:
->      minItems: 2
-> @@ -62,6 +62,9 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  power-domain-names:
-> +    maxItems: 1
-> +
->    '#sound-dai-cells':
->      const: 1
->  
-> @@ -192,15 +195,19 @@ allOf:
->            oneOf:
->              - items:   #for I2S
->                  - const: aon_cc_audio_hm_h
-> +                - const: audio_cc_ext_mclk0
->                  - const: core_cc_sysnoc_mport_core
-> +                - const: core_cc_ext_if0_ibit
->                  - const: core_cc_ext_if1_ibit
+> The existing rzg2l-sysc looks similar and is in power. If arm location
+> is conscious choice (not just placeholder), fine with me. :)
 
-You can't add new clocks in the middle. That breaks the ABI.
+The preference is:
 
->              - items:   #for Soundwire
->                  - const: aon_cc_audio_hm_h
-> +                - const: audio_cc_codec_mem
->                  - const: audio_cc_codec_mem0
->                  - const: audio_cc_codec_mem1
->                  - const: audio_cc_codec_mem2
-> +                - const: aon_cc_va_mem0
->              - items:   #for HDMI
-> -                - const: aon_cc_audio_hm_h
-> +                - const: core_cc_sysnoc_mport_core
->  
->          reg-names:
->            anyOf:
-> @@ -228,6 +235,10 @@ allOf:
->                  - const: lpass-irq-hdmi
->                  - const: lpass-irq-vaif
->                  - const: lpass-irq-rxtxif
-> +        power-domain-names:
-> +          allOf:
-> +            - items:
-> +                - const: lcx
->  
->        required:
->          - iommus
-> -- 
-> 2.7.4
-> 
-> 
+1) subsystem/class
+2) soc/ dir
+
+And arm/ for just top-level bindings.
+
+Rob
