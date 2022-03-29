@@ -2,123 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 025774EAB00
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 260D34EAB1F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:18:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234970AbiC2KIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 06:08:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47824 "EHLO
+        id S235062AbiC2KTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 06:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbiC2KIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:08:24 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0C2127589;
-        Tue, 29 Mar 2022 03:06:42 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so949563wmb.4;
-        Tue, 29 Mar 2022 03:06:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gJYdJOur1iY6XbbeGXFj0ECGEHoJkzCeSnRWw+1akAE=;
-        b=g1SGsbd/jLtCfDq6yzASjQLg1D1Di4TRzjMb5UiIfrE9WiDmnp4ps8sIblZUNtYLhl
-         BEYp/E3cwcQ3Zx0+p3QoptHL3A/ppqsLefEG80tXSSwr+mpdP4i1AcDwb/671KD/V7Or
-         SrBc47ULMLUb19cniOzsSHJIDLc2hutPluz+X07qok/90+UjDzhv6DSHFkWqgCReRafg
-         8hQGGxrcX5P2AlRlhAUeG7o275fLN5UY/luSiQ/PippZc5scePfD88DWfB5YY4mbajP2
-         /wEv07hBPdodolgvcwPf/ryO4mcjf2pm6CqHleQKRp4LwbU9hZS+Lg1pg+jJITwfzWUK
-         5rMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gJYdJOur1iY6XbbeGXFj0ECGEHoJkzCeSnRWw+1akAE=;
-        b=tJUfPXpB3D2Xr+ifPFHavkeZNEPQfTtJn/OUXgNNdDNK7IJJvF28uxxd3HaUo5EoVl
-         DU3BecZu54cfnnrUnz4gbwCDeYy475OG/I5eEv1ayFd8Mx/EX4N966VkSRN6OYQ3qMZL
-         huOOgIHooNwpXcdJO3lzCWKt6VjlC675C9CDeICyDrvWVZfFonlA16xSs7Gd40B6sVTo
-         OL7W0l+nS77jrGDwSJ6U7XlgmaeVhBHZssjRicRpVvjCMTCnrYv6JkjBdU+ld5L4QBYN
-         WF4KkMsSnfX0T3+GHWOxQabWecMGtPSvmCXWLaMfGf/wNx5cgnsBkMgl9g+8Q2TfX6tp
-         CI3A==
-X-Gm-Message-State: AOAM533VsGwlnV6P5hUppzwI4BcK6mAItODsRNu2yon+FtI4iBdCf5Kb
-        /TM+8NycYzU1/kB4h6W7Tgk=
-X-Google-Smtp-Source: ABdhPJw/yl37bo84CH0/pwnTrqSkLHICdBHbZfyNAKleJ5pkLbBWcMtajlzC2TVgbnU7tHyn6wt30Q==
-X-Received: by 2002:a05:600c:a47:b0:37c:965:2b6f with SMTP id c7-20020a05600c0a4700b0037c09652b6fmr5636166wmq.31.1648548400811;
-        Tue, 29 Mar 2022 03:06:40 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id a11-20020a5d456b000000b0020406ce0e06sm14201716wrc.94.2022.03.29.03.06.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Mar 2022 03:06:39 -0700 (PDT)
-Message-ID: <6dafde7d-17c6-bd25-dbe8-7f7acf80fd91@gmail.com>
-Date:   Tue, 29 Mar 2022 12:06:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [RFC PATCH 0/1] Categorize ARM dts directory
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
+        with ESMTP id S235068AbiC2KTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:19:45 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758BE23EC73;
+        Tue, 29 Mar 2022 03:17:56 -0700 (PDT)
+X-UUID: 38bee88dd45f4697a2316eb31b09bafe-20220329
+X-UUID: 38bee88dd45f4697a2316eb31b09bafe-20220329
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1410312814; Tue, 29 Mar 2022 18:17:49 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 29 Mar 2022 18:17:48 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 29 Mar 2022 18:17:47 +0800
+Message-ID: <7283dd6732ae8c188c6f12183a977fb980cc8617.camel@mediatek.com>
+Subject: Re: [PATCH v11 3/3] arm64: dts: Add mediatek SoC mt8195 and
+ evaluation board
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-actions@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-arm-kernel@axis.com, linux-aspeed@lists.ozlabs.org,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        chrome-platform@lists.linux.dev,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        kernel@dh-electronics.com, linux-mediatek@lists.infradead.org,
-        openbmc@lists.ozlabs.org,
-        linux-tegra <linux-tegra@vger.kernel.org>, linux-oxnas@groups.io,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-unisoc@lists.infradead.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-realtek-soc@lists.infradead.org
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <CAFr9PXkgrRe-=E=GhNnZ4w1x_FMb97-_RmX6ND1vEd74_TbZSw@mail.gmail.com>
- <YkK691VG6ON/6Ysn@atomide.com>
- <CAMuHMdXDDNTgBdJTa8+H1H5v1gAarp07xxWu_E1JL8mXS8HPMg@mail.gmail.com>
- <YkLXTWdZ3zASxr4H@atomide.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <YkLXTWdZ3zASxr4H@atomide.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        "Chaotian Jing" <chaotian.jing@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>, Seiya Wang <seiya.wang@mediatek.com>
+Date:   Tue, 29 Mar 2022 18:17:47 +0800
+In-Reply-To: <cf16ed58-6e75-cd9f-38ab-540d62ff03b5@gmail.com>
+References: <20220216113131.13145-1-tinghan.shen@mediatek.com>
+         <20220216113131.13145-4-tinghan.shen@mediatek.com>
+         <cf16ed58-6e75-cd9f-38ab-540d62ff03b5@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Matthias,
 
+Thanks for your comment.
 
-On 29/03/2022 11:54, Tony Lindgren wrote:
-> * Geert Uytterhoeven <geert@linux-m68k.org> [220329 09:02]:
->> On Tue, Mar 29, 2022 at 10:03 AM Tony Lindgren <tony@atomide.com> wrote:
->>> For example, I have a pile of pending omap clock clean-up dts patches
->>> posted and tested waiting for v5.19-rc1 to apply. I'd rather not start
->>> redoing or fixing up the patches with sed :)
->>
->> Git merge/rebase/cherry-pick should handle renames fine?
+On Mon, 2022-03-28 at 14:26 +0200, Matthias Brugger wrote:
 > 
-> Possibly.. Not sure I'd count on that based on my earlier experiences
-> though :)
+> On 16/02/2022 12:31, Tinghan Shen wrote:
+> > Add basic chip support for mediatek mt8195.
+> > 
+> > Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/Makefile       |    1 +
+> >   arch/arm64/boot/dts/mediatek/mt8195-evb.dts |  161 +++
+> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi    | 1049 +++++++++++++++++++
+> >   3 files changed, 1211 insertions(+)
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > 
+> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> > index 8c1e18032f9f..5da29e7223e4 100644
+> > --- a/arch/arm64/boot/dts/mediatek/Makefile
+> > +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> > @@ -38,4 +38,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
+> > +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-
+> > evb.dts
+> > new file mode 100644
+> > index 000000000000..51633d91d984
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> > @@ -0,0 +1,161 @@
 > 
+> [...]
+> > +
+> > +&u2port0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&u2port1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&u3phy0 {
+> > +	status="okay";
+> > +};
+> > +
+> > +&u3phy1 {
+> > +	status="okay";
+> > +};
+> > +
+> 
+> So we enable phys for xhci but not the device. Are we missing anything to enable 
+> them on the EVB?
 
-Yes. If this could be split up in per silicon-vendor patches, the maintainer 
-could take them. Although it might be a pain to soc maintainers to resolve small 
-conflicts when merging that branches.
+after discussed with usb expert, we think that we're missing the xhci nodes.
+I'll add xhci nodes at next version.
 
-Just my 5 cents.
+> 
+> > +&uart0 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&uart0_pin>;
+> > +	status = "okay";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > new file mode 100644
+> > index 000000000000..a363e82f6988
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > @@ -0,0 +1,1049 @@
+> 
+> [...]
+> > +
+> > +	clk32k: oscillator-32k {
+> > +		compatible = "fixed-clock";
+> > +		#clock-cells = <0>;
+> > +		clock-frequency = <32768>;
+> > +		clock-output-names = "clk32k";
+> 
+> I suppose the 32KHz oscillator is really present on the board also not used by 
+> any device (up to now?).
 
-Matthias
+Yes. 32KHz clock is still available on MT8195.
+Some modules can choose 32K as clock source depending on requirements.
+
+> 
+> [...]
+> > +
+> > +	soc {
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +		compatible = "simple-bus";
+> > +		ranges;
+> > +
+> 
+> [...]
+> > +
+> > +		pwrap: pwrap@10024000 {
+> > +			compatible = "mediatek,mt8195-pwrap", "syscon";
+> > +			reg = <0 0x10024000 0 0x1000>;
+> > +			reg-names = "pwrap";
+> > +			interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +			clocks = <&infracfg_ao CLK_INFRA_AO_PMIC_AP>,
+> > +				 <&infracfg_ao CLK_INFRA_AO_PMIC_TMR>;
+> > +			clock-names = "spi", "wrap";
+> 
+> Binding mandates resets but not present here. It also mandates two register 
+> regions, but only one is given here.
+
+After discussed with pwrap experts, the pwrap binding is out-of-date for mt8195.
+They will send a patch to fix pwrap binding.
+
+> 
+> > +			assigned-clocks = <&topckgen CLK_TOP_PWRAP_ULPOSC>;
+> > +			assigned-clock-parents = <&topckgen CLK_TOP_ULPOSC1_D10>;
+> > +		};
+> > +
+> > +		scp_adsp: clock-controller@10720000 {
+> > +			compatible = "mediatek,mt8195-scp_adsp";
+> > +			reg = <0 0x10720000 0 0x1000>;
+> > +			#clock-cells = <1>;
+> > +		};
+> > +
+> 
+> [...]
+> 
+> > +
+> > +		mmc0: mmc@11230000 {
+> > +			compatible = "mediatek,mt8195-mmc",
+> > +				     "mediatek,mt8183-mmc";
+> > +			reg = <0 0x11230000 0 0x10000>,
+> > +			      <0 0x11f50000 0 0x1000>;
+> 
+> Seems to be an oversight when adding support for mt8183-mmc support to the 
+> driver. The binding description is missing the optional host top register base. 
+> Chaotian can you please help to fix this in the binding description.
+
+Ok. I'll fix it at next version.
+
+> 
+> > +			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +			clocks = <&topckgen CLK_TOP_MSDC50_0>,
+> > +				 <&infracfg_ao CLK_INFRA_AO_MSDC0>,
+> > +				 <&infracfg_ao CLK_INFRA_AO_MSDC0_SRC>;
+> > +			clock-names = "source", "hclk", "source_cg";
+> > +			status = "disabled";
+> > +		};
+> > +
+> 
+> [...]
+> > +
+> > +		xhci3: usb@112b0000 {
+> > +			compatible = "mediatek,mt8195-xhci",
+> > +				     "mediatek,mtk-xhci";
+> > +			reg = <0 0x112b0000 0 0x1000>,
+> > +			      <0 0x112b3e00 0 0x0100>;
+> > +			reg-names = "mac", "ippc";
+> > +			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +			phys = <&u2port3 PHY_TYPE_USB2>;
+> > +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>,
+> > +					  <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
+> > +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> > +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> > +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
+> > +				 <&topckgen CLK_TOP_SSUSB_P3_REF>,
+> > +				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
+> > +			clock-names = "sys_ck", "ref_ck", "xhci_ck";
+> > +			/* This controller is connected with a BT device.
+> > +			 * Disable usb2 lpm to prevent konwn issues.
+> > +			 */
+> > +			usb2-lpm-disable;
+> 
+> My understanding is, that this depends on the board and not the SoC. Which means 
+> usb2-lpm-disable should go into any board that has a BT device connected to the 
+> xhci device (I don't see any active xhci node in mt8195-evb so far).
+
+Ok. I'll move this property to evb board in a xhci node.
+
+Best regards,
+TingHan
+
+> 
+> Regards,
+> Matthias
+
