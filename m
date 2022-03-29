@@ -2,263 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 562144EB602
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 00:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E44334EB619
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 00:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237324AbiC2Wb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 18:31:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
+        id S237498AbiC2Wie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 18:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237389AbiC2Wb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 18:31:56 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB207EA17;
-        Tue, 29 Mar 2022 15:30:10 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id BDAD71F441AF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648593008;
-        bh=UixZDeRTrhsKgzzqeAfm88dzf7voTXF+9DAsFdXgx0E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dyeLb4CUcnoS6OTYufOPl9rds549X/ysJ1Nkf+RZtUFca1Wj4/mSy5TeTvJjyrtTV
-         h8zlfY5lMwt8dNnnPWBZBQEnccS7ul1GfzKC1ojCH8NgTaEKTPR/3wvFBxFwOlJw27
-         Njd0g1n7M7+95c+9BodNYbmVV4wF3nSyF4m98mg4irkgx7GITVIeJLDgeMYsIIwjEU
-         U4YvwVgVfZuutU/VXE2Z+TdBIlqcUPpWphH8igtk0YQw9QzKmSmxawnpSX+M5/9YUQ
-         lkzlRUYWtAK2qKXyht+fHU0jFkWJDV2/2PhPCRx37pRxzJJiYlONUwevIUMPLNh92F
-         S0x7VC5ezhgvQ==
-Date:   Tue, 29 Mar 2022 18:30:02 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org, tzungbi@google.com,
-        angelogioacchino.delregno@collabora.com, aaronyu@google.com,
-        matthias.bgg@gmail.com, trevor.wu@mediatek.com, linmq006@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: Re: [v7 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
- speaker
-Message-ID: <20220329223002.uo7kiemopkh7ak4x@notapiano>
-References: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
- <20220324064511.10665-3-jiaxin.yu@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+        with ESMTP id S237800AbiC2Wie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 18:38:34 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2047.outbound.protection.outlook.com [40.107.243.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71DF9210294;
+        Tue, 29 Mar 2022 15:36:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PUZ9ZwtEEXn8mlumrm00/9c9nxgFxcC29mRtSbIUmzWHz9yKwIU+aYDsZoXv4yxw92yc3A5EX06hLJQCs1LC+IQVaoudgnE+xzvl1ZGSv16CacHuQZEleqo7irDDG9tgqUpztMi1+wPYduZ31Chq5r1FppNo0IoQCNcLPhSPVNryFpbo0M+jNIteEmIxNS7aN1Fr4b3nX90muZdzTTJNW4Ub3SmU6krjXYky6qF16FRvHyvmbgtMW1U2j0e6dkk9IU1z2aYVg3BhUJJoar+6Q5AT1svyjmJvnsyg5dssRnlBrrpECMrKZgky6XpZzgnWV8upvW0/fRWjSyvIppO18Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HtyWAEc192MBCLlFzioeIbJ5IvAG6ickW1xETbMtB4k=;
+ b=iQdnY0w2wgpcMGeRYUcs7I25xWcEA1mKMCSk9/TvNB3TGyjAvwSH4p11ELc9AmBL5hV+OGlP295XQtwW1GpOXL8H+Wgx0iSwj6YIfRibeojoVTlftK+NYwbaKZTIc8Utf7SzV+EiwqA2oopt0+EoLyjB7Luit1HNIOa1Q8jmJ7w3+FDhRVEMIJOczWT+VJZhx3zfwP+cx9E9RiA1B3wKQBqkQkZ/A8+hrNzKeEQQhK5st0CcfazunG4MAw5QAPayoqlexXTSaB4bqMHnGa8H+8xaz+y5uO0zGa+wFd2yFTYm1M0kYCIEX7gu7xdC3BqtDLWG9y5sGFT1/VCVBpRt3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HtyWAEc192MBCLlFzioeIbJ5IvAG6ickW1xETbMtB4k=;
+ b=hC6mIM7S7NMZLQ8bVOyHn1KNcrBTwlF4IjFAx6H6itCeuJ7cNRLYygc0TzIbC+ytsURNuNM8Mp66bu3EOLu08FCSO/aEagj9uCdIxn92pbs/RTZyzfjOEBM1tOIgroQM9WjnJL55J4mRVfXezLT+Eu2F7RE8gVYYikOmiaoLXlk9oiDNj29eyF6i5IwMij3HG08Di/c6QZOBTw6ojJJpjP4h5ckqbdtgUYL7qnx+pqOdrQACDKQHWi/NqYr9NOJSRUQ4qjfwBjCRViOBM8fZ+YnTlTFaHmwvIDTPalFyAiFYYRTDvvnq/jf/ThGXtUsfmjafGR7hh5n9Lbf4qpIBIA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BY5PR12MB4116.namprd12.prod.outlook.com (2603:10b6:a03:210::13)
+ by MWHPR12MB1517.namprd12.prod.outlook.com (2603:10b6:301:10::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.17; Tue, 29 Mar
+ 2022 22:36:45 +0000
+Received: from BY5PR12MB4116.namprd12.prod.outlook.com
+ ([fe80::8940:4e31:b98a:c02b]) by BY5PR12MB4116.namprd12.prod.outlook.com
+ ([fe80::8940:4e31:b98a:c02b%6]) with mapi id 15.20.5123.019; Tue, 29 Mar 2022
+ 22:36:45 +0000
+Message-ID: <afb7c9b5-eb4d-8647-357d-870878ee141d@nvidia.com>
+Date:   Tue, 29 Mar 2022 15:36:46 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 01/11] Documentation: Add HTE subsystem guide
+Content-Language: en-US
+To:     Bagas Sanjaya <bagasdotme@gmail.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, smangipudi@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, warthog618@gmail.com,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20220329054521.14420-1-dipenp@nvidia.com>
+ <20220329054521.14420-2-dipenp@nvidia.com>
+ <db81d120-039d-f49f-9a48-c91e96777a61@gmail.com>
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+In-Reply-To: <db81d120-039d-f49f-9a48-c91e96777a61@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220324064511.10665-3-jiaxin.yu@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ClientProxiedBy: SJ0PR03CA0073.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::18) To BY5PR12MB4116.namprd12.prod.outlook.com
+ (2603:10b6:a03:210::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 976fbb04-e114-4990-f30b-08da11d49a3e
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1517:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB15179365AD83E7E15FCBD97BAE1E9@MWHPR12MB1517.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vx+XU3ThHMJdRFGCjg1S/NrsDPGbsYE4kyxe+mBYH0FSUiTfLmHJRRl35szqmlLkd1agLrPQ4qJp8jEgvDxQrNj/V/RPaw61BQWhgO6cX277UZvQ77GIt+qEtGzBBko7afPBi+yPf+PBvrEVadCciQuMuSWv6RxXRf86o3Oxkb1BOnv4+lzQIh8Ut2fdprNzZLfquVHRh9DIcUkHKu25+pA2Q2Vz+mroFlrw6hhMmRz3SdZm+SW3Afs1BuZgUt7WW78xkSzLrjShtQc91B5Bvgl0YD1/leXX1QC9HyLkIc/2OejPINlqK1jM/cy1/a6YsT140OC6tFLbLV4mQITsGhD7Pp+1yW45pIY6bxItt3afySQl2/orL9HrH74KMvUsxLnWuLNoyV9iDbt0UnZ2FqYbVBJoLFFvmTZ5r1vDL7f+g87If/8tASqRw/WLYovEd54kYdpC/f+wXdZ2xh11JdwJLbkdX+Seh4PL16pt9+eHp1EsJRWVLvnN5qLaGPgkI9uPM2IlYb1/xiARKqIzYom7ysM89pQvJUwlmJY3FKkzbYdwBvPlGuT8q/mYHmJOnbSfG15JgIxukqrrZOq2aCS9UuunajG3myEfFqhvAZhds1XkLPqW47mGLJJDrJfgYWedkau97zy0ap+hLOjlNgz+OHix78GepYwiW8J+RQ7bN653xlT9JcTjwfo0Y8WYi9ytwem3zO71TP3+x2ttFMO9O2zfRCNII6+f18utxfvnscccrq7vCyp9fbJOLCiZ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4116.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(8936002)(6486002)(7416002)(53546011)(6506007)(2906002)(5660300002)(6512007)(921005)(316002)(8676002)(36756003)(186003)(2616005)(66556008)(31696002)(86362001)(66476007)(66946007)(38100700002)(26005)(83380400001)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHQyMlFqTEVmZ0VKZnVRakpwOXlHMDBkQnZDR2UwVnlnN3JuSkMwTG03TTJM?=
+ =?utf-8?B?SFRmaWQ3OTFrUXZYVDF5NEJSeXNjSmx5bzJQbDVLSE84S3ZZWjBCanZuZDFJ?=
+ =?utf-8?B?bnZrdENFaVBybnozV05qOFNWV2NvSlBSdWw2NWQ4OUpGeEdzRGwyZXhPeUxT?=
+ =?utf-8?B?NUllOGdUaWNaWEdEM1lkU1RBOGdtOHFOdk5KYkE2YXR3K01aQUdYT0tqbms0?=
+ =?utf-8?B?T2JYN2VSL1d0bGNuK3Y5SlZ3S2xycDJMNGJ3TFM1OVRwOTBoWFlXeENFd1kw?=
+ =?utf-8?B?V1dQQXJ5M2c2Wk80Sm9oS1piUUNOR3RvOGp2elFOSnRiQlpGenQxQldBZ2pi?=
+ =?utf-8?B?VlZQV0p0dkcwWml1cE5KTkQyL3E4K2RyQXUxczFYRGdvZk9WK3dGbFZMeG9w?=
+ =?utf-8?B?cXJhMTlEbXdPK3dNdmZpekp2bXovckFaemFHaVhnaWdwNU01eWVkT2dUbTVQ?=
+ =?utf-8?B?Ni96cnY4V0k4S1lwOHR3WFZQS0dlbHRzODdWV1FmakFxTysvVnVzYlNBM0Z5?=
+ =?utf-8?B?Uk1wdlNnTnhpOGw4UUhjK3hoazVseDNWeDAyNU5sQ0pHNVU3N2I3ZXJHaDhX?=
+ =?utf-8?B?ZjQwQjlNditNYTVSYnFWT1o4S1gyZXlvK0lXTDVtVEI2UWcyNFJUVjk0ZGFQ?=
+ =?utf-8?B?VXJmUUNJdU9KZFBwYldQYUYxZ3VWUktDWGIxaFgxYk9ubHFhWnpsZmFoMjNu?=
+ =?utf-8?B?MGU0Y0RtZzB1RlM3MTZnampOZ1ZKdVNHay80eVVqM0RKdUUzTWhiaDZnMlpj?=
+ =?utf-8?B?N3gxa3FsRjdoVTFYMDdjTFgwY245THozdlByYS92b25aRm9CVjdqSDEzSzA3?=
+ =?utf-8?B?QktEM1lYNXNNRHhBL0k2OERWUVh5T0k3ZU9mb2k0QzA2UG5OZFYwc1p5SSt6?=
+ =?utf-8?B?dUZjWmdSU0JJalR2SmUzTjdFcDdyaWFZeDJMVDh6VURzM1ZIVm1ua3N3U2Zj?=
+ =?utf-8?B?VmRGNm4xMGVYWEZ6ZXhSSnIxVVFHa1RRUUVlWW9mZ3ljcXlhZzJjdjdydGYx?=
+ =?utf-8?B?eVNHUDRQalpmZlJkZXl3NDVwUVd5M3ZBdGdBbkU0aXk4UzN2by9CWUR1Sy9q?=
+ =?utf-8?B?Q3lyaStoblVRV1Z6RldlWlVSeDhRbXhaSTdpRnRLeVNnZzBMNHBnSnZvem9H?=
+ =?utf-8?B?d0lDTzlHVVoybjE5bVZwRnArQUhBN1BpdmFsbDQzd0VJeHZjZVZ3NXdlMS9u?=
+ =?utf-8?B?K0FjQmd0ZENFMWFjaCs1Z3JUR3VqVTRkZjBSTWxnQ2o4M0FjNlVxY3IyVHBq?=
+ =?utf-8?B?cFJIVk03b1dBZTdwc1krSmM5ZVBKUDRneGFjNTZicTVNWS9LMmNGNDNPQXU2?=
+ =?utf-8?B?bVBjeCs3NlN3SmpqM1Jna0QwVUgxM25BaDhkYW1KU2xsK2d0dWJVaHlaUTJF?=
+ =?utf-8?B?a3ZCY25BZWtjYjV0VDVvc1hubzQxWmpRbjgrL283VTQ1NWhMTUdUalhrM2U2?=
+ =?utf-8?B?V0VmZ2Y2c256WkNNU1VGTXpzak0vREloNUtHbDNEcWtNSE1paS9yRzhmMDl5?=
+ =?utf-8?B?SzhKaHJYd2R3V3k0QnF2K1lCeXovWWZvRDY4dlM0Kzl5d1BpMVpGWjUyalBG?=
+ =?utf-8?B?TnhabG1jRldLZlZwOUU4aVJEZzNZaEVrOVhQRlZLam54Mis0ZTc0UC9VcTJa?=
+ =?utf-8?B?OUJGOVBiaWM5NDV0ZWRoK2hQU3dreE5TcDRJUmFNd25XSTh6NW9JVU5HVmhk?=
+ =?utf-8?B?MmM0WE95L08xdWJYaWJ6MS9hbDhUSTJWVHNpelVadTNGaU9zKy90TzEreDVs?=
+ =?utf-8?B?RTZKdUdkWlIxZzF5R2lhQktMZEFIQ0tMMlkwK1NVYkdkRUFERTgraUJEcWRs?=
+ =?utf-8?B?eE9Ka1phOGFObVdhMWhFVjJiTFJlcW1ieVg2R3RNbExLV3BiU25GMU4xUWpR?=
+ =?utf-8?B?cCtUWDZFUjFIc3RCWm9zckQ2dGgvdCticXk4dEt2Q1BRckdNRnREbDF3ZHd5?=
+ =?utf-8?B?ejA1dmlPMUlWb0c2eWVlVUM5cjNCU3Q2emdkVEdERlc3MDU2MmNobVhKV0xD?=
+ =?utf-8?B?dUYra2hKbmt4VTVZaXgwTXRjZXgvWUk2MnAwTjFOdmtHL2wxMjRhM0hVejUv?=
+ =?utf-8?B?bFk2UkE1bEtibG9vVCtzR2xaK3NsOTJCdVRSWUwxSlAydm9OUG9BczYvRVlU?=
+ =?utf-8?B?YW51NnlPZDdPYWxqaGxRNVUzRGQ4bCs0eWtrVmxzUVVtUm42Ymdjdk1ZLzdK?=
+ =?utf-8?B?allEZmQyK3lhVWQ2SjJQaytBb2g1em8zZ2dKSmNqM29UUFBKb3o1eVpEWmhs?=
+ =?utf-8?B?Rk43TGVxSytDeTFyYzlTNnNiSHVjVDZrV3oxbnhYNEQwYlNOckJMMS9hUEFn?=
+ =?utf-8?B?dlpJTWV2RmsrK2UyRHUweXFsdUR4dnRucGdFVE1LazlPZ2N3bFdvdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 976fbb04-e114-4990-f30b-08da11d49a3e
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4116.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2022 22:36:45.2557
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hheumR+KWULKHLJjT2JbROquiA+xIcedRVvka6k9E2tHmNKZHeS9Ijg8w6mblxAd+8YuwJL8vH5jephb7eTAAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1517
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jiaxin,
+Hi Sanjaya,
 
-On Thu, Mar 24, 2022 at 02:45:09PM +0800, Jiaxin Yu wrote:
-> MT8192 platform will use rt1015 or rt105p codec, so through the
-> snd_soc_of_get_dai_link_codecs() to complete the configuration
-> of dai_link's codecs.
-> 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
-> ---
->  .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 108 ++++++++++--------
->  1 file changed, 59 insertions(+), 49 deletions(-)
-> 
-> diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-> index ee91569c0911..837c2ccd5b3d 100644
-> --- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-> +++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-> @@ -604,17 +604,9 @@ SND_SOC_DAILINK_DEFS(i2s2,
->  		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
->  		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
->  
-> -SND_SOC_DAILINK_DEFS(i2s3_rt1015,
-> +SND_SOC_DAILINK_DEFS(i2s3,
->  		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
-> -		     DAILINK_COMP_ARRAY(COMP_CODEC(RT1015_DEV0_NAME,
-> -						   RT1015_CODEC_DAI),
-> -					COMP_CODEC(RT1015_DEV1_NAME,
-> -						   RT1015_CODEC_DAI)),
-> -		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-> -
-> -SND_SOC_DAILINK_DEFS(i2s3_rt1015p,
-> -		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
-> -		     DAILINK_COMP_ARRAY(COMP_CODEC("rt1015p", "HiFi")),
-> +		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
->  		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
->  
->  SND_SOC_DAILINK_DEFS(i2s5,
-> @@ -929,6 +921,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
->  		.dpcm_playback = 1,
->  		.ignore_suspend = 1,
->  		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
-> +		SND_SOC_DAILINK_REG(i2s3),
->  	},
->  	{
->  		.name = "I2S5",
-> @@ -1100,55 +1093,64 @@ static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682_card = {
->  	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
->  };
->  
-> +static int mt8192_mt6359_card_set_be_link(struct snd_soc_card *card,
-> +					  struct snd_soc_dai_link *link,
-> +					  struct device_node *node,
-> +					  char *link_name)
-> +{
-> +	int ret;
-> +
-> +	if (node && strcmp(link->name, link_name) == 0) {
-> +		ret = snd_soc_of_get_dai_link_codecs(card->dev, node, link);
-> +		if (ret < 0) {
-> +			dev_err_probe(card->dev, ret, "get dai link codecs fail\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
->  {
->  	struct snd_soc_card *card;
-> -	struct device_node *platform_node, *hdmi_codec;
-> +	struct device_node *platform_node, *hdmi_codec, *speaker_codec;
->  	int ret, i;
->  	struct snd_soc_dai_link *dai_link;
->  	struct mt8192_mt6359_priv *priv;
->  
-> -	platform_node = of_parse_phandle(pdev->dev.of_node,
-> -					 "mediatek,platform", 0);
-> -	if (!platform_node) {
-> -		dev_err(&pdev->dev, "Property 'platform' missing or invalid\n");
-> +	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
-> +	if (!card)
->  		return -EINVAL;
-> +	card->dev = &pdev->dev;
-> +
-> +	platform_node = of_parse_phandle(pdev->dev.of_node, "mediatek,platform", 0);
-> +	if (!platform_node) {
-> +		ret = -EINVAL;
-> +		dev_err_probe(&pdev->dev, ret, "Property 'platform' missing or invalid\n");
-> +		goto err_platform_node;
->  	}
->  
-> -	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
-> -	if (!card) {
-> +	hdmi_codec = of_parse_phandle(pdev->dev.of_node, "mediatek,hdmi-codec", 0);
-> +	if (!hdmi_codec) {
->  		ret = -EINVAL;
-> -		goto put_platform_node;
-> +		dev_err_probe(&pdev->dev, ret, "Property 'hdmi-codec' missing or invalid\n");
-> +		goto err_hdmi_codec;
+I will address your comments in next patch version.  Thanks for the comment.
 
-You're making hdmi-codec a required property, since now the driver fails to
-probe without it. Is it really required though? The driver code still checks for
-the presence of hdmi_codec before using it, so shouldn't it be fine to let it be
-optional?
+Best,
 
-If it is really required now though, then I guess at least the dt-binding should
-be updated accordingly. (Although I think this would technically break the ABI?)
+Dipen Patel
 
-Thanks,
-N�colas
-
->  	}
-> -	card->dev = &pdev->dev;
->  
-> -	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
-> -				      "mediatek,hdmi-codec", 0);
-> +	speaker_codec = of_get_child_by_name(pdev->dev.of_node, "speaker-codecs");
-> +	if (!speaker_codec) {
-> +		ret = -EINVAL;
-> +		dev_err_probe(&pdev->dev, ret, "Property 'speaker-codecs' missing or invalid\n");
-> +		goto err_speaker_codec;
-> +	}
->  
->  	for_each_card_prelinks(card, i, dai_link) {
-> -		if (strcmp(dai_link->name, "I2S3") == 0) {
-> -			if (card == &mt8192_mt6359_rt1015_rt5682_card) {
-> -				dai_link->ops = &mt8192_rt1015_i2s_ops;
-> -				dai_link->cpus = i2s3_rt1015_cpus;
-> -				dai_link->num_cpus =
-> -					ARRAY_SIZE(i2s3_rt1015_cpus);
-> -				dai_link->codecs = i2s3_rt1015_codecs;
-> -				dai_link->num_codecs =
-> -					ARRAY_SIZE(i2s3_rt1015_codecs);
-> -				dai_link->platforms = i2s3_rt1015_platforms;
-> -				dai_link->num_platforms =
-> -					ARRAY_SIZE(i2s3_rt1015_platforms);
-> -			} else if (card == &mt8192_mt6359_rt1015p_rt5682_card) {
-> -				dai_link->cpus = i2s3_rt1015p_cpus;
-> -				dai_link->num_cpus =
-> -					ARRAY_SIZE(i2s3_rt1015p_cpus);
-> -				dai_link->codecs = i2s3_rt1015p_codecs;
-> -				dai_link->num_codecs =
-> -					ARRAY_SIZE(i2s3_rt1015p_codecs);
-> -				dai_link->platforms = i2s3_rt1015p_platforms;
-> -				dai_link->num_platforms =
-> -					ARRAY_SIZE(i2s3_rt1015p_platforms);
-> -			}
-> +		ret = mt8192_mt6359_card_set_be_link(card, dai_link, speaker_codec, "I2S3");
-> +		if (ret) {
-> +			dev_err_probe(&pdev->dev, ret, "%s set speaker_codec fail\n",
-> +				      dai_link->name);
-> +			goto err_probe;
->  		}
->  
->  		if (hdmi_codec && strcmp(dai_link->name, "TDM") == 0) {
-> @@ -1156,6 +1158,9 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
->  			dai_link->ignore = 0;
->  		}
->  
-> +		if (strcmp(dai_link->codecs[0].dai_name, RT1015_CODEC_DAI) == 0)
-> +			dai_link->ops = &mt8192_rt1015_i2s_ops;
-> +
->  		if (!dai_link->platforms->name)
->  			dai_link->platforms->of_node = platform_node;
->  	}
-> @@ -1163,22 +1168,27 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
->  	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
->  	if (!priv) {
->  		ret = -ENOMEM;
-> -		goto put_hdmi_codec;
-> +		goto err_probe;
->  	}
->  	snd_soc_card_set_drvdata(card, priv);
->  
->  	ret = mt8192_afe_gpio_init(&pdev->dev);
->  	if (ret) {
-> -		dev_err(&pdev->dev, "init gpio error %d\n", ret);
-> -		goto put_hdmi_codec;
-> +		dev_err_probe(&pdev->dev, ret, "%s init gpio error\n", __func__);
-> +		goto err_probe;
->  	}
->  
->  	ret = devm_snd_soc_register_card(&pdev->dev, card);
-> +	if (ret)
-> +		dev_err_probe(&pdev->dev, ret, "%s snd_soc_register_card fail\n", __func__);
->  
-> -put_hdmi_codec:
-> +err_probe:
-> +	of_node_put(speaker_codec);
-> +err_speaker_codec:
->  	of_node_put(hdmi_codec);
-> -put_platform_node:
-> +err_hdmi_codec:
->  	of_node_put(platform_node);
-> +err_platform_node:
->  	return ret;
->  }
->  
-> -- 
-> 2.18.0
-> 
-> 
+On 3/29/22 6:16 AM, Bagas Sanjaya wrote:
+> On 29/03/22 12.45, Dipen Patel wrote:
+>> +============================================
+>> +The Linux Hardware Timestamping Engine (HTE)
+>> +============================================
+>> +
+>> +:Author: Dipen Patel
+>> +
+>
+> Please learn how to convey semantics with rst format, see further comments
+> below.
+>
+>> +This document describes the API that can be used by hardware timestamping
+>> +engine provider and consumer drivers that want to use the hardware timestamping
+>> +engine (HTE) framework. Both consumers and providers must include
+>> +#include <linux/hte.h>.
+>> +
+>
+> Maybe it's better to write as `... providers must ``#include <linux/hte.h>```.
+>
+>> +The HTE framework APIs for the providers
+>> +----------------------------------------
+>> +
+>> +.. kernel-doc:: drivers/hte/hte.c
+>> +   :functions: devm_hte_register_chip hte_push_ts_ns
+>> +
+>> +The HTE framework APIs for the consumers
+>> +----------------------------------------
+>> +
+>> +.. kernel-doc:: drivers/hte/hte.c
+>> +   :functions: devm_of_hte_request_ts_ns hte_req_ts_by_linedata_ns hte_release_ts hte_enable_ts hte_disable_ts hte_get_clk_src_info
+>> +
+>> +The HTE framework public structures
+>> +-----------------------------------
+>> +.. kernel-doc:: include/linux/hte.h
+>> +
+>> +More on the HTE timestamp data
+>> +------------------------------
+>> +The struct hte_ts_data is used to pass timestamp details between the consumers
+>> +and the providers. It expresses timestamp data in nanoseconds in u64 data
+>> +type. For now all the HTE APIs using struct hte_ts_data require tsc to be in
+>> +nanoseconds. An example of the typical hte_ts_data data life cycle, for the
+>> +GPIO line is as follows::
+>> +
+>
+> When we talk about name terms found in actual code (like keywords or variable
+> names), it is customary to enclose them inside inline code (for example,
+> ``struct what`` or ``u64 what``).
+>
+>> + - Monitors GPIO line change.
+>> + - Detects the state change on GPIO line.
+>> + - Converts timestamps in nanoseconds and stores it in tsc.
+>> + - Stores GPIO raw level in raw_level variable if the provider has that
+>> + hardware capability.
+>> + - Pushes this hte_ts_data object to HTE subsystem.
+>> + - HTE subsystem increments seq counter and invokes consumer provided callback.
+>> + Based on callback return value, the HTE core invokes secondary callback in
+>> + the thread context.
+>> +
+>> +HTE subsystem debugfs attributes
+>> +--------------------------------
+>> +HTE subsystem creates debugfs attributes at ``/sys/kernel/debug/hte/``.
+>> +It also creates line/signal-related debugfs attributes at
+>> +``/sys/kernel/debug/hte/<provider>/<label or line id>/``.
+>> +
+>> +`ts_requested`
+>> +        The total number of entities requested from the given provider,
+>> +        where entity is specified by the provider and could represent
+>> +        lines, GPIO, chip signals, buses etc...
+>> +                The attribute will be available at
+>> +        ``/sys/kernel/debug/hte/<provider>/``.
+>> +
+>> +        Read-only value
+>> +
+>> +`total_ts`
+>> +        The total number of entities supported by the provider.
+>> +                The attribute will be available at
+>> +        ``/sys/kernel/debug/hte/<provider>/``.
+>> +
+>> +        Read-only value
+>> +
+>> +`dropped_timestamps`
+>> +        The dropped timestamps for a given line.
+>> +                The attribute will be available at
+>> +        ``/sys/kernel/debug/hte/<provider>/<label or line id>/``.
+>> +
+>> +        Read-only value
+>
+> Since all these debugfs variables are read-only, we can say "Note that all
+> these values are read-only".
+>
