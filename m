@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D504EAC9E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 13:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29AFF4EACAA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 13:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231897AbiC2Lsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 07:48:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34594 "EHLO
+        id S236100AbiC2LwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 07:52:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232331AbiC2Lsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 07:48:41 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98A12498B3;
-        Tue, 29 Mar 2022 04:46:58 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id o10so34601238ejd.1;
-        Tue, 29 Mar 2022 04:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JRngf1q0EFM6rom/iKOZPRpCu2Uxx4RUodzTRd2XqH0=;
-        b=WgNXgj6IODvZ0ruJkrZOu+JdIy1hw9TvcQv7A0RD8viHok4sFD+oGv6YD2cLd9wTmv
-         Slicxb43u88ALlG9StdQ+0TV3HaowS/WOqSeYhPIYZsmuOOcdwm8R8c2M7oFoZXYuOMm
-         ETrWnKFxzhvIliJhki7fOxBBrbZrt4fh8P9wh4ac1vkuAq3UiwQD2fCBoukFKuwZx0i9
-         ulv88Y82xNQt6QL0kcUFvHqblGmPm7yW8xUqYrPY8Z9Xx/HzbcfQPdp6gzUbvj7fMkdP
-         WKS6rIXGFoI48A2iZGPcekAByOTVykYDiOz5z/rFPqzcTj9Akd3v5S+FZbv3u5W97pS+
-         rCKA==
+        with ESMTP id S236106AbiC2LwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 07:52:18 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325982498B3;
+        Tue, 29 Mar 2022 04:50:34 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-df0940c4eeso4936687fac.8;
+        Tue, 29 Mar 2022 04:50:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JRngf1q0EFM6rom/iKOZPRpCu2Uxx4RUodzTRd2XqH0=;
-        b=28cCL9jVnJoiAHsa71XIjs+BRBpE8r6bgW8sO16FJCqEidP/H8Agl1jArULHb1X+Qn
-         sAVz7MycV0W7AMzm/5pZFvl5o0HSjttqJvP/EpvNIbp/x5KUGAODRyMKAUcBGZOG2C2X
-         EFZcNzRGg6tBT4OFmJ8W60NlhdmLesgxMg96lP6zL16kk2tepS0MYwyr/hnwDxbxBaJy
-         f2W936Uhx08huLWOrJ9hM925mOXkWXj/zn8uz7XAhlfTiJlERDVAJGIpYO527XVHcU2v
-         Yu21DKTKEL+JqbOUzS/LE9/ye00Kyon7rDSq1VF0r4USMlUMuzqrgNv+x1jpSUJq0Syo
-         /Gfg==
-X-Gm-Message-State: AOAM531HTElBk3Ix8wN6V65tGOH9TdnUYxKcmNqeFzmkUV0etMcOokKk
-        qw9V9p4yg9NVJZMV+Fda47loRhM/NtH5mxI0k50=
-X-Google-Smtp-Source: ABdhPJx/6reFSq090fKogP1Ks4j6J7VZmEyzGgY7WdOuKDaet1Sb3sUw3Z0pqfqiUFERLgss+aj1ra+CFGiWqYNdTtA=
-X-Received: by 2002:a17:907:628e:b0:6d9:c6fa:6168 with SMTP id
- nd14-20020a170907628e00b006d9c6fa6168mr33912764ejc.132.1648554417310; Tue, 29
- Mar 2022 04:46:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <1648540212-9790-1-git-send-email-unSimple1993@163.com>
-In-Reply-To: <1648540212-9790-1-git-send-email-unSimple1993@163.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 29 Mar 2022 14:45:50 +0300
-Message-ID: <CAHp75VdwLPkzE9AHkXg=+vsagh4SGam40vz8uRdSRUpr6Cyv7A@mail.gmail.com>
-Subject: Re: [PATCH v1] pinctrl: ralink: rt2880: Check for return value of devm_kcalloc()
-To:     QintaoShen <unSimple1993@163.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jason Yan <yanaijie@huawei.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Asq1gr+EClGnhk914HvUDEJ2f/aYCxusbmU0iqu5d+k=;
+        b=HqhSYR9OX1Ehho2Qd7PCbmuzFOoJl0ac/fHCruq6yEijuG6a+Spdkc9EoVqOgzphOn
+         5VMN57OQz8D9hnXcR36RvLo6X+uIE5AiR+Rq+7caplXoZ1iA/XA0+PA44FJC969IKCLA
+         ZX8nqDdOjj7Ouv7uENaVxSUQcw40DYftOHza3UUANX/p4oRd4npyhOya1GaPkI+ZInla
+         iBSd0ysm3dmwKyFowG4B8+UmXDl//AHWQlx56sbceKo7glWvPx7iUuqpF8ujs85tMpBB
+         hJtQ05IksBpQP4x4m52J8Wbk/u2HDqRN5+gRemA8e0JwsFfEsUUXSxu7rcGw0DFgTyOJ
+         sJzw==
+X-Gm-Message-State: AOAM531dB+vbGxVnzBDT3q1bMVWLDx013++iICRCHtOzv4578zPpDiwR
+        F43maePF/YPTQf6Q2Zj8WA==
+X-Google-Smtp-Source: ABdhPJwhXc/RcfACLDL7HBgskD+zZRsxdYTdp0owC7QOUhyQPnfvmfacgZDo4zTnaIfsjFP54TlaFQ==
+X-Received: by 2002:a05:6870:8327:b0:d7:8685:5129 with SMTP id p39-20020a056870832700b000d786855129mr1861270oae.75.1648554633457;
+        Tue, 29 Mar 2022 04:50:33 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fz16-20020a056870ed9000b000dde87bcdfdsm7911413oab.53.2022.03.29.04.50.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Mar 2022 04:50:32 -0700 (PDT)
+Received: (nullmailer pid 350366 invoked by uid 1000);
+        Tue, 29 Mar 2022 11:50:29 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Li-hao Kuo <lhjeff911@gmail.com>
+Cc:     daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        rui.zhang@intel.com, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, amitk@kernel.org,
+        krzysztof.kozlowski@canonical.com, lh.kuo@sunplus.com,
+        robh+dt@kernel.org, linux-pm@vger.kernel.org, wells.lu@sunplus.com
+In-Reply-To: <5c3d0ab5baa9126b544a8f54ac5c773269ee1944.1648531197.git.lhjeff911@gmail.com>
+References: <cover.1648531197.git.lhjeff911@gmail.com> <5c3d0ab5baa9126b544a8f54ac5c773269ee1944.1648531197.git.lhjeff911@gmail.com>
+Subject: Re: [PATCH v6 2/2] dt-bindings:thermal: Add Sunplus SP7021 schema
+Date:   Tue, 29 Mar 2022 06:50:29 -0500
+Message-Id: <1648554629.886096.350365.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 11:36 AM QintaoShen <unSimple1993@163.com> wrote:
->
-> The memory allocation function devm_kcalloc() may return NULL pointer,
+On Tue, 29 Mar 2022 13:24:32 +0800, Li-hao Kuo wrote:
+> Add bindings for Sunplus SP7021 thermal driver
+> 
+> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+> ---
+> Changes in v6:
+>  - Modify yaml file.
+>  - Addressed comments from Mr. Krzysztof Kozlowski
+> 
+>  .../bindings/thermal/sunplus-thermal.yaml          | 43 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/sunplus-thermal.yaml
+> 
 
-may --> might
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> so it is better to add a check for 'p->func[i]->pins' to avoid possible
-> NULL pointer dereference.
+yamllint warnings/errors:
 
-...
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/thermal/sunplus-thermal.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/thermal/sunplus-thermal.yaml#
 
-> @@ -266,6 +266,10 @@ static int rt2880_pinmux_pins(struct rt2880_priv *p)
->                                                 p->func[i]->pin_count,
->                                                 sizeof(int),
->                                                 GFP_KERNEL);
+doc reference errors (make refcheckdocs):
 
-> +
+See https://patchwork.ozlabs.org/patch/1610480
 
-Stray change. Also it seems it has trailing space character(s).
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-> +        if (!p->func[i]->pins)
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +            continue;
+pip3 install dtschema --upgrade
 
-Why is 'continue' the proper choice here? No clarification is given in
-the commit message.
+Please check and re-submit.
 
->                 for (j = 0; j < p->func[i]->pin_count; j++)
->                         p->func[i]->pins[j] = p->func[i]->pin_first + j;
-
--- 
-With Best Regards,
-Andy Shevchenko
