@@ -2,73 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42ABF4EB661
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 01:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2395F4EB67B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 01:09:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239015AbiC2XCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 19:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48768 "EHLO
+        id S236528AbiC2XLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 19:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239217AbiC2XCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 19:02:35 -0400
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E019A4E3A8;
-        Tue, 29 Mar 2022 16:00:49 -0700 (PDT)
-Received: by mail-oo1-f46.google.com with SMTP id p10-20020a056820044a00b00320d7d4af22so3330774oou.4;
-        Tue, 29 Mar 2022 16:00:49 -0700 (PDT)
+        with ESMTP id S236271AbiC2XLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 19:11:21 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C108AF1F7;
+        Tue, 29 Mar 2022 16:09:37 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id o20-20020a9d7194000000b005cb20cf4f1bso13775588otj.7;
+        Tue, 29 Mar 2022 16:09:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0ufsH4kPmkwYwUY4XrUsn1zP4xDV7A/GblHEkZpfic4=;
-        b=wY9q5p2BWT09dM4HY7NO7JepkpuzMT6AjkaCbJp959bQNLoL3gGhe192v7LV+I2nRM
-         veiO9umvfkAuPkSuxvFwZY2TqJp58UrJC/mf2Z/SDqukoni6nFGqAbYcM8Dv88EK9ECx
-         2MswD06F7wQyQnhyplFRXbJvmAc2gMI4qDLm//kdGF+lcqzXWAzC53R9LLNfu5DXpeRX
-         MJTDc395F0hPpPA25dby3gQqDyDfdBA8o0m7ZN1bGm9yMCIPk2Ee1j7ONyZFUo1L7wES
-         EbC1WMqWDvCHpYEvXpl+ZoH93IL6lwFxyM6hHT3RjeU/YAj6/J/Cmd/rG0y2xJxEBvRl
-         j1cw==
-X-Gm-Message-State: AOAM531clsUXr3DbCF88FrjM/GNdg4X+5Sjy6VsvXEZOfjYt1EzQFPnm
-        bxJ1bsP4I+DO8CmSaGVMIQ==
-X-Google-Smtp-Source: ABdhPJy7C1m1dEvCRktWVO5I/Fo2UO/XKIY/6vOY1H7aF/ef2qykqq61ZyIH386G0Fd71hfq7+6S8w==
-X-Received: by 2002:a4a:2f0f:0:b0:320:f7cd:58d2 with SMTP id p15-20020a4a2f0f000000b00320f7cd58d2mr1912170oop.85.1648594849162;
-        Tue, 29 Mar 2022 16:00:49 -0700 (PDT)
+        bh=xtO41FFtsVppvhi60ir4ebFxoHFSsQTScElxpQB9J/w=;
+        b=6oKJS/jwwqN8QpbSqvtvIw9EoTLaDCh+5HcuMywBF3OQxT11gN/C7DH/fUb83l9Mwq
+         S/U6ak7eIl8CC1I0qveq6yZ+4w1YPyACFZPXbN4z054EQm/dHd4cvBaNgan/biWsYnxF
+         1rYfNzEHk2c6QniUtZ9i78LV5mRmCqBQxoIZQrlTXLvYLEJxoxnZny+Z5GQAalm0GH3A
+         Q+gjnlaGKueZskJROm8W60WAabxl/OvxUGLWKe/ci741yCy6t2S++xxE/omL1S7Uz3n9
+         s3ArICeYXNpUMpx7z1MKKvyCdDa2+x1rtM754tbe8lWXsT3ivtOP4sZIFD1+MLXFBU0l
+         XALg==
+X-Gm-Message-State: AOAM533kmrWL4+sIT4j4rB8lafiubLsjesq0J+JArGeV2PwmvLcEukod
+        BTGACSSq8rScCDGvLihBQw==
+X-Google-Smtp-Source: ABdhPJzEDpJMH1mPuGj7NKEY+O1n/LC+LymNnfwy0CuECx5bStXAvnD0S+0wrP/5p43RMQpuxEf/sw==
+X-Received: by 2002:a9d:6a84:0:b0:5cd:ad64:a50 with SMTP id l4-20020a9d6a84000000b005cdad640a50mr2128500otq.114.1648595376776;
+        Tue, 29 Mar 2022 16:09:36 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m17-20020a0568301e7100b005b256697d7csm9487340otr.72.2022.03.29.16.00.47
+        by smtp.gmail.com with ESMTPSA id 14-20020a056870134e00b000ddaf3927b1sm9124300oac.32.2022.03.29.16.09.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 16:00:48 -0700 (PDT)
-Received: (nullmailer pid 1509915 invoked by uid 1000);
-        Tue, 29 Mar 2022 23:00:46 -0000
-Date:   Tue, 29 Mar 2022 18:00:46 -0500
+        Tue, 29 Mar 2022 16:09:35 -0700 (PDT)
+Received: (nullmailer pid 1524452 invoked by uid 1000);
+        Tue, 29 Mar 2022 23:09:34 -0000
+Date:   Tue, 29 Mar 2022 18:09:34 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Tian Tao <tiantao6@hisilicon.com>,
-        Satya Tangirala <satyat@google.com>, linux-mmc@vger.kernel.org,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mediatek@lists.infradead.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        angelogioacchino.delregno@collabora.com,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        devicetree@vger.kernel.org, Yue Hu <huyue2@yulong.com>,
-        linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Lucas Stach <dev@lynxeye.de>
-Subject: Re: [PATCH v9 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
- pinctrls properties
-Message-ID: <YkOPnkFz2DDx7Qr0@robh.at.kernel.org>
-References: <20220329032913.8750-1-axe.yang@mediatek.com>
- <20220329032913.8750-2-axe.yang@mediatek.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     yilun.xu@intel.com, conor.dooley@microchip.com, trix@redhat.com,
+        devicetree@vger.kernel.org, hao.wu@intel.com,
+        linux-fpga@vger.kernel.org, robh+dt@kernel.org, system@metrotek.ru,
+        mdf@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] dt-bindings: fpga: add binding doc for
+ microchip-spi fpga mgr
+Message-ID: <YkORrgC1FdzaKCMW@robh.at.kernel.org>
+References: <20220322191552.13156-1-i.bornyakov@metrotek.ru>
+ <20220322191552.13156-3-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220329032913.8750-2-axe.yang@mediatek.com>
+In-Reply-To: <20220322191552.13156-3-i.bornyakov@metrotek.ru>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -80,17 +65,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Mar 2022 11:29:11 +0800, Axe Yang wrote:
-> Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
-> This feature allow SDIO devices alarm asynchronous interrupt to host
-> even when host stop providing clock to SDIO card. An extra wakeup
-> interrupt and pinctrl states for SDIO DAT1 pin state switching are
-> required in this scenario.
+On Tue, 22 Mar 2022 22:15:52 +0300, Ivan Bornyakov wrote:
+> Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
+> slave SPI to load .dat formatted bitstream image.
 > 
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
 > ---
->  .../devicetree/bindings/mmc/mtk-sd.yaml         | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
+>  .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
