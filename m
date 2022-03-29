@@ -2,112 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5844EAFFC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 17:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2BD4EB010
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 17:16:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234790AbiC2PMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 11:12:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41550 "EHLO
+        id S238253AbiC2PSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 11:18:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234378AbiC2PMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 11:12:06 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B17522CC;
-        Tue, 29 Mar 2022 08:10:21 -0700 (PDT)
-Received: from mail-wm1-f54.google.com ([209.85.128.54]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MYtoe-1nUrt61Sro-00UrdT; Tue, 29 Mar 2022 17:10:20 +0200
-Received: by mail-wm1-f54.google.com with SMTP id r204-20020a1c44d5000000b0038ccb70e239so1406116wma.3;
-        Tue, 29 Mar 2022 08:10:20 -0700 (PDT)
-X-Gm-Message-State: AOAM531uCDccBNB8TxD4GKHG3zBHalbonhtDBgEVZqpf1zLHjY56dGFm
-        8K4aoSgYFJKYwVsOvig2G3pJkljG/E5xBFoGkbw=
-X-Google-Smtp-Source: ABdhPJy1J5xaryus8X4nFV6ubkK8diotbwfxO4GiSu5zF+wuBLiP5QA+mjqckcwLSa9RHUv88mORXl0v0ubH+5QCE64=
-X-Received: by 2002:a05:600c:1e0b:b0:38c:9ac5:b486 with SMTP id
- ay11-20020a05600c1e0b00b0038c9ac5b486mr100357wmb.71.1648566619950; Tue, 29
- Mar 2022 08:10:19 -0700 (PDT)
+        with ESMTP id S237045AbiC2PSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 11:18:16 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652232487AB;
+        Tue, 29 Mar 2022 08:16:33 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-d6ca46da48so18999423fac.12;
+        Tue, 29 Mar 2022 08:16:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GOmwA8PkXAmEMhCl/eM+BoBmvEJnbfexIfv3dNQaXLc=;
+        b=WL8hGxJkggDPXaeNJI6olgykY4Z5x91kAR/RSeovPLQQl8e/4Mb4m7Orl1LXyb0iSb
+         ktUi3FkK1YfusdG/pEV/8uEpbGYwJl5qYgg/0cF2XQ0OhikuxxEbGSIHZch8Tl/TeJHB
+         bMTN9psQitkwl8JplJqYl7C1mqIbZSK6M58kZ/7J/Os1UY5vMhr2zVqOi1aKM33P9c/+
+         0HPLCDeYPg3z6DtFKtVupy/ACOP8OHtRSQUpVFm5U6nfCGukfVQQjXU9n6uAdUI2QiE0
+         /Vr2fGktol697DEGkJx8DTGGEMXMXLpkEeXirzH35BmnmHYdrrXGAFvibab3Xgr+c8Zx
+         rtQA==
+X-Gm-Message-State: AOAM530Hf/uLH4vSD6uY9Q6SW4+JkU56z13fI7Trd/5QGS9zv0QgurqW
+        Cc0Mpd9w4gKvTa1WMGT33w==
+X-Google-Smtp-Source: ABdhPJwaWGq6nfZnYG0ZXxAfzvvkKN6buxBFEJIOP/mrfJItR0nzfrVGT65ciRrLISmrOWqqNlVlPA==
+X-Received: by 2002:a05:6870:6327:b0:df:b6f:4894 with SMTP id s39-20020a056870632700b000df0b6f4894mr85998oao.4.1648566992334;
+        Tue, 29 Mar 2022 08:16:32 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ga14-20020a056870ee0e00b000ddcf36aa56sm8165623oab.48.2022.03.29.08.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Mar 2022 08:16:16 -0700 (PDT)
+Received: (nullmailer pid 692700 invoked by uid 1000);
+        Tue, 29 Mar 2022 15:16:15 -0000
+Date:   Tue, 29 Mar 2022 10:16:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 08/16] PCI: dwc: Drop inbound iATU types enumeration -
+ dw_pcie_as_type
+Message-ID: <YkMiv2FmeSXvLHOT@robh.at.kernel.org>
+References: <20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324013734.18234-9-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <cover.1648551070.git.tonyhuang.sunplus@gmail.com> <46aad49867912fc57b669fc54fdb28638cccfcd9.1648551070.git.tonyhuang.sunplus@gmail.com>
-In-Reply-To: <46aad49867912fc57b669fc54fdb28638cccfcd9.1648551070.git.tonyhuang.sunplus@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 29 Mar 2022 17:10:03 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0CLA33CTerXJ=bK+myhyHp_utoLnTX-NzMgjeb7icAGg@mail.gmail.com>
-Message-ID: <CAK8P3a0CLA33CTerXJ=bK+myhyHp_utoLnTX-NzMgjeb7icAGg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] mmc: Add mmc driver for Sunplus SP7021
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, lhjeff911@gmail.com,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        Tony Huang <tony.huang@sunplus.com>, lh.kuo@sunplus.com
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:OW6ybkuzuYCfxijmsioYK+OSNW7E2KgMfVayWbofgwQomK+oPCP
- wXw4bApq9HvOJPG2tWxRbIV9+afCXeH4UfQlSS7kTVqazSIj48S+9O+vfEU3JCdnruU0HZI
- ooneO1/e8kk3rOmeHPdkvhJnyjDhDgFvbh7wG+aWXVYFyKgSlC204Oypz4t7J8ZD9YsanZU
- AK2l31XA2xkNNCoxmBxuA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+9itSpFYgyk=:13dbzQkzEwFSyL+fpVeNvL
- 8wSlv9F1PvRAw3PVGCZ3H4ukXgWvdJvJCiwwJCXyeLQTvW8PNQpoNOnGRII26kc2T+Vkao7+G
- iXxh0kTZmFOnFsKHjCZS0eMw7FiQJsz62F7PpSehd7hrCZuV9R66HARFGtbLoFIM4+sJnS2Rk
- ZByHWMIV4ScG/6SLPXOaCLvrGUHfVcq8KxQ4cVNxb8KvauecPXHAk6vj3M00rSyrUKHbmz8I+
- qFMOLz47sC12u1gaof3lLWwEjgmWtwUfji7Jy65HSGcfKF7yWf32DBKAQCEd1mRI8WDpKV1Hj
- F1H87KcezNy75KX2i4Ek8zCuR8Xt0/9nEaQUMyeOmbq0/MliBMBrBuQDEtcQ6EV93L93hloOp
- oMlvDi6g/R5mGr33260HgB7y85EhAGLttVLFs4N0BV3ayDS8vL7p9yx2LeUTpSz85pTv192JW
- k0NsXBFUa74SgEALxWIAnOZvNbpH6XNnCEBcCC0U1+6iE4OLzJYOjVmgJRU+fwJ+OX2M0ihFc
- VQHpg9s63MRwQ+Z2uyBEeOxOfHGVo7X1HZm1BfHBtxySKmpGnDJOYCWGCmRwpSwG3AFEL4H4J
- FUGTs4xQdYaLqyneUJNCxQ4YY5QBKwH5QOeBadNmpAnmD++oTpMrhr1GKZtTwZvNkce/nyInR
- tWFNUF1xiQacWQN9sPCHad9rVIylSrP4xfqMz7FkwKAnEghezegjYCrMV/vbCJ0se8Es=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220324013734.18234-9-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 4:42 PM Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
->
-> Add mmc driver for Sunplus SP7021
->
-> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+On Thu, Mar 24, 2022 at 04:37:26AM +0300, Serge Semin wrote:
+> There is no point in having an enumeration declared in the driver for the
+> PCIe end-point. First of all it's redundant since the driver already has a
+> set of macro declared which describe the available in/out iATU types, thus
+> having an addition abstraction just needlessly complicates the code.
+> Secondly checking the passed iATU type for validity within a single driver
+> is pointless since the driver is supposed to be consistent by its nature.
+> Finally the outbound iATU type isn't encoded by the denoted enumeration,
+> thus giving a false impression that the in and out iATU types are
+> unrelated while they are the same. So to speak let's drop the redundant
+> dw_pcie_as_type enumeration replacing it with the direct iATU type usage.
+> 
+> While at it, since we are touching the iATU inbound regions config methods
+> anyway, let's fix the arguments order so the type would be followed by the
+> address-related parameters. Thus the inbound and outbound iATU setup
+> methods will look alike. That shall improve the code readability a bit.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 21 +++++------
+>  drivers/pci/controller/dwc/pcie-designware.c  | 35 +++----------------
+>  drivers/pci/controller/dwc/pcie-designware.h  |  9 +----
+>  3 files changed, 15 insertions(+), 50 deletions(-)
 
-There should be a description of the device in the changelog, not just the same
-text as the subject.
-
-> +static void spmmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
-> +{
-> +       struct spmmc_host *host = mmc_priv(mmc);
-> +       struct mmc_data *data;
-> +       struct mmc_command *cmd;
-> +       int ret;
-> +
-> +       ret = mutex_lock_interruptible(&host->mrq_lock);
-> +       if (ret)
-> +               return;
-
-I don't think it's valid to just return here when you get a signal. If
-nothing can
-handle the signal, doesn't it just hang?
-
-It also appears that you don't release the mutex until the tasklet runs,
-but it is not valid to release a mutex from a different context.
-
-You should get a warning about this when running a kernel with lockdep
-enabled at compile time. Please rework the locking to make this work.
-
-> +#endif /* ifdef CONFIG_PM_RUNTIME */
-> +
-> +static const struct dev_pm_ops spmmc_pm_ops = {
-> +       SET_SYSTEM_SLEEP_PM_OPS(spmmc_pm_suspend, spmmc_pm_resume)
-> +#ifdef CONFIG_PM_RUNTIME
-> +       SET_RUNTIME_PM_OPS(spmmc_pm_runtime_suspend, spmmc_pm_runtime_resume, NULL)
-> +#endif
-> +};
-> +#endif /* ifdef CONFIG_PM */
-
-It's better to use SYSTEM_SLEEP_PM_OPS/RUNTIME_PM_OPS instead
-of the SET_ version, then you can remove all the #ifdef checks.
-
-       Arnd
+Reviewed-by: Rob Herring <robh@kernel.org>
