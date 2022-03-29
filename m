@@ -2,67 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 378B44EAB49
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C80374EAB52
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 12:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235172AbiC2Kfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 06:35:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59544 "EHLO
+        id S235227AbiC2Kge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 06:36:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234163AbiC2Kfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:35:43 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E06752CE2C;
-        Tue, 29 Mar 2022 03:33:59 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 1F4E21F4107C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648550038;
-        bh=kPA++nT55REBlchYsmQAKCVDO+2FGIFaT9+6SOaLk3s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gQj1CxjzhqGt0pUEPgcYIaxrs4EYIQarFlqUZ4Is689TDVOvVTj2gAMzgAzKp59O/
-         UZSgoLqUDCH4KZ6oohX7H/E9+vcCbAbtE62z5s7Fbqr3a5vnPh/uRdqltiEDUXwj8f
-         mOJW9uxFkxyydkosxFVmOk0KqnmlxG1kNjlXKsEIOiQW85PLIT2HA+1cN7ro0AvK9W
-         kDdzu++ORpOke56KdtkIm4P37NXpUyPYqp+2mzcBglbQEK4Pgfn3kpnnwmst+td8q2
-         TnPUyy/rnQEp1G1hh2kf2nlPK8qUgMUEoAg1VJOrZSqXqh3Hvp2JKawy8IR7DO55EM
-         O5Cs1E24l5h4A==
-Message-ID: <e9daf657-2a29-a4b1-158a-86f2a98a8900@collabora.com>
-Date:   Tue, 29 Mar 2022 12:33:53 +0200
+        with ESMTP id S235197AbiC2Kg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 06:36:26 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A442CCAB;
+        Tue, 29 Mar 2022 03:34:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9057CB80CC7;
+        Tue, 29 Mar 2022 10:34:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B56F7C340F2;
+        Tue, 29 Mar 2022 10:34:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1648550080;
+        bh=40vaXYujECRPq759yjf622O1qcpWEybCd8NmkHOSJaU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=snHq0s20x5wvipHdOhtp0coIZowOd8cxckpZcwBPooemfF0a58YAJa//9IVURfyOL
+         FZE4qLb3hmMYbG7ZUky2YM7R9ZVTd/64eIV7uVms2jgtW3pOxJL6GmrwxM6TMo/s46
+         +jy2ghow4EEOxzTY22OEXdPECL/oYjqEau3o2Toc=
+Date:   Tue, 29 Mar 2022 12:34:37 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     QintaoShen <unSimple1993@163.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, yanaijie@huawei.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] pinctrl: ralink: rt2880: Check for return value of
+ devm_kcalloc()
+Message-ID: <YkLgvcHMKwxoOyP1@kroah.com>
+References: <1648540212-9790-1-git-send-email-unSimple1993@163.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v9 2/3] mmc: core: Add support for SDIO wakeup interrupt
-Content-Language: en-US
-To:     Axe Yang <axe.yang@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220329032913.8750-1-axe.yang@mediatek.com>
- <20220329032913.8750-3-axe.yang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220329032913.8750-3-axe.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1648540212-9790-1-git-send-email-unSimple1993@163.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,19 +52,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/03/22 05:29, Axe Yang ha scritto:
-> If wakeup-source flag is set in host dts node, parse EAI information
-> from SDIO CCCR interrupt externsion segment for in-band wakeup. If
-> async interrupt is supported by SDIO card then enable it and set
-> enable_async_irq flag in sdio_cccr structure to 1. The parse flow is
-> implemented in sdio_read_cccr().
+On Tue, Mar 29, 2022 at 03:50:12PM +0800, QintaoShen wrote:
+> The memory allocation function devm_kcalloc() may return NULL pointer,
+> so it is better to add a check for 'p->func[i]->pins' to avoid possible
+> NULL pointer dereference.
 > 
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> Signed-off-by: QintaoShen <unSimple1993@163.com>
+> ---
+>  drivers/pinctrl/ralink/pinctrl-rt2880.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/pinctrl/ralink/pinctrl-rt2880.c b/drivers/pinctrl/ralink/pinctrl-rt2880.c
+> index 96fc06d..308610e 100644
+> --- a/drivers/pinctrl/ralink/pinctrl-rt2880.c
+> +++ b/drivers/pinctrl/ralink/pinctrl-rt2880.c
+> @@ -266,6 +266,10 @@ static int rt2880_pinmux_pins(struct rt2880_priv *p)
+>  						p->func[i]->pin_count,
+>  						sizeof(int),
+>  						GFP_KERNEL);
+> +        
+> +        if (!p->func[i]->pins)
+> +            continue;
+> +
+>  		for (j = 0; j < p->func[i]->pin_count; j++)
+>  			p->func[i]->pins[j] = p->func[i]->pin_first + j;
+>  
+> -- 
+> 2.7.4
+> 
 
-Hello Axe,
-there was a mistake about my tag (my fault, sorry), can you please change it from
-Acked-by to Reviewed-by?
 
-Thanks,
-Angelo
+Hi,
+
+This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
+a patch that has triggered this response.  He used to manually respond
+to these common problems, but in order to save his sanity (he kept
+writing the same thing over and over, yet to different people), I was
+created.  Hopefully you will not take offence and will fix the problem
+in your patch and resubmit it so that it can be accepted into the Linux
+kernel tree.
+
+You are receiving this message because of the following common error(s)
+as indicated below:
+
+- Your patch contains warnings and/or errors noticed by the
+  scripts/checkpatch.pl tool.
+
+If you wish to discuss this problem further, or you have questions about
+how to resolve this issue, please feel free to respond to this email and
+Greg will reply once he has dug out from the pending patches received
+from other developers.
+
+thanks,
+
+greg k-h's patch email bot
