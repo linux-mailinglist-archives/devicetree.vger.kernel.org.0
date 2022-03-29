@@ -2,77 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95BE84EB51B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 23:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AC714EB542
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 23:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233076AbiC2VSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 17:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52126 "EHLO
+        id S233755AbiC2V2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 17:28:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233183AbiC2VSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 17:18:48 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324471D4C01
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 14:17:04 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id e81so4674848ybf.13
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 14:17:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1NmdHbhnl/vRItSEWqZfS578eYz0Ln76M7w3+17SBng=;
-        b=nnNp2K9C0PhtBCZ9DlF+5HkNtJtSFxGCTe+rj/yzMLI7t8hiUYwTIqIX7DjUb2Ej+l
-         YZJn4iEApNAcehGis3mzjUOYIlnzVRouSbGMm6iXFNxUZ+KoTMHAVElD+A4wwZmCd/B0
-         eEEbLLsLZFZEcsXXT0Lo5ktPGfgsMiW2ylL9g+GOabkqDWyMZ1h1SM1Pf4lmXgs/D+7I
-         gXS3N7nI5IDy0LRBZ4AehTCJ1hAF298ax1wzj0Ii9zBxM8U3GjQ0lFRhOsj8guh34ZnJ
-         wCCDM9vUrfgM5TSoshOYj3qBD4m2Ny8MZNGXo+h+RQmlgcxRSkD4XP6KR3exbwSYnVXH
-         m04Q==
+        with ESMTP id S233931AbiC2V2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 17:28:32 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 747F62335E9;
+        Tue, 29 Mar 2022 14:26:47 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id e189so20314082oia.8;
+        Tue, 29 Mar 2022 14:26:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1NmdHbhnl/vRItSEWqZfS578eYz0Ln76M7w3+17SBng=;
-        b=svlWmmvv/A8b6i84Ylbu3lvev847EBUtTrPZfS3q59FjmWdw3Of/2kH7/BLj66iNfI
-         rmx+BwjMdFPpymWYqFBJSrK2d15FCGPFEKbUrgJuIAlrsWdZMAfctXoU9AZoXs6kdfru
-         c3CbMbT9FhUw1uNvrC140Wbk/dLVLjKJhpdhYl1PFtBhv0nZiz4w3lWD7WqQInw8+ZbZ
-         tLMlzmJHY7KPQpqztESteO8WJ0xYhxnjt3W5zl3wwY3kYvdjleioe0faOGgpEo4vTUvE
-         lXTBZ7hDKqLWSTEh/VTpBtXG+HG34VpLXO8VYwa7/xB4+jHpPXYEXIyJ6ASACCIt1+nb
-         Q9wQ==
-X-Gm-Message-State: AOAM531F9SEBnx/cis8KNz65CJy3C7U1utE9YZNIAXbIcPg1NDiY/fCJ
-        JOGobIEfk5NZ+A+U4QlrpbgCGlkFgGfruYi8NdJ6Uw==
-X-Google-Smtp-Source: ABdhPJykJ5Ut7PIceBwZraoLzJOYrOlgWf2VUP56VuJtpRcHz881r39za7FgGIqkZzFEF9YvREaj+sXPJsynCiusvbw=
-X-Received: by 2002:a25:2497:0:b0:633:c1d0:e7bb with SMTP id
- k145-20020a252497000000b00633c1d0e7bbmr30780376ybk.291.1648588623439; Tue, 29
- Mar 2022 14:17:03 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mRUk/Z16L8Pkrou4H/BvsBwcGT5LseABEy44enEdci8=;
+        b=65+0eIX8TlpkV2eT6bYhx+KJDh/sBWJ8lZIzFdGIN7C6puNnf6AKqGu27lESB7kEB4
+         nvAwDb5qPWeQqV+SOUZyk4LKx9uyRkRituxkUBTyrUpOxAXndZ7jPA0N6qgjALcidsvE
+         55oieAUEAE1nnNk16nUDJ3dpPuL6tckVUZh+DyzAR4N1xupgtGWfznxuk7Pc9pjAXSwh
+         tulYkZUyXL1s+60qPSvOUHnxkAYdONO5hCqf7GqYEJXE7o3qSl5b6JqIaffhdmiEdYRe
+         I0YfTbntHJFfV4WKOGORbmdHNZLQNnJVo0Fjz19sOeBRF1YFNik2j1HfRs8Ho5RqHdIa
+         tqvg==
+X-Gm-Message-State: AOAM533fXPHDHz1qYJYuVmjvSa40kNru4jOf8HIwGDSngGS8i7M8KOMx
+        QxBZRTDQf7w8izT9wK0GgQ==
+X-Google-Smtp-Source: ABdhPJxP0vjhdA7REtwegrkHKlgY97oyRSH1RDZNNuyl4ZBbY6WakBe7RjkOHxB9GgptLI4NcGVH1g==
+X-Received: by 2002:a05:6808:f07:b0:2da:4916:578c with SMTP id m7-20020a0568080f0700b002da4916578cmr572061oiw.239.1648589206800;
+        Tue, 29 Mar 2022 14:26:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a32-20020a056870a1a000b000d458b1469dsm9854110oaf.10.2022.03.29.14.26.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Mar 2022 14:26:46 -0700 (PDT)
+Received: (nullmailer pid 1357565 invoked by uid 1000);
+        Tue, 29 Mar 2022 21:26:45 -0000
+Date:   Tue, 29 Mar 2022 16:26:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+Subject: Re: [PATCH] dt-bindings: extcon: maxim,max77843: fix ports type
+Message-ID: <YkN5lSmIijTlMLXs@robh.at.kernel.org>
+References: <20220310073258.24060-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-References: <20220304135134.47827-1-yann.gautier@foss.st.com>
- <20220304135134.47827-2-yann.gautier@foss.st.com> <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
- <0bc53018-fce4-4104-fa47-6e60d2367d69@foss.st.com> <20220329153114.GA58120@thinkpad>
- <71b10ce2-7b87-14d5-c8e4-3a4598c889e0@foss.st.com> <20220329173322.GC58120@thinkpad>
-In-Reply-To: <20220329173322.GC58120@thinkpad>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 29 Mar 2022 23:16:51 +0200
-Message-ID: <CACRpkdaiOhMGzuWPwoRLZ05HyM8BO_-cZt4TiAqAYQvDaJA-mA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: mmci: add a property to disable DMA LLI
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Yann Gautier <yann.gautier@foss.st.com>, ulf.hansson@linaro.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Ludovic Barre <ludovic.barre@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
-        Grzegorz Szymaszek <gszymaszek@short.pl>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220310073258.24060-1-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,23 +63,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 7:33 PM Manivannan Sadhasivam <mani@kernel.org> wrote:
-> [Yann]
-> > As for Prabhakar's answer, the IDMA here is inside our IP, and not used in
-> > any other IP. So I'm not sure it is really relevant to move that to another
-> > dmaengine driver.
->
-> Okay, I think this justification makes sense. I was worried of DMA IPs that get
-> sandwiched into many peripherals like the one on Renesas platforms. It turned
-> out that each subsystem has to add internal DMA support for it :/
+On Thu, 10 Mar 2022 08:32:58 +0100, Krzysztof Kozlowski wrote:
+> The "ports" property can contain multiple ports as name suggests, so it
+> should be using "ports" type from device graphs.
+> 
+> Reported-by: Rob Herring <robh@kernel.org>
+> Fixes: 9729cad0278b ("dt-bindings: extcon: maxim,max77843: Add MAX77843 bindings")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> 
+> ---
+> 
+> Hi Lee,
+> 
+> This is a fix for a commit in your next branch.
+> ---
+>  Documentation/devicetree/bindings/extcon/maxim,max77843.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-That is a justified worry.
-
-Qualcomm has "BAM DMA" (I think it is called?) which is added to each IP
-that needs DMA. drivers/mmc/host/mmci_qcom_dml.c
-It's for older Qualcomm platforms but I *think* it is actually not just used
-for the MMCI, just noone ever got around to adding it to any other
-peripheral? Srini do you know?
-
-Yours,
-Linus Walleij
+Applied, thanks!
