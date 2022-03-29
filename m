@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC714EB542
-	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 23:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E4734EB537
+	for <lists+devicetree@lfdr.de>; Tue, 29 Mar 2022 23:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233755AbiC2V2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 17:28:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57780 "EHLO
+        id S233818AbiC2V2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 17:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233931AbiC2V2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 17:28:32 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 747F62335E9;
-        Tue, 29 Mar 2022 14:26:47 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id e189so20314082oia.8;
-        Tue, 29 Mar 2022 14:26:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mRUk/Z16L8Pkrou4H/BvsBwcGT5LseABEy44enEdci8=;
-        b=65+0eIX8TlpkV2eT6bYhx+KJDh/sBWJ8lZIzFdGIN7C6puNnf6AKqGu27lESB7kEB4
-         nvAwDb5qPWeQqV+SOUZyk4LKx9uyRkRituxkUBTyrUpOxAXndZ7jPA0N6qgjALcidsvE
-         55oieAUEAE1nnNk16nUDJ3dpPuL6tckVUZh+DyzAR4N1xupgtGWfznxuk7Pc9pjAXSwh
-         tulYkZUyXL1s+60qPSvOUHnxkAYdONO5hCqf7GqYEJXE7o3qSl5b6JqIaffhdmiEdYRe
-         I0YfTbntHJFfV4WKOGORbmdHNZLQNnJVo0Fjz19sOeBRF1YFNik2j1HfRs8Ho5RqHdIa
-         tqvg==
-X-Gm-Message-State: AOAM533fXPHDHz1qYJYuVmjvSa40kNru4jOf8HIwGDSngGS8i7M8KOMx
-        QxBZRTDQf7w8izT9wK0GgQ==
-X-Google-Smtp-Source: ABdhPJxP0vjhdA7REtwegrkHKlgY97oyRSH1RDZNNuyl4ZBbY6WakBe7RjkOHxB9GgptLI4NcGVH1g==
-X-Received: by 2002:a05:6808:f07:b0:2da:4916:578c with SMTP id m7-20020a0568080f0700b002da4916578cmr572061oiw.239.1648589206800;
-        Tue, 29 Mar 2022 14:26:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a32-20020a056870a1a000b000d458b1469dsm9854110oaf.10.2022.03.29.14.26.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Mar 2022 14:26:46 -0700 (PDT)
-Received: (nullmailer pid 1357565 invoked by uid 1000);
-        Tue, 29 Mar 2022 21:26:45 -0000
-Date:   Tue, 29 Mar 2022 16:26:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Subject: Re: [PATCH] dt-bindings: extcon: maxim,max77843: fix ports type
-Message-ID: <YkN5lSmIijTlMLXs@robh.at.kernel.org>
-References: <20220310073258.24060-1-krzysztof.kozlowski@canonical.com>
+        with ESMTP id S233672AbiC2V2M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 17:28:12 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8175C2274EA;
+        Tue, 29 Mar 2022 14:26:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648589189; x=1680125189;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=1nTr1v4Do1P2RLZHJZeCp8fDJehSpp0OfwYo4ibfl1Y=;
+  b=hbukqxqhzqfD+Ig+ESmH6iWSCeV+9Smn7LeWrnD7GOk2BWdQF67dE1u+
+   vH/WqPxtWJA0LpSiZAZeHD4BoEZMbo27hjRHGIBk4bmDUw2cvNTghUW9m
+   MPzw2PKXqJqePU7ylBe9vneJi4iyUBw1vlk1GV90veFaZkRgLzjcV6f8g
+   MzY3CqrDhEMUX2s6HqCGLfFvCQh6fDxfNzpinIzxIwmCbONJHugd4xEOK
+   qMb/+Z2gbxYthyE8ibi5YFQjfi4iUMb9MXOIj+cVSpPt136P9Cb0Ef5Nn
+   48jbll+7UiteQ6NgDur8WWm8b5uU+z15EdfJZENSs8ofK4GC2kVW9DJ81
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="246874625"
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; 
+   d="scan'208";a="246874625"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 14:26:28 -0700
+X-IronPort-AV: E=Sophos;i="5.90,220,1643702400"; 
+   d="scan'208";a="503061594"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2022 14:26:26 -0700
+Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id A913E203C9;
+        Wed, 30 Mar 2022 00:26:24 +0300 (EEST)
+Received: from sailus by punajuuri.localdomain with local (Exim 4.94.2)
+        (envelope-from <sakari.ailus@linux.intel.com>)
+        id 1nZJMd-002Spq-47; Wed, 30 Mar 2022 00:26:55 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     linux-media@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, robh@kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 0/2] dw9807 binding and driver compatible changes
+Date:   Wed, 30 Mar 2022 00:26:52 +0300
+Message-Id: <20220329212654.587451-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220310073258.24060-1-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Mar 2022 08:32:58 +0100, Krzysztof Kozlowski wrote:
-> The "ports" property can contain multiple ports as name suggests, so it
-> should be using "ports" type from device graphs.
-> 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Fixes: 9729cad0278b ("dt-bindings: extcon: maxim,max77843: Add MAX77843 bindings")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> 
-> ---
-> 
-> Hi Lee,
-> 
-> This is a fix for a commit in your next branch.
-> ---
->  Documentation/devicetree/bindings/extcon/maxim,max77843.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hello everyone,
 
-Applied, thanks!
+These two patches convert dw9807 bindings to json-schema and add a new
+compatible string to the dw9807-vcm driver in order to support existing
+ACPI firmware.
+
+since v1:
+
+- Use stronger language in a comment related to a compatible string for
+  old firmware.
+
+- Remove extra newlines and quotes from bindings.
+
+Sakari Ailus (2):
+  dw9807-vcm: Add "dongwoon,dw9807" compatible string
+  dt-bindings: Convert Dongwoon dw9807-vcm bindings to json-schema
+
+ .../media/i2c/dongwoon,dw9807-vcm.txt         |  9 ----
+ .../media/i2c/dongwoon,dw9807-vcm.yaml        | 43 +++++++++++++++++++
+ drivers/media/i2c/dw9807-vcm.c                |  2 +
+ 3 files changed, 45 insertions(+), 9 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
+
+-- 
+2.30.2
+
