@@ -2,132 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B6174EBD2B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 442EA4EBD4A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244565AbiC3JFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 05:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55484 "EHLO
+        id S244608AbiC3JLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 05:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242292AbiC3JFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:05:50 -0400
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam07on2040.outbound.protection.outlook.com [40.107.95.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C7B168098;
-        Wed, 30 Mar 2022 02:04:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PFcXilZQDzE4KDybdJfz/o8cRxNMTHmPtoJ+Bat6IQSyaq5NJvNsqOy2v1TaZXN8fFqPxWdLybt9JbX3wqC0Vmw1Ar516O5Tj4xRb69QIPU8Rq9wta+840wlbq9lzEA7LHhR2izepF1db55aZ8TfHcgKZnh+gcopSspKB7nHsjDNGRkxhnvQo7GoF2y7bgzC5XZdjm4iKYETU1ViDS1StviXAFgiBtgeQsa+lZNSwnAznhPaJYC4UnOWheZ3kPsJ3K3d/fJ61KeQvUFrx1EEzVDUsY9gcIrCebA+t5CdUxMi1YKDODmJVcMg//SkaodZgub1Jtl9FcR8wfXlOQxGVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xg7yxo4RaGLMzxGyMSFm7qV6lYw4iNx9UwQkle7tGpY=;
- b=Ba5PSUC9w4CjeBDcjWDO/lt7EsK+M3wbHdksKEmrsEp/x0GKW1dtFeABj9l0MnWVEhqASsciJhMny0t76au04ovIj3aBxmZxGL69UcrJb4T5/om/QX2Q5xjuMzr+RdbHMlv054eEJ1zAgh9tYHURMt1ym1RqcUkVbzx9jFUxT4sT7Me9Bk38flklQfI3tJmRER0m999/QRk9RFvkJiiEuFnvL1dJ7SIUsySoAStiOwlwRLscT2eNdj7IY38EVvFoSzmke/afBRiRJnTT2olS+nWt2LSaJE+G7Ezohqsb9oAdymn2EC/wIXT3NHWuSX2v16J98w32GUfwJ3Aal0vfBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xg7yxo4RaGLMzxGyMSFm7qV6lYw4iNx9UwQkle7tGpY=;
- b=ttGno4y1pKpdm6haax5kPQ/oA1OiFIwzuSvyy7BL8Y7T1JQaHKHE8JGdVf3u9YzmjlH/1Gd65dgnio/2Y0quxSpIgGSMmDAdUWCMeoAoVxAfgiKUwhJ6ozF1uMZ4wgjX8zhhx3URBYjuuNpn5YvWXdDv9vC/QVt2eQ3lJcmw4dePikLFhQVD7MoIFrKG8IAtekrnAWk3T67mWVh43QB7uDgX14dg1CLQY5Hofdw+4M+cQ1NpC2dbsAlkzrMdP1eLOELCIMO7Sv+HC3Bu+E4HMLCLnXwssfuoFjBfWljxZQYAo/oh7ynECdHCp9IzKWbClvczGS7cYwNzUVcx2E7yBw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SA0PR12MB4349.namprd12.prod.outlook.com (2603:10b6:806:98::21)
- by BYAPR12MB3623.namprd12.prod.outlook.com (2603:10b6:a03:a9::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.22; Wed, 30 Mar
- 2022 09:04:02 +0000
-Received: from SA0PR12MB4349.namprd12.prod.outlook.com
- ([fe80::e15c:41ca:1c76:2ef]) by SA0PR12MB4349.namprd12.prod.outlook.com
- ([fe80::e15c:41ca:1c76:2ef%3]) with mapi id 15.20.5102.023; Wed, 30 Mar 2022
- 09:04:01 +0000
-Message-ID: <c5341578-e0a6-4ad7-5b6c-95b31b16faad@nvidia.com>
-Date:   Wed, 30 Mar 2022 14:33:47 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [Patch v5 2/4] memory: tegra: Add MC error logging on tegra186
- onward
-Content-Language: en-US
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, digetx@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220316092525.4554-1-amhetre@nvidia.com>
- <20220316092525.4554-3-amhetre@nvidia.com>
- <04bb5ef2-15c3-d561-3572-76dc803275ef@collabora.com>
-From:   Ashish Mhetre <amhetre@nvidia.com>
-In-Reply-To: <04bb5ef2-15c3-d561-3572-76dc803275ef@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR0101CA0008.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:21::18) To SA0PR12MB4349.namprd12.prod.outlook.com
- (2603:10b6:806:98::21)
+        with ESMTP id S244616AbiC3JLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:11:44 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A391D9152
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 02:09:59 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id d30so2987727pjk.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 02:09:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X//uwV8uPz2XnrC/CM7T1N2y6zAgnXQo1iH9qrSe+Pk=;
+        b=MqzoU8gKEB3BfGWgORll3R+xR8GKm5c7+dMnyWMQYjnvct6o+0o0Lgz7F0LnuoJkyg
+         mwHayXbIdiZY2e9hKx6FR09jI/+eL5ojr6nBXoFzNruYTMESFHzVhYzNJPOGPjL4Ox5K
+         IUColEi36xJk44tTR025AawfntB/wvfqi04Xakwz9eUPb0OopCDjb6mJfh7CoO8jrrB5
+         TL28b5qGKREIfX0yyrydBbBiIwb4HGa216xV2Um0e5TNJFw1Gy4hFmEiBRbvFoPRNF2p
+         qW4C34dCX3xQ5xILJzrbIthNOsBN/gNKybCIaHf1rQ/Qiq3UIHomd804DwevNyH7CY50
+         WdFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X//uwV8uPz2XnrC/CM7T1N2y6zAgnXQo1iH9qrSe+Pk=;
+        b=ACe9yy3aqJWaWAXj3YpeF3cWg++CbCQLr0m58tOAx5LBfe9iWjW8hc27g0xaD5e/tY
+         4xJsVG9f0TmFaa3tWUGmpSgBHBESd0rAC5jZWUibaJEMx/fHperrzHjYpawp9TRVo7ow
+         o7xXr0fOLQH5G86HPYG2cqKknWogeScbc3Bf+3LnfmsQ5DQGJF/GF5SGb5BuMAQRG98s
+         eHi76FShLdC1U2I8qUeFLhc6q1QHChPKXSOhANiJtrB7QDNVupAxz7CLwlCmzu0/re/W
+         0kh2/GfKM4m3FOyIoj21bv4jXrNktRZ4sEzq//l66Vb/9WAbkfqhA14Bng21OK7herid
+         08jQ==
+X-Gm-Message-State: AOAM533UVz2KQ9vMTzOjjVnDexnZhPDb5VwGpfka7H1By8c63ARq9mxU
+        OmzHCzhJ71sp/Td48vi0RaaN9Q==
+X-Google-Smtp-Source: ABdhPJw1bXHKrcS4u2eTGB013KNNZp9qsCL3YWdB0Cad42B35Sc6wkHyQqmK/+5Vdt1uIqp9NxYShQ==
+X-Received: by 2002:a17:903:110f:b0:154:c7a4:9371 with SMTP id n15-20020a170903110f00b00154c7a49371mr32264199plh.75.1648631398515;
+        Wed, 30 Mar 2022 02:09:58 -0700 (PDT)
+Received: from localhost.localdomain (2001-b400-e484-8494-10d3-c3e6-ad02-32e8.emome-ip6.hinet.net. [2001:b400:e484:8494:10d3:c3e6:ad02:32e8])
+        by smtp.gmail.com with ESMTPSA id f30-20020a63755e000000b00381f6b7ef30sm18473385pgn.54.2022.03.30.02.09.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Mar 2022 02:09:58 -0700 (PDT)
+From:   Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+To:     agross@kernel.org
+Cc:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+Date:   Wed, 30 Mar 2022 17:09:46 +0800
+Message-Id: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4cbacd21-9b39-4adb-5179-08da122c3b57
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3623:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB36230B3B8438DEF91952B0F0CA1F9@BYAPR12MB3623.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PCsO9hRNiYwFM78Ib8nA7j6GYhf8uWUrBoSAW7KdDHzGqp+kv7yuAPd1WZup8NZD5G9o2QhJA/3jg96I5dVs2hPXmv8ffsPfc4jxnahbwNPtyI1Xrp1wrFp0jav/AQcG94URli38YU4DliJnwzKS8jYlI53tpaOF5t1F2ZlPqPheThPV2PCa3gtm9BRIyiXnJnQbNScjLi3IPZg2YUM6xCbYWAA+WjQuBYorsMlQpr4P96ssFXyFq9UoRTLExcIw2F0sGjln62aQkyN0NPZOUxQ3C3WBSnqUIIrqOE6RzMXjZdDCum//Nx1QS0ksci/5bIySSgzZN26UMBhgxEZKQxck70J7BpCV1C9QfuMmOiu+nMpj7+nJe7hyJ2RqSRzfbHjESCN32ZEPfG+UWNrmc/VD8R1B9vQ10gFBQQ1C5aQvVxEO9QW/96D8s/nMqJR3Uvnnj/mdmCgELXxLKbg5Wiz87BpsMrHQ0FPMUFqi8faeAuvk7iw0/SdVf/eoJhIP7yc3JYI9ewhryDqIpKal5Ohq2zJz8OL86yvajJpLZusOr5Jp7rrPBxZz4Kl1oUknEG1Sexl/KpF7qAdYoLS+VoTqzFWT0FqvxOHjDeODA8bFwRsQQhVDpKoJW6btaXNCcWuThssbvwAOTrrEgsa9pzUNFQO98e2CNGkWPLsWkUhbh4ob3BDRMRe5GPUEzyIZunzgk5nOmHOQ2COYc9LVBUshtsIBuIJmHLB4xb2QT/4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR12MB4349.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(31696002)(55236004)(8676002)(86362001)(31686004)(6506007)(4326008)(53546011)(66946007)(66476007)(66556008)(36756003)(2906002)(5660300002)(38100700002)(8936002)(508600001)(6666004)(6512007)(6486002)(316002)(26005)(2616005)(107886003)(186003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dU1UR1BRQnhPRUF2SS9waEV3eE5aTFdwMGtHeGtFWjE1dlZzdTU3MHV5eHla?=
- =?utf-8?B?OFlXSDErd3ZFSmpKU3JCUDNGY1F5YWZRRXFxaEhZVTd5SmFjYzhtblZ6WE92?=
- =?utf-8?B?cjZ1V1dPY1pDeGZrK1Jod25WM1NKenJ3WVgxZzFITWVNZ1VpMmw0d0hIUnN2?=
- =?utf-8?B?OHNKdURITHhLaG1zSkUrY1ZTUDJVQlY2dXdLSVlwRmo4bUFoTkRqMEFCbmF2?=
- =?utf-8?B?eUsrdEdvNzlxY3RZS1ZlMWRpbzFDT0E0OFErYUxVRngzVEZ0S3RpVE1ydE44?=
- =?utf-8?B?ME1tTWlNaVZBeGxhdTk1MVdtZExUb0xMdDVTbmdwdmxVdnZvVHg5MEVjSlJZ?=
- =?utf-8?B?bzNGK1lncmVtMmFxOXp2b0FjcVkwdy9KVFNraVpLSFJEZTZ5MnBVcmdUSHZJ?=
- =?utf-8?B?ZSsrZzhtQkJYTFZGSG5YMEVQYWJnZzBOQ3M1MHQ4NDFRQ2NIcDRLeDUyRDRz?=
- =?utf-8?B?aHo2NW9adVlQdGRMZ0MrOWhreTRsMm8xbjllSXZzd292aytnM2lCTmx5ako1?=
- =?utf-8?B?b2hwZUNnZXBMTDFWdDVueENDdVVOV2pxQkJETFRaU01GWVUyM3N6TmpnT3R0?=
- =?utf-8?B?Z09hR2ZPWVhHQkV4SU1qZlVhMmhqa1haT1E5T2R0engzOGtKUk1qcm8yNW5C?=
- =?utf-8?B?MWs1VzhPbnlMekJ2WHFLL0lVazN0TytZMmNUb0dvVTd0c2FTTVhPREg1M2t0?=
- =?utf-8?B?R3FWdFQvZzMyZ1FjRkRHUnp1aXdQNjhINDZmYnlUYWxpVGhieVpGZU0rb3ps?=
- =?utf-8?B?Q2l1U1oyQ3BwbEV0U3kyTjJ3TE9oTng1VEM5ZmlvM2htSUNRMjNWUzFyRTJO?=
- =?utf-8?B?L2h1bXdTS202aENnckRla3IvSFl5YTlUQnZIbUJ4alJBbE5UcGdxRXR6d3hw?=
- =?utf-8?B?NVdtTWRrNjAzdjUwVEI1RUJ2WlkveEVhNmJyQ2xvUXBkSlQrVUJ0UVJGSEJH?=
- =?utf-8?B?SzYvQjh5MkR2NVRaSXVwc0lGdktvMHJqQXZmTzZHdHdLakF2NGNzbjRtUytS?=
- =?utf-8?B?TzJxRzVUTGk2RlVmMnBLdkVYMFhmWHF6UkNKK2NMUlBkQ044RzgvOW5RRU9Z?=
- =?utf-8?B?TzFmK08wK0QvNnJ1QUNCYS8yanBsK1pzazI2NHBpRFFqTkR2UTcxUnIramJl?=
- =?utf-8?B?QXE2Q1NiNmNuNDd3SGVZM2VxbnpuNXlrTG5udFgxLzVtcDNsSVcyaVhrd1c5?=
- =?utf-8?B?U2xQOUxZOTZ1MElkeTk5SDB6ckQwRU0yd2ZPS2hqU2tsTUpTR08xMjBqY0l3?=
- =?utf-8?B?REM1Y0pnU0RObGNXRzBMbGNjNmQyejJrU3ZnTTRWakhBYUVyVWk0bWxHM3RJ?=
- =?utf-8?B?NmIvOVYrQTI4VVlBbmorQU5URmRXNEtDNERIMC9DMkpZQTBxZ3YxTnRuZ0xV?=
- =?utf-8?B?UlpkaFRZUU4xQmdReC9POVB4MW5kM0oxK0pDNHpLUGpQa0p5Q21uV2JMM3Rn?=
- =?utf-8?B?R3RscGZLY1Vsck9wMUxYRW1yMGttWkN1eitaN1p0K2RGeWh5SFhnQmc3SFpE?=
- =?utf-8?B?SFVQN2hIbEhrVHRtZWx5dEJHT2FtZWtMZlBHaGJLRWVicElzcmMwK09hT0lZ?=
- =?utf-8?B?M3cwekJ4bkNIcnR2aGRUekpvTTZyQ0o5Z1BNOVhrNWNvZ3B4dmI1Vi8xdDky?=
- =?utf-8?B?Q2NvUnN4VXE2bUhpRjYyalpiUjRESzRNQ2p0Wk1xaTYzVHFlTGhoRytMWlBu?=
- =?utf-8?B?T0c1dm0xeVZiaTBKVWFhV0N3QlBITi9Kc01LOG9JQzZJNHVMOFFGeG95VzND?=
- =?utf-8?B?M05ObHpiZFlFK2U2NnBzTEIyVE9rN0lPZEt2WWgwVFVyV1E4SkdTbVlYOUJa?=
- =?utf-8?B?SngyWHk0U1MzRUNpVVp3OXZ5dmJoZnd1eGcxYzBVQW9HU05USVdjSHFnMUZw?=
- =?utf-8?B?NW85dTE0NGN4RGRkNUJ0aHJoMnVCN0ZzWU1SMFRQZzgxQ2lVVElhNTB3SDJZ?=
- =?utf-8?B?MVBVTmlGT045RW01cld6SDJCYk1iQ3lZeGk2Tm11R0pXR0l4S2JZQmhSWXBM?=
- =?utf-8?B?Zmx4RGptWGtabmJraGR2NjhDeENrZy9mdlIyREhhV1RBZjJoNWRlamh6dVpa?=
- =?utf-8?B?bmFueFJET1ZhOW5wOTJkc3JjZzZPcm5wa3NGRmpvSGdLY0lJN0lCZEdLMGs0?=
- =?utf-8?B?RGM5QXhWTDBkZGE0WjJMNGVmUVJTMWRHSlE5emp6dkxNSHBlR2l1WGVFbXN1?=
- =?utf-8?B?alFpR2R5UDlPK2tLL2V2TEJqZlZ0UFE3VTlOb005QitUZjBrZ0JEdHpqL01Y?=
- =?utf-8?B?KzJOVHVMSDZBSTNJOGdSd2p1Tm1qdENHdkM4Ry9Pdm5FUHpLeTYyY2o4MGtj?=
- =?utf-8?B?d1NDK2haV3Bqbjl2bXJGZS9FL0JOMHNSWkZZRWlQMHdpOWhwWjhWdz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4cbacd21-9b39-4adb-5179-08da122c3b57
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4349.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2022 09:04:01.3379
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gnXZvcjUY287wFC2heUE0k3vQoWpFERIclGDwEHGOg98RyIUiwxYuR3fpIqSXVOHHrCIa0SpAOsUY3Q7QiVJ7w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3623
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -135,39 +71,363 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Initial attempt at Gelarshie device tree.
 
+BUG=b:225756600
+TEST=emerge-strongbad chromeos-kernel-5_4
 
-On 3/30/2022 5:36 AM, Dmitry Osipenko wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> On 3/16/22 12:25, Ashish Mhetre wrote:
->> Add new function 'get_int_channel' in tegra_mc_soc struture which is
->> implemented by tegra SOCs which support multiple MC channels. This
->> function returns the channel which should be used to get the information
->> of interrupts.
->> Remove static from tegra30_mc_handle_irq and use it as interrupt handler
->> for MC interrupts on tegra186, tegra194 and tegra234 to log the errors.
->> Add error specific MC status and address register bits and use them on
->> tegra186, tegra194 and tegra234.
->> Add error logging for generalized carveout interrupt on tegra186, tegra194
->> and tegra234.
->> Add error logging for route sanity interrupt on tegra194 an tegra234.
->> Add register for higher bits of error address which is available on
->> tegra194 and tegra234.
->> Add a boolean variable 'has_addr_hi_reg' in tegra_mc_soc struture which
->> will be true if soc has register for higher bits of memory controller
->> error address. Set it true for tegra194 and tegra234.
->>
->> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
-> 
->> Reported-by: kernel test robot <lkp@intel.com>
->> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> 
-> Reported what? You should add this tag only if patch addresses reported
-> problem. This patch doesn't address anything, hence the tag is
-> inappropriate, you should remove it.
+Signed-off-by: Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/sc7180-trogdor-gelarshie-r0.dts  |  15 +
+ .../dts/qcom/sc7180-trogdor-gelarshie.dtsi    | 304 ++++++++++++++++++
+ 3 files changed, 320 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
 
-Okay, smatch warning was reported on v4 of this patch which is fixed in
-v5. Then I understand that we don't need to add Reported-by if we fix
-bug in subsequent versions, right?
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index f9e6343acd03..cf8f88b065c3 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-gelarshie-r0.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+new file mode 100644
+index 000000000000..027d6d563a5f
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Gelarshie board device tree source
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-gelarshie.dtsi"
++
++/ {
++	model = "Google Gelarshie (rev0+)";
++	compatible = "google,gelarshie", "qcom,sc7180";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+new file mode 100644
+index 000000000000..842f6cac6c27
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+@@ -0,0 +1,304 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Gelarshie board device tree source
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++#include "sc7180.dtsi"
++#include "sc7180-trogdor-mipi-camera.dtsi"
++
++ap_ec_spi: &spi6 {};
++ap_h1_spi: &spi0 {};
++
++#include "sc7180-trogdor.dtsi"
++#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
++
++/* Deleted nodes from trogdor.dtsi */
++
++/delete-node/ &alc5682;
++/delete-node/ &pp3300_codec;
++
++/ {
++	/* BOARD-SPECIFIC TOP LEVEL NODES */
++
++	adau7002: audio-codec-1 {
++		compatible = "adi,adau7002";
++		IOVDD-supply = <&pp1800_l15a>;
++		wakeup-delay-ms = <80>;
++		#sound-dai-cells = <0>;
++	};
++};
++
++&backlight {
++	pwms = <&cros_ec_pwm 0>;
++};
++
++&camcc {
++	status = "okay";
++};
++
++&cros_ec {
++	cros_ec_proximity: proximity {
++		compatible = "google,cros-ec-mkbp-proximity";
++		label = "proximity-wifi";
++	};
++};
++
++ap_ts_pen_1v8: &i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	ap_ts: touchscreen@5d {
++		compatible = "goodix,gt7375p";
++		reg = <0x5d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
++
++		vdd-supply = <&pp3300_ts>;
++	};
++};
++
++&i2c7 {
++	status = "disabled";
++};
++
++&i2c9 {
++	status = "disabled";
++};
++
++&mdp {
++	chromium-enable-overlays;
++};
++
++&panel {
++	compatible = "edp-panel";
++};
++
++&pm6150_adc {
++	skin-temp-thermistor@4e {
++		reg = <ADC5_AMUX_THM2_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++	};
++};
++
++&pm6150_adc_tm {
++	status = "okay";
++
++	skin-temp-thermistor@1 {
++		reg = <1>;
++		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time-us = <200>;
++	};
++};
++
++&pp1800_uf_cam {
++	status = "okay";
++};
++
++&pp1800_wf_cam {
++	status = "okay";
++};
++
++&pp2800_uf_cam {
++	status = "okay";
++};
++
++&pp2800_wf_cam {
++	status = "okay";
++};
++
++&pp3300_dx_edp {
++	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
++};
++
++&sdhc_2 {
++	status = "okay";
++};
++
++&sn65dsi86_out {
++	data-lanes = <0 1 2 3>;
++};
++
++&sound {
++	compatible = "google,sc7180-coachz";
++	model = "sc7180-adau7002-max98357a";
++	audio-routing = "PDM_DAT", "DMIC";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&dmic_clk_en>;
++};
++
++&sound_multimedia0_codec {
++	sound-dai = <&adau7002>;
++};
++
++/* PINCTRL - modifications to sc7180-trogdor.dtsi */
++
++&en_pp3300_dx_edp {
++	pinmux  {
++		pins = "gpio67";
++	};
++
++	pinconf {
++		pins = "gpio67";
++	};
++};
++
++&ts_reset_l {
++	pinconf {
++		/*
++		 * We want reset state by default and it will be up to the
++		 * driver to disable this when it's ready.
++		 */
++		output-low;
++	};
++};
++
++/* PINCTRL - board-specific pinctrl */
++
++&tlmm {
++	gpio-line-names = "HUB_RST_L",
++			  "AP_RAM_ID0",
++			  "AP_SKU_ID2",
++			  "AP_RAM_ID1",
++			  "WF_CAM_EN2",
++			  "AP_RAM_ID2",
++			  "UF_CAM_EN",
++			  "WF_CAM_EN",
++			  "TS_RESET_L",
++			  "TS_INT_L",
++			  "",
++			  "EDP_BRIJ_IRQ",
++			  "AP_EDP_BKLTEN",
++			  "UF_CAM_MCLK",
++			  "WF_CAM_MCLK",
++			  "EDP_BRIJ_I2C_SDA",
++			  "EDP_BRIJ_I2C_SCL",
++			  "UF_CAM_SDA",
++			  "UF_CAM_SCL",
++			  "WF_CAM_SDA",
++			  "WF_CAM_SCL",
++			  "",
++			  "",
++			  "AMP_EN",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "WF_CAM_RST_L",
++			  "UF_CAM_RST_L",
++			  "AP_BRD_ID2",
++			  "BRIJ_SUSPEND",
++			  "AP_BRD_ID0",
++			  "AP_H1_SPI_MISO",
++			  "AP_H1_SPI_MOSI",
++			  "AP_H1_SPI_CLK",
++			  "AP_H1_SPI_CS_L",
++			  "BT_UART_CTS",
++			  "BT_UART_RTS",
++			  "BT_UART_TXD",
++			  "BT_UART_RXD",
++			  "H1_AP_INT_ODL",
++			  "",
++			  "UART_AP_TX_DBG_RX",
++			  "UART_DBG_TX_AP_RX",
++			  "",
++			  "",
++			  "FORCED_USB_BOOT",
++			  "AMP_BCLK",
++			  "AMP_LRCLK",
++			  "AMP_DIN",
++			  "",
++			  "HP_BCLK",
++			  "HP_LRCLK",
++			  "HP_DOUT",
++			  "",
++			  "",
++			  "AP_SKU_ID0",
++			  "AP_EC_SPI_MISO",
++			  "AP_EC_SPI_MOSI",
++			  "AP_EC_SPI_CLK",
++			  "AP_EC_SPI_CS_L",
++			  "AP_SPI_CLK",
++			  "AP_SPI_MOSI",
++			  "AP_SPI_MISO",
++			  /*
++			   * AP_FLASH_WP_L is crossystem ABI. Schematics
++			   * call it BIOS_FLASH_WP_L.
++			   */
++			  "AP_FLASH_WP_L",
++			  "EN_PP3300_DX_EDP",
++			  "AP_SPI_CS0_L",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "WLAN_SW_CTRL",
++			  "BOOT_CONFIG_0",
++			  "REPORT_SWITCH",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "DMIC_CLK_EN",
++			  "HUB_EN",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "AP_SKU_ID1",
++			  "AP_RST_REQ",
++			  "",
++			  "AP_BRD_ID1",
++			  "AP_EC_INT_L",
++			  "BOOT_CONFIG_1",
++			  "",
++			  "",
++			  "BOOT_CONFIG_4",
++			  "BOOT_CONFIG_2",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "EDP_BRIJ_EN",
++			  "",
++			  "",
++			  "BOOT_CONFIG_3",
++			  "WCI2_LTE_COEX_TXD",
++			  "WCI2_LTE_COEX_RXD",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "FORCED_USB_BOOT_POL",
++			  "AP_TS_PEN_I2C_SDA",
++			  "AP_TS_PEN_I2C_SCL",
++			  "DP_HOT_PLUG_DET",
++			  "EC_IN_RW_ODL";
++
++	dmic_clk_en: dmic_clk_en {
++		pinmux {
++			pins = "gpio83";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio83";
++			drive-strength = <8>;
++			bias-pull-up;
++		};
++	};
++};
+-- 
+2.31.0
+
