@@ -2,183 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0066F4EBE03
+	by mail.lfdr.de (Postfix) with ESMTP id 4C6D84EBE04
 	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245010AbiC3Jrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S244997AbiC3Jrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 30 Mar 2022 05:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59938 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245014AbiC3Jrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:47:45 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F00E267591;
-        Wed, 30 Mar 2022 02:46:00 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7569C5C0194;
-        Wed, 30 Mar 2022 05:45:59 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 30 Mar 2022 05:45:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:message-id:mime-version:reply-to:sender:subject
-        :subject:to:to; s=fm1; bh=IqPvKyQ6qMpku5I40/8FtZcCMepOPwE59gZVZv
-        4G8ug=; b=GNGeUDzw4n80hqW5Nu15s66q2bN2dPPSpD9CZ3PeCNqqwlE1Yv9NT5
-        lvoOf52XOAbrJ5cWuP7tuyqTnjAowimqbrkT/0BRIL8DT1PdqPPeGX47MjU3wq6s
-        MTSrSpajJAoHt+d4d1KZoVlgP3bt7J33r9orVj+nbeczxek4O/gjb8yWC/45qeG+
-        fm59txCY+cW35cnFMf/D8kMAg9PqsRUYHia7P2q3LkP6Hl7EUeKLxYe4F2AUFi8q
-        msn/GBLhcdRgq86A4FjaEUqn+VsdLtPMskrjfmZjgb5epRiT7tOXSwYVe48UYKnI
-        xbCDwlSVjXEJAzrc+H9s2Oj//81rWGkQ==
+        with ESMTP id S245009AbiC3Jro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:47:44 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCC0266B6E
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 02:45:58 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 115F43200E60;
+        Wed, 30 Mar 2022 05:45:57 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 30 Mar 2022 05:45:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=XN4twieLDAl95EMDDf/3D+kn7IgZ/srR1teHOI
+        4BQrM=; b=xwLT+VAsXD6tHx8Sh4QH41nyXX1XzhkcIPcu1BesY4Ndv+WataAZGN
+        xey75FTUohTP4Gzur3yR6MquBf4DNpq8OTyRQ8jTdLgqPp5/vIoYkEMVJ/i/QhiR
+        9kskVVu7xlFrkGxIazsQSP0iV6Ioj5CK1KH84oMTogXDcCvm+qGMxj/b2ZR1okO6
+        zAT4Nd9F+ZLGEtdq+23ZVF8ghqw13v+Y+1vyMTfkgFjv/2Kv4Rwqmkd4ibR6qBwI
+        m6AvIs8Tl/IVlN5nrX45dXpHyKrEoZqAaIUxEcytjEURV+ZHdZvF3TAXG53Bh5sN
+        +Lcl78xX9h8naLpqHi8zdI24PEd9Sktw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
-        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
-        :x-me-sender:x-sasl-enc; s=fm3; bh=IqPvKyQ6qMpku5I40/8FtZcCMepOP
-        wE59gZVZv4G8ug=; b=AU48Hzmt8oM+KC2lRCEm0YCkQgtjbHkhJglj1RqP4Kf7N
-        9CX+Y/3Irngo/zcmYHwzM2CHPJL6BCxU6mGLp5y4qarIsLALTtsHPIQYUDsqRveP
-        OUfqYbi2Vbwa1KgJlNcwRleT+orprUBe5py0ePcZGo3id88ZueVwz9jFwZr9+eY6
-        yd+ggDvJ0PtZ1R6ATNXK4mYVWOr3ULpsCV85b1ptYB6h8+HQYIa1aOb3KQTbKP7E
-        SRcKnyMH1su9s9OsnRv60+0y+ltiBbHgj747lt4YYvrpL2HBmDFDQDXeL7KBTq4l
-        9E1kzCV6zy/ZKRjewZE4rL41N+UnWeOdEd/vU1IDg==
-X-ME-Sender: <xms:1yZEYirIu29v7RSEI4Tg-FTAvd3zOedq5uGCaP1cYRiYKZyvMoFHKQ>
-    <xme:1yZEYgoSeIPOzGTBKrSx4CAslEsspZ_VNMvzol49Q9jnGt66ooYyF_T6BJH9DuXPm
-    uulbwZyoOusJpa9tBU>
-X-ME-Received: <xmr:1yZEYnMC7R7SWTq6EzIwlKv4Kt47pDnxAzmQlN2kYK5G7i5icIFVbaTHuWgUMe-KH30Cs2wo2Ss>
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=XN4twieLDAl95EMDD
+        f/3D+kn7IgZ/srR1teHOI4BQrM=; b=UshhcguXE276u6Sz6bLbETsVLHofE8FFH
+        DMxlc7ugD+4QUjelBMBAo2qlZlRvDOpfqT3puiMUu+kSa2vQ8RbuTJhEZADENIje
+        cRMdgryiQ7LopUIJaDT3JhOyEpg4HYA+6kh4f0wOGf/cf36R4Wi8q70NIUrQxb2Q
+        aDHJOikHKdqMHcoc+zI08LgGjlzMSeBcBuD07sUVeo2FaVhOChy29VL2/77VVMao
+        4RvsD263Q4GLipb7/ixVwXOFn4Kh2NyWSdvciFXpOs5dcpTs+dTNn9R4QyXi1wZc
+        BtAx5/Avjsp5Y6h9c0pGJAcR/OzHcucrHx/lTUdQKt27p1APni0lg==
+X-ME-Sender: <xms:1CZEYmZmcLbKnbW7hLQC37OfYwO2oN8rSKm6m0SUzEO-NF6Z-2lxTg>
+    <xme:1CZEYpZZ2cuWi3oTRxUCG-EnaTatU7wcFhBqVoPiosNdAUSsgzgFvfxeWqmjAFhz6
+    soX3u0Vk8t18Jj5ZbA>
+X-ME-Received: <xmr:1CZEYg9BsLMaITW9anPMo4ZgMaqCL3ubS_NBgnMUGwTzv0_-kSUpeaqrwhNhmFAyhmlTdE3o1UpJD2r1PL2yo-r_qAAi52RNCVrbOto>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeivddgvddtucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgrihhr
-    segrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeejleeihfdvtefgtd
-    ethfdtgefftdeiffefjeeiffefveeuleejheejvefhffeukeenucevlhhushhtvghrufhi
-    iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsth
-    grihhrvdefrdhmvg
-X-ME-Proxy: <xmx:1yZEYh7JBFzXClwgGjBxMypdpqPPu2WavL84Wfc3AdvJNGpdsc0QgQ>
-    <xmx:1yZEYh5apiKmUz1S0stFCGl-Y6YU251eVrpbRVWxoczXvitG1UFGIg>
-    <xmx:1yZEYhjvWc7sbLSNkqXkA9xjVnXxKXPWj24dxXmrUzXxQCdpKmoevQ>
-    <xmx:1yZEYtj3Ka7gVTmQENDpx5pxOuQYI1dYlrrdMjZp-R2YmFm4ag6N1g>
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:1CZEYoqZNh0WOil7KixYG4J2CHZNNHa9ouCfi0TKrsNzdABD0WaXqQ>
+    <xmx:1CZEYhogrfFW93sN-uQYP_JdbH0b4JlrqVN85JxeiSzLuTeHs8D_fA>
+    <xmx:1CZEYmSjbBYF-RCt-8P2Np0UtEl2KPD3hENmU1XWASOSuAfgUlwoxg>
+    <xmx:1CZEYi4GrpSi9LQoEHpz-JGOjPgVk0tR1WYYMI4TOAVvAMvQuhey6w>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 30 Mar 2022 05:45:54 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org, s.hauer@pengutronix.de,
-        linux@roeck-us.net
-Cc:     festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v5] watchdog: imx2_wdg: Allow ping on suspend
-Date:   Wed, 30 Mar 2022 19:45:52 +1000
-Message-Id: <20220330094552.31039-1-alistair@alistair23.me>
-X-Mailer: git-send-email 2.35.1
+ 30 Mar 2022 05:45:55 -0400 (EDT)
+Date:   Wed, 30 Mar 2022 11:45:53 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Vasut <marex@denx.de>, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <20220330094553.a3caxxy4ynd7onsj@houat>
+References: <20220323154823.839469-1-maxime@cerno.tech>
+ <YjuFO45Gr1vmKxWG@pendragon.ideasonboard.com>
+ <20220324081819.niz4pdqu3j7n2ivh@houat>
+ <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
+ <20220324142324.monalktzzpypu74x@houat>
+ <YjyFHGQw6SiL6UHA@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ye4ehemn5uv24rq2"
+Content-Disposition: inline
+In-Reply-To: <YjyFHGQw6SiL6UHA@pendragon.ideasonboard.com>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX watchdog cannot be disabled by software once it has been
-enabled. This means that it can't be stopped before suspend.
 
-For systems that enter low power mode this is fine, as the watchdog will
-be automatically stopped by hardware in low power mode. Not all i.MX
-platforms support low power mode in the mainline kernel. For example the
-i.MX7D does not enter low power mode and so will be rebooted 2 minutes
-after entering sleep states.
+--ye4ehemn5uv24rq2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This patch introduces the "fsl,imx7d-wdt" compatible string
-which enables ping on suspend support. This allows the i.MX7D systems to
-suspend without triggering the watchdog.
+On Thu, Mar 24, 2022 at 04:50:04PM +0200, Laurent Pinchart wrote:
+> Hi Maxime,
+>=20
+> On Thu, Mar 24, 2022 at 03:23:24PM +0100, Maxime Ripard wrote:
+> > On Thu, Mar 24, 2022 at 03:43:42PM +0200, Laurent Pinchart wrote:
+> > > On Thu, Mar 24, 2022 at 09:18:19AM +0100, Maxime Ripard wrote:
+> > > > On Wed, Mar 23, 2022 at 10:38:19PM +0200, Laurent Pinchart wrote:
+> > > > > Hi Maxime,
+> > > > >=20
+> > > > > (CC'ing Sakari)
+> > > > >=20
+> > > > > Thank you for the patch.
+> > > > >=20
+> > > > > On Wed, Mar 23, 2022 at 04:48:23PM +0100, Maxime Ripard wrote:
+> > > > > > MIPI-DSI devices, if they are controlled through the bus itself=
+, have to
+> > > > > > be described as a child node of the controller they are attache=
+d to.
+> > > > > >=20
+> > > > > > Thus, there's no requirement on the controller having an OF-Gra=
+ph output
+> > > > > > port to model the data stream: it's assumed that it would go fr=
+om the
+> > > > > > parent to the child.
+> > > > > >=20
+> > > > > > However, some bridges controlled through the DSI bus still requ=
+ire an
+> > > > > > input OF-Graph port, thus requiring a controller with an OF-Gra=
+ph output
+> > > > > > port. This prevents those bridges from being used with the cont=
+rollers
+> > > > > > that do not have one without any particular reason to.
+> > > > > >=20
+> > > > > > Let's drop that requirement.
+> > > > >=20
+> > > > > I'm sure this won't come as a surprise, I'm very much opposed to =
+this
+> > > > > change, for two reasons.
+> > > > >=20
+> > > > > First, ports are part of the hardware, even if they're not connec=
+ted. It
+> > > > > thus simplifies handling in drivers if they're always present.
+> > > > >=20
+> > > > > Then, and that's the most important reason, I think it's a mistak=
+e not
+> > > > > to model the DSI data connection using OF graph unconditionally, =
+even
+> > > > > when the DSI sink device is also controlled through the DSI bus (=
+using
+> > > > > DCS) and is in that case a child of the DSI source device in the =
+DT
+> > > > > hierarchy.
+> > > >=20
+> > > > That's the way we do for any other device though. You never address=
+ed
+> > > > that comment, but it's very much the same that occurs for i2c or spi
+> > > > controllers and their device. They all get their data from the pare=
+nt
+> > > > bus. I don't see you advocate for using OF-Graph for those devices.
+> > >=20
+> > > Those are different, there's no data stream independent of the control
+> > > communications.
+> >=20
+> > Fine, then you have Ethernet PHYs, or any MMIO device that does DMA.
+> >=20
+> > > > > The device tree describes a control hierarchy between devices. OF=
+ graph
+> > > > > overlays on top of that a data transfer graph. The two are differ=
+ent
+> > > > > concepts, and the fact that DSI can sometimes be used as a contro=
+l bus
+> > > > > doesn't change the concept. Using OF graph unconditionally to des=
+cribe
+> > > > > the data connections for DSI leads to less variation in the devic=
+e tree
+> > > > > structure, and thus less complexity in the implementation. We're
+> > > > > suffering from the fact we haven't made it a requirement in the f=
+irst
+> > > > > place, which can't be fixed due to ABI breakage constraints, but =
+let's
+> > > > > not acknowledge it as a good idea.
+> > > >=20
+> > > > Honestly, it doesn't matter one bit.
+> > > >=20
+> > > > We have a huge discrepancy here today, and only a couple of bridges=
+ have
+> > > > that arbitrary restriction. The situation you don't want to acknowl=
+edge
+> > > > is the de-facto standard, by the generic binding and by what all the
+> > > > bridges and panels are implementing. Even panel-simple-dsi is doing=
+ it.
+> > > > So it's very much there already.
+> > >=20
+> > > It's here, and I think we should move away from it for new DSI sinks.
+> > > I'd like OF graph to be used consistently for new drivers. We can't
+> > > change existing DT bindings and drivers to drop support for the
+> > > non-OF-graph description due to ABI stability, but we can avoid
+> > > repeating the mistake going forward.
+> > >
+> > > > What I'm trying to address here is that some controllers that do
+> > > > everything right can't be used because that restriction is complete=
+ly
+> > > > arbitrary and in opposition to the consensus. And they can't be used
+> > > > *today*.
+> > > >=20
+> > > > If we want to change that consensus, fine, but we should still have=
+ one.
+> > > > Having some bridges enforcing custom rules for no reason is very mu=
+ch
+> > > > unacceptable.
+> > > >=20
+> > > > And changing that consensus won't happen overtime, we'll have to ta=
+ke
+> > > > care of the backward compatibility, etc. So it won't fix the issue =
+that
+> > > > we can't use any bridge with any controller any time soon.
+> > >=20
+> > > I don't think that's the issue at hand here. You can still use a
+> > > non-OF-graph DT event if the nodes for the two bridges affected by th=
+is
+> > > patch define a port@0. It can just be left unconnected.
+> > >=20
+> > > I do agree it will cause some DT bindings for DCS-based DSI sinks to
+> > > have ports will others won't. If your concern is that all DT bindings
+> > > should be coherent, would you be OK with a patch that makes the sink
+> > > port mandatory in all DT bindings for DSI bridges and panels (and fix=
+es
+> > > the mainline DT sources accordingly to make sure they validate) ? The
+> > > port would not be connected of course (at least when used with DSI
+> > > source drivers that don't use OF graph today). That would make DT
+> > > bindings coherent, and would be a first step towards using OF graph
+> > > everywhere.
+> >=20
+> > I'm trying to fix a (recent) mistake/cargo-cult in new bindings. That
+> > discussion is not going to be fairly controversial and I don't see how
+> > that can be solved quickly. So, as a second step, why not. But this one
+> > needs to come first.
+>=20
+> I don't think we need to flip the switch in one go, even on the DT
+> binding side, we could agree on a direction for new bindings and then
+> migrate the existing ones. The migration time should be minimized
+> though, I agree about your cargo cult comment though, it's painful. And
+> it shouldn't be difficult to convert all DT bindings in one go if we
+> decide to do so. Changing drivers would be more complex, but that
+> doesn't need to be tied to the bindings.
+>=20
+> tl;dr: I'm fine dropping the required port@0 here short term to avoid
+> divergence in bindings, as long as it won't be used as an argument
+> against me in the future to make port@0 mandatory again :-)
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
-v5:
- - Fixup commit message description
-v4:
- - Fix spelling on allow/alow in title
+That's what I had in mind all along, so it's fine by me :)
 
- drivers/watchdog/imx2_wdt.c | 27 ++++++++++++++++++++-------
- 1 file changed, 20 insertions(+), 7 deletions(-)
+And I plan on staying far away from that discussion
 
-diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
-index 51bfb796898b..d0c5d47ddede 100644
---- a/drivers/watchdog/imx2_wdt.c
-+++ b/drivers/watchdog/imx2_wdt.c
-@@ -66,6 +66,7 @@ struct imx2_wdt_device {
- 	struct watchdog_device wdog;
- 	bool ext_reset;
- 	bool clk_is_on;
-+	bool no_ping;
- };
- 
- static bool nowayout = WATCHDOG_NOWAYOUT;
-@@ -312,12 +313,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
- 
- 	wdev->ext_reset = of_property_read_bool(dev->of_node,
- 						"fsl,ext-reset-output");
-+	/*
-+	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
-+	 * during suspend.
-+	 */
-+	wdev->no_ping = !of_device_is_compatible(dev->of_node, "fsl,imx7d-wdt");
- 	platform_set_drvdata(pdev, wdog);
- 	watchdog_set_drvdata(wdog, wdev);
- 	watchdog_set_nowayout(wdog, nowayout);
- 	watchdog_set_restart_priority(wdog, 128);
- 	watchdog_init_timeout(wdog, timeout, dev);
--	watchdog_stop_ping_on_suspend(wdog);
-+	if (wdev->no_ping)
-+		watchdog_stop_ping_on_suspend(wdog);
- 
- 	if (imx2_wdt_is_running(wdev)) {
- 		imx2_wdt_set_timeout(wdog, wdog->timeout);
-@@ -366,9 +373,11 @@ static int __maybe_unused imx2_wdt_suspend(struct device *dev)
- 		imx2_wdt_ping(wdog);
- 	}
- 
--	clk_disable_unprepare(wdev->clk);
-+	if (wdev->no_ping) {
-+		clk_disable_unprepare(wdev->clk);
- 
--	wdev->clk_is_on = false;
-+		wdev->clk_is_on = false;
-+	}
- 
- 	return 0;
- }
-@@ -380,11 +389,14 @@ static int __maybe_unused imx2_wdt_resume(struct device *dev)
- 	struct imx2_wdt_device *wdev = watchdog_get_drvdata(wdog);
- 	int ret;
- 
--	ret = clk_prepare_enable(wdev->clk);
--	if (ret)
--		return ret;
-+	if (wdev->no_ping) {
-+		ret = clk_prepare_enable(wdev->clk);
- 
--	wdev->clk_is_on = true;
-+		if (ret)
-+			return ret;
-+
-+		wdev->clk_is_on = true;
-+	}
- 
- 	if (watchdog_active(wdog) && !imx2_wdt_is_running(wdev)) {
- 		/*
-@@ -407,6 +419,7 @@ static SIMPLE_DEV_PM_OPS(imx2_wdt_pm_ops, imx2_wdt_suspend,
- 
- static const struct of_device_id imx2_wdt_dt_ids[] = {
- 	{ .compatible = "fsl,imx21-wdt", },
-+	{ .compatible = "fsl,imx7d-wdt", },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, imx2_wdt_dt_ids);
--- 
-2.35.1
+Maxime
 
+--ye4ehemn5uv24rq2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYkQm0QAKCRDj7w1vZxhR
+xSb8AQDXzvDLZHq3hdJXbPCT8ebzilgKqqNbWvQpFkxA7+MwMwEAqxc3fJ1MUQ8V
+Viu9KIB2GzDRh3TE/CeGoxMuyVUw9Qc=
+=z58P
+-----END PGP SIGNATURE-----
+
+--ye4ehemn5uv24rq2--
