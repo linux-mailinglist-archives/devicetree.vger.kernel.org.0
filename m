@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D704EBC88
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A1B4EBCA3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:22:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244220AbiC3ISr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 04:18:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46552 "EHLO
+        id S244332AbiC3IW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 04:22:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244218AbiC3ISq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:18:46 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DA415A09
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:16:59 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id h4so28075203wrc.13
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:16:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=M32C2MHJpxfv0C/rKIvNbWiRzkrTOQet2nkeXJtQzo0=;
-        b=t9OAHmAFXejxXd/ABsEtkYmuhHgDTwLbTCfevdiYo0MasX/W4Y46/gP0+rZeUkxmdC
-         dS5ElpGzDz7LVOreWpTiEHK9fMNj2+oARBc8IRc/n8r1xslr+8TSuUawqnqc1DOPUm03
-         CK5eaZoH4W3sQOh0oN1PWyYR/ZZtbOXDBeIPYSBW72I1QOb24D1JZy4ug/FeS9NwjPHu
-         8ajhDwHgSH+fjKntg393D4uOBL3kLfbkYgjClBIqObYX+4gyEPW/uIQSgLhRJ39M+7m9
-         tDdT1z/Rk7wDig/QVWl4ianWvWELewIYqOzzYLdfALAmTyJTX/cCnyhxsTGKDis3Z1t+
-         iglw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=M32C2MHJpxfv0C/rKIvNbWiRzkrTOQet2nkeXJtQzo0=;
-        b=IYDAy1SqEjvnXudQQ1pQsycHLCqRWxFbjSSPBnJN1hyGIxnys31AtsQ958vXS2kf1t
-         EfimBof55Iy7l/O+XC6UvRGCBAxzJqt0pEnfcZJ99gOTOng5WXk2dIaC7D8aLwekPv3n
-         bEzbcemE7iyP+B2yijSqN4sQ0JG8zZgsVg/a4fQvvC6M+D/A1BUJj0TPsu//kIGHAC4e
-         4vZjM5zjMDnjPY88XGGF7ajjFF4wIDxHg67/xfq+AMOnL/cvzBYZ7BwOSK5Y+0LsHWlQ
-         3R5VafIu6P7CizBh5Hc/3eGmc8xINenU6o3Odrpf3D/+S2RIP4/unpYfgSYOMnnGokye
-         aylw==
-X-Gm-Message-State: AOAM5337uRV2mCs0RSbBwKlHJjNu5lcRkfmWUFjVU8FRraTBFzLNP4Ty
-        xPi4Q0+SDQKxsDDexkh1mIme1m4WRWXwPdzj
-X-Google-Smtp-Source: ABdhPJyTFIiM6MpxCMpjaTZ6/DzmmysJPS4k5E+NlHAafGVlbwGJmW82547Bn11svVa6TmJUro3aZw==
-X-Received: by 2002:a17:906:a0ce:b0:6d1:cb30:3b3b with SMTP id bh14-20020a170906a0ce00b006d1cb303b3bmr38128430ejb.582.1648628207357;
-        Wed, 30 Mar 2022 01:16:47 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id m20-20020a056402431400b00419315cc3e2sm9619545edc.61.2022.03.30.01.16.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 01:16:46 -0700 (PDT)
-Message-ID: <d75fa410-db8d-eeed-5ace-ac88dce81610@linaro.org>
-Date:   Wed, 30 Mar 2022 10:16:45 +0200
+        with ESMTP id S244267AbiC3IWq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:22:46 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D05793120B;
+        Wed, 30 Mar 2022 01:21:01 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 3C4931F443F6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1648628460;
+        bh=sD9zda1gQkNv3MUA4bkv/V5WHuwzCfeFynE1ba/36bI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lwqXWCyvUJTMcWkmXB/XryVKNZ3doT0L4in++YJhNLlEumVov1VdrMn6WG2XwP0ks
+         blZ4fiFE4Q0hNhTRpBd0ICap0dAq4rUqv6Nx574wrl2C/2wf9fmlKPNu13ak+i9io3
+         XuGtTjPq0bybFhxrjyjT8O9tviLy2mV3ijMdf4YmcBenisQ5JUKxTJ1r+sC/KVqf8/
+         YDrwtXvpxBbOVALzBJ2KhF0A4Xle3gmzF1YumNtOdnjiLJ0IkLwdWn8R9yyHo3t0Pj
+         tVq4OP09GfDsPwVt2n20oWvaZw3i7S6EQpXqzxGxqug2kMu8MrH9mYT6LXort9N/r+
+         q6o2+0V72XjlA==
+Message-ID: <61c2609c-18d1-fea9-7b71-0b17fb2beaef@collabora.com>
+Date:   Wed, 30 Mar 2022 10:20:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: serial: uniphier: Add "resets"
- property as optional
+Subject: Re: [PATCH v12 2/3] dt-bindings: mmc: mtk-sd: increase reg maxItems
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1648617338-8600-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1648617338-8600-3-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648617338-8600-3-git-send-email-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+References: <20220329114540.17140-1-tinghan.shen@mediatek.com>
+ <20220329114540.17140-3-tinghan.shen@mediatek.com>
+ <d720a5e9-d078-6c60-f55b-0506c4b4e1fa@collabora.com>
+ <CAL_JsqLrgW4GwSZ20x5Gsu-umjtw4x8k=uHeZk9T2+A3K6UT0Q@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAL_JsqLrgW4GwSZ20x5Gsu-umjtw4x8k=uHeZk9T2+A3K6UT0Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,20 +71,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 07:15, Kunihiko Hayashi wrote:
-> UniPhier UART controller has a reset lines from system controller.
-> Add "resets" property to fix the following warning.
+Il 29/03/22 21:10, Rob Herring ha scritto:
+> On Tue, Mar 29, 2022 at 7:43 AM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 29/03/22 13:45, Tinghan Shen ha scritto:
+>>> Add optional host top register base for the reg binding description.
+>>>
+>>> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+>>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>>> ---
+>>>    Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 ++-
+>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> index 7032f7adf3ca..6d41bcec900f 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> @@ -40,7 +40,8 @@ properties:
+>>>              - const: mediatek,mt8183-mmc
+>>>
+>>>      reg:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>
+>> it's just maxItems... adding minItems: 1 is not required.
 > 
->   uniphier-ld11-global.dtb: serial@54006800: 'resets' does not match any of the regexes: 'pinctrl-[0-9]+'
->       From schema: Documentation/devicetree/bindings/serial/socionext,uniphier-uart.yaml
+> If 1 entry is still valid, then minItems is required. If not, then
+> it's an ABI break.
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../devicetree/bindings/serial/socionext,uniphier-uart.yaml    | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+> Rob
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+Right. Sorry for that and thanks for the explaination, Rob.
+
+Cheers,
+Angelo
