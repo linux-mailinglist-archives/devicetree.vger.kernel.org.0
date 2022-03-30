@@ -2,126 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BFD84EBBB7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE134EBBBA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243812AbiC3H3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 03:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43692 "EHLO
+        id S231248AbiC3HaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 03:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243821AbiC3H3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:29:50 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF551C592F;
-        Wed, 30 Mar 2022 00:27:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648625275; x=1680161275;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=r41bn9DcC7z+dY6o3RfHp3AzxF/kNA5gjGJXhaxgEtg=;
-  b=E1WE14fyCSDkxeJxeTlT54ewmG8jMF/A2t1A/5BsyzIrMANiD+TUvT+Q
-   tTbb6KyKihto+HGSy8htYXUHRbiAK5O6DvA5Hyygu7eCpwljx1X7XsKRS
-   3WO/rY4GQGpA+m5hLuOHcGJwfmWIydlwhw8toU7/zGtFOVrBlN+12SH3W
-   K/aly9/wE7skBjtKgXzTix2x53QErjaefdUJdK1/nGph7fDu0LgDh3N63
-   JQcI+v8Knbw392eJ/n2Wx4tATAHsVrYebfcZkP8+ToLT4vgsyqoMAzRH8
-   yprfnxMTNFcrCbNuECYQgPp26nhsEbRsa0kK56Xcisobjhmt9dVcnS1eN
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="257051262"
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="257051262"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 00:27:50 -0700
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="695010228"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 00:27:49 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 88B8F20365;
-        Wed, 30 Mar 2022 10:27:47 +0300 (EEST)
-Date:   Wed, 30 Mar 2022 10:27:47 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: Convert Dongwoon dw9807-vcm bindings
- to json-schema
-Message-ID: <YkQGc3hxVDfzhRls@paasikivi.fi.intel.com>
-References: <20220329212654.587451-1-sakari.ailus@linux.intel.com>
- <20220329212654.587451-3-sakari.ailus@linux.intel.com>
- <fff59e1d-2f1c-ed96-4bf8-5744b75d1998@kernel.org>
+        with ESMTP id S243619AbiC3HaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:30:14 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0506C1C5526
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:28:30 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZSki-0003G6-Vv; Wed, 30 Mar 2022 09:28:24 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZSkg-0001fL-SK; Wed, 30 Mar 2022 09:28:22 +0200
+Date:   Wed, 30 Mar 2022 09:28:22 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Message-ID: <20220330072822.GX12181@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <fff59e1d-2f1c-ed96-4bf8-5744b75d1998@kernel.org>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:22:59 up 109 days, 16:08, 77 users,  load average: 0.01, 0.07,
+ 0.11
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 09:15:47AM +0200, Krzysztof Kozlowski wrote:
-> On 29/03/2022 23:26, Sakari Ailus wrote:
-> > Convert the old text based dw9807-vcm chip DT bindings to json-schema.
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > ---
-> >  .../media/i2c/dongwoon,dw9807-vcm.txt         |  9 ----
-> >  .../media/i2c/dongwoon,dw9807-vcm.yaml        | 43 +++++++++++++++++++
-> >  2 files changed, 43 insertions(+), 9 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
-> > deleted file mode 100644
-> > index c4701f1eaaf63..0000000000000
-> > --- a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
-> > +++ /dev/null
-> > @@ -1,9 +0,0 @@
-> > -Dongwoon Anatech DW9807 voice coil lens driver
-> > -
-> > -DW9807 is a 10-bit DAC with current sink capability. It is intended for
-> > -controlling voice coil lenses.
-> > -
-> > -Mandatory properties:
-> > -
-> > -- compatible: "dongwoon,dw9807-vcm"
-> > -- reg: I2C slave address
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
-> > new file mode 100644
-> > index 0000000000000..0cf153ed547fe
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
-> > @@ -0,0 +1,43 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (C) 2018, 2021 Intel Corporation
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9807-vcm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Dongwoon Anatech DW9807 voice coil lens driver
-> > +
-> > +maintainers:
-> > +  - Sakari Ailus <sakari.ailus@linux.intel.com>
-> > +
-> > +description: |
-> > +  DW9807 is a 10-bit DAC with current sink capability. It is intended for
-> > +  controlling voice coil lenses.
-> > +
-> > +properties:
-> > +
-> > +  compatible:
-> > +    const: "dongwoon,dw9807-vcm"
-> 
-> Nothing changed here about new lines and quotes.
+Hi Piotr,
 
-Oops. You're right. Accidentally sent wrong patches, will resend in a
-moment...
+On Tue, Mar 29, 2022 at 09:31:01AM +0200, Piotr Oniszczuk wrote:
+> 
+> 
+> > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 28.03.2022, o godz. 17:10:
+> > 
+> > 
+> > Changes since v8:
+> > - make hclk_vo a critical clock instead of enabling it in the hdmi driver
+> > - Fix vop2_setup_layer_mixer(), reported by Andy Yan
+> > - Limit planes possible_crtcs to actually existing crtcs
+> > 
+> > 
+> 
+> Sascha,
+> 
+> FYI:
+> I was hoping v9 will fix green screen issue i see when video player wants to draw to nv12 capable drm plane.
+> It look issue is still present :-(
+> 
+> You can easily reproduce with modetest utility:
+> 
+> modetest -P 43@67:1920x1080@NV12
+
+This only sets the overlay, but how did you get something on the screen
+initially?
+
+I did with "modetest -s 69@67:1920x1080 -d" and with this it works as
+expected, I can't reproduce any green screen issue here.
+
+I found another problem though which might or might not be related with
+your issue. I saw that the overlay is not exactly centered as it ought
+to be. This goes down to wrong delay settings for the overlay, the
+following patch fixes this.
+
+Sascha
+
+---------------------------------8<-------------------------------
+
+From f9a92401344e8aa3203fca2236dd4a40cc8690f6 Mon Sep 17 00:00:00 2001
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Wed, 30 Mar 2022 09:22:26 +0200
+Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
+
+---
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 69e9870d5f2dc..7dba7b9b63dc6 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -1979,10 +1979,10 @@ static void vop2_setup_dly_for_windows(struct vop2 *vop2)
+ 			sdly |= FIELD_PREP(RK3568_SMART_DLY_NUM__ESMART1, dly);
+ 			break;
+ 		case ROCKCHIP_VOP2_SMART0:
+-			sdly |= FIELD_PREP(RK3568_SMART_DLY_NUM__SMART1, dly);
++			sdly |= FIELD_PREP(RK3568_SMART_DLY_NUM__SMART0, dly);
+ 			break;
+ 		case ROCKCHIP_VOP2_SMART1:
+-			sdly |= FIELD_PREP(RK3568_SMART_DLY_NUM__SMART0, dly);
++			sdly |= FIELD_PREP(RK3568_SMART_DLY_NUM__SMART1, dly);
+ 			break;
+ 		}
+ 	}
+-- 
+2.30.2
 
 -- 
-Sakari Ailus
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
