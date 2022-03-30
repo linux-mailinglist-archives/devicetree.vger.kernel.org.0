@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9B84EBCEE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F074EBCF9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242167AbiC3Iun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 04:50:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60496 "EHLO
+        id S244471AbiC3Iyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 04:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233517AbiC3Ium (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:50:42 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A311AD96;
-        Wed, 30 Mar 2022 01:48:56 -0700 (PDT)
-X-UUID: db21df7b8ee4436aa0f8cf8fdcccebee-20220330
-X-UUID: db21df7b8ee4436aa0f8cf8fdcccebee-20220330
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1103062164; Wed, 30 Mar 2022 16:48:50 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 30 Mar 2022 16:48:49 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 30 Mar 2022 16:48:47 +0800
-Message-ID: <8e87e98a0b261dcdca9beb41bd1cd5030a4690ab.camel@mediatek.com>
-Subject: Re: [PATCH v3, 03/10] dt-bindings: media: mtk-vcodec: Adds encoder
- cores dt-bindings for mt8195
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Maoguang Meng" <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 30 Mar 2022 16:48:47 +0800
-In-Reply-To: <YkMFGbgYq5DhLjt8@robh.at.kernel.org>
-References: <20220317082230.23622-1-irui.wang@mediatek.com>
-         <20220317082230.23622-4-irui.wang@mediatek.com>
-         <Yj4s0zcHxz3U3wlc@robh.at.kernel.org>
-         <ab2b24eeb51048227ad7b2ac659617a7da5b2e45.camel@mediatek.com>
-         <YkG8ka1xY2k+HWi1@robh.at.kernel.org>
-         <e41e909f85e3891edb6b66d7d5a810af103113c8.camel@mediatek.com>
-         <YkMFGbgYq5DhLjt8@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244444AbiC3Iyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:54:37 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477416586
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:52:53 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-df02f7e2c9so8968346fac.10
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:52:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xKK8+BP7NtxMv6qMYZH++exm47xoAXQBFDmzLBKFFEk=;
+        b=Q/1QqH8fwztO9EvHEkorpaktENhQymoHQzhwzKfgkvf8CAw04OQ3/+/mANcXLhrwfw
+         DrHaNXxdbBB5HUea/Fg3Lwauae2/Nqjr8vU7ZE0RqZ3OcE4iV4qZtsl4Jb5Zy1QxohQO
+         pfiNmNYa/33X1m0qx52U/9fYqcqrzFVE22TTQ3zZIQoH752l810vWRdjf5eEZDwVWEr9
+         93lYgJFoysga5KAupuVq4tgqmUUC7z/wZSce+NxQ3AiI3MNtZwul8m73UTqq4zFd1FL2
+         p+/c8X5zgoN0qTROTGUZb0fDrBbSb7Vy7SBi5XHyAJG7tDyjhnQWz73B9KRF+XVYmr0/
+         zi6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xKK8+BP7NtxMv6qMYZH++exm47xoAXQBFDmzLBKFFEk=;
+        b=jJMDR86Q0RVMdCN+F/wwa/jg519qt84GfaX/SSDNyo7QxwKrbUfPL73zoJvAR7Y/Ws
+         utGRi2lg/zS2aE7fyk11J5tSznIwQMq+7shmPjiClRmp8aH7mvnRw//l9xVMs07tEPru
+         /qskGN37joPjuWwcWg4XvvEqcegGDh314EhIIkC/bYRcH3I+5AYfJNkC2pZh6Np0rr6w
+         R8gfZCRomlm+5/n1BwdYeofdCOv6pNgPPt56uV6Zg7m8PiYXJnop8vM/Ov03f8O/CvvT
+         ccA42kjh1ODu2/eCfYC+hdjcsxU66cnPW3ojY50ZYTVwheepLr1FYhrRkf6k5DUFzN5S
+         KNuA==
+X-Gm-Message-State: AOAM532NDwYDmymq30MUU5VL/gBbM/2I8VS/kkmZKKlKvIUhWOACGxTZ
+        +e63dCrvJYfnUwJH2iOZ1bFzSNR/90aFNQn2Sgb39g==
+X-Google-Smtp-Source: ABdhPJyoD7mvxWMcFkCd1XozTD5RmNF+aVQJlac3n/hu2/Scsd5osI9K5Mz2gkhtfF4K87i05JGRHOrWlyPQ5hcQy30=
+X-Received: by 2002:a05:6870:4789:b0:dd:e6e0:2471 with SMTP id
+ c9-20020a056870478900b000dde6e02471mr1617098oaq.195.1648630372658; Wed, 30
+ Mar 2022 01:52:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <20220329024921.2739338-1-andy.chiu@sifive.com>
+ <20220329024921.2739338-5-andy.chiu@sifive.com> <20220329155609.674caa9c@kernel.org>
+ <YkOxexKUQqmFVe9l@lunn.ch> <20220329184819.6d4354b6@kernel.org>
+In-Reply-To: <20220329184819.6d4354b6@kernel.org>
+From:   Andy Chiu <andy.chiu@sifive.com>
+Date:   Wed, 30 Mar 2022 16:50:35 +0800
+Message-ID: <CABgGipWrV_+AKvmJzNAqcwx34pgTt8OLX-gp342-WfDZAaTWmw@mail.gmail.com>
+Subject: Re: [PATCH v7 net 4/4] net: axiemac: use a phandle to reference pcs_phy
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, radhey.shyam.pandey@xilinx.com,
+        Robert Hancock <robert.hancock@calian.com>,
+        michal.simek@xilinx.com, davem@davemloft.net, pabeni@redhat.com,
+        robh+dt@kernel.org, linux@armlinux.org.uk, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Greentime Hu <greentime.hu@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,125 +71,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Rob,
+thanks for explaining this,
 
-A sample encoder hardware block diagram attached.
-On Tue, 2022-03-29 at 08:09 -0500, Rob Herring wrote:
-> On Tue, Mar 29, 2022 at 09:26:37AM +0800, Irui Wang wrote:
-> > Dear Rob,
-> > 
-> > Many thanks for your attention.
-> > 
-> > On Mon, 2022-03-28 at 08:48 -0500, Rob Herring wrote:
-> > > On Sat, Mar 26, 2022 at 10:00:55AM +0800, Irui Wang wrote:
-> > > > Dear Rob,
-> > > > 
-> > > > Thanks for your review and comments.
-> > > > 
-> > > > On Fri, 2022-03-25 at 15:57 -0500, Rob Herring wrote:
-> > > > > On Thu, Mar 17, 2022 at 04:22:23PM +0800, Irui Wang wrote:
-> > > > > > Adds encoder cores dt-bindings for mt8195.
-> 
-> [...]
-> 
-> > > > > > +      mediatek,core-id:
-> > > > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > +        description: |
-> > > > > > +          Current encoder core id.
-> > > > > 
-> > > > > What is this for and what does its value correspond to in the
-> > > > > h/w.
-> > > > > We 
-> > > > > generally don't do made up indices in DT.
-> > > > 
-> > > > It's for encoder core id, core@1a020000 must be core-0, 
-> > > > core@1b020000
-> > > > must be core-1, we add this property in each child node, so we
-> > > > can 
-> > > > get core-id in drivers. If it can't ref "uint32" types yaml,
-> > > > would 
-> > > > you mind giving some more suggestions ?
-> > > 
-> > > I still don't understand why it is needed. What is 'core-0'?
-> > > 
-> > > Is there some functional difference between the cores? If so,
-> > > describe 
-> > > that difference.
-> > > 
-> > > Rob
-> > 
-> > They are two different pieces of hardware, it's our encoder
-> > hardware
-> > design. There are two encoder hardware cores inside MT8195, named
-> > core0
-> > and core1(we can rename it, but core id should be declared),
-> > for core0, its module base address is 0x1A02_0000, uses IOMMU
-> > "vdo0_iommu" and power domain "POWER_DOMAIN_VENC",
-> > for core1, its module base address is 0x1B02_0000, uses IOMMU
-> > "vpp_iommu" and power domain "POWER_DOMAIN_VENC_CORE1".
-> > So the two encoder cores have their own base, IRQ, clock, power,
-> > etc.
-> > Each core can encode independently, moreover, they can work
-> > together
-> > for higher performance. 
-> > We will describe more details in YAML about it if it's OK for you.
-> 
-> All the resources you list are in the child nodes, so you don't need
-> 0 
-> and 1 numbering for those. 
-> 
-> Looking at the driver patches, the only thing I see distinguishing 
-> core numbers is this:
-> 
-> "frame#0 uses core#0, frame#1 uses core#1, frame#2 uses core#0...,
-> 
-> Lock the device and enable the clock by used core, for sequence
-> header encoding, it always uses core#0."
-> 
-> Is this a requirement in the h/w or just what the driver picked?
-> IOW, 
-> could frame#0 use core#1?
-No, it's a requirement in the h/w, driver trigger core start encoding
-is in order.
-About the encoder hardware block diagram, please check below:
---------------------------------------------------------------
-Input Buffer: 0     1     2     3     4     5     6
-              |     |     |     |     |     |     |
-              v     |     v     |     v     |     v
-          +-------+ | +-------+ | +-------+ | +-------+
-          | core0 | | | core0 | | | core0 | | | core0 |
-          +-------+ | +-------+ | +-------+ | +-------+
-              |     |     |     |     |     |     |
-              |     v     |     v     |     v     |
-              | +-------+ | +-------+ | +-------+ |
-              | | core1 | | | core1 | | | core1 | |
-              | +-------+ | +-------+ | +-------+ |
-              |     |     |     |     |     |     |
-              v     v     v     v     v     v     v    <parent>
---------------------------------------------------------------
-                        core || index                  <child>
-                             \/
-       +-----------------------------------------------+
-       |                  core0/core1                  |
-       |          enable/disable power/clk/irq         |
-       +-----------------------------------------------+
---------------------------------------------------------------
-As above , there are parent and child devices, child mean each venc
-core, the child device controls the information of each core
-independent which inlcude power/clk/irq.
-When start encoding, input buffer 0 will be encoded by core0, and input
-buffer 1 can be encoded by core1 even if buffer 0 has not been encoded
-done yet, after buffer 0 encoded done, buffer 2 will be encoded by
-core0, and buffer 1 encoded done by core1. These two encoder cores will
-encode each input in this overlapping manner.
+I will make the change accordingly and post it to net-next when available.
 
-We need manage each child device in parent device by core-id property.
-And we also need record current encoding input buffer, encode done
-output buffers and which one core is in used through core-id, because
-the two cores are encoding at the same time under one parent driver.
-> 
-> Rob
-
-Thanks
-Best Regards
-
+Andy
