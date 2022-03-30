@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCAC44ECAD8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 806574ECADD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349339AbiC3Rjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 13:39:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
+        id S240082AbiC3RjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 13:39:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349341AbiC3Rhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:37:55 -0400
+        with ESMTP id S1349346AbiC3RjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:39:06 -0400
 Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6402B2454
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:36:09 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id h1so25326294edj.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:36:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64FDC6808
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:37:20 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id h4so17527583edr.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:37:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=P0lhRYqIYHGnqARHlbaTecne6PqtYS3ApwLgK/2XwFE=;
-        b=F0sGniSa0e3/ySC5seVvyWchRUmignbiVoD+HBv6twtokEpP9am/Yft6GaxjUChWou
-         749bGqYuA2gJXs8VexbXmvXq4KFbuT4QCWfV5a9D6eg5Py7vHNv7NJE41qMCYlVhcHS7
-         HWnCE/jAIadBYDCqwhWsWNILukF1NQWtahAgg8xz4dNG+IgUBfZIVOdwcA2NZZV+tWtR
-         xccD3tb8ErS9bJPrKtg03GoqIAEPNisNE3G1HdIWKttFTGKSEFIgLbt9xZYDbA4RFmMJ
-         mWEQ0p8CMv26D+wHOG/1xOGNIh6avvRvYGDK3IOai2M4ilmrucL2fiNhVaFTS4b0EaEt
-         j3Ig==
+        bh=37nZjpO60xxhw+JhGH6lR+UcPHceWR6JokhRQOsZJzc=;
+        b=Y9OImyp0CCzDW/sTETs6Oeh2Q8dOngiPcTEP4MIS7vr96udYAzC8rHKECvJDt9Eqzl
+         4iukmxPudcgcFH0/jRiF2Q7fGJuzrWddCoVl5lEdBWbtZ6raVW08IvYiThZ3+PJ6lBCW
+         5Lwz0bIWijGZ/1V4jIy8BFVXf6M8XSkrl4NrOf/uBcQ1fL+StwDXfNPnoOz25WnKKavD
+         eVuIaibiVjpIICWqLyuGzG1WxP3PhlOjDWgbTTmGpbX/fubtIR1AfA4Nzdk1h8aIgA3j
+         egKxhxYEMU6YyRo5jnrAroMzW0mT8otY02piLFs7NdeAdHpFFss8nCbWEmUbpxBKR9Wb
+         kbeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=P0lhRYqIYHGnqARHlbaTecne6PqtYS3ApwLgK/2XwFE=;
-        b=0yu6kKUUBGKMZf2RUmbj457dloI7yUZmBDmrlRn8LV8/owtaqPMExrMoN8uYHSg9it
-         HK60i25LcrJ6PmmbgnH64ZI8/kCJ+kAsC0H4LQd3CMRIHndhIh4PyTx/4P6UalxwgEPw
-         aezrNeyRhWCgIyiGtm4tFEyRTqPdVBJfybZytPoxk1Alt4WFLZUbbX+/1OGhM7+cIU8J
-         iWTw0QpOShcD0r7zfanrAZJEjqH0C4pzDJhiNhQgFH9qxlQuuWjsXRkV3VeUPezU6qgf
-         G/gpQk/IhGB10O10/JkwxvT35mkiM3GzVELBjsYB8EWqFlcPBX1JHjVwHHkFf9Q35S0g
-         F9Uw==
-X-Gm-Message-State: AOAM530UHqw1xlRtVuvuX8Qnc7qbgWZPSN0IKnEEut5D95+XtxUCu8xG
-        nVd1fTGWUmAOW6wRHU2ObBWASbMOcrCtbIwQ
-X-Google-Smtp-Source: ABdhPJzzS6mJXsdB1TnJ8Wxj6Cjbytd4HW4FXqKXVrVOrnjLhVf6H3Z00F4HQGpUlP1DJsJsocX/bQ==
-X-Received: by 2002:aa7:d751:0:b0:419:2558:a78b with SMTP id a17-20020aa7d751000000b004192558a78bmr12099524eds.6.1648661768505;
-        Wed, 30 Mar 2022 10:36:08 -0700 (PDT)
+        bh=37nZjpO60xxhw+JhGH6lR+UcPHceWR6JokhRQOsZJzc=;
+        b=s/UoNshe8nhzSqQIk9CLBhJYXEiiBj/HanUfMk+4GIfVkJHw/pSfFQ3uWXUk54NTX+
+         WEZNTFihiBHxwIHUCZtRfSLfu9p8EXJKZqoeKyaKoNbkx+Xkc8hcM9HBbTyi3Lkse7Yg
+         7UHbAcq3ssCllTNPIfBXXqhTGfNtEMOqwei/XtmNlbDElsl6fpsf7HErGFcFAYaEm9Ue
+         T5NtfHJ/eVnj2FG4jEA4RkLuIyJffEhreIp8fxf5Wfr40IZbSc56ZpMHi8B0LQcJJTVQ
+         U+7RaJj4Yg1zoTcdo7aI5amFaD16nAH6pwpJ/OsxOjFi+ZSV9DYO+J5lnHbtHzXWajn8
+         e3JQ==
+X-Gm-Message-State: AOAM532V6NYoa6LVqHzlGUAjXZLbr/qFckvMb6G9QxOQLfPcmysB5nlD
+        4f154tIy8y1Q9ALT7aFKyEj0Ug==
+X-Google-Smtp-Source: ABdhPJz7vZ9tC2lfdY7bX8RqCZsPKm+v2cUMHBva3FJdit23w5ftndodH19y545GvEWK2Lzj6vutNg==
+X-Received: by 2002:a50:ff02:0:b0:418:e736:e003 with SMTP id a2-20020a50ff02000000b00418e736e003mr12208703edu.370.1648661839135;
+        Wed, 30 Mar 2022 10:37:19 -0700 (PDT)
 Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id jg22-20020a170907971600b006df9ff416ccsm8261364ejc.137.2022.03.30.10.36.07
+        by smtp.gmail.com with ESMTPSA id bx5-20020a0564020b4500b00418fca53406sm9911169edb.27.2022.03.30.10.37.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 10:36:08 -0700 (PDT)
-Message-ID: <9e9b4cda-e2e9-98ab-2239-2dc2d8f29440@linaro.org>
-Date:   Wed, 30 Mar 2022 19:36:07 +0200
+        Wed, 30 Mar 2022 10:37:18 -0700 (PDT)
+Message-ID: <569026b9-b73d-b8fb-c32f-8ed920bb73f4@linaro.org>
+Date:   Wed, 30 Mar 2022 19:37:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: power: renesas,apmu: Fix cpus property
- limits
+Subject: Re: [PATCH v1 1/3] dt-bindings: clock: convert
+ rockchip,rk3228-cru.txt to YAML
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <9ece1a07bbcb95abc9d80e6a6ecc95806a294a11.1648645279.git.geert+renesas@glider.be>
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
+        zhangqing@rock-chips.com
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220330121923.24240-1-jbx6244@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9ece1a07bbcb95abc9d80e6a6ecc95806a294a11.1648645279.git.geert+renesas@glider.be>
+In-Reply-To: <20220330121923.24240-1-jbx6244@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,25 +77,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 15:04, Geert Uytterhoeven wrote:
-> "make dtbs_check":
+On 30/03/2022 14:19, Johan Jonker wrote:
+> Convert rockchip,rk3228-cru.txt to YAML.
 > 
->     arch/arm/boot/dts/r8a7791-koelsch.dtb: apmu@e6152000: cpus:0: [6, 7] is too long
-> 	    From schema: Documentation/devicetree/bindings/power/renesas,apmu.yaml
+> Changes against original bindings:
+>   Add clocks and clock-names because the device has to have
+>   at least one input clock.
 > 
-> Correct the minimum and maximum number of CPUs controlled by a single
-> APMU instance.
-> 
-> Fixes: 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array schemas")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  Documentation/devicetree/bindings/power/renesas,apmu.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../bindings/clock/rockchip,rk3228-cru.txt    | 58 ---------------
+>  .../bindings/clock/rockchip,rk3228-cru.yaml   | 74 +++++++++++++++++++
+>  2 files changed, 74 insertions(+), 58 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
 > 
-
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
