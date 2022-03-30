@@ -2,66 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 202D34EBE96
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16C34EBEA0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245309AbiC3KWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 06:22:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42078 "EHLO
+        id S235983AbiC3KZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 06:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232733AbiC3KWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:22:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767F11D97C2
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:20:53 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZVRY-0007qA-T7; Wed, 30 Mar 2022 12:20:48 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZVRW-0004Wn-5Y; Wed, 30 Mar 2022 12:20:46 +0200
-Date:   Wed, 30 Mar 2022 12:20:46 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     "piotro.oniszczuk@google.com" <piotr.oniszczuk@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Message-ID: <20220330102046.GA12181@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220330072822.GX12181@pengutronix.de>
- <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
- <20220330094556.GZ12181@pengutronix.de>
- <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
+        with ESMTP id S232733AbiC3KZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:25:54 -0400
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1CAAC2241E2;
+        Wed, 30 Mar 2022 03:24:09 -0700 (PDT)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 30 Mar 2022 19:24:09 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 831202058443;
+        Wed, 30 Mar 2022 19:24:09 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 30 Mar 2022 19:24:09 +0900
+Received: from [10.212.182.122] (unknown [10.212.182.122])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 94A70B62B7;
+        Wed, 30 Mar 2022 19:24:08 +0900 (JST)
+Subject: Re: [PATCH v2 5/5] dt-bindings: phy: uniphier: Clean up clock-names
+ and reset-names using compatible string
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1648617651-9004-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1648617651-9004-6-git-send-email-hayashi.kunihiko@socionext.com>
+ <ecc821cb-4dd0-48e6-668d-45c178efbbf0@linaro.org>
+ <076c1292-053e-759d-3e6f-c262093d9d1c@socionext.com>
+ <65d1eebd-f460-4073-4dc1-b1de62aa2ee4@linaro.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <7f1c3ded-5405-44d8-c5c2-8f7d7a42b1fc@socionext.com>
+Date:   Wed, 30 Mar 2022 19:24:08 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:17:21 up 109 days, 19:02, 75 users,  load average: 0.10, 0.15,
- 0.19
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+In-Reply-To: <65d1eebd-f460-4073-4dc1-b1de62aa2ee4@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,105 +57,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 12:01:05PM +0200, piotro.oniszczuk@google.com wrote:
-> 
-> 
-> > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 11:45:
-> > 
-> > On Wed, Mar 30, 2022 at 10:41:56AM +0200, piotro.oniszczuk@google.com wrote:
-> > 
-> > Let me rephrase this: The above sets a plane, but it doesn't set a mode
-> > on the crtc. When my system boots up then the output of modetest looks
-> > like this:
-> > 
-> > Encoders:
-> > id      crtc    type    possible crtcs  possible clones
-> > 68      0       TMDS    0x00000001      0x00000001
-> > Connectors:
-> > id      encoder status          name            size (mm)       modes  encoders
-> > 69      0       connected       HDMI-A-1        530x300         9      68
-> > CRTCs:
-> > id      fb      pos     size
-> > 67      0       (0,0)   (0x0)
-> >  #0  nan 0 0 0 0 0 0 0 0 0 flags: ; type: 
-> > 
-> > No mode is set on the CRTC and the encoder/connector/crtc are not bound
-> > to each other, consequently the screen is in standby. "modetest -P
-> > 43@67:1920x1080@NV12" doesn't change this, still no mode set. Hence my
-> > question: How did you set a mode initially?
-> 
-> Ah ok. I see your point.
-> mode is set by app (player). 
-> 
-> Sequence was like this:
-> -boot board
-> -start app
-> -on UI select playback
-> -playback has green screen
-> -exit app
-> -run modetest -P 43@67:1920x1080@NV12 (the same green screen like in playback)
-> -run modetest -P 49@67:1920x1080@NV12 (works ok)
-> -run modetest -P 43@67:1920x1080@NV12 (now works ok)
-> 
-> > 
-> >>> 
-> >> 
-> >> I'm not sure that above command only sets plane.
-> >> On other SoCs i’m testing it gives expected results: diagonal colored stripes.
-> >> There is single exception: rk356x with vop2 - where screen is green unless i „fix/enable” by playing with plane #69   
-> >> 
-> >>> I did with "modetest -s 69@67:1920x1080 -d" and with this it works as
-> >>> expected, I can't reproduce any green screen issue here.
-> >> 
-> >> I see you are using plane #69.
-> >> Why not #43?
-> > 
-> > I used "modetest -s 69@67:1920x1080 -d" to set a mode. The '69' is the
-> > connector id, not a plane.
-> 
-> ack.
-> typo from my side.
-> 
-> it was
-> modetest -P 49@67:1920x1080@NV12
-> 
-> 
-> > 
-> >> Is plane #43 working ok for you?
-> > 
-> > Yes.
-> 
-> So it looks your testing method of #43 is not meaningful for verifying issue we are discussing here.
-> 
-> In my case:
-> 12 SOC (except rk356x VOP2) gives me:
-> -boot board
-> -start app
-> -on UI select playback
-> -playback is ok
-> -exit app
-> -run modetest -P XX@YY:1920x1080@NV12 (diagonal stripes)
-> 
-> (XX/YY are plane/connector elected by app: plane@conector with format matching provider format) 
-> 
-> rk356x with vop2 v9:
-> -boot board
-> -start app
-> -on UI select playback
-> -playback has green screen
-> -exit app
-> -run modetest -P 43@67:1920x1080@NV12 (the same green screen like in playback)
-> -run modetest -P 49@67:1920x1080@NV12 (works ok)
-> -run modetest -P 43@67:1920x1080@NV12 (now works ok)
+Hi Krzysztof,
 
-Does it change anything if you do a "modetest -s 69@67:1920x1080" before
-starting the app? Or if you run "modetest -P 43@67:1920x1080@NV12"
-before starting the app? Or other combinations thereof?
+On 2022/03/30 18:45, Krzysztof Kozlowski wrote:
+> On 30/03/2022 11:16, Kunihiko Hayashi wrote:
+>> Hi Krzysztof,
+>>
+>> On 2022/03/30 17:13, Krzysztof Kozlowski wrote:
+>>> On 30/03/2022 07:20, Kunihiko Hayashi wrote:
+>>>> Instead of "oneOf:" choices, use "allOf:" and "if:" to define
+>>>> clock-names
+>>>> and reset-names that can be taken by the compatible string.
+>>>>
+>>>> The order of clock-names and reset-names doesn't change here.
+>>>>
+>>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>>> ---
+>>>>    .../phy/socionext,uniphier-ahci-phy.yaml      | 73 ++++++++++++------
+>>>>    .../phy/socionext,uniphier-pcie-phy.yaml      | 37 ++++++---
+>>>>    .../phy/socionext,uniphier-usb3hs-phy.yaml    | 75 +++++++++++++-----
+>>>>    .../phy/socionext,uniphier-usb3ss-phy.yaml    | 77 ++++++++++++++-----
+>>>>    4 files changed, 188 insertions(+), 74 deletions(-)
+>>>>
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+>>>> b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+>>>> index 14f7579e7daa..61d9306e1852 100644
+>>>> ---
+>>>> a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+>>>> +++
+>>>> b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+>>>> @@ -30,33 +30,62 @@ properties:
+>>>>        minItems: 1
+>>>>        maxItems: 2
+>>>>
+>>>> -  clock-names:
+>>>> -    oneOf:
+>>>> -      - items:          # for PXs2
+>>>> -          - const: link
+>>>> -      - items:          # for Pro4
+>>>> -          - const: link
+>>>> -          - const: gio
+>>>> -      - items:          # for others
+>>>> -          - const: link
+>>>> -          - const: phy
+>>>> +  clock-names: true
+>>>>
+>>>>      resets:
+>>>>        minItems: 2
+>>>>        maxItems: 6
+>>>>
+>>>> -  reset-names:
+>>>> -    oneOf:
+>>>> -      - items:          # for Pro4
+>>>> -          - const: link
+>>>> -          - const: gio
+>>>> -          - const: phy
+>>>> -          - const: pm
+>>>> -          - const: tx
+>>>> -          - const: rx
+>>>> -      - items:          # for others
+>>>> -          - const: link
+>>>> -          - const: phy
+>>>> +  reset-names: true
+>>>> +
+>>>> +allOf:
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: socionext,uniphier-pro4-ahci-phy
+>>>> +    then:
+>>>> +      properties:
+>>>> +        clock-names:
+>>>> +          items:
+>>>> +            - const: link
+>>>> +            - const: gio
+>>>> +        reset-names:
+>>>> +          items:
+>>>> +            - const: link
+>>>> +            - const: gio
+>>>> +            - const: phy
+>>>> +            - const: pm
+>>>> +            - const: tx
+>>>> +            - const: rx
+>>>
+>>> Constrain also everywhere clocks and resets, so here should be:
+>>>     resets:
+>>>       minItems: 6
+>>>       maxItems: 6
+>>
+>> If I put the constraint here, it would conflict with the original one.
+>> Should I also replace the original resets
+>>
+>>       resets:
+>>         minItems: 2
+>>         maxItems: 6
+>>
+>> with "resets: true"?
+> 
+> It should not conflict. Check the bindings for Samsung Exynos clock I
+> sent you last time. In the main "properties" you put the widest
+> constraints, like you have now (2-6). Then for each compatible you
+> narrow it (2-2, 6-6).
+> 
+> You can later test it by adding/removing clocks to check if constraints
+> are properly working.
 
-Sascha
+I understand. The main "properties" should be the widest constraints,
+and I checked that Exynos clock is set to the widest (1-10).
+I'll add the constraints.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thank you,
+
+---
+Best Regards
+Kunihiko Hayashi
