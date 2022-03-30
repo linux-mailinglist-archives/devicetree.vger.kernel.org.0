@@ -2,174 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40A494EC992
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EEE14EC9C1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348739AbiC3QWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 12:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
+        id S1348874AbiC3QiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 12:38:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348777AbiC3QWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:22:07 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978047B137;
-        Wed, 30 Mar 2022 09:20:16 -0700 (PDT)
-X-UUID: 3a9f5d6c95384520b331cc0095484ebf-20220331
-X-UUID: 3a9f5d6c95384520b331cc0095484ebf-20220331
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1884505418; Thu, 31 Mar 2022 00:20:11 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 31 Mar 2022 00:20:10 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 31 Mar 2022 00:20:09 +0800
-Message-ID: <7462933d959bd8ed1b7e3259f607a2e47436371c.camel@mediatek.com>
-Subject: Re: [v7 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
- speaker
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>,
-        <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Date:   Thu, 31 Mar 2022 00:20:09 +0800
-In-Reply-To: <20220330152026.6nuigsldx46lue44@notapiano>
-References: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
-         <20220324064511.10665-3-jiaxin.yu@mediatek.com>
-         <20220329223002.uo7kiemopkh7ak4x@notapiano>
-         <dee3fbb7c9f0c3e1f11143db1d6fc4381cab827f.camel@mediatek.com>
-         <20220330152026.6nuigsldx46lue44@notapiano>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244806AbiC3Qhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:37:53 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E407C144B60;
+        Wed, 30 Mar 2022 09:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ALx8ARvWqSkByuqgzD/rMzGpI9BdpJ6pBXa8AsrOFxA=; b=CPOWA5ININhL05ojuoEkeHuNuU
+        cEYdETw3a70DK4U5wPGl/VU6HrTn5oSnArEajcgUdD95uZocLCIH7GoST3wO003+MKkteqnbbt8yV
+        M8YICMTPZVMA9KycIEPLqaex+E5KTmCB9jRVFaLKWcz0FU0vnlxdz5gKMdRm1k6+wXR0+L4ZLyMXj
+        Xuy+Whmv1WAfdIs6LPV90DtIUPjGfMfMoV1slspt9E1vU47LKB0frosFMy+4Ojos9b2JMLbvhe864
+        H64Amy5UHljCpMHv8oCGdWZrlDzydn8ViTS4pE8LCx6IjDDUCNfADHrRWrprz7aJuNuSeMj3sxueK
+        M7IQo0GA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58022)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1nZbId-0003Su-LW; Wed, 30 Mar 2022 17:35:59 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1nZbIc-0006m8-9u; Wed, 30 Mar 2022 17:35:58 +0100
+Date:   Wed, 30 Mar 2022 17:35:58 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
+Message-ID: <YkSG7oBcDe6lTCOO@shell.armlinux.org.uk>
+References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+ <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
+ <20220315190733.lal7c2xkaez6fz2v@skbuf>
+ <deed2e82-0d93-38d9-f7a2-4137fa0180e6@canonical.com>
+ <20220316101854.imevzoqk6oashrgg@skbuf>
+ <YkR8tTWabfTRLarB@shell.armlinux.org.uk>
+ <CAL_JsqKFbU6VyLu+as_bZxWsfHRf5mJGeExjZ2ZJQqOcJchC+g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKFbU6VyLu+as_bZxWsfHRf5mJGeExjZ2ZJQqOcJchC+g@mail.gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-03-30 at 11:20 -0400, Nícolas F. R. A. Prado wrote:
-
-> > > >  static int mt8192_mt6359_dev_probe(struct platform_device
-> > > > *pdev)
-> > > >  {
-> > > >  	struct snd_soc_card *card;
-> > > > -	struct device_node *platform_node, *hdmi_codec;
-> > > > +	struct device_node *platform_node, *hdmi_codec,
-> > > > *speaker_codec;
-> > > >  	int ret, i;
-> > > >  	struct snd_soc_dai_link *dai_link;
-> > > >  	struct mt8192_mt6359_priv *priv;
-> > > >  
-> > > > -	platform_node = of_parse_phandle(pdev->dev.of_node,
-> > > > -					 "mediatek,platform",
-> > > > 0);
-> > > > -	if (!platform_node) {
-> > > > -		dev_err(&pdev->dev, "Property 'platform'
-> > > > missing or
-> > > > invalid\n");
-> > > > +	card = (struct snd_soc_card
-> > > > *)of_device_get_match_data(&pdev-
-> > > > > dev);
-> > > > 
-> > > > +	if (!card)
-> > > >  		return -EINVAL;
-> > > > +	card->dev = &pdev->dev;
-> > > > +
-> > > > +	platform_node = of_parse_phandle(pdev->dev.of_node,
-> > > > "mediatek,platform", 0);
-> > > > +	if (!platform_node) {
-> > > > +		ret = -EINVAL;
-> > > > +		dev_err_probe(&pdev->dev, ret, "Property
-> > > > 'platform'
-> > > > missing or invalid\n");
-> > > > +		goto err_platform_node;
-> > > >  	}
-> > > >  
-> > > > -	card = (struct snd_soc_card
-> > > > *)of_device_get_match_data(&pdev-
-> > > > > dev);
-> > > > 
-> > > > -	if (!card) {
-> > > > +	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
-> > > > "mediatek,hdmi-codec", 0);
-> > > > +	if (!hdmi_codec) {
-> > > >  		ret = -EINVAL;
-> > > > -		goto put_platform_node;
-> > > > +		dev_err_probe(&pdev->dev, ret, "Property 'hdmi-
-> > > > codec'
-> > > > missing or invalid\n");
-> > > > +		goto err_hdmi_codec;
-> > > 
-> > > You're making hdmi-codec a required property, since now the
-> > > driver
-> > > fails to
-> > > probe without it. Is it really required though? The driver code
-> > > still
-> > > checks for
-> > > the presence of hdmi_codec before using it, so shouldn't it be
-> > > fine
-> > > to let it be
-> > > optional?
-> > > 
-> > > If it is really required now though, then I guess at least the
-> > > dt-
-> > > binding should
-> > > be updated accordingly. (Although I think this would technically
-> > > break the ABI?)
-> > > 
-> > > Thanks,
-> > > Nícolas
-> > 
-> > Hi Nícolas,
-> > 
-> > Thanks for your comment. Indeed I made hdmi-codec a required
-> > property,
-> > because it is a must in this machine driver. I prefer to report
-> > errors
-> > during the registration rather than during the use.
+On Wed, Mar 30, 2022 at 11:09:42AM -0500, Rob Herring wrote:
+> On Wed, Mar 30, 2022 at 10:52 AM Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
+> >
+> > On Wed, Mar 16, 2022 at 10:18:55AM +0000, Ioana Ciornei wrote:
+> > > On Wed, Mar 16, 2022 at 09:23:45AM +0100, Krzysztof Kozlowski wrote:
+> > > > On 15/03/2022 20:07, Ioana Ciornei wrote:
+> > > > > On Tue, Mar 15, 2022 at 07:21:59PM +0100, Krzysztof Kozlowski wrote:
+> > > > >> On 15/03/2022 13:33, Ioana Ciornei wrote:
+> > > > >>> Convert the sff,sfp.txt bindings to the DT schema format.
+> > > > >>>
+> > > > >>> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> > > > >>> ---
+> > > > >
+> > > > > (..)
+> > > > >
+> > > > >>> +maintainers:
+> > > > >>> +  - Russell King <linux@armlinux.org.uk>
+> > > > >>> +
+> > > > >>> +properties:
+> > > > >>> +  compatible:
+> > > > >>> +    enum:
+> > > > >>> +      - sff,sfp  # for SFP modules
+> > > > >>> +      - sff,sff  # for soldered down SFF modules
+> > > > >>> +
+> > > > >>> +  i2c-bus:
+> > > > >>
+> > > > >> Thanks for the conversion.
+> > > > >>
+> > > > >> You need here a type because this does not look like standard property.
+> > > > >
+> > > > > Ok.
+> > > > >
+> > > > >>
+> > > > >>> +    description:
+> > > > >>> +      phandle of an I2C bus controller for the SFP two wire serial
+> > > > >>> +
+> > > > >>> +  maximum-power-milliwatt:
+> > > > >>> +    maxItems: 1
+> > > > >>> +    description:
+> > > > >>> +      Maximum module power consumption Specifies the maximum power consumption
+> > > > >>> +      allowable by a module in the slot, in milli-Watts. Presently, modules can
+> > > > >>> +      be up to 1W, 1.5W or 2W.
+> > > > >>> +
+> > > > >>> +patternProperties:
+> > > > >>> +  "mod-def0-gpio(s)?":
+> > > > >>
+> > > > >> This should be just "mod-def0-gpios", no need for pattern. The same in
+> > > > >> all other places.
+> > > > >>
+> > > > >
+> > > > > The GPIO subsystem accepts both suffixes: "gpio" and "gpios", see
+> > > > > gpio_suffixes[]. If I just use "mod-def0-gpios" multiple DT files will
+> > > > > fail the check because they are using the "gpio" suffix.
+> > > > >
+> > > > > Why isn't this pattern acceptable?
+> > > >
+> > > > Because original bindings required gpios, so DTS are wrong, and the
+> > > > pattern makes it difficult to grep and read such simple property.
+> > > >
+> > > > The DTSes which do not follow bindings should be corrected.
+> > > >
+> > >
+> > > Russell, do you have any thoughts on this?
+> > > I am asking this because you were the one that added the "-gpios" suffix
+> > > in the dtbinding and the "-gpio" usage in the DT files so I wouldn't
+> > > want this to diverge from your thinking.
+> > >
+> > > Do you have a preference?
+> >
+> > SFP support predated (in my tree) the deprecation of the -gpio suffix,
+> > and despite the SFP binding doc being sent for review, it didn't get
+> > reviewed so the issue was never picked up.
 > 
-> But what do you mean that it is required in this machine driver? The
-> code checks
-> for presence of hdmi_codec and ignores it if it's not set, so it does
-> really
-> seem optional to me. Also, I have tested this driver on mt8192-
-> asurada-spherion
-> without hdmi-codec set in the DT and the speaker and headphone sound
-> works just
-> fine.
+> Really?
 > 
-> Besides, there might be machines using this driver that don't support
-> HDMI, and
-> requiring an hdmi-codec in the DT for them would not make any sense.
-> So keeping
-> hdmi-codec as optional seems like the most sensible solution to me,
-> really.
-> 
-> Thanks,
-> Nícolas
+> https://lore.kernel.org/all/CAL_JsqL_7gG8FSEJDXu=37DFpHjfLhQuUhPFRKcScYTzM4cNyg@mail.gmail.com/
 
-Yes, I agree with you. In the past, if there was a new board without
-HDMI audio, we would choose to add a new machine driver and a new dt-
-bindings. But now, in order to simplify the code, we tend to share one
-machine driver for boards that use similar codecs. And we are doing
-this now.
+Yes. I said "in my tree" not "in Linus' tree". It dates from shortly
+after the first SolidRun Clearfog arrived here, first set of patches
+were based on v4.3-rc2.
 
-Thanks,
-Jiaxin.Yu
+Remember, when development eventually gets submitted as patches, even
+if there are no changes, if the patches are then applied, they get the
+date of the _email_ not of their creation, and there can be several
+years between creation and submission.
 
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
