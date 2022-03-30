@@ -2,112 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 197E64ECD73
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 21:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AFDF4ECD78
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 21:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbiC3TrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 15:47:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32852 "EHLO
+        id S230286AbiC3TsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 15:48:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbiC3TrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 15:47:12 -0400
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FFF31344;
-        Wed, 30 Mar 2022 12:45:25 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id 10so19094568qtz.11;
-        Wed, 30 Mar 2022 12:45:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZCXCd2iIOo22xM2jfU+S+H+4IKRxX6EvhHPW4QxClBo=;
-        b=qcDNFl9RXgzCngmHLpJQGX4nb9rLqegcXFV36wFXLg9fdtsTRhzqL1jKBNagq1s83K
-         Jw7yDvTj9iw+0Vti3m8FGm5Ip3oCN0BL9C1gSZJJ/5ox5FNm06famYmDvZ9Ma+svd1OB
-         GkCz0ej1kxG1ivUMr7LBWmOyjd8brAvu9G6umZgnjgav3kLTlefZgE1dYxCvKRN3sjJa
-         tW69LuJhL+dc2NXsL0fcGRvAJf4rMNk7q5mvEK3/vb2CBSvdT2W7+V3XH6H8tV7YZWHw
-         NOMbmlf8fYJqlwLXFb7fWYFNR5Uxvvkq8YQx2LS+zLRSjZEA4sjLGWInlf1gq3dJVhPB
-         nTew==
-X-Gm-Message-State: AOAM533BpYEGc8nDGmq/cizH6pfige48WZ5t/zQ6FkkD4ZEQQaR+D+CF
-        /Rop5ncswfH4SsEl4gGOn0wpoqGfwprwwA==
-X-Google-Smtp-Source: ABdhPJzfgAYsSxQiN+hm/VXtjf/8AdLF+BGnr2Txmb1crZl/OL7UJHSjhdCD4XB1F56apOZcFznDaw==
-X-Received: by 2002:a05:622a:120b:b0:2e0:6878:cea with SMTP id y11-20020a05622a120b00b002e068780ceamr1086218qtx.547.1648669524436;
-        Wed, 30 Mar 2022 12:45:24 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05620a10b000b0067d82ac1de4sm10848704qkk.114.2022.03.30.12.45.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 12:45:24 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id v35so38564258ybi.10;
-        Wed, 30 Mar 2022 12:45:23 -0700 (PDT)
-X-Received: by 2002:a25:c049:0:b0:634:6751:e8d2 with SMTP id
- c70-20020a25c049000000b006346751e8d2mr1389254ybf.6.1648669523727; Wed, 30 Mar
- 2022 12:45:23 -0700 (PDT)
+        with ESMTP id S230303AbiC3TsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 15:48:17 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0213F49C9F;
+        Wed, 30 Mar 2022 12:46:30 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22UJjoND084456;
+        Wed, 30 Mar 2022 14:45:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1648669550;
+        bh=7BZJswZpinoSi+llRpQFg4O5kYc5qsNk6rlACahA5Pw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=lq2WPqHRurspXI3AN0UUGyrNPfg23mskrg++iURzy+GNPlSxBRrO42JAy5Gu1wcPi
+         yqh7jzg5e96D5XdqX6Fv/YsL2As2NnJvtLPsSif8V8hPELpjGf+rRU7C0+nTPcmyfv
+         pHVRw/mJO20E5ZtpsTDCoK+ONX6+FHB0XRpRk2kk=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22UJjoLR019064
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Mar 2022 14:45:50 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 30
+ Mar 2022 14:45:50 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 30 Mar 2022 14:45:50 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22UJjnvL004221;
+        Wed, 30 Mar 2022 14:45:49 -0500
+Date:   Thu, 31 Mar 2022 01:15:48 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>
+CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>
+Subject: Re: [PATCH v4 04/11] spi: aspeed: Add support for direct mapping
+Message-ID: <20220330194548.zldbkaoctlhgwcl2@ti.com>
+References: <20220325100849.2019209-1-clg@kaod.org>
+ <20220325100849.2019209-5-clg@kaod.org>
 MIME-Version: 1.0
-References: <20220315142644.17660-1-biju.das.jz@bp.renesas.com>
- <20220315142644.17660-4-biju.das.jz@bp.renesas.com> <CAMuHMdVHWvkZyjPi4i5AG2iYgMp7euS=Nf-v_rYNVS10jiW6eQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdVHWvkZyjPi4i5AG2iYgMp7euS=Nf-v_rYNVS10jiW6eQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 30 Mar 2022 21:45:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWmhfQJq53U6rKGkwGLFdnNoL-RF6qpUoE+7c0=J-ZUFg@mail.gmail.com>
-Message-ID: <CAMuHMdWmhfQJq53U6rKGkwGLFdnNoL-RF6qpUoE+7c0=J-ZUFg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] dt-bindings: clock: Add R9A07G043 CPG Clock and
- Reset Definitions
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220325100849.2019209-5-clg@kaod.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 9:27 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Tue, Mar 15, 2022 at 3:26 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Define RZ/G2UL (R9A07G043U) Clock Pulse Generator Core Clock and module
-> > clock outputs, as listed in Table 7.1.4.2 ("Clock List r0.51") and also
-> > add Reset definitions referring to registers CPG_RST_* in Section 7.2.3
-> > ("Register configuration") of the RZ/G2UL Hardware User's Manual (Rev.
-> > 0.51, Nov. 2021).
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v2->v3:
-> >  * Removed leading u/U from r9a07g043
-> >  * renamed the file r9a07g043u-cpg.h->r9a07g043-cpg.h
-> >  * Prepared Common Module Clock/Reset indices for RZ/G2UL and RZ/Five
-> >  * Prepared RZ/G2UL specific Module Clock/Reset indices.
->
-> Thanks for the update!
->
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
+On 25/03/22 11:08AM, Cédric Le Goater wrote:
+> Use direct mapping to read the flash device contents. This operation
+> mode is called "Command mode" on Aspeed SoC SMC controllers. It uses a
+> Control Register for the settings to apply when a memory operation is
+> performed on the flash device mapping window.
+> 
+> If the window is not big enough, fall back to the "User mode" to
+> perform the read.
+> 
+> Since direct mapping now handles all reads of the flash device
+> contents, also use memcpy_fromio for other address spaces, such as
+> SFDP.
+> 
+> Direct mapping for writes will come later when validated.
+> 
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> Tested-by: Joel Stanley <joel@jms.id.au>
+> Tested-by: Tao Ren <rentao.bupt@gmail.com>
+> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+> ---
+>  drivers/spi/spi-aspeed-smc.c | 67 ++++++++++++++++++++++++++++++++++--
+>  1 file changed, 65 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/spi/spi-aspeed-smc.c b/drivers/spi/spi-aspeed-smc.c
+> index 997ec2e45118..0951766baef4 100644
+> --- a/drivers/spi/spi-aspeed-smc.c
+> +++ b/drivers/spi/spi-aspeed-smc.c
+> @@ -322,8 +322,8 @@ static int do_aspeed_spi_exec_op(struct spi_mem *mem, const struct spi_mem_op *o
+>  		if (!op->addr.nbytes)
+>  			ret = aspeed_spi_read_reg(chip, op);
+>  		else
+> -			ret = aspeed_spi_read_user(chip, op, op->addr.val,
+> -						   op->data.nbytes, op->data.buf.in);
+> +			memcpy_fromio(op->data.buf.in, chip->ahb_base + op->addr.val,
+> +				      op->data.nbytes);
 
-> > +/* R9A07G043 Common Module Clocks */
-> > +#define R9A07G043_IA55_CLK             0
-> > +#define R9A07G043_IA55_PCLK            1
->
-> I think IA55 does not exist on RZ/Five?
+I think I commented on this earlier too, though I failed to respond to 
+your reply. Let me bring the topic back up. I think this can cause an 
+invalid memory address to be accessed. Not all SPI MEM consumers will 
+use dirmap APIs, and they won't use them all the time. For example, SPI 
+NOR can perform some operations to reset the flash before shutting down. 
+For example, SPI NOR turns off 4byte address mode during shutdown. This 
+will be a register read/write operation, which usually has a different 
+opcode.
 
-Looks like I was wrong, and it does exist.
+So I think you should keep dirmap and exec_op() independent of each 
+other.
 
-Gr{oetje,eeting}s,
+>  	} else {
+>  		if (!op->addr.nbytes)
+>  			ret = aspeed_spi_write_reg(chip, op);
+> @@ -403,10 +403,73 @@ static int aspeed_spi_chip_set_default_window(struct aspeed_spi_chip *chip)
+>  	return chip->ahb_window_size ? 0 : -1;
+>  }
+>  
+> +static int aspeed_spi_dirmap_create(struct spi_mem_dirmap_desc *desc)
+> +{
+> +	struct aspeed_spi *aspi = spi_controller_get_devdata(desc->mem->spi->master);
+> +	struct aspeed_spi_chip *chip = &aspi->chips[desc->mem->spi->chip_select];
+> +	struct spi_mem_op *op = &desc->info.op_tmpl;
+> +	u32 ctl_val;
+> +	int ret = 0;
+> +
+> +	chip->clk_freq = desc->mem->spi->max_speed_hz;
+> +
+> +	/* Only for reads */
+> +	if (op->data.dir != SPI_MEM_DATA_IN)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (desc->info.length > chip->ahb_window_size)
+> +		dev_warn(aspi->dev, "CE%d window (%dMB) too small for mapping",
+> +			 chip->cs, chip->ahb_window_size >> 20);
+> +
+> +	/* Define the default IO read settings */
+> +	ctl_val = readl(chip->ctl) & ~CTRL_IO_CMD_MASK;
+> +	ctl_val |= aspeed_spi_get_io_mode(op) |
+> +		op->cmd.opcode << CTRL_COMMAND_SHIFT |
+> +		CTRL_IO_DUMMY_SET(op->dummy.nbytes / op->dummy.buswidth) |
+> +		CTRL_IO_MODE_READ;
+> +
+> +	/* Tune 4BYTE address mode */
+> +	if (op->addr.nbytes) {
+> +		u32 addr_mode = readl(aspi->regs + CE_CTRL_REG);
+> +
+> +		if (op->addr.nbytes == 4)
+> +			addr_mode |= (0x11 << chip->cs);
+> +		else
+> +			addr_mode &= ~(0x11 << chip->cs);
+> +		writel(addr_mode, aspi->regs + CE_CTRL_REG);
+> +	}
+> +
+> +	/* READ mode is the controller default setting */
+> +	chip->ctl_val[ASPEED_SPI_READ] = ctl_val;
+> +	writel(chip->ctl_val[ASPEED_SPI_READ], chip->ctl);
+> +
+> +	dev_info(aspi->dev, "CE%d read buswidth:%d [0x%08x]\n",
+> +		 chip->cs, op->data.buswidth, chip->ctl_val[ASPEED_SPI_READ]);
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t aspeed_spi_dirmap_read(struct spi_mem_dirmap_desc *desc,
+> +				      u64 offset, size_t len, void *buf)
+> +{
+> +	struct aspeed_spi *aspi = spi_controller_get_devdata(desc->mem->spi->master);
+> +	struct aspeed_spi_chip *chip = &aspi->chips[desc->mem->spi->chip_select];
+> +
+> +	/* Switch to USER command mode if mapping window is too small */
+> +	if (chip->ahb_window_size < offset + len)
+> +		aspeed_spi_read_user(chip, &desc->info.op_tmpl, offset, len, buf);
+> +	else
+> +		memcpy_fromio(buf, chip->ahb_base + offset, len);
+> +
+> +	return len;
+> +}
+> +
+>  static const struct spi_controller_mem_ops aspeed_spi_mem_ops = {
+>  	.supports_op = aspeed_spi_supports_op,
+>  	.exec_op = aspeed_spi_exec_op,
+>  	.get_name = aspeed_spi_get_name,
+> +	.dirmap_create = aspeed_spi_dirmap_create,
+> +	.dirmap_read = aspeed_spi_dirmap_read,
+>  };
+>  
+>  static void aspeed_spi_chip_set_type(struct aspeed_spi *aspi, unsigned int cs, int type)
+> -- 
+> 2.34.1
+> 
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
