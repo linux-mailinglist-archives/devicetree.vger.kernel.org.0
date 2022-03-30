@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F074EBCF9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48954EBD10
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244471AbiC3Iyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 04:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43026 "EHLO
+        id S244508AbiC3JCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 05:02:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244444AbiC3Iyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:54:37 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477416586
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:52:53 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-df02f7e2c9so8968346fac.10
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:52:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xKK8+BP7NtxMv6qMYZH++exm47xoAXQBFDmzLBKFFEk=;
-        b=Q/1QqH8fwztO9EvHEkorpaktENhQymoHQzhwzKfgkvf8CAw04OQ3/+/mANcXLhrwfw
-         DrHaNXxdbBB5HUea/Fg3Lwauae2/Nqjr8vU7ZE0RqZ3OcE4iV4qZtsl4Jb5Zy1QxohQO
-         pfiNmNYa/33X1m0qx52U/9fYqcqrzFVE22TTQ3zZIQoH752l810vWRdjf5eEZDwVWEr9
-         93lYgJFoysga5KAupuVq4tgqmUUC7z/wZSce+NxQ3AiI3MNtZwul8m73UTqq4zFd1FL2
-         p+/c8X5zgoN0qTROTGUZb0fDrBbSb7Vy7SBi5XHyAJG7tDyjhnQWz73B9KRF+XVYmr0/
-         zi6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xKK8+BP7NtxMv6qMYZH++exm47xoAXQBFDmzLBKFFEk=;
-        b=jJMDR86Q0RVMdCN+F/wwa/jg519qt84GfaX/SSDNyo7QxwKrbUfPL73zoJvAR7Y/Ws
-         utGRi2lg/zS2aE7fyk11J5tSznIwQMq+7shmPjiClRmp8aH7mvnRw//l9xVMs07tEPru
-         /qskGN37joPjuWwcWg4XvvEqcegGDh314EhIIkC/bYRcH3I+5AYfJNkC2pZh6Np0rr6w
-         R8gfZCRomlm+5/n1BwdYeofdCOv6pNgPPt56uV6Zg7m8PiYXJnop8vM/Ov03f8O/CvvT
-         ccA42kjh1ODu2/eCfYC+hdjcsxU66cnPW3ojY50ZYTVwheepLr1FYhrRkf6k5DUFzN5S
-         KNuA==
-X-Gm-Message-State: AOAM532NDwYDmymq30MUU5VL/gBbM/2I8VS/kkmZKKlKvIUhWOACGxTZ
-        +e63dCrvJYfnUwJH2iOZ1bFzSNR/90aFNQn2Sgb39g==
-X-Google-Smtp-Source: ABdhPJyoD7mvxWMcFkCd1XozTD5RmNF+aVQJlac3n/hu2/Scsd5osI9K5Mz2gkhtfF4K87i05JGRHOrWlyPQ5hcQy30=
-X-Received: by 2002:a05:6870:4789:b0:dd:e6e0:2471 with SMTP id
- c9-20020a056870478900b000dde6e02471mr1617098oaq.195.1648630372658; Wed, 30
- Mar 2022 01:52:52 -0700 (PDT)
+        with ESMTP id S236683AbiC3JCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:02:00 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F5B31FCF4;
+        Wed, 30 Mar 2022 02:00:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648630815; x=1680166815;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uVMz7WXAbeoZtbwpOTIiCsAzbncsiypCdbGej/zEJ20=;
+  b=ECtvXKNSJD3r6MGX7dGV9aruZ9Gh7urKG+XblwFlHovuissz0/Vg+tbn
+   6a2VKrVfRMDFpcW86V9bqUr0fv89YHkP+crkWhGH6EIYYNZaQXazxbx3s
+   O/lQkQALyu82yjXYGjRgPRCAIeVdFidi8VZkBJkNV/F5yzS4UwNPQlDax
+   VWWvdMMtdBWaEq6E27RFoY/IP9sNjd3FIm0kPpswBLvSAG2h2lfpWZ1yA
+   9MDbDMmW1C2VXLK25QcKr3cUGRmCmJG0CFMA28PmWjNL+sKwaxMKWiQn0
+   DNpHQgMR3ZuGihKi78DQBD7ApcAm/6Dfyo6Fh8ITuJDgFpQ7zeMULdIht
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="259205103"
+X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
+   d="scan'208";a="259205103"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 02:00:15 -0700
+X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
+   d="scan'208";a="519596744"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 02:00:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nZUAw-009IW2-QF;
+        Wed, 30 Mar 2022 11:59:34 +0300
+Date:   Wed, 30 Mar 2022 11:59:34 +0300
+From:   "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>
+To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>
+Cc:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+Subject: Re: [PATCH v10 0/2] Add the driver for Intel Keem Bay SoC timer block
+Message-ID: <YkQb9jX7A+10+DNp@smile.fi.intel.com>
+References: <20220322130005.16045-1-shruthi.sanil@intel.com>
+ <BN9PR11MB55459A4EA8D0599DCB753173F11F9@BN9PR11MB5545.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-References: <20220329024921.2739338-1-andy.chiu@sifive.com>
- <20220329024921.2739338-5-andy.chiu@sifive.com> <20220329155609.674caa9c@kernel.org>
- <YkOxexKUQqmFVe9l@lunn.ch> <20220329184819.6d4354b6@kernel.org>
-In-Reply-To: <20220329184819.6d4354b6@kernel.org>
-From:   Andy Chiu <andy.chiu@sifive.com>
-Date:   Wed, 30 Mar 2022 16:50:35 +0800
-Message-ID: <CABgGipWrV_+AKvmJzNAqcwx34pgTt8OLX-gp342-WfDZAaTWmw@mail.gmail.com>
-Subject: Re: [PATCH v7 net 4/4] net: axiemac: use a phandle to reference pcs_phy
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, radhey.shyam.pandey@xilinx.com,
-        Robert Hancock <robert.hancock@calian.com>,
-        michal.simek@xilinx.com, davem@davemloft.net, pabeni@redhat.com,
-        robh+dt@kernel.org, linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        Greentime Hu <greentime.hu@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BN9PR11MB55459A4EA8D0599DCB753173F11F9@BN9PR11MB5545.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-thanks for explaining this,
+On Wed, Mar 30, 2022 at 05:04:01AM +0000, Sanil, Shruthi wrote:
+> Gentle Reminder!
 
-I will make the change accordingly and post it to net-next when available.
+It's a merge window time. Be patient!
+Also, please avoid top-posting.
 
-Andy
+> > From: Sanil, Shruthi <shruthi.sanil@intel.com>
+> > Sent: Tuesday, March 22, 2022 6:30 PM
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
