@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FCCC4EBB71
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 045394EBB85
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243787AbiC3HIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 03:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47696 "EHLO
+        id S243709AbiC3HOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 03:14:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243636AbiC3HHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:07:45 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D6FE5413
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:05:53 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id o10so39612995ejd.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:05:53 -0700 (PDT)
+        with ESMTP id S243712AbiC3HO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:14:29 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C685A15AAFC
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:12:42 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id p15so39577728ejc.7
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:12:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cQew/rKnRgD8ogV1qI7WxDPMDBYN+z5OLUWXPsIgIoA=;
-        b=VPizdmYjUO15XOTiLqnQiK2mV8W1i7YUwrt2w2VWfLt0lQEcSP8xJbPRle7ZgYD5EW
-         Fh1R+tvRLjEC3z590d4GqJoen6u+OIzZoWvzT08j6cM+C+sYQlkjr4MUpNv5ihSIBeA0
-         /Cseo7LLFe8qQlOMPvcSwdFhdsacJ2vutYZL0NdpFxCNzWbz9NcDIr074fe6ypvlxmzn
-         2axAgNN68ag6KG4OGycrHt8odgClnTslGCIlwrF2yudJPYiABqhJu5w690kQKZaJSq0E
-         WkkoMZcoITYzFBd3jZjuu8RcFnAIBRshQhJY9k05OeV2PgKlQ+zjaDwfsujTp3aNrhD/
-         +Fqg==
+        bh=5ug0Vb3n/y1kMz7s7i3LwK9TDhCTMMMovBQ50l01MHg=;
+        b=atzlgvzvihkz9xDD+XoJpzmbD9wjky+0js/tcXak7y6EwOAw5ALVhRjF22BSYXIw8D
+         u3L2YlB9BDgnkqmv1qW73BbVLyB0DE5MrSq/RFLlx9f18JSi8OqigESvvSVavkvfjzV1
+         ocppm0wraVtHB979mqPPIh1Gre3jhpLOxt6eRJtl2sU4DvwVr6ECj1nui6nsRgvrswVv
+         EJKI4V9v1XUUdooT9WtzBXT5ld5TC2bD7sDwPLDTW4Ai7Jf4QMZ86W3I4xCOMFaZ0d4u
+         A69qY6XqZeaMSvc7nL4uzUqAbmLEcNHslJbNxhEv9QaqW5kERqwUGoEmHrFb4q8VA4Le
+         eDFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=cQew/rKnRgD8ogV1qI7WxDPMDBYN+z5OLUWXPsIgIoA=;
-        b=VtAS7AHFcKnlNc7ps9MSsjzAYzLH4NgNDIwB0NRNtfwciAH62AJKQocruMEekDwOyE
-         ovCw8CpHCL5tMoaeZky5n5+IzQVU6bK+JL2fe+wrckxNbsvsAvnQhuS166+Ct1vuuvnU
-         GTqA4xyFIqzpPAqe+4IBZ2LJhTlZ0sZYtf1LzR7clqHe0Xn5h9xHbkcI8PybGbgiz4HU
-         ym46dH61yYHS1Kj9Qdah8tfWTmxi+UxGi7SO7wztSRP2dQDkUFPchnPV6fCh0z44+Htz
-         tQFm9q7NviGEIzPBwfhiCSSWLl0hypan/0YpJzSuEb3Mj9PTC5HOpeBG2TtzXvw2kiKM
-         ZJpg==
-X-Gm-Message-State: AOAM531ClgS57MHWfZv/bOFVteAqNK1AW5ppUK0QCx8Nyg8X8Kijxkxd
-        Ys9kFTsYCaQOPif73VJaZMXuYw==
-X-Google-Smtp-Source: ABdhPJxgkb+42v8YFLrLqoPpsFf/y67+6+hsTr+DeAQB1T968yZRDUeZIpcReBoQDYA15QDt2Z9tEA==
-X-Received: by 2002:a17:907:1b08:b0:6da:b62a:762a with SMTP id mp8-20020a1709071b0800b006dab62a762amr37530526ejc.60.1648623952515;
-        Wed, 30 Mar 2022 00:05:52 -0700 (PDT)
+        bh=5ug0Vb3n/y1kMz7s7i3LwK9TDhCTMMMovBQ50l01MHg=;
+        b=upBkwcTVVFJXWyNWM699YZIKZOJ/PnDLTGBjDiFGZuk7KZXvsveMzpL9bBKstkn98L
+         hWUNRAc/jbivRWe+BSXNsK2dlTnu2YxDA+nNJ0b83pfdBaxXLB3KUSFdU5n5CkQJWxn+
+         2SHTohKyI0SV5mefcEl2GY543Uisi2RW7TabS4PzOFX1lpB48pZMLHcpRIZKJgP+37S9
+         EDvSRgaeXwrulx19Ke4Rcwr7p/mapOn5ysj3p7AVYikAswj80L1iCDlFI7hKHaDPvDdj
+         LQZkgeyivuE/DiAra/JPbWNn2Vk0mIjwJWNKnkyXEtI+2d9ceWEtPI2QLfBxVbMRix4i
+         gI5w==
+X-Gm-Message-State: AOAM530qdD7236OMjiFjqrS6xyGKhoPzvvpraUbGeaIkh67ArI636q/H
+        eSfJVGrL8KyGJGVWVy8lCLFnQg==
+X-Google-Smtp-Source: ABdhPJxpMBRA7Iu+FkwPspTUBMkW5jdmZ4XJutw6rxD5PFu1SoJKSrXDDCjRaWv86N+ZQBZmm7xWzQ==
+X-Received: by 2002:a17:906:5cb:b0:6cf:954:d84d with SMTP id t11-20020a17090605cb00b006cf0954d84dmr38804313ejt.560.1648624361193;
+        Wed, 30 Mar 2022 00:12:41 -0700 (PDT)
 Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id p14-20020aa7cc8e000000b0040f13865fa9sm9351819edt.3.2022.03.30.00.05.51
+        by smtp.gmail.com with ESMTPSA id f17-20020a056402355100b0041925e80963sm9658657edd.41.2022.03.30.00.12.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 00:05:52 -0700 (PDT)
-Message-ID: <928aec2e-6dfc-164d-fee2-8e3b1dd476ff@linaro.org>
-Date:   Wed, 30 Mar 2022 09:05:51 +0200
+        Wed, 30 Mar 2022 00:12:40 -0700 (PDT)
+Message-ID: <63ad0846-8acd-1a9e-c625-9af3b073646c@linaro.org>
+Date:   Wed, 30 Mar 2022 09:12:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2] dt-bindings: reset: Add parent "resets" property as
- optional
+Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,px30-cru.txt to
+ YAML
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1648617078-8312-1-git-send-email-hayashi.kunihiko@socionext.com>
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
+        zhangqing@rock-chips.com
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220329195057.15571-1-jbx6244@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648617078-8312-1-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20220329195057.15571-1-jbx6244@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,22 +77,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 07:11, Kunihiko Hayashi wrote:
-> LD11 mio reset controller has a reset lines from system controller.
-> Add parent "resets" property to fix the following warning.
+On 29/03/2022 21:50, Johan Jonker wrote:
+> Convert rockchip,px30-cru.txt to YAML.
 > 
->   uniphier-ld11-global.dt.yaml: reset: 'resets' does not match any of the regexes: 'pinctrl-[0-9]+'
->       From schema: Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml
+> Changes against original bindings:
+>   Use compatible string: "rockchip,px30-pmucru"
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
+>  .../bindings/clock/rockchip,px30-cru.txt      | 70 --------------
+>  .../bindings/clock/rockchip,px30-cru.yaml     | 96 +++++++++++++++++++
+>  2 files changed, 96 insertions(+), 70 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
 > 
-> Changes since v1:
-> - Use maxItems for a single reset
-> 
+> diff --git a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
+> deleted file mode 100644
+> index 55e78cdde..000000000
+> --- a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
+> +++ /dev/null
+> @@ -1,70 +0,0 @@
+> -* Rockchip PX30 Clock and Reset Unit
+> -
+> -The PX30 clock controller generates and supplies clock to various
+> -controllers within the SoC and also implements a reset controller for SoC
+> -peripherals.
+> -
+> -Required Properties:
+> -
+> -- compatible: PMU for CRU should be "rockchip,px30-pmu-cru"
+> -- compatible: CRU should be "rockchip,px30-cru"
+> -- reg: physical base address of the controller and length of memory mapped
+> -  region.
+> -- clocks: A list of phandle + clock-specifier pairs for the clocks listed
+> -          in clock-names
+> -- clock-names: Should contain the following:
+> -  - "xin24m" for both PMUCRU and CRU
+> -  - "gpll" for CRU (sourced from PMUCRU)
+> -- #clock-cells: should be 1.
+> -- #reset-cells: should be 1.
+> -
+> -Optional Properties:
+> -
+> -- rockchip,grf: phandle to the syscon managing the "general register files"
+> -  If missing, pll rates are not changeable, due to the missing pll lock status.
+> -
+> -Each clock is assigned an identifier and client nodes can use this identifier
+> -to specify the clock which they consume. All available clocks are defined as
+> -preprocessor macros in the dt-bindings/clock/px30-cru.h headers and can be
+> -used in device tree sources. Similar macros exist for the reset sources in
+> -these files.
+> -
+> -External clocks:
+> -
+> -There are several clocks that are generated outside the SoC. It is expected
+> -that they are defined using standard clock bindings with following
+> -clock-output-names:
+> - - "xin24m" - crystal input - required,
+> - - "xin32k" - rtc clock - optional,
+> - - "i2sx_clkin" - external I2S clock - optional,
+> - - "gmac_clkin" - external GMAC clock - optional
+> -
+> -Example: Clock controller node:
+> -
+> -	pmucru: clock-controller@ff2bc000 {
+> -		compatible = "rockchip,px30-pmucru";
+> -		reg = <0x0 0xff2bc000 0x0 0x1000>;
+> -		#clock-cells = <1>;
+> -		#reset-cells = <1>;
+> -	};
+> -
+> -	cru: clock-controller@ff2b0000 {
+> -		compatible = "rockchip,px30-cru";
+> -		reg = <0x0 0xff2b0000 0x0 0x1000>;
+> -		rockchip,grf = <&grf>;
+> -		#clock-cells = <1>;
+> -		#reset-cells = <1>;
+> -	};
+> -
+> -Example: UART controller node that consumes the clock generated by the clock
+> -  controller:
+> -
+> -	uart0: serial@ff030000 {
+> -		compatible = "rockchip,px30-uart", "snps,dw-apb-uart";
+> -		reg = <0x0 0xff030000 0x0 0x100>;
+> -		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&pmucru SCLK_UART0_PMU>, <&pmucru PCLK_UART0_PMU>;
+> -		clock-names = "baudclk", "apb_pclk";
+> -		reg-shift = <2>;
+> -		reg-io-width = <4>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
+> new file mode 100644
+> index 000000000..aa095f375
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/rockchip,px30-cru.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip PX30 Clock and Reset Unit (CRU)
+> +
+> +maintainers:
+> +  - Elaine Zhang <zhangqing@rock-chips.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description: |
+> +  The PX30 clock controller generates and supplies clocks to various
+> +  controllers within the SoC and also implements a reset controller for SoC
+> +  peripherals.
+> +  Each clock is assigned an identifier and client nodes can use this identifier
+> +  to specify the clock which they consume. All available clocks are defined as
+> +  preprocessor macros in the dt-bindings/clock/px30-cru.h headers and can be
+> +  used in device tree sources. Similar macros exist for the reset sources in
+> +  these files.
+> +  There are several clocks that are generated outside the SoC. It is expected
+> +  that they are defined using standard clock bindings with following
+> +  clock-output-names:
+> +    - "xin24m"     - crystal input       - required
+> +    - "xin32k"     - rtc clock           - optional
+> +    - "i2sx_clkin" - external I2S clock  - optional
+> +    - "gmac_clkin" - external GMAC clock - optional
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,px30-cru
+> +      - rockchip,px30-pmucru
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: Clock for both PMUCRU and CRU
+> +      - description: Clock for CRU (sourced from PMUCRU)
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: xin24m
+> +      - const: gpll
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You need allOf:if:then: constraining clocks and clock-names per compatible.
 
 
 Best regards,
