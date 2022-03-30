@@ -2,157 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EEE14EC9C1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 738CB4EC9E4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348874AbiC3QiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 12:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33562 "EHLO
+        id S1348966AbiC3Qqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 12:46:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244806AbiC3Qhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:37:53 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E407C144B60;
-        Wed, 30 Mar 2022 09:36:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ALx8ARvWqSkByuqgzD/rMzGpI9BdpJ6pBXa8AsrOFxA=; b=CPOWA5ININhL05ojuoEkeHuNuU
-        cEYdETw3a70DK4U5wPGl/VU6HrTn5oSnArEajcgUdD95uZocLCIH7GoST3wO003+MKkteqnbbt8yV
-        M8YICMTPZVMA9KycIEPLqaex+E5KTmCB9jRVFaLKWcz0FU0vnlxdz5gKMdRm1k6+wXR0+L4ZLyMXj
-        Xuy+Whmv1WAfdIs6LPV90DtIUPjGfMfMoV1slspt9E1vU47LKB0frosFMy+4Ojos9b2JMLbvhe864
-        H64Amy5UHljCpMHv8oCGdWZrlDzydn8ViTS4pE8LCx6IjDDUCNfADHrRWrprz7aJuNuSeMj3sxueK
-        M7IQo0GA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58022)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1nZbId-0003Su-LW; Wed, 30 Mar 2022 17:35:59 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1nZbIc-0006m8-9u; Wed, 30 Mar 2022 17:35:58 +0100
-Date:   Wed, 30 Mar 2022 17:35:58 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Rob Herring <robh+dt@kernel.org>
+        with ESMTP id S1348975AbiC3Qqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:46:32 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B458B1E5200
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:44:45 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id c10so24290046ejs.13
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:44:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=yHBfMl6iM7258r0O2Jco9pafktxB1pt6+1WqgBzk+vg=;
+        b=KLyLdtoSrb3fmaMJiq0IipYP8LMdhy6mILKXf36PQRWK5lDC7m6Tb2FhMsjzrPHtJt
+         UvI8C8XDTcE5qrh1h1bncRLDNRnYOso8de8xGpuuhnsXE13LDOZjgPaVJJNQj84fiGXI
+         5dQFIk8CLxRRJjk7ngUuZPx13i9vpUcixttW3CzcnvlwrLZRS2SLTXTSfpZKWJ8Cw4vL
+         +9uubnbTntHsZIBPRPNpMmsNbguw6kcswbWpc6KNZ9UmrBXIBJDMgiZFiMWnEgQy5Qx/
+         pReB7fiyXYmWm6yGOoy1lCCtUJ79qTZd4pwWOL6C0RR29CiKxOYy5Y+Ye3AKycvTbBIN
+         iOJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yHBfMl6iM7258r0O2Jco9pafktxB1pt6+1WqgBzk+vg=;
+        b=SoAwito0OLHxeHmQanXWchHyUhN9QICHbPvuBoQoC2tcKH/EyWP8RTSnB/zL3lesNS
+         oYlvuBHewC4QmneBRfgDN3z5lAsUvIZd+E6JEpCSKwEk0ruDveU7Q3r6q1ADtBDsiHKt
+         5aCBrT3pVl6XrAMW8wWxQLiy3pdJyQAFMimmDjhOo/gwTr/1Il0aadq1WUQEAhUnz8B+
+         PQVeRiS/yU00RZnqyi3/AhwzIUUJfj+GTNwkvk0opdGYgqhv5xk14345CsQ/4pog1TjZ
+         ZTVOA49HomaEIoBCq4cjKjQGBgLf+ojjAQA1gRomzGQLQjXok/Hd0EmHw/wZCM5FFiky
+         Cz4A==
+X-Gm-Message-State: AOAM532kKoE86ixFeVNSxtlIjUzYxNq0e6LfrgxBNilaJY1cuAMiCWFg
+        PWPfBvGQKIhMnpoImgndIu8Bjg==
+X-Google-Smtp-Source: ABdhPJywV3uexnsqSnhWXlwW2C6kDd0vY5WPPQ+rsQ3XzeorjnRj1l22TFs3ki+OTaR+h4z7XUNuKw==
+X-Received: by 2002:a17:906:32d0:b0:6ce:e1cf:3f2e with SMTP id k16-20020a17090632d000b006cee1cf3f2emr449876ejk.214.1648658683796;
+        Wed, 30 Mar 2022 09:44:43 -0700 (PDT)
+Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id l2-20020a1709060cc200b006d3d91e88c7sm8492441ejh.214.2022.03.30.09.44.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Mar 2022 09:44:43 -0700 (PDT)
+Message-ID: <064271f4-d775-279c-0aa2-c9e23194bc61@linaro.org>
+Date:   Wed, 30 Mar 2022 18:44:42 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
+Content-Language: en-US
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>,
         "davem@davemloft.net" <davem@davemloft.net>,
         "kuba@kernel.org" <kuba@kernel.org>,
         "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
-Message-ID: <YkSG7oBcDe6lTCOO@shell.armlinux.org.uk>
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
  <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
  <20220315190733.lal7c2xkaez6fz2v@skbuf>
  <deed2e82-0d93-38d9-f7a2-4137fa0180e6@canonical.com>
  <20220316101854.imevzoqk6oashrgg@skbuf>
- <YkR8tTWabfTRLarB@shell.armlinux.org.uk>
- <CAL_JsqKFbU6VyLu+as_bZxWsfHRf5mJGeExjZ2ZJQqOcJchC+g@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKFbU6VyLu+as_bZxWsfHRf5mJGeExjZ2ZJQqOcJchC+g@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+ <b45dabe9-e8b6-4061-1356-4e5e6406591b@canonical.com>
+ <YkR9NKec1YR7VGOy@shell.armlinux.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YkR9NKec1YR7VGOy@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 11:09:42AM -0500, Rob Herring wrote:
-> On Wed, Mar 30, 2022 at 10:52 AM Russell King (Oracle)
-> <linux@armlinux.org.uk> wrote:
-> >
-> > On Wed, Mar 16, 2022 at 10:18:55AM +0000, Ioana Ciornei wrote:
-> > > On Wed, Mar 16, 2022 at 09:23:45AM +0100, Krzysztof Kozlowski wrote:
-> > > > On 15/03/2022 20:07, Ioana Ciornei wrote:
-> > > > > On Tue, Mar 15, 2022 at 07:21:59PM +0100, Krzysztof Kozlowski wrote:
-> > > > >> On 15/03/2022 13:33, Ioana Ciornei wrote:
-> > > > >>> Convert the sff,sfp.txt bindings to the DT schema format.
-> > > > >>>
-> > > > >>> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > > > >>> ---
-> > > > >
-> > > > > (..)
-> > > > >
-> > > > >>> +maintainers:
-> > > > >>> +  - Russell King <linux@armlinux.org.uk>
-> > > > >>> +
-> > > > >>> +properties:
-> > > > >>> +  compatible:
-> > > > >>> +    enum:
-> > > > >>> +      - sff,sfp  # for SFP modules
-> > > > >>> +      - sff,sff  # for soldered down SFF modules
-> > > > >>> +
-> > > > >>> +  i2c-bus:
-> > > > >>
-> > > > >> Thanks for the conversion.
-> > > > >>
-> > > > >> You need here a type because this does not look like standard property.
-> > > > >
-> > > > > Ok.
-> > > > >
-> > > > >>
-> > > > >>> +    description:
-> > > > >>> +      phandle of an I2C bus controller for the SFP two wire serial
-> > > > >>> +
-> > > > >>> +  maximum-power-milliwatt:
-> > > > >>> +    maxItems: 1
-> > > > >>> +    description:
-> > > > >>> +      Maximum module power consumption Specifies the maximum power consumption
-> > > > >>> +      allowable by a module in the slot, in milli-Watts. Presently, modules can
-> > > > >>> +      be up to 1W, 1.5W or 2W.
-> > > > >>> +
-> > > > >>> +patternProperties:
-> > > > >>> +  "mod-def0-gpio(s)?":
-> > > > >>
-> > > > >> This should be just "mod-def0-gpios", no need for pattern. The same in
-> > > > >> all other places.
-> > > > >>
-> > > > >
-> > > > > The GPIO subsystem accepts both suffixes: "gpio" and "gpios", see
-> > > > > gpio_suffixes[]. If I just use "mod-def0-gpios" multiple DT files will
-> > > > > fail the check because they are using the "gpio" suffix.
-> > > > >
-> > > > > Why isn't this pattern acceptable?
-> > > >
-> > > > Because original bindings required gpios, so DTS are wrong, and the
-> > > > pattern makes it difficult to grep and read such simple property.
-> > > >
-> > > > The DTSes which do not follow bindings should be corrected.
-> > > >
-> > >
-> > > Russell, do you have any thoughts on this?
-> > > I am asking this because you were the one that added the "-gpios" suffix
-> > > in the dtbinding and the "-gpio" usage in the DT files so I wouldn't
-> > > want this to diverge from your thinking.
-> > >
-> > > Do you have a preference?
-> >
-> > SFP support predated (in my tree) the deprecation of the -gpio suffix,
-> > and despite the SFP binding doc being sent for review, it didn't get
-> > reviewed so the issue was never picked up.
+On 30/03/2022 17:54, Russell King (Oracle) wrote:
+>>
+>> These are different. This is an example how to model the input clock to
+>> the device being described in the bindings. This is not an example how
+>> to use the clock provider, like you created here. The input clock
+>> sometimes is defined in Exynos clock controller, sometimes outside. The
+>> example there shows the second case - when it has to come outside. It's
+>> not showing the usage of clocks provided by this device, but I agree
+>> that it also might be trivial and obvious. If you think it is obvious,
+>> feel free to comment/send a patch.
 > 
-> Really?
+> Why is whether something is an input or output relevant? One can quite
+> rightly argue that SFPs are both input and output. :)
 > 
-> https://lore.kernel.org/all/CAL_JsqL_7gG8FSEJDXu=37DFpHjfLhQuUhPFRKcScYTzM4cNyg@mail.gmail.com/
 
-Yes. I said "in my tree" not "in Linus' tree". It dates from shortly
-after the first SolidRun Clearfog arrived here, first set of patches
-were based on v4.3-rc2.
+I don't mind removing that example. Input - in the case of these
+bindings - is quite specific. Output is opposite, not specific and can
+vary, you can enable/disable, change frequency.
 
-Remember, when development eventually gets submitted as patches, even
-if there are no changes, if the patches are then applied, they get the
-date of the _email_ not of their creation, and there can be several
-years between creation and submission.
+Discussion was two weeks ago, so all emails will bounce. :)
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Best regards,
+Krzysztof
