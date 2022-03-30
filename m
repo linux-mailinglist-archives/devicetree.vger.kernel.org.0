@@ -2,338 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9167F4ECAE3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BF644ECB15
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349411AbiC3Rmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 13:42:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60824 "EHLO
+        id S1349520AbiC3Rxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 13:53:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349414AbiC3RmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:42:22 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9755F47CB
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:40:36 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id c62so25312355edf.5
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:40:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YGgEuO2+JFPK80wetBysVATEfSSmmFQ7dKqnJvZ/yF0=;
-        b=C7EjKku7df+a8GqKhOPDfYj3kb3TEpo3DG3jdawgzS//JNHlN1EDttotGPuPwtZJqM
-         13D87HXLQB1i5Zu593BdRvAHvXU2KZCBghKr5ZLWbUc7+SnOCwc7yxNTP8xQIkWECbwj
-         x3r/HJ2H/u+PriS72aSR3Sf0AHoqNESldgoSj3jfUU6xdgfLQNatOWx4Dk2HIwMKZG/t
-         ru4+bBvbX1eqRI6dJS/5SpPN7MQ78ioWLTa1Nz4k4fHbBJb5Gby0TFttUbzYcSaLKJ94
-         GF23IZVQM50w9cL6RAnZA1kWRyAhc9QLJWfy1QFRG4lo6DIv/M5nk7ILGeU+nNs2QPjm
-         9qZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YGgEuO2+JFPK80wetBysVATEfSSmmFQ7dKqnJvZ/yF0=;
-        b=aKeflDtqT6oz2iETgX9IBd1F08GLE6Ani2FZxz/kKMFw34iOIAO3xqc2kr1e002Nz5
-         t5g0Llr6OLtUBqZBYLeUHgVPklQUlFsgYUEnRMARvYIC6wRL5ZCKnSDFFi2ecxK+d9Gu
-         IyBS1bBO77tZ59NqR6DpV0DK2WO75wHgLGFa/A1nEZI/1F6g6qqBbR9dcRPgy2+7xbB5
-         hFh5gXuMDeFuXODzwrOyLTMpq4JmO9cQgIyW/zxHSz+XTh795TWvj8XYw4KXmPA7gkRf
-         vOhedXam6h0G/gJVikYTIuTu1mB0+MCH1L8eR/nVWhg7ShfWEa/fpWl2P4rX3EZs1hPT
-         NTbg==
-X-Gm-Message-State: AOAM532SOiKG1X0gqxF2L7MgwyhTKoM5bhsxHxH78uBsUpvDeefc/TWg
-        YOumTD/yCOWq+rMer7U/whWK1Q==
-X-Google-Smtp-Source: ABdhPJxFwTarbPZKAhjXkXZlx0EdUDAVJlJ4obq31ATerLLtSuoVnaN+CJoSs2qJYnnkd0lo+8HTEg==
-X-Received: by 2002:a50:fd04:0:b0:419:9c4a:7d79 with SMTP id i4-20020a50fd04000000b004199c4a7d79mr12268837eds.99.1648662035149;
-        Wed, 30 Mar 2022 10:40:35 -0700 (PDT)
-Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id dk21-20020a0564021d9500b0041b501eab8csm2718953edb.57.2022.03.30.10.40.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 10:40:34 -0700 (PDT)
-Message-ID: <a784ed61-965a-5c68-c2dd-3340cf18c7b5@linaro.org>
-Date:   Wed, 30 Mar 2022 19:40:33 +0200
+        with ESMTP id S1349521AbiC3Rxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:53:30 -0400
+Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B57910AE;
+        Wed, 30 Mar 2022 10:51:35 -0700 (PDT)
+Date:   Wed, 30 Mar 2022 17:51:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1648662692;
+        bh=e/RQ1SaRAskObP1MAJEptYfekeXaggHmvx1g8cmarms=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID;
+        b=hNeT12lIcVXiSBrE2bhJi/Hp5/3CGsuA75yJ1KsxEDRjSGdFoc48yjyPT2QOyIsjW
+         c58a4XH4WRuhKFiTb/NR2ULZH59UaxExiN16Nz6om8MET/PSMQzqf3HMuSCSZ/F8DL
+         e/HpCgIWBvI+yUNwxMrSHfIbtJEoQ1I+gOW3m+Ns=
+To:     Joel Selvaraj <jo@jsfamily.in>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Amit Pundir <amit.pundir@linaro.org>
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sdm845-xiaomi-beryllium: change firmware path and use mbn format
+Message-ID: <ca8ff74d-0781-1bc8-0f2d-29f5b2154c7f@connolly.tech>
+In-Reply-To: <BY5PR02MB700966DEE6F6044EBEB5B892D91F9@BY5PR02MB7009.namprd02.prod.outlook.com>
+References: <20220330064505.243799-1-jo@jsfamily.in> <BY5PR02MB700966DEE6F6044EBEB5B892D91F9@BY5PR02MB7009.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 5/5] dt-bindings: phy: uniphier: Clean up clocks,
- resets, and their names using compatible string
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1648637715-19262-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1648637715-19262-6-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648637715-19262-6-git-send-email-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 12:55, Kunihiko Hayashi wrote:
-> Instead of "oneOf:" choices, use "allOf:" and "if:" to define clocks,
-> clock-names, resets, and reset-names that can be taken by the compatible
-> string.
-> 
-> The order of clock-names and reset-names doesn't change here.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+
+
+On 30/03/2022 07:45, Joel Selvaraj wrote:
+> The "qcom/sdm845/" path conflicts with db845c's firmware that are
+> present in the linux-firmware package. Xiaomi uses their own signed
+> firmware for Poco F1 and can't use the db845c's firmware. So let's
+> use "qcom/sdm845/beryllium/" to distinguish Poco F1's firmware files.
+>
+> For easier handling and packaging, the mdt+bXX files are squashed
+> using Bjorn Andersson's pil-squasher tool from this link:
+> https://github.com/andersson/pil-squasher
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+>
+> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
 > ---
->  .../phy/socionext,uniphier-ahci-phy.yaml      | 90 +++++++++++++-----
->  .../phy/socionext,uniphier-pcie-phy.yaml      | 47 ++++++---
->  .../phy/socionext,uniphier-usb3hs-phy.yaml    | 93 ++++++++++++++----
->  .../phy/socionext,uniphier-usb3ss-phy.yaml    | 95 +++++++++++++++----
->  4 files changed, 251 insertions(+), 74 deletions(-)
-> 
+>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 8 ++++----
+>   1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/=
+arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> index 367389526b41..27ba9ad1ad02 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> @@ -121,7 +121,7 @@ vreg_s4a_1p8: vreg-s4a-1p8 {
+>
+>   &adsp_pas {
+>   =09status =3D "okay";
+> -=09firmware-name =3D "qcom/sdm845/adsp.mdt";
+> +=09firmware-name =3D "qcom/sdm845/beryllium/adsp.mbn";
+>   };
+>
+>   &apps_rsc {
+> @@ -208,7 +208,7 @@ vreg_l26a_1p2: ldo26 {
+>
+>   &cdsp_pas {
+>   =09status =3D "okay";
+> -=09firmware-name =3D "qcom/sdm845/cdsp.mdt";
+> +=09firmware-name =3D "qcom/sdm845/beryllium/cdsp.mbn";
+>   };
+>
+>   &dsi0 {
+> @@ -262,7 +262,7 @@ &gpu {
+>
+>   =09zap-shader {
+>   =09=09memory-region =3D <&gpu_mem>;
+> -=09=09firmware-name =3D "qcom/sdm845/a630_zap.mbn";
+> +=09=09firmware-name =3D "qcom/sdm845/beryllium/a630_zap.mbn";
+>   =09};
+>   };
+>
+> @@ -289,7 +289,7 @@ &mdss {
+>
+>   &mss_pil {
+>   =09status =3D "okay";
+> -=09firmware-name =3D "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mdt";
+> +=09firmware-name =3D "qcom/sdm845/beryllium/mba.mbn", "qcom/sdm845/beryl=
+lium/modem.mbn";
+>   };
+>
+>   &pm8998_gpio {
+> --
+> 2.35.1
+>
 
-(...)
+--
+Kind Regards,
+Caleb
 
-> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
-> index 1bbd164f2527..21e4414eea60 100644
-> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
-> @@ -34,30 +34,12 @@ properties:
->      minItems: 2
->      maxItems: 3
->  
-> -  clock-names:
-> -    oneOf:
-> -      - items:               # for Pro5
-> -          - const: gio
-> -          - const: link
-> -      - items:               # for PXs3 with phy-ext
-> -          - const: link
-> -          - const: phy
-> -          - const: phy-ext
-> -      - items:               # for others
-> -          - const: link
-> -          - const: phy
-> +  clock-names: true
->  
->    resets:
->      maxItems: 2
->  
-> -  reset-names:
-> -    oneOf:
-> -      - items:               # for Pro5
-> -          - const: gio
-> -          - const: link
-> -      - items:               # for others
-> -          - const: link
-> -          - const: phy
-> +  reset-names: true
->  
->    vbus-supply:
->      description: A phandle to the regulator for USB VBUS
-> @@ -80,6 +62,77 @@ properties:
->        required for each port, if any one is omitted, the trimming data
->        of the port will not be set at all.
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: socionext,uniphier-pro5-usb3-hsphy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: gio
-> +            - const: link
-> +        resets:
-> +          minItems: 2
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: gio
-> +            - const: link
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - socionext,uniphier-pxs2-usb3-hsphy
-> +              - socionext,uniphier-ld20-usb3-hsphy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +        resets:
-> +          minItems: 2
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - socionext,uniphier-pxs3-usb3-hsphy
-> +              - socionext,uniphier-nx1-usb3-hsphy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-
-Why minItems:2? Is the last phy-ext clock optional?
-
-> +          maxItems: 3
-> +        clock-names:
-> +          minItems: 2
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +            - const: phy-ext
-> +        resets:
-> +          minItems: 2
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
-> index 06c957d52d23..4c26d2d2303d 100644
-> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
-> @@ -35,34 +35,89 @@ properties:
->      minItems: 2
->      maxItems: 3
->  
-> -  clock-names:
-> -    oneOf:
-> -      - items:             # for Pro4, Pro5
-> -          - const: gio
-> -          - const: link
-> -      - items:             # for PXs3 with phy-ext
-> -          - const: link
-> -          - const: phy
-> -          - const: phy-ext
-> -      - items:             # for others
-> -          - const: link
-> -          - const: phy
-> +  clock-names: true
->  
->    resets:
->      maxItems: 2
->  
-> -  reset-names:
-> -    oneOf:
-> -      - items:              # for Pro4,Pro5
-> -          - const: gio
-> -          - const: link
-> -      - items:              # for others
-> -          - const: link
-> -          - const: phy
-> +  reset-names: true
->  
->    vbus-supply:
->      description: A phandle to the regulator for USB VBUS, only for USB host
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - socionext,uniphier-pro4-usb3-ssphy
-> +              - socionext,uniphier-pro5-usb3-ssphy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: gio
-> +            - const: link
-> +        resets:
-> +          minItems: 2
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: gio
-> +            - const: link
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - socionext,uniphier-pxs2-usb3-ssphy
-> +              - socionext,uniphier-ld20-usb3-ssphy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +        resets:
-> +          minItems: 2
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - socionext,uniphier-pxs3-usb3-ssphy
-> +              - socionext,uniphier-nx1-usb3-ssphy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-
-Same question as above.
-
-> +          maxItems: 3
-> +        clock-names:
-> +          minItems: 2
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +            - const: phy-ext
-> +        resets:
-> +          minItems: 2
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: link
-> +            - const: phy
-> +
->  required:
->    - compatible
->    - reg
-
-
-Best regards,
-Krzysztof
