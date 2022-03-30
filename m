@@ -2,102 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79BB74EC17F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13CC94EC1B9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344569AbiC3L4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 07:56:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59282 "EHLO
+        id S1344455AbiC3L4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 07:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344783AbiC3Lxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:53:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E27827971A;
-        Wed, 30 Mar 2022 04:49:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E848461656;
-        Wed, 30 Mar 2022 11:49:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2762C3410F;
-        Wed, 30 Mar 2022 11:49:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648640978;
-        bh=8ZFmnqlSEMxKjuWziuwkhdq48STdoQ3qVnRC30Htjlg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=j1e1CRZ3y8YHG0kVE4kYD1WHIOEmfyQodVOwgdQTX2dlaGxyMMi+nob6botTcQZe5
-         K7iyqBf6Ri+/7qVXijNHO0W65VH4wUiEiIcl4hUELjC1gFI89a4/48WjxdeypUb/sR
-         2jZVs2kV1A36N3m/MgQfbdobYkRQv5fHZC/9Pth5i78Pjy7DCzMe1OGqBlcQhK6U6a
-         C16+QVqE7DERmp5L0fIgchtb7YWkwV+B7a8Qwn15fulrRBOBvSJECJnqdaes5C3Rel
-         kcwGYdxt7qBMGMQQDslv2nw9lKbwhD6wmwFbEaglFue56k6ZcryCsK3cjf/MZ4DyPY
-         s1Maq6VuHBTWQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Richard Leitner <richard.leitner@skidata.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux@armlinux.org.uk, swarren@wwwdotorg.org,
-        thierry.reding@gmail.com, gnurou@gmail.com,
+        with ESMTP id S1344444AbiC3LxK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:53:10 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9CF261DF7;
+        Wed, 30 Mar 2022 04:48:56 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bh17so1480145ejb.8;
+        Wed, 30 Mar 2022 04:48:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QnygP4l4hTZOc+NFDXu9YYi5sXjYreslpEJf/CgWJFU=;
+        b=L4D9vUp++dIar8oRx2cyilIRQpIbE8aTyXC7bD8/IQy5GxKarN9FPrJKt8vtzjtYK8
+         MWTYlILu33ArTJ8ShiNwg1pOMYcgFwQvMJxcreeKPzN0tspJ0HK9Yvu3oyTPvtYsKJXY
+         IrJRaZzbDlhgURR2UzliOGVkpCwaS/l/3LhQN91N195HK0ckoaGVLdgtxcOB+ZXdYCmO
+         KpMOKWoRLB501a9wQuKcFWp4n0UldaFxeDVLCR3ANYXQd1VaIBpvr2dr5wwOAEQKtRzy
+         79Awx4y8ntCN3kwn5zGGwY7kDivYHem6swodfHzXGGOC7J6lAfxvHZom9ftcccvbj5Vp
+         ROTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QnygP4l4hTZOc+NFDXu9YYi5sXjYreslpEJf/CgWJFU=;
+        b=EYHGByaBKjGSO76P33iJA2BRFm0FgpaaMx35mYyMF5XMGudyOjqsQQ/OT79GRMsIII
+         MdbCjb4jHRr4/4x5kdfdNXgryFQzovTov0kBTx7F7wehC+rqVEtbLstdyJdahIbVZnt2
+         dBR+JZhESgcP0eB87Otc/tZVVakTzW4yU/G5AvZHRIM1pgJ1dNTE+ehQQ4KOvC8yjTX5
+         6EPGbuVRSU3eUYDwmspsTHag1x5LGY/o4d+Zc37nwPMKzyLUCqUY/uSBdRQG1365/VT1
+         CvfmNcYAyjXuMbUF+n1dzixf71ce8CDQopP5IS3FxCUgQr0at1f+h7sZAt20ROfOz97A
+         7Mcw==
+X-Gm-Message-State: AOAM531UUrGSJRXZPf5fs3X3vNZrjv+v4bJ7rLe4PA56dtIugVaoTM3l
+        bavbolBmUw/s2GtRoIwVOiggoNHQyPA=
+X-Google-Smtp-Source: ABdhPJw4fExfdVyAn2ssY8SyPCua0EfDQ35g+WWMCOkxPzNpgIv/ZzrQ/OVM2E3Kzv+Bw3J5rAnauQ==
+X-Received: by 2002:a17:907:94c6:b0:6da:9561:ce0 with SMTP id dn6-20020a17090794c600b006da95610ce0mr38918680ejc.342.1648640933738;
+        Wed, 30 Mar 2022 04:48:53 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g9-20020aa7c849000000b00412fc6bf26dsm9934442edt.80.2022.03.30.04.48.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Mar 2022 04:48:53 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de, zhangqing@rock-chips.com
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.16 42/59] ARM: tegra: tamonten: Fix I2C3 pad setting
-Date:   Wed, 30 Mar 2022 07:48:14 -0400
-Message-Id: <20220330114831.1670235-42-sashal@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220330114831.1670235-1-sashal@kernel.org>
-References: <20220330114831.1670235-1-sashal@kernel.org>
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/3] dt-bindings: clock: convert rockchip,rk3036-cru.txt to YAML
+Date:   Wed, 30 Mar 2022 13:48:45 +0200
+Message-Id: <20220330114847.18633-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Leitner <richard.leitner@skidata.com>
+Convert rockchip,rk3036-cru.txt to YAML.
 
-[ Upstream commit 0092c25b541a5422d7e71892a13c55ee91abc34b ]
+Changes against original bindings:
+  Add clocks and clock-names because the device has to have
+  at least one input clock.
 
-This patch fixes the tristate configuration for i2c3 function assigned
-to the dtf pins on the Tamonten Tegra20 SoM.
-
-Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm/boot/dts/tegra20-tamonten.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../bindings/clock/rockchip,rk3036-cru.txt    | 56 ---------------
+ .../bindings/clock/rockchip,rk3036-cru.yaml   | 72 +++++++++++++++++++
+ 2 files changed, 72 insertions(+), 56 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
 
-diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
-index dd4d506683de..7f14f0d005c3 100644
---- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
-+++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
-@@ -183,8 +183,8 @@
- 			};
- 			conf_ata {
- 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
--					"cdev1", "cdev2", "dap1", "dtb", "gma",
--					"gmb", "gmc", "gmd", "gme", "gpu7",
-+					"cdev1", "cdev2", "dap1", "dtb", "dtf",
-+					"gma", "gmb", "gmc", "gmd", "gme", "gpu7",
- 					"gpv", "i2cp", "irrx", "irtx", "pta",
- 					"rm", "slxa", "slxk", "spia", "spib",
- 					"uac";
-@@ -203,7 +203,7 @@
- 			};
- 			conf_crtp {
- 				nvidia,pins = "crtp", "dap2", "dap3", "dap4",
--					"dtc", "dte", "dtf", "gpu", "sdio1",
-+					"dtc", "dte", "gpu", "sdio1",
- 					"slxc", "slxd", "spdi", "spdo", "spig",
- 					"uda";
- 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.txt
+deleted file mode 100644
+index 20df350b9..000000000
+--- a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-* Rockchip RK3036 Clock and Reset Unit
+-
+-The RK3036 clock controller generates and supplies clock to various
+-controllers within the SoC and also implements a reset controller for SoC
+-peripherals.
+-
+-Required Properties:
+-
+-- compatible: should be "rockchip,rk3036-cru"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- #clock-cells: should be 1.
+-- #reset-cells: should be 1.
+-
+-Optional Properties:
+-
+-- rockchip,grf: phandle to the syscon managing the "general register files"
+-  If missing pll rates are not changeable, due to the missing pll lock status.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/rk3036-cru.h headers and can be
+-used in device tree sources. Similar macros exist for the reset sources in
+-these files.
+-
+-External clocks:
+-
+-There are several clocks that are generated outside the SoC. It is expected
+-that they are defined using standard clock bindings with following
+-clock-output-names:
+- - "xin24m" - crystal input - required,
+- - "ext_i2s" - external I2S clock - optional,
+- - "rmii_clkin" - external EMAC clock - optional
+-
+-Example: Clock controller node:
+-
+-	cru: cru@20000000 {
+-		compatible = "rockchip,rk3036-cru";
+-		reg = <0x20000000 0x1000>;
+-		rockchip,grf = <&grf>;
+-
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-	};
+-
+-Example: UART controller node that consumes the clock generated by the clock
+-  controller:
+-
+-	uart0: serial@20060000 {
+-		compatible = "snps,dw-apb-uart";
+-		reg = <0x20060000 0x100>;
+-		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+-		reg-shift = <2>;
+-		reg-io-width = <4>;
+-		clocks = <&cru SCLK_UART0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
+new file mode 100644
+index 000000000..1376230fe
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/rockchip,rk3036-cru.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip RK3036 Clock and Reset Unit (CRU)
++
++maintainers:
++  - Elaine Zhang <zhangqing@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
++
++description: |
++  The RK3036 clock controller generates and supplies clocks to various
++  controllers within the SoC and also implements a reset controller for SoC
++  peripherals.
++  Each clock is assigned an identifier and client nodes can use this identifier
++  to specify the clock which they consume. All available clocks are defined as
++  preprocessor macros in the dt-bindings/clock/rk3036-cru.h headers and can be
++  used in device tree sources. Similar macros exist for the reset sources in
++  these files.
++  There are several clocks that are generated outside the SoC. It is expected
++  that they are defined using standard clock bindings with following
++  clock-output-names:
++    - "xin24m"     - crystal input       - required
++    - "ext_i2s"    - external I2S clock  - optional
++    - "rmii_clkin" - external EMAC clock - optional
++
++properties:
++  compatible:
++    enum:
++      - rockchip,rk3036-cru
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 1
++
++  "#reset-cells":
++    const: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: xin24m
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the syscon managing the "general register files" (GRF),
++      if missing pll rates are not changeable, due to the missing pll
++      lock status.
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++  - "#reset-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    cru: clock-controller@20000000 {
++      compatible = "rockchip,rk3036-cru";
++      reg = <0x20000000 0x1000>;
++      rockchip,grf = <&grf>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++    };
 -- 
-2.34.1
+2.20.1
 
