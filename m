@@ -2,302 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B05F24EC6E4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56A84EC706
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347068AbiC3Op0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 10:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
+        id S1347182AbiC3Oue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 10:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347038AbiC3OpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:45:25 -0400
-Received: from mail.baikalelectronics.ru (mail.baikalelectronics.com [87.245.175.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0D8925BE67;
-        Wed, 30 Mar 2022 07:43:36 -0700 (PDT)
-Received: from mail.baikalelectronics.ru (unknown [192.168.51.25])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 48DAD16C0;
-        Wed, 30 Mar 2022 17:43:39 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru 48DAD16C0
-Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 30 Mar 2022 17:43:35 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        <linux-clk@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v2 4/4] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
-Date:   Wed, 30 Mar 2022 17:43:20 +0300
-Message-ID: <20220330144320.27039-5-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220330144320.27039-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220330144320.27039-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S1347179AbiC3Oud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:50:33 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FFEA28789F;
+        Wed, 30 Mar 2022 07:48:46 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-dee0378ce7so11912453fac.4;
+        Wed, 30 Mar 2022 07:48:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=skMSCIAgLPl78nzvZXYE2JT7zIrztjobvz7dNziQYsE=;
+        b=YOLKtBaxxUSDjvtn8tEoN4QvogVSwfN4xVEiBqCaxzmZNE+eBzWJpPkgZVliBB79XY
+         xAvqy+3UJx0kvJlVUh5wjTVVHWuNjJmkEZfufEq+Lgen6UE1Yta1o/JVozzA278Pb4Ha
+         ZpWwX5boiLEiZM11qF70OJXN/vFiM/sFigtI29BAjyfOhdwUHdMiT4uLq7oRQ/SU8n9z
+         hLg/PUA2eIgx0p9zkhjUc71q1bRH418A49HBES0c4MVVq0u7EkAlzyPlW2Vnl7YCvb9S
+         fxigA5WRlKIm42AFOa3Zy0iVwUO2whKg0ifZ6CijM3MB7PQITIxphqAtrddKcedftlSi
+         xENw==
+X-Gm-Message-State: AOAM532FqYma72fGHAnA4X6VGf0YzNLnFqY0vc4jwGhULIZgAFLEvacb
+        s2cy5wWANFonS6BPV2FtYg==
+X-Google-Smtp-Source: ABdhPJxHdqfLBB2pgsxMf+I94z/WzW9slneVMU6+szkaMjJonYmkhtJIm3/o7LP/h/LoYE1YrqgzLw==
+X-Received: by 2002:a05:6870:ec92:b0:dd:b5b5:75d5 with SMTP id eo18-20020a056870ec9200b000ddb5b575d5mr2330636oab.61.1648651725568;
+        Wed, 30 Mar 2022 07:48:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t11-20020a4ae40b000000b0031cc933b418sm10019954oov.40.2022.03.30.07.48.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Mar 2022 07:48:45 -0700 (PDT)
+Received: (nullmailer pid 3029818 invoked by uid 1000);
+        Wed, 30 Mar 2022 14:48:44 -0000
+Date:   Wed, 30 Mar 2022 09:48:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        smangipudi@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        warthog618@gmail.com, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 04/11] dt-bindings: Add HTE bindings
+Message-ID: <YkRtzJjHQvmYNlK8@robh.at.kernel.org>
+References: <20220329054521.14420-1-dipenp@nvidia.com>
+ <20220329054521.14420-5-dipenp@nvidia.com>
+ <YkOVgRBtXX0k9zr1@robh.at.kernel.org>
+ <3b0f3430-bc1c-26df-c93f-517ba395d9e3@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3b0f3430-bc1c-26df-c93f-517ba395d9e3@nvidia.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-additional blocks with directly controlled reset signals. In particular it
-concerns DDR full and initial resets and various PCIe sub-domains resets.
-Let's add the direct reset assertion/de-assertion of the corresponding
-flags support into the Baikal-T1 CCU driver then. It will be required at
-least for the PCIe platform driver. Obviously the DDR controller isn't
-supposed to be fully reset in the kernel, so the corresponding controls
-are added just for the sake of the interface implementation completeness.
+On Tue, Mar 29, 2022 at 05:19:10PM -0700, Dipen Patel wrote:
+> Hi,
+> 
+> On 3/29/22 4:25 PM, Rob Herring wrote:
+> > On Mon, Mar 28, 2022 at 10:45:14PM -0700, Dipen Patel wrote:
+> >> Introduces HTE devicetree binding details for the HTE subsystem. It
+> >> includes examples for the consumers, binding details for the providers
+> >> and specific binding details for the Tegra194 based HTE providers.
+> >>
+> >> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+> >> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> >> ---
+> >> Changes in v2:
+> >> - Replace hte with hardware-timestamp for property names
+> >> - Renamed file
+> >> - Removed example from the common dt binding file.
+> >>
+> >> Changes in v3:
+> >> - Addressed grammatical errors.
+> >> - Removed double plural from the respective properties.
+> >> - Added dual license.
+> >> - Prefixed "nvidia" in nvidia specific properties.
+> >>
+> >> Changes in v4:
+> >> - Corrected make dt_binding_check error.
+> >>
+> >> Changes in v5:
+> >> - Addressed review comments.
+> >>
+> >>  .../hte/hardware-timestamps-common.yaml       | 29 +++++++
+> >>  .../devicetree/bindings/hte/hte-consumer.yaml | 43 ++++++++++
+> >>  .../bindings/hte/nvidia,tegra194-hte.yaml     | 82 +++++++++++++++++++
+> >>  3 files changed, 154 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/hte/hardware-timestamps-common.yaml
+> >>  create mode 100644 Documentation/devicetree/bindings/hte/hte-consumer.yaml
+> >>  create mode 100644 Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/hte/hardware-timestamps-common.yaml b/Documentation/devicetree/bindings/hte/hardware-timestamps-common.yaml
+> >> new file mode 100644
+> >> index 000000000000..e8a69ceccd56
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/hte/hardware-timestamps-common.yaml
+> >> @@ -0,0 +1,29 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fhte%2Fhardware-timestamps-common.yaml%23&amp;data=04%7C01%7Cdipenp%40nvidia.com%7C5793b3be05fd48a97ad108da11db79a7%7C43083d15727340c1b7db39efd9ccc17a%7C0%7C0%7C637841931589163420%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=oyeG06oNMukYew%2Bkji%2FlXsDyGwIIrIvwxLHKxaiFBto%3D&amp;reserved=0
+> >> +$schema: https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cdipenp%40nvidia.com%7C5793b3be05fd48a97ad108da11db79a7%7C43083d15727340c1b7db39efd9ccc17a%7C0%7C0%7C637841931589163420%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=JOY3MmZlMo6Mopr5dwjUky%2BaQX4b0QSiDt8zo3mSu1k%3D&amp;reserved=0
+> >> +
+> >> +title: Hardware timestamp providers
+> >> +
+> >> +maintainers:
+> >> +  - Dipen Patel <dipenp@nvidia.com>
+> >> +
+> >> +description:
+> >> +  Some devices/SoCs have hardware time stamping engines which can use hardware
+> >> +  means to timestamp entity in realtime. The entity could be anything from
+> >> +  GPIOs, IRQs, Bus and so on. The hardware timestamp engine (HTE) present
+> >> +  itself as a provider with the bindings described in this document.
+> >> +
+> >> +properties:
+> >> +  $nodename:
+> >> +    pattern: "^hardware-timestamp(@.*|-[0-9a-f])?$"
+> >> +
+> >> +  "#hardware-timestamp-cells":
+> >> +    description:
+> >> +      Number of cells in a HTE specifier.
+> >> +
+> >> +required:
+> >> +  - "#hardware-timestamp-cells"
+> >> +
+> >> +additionalProperties: true
+> >> diff --git a/Documentation/devicetree/bindings/hte/hte-consumer.yaml b/Documentation/devicetree/bindings/hte/hte-consumer.yaml
+> >> new file mode 100644
+> >> index 000000000000..be69f63aa8c3
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/hte/hte-consumer.yaml
+> >> @@ -0,0 +1,43 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fhte%2Fhte-consumer.yaml%23&amp;data=04%7C01%7Cdipenp%40nvidia.com%7C5793b3be05fd48a97ad108da11db79a7%7C43083d15727340c1b7db39efd9ccc17a%7C0%7C0%7C637841931589319655%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=0f1FFB1IotZESaxDlXX5mo9YyMN25BlFAyq%2FOQJtVoE%3D&amp;reserved=0
+> >> +$schema: https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cdipenp%40nvidia.com%7C5793b3be05fd48a97ad108da11db79a7%7C43083d15727340c1b7db39efd9ccc17a%7C0%7C0%7C637841931589319655%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=B%2FvVGGwp9JghUpT33cGk0EZHDRlaOAzCbtv93Z%2Fa9YY%3D&amp;reserved=0
+> >> +
+> >> +title: HTE Consumer Device Tree Bindings
+> >> +
+> >> +maintainers:
+> >> +  - Dipen Patel <dipenp@nvidia.com>
+> >> +
+> >> +select: true
+> >> +
+> >> +description:
+> >> +  HTE properties should be named "hardware-timestamps". The exact meaning of
+> >> +  each hardware-timestamps property must be documented in the device tree
+> > The meaning of the cells needs to be documented. You are documenting the 
+> > meaning of 'hardware-timestamps' here.
+> 
+> This is for the consumer side, meaning of the cells will be documented in the provider
+> 
+> binding document.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
----
- drivers/clk/baikal-t1/ccu-rst.c     | 117 +++++++++++++++++++++++++++-
- drivers/clk/baikal-t1/ccu-rst.h     |   4 +
- include/dt-bindings/reset/bt1-ccu.h |   9 +++
- 3 files changed, 129 insertions(+), 1 deletion(-)
+Right cells are opaque to the consumer. What bothered me is 
+hardware-timestamps already has an 'exact meaning'. You need to me more 
+exact as to what should be documented. We don't want what 
+'hardware-timestamps' is described again. What needs to be documented is 
+how many entries, what each entry is (for the consumer), and the order.
 
-diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
-index 5e33c3ce962a..186a1491a7d9 100644
---- a/drivers/clk/baikal-t1/ccu-rst.c
-+++ b/drivers/clk/baikal-t1/ccu-rst.c
-@@ -25,17 +25,33 @@
- #include "ccu-div.h"
- #include "ccu-rst.h"
- 
-+#define CCU_SYS_DDR_BASE		0x02c
-+#define CCU_SYS_PCIE_BASE		0x144
-+
- #define CCU_RST_MAP(_rst_id, _clk_id)		\
- 	{					\
- 		.rst_id = _rst_id,		\
- 		.clk_id = _clk_id,		\
- 	}
- 
-+#define CCU_RST_DIR(_rst_id, _base, _ofs)	\
-+	{					\
-+		.rst_id = _rst_id,		\
-+		.base = _base,			\
-+		.ofs = _ofs			\
-+	}
-+
- struct ccu_rst_map {
- 	unsigned int rst_id;
- 	unsigned int clk_id;
- };
- 
-+struct ccu_rst_dir {
-+	unsigned int rst_id;
-+	unsigned int base;
-+	unsigned int ofs;
-+};
-+
- struct ccu_rst_data {
- 	struct device_node *np;
- 	struct regmap *sys_regs;
-@@ -46,6 +62,9 @@ struct ccu_rst_data {
- 	unsigned int rsts_map_num;
- 	const struct ccu_rst_map *rsts_map;
- 
-+	unsigned int rsts_dir_num;
-+	const struct ccu_rst_dir *rsts_dir;
-+
- 	unsigned int divs_num;
- 	struct ccu_div **divs;
- 
-@@ -81,6 +100,23 @@ static const struct ccu_rst_map sys_rst_map[] = {
- 	CCU_RST_MAP(CCU_SYS_APB_RST, CCU_SYS_APB_CLK),
- };
- 
-+/*
-+ * DDR and PCIe sub-domains can be reset with directly controlled reset
-+ * signals. I wouldn't suggest to reset the DDR controller though at least
-+ * while the Linux kernel is working.
-+ */
-+static const struct ccu_rst_dir sys_rst_dir[] = {
-+	CCU_RST_DIR(CCU_SYS_DDR_FULL_RST, CCU_SYS_DDR_BASE, 1),
-+	CCU_RST_DIR(CCU_SYS_DDR_INIT_RST, CCU_SYS_DDR_BASE, 2),
-+	CCU_RST_DIR(CCU_SYS_PCIE_PCS_PHY_RST, CCU_SYS_PCIE_BASE, 0),
-+	CCU_RST_DIR(CCU_SYS_PCIE_PIPE0_RST, CCU_SYS_PCIE_BASE, 4),
-+	CCU_RST_DIR(CCU_SYS_PCIE_CORE_RST, CCU_SYS_PCIE_BASE, 8),
-+	CCU_RST_DIR(CCU_SYS_PCIE_PWR_RST, CCU_SYS_PCIE_BASE, 9),
-+	CCU_RST_DIR(CCU_SYS_PCIE_STICKY_RST, CCU_SYS_PCIE_BASE, 10),
-+	CCU_RST_DIR(CCU_SYS_PCIE_NSTICKY_RST, CCU_SYS_PCIE_BASE, 11),
-+	CCU_RST_DIR(CCU_SYS_PCIE_HOT_RST, CCU_SYS_PCIE_BASE, 12),
-+};
-+
- static int ccu_rst_reset(struct reset_controller_dev *rcdev,
- 			 unsigned long idx)
- {
-@@ -92,12 +128,81 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * No CCU divider descriptor means having directly handled reset control,
-+	 * which is mapped into the CCU Divider registers.
-+	 */
- 	rst = &data->rsts[idx];
-+	if (!rst->div)
-+		return -EOPNOTSUPP;
-+
- 	return ccu_div_reset_domain(rst->div);
- }
- 
-+static int ccu_rst_set(struct ccu_rst_data *data,
-+		       unsigned long idx, bool high)
-+{
-+	struct ccu_rst *rst;
-+
-+	if (idx >= data->rsts_num) {
-+		pr_err("Invalid reset ID %lu specified\n", idx);
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * Having CCU divider descriptor means trigger-like reset control so
-+	 * direct assertion/de-assertion is unsupported.
-+	 */
-+	rst = &data->rsts[idx];
-+	if (rst->div)
-+		return high ? -EOPNOTSUPP : 0;
-+
-+	return regmap_update_bits(data->sys_regs, rst->reg_ctl,
-+				  rst->mask, high ? rst->mask : 0);
-+}
-+
-+static int ccu_rst_assert(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
-+
-+	return ccu_rst_set(data, idx, true);
-+}
-+
-+static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
-+			    unsigned long idx)
-+{
-+	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
-+
-+	return ccu_rst_set(data, idx, false);
-+}
-+
-+static int ccu_rst_status(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
-+	struct ccu_rst *rst;
-+	u32 val;
-+
-+	if (idx >= data->rsts_num) {
-+		pr_err("Invalid reset ID %lu specified\n", idx);
-+		return -EINVAL;
-+	}
-+
-+	rst = &data->rsts[idx];
-+	if (rst->div)
-+		return -EOPNOTSUPP;
-+
-+	regmap_read(data->sys_regs, rst->reg_ctl, &val);
-+
-+	return !!(val & rst->mask);
-+}
-+
- static const struct reset_control_ops ccu_rst_ops = {
- 	.reset = ccu_rst_reset,
-+	.assert = ccu_rst_assert,
-+	.deassert = ccu_rst_deassert,
-+	.status = ccu_rst_status,
- };
- 
- static int ccu_rst_of_idx_get(struct reset_controller_dev *rcdev,
-@@ -153,6 +258,8 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
- 	} else if (of_device_is_compatible(data->np, "baikal,bt1-ccu-sys")) {
- 		data->rsts_map_num = ARRAY_SIZE(sys_rst_map);
- 		data->rsts_map = sys_rst_map;
-+		data->rsts_dir_num = ARRAY_SIZE(sys_rst_dir);
-+		data->rsts_dir = sys_rst_dir;
- 	} else {
- 		pr_err("Incompatible DT node '%s' specified\n",
- 			of_node_full_name(data->np));
-@@ -160,7 +267,7 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
- 		goto err_kfree_data;
- 	}
- 
--	data->rsts_num = data->rsts_map_num;
-+	data->rsts_num = data->rsts_map_num + data->rsts_dir_num;
- 	data->rsts = kcalloc(data->rsts_num, sizeof(*data->rsts), GFP_KERNEL);
- 	if (!data->rsts) {
- 		ret = -ENOMEM;
-@@ -198,6 +305,14 @@ static int ccu_rst_init_desc(struct ccu_rst_data *data)
- 		}
- 	}
- 
-+	for (idx = 0; idx < data->rsts_dir_num; ++idx, ++rst) {
-+		const struct ccu_rst_dir *dir = &data->rsts_dir[idx];
-+
-+		rst->id = dir->rst_id;
-+		rst->reg_ctl = dir->base;
-+		rst->mask = BIT(dir->ofs);
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
-index 2ef82899dba8..58347dc8a504 100644
---- a/drivers/clk/baikal-t1/ccu-rst.h
-+++ b/drivers/clk/baikal-t1/ccu-rst.h
-@@ -33,10 +33,14 @@ struct ccu_rst_init_data {
-  * struct ccu_div - CCU Reset descriptor
-  * @id: Reset identifier.
-  * @div: Pointer to the CCU Divider descriptor (can be NULL).
-+ * @reg_ctl: reset control register base address.
-+ * @mask: reset flag within the control register.
-  */
- struct ccu_rst {
- 	unsigned int id;
- 	struct ccu_div *div;
-+	unsigned int reg_ctl;
-+	unsigned int mask;
- };
- 
- #ifdef CONFIG_CLK_BT1_CCU_RST
-diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
-index 3578e83026bc..c691efaa678f 100644
---- a/include/dt-bindings/reset/bt1-ccu.h
-+++ b/include/dt-bindings/reset/bt1-ccu.h
-@@ -21,5 +21,14 @@
- 
- #define CCU_SYS_SATA_REF_RST		0
- #define CCU_SYS_APB_RST			1
-+#define CCU_SYS_DDR_FULL_RST		2
-+#define CCU_SYS_DDR_INIT_RST		3
-+#define CCU_SYS_PCIE_PCS_PHY_RST	4
-+#define CCU_SYS_PCIE_PIPE0_RST		5
-+#define CCU_SYS_PCIE_CORE_RST		6
-+#define CCU_SYS_PCIE_PWR_RST		7
-+#define CCU_SYS_PCIE_STICKY_RST		8
-+#define CCU_SYS_PCIE_NSTICKY_RST	9
-+#define CCU_SYS_PCIE_HOT_RST		10
- 
- #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
--- 
-2.35.1
 
+> >> +  binding for each device. An optional property "hardware-timestamp-names" may
+> >> +  contain a list of strings to label each of the HTE devices listed in the
+> >> +  "hardware-timestamps" property.
+> >> +
+> >> +properties:
+> >> +  hardware-timestamps:
+> > I'm wondering if we should just drop 'hardware'. What other kind of 
+> > timestamps are we going to have in DT? software-timestamps? No.
+> 
+> I believe this makes it explicit and leaves no room for second guess. If
+> 
+> only timestamps, ambiguity then will be which timestamp it is i.e. through hardware
+> 
+> engine, pps, ptp and so on...
+
+Those aren't hardware timestamps, too? If those needed a similar 
+binding, couldn't they use this binding? PTP at least is sometimes an 
+separate, external chip IIRC.
+
+Rob
