@@ -2,148 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 431D34EC6CE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B05F24EC6E4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346793AbiC3OmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 10:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44906 "EHLO
+        id S1347068AbiC3Op0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 10:45:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244124AbiC3OmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:42:15 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6A453B7C;
-        Wed, 30 Mar 2022 07:40:30 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id i23-20020a9d6117000000b005cb58c354e6so15035492otj.10;
-        Wed, 30 Mar 2022 07:40:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WluG5A3Su9h6kButSakciwh97/HOUIf+fbIX970BGps=;
-        b=5UTR25fk0eCnYZHCswINXb8g2foHBrXOVsMdSRzVUaORw2clQLqpLUgBG2LoeaCCzo
-         EevNGFJJoBSjQB2pAuFldOplvxp4xr/gkkC7/kzaS548SLyJx6O0NHKXxswIkjFtLFyZ
-         I+9SswivJELTcXkF1utwG/TuiAB+bwR1movajntxM8CJNemuoP8DBumnRbyB1WBpOGRE
-         +fiaP54AnHFXJxyHOyfcOB93YTq0IJUh9lIJRuVaWAB28PHJWO8lRdsZyoQMzaRxevLZ
-         QT4ncJVmBFglKkAV18ERMwPwG7KdYOQDoQ4JiJWiRfWyKGu9vDg6jYNUjOdaqTeqn1Qe
-         JPeA==
-X-Gm-Message-State: AOAM533aGvwqtlAnTrNU74BwhSrg6RtzwjzMRqRN5WR2cAFuusVDCGI+
-        14o9Nj0mLz807tVeq1XNTw==
-X-Google-Smtp-Source: ABdhPJwBBRjRl69m95mUWUdtBlAPdWiXCOSKHrQW8piO6H7rRiDBWu53Pcr1z0ZJDoY2oW17y4smCA==
-X-Received: by 2002:a9d:74da:0:b0:5cd:b164:6daf with SMTP id a26-20020a9d74da000000b005cdb1646dafmr3414136otl.231.1648651229564;
-        Wed, 30 Mar 2022 07:40:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c3-20020a056808138300b002f76b9a9ef6sm2137595oiw.10.2022.03.30.07.40.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 07:40:27 -0700 (PDT)
-Received: (nullmailer pid 3015921 invoked by uid 1000);
-        Wed, 30 Mar 2022 14:40:27 -0000
-Date:   Wed, 30 Mar 2022 09:40:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "huziji@marvell.com" <huziji@marvell.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: xenon: Convert to JSON schema
-Message-ID: <YkRr22lQHKCZa5A2@robh.at.kernel.org>
-References: <20220329000231.3544810-1-chris.packham@alliedtelesis.co.nz>
- <20220329000231.3544810-3-chris.packham@alliedtelesis.co.nz>
- <1648554629.870840.350362.nullmailer@robh.at.kernel.org>
- <d4c477b3-0cf2-e495-6a54-5fcd0301cc14@kernel.org>
- <6e118704-3c63-929e-ebf0-9a78fbed5daa@alliedtelesis.co.nz>
+        with ESMTP id S1347038AbiC3OpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:45:25 -0400
+Received: from mail.baikalelectronics.ru (mail.baikalelectronics.com [87.245.175.226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0D8925BE67;
+        Wed, 30 Mar 2022 07:43:36 -0700 (PDT)
+Received: from mail.baikalelectronics.ru (unknown [192.168.51.25])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 48DAD16C0;
+        Wed, 30 Mar 2022 17:43:39 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru 48DAD16C0
+Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 30 Mar 2022 17:43:35 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        <linux-clk@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2 4/4] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
+Date:   Wed, 30 Mar 2022 17:43:20 +0300
+Message-ID: <20220330144320.27039-5-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220330144320.27039-1-Sergey.Semin@baikalelectronics.ru>
+References: <20220330144320.27039-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6e118704-3c63-929e-ebf0-9a78fbed5daa@alliedtelesis.co.nz>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 29, 2022 at 07:50:59PM +0000, Chris Packham wrote:
-> 
-> On 30/03/22 02:14, Krzysztof Kozlowski wrote:
-> > On 29/03/2022 13:50, Rob Herring wrote:
-> >> On Tue, 29 Mar 2022 13:02:31 +1300, Chris Packham wrote:
-> >>> Convert the marvell,xenon-sdhci binding to JSON schema. Currently the
-> >>> in-tree dts files don't validate because they use sdhci@ instead of mmc@
-> >>> as required by the generic mmc-controller schema.
-> >>>
-> >>> The compatible "marvell,sdhci-xenon" was not documented in the old
-> >>> binding but it accompanies the of "marvell,armada-3700-sdhci" in the
-> >>> armada-37xx SoC dtsi so this combination is added to the new binding
-> >>> document.
-> >>>
-> >>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> >>> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> >>> ---
-> >>>
-> >>> Notes:
-> >>>      Changes in v4:
-> >>>      - Add review from Krzysztof
-> >>>      - Squash in addition of marvell,sdhci-xenon with an explanation in the
-> >>>        commit message
-> >>>      Changes in v3:
-> >>>      - Don't accept ap807 without ap806
-> >>>      - Add ref: string for pad-type
-> >>>      Changes in v2:
-> >>>      - Update MAINTAINERS entry
-> >>>      - Incorporate feedback from Krzysztof
-> >>>
-> >>>   .../bindings/mmc/marvell,xenon-sdhci.txt      | 173 -----------
-> >>>   .../bindings/mmc/marvell,xenon-sdhci.yaml     | 275 ++++++++++++++++++
-> >>>   MAINTAINERS                                   |   2 +-
-> >>>   3 files changed, 276 insertions(+), 174 deletions(-)
-> >>>   delete mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.txt
-> >>>   create mode 100644 Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> >>>
-> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >>
-> >> yamllint warnings/errors:
-> >>
-> >> dtschema/dtc warnings/errors:
-> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dt.yaml: mmc@aa0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> >> 	['marvell,armada-3700-sdhci'] is too short
-> >> 	'marvell,armada-3700-sdhci' is not one of ['marvell,armada-cp110-sdhci', 'marvell,armada-ap806-sdhci']
-> >> 	'marvell,armada-ap807-sdhci' was expected
-> >> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> >> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dt.yaml: mmc@ab0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> >> 	['marvell,armada-3700-sdhci'] is too short
-> >> 	'marvell,armada-3700-sdhci' is not one of ['marvell,armada-cp110-sdhci', 'marvell,armada-ap806-sdhci']
-> >> 	'marvell,armada-ap807-sdhci' was expected
-> >> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> >>
-> >> doc reference errors (make refcheckdocs):
-> > Chris, your own dt binding does not pass it's check (example)...
-> >
-> > After updating the compatibles, you need to check the example. The
-> > examples are anyway duplicating common stuff, so half of them could be
-> > removed.
-> 
-> Yeah silly me. I started taking short cuts to run dt_binding_check 
-> dtbs_check as one command but then the dt_bindings_check output scrolled 
-> off the top of my terminal.
-> 
-> As for the examples themselves I want to leave what's there as a fairly 
-> direct translation of the old binding. If we consider them unnecessary 
-> removing them can be done as a follow-up.
+Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
+additional blocks with directly controlled reset signals. In particular it
+concerns DDR full and initial resets and various PCIe sub-domains resets.
+Let's add the direct reset assertion/de-assertion of the corresponding
+flags support into the Baikal-T1 CCU driver then. It will be required at
+least for the PCIe platform driver. Obviously the DDR controller isn't
+supposed to be fully reset in the kernel, so the corresponding controls
+are added just for the sake of the interface implementation completeness.
 
-The examples cannot have warnings/errors.
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+---
+ drivers/clk/baikal-t1/ccu-rst.c     | 117 +++++++++++++++++++++++++++-
+ drivers/clk/baikal-t1/ccu-rst.h     |   4 +
+ include/dt-bindings/reset/bt1-ccu.h |   9 +++
+ 3 files changed, 129 insertions(+), 1 deletion(-)
 
-Rob
+diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
+index 5e33c3ce962a..186a1491a7d9 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.c
++++ b/drivers/clk/baikal-t1/ccu-rst.c
+@@ -25,17 +25,33 @@
+ #include "ccu-div.h"
+ #include "ccu-rst.h"
+ 
++#define CCU_SYS_DDR_BASE		0x02c
++#define CCU_SYS_PCIE_BASE		0x144
++
+ #define CCU_RST_MAP(_rst_id, _clk_id)		\
+ 	{					\
+ 		.rst_id = _rst_id,		\
+ 		.clk_id = _clk_id,		\
+ 	}
+ 
++#define CCU_RST_DIR(_rst_id, _base, _ofs)	\
++	{					\
++		.rst_id = _rst_id,		\
++		.base = _base,			\
++		.ofs = _ofs			\
++	}
++
+ struct ccu_rst_map {
+ 	unsigned int rst_id;
+ 	unsigned int clk_id;
+ };
+ 
++struct ccu_rst_dir {
++	unsigned int rst_id;
++	unsigned int base;
++	unsigned int ofs;
++};
++
+ struct ccu_rst_data {
+ 	struct device_node *np;
+ 	struct regmap *sys_regs;
+@@ -46,6 +62,9 @@ struct ccu_rst_data {
+ 	unsigned int rsts_map_num;
+ 	const struct ccu_rst_map *rsts_map;
+ 
++	unsigned int rsts_dir_num;
++	const struct ccu_rst_dir *rsts_dir;
++
+ 	unsigned int divs_num;
+ 	struct ccu_div **divs;
+ 
+@@ -81,6 +100,23 @@ static const struct ccu_rst_map sys_rst_map[] = {
+ 	CCU_RST_MAP(CCU_SYS_APB_RST, CCU_SYS_APB_CLK),
+ };
+ 
++/*
++ * DDR and PCIe sub-domains can be reset with directly controlled reset
++ * signals. I wouldn't suggest to reset the DDR controller though at least
++ * while the Linux kernel is working.
++ */
++static const struct ccu_rst_dir sys_rst_dir[] = {
++	CCU_RST_DIR(CCU_SYS_DDR_FULL_RST, CCU_SYS_DDR_BASE, 1),
++	CCU_RST_DIR(CCU_SYS_DDR_INIT_RST, CCU_SYS_DDR_BASE, 2),
++	CCU_RST_DIR(CCU_SYS_PCIE_PCS_PHY_RST, CCU_SYS_PCIE_BASE, 0),
++	CCU_RST_DIR(CCU_SYS_PCIE_PIPE0_RST, CCU_SYS_PCIE_BASE, 4),
++	CCU_RST_DIR(CCU_SYS_PCIE_CORE_RST, CCU_SYS_PCIE_BASE, 8),
++	CCU_RST_DIR(CCU_SYS_PCIE_PWR_RST, CCU_SYS_PCIE_BASE, 9),
++	CCU_RST_DIR(CCU_SYS_PCIE_STICKY_RST, CCU_SYS_PCIE_BASE, 10),
++	CCU_RST_DIR(CCU_SYS_PCIE_NSTICKY_RST, CCU_SYS_PCIE_BASE, 11),
++	CCU_RST_DIR(CCU_SYS_PCIE_HOT_RST, CCU_SYS_PCIE_BASE, 12),
++};
++
+ static int ccu_rst_reset(struct reset_controller_dev *rcdev,
+ 			 unsigned long idx)
+ {
+@@ -92,12 +128,81 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev,
+ 		return -EINVAL;
+ 	}
+ 
++	/*
++	 * No CCU divider descriptor means having directly handled reset control,
++	 * which is mapped into the CCU Divider registers.
++	 */
+ 	rst = &data->rsts[idx];
++	if (!rst->div)
++		return -EOPNOTSUPP;
++
+ 	return ccu_div_reset_domain(rst->div);
+ }
+ 
++static int ccu_rst_set(struct ccu_rst_data *data,
++		       unsigned long idx, bool high)
++{
++	struct ccu_rst *rst;
++
++	if (idx >= data->rsts_num) {
++		pr_err("Invalid reset ID %lu specified\n", idx);
++		return -EINVAL;
++	}
++
++	/*
++	 * Having CCU divider descriptor means trigger-like reset control so
++	 * direct assertion/de-assertion is unsupported.
++	 */
++	rst = &data->rsts[idx];
++	if (rst->div)
++		return high ? -EOPNOTSUPP : 0;
++
++	return regmap_update_bits(data->sys_regs, rst->reg_ctl,
++				  rst->mask, high ? rst->mask : 0);
++}
++
++static int ccu_rst_assert(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
++
++	return ccu_rst_set(data, idx, true);
++}
++
++static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
++			    unsigned long idx)
++{
++	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
++
++	return ccu_rst_set(data, idx, false);
++}
++
++static int ccu_rst_status(struct reset_controller_dev *rcdev,
++			  unsigned long idx)
++{
++	struct ccu_rst_data *data = to_ccu_rst_data(rcdev);
++	struct ccu_rst *rst;
++	u32 val;
++
++	if (idx >= data->rsts_num) {
++		pr_err("Invalid reset ID %lu specified\n", idx);
++		return -EINVAL;
++	}
++
++	rst = &data->rsts[idx];
++	if (rst->div)
++		return -EOPNOTSUPP;
++
++	regmap_read(data->sys_regs, rst->reg_ctl, &val);
++
++	return !!(val & rst->mask);
++}
++
+ static const struct reset_control_ops ccu_rst_ops = {
+ 	.reset = ccu_rst_reset,
++	.assert = ccu_rst_assert,
++	.deassert = ccu_rst_deassert,
++	.status = ccu_rst_status,
+ };
+ 
+ static int ccu_rst_of_idx_get(struct reset_controller_dev *rcdev,
+@@ -153,6 +258,8 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
+ 	} else if (of_device_is_compatible(data->np, "baikal,bt1-ccu-sys")) {
+ 		data->rsts_map_num = ARRAY_SIZE(sys_rst_map);
+ 		data->rsts_map = sys_rst_map;
++		data->rsts_dir_num = ARRAY_SIZE(sys_rst_dir);
++		data->rsts_dir = sys_rst_dir;
+ 	} else {
+ 		pr_err("Incompatible DT node '%s' specified\n",
+ 			of_node_full_name(data->np));
+@@ -160,7 +267,7 @@ static struct ccu_rst_data *ccu_rst_create_data(const struct ccu_rst_init_data *
+ 		goto err_kfree_data;
+ 	}
+ 
+-	data->rsts_num = data->rsts_map_num;
++	data->rsts_num = data->rsts_map_num + data->rsts_dir_num;
+ 	data->rsts = kcalloc(data->rsts_num, sizeof(*data->rsts), GFP_KERNEL);
+ 	if (!data->rsts) {
+ 		ret = -ENOMEM;
+@@ -198,6 +305,14 @@ static int ccu_rst_init_desc(struct ccu_rst_data *data)
+ 		}
+ 	}
+ 
++	for (idx = 0; idx < data->rsts_dir_num; ++idx, ++rst) {
++		const struct ccu_rst_dir *dir = &data->rsts_dir[idx];
++
++		rst->id = dir->rst_id;
++		rst->reg_ctl = dir->base;
++		rst->mask = BIT(dir->ofs);
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
+index 2ef82899dba8..58347dc8a504 100644
+--- a/drivers/clk/baikal-t1/ccu-rst.h
++++ b/drivers/clk/baikal-t1/ccu-rst.h
+@@ -33,10 +33,14 @@ struct ccu_rst_init_data {
+  * struct ccu_div - CCU Reset descriptor
+  * @id: Reset identifier.
+  * @div: Pointer to the CCU Divider descriptor (can be NULL).
++ * @reg_ctl: reset control register base address.
++ * @mask: reset flag within the control register.
+  */
+ struct ccu_rst {
+ 	unsigned int id;
+ 	struct ccu_div *div;
++	unsigned int reg_ctl;
++	unsigned int mask;
+ };
+ 
+ #ifdef CONFIG_CLK_BT1_CCU_RST
+diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
+index 3578e83026bc..c691efaa678f 100644
+--- a/include/dt-bindings/reset/bt1-ccu.h
++++ b/include/dt-bindings/reset/bt1-ccu.h
+@@ -21,5 +21,14 @@
+ 
+ #define CCU_SYS_SATA_REF_RST		0
+ #define CCU_SYS_APB_RST			1
++#define CCU_SYS_DDR_FULL_RST		2
++#define CCU_SYS_DDR_INIT_RST		3
++#define CCU_SYS_PCIE_PCS_PHY_RST	4
++#define CCU_SYS_PCIE_PIPE0_RST		5
++#define CCU_SYS_PCIE_CORE_RST		6
++#define CCU_SYS_PCIE_PWR_RST		7
++#define CCU_SYS_PCIE_STICKY_RST		8
++#define CCU_SYS_PCIE_NSTICKY_RST	9
++#define CCU_SYS_PCIE_HOT_RST		10
+ 
+ #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
+-- 
+2.35.1
+
