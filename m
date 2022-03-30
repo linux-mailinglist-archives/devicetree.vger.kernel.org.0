@@ -2,42 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6AD4EBA0F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 07:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EDC24EBA1D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 07:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242900AbiC3FWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 01:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53830 "EHLO
+        id S232664AbiC3FZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 01:25:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242895AbiC3FWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 01:22:43 -0400
+        with ESMTP id S232059AbiC3FZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 01:25:27 -0400
 Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E104913A1DC;
-        Tue, 29 Mar 2022 22:20:58 -0700 (PDT)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 30 Mar 2022 14:20:58 +0900
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB9AB15B076;
+        Tue, 29 Mar 2022 22:23:36 -0700 (PDT)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 30 Mar 2022 14:23:36 +0900
 Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 846282058B50;
-        Wed, 30 Mar 2022 14:20:58 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 30 Mar 2022 14:20:58 +0900
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 6DF352058443;
+        Wed, 30 Mar 2022 14:23:36 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 30 Mar 2022 14:23:36 +0900
 Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 2F914B62B7;
-        Wed, 30 Mar 2022 14:20:58 +0900 (JST)
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id E6DB4B62B7;
+        Wed, 30 Mar 2022 14:23:35 +0900 (JST)
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+To:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
         Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH v2 5/5] dt-bindings: phy: uniphier: Clean up clock-names and reset-names using compatible string
-Date:   Wed, 30 Mar 2022 14:20:51 +0900
-Message-Id: <1648617651-9004-6-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: [PATCH v2 0/2] dt-bindings: PCI: uniphier: Convert bindings and fix devicetree warning issue
+Date:   Wed, 30 Mar 2022 14:23:32 +0900
+Message-Id: <1648617814-9217-1-git-send-email-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1648617651-9004-1-git-send-email-hayashi.kunihiko@socionext.com>
-References: <1648617651-9004-1-git-send-email-hayashi.kunihiko@socionext.com>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -47,359 +44,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of "oneOf:" choices, use "allOf:" and "if:" to define clock-names
-and reset-names that can be taken by the compatible string.
+Convert dt-bindings description for UniPhier PCI controller into a JSON
+description, and remove unused compatible from devicetree to fix dtbs_check
+warnings after convertion.
 
-The order of clock-names and reset-names doesn't change here.
+Changes since v1:
+- Remove a redundant item list of reg-names and add minItems
+- Add patch 2 to fix warnings
 
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
----
- .../phy/socionext,uniphier-ahci-phy.yaml      | 73 ++++++++++++------
- .../phy/socionext,uniphier-pcie-phy.yaml      | 37 ++++++---
- .../phy/socionext,uniphier-usb3hs-phy.yaml    | 75 +++++++++++++-----
- .../phy/socionext,uniphier-usb3ss-phy.yaml    | 77 ++++++++++++++-----
- 4 files changed, 188 insertions(+), 74 deletions(-)
+Kunihiko Hayashi (2):
+  dt-bindings: PCI: uniphier: Convert uniphier-pcie.txt to json-schema
+  arm64: dts: uniphier: Remove compatible "snps,dw-pcie" from pcie node
 
-diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
-index 14f7579e7daa..61d9306e1852 100644
---- a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
-@@ -30,33 +30,62 @@ properties:
-     minItems: 1
-     maxItems: 2
- 
--  clock-names:
--    oneOf:
--      - items:          # for PXs2
--          - const: link
--      - items:          # for Pro4
--          - const: link
--          - const: gio
--      - items:          # for others
--          - const: link
--          - const: phy
-+  clock-names: true
- 
-   resets:
-     minItems: 2
-     maxItems: 6
- 
--  reset-names:
--    oneOf:
--      - items:          # for Pro4
--          - const: link
--          - const: gio
--          - const: phy
--          - const: pm
--          - const: tx
--          - const: rx
--      - items:          # for others
--          - const: link
--          - const: phy
-+  reset-names: true
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: socionext,uniphier-pro4-ahci-phy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: link
-+            - const: gio
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: gio
-+            - const: phy
-+            - const: pm
-+            - const: tx
-+            - const: rx
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: socionext,uniphier-pxs2-ahci-phy
-+    then:
-+      properties:
-+        clock-names:
-+          const: link
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: phy
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: socionext,uniphier-pxs3-ahci-phy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: link
-+            - const: phy
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: phy
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml
-index fbb71d6dd531..e45489a9bf1a 100644
---- a/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-pcie-phy.yaml
-@@ -31,28 +31,41 @@ properties:
-     minItems: 1
-     maxItems: 2
- 
--  clock-names:
--    oneOf:
--      - items:            # for Pro5
--          - const: gio
--          - const: link
--      - const: link       # for others
-+  clock-names: true
- 
-   resets:
-     minItems: 1
-     maxItems: 2
- 
--  reset-names:
--    oneOf:
--      - items:            # for Pro5
--          - const: gio
--          - const: link
--      - const: link       # for others
-+  reset-names: true
- 
-   socionext,syscon:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: A phandle to system control to set configurations for phy
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: socionext,uniphier-pro5-pcie-phy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: gio
-+            - const: link
-+        reset-names:
-+          items:
-+            - const: gio
-+            - const: link
-+    else:
-+      properties:
-+        clock-names:
-+          const: link
-+        reset-names:
-+          const: link
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
-index 1bbd164f2527..a37205242dc1 100644
---- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
-@@ -34,30 +34,12 @@ properties:
-     minItems: 2
-     maxItems: 3
- 
--  clock-names:
--    oneOf:
--      - items:               # for Pro5
--          - const: gio
--          - const: link
--      - items:               # for PXs3 with phy-ext
--          - const: link
--          - const: phy
--          - const: phy-ext
--      - items:               # for others
--          - const: link
--          - const: phy
-+  clock-names: true
- 
-   resets:
-     maxItems: 2
- 
--  reset-names:
--    oneOf:
--      - items:               # for Pro5
--          - const: gio
--          - const: link
--      - items:               # for others
--          - const: link
--          - const: phy
-+  reset-names: true
- 
-   vbus-supply:
-     description: A phandle to the regulator for USB VBUS
-@@ -80,6 +62,59 @@ properties:
-       required for each port, if any one is omitted, the trimming data
-       of the port will not be set at all.
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: socionext,uniphier-pro5-usb3-hsphy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: gio
-+            - const: link
-+        reset-names:
-+          items:
-+            - const: gio
-+            - const: link
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - socionext,uniphier-pxs2-usb3-hsphy
-+              - socionext,uniphier-ld20-usb3-hsphy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: link
-+            - const: phy
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: phy
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - socionext,uniphier-pxs3-usb3-hsphy
-+              - socionext,uniphier-nx1-usb3-hsphy
-+    then:
-+      properties:
-+        clock-names:
-+          minItems: 2
-+          items:
-+            - const: link
-+            - const: phy
-+            - const: phy-ext
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: phy
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
-index 06c957d52d23..dd6ebee6377f 100644
---- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
-@@ -35,34 +35,71 @@ properties:
-     minItems: 2
-     maxItems: 3
- 
--  clock-names:
--    oneOf:
--      - items:             # for Pro4, Pro5
--          - const: gio
--          - const: link
--      - items:             # for PXs3 with phy-ext
--          - const: link
--          - const: phy
--          - const: phy-ext
--      - items:             # for others
--          - const: link
--          - const: phy
-+  clock-names: true
- 
-   resets:
-     maxItems: 2
- 
--  reset-names:
--    oneOf:
--      - items:              # for Pro4,Pro5
--          - const: gio
--          - const: link
--      - items:              # for others
--          - const: link
--          - const: phy
-+  reset-names: true
- 
-   vbus-supply:
-     description: A phandle to the regulator for USB VBUS, only for USB host
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - socionext,uniphier-pro4-usb3-ssphy
-+              - socionext,uniphier-pro5-usb3-ssphy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: gio
-+            - const: link
-+        reset-names:
-+          items:
-+            - const: gio
-+            - const: link
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - socionext,uniphier-pxs2-usb3-ssphy
-+              - socionext,uniphier-ld20-usb3-ssphy
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: link
-+            - const: phy
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: phy
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - socionext,uniphier-pxs3-usb3-ssphy
-+              - socionext,uniphier-nx1-usb3-ssphy
-+    then:
-+      properties:
-+        clock-names:
-+          minItems: 2
-+          items:
-+            - const: link
-+            - const: phy
-+            - const: phy-ext
-+        reset-names:
-+          items:
-+            - const: link
-+            - const: phy
-+
- required:
-   - compatible
-   - reg
+ .../bindings/pci/socionext,uniphier-pcie.yaml | 96 +++++++++++++++++++
+ .../devicetree/bindings/pci/uniphier-pcie.txt | 82 ----------------
+ MAINTAINERS                                   |  2 +-
+ .../boot/dts/socionext/uniphier-ld20.dtsi     |  2 +-
+ .../boot/dts/socionext/uniphier-pxs3.dtsi     |  2 +-
+ 5 files changed, 99 insertions(+), 85 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/uniphier-pcie.txt
+
 -- 
 2.25.1
 
