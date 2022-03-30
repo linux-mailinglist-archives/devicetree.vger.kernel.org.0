@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F3DC4ECF5B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 00:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CDD44ECF7B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 00:18:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233626AbiC3WKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 18:10:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56190 "EHLO
+        id S1351503AbiC3WSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 18:18:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233641AbiC3WKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 18:10:01 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3C3AA6
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 15:08:14 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id k7so18181750qvc.4
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 15:08:14 -0700 (PDT)
+        with ESMTP id S1351499AbiC3WSV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 18:18:21 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD47443C2
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 15:16:35 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id i4so19702012qti.7
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 15:16:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=SZiNG3ufWqPM1a0cTW4jnJgQNElQaGHtkTjo01VQU4I=;
-        b=MrMWiYyQdINQwVp4gorVlwJbY2td0hmgU/oFNQE3AX6ulipZQWM3VZfF1PuxnzXbPQ
-         s+7n6N9jfFqt9BMx/HsWKed8i1GMk7OS8V/tnboQJnOIRo98PT4ST5wx/yiA9oXvLcyI
-         Iz/InO8LqH7YaQJ3Nn904oMAzpYKJbo+CslovCmLznn7W20dOdKBVyZCkTdns5VthPL2
-         KTfl/1hI1DkypIk69BYPxS1340Yln2MMx2RB+1wh31OIIteFprSvjDcpvfVpOU864J8p
-         RKc8Lx8DlFNrjnh+WIUi8WDsIOrld2ex9L7MzW2ytRTGHK9f9QwA7gKmh14MzcdNku44
-         SmKQ==
+        bh=v5V3kvEJbyi9F3MHeceyPdx3c1Bu5E1z1aG7KQioCtA=;
+        b=Rn4E6fpfodZzBNI9CHionnRmbtXxDFsoLCGl9rf4OHI2zq0q0y9+g6jo5yJe7jn4Xo
+         K3XwMD4lfvd2o/Oag+klWSmmknJdJpYjbPccWmsbEbxdhbKRfqy84do86ezAT8PQCBhE
+         FZcg4szpZtfucxmQaFZ8Z/jX+Yx6AWg/E253ow4IFaxbxHTEuh2EGe8TUKp9kMrj+dSC
+         jTnAAVmVp27czFaUnlMNh8WNEYLAr55F4wj0CcO0Sh3aj3nHpFVXZlQY+ICacfQHKwb3
+         IifLZ+eSWVzv9kZ9ilrXlkgtn5UYCP03Li2p4l3d3UoQ394uqnTb6oqWHTG/y+zD0vrh
+         52dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SZiNG3ufWqPM1a0cTW4jnJgQNElQaGHtkTjo01VQU4I=;
-        b=m+rKsPoOfH+hpaoRmYQeDufHwk3AmjqY/mMt2caHmeEIV/LeegVrwpICIujUNqrMhJ
-         RJ5/XAGTVRKrO5zUcj/2i5RxXleOn4YxOl1bZ18tiIqR+4q4jRDvyZR/7etIPtesvIJs
-         fh0eQekAuHXMRkDSihJrKL+Re1kDzAznqjllHedFZfhqpim331mr6F8wwsMWpGOptfag
-         7ONFVLf49YrxUDVPHcz1boJ+jubFQC7HM2t5wAiZ76QEHhe7g9Ab6CRudheMWL3Vg9Xs
-         Er4klkGp3sc7CvZsLXV6MQgtjnoff1cXIChYJyNFeraJvvcwtDaV/Mt+s6rDWnApTjIV
-         /zbQ==
-X-Gm-Message-State: AOAM5304061zCDuI9nQinwb2lsMKEYUOfT/VTGTvoS+xr0c/wfhGzGLz
-        0LEUUYctMNx4wni9AW1i78KTK12UtetngID2iOhvgMfnVYFl5Q==
-X-Google-Smtp-Source: ABdhPJxCxZBIWsAez7ZkGk/I9bUyMuxaiqD6go4xQEddYN9/PXcWZpTyR5GqlMGXgxMx7oeLUil/KGE0zAAmBV88l9w=
-X-Received: by 2002:ad4:53a4:0:b0:430:1d8c:18ea with SMTP id
- j4-20020ad453a4000000b004301d8c18eamr1255162qvv.115.1648678093929; Wed, 30
- Mar 2022 15:08:13 -0700 (PDT)
+        bh=v5V3kvEJbyi9F3MHeceyPdx3c1Bu5E1z1aG7KQioCtA=;
+        b=gmwnkmPdwFoh3jIsYT4FPXWD+HAecIUSkJmiJGmicEJYbYHm43pX1SeiHz1dhKWb5m
+         Mn1eXwEbAAtDtpdyDBHXZ04OehfhZhrTjsZXg8e412JDgqPjSKGYPec4SlY/bXk5yXlR
+         BP9k0OSY72V52StyrkvJeaiavC11JoKpYBw97qvXXx+y8L1gBN171lUCLg3uuXDfbC2g
+         3OkYGxwxvDgYmXEYI0G8/b0u1Y9dWT7de+43zJ/nK1ArtO4gJHshb+WLp8wL00baUuD7
+         x5TYlfzvlhCthEnI67pLsBOwxK4bIWVe6svw8mUXj7aAKG5CXHXXXbnfGvZg5VaarQaV
+         HaRg==
+X-Gm-Message-State: AOAM532tKwohIQ4fxlkcRDlTVBeNlS2hOwvBIyN5a45kY6XV/yKVnLND
+        qPPkdWlrgafh8qYZLY+la2LMe/25AwZQ3Ijw9HHpGQ==
+X-Google-Smtp-Source: ABdhPJxsJX49xZHbqWv8eB9xiCa1Z1dl/Fp1c1dn4pZmztEffRMsi66po2a6wqsBsf6w2fFECLcqbpU0iwxo+/WO3MI=
+X-Received: by 2002:a05:622a:1314:b0:2e1:d943:c25b with SMTP id
+ v20-20020a05622a131400b002e1d943c25bmr1756051qtk.370.1648678594189; Wed, 30
+ Mar 2022 15:16:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com> <1648656179-10347-9-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1648656179-10347-9-git-send-email-quic_sbillaka@quicinc.com>
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com> <1648656179-10347-5-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1648656179-10347-5-git-send-email-quic_sbillaka@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 31 Mar 2022 01:08:02 +0300
-Message-ID: <CAA8EJprvE31ex3fCQHZ-=x+EWHK4UZ0qqHRh+rH4dk5TPhmVyw@mail.gmail.com>
-Subject: Re: [PATCH v6 8/8] drm/msm/dp: Handle eDP mode_valid differently from dp
+Date:   Thu, 31 Mar 2022 01:16:23 +0300
+Message-ID: <CAA8EJprMvik_6xmGt2oZGpDG9FoMtC_ojuw+oTjPLTck4Hu3WA@mail.gmail.com>
+Subject: Re: [PATCH v6 4/8] drm/msm/dp: avoid handling masked interrupts
 To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
@@ -64,7 +64,7 @@ Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,39 +72,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Mar 2022 at 19:04, Sankeerth Billakanti
+On Wed, 30 Mar 2022 at 19:03, Sankeerth Billakanti
 <quic_sbillaka@quicinc.com> wrote:
 >
-> The panel-edp driver modes needs to be validated differently from DP
-> because the link capabilities are not available for EDP by that time.
+> The interrupt register will still reflect the connect and disconnect
+> interrupt status without generating an actual HW interrupt.
+> The controller driver should not handle those masked interrupts.
 >
 > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-
-This should not be necessary after
-https://patchwork.freedesktop.org/patch/479261/?series=101682&rev=1.
-Could you please check?
-
 > ---
->  drivers/gpu/drm/msm/dp/dp_display.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  drivers/gpu/drm/msm/dp/dp_catalog.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index 8bafdd0..f9c7d9a 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -1003,6 +1003,12 @@ enum drm_mode_status dp_bridge_mode_valid(struct drm_bridge *bridge,
->                 return -EINVAL;
->         }
+> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> index 3c16f95..1809ce2 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> @@ -608,13 +608,14 @@ u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog)
+>  {
+>         struct dp_catalog_private *catalog = container_of(dp_catalog,
+>                                 struct dp_catalog_private, dp_catalog);
+> -       int isr = 0;
+> +       int isr, mask;
 >
-> +       if (dp->connector_type == DRM_MODE_CONNECTOR_eDP) {
-> +               if (mode_pclk_khz > DP_MAX_PIXEL_CLK_KHZ)
-> +                       return MODE_CLOCK_HIGH;
-> +               return MODE_OK;
-> +       }
-> +
->         if ((dp->max_pclk_khz <= 0) ||
->                         (dp->max_pclk_khz > DP_MAX_PIXEL_CLK_KHZ) ||
->                         (mode->clock > dp->max_pclk_khz))
+>         isr = dp_read_aux(catalog, REG_DP_DP_HPD_INT_STATUS);
+>         dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
+>                                  (isr & DP_DP_HPD_INT_MASK));
+> +       mask = dp_read_aux(catalog, REG_DP_DP_HPD_INT_MASK);
+>
+> -       return isr;
+> +       return isr & (DP_DP_HPD_STATE_STATUS_MASK | mask);
+
+I suspect that the logic is inverted here. Shouldn't it be:
+
+return isr & DP_DP_HPD_STATE_STATUS_MASK & mask;
+
+?
+
+>  }
+>
+>  int dp_catalog_ctrl_get_interrupt(struct dp_catalog *dp_catalog)
 > --
 > 2.7.4
 >
