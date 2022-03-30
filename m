@@ -2,119 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E2674EBF72
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8560B4EBFA5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:14:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239035AbiC3LDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 07:03:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57824 "EHLO
+        id S1343549AbiC3LQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 07:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245717AbiC3LDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:03:37 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81D4BF501;
-        Wed, 30 Mar 2022 04:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648638102; x=1680174102;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QMp8wovDI+Z82ZMrv+Dz8OObU/SJH/JXlq0BCZ6Bhhw=;
-  b=YQERTWjvQ6njBDlGnhbVhC3iuG5t2JTwZa+5A3TupEgorO2wb5iMAg/+
-   UcpbQv4qSGn665bUD1K/oNmI8azxuD37rGjkXGPQpiHzpAEFg9LnvIPms
-   69J9V2Yt2D0r6w9dSMbcnb9VEHAQvIAGNvYzYwAw6ysBnOPDo8l5pMf9s
-   XF1WTxNNvCTX6BRNz4env67gBsYwnfyBoCq36WnBZVRqwmihsmVLRvjO3
-   jKZA3ISGNAsheedhsvgOHbIdVFeJcdWReiLja4KHPRfYdgFSyq0vWCDDE
-   IMWkdtN+nULqCF+XVRFANHZheIeYFTLSkeXSCnSOaiVtG6ZewluO0Ce4m
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="284421314"
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="284421314"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 04:01:40 -0700
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="695065540"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 04:01:38 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id BC307203C9;
-        Wed, 30 Mar 2022 14:01:36 +0300 (EEST)
-Date:   Wed, 30 Mar 2022 14:01:36 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        "Rafael J.Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        with ESMTP id S1343553AbiC3LQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:16:00 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925CEDF9B;
+        Wed, 30 Mar 2022 04:14:14 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id e5so20168020pls.4;
+        Wed, 30 Mar 2022 04:14:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=22f31UDp1UVUDsv1k+0Goozxl/zCGPew/x8b337ojQ8=;
+        b=WtrcA8KpykmVc1ZfjqTAm039LeHU6t1MJtcNLTmBtxRraS4GqqA+jKbtFZxeI3y/8r
+         jxu4D8/kcBJ6UOEJhQ7u9IF6VmT3eS/ANozDoeW6n3UBp111S4CA86Co+hrIDFWFa+D4
+         3iWY5RuVZlqNdkq13ji8X+ZBj6INjuU3ErZuQP8Emn0wZh9IfCbuA6sT25FGR+2mm2zF
+         62G7HU536GdLhpcXFGuIirh0kjzXSC02A6H6CHlLlMn7Yq1iDjOQ3FE56ih73EIYmfee
+         eoNFT6p7+fBed7ZtxTc1WTJ3m95vTrJO0hMFUcLdjaaBSEC/NuCWmgWDooPWH4hfNuwn
+         LF0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=22f31UDp1UVUDsv1k+0Goozxl/zCGPew/x8b337ojQ8=;
+        b=ucX8sw9d93xWi3qkhbykRSrJ5K6W1ZUTh473QZlY/WTs+m8RnyE/+Jr6pB6N1OmE62
+         mEGaUD5ZjTg0DntrqpRqLhq+9vVd1lp5Jnzele2C/+aVN6guhrKvTrAvI5zML/0pknL+
+         TKR7zM21+CEYQvuMoEXOEz+IhBRgwmH9r8wQEUJQSYx+tzyRciBCrXr8oUEr0YUuez8Z
+         u4QBfDczReSDKCg+MMCAC8pQZYCxFfy+RgFU9f4q7LJni+D21MPYvVQ20dISiV40S/T6
+         KmZ9vVJD3Offqh17AKqsX3nrq6862PTDsNQFZyBDBuQuDuNzZGo1jOfjPDfiNk6Z8jHG
+         JItA==
+X-Gm-Message-State: AOAM532fL1W4Zt9/YYk58aBflQEanrI6qAjsebtd+3jThIx/50RAA7AR
+        dcx7wdVG//gUwzrzO7Uk+pO4sNCkIrw=
+X-Google-Smtp-Source: ABdhPJwD3DndapDHCHa1GaQhheLH9WN1jpG5fTtJg0rhgywC7GKmLUW6dESK+fpmBVKykC7HYIgkVA==
+X-Received: by 2002:a17:902:c949:b0:154:5215:1db1 with SMTP id i9-20020a170902c94900b0015452151db1mr34742584pla.163.1648638853697;
+        Wed, 30 Mar 2022 04:14:13 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id ip1-20020a17090b314100b001c7b10fe359sm6498048pjb.5.2022.03.30.04.14.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Mar 2022 04:14:13 -0700 (PDT)
+Date:   Wed, 30 Mar 2022 16:44:07 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 0/4] Shovel firmware specific code to appropriate
- locations
-Message-ID: <YkQ4kEqf7/uhpbyw@paasikivi.fi.intel.com>
-References: <20220323154737.169483-1-sakari.ailus@linux.intel.com>
- <YjtI22BnRjfNOVhG@smile.fi.intel.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: qcom,spi-geni-qcom: convert to
+ dtschema
+Message-ID: <20220330111407.GA51399@9a2d8922b8f1>
+References: <20220329112717.252647-1-krzysztof.kozlowski@linaro.org>
+ <20220330062313.GA51331@9a2d8922b8f1>
+ <ac686e08-008f-be08-db5e-b6d4d08df315@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YjtI22BnRjfNOVhG@smile.fi.intel.com>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ac686e08-008f-be08-db5e-b6d4d08df315@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 23, 2022 at 06:20:43PM +0200, Andy Shevchenko wrote:
-> On Wed, Mar 23, 2022 at 05:47:33PM +0200, Sakari Ailus wrote:
-> > Hi folks,
+On Wed, Mar 30, 2022 at 08:48:38AM +0200, Krzysztof Kozlowski wrote:
+> On 30/03/2022 08:23, Kuldeep Singh wrote:
+> > On Tue, Mar 29, 2022 at 01:27:16PM +0200, Krzysztof Kozlowski wrote:
+> >> Convert the GENI based Qualcomm Universal Peripheral (QUP) Serial
+> >> Peripheral Interface (SPI) bindings to DT Schema.
+> >>
+> >> The original bindings in TXT were not complete, so add during conversion
+> >> properties already used in DTS and/or in the driver: reg-names, dmas,
+> >> interconnects, operating points and power-domains.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >>  .../bindings/spi/qcom,spi-geni-qcom.txt       |  39 ------
+> >>  .../bindings/spi/qcom,spi-geni-qcom.yaml      | 131 ++++++++++++++++++
+> >>  2 files changed, 131 insertions(+), 39 deletions(-)
+> >>  delete mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.txt
+> >>  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.txt b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.txt
+> >> deleted file mode 100644
+> >> index c8c1e913f4e7..000000000000
+> >> --- a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.txt
+> >> +++ /dev/null
+> >> @@ -1,39 +0,0 @@
+> >> -GENI based Qualcomm Universal Peripheral (QUP) Serial Peripheral Interface (SPI)
+> >> -
+> >> -The QUP v3 core is a GENI based AHB slave that provides a common data path
+> >> -(an output FIFO and an input FIFO) for serial peripheral interface (SPI)
+> >> -mini-core.
+> >> -
+> >> -SPI in master mode supports up to 50MHz, up to four chip selects, programmable
+> >> -data path from 4 bits to 32 bits and numerous protocol variants.
+> >> -
+> >> -Required properties:
+> >> -- compatible:		Must contain "qcom,geni-spi".
+> >> -- reg:			Must contain SPI register location and length.
+> >> -- interrupts:		Must contain SPI controller interrupts.
+> >> -- clock-names:		Must contain "se".
+> >> -- clocks:		Serial engine core clock needed by the device.
+> >> -- #address-cells:	Must be <1> to define a chip select address on
+> >> -			the SPI bus.
+> >> -- #size-cells:		Must be <0>.
+> >> -
+> >> -SPI Controller nodes must be child of GENI based Qualcomm Universal
+> >> -Peripharal. Please refer GENI based QUP wrapper controller node bindings
+> >> -described in Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml.
+> >> -
+> >> -SPI slave nodes must be children of the SPI master node and conform to SPI bus
+> >> -binding as described in Documentation/devicetree/bindings/spi/spi-bus.txt.
+> >> -
+> >> -Example:
+> >> -	spi0: spi@a84000 {
+> >> -		compatible = "qcom,geni-spi";
+> >> -		reg = <0xa84000 0x4000>;
+> >> -		interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
+> >> -		clock-names = "se";
+> >> -		clocks = <&clock_gcc GCC_QUPV3_WRAP0_S0_CLK>;
+> >> -		pinctrl-names = "default", "sleep";
+> >> -		pinctrl-0 = <&qup_1_spi_2_active>;
+> >> -		pinctrl-1 = <&qup_1_spi_2_sleep>;
+> >> -		#address-cells = <1>;
+> >> -		#size-cells = <0>;
+> >> -	};
+> >> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+> >> new file mode 100644
+> >> index 000000000000..a85ff02ba1db
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+> >> @@ -0,0 +1,131 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/spi/qcom,spi-geni-qcom.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: GENI based Qualcomm Universal Peripheral (QUP) Serial Peripheral Interface (SPI)
+> >> +
+> >> +maintainers:
+> >> +  - Andy Gross <agross@kernel.org>
+> >> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> >> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> +
+> >> +description:
+> >> +  The QUP v3 core is a GENI based AHB slave that provides a common data path
+> >> +  (an output FIFO and an input FIFO) for serial peripheral interface (SPI)
+> >> +  mini-core.
+> >> +
+> >> +  SPI in master mode supports up to 50MHz, up to four chip selects,
+> >> +  programmable data path from 4 bits to 32 bits and numerous protocol variants.
+> >> +
+> >> +  SPI Controller nodes must be child of GENI based Qualcomm Universal
+> >> +  Peripharal. Please refer GENI based QUP wrapper controller node bindings
+> >> +  described in Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml.
+> >> +
+> >> +allOf:
+> >> +  - $ref: /spi/spi-controller.yaml#
 > > 
-> > This set moves the implementation of recently added device property API
-> > functions to OF and ACPI frameworks, where the rest of such functionality
-> > resides.
-> > 
-> > Compile tested.
+> > Rob sometime back sent an update on how to refer absolute paths.
+> > Please see below:
+> > https://lore.kernel.org/linux-spi/20220325215652.525383-1-robh@kernel.org/
 > 
-> Thanks!
-> 
-> It would be nice to use --base when creating a cover letter.
-> Because it has been sent during merge window, I'm not sure
-> what base you have chosen for it (v5.17 or latest Linus'
-> master or ...).
+> Yes, this is wrong. I copied other existing schema without checking. :(
 
-As noted below, Rafael's devprop branch. But I'll use --base on the next
-time. It seems v3 will be needed in any case.
-
+No issues.
 
 > 
-> > The dependencies can be found in Rafael's devprop branch now.
 > > 
-> > changes since v1:
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: qcom,geni-spi
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +
+> >> +  clock-names:
+> >> +    const: se
+> >> +
+> >> +  dmas:
+> >> +    maxItems: 2
+> >> +
+> >> +  dma-names:
+> >> +    items:
+> >> +      - const: tx
+> >> +      - const: rx
+> >> +
+> >> +  interconnects:
+> >> +    minItems: 2
 > > 
-> > - Drop wrongly placed Depends-on: tag from the first patch.
-> > 
-> > - Drop IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode) check (3rd
-> >   patch).
-> > 
-> > Sakari Ailus (4):
-> >   device property: Convert device_{dma_supported,get_dma_attr} to fwnode
-> >   ACPI: property: Move acpi_fwnode_device_get_match_data() up
-> >   device property: Add iomap to fwnode operations
-> >   device property: Add irq_get to fwnode operation
-> > 
-> >  drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
-> >  drivers/base/property.c | 42 ++++++-----------------------------------
-> >  drivers/of/property.c   | 30 +++++++++++++++++++++++++++++
-> >  include/linux/fwnode.h  |  5 +++++
-> >  4 files changed, 73 insertions(+), 40 deletions(-)
+> > We can skip minItems here.
+> > As minimim value defaults to maximum if not defined.
 > 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
+> True.
 > 
+> > 
+> >> +    maxItems: 2
+> >> +
+> >> +  interconnect-names:
+> >> +    items:
+> >> +      - const: qup-core
+> >> +      - const: qup-config
+> > 
+> > Some properties like clocks, dmas, dma-names, interconnect etc. are
+> > defined as common child properties of geni based qup.
+> > Please see Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
+> > 
+> > Shouldn't we skip these entities here? as spi reference will anyway be
+> > used in geni-se.yaml.
 > 
+> We could have them there, just like we could store all of this schema
+> there. Having something half-here-half-there will not work, because this
+> schema won't validate.
+> 
+> Therefore all of child properties from qcom,geni-se.yaml should be
+> rather moved to child schema (which is included directly in my patch #2).
 
--- 
-Sakari Ailus
+Sure, this looks good.
+Probably we can remove common properties from geni-se.yaml once all
+child nodes have their respective schemas.
+
+-Kuldeep
