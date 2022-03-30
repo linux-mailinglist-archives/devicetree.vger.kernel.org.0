@@ -2,73 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7C24ECA35
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 006284ECA6A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:16:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349147AbiC3RBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 13:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41628 "EHLO
+        id S1349197AbiC3RSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 13:18:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349135AbiC3RA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:00:59 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4052C1C105
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:59:06 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id bh17so3294475ejb.8
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:59:06 -0700 (PDT)
+        with ESMTP id S234931AbiC3RSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:18:08 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF2A76CA52
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:16:21 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id bx5so21340288pjb.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:16:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=5UUDdyk9SDnaGYbeBT64IjOg2Ww9NGOC3cXdAlooUxU=;
-        b=rSyqBqT5+fEKgy/ia4SY9vrK5/m2gyjhZEUHjDN2GkD6Ofr07QQKAaHuhYsg1xPXY6
-         xt/5Y2iq0h7M8cyWmq7gDeo+8kqcLSm1lotN7KZWScVRvodmkNVjVxfznezouh4yzY4o
-         bB97/1EwyDAjHTHoyKZWGDl8pnoyC9Zu/z7/5RFxQUO/rVSfbBxG2hTbm1uNIf6O1C+6
-         u17DoDP51ZMJAI1jJjqvaH4WvNYgxfP10CSC5Gfw7eoE9jZxqRMxEdP1nswQ5J0WpqYC
-         nOyhlNB0QYkLxuKGCnMWwoBsGPGR4IzKMbWoC+6EfvWLC6pqfZiCeLAvaqELnR9gqTs5
-         1Nzg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cp6lFLTphQ3Deq4H0+a0uRQ+P8BapY6dZKm1M1RzBpk=;
+        b=BF7YAqQUmzdmP/sXeEGABfOEXWbxtX6tKcEXAZjjmEWZFTkJIBPIitHJTcjm7l5nFC
+         6XqNYe9QdQ1+w4ebzz9Usy1Xg3NCAsdpCKZDyvQpqrIToxGHADAzyFtdDv0mLAptTylA
+         pud92Bg7hiZMLJVI0rCd29OivOvHVr+a13gKg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=5UUDdyk9SDnaGYbeBT64IjOg2Ww9NGOC3cXdAlooUxU=;
-        b=SB+LrysRHDzCipduhpiMOovc47zW/JtBMgELrVgoxq0cdk43CIHSWeSkJmtwj4tR37
-         Ytot/zKnt9KcNfiA2u80wsvPdIUzFaLZBAtssfzkReLZ7ZNyxCoyt3ozXmgv3gCh2jtn
-         cHeh+rSpSHVK+kZiJYhpaUyBqLzUMCXC70TsqjuNctTgdHQ3DCnP+NTZD9XpPWtB+xxi
-         LGC9H0rK/zB5BYknLMmgdO+kpJZCEKqnCnqHojtjM+qlrMYxOzbYA6W4AMvs+tLb//g+
-         7Gxk4I0++npOAxmFk/d3poJOk4Huo4yVoLdwKl/Ln4GIjc31fEJWXgnSE8fgSlc4BvFt
-         uAsQ==
-X-Gm-Message-State: AOAM531gpaHY2w5Ugwq9HBQ+5VVa7V1wZBqJxCF/L2UO95u+pOA2LA38
-        JnBhOdUt7DYTEPbD4kN9Ez9YEg==
-X-Google-Smtp-Source: ABdhPJzY0e2EODpHuTzZusO4GWG/s65+l9xnzPNadiFVobnLwteCbVoE7kNArSQFDfEGLDFxXtCjaA==
-X-Received: by 2002:a17:907:2cc6:b0:6e0:3113:6e9a with SMTP id hg6-20020a1709072cc600b006e031136e9amr488046ejc.519.1648659544808;
-        Wed, 30 Mar 2022 09:59:04 -0700 (PDT)
-Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id d23-20020aa7d5d7000000b00418f7b2f1dbsm10073476eds.71.2022.03.30.09.59.04
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cp6lFLTphQ3Deq4H0+a0uRQ+P8BapY6dZKm1M1RzBpk=;
+        b=oLbp7dBxxS+vcQLlxJCKmkqht1+/tJfPVXgvNJ/P6fNzbll8rHzwXseRp01mlQw1Ci
+         y21m8J/59Eqivv/zvpRdFYmXd8mi61OmlQ3USR+Gr+zRhwFK9DxGwdiIRBDUPoeYKqJA
+         liPWiAZ6zHrbOFQcPsdE7CJRakThU7d5YRoqpv3BwOVw83Z5VcxjHGuWcFOO0bw5QYzc
+         nIegxB1J0CBker88SMauNEs+n4eaqLWJLif40lBhiE76oApmIAO+QFNdtgtQDTFV1BDM
+         UpxjM+c2/HgrP64LPDFN10J3w1K4eAzsqEgNUNfukQDGx54XVfCx/b+HF5k5LRG4QDPR
+         +vSw==
+X-Gm-Message-State: AOAM533b8OgmvyR61tTjdTdt0YRvP2atNnhAkir1SD/xauxt8SHwoYzF
+        B0GJUV0mAglqXZptOaWjj4MVJw==
+X-Google-Smtp-Source: ABdhPJxqKrJtMh6jDf1VRoyl3BE9nogtzaH0F2a5nx8LdUyh6+nNVTBmTTzf1r+/xO5gfOIAOQdkBg==
+X-Received: by 2002:a17:903:248:b0:155:e8c6:8770 with SMTP id j8-20020a170903024800b00155e8c68770mr23714396plh.129.1648660581408;
+        Wed, 30 Mar 2022 10:16:21 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d50d:daac:acf3:cda6])
+        by smtp.gmail.com with UTF8SMTPSA id s3-20020a056a00194300b004f6da3a1a3bsm24881569pfk.8.2022.03.30.10.16.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 09:59:04 -0700 (PDT)
-Message-ID: <adeaa39d-2b93-d7bb-98fc-93eb040cec01@linaro.org>
-Date:   Wed, 30 Mar 2022 18:59:03 +0200
+        Wed, 30 Mar 2022 10:16:20 -0700 (PDT)
+Date:   Wed, 30 Mar 2022 10:16:19 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+Cc:     agross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+Message-ID: <YkSQY5NSYcov21Ig@google.com>
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
-        kuba@kernel.org, netdev@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
- <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
- <YkR57poibmnvmkjk@shell.armlinux.org.uk>
- <259ac0f4-50e9-291b-9ed3-91b52840fb9e@linaro.org>
-In-Reply-To: <259ac0f4-50e9-291b-9ed3-91b52840fb9e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,25 +69,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 18:51, Krzysztof Kozlowski wrote:
+On Wed, Mar 30, 2022 at 05:09:46PM +0800, Mars Chen wrote:
 
-(...)
+> Subject: CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
 
->>
->> These examples are showing how the SFP gets hooked up directly to a MAC
->> or directly to a PHY. Would you prefer them to be in the ethernet-mac
->> and ethernet-phy yaml files instead? It seems utterly perverse to split
->> an example across several different yaml files.
+No CHROMIUM tag for upstream posts.
+
+> Initial attempt at Gelarshie device tree.
+
+This is not very useful. If you don't want to reveal much information
+about an unreleased device you could say something generic like
+"Add device tree for Gelarshie, a trogdor variant".
+
+> BUG=b:225756600
+> TEST=emerge-strongbad chromeos-kernel-5_4
+
+drop these
+
+> Signed-off-by: Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../dts/qcom/sc7180-trogdor-gelarshie-r0.dts  |  15 +
+>  .../dts/qcom/sc7180-trogdor-gelarshie.dtsi    | 304 ++++++++++++++++++
+>  3 files changed, 320 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
 > 
-> Probably PHY or MAC is better place, because it defines the "sfp" property.
-> 
-> How is it different from other cases like this in bindings (clocks,
-> power domains, GPIOs)? IOW, why SFP is special? If it is, sure, let's
-> keep it here...
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index f9e6343acd03..cf8f88b065c3 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-gelarshie-r0.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+> new file mode 100644
+> index 000000000000..027d6d563a5f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Gelarshie board device tree source
+> + *
+> + * Copyright 2022 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180-trogdor-gelarshie.dtsi"
+> +
+> +/ {
+> +	model = "Google Gelarshie (rev0+)";
+> +	compatible = "google,gelarshie", "qcom,sc7180";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+> new file mode 100644
+> index 000000000000..842f6cac6c27
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+> @@ -0,0 +1,304 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Gelarshie board device tree source
+> + *
+> + * Copyright 2022 Google LLC.
+> + */
+> +
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-mipi-camera.dtsi"
 
-BTW, Rob actually pointed out the difference here - it's only one such
-provider binding (unlike clock controllers) - and said it's fine, so
-good for me.
+drop the mipi camera include, it is not upstream
 
-Best regards,
-Krzysztof
+> +
+> +ap_ec_spi: &spi6 {};
+> +ap_h1_spi: &spi0 {};
+> +
+> +#include "sc7180-trogdor.dtsi"
+> +#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+> +
+> +/* Deleted nodes from trogdor.dtsi */
+> +
+> +/delete-node/ &alc5682;
+> +/delete-node/ &pp3300_codec;
+> +
+> +/ {
+> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
+> +
+> +	adau7002: audio-codec-1 {
+> +		compatible = "adi,adau7002";
+> +		IOVDD-supply = <&pp1800_l15a>;
+> +		wakeup-delay-ms = <80>;
+> +		#sound-dai-cells = <0>;
+> +	};
+> +};
+> +
+> +&backlight {
+> +	pwms = <&cros_ec_pwm 0>;
+> +};
+> +
+> +&camcc {
+> +	status = "okay";
+> +};
+> +
+> +&cros_ec {
+> +	cros_ec_proximity: proximity {
+> +		compatible = "google,cros-ec-mkbp-proximity";
+> +		label = "proximity-wifi";
+> +	};
+> +};
+> +
+> +ap_ts_pen_1v8: &i2c4 {
+> +	status = "okay";
+> +	clock-frequency = <400000>;
+> +
+> +	ap_ts: touchscreen@5d {
+> +		compatible = "goodix,gt7375p";
+> +		reg = <0x5d>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
+> +
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
+> +
+> +		vdd-supply = <&pp3300_ts>;
+> +	};
+> +};
+> +
+> +&i2c7 {
+> +	status = "disabled";
+> +};
+> +
+> +&i2c9 {
+> +	status = "disabled";
+> +};
+> +
+> +&mdp {
+> +	chromium-enable-overlays;
+> +};
+
+I can't find documentation for 'chromium-enable-overlays', what is this
+supposed to do?
+
+> +
+> +&panel {
+> +	compatible = "edp-panel";
+> +};
+> +
+> +&pm6150_adc {
+> +	skin-temp-thermistor@4e {
+> +		reg = <ADC5_AMUX_THM2_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time = <200>;
+> +	};
+> +};
+> +
+> +&pm6150_adc_tm {
+> +	status = "okay";
+> +
+> +	skin-temp-thermistor@1 {
+> +		reg = <1>;
+> +		io-channels = <&pm6150_adc ADC5_AMUX_THM2_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +};
+
+The thermistor is currently unused, drop it and add it later when you
+add the corresponding thermal zone.
+
+> +
+> +&pp1800_uf_cam {
+> +	status = "okay";
+> +};
+> +
+> +&pp1800_wf_cam {
+> +	status = "okay";
+> +};
+> +
+> +&pp2800_uf_cam {
+> +	status = "okay";
+> +};
+> +
+> +&pp2800_wf_cam {
+> +	status = "okay";
+> +};
+> +
+> +&pp3300_dx_edp {
+> +	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
+> +};
+> +
+> +&sdhc_2 {
+> +	status = "okay";
+> +};
+> +
+> +&sn65dsi86_out {
+> +	data-lanes = <0 1 2 3>;
+> +};
+> +
+> +&sound {
+> +	compatible = "google,sc7180-coachz";
+
+Is 'sc7180-coachz' intended because the config is the same as for
+coachz or should this be 'sc7180-gelarshie'?
