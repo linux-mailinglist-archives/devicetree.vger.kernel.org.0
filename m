@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A1B4EBCA3
+	by mail.lfdr.de (Postfix) with ESMTP id 5E6CE4EBCA4
 	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:22:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244332AbiC3IW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 04:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57708 "EHLO
+        id S241826AbiC3IXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 04:23:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244267AbiC3IWq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:22:46 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D05793120B;
-        Wed, 30 Mar 2022 01:21:01 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 3C4931F443F6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648628460;
-        bh=sD9zda1gQkNv3MUA4bkv/V5WHuwzCfeFynE1ba/36bI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lwqXWCyvUJTMcWkmXB/XryVKNZ3doT0L4in++YJhNLlEumVov1VdrMn6WG2XwP0ks
-         blZ4fiFE4Q0hNhTRpBd0ICap0dAq4rUqv6Nx574wrl2C/2wf9fmlKPNu13ak+i9io3
-         XuGtTjPq0bybFhxrjyjT8O9tviLy2mV3ijMdf4YmcBenisQ5JUKxTJ1r+sC/KVqf8/
-         YDrwtXvpxBbOVALzBJ2KhF0A4Xle3gmzF1YumNtOdnjiLJ0IkLwdWn8R9yyHo3t0Pj
-         tVq4OP09GfDsPwVt2n20oWvaZw3i7S6EQpXqzxGxqug2kMu8MrH9mYT6LXort9N/r+
-         q6o2+0V72XjlA==
-Message-ID: <61c2609c-18d1-fea9-7b71-0b17fb2beaef@collabora.com>
-Date:   Wed, 30 Mar 2022 10:20:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v12 2/3] dt-bindings: mmc: mtk-sd: increase reg maxItems
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
+        with ESMTP id S244407AbiC3IX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:23:29 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6FE532EE0;
+        Wed, 30 Mar 2022 01:21:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1648628503;
+  x=1680164503;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AH+4xQbZM08WZt8qm/l3tTz+5fAhec0WZ52E5BgUGxc=;
+  b=dsOxHm2wNOiFvRmqiE98ot35tpcWiFtTvkvwup5ov/K6Q2XzEDOpgwsQ
+   XcxFQOfxiGgQakGVld8FSQoH6agDp+UvQAyXDAcWRhQkaCuu2EvhHwiUw
+   qXxpPA0E9c1/bBgEwRzOe0WBNrE59G4fOyp7BqyP+i9Fb/+LSnFpMo0tw
+   YXM3CiSLUoeHPOMY5x7CDcPOOfVUMTsjNyVGLg5GTdqJdFULrojMwzUGK
+   IpYMYpWGdIqSgJRFXObZRRAJPNqMoAX+ZheMSKAZJdvl3a8zp+tdr/Jdn
+   LgSaLa6peKUassyO0mIdc5k7OEItSrVKIn4+dH5KbwJR6NgyXOFMWkUtE
+   g==;
+Date:   Wed, 30 Mar 2022 10:21:37 +0200
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        kernel <kernel@axis.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20220329114540.17140-1-tinghan.shen@mediatek.com>
- <20220329114540.17140-3-tinghan.shen@mediatek.com>
- <d720a5e9-d078-6c60-f55b-0506c4b4e1fa@collabora.com>
- <CAL_JsqLrgW4GwSZ20x5Gsu-umjtw4x8k=uHeZk9T2+A3K6UT0Q@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAL_JsqLrgW4GwSZ20x5Gsu-umjtw4x8k=uHeZk9T2+A3K6UT0Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 3/4] clocksource/drivers/exynos_mct: Support
+ local-timer-index property
+Message-ID: <20220330082137.GA21079@axis.com>
+References: <20220308142410.3193729-1-vincent.whitchurch@axis.com>
+ <20220308142410.3193729-4-vincent.whitchurch@axis.com>
+ <226dcb1b-d141-f0d3-68c4-11d2466ca571@canonical.com>
+ <20220311113543.GA17877@axis.com>
+ <CGME20220311125154eucas1p180cf38fcfe33e52757c2442bbd9c2ab3@eucas1p1.samsung.com>
+ <69be9f88-b69b-c149-4387-c5002219bf0a@canonical.com>
+ <e8b58fc4-fdc2-7fca-f8f5-c45f0891b53b@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e8b58fc4-fdc2-7fca-f8f5-c45f0891b53b@samsung.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/03/22 21:10, Rob Herring ha scritto:
-> On Tue, Mar 29, 2022 at 7:43 AM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 29/03/22 13:45, Tinghan Shen ha scritto:
->>> Add optional host top register base for the reg binding description.
->>>
->>> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
->>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->>> ---
->>>    Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 ++-
->>>    1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>> index 7032f7adf3ca..6d41bcec900f 100644
->>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->>> @@ -40,7 +40,8 @@ properties:
->>>              - const: mediatek,mt8183-mmc
->>>
->>>      reg:
->>> -    maxItems: 1
->>> +    minItems: 1
->>> +    maxItems: 2
->>
->> it's just maxItems... adding minItems: 1 is not required.
-> 
-> If 1 entry is still valid, then minItems is required. If not, then
-> it's an ABI break.
-> 
-> Rob
+On Mon, Mar 21, 2022 at 09:00:08AM +0100, Marek Szyprowski wrote:
+> Right, I've played a bit with MCT on some older Exynos SoCs (ARM 32bit 
+> based and even Exynos5433) and it looked that none of it enabled MCT FRC 
+> timer in their proprietary firmware. I've even proposed a patch for this 
+> once ([1]), but such approach has been rejected. I think that calling 
+> exynos4_mct_frc_start() unconditionally won't hurt.
 
+Thank you for looking into this.  The proposal was however not to avoid
+changing when exynos4_mct_frc_start() is called, but to instead skip the
+write to the Timer Enable bit of the G_TCON register if it is already
+set, like in the below patch.  (This is needed to avoid races when the
+FRC is shared between CPUs in an AMP configuration, since TCON can be
+modified for other reasons from the CPU which is using the global
+comparator.)
 
-Right. Sorry for that and thanks for the explaination, Rob.
+If I understand your comment correctly, such a change should not cause
+any difference at least on the platforms you looked at since there
+MCT_G_TCON_START will not have been set at startup.
 
-Cheers,
-Angelo
+diff --git a/drivers/clocksource/exynos_mct.c b/drivers/clocksource/exynos_mct.c
+index 6db3d5511b0f..ed462e0a77ff 100644
+--- a/drivers/clocksource/exynos_mct.c
++++ b/drivers/clocksource/exynos_mct.c
+@@ -162,6 +162,9 @@ static void exynos4_mct_frc_start(void)
+ 	u32 reg;
+ 
+ 	reg = readl_relaxed(reg_base + EXYNOS4_MCT_G_TCON);
++	if (reg & MCT_G_TCON_START)
++		return;
++
+ 	reg |= MCT_G_TCON_START;
+ 	exynos4_mct_write(reg, EXYNOS4_MCT_G_TCON);
+ }
