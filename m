@@ -2,114 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011E14ECDB2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 22:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F8814ECDB0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 22:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346235AbiC3UBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 16:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32912 "EHLO
+        id S1346894AbiC3UBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 16:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbiC3UB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 16:01:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9E222530
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 12:59:40 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZeTi-0004fP-Gp; Wed, 30 Mar 2022 21:59:38 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZeTg-000628-6e; Wed, 30 Mar 2022 21:59:36 +0200
-Date:   Wed, 30 Mar 2022 21:59:36 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Message-ID: <20220330195936.GB4012@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220330072822.GX12181@pengutronix.de>
- <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
- <20220330094556.GZ12181@pengutronix.de>
- <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
- <20220330102046.GA12181@pengutronix.de>
- <60601619-EF07-457B-91F2-64FEB598FEBE@gmail.com>
- <20220330192054.GA4012@pengutronix.de>
- <4B10A821-DB1E-41EA-B5C2-364F2DE53F93@gmail.com>
+        with ESMTP id S1350849AbiC3UBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 16:01:50 -0400
+Received: from gateway31.websitewelcome.com (gateway31.websitewelcome.com [192.185.144.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F28027173
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 13:00:03 -0700 (PDT)
+Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
+        by gateway31.websitewelcome.com (Postfix) with ESMTP id 39B4311B601
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 15:00:02 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id ZeU5n66NO22u3ZeU5nJcQP; Wed, 30 Mar 2022 15:00:01 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=eXKZchLq+5LAGT1CxaeWrPz836JWwoNXNHtPmYfC0Zo=; b=JCyTECsdx3bl2Vioe5IuGnejLk
+        plknHaucGbgrqi0zPkmebDyQwB8l8dJzO9Aji68ic99WsSsg7lV8X6KeQQQAIPgVxqzn7WBO5XtuC
+        ZfEPqFdPCKYYnUoezIDXs/ZbAtCZhSOvX9m+oqI63Wu0kQycj0Xh2EDsNn/HiE/2OFiShGkJQfhuc
+        yC6q807BIaNz4sGTsq6w2ymycnwtW3D8jWRRF6o9UDPoAZLLLOv6vqNXRrNdfegvwlHKjDrnRIvvz
+        Zz7xAfZGh264XVDuPE7Y5YTZsVoQpfkuLP2ksDisqi1EmAEonQZPE+dmcSIrskVdJ9iOuOuk82rnj
+        WmYj9CzQ==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54580)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nZeU4-001VGm-VT; Wed, 30 Mar 2022 20:00:01 +0000
+Message-ID: <2fbefb5f-a53c-ea68-0a1d-90c60f90d667@roeck-us.net>
+Date:   Wed, 30 Mar 2022 12:59:59 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4B10A821-DB1E-41EA-B5C2-364F2DE53F93@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 21:53:32 up  8:23, 35 users,  load average: 0.28, 0.11, 0.07
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 2/4] hwmon: (bt1-pvt) use generic polynomial functions
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220328112505.3025374-1-michael@walle.cc>
+ <20220328112505.3025374-3-michael@walle.cc>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220328112505.3025374-3-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nZeU4-001VGm-VT
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54580
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 2
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 09:35:17PM +0200, Piotr Oniszczuk wrote:
+On 3/28/22 04:25, Michael Walle wrote:
+> The polynomial calculation function was moved into lib/ to be able to
+> reuse it. Move over to this one.
 > 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+
+For my reference:
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
+> ---
+>   drivers/hwmon/Kconfig   |  1 +
+>   drivers/hwmon/bt1-pvt.c | 50 +++++++++++------------------------------
+>   2 files changed, 14 insertions(+), 37 deletions(-)
 > 
-> > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 21:20:
-> > 
-> >> So i tried following combinations
-> >> 
-> >> -boot
-> >> -modetest -s 69@67:1920x1080 -> ok
-> >> -modetest -P 43@67:1920x1080@NV12 -> green screen
-> > 
-> > I have no idea what is going on here. There same commands work for me.
-> > You could provide me your kernel config and upstream commitish you are
-> > working on, maybe that gets me closer to your setup.
-> 
-> Sascha
-> 
-> May you try with my kernel config?
-> https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-5.17/files/linux-5.17-arm64-armv8.config
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 68a8a27ab3b7..be9773270e53 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -415,6 +415,7 @@ config SENSORS_ATXP1
+>   config SENSORS_BT1_PVT
+>   	tristate "Baikal-T1 Process, Voltage, Temperature sensor driver"
+>   	depends on MIPS_BAIKAL_T1 || COMPILE_TEST
+> +	select POLYNOMIAL
+>   	help
+>   	  If you say yes here you get support for Baikal-T1 PVT sensor
+>   	  embedded into the SoC.
+> diff --git a/drivers/hwmon/bt1-pvt.c b/drivers/hwmon/bt1-pvt.c
+> index 74ce5211eb75..21ab172774ec 100644
+> --- a/drivers/hwmon/bt1-pvt.c
+> +++ b/drivers/hwmon/bt1-pvt.c
+> @@ -26,6 +26,7 @@
+>   #include <linux/mutex.h>
+>   #include <linux/of.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/polynomial.h>
+>   #include <linux/seqlock.h>
+>   #include <linux/sysfs.h>
+>   #include <linux/types.h>
+> @@ -65,7 +66,7 @@ static const struct pvt_sensor_info pvt_info[] = {
+>    *     48380,
+>    * where T = [-48380, 147438] mC and N = [0, 1023].
+>    */
+> -static const struct pvt_poly __maybe_unused poly_temp_to_N = {
+> +static const struct polynomial __maybe_unused poly_temp_to_N = {
+>   	.total_divider = 10000,
+>   	.terms = {
+>   		{4, 18322, 10000, 10000},
+> @@ -76,7 +77,7 @@ static const struct pvt_poly __maybe_unused poly_temp_to_N = {
+>   	}
+>   };
+>   
+> -static const struct pvt_poly poly_N_to_temp = {
+> +static const struct polynomial poly_N_to_temp = {
+>   	.total_divider = 1,
+>   	.terms = {
+>   		{4, -16743, 1000, 1},
+> @@ -97,7 +98,7 @@ static const struct pvt_poly poly_N_to_temp = {
+>    * N = (18658e-3*V - 11572) / 10,
+>    * V = N * 10^5 / 18658 + 11572 * 10^4 / 18658.
+>    */
+> -static const struct pvt_poly __maybe_unused poly_volt_to_N = {
+> +static const struct polynomial __maybe_unused poly_volt_to_N = {
+>   	.total_divider = 10,
+>   	.terms = {
+>   		{1, 18658, 1000, 1},
+> @@ -105,7 +106,7 @@ static const struct pvt_poly __maybe_unused poly_volt_to_N = {
+>   	}
+>   };
+>   
+> -static const struct pvt_poly poly_N_to_volt = {
+> +static const struct polynomial poly_N_to_volt = {
+>   	.total_divider = 10,
+>   	.terms = {
+>   		{1, 100000, 18658, 1},
+> @@ -113,31 +114,6 @@ static const struct pvt_poly poly_N_to_volt = {
+>   	}
+>   };
+>   
+> -/*
+> - * Here is the polynomial calculation function, which performs the
+> - * redistributed terms calculations. It's pretty straightforward. We walk
+> - * over each degree term up to the free one, and perform the redistributed
+> - * multiplication of the term coefficient, its divider (as for the rationale
+> - * fraction representation), data power and the rational fraction divider
+> - * leftover. Then all of this is collected in a total sum variable, which
+> - * value is normalized by the total divider before being returned.
+> - */
+> -static long pvt_calc_poly(const struct pvt_poly *poly, long data)
+> -{
+> -	const struct pvt_poly_term *term = poly->terms;
+> -	long tmp, ret = 0;
+> -	int deg;
+> -
+> -	do {
+> -		tmp = term->coef;
+> -		for (deg = 0; deg < term->deg; ++deg)
+> -			tmp = mult_frac(tmp, data, term->divider);
+> -		ret += tmp / term->divider_leftover;
+> -	} while ((term++)->deg);
+> -
+> -	return ret / poly->total_divider;
+> -}
+> -
+>   static inline u32 pvt_update(void __iomem *reg, u32 mask, u32 data)
+>   {
+>   	u32 old;
+> @@ -324,9 +300,9 @@ static int pvt_read_data(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+>   	} while (read_seqretry(&cache->data_seqlock, seq));
+>   
+>   	if (type == PVT_TEMP)
+> -		*val = pvt_calc_poly(&poly_N_to_temp, data);
+> +		*val = polynomial_calc(&poly_N_to_temp, data);
+>   	else
+> -		*val = pvt_calc_poly(&poly_N_to_volt, data);
+> +		*val = polynomial_calc(&poly_N_to_volt, data);
+>   
+>   	return 0;
+>   }
+> @@ -345,9 +321,9 @@ static int pvt_read_limit(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+>   		data = FIELD_GET(PVT_THRES_HI_MASK, data);
+>   
+>   	if (type == PVT_TEMP)
+> -		*val = pvt_calc_poly(&poly_N_to_temp, data);
+> +		*val = polynomial_calc(&poly_N_to_temp, data);
+>   	else
+> -		*val = pvt_calc_poly(&poly_N_to_volt, data);
+> +		*val = polynomial_calc(&poly_N_to_volt, data);
+>   
+>   	return 0;
+>   }
+> @@ -360,10 +336,10 @@ static int pvt_write_limit(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+>   
+>   	if (type == PVT_TEMP) {
+>   		val = clamp(val, PVT_TEMP_MIN, PVT_TEMP_MAX);
+> -		data = pvt_calc_poly(&poly_temp_to_N, val);
+> +		data = polynomial_calc(&poly_temp_to_N, val);
+>   	} else {
+>   		val = clamp(val, PVT_VOLT_MIN, PVT_VOLT_MAX);
+> -		data = pvt_calc_poly(&poly_volt_to_N, val);
+> +		data = polynomial_calc(&poly_volt_to_N, val);
+>   	}
+>   
+>   	/* Serialize limit update, since a part of the register is changed. */
+> @@ -522,9 +498,9 @@ static int pvt_read_data(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+>   		return -ETIMEDOUT;
+>   
+>   	if (type == PVT_TEMP)
+> -		*val = pvt_calc_poly(&poly_N_to_temp, data);
+> +		*val = polynomial_calc(&poly_N_to_temp, data);
+>   	else
+> -		*val = pvt_calc_poly(&poly_N_to_volt, data);
+> +		*val = polynomial_calc(&poly_N_to_volt, data);
+>   
+>   	return 0;
+>   }
 
-This works for me as well.
-
-> 
-> If this config will work for you then:
-> 
-> i'll try to build vanilla 5.17 + minimal possible set of patches allowing me to get video decoder working on rk3566.
-
-You shouldn't need a video decoder for this test.
-
-For your convenience I pushed the branch I just tested to:
-
-git://git.pengutronix.de/sha/linux rockchip-vop2-v9
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
