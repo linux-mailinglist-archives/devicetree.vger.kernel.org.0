@@ -2,102 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B56594EC243
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44ACD4EC2AD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344388AbiC3L7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 07:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
+        id S236010AbiC3MAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 08:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344749AbiC3L43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:56:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5687D31538;
-        Wed, 30 Mar 2022 04:54:29 -0700 (PDT)
+        with ESMTP id S1343574AbiC3L7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:59:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA7E33881;
+        Wed, 30 Mar 2022 04:55:13 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 297F7616E3;
-        Wed, 30 Mar 2022 11:54:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05C13C36AE3;
-        Wed, 30 Mar 2022 11:54:26 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C3103B81C36;
+        Wed, 30 Mar 2022 11:55:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1580FC340EE;
+        Wed, 30 Mar 2022 11:55:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648641268;
-        bh=ovHc4eVfLIwPzgDupeP7xqTAvr7qsXez6cVtCEg6mOY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CKoNuB/KB1V/NUx3uIhHDn0utlSGqfbZT7vrDk0Io7U8rbOwxSCV300UXruSKAfMJ
-         UpbIaSMx2gDgFvvoppgblowEYjb8oinTHpBBGR4yqzsY2kTl3Pss3uvJ923uZxMi84
-         ue023U1ge0YIE+s0rFVludJ8A9Bk+wbkEhFI/f1NHkTwtu8zlaYJCKjIz+GJtgmiKu
-         RHiMbTqkrTlSr95yiTXT5OqKvvguKM1yDBZZhczTD024zZNhy4SP+IlYUjq87AhpAW
-         6M5Q8LiqrR8SKZrejSnGok49eD9mf21cqXkgrEUGyUX1x87QYN4UsQkdVSiGSZlFok
-         9QVP/m8ZFAVrA==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Richard Leitner <richard.leitner@skidata.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux@armlinux.org.uk, swarren@wwwdotorg.org,
-        thierry.reding@gmail.com, gnurou@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 12/17] ARM: tegra: tamonten: Fix I2C3 pad setting
-Date:   Wed, 30 Mar 2022 07:54:01 -0400
-Message-Id: <20220330115407.1673214-12-sashal@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220330115407.1673214-1-sashal@kernel.org>
-References: <20220330115407.1673214-1-sashal@kernel.org>
+        s=k20201202; t=1648641310;
+        bh=e7Hpe6pe/bkh9zgngUqGH0/rJO5XpAtyl/RsoigW28U=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ipBYqvL6BPEW0v3grsTWUn/RjdwysHV+C5/pXhLgDVpQLHJnj6teX7Vzb6QdUGQvU
+         WGAOSpEFl7gw9P80k5SV5KB5dSVWQlbxNAQLfzkNgh0nUrkv5CXe5h0V+Beu/wYtrM
+         C2zmX6yvQsChzIjuRAuPm+HdnyeU1BsldjtED51lNl3hH2sKe4FB9MrKnQQzdqACUi
+         u+NuC29pT3gQOrRX8L78/OqIXzsqUd1O3qcwTQycWdHZls87ly/2k+AfWsRe2qEGMl
+         n8xLJtOW8PU+wzesp58WlAsTQL9nS6j53xYJYkwOrem7bH4P+iZk05DLhqJPLCqkRu
+         7J5fA1fUJf7eg==
+Message-ID: <71e82477-16fb-2e7a-e5a9-e22327f31e77@kernel.org>
+Date:   Wed, 30 Mar 2022 13:55:05 +0200
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v10 1/2] dt-bindings: timer: Add bindings for Intel Keem
+ Bay SoC Timer
+Content-Language: en-US
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        shruthi.sanil@intel.com, tglx@linutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        srikanth.thokala@intel.com, lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com
+References: <20220322130005.16045-1-shruthi.sanil@intel.com>
+ <20220322130005.16045-2-shruthi.sanil@intel.com>
+ <7e711327-bcb8-4c7f-5537-425ba1a79e62@linaro.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <7e711327-bcb8-4c7f-5537-425ba1a79e62@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Leitner <richard.leitner@skidata.com>
+On 30/03/2022 13:44, Daniel Lezcano wrote:
+> On 22/03/2022 14:00, shruthi.sanil@intel.com wrote:
+>> From: Shruthi Sanil <shruthi.sanil@intel.com>
+>>
+>> Add Device Tree bindings for the Timer IP, which can be used as
+>> clocksource and clockevent device in the Intel Keem Bay SoC.
+>>
+>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+>> Signed-off-by: Shruthi Sanil <shruthi.sanil@intel.com>
+> 
+> 
+> In order to pick this binding I need an ack from Rob or Krzysztof (added 
+> to the recipients)
 
-[ Upstream commit 0092c25b541a5422d7e71892a13c55ee91abc34b ]
+Rob was looking into this and there were some comments around v8, so I
+will leave it to him.
 
-This patch fixes the tristate configuration for i2c3 function assigned
-to the dtf pins on the Tamonten Tegra20 SoM.
 
-Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/tegra20-tamonten.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
-index a613e3b85b45..29769bf7a11a 100644
---- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
-+++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
-@@ -182,8 +182,8 @@
- 			};
- 			conf_ata {
- 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
--					"cdev1", "cdev2", "dap1", "dtb", "gma",
--					"gmb", "gmc", "gmd", "gme", "gpu7",
-+					"cdev1", "cdev2", "dap1", "dtb", "dtf",
-+					"gma", "gmb", "gmc", "gmd", "gme", "gpu7",
- 					"gpv", "i2cp", "irrx", "irtx", "pta",
- 					"rm", "slxa", "slxk", "spia", "spib",
- 					"uac";
-@@ -202,7 +202,7 @@
- 			};
- 			conf_crtp {
- 				nvidia,pins = "crtp", "dap2", "dap3", "dap4",
--					"dtc", "dte", "dtf", "gpu", "sdio1",
-+					"dtc", "dte", "gpu", "sdio1",
- 					"slxc", "slxd", "spdi", "spdo", "spig",
- 					"uda";
- 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
