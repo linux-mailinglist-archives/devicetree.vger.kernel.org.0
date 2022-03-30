@@ -2,95 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71AE14EBBD7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 770B04EBC1D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:51:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242252AbiC3HhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 03:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56824 "EHLO
+        id S243982AbiC3HxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 03:53:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243876AbiC3HhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:37:07 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096AB221BAC;
-        Wed, 30 Mar 2022 00:33:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648625708; x=1680161708;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=FGoR0Bi/9KyxJ4LS3E1AQhZ5W5AGPpkKzrT1an/pEh8=;
-  b=nL8mPX9rY3wwjhOjN8qrLEizdrh+az6G/j6R5BKI6UT/K6jVcU21bjLt
-   yWegGztXBzZK6ANuGKsoa+hwr6SlQ8djJakdIMNl6QDeodUslVxkHTP/A
-   XBpn8XsC4ucMzlC8wZKz7oNCHyqGTLSPJeiCpDCHsVW08oIKfa9+Gm9ou
-   x0qGWq5QOSkUPJafhuUHdbBax5xHptZcI+L+vNhcQe2IROcNynRc91lMo
-   AYJixhIOjGxKL8X8oIqOJXsoCgY6kT3K+g2ED0tVJ7wXcZOBUcemM4gYJ
-   7VeGwzpeWsLDZU3TAbrx7aTfTTSb/8by0qvGNl5oUYo02H2p1nHuLO2qu
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="239403613"
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="239403613"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 00:33:13 -0700
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="546745911"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 00:33:12 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id 0590B2066A;
-        Wed, 30 Mar 2022 10:33:10 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.94.2)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1nZSpp-002T7e-Ej; Wed, 30 Mar 2022 10:33:41 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     linux-media@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, robh@kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 2/2] dw9807-vcm: Add "dongwoon,dw9807" compatible string
-Date:   Wed, 30 Mar 2022 10:33:41 +0300
-Message-Id: <20220330073341.588550-3-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220330073341.588550-1-sakari.ailus@linux.intel.com>
-References: <20220330073341.588550-1-sakari.ailus@linux.intel.com>
+        with ESMTP id S244027AbiC3HxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:53:19 -0400
+X-Greylist: delayed 969 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Mar 2022 00:51:31 PDT
+Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [IPv6:2a02:9e0:8000::26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE5AAB39
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=protonic.nl; s=202111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc:to:from:
+         from;
+        bh=Uluet/jX37T1xgs3caJvnu+3kL5bR9aXLM+3qwz3Ut0=;
+        b=BGbLA8eKyyGd5yvbXSXEXi7rFMNNWKsKsVh0R5+JnpGLnT90jck/dj5i24O1TDJ8JeVRcoCykqQDq
+         d40Selw91O0Xaq+4JAhb3aRvpAiQoSy48l6Ms2l8tc0POdQ7Z+wP22m+3aby7rAHOmqUx5IZuat15S
+         d/9YpgrKjE96LFgN++FuuDhwRBPuIo2eWu5mhazvJSQ9uWCBoXN3lFFVDjHnO1DveF6EwsR9LjTACZ
+         eG+zmdPmUITUNw8QDEIcQUE/AE4Y/AnOKR5yg8CBbiXdz8LgYBk2Iql207xawxxPrHTPuuRDqg/Oq5
+         I7ARFhrv4NZzwixB76dBkEgWIDIc5wQ==
+X-MSG-ID: f2076e64-affb-11ec-b450-0050569d3a82
+From:   David Jander <david@protonic.nl>
+To:     Robin van der Gracht <robin@protonic.nl>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: [PATCH 0/2] drivers: auxdisplay: ht16k33.c: Add option to refuse claiming primary fb
+Date:   Wed, 30 Mar 2022 09:34:38 +0200
+Message-Id: <20220330073440.3986724-1-david@protonic.nl>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is firmware out there that uses "dongwoon,dw9807" compatible string
-that never made it to upstream as-is. Add it to the driver to make it load
-on such systems.
+In the case there is also a display with a frame-buffer device, the probe
+order of the auxdisplay fb and the main fb is not predictable, possibly
+leading to the situation where the holtek auxdisplay becomes /dev/fb0.
+This is problematic because there is currently no way to automatically
+rename these devices, and too much user-space software that assumes fb0
+to be the main display.
+In such a situation, adding "holtek,refuse-primary-fb" to the DT, the
+auxdisplay driver returns -EPROBE_DEFER to wait for the primary fb device
+to get probed first.
 
-The chip also has an EEPROM part which is AT24 compatible (for reading
-purposes) on a separate I²C address. Adding possible support for this in
-the future is not affected by this change.
+David Jander (2):
+  drivers: auxdisplay: ht16k33.c: Add option to refuse claiming primary
+    fb
+  dt-bindings: auxdisplay: holtek,ht16k33.yaml: Add
+    holtek,refuse-primary-fb
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- drivers/media/i2c/dw9807-vcm.c | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml    | 3 +++
+ drivers/auxdisplay/ht16k33.c                              | 8 ++++++++
+ 2 files changed, 11 insertions(+)
 
-diff --git a/drivers/media/i2c/dw9807-vcm.c b/drivers/media/i2c/dw9807-vcm.c
-index 95e06f13bc9ed..01c372925a806 100644
---- a/drivers/media/i2c/dw9807-vcm.c
-+++ b/drivers/media/i2c/dw9807-vcm.c
-@@ -295,6 +295,8 @@ static int  __maybe_unused dw9807_vcm_resume(struct device *dev)
- 
- static const struct of_device_id dw9807_of_table[] = {
- 	{ .compatible = "dongwoon,dw9807-vcm" },
-+	/* Compatibility for older firmware, NEVER USE THIS IN FIRMWARE! */
-+	{ .compatible = "dongwoon,dw9807" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, dw9807_of_table);
 -- 
-2.30.2
+2.32.0
 
