@@ -2,309 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 762724ECD1E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 21:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1071F4ECD23
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 21:19:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348617AbiC3TS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 15:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
+        id S1350574AbiC3TVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 15:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350699AbiC3TRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 15:17:30 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C433F8AC
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 12:15:20 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id gp15-20020a17090adf0f00b001c7cd11b0b3so634019pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 12:15:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gf3wWTmjziJMOn16oc1W5zoqBMd/yr5SzLsh5YHyWfk=;
-        b=IX6V4gdxfijYJqMCadFv+aJfDMmFLSXeJx7ipJCXLcZhq4CWasu4Bub7D9ivmpJFXJ
-         jpw/Zomrus+iSuhgMfAUr6tVNUZMrenvQKC6TvR3ps/EY2Ezms87PcwgmiwZSt56B2Um
-         NdIn8fPfitVAuXOEVXA5nHwH4VbjjQW49wndY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gf3wWTmjziJMOn16oc1W5zoqBMd/yr5SzLsh5YHyWfk=;
-        b=puRJnf5+33X0uAn1EKdbzCTtxU9yQudWPJAg93tFINiBsTbDc3bDcQH5YJRw4E5IWY
-         QYOqEUkObs6QF2NYsQLONzFFK/d9aLxDlaQhR3U/Jdm6sC9+qy8xu66HtzYMErjWNhpw
-         nLsH4EtitN4wONR/AsQFT8mM04GrAH2C6p6h74Ano29mNGl+9t8Ktcuh08lRm+RivW+q
-         Y5YZs3TAfS8Q3D9xMu3TMDd6eDtSEZflTK8EFOA7lBBfi5Astfu7Gh09wm4DVHJSAW2z
-         yw5NcsNt5Dyty5Ka0H0Gv5R2IUcLbyW6rXuOSjVyOVEXUaNVqMjbZee9Hki6J1P14my2
-         8RJw==
-X-Gm-Message-State: AOAM531T2kfRpY4xz2KNRCHFGYjcygcunWYGUyOXgQvb3ljknkbkgOx+
-        +Z//dqyJrX5kM747sjcwPXJ1RQ==
-X-Google-Smtp-Source: ABdhPJyCkoULiybe0p+o2nj8kK/d2psOLEZwTWyLeLzhf23vZtIxdCNN5tXzKWIRb3TL7mJqK+5wFg==
-X-Received: by 2002:a17:90b:3a84:b0:1c7:bc91:a870 with SMTP id om4-20020a17090b3a8400b001c7bc91a870mr1192429pjb.155.1648667720346;
-        Wed, 30 Mar 2022 12:15:20 -0700 (PDT)
-Received: from localhost.localdomain ([183.83.137.38])
-        by smtp.gmail.com with ESMTPSA id ng17-20020a17090b1a9100b001c9f79927bfsm2955451pjb.25.2022.03.30.12.15.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 12:15:19 -0700 (PDT)
-From:   Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S1350734AbiC3TUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 15:20:39 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 092BD6155;
+        Wed, 30 Mar 2022 12:18:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648667917; x=1680203917;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EPfZR4tpHhDfDi4POeZPO4ixXNKSTXTaIqowE3v9tOc=;
+  b=kJImin4yGV09651/vKLixpmnJPZS7mLRO/XYOAu/zEeCKypqb4CcHUzx
+   NfZVeGsIguQ5+YmA/2sG9fARnz7/5HDqpjs1YjYkZ9LncTIUyfKFsyy+p
+   IK0F8icoAQfkDQ88rhBpa/LPGxe6ts8qQMqsFI/ge0hpGCZl0XU+PPvkB
+   P/UMNZHP81IxwQ2HWP155BSb1nqwrBQ9pMX7hgYm4DRO2pu0LR6obdl89
+   zMsRjPjiNsoySwdPX5C0UtFgRDDkYirb9YKMumYCNpNlLduqUhXBY/IPi
+   /OH6XvYcuVb/8H+LAudH8rY8GeIr0Oavj6X2NqisA+rKdwOalzd03AaIX
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10302"; a="259339426"
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; 
+   d="scan'208";a="259339426"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 12:18:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,223,1643702400"; 
+   d="scan'208";a="586115481"
+Received: from lkp-server02.sh.intel.com (HELO 56431612eabd) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 30 Mar 2022 12:18:33 -0700
+Received: from kbuild by 56431612eabd with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nZdpw-0000Oa-MM;
+        Wed, 30 Mar 2022 19:18:32 +0000
+Date:   Thu, 31 Mar 2022 03:17:29 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        agross@kernel.org
+Cc:     kbuild-all@lists.01.org,
+        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Matteo Lisi <matteo.lisi@engicam.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
-        Suniel Mahesh <sunil@amarulasolutions.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Subject: [PATCH 3/3] arm64: dts: imx8mp: Add Engicam i.Core MX8M Plus EDIMM2.2 Starter Kit
-Date:   Thu, 31 Mar 2022 00:44:37 +0530
-Message-Id: <20220330191437.614065-4-abbaraju.manojsai@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220330191437.614065-1-abbaraju.manojsai@amarulasolutions.com>
-References: <20220330191437.614065-1-abbaraju.manojsai@amarulasolutions.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
+Message-ID: <202203310354.EE0k3ev8-lkp@intel.com>
+References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Engicam EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive
-Evaluation Board.
+Hi Mars,
 
-Genaral features:
-- LCD 7" C.Touch
-- microSD slot
-- Ethernet 1Gb
-- Wifi/BT
-- 2x LVDS Full HD interfaces
-- 3x USB 2.0
-- 1x USB 3.0
-- HDMI Out
-- Plus PCIe
-- MIPI CSI
-- 2x CAN
-- Audio Out
+Thank you for the patch! Yet something to improve:
 
-i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus from Engicam.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on v5.17 next-20220330]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-i.Core MX8M Plus needs to mount on top of this Evaluation board for
-creating complete i.Core MX8M Plus EDIMM2.2 Starter Kit.
+url:    https://github.com/intel-lab-lkp/linux/commits/Mars-Chen/CHROMIUM-arm64-dts-qcom-Add-sc7180-gelarshie/20220330-171139
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-randconfig-r012-20220330 (https://download.01.org/0day-ci/archive/20220331/202203310354.EE0k3ev8-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/18677c7abfdfc9a72daa7cfc3011314b098b361a
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mars-Chen/CHROMIUM-arm64-dts-qcom-Add-sc7180-gelarshie/20220330-171139
+        git checkout 18677c7abfdfc9a72daa7cfc3011314b098b361a
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-Add support for it.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
-Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../freescale/imx8mp-icore-mx8mp-edimm2.2.dts | 176 ++++++++++++++++++
- 2 files changed, 177 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts
+All errors (new ones prefixed by >>):
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 7f51b537df40..66985eae4942 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -77,6 +77,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts
-new file mode 100644
-index 000000000000..e0667299388a
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dts
-@@ -0,0 +1,176 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 NXP
-+ * Copyright (c) 2019 Engicam srl
-+ * Copyright (c) 2020 Amarula Solutons(India)
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp.dtsi"
-+#include "imx8mp-icore-mx8mp.dtsi"
-+#include <dt-bindings/usb/pd.h>
-+
-+/ {
-+	model = "Engicam i.Core MX8M Plus EDIMM2.2 Starter Kit";
-+	compatible = "engicam,icore-mx8mp-edimm2.2", "engicam,icore-mx8mp",
-+		     "fsl,imx8mp";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	reg_usb1_host_vbus: regulator-usb1-vbus {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usb1_vbus>;
-+		regulator-name = "usb1_host_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+/* Ethernet */
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@7 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			micrel,led-mode = <0>;
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
-+			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
-+			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
-+			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
-+			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
-+			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
-+			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
-+			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
-+			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
-+			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
-+			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
-+			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
-+			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
-+			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
-+			MX8MP_IOMUXC_NAND_DATA01__GPIO3_IO07				0x19
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x41
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x49
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x49
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX	0x140
-+			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX	0x140
-+			MX8MP_IOMUXC_SD1_STROBE__UART3_DCE_CTS	0x140
-+		>;
-+	};
-+
-+	pinctrl_reg_usb1_vbus: usb1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14	0x19
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2grp-gpio {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc1
-+		>;
-+	};
-+};
-+
-+/* console */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
-+&usb3_0 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	status = "okay";
-+};
-+
-+&usb3_1 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/* SDCARD */
-+&usdhc2 {
-+	pinctrl-names = "default" ;
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
+   In file included from arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts:10:
+>> arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi:9:10: fatal error: sc7180-trogdor-mipi-camera.dtsi: No such file or directory
+       9 | #include "sc7180-trogdor-mipi-camera.dtsi"
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +9 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+
+   > 9	#include "sc7180-trogdor-mipi-camera.dtsi"
+    10	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
