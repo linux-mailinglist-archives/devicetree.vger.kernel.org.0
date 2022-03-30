@@ -2,110 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0984E4EC5FE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 15:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8CA74EC638
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343798AbiC3Nxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 09:53:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33426 "EHLO
+        id S1346606AbiC3OMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 10:12:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346524AbiC3Nwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 09:52:49 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023041480EE;
-        Wed, 30 Mar 2022 06:51:02 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id o20-20020a9d7194000000b005cb20cf4f1bso14932231otj.7;
-        Wed, 30 Mar 2022 06:51:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=yHeRiX2bMIx0KbaFEt4HL/mkVxSbe1mp5NhZsTk9FpE=;
-        b=Q3FXTEzQyPmhEjt51ScacM0FKbrL4G6wU2jaHCxMEZe9YK5h75AJTYyFWjQ6LUClQP
-         rUmZFpda415/YHC1kRzbO0TIE09FXTWIYtQY72nvCzxtG4tE2lhwlV1YPU6oh7sNCIgG
-         ZKfFShxJgbWVKMwLPP288DoEX5hNX7ZwQ7yhkdFngKQdzq41aRhcpz2EK5LmdwVl/v76
-         UayWFeFtm7nm/mXPkYm+p1MNwGevbrH0HFYh2pGBXRmG9ceJmpT1NUca19JI8EDcXXK4
-         gDeV7zcqEgUYxG1EMSNbkpuh37OnypfGt6Jk/pDgEe/kE+q/2H+6c/TTyzF8Ekez0d3m
-         bBCQ==
-X-Gm-Message-State: AOAM531dvqybcrePm8E7RlOA6pAYq3BomI45TstNwTARviCHk7XUV/QR
-        BGx6ZvuMiuDWu0KJAwR5Fk72pcyF5g==
-X-Google-Smtp-Source: ABdhPJwJb0gAhNOGxyZyBT1Dysx5h/4ZV6i7rhvJehmKsif+DWOSg8rCnMl2C12b8kUdLQ2IDJ+PZg==
-X-Received: by 2002:a05:6830:812:b0:5af:6b1b:537f with SMTP id r18-20020a056830081200b005af6b1b537fmr3187780ots.194.1648648261611;
-        Wed, 30 Mar 2022 06:51:01 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y3-20020a056870e50300b000d9be6436f1sm9562024oag.29.2022.03.30.06.51.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 06:51:00 -0700 (PDT)
-Received: (nullmailer pid 2932724 invoked by uid 1000);
-        Wed, 30 Mar 2022 13:50:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     David Jander <david@protonic.nl>
-Cc:     devicetree@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>
-In-Reply-To: <20220330073440.3986724-3-david@protonic.nl>
-References: <20220330073440.3986724-1-david@protonic.nl> <20220330073440.3986724-3-david@protonic.nl>
-Subject: Re: [PATCH 2/2] dt-bindings: auxdisplay: holtek,ht16k33.yaml: Add holtek,refuse-primary-fb
-Date:   Wed, 30 Mar 2022 08:50:59 -0500
-Message-Id: <1648648259.965681.2932723.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S1344124AbiC3OMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:12:38 -0400
+X-Greylist: delayed 902 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Mar 2022 07:10:52 PDT
+Received: from mickerik.phytec.de (mickerik.phytec.de [195.145.39.210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98EF411CF6A
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 07:10:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1648648547; x=1651240547;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=PdBqd/DBbSKFTM+e0wpYe4vp4KlWFxTw6lHBjS1gXmg=;
+        b=gMldqlETprNSg9ME83L3vRo9O44Z5nL0Zi1Zg1E/8PR/uwuv4AMzCAi9YIDAs9Oo
+        jllxlbD6H6A88TQN3jn+d+IvG8w7wFPjRkFfI48xg05saZNLOfWYwL7pd3kHAgkv
+        1HCD4aktlwb9NC60U36XMXZNEmuW6KQ991DfVntpDC0=;
+X-AuditID: c39127d2-9112070000002a63-03-62446162c7a9
+Received: from berlix.phytec.de (Berlix.phytec.de [172.16.0.117])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id E1.41.10851.26164426; Wed, 30 Mar 2022 15:55:47 +0200 (CEST)
+Received: from [172.16.5.104] (172.16.0.116) by Berlix.phytec.de
+ (172.16.0.117) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 30 Mar
+ 2022 15:55:46 +0200
+Message-ID: <73a4a16b-193a-3075-61e9-82bcf21fc7d2@phytec.de>
+Date:   Wed, 30 Mar 2022 15:55:45 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC] arm64: dts: ti: introduce a minimal am642 device tree
+Content-Language: en-US
+To:     Bryan Brattlof <bb@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220321155417.13267-1-bb@ti.com>
+From:   Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <20220321155417.13267-1-bb@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.16.0.116]
+X-ClientProxiedBy: Berlix.phytec.de (172.16.0.117) To Berlix.phytec.de
+ (172.16.0.117)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgkeLIzCtJLcpLzFFi42JZI8BQqpuc6JJkcGUXq8XcNwdYLeYfOcdq
+        sfzzbHaLl7PusVlsenyN1eLyrjlsFm9+nGWyaN17hN3i/9kP7A6cHptWdbJ5bF5S73H8xnYm
+        j8+b5AJYorhsUlJzMstSi/TtErgyPp9qYyt4x1Lx78taxgbGj8xdjJwcEgImEo8uvWXsYuTi
+        EBJYziTx5fIZJgjnAaNE6/tGVpAqXgEbibkX97KB2CwCqhIbfnWyQ8QFJU7OfMICYosKREgs
+        2zUVzBYW8JDoO98PVsMsIC5x68l8JhBbRKCFUeLXyRKQBcwCOxglTv1cBdYgJKAn8aylgRHE
+        ZhNQl7iz4RvYYk4BfYm7k98wQgyykFj85iDUUHmJ7W/nMEP0yku8uLScBeIdBYm5vydCvRYu
+        8fbUb+YJjMKzkNw6C8lNs5CMnYVk7AJGllWMQrmZydmpRZnZegUZlSWpyXopqZsYgbF0eKL6
+        pR2MfXM8DjEycTAeYpTgYFYS4f140DlJiDclsbIqtSg/vqg0J7X4EKM0B4uSOO/9HqZEIYH0
+        xJLU7NTUgtQimCwTB6dUA2OI/NK7k2MEGjOWzkqYsHrtT4a98a4GZ3YE/D1eMX39/R1ua5x/
+        7fi4/V3HLOPHvFKKNTfjT10p3G6y+9L6TxUn+kJWBy2VlmxqOrV7t1vx852nrKM8o566dp87
+        y5f08VXbmktWjHJa37+t+7aVe3l7VtOm/sSZ6TudCjk3Hs9r6pSsipGufCutxFKckWioxVxU
+        nAgAGLUOYZMCAAA=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Mar 2022 09:34:40 +0200, David Jander wrote:
-> Document the DT property that will cause the holtek auxdisplay driver to
-> back off if it detects that it is the first driver to probe a framebuffer
-> device.
-> 
-> Signed-off-by: David Jander <david@protonic.nl>
-> ---
->  .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml         | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+Hi Bryan,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> +/* (optional) for console */
+> +&main_uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_uart0_pins_default>;
+> +};
+> +
+> +/* reserved for firmware */
+> +&main_uart1 {
+> +	status = "reserved";
+> +};
 
-yamllint warnings/errors:
+k3-image-gen says UART0 is used as a debug interface. See
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml: properties:holtek,refuse-primary-fb: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml: properties:holtek,refuse-primary-fb: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml: properties:holtek,refuse-primary-fb: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml: ignoring, error in schema: properties: holtek,refuse-primary-fb
-Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.example.dt.yaml:0:0: /example-0/i2c1/ht16k33@70: failed to match any schema with compatible: ['holtek,ht16k33']
+ 
+https://git.ti.com/cgit/k3-image-gen/k3-image-gen/tree/soc/am64x/evm/board-cfg.c#n81
 
-doc reference errors (make refcheckdocs):
+So it seems that you can enable uart1 here. But people may run into a 
+conflict with uart0 and k3-image-gen compiled with ENABLE_TRACE=1.
 
-See https://patchwork.ozlabs.org/patch/1610969
+If I am wrong, can you please clarify why you mark uart1 as reserved.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Regards,
+Wadim
