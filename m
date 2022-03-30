@@ -2,86 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B7144EC4C0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 817FF4EC4ED
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345588AbiC3Mpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 08:45:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59170 "EHLO
+        id S244759AbiC3MwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 08:52:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345617AbiC3Mp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 08:45:29 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9CDDDE09E;
-        Wed, 30 Mar 2022 05:39:31 -0700 (PDT)
-Received: from mail-wr1-f52.google.com ([209.85.221.52]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1N7QM9-1o5ovQ2itB-017lGA; Wed, 30 Mar 2022 14:39:17 +0200
-Received: by mail-wr1-f52.google.com with SMTP id u3so29132293wrg.3;
-        Wed, 30 Mar 2022 05:39:17 -0700 (PDT)
-X-Gm-Message-State: AOAM531sPV1KzqPCMshJxghwfovqDHM0NHU7gxPLY+1i2/ebjvrZpNni
-        npNOE7s4ARcxXfstJQYY8ZL6j/s0BuO9+u4ltbs=
-X-Google-Smtp-Source: ABdhPJxd37z3iG058b579CB0d3NUHesbaO46TxDB9z29hKBcw+jTvNoOe7ONXZ919cmcCM5Yjl3fkFPpxL4e20NcvX8=
-X-Received: by 2002:a5d:6505:0:b0:205:9a98:e184 with SMTP id
- x5-20020a5d6505000000b002059a98e184mr31849599wru.317.1648643957284; Wed, 30
- Mar 2022 05:39:17 -0700 (PDT)
+        with ESMTP id S244177AbiC3Mv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 08:51:59 -0400
+Received: from mail-m176237.qiye.163.com (mail-m176237.qiye.163.com [59.111.176.237])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DA7E16F6C6
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 05:50:12 -0700 (PDT)
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+        by mail-m176237.qiye.163.com (Hmail) with ESMTPA id 02B40C40431;
+        Wed, 30 Mar 2022 20:50:09 +0800 (CST)
+Message-ID: <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
+Date:   Wed, 30 Mar 2022 20:50:09 +0800
 MIME-Version: 1.0
-References: <20220330074016.12896-1-krzysztof.kozlowski@linaro.org> <20220330074016.12896-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220330074016.12896-3-krzysztof.kozlowski@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 30 Mar 2022 14:39:01 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3a4CqYgKzvusHW4ZXF7dmTjOdzq1-RoXqpnvicH1hxmw@mail.gmail.com>
-Message-ID: <CAK8P3a3a4CqYgKzvusHW4ZXF7dmTjOdzq1-RoXqpnvicH1hxmw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] MAINTAINERS: update Krzysztof Kozlowski's email to Linaro
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-nfc@lists.01.org, Networking <netdev@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:g7bW1TlYfy/Va9UPxcKRLWPMu9Pu4pj+gdgaactc3MYU8lzYpwX
- DTJEJVlNwiCr+CXbE6zLapXE191Zg8nfhY93tyiQfAY6gN0SgbDtwKc5r1b04LBXW6C8Djg
- 2TcifUip3IATzFlLdUdCdxPxnHNAWWI9FXjGYrzBRB8zPRNW5jYEOfy+qgBr3pfmMIFLo+b
- vFdJbqDEQw8P+pGa25IsQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:LGBTjLORL3c=:wSs/A9iws+khjz1N14El4I
- ZzDdQz5th9S/3m7grUPqDsbFONCNMBjy+9agHUE62PDNVLLemLUWgiwJD8mDwN4m+OmcGvYtt
- AxbZoq2FifLZXr/MUNBcw7WsyB+XJcta4IL2AC9EYRzuEYl3u9exsBk914VoFKy5q76BtgbRF
- JQq9oyo4SJFlMZJisQzl4ZcvkqyS4rVK4kXTpPads6rU2Ru2j2icO5thmWo7PP6phTuLtBOvC
- uQyd0YKi/E3lz5rYyQbORlDCVc6S2UrMzD+r/ylJJ6rNM/36eMV7EENon3efBBhWc4bxZ/wrT
- 8ZZUfxxi2CsyPz4Y/gNKO0yCrS5BVUxrZeZjmibcvHjLfYRGk+n+8fOzhe8ti7QMV/oV0Vzq0
- pp3YvOmf5GdRj2osglCfdp5zbaz0UiexJwwq2mjkAzHBryepMego6eWUD/2ywYG52tKbr20gQ
- 8Vq9oHHcipAJmK/NUc86ukBy8Hk4vyGzdLE+ws5LRx4bRcKKlrXrzkfqNXA/lvVkVRCAcy9+c
- Di92Xpj7mgYwIy2mXthtGTM0sFmY9BSvWAtwZPrZibf0D6Z1eZ2GXPgaA9bKdT82E0W/jaH1C
- 1EnIweybyd07nSHQuLtK6urxyvDx94Pa/qWgU0lNw+Vudyh6btEPw/WcDEiPqyL2iJFAJC++J
- +C8F0rivv3p4P/H8Qv6rwP30BnmBfpk03eY8LI8pCWxG0coTIo9T6EcGZdeCAstOL5xlvdVPh
- EcRXu4b2e0az0nkFTAhNHJgoEWQOqK9vDSBO6UguYGjhNu2R25ZgBXIJRUUHFhIevzJ/MuNSU
- ed+3SJk7/o/ubqri9plJobPUi0Ehh+C8WiiTr0HvFsdb4Akjp8=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <Kever.yang@rock-chips.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <20220328151116.2034635-21-s.hauer@pengutronix.de>
+ <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
+ <20220330063913.GW12181@pengutronix.de>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20220330063913.GW12181@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWUMfTR5WHh0dGktIQh
+        gZT0lOVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktITUpVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NEk6Vhw5IT4BPw8iFhkBFksQ
+        SDkKCz1VSlVKTU9DTU9PTUpLTkNIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0xKTzcG
+X-HM-Tid: 0a7fdae0591ed9afkuws02b40c40431
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 9:40 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> From: Krzysztof Kozlowski <krzk@kernel.org>
->
-> Use Krzysztof Kozlowski's @linaro.org account in maintainer entries.
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Hi Sascha:
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+On 3/30/22 14:39, Sascha Hauer wrote:
+> Hi Andy,
+>
+> On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
+>> Hi Sascha:
+>>
+>> On 3/28/22 23:11, Sascha Hauer wrote:
+>>> With upcoming VOP2 support VOP won't be the only choice anymore, so make
+>>> the VOP driver optional.
+>>>
+>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>> ---
+>>>    drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
+>>>    drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+>>>    drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+>>>    3 files changed, 11 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+>>> index fa5cfda4e90e3..7d22e2997a571 100644
+>>> --- a/drivers/gpu/drm/rockchip/Kconfig
+>>> +++ b/drivers/gpu/drm/rockchip/Kconfig
+>>> @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
+>>>    if DRM_ROCKCHIP
+>>> +config ROCKCHIP_VOP
+>>> +	bool "Rockchip VOP driver"
+>>> +	default y
+>>> +	help
+>>> +	  This selects support for the VOP driver. You should enable it
+>>> +	  on all older SoCs up to RK3399.
+> That reminds me that I wanted to rephrase this. Will change in next
+> round.
+>
+>>> +
+>>>    config ROCKCHIP_ANALOGIX_DP
+>>>    	bool "Rockchip specific extensions for Analogix DP driver"
+>>> +	depends on ROCKCHIP_VOP
+>>
+>> Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588 .
+> I added the dependency because analogix_dp-rockchip.c calls
+> rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
+> so this driver currenty can't work with the VOP2 driver and can't
+> be linked without the VOP driver being present.
+> I'll add a few words to the commit message.
 
-I usually merge maintainer file changes as bugfixes to avoid losing emails.
-In this case, I suppose it's not urgent though because both emails keep
-working, so I'd suggest putting this one in your normal 'soc' branch for 5.19.
 
-      Arnd
+Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP 
+driver to rockchip_drm_drv.c
+
+int rockchip_drm_wait_vact_end(struct drm_crtc *crtc, unsigned int 
+mstimeout)
+{
+         struct rockchip_drm_private *priv;
+         int pipe, ret = 0;
+
+         if (!crtc)
+                 return -ENODEV;
+
+         if (mstimeout <= 0)
+                 return -EINVAL;
+
+         priv = crtc->dev->dev_private;
+         pipe = drm_crtc_index(crtc);
+
+         if (priv->crtc_funcs[pipe] && 
+priv->crtc_funcs[pipe]->wait_vact_end)
+                 ret = priv->crtc_funcs[pipe]->wait_vact_end(crtc, 
+mstimeout);
+
+         return ret;
+}
+EXPORT_SYMBOL(rockchip_drm_wait_vact_end);
+
+> Sascha
+>
+>
