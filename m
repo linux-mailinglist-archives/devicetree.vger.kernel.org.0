@@ -2,89 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CF84ECBC3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 20:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6554ECC60
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 20:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349899AbiC3SV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 14:21:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
+        id S1350344AbiC3SiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 14:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349999AbiC3SVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 14:21:13 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0444E433A3;
-        Wed, 30 Mar 2022 11:19:08 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id e189so22880153oia.8;
-        Wed, 30 Mar 2022 11:19:07 -0700 (PDT)
+        with ESMTP id S1351904AbiC3SeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 14:34:13 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65145FF6;
+        Wed, 30 Mar 2022 11:32:11 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id e189so22917940oia.8;
+        Wed, 30 Mar 2022 11:32:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hweB/9EQsegxUegVTpdI7p6DUtmjW2hJD38s6/JrS/g=;
-        b=crqSrLHQTKeaO/d3dspsOQFjgD0k8gLaT9piV8V1fc496ezdV6ynbCgceZpTBB+Icj
-         PnsAoMbLumfIIKasa4YQlXUCnvW9GdaA7PQxLyIgitJDI61vazos3SexmM+EBW1QzWua
-         2XfMSdPRDvhOsFHKK3tBhCVLLOcE/lTEIQGi+J66GTlpUqNeERD4LueLDVr4b8H2Clzb
-         w9k5Kcl+vnCSB5CvvFDmJ3Xwf3AxlyPRlIQebxgK8uf4/VMrej+rUKK1DMMqOMlk/cp0
-         C55IVq5B8JIvJJgHCNPvKly2d5fvjREImquuqOqEzg/iMc4Yq9ZGYSO9/DO7+BQLnpCK
-         oe+Q==
-X-Gm-Message-State: AOAM532PlT0BSnkfOWcBsdlXXBgsr3kf2MbI3w5cVdMXy/eYrUPdzzoR
-        l9LEIt/gpRs7KWAt4mP7NRxhOsFHLw==
-X-Google-Smtp-Source: ABdhPJxrAurQlMV/OgRxHFYSVU1OV7Bh4TuJ5iQSoUOucGxUM9ilr/cEg04iV3J3714He3FkYTOJdA==
-X-Received: by 2002:a05:6808:1991:b0:2da:350d:f9fc with SMTP id bj17-20020a056808199100b002da350df9fcmr571035oib.251.1648664347250;
-        Wed, 30 Mar 2022 11:19:07 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=p7RLOmPhVN+XXHIq5ojAzjaursZDjvFUP+3MuJu/be8=;
+        b=YTtGdEZF4q9U3TVqwiv86p+A1fI20ofWTZ6qHYziaOPGMHEJkk1QZGVgZZyT+iZJa9
+         mWqwXouMdXXL2sgFfCDXmrmkRTualmvxW3OhfZ3FhdO+pnzqfcd79q1eRE7wAhOd4XMl
+         8tx12q4LaZ4UWs39sKIIymSw+qvxLNsNAhCIX7E90A1q95YahTMJTE6YfRbhagjTB3O7
+         WROjSIFjm3nPvtPtLrHhvq6+bNL9pCXp7/IHnGyzPV+VM7UxyIkIcrlHDNCQFr7ahlr4
+         G4sNn81h3N9jP7zHj65YHHwHIbQrJcTCafoX5NFYRJcxGSvvW9/Af5ypZ2GhooAH5HGw
+         tjrg==
+X-Gm-Message-State: AOAM530IYdHvwZkjbKkamQfPf/ndDjHSAaG4YmQiXxrGhisa7BrPmLIa
+        qn0rMNUrLPmJECQ11sIEtQ==
+X-Google-Smtp-Source: ABdhPJw2WztYoeKhnwsTLdMcSeH7vaNnIsOZGBGNP/EK2mQe1so3+Js3sL3Ti4ohFwUEKlz8rYPu1w==
+X-Received: by 2002:a05:6808:16a7:b0:2f9:39c4:c597 with SMTP id bb39-20020a05680816a700b002f939c4c597mr608435oib.101.1648665131112;
+        Wed, 30 Mar 2022 11:32:11 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id lx20-20020a0568704b9400b000de29e1d6adsm9838831oab.16.2022.03.30.11.19.05
+        by smtp.gmail.com with ESMTPSA id q16-20020a9d4b10000000b005b22b93d468sm10322717otf.74.2022.03.30.11.32.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 11:19:05 -0700 (PDT)
-Received: (nullmailer pid 3378991 invoked by uid 1000);
-        Wed, 30 Mar 2022 18:19:05 -0000
-Date:   Wed, 30 Mar 2022 13:19:05 -0500
+        Wed, 30 Mar 2022 11:32:10 -0700 (PDT)
+Received: (nullmailer pid 3399406 invoked by uid 1000);
+        Wed, 30 Mar 2022 18:32:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     David Jander <david@protonic.nl>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: auxdisplay: holtek,ht16k33.yaml: Add
- holtek,refuse-primary-fb
-Message-ID: <YkSfGfzyCIDIpVN8@robh.at.kernel.org>
-References: <20220330073440.3986724-1-david@protonic.nl>
- <20220330073440.3986724-3-david@protonic.nl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220330073440.3986724-3-david@protonic.nl>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+To:     =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>, dmaengine@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20220330164458.93055-2-povik+lin@cutebit.org>
+References: <20220330164458.93055-1-povik+lin@cutebit.org> <20220330164458.93055-2-povik+lin@cutebit.org>
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
+Date:   Wed, 30 Mar 2022 13:32:10 -0500
+Message-Id: <1648665130.079263.3399405.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 09:34:40AM +0200, David Jander wrote:
-> Document the DT property that will cause the holtek auxdisplay driver to
-> back off if it detects that it is the first driver to probe a framebuffer
-> device.
+On Wed, 30 Mar 2022 18:44:57 +0200, Martin Povišer wrote:
+> Apple's Audio DMA Controller (ADMAC) is used to fetch and store audio
+> samples on Apple SoCs from the "Apple Silicon" family.
 > 
-> Signed-off-by: David Jander <david@protonic.nl>
+> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
 > ---
->  .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml         | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/dma/apple,admac.yaml  | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/apple,admac.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> index fc4873deb76f..4de32c3e26ce 100644
-> --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> @@ -53,6 +53,9 @@ properties:
->      $ref: /schemas/leds/common.yaml#
->      unevaluatedProperties: false
->  
-> +  holtek,refuse-primary-fb:
-> +    description: Refuse to claim the first framebuffer device
 
-How is this specific to this device?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: example-0: iommu@235004000:reg:0: [2, 889208832, 0, 16384] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: example-0: dma-controller@238200000:reg:0: [2, 941621248, 0, 212992] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: iommu@235004000: compatible: ['apple,t8103-dart', 'apple,dart'] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/apple,dart.yaml
+Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml:0:0: /example-0/iommu@235004000: failed to match any schema with compatible: ['apple,t8103-dart', 'apple,dart']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: dma-controller@238200000: 'dma-channels', 'iommus' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
