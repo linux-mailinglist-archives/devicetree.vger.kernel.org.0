@@ -2,235 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 045394EBB85
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7256F4EBB91
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 09:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243709AbiC3HOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 03:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38524 "EHLO
+        id S235567AbiC3HRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 03:17:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243712AbiC3HO3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:14:29 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C685A15AAFC
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:12:42 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id p15so39577728ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 00:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5ug0Vb3n/y1kMz7s7i3LwK9TDhCTMMMovBQ50l01MHg=;
-        b=atzlgvzvihkz9xDD+XoJpzmbD9wjky+0js/tcXak7y6EwOAw5ALVhRjF22BSYXIw8D
-         u3L2YlB9BDgnkqmv1qW73BbVLyB0DE5MrSq/RFLlx9f18JSi8OqigESvvSVavkvfjzV1
-         ocppm0wraVtHB979mqPPIh1Gre3jhpLOxt6eRJtl2sU4DvwVr6ECj1nui6nsRgvrswVv
-         EJKI4V9v1XUUdooT9WtzBXT5ld5TC2bD7sDwPLDTW4Ai7Jf4QMZ86W3I4xCOMFaZ0d4u
-         A69qY6XqZeaMSvc7nL4uzUqAbmLEcNHslJbNxhEv9QaqW5kERqwUGoEmHrFb4q8VA4Le
-         eDFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5ug0Vb3n/y1kMz7s7i3LwK9TDhCTMMMovBQ50l01MHg=;
-        b=upBkwcTVVFJXWyNWM699YZIKZOJ/PnDLTGBjDiFGZuk7KZXvsveMzpL9bBKstkn98L
-         hWUNRAc/jbivRWe+BSXNsK2dlTnu2YxDA+nNJ0b83pfdBaxXLB3KUSFdU5n5CkQJWxn+
-         2SHTohKyI0SV5mefcEl2GY543Uisi2RW7TabS4PzOFX1lpB48pZMLHcpRIZKJgP+37S9
-         EDvSRgaeXwrulx19Ke4Rcwr7p/mapOn5ysj3p7AVYikAswj80L1iCDlFI7hKHaDPvDdj
-         LQZkgeyivuE/DiAra/JPbWNn2Vk0mIjwJWNKnkyXEtI+2d9ceWEtPI2QLfBxVbMRix4i
-         gI5w==
-X-Gm-Message-State: AOAM530qdD7236OMjiFjqrS6xyGKhoPzvvpraUbGeaIkh67ArI636q/H
-        eSfJVGrL8KyGJGVWVy8lCLFnQg==
-X-Google-Smtp-Source: ABdhPJxpMBRA7Iu+FkwPspTUBMkW5jdmZ4XJutw6rxD5PFu1SoJKSrXDDCjRaWv86N+ZQBZmm7xWzQ==
-X-Received: by 2002:a17:906:5cb:b0:6cf:954:d84d with SMTP id t11-20020a17090605cb00b006cf0954d84dmr38804313ejt.560.1648624361193;
-        Wed, 30 Mar 2022 00:12:41 -0700 (PDT)
-Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id f17-20020a056402355100b0041925e80963sm9658657edd.41.2022.03.30.00.12.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 00:12:40 -0700 (PDT)
-Message-ID: <63ad0846-8acd-1a9e-c625-9af3b073646c@linaro.org>
-Date:   Wed, 30 Mar 2022 09:12:39 +0200
+        with ESMTP id S231192AbiC3HRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 03:17:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D42618B7A7;
+        Wed, 30 Mar 2022 00:15:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EBB1A6171F;
+        Wed, 30 Mar 2022 07:15:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D63C340EC;
+        Wed, 30 Mar 2022 07:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648624552;
+        bh=SxJh/AU3dTlFq/zM5QD7GIB+GWItILWaKTz5mqVE33E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kNb6eJZy/3lzNQnBPMn0WD8RnHj5MHG+qqMcAaoolEDIuD9GxaK3ywuvQwnz2tCzj
+         UOFRRW6x6V1F3xwchKo0jLS5Ohyz7Ver/Lq+mHtz2LK8vJwmiobykuHQt+g+kZz9kN
+         XQRlYQL9CR/1RuSIzkrq0+POBWzXwaQ7OJ9A0Vk9jNDhMrt6C3Fg6Or9Ev3djDaojn
+         VLwrGkefz7VFyeg1d3JBwEoMUtiyMdRKCjfN7V20zS8XZzg+tGUp5k+OPm3UgsO2Fl
+         2sMhYCLJ5b1S6wHlcGruxuArohBWZse5m7HJp+6VluoJ4odLC47ZZrXsgNmdFovLP7
+         Bge1FAoL7XPjg==
+Message-ID: <fff59e1d-2f1c-ed96-4bf8-5744b75d1998@kernel.org>
+Date:   Wed, 30 Mar 2022 09:15:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,px30-cru.txt to
- YAML
+Subject: Re: [PATCH v2 2/2] dt-bindings: Convert Dongwoon dw9807-vcm bindings
+ to json-schema
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
-        zhangqing@rock-chips.com
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220329195057.15571-1-jbx6244@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220329195057.15571-1-jbx6244@gmail.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, robh@kernel.org
+References: <20220329212654.587451-1-sakari.ailus@linux.intel.com>
+ <20220329212654.587451-3-sakari.ailus@linux.intel.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220329212654.587451-3-sakari.ailus@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/03/2022 21:50, Johan Jonker wrote:
-> Convert rockchip,px30-cru.txt to YAML.
+On 29/03/2022 23:26, Sakari Ailus wrote:
+> Convert the old text based dw9807-vcm chip DT bindings to json-schema.
 > 
-> Changes against original bindings:
->   Use compatible string: "rockchip,px30-pmucru"
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > ---
->  .../bindings/clock/rockchip,px30-cru.txt      | 70 --------------
->  .../bindings/clock/rockchip,px30-cru.yaml     | 96 +++++++++++++++++++
->  2 files changed, 96 insertions(+), 70 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
+>  .../media/i2c/dongwoon,dw9807-vcm.txt         |  9 ----
+>  .../media/i2c/dongwoon,dw9807-vcm.yaml        | 43 +++++++++++++++++++
+>  2 files changed, 43 insertions(+), 9 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
+> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
 > deleted file mode 100644
-> index 55e78cdde..000000000
-> --- a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
+> index c4701f1eaaf63..0000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.txt
 > +++ /dev/null
-> @@ -1,70 +0,0 @@
-> -* Rockchip PX30 Clock and Reset Unit
+> @@ -1,9 +0,0 @@
+> -Dongwoon Anatech DW9807 voice coil lens driver
 > -
-> -The PX30 clock controller generates and supplies clock to various
-> -controllers within the SoC and also implements a reset controller for SoC
-> -peripherals.
+> -DW9807 is a 10-bit DAC with current sink capability. It is intended for
+> -controlling voice coil lenses.
 > -
-> -Required Properties:
+> -Mandatory properties:
 > -
-> -- compatible: PMU for CRU should be "rockchip,px30-pmu-cru"
-> -- compatible: CRU should be "rockchip,px30-cru"
-> -- reg: physical base address of the controller and length of memory mapped
-> -  region.
-> -- clocks: A list of phandle + clock-specifier pairs for the clocks listed
-> -          in clock-names
-> -- clock-names: Should contain the following:
-> -  - "xin24m" for both PMUCRU and CRU
-> -  - "gpll" for CRU (sourced from PMUCRU)
-> -- #clock-cells: should be 1.
-> -- #reset-cells: should be 1.
-> -
-> -Optional Properties:
-> -
-> -- rockchip,grf: phandle to the syscon managing the "general register files"
-> -  If missing, pll rates are not changeable, due to the missing pll lock status.
-> -
-> -Each clock is assigned an identifier and client nodes can use this identifier
-> -to specify the clock which they consume. All available clocks are defined as
-> -preprocessor macros in the dt-bindings/clock/px30-cru.h headers and can be
-> -used in device tree sources. Similar macros exist for the reset sources in
-> -these files.
-> -
-> -External clocks:
-> -
-> -There are several clocks that are generated outside the SoC. It is expected
-> -that they are defined using standard clock bindings with following
-> -clock-output-names:
-> - - "xin24m" - crystal input - required,
-> - - "xin32k" - rtc clock - optional,
-> - - "i2sx_clkin" - external I2S clock - optional,
-> - - "gmac_clkin" - external GMAC clock - optional
-> -
-> -Example: Clock controller node:
-> -
-> -	pmucru: clock-controller@ff2bc000 {
-> -		compatible = "rockchip,px30-pmucru";
-> -		reg = <0x0 0xff2bc000 0x0 0x1000>;
-> -		#clock-cells = <1>;
-> -		#reset-cells = <1>;
-> -	};
-> -
-> -	cru: clock-controller@ff2b0000 {
-> -		compatible = "rockchip,px30-cru";
-> -		reg = <0x0 0xff2b0000 0x0 0x1000>;
-> -		rockchip,grf = <&grf>;
-> -		#clock-cells = <1>;
-> -		#reset-cells = <1>;
-> -	};
-> -
-> -Example: UART controller node that consumes the clock generated by the clock
-> -  controller:
-> -
-> -	uart0: serial@ff030000 {
-> -		compatible = "rockchip,px30-uart", "snps,dw-apb-uart";
-> -		reg = <0x0 0xff030000 0x0 0x100>;
-> -		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&pmucru SCLK_UART0_PMU>, <&pmucru PCLK_UART0_PMU>;
-> -		clock-names = "baudclk", "apb_pclk";
-> -		reg-shift = <2>;
-> -		reg-io-width = <4>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
+> -- compatible: "dongwoon,dw9807-vcm"
+> -- reg: I2C slave address
+> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
 > new file mode 100644
-> index 000000000..aa095f375
+> index 0000000000000..0cf153ed547fe
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9807-vcm.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2018, 2021 Intel Corporation
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/rockchip,px30-cru.yaml#
+> +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9807-vcm.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Rockchip PX30 Clock and Reset Unit (CRU)
+> +title: Dongwoon Anatech DW9807 voice coil lens driver
 > +
 > +maintainers:
-> +  - Elaine Zhang <zhangqing@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
+> +  - Sakari Ailus <sakari.ailus@linux.intel.com>
 > +
 > +description: |
-> +  The PX30 clock controller generates and supplies clocks to various
-> +  controllers within the SoC and also implements a reset controller for SoC
-> +  peripherals.
-> +  Each clock is assigned an identifier and client nodes can use this identifier
-> +  to specify the clock which they consume. All available clocks are defined as
-> +  preprocessor macros in the dt-bindings/clock/px30-cru.h headers and can be
-> +  used in device tree sources. Similar macros exist for the reset sources in
-> +  these files.
-> +  There are several clocks that are generated outside the SoC. It is expected
-> +  that they are defined using standard clock bindings with following
-> +  clock-output-names:
-> +    - "xin24m"     - crystal input       - required
-> +    - "xin32k"     - rtc clock           - optional
-> +    - "i2sx_clkin" - external I2S clock  - optional
-> +    - "gmac_clkin" - external GMAC clock - optional
+> +  DW9807 is a 10-bit DAC with current sink capability. It is intended for
+> +  controlling voice coil lenses.
 > +
 > +properties:
+> +
 > +  compatible:
-> +    enum:
-> +      - rockchip,px30-cru
-> +      - rockchip,px30-pmucru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: Clock for both PMUCRU and CRU
-> +      - description: Clock for CRU (sourced from PMUCRU)
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: xin24m
-> +      - const: gpll
+> +    const: "dongwoon,dw9807-vcm"
 
-You need allOf:if:then: constraining clocks and clock-names per compatible.
-
+Nothing changed here about new lines and quotes.
 
 Best regards,
 Krzysztof
