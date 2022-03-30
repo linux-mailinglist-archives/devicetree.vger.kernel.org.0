@@ -2,83 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44ACD4EC2AD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D05014EC3DB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236010AbiC3MAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 08:00:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36734 "EHLO
+        id S1344923AbiC3MLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 08:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343574AbiC3L7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:59:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA7E33881;
-        Wed, 30 Mar 2022 04:55:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C3103B81C36;
-        Wed, 30 Mar 2022 11:55:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1580FC340EE;
-        Wed, 30 Mar 2022 11:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648641310;
-        bh=e7Hpe6pe/bkh9zgngUqGH0/rJO5XpAtyl/RsoigW28U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ipBYqvL6BPEW0v3grsTWUn/RjdwysHV+C5/pXhLgDVpQLHJnj6teX7Vzb6QdUGQvU
-         WGAOSpEFl7gw9P80k5SV5KB5dSVWQlbxNAQLfzkNgh0nUrkv5CXe5h0V+Beu/wYtrM
-         C2zmX6yvQsChzIjuRAuPm+HdnyeU1BsldjtED51lNl3hH2sKe4FB9MrKnQQzdqACUi
-         u+NuC29pT3gQOrRX8L78/OqIXzsqUd1O3qcwTQycWdHZls87ly/2k+AfWsRe2qEGMl
-         n8xLJtOW8PU+wzesp58WlAsTQL9nS6j53xYJYkwOrem7bH4P+iZk05DLhqJPLCqkRu
-         7J5fA1fUJf7eg==
-Message-ID: <71e82477-16fb-2e7a-e5a9-e22327f31e77@kernel.org>
-Date:   Wed, 30 Mar 2022 13:55:05 +0200
+        with ESMTP id S1347709AbiC3MHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 08:07:31 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609AA10B8
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 05:05:44 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id e16so35358241lfc.13
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 05:05:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=joxG/spNwlj1fHKhvtHKtXHh1W5pNu9AS2FKRd+Axj8=;
+        b=exv7OUt1sjOPoyOX6esceFSwCF6m1hHMvgJ4rI3piGgI8yVm4ljM8MjFLRbqY64Aqd
+         Zi5R4c975Q1Oh3U0df9tNzjp+Fkbnwg0Tkabm4XwNDHCzeteevFV4yFd+BHfwETkWw0M
+         M2dbAyAv8RqDi/dK96WhCkmN0oWavp429NxmlvPoISsO4IgcGxZr1PrQScD0yCl36UPO
+         Q9oSxNUfB//0uMi1fsju9ShLLdx9mjnIgiyPwzVhy+k8z2CcwEMzkggwUiAqq8xk62Rn
+         BsJDKXLFZqAuzN+Q72cgOH7LS9eIEudkTGxyiw33z/yuF1iIhqOwMeDMHt0JVDUYXoFr
+         IApA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=joxG/spNwlj1fHKhvtHKtXHh1W5pNu9AS2FKRd+Axj8=;
+        b=DDw6M0h4FCJcaShFHX7cC6m3uASBAsZG1RLACEMK2xRYTLXV2Y/QAU5rzECLYFrxzs
+         fo9txcAVwWKQlk5REPed6c7hqDN/ZAQlpq4DtcUrv+kiUGpAJp9IElGl53UsCx84YqjX
+         WDvu/Z3v00v7g7+My09H7xAJZeOQTLwxY2S13mIiav/eDhgVbbNE6WigO7GVT3yyi11O
+         m9hfMibvysBsLeGOthOqnQWX9mXxE9moC0ZtKGe0l3tpmDIXvUWQkTseAoaNuiXGlDRL
+         Oft/r9CWY69ytdDOpIFU6giX3/m99TTV8L73iZixANqh/46sOGMXnPmDh2hDsgTi2lFC
+         Atwg==
+X-Gm-Message-State: AOAM532y9YOXwV003Adb9bgAt+bKwBlWhXFD5IhENOY+76qP4w8sg+eo
+        HU9w+w9511ErZHpL5WzYKjLBuUDjev4=
+X-Google-Smtp-Source: ABdhPJyTd8uwxepPzlk6Ni6qEEW8AMmcUiwpa9XLl/rd6ETfcQlJ3Y1lz/svreaBav47UO+yxm6JJA==
+X-Received: by 2002:a05:6512:c22:b0:44a:874f:7ad7 with SMTP id z34-20020a0565120c2200b0044a874f7ad7mr6576745lfu.649.1648641939030;
+        Wed, 30 Mar 2022 05:05:39 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id p2-20020a056512328200b0044a2d3f889fsm2308468lfe.293.2022.03.30.05.05.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Mar 2022 05:05:38 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Update pin controller node name
+Date:   Wed, 30 Mar 2022 14:05:27 +0200
+Message-Id: <20220330120527.5242-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v10 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC Timer
-Content-Language: en-US
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        shruthi.sanil@intel.com, tglx@linutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        srikanth.thokala@intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-References: <20220322130005.16045-1-shruthi.sanil@intel.com>
- <20220322130005.16045-2-shruthi.sanil@intel.com>
- <7e711327-bcb8-4c7f-5537-425ba1a79e62@linaro.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <7e711327-bcb8-4c7f-5537-425ba1a79e62@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 13:44, Daniel Lezcano wrote:
-> On 22/03/2022 14:00, shruthi.sanil@intel.com wrote:
->> From: Shruthi Sanil <shruthi.sanil@intel.com>
->>
->> Add Device Tree bindings for the Timer IP, which can be used as
->> clocksource and clockevent device in the Intel Keem Bay SoC.
->>
->> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
->> Signed-off-by: Shruthi Sanil <shruthi.sanil@intel.com>
-> 
-> 
-> In order to pick this binding I need an ack from Rob or Krzysztof (added 
-> to the recipients)
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Rob was looking into this and there were some comments around v8, so I
-will leave it to him.
+This fixes:
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: cru-bus@100: 'pin-controller@1c0' does not match any of the regexes: '^clock-controller@[a-f0-9]+$', '^phy@[a-f0-9]+$', '^pinctrl@[a-f0-9]+$', '^syscon@[a-f0-9]+$', '^thermal@[a-f0-9]+$'
+        From schema: Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dtb: pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+        From schema: Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
 
+Ref: e7391b021e3f ("dt-bindings: mfd: brcm,cru: Rename pinctrl node")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm5301x.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+index 603c700c706f..65f8a759f1e3 100644
+--- a/arch/arm/boot/dts/bcm5301x.dtsi
++++ b/arch/arm/boot/dts/bcm5301x.dtsi
+@@ -455,7 +455,7 @@ cru_clkset: syscon@180 {
+ 				reg = <0x180 0x4>;
+ 			};
+ 
+-			pinctrl: pin-controller@1c0 {
++			pinctrl: pinctrl@1c0 {
+ 				compatible = "brcm,bcm4708-pinmux";
+ 				reg = <0x1c0 0x24>;
+ 				reg-names = "cru_gpio_control";
+-- 
+2.34.1
+
