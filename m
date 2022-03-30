@@ -2,73 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 172D04EC97C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40A494EC992
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348714AbiC3QTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 12:19:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46672 "EHLO
+        id S1348739AbiC3QWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 12:22:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348719AbiC3QTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:19:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FECBC02;
-        Wed, 30 Mar 2022 09:17:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B909161773;
-        Wed, 30 Mar 2022 16:17:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1E24C340EC;
-        Wed, 30 Mar 2022 16:17:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648657048;
-        bh=Q+USGHsR1S1m9ZvzFcgjt7zp0ViNdGcvN3RiBCTFNSM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O8S0hjOfWVpcL2d8Ii4T6o+AuXfYtsfA5ix/uX/rPyjwS9bxhfO1i86FHjIdh+puv
-         I/W7n5WESGfHjS6nF6gp5uPbz0DSJdmTwsJmdaL3RDAl0eVJBdNT4exUa1F1pmWqy/
-         L5TsjMqr9tZXP8WmWGuRJBh+7CyOBurO/HruWy2Zqf2pbxXdUFXjOULx0WFZpkDRTD
-         QVfwF0fhifJNU26ElPMrsxlNMoMiEQy7tfASjXepRDVYCV/+WyR1iuE1rYjYLwRcTQ
-         3WMZtglRmT0m/phSC+R4aYQMOKh4xxVnG0cpZxbkZbFGBsB3JmOU/q0kciwlqmv+sV
-         2kaKH/mpSSGAA==
-Date:   Wed, 30 Mar 2022 17:17:19 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Dmitry Osipenko <digetx@gmail.com>, linux-iio@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-mmc@vger.kernel.org,
-        linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: Fix incomplete if/then/else schemas
-Message-ID: <YkSCj1wT8E/uAdbU@sirena.org.uk>
-References: <20220330145741.3044896-1-robh@kernel.org>
+        with ESMTP id S1348777AbiC3QWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:22:07 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978047B137;
+        Wed, 30 Mar 2022 09:20:16 -0700 (PDT)
+X-UUID: 3a9f5d6c95384520b331cc0095484ebf-20220331
+X-UUID: 3a9f5d6c95384520b331cc0095484ebf-20220331
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1884505418; Thu, 31 Mar 2022 00:20:11 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 31 Mar 2022 00:20:10 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 31 Mar 2022 00:20:09 +0800
+Message-ID: <7462933d959bd8ed1b7e3259f607a2e47436371c.camel@mediatek.com>
+Subject: Re: [v7 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
+ speaker
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>,
+        <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@kernel.org>
+Date:   Thu, 31 Mar 2022 00:20:09 +0800
+In-Reply-To: <20220330152026.6nuigsldx46lue44@notapiano>
+References: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
+         <20220324064511.10665-3-jiaxin.yu@mediatek.com>
+         <20220329223002.uo7kiemopkh7ak4x@notapiano>
+         <dee3fbb7c9f0c3e1f11143db1d6fc4381cab827f.camel@mediatek.com>
+         <20220330152026.6nuigsldx46lue44@notapiano>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="TNgjpwjwvAc49yPZ"
-Content-Disposition: inline
-In-Reply-To: <20220330145741.3044896-1-robh@kernel.org>
-X-Cookie: Two is company, three is an orgy.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,34 +62,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 2022-03-30 at 11:20 -0400, Nícolas F. R. A. Prado wrote:
 
---TNgjpwjwvAc49yPZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> > > >  static int mt8192_mt6359_dev_probe(struct platform_device
+> > > > *pdev)
+> > > >  {
+> > > >  	struct snd_soc_card *card;
+> > > > -	struct device_node *platform_node, *hdmi_codec;
+> > > > +	struct device_node *platform_node, *hdmi_codec,
+> > > > *speaker_codec;
+> > > >  	int ret, i;
+> > > >  	struct snd_soc_dai_link *dai_link;
+> > > >  	struct mt8192_mt6359_priv *priv;
+> > > >  
+> > > > -	platform_node = of_parse_phandle(pdev->dev.of_node,
+> > > > -					 "mediatek,platform",
+> > > > 0);
+> > > > -	if (!platform_node) {
+> > > > -		dev_err(&pdev->dev, "Property 'platform'
+> > > > missing or
+> > > > invalid\n");
+> > > > +	card = (struct snd_soc_card
+> > > > *)of_device_get_match_data(&pdev-
+> > > > > dev);
+> > > > 
+> > > > +	if (!card)
+> > > >  		return -EINVAL;
+> > > > +	card->dev = &pdev->dev;
+> > > > +
+> > > > +	platform_node = of_parse_phandle(pdev->dev.of_node,
+> > > > "mediatek,platform", 0);
+> > > > +	if (!platform_node) {
+> > > > +		ret = -EINVAL;
+> > > > +		dev_err_probe(&pdev->dev, ret, "Property
+> > > > 'platform'
+> > > > missing or invalid\n");
+> > > > +		goto err_platform_node;
+> > > >  	}
+> > > >  
+> > > > -	card = (struct snd_soc_card
+> > > > *)of_device_get_match_data(&pdev-
+> > > > > dev);
+> > > > 
+> > > > -	if (!card) {
+> > > > +	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
+> > > > "mediatek,hdmi-codec", 0);
+> > > > +	if (!hdmi_codec) {
+> > > >  		ret = -EINVAL;
+> > > > -		goto put_platform_node;
+> > > > +		dev_err_probe(&pdev->dev, ret, "Property 'hdmi-
+> > > > codec'
+> > > > missing or invalid\n");
+> > > > +		goto err_hdmi_codec;
+> > > 
+> > > You're making hdmi-codec a required property, since now the
+> > > driver
+> > > fails to
+> > > probe without it. Is it really required though? The driver code
+> > > still
+> > > checks for
+> > > the presence of hdmi_codec before using it, so shouldn't it be
+> > > fine
+> > > to let it be
+> > > optional?
+> > > 
+> > > If it is really required now though, then I guess at least the
+> > > dt-
+> > > binding should
+> > > be updated accordingly. (Although I think this would technically
+> > > break the ABI?)
+> > > 
+> > > Thanks,
+> > > Nícolas
+> > 
+> > Hi Nícolas,
+> > 
+> > Thanks for your comment. Indeed I made hdmi-codec a required
+> > property,
+> > because it is a must in this machine driver. I prefer to report
+> > errors
+> > during the registration rather than during the use.
+> 
+> But what do you mean that it is required in this machine driver? The
+> code checks
+> for presence of hdmi_codec and ignores it if it's not set, so it does
+> really
+> seem optional to me. Also, I have tested this driver on mt8192-
+> asurada-spherion
+> without hdmi-codec set in the DT and the speaker and headphone sound
+> works just
+> fine.
+> 
+> Besides, there might be machines using this driver that don't support
+> HDMI, and
+> requiring an hdmi-codec in the DT for them would not make any sense.
+> So keeping
+> hdmi-codec as optional seems like the most sensible solution to me,
+> really.
+> 
+> Thanks,
+> Nícolas
 
-On Wed, Mar 30, 2022 at 09:57:41AM -0500, Rob Herring wrote:
-> A recent review highlighted that the json-schema meta-schema allows any
-> combination of if/then/else schema keywords even though if, then or else
-> by themselves makes little sense. With an added meta-schema to only
-> allow valid combinations, there's a handful of schemas found which need
-> fixing in a variety of ways. Incorrect indentation is the most common
-> issue.
+Yes, I agree with you. In the past, if there was a new board without
+HDMI audio, we would choose to add a new machine driver and a new dt-
+bindings. But now, in order to simplify the code, we tend to share one
+machine driver for boards that use similar codecs. And we are doing
+this now.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Thanks,
+Jiaxin.Yu
 
---TNgjpwjwvAc49yPZ
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJEgo4ACgkQJNaLcl1U
-h9CMwQf/f8YiUiMex+FwfC/kdvXglTNhRApaQRU6OtuSmz5UEnBb6O6YMmQLA4q4
-P3oQ1eCCQFXxr8+P7iqLuM+N4MRXPNabE1q82boC3jBah9e8mvDKJtNZJlz/kRXD
-QazSWyj0T9UQpnveVimQMjtE/So0MgZSI/KLiB/hjhG+5Be3Gq5Da9HfdMFwvtA1
-nrqW5IcduprA2fSUgucuUddybp9AoCJr+cvoFPx3Zw/1Nnjb/7xWP6TYeh2EpRCp
-4z1q0JIEFpwa0vCan+4S1IF9eUjHLTmhnUt3yWgERmRNK7t9GKrhobfSAuK8pmky
-vpPGzlJMA9MiagHlb4EugpvmhYzNuQ==
-=41nO
------END PGP SIGNATURE-----
-
---TNgjpwjwvAc49yPZ--
