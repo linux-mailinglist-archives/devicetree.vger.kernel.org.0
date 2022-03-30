@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 201434EC107
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C49A4EC16A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344379AbiC3Lzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 07:55:52 -0400
+        id S1344520AbiC3L4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 07:56:16 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345302AbiC3LyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:54:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98256277966;
-        Wed, 30 Mar 2022 04:50:51 -0700 (PDT)
+        with ESMTP id S1345404AbiC3Ly2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:54:28 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C06282573;
+        Wed, 30 Mar 2022 04:51:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1788961616;
-        Wed, 30 Mar 2022 11:50:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56AACC36AE5;
-        Wed, 30 Mar 2022 11:50:48 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D0550B81C35;
+        Wed, 30 Mar 2022 11:51:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFFCC3410F;
+        Wed, 30 Mar 2022 11:51:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648641049;
-        bh=93YLaa0zQ7hqgghUl04JHh02d/eZiQqyJBOIBGaKxuc=;
+        s=k20201202; t=1648641064;
+        bh=8ZFmnqlSEMxKjuWziuwkhdq48STdoQ3qVnRC30Htjlg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=k8MR1MqmHd1BnyZQnY+79B2lMoOtjcN/JA3rKueVlJogAND3yZTPBIs2uQvycJPBm
-         gy4VELtUQJbNLJcDEaKKLvXBmBQBKogLaCUJkKoBqqV3bMt9QonoTgbiJpobgaJBKo
-         s5TZm886DpKNy4HW3LDzv+Taml3YFffW95yzFLWe9IIPXA8QghaDv7N0XC/Wr2Dmkt
-         Pcc0WjBnDuyj9ziSHaF9qDLoOAxlDeS1QM/Pk9N2L/hjCsqE6cSlSUvTN0Z5Nag7yY
-         yoEa8cekwXJQsNGui7ALn9tiJVNGJ0YVzNmvlrG96Qcg3I3Ss0A92ZjjRMGQ8QDzHP
-         /WrHNF50qIZgQ==
+        b=BFIxcIjrcDDBKnDw0iY6uwU2y8SvZ0VXZQxnxBDxvN+3OaJ0PJ01QNUndUJ5L7udv
+         tR9rPgka6brxh1Fxn/pm+zI6mtmhmAxwkN31wmJ6biOq7VOelCGwTgVfTmMjBMHhS/
+         ljoB/N5vcgDFCid9aA4fmU1EPpfrcd7ysdGnCUwgJbZ01HgFBSI8XPqI+pH0qhMWEx
+         Nm133P83Ff3v4x9JBgui5SMhnM5ku/IIWWTzVrNE1/UMnfVPQfsSsuqZBI9z95en+g
+         KKfi3eHf1BVE/NingGr4mT2L+7exPejCiNDlivzHMEkTDsUvBsm+Vfxl5rpAQMky8/
+         sC2vaQAIG8BwQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Richard Schleich <rs@noreya.tech>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+Cc:     Richard Leitner <richard.leitner@skidata.com>,
+        Thierry Reding <treding@nvidia.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux@armlinux.org.uk,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 28/50] ARM: dts: bcm2711: Add the missing L1/L2 cache information
-Date:   Wed, 30 Mar 2022 07:49:42 -0400
-Message-Id: <20220330115005.1671090-28-sashal@kernel.org>
+        mark.rutland@arm.com, linux@armlinux.org.uk, swarren@wwwdotorg.org,
+        thierry.reding@gmail.com, gnurou@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.15 38/50] ARM: tegra: tamonten: Fix I2C3 pad setting
+Date:   Wed, 30 Mar 2022 07:49:52 -0400
+Message-Id: <20220330115005.1671090-38-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220330115005.1671090-1-sashal@kernel.org>
 References: <20220330115005.1671090-1-sashal@kernel.org>
@@ -59,111 +60,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Schleich <rs@noreya.tech>
+From: Richard Leitner <richard.leitner@skidata.com>
 
-[ Upstream commit 618682b350990f8f1bee718949c4b3858711eb58 ]
+[ Upstream commit 0092c25b541a5422d7e71892a13c55ee91abc34b ]
 
-This patch fixes the kernel warning
-"cacheinfo: Unable to detect cache hierarchy for CPU 0"
-for the bcm2711 on newer kernel versions.
+This patch fixes the tristate configuration for i2c3 function assigned
+to the dtf pins on the Tamonten Tegra20 SoM.
 
-Signed-off-by: Richard Schleich <rs@noreya.tech>
-Tested-by: Stefan Wahren <stefan.wahren@i2se.com>
-[florian: Align and remove comments matching property values]
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/bcm2711.dtsi | 50 ++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ arch/arm/boot/dts/tegra20-tamonten.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 21294f775a20..89af57482bc8 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -459,12 +459,26 @@
- 		#size-cells = <0>;
- 		enable-method = "brcm,bcm2836-smp"; // for ARM 32-bit
- 
-+		/* Source for d/i-cache-line-size and d/i-cache-sets
-+		 * https://developer.arm.com/documentation/100095/0003
-+		 * /Level-1-Memory-System/About-the-L1-memory-system?lang=en
-+		 * Source for d/i-cache-size
-+		 * https://www.raspberrypi.com/documentation/computers
-+		 * /processors.html#bcm2711
-+		 */
- 		cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a72";
- 			reg = <0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000d8>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -473,6 +487,13 @@
- 			reg = <1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000e0>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -481,6 +502,13 @@
- 			reg = <2>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000e8>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -489,6 +517,28 @@
- 			reg = <3>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000f0>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
-+		};
-+
-+		/* Source for d/i-cache-line-size and d/i-cache-sets
-+		 *  https://developer.arm.com/documentation/100095/0003
-+		 *  /Level-2-Memory-System/About-the-L2-memory-system?lang=en
-+		 *  Source for d/i-cache-size
-+		 *  https://www.raspberrypi.com/documentation/computers
-+		 *  /processors.html#bcm2711
-+		 */
-+		l2: l2-cache0 {
-+			compatible = "cache";
-+			cache-size = <0x100000>;
-+			cache-line-size = <64>;
-+			cache-sets = <1024>; // 1MiB(size)/64(line-size)=16384ways/16-way set
-+			cache-level = <2>;
- 		};
- 	};
- 
+diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+index dd4d506683de..7f14f0d005c3 100644
+--- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
++++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+@@ -183,8 +183,8 @@
+ 			};
+ 			conf_ata {
+ 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
+-					"cdev1", "cdev2", "dap1", "dtb", "gma",
+-					"gmb", "gmc", "gmd", "gme", "gpu7",
++					"cdev1", "cdev2", "dap1", "dtb", "dtf",
++					"gma", "gmb", "gmc", "gmd", "gme", "gpu7",
+ 					"gpv", "i2cp", "irrx", "irtx", "pta",
+ 					"rm", "slxa", "slxk", "spia", "spib",
+ 					"uac";
+@@ -203,7 +203,7 @@
+ 			};
+ 			conf_crtp {
+ 				nvidia,pins = "crtp", "dap2", "dap3", "dap4",
+-					"dtc", "dte", "dtf", "gpu", "sdio1",
++					"dtc", "dte", "gpu", "sdio1",
+ 					"slxc", "slxd", "spdi", "spdo", "spig",
+ 					"uda";
+ 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
 -- 
 2.34.1
 
