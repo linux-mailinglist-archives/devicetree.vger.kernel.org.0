@@ -2,108 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6554ECC60
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 20:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E53DC4ECD02
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 21:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350344AbiC3SiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 14:38:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
+        id S1350618AbiC3TK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 15:10:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351904AbiC3SeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 14:34:13 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65145FF6;
-        Wed, 30 Mar 2022 11:32:11 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id e189so22917940oia.8;
-        Wed, 30 Mar 2022 11:32:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=p7RLOmPhVN+XXHIq5ojAzjaursZDjvFUP+3MuJu/be8=;
-        b=YTtGdEZF4q9U3TVqwiv86p+A1fI20ofWTZ6qHYziaOPGMHEJkk1QZGVgZZyT+iZJa9
-         mWqwXouMdXXL2sgFfCDXmrmkRTualmvxW3OhfZ3FhdO+pnzqfcd79q1eRE7wAhOd4XMl
-         8tx12q4LaZ4UWs39sKIIymSw+qvxLNsNAhCIX7E90A1q95YahTMJTE6YfRbhagjTB3O7
-         WROjSIFjm3nPvtPtLrHhvq6+bNL9pCXp7/IHnGyzPV+VM7UxyIkIcrlHDNCQFr7ahlr4
-         G4sNn81h3N9jP7zHj65YHHwHIbQrJcTCafoX5NFYRJcxGSvvW9/Af5ypZ2GhooAH5HGw
-         tjrg==
-X-Gm-Message-State: AOAM530IYdHvwZkjbKkamQfPf/ndDjHSAaG4YmQiXxrGhisa7BrPmLIa
-        qn0rMNUrLPmJECQ11sIEtQ==
-X-Google-Smtp-Source: ABdhPJw2WztYoeKhnwsTLdMcSeH7vaNnIsOZGBGNP/EK2mQe1so3+Js3sL3Ti4ohFwUEKlz8rYPu1w==
-X-Received: by 2002:a05:6808:16a7:b0:2f9:39c4:c597 with SMTP id bb39-20020a05680816a700b002f939c4c597mr608435oib.101.1648665131112;
-        Wed, 30 Mar 2022 11:32:11 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q16-20020a9d4b10000000b005b22b93d468sm10322717otf.74.2022.03.30.11.32.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 11:32:10 -0700 (PDT)
-Received: (nullmailer pid 3399406 invoked by uid 1000);
-        Wed, 30 Mar 2022 18:32:10 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S1350610AbiC3TKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 15:10:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC5E2F387;
+        Wed, 30 Mar 2022 12:09:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8ADA0B81E20;
+        Wed, 30 Mar 2022 19:09:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16870C340EC;
+        Wed, 30 Mar 2022 19:09:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648667345;
+        bh=lcGIyaw5NkAgpr0QaCaz8WI5Mz33Xt/psg7AbDL8EG8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=b2tlqYIyn9YlqauB8Rxm28WhT9le8mqRzBGIJbm0kdnQiM2lRb9trVMCL7iGf0lhq
+         Z+S+zd8RmJEys5jYU9QHKjGpSi4IK9bzRc8zRMz4dqaBcxQdmaKww9DIww/qd9QuMg
+         kvoY/d2QxLV+h/V1TAZfXbnG/xK11hxfLXdaP8vsPluW5IgJpamwLdAPSy3R2Svq6J
+         xgeexh0C4glAYrU/T1oCHjbrSKq8PcyLQJlIe8xvOLx+532csHzoo06REn3BYFktTR
+         fNLza88sJrMRwndPtkNCBD86sezGElb7HZdCndS/y9nUQgIl3Mx9AyRTHnCVG16bCk
+         JGZo1u0LMi50Q==
+Received: by wens.tw (Postfix, from userid 1000)
+        id 08E765FD07; Thu, 31 Mar 2022 03:09:01 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Javier Martinez Canillas <javierm@redhat.com>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>, dmaengine@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20220330164458.93055-2-povik+lin@cutebit.org>
-References: <20220330164458.93055-1-povik+lin@cutebit.org> <20220330164458.93055-2-povik+lin@cutebit.org>
-Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
-Date:   Wed, 30 Mar 2022 13:32:10 -0500
-Message-Id: <1648665130.079263.3399405.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] drm: ssd130x: Add support for SINO WEALTH SH1106
+Date:   Thu, 31 Mar 2022 03:08:42 +0800
+Message-Id: <20220330190846.13997-1-wens@kernel.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Mar 2022 18:44:57 +0200, Martin Povišer wrote:
-> Apple's Audio DMA Controller (ADMAC) is used to fetch and store audio
-> samples on Apple SoCs from the "Apple Silicon" family.
-> 
-> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
-> ---
->  .../devicetree/bindings/dma/apple,admac.yaml  | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/apple,admac.yaml
-> 
+From: Chen-Yu Tsai <wens@csie.org>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi everyone,
 
-yamllint warnings/errors:
+This series adds support for SH1106 to the ssd130x OLED display
+driver.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: example-0: iommu@235004000:reg:0: [2, 889208832, 0, 16384] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: example-0: dma-controller@238200000:reg:0: [2, 941621248, 0, 212992] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: iommu@235004000: compatible: ['apple,t8103-dart', 'apple,dart'] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml:0:0: /example-0/iommu@235004000: failed to match any schema with compatible: ['apple,t8103-dart', 'apple,dart']
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.example.dt.yaml: dma-controller@238200000: 'dma-channels', 'iommus' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/apple,admac.yaml
+The SINO WEALTH SH1106 is an OLED display driver that is somewhat
+compatible with the SSD1306. It supports a slightly wider display,
+at 132 instead of 128 pixels. The basic commands are the same, but
+the SH1106 doesn't support the horizontal or vertical address modes.
 
-doc reference errors (make refcheckdocs):
+This driver chip is found in some cheap 1.3" OLED panel modules. It
+acts as a substitute for the SSD1306.
 
-See https://patchwork.ozlabs.org/patch/
+Patch 1 adds an entry to the vendor prefixes for SINO WEALTH
+Eletronics Ltd.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Patch 2 adds an entry for SH1106 to the ssd1307fb binding.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Patch 3 adds support for the base "page addressing mode" to the ssd130x
+driver.
 
-pip3 install dtschema --upgrade
+Patch 4 adds support for the SH1106 to the ssd130x driver.
 
-Please check and re-submit.
+Please have a look.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (4):
+  dt-bindings: vendor-prefixes: Add prefix for SINO WEALTH Eletronics
+    Ltd.
+  dt-bindings: display: ssd1307fb: Add entry for SINO WEALTH SH1106
+  drm: ssd130x: Support page addressing mode
+  drm: ssd130x: Add support for SINO WEALTH SH1106
+
+ .../bindings/display/solomon,ssd1307fb.yaml   |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/gpu/drm/solomon/ssd130x-i2c.c         | 11 +++
+ drivers/gpu/drm/solomon/ssd130x.c             | 72 +++++++++++++++++--
+ drivers/gpu/drm/solomon/ssd130x.h             |  2 +
+ 5 files changed, 81 insertions(+), 7 deletions(-)
+
+-- 
+2.34.1
 
