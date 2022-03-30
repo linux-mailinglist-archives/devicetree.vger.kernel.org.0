@@ -2,73 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 648834ECA09
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 274354ECA25
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349054AbiC3Qxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 12:53:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39906 "EHLO
+        id S1349102AbiC3Q6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 12:58:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349051AbiC3Qxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:53:40 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0771F294A3D
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:51:54 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g22so14062868edz.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:51:54 -0700 (PDT)
+        with ESMTP id S1349099AbiC3Q6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:58:50 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54F648E60
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:57:03 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g20so25165454edw.6
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:57:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Im+A+HYFMnbbh7Mify3QJ5bCMuIFvSq16DgGjLn0sTo=;
-        b=WzTa14WOM2lbKyeLdAzEMTp5kDmJwzYDMKH+S91N70oKmjkUdTaRBKCNGZquVALB9U
-         kexgmSf1ebswIcIa0rfxliujpI08w/ZTN/OwUYZKFDtu/gHvSQap1TSmwnhUbNt6fgjn
-         HKAuRQXKn+mSdjS5ZDKtwjQ7VyOB/wQbhACmcXVH8OwwfVOwX19XbizOmGL7F+rIWSki
-         KE7aTp1v/r6TCZAolU09d5A+no6d1Pe22yATI8XeY4IsnNnCDZn6KDrfplh4t2iEDL0w
-         YGPdJtjchQFai/IktaYvs4VrV557OnjvbDl5M7sXVN0C82PSlN3gZB0BhV655f9f3/Iv
-         JI2g==
+        bh=fEzld4oIJa86hl09sRy64K2e8LGIGCRfWuc+U0PWYOs=;
+        b=pz8Axq5e3iFbz7Jw0eIdKg+hWyV0eg5X/OrzwVODe4qALsVNW5P6XCIffz7jZBls1S
+         Ay8G4ifJkD57k5cn7sKOqZqcX8jZz7AiV0A+xfY0usJu+I228VzlXlRNwtFfpvWDYChT
+         tCTa4NX0jot2hZU9MZto6acQS6j1L5ezvPVFwjTq5mozRXGJ/05EDtzB/X0fdtun30yf
+         E7wrNN00iG4bycxxZuXuO6Zu97SotlzoyB98sU++D3zFCPA3T7stPpKNzWvbRrSL+Hzq
+         CLmsL7H9fVbfmMMXR72/C2K+zdLRiND4Sk71buZAy/vXVdCalN6MK04NuIfO07hJu1FF
+         XYsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Im+A+HYFMnbbh7Mify3QJ5bCMuIFvSq16DgGjLn0sTo=;
-        b=5c1K8wO6WDA/GjyqPFN9HnSL5aVDfLDxlcoosIgAoydQMrDsCppWWiIBG/E8uWU+lO
-         FoAERshkol+SCqAaACcV3JO0aIEU/Zw8ZHiZJ3cTqPv1TQjH3c4T3d/2rI+iyZvbTkAa
-         /jlPDfqZGDlWjyMPKwcjfIuKXl9pHwuffI5Uudgu25elvB/kKgNXbcK6NCDDI2BY+ytv
-         HlYIa5NYY7lJ9yB+xppC0NrJJG2CZr47bmqW6IaAWjhsqMAiQHZ4N6Byep8DvAplzoMs
-         x2rA2wcYhohvR9AUc+Kt/HqTw1X/u6bQCGZhSVSQdtJtZDv/ehGlWzKv7989x7h1da+V
-         048A==
-X-Gm-Message-State: AOAM530R7Z82GfBTtNLn2P0qgPdYRwehW8/IyJwKP27XjDUHsTaWebkL
-        eALKmj26gold/2FcfnhNYK39F7plJfblXd2r
-X-Google-Smtp-Source: ABdhPJwNMk4YmMoWVrCTM0khR+uH1H7lVK7VCQl2zmA3xYauqdZcAr6nqTHiFSRDTGgBvIQlQ54AGw==
-X-Received: by 2002:a05:6402:d0b:b0:418:e53f:f19b with SMTP id eb11-20020a0564020d0b00b00418e53ff19bmr8873140edb.222.1648659113402;
-        Wed, 30 Mar 2022 09:51:53 -0700 (PDT)
+        bh=fEzld4oIJa86hl09sRy64K2e8LGIGCRfWuc+U0PWYOs=;
+        b=boCi/8aE1wLSKWGg5RX8EEGDStYfeRyB6cntKIrxfoDZTXLwmC/FmKu8zhv/KUWU4l
+         TQTXQllEJ1Ln80P17ob3afvWZD3bm91ROMBR7zb5IAt75ektN/bRoRP6G2IfJWJ2QAAi
+         3NDRuwQMXEW6NUdNHg2igXV0Ip0K5nmZ61udS00Y2seN3i3wrc43k2YyxfVsRSBgSy5F
+         NZAE0wroRHTS1RyOxcHQnUG2fWzQs5h6UMLrUR04ghAwOJ/ouG42O+rj5UEcJMWiFtta
+         1NEO+UpP/JY8Ld4j8yJv/ui+s2aFWz/5y4iFNQ3oetYU6PHhbyBh5bGPfIWbpEyoeysK
+         OuQA==
+X-Gm-Message-State: AOAM533wmgxlJkjyYO7JmNhmBI4ZuB9E8CGJjv+9SudLDDOd2aB6SDYy
+        tTjvT/SC3qJdwoFZH/W0GLhogQ==
+X-Google-Smtp-Source: ABdhPJyCpxyw7R6T+pFO1zsX01vbrvk5lvAApJ9RbFPs/LdEa4c5G+bltActTe6FNicQwS1ouiR2cg==
+X-Received: by 2002:a05:6402:d67:b0:419:48b:a762 with SMTP id ec39-20020a0564020d6700b00419048ba762mr11695300edb.291.1648659422507;
+        Wed, 30 Mar 2022 09:57:02 -0700 (PDT)
 Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id gb29-20020a170907961d00b006e00c7b0f5asm8485361ejc.0.2022.03.30.09.51.52
+        by smtp.gmail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm8394201eji.67.2022.03.30.09.57.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 09:51:52 -0700 (PDT)
-Message-ID: <259ac0f4-50e9-291b-9ed3-91b52840fb9e@linaro.org>
-Date:   Wed, 30 Mar 2022 18:51:51 +0200
+        Wed, 30 Mar 2022 09:57:01 -0700 (PDT)
+Message-ID: <e13ceaad-d5f7-3c50-774e-28cabb2e1fe6@linaro.org>
+Date:   Wed, 30 Mar 2022 18:57:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
+Subject: Re: [PATCH] dt-bindings: Fix incomplete if/then/else schemas
 Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
-        kuba@kernel.org, netdev@vger.kernel.org, robh+dt@kernel.org,
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         devicetree@vger.kernel.org
-References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
- <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
- <YkR57poibmnvmkjk@shell.armlinux.org.uk>
+Cc:     linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Dmitry Osipenko <digetx@gmail.com>, linux-iio@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-mmc@vger.kernel.org,
+        linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20220330145741.3044896-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YkR57poibmnvmkjk@shell.armlinux.org.uk>
+In-Reply-To: <20220330145741.3044896-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,318 +94,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 17:40, Russell King (Oracle) wrote:
-> On Tue, Mar 15, 2022 at 07:21:59PM +0100, Krzysztof Kozlowski wrote:
->> On 15/03/2022 13:33, Ioana Ciornei wrote:
->>> Convert the sff,sfp.txt bindings to the DT schema format.
->>>
->>> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
->>> ---
->>>  .../devicetree/bindings/net/sff,sfp.txt       |  85 ------------
->>>  .../devicetree/bindings/net/sff,sfp.yaml      | 130 ++++++++++++++++++
->>>  MAINTAINERS                                   |   1 +
->>>  3 files changed, 131 insertions(+), 85 deletions(-)
->>>  delete mode 100644 Documentation/devicetree/bindings/net/sff,sfp.txt
->>>  create mode 100644 Documentation/devicetree/bindings/net/sff,sfp.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/sff,sfp.txt b/Documentation/devicetree/bindings/net/sff,sfp.txt
->>> deleted file mode 100644
->>> index 832139919f20..000000000000
->>> --- a/Documentation/devicetree/bindings/net/sff,sfp.txt
->>> +++ /dev/null
->>> @@ -1,85 +0,0 @@
->>> -Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
->>> -Transceiver
->>> -
->>> -Required properties:
->>> -
->>> -- compatible : must be one of
->>> -  "sff,sfp" for SFP modules
->>> -  "sff,sff" for soldered down SFF modules
->>> -
->>> -- i2c-bus : phandle of an I2C bus controller for the SFP two wire serial
->>> -  interface
->>> -
->>> -Optional Properties:
->>> -
->>> -- mod-def0-gpios : GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS)
->>> -  module presence input gpio signal, active (module absent) high. Must
->>> -  not be present for SFF modules
->>> -
->>> -- los-gpios : GPIO phandle and a specifier of the Receiver Loss of Signal
->>> -  Indication input gpio signal, active (signal lost) high
->>> -
->>> -- tx-fault-gpios : GPIO phandle and a specifier of the Module Transmitter
->>> -  Fault input gpio signal, active (fault condition) high
->>> -
->>> -- tx-disable-gpios : GPIO phandle and a specifier of the Transmitter Disable
->>> -  output gpio signal, active (Tx disable) high
->>> -
->>> -- rate-select0-gpios : GPIO phandle and a specifier of the Rx Signaling Rate
->>> -  Select (AKA RS0) output gpio signal, low: low Rx rate, high: high Rx rate
->>> -  Must not be present for SFF modules
->>> -
->>> -- rate-select1-gpios : GPIO phandle and a specifier of the Tx Signaling Rate
->>> -  Select (AKA RS1) output gpio signal (SFP+ only), low: low Tx rate, high:
->>> -  high Tx rate. Must not be present for SFF modules
->>> -
->>> -- maximum-power-milliwatt : Maximum module power consumption
->>> -  Specifies the maximum power consumption allowable by a module in the
->>> -  slot, in milli-Watts.  Presently, modules can be up to 1W, 1.5W or 2W.
->>> -
->>> -Example #1: Direct serdes to SFP connection
->>> -
->>> -sfp_eth3: sfp-eth3 {
->>> -	compatible = "sff,sfp";
->>> -	i2c-bus = <&sfp_1g_i2c>;
->>> -	los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
->>> -	mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
->>> -	maximum-power-milliwatt = <1000>;
->>> -	pinctrl-names = "default";
->>> -	pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
->>> -	tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
->>> -	tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
->>> -};
->>> -
->>> -&cps_emac3 {
->>> -	phy-names = "comphy";
->>> -	phys = <&cps_comphy5 0>;
->>> -	sfp = <&sfp_eth3>;
->>> -};
->>> -
->>> -Example #2: Serdes to PHY to SFP connection
->>> -
->>> -sfp_eth0: sfp-eth0 {
->>> -	compatible = "sff,sfp";
->>> -	i2c-bus = <&sfpp0_i2c>;
->>> -	los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
->>> -	mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
->>> -	pinctrl-names = "default";
->>> -	pinctrl-0 = <&cps_sfpp0_pins>;
->>> -	tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
->>> -	tx-fault-gpios  = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
->>> -};
->>> -
->>> -p0_phy: ethernet-phy@0 {
->>> -	compatible = "ethernet-phy-ieee802.3-c45";
->>> -	pinctrl-names = "default";
->>> -	pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
->>> -	reg = <0>;
->>> -	interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
->>> -	sfp = <&sfp_eth0>;
->>> -};
->>> -
->>> -&cpm_eth0 {
->>> -	phy = <&p0_phy>;
->>> -	phy-mode = "10gbase-kr";
->>> -};
->>> diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
->>> new file mode 100644
->>> index 000000000000..bceeff5ccedb
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
->>> @@ -0,0 +1,130 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/net/sff,sfp.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>> +
->>> +title: Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
->>> +  Transceiver
->>> +
->>> +maintainers:
->>> +  - Russell King <linux@armlinux.org.uk>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - sff,sfp  # for SFP modules
->>> +      - sff,sff  # for soldered down SFF modules
->>> +
->>> +  i2c-bus:
->>
->> Thanks for the conversion.
->>
->> You need here a type because this does not look like standard property.
->>
->>> +    description:
->>> +      phandle of an I2C bus controller for the SFP two wire serial
->>> +
->>> +  maximum-power-milliwatt:
->>> +    maxItems: 1
->>> +    description:
->>> +      Maximum module power consumption Specifies the maximum power consumption
->>> +      allowable by a module in the slot, in milli-Watts. Presently, modules can
->>> +      be up to 1W, 1.5W or 2W.
->>> +
->>> +patternProperties:
->>> +  "mod-def0-gpio(s)?":
->>
->> This should be just "mod-def0-gpios", no need for pattern. The same in
->> all other places.
->>
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS) module
->>> +      presence input gpio signal, active (module absent) high. Must not be
->>> +      present for SFF modules
->>> +
->>> +  "los-gpio(s)?":
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO phandle and a specifier of the Receiver Loss of Signal Indication
->>> +      input gpio signal, active (signal lost) high
->>> +
->>> +  "tx-fault-gpio(s)?":
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO phandle and a specifier of the Module Transmitter Fault input gpio
->>> +      signal, active (fault condition) high
->>> +
->>> +  "tx-disable-gpio(s)?":
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO phandle and a specifier of the Transmitter Disable output gpio
->>> +      signal, active (Tx disable) high
->>> +
->>> +  "rate-select0-gpio(s)?":
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO phandle and a specifier of the Rx Signaling Rate Select (AKA RS0)
->>> +      output gpio signal, low - low Rx rate, high - high Rx rate Must not be
->>> +      present for SFF modules
->>> +
->>> +  "rate-select1-gpio(s)?":
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO phandle and a specifier of the Tx Signaling Rate Select (AKA RS1)
->>> +      output gpio signal (SFP+ only), low - low Tx rate, high - high Tx rate. Must
->>> +      not be present for SFF modules
->>
->> This and other cases should have a "allOf: if: ...." with a
->> "rate-select1-gpios: false", to disallow this property on SFF modules.
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - i2c-bus
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - | # Direct serdes to SFP connection
->>> +    #include <dt-bindings/gpio/gpio.h>
->>> +
->>> +    sfp_eth3: sfp-eth3 {
->>
->> Generic node name please, so maybe "transceiver"? or just "sfp"?
+On 30/03/2022 16:57, Rob Herring wrote:
+> A recent review highlighted that the json-schema meta-schema allows any
+> combination of if/then/else schema keywords even though if, then or else
+> by themselves makes little sense. With an added meta-schema to only
+> allow valid combinations, there's a handful of schemas found which need
+> fixing in a variety of ways. Incorrect indentation is the most common
+> issue.
 > 
-> How does that work when you have several? If we have to have sfp@0,
-> sfp@1 etc then we also need a reg property which will never be parsed
-> and the number is meaningless.
-> 
-> In any case, this would be an _additional_ change over a pure conversion
-> so arguably should be done in a separate patch.
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Michael Hennerich <Michael.Hennerich@analog.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Olivier Moysan <olivier.moysan@foss.st.com>
+> Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Georgi Djakov <djakov@kernel.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
+> Cc: Dmitry Osipenko <digetx@gmail.com>
+> Cc: linux-iio@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-mmc@vger.kernel.org
+> Cc: linux-tegra@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-phy@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/iio/adc/adi,ad7476.yaml          |  1 +
+>  .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  |  8 +-
+>  .../bindings/iio/dac/adi,ad5360.yaml          |  6 +-
+>  .../bindings/interconnect/qcom,rpm.yaml       | 84 +++++++++----------
+>  .../bindings/mmc/nvidia,tegra20-sdhci.yaml    |  2 +
+>  .../bindings/net/ti,davinci-mdio.yaml         |  1 +
+>  .../bindings/phy/nvidia,tegra20-usb-phy.yaml  | 20 ++---
+>  .../bindings/phy/qcom,usb-hs-phy.yaml         | 36 ++++----
+>  .../bindings/regulator/fixed-regulator.yaml   | 34 ++++----
+>  .../bindings/sound/st,stm32-sai.yaml          |  6 +-
+>  .../devicetree/bindings/sram/sram.yaml        | 16 ++--
+>  11 files changed, 108 insertions(+), 106 deletions(-)
 
-First of all, there is no such case here. It's only one node.
-Second, it works exactly the same like for all other cases - leds,
-regulators etc. I already described it in other email (led-0, led-1).
+Looks good:
 
-> 
->>
->>> +      compatible = "sff,sfp";
->>> +      i2c-bus = <&sfp_1g_i2c>;
->>> +      los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
->>> +      mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
->>> +      maximum-power-milliwatt = <1000>;
->>> +      pinctrl-names = "default";
->>> +      pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
->>> +      tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
->>> +      tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
->>> +    };
->>> +
->>> +    cps_emac3 {
->>
->> This is not related, so please remove.
->>
->>> +      phy-names = "comphy";
->>> +      phys = <&cps_comphy5 0>;
->>> +      sfp = <&sfp_eth3>;
->>> +    };
-> 
-> Please explain why this is "not related" when it mentions the SFP.
-
-Consumer, which it looks like, is not related to the binding. The same
-as we do not put examples of clock consumers in clock providers.
-
-I already explained in other mail to Ioana, so you can just refer there...
-
-> 
->>> +
->>> +  - | # Serdes to PHY to SFP connection
->>> +    #include <dt-bindings/gpio/gpio.h>
->>
->> Are you sure it works fine? Double define?
-> 
-> Err what? Sorry, I don't understand what you're saying here, please
-> explain what the issue is.
-
-Including the same header twice causes duplicate defines, which should
-be visible when testing the binding.
-
-> 
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +
->>> +    sfp_eth0: sfp-eth0 {
->>
->> Same node name - generic.
->>
->>> +      compatible = "sff,sfp";
->>> +      i2c-bus = <&sfpp0_i2c>;
->>> +      los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
->>> +      mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
->>> +      pinctrl-names = "default";
->>> +      pinctrl-0 = <&cps_sfpp0_pins>;
->>> +      tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
->>> +      tx-fault-gpios  = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
->>> +    };
->>> +
->>> +    mdio {
->>
->> Not related.
->>
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +
->>> +      p0_phy: ethernet-phy@0 {
->>> +        compatible = "ethernet-phy-ieee802.3-c45";
->>> +        pinctrl-names = "default";
->>> +        pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
->>> +        reg = <0>;
->>> +        interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
->>> +        sfp = <&sfp_eth0>;
->>> +      };
->>> +    };
->>> +
->>> +    cpm_eth0 {
->>
->> Also not related.
->>
->>> +      phy = <&p0_phy>;
->>> +      phy-mode = "10gbase-kr";
->>> +    };
-> 
-> These examples are showing how the SFP gets hooked up directly to a MAC
-> or directly to a PHY. Would you prefer them to be in the ethernet-mac
-> and ethernet-phy yaml files instead? It seems utterly perverse to split
-> an example across several different yaml files.
-
-Probably PHY or MAC is better place, because it defines the "sfp" property.
-
-How is it different from other cases like this in bindings (clocks,
-power domains, GPIOs)? IOW, why SFP is special? If it is, sure, let's
-keep it here...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
