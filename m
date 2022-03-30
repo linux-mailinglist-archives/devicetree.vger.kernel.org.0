@@ -2,189 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 674F04EBE3A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9E24EBE4A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:04:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245090AbiC3KC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 06:02:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55434 "EHLO
+        id S238742AbiC3KGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 06:06:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245084AbiC3KC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:02:56 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6666DBABA2
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:01:11 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id bq24so18924121lfb.5
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:01:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=iM9RkPocLajd/F2Sado6Lz3mmw6/5GLuVCjJsTEPSlQ=;
-        b=afhYY2uiPWmuqXrLFTTmcNLD1VwyENIeJDto8ZZ8HrjwbmF1KnQUMWdODCI5YsDCuF
-         rAQxKE87ymzn5qeFdnpVL5gQomgtM+Q4I4fD75TPqSa5DIyGhuKTUpizNRt4qHIGTldm
-         iHSrHF4Oo3nJqGErS8Jj2laHHZjMlBicV6CgBBmElSxL0IGa8DJ8yC7mQLsuZwhg7rcA
-         ke4SgZDYW+9t47WTnqCdILIc+9M1KKYnx9xRzSOFVClw3ovK4bJR/Dh+PXBj6nxI2jGc
-         GgLk/4yBSqR4oP4bp8jYZRrAsBGfeC61069mMfy4Gw3cAQaXenVKr9ZHKVGMyT43a2pJ
-         CEGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=iM9RkPocLajd/F2Sado6Lz3mmw6/5GLuVCjJsTEPSlQ=;
-        b=HYPd+Qt+XIfA/UNsok2mbPzi5IRJLLYNcaI7tLBOUZy+TuNcxi1LHHIT/MXYbamuiI
-         lpb9dap3cnHb+c9ke1OWslxqHipw44NmdL1Lqc1A4ljJ9gMjVEEcva32nkeIJ7/gfJmg
-         7/VxoksIb8bhfhubKJm0uwQQ7i10oOzeoOkjdTAI7M7tyD+AnTWFwo2UY1ZTvv8bJmKl
-         dvJFIuy/wzhXNY55t0h0+UuGwlmcrykoOoS26cFGRevXbiEz+CKGcl2RilANRCrS5+yF
-         w2nyqemKfGeQibhJCW15OIh+eSqGeczIgbk7Utc2/qdlQwc0mgvIE+YfAcPWfoziHxc8
-         rIHw==
-X-Gm-Message-State: AOAM530niBcK0aA7nFTNXnvNYanpSinxi9YkF04X9UibR/3XsYc+RlEd
-        q9yozuu2VSXpy19tminA+jFMoxf4xtY=
-X-Google-Smtp-Source: ABdhPJwoaEklwy52BTnnqc/WFhBF9pjJcgLr6vuMHK0urHErA00xP51NX+6+xp0tad0639krJPjqfg==
-X-Received: by 2002:a05:6512:33c3:b0:44a:8067:7ec4 with SMTP id d3-20020a05651233c300b0044a80677ec4mr6313648lfg.601.1648634467661;
-        Wed, 30 Mar 2022 03:01:07 -0700 (PDT)
-Received: from smtpclient.apple (public-gprs541832.centertel.pl. [31.61.235.201])
-        by smtp.gmail.com with ESMTPSA id u12-20020a056512128c00b00446499f855dsm2285773lfs.78.2022.03.30.03.01.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 30 Mar 2022 03:01:07 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-From:   "piotro.oniszczuk@google.com" <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220330094556.GZ12181@pengutronix.de>
-Date:   Wed, 30 Mar 2022 12:01:05 +0200
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S235220AbiC3KGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:06:18 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5336C6EE7;
+        Wed, 30 Mar 2022 03:04:32 -0700 (PDT)
+X-UUID: 141e6664f8144520a58982e68a60501a-20220330
+X-UUID: 141e6664f8144520a58982e68a60501a-20220330
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1238358222; Wed, 30 Mar 2022 18:04:29 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 30 Mar 2022 18:04:27 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 30 Mar 2022 18:04:27 +0800
+Message-ID: <97bc1358813a2449d6e62653eb7af9906dfb190e.camel@mediatek.com>
+Subject: Re: [PATCH v16 4/8] soc: mediatek: add mtk-mmsys support for mt8195
+ vdosys0
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <hsinyi@chromium.org>, <fshao@chromium.org>,
+        <moudy.ho@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>, <nancy.lin@mediatek.com>,
+        <singo.chang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220330072822.GX12181@pengutronix.de>
- <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
- <20220330094556.GZ12181@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 30 Mar 2022 18:04:27 +0800
+In-Reply-To: <b9ed8c1511ea26c070dd3fb61f4370e5f858058c.camel@mediatek.com>
+References: <20220307032859.3275-1-jason-jh.lin@mediatek.com>
+         <20220307032859.3275-5-jason-jh.lin@mediatek.com>
+         <a068f2c9b2111f3a7a20da19073ef5fdb7f4a91f.camel@mediatek.com>
+         <b9ed8c1511ea26c070dd3fb61f4370e5f858058c.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi CK,
 
+Thanks for the review.
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 11:45:
->=20
-> On Wed, Mar 30, 2022 at 10:41:56AM +0200, piotro.oniszczuk@google.com =
-wrote:
->=20
-> Let me rephrase this: The above sets a plane, but it doesn't set a =
-mode
-> on the crtc. When my system boots up then the output of modetest looks
-> like this:
->=20
-> Encoders:
-> id      crtc    type    possible crtcs  possible clones
-> 68      0       TMDS    0x00000001      0x00000001
-> Connectors:
-> id      encoder status          name            size (mm)       modes  =
-encoders
-> 69      0       connected       HDMI-A-1        530x300         9      =
-68
-> CRTCs:
-> id      fb      pos     size
-> 67      0       (0,0)   (0x0)
->  #0  nan 0 0 0 0 0 0 0 0 0 flags: ; type:=20
->=20
-> No mode is set on the CRTC and the encoder/connector/crtc are not =
-bound
-> to each other, consequently the screen is in standby. "modetest -P
-> 43@67:1920x1080@NV12" doesn't change this, still no mode set. Hence my
-> question: How did you set a mode initially?
+On Mon, 2022-03-28 at 13:39 +0800, CK Hu wrote:
+> Hi, Jason:
+> 
+> On Mon, 2022-03-28 at 13:03 +0800, Jason-JH Lin wrote:
+> > Hi CK,
+> > 
+> > Thanks for the reviews.
+> > 
+> > On Mon, 2022-03-07 at 11:28 +0800, jason-jh.lin wrote:
+> > > Add mt8195 vdosys0 clock driver name and routing table to
+> > > the driver data of mtk-mmsys.
+> > > 
+> > > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> > > Acked-by: AngeloGioacchino Del Regno <
+> > > angelogioacchino.delregno@collabora.com>
+> > > ---
+> > > Impelmentation patch of vdosys1 can be refered to [1]
+> > > 
+> > > [1] soc: mediatek: add mtk-mmsys support for mt8195 vdosys1
+> > > ---
+> > >  drivers/soc/mediatek/mt8195-mmsys.h    | 130
+> > > +++++++++++++++++++++++++
+> > >  drivers/soc/mediatek/mtk-mmsys.c       |  11 +++
+> > >  include/linux/soc/mediatek/mtk-mmsys.h |   9 ++
+> > >  3 files changed, 150 insertions(+)
+> > >  create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
+> > > 
+> > > diff --git a/drivers/soc/mediatek/mt8195-mmsys.h
+> > > b/drivers/soc/mediatek/mt8195-mmsys.h
+> > > new file mode 100644
+> > > index 000000000000..24a3afe23bc8
+> > > --- /dev/null
+> > > +++ b/drivers/soc/mediatek/mt8195-mmsys.h
+> > > @@ -0,0 +1,130 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > +
+> > > +#ifndef __SOC_MEDIATEK_MT8195_MMSYS_H
+> > > +#define __SOC_MEDIATEK_MT8195_MMSYS_H
+> > > +
+> > > +#define MT8195_VDO0_OVL_MOUT_EN					
+> > > 0xf14
+> > > +#define MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0			
+> > > BIT(0)
+> > > +#define MT8195_MOUT_DISP_OVL0_TO_DISP_WDMA0			
+> > > BIT(1)
+> > >  
+> > > Useless, so remove.
+> > > 
+> > > +#define MT8195_MOUT_DISP_OVL0_TO_DISP_OVL1			
+> > > BIT(2)
+> > > Ditto.Useless, so remove.
+> > > Regards,
+> > > CK
+> > 
+> > Although these definitions are not used, they represent the
+> > functionality provided by this register.
+> > 
+> > I think we can show that we have these capabilities by defining
+> > them.
+> > 
+> > Can we keep these definitions?
+> 
+> It's better that we know how to use it. Even though the symbol name
+> show some information, but I would like to add it to
+> mmsys_mt8195_routing_table[].
+> 
+> Regards,
+> CK
+> 
 
-Ah ok. I see your point.
-mode is set by app (player).=20
+OK, I think I just remove the useless define.
+Thanks.
 
-Sequence was like this:
--boot board
--start app
--on UI select playback
--playback has green screen
--exit app
--run modetest -P 43@67:1920x1080@NV12 (the same green screen like in =
-playback)
--run modetest -P 49@67:1920x1080@NV12 (works ok)
--run modetest -P 43@67:1920x1080@NV12 (now works ok)
-
->=20
->>>=20
->>=20
->> I'm not sure that above command only sets plane.
->> On other SoCs i=E2=80=99m testing it gives expected results: diagonal =
-colored stripes.
->> There is single exception: rk356x with vop2 - where screen is green =
-unless i =E2=80=9Efix/enable=E2=80=9D by playing with plane #69  =20
->>=20
->>> I did with "modetest -s 69@67:1920x1080 -d" and with this it works =
-as
->>> expected, I can't reproduce any green screen issue here.
->>=20
->> I see you are using plane #69.
->> Why not #43?
->=20
-> I used "modetest -s 69@67:1920x1080 -d" to set a mode. The '69' is the
-> connector id, not a plane.
-
-ack.
-typo from my side.
-
-it was
-modetest -P 49@67:1920x1080@NV12
-
-
->=20
->> Is plane #43 working ok for you?
->=20
-> Yes.
-
-So it looks your testing method of #43 is not meaningful for verifying =
-issue we are discussing here.
-
-In my case:
-12 SOC (except rk356x VOP2) gives me:
--boot board
--start app
--on UI select playback
--playback is ok
--exit app
--run modetest -P XX@YY:1920x1080@NV12 (diagonal stripes)
-
-(XX/YY are plane/connector elected by app: plane@conector with format =
-matching provider format)=20
-
-rk356x with vop2 v9:
--boot board
--start app
--on UI select playback
--playback has green screen
--exit app
--run modetest -P 43@67:1920x1080@NV12 (the same green screen like in =
-playback)
--run modetest -P 49@67:1920x1080@NV12 (works ok)
--run modetest -P 43@67:1920x1080@NV12 (now works ok)
-
+Regards,
+Jason-JH.Lin
+> > 
+> > Regards,
+> > Jason-JH.Lin
+> > 
+> > > +#define MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1			
+> > > BIT(4)
+> > > +#define MT8195_MOUT_DISP_OVL1_TO_DISP_WDMA1			
+> > > BIT(5)
+> > > +#define MT8195_MOUT_DISP_OVL1_TO_DISP_OVL0			
+> > > BIT(6)
+> > 
+> > 
+> > [snip]
+> > 
+> 
+> 
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
 
