@@ -2,352 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5BD94EC54C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 15:11:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC214EC559
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 15:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344002AbiC3NM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 09:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56142 "EHLO
+        id S1345851AbiC3NSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 09:18:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345781AbiC3NMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 09:12:53 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB64217967
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 06:11:08 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id l7-20020a05600c1d0700b0038c99618859so1205215wms.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 06:11:08 -0700 (PDT)
+        with ESMTP id S1345817AbiC3NSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 09:18:02 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 226F62FFF8;
+        Wed, 30 Mar 2022 06:16:16 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id bg10so41457684ejb.4;
+        Wed, 30 Mar 2022 06:16:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=99nZN+51ZcHPuJIBz9zlDZOG/SZxFUJCsnK6Nsy40wU=;
-        b=Bo27vT4RHGAb2PQ2gg1TdDk8IeGdT0QnX4H9GvvJGDzjMjQdwHgGBpqlQCgW2bSMFE
-         HQj+JYbqkHbT00yJdT2kiS/H8Yrx4nBi1WyT6vp6rDItvlCAAaP+wK30j3ogtK7a6PyE
-         fBUlF9jLZMdrPKOdlN4utN7JYR5qzYfiKTmcxzLV8k/uKpHQNTGcI3tcGEijxTnR5ssC
-         aU6hL7Y+lArTMcJBtohYMxkxOW2fQaKTVrYikZnrnhKlRVprZglm++O1K1qf9/jkaUsL
-         7TWC/JFT3cQnGuxIZzvb1HYBf2hvKzHIEFNzJKKVZfqQGDMiEsBl36A8Rr3EpA4i3Cz1
-         qlkA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kIZngZOjWy/J3S+b4z6+BUn/eXOxV020jVmkrkFNZpQ=;
+        b=biH0nxISIqGQSS6v7IiQeP0zNDT0PEkBjLFaq1jmJRMkJP74TqKUjH2bP7aVt9KtQp
+         TWRHFlLQ4mYWPEgAbR1NxjkfM75bZdcQu2rANl3Uo6noaZggYAYLZk9nXfn4965pQynB
+         yooB4KgRMwDuXQPgsHGc2V49mFs4YafwhRqTzklEIj0mMBufGVxwLNzzVn9ba5f1qIJs
+         iNbMX+bmavYi2ijWIwfXVxONCIlUgyCh1MGo3zg3A/nu1cVlHdB34YY5tM95G1/uym+q
+         GgajeY3vUZ4rK263Jey0gj5Y6Iuq+lL5nNYHa03Ha+SR1tpxhGHob+DPqSw+g2NHMG+F
+         34BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=99nZN+51ZcHPuJIBz9zlDZOG/SZxFUJCsnK6Nsy40wU=;
-        b=IIPYpJqW+n3dcAfBun1EXx9u08X9Au5q2pJBLCEldHr2C9AxMUm6gcyt/svQcXBitD
-         iGvO9SrVtfKAAFZo8Gk0UlQgy3cSDJs4+8TQy0VLj4y8tirUp7bLE3vkJJQJXPTrCSj5
-         izRFhYKHPUXjM9QYqVme5ddqW/aDguymiGR2Hx3Kczywlx9jAvZulJD5TBwCsEt1TZQV
-         KHq+VDn+w/cDlMzQeUgsX3k57sFV5JaqtEQaoaVTXvCnrfGZRU9JoUNXZlzEVD2Td4hD
-         8uRhIfbYRoXGNPM+lwO6RefXfmx803hHzAD3BQ6ZSDr8usm283sGA7u3mrQTERFIO4cN
-         b6WQ==
-X-Gm-Message-State: AOAM5319gBxEd9leUmb8xhOKsSIWge1xIJ8P2+zmFFL1P+Fxubtu7ByK
-        G+E155iFL1oroBV2pATJ/Q5IEQ==
-X-Google-Smtp-Source: ABdhPJz/u8Xg2txvV6DXqD6xryE3yIa9qhk9Ym3AtoITgHDlxfCKlF3lB18tIKtisCOTgKf8GJFYdA==
-X-Received: by 2002:a05:600c:3509:b0:38c:b03b:b3c2 with SMTP id h9-20020a05600c350900b0038cb03bb3c2mr4463811wmq.81.1648645866778;
-        Wed, 30 Mar 2022 06:11:06 -0700 (PDT)
-Received: from arch-thunder.local (a109-49-33-111.cpe.netcabo.pt. [109.49.33.111])
-        by smtp.gmail.com with ESMTPSA id u7-20020a5d6da7000000b00203d9d1875bsm20134479wrs.73.2022.03.30.06.11.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kIZngZOjWy/J3S+b4z6+BUn/eXOxV020jVmkrkFNZpQ=;
+        b=klM1ZNhv2JrXjsEA20rl7rlfp10A61v1Prg8cLYaxdNQ2vGnfvowD/YBO/lqlMXbV5
+         yj+jmRLoAy3JIKJAvQ2mmeCHbPK2xGURj5MYhDRj7iuRZdqql3/eZrLdovoPqvcSOoxs
+         f0msUmj0wv+KAM/d8L9pZ/ZEO6rmTpwEVWEXOl/WmX+rms2fEDmUTTRy6mpYHqPleDdl
+         il2CDFxyA0PS8B9Z0wgbnYrMfslm0dJHMvyMagd3cDUAYWpIVZllp3xdfLZB+DsAumKv
+         KeN0vz+BBRvIh1VBypKF6O8LdFZj/INiHayGSbXxaK/BY9buOLe9G8a+4fJUEDaWrnWK
+         KmIg==
+X-Gm-Message-State: AOAM530k0FRXC7oY8cL8IKmpnrfYnKQwDNlLROBipbigHNACekovgLu4
+        zNPQogpCS6awR6zo3ygQzmk=
+X-Google-Smtp-Source: ABdhPJxS9G9VHO3IThZxz4ao9YzTgP8Wz1c0iHE9nerrkjAwT9R8JXr1OX+n2TYNV647tHhxNfQ6vg==
+X-Received: by 2002:a17:906:a4b:b0:6d0:fbdd:7cb5 with SMTP id x11-20020a1709060a4b00b006d0fbdd7cb5mr40462121ejf.152.1648646174471;
+        Wed, 30 Mar 2022 06:16:14 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ge13-20020a170907908d00b006e09a005d73sm6603476ejb.31.2022.03.30.06.16.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 06:11:06 -0700 (PDT)
-From:   Rui Miguel Silva <rui.silva@linaro.org>
-To:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rui Miguel Silva <rui.silva@linaro.org>
-Subject: [PATCH v3 3/3] arm64: dts: arm: add corstone1000 device tree
-Date:   Wed, 30 Mar 2022 14:10:53 +0100
-Message-Id: <20220330131053.1122502-4-rui.silva@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220330131053.1122502-1-rui.silva@linaro.org>
-References: <20220330131053.1122502-1-rui.silva@linaro.org>
+        Wed, 30 Mar 2022 06:16:14 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de, zhangqing@rock-chips.com
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/3] dt-bindings: clock: convert rockchip,rv1108-cru.txt to YAML
+Date:   Wed, 30 Mar 2022 15:16:06 +0200
+Message-Id: <20220330131608.30040-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Corstone1000 is a platform from arm, which includes pre
-verified Corstone SSE710 sub-system that combines Cortex-A and
-Cortex-M processors [0].
+Convert rockchip,rv1108-cru.txt to YAML.
 
-These device trees contains the necessary bits to support the
-Corstone 1000 FVP (Fixed Virtual Platform) [1] and the
-FPGA MPS3 board Cortex-A35 implementation at Cortex-A35 host
-side of this platform. [2]
+Changes against original bindings:
+  Add clocks and clock-names because the device has to have
+  at least one input clock.
 
-0: https://documentation-service.arm.com/static/619e02b1f45f0b1fbf3a8f16
-1: https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps
-2: https://documentation-service.arm.com/static/61f3f4d7fa8173727a1b71bf
-
-Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm64/boot/dts/arm/Makefile              |   1 +
- arch/arm64/boot/dts/arm/corstone1000-fvp.dts  |  27 +++
- arch/arm64/boot/dts/arm/corstone1000-mps3.dts |  36 ++++
- arch/arm64/boot/dts/arm/corstone1000.dtsi     | 161 ++++++++++++++++++
- 4 files changed, 225 insertions(+)
- create mode 100644 arch/arm64/boot/dts/arm/corstone1000-fvp.dts
- create mode 100644 arch/arm64/boot/dts/arm/corstone1000-mps3.dts
- create mode 100644 arch/arm64/boot/dts/arm/corstone1000.dtsi
+ .../bindings/clock/rockchip,rv1108-cru.txt    | 59 ---------------
+ .../bindings/clock/rockchip,rv1108-cru.yaml   | 75 +++++++++++++++++++
+ 2 files changed, 75 insertions(+), 59 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
 
-diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-index 4382b73baef5..d908e96d7ddc 100644
---- a/arch/arm64/boot/dts/arm/Makefile
-+++ b/arch/arm64/boot/dts/arm/Makefile
-@@ -6,3 +6,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += juno.dtb juno-r1.dtb juno-r2.dtb juno-scmi.dtb ju
- dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
- dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
-+dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
-diff --git a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.txt
+deleted file mode 100644
+index 161326a4f..000000000
+--- a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.txt
++++ /dev/null
+@@ -1,59 +0,0 @@
+-* Rockchip RV1108 Clock and Reset Unit
+-
+-The RV1108 clock controller generates and supplies clock to various
+-controllers within the SoC and also implements a reset controller for SoC
+-peripherals.
+-
+-Required Properties:
+-
+-- compatible: should be "rockchip,rv1108-cru"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- #clock-cells: should be 1.
+-- #reset-cells: should be 1.
+-
+-Optional Properties:
+-
+-- rockchip,grf: phandle to the syscon managing the "general register files"
+-  If missing pll rates are not changeable, due to the missing pll lock status.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/rv1108-cru.h headers and can be
+-used in device tree sources. Similar macros exist for the reset sources in
+-these files.
+-
+-External clocks:
+-
+-There are several clocks that are generated outside the SoC. It is expected
+-that they are defined using standard clock bindings with following
+-clock-output-names:
+- - "xin24m" - crystal input - required,
+- - "ext_vip" - external VIP clock - optional
+- - "ext_i2s" - external I2S clock - optional
+- - "ext_gmac" - external GMAC clock - optional
+- - "hdmiphy" - external clock input derived from HDMI PHY - optional
+- - "usbphy" - external clock input derived from USB PHY - optional
+-
+-Example: Clock controller node:
+-
+-	cru: cru@20200000 {
+-		compatible = "rockchip,rv1108-cru";
+-		reg = <0x20200000 0x1000>;
+-		rockchip,grf = <&grf>;
+-
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-	};
+-
+-Example: UART controller node that consumes the clock generated by the clock
+-  controller:
+-
+-	uart0: serial@10230000 {
+-		compatible = "rockchip,rv1108-uart", "snps,dw-apb-uart";
+-		reg = <0x10230000 0x100>;
+-		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+-		reg-shift = <2>;
+-		reg-io-width = <4>;
+-		clocks = <&cru SCLK_UART0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
 new file mode 100644
-index 000000000000..dea8b5f4d68a
+index 000000000..20421c22f
 --- /dev/null
-+++ b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+/*
-+ * Copyright (c) 2022, Arm Limited. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited. All rights reserved.
-+ *
-+ */
++++ b/Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/rockchip,rv1108-cru.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: Rockchip RV1108 Clock and Reset Unit (CRU)
 +
-+#include "corstone1000.dtsi"
++maintainers:
++  - Elaine Zhang <zhangqing@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
 +
-+/ {
-+	model = "ARM Corstone1000 FVP (Fixed Virtual Platform)";
-+	compatible = "arm,corstone1000-fvp";
++description: |
++  The RV1108 clock controller generates and supplies clocks to various
++  controllers within the SoC and also implements a reset controller for SoC
++  peripherals.
++  Each clock is assigned an identifier and client nodes can use this identifier
++  to specify the clock which they consume. All available clocks are defined as
++  preprocessor macros in the dt-bindings/clock/rv1108-cru.h headers and can be
++  used in device tree sources. Similar macros exist for the reset sources in
++  these files.
++  There are several clocks that are generated outside the SoC. It is expected
++  that they are defined using standard clock bindings with following
++  clock-output-names:
++    - "xin24m"   - crystal input                              - required
++    - "ext_vip"  - external VIP clock                         - optional
++    - "ext_i2s"  - external I2S clock                         - optional
++    - "ext_gmac" - external GMAC clock                        - optional
++    - "hdmiphy"  - external clock input derived from HDMI PHY - optional
++    - "usbphy"   - external clock input derived from USB PHY  - optional
 +
-+	smsc: ethernet@4010000 {
-+		compatible = "smsc,lan91c111";
-+		reg = <0x40100000 0x10000>;
-+		phy-mode = "mii";
-+		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+		reg-io-width = <2>;
-+	};
-+};
++properties:
++  compatible:
++    enum:
++      - rockchip,rv1108-cru
 +
-+&cpu {
-+	compatible = "arm,armv8";
-+};
-diff --git a/arch/arm64/boot/dts/arm/corstone1000-mps3.dts b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
-new file mode 100644
-index 000000000000..9989586db70e
---- /dev/null
-+++ b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+/*
-+ * Copyright (c) 2022, Arm Limited. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited. All rights reserved.
-+ *
-+ */
++  reg:
++    maxItems: 1
 +
-+/dts-v1/;
++  "#clock-cells":
++    const: 1
 +
-+#include "corstone1000.dtsi"
++  "#reset-cells":
++    const: 1
 +
-+/ {
-+	model = "ARM Corstone1000 FPGA MPS3 board";
-+	compatible = "arm,corstone1000-mps3";
++  clocks:
++    maxItems: 1
 +
-+	smsc: ethernet@4010000 {
-+		compatible = "smsc,lan9220", "smsc,lan9115";
-+		reg = <0x40100000 0x10000>;
-+		phy-mode = "mii";
-+		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+		reg-io-width = <2>;
-+		smsc,irq-push-pull;
-+	};
++  clock-names:
++    const: xin24m
 +
-+	usb_host: usb@40200000 {
-+		compatible = "nxp,usb-isp1763";
-+		reg = <0x40200000 0x100000>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-+		bus-width = <16>;
-+		dr_mode = "host";
-+	};
-+};
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the syscon managing the "general register files" (GRF),
++      if missing pll rates are not changeable, due to the missing pll
++      lock status.
 +
-+&cpu {
-+	compatible = "arm,cortex-a35";
-+};
-diff --git a/arch/arm64/boot/dts/arm/corstone1000.dtsi b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-new file mode 100644
-index 000000000000..194d959de828
---- /dev/null
-+++ b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-@@ -0,0 +1,161 @@
-+// SPDX-License-Identifier: GPL-2.0 or MIT
-+/*
-+ * Copyright (c) 2022, Arm Limited. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited. All rights reserved.
-+ *
-+ */
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++  - "#reset-cells"
 +
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
++additionalProperties: false
 +
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu: cpu@0 {
-+			device_type = "cpu";
-+			reg = <0>;
-+			next-level-cache = <&L2_0>;
-+		};
-+	};
-+
-+	memory@88200000 {
-+		device_type = "memory";
-+		reg = <0x88200000 0x77e00000>;
-+	};
-+
-+	gic: interrupt-controller@1c000000 {
-+		compatible = "arm,gic-400";
-+		#interrupt-cells = <3>;
-+		#address-cells = <0>;
-+		interrupt-controller;
-+		reg =	<0x1c010000 0x1000>,
-+			<0x1c02f000 0x2000>,
-+			<0x1c04f000 0x1000>,
-+			<0x1c06f000 0x2000>;
-+		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(1) |
-+			      IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	L2_0: l2-cache0 {
-+		compatible = "cache";
-+	};
-+
-+	refclk100mhz: refclk100mhz {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "apb_pclk";
-+	};
-+
-+	smbclk: refclk24mhzx2 {
-+		/* Reference 24MHz clock x 2 */
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <48000000>;
-+		clock-output-names = "smclk";
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts =	<GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) |
-+				 IRQ_TYPE_LEVEL_LOW)>,
-+				<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) |
-+				 IRQ_TYPE_LEVEL_LOW)>,
-+				<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) |
-+				 IRQ_TYPE_LEVEL_LOW)>,
-+				<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) |
-+				 IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	uartclk: uartclk {
-+		/* UART clock - 50MHz */
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+		clock-output-names = "uartclk";
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0", "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		interrupt-parent = <&gic>;
-+		ranges;
-+
-+		timer@1a220000 {
-+			compatible = "arm,armv7-timer-mem";
-+			reg = <0x1a220000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			clock-frequency = <50000000>;
-+			ranges;
-+
-+			frame@1a230000 {
-+				frame-number = <0>;
-+				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-+				reg = <0x1a230000 0x1000>;
-+			};
-+		};
-+
-+		uart0: serial@1a510000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x1a510000 0x1000>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&uartclk>, <&refclk100mhz>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+
-+		uart1: serial@1a520000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x1a520000 0x1000>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&uartclk>, <&refclk100mhz>;
-+			clock-names = "uartclk", "apb_pclk";
-+		};
-+
-+		mhu_hse1: mailbox@1b820000 {
-+			compatible = "arm,mhuv2-tx", "arm,primecell";
-+			reg = <0x1b820000 0x1000>;
-+			clocks = <&refclk100mhz>;
-+			clock-names = "apb_pclk";
-+			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-+			#mbox-cells = <2>;
-+			arm,mhuv2-protocols = <0 0>;
-+			secure-status = "okay";     /* secure-world-only */
-+			status = "disabled";
-+		};
-+
-+		mhu_seh1: mailbox@1b830000 {
-+			compatible = "arm,mhuv2-rx", "arm,primecell";
-+			reg = <0x1b830000 0x1000>;
-+			clocks = <&refclk100mhz>;
-+			clock-names = "apb_pclk";
-+			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+			#mbox-cells = <2>;
-+			arm,mhuv2-protocols = <0 0>;
-+			secure-status = "okay";     /* secure-world-only */
-+			status = "disabled";
-+		};
-+	};
-+};
++examples:
++  - |
++    cru: clock-controller@20200000 {
++      compatible = "rockchip,rv1108-cru";
++      reg = <0x20200000 0x1000>;
++      rockchip,grf = <&grf>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++    };
 -- 
-2.35.1
+2.20.1
 
