@@ -2,105 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 839004EBD21
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B6174EBD2B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:04:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244544AbiC3JEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 05:04:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
+        id S244565AbiC3JFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 05:05:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244541AbiC3JEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:04:10 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F12D2E0A3;
-        Wed, 30 Mar 2022 02:02:25 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7BE285C0190;
-        Wed, 30 Mar 2022 05:02:24 -0400 (EDT)
-Received: from imap44 ([10.202.2.94])
-  by compute1.internal (MEProxy); Wed, 30 Mar 2022 05:02:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=tuz6s6EWNZ0Esh
-        nRWti89Elty7LEZNweVZZiB9p+PU8=; b=Ays+hhe7LU/RWsUh7Jq3ipCyb6QZDv
-        QWtwS5zW8ob/gZx0ANtxxJgT3yGE+7p/4wMOlfV5oDYGy6fKWMqkXum6YSK6NEax
-        KQM+tT1CMsx36Hlqlqy39xX88YuRaQsOZsz2oDrNnJkoyqnggghgx4/bNYRwwsnD
-        /pkRDJW9h8QTWJOTs+6WPifJqRaPlNkWPuqkt5jVa3vG7extFFeqk1DvltMiGCLt
-        KUZuBf/Wo6ZNBqHlKqNUd+vnoNfUeO7TkNcmJ4FPFb2qkfPFD7BlJNS1Zw32jRM8
-        /N5YVVq+YDkuVX4/V2NzCyYeX1s55+Uk7cLPMRoaYLX1F/+cJjkNUKFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=tuz6s6EWNZ0EshnRWti89Elty7LEZNweVZZiB9p+P
-        U8=; b=jbKyovw/syyihbCeFXLJA6UtNM+SezgJS4+LoIdhD78+gktuUHoPYr95T
-        0n3oYLLHHd/o4XGgP1kjXzVVMdC4jdnfotnfvwsuFFb1OT7irwtYXzOVhUv2wddO
-        iVaqZ1SHT8AZTlLjyzDV1B42ydWnZCfHq8XDHyAkW8VtRjBLrBk4///X9mCZqq67
-        hExfBIxPYF0cVtQhO2k4pNTk8neocVEk47i1J+OH8xMQh6hEfYYv4oPjfh5NQn7n
-        V/MOtiJ4UBnKT4k8etOe94AHM9G11Q3PRq8dM1S/0op/Fh+yAtgIiq+wyZhfEoei
-        THTS3VBboNWNW6LyQC0ck2LwcMV7A==
-X-ME-Sender: <xms:nRxEYgh6LdPrCa7m3JG_HI0DR7bJP47S2GutXYOyXUtiQjmXGR37Pg>
-    <xme:nRxEYpBBVn1Dy7CmwHGlWdyDunLV2_Hng8HR2qZlvtL8gVFwAT_eIixoesmOgNFpT
-    8Zt_rMoNM_FYU7UusY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeivddgudduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgfgsehtqhertderreejnecuhfhrohhmpedflfhi
-    rgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-    eqnecuggftrfgrthhtvghrnhepgeehgfehgeffffehtefffeevjeeifefhheejledtfeel
-    fffggedvfeekteekteevnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenuc
-    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgihu
-    nhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:nRxEYoGiwSRhKaE89IDQ2q4BWTWceBGWRUg4oR0g6TdSqaIJAvR9bA>
-    <xmx:nRxEYhSDQZAVg8gAVTHnhdq8aJ_v9EOZSwNyX4jDmkF11T9Twv1EbQ>
-    <xmx:nRxEYtyLXLI7mk0pw6WpFjP9NcQss3I88XpJm3t1hcNzS7-SWsTavQ>
-    <xmx:oBxEYjpxpULllUwb1F0o7W7TAv8jWaikJvTFNQ_z0Ehn9_iZWDgEdA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 41CDBFA0AA5; Wed, 30 Mar 2022 05:02:21 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4911-g925b585eab-fm-20220323.003-g925b585e
-Mime-Version: 1.0
-Message-Id: <a777b827-32a2-46f8-9074-3f43c0bd87ba@www.fastmail.com>
-In-Reply-To: <0a3a29af-ad2f-9ccc-3a56-3e5b7e4c7c83@189.cn>
-References: <20220328022835.2508587-1-15330273260@189.cn>
- <20220328022835.2508587-3-15330273260@189.cn>
- <CAL_Jsq+zO7RXzQLoPXR7Zm0mcsKCydK=8EFaNFGu-_THgJuh7Q@mail.gmail.com>
- <0a3a29af-ad2f-9ccc-3a56-3e5b7e4c7c83@189.cn>
-Date:   Wed, 30 Mar 2022 10:01:51 +0100
-From:   "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To:     "Sui Jingfeng" <15330273260@189.cn>,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     "Maxime Ripard" <mripard@kernel.org>,
-        "Thomas Zimmermann" <tzimmermann@suse.de>,
-        "Roland Scheidegger" <sroland@vmware.com>,
-        "Zack Rusin" <zackr@vmware.com>,
-        "Christian Gmeiner" <christian.gmeiner@gmail.com>,
-        "David Airlie" <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
-        "Dan Carpenter" <dan.carpenter@oracle.com>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        "Andrey Zhizhikin" <andrey.zhizhikin@leica-geosystems.com>,
-        "Sam Ravnborg" <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Lucas Stach" <l.stach@pengutronix.de>,
-        "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        "Ilia Mirkin" <imirkin@alum.mit.edu>,
-        "Qing Zhang" <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v13 3/6] dt-bindings: display: Add Loongson display controller
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S242292AbiC3JFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:05:50 -0400
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam07on2040.outbound.protection.outlook.com [40.107.95.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C7B168098;
+        Wed, 30 Mar 2022 02:04:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PFcXilZQDzE4KDybdJfz/o8cRxNMTHmPtoJ+Bat6IQSyaq5NJvNsqOy2v1TaZXN8fFqPxWdLybt9JbX3wqC0Vmw1Ar516O5Tj4xRb69QIPU8Rq9wta+840wlbq9lzEA7LHhR2izepF1db55aZ8TfHcgKZnh+gcopSspKB7nHsjDNGRkxhnvQo7GoF2y7bgzC5XZdjm4iKYETU1ViDS1StviXAFgiBtgeQsa+lZNSwnAznhPaJYC4UnOWheZ3kPsJ3K3d/fJ61KeQvUFrx1EEzVDUsY9gcIrCebA+t5CdUxMi1YKDODmJVcMg//SkaodZgub1Jtl9FcR8wfXlOQxGVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xg7yxo4RaGLMzxGyMSFm7qV6lYw4iNx9UwQkle7tGpY=;
+ b=Ba5PSUC9w4CjeBDcjWDO/lt7EsK+M3wbHdksKEmrsEp/x0GKW1dtFeABj9l0MnWVEhqASsciJhMny0t76au04ovIj3aBxmZxGL69UcrJb4T5/om/QX2Q5xjuMzr+RdbHMlv054eEJ1zAgh9tYHURMt1ym1RqcUkVbzx9jFUxT4sT7Me9Bk38flklQfI3tJmRER0m999/QRk9RFvkJiiEuFnvL1dJ7SIUsySoAStiOwlwRLscT2eNdj7IY38EVvFoSzmke/afBRiRJnTT2olS+nWt2LSaJE+G7Ezohqsb9oAdymn2EC/wIXT3NHWuSX2v16J98w32GUfwJ3Aal0vfBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xg7yxo4RaGLMzxGyMSFm7qV6lYw4iNx9UwQkle7tGpY=;
+ b=ttGno4y1pKpdm6haax5kPQ/oA1OiFIwzuSvyy7BL8Y7T1JQaHKHE8JGdVf3u9YzmjlH/1Gd65dgnio/2Y0quxSpIgGSMmDAdUWCMeoAoVxAfgiKUwhJ6ozF1uMZ4wgjX8zhhx3URBYjuuNpn5YvWXdDv9vC/QVt2eQ3lJcmw4dePikLFhQVD7MoIFrKG8IAtekrnAWk3T67mWVh43QB7uDgX14dg1CLQY5Hofdw+4M+cQ1NpC2dbsAlkzrMdP1eLOELCIMO7Sv+HC3Bu+E4HMLCLnXwssfuoFjBfWljxZQYAo/oh7ynECdHCp9IzKWbClvczGS7cYwNzUVcx2E7yBw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SA0PR12MB4349.namprd12.prod.outlook.com (2603:10b6:806:98::21)
+ by BYAPR12MB3623.namprd12.prod.outlook.com (2603:10b6:a03:a9::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.22; Wed, 30 Mar
+ 2022 09:04:02 +0000
+Received: from SA0PR12MB4349.namprd12.prod.outlook.com
+ ([fe80::e15c:41ca:1c76:2ef]) by SA0PR12MB4349.namprd12.prod.outlook.com
+ ([fe80::e15c:41ca:1c76:2ef%3]) with mapi id 15.20.5102.023; Wed, 30 Mar 2022
+ 09:04:01 +0000
+Message-ID: <c5341578-e0a6-4ad7-5b6c-95b31b16faad@nvidia.com>
+Date:   Wed, 30 Mar 2022 14:33:47 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [Patch v5 2/4] memory: tegra: Add MC error logging on tegra186
+ onward
+Content-Language: en-US
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, digetx@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <20220316092525.4554-1-amhetre@nvidia.com>
+ <20220316092525.4554-3-amhetre@nvidia.com>
+ <04bb5ef2-15c3-d561-3572-76dc803275ef@collabora.com>
+From:   Ashish Mhetre <amhetre@nvidia.com>
+In-Reply-To: <04bb5ef2-15c3-d561-3572-76dc803275ef@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA1PR0101CA0008.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:21::18) To SA0PR12MB4349.namprd12.prod.outlook.com
+ (2603:10b6:806:98::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4cbacd21-9b39-4adb-5179-08da122c3b57
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3623:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR12MB36230B3B8438DEF91952B0F0CA1F9@BYAPR12MB3623.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PCsO9hRNiYwFM78Ib8nA7j6GYhf8uWUrBoSAW7KdDHzGqp+kv7yuAPd1WZup8NZD5G9o2QhJA/3jg96I5dVs2hPXmv8ffsPfc4jxnahbwNPtyI1Xrp1wrFp0jav/AQcG94URli38YU4DliJnwzKS8jYlI53tpaOF5t1F2ZlPqPheThPV2PCa3gtm9BRIyiXnJnQbNScjLi3IPZg2YUM6xCbYWAA+WjQuBYorsMlQpr4P96ssFXyFq9UoRTLExcIw2F0sGjln62aQkyN0NPZOUxQ3C3WBSnqUIIrqOE6RzMXjZdDCum//Nx1QS0ksci/5bIySSgzZN26UMBhgxEZKQxck70J7BpCV1C9QfuMmOiu+nMpj7+nJe7hyJ2RqSRzfbHjESCN32ZEPfG+UWNrmc/VD8R1B9vQ10gFBQQ1C5aQvVxEO9QW/96D8s/nMqJR3Uvnnj/mdmCgELXxLKbg5Wiz87BpsMrHQ0FPMUFqi8faeAuvk7iw0/SdVf/eoJhIP7yc3JYI9ewhryDqIpKal5Ohq2zJz8OL86yvajJpLZusOr5Jp7rrPBxZz4Kl1oUknEG1Sexl/KpF7qAdYoLS+VoTqzFWT0FqvxOHjDeODA8bFwRsQQhVDpKoJW6btaXNCcWuThssbvwAOTrrEgsa9pzUNFQO98e2CNGkWPLsWkUhbh4ob3BDRMRe5GPUEzyIZunzgk5nOmHOQ2COYc9LVBUshtsIBuIJmHLB4xb2QT/4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA0PR12MB4349.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(31696002)(55236004)(8676002)(86362001)(31686004)(6506007)(4326008)(53546011)(66946007)(66476007)(66556008)(36756003)(2906002)(5660300002)(38100700002)(8936002)(508600001)(6666004)(6512007)(6486002)(316002)(26005)(2616005)(107886003)(186003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dU1UR1BRQnhPRUF2SS9waEV3eE5aTFdwMGtHeGtFWjE1dlZzdTU3MHV5eHla?=
+ =?utf-8?B?OFlXSDErd3ZFSmpKU3JCUDNGY1F5YWZRRXFxaEhZVTd5SmFjYzhtblZ6WE92?=
+ =?utf-8?B?cjZ1V1dPY1pDeGZrK1Jod25WM1NKenJ3WVgxZzFITWVNZ1VpMmw0d0hIUnN2?=
+ =?utf-8?B?OHNKdURITHhLaG1zSkUrY1ZTUDJVQlY2dXdLSVlwRmo4bUFoTkRqMEFCbmF2?=
+ =?utf-8?B?eUsrdEdvNzlxY3RZS1ZlMWRpbzFDT0E0OFErYUxVRngzVEZ0S3RpVE1ydE44?=
+ =?utf-8?B?ME1tTWlNaVZBeGxhdTk1MVdtZExUb0xMdDVTbmdwdmxVdnZvVHg5MEVjSlJZ?=
+ =?utf-8?B?bzNGK1lncmVtMmFxOXp2b0FjcVkwdy9KVFNraVpLSFJEZTZ5MnBVcmdUSHZJ?=
+ =?utf-8?B?ZSsrZzhtQkJYTFZGSG5YMEVQYWJnZzBOQ3M1MHQ4NDFRQ2NIcDRLeDUyRDRz?=
+ =?utf-8?B?aHo2NW9adVlQdGRMZ0MrOWhreTRsMm8xbjllSXZzd292aytnM2lCTmx5ako1?=
+ =?utf-8?B?b2hwZUNnZXBMTDFWdDVueENDdVVOV2pxQkJETFRaU01GWVUyM3N6TmpnT3R0?=
+ =?utf-8?B?Z09hR2ZPWVhHQkV4SU1qZlVhMmhqa1haT1E5T2R0engzOGtKUk1qcm8yNW5C?=
+ =?utf-8?B?MWs1VzhPbnlMekJ2WHFLL0lVazN0TytZMmNUb0dvVTd0c2FTTVhPREg1M2t0?=
+ =?utf-8?B?R3FWdFQvZzMyZ1FjRkRHUnp1aXdQNjhINDZmYnlUYWxpVGhieVpGZU0rb3ps?=
+ =?utf-8?B?Q2l1U1oyQ3BwbEV0U3kyTjJ3TE9oTng1VEM5ZmlvM2htSUNRMjNWUzFyRTJO?=
+ =?utf-8?B?L2h1bXdTS202aENnckRla3IvSFl5YTlUQnZIbUJ4alJBbE5UcGdxRXR6d3hw?=
+ =?utf-8?B?NVdtTWRrNjAzdjUwVEI1RUJ2WlkveEVhNmJyQ2xvUXBkSlQrVUJ0UVJGSEJH?=
+ =?utf-8?B?SzYvQjh5MkR2NVRaSXVwc0lGdktvMHJqQXZmTzZHdHdLakF2NGNzbjRtUytS?=
+ =?utf-8?B?TzJxRzVUTGk2RlVmMnBLdkVYMFhmWHF6UkNKK2NMUlBkQ044RzgvOW5RRU9Z?=
+ =?utf-8?B?TzFmK08wK0QvNnJ1QUNCYS8yanBsK1pzazI2NHBpRFFqTkR2UTcxUnIramJl?=
+ =?utf-8?B?QXE2Q1NiNmNuNDd3SGVZM2VxbnpuNXlrTG5udFgxLzVtcDNsSVcyaVhrd1c5?=
+ =?utf-8?B?U2xQOUxZOTZ1MElkeTk5SDB6ckQwRU0yd2ZPS2hqU2tsTUpTR08xMjBqY0l3?=
+ =?utf-8?B?REM1Y0pnU0RObGNXRzBMbGNjNmQyejJrU3ZnTTRWakhBYUVyVWk0bWxHM3RJ?=
+ =?utf-8?B?NmIvOVYrQTI4VVlBbmorQU5URmRXNEtDNERIMC9DMkpZQTBxZ3YxTnRuZ0xV?=
+ =?utf-8?B?UlpkaFRZUU4xQmdReC9POVB4MW5kM0oxK0pDNHpLUGpQa0p5Q21uV2JMM3Rn?=
+ =?utf-8?B?R3RscGZLY1Vsck9wMUxYRW1yMGttWkN1eitaN1p0K2RGeWh5SFhnQmc3SFpE?=
+ =?utf-8?B?SFVQN2hIbEhrVHRtZWx5dEJHT2FtZWtMZlBHaGJLRWVicElzcmMwK09hT0lZ?=
+ =?utf-8?B?M3cwekJ4bkNIcnR2aGRUekpvTTZyQ0o5Z1BNOVhrNWNvZ3B4dmI1Vi8xdDky?=
+ =?utf-8?B?Q2NvUnN4VXE2bUhpRjYyalpiUjRESzRNQ2p0Wk1xaTYzVHFlTGhoRytMWlBu?=
+ =?utf-8?B?T0c1dm0xeVZiaTBKVWFhV0N3QlBITi9Kc01LOG9JQzZJNHVMOFFGeG95VzND?=
+ =?utf-8?B?M05ObHpiZFlFK2U2NnBzTEIyVE9rN0lPZEt2WWgwVFVyV1E4SkdTbVlYOUJa?=
+ =?utf-8?B?SngyWHk0U1MzRUNpVVp3OXZ5dmJoZnd1eGcxYzBVQW9HU05USVdjSHFnMUZw?=
+ =?utf-8?B?NW85dTE0NGN4RGRkNUJ0aHJoMnVCN0ZzWU1SMFRQZzgxQ2lVVElhNTB3SDJZ?=
+ =?utf-8?B?MVBVTmlGT045RW01cld6SDJCYk1iQ3lZeGk2Tm11R0pXR0l4S2JZQmhSWXBM?=
+ =?utf-8?B?Zmx4RGptWGtabmJraGR2NjhDeENrZy9mdlIyREhhV1RBZjJoNWRlamh6dVpa?=
+ =?utf-8?B?bmFueFJET1ZhOW5wOTJkc3JjZzZPcm5wa3NGRmpvSGdLY0lJN0lCZEdLMGs0?=
+ =?utf-8?B?RGM5QXhWTDBkZGE0WjJMNGVmUVJTMWRHSlE5emp6dkxNSHBlR2l1WGVFbXN1?=
+ =?utf-8?B?alFpR2R5UDlPK2tLL2V2TEJqZlZ0UFE3VTlOb005QitUZjBrZ0JEdHpqL01Y?=
+ =?utf-8?B?KzJOVHVMSDZBSTNJOGdSd2p1Tm1qdENHdkM4Ry9Pdm5FUHpLeTYyY2o4MGtj?=
+ =?utf-8?B?d1NDK2haV3Bqbjl2bXJGZS9FL0JOMHNSWkZZRWlQMHdpOWhwWjhWdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cbacd21-9b39-4adb-5179-08da122c3b57
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4349.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2022 09:04:01.3379
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gnXZvcjUY287wFC2heUE0k3vQoWpFERIclGDwEHGOg98RyIUiwxYuR3fpIqSXVOHHrCIa0SpAOsUY3Q7QiVJ7w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3623
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -109,211 +137,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-=E5=9C=A82022=E5=B9=B43=E6=9C=8830=E6=97=A5=E4=B8=89=E6=9C=88 =E4=B8=8A=E5=
-=8D=884:46=EF=BC=8CSui Jingfeng=E5=86=99=E9=81=93=EF=BC=9A
-> On 2022/3/29 21:27, Rob Herring wrote:
->> On Sun, Mar 27, 2022 at 9:29 PM Sui Jingfeng <15330273260@189.cn> wro=
-te:
->>> Add DT bindings and simple usages for Loongson display controller
->>> found in LS7A1000 bridge chip and LS2k1000 SoC.
->>>
->>> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
->>> ---
->>>   .../loongson/loongson,display-controller.yaml | 321 ++++++++++++++=
-++++
->>>   1 file changed, 321 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/display/loong=
-son/loongson,display-controller.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/loongson/loon=
-gson,display-controller.yaml b/Documentation/devicetree/bindings/display=
-/loongson/loongson,display-controller.yaml
->>> new file mode 100644
->>> index 000000000000..34060ed55a25
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/display/loongson/loongson,di=
-splay-controller.yaml
->>> @@ -0,0 +1,321 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/display/loongson/loongson,displa=
-y-controller.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Loongson LS7A1000/LS2K1000/LS2K0500 Display Controller Devic=
-e Tree Bindings
->>> +
->>> +maintainers:
->>> +  - Sui Jingfeng <suijingfeng@loongson.cn>
->>> +
->>> +description: |+
->>> +
->>> +  Loongson display controllers are simple which require scanout buf=
-fers
->>> +  to be physically contiguous. LS2K1000/LS2K0500 is a SOC, only sys=
-tem
->>> +  memory is available. LS7A1000/LS7A2000 is bridge chip which is eq=
-uipped
->>> +  with a dedicated video RAM which is 64MB or more, precise size ca=
-n be
->>> +  read from the PCI BAR 2 of the GPU device(0x0014:0x7A15) in the b=
-ridge
->>> +  chip.
->>> +
->>> +  LSDC has two display pipes, each way has a DVO interface which pr=
-ovide
->>> +  RGB888 signals, vertical & horizontal synchronisations, data enab=
-le and
->>> +  the pixel clock. LSDC has two CRTC, each CRTC is able to scanout =
-from
->>> +  1920x1080 resolution at 60Hz. Each CRTC has two FB address regist=
-ers.
->>> +
->>> +  For LS7A1000, there are 4 dedicated GPIOs whose control register =
-is
->>> +  located at the DC register space. They are used to emulate two wa=
-y i2c,
->>> +  One for DVO0, another for DVO1.
->>> +
->>> +  LS2K1000 and LS2K0500 SoC grab i2c adapter from other module, eit=
-her
->>> +  general purpose GPIO emulated i2c or hardware i2c in the SoC.
->>> +
->>> +  LSDC's display pipeline have several components as below descript=
-ion,
->>> +
->>> +  The display controller in LS7A1000:
->>> +     ___________________                                     ______=
-___
->>> +    |            -------|                                   |      =
-   |
->>> +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monit=
-or |
->>> +    |  _   _     -------|        ^             ^            |______=
-___|
->>> +    | | | | |    -------|        |             |
->>> +    | |_| |_|    | i2c0 <--------+-------------+
->>> +    |            -------|
->>> +    |   DC IN LS7A1000  |
->>> +    |  _   _     -------|
->>> +    | | | | |    | i2c1 <--------+-------------+
->>> +    | |_| |_|    -------|        |             |             ______=
-___
->>> +    |            -------|        |             |            |      =
-   |
->>> +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Pane=
-l  |
->>> +    |            -------|                                   |______=
-___|
->>> +    |___________________|
->>> +
->>> +  Simple usage of LS7A1000 with LS3A4000 CPU:
->>> +
->>> +    +------+            +------------------------------------+
->>> +    | DDR4 |            |  +-------------------+             |
->>> +    +------+            |  | PCIe Root complex |   LS7A1000  |
->>> +       || MC0           |  +--++---------++----+             |
->>> +  +----------+  HT 3.0  |     ||         ||                  |
->>> +  | LS3A4000 |<-------->| +---++---+  +--++--+     +---------+   +-=
------+
->>> +  |   CPU    |<-------->| | GC1000 |  | LSDC |<--->| DDR3 MC |<->| =
-VRAM |
->>> +  +----------+          | +--------+  +-+--+-+     +---------+   +-=
------+
->>> +       || MC1           +---------------|--|-----------------+
->>> +    +------+                            |  |
->>> +    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
->>> +    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DV=
-I/HDMI
->>> +                      +-------+                      +------+
->>> +
->>> +  The display controller in LS2K1000/LS2K0500:
->>> +     ___________________                                     ______=
-___
->>> +    |            -------|                                   |      =
-   |
->>> +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monit=
-or |
->>> +    |  _   _     -------|        ^              ^           |______=
-___|
->>> +    | | | | |           |        |              |
->>> +    | |_| |_|           |     +------+          |
->>> +    |                   <---->| i2c0 |<---------+
->>> +    |   DC IN LS2K1000  |     +------+
->>> +    |  _   _            |     +------+
->>> +    | | | | |           <---->| i2c1 |----------+
->>> +    | |_| |_|           |     +------+          |            ______=
-___
->>> +    |            -------|        |              |           |      =
-   |
->>> +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Pane=
-l  |
->>> +    |            -------|                                   |______=
-___|
->>> +    |___________________|
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^display-controller@[0-9a-f],[0-9a-f]$"
->>> +
->>> +  compatible:
->>> +    oneOf:
->>> +      - items:
->>> +          - enum:
->>> +              - loongson,ls7a1000-dc
->>> +              - loongson,ls2k1000-dc
->>> +              - loongson,ls2k0500-dc
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  '#address-cells':
->>> +    const: 1
->>> +
->>> +  '#size-cells':
->>> +    const: 0
->>> +
->>> +  i2c@6:
->> NAK on made-up bus numbers. See v11 discussion for details.
+On 3/30/2022 5:36 AM, Dmitry Osipenko wrote:
+> External email: Use caution opening links or attachments
+> 
+> 
+> On 3/16/22 12:25, Ashish Mhetre wrote:
+>> Add new function 'get_int_channel' in tegra_mc_soc struture which is
+>> implemented by tegra SOCs which support multiple MC channels. This
+>> function returns the channel which should be used to get the information
+>> of interrupts.
+>> Remove static from tegra30_mc_handle_irq and use it as interrupt handler
+>> for MC interrupts on tegra186, tegra194 and tegra234 to log the errors.
+>> Add error specific MC status and address register bits and use them on
+>> tegra186, tegra194 and tegra234.
+>> Add error logging for generalized carveout interrupt on tegra186, tegra194
+>> and tegra234.
+>> Add error logging for route sanity interrupt on tegra194 an tegra234.
+>> Add register for higher bits of error address which is available on
+>> tegra194 and tegra234.
+>> Add a boolean variable 'has_addr_hi_reg' in tegra_mc_soc struture which
+>> will be true if soc has register for higher bits of memory controller
+>> error address. Set it true for tegra194 and tegra234.
 >>
->> Rob
->
-> I am worry about when this driver is loaded before the hardware i2c(on=20
-> the ls7a1000 bridge) driver,
+>> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+> 
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> 
+> Reported what? You should add this tag only if patch addresses reported
+> problem. This patch doesn't address anything, hence the tag is
+> inappropriate, you should remove it.
 
-That=E2=80=99s the problem that EPROBE_DEFER addressed.
-
->
-> and when there is no DT support. in such a case, if i2c bus number is=20
-> dynamically assigned,
->
-> it may incurring troubles.=C2=A0 Made the bus number fixed is benefit =
-to the=20
-> whole system.
->
-> DT=C2=A0 serve as a purpose to passing parameters to the kernel.=C2=A0=
- bus numbers=20
-> just a kind of parameters.
->
-> this is my understanding toward DT. why you are so disagree about this=
-?=C2=A0=20
-> what's the benefits of
->
-> disallow put bus numbers it DT? to the whole world of developers who i=
-s=20
-> using DT?
-
-There is nothing more to discuss.
-You lack understanding to the fundamentals of the DT because you didn=E2=
-=80=99t work
-on thousands of platforms and being trapped by previous design failures.
-
-Just follow the instructions from Rob, he is the expert. Is it that hard?
-
-Thanks
---=20
-- Jiaxun
+Okay, smatch warning was reported on v4 of this patch which is fixed in
+v5. Then I understand that we don't need to add Reported-by if we fix
+bug in subsequent versions, right?
