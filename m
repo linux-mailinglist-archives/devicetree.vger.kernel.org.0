@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBCE24EB81E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 04:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A179F4EB827
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 04:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237379AbiC3CDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 22:03:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50854 "EHLO
+        id S241406AbiC3CEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 22:04:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235508AbiC3CDu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 22:03:50 -0400
+        with ESMTP id S241223AbiC3CEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 22:04:47 -0400
 Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37E14B8211
-        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 19:02:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE22BD2CC
+        for <devicetree@vger.kernel.org>; Tue, 29 Mar 2022 19:03:03 -0700 (PDT)
 Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 9D7CF5C011A;
-        Tue, 29 Mar 2022 22:02:05 -0400 (EDT)
+        by mailout.nyi.internal (Postfix) with ESMTP id 749BC5C0139;
+        Tue, 29 Mar 2022 22:03:02 -0400 (EDT)
 Received: from imap49 ([10.202.2.99])
-  by compute5.internal (MEProxy); Tue, 29 Mar 2022 22:02:05 -0400
+  by compute5.internal (MEProxy); Tue, 29 Mar 2022 22:03:02 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
         :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
         :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; bh=LKpOabm7SOo/CuJ7jhONrV0+KXCQn4hSxuNmQ1
-        hmqMI=; b=EdwLrbZjTq293GMPh+VbLKeqa/H89ka3CLJmj++4dT69IewU8WOcxy
-        FSxzI/vzltyBec7tpiKECqJ0NaF1xThxE4Dx4An+5+/RdlvyNF6dg8lSYPaz+Psi
-        ss6z7B3gb/peR6sVq9V0X5Lfw1N6AdN7Ri1h8SCuWwb1do+WvBrWLRp2aUy2gjS1
-        kvaqEpbEnwtkwdWz9UfMJFZ7z+N7t1EB0+BKpseY0wM1kT7gHpmaJGzWYbQ4m/oP
-        nqwyGoUE+T59PXaBk+YIaDmFXMaWNEFtT826eR6L4C60k0NpmeLm+lpEcX8rqUNB
-        5ajJeN+YN1itUR5gmmso7V1gt1hChXmA==
+        :subject:to:to; s=fm3; bh=wEpEjAf2Kyjbb2L9jqCTw9PREJ1VL23kPZArqb
+        knM70=; b=C5ToEF7Q7CGQ1OXZkq8UEkufgxS1Bfd6PZRoie+huBfIu+aIvVibEj
+        /coO4BSwr2AcSB7hUygWQdmFn5wPcNF8spfoNG+9MTaROoY/svN+BwAqCQ2XKAXU
+        ozDJDjxQGowoF79y5i6ApYQo3em5jWs761aUtqDx3emHNdWrL0eHfJovJCplSTlY
+        svVDua6DLrWoBBX5NODaMr5dTX3MZKpV5JswD7M4clwjSM0ELELdjGBQMVcc4BWX
+        aSDIzoROt5TYBgsPn90Q/XejBSzCvIlpBBp/xZie/mv2VyLkdkHREl2WWVouMRdI
+        VhL/ZRtbRpHRq2gL9so2pnLgfT2Jg8cQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:cc:content-type:date:date:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
         :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=LKpOabm7SOo/CuJ7j
-        hONrV0+KXCQn4hSxuNmQ1hmqMI=; b=myI5tTuh551bP9LkZFyBNAAPFRjJjMTHX
-        hYd02yHK5rUW7sNc7F5I3NgNY4FaFXkTMtGMbparVA2OB2wRFjQ/5hZVW/UHXS80
-        NlC5h/9/o8RrxoKF2p7K4LDEoHUAknehZVuPGLM95mo3W3ca0fTaFY8802q/ULRs
-        2y2Iq9ngRGr89t7gbwHGsNgk7I6MB+BZOXTIW0dtwLXLNg3WaxANrFrN1POf20eA
-        c1SVhygK+1zaJ8HfBc0F6KMB4XFwglBSBc5jd9Qp8P3s+5jzvLzcaA43je1O6Jxh
-        7VQO1Ke8kcJ0dSJS1Gz4RxA+BeHdQ/L+UKd8aUUdlppA2VktpWHAQ==
-X-ME-Sender: <xms:HbpDYo6mlb3CkGoh15jW1oHP08Pf7czUHY_klhPQMfzO0TQubG6Xfg>
-    <xme:HbpDYp6aOSP_P9aEt48y92pxUqJUon0poAjjCUe4lh5KgLrzk2BgjyLX9bWkBY8PC
-    LGKHq4qdxgT9oK9Qg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeiuddghedvucetufdoteggodetrfdotf
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=wEpEjAf2Kyjbb2L9j
+        qCTw9PREJ1VL23kPZArqbknM70=; b=gt36O6XYnCv0vil5hQ2q+l9ALmDoV14Cy
+        oW6xwnfGPjIkwU7iDwfg40rLeVRLOyu8L8pVMdX4UxJtrYM7yeejfVI5tgKo0NSe
+        udS370IHohqw41YkZo4Kg/vyRQ3v6IMjaF7ivT82KdTDvMEF7oPP/I8431j9sh2Y
+        d1QLHwoyEopzVRMJQsfkfcM/+vr28T+oVJ0caigFQViYrdk8sInYTjyVPWm2K/uJ
+        XweK48zukM2pKdUlXv2HScj/N6mlcMLBz6YBQfjDs0pimy2+Z1OdXnnWItygfw30
+        eswoh5NBHCGQ8Q+cqPvb1+gDUI/8RUo1ic+geFDmmHfDp0PA+2F+g==
+X-ME-Sender: <xms:VbpDYuxZ8-IO3gKsutyqcEStLp9iXQwkil9-EM-VLscVYp0rttYcDQ>
+    <xme:VbpDYqRt7RkEYIQCthRXMiAdHAuDQ-XIgqYBo78LePmmb2OFrHntYA6nfWnJY8j7M
+    iLqNJuNZAaulYOI8g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeiuddgheefucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
     rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
     grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
     eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:HbpDYncheUUu75PpCVZTsH2NCbkmB383eErpj2VdAcn3Ojjv3T6Axw>
-    <xmx:HbpDYtKVO7kIfw9_lTZe3hEavzPG2utDL-F4thUqYJuDeBDl_8hmAQ>
-    <xmx:HbpDYsI61dy2Mf6NWRS7vU7r4m4Q1QYz48ooBlJ2HkV7U9WS4vAvzQ>
-    <xmx:HbpDYr9Vn5dqmFMnBL0-3WWaP649lCh8OBSAO0vMC5IikvSuq03eOw>
+X-ME-Proxy: <xmx:VbpDYgVfKZ3K8jlpziXhGeFw4md5Q-WgccpOPUVtg8FnHuI97cMK5w>
+    <xmx:VbpDYkhfe0kvrXq-NOULebsBM-4nqLGDrZyU2OOiMden0CWkIAeCLA>
+    <xmx:VbpDYgAGxqO_3jh9lC31ByYalNvpR-Wa0SZOcLHvoTTmePAzCCDWZA>
+    <xmx:VrpDYgvixuiXdgh6kN2HDYYuxscNWh74sKqGfE1YvD-V0zu7FvMGkA>
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 6199AF6043F; Tue, 29 Mar 2022 22:02:05 -0400 (EDT)
+        id AC094F6043F; Tue, 29 Mar 2022 22:03:01 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.5.0-alpha0-4911-g925b585eab-fm-20220323.003-g925b585e
 Mime-Version: 1.0
-Message-Id: <a4029290-69c4-4df0-8b34-988a281d9cb0@www.fastmail.com>
-In-Reply-To: <20220329173932.2588289-4-quic_jaehyoo@quicinc.com>
+Message-Id: <484751b1-86d0-40e6-b5cd-013ef076f3e5@www.fastmail.com>
+In-Reply-To: <20220329173932.2588289-5-quic_jaehyoo@quicinc.com>
 References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
- <20220329173932.2588289-4-quic_jaehyoo@quicinc.com>
-Date:   Wed, 30 Mar 2022 12:31:44 +1030
+ <20220329173932.2588289-5-quic_jaehyoo@quicinc.com>
+Date:   Wed, 30 Mar 2022 12:32:41 +1030
 From:   "Andrew Jeffery" <andrew@aj.id.au>
 To:     "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>,
         "Linus Walleij" <linus.walleij@linaro.org>,
@@ -74,8 +74,9 @@ To:     "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>,
 Cc:     "Jamie Iles" <quic_jiles@quicinc.com>,
         "Graeme Gregory" <quic_ggregory@quicinc.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH v3 3/7] dt-bindings: pinctrl: aspeed-g6: remove FWQSPID group
+        linux-aspeed@lists.ozlabs.org,
+        "Johnny Huang" <johnny_huang@aspeedtech.com>
+Subject: Re: [PATCH v3 4/7] pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
 Content-Type: text/plain
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
@@ -90,9 +91,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On Wed, 30 Mar 2022, at 04:09, Jae Hyun Yoo wrote:
-> FWQSPID is not a group of FWSPID so remove it.
+> From: Johnny Huang <johnny_huang@aspeedtech.com>
 >
-> Fixes: 7488838f2315 ("dt-bindings: pinctrl: aspeed: Document AST2600 pinmux")
+> Add FWSPIDQ2 (AE12) and FWSPIDQ3 (AF12) function-group to support
+> AST2600 FW SPI quad mode. These pins can be used with dedicated FW
+> SPI pins - FWSPICS0# (AB14), FWSPICK (AF13), FWSPIMOSI (AC14)
+> and FWSPIMISO (AB13).
+>
+> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
 > Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
 
 Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
