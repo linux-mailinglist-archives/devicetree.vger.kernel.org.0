@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A32B24EBFF0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E7494EBFF7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 13:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343706AbiC3Lpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 07:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        id S1343736AbiC3Lrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 07:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343708AbiC3Lpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:45:49 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321051C8844
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 04:44:04 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id w21so24311336wra.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 04:44:04 -0700 (PDT)
+        with ESMTP id S1343728AbiC3Lra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 07:47:30 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B341C8844
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 04:45:45 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id bi12so41027505ejb.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 04:45:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pM4acL2cBdHAr8ol04MCfm0Zf2dmck5bVZ4hNfSR+BA=;
-        b=N5djGtqB6GsbaIdVnSTJ/9wjluukujSK8ZFL+tEB7r0P5dnj/LGmzH6N4owGg5FC/F
-         KUH6CANIz2Sf7fq3LJGwh6PF4pf5CwcGi5lhWmvV8I3x4L4jDKyNfV0d6NWzQrjHU1cT
-         Glb72JPo/LWW+XsnGjaza+4TTKkpDrAZ7eYqEsy85wNYVFY+rCtmNN8v38Efbs8IZSWj
-         mBrQ0BjEYGlEIk8Z+XwvEZfUDMA/+J/PEU/+Bw+8aepFmHrulYkmhJ5/vr8raoZEt4l9
-         4aoCf07OVqpihvLB3NfIoCa2RjqfmfapuCR+Oz5c6smA0ZitvULsEMd8vPAbYsz96yv5
-         +9Mg==
+        bh=0GsLMAkDyt+1jx3DTeQT6eRUT/0nrtKR8ZoOzMTE7Lg=;
+        b=i0jN+H0RY59ZkOgp5tgYjUEXQhX8Yr5MqZGzrutYxn+qRhZtMLCQVBDc+lKW5SJ0jP
+         mW3dB7UcFks/f/v+V2bWb3l+1nwRhQX0J9qY00OX/ygdu4BWldQNgEDjLmAtHkYn615q
+         URoFXNjer8IFxjgx3tB6D2DEci4IpZb3PDAeD/8Wz7KjbYSM23lCuLZDNmcPIXZYKtFu
+         pfIaQ8i7HAaA78g6laRzYl6BUHfDmXYaSH+xhtP8TJTevdAsMdF60M2tp5tMqGoK+X9p
+         iR3oIMrkSLCsGX4A/Cirqm+a1Oydh+2jQ7HR/WzE/az4dD5G1G3Q0fR1uXFn7vRPgS9i
+         iz1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=pM4acL2cBdHAr8ol04MCfm0Zf2dmck5bVZ4hNfSR+BA=;
-        b=1GMw2HB9ZibijAjlXLE5KaPhhUoigovfMrUe+qH8w4IeCZ8/wYjaR2gryU2bJWRzwV
-         hRVMMuBbNIBDFEqisxFoLSAj7DffzmNmnSq1lLDtywzLFXuskdLRj5BqiM8OzldleVwc
-         KeEX9SnqxJFBxCRdYd3UlxJh7MHOckosK7LkUq0HVNwlf66xvL7PDB5kR8txWe2p3kvW
-         0U5O6zmIW8bMuVvEJ7YwDlkf+UB1ZNh4wgG9/qzmlCjaWaG1MfKHSms1VBVwViHrsxwi
-         jUywoDXdN9gGpSRXyC8dp6OdZL0e1d8jy+A/o3Klfsp8i8uwhSLBKCzGJLLcUH3byvOg
-         0CXg==
-X-Gm-Message-State: AOAM533oqh5rMdvd9smmQYLgXUzBuC8+nhAbf5+/zNQW2TEVs+PyisvW
-        KYvRNz3EFn0qifjjNGnliXZkzw==
-X-Google-Smtp-Source: ABdhPJx5gWaOjg6IOR1iCpF0iDWtebpvzCtOYQvZtcm6O4a54s4tXnsgJ19/ZmlXPvWU3jHYe1fUbQ==
-X-Received: by 2002:adf:da50:0:b0:204:7d8:b654 with SMTP id r16-20020adfda50000000b0020407d8b654mr36294585wrl.607.1648640642526;
-        Wed, 30 Mar 2022 04:44:02 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ed2f:f020:8f92:3217:a3c6:3ee8? ([2a01:e34:ed2f:f020:8f92:3217:a3c6:3ee8])
-        by smtp.googlemail.com with ESMTPSA id h9-20020a5d4309000000b00205b90434e2sm10107459wrq.114.2022.03.30.04.44.01
+        bh=0GsLMAkDyt+1jx3DTeQT6eRUT/0nrtKR8ZoOzMTE7Lg=;
+        b=6OwY+3ktlzRggfkd2MiNG3qdjxJLetnpoeVQtvSXqkgoEnXvqpXG6thJS9x3RyOM3c
+         k3vjKuHMaYOpsPGMuxKbieCKL7bmDZKDBBtnVXk8yGByN/TSXJgM6yaLiM/AaO2NrqIa
+         j7Vr3sWnRUjiZVxd/YIDyS5UczCXzQUOpVCbGF0b3RxpkqyPoAENlj9EVqX1dSEcjStq
+         axzneMa6Tl2aX4HzqiQRhJQQltix8WI4+EGavywO4pyZumibsAaabIZXzU5TXiyPRr9c
+         9XKC05k4oF2trb7t8GygZj6RtCuWvj+NMJFyUVxnxfBnBJ3OURV3OAQhVjXHbq+qz+UK
+         Duhw==
+X-Gm-Message-State: AOAM533MQzto8Nvu4SCMkWnTLZwImHreWKLcHMmt4x4YBpagNp2JRnr/
+        ZorAiuZZ3YY7e0GEmMICU0FBNVZ/Fq4hBQ2C
+X-Google-Smtp-Source: ABdhPJzqMwkVBfZmjptcZU4txEkzsjTR+KKIcwdkHBemub6ugGroebYrOPwu8qUCwsM5ElcHwe6d7Q==
+X-Received: by 2002:a17:907:3e99:b0:6db:6c1c:d9d9 with SMTP id hs25-20020a1709073e9900b006db6c1cd9d9mr39049124ejc.688.1648640743717;
+        Wed, 30 Mar 2022 04:45:43 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id p12-20020a17090635cc00b006e055c9c91esm8028494ejb.101.2022.03.30.04.45.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 04:44:01 -0700 (PDT)
-Message-ID: <7e711327-bcb8-4c7f-5537-425ba1a79e62@linaro.org>
-Date:   Wed, 30 Mar 2022 13:44:00 +0200
+        Wed, 30 Mar 2022 04:45:43 -0700 (PDT)
+Message-ID: <4d3c1f8a-122a-eb3a-b3d3-94e89d1ba6e8@linaro.org>
+Date:   Wed, 30 Mar 2022 13:45:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v10 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC Timer
+Subject: Re: [PATCH 4/4] spi: dt-bindings: qcom,spi-qup: convert to dtschema
 Content-Language: en-US
-To:     shruthi.sanil@intel.com, tglx@linutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        srikanth.thokala@intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-References: <20220322130005.16045-1-shruthi.sanil@intel.com>
- <20220322130005.16045-2-shruthi.sanil@intel.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220322130005.16045-2-shruthi.sanil@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220329112902.252937-1-krzysztof.kozlowski@linaro.org>
+ <20220329112902.252937-5-krzysztof.kozlowski@linaro.org>
+ <20220330114247.GA51417@9a2d8922b8f1>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220330114247.GA51417@9a2d8922b8f1>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,162 +80,229 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/03/2022 14:00, shruthi.sanil@intel.com wrote:
-> From: Shruthi Sanil <shruthi.sanil@intel.com>
+On 30/03/2022 13:42, Kuldeep Singh wrote:
+> On Tue, Mar 29, 2022 at 01:29:02PM +0200, Krzysztof Kozlowski wrote:
+>> Convert the Qualcomm Universal Peripheral (QUP) Serial Peripheral
+>> Interface (SPI) bindings to DT Schema.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../devicetree/bindings/spi/qcom,spi-qup.txt  | 103 ------------------
+>>  .../devicetree/bindings/spi/qcom,spi-qup.yaml |  82 ++++++++++++++
+>>  2 files changed, 82 insertions(+), 103 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+>>  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qup.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qup.txt b/Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+>> deleted file mode 100644
+>> index 5c090771c016..000000000000
+>> --- a/Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+>> +++ /dev/null
+>> @@ -1,103 +0,0 @@
+>> -Qualcomm Universal Peripheral (QUP) Serial Peripheral Interface (SPI)
+>> -
+>> -The QUP core is an AHB slave that provides a common data path (an output FIFO
+>> -and an input FIFO) for serial peripheral interface (SPI) mini-core.
+>> -
+>> -SPI in master mode supports up to 50MHz, up to four chip selects, programmable
+>> -data path from 4 bits to 32 bits and numerous protocol variants.
+>> -
+>> -Required properties:
+>> -- compatible:     Should contain:
+>> -		  "qcom,spi-qup-v1.1.1" for 8660, 8960 and 8064.
+>> -		  "qcom,spi-qup-v2.1.1" for 8974 and later
+>> -		  "qcom,spi-qup-v2.2.1" for 8974 v2 and later.
+>> -
+>> -- reg:            Should contain base register location and length
+>> -- interrupts:     Interrupt number used by this controller
+>> -
+>> -- clocks:         Should contain the core clock and the AHB clock.
+>> -- clock-names:    Should be "core" for the core clock and "iface" for the
+>> -                  AHB clock.
+>> -
+>> -- #address-cells: Number of cells required to define a chip select
+>> -                  address on the SPI bus. Should be set to 1.
+>> -- #size-cells:    Should be zero.
+>> -
+>> -Optional properties:
+>> -- spi-max-frequency: Specifies maximum SPI clock frequency,
+>> -                     Units - Hz. Definition as per
+>> -                     Documentation/devicetree/bindings/spi/spi-bus.txt
+>> -- num-cs:	total number of chipselects
+>> -- cs-gpios:	should specify GPIOs used for chipselects.
+>> -		The gpios will be referred to as reg = <index> in the SPI child
+>> -		nodes.  If unspecified, a single SPI device without a chip
+>> -		select can be used.
+>> -
+>> -- dmas:         Two DMA channel specifiers following the convention outlined
+>> -                in bindings/dma/dma.txt
+>> -- dma-names:    Names for the dma channels, if present. There must be at
+>> -                least one channel named "tx" for transmit and named "rx" for
+>> -                receive.
+>> -
+>> -SPI slave nodes must be children of the SPI master node and can contain
+>> -properties described in Documentation/devicetree/bindings/spi/spi-bus.txt
+>> -
+>> -Example:
+>> -
+>> -	spi_8: spi@f9964000 { /* BLSP2 QUP2 */
+>> -
+>> -		compatible = "qcom,spi-qup-v2";
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -		reg = <0xf9964000 0x1000>;
+>> -		interrupts = <0 102 0>;
+>> -		spi-max-frequency = <19200000>;
+>> -
+>> -		clocks = <&gcc GCC_BLSP2_QUP2_SPI_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
+>> -		clock-names = "core", "iface";
+>> -
+>> -		dmas = <&blsp1_bam 13>, <&blsp1_bam 12>;
+>> -		dma-names = "rx", "tx";
+>> -
+>> -		pinctrl-names = "default";
+>> -		pinctrl-0 = <&spi8_default>;
+>> -
+>> -		device@0 {
+>> -			compatible = "arm,pl022-dummy";
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -			reg = <0>; /* Chip select 0 */
+>> -			spi-max-frequency = <19200000>;
+>> -			spi-cpol;
+>> -		};
+>> -
+>> -		device@1 {
+>> -			compatible = "arm,pl022-dummy";
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -			reg = <1>; /* Chip select 1 */
+>> -			spi-max-frequency = <9600000>;
+>> -			spi-cpha;
+>> -		};
+>> -
+>> -		device@2 {
+>> -			compatible = "arm,pl022-dummy";
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -			reg = <2>; /* Chip select 2 */
+>> -			spi-max-frequency = <19200000>;
+>> -			spi-cpol;
+>> -			spi-cpha;
+>> -		};
+>> -
+>> -		device@3 {
+>> -			compatible = "arm,pl022-dummy";
+>> -			#address-cells = <1>;
+>> -			#size-cells = <1>;
+>> -			reg = <3>; /* Chip select 3 */
+>> -			spi-max-frequency = <19200000>;
+>> -			spi-cpol;
+>> -			spi-cpha;
+>> -			spi-cs-high;
+>> -		};
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qup.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qup.yaml
+>> new file mode 100644
+>> index 000000000000..aa5756f7ba85
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qup.yaml
+>> @@ -0,0 +1,82 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/qcom,spi-qup.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Universal Peripheral (QUP) Serial Peripheral Interface (SPI)
+>> +
+>> +maintainers:
+>> +  - Andy Gross <agross@kernel.org>
+>> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> +
+>> +description:
+>> +  The QUP core is an AHB slave that provides a common data path (an output FIFO
+>> +  and an input FIFO) for serial peripheral interface (SPI) mini-core.
+>> +
+>> +  SPI in master mode supports up to 50MHz, up to four chip selects,
+>> +  programmable data path from 4 bits to 32 bits and numerous protocol variants.
+>> +
+>> +allOf:
+>> +  - $ref: /spi/spi-controller.yaml#
 > 
-> Add Device Tree bindings for the Timer IP, which can be used as
-> clocksource and clockevent device in the Intel Keem Bay SoC.
+> Same thing for reference here as we discussed on other thread.
+
+Yes.
+
 > 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> Signed-off-by: Shruthi Sanil <shruthi.sanil@intel.com>
-
-
-In order to pick this binding I need an ack from Rob or Krzysztof (added 
-to the recipients)
-
-
-
-> ---
->   .../bindings/timer/intel,keembay-timer.yaml   | 125 ++++++++++++++++++
->   1 file changed, 125 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,spi-qup-v1.1.1 # for 8660, 8960 and 8064
+>> +      - qcom,spi-qup-v2.1.1 # for 8974 and later
+>> +      - qcom,spi-qup-v2.2.1 # for 8974 v2 and later
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: iface
+>> +
+>> +  dmas:
+>> +    maxItems: 2
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx
+>> +      - const: rx
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml b/Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
-> new file mode 100644
-> index 000000000000..333f137e39e0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
-> @@ -0,0 +1,125 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/intel,keembay-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel Keem Bay SoC Timers
-> +
-> +maintainers:
-> +  - Shruthi Sanil <shruthi.sanil@intel.com>
-> +
-> +description: |
-> +  The Intel Keem Bay timer IP supports 1 free running counter and 8 timers.
-> +  Each timer is capable of generating inividual interrupt.
-> +  Both the features are enabled through the timer general config register.
-> +
-> +  The parent node represents the common general configuration details and
-> +  the child nodes represents the counter and timers.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - intel,keembay-gpt-creg
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    description: General configuration register address and length.
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^counter@[0-9a-f]+$":
-> +    description: Properties for Intel Keem Bay counter.
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - enum:
-> +              - intel,keembay-counter
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - clocks
-> +
-> +  "^timer@[0-9a-f]+$":
-> +    description: Properties for Intel Keem Bay timer
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - enum:
-> +              - intel,keembay-timer
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #define KEEM_BAY_A53_TIM
-> +
-> +    soc {
-> +        #address-cells = <0x2>;
-> +        #size-cells = <0x2>;
-> +
-> +        gpt@20331000 {
-> +            compatible = "intel,keembay-gpt-creg", "simple-mfd";
-> +            reg = <0x0 0x20331000 0x0 0xc>;
-> +            ranges = <0x0 0x0 0x20330000 0xF0>;
-> +            #address-cells = <0x1>;
-> +            #size-cells = <0x1>;
-> +
-> +            counter@e8 {
-> +                compatible = "intel,keembay-counter";
-> +                reg = <0xe8 0x8>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@30 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x30 0xc>;
-> +                interrupts = <GIC_SPI 0x5 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
+> Just wanted to confirm one thing, did you try with rx-tx?
+> As once I noticed for some other spec, that warnings were reduced when
+> order was reversed as most of the DTs follow rx-tx order.
+> 
+> We can keep order which disturb less DTs.
 
+Yeah, I tried. The amount is more or less the same, so I went with tx-rx
+as mentioned in original bindings.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> 
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - clock-names
+>> +  - interrupts
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,gcc-msm8996.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    spi@7575000 {
+>> +        compatible = "qcom,spi-qup-v2.2.1";
+>> +        reg = <0x07575000 0x600>;
+>> +        interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+>> +        clocks = <&gcc GCC_BLSP1_QUP1_SPI_APPS_CLK>,
+>> +                 <&gcc GCC_BLSP1_AHB_CLK>;
+>> +        clock-names = "core",
+>> +                      "iface";
+> 
+> clock-names can be written in one line.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+I made it on purpose to align the format with clocks.
+
+Best regards,
+Krzysztof
