@@ -2,151 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B6B4EBDFE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81B5E4EBE30
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:00:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244543AbiC3JsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 05:48:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60680 "EHLO
+        id S245066AbiC3KC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 06:02:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245087AbiC3Jrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:47:55 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5D5266B49
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 02:46:10 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZUtt-000338-PU; Wed, 30 Mar 2022 11:46:01 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZUto-0001va-Qn; Wed, 30 Mar 2022 11:45:56 +0200
-Date:   Wed, 30 Mar 2022 11:45:56 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     "piotro.oniszczuk@google.com" <piotr.oniszczuk@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Message-ID: <20220330094556.GZ12181@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220330072822.GX12181@pengutronix.de>
- <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
+        with ESMTP id S240583AbiC3KC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:02:28 -0400
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com [64.147.123.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D437ABAB9B
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:00:42 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.west.internal (Postfix) with ESMTP id 4DE352B00523;
+        Wed, 30 Mar 2022 06:00:39 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Wed, 30 Mar 2022 06:00:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=1KmhQgVl702bz7WKmxwLlTLMWnPicP+2nqjgwT
+        gzZF4=; b=VW1Qzavcm01D3J6LtMbZdXaSqqyHdPblV2ZuaO87MhLElB/sapZrc6
+        9byGkoLSsfUcfEhqC70JHJIhzAOg+gUcTRqCJ/+f5FVopcURKjeuJXj4+wsCevtm
+        j78gbQ6Zd3EoOVbqsmPY8XSsWDzxGH4z4+88UGWZV0gRdtoHfwIWNvjN3hNfavI1
+        sMc404t3FtzZ2+7QSi8u4v935U3vaUsMRpMDP1yoe3pH9/Q/9fGSEyAHRh+e5OF1
+        qDcumxrHo5UhnzVs1iqpvGiTPWs0s/g+g/bmzXtwHnVzd2Hzy48WmzRbd6dQHow2
+        sTLTc89jriQTcFMfHTOum5hGamgXS8iQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=1KmhQgVl702bz7WKm
+        xwLlTLMWnPicP+2nqjgwTgzZF4=; b=VlV39ZzXrY4AySMwPhKTKpkJ9sElDYcIO
+        qnRjiomcGJFsr+aYXdSyy6i0O0gHqgwSIYaVaNoKe+NXNUt8jxZD4zo4MgaVMtqQ
+        fPy05FGjmpOcQrOFj4/ArwNMOCcQORd0zXE56ymmYdFIYIWPdCXzPFNPuR/2i73r
+        aY5igMwGQE2HY3A3Omji+pBgr3KouMGktn+MhygHaGq1UUkwFprtasE7+gYhsGn8
+        0pz0Iq5jI70bXqoXPP7FEuFTEogmAYGr1m6HYrTNRsqdT6FfjKbTpkg7eyzmiiv+
+        DfnX5ZfN7UWzTQAZjJQJoHuTtHr3LLFHTBdNHtkF/Yxr8pSZjeYlQ==
+X-ME-Sender: <xms:RipEYkQe9BF4ZtGJELmcQddgXgV11KyGfHivYIwyCddBvGMBq8NGMg>
+    <xme:RipEYhwXyB6JVVv23NwiQZ3iwJiH8nl3usrIjAu5jM37jUTB_QE59rsvl4ISg9fGG
+    NeEBsXgNrDlhI87XSA>
+X-ME-Received: <xmr:RipEYh1XJW0r928OcVm3lrIk7brZHakagwYReVOnEJVjIc7-L0UF0bEqwqTEy5jrmsqWI_cw75WK7t8CAUVjBXL3B1W7enwBTYwRWEc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeivddgvddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:RipEYoCRyb5yo-qHNc42EYfiXNG2Rvcf4oIsI06Nlj8emYYzZ36UvQ>
+    <xmx:RipEYti3z7KlO-1VPCMbndu7-e6zB2-lXuPsnKQdBhts8y0fTvbxiA>
+    <xmx:RipEYkrzow3N7s5dbhFan0cre3YfZq55HXUURO8U0D4Nlt9H1iFyLg>
+    <xmx:RipEYt6vi_wVw-tbbdGtK6C1a8F0zl7jvVjfXlIagCw1TnIl3nr4NcqeRhA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 30 Mar 2022 06:00:37 -0400 (EDT)
+Date:   Wed, 30 Mar 2022 12:00:36 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Robert Foss <robert.foss@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <20220330100036.k6qinnh2ktukua7r@houat>
+References: <20220323154823.839469-1-maxime@cerno.tech>
+ <YjuFO45Gr1vmKxWG@pendragon.ideasonboard.com>
+ <20220324081819.niz4pdqu3j7n2ivh@houat>
+ <Yjx1jjB2hWqOPGsi@pendragon.ideasonboard.com>
+ <20220324142324.monalktzzpypu74x@houat>
+ <f30fe2d7-488a-d599-7631-a991042ecdea@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4ufozvpqqiapt37k"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:09:08 up 109 days, 17:54, 73 users,  load average: 0.16, 0.15,
- 0.14
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <f30fe2d7-488a-d599-7631-a991042ecdea@ideasonboard.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 10:41:56AM +0200, piotro.oniszczuk@google.com wrote:
-> 
-> 
-> > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 09:28:
-> > 
-> >> 
-> >> You can easily reproduce with modetest utility:
-> >> 
-> >> modetest -P 43@67:1920x1080@NV12
-> > 
-> > This only sets the overlay, but how did you get something on the screen
-> > initially?
 
-Let me rephrase this: The above sets a plane, but it doesn't set a mode
-on the crtc. When my system boots up then the output of modetest looks
-like this:
+--4ufozvpqqiapt37k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Encoders:
-id      crtc    type    possible crtcs  possible clones
-68      0       TMDS    0x00000001      0x00000001
-Connectors:
-id      encoder status          name            size (mm)       modes  encoders
-69      0       connected       HDMI-A-1        530x300         9      68
-CRTCs:
-id      fb      pos     size
-67      0       (0,0)   (0x0)
-  #0  nan 0 0 0 0 0 0 0 0 0 flags: ; type: 
+Hi Tomi,
 
-No mode is set on the CRTC and the encoder/connector/crtc are not bound
-to each other, consequently the screen is in standby. "modetest -P
-43@67:1920x1080@NV12" doesn't change this, still no mode set. Hence my
-question: How did you set a mode initially?
+On Fri, Mar 25, 2022 at 12:42:15PM +0200, Tomi Valkeinen wrote:
+> On 24/03/2022 16:23, Maxime Ripard wrote:
+> > On Thu, Mar 24, 2022 at 03:43:42PM +0200, Laurent Pinchart wrote:
+> > > On Thu, Mar 24, 2022 at 09:18:19AM +0100, Maxime Ripard wrote:
+> > > > On Wed, Mar 23, 2022 at 10:38:19PM +0200, Laurent Pinchart wrote:
+> > > > > Hi Maxime,
+> > > > >=20
+> > > > > (CC'ing Sakari)
+> > > > >=20
+> > > > > Thank you for the patch.
+> > > > >=20
+> > > > > On Wed, Mar 23, 2022 at 04:48:23PM +0100, Maxime Ripard wrote:
+> > > > > > MIPI-DSI devices, if they are controlled through the bus itself=
+, have to
+> > > > > > be described as a child node of the controller they are attache=
+d to.
+> > > > > >=20
+> > > > > > Thus, there's no requirement on the controller having an OF-Gra=
+ph output
+> > > > > > port to model the data stream: it's assumed that it would go fr=
+om the
+> > > > > > parent to the child.
+> > > > > >=20
+> > > > > > However, some bridges controlled through the DSI bus still requ=
+ire an
+> > > > > > input OF-Graph port, thus requiring a controller with an OF-Gra=
+ph output
+> > > > > > port. This prevents those bridges from being used with the cont=
+rollers
+> > > > > > that do not have one without any particular reason to.
+> > > > > >=20
+> > > > > > Let's drop that requirement.
+> > > > >=20
+> > > > > I'm sure this won't come as a surprise, I'm very much opposed to =
+this
+> > > > > change, for two reasons.
+> > > > >=20
+> > > > > First, ports are part of the hardware, even if they're not connec=
+ted. It
+> > > > > thus simplifies handling in drivers if they're always present.
+> > > > >=20
+> > > > > Then, and that's the most important reason, I think it's a mistak=
+e not
+> > > > > to model the DSI data connection using OF graph unconditionally, =
+even
+> > > > > when the DSI sink device is also controlled through the DSI bus (=
+using
+> > > > > DCS) and is in that case a child of the DSI source device in the =
+DT
+> > > > > hierarchy.
+> > > >=20
+> > > > That's the way we do for any other device though. You never address=
+ed
+> > > > that comment, but it's very much the same that occurs for i2c or spi
+> > > > controllers and their device. They all get their data from the pare=
+nt
+> > > > bus. I don't see you advocate for using OF-Graph for those devices.
+> > >=20
+> > > Those are different, there's no data stream independent of the control
+> > > communications.
+> >=20
+> > Fine, then you have Ethernet PHYs, or any MMIO device that does DMA.
+>=20
+> Have those devices had the need for OF graphs?
 
-> > 
-> 
-> I'm not sure that above command only sets plane.
-> On other SoCs i’m testing it gives expected results: diagonal colored stripes.
-> There is single exception: rk356x with vop2 - where screen is green unless i „fix/enable” by playing with plane #69   
-> 
-> > I did with "modetest -s 69@67:1920x1080 -d" and with this it works as
-> > expected, I can't reproduce any green screen issue here.
-> 
-> I see you are using plane #69.
-> Why not #43?
+No, they don't. It's kind of my point actually :)
 
-I used "modetest -s 69@67:1920x1080 -d" to set a mode. The '69' is the
-connector id, not a plane.
+> For display and capture we have a clear need. I don't think we should
+> sometimes use OF graphs and sometimes not, but rather use them
+> consistently at least in any new driver.
 
-> Is plane #43 working ok for you?
+There's a clear need when the data don't follow the obvious path, ie
+when there's a direct FIFO between a CRTC and its connector. If it was
+going through that obvious path, like an Ethernet PHY, then we wouldn't
+need it.
 
-Yes.
+A device being controlled through the DSI bus has that obvious path. If
+it's taking its data through the DSI bus, but is being controlled by an
+i2c bus, then it needs an OF-graph node...
 
-> 
-> I’m using plane #43 because: application (player) - at start -  queries all planes and selects first plane offering format being within offered formats by provider (video decoder; NV12 from rk356x hantro video decoder).
-> 
-> pls look on app log regarding planes discovery and election: https://pastebin.com/edAhbcvU
-> 
-> Now - looking what VOP2 reports: https://pastebin.com/8ujkaV9n
-> is see first plane accepting NV12 is #43 - so my app is electing this plane to use for displaying video.
-> 
-> This strategy works well for all 13 platforms i’m supporting (only 13 i have in my testbed).
-> 
-> If this approach is - by Yours VOP2 patches goal - is not supported - then OK.
-> I understand this :-)
-> 
-> But - if You want to support DRM features in the same way like other SOC are doing (and working well with KODI/MythTV/mpv/etc) - then i think:
-> 
-> 1\ DRM plane #43 not supports NV12 - but code wrongly reports NV12 format is supported, or
-> 2\ DRM plane #43 is supported - but code has bug resulting with green screen.
+> > > > > The device tree describes a control hierarchy between devices. OF=
+ graph
+> > > > > overlays on top of that a data transfer graph. The two are differ=
+ent
+> > > > > concepts, and the fact that DSI can sometimes be used as a contro=
+l bus
+> > > > > doesn't change the concept. Using OF graph unconditionally to des=
+cribe
+> > > > > the data connections for DSI leads to less variation in the devic=
+e tree
+> > > > > structure, and thus less complexity in the implementation. We're
+> > > > > suffering from the fact we haven't made it a requirement in the f=
+irst
+> > > > > place, which can't be fixed due to ABI breakage constraints, but =
+let's
+> > > > > not acknowledge it as a good idea.
+> > > >=20
+> > > > Honestly, it doesn't matter one bit.
+> > > >=20
+> > > > We have a huge discrepancy here today, and only a couple of bridges=
+ have
+> > > > that arbitrary restriction. The situation you don't want to acknowl=
+edge
+> > > > is the de-facto standard, by the generic binding and by what all the
+> > > > bridges and panels are implementing. Even panel-simple-dsi is doing=
+ it.
+> > > > So it's very much there already.
+> > >=20
+> > > It's here, and I think we should move away from it for new DSI sinks.
+> > > I'd like OF graph to be used consistently for new drivers. We can't
+> > > change existing DT bindings and drivers to drop support for the
+> > > non-OF-graph description due to ABI stability, but we can avoid
+> > > repeating the mistake going forward.
+> > >=20
+> > > > What I'm trying to address here is that some controllers that do
+> > > > everything right can't be used because that restriction is complete=
+ly
+> > > > arbitrary and in opposition to the consensus. And they can't be used
+> > > > *today*.
+> > > >=20
+> > > > If we want to change that consensus, fine, but we should still have=
+ one.
+> > > > Having some bridges enforcing custom rules for no reason is very mu=
+ch
+> > > > unacceptable.
+> > > >=20
+> > > > And changing that consensus won't happen overtime, we'll have to ta=
+ke
+> > > > care of the backward compatibility, etc. So it won't fix the issue =
+that
+> > > > we can't use any bridge with any controller any time soon.
+> > >=20
+> > > I don't think that's the issue at hand here. You can still use a
+> > > non-OF-graph DT event if the nodes for the two bridges affected by th=
+is
+> > > patch define a port@0. It can just be left unconnected.
+> > >=20
+> > > I do agree it will cause some DT bindings for DCS-based DSI sinks to
+> > > have ports will others won't. If your concern is that all DT bindings
+> > > should be coherent, would you be OK with a patch that makes the sink
+> > > port mandatory in all DT bindings for DSI bridges and panels (and fix=
+es
+> > > the mainline DT sources accordingly to make sure they validate) ? The
+> > > port would not be connected of course (at least when used with DSI
+> > > source drivers that don't use OF graph today). That would make DT
+> > > bindings coherent, and would be a first step towards using OF graph
+> > > everywhere.
+> >=20
+> > I'm trying to fix a (recent) mistake/cargo-cult in new bindings. That
+> > discussion is not going to be fairly controversial and I don't see how
+> > that can be solved quickly. So, as a second step, why not. But this one
+> > needs to come first.
+>=20
+> I feel like I don't quite understand the problem and the discussion.
+>=20
+> What's the problem this fixes? DT validation? Why not just fix the dts fi=
+les
+> which use these devices (although I didn't see any in mainline), by adding
+> the port nodes?
+>=20
+> Or is the argument that we should also support "implicit ports" when the
+> control and data busses are the same?
 
-plane #43 should support NV12 and it seems to work fine here.
+=2E.. But the discussion really is two-fold.
 
-I believe you that there's a problem, but I can't reproduce it here and
-I might need further assistence to reproduce it.
+The problem this patch addresses is that there's two odd bridges that
+have an inconsistent binding with how the rest of the similar devices
+now. It was a mistake that slipped through review, we should address it.
 
-Sascha
+Then, there's the larger discussion of whether or not we want to push
+the OF-graph for everyone. But that will require some kind of consensus,
+some work on the MIPI-DSI encoders that don't have that kind of support,
+in a backward compatible manner, etc. It's not going to happen
+over-night, especially since it seems like it's something that would be
+nice to have, but no-one is really interested in actually making it
+happen.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+And we shouldn't wait for that to happen to fix the inconsistency
+mentioned above.
+
+Maxime
+
+--4ufozvpqqiapt37k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYkQqRAAKCRDj7w1vZxhR
+xSFVAQCHCtSvm++O8wElexDC+AExYe9RkXj94lMBHWj0tFWTuwD/ScpaEM8Y8bOR
+F8n2pU8YBk82qMDhNkKWU4fwqnk4kgQ=
+=G6ys
+-----END PGP SIGNATURE-----
+
+--4ufozvpqqiapt37k--
