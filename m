@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133254EC666
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 363484EC675
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 16:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346741AbiC3OYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 10:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58232 "EHLO
+        id S1346168AbiC3O0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 10:26:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346104AbiC3OX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:23:59 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 983A91C550E;
-        Wed, 30 Mar 2022 07:22:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648650133; x=1680186133;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=41EM4l2nimufuzVlqLONXL8Be3SNWhsMlZum9H47py8=;
-  b=U3GSz2QYKYlDOvBqIe88on3rJ9gR/W64n4LECvHN1iGop41I1tZy6115
-   a7xS0lhfdoQ/vbj2enW4+7AU73NgiEJBiAmeYjFJ0Dc8vatBgQYs0bex/
-   zVy2xYY+hbcmKnOpGtq+tH4FGfcbU72VntmxSMNhtecSL6XeFftF+HPwB
-   BCDZtBydvUt3R66PD3/wdduwp+i6ikGb4YMpSZQWBZWecJ4a2ouPAL7tE
-   eh3oUkmKbgVukwt4HBqwk2l3Qip7osELOyDUAzScD8/PsTDZ9hVtapA0b
-   KknarKcq4s6n28awdhX6Mmlcw9SV67JjxeETNAmnKUo8D9Y2vfNULu8Of
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10301"; a="259739578"
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="259739578"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 07:22:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,222,1643702400"; 
-   d="scan'208";a="719992331"
-Received: from lkp-server02.sh.intel.com (HELO 56431612eabd) ([10.239.97.151])
-  by orsmga005.jf.intel.com with ESMTP; 30 Mar 2022 07:22:08 -0700
-Received: from kbuild by 56431612eabd with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nZZD5-00004C-Ed;
-        Wed, 30 Mar 2022 14:22:07 +0000
-Date:   Wed, 30 Mar 2022 22:21:46 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        agross@kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] CHROMIUM: arm64: dts: qcom: Add sc7180-gelarshie
-Message-ID: <202203302254.6kSD2Eo4-lkp@intel.com>
-References: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
+        with ESMTP id S1345491AbiC3O0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 10:26:07 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0F715FE3;
+        Wed, 30 Mar 2022 07:24:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C5FA0B81D4B;
+        Wed, 30 Mar 2022 14:24:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F97DC340EE;
+        Wed, 30 Mar 2022 14:24:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648650258;
+        bh=8mGhUsP282BlInxzYzns/CDUIBuGHFUwBxqH317vbiI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aQkJxwf6qzT0NoAl/UXsj4Hc+5tHiEnQ52giQEXLKNANq8yCfIyEpxPSrkZx5UlhX
+         kME5m6BljI6TEs5IcgxKa/AB7DOGHrCWPlahmcE8cUuW40U+zkdmI65Avc8jWV6Q7M
+         UBzP4RRsJlEF+dKKHEXwIfGnmAVhjRRfJTi9YJ8LSM4ZvHAV/BNoDumoK7SHaa8r6H
+         AFwSkLy+uUkmeU8HFYbTVWaPefLN1A65DhfqTJjQVuKghpq1Awj2I4yZvNhH/wiOIV
+         vMbzyqLs6Zc8BOB8iLN+CWMCsxD/2M3qpxVOocVXf3b8zkjb4gPvAzqxN3YU4ZJsUk
+         cyMELuCjDI3dg==
+Date:   Wed, 30 Mar 2022 15:24:11 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>, robh+dt@kernel.org, tzungbi@google.com,
+        angelogioacchino.delregno@collabora.com, aaronyu@google.com,
+        matthias.bgg@gmail.com, trevor.wu@mediatek.com, linmq006@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Tzung-Bi Shih <tzungbi@kernel.org>
+Subject: Re: [v7 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
+ speaker
+Message-ID: <YkRoC30JLDMeVi1B@sirena.org.uk>
+References: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
+ <20220324064511.10665-3-jiaxin.yu@mediatek.com>
+ <20220329223002.uo7kiemopkh7ak4x@notapiano>
+ <dee3fbb7c9f0c3e1f11143db1d6fc4381cab827f.camel@mediatek.com>
+ <YkRNSoBKFvYYyZLu@sirena.org.uk>
+ <61e9fb59448837cfc8e3ec862b711294bcb68872.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="GNUxLScWaSBFpiDm"
 Content-Disposition: inline
-In-Reply-To: <20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <61e9fb59448837cfc8e3ec862b711294bcb68872.camel@mediatek.com>
+X-Cookie: Two is company, three is an orgy.
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,50 +68,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mars,
 
-Thank you for the patch! Yet something to improve:
+--GNUxLScWaSBFpiDm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v5.17 next-20220330]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+On Wed, Mar 30, 2022 at 10:06:24PM +0800, Jiaxin Yu wrote:
+> On Wed, 2022-03-30 at 13:30 +0100, Mark Brown wrote:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mars-Chen/CHROMIUM-arm64-dts-qcom-Add-sc7180-gelarshie/20220330-171139
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-randconfig-r032-20220330 (https://download.01.org/0day-ci/archive/20220330/202203302254.6kSD2Eo4-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 0f6d9501cf49ce02937099350d08f20c4af86f3d)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/18677c7abfdfc9a72daa7cfc3011314b098b361a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Mars-Chen/CHROMIUM-arm64-dts-qcom-Add-sc7180-gelarshie/20220330-171139
-        git checkout 18677c7abfdfc9a72daa7cfc3011314b098b361a
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+> > Making a previously optional property required means that systems
+> > that
+> > previously worked may stop working unless they update their DT, DTs
+> > may
+> > be distributed separately to the kernel and perhaps even baked into
+> > firmware or similar.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> Thank you for your detailed answer. I should keep the driver's behavior
+> consistent with the description of dt-bindings. The "mediatek,hdmi-
+> codec" needs to be set as the required property. Is my understanding
+> right?
 
-All errors (new ones prefixed by >>):
+The binding document and code should match so if one is changed the
+other needs to be changed too.
 
-   In file included from arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts:10:
->> arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi:9:10: fatal error: 'sc7180-trogdor-mipi-camera.dtsi' file not found
-   #include "sc7180-trogdor-mipi-camera.dtsi"
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
+In theory we should never change a previously optional property to
+required which would mean that the code should be updated to reflect the
+binding document, however sometimes the DT isn't actually used as a
+stable intereface by anything for a given property or device type so we
+can get away with changing things.
 
+--GNUxLScWaSBFpiDm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-vim +9 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+-----BEGIN PGP SIGNATURE-----
 
-   > 9	#include "sc7180-trogdor-mipi-camera.dtsi"
-    10	
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJEaAoACgkQJNaLcl1U
+h9AhxQf+PZuCmGnFAmuUHNlVpmiRjr++vB0m1T22WhLGrda5HR7LQ87SMHwwffi9
+xnkVrr30xgbSxZy7Sn5nfjPAo7EfnomIxlDu50xmlNM5nXoIchxDl83NiGRcHoWT
+RfiId1J9P5ztudpTLcVLbj+uN5rLunutEkcHBWBxKymDy8wLA0nIX9fsER8xk8Zo
+L40Yv45UohIvFclHx21U+eBGenN5kJKih02NQTvbcoy2Cjh/iMCWPprQLpjpY5s8
+s/8dnyUGWx9SUBPfJJdtecq3riFE8MbQQrRLi1P+CaOfIonzYv1L0yEe5+7kBQHR
+WZaz1EZs9fORae+t52imAuWFVCd0kQ==
+=UCGf
+-----END PGP SIGNATURE-----
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+--GNUxLScWaSBFpiDm--
