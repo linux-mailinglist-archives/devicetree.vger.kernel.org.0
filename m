@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 738CB4EC9E4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCBB4ECA19
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 18:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348966AbiC3Qqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 12:46:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38318 "EHLO
+        id S1349082AbiC3Q4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 12:56:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348975AbiC3Qqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:46:32 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B458B1E5200
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:44:45 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id c10so24290046ejs.13
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 09:44:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yHBfMl6iM7258r0O2Jco9pafktxB1pt6+1WqgBzk+vg=;
-        b=KLyLdtoSrb3fmaMJiq0IipYP8LMdhy6mILKXf36PQRWK5lDC7m6Tb2FhMsjzrPHtJt
-         UvI8C8XDTcE5qrh1h1bncRLDNRnYOso8de8xGpuuhnsXE13LDOZjgPaVJJNQj84fiGXI
-         5dQFIk8CLxRRJjk7ngUuZPx13i9vpUcixttW3CzcnvlwrLZRS2SLTXTSfpZKWJ8Cw4vL
-         +9uubnbTntHsZIBPRPNpMmsNbguw6kcswbWpc6KNZ9UmrBXIBJDMgiZFiMWnEgQy5Qx/
-         pReB7fiyXYmWm6yGOoy1lCCtUJ79qTZd4pwWOL6C0RR29CiKxOYy5Y+Ye3AKycvTbBIN
-         iOJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yHBfMl6iM7258r0O2Jco9pafktxB1pt6+1WqgBzk+vg=;
-        b=SoAwito0OLHxeHmQanXWchHyUhN9QICHbPvuBoQoC2tcKH/EyWP8RTSnB/zL3lesNS
-         oYlvuBHewC4QmneBRfgDN3z5lAsUvIZd+E6JEpCSKwEk0ruDveU7Q3r6q1ADtBDsiHKt
-         5aCBrT3pVl6XrAMW8wWxQLiy3pdJyQAFMimmDjhOo/gwTr/1Il0aadq1WUQEAhUnz8B+
-         PQVeRiS/yU00RZnqyi3/AhwzIUUJfj+GTNwkvk0opdGYgqhv5xk14345CsQ/4pog1TjZ
-         ZTVOA49HomaEIoBCq4cjKjQGBgLf+ojjAQA1gRomzGQLQjXok/Hd0EmHw/wZCM5FFiky
-         Cz4A==
-X-Gm-Message-State: AOAM532kKoE86ixFeVNSxtlIjUzYxNq0e6LfrgxBNilaJY1cuAMiCWFg
-        PWPfBvGQKIhMnpoImgndIu8Bjg==
-X-Google-Smtp-Source: ABdhPJywV3uexnsqSnhWXlwW2C6kDd0vY5WPPQ+rsQ3XzeorjnRj1l22TFs3ki+OTaR+h4z7XUNuKw==
-X-Received: by 2002:a17:906:32d0:b0:6ce:e1cf:3f2e with SMTP id k16-20020a17090632d000b006cee1cf3f2emr449876ejk.214.1648658683796;
-        Wed, 30 Mar 2022 09:44:43 -0700 (PDT)
-Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id l2-20020a1709060cc200b006d3d91e88c7sm8492441ejh.214.2022.03.30.09.44.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 09:44:43 -0700 (PDT)
-Message-ID: <064271f4-d775-279c-0aa2-c9e23194bc61@linaro.org>
-Date:   Wed, 30 Mar 2022 18:44:42 +0200
+        with ESMTP id S235540AbiC3Q4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 12:56:11 -0400
+X-Greylist: delayed 545 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Mar 2022 09:54:22 PDT
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C71B27143;
+        Wed, 30 Mar 2022 09:54:21 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1648658714; bh=FcWw9Uk/r4WaK0fxaOvlIHfQF0QAszv5h5nSfagPCsc=;
+        h=From:To:Cc:Subject:Date;
+        b=N2nBqTBORZ9g3fKPtDc13YTkCa69C5+lS47eKXJAoKn3fkY51SzpD0SEYaEqhyL2B
+         lTFaR9l/qMCfEd8CgOjN1KbuP+KAE9OZbdGljkCy8aWsPL1UUWaofLO2GUJ29i1D2K
+         aK5Gmz+Ts221PkrI+63GWDz3cUsDS55sFQH5kPk0=
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
+Subject: [PATCH 0/2] Apple ADMAC driver
+Date:   Wed, 30 Mar 2022 18:44:56 +0200
+Message-Id: <20220330164458.93055-1-povik+lin@cutebit.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
-Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
- <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
- <20220315190733.lal7c2xkaez6fz2v@skbuf>
- <deed2e82-0d93-38d9-f7a2-4137fa0180e6@canonical.com>
- <20220316101854.imevzoqk6oashrgg@skbuf>
- <b45dabe9-e8b6-4061-1356-4e5e6406591b@canonical.com>
- <YkR9NKec1YR7VGOy@shell.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YkR9NKec1YR7VGOy@shell.armlinux.org.uk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 17:54, Russell King (Oracle) wrote:
->>
->> These are different. This is an example how to model the input clock to
->> the device being described in the bindings. This is not an example how
->> to use the clock provider, like you created here. The input clock
->> sometimes is defined in Exynos clock controller, sometimes outside. The
->> example there shows the second case - when it has to come outside. It's
->> not showing the usage of clocks provided by this device, but I agree
->> that it also might be trivial and obvious. If you think it is obvious,
->> feel free to comment/send a patch.
-> 
-> Why is whether something is an input or output relevant? One can quite
-> rightly argue that SFPs are both input and output. :)
-> 
+Hi,
 
-I don't mind removing that example. Input - in the case of these
-bindings - is quite specific. Output is opposite, not specific and can
-vary, you can enable/disable, change frequency.
+for your review I am submitting a driver for Audio DMA Controller on
+recent Apple SoCs.
 
-Discussion was two weeks ago, so all emails will bounce. :)
+One note I want to leave: The docs appear to be wrong on the residue
+semantics of device_tx_status. They say "In the case of a cyclic
+transfer, it should only take into account the current period."
+But e.g. ALSA expects the residue to be of the full buffer.
 
-Best regards,
-Krzysztof
+Martin
+
+Martin Povišer (2):
+  dt-bindings: dma: Add apple,admac binding
+  dmaengine: apple-admac: Add Apple ADMAC driver
+
+ .../devicetree/bindings/dma/apple,admac.yaml  |  73 ++
+ MAINTAINERS                                   |   2 +
+ drivers/dma/Kconfig                           |   8 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/apple-admac.c                     | 799 ++++++++++++++++++
+ 5 files changed, 883 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/apple,admac.yaml
+ create mode 100644 drivers/dma/apple-admac.c
+
+-- 
+2.33.0
+
