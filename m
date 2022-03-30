@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 539474EBC72
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744514EBC86
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:17:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233372AbiC3IPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 04:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36942 "EHLO
+        id S244177AbiC3ISd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 04:18:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244155AbiC3IPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:15:16 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D24B9F
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:13:28 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id qa43so39849357ejc.12
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:13:28 -0700 (PDT)
+        with ESMTP id S244261AbiC3ISY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:18:24 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C073225E9
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:16:36 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id g22so12370986edz.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:16:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nRZKA6T0jUNwrROUPd9y6kJn8BOQ62nOT4hk3Y6l+nI=;
-        b=EkzvN6fKET4X8OB7uUgPomYkRESjApXJvSKKV9YFpJ7q0S/OIjgJpwC59/N3w8I2yd
-         Z9uBcC8dBFxJG3DaaJUdts5eeaUNLzbE56rCAUSmVRpgOjwsn7J+NE1rcRZupNrNdvH4
-         AeCDDBfMq0UYFBp2XFuuXy1ux1xKh6j153LU2FFNCVlo3yme3QPVg2cVswRtrMGcUtd+
-         96CX3ey1nTiAmKddLc1YGCKdD6jNc/EuI9SnmmGorLZiqv9+GVj2Dz1BKq9aZ6HJ++qc
-         1gPjT7/nBYeo96B/ml3qMSYq9OW5xs2lqJCEZqfuukOzyNiX70DIWhoUS0ba9WKT4lJJ
-         uHXg==
+        bh=c5MATGVQDJwQFK7qd2qyqbaNs3dS2C3cMFAz3zjfwgw=;
+        b=GDhkESkYjCS1H8dz+HiRG2ZxsCt3sGDRO6gp3mAPmaQHoZECIBfG+FsOSjDgZZJOxP
+         rU0Vd5Wz5E6XY54mxgWVD7wBi8NNEJazhBFE1re13XLYJ5BtINtle2wE46LOnCoUGZH+
+         CO6XzyXkUr7h2oVqBf2Nr4Ob3BqzbUp/lO/mu9R0wjOq4aDnh8KQK6HzwvBi0HmCkcUW
+         X5NjYNt8Ws4cTm4OJJVq69vCuilsxolEp/kHdYORuENJhv7Nejio1ltipph2OtL2VsvN
+         uI6aZtKapBitpYiIjPjKvxXS9pegIV3YPRlYnINLqiLay8luVwW6WEsJqG9yetH7VZah
+         /+4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=nRZKA6T0jUNwrROUPd9y6kJn8BOQ62nOT4hk3Y6l+nI=;
-        b=P7RoyktXYOzWzMFjARolQ5pdSxQe1yFBj8JmgBAXwXFfIo6PwU67Pzt9eGkUPKRsbr
-         PIklB4fq+tozU+dbduDAOQrj55fqg8l3mpsGiiD/mxGZdikof1mM+WiHJvo/xXHMNkxk
-         jIUDWAUbLNnwat+ibXUJ7fop5oYv9BuJJLA+GPVKCEbNCWMqjD8yZzV/lluIbQIli7X0
-         pmk15FSOGmj96TSJiqzwhrAh6orsx20XX9xPHs/kw2h/AuINmntvxZOQP3MecmFPz/5d
-         7blWF9xVXCyaH6EDIr/MA6woLyt45wKAaoS+w/lHJ+Tz6MIU571AZx1qyC8/en5c5p+G
-         4zJg==
-X-Gm-Message-State: AOAM533QnjcOTzBfrU13PotrK9SI+5wGhQS8kwz5sOq0xzKTdsErdBhG
-        fO5grJmLNFF7pHY+3meAmPrSLw==
-X-Google-Smtp-Source: ABdhPJzF1fmIp0//f/EtnkUm/3SZLsTw7eMteeHdAxAYHa6r7GpwayTjwmaRzCHyvhuZECOCqICiAA==
-X-Received: by 2002:a17:906:c1c6:b0:6d5:cc27:a66c with SMTP id bw6-20020a170906c1c600b006d5cc27a66cmr39754951ejb.650.1648628006852;
-        Wed, 30 Mar 2022 01:13:26 -0700 (PDT)
+        bh=c5MATGVQDJwQFK7qd2qyqbaNs3dS2C3cMFAz3zjfwgw=;
+        b=NZh7t5PEOB8PB4g4VfrxYiN4KZwv9s8QuFPt0VeM7BbL8tGvbMtw5XFmBUQhVNLMVV
+         O+pWjeLRG+RNw+aVrVK0+jZEeE8FmP90e0/JHMo6Etc0Cfbhw00h+jVGLcUETLt4O9gO
+         keqhntX45NST/MKruJkYnDK3v5P3Oq5I/XROn+E/DF082w3kYOEagXupFXmpuGWbpq2/
+         cqGUPpLhFnqImgfzIa3fQfywaXyiewD8vujjsLts1uEEgEOTTGXty49DW421KNGiWcro
+         cU8rfFJ+/C3Er5rZUbaf2iZNZO2TG1bXG7UZnrHWfIAA1Ow96li1qOxCjIb/fz0RuYLO
+         VlTQ==
+X-Gm-Message-State: AOAM533IaJC8OORYA06PAmbFxbzv3v1DZFJp9zNIKm3fiWYGOMaNTqK5
+        XolPWIRTMc7XTThgqmS/ywWbsw==
+X-Google-Smtp-Source: ABdhPJzBi8Rv2u5Cy9seMaIQ9cb+7ptzf4YpSV82te1jk8iqv0I2vrY0biYg3drXLedjzq/RpRzhRQ==
+X-Received: by 2002:a05:6402:d0e:b0:418:f011:275e with SMTP id eb14-20020a0564020d0e00b00418f011275emr9218070edb.323.1648628195327;
+        Wed, 30 Mar 2022 01:16:35 -0700 (PDT)
 Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id u19-20020a170906125300b006ceb043c8e1sm7968551eja.91.2022.03.30.01.13.25
+        by smtp.gmail.com with ESMTPSA id o2-20020a50d802000000b00410d7f0c52csm9554775edj.8.2022.03.30.01.16.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 01:13:26 -0700 (PDT)
-Message-ID: <ecc821cb-4dd0-48e6-668d-45c178efbbf0@linaro.org>
-Date:   Wed, 30 Mar 2022 10:13:25 +0200
+        Wed, 30 Mar 2022 01:16:34 -0700 (PDT)
+Message-ID: <c8de5e44-6d8f-2865-1615-b3c61b90e6fc@linaro.org>
+Date:   Wed, 30 Mar 2022 10:16:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 5/5] dt-bindings: phy: uniphier: Clean up clock-names
- and reset-names using compatible string
+Subject: Re: [PATCH v2 1/2] dt-bindings: serial: uniphier: Use maxItems for a
+ single clock
 Content-Language: en-US
 To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1648617651-9004-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1648617651-9004-6-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1648617338-8600-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1648617338-8600-2-git-send-email-hayashi.kunihiko@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648617651-9004-6-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1648617338-8600-2-git-send-email-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,85 +79,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 07:20, Kunihiko Hayashi wrote:
-> Instead of "oneOf:" choices, use "allOf:" and "if:" to define clock-names
-> and reset-names that can be taken by the compatible string.
-> 
-> The order of clock-names and reset-names doesn't change here.
+On 30/03/2022 07:15, Kunihiko Hayashi wrote:
+> 'maxItems' is preferred for a single entry, not 'minItems'.
 > 
 > Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  .../phy/socionext,uniphier-ahci-phy.yaml      | 73 ++++++++++++------
->  .../phy/socionext,uniphier-pcie-phy.yaml      | 37 ++++++---
->  .../phy/socionext,uniphier-usb3hs-phy.yaml    | 75 +++++++++++++-----
->  .../phy/socionext,uniphier-usb3ss-phy.yaml    | 77 ++++++++++++++-----
->  4 files changed, 188 insertions(+), 74 deletions(-)
+>  .../devicetree/bindings/serial/socionext,uniphier-uart.yaml     | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
-> index 14f7579e7daa..61d9306e1852 100644
-> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
-> @@ -30,33 +30,62 @@ properties:
->      minItems: 1
->      maxItems: 2
->  
-> -  clock-names:
-> -    oneOf:
-> -      - items:          # for PXs2
-> -          - const: link
-> -      - items:          # for Pro4
-> -          - const: link
-> -          - const: gio
-> -      - items:          # for others
-> -          - const: link
-> -          - const: phy
-> +  clock-names: true
->  
->    resets:
->      minItems: 2
->      maxItems: 6
->  
-> -  reset-names:
-> -    oneOf:
-> -      - items:          # for Pro4
-> -          - const: link
-> -          - const: gio
-> -          - const: phy
-> -          - const: pm
-> -          - const: tx
-> -          - const: rx
-> -      - items:          # for others
-> -          - const: link
-> -          - const: phy
-> +  reset-names: true
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: socionext,uniphier-pro4-ahci-phy
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: link
-> +            - const: gio
-> +        reset-names:
-> +          items:
-> +            - const: link
-> +            - const: gio
-> +            - const: phy
-> +            - const: pm
-> +            - const: tx
-> +            - const: rx
 
-Constrain also everywhere clocks and resets, so here should be:
-  resets:
-    minItems: 6
-    maxItems: 6
 
-etc.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
