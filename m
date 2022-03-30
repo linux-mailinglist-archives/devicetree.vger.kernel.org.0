@@ -2,155 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 769344EBD6D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA9624EBDD0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 11:41:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240796AbiC3JSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 05:18:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47532 "EHLO
+        id S244903AbiC3JnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 05:43:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244719AbiC3JR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:17:58 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D020F252A6;
-        Wed, 30 Mar 2022 02:16:12 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 30 Mar 2022 18:16:11 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id E3D2D2058443;
-        Wed, 30 Mar 2022 18:16:11 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 30 Mar 2022 18:16:11 +0900
-Received: from [10.212.182.122] (unknown [10.212.182.122])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id AE3D5B62B7;
-        Wed, 30 Mar 2022 18:16:10 +0900 (JST)
-Subject: Re: [PATCH v2 5/5] dt-bindings: phy: uniphier: Clean up clock-names
- and reset-names using compatible string
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1648617651-9004-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1648617651-9004-6-git-send-email-hayashi.kunihiko@socionext.com>
- <ecc821cb-4dd0-48e6-668d-45c178efbbf0@linaro.org>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <076c1292-053e-759d-3e6f-c262093d9d1c@socionext.com>
-Date:   Wed, 30 Mar 2022 18:16:10 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S244898AbiC3JnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 05:43:22 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1C2265E96;
+        Wed, 30 Mar 2022 02:41:37 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 90D1E5C0159;
+        Wed, 30 Mar 2022 05:41:36 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 30 Mar 2022 05:41:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-transfer-encoding:content-type:date:date:from
+        :from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to; s=fm1; bh=Xqma4VmLIJGXDmH+JdobTx8XzROZ0i
+        KirVagnNvxFNw=; b=VFbhlHH/uZRBf5//YkaJku0wlUezn1Ke0ulrK4wGmdoGly
+        cKFbGsrn4/2XhKNXrMel0bzysPc3Q5jlRaDd8hmxfiwX2g48xDB2VoAAU5AHqgap
+        mwJDnUeinUtwi37KBHpStSy3eflu43zIsxNt9KJi2gZvdpVoPwisKG9kUhLWFAgg
+        eSbOJNBOqJg3SLTBWDTC5fhsQVqGwu6t+EZG8mzh9fKTem7rQcD28/N3RPUgLS87
+        kpBYKSyXjVmOn8Mx842NO5QRU9Xmmz+vMU2Ah2uTJ3tVeH7N4MB3S8asBbTfiSLj
+        gXT2kcmGomQsU51SlIkO9PLh0/V95MnJalBrlvhA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Xqma4V
+        mLIJGXDmH+JdobTx8XzROZ0iKirVagnNvxFNw=; b=NCqSl7dP1dOGefZpoQFvtH
+        +8KiLcD1sqlo/zwdR+XSpz54UZQoJlYyiuG1z5tRapegdvjiiBUbDrMsJWpdvQsh
+        LvgQSj5wKEINfI2eBx3Aw1U4gfe2+TaD7QanCz0jb1UhcebdakKpSYnIeg7S6LkS
+        orb3c1F4TSQ4J5H8fF9MkgJPvSEFzTR82tdIZFZqKx3NYo44yCeHNevZQNDVVTGB
+        9McaW1Y4RMYv0vrzczxafJ9VrEtjfxvmvw/BMH2y8aYTVjjAtFI5L21YF0WF0naa
+        CG8CYrc738FeEIE/+RC5hK5T/mzhVPH1AzWnBoa60l4Q6cvr8qMuVB7IaZPB4ntQ
+        ==
+X-ME-Sender: <xms:0CVEYl1yAFG77CgWTBR846OJnQoI3jfqaGwLc7CUn3Ma120BsU1DRQ>
+    <xme:0CVEYsFboj_h3E44SAmjYUUf_8yfPnWMYSrUEGU7IFpR0BYfZjq3YTHEsGZJA5K22
+    5pxsZwv9-NSbnmD53c>
+X-ME-Received: <xmr:0CVEYl7P3OEN_cW3BjVPjepaoiFNVxXm7fSw4z4wN7wSD3DBm3-JMhQe9eklhhuZdm6_oVlk9WQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeivddgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgtggfgsehtqhertd
+    ertdejnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
+    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepheetfefgjeeuje
+    dtgedvgfeghfeigfehffdvffduveevteejudfhudekudetveejnecuvehluhhsthgvrhfu
+    ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhish
+    htrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:0CVEYi0r3oDUs1S_1-Gdv_W5rcxZjlMB4XPCn5nuum_kFNKU2ZnZvg>
+    <xmx:0CVEYoGUIokerDL639d4RmHrnClZEi5cRLZuUvk-WfXWzxEuBtHysQ>
+    <xmx:0CVEYj-997oq45ngahrRIu8VXtm6tXm0g3iKDW3jk4sEcnR6HCXbTw>
+    <xmx:0CVEYm-thA6MB0xnu8MgUy-DnhhoG3CGKLxo420J6pIrO23E5W3LrQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 30 Mar 2022 05:41:29 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     lgirdwood@gmail.com, robh+dt@kernel.org, kernel@pengutronix.de,
+        lee.jones@linaro.org, broonie@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, geert@linux-m68k.org,
+        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+        alistair23@gmail.com, s.hauer@pengutronix.de, andreas@kemnade.info,
+        linux@roeck-us.net, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        amitk@kernel.org, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v20 0/4] Add support for the silergy,sy7636a
+Date:   Wed, 30 Mar 2022 19:41:22 +1000
+Message-Id: <20220330094126.30252-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.35.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <ecc821cb-4dd0-48e6-668d-45c178efbbf0@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 2022/03/30 17:13, Krzysztof Kozlowski wrote:
-> On 30/03/2022 07:20, Kunihiko Hayashi wrote:
->> Instead of "oneOf:" choices, use "allOf:" and "if:" to define clock-names
->> and reset-names that can be taken by the compatible string.
->>
->> The order of clock-names and reset-names doesn't change here.
->>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> ---
->>   .../phy/socionext,uniphier-ahci-phy.yaml      | 73 ++++++++++++------
->>   .../phy/socionext,uniphier-pcie-phy.yaml      | 37 ++++++---
->>   .../phy/socionext,uniphier-usb3hs-phy.yaml    | 75 +++++++++++++-----
->>   .../phy/socionext,uniphier-usb3ss-phy.yaml    | 77 ++++++++++++++-----
->>   4 files changed, 188 insertions(+), 74 deletions(-)
->>
->> diff --git
->> a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
->> b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
->> index 14f7579e7daa..61d9306e1852 100644
->> ---
->> a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
->> +++
->> b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
->> @@ -30,33 +30,62 @@ properties:
->>       minItems: 1
->>       maxItems: 2
->>
->> -  clock-names:
->> -    oneOf:
->> -      - items:          # for PXs2
->> -          - const: link
->> -      - items:          # for Pro4
->> -          - const: link
->> -          - const: gio
->> -      - items:          # for others
->> -          - const: link
->> -          - const: phy
->> +  clock-names: true
->>
->>     resets:
->>       minItems: 2
->>       maxItems: 6
->>
->> -  reset-names:
->> -    oneOf:
->> -      - items:          # for Pro4
->> -          - const: link
->> -          - const: gio
->> -          - const: phy
->> -          - const: pm
->> -          - const: tx
->> -          - const: rx
->> -      - items:          # for others
->> -          - const: link
->> -          - const: phy
->> +  reset-names: true
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: socionext,uniphier-pro4-ahci-phy
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          items:
->> +            - const: link
->> +            - const: gio
->> +        reset-names:
->> +          items:
->> +            - const: link
->> +            - const: gio
->> +            - const: phy
->> +            - const: pm
->> +            - const: tx
->> +            - const: rx
-> 
-> Constrain also everywhere clocks and resets, so here should be:
->    resets:
->      minItems: 6
->      maxItems: 6
-
-If I put the constraint here, it would conflict with the original one.
-Should I also replace the original resets
-
-     resets:
-       minItems: 2
-       maxItems: 6
-
-with "resets: true"?
-
-Thank you,
-
----
-Best Regards
-Kunihiko Hayashi
+v20:=0D
+ - Rebase on master=0D
+ - Remove merged patches=0D
+ - Fixup Kconfig selection based on previous discussions=0D
+v19:=0D
+ - Rebase on linux-next=0D
+v18:=0D
+ - Rebase=0D
+v17:=0D
+ - Rebase and fix build issues=0D
+v16:=0D
+ - Improve vdd regulator comments=0D
+v15:=0D
+ - Address comments on the patches=0D
+v14:=0D
+ - Merge the thermal driver and hwmon=0D
+v13:=0D
+ - Address comments on thermal driver=0D
+ - Rebase on master (without other patches)=0D
+v12:=0D
+ - Rebase=0D
+v11:=0D
+ - Address comments on hwmon=0D
+ - Improve "mfd: simple-mfd-i2c: Add a Kconfig name" commit message=0D
+v10:=0D
+ - Use dev_get_regmap() instead of dev_get_drvdata()=0D
+v9:=0D
+ - Convert to use the simple-mfd-i2c instead=0D
+=0D
+Alistair Francis (4):=0D
+  mfd: silergy,sy7636a: Add config option=0D
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a=0D
+  ARM: dts: imx7d-remarkable2: Enable silergy,sy7636a=0D
+  ARM: dts: imx7d-remarkable2: Enable lcdif=0D
+=0D
+ arch/arm/boot/dts/imx7d-remarkable2.dts | 136 ++++++++++++++++++++++++=0D
+ arch/arm/configs/imx_v6_v7_defconfig    |   3 +=0D
+ drivers/hwmon/Kconfig                   |   1 +=0D
+ drivers/mfd/Kconfig                     |  12 ++-=0D
+ drivers/regulator/Kconfig               |   1 +=0D
+ 5 files changed, 152 insertions(+), 1 deletion(-)=0D
+=0D
+-- =0D
+2.35.1=0D
+=0D
