@@ -2,99 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 535DB4EC47E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BF504EC4C6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 14:44:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345246AbiC3Ml2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 08:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48184 "EHLO
+        id S1345541AbiC3Mqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 08:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345118AbiC3MlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 08:41:04 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE897DF4B4;
-        Wed, 30 Mar 2022 05:30:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 26CF5B81C26;
-        Wed, 30 Mar 2022 12:30:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09B08C340EE;
-        Wed, 30 Mar 2022 12:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648643410;
-        bh=wMFzbAJ1w3I769LKcQvR0OeV1wjnRKl15NqgNqHjMPM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jooz5o26y2T7lucnkeTlKNAUZ6dwp3eoPFEtxeqpOFFaLNFKr5oWouRbAlRA4eOpU
-         R4GJT0rTVrF95heK9efPmE+2RKbqxBBb6hW6ti3o4Ay0qwCGCcQIlzuGopfhxvI9YH
-         6DVldjBxxNxJPB+tlFbmflOjHnioNZtEYaeFwyij4glVPevgwWQqQH7h7V9QCYoVdX
-         Z7ZLTB/E+L+UkqVieV7+/kkd6Z5x7SR+N4vLdwkNov88B3292HF1u+xGFVA0p8gpyH
-         boOy/oJPqR5/jKoH+gw1Xrxj22CghA0VjZ1uVJ8x2X38JcHH8koY+2XJ4zOiENX9/Q
-         x+1IXAavckAzw==
-Date:   Wed, 30 Mar 2022 13:30:02 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
-        <nfraprado@collabora.com>, robh+dt@kernel.org, tzungbi@google.com,
-        angelogioacchino.delregno@collabora.com, aaronyu@google.com,
-        matthias.bgg@gmail.com, trevor.wu@mediatek.com, linmq006@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: Re: [v7 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
- speaker
-Message-ID: <YkRNSoBKFvYYyZLu@sirena.org.uk>
-References: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
- <20220324064511.10665-3-jiaxin.yu@mediatek.com>
- <20220329223002.uo7kiemopkh7ak4x@notapiano>
- <dee3fbb7c9f0c3e1f11143db1d6fc4381cab827f.camel@mediatek.com>
+        with ESMTP id S1345442AbiC3Mqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 08:46:30 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B05A12639;
+        Wed, 30 Mar 2022 05:42:06 -0700 (PDT)
+Received: from mail-wm1-f52.google.com ([209.85.128.52]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1Mnq4Q-1oOrgK3Xoo-00pNsz; Wed, 30 Mar 2022 14:37:02 +0200
+Received: by mail-wm1-f52.google.com with SMTP id 123-20020a1c1981000000b0038b3616a71aso3374610wmz.4;
+        Wed, 30 Mar 2022 05:37:02 -0700 (PDT)
+X-Gm-Message-State: AOAM5329VsudarNVsU/isj96R066MCE5oM/3x1bNfWfP0EEFUDlMLBvz
+        wa45/BoAHiY/lTW1NEMfZjbVJ01WXugIsqBo09U=
+X-Google-Smtp-Source: ABdhPJwfbm/9CoKlDpNtm76gvIcQEp3gSMKylwBeJKNMGSZTpVIguvrW0qmNj3vv9gaQXiq1j2JGikp0Afv3xKtctks=
+X-Received: by 2002:a1c:f219:0:b0:38c:782c:3bb with SMTP id
+ s25-20020a1cf219000000b0038c782c03bbmr4174789wmc.94.1648643822447; Wed, 30
+ Mar 2022 05:37:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jOMai26txzsrB1Jf"
-Content-Disposition: inline
-In-Reply-To: <dee3fbb7c9f0c3e1f11143db1d6fc4381cab827f.camel@mediatek.com>
-X-Cookie: Two is company, three is an orgy.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220330074016.12896-1-krzysztof.kozlowski@linaro.org> <20220330074016.12896-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220330074016.12896-2-krzysztof.kozlowski@linaro.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 30 Mar 2022 14:36:46 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2rjs-_5kcqAz6C3qE=SGUt0JYSyNfyZd2-B6dvaEZNuQ@mail.gmail.com>
+Message-ID: <CAK8P3a2rjs-_5kcqAz6C3qE=SGUt0JYSyNfyZd2-B6dvaEZNuQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: update Krzysztof Kozlowski's email
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-nfc@lists.01.org, Networking <netdev@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:NX9yY4uMHG0E9LFC5gh1ZFGm6GY/SJk+3/osNw8K/JV4GnUK4nY
+ x1ANy0sl+GqOXKmcrk5eY9Vp6PPT7SDMZNCxm5zVZ4BgUFYYCUzGLvipXE7uvKlWSvzetJ+
+ pWS4HIuHCavNs7b5q1qF9nb0puNlrRjigvsxs+LegvegO7UWUmMi1U8JSUB7oFjIOpQ2jpI
+ HviknqcBRm7+hskX4xaSg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Auhe9cAV9A0=:Jmz/c2N6UlGWcjtthXjc6Y
+ A4KRmjeq/7Dxse2SWXB/GO3SHnbjmWXhZgC7AeXmKCWOxS7Gi9ECms+p9KGZZSm361chfud0i
+ MOLs6MFleCrUBErHMnxpmaiw9qUxH2W1f9//tgYlIlAh4kt5VOonVYlsqUDhVaYx8AEVMqqu5
+ 8AwlsP2ftyhYf29znfths8dQDyEWsxSMpsr5a2IQfH1/zdJXdUB4ULZ9ybnyT8gGsgLfr9g/1
+ 6JwrIfEegz1w5SgVQgrQqXAe5OOGpPyO54lOyj4XXRdzt47TDzt3jb8VgD2nejDXNWdsU8xrO
+ lagk5OqpWCTbGRnoSYQH8uywlrJwyUAvJzU8g8QzEXzdraunxwMCbx6qYe+HgV1cPvdHNY9xN
+ 4XQ6KuEdB5h+piCRQ+dk3dYEENl53c4e4hPMoXV19GVBfeaRisXJtiBs/D0at6wATm1fRoSfh
+ tx9BHrvxDjSmE217ASoMG2Ev+aVIGc2evCGBHMa2JUCWN1Jv4F58ZwuBnZdPtotmuqaCyWofg
+ BTmtyai+8SDAFQG+8cxYoPrFAq3TRyxHNVSvNmr7zblBVDTxmlAVB23HSimgiy9Roy4uFqn9r
+ aOICQnXDpsRQa3muaXmbJtkQ4Y979FifO1Cf6Qt7aCIvkdxfQ3tXMc3S+tz0pCTTsBdL5oyh6
+ DH2VEqscKNj9rTpFg3geDzOfvfqJnGpE0H9+269VpMiacqKiLsCkBj78p0cptAUntxBc=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Mar 30, 2022 at 9:40 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+>
+> Krzysztof Kozlowski's @canonical.com email stopped working, so switch to
+> generic @kernel.org account for all Devicetree bindings.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
---jOMai26txzsrB1Jf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Mar 30, 2022 at 10:33:06AM +0800, Jiaxin Yu wrote:
-
-> "(Although I think this would technicallybreak the ABI?)"
-> ==> I can't understand this question, could you help explain it in more
-> detail.
-
-Making a previously optional property required means that systems that
-previously worked may stop working unless they update their DT, DTs may
-be distributed separately to the kernel and perhaps even baked into
-firmware or similar.
-
---jOMai26txzsrB1Jf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJETUkACgkQJNaLcl1U
-h9DbEwf+JUOC5DnLCotwK80wPY+Rv+Fxpva35UGKpU+JgyM/o50OQtmaefr3nyZ7
-rItM7lPU81Hj7CJv0/hKjwsTmIVugxE7tOao1mBV9wLaStQfn2tx79wtLhiSYeNH
-Ig0F79Jy0tY/TnytxA7d8XYUzguiwLqQIBbC6VHIYfO08FdMyloI+3SILPHK1VM+
-SN23X+R9nG0CJImoNZMP1DDGodHkB9u+YhhB66cULenBpGMVNDKU1cPLTytp3nvP
-bDz70kaMHgFqMgY01LMzQ/1TBfRMm7isoInZl6nGUnDOo9pCzmctaPZyBgRQ5mod
-XaHgRucIShC8OJ16S0YCPs8CfbgvvQ==
-=2Po5
------END PGP SIGNATURE-----
-
---jOMai26txzsrB1Jf--
+Acked-by: Arnd Bergmann <arnd@arndb.de>
