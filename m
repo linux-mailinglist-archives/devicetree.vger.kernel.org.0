@@ -2,103 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8234EBC64
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:11:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 441814EBC65
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 10:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244107AbiC3ILx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 04:11:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56478 "EHLO
+        id S244062AbiC3IMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 04:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233372AbiC3ILw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:11:52 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210D81C5;
-        Wed, 30 Mar 2022 01:10:02 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7067B1BF209;
-        Wed, 30 Mar 2022 08:09:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1648627801;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QrXANGeblYePSDSjBqnjlhxDn2ylDzea37fL7T4lxpU=;
-        b=ROOjh6SGya4ePmk//V50fvCANd7x32XNyJWrG5ha4iYMCrDxOwfrXEaalbEFBbSe4i4kEN
-        /1QCIk73V6LQWTiZYbycmp5/NuenzcMK0x4UsIhaTIMzzXIl48ghlkkPMb8Dz1CUgSKKxJ
-        qm7+XpSM28re9125Q0NBD2dsRYJNipx9NK7FT6TL36oj6JQ4Q1exz21odxuwe4JmiWnuMz
-        mxcwn4kZ0Yvx2K8vPd1VaVmJC4dQbkV0OPcwv+lNIv7YZQ+RNLSvVOxoM47Yjq/Z9ZUx3O
-        A561NtdCHUg8BfCb1H3lOhiifECYKcOmmcHDnNbhchxC4n39AzySvKUeWjk+Qw==
-Date:   Wed, 30 Mar 2022 10:09:58 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mikhail Zhilkin <csharper2005@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        NOGUCHI Hiroshi <drvlabo@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Karim <Karimdplay@gmail.com>, M <x1@disroot.org>,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] mtd: parsers: add support for Sercomm partitions
-Message-ID: <20220330100958.57dc4d61@xps13>
-In-Reply-To: <20220329122016.4122899-1-csharper2005@gmail.com>
-References: <20220329122016.4122899-1-csharper2005@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S243258AbiC3IMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 04:12:21 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FB48120
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:10:35 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id qa43so39835631ejc.12
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 01:10:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2Bx33AfU/HrMdmUVrutEhCI4XtzN6zsWPn96wMBqWfQ=;
+        b=tB9ZV4xNkTjWB+JfChV1RXPd3jTDRvTlqgUVZYBP73R087rphFaYQlaPGbG10bTd8R
+         pIKQ6ekTnt11peeMgweBaV6uj4ndWFbf3VcF/DGmbU5F2D/yOES7wCXZSPPwwCFD5xsb
+         fCgioai7oet8z9ESFfxsTNgmSyNvezi0kmrxk1ygD6fHzUwhh4fj9ZC/l/7SUKlSu0bH
+         F8rOagD4youDcBgNXFC23Iqu4mLEld97nRv1ev2JFw0htFR0QzgyGSbsmbYOWhyeV2F0
+         F/kpEbXStSTMndFlA0o7wctslBAJLaldhLL9AU6MxBflZum8YWO/WNhG0+IUoCJo2RNJ
+         UJxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2Bx33AfU/HrMdmUVrutEhCI4XtzN6zsWPn96wMBqWfQ=;
+        b=sGBbN9/PEAedDYQ80/BcxvZbP8Z0oNYmuLKP+JnPsMzU//eR57GiLHqmJDyyXS5lv9
+         lp4atMnL9VLfcpu/DoFOhCXjEH15Yy4X52Q1bzpfFSH9MV+ro7rjNYlPwQSgIPUgsUQG
+         zKTW0E1nrVcOae33a1Tu8B5cUFk8jf6higvWnFLRR+5tlSNFDK8v59EzjeqNZIkx+l7q
+         jJUHqAFv7dLIymwKejBl2K36W/gefIBqAs5xTv+Bf+GLfae0Y8b2ZmX1ztY4eqsUiTFD
+         yXt8jrVnjH4pKrnaVNcZ5YZn0LGc3GhUxk0IEmwlsqUbUnB7KPsQB7njO0vfwOwbHnVg
+         ihag==
+X-Gm-Message-State: AOAM5331aMkzjXEEOzue9hp3rO76mxLftBOJotUkUK+TiOkMRxQY2XDy
+        awjNZwX00oNNvLV1mBIq+kP/pg==
+X-Google-Smtp-Source: ABdhPJyr3a3ngbzY3rpCE8sm/h/E4CpGMIzRZRj13oMVUUOM4QcQjBwxtlOdEeguU+Me2VirmtUfNA==
+X-Received: by 2002:a17:907:86a3:b0:6da:870c:af44 with SMTP id qa35-20020a17090786a300b006da870caf44mr38389614ejc.445.1648627834085;
+        Wed, 30 Mar 2022 01:10:34 -0700 (PDT)
+Received: from [192.168.0.162] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id b17-20020aa7dc11000000b00412ae7fda95sm1129147edu.44.2022.03.30.01.10.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Mar 2022 01:10:33 -0700 (PDT)
+Message-ID: <20a7dc75-93d9-dcb1-9f2a-b962a1f84d31@linaro.org>
+Date:   Wed, 30 Mar 2022 10:10:32 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 4/5] dt-bindings: phy: uniphier-usb3hs: Fix incorrect
+ clock-names and reset-names
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1648617651-9004-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1648617651-9004-5-git-send-email-hayashi.kunihiko@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1648617651-9004-5-git-send-email-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mikhail,
-
-csharper2005@gmail.com wrote on Tue, 29 Mar 2022 12:20:16 +0000:
-
-> This adds an MTD partition parser for the Sercomm partition table that
-> is used in some Beeline, Netgear and Sercomm routers.
->=20
-> The Sercomm partition map table contains real partition offsets, which
-> may differ from device to device depending on the number and location of
-> bad blocks on NAND.
->=20
-> Device tree example:
-> partitions {
-> 	compatible =3D "sercomm,sc-partitions", "fixed-partitions";
-> 	#address-cells =3D <1>;
-> 	#size-cells =3D <1>;
->=20
-> 	partition@0 {
-> 		label =3D "u-boot";
-> 		reg =3D <0x0 0x100000>;
-> 		scpart-id =3D <0>;
-> 		read-only;
-> 	};
-> };
-
-You'll need a DT binding patch and Rob's ack!
-
->=20
-> This is essentially the same code as proposed by NOGUCHI Hiroshi
-> <drvlabo@gmail.com> here:
-
-I would credit Hiroshi with a Suggested-by at least
-
-> https://github.com/openwrt/openwrt/pull/1318#issuecomment-420607394
-
-And use a Link: tag for this.
-
->=20
-> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
+On 30/03/2022 07:20, Kunihiko Hayashi wrote:
+> There is no clock-names and reset-names for Pro5 SoC, that should have two
+> properties, "gio" and "link" like usb3-ssphy.
+> 
+> And according to the existing PXs2 devicetree, the clock-names for PXs2 SoC
+> should have "link" and "phy", and minItems of clocks should be 2.
+> 
+> Fixes: 134ab2845acb ("dt-bindings: phy: Convert UniPhier USB3-PHY conroller to json-schema")
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
+>  .../phy/socionext,uniphier-usb3hs-phy.yaml       | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> index 33946efcac5e..1bbd164f2527 100644
+> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> @@ -31,12 +31,14 @@ properties:
+>      const: 0
+>  
+>    clocks:
+> -    minItems: 1
+> +    minItems: 2
+>      maxItems: 3
+>  
+>    clock-names:
+>      oneOf:
+> -      - const: link          # for PXs2
+> +      - items:               # for Pro5
+> +          - const: gio
+> +          - const: link
+>        - items:               # for PXs3 with phy-ext
 
+Similarly to our other discussion, it would be good to convert it to
+allOf:if:then: constraining it per compatible. The change itself is ok:
 
-Thanks,
-Miqu=C3=A8l
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
