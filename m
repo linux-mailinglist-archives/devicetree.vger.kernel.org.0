@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A3E4EBF21
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81F7B4EBF22
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240481AbiC3KsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 06:48:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57404 "EHLO
+        id S242310AbiC3KsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 06:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245631AbiC3KsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:48:16 -0400
+        with ESMTP id S241311AbiC3KsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:48:20 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119CE269379
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:46:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5C0269363
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:46:35 -0700 (PDT)
 Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1nZVqJ-0002Zn-6v; Wed, 30 Mar 2022 12:46:23 +0200
+        id 1nZVqJ-0002Zn-SK; Wed, 30 Mar 2022 12:46:23 +0200
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>
 Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -28,9 +28,9 @@ Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         patchwork-lst@pengutronix.de
-Subject: [PATCH v4 1/5] soc: imx: gpcv2: add PGC control register indirection
-Date:   Wed, 30 Mar 2022 12:46:16 +0200
-Message-Id: <20220330104620.3600159-2-l.stach@pengutronix.de>
+Subject: [PATCH v4 2/5] dt-bindings: power: add defines for i.MX8MP power domain
+Date:   Wed, 30 Mar 2022 12:46:17 +0200
+Message-Id: <20220330104620.3600159-3-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220330104620.3600159-1-l.stach@pengutronix.de>
 References: <20220330104620.3600159-1-l.stach@pengutronix.de>
@@ -49,185 +49,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PGC control registers in the shared (not per-PGC) region of the
-GPC address space have different offsets on i.MX8MP to make space for
-additional interrupt control registers.
+This adds the DT defines for the GPC power domains found on the
+i.MX8MP SoC.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- drivers/soc/imx/gpcv2.c | 43 ++++++++++++++++++++++++++++++-----------
- 1 file changed, 32 insertions(+), 11 deletions(-)
+ .../bindings/power/fsl,imx-gpcv2.yaml         |  2 ++
+ include/dt-bindings/power/imx8mp-power.h      | 29 +++++++++++++++++++
+ 2 files changed, 31 insertions(+)
+ create mode 100644 include/dt-bindings/power/imx8mp-power.h
 
-diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-index 3cb123016b3e..677c5c581521 100644
---- a/drivers/soc/imx/gpcv2.c
-+++ b/drivers/soc/imx/gpcv2.c
-@@ -184,9 +184,17 @@
+diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+index 01bdda167eef..747622bdc57b 100644
+--- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
++++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+@@ -28,6 +28,7 @@ properties:
+       - fsl,imx8mn-gpc
+       - fsl,imx8mq-gpc
+       - fsl,imx8mm-gpc
++      - fsl,imx8mp-gpc
  
- #define GPC_PGC_CTRL_PCR		BIT(0)
+   reg:
+     maxItems: 1
+@@ -57,6 +58,7 @@ properties:
+               include/dt-bindings/power/imx7-power.h for fsl,imx7d-gpc and
+               include/dt-bindings/power/imx8m-power.h for fsl,imx8mq-gpc
+               include/dt-bindings/power/imx8mm-power.h for fsl,imx8mm-gpc
++              include/dt-bindings/power/imx8mp-power.h for fsl,imx8mp-gpc
+             maxItems: 1
  
-+struct imx_pgc_regs {
-+	u16 map;
-+	u16 pup;
-+	u16 pdn;
-+	u16 hsk;
-+};
+           clocks:
+diff --git a/include/dt-bindings/power/imx8mp-power.h b/include/dt-bindings/power/imx8mp-power.h
+new file mode 100644
+index 000000000000..7c67689e4faf
+--- /dev/null
++++ b/include/dt-bindings/power/imx8mp-power.h
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
++/*
++ *  Copyright (C) 2020 Pengutronix, Sascha Hauer <kernel@pengutronix.de>
++ */
 +
- struct imx_pgc_domain {
- 	struct generic_pm_domain genpd;
- 	struct regmap *regmap;
-+	const struct imx_pgc_regs *regs;
- 	struct regulator *regulator;
- 	struct reset_control *reset;
- 	struct clk_bulk_data *clks;
-@@ -210,6 +218,7 @@ struct imx_pgc_domain_data {
- 	const struct imx_pgc_domain *domains;
- 	size_t domains_num;
- 	const struct regmap_access_table *reg_access_table;
-+	const struct imx_pgc_regs *pgc_regs;
- };
- 
- static inline struct imx_pgc_domain *
-@@ -249,14 +258,14 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
- 
- 	if (domain->bits.pxx) {
- 		/* request the domain to power up */
--		regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PUP_REQ,
-+		regmap_update_bits(domain->regmap, domain->regs->pup,
- 				   domain->bits.pxx, domain->bits.pxx);
- 		/*
- 		 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
- 		 * for PUP_REQ/PDN_REQ bit to be cleared
- 		 */
- 		ret = regmap_read_poll_timeout(domain->regmap,
--					       GPC_PU_PGC_SW_PUP_REQ, reg_val,
-+					       domain->regs->pup, reg_val,
- 					       !(reg_val & domain->bits.pxx),
- 					       0, USEC_PER_MSEC);
- 		if (ret) {
-@@ -278,11 +287,11 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
- 
- 	/* request the ADB400 to power up */
- 	if (domain->bits.hskreq) {
--		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
-+		regmap_update_bits(domain->regmap, domain->regs->hsk,
- 				   domain->bits.hskreq, domain->bits.hskreq);
- 
- 		/*
--		 * ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK, reg_val,
-+		 * ret = regmap_read_poll_timeout(domain->regmap, domain->regs->hsk, reg_val,
- 		 *				  (reg_val & domain->bits.hskack), 0,
- 		 *				  USEC_PER_MSEC);
- 		 * Technically we need the commented code to wait handshake. But that needs
-@@ -329,10 +338,10 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
- 
- 	/* request the ADB400 to power down */
- 	if (domain->bits.hskreq) {
--		regmap_clear_bits(domain->regmap, GPC_PU_PWRHSK,
-+		regmap_clear_bits(domain->regmap, domain->regs->hsk,
- 				  domain->bits.hskreq);
- 
--		ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK,
-+		ret = regmap_read_poll_timeout(domain->regmap, domain->regs->hsk,
- 					       reg_val,
- 					       !(reg_val & domain->bits.hskack),
- 					       0, USEC_PER_MSEC);
-@@ -350,14 +359,14 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
- 		}
- 
- 		/* request the domain to power down */
--		regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PDN_REQ,
-+		regmap_update_bits(domain->regmap, domain->regs->pdn,
- 				   domain->bits.pxx, domain->bits.pxx);
- 		/*
- 		 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
- 		 * for PUP_REQ/PDN_REQ bit to be cleared
- 		 */
- 		ret = regmap_read_poll_timeout(domain->regmap,
--					       GPC_PU_PGC_SW_PDN_REQ, reg_val,
-+					       domain->regs->pdn, reg_val,
- 					       !(reg_val & domain->bits.pxx),
- 					       0, USEC_PER_MSEC);
- 		if (ret) {
-@@ -442,10 +451,18 @@ static const struct regmap_access_table imx7_access_table = {
- 	.n_yes_ranges	= ARRAY_SIZE(imx7_yes_ranges),
- };
- 
-+static const struct imx_pgc_regs imx7_pgc_regs = {
-+	.map = GPC_PGC_CPU_MAPPING,
-+	.pup = GPC_PU_PGC_SW_PUP_REQ,
-+	.pdn = GPC_PU_PGC_SW_PDN_REQ,
-+	.hsk = GPC_PU_PWRHSK,
-+};
++#ifndef __DT_BINDINGS_IMX8MP_POWER_DOMAIN_POWER_H__
++#define __DT_BINDINGS_IMX8MP_POWER_DOMAIN_POWER_H__
 +
- static const struct imx_pgc_domain_data imx7_pgc_domain_data = {
- 	.domains = imx7_pgc_domains,
- 	.domains_num = ARRAY_SIZE(imx7_pgc_domains),
- 	.reg_access_table = &imx7_access_table,
-+	.pgc_regs = &imx7_pgc_regs,
- };
- 
- static const struct imx_pgc_domain imx8m_pgc_domains[] = {
-@@ -614,6 +631,7 @@ static const struct imx_pgc_domain_data imx8m_pgc_domain_data = {
- 	.domains = imx8m_pgc_domains,
- 	.domains_num = ARRAY_SIZE(imx8m_pgc_domains),
- 	.reg_access_table = &imx8m_access_table,
-+	.pgc_regs = &imx7_pgc_regs,
- };
- 
- static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
-@@ -804,6 +822,7 @@ static const struct imx_pgc_domain_data imx8mm_pgc_domain_data = {
- 	.domains = imx8mm_pgc_domains,
- 	.domains_num = ARRAY_SIZE(imx8mm_pgc_domains),
- 	.reg_access_table = &imx8mm_access_table,
-+	.pgc_regs = &imx7_pgc_regs,
- };
- 
- static const struct imx_pgc_domain imx8mn_pgc_domains[] = {
-@@ -895,6 +914,7 @@ static const struct imx_pgc_domain_data imx8mn_pgc_domain_data = {
- 	.domains = imx8mn_pgc_domains,
- 	.domains_num = ARRAY_SIZE(imx8mn_pgc_domains),
- 	.reg_access_table = &imx8mn_access_table,
-+	.pgc_regs = &imx7_pgc_regs,
- };
- 
- static int imx_pgc_domain_probe(struct platform_device *pdev)
-@@ -927,7 +947,7 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
- 	pm_runtime_enable(domain->dev);
- 
- 	if (domain->bits.map)
--		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
-+		regmap_update_bits(domain->regmap, domain->regs->map,
- 				   domain->bits.map, domain->bits.map);
- 
- 	ret = pm_genpd_init(&domain->genpd, NULL, true);
-@@ -953,7 +973,7 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
- 	pm_genpd_remove(&domain->genpd);
- out_domain_unmap:
- 	if (domain->bits.map)
--		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
-+		regmap_update_bits(domain->regmap, domain->regs->map,
- 				   domain->bits.map, 0);
- 	pm_runtime_disable(domain->dev);
- 
-@@ -968,7 +988,7 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
- 	pm_genpd_remove(&domain->genpd);
- 
- 	if (domain->bits.map)
--		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
-+		regmap_update_bits(domain->regmap, domain->regs->map,
- 				   domain->bits.map, 0);
- 
- 	pm_runtime_disable(domain->dev);
-@@ -1099,6 +1119,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
- 
- 		domain = pd_pdev->dev.platform_data;
- 		domain->regmap = regmap;
-+		domain->regs = domain_data->pgc_regs;
- 		domain->genpd.power_on  = imx_pgc_power_up;
- 		domain->genpd.power_off = imx_pgc_power_down;
- 
++#define IMX8MP_POWER_DOMAIN_MIPI_PHY1			0
++#define IMX8MP_POWER_DOMAIN_PCIE_PHY			1
++#define IMX8MP_POWER_DOMAIN_USB1_PHY			2
++#define IMX8MP_POWER_DOMAIN_USB2_PHY			3
++#define IMX8MP_POWER_DOMAIN_MLMIX			4
++#define IMX8MP_POWER_DOMAIN_AUDIOMIX			5
++#define IMX8MP_POWER_DOMAIN_GPU2D			6
++#define IMX8MP_POWER_DOMAIN_GPUMIX			7
++#define IMX8MP_POWER_DOMAIN_VPUMIX			8
++#define IMX8MP_POWER_DOMAIN_GPU3D			9
++#define IMX8MP_POWER_DOMAIN_MEDIAMIX			10
++#define IMX8MP_POWER_DOMAIN_VPU_G1			11
++#define IMX8MP_POWER_DOMAIN_VPU_G2			12
++#define IMX8MP_POWER_DOMAIN_VPU_VC8000E			13
++#define IMX8MP_POWER_DOMAIN_HDMIMIX			14
++#define IMX8MP_POWER_DOMAIN_HDMI_PHY			15
++#define IMX8MP_POWER_DOMAIN_MIPI_PHY2			16
++#define IMX8MP_POWER_DOMAIN_HSIOMIX			17
++#define IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP		18
++
++#endif
 -- 
 2.30.2
 
