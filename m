@@ -2,72 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E614ECD88
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 21:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671414ECDBB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 22:08:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240098AbiC3Tvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 15:51:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43174 "EHLO
+        id S236233AbiC3UDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 16:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243020AbiC3Tvg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 15:51:36 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A9E12CE2B;
-        Wed, 30 Mar 2022 12:49:50 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22UJnIgw086057;
-        Wed, 30 Mar 2022 14:49:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1648669758;
-        bh=Wxy1IwTpIUIfVJGOAq2NOfEI+2cbw3VlSeZRH56rW8M=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=UoJPVuBNI8m/ixKDfQugawBpaOyrVQYZLFWOFD03gjpDJlBPH8cKwO37t+M19l5Yl
-         Gmw6vNhEwLZqW4oe0dd9YnxdBahdOAzLBgLXZP/Xak8DUjosIBS0Nskfe3kmxhzSgx
-         E7banJMetcx2zpdREZKEf30l5/Vzffhy9CIelmNE=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22UJnIw9062750
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 30 Mar 2022 14:49:18 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 30
- Mar 2022 14:49:18 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 30 Mar 2022 14:49:17 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22UJnHrB010599;
-        Wed, 30 Mar 2022 14:49:17 -0500
-Date:   Thu, 31 Mar 2022 01:19:16 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>
-CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Potin Lai <potin.lai@quantatw.com>
-Subject: Re: [PATCH v4 11/11] mtd: spi-nor: aspeed: set the decoding size to
- at least 2MB for AST2600
-Message-ID: <20220330194916.olffkctxjhfqksvf@ti.com>
-References: <20220325100849.2019209-1-clg@kaod.org>
- <20220325100849.2019209-12-clg@kaod.org>
+        with ESMTP id S231866AbiC3UDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 16:03:21 -0400
+Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com [192.185.51.253])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87DE53B3C0
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 13:01:35 -0700 (PDT)
+Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
+        by gateway24.websitewelcome.com (Postfix) with ESMTP id 00CAA4003E
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 15:01:35 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id ZeTen65sC22u3ZeTenJbxH; Wed, 30 Mar 2022 14:59:34 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=OQjGvqorK7/g/+J6T4BKoUNC6ieXNGRyMFvlaC1kuuc=; b=MYQp1Qwj6IzRVOvh4MKognFZiU
+        AMVqXiZdxwBpXy1v1CtcHRNbBZ4UmS0xOPkY1nMMczWyH4OqyiXl+i1qGa+yZw4yBVfozQ9OGOkXU
+        +w4cFaYhrdxoNwDG39rBhh8A1zomCLRSy3myZNvgEY6EBE9khMZUvJAm78nKXE9bcUzrC7Z5ysVIH
+        vGwfKZn8HJJ3Ltt7a5TxDxJv0ifO+Dbm4O6BFLyiyKKMJA8UNPFmwzV9rXA5bywOWbpYZ8hNZVqUR
+        gTlvrTqjd2+NQnLS+keYPR2drHI7UnAumQZt8VFmPFaxYR3UE6F6bf7iX+fBvGwcTxf42vjvQvNG/
+        eTcjZuBg==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54578)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nZeTd-001V1L-QO; Wed, 30 Mar 2022 19:59:33 +0000
+Message-ID: <a6d2a293-ccfe-b919-c168-7d4f7143b623@roeck-us.net>
+Date:   Wed, 30 Mar 2022 12:59:32 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220325100849.2019209-12-clg@kaod.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/4] lib: add generic polynomial calculation
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220328112505.3025374-1-michael@walle.cc>
+ <20220328112505.3025374-2-michael@walle.cc>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220328112505.3025374-2-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nZeTd-001V1L-QO
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54578
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 3
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,71 +83,212 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 3/28/22 04:25, Michael Walle wrote:
+> Some temperature and voltage sensors use a polynomial to convert between
+> raw data points and actual temperature or voltage. The polynomial is
+> usually the result of a curve fitting of the diode characteristic.
+> 
+> The BT1 PVT hwmon driver already uses such a polynonmial calculation
+> which is rather generic. Move it to lib/ so other drivers can reuse it.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-> Subject: [PATCH v4 11/11] mtd: spi-nor: aspeed: set the decoding size to at least 2MB for AST2600
+For my reference:
 
-Nitpick: s/mtd: spi-nor: aspeed:/spi: aspeed:/
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-On 25/03/22 11:08AM, Cédric Le Goater wrote:
-> From: Potin Lai <potin.lai@quantatw.com>
-> 
-> In AST2600, the unit of SPI CEx decoding range register is 1MB, and end
-> address offset is set to the acctual offset - 1MB. If the flash only has
-> 1MB, the end address will has same value as start address, which will
-> causing unexpected errors.
-> 
-> This patch set the decoding size to at least 2MB to avoid decoding errors.
-> 
-> Tested:
-> root@bletchley:~# dmesg | grep "aspeed-smc 1e631000.spi: CE0 window"
-> [   59.328134] aspeed-smc 1e631000.spi: CE0 window resized to 2MB (AST2600 Decoding)
-> [   59.343001] aspeed-smc 1e631000.spi: CE0 window [ 0x50000000 - 0x50200000 ] 2MB
-> root@bletchley:~# devmem 0x1e631030
-> 0x00100000
-> 
-> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
-> [ clg : Ported on new spi-mem driver ]
-> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+I don't see who owns lib/, so I'll just take this patch through hwmon
+unless someone objects.
+
+Thanks,
+Guenter
+
 > ---
->  drivers/spi/spi-aspeed-smc.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>   include/linux/polynomial.h |  35 ++++++++++++
+>   lib/Kconfig                |   3 ++
+>   lib/Makefile               |   2 +
+>   lib/polynomial.c           | 108 +++++++++++++++++++++++++++++++++++++
+>   4 files changed, 148 insertions(+)
+>   create mode 100644 include/linux/polynomial.h
+>   create mode 100644 lib/polynomial.c
 > 
-> diff --git a/drivers/spi/spi-aspeed-smc.c b/drivers/spi/spi-aspeed-smc.c
-> index 660451667a39..227797e13997 100644
-> --- a/drivers/spi/spi-aspeed-smc.c
-> +++ b/drivers/spi/spi-aspeed-smc.c
-> @@ -466,6 +466,8 @@ static int aspeed_spi_set_window(struct aspeed_spi *aspi,
->   *   is correct.
->   */
->  static const struct aspeed_spi_data ast2500_spi_data;
-> +static const struct aspeed_spi_data ast2600_spi_data;
-> +static const struct aspeed_spi_data ast2600_fmc_data;
->  
->  static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
->  					 u32 local_offset, u32 size)
-> @@ -489,6 +491,17 @@ static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
->  			 chip->cs, size >> 20);
->  	}
->  
-> +	/*
-> +	 * The decoding size of AST2600 SPI controller should set at
-> +	 * least 2MB.
-> +	 */
-> +	if ((aspi->data == &ast2600_spi_data || aspi->data == &ast2600_fmc_data) &&
-> +	    size < SZ_2M) {
-> +		size = SZ_2M;
-> +		dev_info(aspi->dev, "CE%d window resized to %dMB (AST2600 Decoding)",
-> +			 chip->cs, size >> 20);
-> +	}
+> diff --git a/include/linux/polynomial.h b/include/linux/polynomial.h
+> new file mode 100644
+> index 000000000000..9e074a0bb6fa
+> --- /dev/null
+> +++ b/include/linux/polynomial.h
+> @@ -0,0 +1,35 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
+> + */
 > +
->  	aspeed_spi_get_windows(aspi, windows);
->  
->  	/* Adjust this chip window */
-> -- 
-> 2.34.1
-> 
+> +#ifndef _POLYNOMIAL_H
+> +#define _POLYNOMIAL_H
+> +
+> +/*
+> + * struct polynomial_term - one term descriptor of a polynomial
+> + * @deg: degree of the term.
+> + * @coef: multiplication factor of the term.
+> + * @divider: distributed divider per each degree.
+> + * @divider_leftover: divider leftover, which couldn't be redistributed.
+> + */
+> +struct polynomial_term {
+> +	unsigned int deg;
+> +	long coef;
+> +	long divider;
+> +	long divider_leftover;
+> +};
+> +
+> +/*
+> + * struct polynomial - a polynomial descriptor
+> + * @total_divider: total data divider.
+> + * @terms: polynomial terms, last term must have degree of 0
+> + */
+> +struct polynomial {
+> +	long total_divider;
+> +	struct polynomial_term terms[];
+> +};
+> +
+> +long polynomial_calc(const struct polynomial *poly, long data);
+> +
+> +#endif
+> diff --git a/lib/Kconfig b/lib/Kconfig
+> index 087e06b4cdfd..6a843639814f 100644
+> --- a/lib/Kconfig
+> +++ b/lib/Kconfig
+> @@ -737,3 +737,6 @@ config PLDMFW
+>   
+>   config ASN1_ENCODER
+>          tristate
+> +
+> +config POLYNOMIAL
+> +       tristate
+> diff --git a/lib/Makefile b/lib/Makefile
+> index 6b9ffc1bd1ee..89fcae891361 100644
+> --- a/lib/Makefile
+> +++ b/lib/Makefile
+> @@ -263,6 +263,8 @@ obj-$(CONFIG_MEMREGION) += memregion.o
+>   obj-$(CONFIG_STMP_DEVICE) += stmp_device.o
+>   obj-$(CONFIG_IRQ_POLL) += irq_poll.o
+>   
+> +obj-$(CONFIG_POLYNOMIAL) += polynomial.o
+> +
+>   # stackdepot.c should not be instrumented or call instrumented functions.
+>   # Prevent the compiler from calling builtins like memcmp() or bcmp() from this
+>   # file.
+> diff --git a/lib/polynomial.c b/lib/polynomial.c
+> new file mode 100644
+> index 000000000000..66d383445fec
+> --- /dev/null
+> +++ b/lib/polynomial.c
+> @@ -0,0 +1,108 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Generic polynomial calculation using integer coefficients.
+> + *
+> + * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
+> + *
+> + * Authors:
+> + *   Maxim Kaurkin <maxim.kaurkin@baikalelectronics.ru>
+> + *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> + *
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/polynomial.h>
+> +
+> +/*
+> + * Originally this was part of drivers/hwmon/bt1-pvt.c.
+> + * There the following conversion is used and should serve as an example here:
+> + *
+> + * The original translation formulae of the temperature (in degrees of Celsius)
+> + * to PVT data and vice-versa are following:
+> + *
+> + * N = 1.8322e-8*(T^4) + 2.343e-5*(T^3) + 8.7018e-3*(T^2) + 3.9269*(T^1) +
+> + *     1.7204e2
+> + * T = -1.6743e-11*(N^4) + 8.1542e-8*(N^3) + -1.8201e-4*(N^2) +
+> + *     3.1020e-1*(N^1) - 4.838e1
+> + *
+> + * where T = [-48.380, 147.438]C and N = [0, 1023].
+> + *
+> + * They must be accordingly altered to be suitable for the integer arithmetics.
+> + * The technique is called 'factor redistribution', which just makes sure the
+> + * multiplications and divisions are made so to have a result of the operations
+> + * within the integer numbers limit. In addition we need to translate the
+> + * formulae to accept millidegrees of Celsius. Here what they look like after
+> + * the alterations:
+> + *
+> + * N = (18322e-20*(T^4) + 2343e-13*(T^3) + 87018e-9*(T^2) + 39269e-3*T +
+> + *     17204e2) / 1e4
+> + * T = -16743e-12*(D^4) + 81542e-9*(D^3) - 182010e-6*(D^2) + 310200e-3*D -
+> + *     48380
+> + * where T = [-48380, 147438] mC and N = [0, 1023].
+> + *
+> + * static const struct polynomial poly_temp_to_N = {
+> + *         .total_divider = 10000,
+> + *         .terms = {
+> + *                 {4, 18322, 10000, 10000},
+> + *                 {3, 2343, 10000, 10},
+> + *                 {2, 87018, 10000, 10},
+> + *                 {1, 39269, 1000, 1},
+> + *                 {0, 1720400, 1, 1}
+> + *         }
+> + * };
+> + *
+> + * static const struct polynomial poly_N_to_temp = {
+> + *         .total_divider = 1,
+> + *         .terms = {
+> + *                 {4, -16743, 1000, 1},
+> + *                 {3, 81542, 1000, 1},
+> + *                 {2, -182010, 1000, 1},
+> + *                 {1, 310200, 1000, 1},
+> + *                 {0, -48380, 1, 1}
+> + *         }
+> + * };
+> + */
+> +
+> +/**
+> + * polynomial_calc - calculate a polynomial using integer arithmetic
+> + *
+> + * @poly: pointer to the descriptor of the polynomial
+> + * @data: input value of the polynimal
+> + *
+> + * Calculate the result of a polynomial using only integer arithmetic. For
+> + * this to work without too much loss of precision the coefficients has to
+> + * be altered. This is called factor redistribution.
+> + *
+> + * Returns the result of the polynomial calculation.
+> + */
+> +long polynomial_calc(const struct polynomial *poly, long data)
+> +{
+> +	const struct polynomial_term *term = poly->terms;
+> +	long total_divider = poly->total_divider ?: 1;
+> +	long tmp, ret = 0;
+> +	int deg;
+> +
+> +	/*
+> +	 * Here is the polynomial calculation function, which performs the
+> +	 * redistributed terms calculations. It's pretty straightforward.
+> +	 * We walk over each degree term up to the free one, and perform
+> +	 * the redistributed multiplication of the term coefficient, its
+> +	 * divider (as for the rationale fraction representation), data
+> +	 * power and the rational fraction divider leftover. Then all of
+> +	 * this is collected in a total sum variable, which value is
+> +	 * normalized by the total divider before being returned.
+> +	 */
+> +	do {
+> +		tmp = term->coef;
+> +		for (deg = 0; deg < term->deg; ++deg)
+> +			tmp = mult_frac(tmp, data, term->divider);
+> +		ret += tmp / term->divider_leftover;
+> +	} while ((term++)->deg);
+> +
+> +	return ret / total_divider;
+> +}
+> +EXPORT_SYMBOL_GPL(polynomial_calc);
+> +
+> +MODULE_DESCRIPTION("Generic polynomial calculations");
+> +MODULE_LICENSE("GPL");
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
