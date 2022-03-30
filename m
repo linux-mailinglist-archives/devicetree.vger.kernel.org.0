@@ -2,56 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BA204EBE8C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:19:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 202D34EBE96
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231400AbiC3KVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 06:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36346 "EHLO
+        id S245309AbiC3KWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 06:22:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235280AbiC3KVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:21:19 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D08FD1C16EA;
-        Wed, 30 Mar 2022 03:19:31 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id A68D41F44516
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648635569;
-        bh=StyztVffLbw1AQ6XJEFjXEnbu7ei/fKPsvU3Dkfn4Bs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RrlST6RaEO6QMgKmX1jwEuDALibTtEYsPZq0s2XWGVXsfxwc3ac5pzNnRlW4vGWtO
-         CmBh6HyoScUsvqsk0/6lNRBLF2bvqHDMKvphI9+gLbIoyn+HQEbDXqK0HQ1omCjGOy
-         GGujG4IVICN5t2dNxBd2dfqsYkVe4Jn9ME1S9Sy991rKt2e4ss4o4rroTmAbipl/CL
-         duzN+7mWx5o65wP1yGhUioncnQeN/6erj2M+YQEmGOykJn0bC2Q3h1HKHwTuySva/R
-         SpT2Lj4qBQH2mktk6YBY8LAtEh24rx9aAsCPOaEIAqkEFI7HMHaLWF0bvFoI04Cow0
-         yU2jaHAgonQjA==
-Message-ID: <2ba661b5-a59b-89f4-7ad7-5eee4da4ce96@collabora.com>
-Date:   Wed, 30 Mar 2022 13:19:25 +0300
+        with ESMTP id S232733AbiC3KWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:22:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767F11D97C2
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 03:20:53 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZVRY-0007qA-T7; Wed, 30 Mar 2022 12:20:48 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZVRW-0004Wn-5Y; Wed, 30 Mar 2022 12:20:46 +0200
+Date:   Wed, 30 Mar 2022 12:20:46 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     "piotro.oniszczuk@google.com" <piotr.oniszczuk@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Message-ID: <20220330102046.GA12181@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220330072822.GX12181@pengutronix.de>
+ <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
+ <20220330094556.GZ12181@pengutronix.de>
+ <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [Patch v5 2/4] memory: tegra: Add MC error logging on tegra186
- onward
-Content-Language: en-US
-To:     Ashish Mhetre <amhetre@nvidia.com>,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, digetx@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220316092525.4554-1-amhetre@nvidia.com>
- <20220316092525.4554-3-amhetre@nvidia.com>
- <04bb5ef2-15c3-d561-3572-76dc803275ef@collabora.com>
- <c5341578-e0a6-4ad7-5b6c-95b31b16faad@nvidia.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <c5341578-e0a6-4ad7-5b6c-95b31b16faad@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:17:21 up 109 days, 19:02, 75 users,  load average: 0.10, 0.15,
+ 0.19
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,48 +70,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/30/22 12:03, Ashish Mhetre wrote:
+On Wed, Mar 30, 2022 at 12:01:05PM +0200, piotro.oniszczuk@google.com wrote:
 > 
 > 
-> On 3/30/2022 5:36 AM, Dmitry Osipenko wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> On 3/16/22 12:25, Ashish Mhetre wrote:
->>> Add new function 'get_int_channel' in tegra_mc_soc struture which is
->>> implemented by tegra SOCs which support multiple MC channels. This
->>> function returns the channel which should be used to get the information
->>> of interrupts.
->>> Remove static from tegra30_mc_handle_irq and use it as interrupt handler
->>> for MC interrupts on tegra186, tegra194 and tegra234 to log the errors.
->>> Add error specific MC status and address register bits and use them on
->>> tegra186, tegra194 and tegra234.
->>> Add error logging for generalized carveout interrupt on tegra186,
->>> tegra194
->>> and tegra234.
->>> Add error logging for route sanity interrupt on tegra194 an tegra234.
->>> Add register for higher bits of error address which is available on
->>> tegra194 and tegra234.
->>> Add a boolean variable 'has_addr_hi_reg' in tegra_mc_soc struture which
->>> will be true if soc has register for higher bits of memory controller
->>> error address. Set it true for tegra194 and tegra234.
->>>
->>> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
->>
->>> Reported-by: kernel test robot <lkp@intel.com>
->>> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
->>
->> Reported what? You should add this tag only if patch addresses reported
->> problem. This patch doesn't address anything, hence the tag is
->> inappropriate, you should remove it.
+> > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 11:45:
+> > 
+> > On Wed, Mar 30, 2022 at 10:41:56AM +0200, piotro.oniszczuk@google.com wrote:
+> > 
+> > Let me rephrase this: The above sets a plane, but it doesn't set a mode
+> > on the crtc. When my system boots up then the output of modetest looks
+> > like this:
+> > 
+> > Encoders:
+> > id      crtc    type    possible crtcs  possible clones
+> > 68      0       TMDS    0x00000001      0x00000001
+> > Connectors:
+> > id      encoder status          name            size (mm)       modes  encoders
+> > 69      0       connected       HDMI-A-1        530x300         9      68
+> > CRTCs:
+> > id      fb      pos     size
+> > 67      0       (0,0)   (0x0)
+> >  #0  nan 0 0 0 0 0 0 0 0 0 flags: ; type: 
+> > 
+> > No mode is set on the CRTC and the encoder/connector/crtc are not bound
+> > to each other, consequently the screen is in standby. "modetest -P
+> > 43@67:1920x1080@NV12" doesn't change this, still no mode set. Hence my
+> > question: How did you set a mode initially?
 > 
-> Okay, smatch warning was reported on v4 of this patch which is fixed in
-> v5. Then I understand that we don't need to add Reported-by if we fix
-> bug in subsequent versions, right?
+> Ah ok. I see your point.
+> mode is set by app (player). 
+> 
+> Sequence was like this:
+> -boot board
+> -start app
+> -on UI select playback
+> -playback has green screen
+> -exit app
+> -run modetest -P 43@67:1920x1080@NV12 (the same green screen like in playback)
+> -run modetest -P 49@67:1920x1080@NV12 (works ok)
+> -run modetest -P 43@67:1920x1080@NV12 (now works ok)
+> 
+> > 
+> >>> 
+> >> 
+> >> I'm not sure that above command only sets plane.
+> >> On other SoCs i’m testing it gives expected results: diagonal colored stripes.
+> >> There is single exception: rk356x with vop2 - where screen is green unless i „fix/enable” by playing with plane #69   
+> >> 
+> >>> I did with "modetest -s 69@67:1920x1080 -d" and with this it works as
+> >>> expected, I can't reproduce any green screen issue here.
+> >> 
+> >> I see you are using plane #69.
+> >> Why not #43?
+> > 
+> > I used "modetest -s 69@67:1920x1080 -d" to set a mode. The '69' is the
+> > connector id, not a plane.
+> 
+> ack.
+> typo from my side.
+> 
+> it was
+> modetest -P 49@67:1920x1080@NV12
+> 
+> 
+> > 
+> >> Is plane #43 working ok for you?
+> > 
+> > Yes.
+> 
+> So it looks your testing method of #43 is not meaningful for verifying issue we are discussing here.
+> 
+> In my case:
+> 12 SOC (except rk356x VOP2) gives me:
+> -boot board
+> -start app
+> -on UI select playback
+> -playback is ok
+> -exit app
+> -run modetest -P XX@YY:1920x1080@NV12 (diagonal stripes)
+> 
+> (XX/YY are plane/connector elected by app: plane@conector with format matching provider format) 
+> 
+> rk356x with vop2 v9:
+> -boot board
+> -start app
+> -on UI select playback
+> -playback has green screen
+> -exit app
+> -run modetest -P 43@67:1920x1080@NV12 (the same green screen like in playback)
+> -run modetest -P 49@67:1920x1080@NV12 (works ok)
+> -run modetest -P 43@67:1920x1080@NV12 (now works ok)
 
-Right, if the report was made to the in-progress patch, then you
-shouldn't add the tag.
+Does it change anything if you do a "modetest -s 69@67:1920x1080" before
+starting the app? Or if you run "modetest -P 43@67:1920x1080@NV12"
+before starting the app? Or other combinations thereof?
 
-If report was made to the patch that was already merged, then you should
-create a new patch that fixes the reported problem and add the
-reported-by to this patch.
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
