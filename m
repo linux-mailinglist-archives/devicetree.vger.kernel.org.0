@@ -2,250 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C67B64EB851
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 04:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5324EB88A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 04:56:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241708AbiC3CfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Mar 2022 22:35:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
+        id S242137AbiC3C5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Mar 2022 22:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbiC3CfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 22:35:04 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB00FFD03;
-        Tue, 29 Mar 2022 19:33:14 -0700 (PDT)
-X-UUID: 9bf5674a47b648fbabf9829f4a820b1c-20220330
-X-UUID: 9bf5674a47b648fbabf9829f4a820b1c-20220330
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1552206381; Wed, 30 Mar 2022 10:33:09 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 30 Mar 2022 10:33:08 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 30 Mar
- 2022 10:33:07 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+        with ESMTP id S237760AbiC3C5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Mar 2022 22:57:49 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F8EB6C;
+        Tue, 29 Mar 2022 19:56:03 -0700 (PDT)
+X-UUID: efa09f0674934a8abba41ee778363274-20220330
+X-UUID: efa09f0674934a8abba41ee778363274-20220330
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 525386966; Wed, 30 Mar 2022 10:55:57 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 30 Mar 2022 10:55:56 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 30 Mar 2022 10:33:06 +0800
-Message-ID: <dee3fbb7c9f0c3e1f11143db1d6fc4381cab827f.camel@mediatek.com>
-Subject: Re: [v7 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
- speaker
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>,
-        <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
+ Transport; Wed, 30 Mar 2022 10:55:56 +0800
+Message-ID: <ed60e1a69b4b61008b2bc76cfed93f46ac5efa2b.camel@mediatek.com>
+Subject: Re: [PATCH v12 1/3] dt-bindings: mmc: mtk-sd: fix yamllint error
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>
+CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Date:   Wed, 30 Mar 2022 10:33:06 +0800
-In-Reply-To: <20220329223002.uo7kiemopkh7ak4x@notapiano>
-References: <20220324064511.10665-1-jiaxin.yu@mediatek.com>
-         <20220324064511.10665-3-jiaxin.yu@mediatek.com>
-         <20220329223002.uo7kiemopkh7ak4x@notapiano>
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>
+Date:   Wed, 30 Mar 2022 10:55:56 +0800
+In-Reply-To: <97f2b11d-15c7-d28e-f7b5-e65f2f333580@collabora.com>
+References: <20220329114540.17140-1-tinghan.shen@mediatek.com>
+         <20220329114540.17140-2-tinghan.shen@mediatek.com>
+         <97f2b11d-15c7-d28e-f7b5-e65f2f333580@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-03-29 at 18:30 -0400, Nícolas F. R. A. Prado wrote:
-> Hi Jiaxin,
-> 
-> On Thu, Mar 24, 2022 at 02:45:09PM +0800, Jiaxin Yu wrote:
-> > MT8192 platform will use rt1015 or rt105p codec, so through the
-> > snd_soc_of_get_dai_link_codecs() to complete the configuration
-> > of dai_link's codecs.
+Hi Angelo,
+
+On Tue, 2022-03-29 at 14:47 +0200, AngeloGioacchino Del Regno wrote:
+> Il 29/03/22 13:45, Tinghan Shen ha scritto:
+> > Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> >    54:81     error    line too long (95 > 80 characters)  (line-length)
 > > 
-> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> 
+> I can't reproduce this error that you're getting... this commit is not
+> necessary, as the .yamllint file in the kernel allows a maximum line-length
+> of 110 characters.
+> 
+> rules:
+>    line-length:
+>      # 80 chars should be enough, but don't fail if a line is longer
+>      max: 110
+> 
+> 
+https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/.yamllint?h=next-20220329__;!!CTRNKA9wMg0ARbw!1L9icT80FdI9EYV81qRGpzbEvV1NFP_pwk8YABV0eIiRf2ppttnPlRfu5aXEUsxODiE$
+>  
+> 
+> Please drop this commit.
+
+Thank you for your feedback.
+
+I figured out why I have this error...
+It's because I do the yamllint outside of the bindings folder and not specify the yamllint config
+file.
+
+I'll drop this at next version.
+
+Best regards,
+Tinghan
+> 
+> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > > ---
-> >  .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 108 ++++++++++--
-> > ------
-> >  1 file changed, 59 insertions(+), 49 deletions(-)
-> > 
-> > diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-
-> > rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-> > index ee91569c0911..837c2ccd5b3d 100644
-> > --- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-> > +++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-> > @@ -604,17 +604,9 @@ SND_SOC_DAILINK_DEFS(i2s2,
-> >  		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
-> >  		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-> >  
-> > -SND_SOC_DAILINK_DEFS(i2s3_rt1015,
-> > +SND_SOC_DAILINK_DEFS(i2s3,
-> >  		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
-> > -		     DAILINK_COMP_ARRAY(COMP_CODEC(RT1015_DEV0_NAME,
-> > -						   RT1015_CODEC_DAI),
-> > -					COMP_CODEC(RT1015_DEV1_NAME,
-> > -						   RT1015_CODEC_DAI)),
-> > -		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-> > -
-> > -SND_SOC_DAILINK_DEFS(i2s3_rt1015p,
-> > -		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
-> > -		     DAILINK_COMP_ARRAY(COMP_CODEC("rt1015p", "HiFi")),
-> > +		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
-> >  		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
-> >  
-> >  SND_SOC_DAILINK_DEFS(i2s5,
-> > @@ -929,6 +921,7 @@ static struct snd_soc_dai_link
-> > mt8192_mt6359_dai_links[] = {
-> >  		.dpcm_playback = 1,
-> >  		.ignore_suspend = 1,
-> >  		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
-> > +		SND_SOC_DAILINK_REG(i2s3),
-> >  	},
-> >  	{
-> >  		.name = "I2S5",
-> > @@ -1100,55 +1093,64 @@ static struct snd_soc_card
-> > mt8192_mt6359_rt1015p_rt5682_card = {
-> >  	.num_dapm_routes =
-> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
-> >  };
-> >  
-> > +static int mt8192_mt6359_card_set_be_link(struct snd_soc_card
-> > *card,
-> > +					  struct snd_soc_dai_link
-> > *link,
-> > +					  struct device_node *node,
-> > +					  char *link_name)
-> > +{
-> > +	int ret;
-> > +
-> > +	if (node && strcmp(link->name, link_name) == 0) {
-> > +		ret = snd_soc_of_get_dai_link_codecs(card->dev, node,
-> > link);
-> > +		if (ret < 0) {
-> > +			dev_err_probe(card->dev, ret, "get dai link
-> > codecs fail\n");
-> > +			return ret;
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
-> >  {
-> >  	struct snd_soc_card *card;
-> > -	struct device_node *platform_node, *hdmi_codec;
-> > +	struct device_node *platform_node, *hdmi_codec, *speaker_codec;
-> >  	int ret, i;
-> >  	struct snd_soc_dai_link *dai_link;
-> >  	struct mt8192_mt6359_priv *priv;
-> >  
-> > -	platform_node = of_parse_phandle(pdev->dev.of_node,
-> > -					 "mediatek,platform", 0);
-> > -	if (!platform_node) {
-> > -		dev_err(&pdev->dev, "Property 'platform' missing or
-> > invalid\n");
-> > +	card = (struct snd_soc_card *)of_device_get_match_data(&pdev-
-> > >dev);
-> > +	if (!card)
-> >  		return -EINVAL;
-> > +	card->dev = &pdev->dev;
-> > +
-> > +	platform_node = of_parse_phandle(pdev->dev.of_node,
-> > "mediatek,platform", 0);
-> > +	if (!platform_node) {
-> > +		ret = -EINVAL;
-> > +		dev_err_probe(&pdev->dev, ret, "Property 'platform'
-> > missing or invalid\n");
-> > +		goto err_platform_node;
-> >  	}
-> >  
-> > -	card = (struct snd_soc_card *)of_device_get_match_data(&pdev-
-> > >dev);
-> > -	if (!card) {
-> > +	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
-> > "mediatek,hdmi-codec", 0);
-> > +	if (!hdmi_codec) {
-> >  		ret = -EINVAL;
-> > -		goto put_platform_node;
-> > +		dev_err_probe(&pdev->dev, ret, "Property 'hdmi-codec'
-> > missing or invalid\n");
-> > +		goto err_hdmi_codec;
-> 
-> You're making hdmi-codec a required property, since now the driver
-> fails to
-> probe without it. Is it really required though? The driver code still
-> checks for
-> the presence of hdmi_codec before using it, so shouldn't it be fine
-> to let it be
-> optional?
-> 
-> If it is really required now though, then I guess at least the dt-
-> binding should
-> be updated accordingly. (Although I think this would technically
-> break the ABI?)
-> 
-> Thanks,
-> Nícolas
-
-Hi Nícolas,
-
-Thanks for your comment. Indeed I made hdmi-codec a required property,
-because it is a must in this machine driver. I prefer to report errors
-during the registration rather than during the use.
-
-So I'd like to take your second suggestion. I need to update dt-binding 
-that set hdmi-codec as required property.
-
-"(Although I think this would technicallybreak the ABI?)"
-==> I can't understand this question, could you help explain it in more
-detail.
-
-Thanks,
-Jiaxin.Yu
-
-> 
->  	}
-> > -	card->dev = &pdev->dev;
-> >  
-> > -	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
-> > -				      "mediatek,hdmi-codec", 0);
-> > +	speaker_codec = of_get_child_by_name(pdev->dev.of_node,
-> > "speaker-codecs");
-> > +	if (!speaker_codec) {
-> > +		ret = -EINVAL;
-> > +		dev_err_probe(&pdev->dev, ret, "Property 'speaker-
-> > codecs' missing or invalid\n");
-> > +		goto err_speaker_codec;
-> > +	}
-> >  
-> 
-snip...
-> >  
-> > -put_hdmi_codec:
-> > +err_probe:
-> > +	of_node_put(speaker_codec);
-> > +err_speaker_codec:
-> >  	of_node_put(hdmi_codec);
-> > -put_platform_node:
-> > +err_hdmi_codec:
-> >  	of_node_put(platform_node);
-> > +err_platform_node:
-> >  	return ret;
-> >  }
-> >  
-> > -- 
-> > 2.18.0
-> > 
-> > 
+> >   Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
 
