@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 806574ECADD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9167F4ECAE3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 19:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240082AbiC3RjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 13:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47844 "EHLO
+        id S1349411AbiC3Rmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 13:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349346AbiC3RjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:39:06 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64FDC6808
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:37:20 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id h4so17527583edr.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:37:20 -0700 (PDT)
+        with ESMTP id S1349414AbiC3RmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 13:42:22 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9755F47CB
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:40:36 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id c62so25312355edf.5
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 10:40:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=37nZjpO60xxhw+JhGH6lR+UcPHceWR6JokhRQOsZJzc=;
-        b=Y9OImyp0CCzDW/sTETs6Oeh2Q8dOngiPcTEP4MIS7vr96udYAzC8rHKECvJDt9Eqzl
-         4iukmxPudcgcFH0/jRiF2Q7fGJuzrWddCoVl5lEdBWbtZ6raVW08IvYiThZ3+PJ6lBCW
-         5Lwz0bIWijGZ/1V4jIy8BFVXf6M8XSkrl4NrOf/uBcQ1fL+StwDXfNPnoOz25WnKKavD
-         eVuIaibiVjpIICWqLyuGzG1WxP3PhlOjDWgbTTmGpbX/fubtIR1AfA4Nzdk1h8aIgA3j
-         egKxhxYEMU6YyRo5jnrAroMzW0mT8otY02piLFs7NdeAdHpFFss8nCbWEmUbpxBKR9Wb
-         kbeg==
+        bh=YGgEuO2+JFPK80wetBysVATEfSSmmFQ7dKqnJvZ/yF0=;
+        b=C7EjKku7df+a8GqKhOPDfYj3kb3TEpo3DG3jdawgzS//JNHlN1EDttotGPuPwtZJqM
+         13D87HXLQB1i5Zu593BdRvAHvXU2KZCBghKr5ZLWbUc7+SnOCwc7yxNTP8xQIkWECbwj
+         x3r/HJ2H/u+PriS72aSR3Sf0AHoqNESldgoSj3jfUU6xdgfLQNatOWx4Dk2HIwMKZG/t
+         ru4+bBvbX1eqRI6dJS/5SpPN7MQ78ioWLTa1Nz4k4fHbBJb5Gby0TFttUbzYcSaLKJ94
+         GF23IZVQM50w9cL6RAnZA1kWRyAhc9QLJWfy1QFRG4lo6DIv/M5nk7ILGeU+nNs2QPjm
+         9qZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=37nZjpO60xxhw+JhGH6lR+UcPHceWR6JokhRQOsZJzc=;
-        b=s/UoNshe8nhzSqQIk9CLBhJYXEiiBj/HanUfMk+4GIfVkJHw/pSfFQ3uWXUk54NTX+
-         WEZNTFihiBHxwIHUCZtRfSLfu9p8EXJKZqoeKyaKoNbkx+Xkc8hcM9HBbTyi3Lkse7Yg
-         7UHbAcq3ssCllTNPIfBXXqhTGfNtEMOqwei/XtmNlbDElsl6fpsf7HErGFcFAYaEm9Ue
-         T5NtfHJ/eVnj2FG4jEA4RkLuIyJffEhreIp8fxf5Wfr40IZbSc56ZpMHi8B0LQcJJTVQ
-         U+7RaJj4Yg1zoTcdo7aI5amFaD16nAH6pwpJ/OsxOjFi+ZSV9DYO+J5lnHbtHzXWajn8
-         e3JQ==
-X-Gm-Message-State: AOAM532V6NYoa6LVqHzlGUAjXZLbr/qFckvMb6G9QxOQLfPcmysB5nlD
-        4f154tIy8y1Q9ALT7aFKyEj0Ug==
-X-Google-Smtp-Source: ABdhPJz7vZ9tC2lfdY7bX8RqCZsPKm+v2cUMHBva3FJdit23w5ftndodH19y545GvEWK2Lzj6vutNg==
-X-Received: by 2002:a50:ff02:0:b0:418:e736:e003 with SMTP id a2-20020a50ff02000000b00418e736e003mr12208703edu.370.1648661839135;
-        Wed, 30 Mar 2022 10:37:19 -0700 (PDT)
+        bh=YGgEuO2+JFPK80wetBysVATEfSSmmFQ7dKqnJvZ/yF0=;
+        b=aKeflDtqT6oz2iETgX9IBd1F08GLE6Ani2FZxz/kKMFw34iOIAO3xqc2kr1e002Nz5
+         t5g0Llr6OLtUBqZBYLeUHgVPklQUlFsgYUEnRMARvYIC6wRL5ZCKnSDFFi2ecxK+d9Gu
+         IyBS1bBO77tZ59NqR6DpV0DK2WO75wHgLGFa/A1nEZI/1F6g6qqBbR9dcRPgy2+7xbB5
+         hFh5gXuMDeFuXODzwrOyLTMpq4JmO9cQgIyW/zxHSz+XTh795TWvj8XYw4KXmPA7gkRf
+         vOhedXam6h0G/gJVikYTIuTu1mB0+MCH1L8eR/nVWhg7ShfWEa/fpWl2P4rX3EZs1hPT
+         NTbg==
+X-Gm-Message-State: AOAM532SOiKG1X0gqxF2L7MgwyhTKoM5bhsxHxH78uBsUpvDeefc/TWg
+        YOumTD/yCOWq+rMer7U/whWK1Q==
+X-Google-Smtp-Source: ABdhPJxFwTarbPZKAhjXkXZlx0EdUDAVJlJ4obq31ATerLLtSuoVnaN+CJoSs2qJYnnkd0lo+8HTEg==
+X-Received: by 2002:a50:fd04:0:b0:419:9c4a:7d79 with SMTP id i4-20020a50fd04000000b004199c4a7d79mr12268837eds.99.1648662035149;
+        Wed, 30 Mar 2022 10:40:35 -0700 (PDT)
 Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bx5-20020a0564020b4500b00418fca53406sm9911169edb.27.2022.03.30.10.37.18
+        by smtp.gmail.com with ESMTPSA id dk21-20020a0564021d9500b0041b501eab8csm2718953edb.57.2022.03.30.10.40.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Mar 2022 10:37:18 -0700 (PDT)
-Message-ID: <569026b9-b73d-b8fb-c32f-8ed920bb73f4@linaro.org>
-Date:   Wed, 30 Mar 2022 19:37:17 +0200
+        Wed, 30 Mar 2022 10:40:34 -0700 (PDT)
+Message-ID: <a784ed61-965a-5c68-c2dd-3340cf18c7b5@linaro.org>
+Date:   Wed, 30 Mar 2022 19:40:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: clock: convert
- rockchip,rk3228-cru.txt to YAML
+Subject: Re: [PATCH v3 5/5] dt-bindings: phy: uniphier: Clean up clocks,
+ resets, and their names using compatible string
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
-        zhangqing@rock-chips.com
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220330121923.24240-1-jbx6244@gmail.com>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1648637715-19262-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1648637715-19262-6-git-send-email-hayashi.kunihiko@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220330121923.24240-1-jbx6244@gmail.com>
+In-Reply-To: <1648637715-19262-6-git-send-email-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,23 +80,260 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/03/2022 14:19, Johan Jonker wrote:
-> Convert rockchip,rk3228-cru.txt to YAML.
+On 30/03/2022 12:55, Kunihiko Hayashi wrote:
+> Instead of "oneOf:" choices, use "allOf:" and "if:" to define clocks,
+> clock-names, resets, and reset-names that can be taken by the compatible
+> string.
 > 
-> Changes against original bindings:
->   Add clocks and clock-names because the device has to have
->   at least one input clock.
+> The order of clock-names and reset-names doesn't change here.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  .../bindings/clock/rockchip,rk3228-cru.txt    | 58 ---------------
->  .../bindings/clock/rockchip,rk3228-cru.yaml   | 74 +++++++++++++++++++
->  2 files changed, 74 insertions(+), 58 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
+>  .../phy/socionext,uniphier-ahci-phy.yaml      | 90 +++++++++++++-----
+>  .../phy/socionext,uniphier-pcie-phy.yaml      | 47 ++++++---
+>  .../phy/socionext,uniphier-usb3hs-phy.yaml    | 93 ++++++++++++++----
+>  .../phy/socionext,uniphier-usb3ss-phy.yaml    | 95 +++++++++++++++----
+>  4 files changed, 251 insertions(+), 74 deletions(-)
 > 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+(...)
+
+> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> index 1bbd164f2527..21e4414eea60 100644
+> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> @@ -34,30 +34,12 @@ properties:
+>      minItems: 2
+>      maxItems: 3
+>  
+> -  clock-names:
+> -    oneOf:
+> -      - items:               # for Pro5
+> -          - const: gio
+> -          - const: link
+> -      - items:               # for PXs3 with phy-ext
+> -          - const: link
+> -          - const: phy
+> -          - const: phy-ext
+> -      - items:               # for others
+> -          - const: link
+> -          - const: phy
+> +  clock-names: true
+>  
+>    resets:
+>      maxItems: 2
+>  
+> -  reset-names:
+> -    oneOf:
+> -      - items:               # for Pro5
+> -          - const: gio
+> -          - const: link
+> -      - items:               # for others
+> -          - const: link
+> -          - const: phy
+> +  reset-names: true
+>  
+>    vbus-supply:
+>      description: A phandle to the regulator for USB VBUS
+> @@ -80,6 +62,77 @@ properties:
+>        required for each port, if any one is omitted, the trimming data
+>        of the port will not be set at all.
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: socionext,uniphier-pro5-usb3-hsphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: gio
+> +            - const: link
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: gio
+> +            - const: link
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pxs2-usb3-hsphy
+> +              - socionext,uniphier-ld20-usb3-hsphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pxs3-usb3-hsphy
+> +              - socionext,uniphier-nx1-usb3-hsphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+
+Why minItems:2? Is the last phy-ext clock optional?
+
+> +          maxItems: 3
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +            - const: phy-ext
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
+> index 06c957d52d23..4c26d2d2303d 100644
+> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
+> @@ -35,34 +35,89 @@ properties:
+>      minItems: 2
+>      maxItems: 3
+>  
+> -  clock-names:
+> -    oneOf:
+> -      - items:             # for Pro4, Pro5
+> -          - const: gio
+> -          - const: link
+> -      - items:             # for PXs3 with phy-ext
+> -          - const: link
+> -          - const: phy
+> -          - const: phy-ext
+> -      - items:             # for others
+> -          - const: link
+> -          - const: phy
+> +  clock-names: true
+>  
+>    resets:
+>      maxItems: 2
+>  
+> -  reset-names:
+> -    oneOf:
+> -      - items:              # for Pro4,Pro5
+> -          - const: gio
+> -          - const: link
+> -      - items:              # for others
+> -          - const: link
+> -          - const: phy
+> +  reset-names: true
+>  
+>    vbus-supply:
+>      description: A phandle to the regulator for USB VBUS, only for USB host
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pro4-usb3-ssphy
+> +              - socionext,uniphier-pro5-usb3-ssphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: gio
+> +            - const: link
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: gio
+> +            - const: link
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pxs2-usb3-ssphy
+> +              - socionext,uniphier-ld20-usb3-ssphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pxs3-usb3-ssphy
+> +              - socionext,uniphier-nx1-usb3-ssphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+
+Same question as above.
+
+> +          maxItems: 3
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +            - const: phy-ext
+> +        resets:
+> +          minItems: 2
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: link
+> +            - const: phy
+> +
+>  required:
+>    - compatible
+>    - reg
+
 
 Best regards,
 Krzysztof
