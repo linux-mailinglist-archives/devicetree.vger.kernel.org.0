@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 241F14EBF2A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0BA44EBF3E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Mar 2022 12:55:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237567AbiC3KuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 06:50:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35668 "EHLO
+        id S245591AbiC3K47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 06:56:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245554AbiC3KuE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:50:04 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91CF659C;
-        Wed, 30 Mar 2022 03:48:17 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id p15so40635400ejc.7;
-        Wed, 30 Mar 2022 03:48:17 -0700 (PDT)
+        with ESMTP id S244428AbiC3K46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 06:56:58 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42E45264F6B;
+        Wed, 30 Mar 2022 03:55:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YDced89Td8RXRs8Pp4UdANu0oM9AhCKT24Er0QSiO3s=;
-        b=CZSeLsWgOyzWSNLitc+tCHS07NF3mWrXfOxiJxzqQJyuUwMMIjqP6VugTKYf7Ait/Q
-         j7trEMxfsg/1ibOw/ubwxuB/s2lGslcvE3GoeyX7dKG0BW30kB/VvVtjxLk2X6hzl2l1
-         S1ilQIE53fj3PMEncdLeqCsXkJO1h+n/sDhsxDuP5DHKgW+PgLuJPlTPEzL2tz7xSfZM
-         HGNPV1UecS5xKLobydKBr6J2b8X6aHFGGMnMmgf5uwDZnA+/Ieg2VgDK6CqbKwCtbjQ5
-         JPqSOfoJjhEgNCyDVCy8kEOOSJsxGKfvRNuWaj93xwxoKjokspDUAa+Zg5NypiUGZ7mL
-         uAeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YDced89Td8RXRs8Pp4UdANu0oM9AhCKT24Er0QSiO3s=;
-        b=HFqr7/ukOVtI6DSPWHs0oWPSSPYzp13ftScZCCvtk3AzH0zv31i+9D34DvF010b/+Q
-         jpYHLSDTftmpJx5szbOXVu3VeWg9kxCugLq4c3KNl2/5RtXjTQqi24dwKhEapUPtssAp
-         0egkAt07d3caS+rLIIOO+XeQ6e83eUELUL6l+kP/eKP0kICMmSj6f/bg7WUUdYYr9juu
-         lrmJkSwiSTM0cM2Ibfhhml3q5/MySscV8KpJByDfNdbitH9oko1/kJyezA/u7g6UYex8
-         +kFiHSl+zGi64LsWfSJj2eH+78fUQZe87DC/CmrgPsE89xDu8lME+YIaAmxNZ/C7DVYG
-         dA3w==
-X-Gm-Message-State: AOAM531ptCTjQ6xav7FlEyClyZ+5syEDZ36qzZW05NXk2nLwNePdbGjv
-        VV+//5kWKwWYPtaB0ZLxmLc=
-X-Google-Smtp-Source: ABdhPJzfVq1eRWVeBa+t13AQfY5ytmrsFFVZhWC/P/uM/muAR2S5u69OmktjrsTLBMZ6U0KMnQzsog==
-X-Received: by 2002:a17:906:3ad3:b0:6cd:382b:86e5 with SMTP id z19-20020a1709063ad300b006cd382b86e5mr37501643ejd.145.1648637296399;
-        Wed, 30 Mar 2022 03:48:16 -0700 (PDT)
-Received: from orome ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id by4-20020a0564021b0400b00418fc410299sm9513118edb.62.2022.03.30.03.48.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 03:48:15 -0700 (PDT)
-Date:   Wed, 30 Mar 2022 12:48:13 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Mohan Kumar D <mkumard@nvidia.com>, robh+dt@kernel.org,
-        krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jonathanh@nvidia.com
-Subject: Re: [PATCH] arm64: tegra: Enable hda node for P3737 + P3701
-Message-ID: <YkQ1bWg00BSRV8W0@orome>
-References: <20220325072141.28597-1-mkumard@nvidia.com>
- <f35537de-6352-e6db-b4a6-17b1ab96deda@kernel.org>
- <32e425be-5d78-e1e0-6ec4-70ea21895e15@nvidia.com>
- <ca18fa50-f63b-8131-07a2-8c44daed9f26@kernel.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648637714; x=1680173714;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=hF95iTc4t1M/e3D7i6dYPtn0iM9iJEhQx/uN5MIoDMQ=;
+  b=wY8XYSJix5RR1MpKLM1SSqEGBUCCeqN3knzH3UZkDQs6e1VrhfPBzMFT
+   Gw6rhaLqxxMAlBOOJeKWpqIA8OpBERR7g4jYvY5y3NiEem1ALbdFWqyjp
+   KrAgDdmnKZYE9mYpxJ7TWV4G579TZu/+U9w7jnSldShrGETOIDx3BQoNB
+   I=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Mar 2022 03:55:13 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Mar 2022 03:55:13 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 30 Mar 2022 03:55:12 -0700
+Received: from [10.216.27.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 30 Mar
+ 2022 03:55:07 -0700
+Subject: Re: [PATCH V8 1/7] dt-bindings: mfd: pm8008: Modify the compatible as
+ per driver
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
+References: <1648209491-30165-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1648209491-30165-2-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n523f-aAUkj1SUscNgw_Gh=mP8JfXV4u_hNeFhqtfr_Fgg@mail.gmail.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <26e7298c-9337-c4d4-ce32-2a67d727ccfc@quicinc.com>
+Date:   Wed, 30 Mar 2022 16:25:03 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NWAujopaZLN2XilU"
-Content-Disposition: inline
-In-Reply-To: <ca18fa50-f63b-8131-07a2-8c44daed9f26@kernel.org>
-User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAE-0n523f-aAUkj1SUscNgw_Gh=mP8JfXV4u_hNeFhqtfr_Fgg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,79 +76,131 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---NWAujopaZLN2XilU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 3/25/2022 11:32 PM, Stephen Boyd wrote:
+> Quoting Satya Priya (2022-03-25 04:58:05)
+>> Modify the compatible string as per the pm8008 mfd driver.
+>> Add reset-gpios property and make interrupts and interrupt-cells
+>> as optional properties, they are not strictly required and may
+>> cause yaml compilation errors when not added in the DT files.
+> Does it have an interrupt controller inside? If so, the properties
+> should be present even if the driver isn't using them.
 
-On Fri, Mar 25, 2022 at 10:42:17AM +0100, Krzysztof Kozlowski wrote:
-> On 25/03/2022 10:31, Mohan Kumar D wrote:
-> >=20
-> > On 3/25/2022 12:56 PM, Krzysztof Kozlowski wrote:
-> >> External email: Use caution opening links or attachments
-> >>
-> >>
-> >> On 25/03/2022 08:21, Mohan Kumar wrote:
-> >>> Add iommus property for hda and enable the node for P3737 + P3701
-> >>> platform.
-> >>>
-> >>> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
-> >>> ---
-> >>>   arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 1 +
-> >>>   arch/arm64/boot/dts/nvidia/tegra234.dtsi                      | 1 +
-> >>>   2 files changed, 2 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-000=
-0.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> >>> index 34d6a01ee1c6..156d5d95fde7 100644
-> >>> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> >>> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> >>> @@ -1751,6 +1751,7 @@
-> >>>
-> >>>                hda@3510000 {
-> >>>                        nvidia,model =3D "NVIDIA Jetson AGX Orin HDA";
-> >>> +                     status =3D "okay";
-> >> Nodes are enabled by default. Why do you need this?
-> > hda node status is set to "disabled" by default in soc dts file=20
-> > tegra234.dtsi. The enable is controlled by platform specific dts files.
->=20
-> Oh, surprise... why do you override nodes with full path? This is
-> error-prone and makes any changes (like node name fixing) difficult.
-> This should be overridden by label.
 
-I disagree, though I admit that this is probably very subjective. In my
-experience label references lead to completely unreadable DTS files.
-We've had bad experiences with these kinds of references early on, so at
-some point we decided to discontinue that method on Tegra.
+Yes it has an interrupt controller but we are not configuring/using any 
+interrupts currently in the DT node. So, if we add the properties under 
+"required" list it throws a make dtbs error. Do you think we can somehow 
+bypass this error?
 
-Reflecting the tree hierarchy in board-level DTS files on the other hand
-makes it very clear what you're changing and keeps the board-level DTS
-quite readable.
 
-Fixing node names hasn't been a big problem for us and any potential
-remaining issues are entirely gone now that we can validate DTS files
-using dt-schema.
+>> Also, change the node name in example to match with the
+>> pm8008_infra DT node.
+>>
+>> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+>> ---
+>> Changes in V5:
+>>   - Remove compatible for regulators node.
+>>   - Move supply nodes of the regulators to chip level.
+>>
+>> Changes in V6:
+>>   - No changes.
+>>
+>> Changes in V7:
+>>   - Removed the intermediate regulators node and added ldos
+>>     directly under mfd node.
+>>
+>> Changes in V8:
+>>   - Change the compatible as per driver, remove interrupts from required
+>>     properties, add reset-gpios and move regulators to separate binding.
+>>
+>>   Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml | 15 ++++++++++-----
+>>   1 file changed, 10 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+>> index ec3138c..12431ea 100644
+>> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+>> @@ -16,7 +16,7 @@ description: |
+>>
+>>   properties:
+>>     compatible:
+>> -    const: qcom,pm8008
+>> +    const: qcom,pm8008-infra
+> Why is the compatible being replaced with -infra postfix?
 
-Thierry
 
---NWAujopaZLN2XilU
-Content-Type: application/pgp-signature; name="signature.asc"
+I've changed the compatible after splitting the probe into two parts 
+pm8008-infra-probe and pm8008-regulators-probe. Only reason for change 
+is to make it more readable/understandable.
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmJENWoACgkQ3SOs138+
-s6FfqxAAvx8RKOX8UrSmBNVLPEi9U5eGWSADof9pOxLubHzxMG9bFnJYazTUFEwH
-TjxTzJVuUppJ5R9hXC2WlaTdu9q8McJhroEDIt5JFy0mkcolBgLNEY2m5KHY6pfM
-j3Dn64dEgwyyFUq1OMyKuzKbJB7Qs1Iytfjga6vjP4646WLAi0t7Y0BZOa7mHzYN
-EC3H3qGYOu25s0X9nrz0cQyWjrdxZfxr/MPLFc9dui4s9fNZ8dHLcKuzxDQmp/Gu
-AZEvoHqtuSG3bAWGn5t1/KcUe966p92vKScLSTKZfjDb8VJmsa9WFatt/PbmGlXH
-J4IwOpew/NM9vFjnrhrmPROyfcm4PPA6t8GHk0s9NOUSK5oFx76h1xQEk4b0lU3q
-uixAvHHEUKYC29llaGqf67X3ko+BeCfo+edx9dz+jkRXgQoDxYuiGtuLco9n/8KY
-4G/VzbNMC5Ct3a5wPNgjDxkr0717ygLyjWijClG5Zpxd01wPlV1CZAnCp3CVaUTm
-gua6VJPUy7f4lXpUqUS51Wn2KUcLlKgU2GgggwwW/MWDc6yX4HFmhWO1bDGf46Z6
-jzYW4VHvWtGODUnoHDRuh1dnOqswNs3IPtZK+mtluiN0p/m5GKXC9/txg7p5NZsb
-5MBJIEmrPMpUZ4O5k/jsi6GXLnVBpFr3BPDHAZd7KeSVAwFJ/Fc=
-=0Gj6
------END PGP SIGNATURE-----
+>>     reg:
+>>       description:
+>> @@ -44,6 +44,10 @@ properties:
+>>     "#size-cells":
+>>       const: 0
+>>
+>> +  reset-gpios:
+>> +    description: |
+>> +      Specifies the GPIO to be toggled to bring pm8008 chip out of reset.
+> Remove description. Add maxItems: 1
 
---NWAujopaZLN2XilU--
+
+Okay.
+
+
+>> +
+>>   patternProperties:
+>>     "^gpio@[0-9a-f]+$":
+>>       type: object
+>> @@ -88,10 +92,8 @@ patternProperties:
+>>   required:
+>>     - compatible
+>>     - reg
+>> -  - interrupts
+>>     - "#address-cells"
+>>     - "#size-cells"
+>> -  - "#interrupt-cells"
+> Should reset-gpios be required? I'd expect this patch to be adding
+> reset-gpios and making it required and that's about it. Given that
+> there isn't a DT using this compatible upstream so far it looks like we
+> don't need to do anything like worry about backwards compatibility.
+
+
+Okay.
+
+
+>>   additionalProperties: false
+>>
+>> @@ -99,11 +101,12 @@ examples:
+>>     - |
+>>       #include <dt-bindings/mfd/qcom-pm8008.h>
+>>       #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/gpio/gpio.h>
+>>       qupv3_se13_i2c {
+>>         #address-cells = <1>;
+>>         #size-cells = <0>;
+>> -      pm8008i@8 {
+>> -        compatible = "qcom,pm8008";
+>> +      pm8008_infra: pmic@8 {
+> Remove unused phandle.
+
+
+Okay.
+
+
+>> +        compatible = "qcom,pm8008-infra";
+>>           reg = <0x8>;
+>>           #address-cells = <1>;
+>>           #size-cells = <0>;
+>> @@ -113,6 +116,8 @@ examples:
+>>           interrupt-parent = <&tlmm>;
+>>           interrupts = <32 IRQ_TYPE_EDGE_RISING>;
+>>
+>> +        reset-gpios = <&pm8350c_gpios 4 GPIO_ACTIVE_HIGH>;
+>> +
+>>           pm8008_gpios: gpio@c000 {
+>>             compatible = "qcom,pm8008-gpio", "qcom,spmi-gpio";
+>>             reg = <0xc000>;
+>> --
+>> 2.7.4
+>>
