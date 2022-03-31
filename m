@@ -2,120 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F15F34ED6F8
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 11:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCFD84ED711
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 11:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234001AbiCaJcr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 31 Mar 2022 05:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
+        id S234136AbiCaJg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 05:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233978AbiCaJcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 05:32:46 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E1462119;
-        Thu, 31 Mar 2022 02:30:57 -0700 (PDT)
-Received: from mail-wr1-f41.google.com ([209.85.221.41]) by
- mrelayeu.kundenserver.de (mreue011 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MRT6b-1nLC0R17ob-00NOzE; Thu, 31 Mar 2022 11:30:46 +0200
-Received: by mail-wr1-f41.google.com with SMTP id w21so28295765wra.2;
-        Thu, 31 Mar 2022 02:30:46 -0700 (PDT)
-X-Gm-Message-State: AOAM531+p9JRxXWPCupNmjuADuaWohp1e12ArJ8fnMSS4FhA4lA1beKk
-        vw4alRW5T1123ik/lSskb7cXH7ZuJWv8as9h9Os=
-X-Google-Smtp-Source: ABdhPJxWd3RtjDSXkoA7ngdrzuRWb2WjuY33jCnVXB+A1AAH0qJlJE8UE/skE144ENFuB/dx3i4kfZu3MJkNdoi2xmg=
-X-Received: by 2002:a5d:66ca:0:b0:203:fb72:a223 with SMTP id
- k10-20020a5d66ca000000b00203fb72a223mr3364174wrw.12.1648719041888; Thu, 31
- Mar 2022 02:30:41 -0700 (PDT)
+        with ESMTP id S234132AbiCaJg6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 05:36:58 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04584B6E67
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 02:35:10 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id v2so20891171qtc.5
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 02:35:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lsN5p6Zbb92CWY0fCQlSnWVHSmMIpn5JDGM4v10NtKE=;
+        b=ZunWdYGe8+BLAfVsPhIKSdgfp/G02w2RPLviviav8MFDJAF80hz+gYJdoOGSo34tqv
+         +GOt1h6oPls11MbrXMWncQOXZmfdT+lhqoeeAdjHnzcDo7Y+ls+43qjcKa4FnDUZBr8g
+         sfb8w/YhyQ+I+txxTbyARU1xScgG75osTxNrQd/eW37hUwLOqmWqtNTAMgYkd6Ktg+8v
+         SISvG4vs6TaDZYpzkTU2u3b1ge4YO9UUK1QU+l3rIQdKqsBt2Cv/PAH7mIcmQDs8WgY7
+         CqOd27nG1iOkKCVqS+VcVciIKPjF7ot65oGt3h7/40D3BucYPbivC79Gb3PETsi4mdBl
+         9MPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lsN5p6Zbb92CWY0fCQlSnWVHSmMIpn5JDGM4v10NtKE=;
+        b=2ztSBzcimMuxtIDG3tgkhaVszWUdPcWIW3heBephuD0xddf6T64po/TNk4uz0GBhQF
+         RG7BFzJemXtIyp39QekfH0egnQFpoZRA9xh8DMgZzQOZMM8PwgRTttJ/dB7GQhX2/1wg
+         D5UrOju4owpKc+e4f64CTGcCwmYrjEPmV1NeubtS28lmoyXgZs9/J5hUgiT2Ipjrt0f5
+         e+2whyyqk7Qi1QIKDxo8XBMi44qGYHLM4SZw1E7OL5IWeUMnwugvdD4z6gevbitIRwom
+         vv7rwsBrC5kpqSVVrEvK1fg4vwcnRmqu+wOiTXebijEq8numDTLuj7vuuSRMy9afQzbV
+         mMuA==
+X-Gm-Message-State: AOAM530ukTwpt006UBuo565w1QOXBbZG9AxjU5UdGKcCYXhUcmuMa9Eo
+        c3ryem6KDsjji27a0CEdtksAN3r9yBRtGMe3S4mn7w==
+X-Google-Smtp-Source: ABdhPJzGd4rqpbpprVxRT58SQ0mWkivwbwlishXbW/R3KM5sUWLDKwn+nH2fugALpTWwKgteKCnQM+TuY1AtSd9ZY20=
+X-Received: by 2002:ac8:5702:0:b0:2e1:ec8a:917a with SMTP id
+ 2-20020ac85702000000b002e1ec8a917amr3318464qtw.682.1648719309154; Thu, 31 Mar
+ 2022 02:35:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220310195229.109477-1-nick.hawkins@hpe.com> <20220310195229.109477-9-nick.hawkins@hpe.com>
- <eb66cc83-2da9-8e19-db69-633e34fef946@canonical.com> <PH0PR84MB1718C31DB71AA2A67FEC5F6E88119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <b1cc2566-cd78-7cb4-f8a5-d6fc8065fe6e@canonical.com> <PH0PR84MB1718292B1C11F4FE83326A5388119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <fb4def96-4b20-604f-d15d-fef87eb2232d@canonical.com> <PH0PR84MB1718A2CFBFC90C9C0CAA5515881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a0fCE_NM=z68d1m9BTfuKixh1pKLw3gn+Sr7SxKb6UJAg@mail.gmail.com>
- <PH0PR84MB17181C316E55073EBC28C386881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <PH0PR84MB17185ADBA824F9CC9EB3E022881F9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <PH0PR84MB17185ADBA824F9CC9EB3E022881F9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 31 Mar 2022 11:30:25 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1080yz9jggOrwz2iQ1sAB2Xe2Emh22uCuqRok60BQSiA@mail.gmail.com>
-Message-ID: <CAK8P3a1080yz9jggOrwz2iQ1sAB2Xe2Emh22uCuqRok60BQSiA@mail.gmail.com>
-Subject: Re: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device tree
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+References: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
+ <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
+ <YkHtY9absUjmqmW7@matsya> <12b0056b-8032-452b-f325-6f36037b5a80@linaro.org>
+ <CAL_Jsq+6rx0UU6ryH+z_8KLQqKKuhTCnh=Oft2F03bcze+EV0Q@mail.gmail.com>
+ <YkKmPSesQfS6RLCD@matsya> <YkMrPnRbsl3FBig8@robh.at.kernel.org> <YkVEsqiRamfTmNi0@matsya>
+In-Reply-To: <YkVEsqiRamfTmNi0@matsya>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 31 Mar 2022 12:34:58 +0300
+Message-ID: <CAA8EJpqTqB10JkmK4GfbO6uP4wAUtqPzY+N4f+=Lt6Vy3a+g4Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: msm: dsi: remove address/size cells
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Provags-ID: V03:K1:gyI13vHiir4qvS+gHbaOuk1V7upswNbgvg4akROxuDFv4rlu2CD
- Tf/TBLjJnvOrv/FgpBF8QmJj3v4fBk/oOAswQOczVkA2dEQlCFk9i9hp0Bwow9G6RPEW7yO
- eLut5PvuBccWeLviFvpGGCG0C9I/hCMpctmWPZ3MEcHQjQPOBljZQL2f6eo1gFxs/KTAxjk
- YQmE6//1LbbmziWTyQQDg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:XJ0tSoddKgQ=:4u3TZgp1G4wkofKNDaiD5K
- QPORxCLAqlWP6hpLjLt+iotfOU6I0iAbHBdzgYC2mu/BdL3aSgnGqozjIYLS3wfURgs+TiA+D
- iPOhm21BvBfqcdibpLVPL6zc6gYDsd8PZZSdMefq/5Vp3yrBvCL/Jty3yJ4z9I4VmqgBWtjPk
- 76Lz3VK0Ig+/mIKz1CNcgXco/g5aeMkhc97uSQuVwD1DyUohneJuMGK4HVoReoqTQxt1ktKxo
- 2T0hSiU66O2CNVfAYn197hVdeZ9q7sNi/2aSciMKE0cD6gPJ2FEQX4jZ6VOX5+UF4mlmO6wFg
- 9lAj1MCzWbdayVEVX6KugGmR/kRweyEiWSVDiZT1HS0AaGdIi8kR5sd0b18DBt0+tVRS0c5Lv
- zIxSxToUSN2f7qwe2cCzi346P+BBkVhFkOuTIVZpLb2QYHQVV7Nbxb86pMDZ9VLzkL4ziqkV/
- gp52U0e/4LiEeHn+9t20h2yQ8OM7ixQze6UKCwXJxAFyz5nzwfYCLPtSvl9wm1N08UzeIzAf0
- stMMXKn+rX0/WOOQiXO/dhFuly9Ecj9RsOgG9PbtE/tyyZqjBO8H6ITDec3NZNPi6+1WxorXt
- qVZPbO4vm6sYeGGHfspIwQZuntZar7FFw3qYRu5W40uyWAxOvedp27EPbV3MGAb26LEekkIYd
- aWi6AWQYDitWGQzmMGS9RyLNrxmbmgVpadTolENuuqtG8vVkHDHsnnX4j4Eu5M0D8CoyKVKV+
- Nr3k1/FQ72nL/A8hoaV0hDGHVbrjNsoIRqfp9ZYDQUHAmDUGRR8Um7AhN+eGUtGYSB4HCZ4jG
- NA6Jfjnn3jn3TihoKb1XHjgxolM/VH+Ot+cilSuixRX1lf7bKd26Sbn2F4XBj0HHR4o1x72
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 12:27 AM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
-> On Tue, Mar 29, 2022 at 9:38 PM Hawkins, Nick <nick.hawkins@hpe.com>> wrote:
+On Thu, 31 Mar 2022 at 09:05, Vinod Koul <vkoul@kernel.org> wrote:
 >
-> >> I am in the process of rewriting the timer driver for Linux but have hit a dilemma and I am looking for some direction. The registers that represent the watchdog timer, and timer all lay in the same register region and they are spread out to the point where there are other controls  in the same area.
+> On 29-03-22, 10:52, Rob Herring wrote:
+> > On Tue, Mar 29, 2022 at 12:01:52PM +0530, Vinod Koul wrote:
+> > > On 28-03-22, 13:21, Rob Herring wrote:
+> > > > On Mon, Mar 28, 2022 at 12:18 PM Krzysztof Kozlowski
+> > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > > >
+> > > > > On 28/03/2022 19:16, Vinod Koul wrote:
+> > > > > > On 28-03-22, 19:43, Dmitry Baryshkov wrote:
+> > > > > >> On Mon, 28 Mar 2022 at 18:30, Krzysztof Kozlowski
+> > > > > >> <krzysztof.kozlowski@linaro.org> wrote:
+> > > > > >>>
+> > > > > >>> The DSI node is not a bus and the children do not have unit addresses.
+> > > > > >>>
+> > > > > >>> Reported-by: Vinod Koul <vkoul@kernel.org>
+> > > > > >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > > >>
+> > > > > >> NAK.
+> > > > > >> DSI panels are children of the DSI device tree node with the reg = <0>; address.
+> > > > > >> This is the convention used by other platforms too (see e.g.
+> > > > > >> arch/arm64/boot/dts/freescale/imx8mq-evk.dts).
+> > > > > >
+> > > > > > So we should add reg = 0, i will update my dtsi fix
+> > > > > >
+> > > > >
+> > > > > To "ports" node? No. The reg=0 is for children of the bus, so the
+> > > > > panels. How to combine both without warnings - ports and panel@0 - I
+> > > > > don't know yet...
+> > > >
+> > > > I don't think that should case a warning. Or at least it's one we turn off.
+> > >
+> > > Well in this case I think we might need a fix:
+> > > Here is the example quoted in the binding. We have ports{} and then the
+> > > two port@0 and port@1 underneath.
 > >
-> >> For instance with our watchdog controls we have:
+> > It's the #address-cells/#size-cells under 'ports' that applies to 'port'
+> > nodes. As 'ports' has no address (reg) itself, it doesn't need
+> > #address-cells/#size-cells in its parent node.
 > >
-> >> @90 the countdown value
-> >> @96 the configuration
+> > >
+> > > So it should be okay to drop #address-cells/#size-cells from dsi node
+> > > but keep in ports node...
 > >
-> >> And for our timer we have:
-> >> @80 the countdown value
-> >> @94 the configuration
-> >> @88 this is actually our timestamp register but is being included in with the timer driver currently to call clocksource_mmio_init.
+> > Yes.
 > >
-> >> What would be your recommendation for this? I was considering creating a gxp-clock that specifically points at the timestamp register but I still have the issue with gxp-timer and gxp-wdt being spread across the same area of registers.
+> > > Thoughts...?
+> >
+> > But I thought a panel@0 node was being added? If so then you need to add
+> > them back.
 >
-> > I think this is most commonly done using a 'syscon' node, have a look at the files listed by
->
-> I found an example and copied it although I have a couple questions when it comes to actually coding it. Can that be here or should I post these questions in the patch that actually concern the file?
->
-> st: timer@80 {
->         compatible = "hpe,gxp-timer","syscon","simple-mfd";
->         reg = <0x80 0x16>;
->         interrupts = <0>;
->         interrupt-parent = <&vic0>;
->         clocks = <&ppuclk>;
->         clock-names = "ppuclk";
->         clock-frequency = <400000000>;
->
->         watchdog {
->                 compatible = "hpe,gxp-wdt";
->         };
->  };
+> I guess we should make this optional, keep it when adding panel@0 node
+> and skip for rest where not applicable..? Dmitry is that fine with you?
 
-I'd have to study the other examples myself to see what is most common.
+This sounds like a workaround. When a panel node is added together
+with the '#address-cells' / '#size-cells' properties, we will get
+warnings for the 'ports' node.
+I'd prefer to leave things to pinpoint that the problem is generic
+rather than being specific to several device trees with the DSI panel
+nodes.
+How do other platforms solve the issue?
 
-My feeling would be that it's better to either have a "hpe,gxp-timer" parent
-device with a watchdog child but no syscon, or to have a syscon/simple-mfd
-parent with both the timer and the watchdog as children.
+In fact we can try shifting to the following dts schema:
 
-       Arnd
+dsi@ae940000 {
+   compatible = "qcom,mdss-dsi-ctrl";
+
+   ports {
+      #adress-cells = <1>;
+      #size-cells = <0>;
+      port@0 {
+         reg = <0>;
+         dsi0_in: endpoint {};
+      };
+      port@1 {
+         reg = <1>;
+         dsi0_out: endpoint {
+               remote-endpoint = <&panel_in>;
+         };
+      };
+
+   /* dsi-bus is a generic part */
+   dsi-bus {
+      #adress-cells = <1>;
+      #size-cells = <0>;
+      /* panel@0 goes to the board file */
+      panel@0 {
+          compatible = "vendor,some-panel";
+          ports {
+             #adress-cells = <1>;
+             #size-cells = <0>;
+             port@0 {
+               reg = <0>;
+                panel_in: endpoint {
+                   remote-endpoint = <&dsi0_out>;
+                };
+             };
+        };
+   };
+};
+
+WDYT?
+
+-- 
+With best wishes
+Dmitry
