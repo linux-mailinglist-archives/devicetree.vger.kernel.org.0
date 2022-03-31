@@ -2,131 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C991A4EDADA
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204FA4EDAE1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236995AbiCaNtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 09:49:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
+        id S237013AbiCaNuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 09:50:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236991AbiCaNtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:49:51 -0400
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FAE7109A5D;
-        Thu, 31 Mar 2022 06:48:00 -0700 (PDT)
-Received: by mail-qv1-f49.google.com with SMTP id e22so19734921qvf.9;
-        Thu, 31 Mar 2022 06:48:00 -0700 (PDT)
+        with ESMTP id S237008AbiCaNuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:50:10 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39D71DA60;
+        Thu, 31 Mar 2022 06:48:19 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g22so17155064edz.2;
+        Thu, 31 Mar 2022 06:48:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1FmWFtFPrGFw3jPfN32jgX8K91mK4Fw6kVZq2e3W06A=;
+        b=GuBynw1bR30DfiMh5e8Nh5WD+dkT0noit+4UtYMJK3iKZ35qa0dPkAbev0Ox7RYOms
+         3dBIoSRbPCMsJy1VhC68ogz6X3AZc3fGy3Bps2B4GzDsKbcccaO9aFOV7Xfrl/AJfwOL
+         Lf54fxuRDFulTu4JdbLWUzLAhvd9LSrSizfBOGHs8NE+MDdhNX2w/W2kdJ4TdpWS9DBO
+         KR/oQpoQRKLEiJYlThLZXpJ95lZRtKRA0zscywXTz9B7D+9HhuaCLPhf7O83sgaEeWH1
+         AWbglg8K0D4RQ/zFbM2+L4koc/6hHCvbtiRVXLetfX+GXEtcDjosdBlNbdwGNCckPyhV
+         Tkyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LFWnah2E6+Fgc5HWCjn6ozahU3n0atGHM+a5Eiiz7BQ=;
-        b=7P4vDmGe3JnCl20ac3KPSkv/flJhIQechn8+vOnxDc3lXF0Ard2XYjs1K3QduF8NAb
-         5ZRj3FYbcVZELiY7traEFByuabn2cNs9whNOqbgcC9jbp3KYap2/14MA4Ed/XH0TzF5K
-         qg/nk5Ukk11a8SFDe3YbvUQ2LgM0l0peikhnlfAxNWiTpUsZmYWbgETIb5ObOf/mXcx3
-         vzdnOIVQOVkQkp2Wb8SPQiRh8lxFQmuA4gAfWOcD9RdSIJBNRQzMEXfn7SupkUyAu0RE
-         jmN7f6fokrNDkZ20EXPW8DtXiQ8n1LYGLtvzMVESYqfvV9+Zs9RUP8esNncFs2c2e06e
-         WTLw==
-X-Gm-Message-State: AOAM533RleNWAAlDc0hS2/NbvLyCs6Ty5CVpRmtu1R9jEUbuUHgQ6JLK
-        oGNdeLZ5MeZfwVcL9jHZf31knXKbaTVPVA==
-X-Google-Smtp-Source: ABdhPJz2XxfMyVh8cXUO0oJV2/OUZk704SW/Q2jNor/xpLkgLzj9aNSY9J0iiRydf/FfsBCz9VIsWw==
-X-Received: by 2002:a05:6214:2344:b0:441:8201:7246 with SMTP id hu4-20020a056214234400b0044182017246mr3901845qvb.120.1648734479383;
-        Thu, 31 Mar 2022 06:47:59 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id c10-20020ac87dca000000b002e1db1b7b10sm19555901qte.25.2022.03.31.06.47.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 06:47:59 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id y38so39743355ybi.8;
-        Thu, 31 Mar 2022 06:47:58 -0700 (PDT)
-X-Received: by 2002:a25:c049:0:b0:634:6751:e8d2 with SMTP id
- c70-20020a25c049000000b006346751e8d2mr4354169ybf.6.1648734478572; Thu, 31 Mar
- 2022 06:47:58 -0700 (PDT)
+        bh=1FmWFtFPrGFw3jPfN32jgX8K91mK4Fw6kVZq2e3W06A=;
+        b=vZkfZJtLRgNe5kgMuVGeGC09rMKxzqSPHxUyH7jZqAmeMvRLlmpD2qM8m22eGQUqlr
+         lm0QaUKPITkmp0SF+3uYmVrz+vmFRgMM5mVhNoaymn1tIsoS9ewddvTD7u+PThVbxqL/
+         vOYTDqqGXlHyxJtMF2ghUtYupB8B1PMq+x8oz+OATgly5uk12fNuUPGD1eV5sRXrwoEB
+         mrddtTwySsT8fuK1yEgBwE6QTyFhnKmo2wMjBLf6bnfbvf3tfaA9/Z4f/pK+6C8QfyOI
+         J7p49ZMVmURoQUv8bcnHOavvgAEDJxjJhiyS8cwajj4ZLwo2e1zPWjJbgP7HwMSzLryL
+         vUMw==
+X-Gm-Message-State: AOAM530vBUsKwjoVHS5d35ACVT66imREBnjt4S3cnz0V2MdJUYDuj/yJ
+        8ZZU7K4WSlLCxi3TivZlFPd6riAAfVVEbG7oyyg=
+X-Google-Smtp-Source: ABdhPJzgmF3q9RuLnrcHquNydyMYB8kqL9v5TvHww44KBOahY3umU53CaQRZK2bfteXGp/QRBvjn0bir8PkTUp3+a1k=
+X-Received: by 2002:a05:6402:27d4:b0:419:5105:f7e7 with SMTP id
+ c20-20020a05640227d400b004195105f7e7mr16672565ede.356.1648734498411; Thu, 31
+ Mar 2022 06:48:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220321135629.16876-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220321135629.16876-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 31 Mar 2022 15:47:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXyMd3Haqbg3wh3o3jty6aqzZ+f_-59tvwyEOzP=6cuew@mail.gmail.com>
-Message-ID: <CAMuHMdXyMd3Haqbg3wh3o3jty6aqzZ+f_-59tvwyEOzP=6cuew@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: rzg2lc-smarc: Enable RSPI1 on
- carrier board
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+References: <20220323135601.42435-1-ariel.dalessandro@collabora.com>
+ <CAOMZO5D4_WboF4S0dgSLD1m15a13c2irK2yjDV4C77_Wb15=2w@mail.gmail.com>
+ <d9f14221-b0ad-9853-e9c8-a35d9111549b@collabora.com> <3e3b223f-7d05-f439-625a-a15afb44b95f@collabora.com>
+In-Reply-To: <3e3b223f-7d05-f439-625a-a15afb44b95f@collabora.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 31 Mar 2022 10:48:07 -0300
+Message-ID: <CAOMZO5D8UHkkyJE9uJ4yBmf+ajjbzJOrLM57OHpyAiATvMNXcw@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: imx8mn-bsh-smm-s2pro: Add tlv320aic31xx
+ audio card node
+To:     "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hi Ariel,
 
-On Mon, Mar 21, 2022 at 2:56 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on the
-> carrier board.  This patch adds pinmux and spi1 nodes to the carrier
-> board dtsi file and drops deleting pinctl* properties from DTS file.
+On Thu, Mar 31, 2022 at 10:35 AM Ariel D'Alessandro
+<ariel.dalessandro@collabora.com> wrote:
 >
-> RSPI1 interface is tested by setting the macro SW_RSPI_CAN to 0.
+> Hi Fabio, Shawn,
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2:
->  * Sorted the node alphabetically
->  * Delete/disable pinctrl/spi node, when SW_RSPI_CAN macro is set to 1.
->    This change is done in common file, so that both single core and
->    dual core RZ/G2LC SMARC EVK can reuse the same.
+> Can we merge this please?
 
-Thanks for the update!
-
-> --- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-> @@ -158,3 +158,17 @@
->         status = "okay";
->  };
->  #endif
-> +
-> +#if (!SW_RSPI_CAN)
-> +&spi1 {
-> +       pinctrl-0 = <&spi1_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
-> +};
-
-Unless I'm missing something, the above is overriding properties in
-the spi1 node in rz-smarc-common.dtsi with the exact same values they
-already have?
-
-So I think this branch can be removed, and only the #else below
-should be kept.
-
-> +#else
-> +&spi1 {
-> +       /delete-property/ pinctrl-0;
-> +       /delete-property/ pinctrl-names;
-> +       status = "disabled";
-> +};
-> +#endif
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Shawn will probably start picking the patches for the next cycle after
+5.18-rc1 is released.
