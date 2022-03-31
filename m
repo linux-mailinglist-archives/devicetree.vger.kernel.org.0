@@ -2,103 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF9F4ED791
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7174ED797
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234503AbiCaKKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 06:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
+        id S234509AbiCaKMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 06:12:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233909AbiCaKKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:10:10 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A029202172;
-        Thu, 31 Mar 2022 03:08:23 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id j21so20987399qta.0;
-        Thu, 31 Mar 2022 03:08:23 -0700 (PDT)
+        with ESMTP id S233269AbiCaKMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:12:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6DD4B841
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 03:10:31 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id h7so40602337lfl.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 03:10:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DkPFTvrQEeskfvBTqfSOajTcre8fVDqFYzIN3B6dTsI=;
+        b=KItC8IMn5rncXU6DjNFWlsw2ttC3GaaAEUbxCnBOR7T/9Tfj6lRHHFcT2drBRA225/
+         dk71o9m/4VllMnJRSsHw7LpJ9ASmXszD3qY5Zz+5TfhYdsRg38C3XtGxx2w1jGsQWBY8
+         ih5uzDcudKl79At3nt5SsfB64kDTfNMDqHWXP07DhGCY1vsGKCPn+LukasFPljTlUHJI
+         fP10i7MwzuQBxdQAzpmwtCsOshjAuwnIOjprbAKbJ1Yy6ciMxquv4ewcAaNOedjPDwYA
+         nOxsNYnOLJ6pOXJnjlR2ncJeheVQ923O6vmgq2BTKrYI1rCvcolTwFfgDgtF5Fn0MUui
+         Bdyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qReDg0txsD6WldX0J6Ylu+w+ahL52yVCKgJRzjDfjl0=;
-        b=ykA40e4AkULLOtMJsDACfiGhIGjNODjA8VBfytPKBhE18sIxYOJmBCdFbBG67csmHD
-         9s46iq/7Nil0DNeWh3BGgiEoQFpRNHqcSTFpQVZoeAfKYjRkVqbhN9h832p8CWuB8BI2
-         1wNsqxpnpFrVoKWbOn/5et9S/K5sIsPZALGfK3WtrzDrPaqjksy2N+Fu4hc9p2Yy88nF
-         SBLx67dasHLqsV4SqxFsDSn7757Zb+PZepBB8lzo+8IT3/vYswnykhAhb57MiWPDCN66
-         bllbo3obvOOZ6VE5MmbcVe+WUlx3U4JbMeBQSQ7ymnobTQsqecEhYxi4PAk+Fl9sb/vZ
-         Q/3Q==
-X-Gm-Message-State: AOAM5332igp4CsqzADuW8W2Dm5MsrtbDBJQj8ex3k23JKNDxT2hdED4N
-        u8gbPucJ51j4ND5vnk2+uIFQUNYIBrqQuw==
-X-Google-Smtp-Source: ABdhPJxTlNHACSApXZ3kbPz7kG2OU2zuU9IxQl9XAppmmhUXyC79+RUiqrD4/STXtCbxMIbFoooMyA==
-X-Received: by 2002:a05:622a:15c7:b0:2eb:9af4:cdf4 with SMTP id d7-20020a05622a15c700b002eb9af4cdf4mr4574qty.241.1648721301876;
-        Thu, 31 Mar 2022 03:08:21 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id w17-20020ac857d1000000b002e19feda592sm19244877qta.85.2022.03.31.03.08.21
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DkPFTvrQEeskfvBTqfSOajTcre8fVDqFYzIN3B6dTsI=;
+        b=EOE7qFETmCFL9GBDckBDwiTbdqtJuWQZlg3igskP8ZZPMOSa96MRjxc6/xlWhY7lHH
+         LqqW0+td6zL27qgh2wgd7XU+EeM3qZNPl9AsfVxgPxtX2nggckPwQOPRIZav0DW98/8o
+         GAcmlJ21x8qV9w4lCDIjNKGHQeDjvUIwzHwc05wxLNzIcwdN8hRpvwKTDIfU4CeTGIR4
+         9espNakX92+8yj8oj4dVqIw+1ObDILon2iFpn06Qoa+3Q+NJsyxfFGln9NgMnab/kkkS
+         n6f829XS7d7bTk8ftw05Asq7om4kz+qIvcoWVCKwFhZUtfBByFP7NP4Sk0Dw7cYN1vDi
+         pUfw==
+X-Gm-Message-State: AOAM533a9ZFXNw39d/8W/AWEG4uJINqZlf14+SkQuaNUIxPs1Lvgsxzc
+        EGPoY2AFVv6gzva2+WrW5nx6XA==
+X-Google-Smtp-Source: ABdhPJwtAJyMy0EoY+rrG6bKX7082NXgD8paVU/49U2dxYES7x6TI8M54x7s0LTqdnwet5PnHMXT9w==
+X-Received: by 2002:ac2:485b:0:b0:44a:23d5:d4bd with SMTP id 27-20020ac2485b000000b0044a23d5d4bdmr10216994lfy.214.1648721428984;
+        Thu, 31 Mar 2022 03:10:28 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id a26-20020a19fc1a000000b0044ab4920887sm805769lfi.57.2022.03.31.03.10.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 03:08:21 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-2e68c95e0f9so249000147b3.0;
-        Thu, 31 Mar 2022 03:08:21 -0700 (PDT)
-X-Received: by 2002:a81:b663:0:b0:2ea:da8c:d133 with SMTP id
- h35-20020a81b663000000b002eada8cd133mr4174370ywk.256.1648721300870; Thu, 31
- Mar 2022 03:08:20 -0700 (PDT)
+        Thu, 31 Mar 2022 03:10:28 -0700 (PDT)
+Message-ID: <d9ac1cee-d4fc-09ae-b2df-82ae2ecd57fb@linaro.org>
+Date:   Thu, 31 Mar 2022 13:10:27 +0300
 MIME-Version: 1.0
-References: <20220315142644.17660-1-biju.das.jz@bp.renesas.com> <20220315142644.17660-8-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220315142644.17660-8-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 31 Mar 2022 12:08:09 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU+dKrkOUPuemOx5yG=V_g0oqnoNHg7cdAMOcCu6C1CuQ@mail.gmail.com>
-Message-ID: <CAMuHMdU+dKrkOUPuemOx5yG=V_g0oqnoNHg7cdAMOcCu6C1CuQ@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] arm64: dts: renesas: Add initial device tree for
- RZ/G2UL Type-1 SMARC EVK
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v6 4/8] drm/msm/dp: avoid handling masked interrupts
+Content-Language: en-GB
+To:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robdclark@gmail.com" <robdclark@gmail.com>,
+        "seanpaul@chromium.org" <seanpaul@chromium.org>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "sean@poorly.run" <sean@poorly.run>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-5-git-send-email-quic_sbillaka@quicinc.com>
+ <CAA8EJprMvik_6xmGt2oZGpDG9FoMtC_ojuw+oTjPLTck4Hu3WA@mail.gmail.com>
+ <MW4PR02MB7186669BA1B19FA4F184B558E1E19@MW4PR02MB7186.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <MW4PR02MB7186669BA1B19FA4F184B558E1E19@MW4PR02MB7186.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 3:27 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add basic support for RZ/G2UL SMARC EVK (based on R9A07G043U11):
-> - memory
-> - External input clock
-> - CPG
-> - DMA
-> - SCIF
->
-> It shares the same carrier board with RZ/G2L, but the pin mapping is
-> different. Disable the device nodes which are not tested and delete the
-> corresponding pinctrl definitions.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
->  * Replaced CONFIG_ARCH_R9A07G043U->CONFIG_ARCH_R9A07G043
->  * Renamed SoC file r9a07g043u.dtsi->r9a07g043.dtsi
+On 31/03/2022 08:53, Sankeerth Billakanti (QUIC) wrote:
+> Hi Dmitry,
+> 
+>> On Wed, 30 Mar 2022 at 19:03, Sankeerth Billakanti
+>> <quic_sbillaka@quicinc.com> wrote:
+>>>
+>>> The interrupt register will still reflect the connect and disconnect
+>>> interrupt status without generating an actual HW interrupt.
+>>> The controller driver should not handle those masked interrupts.
+>>>
+>>> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+>>> ---
+>>>   drivers/gpu/drm/msm/dp/dp_catalog.c | 5 +++--
+>>>   1 file changed, 3 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c
+>>> b/drivers/gpu/drm/msm/dp/dp_catalog.c
+>>> index 3c16f95..1809ce2 100644
+>>> --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
+>>> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
+>>> @@ -608,13 +608,14 @@ u32 dp_catalog_hpd_get_intr_status(struct
+>>> dp_catalog *dp_catalog)  {
+>>>          struct dp_catalog_private *catalog = container_of(dp_catalog,
+>>>                                  struct dp_catalog_private, dp_catalog);
+>>> -       int isr = 0;
+>>> +       int isr, mask;
+>>>
+>>>          isr = dp_read_aux(catalog, REG_DP_DP_HPD_INT_STATUS);
+>>>          dp_write_aux(catalog, REG_DP_DP_HPD_INT_ACK,
+>>>                                   (isr & DP_DP_HPD_INT_MASK));
+>>> +       mask = dp_read_aux(catalog, REG_DP_DP_HPD_INT_MASK);
+>>>
+>>> -       return isr;
+>>> +       return isr & (DP_DP_HPD_STATE_STATUS_MASK | mask);
+>>
+>> I suspect that the logic is inverted here. Shouldn't it be:
+>>
+>> return isr & DP_DP_HPD_STATE_STATUS_MASK & mask;
+>>
+>> ?
+>>
+>   
+> The value of DP_DP_HPD_STATE_STATUS_MASK is 0xE0000000 and the value of the read
+> interrupt mask variable could be is 0xF.
+> 
+> The mask value is indicated via the register, REG_DP_DP_HPD_INT_MASK, bits 3:0.
+> The HPD status is indicated via a different read-only register REG_DP_DP_HPD_INT_STATUS, bits 31:29.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I see. Maybe the following expression would be better?
 
-Gr{oetje,eeting}s,
+return isr & (mask & ~DP_DP_HPD_INT_MASK);
 
-                        Geert
+> 
+> isr & DP_DP_HPD_STATE_STATUS_MASK & mask, will return 0 always.
+> 
+>>>   }
+>>>
+>>>   int dp_catalog_ctrl_get_interrupt(struct dp_catalog *dp_catalog)
+>>> --
+>>> 2.7.4
+>>>
+>>
+>>
+>> --
+>> With best wishes
+>> Dmitry
+> 
+> Thank you,
+> Sankeerth
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
