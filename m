@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0B844EDDA9
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E45774EDDB7
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239232AbiCaPqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 11:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46280 "EHLO
+        id S238315AbiCaPsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 11:48:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239432AbiCaPp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:45:57 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DBD1E5232;
-        Thu, 31 Mar 2022 08:40:33 -0700 (PDT)
-X-UUID: ab6246be6d714f2d8d6c7ef929e3e8a3-20220331
-X-UUID: ab6246be6d714f2d8d6c7ef929e3e8a3-20220331
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1623740777; Thu, 31 Mar 2022 23:40:04 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 31 Mar 2022 23:40:02 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 31 Mar 2022 23:40:02 +0800
-Message-ID: <56ca6920f036b74b28c5858d8b28c3f3046c4758.camel@mediatek.com>
-Subject: Re: [PATCH v16 4/8] soc: mediatek: add mtk-mmsys support for mt8195
- vdosys0
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>, "Rob Herring" <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <hsinyi@chromium.org>, <fshao@chromium.org>,
-        <moudy.ho@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>, <nancy.lin@mediatek.com>,
-        <singo.chang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 31 Mar 2022 23:40:02 +0800
-In-Reply-To: <01e57ed9-222c-5b74-fe2b-4d22fe802c98@gmail.com>
-References: <20220307032859.3275-1-jason-jh.lin@mediatek.com>
-         <20220307032859.3275-5-jason-jh.lin@mediatek.com>
-         <a068f2c9b2111f3a7a20da19073ef5fdb7f4a91f.camel@mediatek.com>
-         <b9ed8c1511ea26c070dd3fb61f4370e5f858058c.camel@mediatek.com>
-         <97bc1358813a2449d6e62653eb7af9906dfb190e.camel@mediatek.com>
-         <01e57ed9-222c-5b74-fe2b-4d22fe802c98@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235518AbiCaPro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:47:44 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C391DEC1C
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:44:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648741453; x=1680277453;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=3cAwNZRD/3Fe85aRtAT8s08+6sVv/l46Q0SjTymOWMo=;
+  b=ecG+krTnNxRuW5lGIh8/ttlBL7PnLNI2DOLIz4Q4Rh0+4CybWPISMbc/
+   cXf2odlUJySGh61dpOcEYehTjC+ptK3Ju0XjfP2cp/hNC2yNEd9U8azWU
+   NVU52oJJSUOGRGVqHmY/7J2dATQc6UjHbfheqFPOyAqpaiing3e76IBEN
+   E=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 31 Mar 2022 08:44:12 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2022 08:44:12 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 31 Mar 2022 08:44:12 -0700
+Received: from [10.110.21.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 31 Mar
+ 2022 08:44:10 -0700
+Message-ID: <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
+Date:   Thu, 31 Mar 2022 08:44:09 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
+Content-Language: en-US
+To:     Joel Stanley <joel@jms.id.au>
+CC:     Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>
+References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
+ <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+In-Reply-To: <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,125 +74,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
-
- * Thanks for the reviews.
-
-On Thu, 2022-03-31 at 13:01 +0200, Matthias Brugger wrote:
+On 3/30/2022 10:50 PM, Joel Stanley wrote:
+> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo <quic_jaehyoo@quicinc.com> wrote:
+>>
+>> I’m sending this patch series to fix current issues in AST2600 pinmux
+>> settings while enabling quad mode SPI support.
+>>
+>> FWSPI18 pins are basically 1.8v logic pins that are different from the
+>> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins can’t
+>> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
+>>
+>> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl dtsi to
+>> make it able to enable quad mode on SPI1 and SPI2 interfaces.
+>>
+>> With this series, quad mode pinmux can be set like below.
+>>
+>> FW SPI:
+>> &fmc {
+>>          pinctrl-names = "default";
+>>          pinctrl-0 = <&pinctrl_fwqspi_default>;
+>> }
+>>
+>> SPI1:
+>> &spi1 {
+>>          pinctrl-names = "default";
+>>          pinctrl-0 = <&pinctrl_qspi1_default>;
+>> }
+>>
+>> SPI2:
+>> &spi2 {
+>>          pinctrl-names = "default";
+>>          pinctrl-0 = <&pinctrl_qspi2_default>;
+>> }
 > 
-> On 30/03/2022 12:04, Jason-JH Lin wrote:
-> > Hi CK,
-> > 
-> > Thanks for the review.
-> > 
-> > On Mon, 2022-03-28 at 13:39 +0800, CK Hu wrote:
-> > > Hi, Jason:
-> > > 
-> > > On Mon, 2022-03-28 at 13:03 +0800, Jason-JH Lin wrote:
-> > > > Hi CK,
-> > > > 
-> > > > Thanks for the reviews.
-> > > > 
-> > > > On Mon, 2022-03-07 at 11:28 +0800, jason-jh.lin wrote:
-> > > > > Add mt8195 vdosys0 clock driver name and routing table to
-> > > > > the driver data of mtk-mmsys.
-> > > > > 
-> > > > > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> > > > > Acked-by: AngeloGioacchino Del Regno <
-> > > > > angelogioacchino.delregno@collabora.com>
-> > > > > ---
-> > > > > Impelmentation patch of vdosys1 can be refered to [1]
-> > > > > 
-> > > > > [1] soc: mediatek: add mtk-mmsys support for mt8195 vdosys1
-> > > > > ---
-> > > > >   drivers/soc/mediatek/mt8195-mmsys.h    | 130
-> > > > > +++++++++++++++++++++++++
-> > > > >   drivers/soc/mediatek/mtk-mmsys.c       |  11 +++
-> > > > >   include/linux/soc/mediatek/mtk-mmsys.h |   9 ++
-> > > > >   3 files changed, 150 insertions(+)
-> > > > >   create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
-> > > > > 
-> > > > > diff --git a/drivers/soc/mediatek/mt8195-mmsys.h
-> > > > > b/drivers/soc/mediatek/mt8195-mmsys.h
-> > > > > new file mode 100644
-> > > > > index 000000000000..24a3afe23bc8
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/soc/mediatek/mt8195-mmsys.h
-> > > > > @@ -0,0 +1,130 @@
-> > > > > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > > > > +
-> > > > > +#ifndef __SOC_MEDIATEK_MT8195_MMSYS_H
-> > > > > +#define __SOC_MEDIATEK_MT8195_MMSYS_H
-> > > > > +
-> > > > > +#define MT8195_VDO0_OVL_MOUT_EN				
-> > > > > 	
-> > > > > 0xf14
-> > > > > +#define MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0			
-> > > > > BIT(0)
-> > > > > +#define MT8195_MOUT_DISP_OVL0_TO_DISP_WDMA0			
-> > > > > BIT(1)
-> > > > >   
-> > > > > Useless, so remove.
-> > > > > 
-> > > > > +#define MT8195_MOUT_DISP_OVL0_TO_DISP_OVL1			
-> > > > > BIT(2)
-> > > > > Ditto.Useless, so remove.
-> > > > > Regards,
-> > > > > CK
-> > > > 
-> > > > Although these definitions are not used, they represent the
-> > > > functionality provided by this register.
-> > > > 
-> > > > I think we can show that we have these capabilities by defining
-> > > > them.
-> > > > 
-> > > > Can we keep these definitions?
-> > > 
-> > > It's better that we know how to use it. Even though the symbol
-> > > name
-> > > show some information, but I would like to add it to
-> > > mmsys_mt8195_routing_table[].
-> > > 
-> > > Regards,
-> > > CK
-> > > 
-> > 
-> > OK, I think I just remove the useless define.
+> Thanks. I hope to see a board from you that uses this soon :)
 > 
-> Actually I would prefer to add it to the routing table to describe
-> all the 
-> capabilities of the HW.
-> 
-> Is there any technical problem with that?
-> 
-> Regards,
-> Matthias
-> 
-OK, I'll add keep these definitions and add them to the routing table.
+> I'll send the patches as fixes once -rc1 is out.
 
-Regards,
-Jason-JH.Lin
+Thanks Joel!
 
-> > Thanks.
-> > 
-> > Regards,
-> > Jason-JH.Lin
-> > > > 
-> > > > Regards,
-> > > > Jason-JH.Lin
-> > > > 
-> > > > > +#define MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1			
-> > > > > BIT(4)
-> > > > > +#define MT8195_MOUT_DISP_OVL1_TO_DISP_WDMA1			
-> > > > > BIT(5)
-> > > > > +#define MT8195_MOUT_DISP_OVL1_TO_DISP_OVL0			
-> > > > > BIT(6)
-> > > > 
-> > > > 
-> > > > [snip]
-> > > > 
-> > > 
-> > > 
--- 
-Jason-JH Lin <jason-jh.lin@mediatek.com>
+Yes, I would be able to send my BMC board dts soon.
+Thanks in advance for your review on that too.
 
+Best,
+Jae
+
+>>
+>> Please review.
+>>
+>> Thanks,
+>> Jae
+>>
+>> Changes in v3:
+>>   * Added bindings patches. (Andrew)
+>>
+>> Changes in v2:
+>>   * Rebased it on the latest.
+>>
+>> Jae Hyun Yoo (5):
+>>    ARM: dts: aspeed-g6: remove FWQSPID group in pinctrl dtsi
+>>    pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
+>>    dt-bindings: pinctrl: aspeed-g6: remove FWQSPID group
+>>    dt-bindings: pinctrl: aspeed-g6: add FWQSPI function/group
+>>    ARM: dts: aspeed-g6: fix SPI1/SPI2 quad pin group
+>>
+>> Johnny Huang (2):
+>>    pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
+>>    ARM: dts: aspeed-g6: add FWQSPI group in pinctrl dtsi
+>>
+>>   .../pinctrl/aspeed,ast2600-pinctrl.yaml         |  4 ++--
+>>   arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi        | 10 +++++-----
+>>   drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c      | 17 ++++++++---------
+>>   3 files changed, 15 insertions(+), 16 deletions(-)
+>>
+>> --
+>> 2.25.1
+>>
