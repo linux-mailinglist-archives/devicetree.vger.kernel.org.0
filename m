@@ -2,147 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD394ED8C1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 13:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CB44ED99B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233273AbiCaL6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 07:58:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43528 "EHLO
+        id S236072AbiCaM2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbiCaL63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 07:58:29 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE67208C12;
-        Thu, 31 Mar 2022 04:56:42 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id n35so14106290wms.5;
-        Thu, 31 Mar 2022 04:56:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Wxsj21Het/z6xd9Casvbkn0jKbQnilJIFWcnrumAXSU=;
-        b=WSzw5urQAa6H8LwgQkKimPtvog6Ro2Kkq/TwkgFYtOd9znWt4AIRG7kWdLLmWob+jK
-         K4hTMeezMcJLSRRal7F5QzVDT5IN0WVXUrx4R6qJVOG7wuJBnZsqf+2enWgwG/GcH8pW
-         mRbVqnHZ2zGq9oU84xzD4JyJD/2LZDo9k+trH525wZ/lpa8oHnCYOuY30Rf/cPUn4gIX
-         jigHnzOHItV+FG34ytfUoc1IAwGnasVKLZE26X2sIFYVrh2pWT75LN4p8HLVyHJ/BpAP
-         1u4ygdEtIQo3jdszaGR5/OI7FrupmeTcXT05JZJt3+NNWMhhAoJizUohPqTXkVr1ldVY
-         /mwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Wxsj21Het/z6xd9Casvbkn0jKbQnilJIFWcnrumAXSU=;
-        b=lZnKRJw4PSuO4vxU096EfYHpbT4R1MfPfC1GooIlwoBEYBmmEDTXtndcIfQSB0Xuou
-         WpIZKGb2p0f4El0fv7tIdt8rnTXxC4C4FnQyD6YaQEhBWDICwUWLhKM2FrggqKM9Dgk2
-         M9W9x5HjmG7q6cM7c8faqlxa6cqCk/IplwytmbKnwV3LNsSKw4Ky5otnSO2WgqJcRokm
-         Z2qNEgpauiSgXSz6xWftYGfvxZFpus/WkyUlFQsCJAgS3jAH2fn91oVXgMRkmROEwxhQ
-         fkIHJ4uNJcQU0Ipl85VIwNonV/MrT8Jt2JjhMyqF7xuYWtnYa63lk8JnFcQ9dKm3I7Ao
-         I19Q==
-X-Gm-Message-State: AOAM5311Y+dwJvwIasi9fu9aDfq4MGrtMq1Xg71oqkYY3Qnc7oeZuTvF
-        wZz/A+uSw/lM26dkM3vSSIE=
-X-Google-Smtp-Source: ABdhPJwqM0tYJjbGOI3ikLFWCZA1vagqtFyfRDGpTW5JHpsB6utkyOP9RhS1rPj272VgJuGOmu7qKg==
-X-Received: by 2002:a05:600c:19ce:b0:38c:dcc1:4cf3 with SMTP id u14-20020a05600c19ce00b0038cdcc14cf3mr4419238wmq.126.1648727800764;
-        Thu, 31 Mar 2022 04:56:40 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id y11-20020a056000168b00b002041af9a73fsm23001295wrd.84.2022.03.31.04.56.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 04:56:40 -0700 (PDT)
-Message-ID: <06a53ed1-63a8-50c1-7eb0-58ccecce624e@gmail.com>
-Date:   Thu, 31 Mar 2022 13:56:38 +0200
+        with ESMTP id S236067AbiCaM2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:28:07 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCFCC1FB501;
+        Thu, 31 Mar 2022 05:26:19 -0700 (PDT)
+Received: from mail-lf1-f52.google.com ([209.85.167.52]) by
+ mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MDQqe-1niBKu0xwk-00AV1U; Thu, 31 Mar 2022 14:26:18 +0200
+Received: by mail-lf1-f52.google.com with SMTP id bq24so25242005lfb.5;
+        Thu, 31 Mar 2022 05:26:18 -0700 (PDT)
+X-Gm-Message-State: AOAM532qX2LJYis2VusYBT65BraBE55hFs19J0CtMtPMsrbcanJj/r5w
+        x5yOrlCC9txH6J6xKDtrtq3aqAyJhu8Qz8nA+Jk=
+X-Google-Smtp-Source: ABdhPJxblHzN8A8TvuiEkXNzMUEBbbuh2/h0a120rBFukLWeh1t2dCBmStJdCyrkTUm6pSHNZoOJL8soa/bMgZk8Rj4=
+X-Received: by 2002:a5d:6505:0:b0:205:9a98:e184 with SMTP id
+ x5-20020a5d6505000000b002059a98e184mr3195582wru.317.1648718240005; Thu, 31
+ Mar 2022 02:17:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 1/4] arm64: dts: mt8192: Add PCIe node
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+References: <cover.1648714851.git.qinjian@cqplus1.com> <c75df921c121c047d48a34de29cd18cf9a631d01.1648714851.git.qinjian@cqplus1.com>
+In-Reply-To: <c75df921c121c047d48a34de29cd18cf9a631d01.1648714851.git.qinjian@cqplus1.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 31 Mar 2022 11:17:04 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a16M3nv+TQWsC-0Pr5M2vcTttC2WWTzctMBaqdODMFX-A@mail.gmail.com>
+Message-ID: <CAK8P3a16M3nv+TQWsC-0Pr5M2vcTttC2WWTzctMBaqdODMFX-A@mail.gmail.com>
+Subject: Re: [PATCH v12 7/9] irqchip: Add Sunplus SP7021 interrupt controller driver
+To:     Qin Jian <qinjian@cqplus1.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220330133816.30806-1-allen-kh.cheng@mediatek.com>
- <20220330133816.30806-2-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220330133816.30806-2-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:9WfqbbizZrl6Bo03VzQB2usOo4kvLoR3iOej7IjwfhgAKCtgtdM
+ q4E9I2PiQ56zhYMleHff2yCybxmJAWRVUCPmuiNaWc1T6sMlyMkG4j2NTST6jI3WE8uzGWk
+ A14klJ0ofAURFE6aPFqX8CtTxqm88j3PXwVjVlt6ANiFVcFTpB5S/H8Sd+sUz4CUCbszqov
+ 7QRlTKkzs7egNJeGubjpA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Ob6Y+w0dN6Q=:YsXZB2hvGiJqOsDtl1NhYy
+ Dc4iyFsfML8dzyVhswNe4diF5jLkz8C9aUopCk/m9tjDomD76k4/bHFm9u53BKYEOJl/SJNhR
+ uKw41aOzFOtG96mBFaq01ZkXHk7mQovv1pdGlvnrRbiM25W5AIVfz3WSNYYM/FvuVyYBgyB3u
+ 3qBIfDLYwNrhRtYtazKfJy9OnkT139kAXxRfm4994sIWGEq+YIUc8p9U2OCX2+gvsXD4tGFiN
+ u44Pmf6MB8JSd2zSszLc1pV8wCtOb5IjPwyf4ulaufGHXFJeLv6K9vPq7XrZEX0F+IZ/DQlPE
+ DCo2RnpR/Imfrsg1slMPccwtV/KA0QuG+c0i1hzcpoe4j9yZ5x36OOXx/zkok8GdfN8mstfxg
+ ZclYN8EvKDwsVXND0JHgw84Xh0QwTA0IOV4vrzkqEN3GY5xLAPdJfpZ8Yihqz8yrL5NXlCNpX
+ WzMIsS3i0gK/APi4IfxPK7635jIiujzPOTVDVSsPYsr3QTJ8+5VzCbGfPOsDN5xKkRFWNtD0+
+ un3HquhO7NSVf4rxQ8iFfOJCWxWb0yxPE/3HcCbwmW94hItiNjmm/PaChTjyh4DnS100K3I4T
+ tktjPtbVUwKgnvPo+m3HsfUXulM8vlMr2vQYI641MY+iGsIy/k77fwbkn0iMQUj6Q1+H1rgSz
+ Bzryj8IjHtzGO1QdfuAtVYs5pStRlQVUpxg4nPIBnJ2vrCsndKK/d7Ol7TZBiWDXjHdg=
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 31, 2022 at 10:29 AM Qin Jian <qinjian@cqplus1.com> wrote:
 
-
-On 30/03/2022 15:38, Allen-KH Cheng wrote:
-> Add PCIe node for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-I wonder why you left Nicolas Reviewed-by but not the one from Angelo. Anyway 
-when sending a new version, be sure to drop the reviewed-by tags if there are 
-substantial changes in the patch. We can argue if changing the clock names is a 
-substantial change or not. Maybe that's why you left just one reviewed-by tag ;)
-I'm just joking, I'll add the other tag myself.
-
-Applied thanks.
-
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 35 ++++++++++++++++++++++++
->   1 file changed, 35 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 579abbf4488e..69e8d1934d53 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -716,6 +716,41 @@
->   			status = "disabled";
->   		};
->   
-> +		pcie: pcie@11230000 {
-> +			compatible = "mediatek,mt8192-pcie";
-> +			device_type = "pci";
-> +			reg = <0 0x11230000 0 0x2000>;
-> +			reg-names = "pcie-mac";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			clocks = <&infracfg CLK_INFRA_PCIE_PL_P_250M>,
-> +				 <&infracfg CLK_INFRA_PCIE_TL_26M>,
-> +				 <&infracfg CLK_INFRA_PCIE_TL_96M>,
-> +				 <&infracfg CLK_INFRA_PCIE_TL_32K>,
-> +				 <&infracfg CLK_INFRA_PCIE_PERI_26M>,
-> +				 <&infracfg CLK_INFRA_PCIE_TOP_H_133M>;
-> +			clock-names = "pl_250m", "tl_26m", "tl_96m",
-> +				      "tl_32k", "peri_26m", "top_133m";
-> +			assigned-clocks = <&topckgen CLK_TOP_TL_SEL>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D6_D4>;
-> +			interrupts = <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			bus-range = <0x00 0xff>;
-> +			ranges = <0x82000000 0 0x12000000 0x0 0x12000000 0 0x0800000>,
-> +				 <0x81000000 0 0x12800000 0x0 0x12800000 0 0x0800000>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &pcie_intc0 0>,
-> +					<0 0 0 2 &pcie_intc0 1>,
-> +					<0 0 0 3 &pcie_intc0 2>,
-> +					<0 0 0 4 &pcie_intc0 3>;
+> +#ifdef CONFIG_SMP
+> +static int sp_intc_set_affinity(struct irq_data *d, const struct cpumask *mask, bool force)
+> +{
+> +       return -EINVAL;
+> +}
+> +#endif
 > +
-> +			pcie_intc0: interrupt-controller {
-> +				interrupt-controller;
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +			};
-> +		};
-> +
->   		nor_flash: spi@11234000 {
->   			compatible = "mediatek,mt8192-nor";
->   			reg = <0 0x11234000 0 0xe0>;
+> +static struct irq_chip sp_intc_chip = {
+> +       .name = "sp_intc",
+> +       .irq_ack = sp_intc_ack_irq,
+> +       .irq_mask = sp_intc_mask_irq,
+> +       .irq_unmask = sp_intc_unmask_irq,
+> +       .irq_set_type = sp_intc_set_type,
+> +#ifdef CONFIG_SMP
+> +       .irq_set_affinity = sp_intc_set_affinity,
+> +#endif
+> +};
+
+I don't think you need to define an irq_set_affinity() callback at all if you
+just return -EINVAL, all the callers should have a check already. Even
+if you do need the function, I think you can remove the #ifdef, as long
+as the function itself can be built that way.
+
+      Arnd
