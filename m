@@ -2,578 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 321B84EDC4D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:03:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57E294EDC50
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237941AbiCaPFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 11:05:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40058 "EHLO
+        id S233431AbiCaPG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 11:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237938AbiCaPFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:05:09 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4B9214864B
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:03:21 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id q19so66091pgm.6
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:03:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/zcghtPZx6D1JMNJOZfPwZk2xpCTteywX/pLnAuJfqs=;
-        b=R40TffcnApVNeh/u71pjnPX/v7bIxs1rU31aVym4gJMZrzZwJcZQL5H9YsZ1GT2jtA
-         MVjWicXkzebZVsaiBc77Xi2B5aPUtq0KOyYpJwjmfzZzNWWBfZ5mU7GfKHB91eHpLWZa
-         hOY+jWGUEha3WZ6IosTlu91bpohfIxhHmchi4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/zcghtPZx6D1JMNJOZfPwZk2xpCTteywX/pLnAuJfqs=;
-        b=4KpUXyGHpPI71EJnUhK4sMPgV4Eq/5ZLysakiM5VlWNSrJVYbjWS17TEEWnMuJNCIQ
-         qtmiKJ2fwEJszpsJqtTkzfC7Qtu25Q+H9xeklwHdCV62SZPocOL0muDOKqDSJ33edQhh
-         9mSKymSFhmzUemwvd1uWWQnLW0RulSpR5vRxpi8/yKwHDGgPOQP9Og2qP3cY9zWIAvjG
-         hDqd8utVco8KQxJw1zNKDLw4iwiSRANSPPgjN91zSOchccReRVOxIzwJA/vkzPjcKluJ
-         oFY4CecFdSm4hnj+1IxqS42VJUo8yRzFYNinC48G+f9+RUJ6KAucvHbWDYE2PVXlytLo
-         hkSA==
-X-Gm-Message-State: AOAM533lZT9loKD7u/8KHfkXYJaWD7u+KAy/vzln48x4/hd6NwWyBqAL
-        qDJewtw05ZzEOoVs+4Fy8LypFw==
-X-Google-Smtp-Source: ABdhPJwKxixGp4owV46JxQuO+OwF1Q2ot38jXESvU9YLH5T3yZ9u/E412f9SMEtS++92kHLVBwSFEA==
-X-Received: by 2002:a05:6a00:23d1:b0:4fb:228a:e9df with SMTP id g17-20020a056a0023d100b004fb228ae9dfmr5876120pfc.31.1648739000906;
-        Thu, 31 Mar 2022 08:03:20 -0700 (PDT)
-Received: from localhost.localdomain ([183.83.137.38])
-        by smtp.gmail.com with ESMTPSA id w79-20020a627b52000000b004fd8d1e5489sm10151058pfc.87.2022.03.31.08.03.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 08:03:20 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Christopher Vollo <chris@renewoutreach.org>
-Subject: [PATCH v2 2/2] drm: bridge: Add TI DLPC3433 DSI to DMD bridge
-Date:   Thu, 31 Mar 2022 20:33:07 +0530
-Message-Id: <20220331150307.58777-2-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220331150307.58777-1-jagan@amarulasolutions.com>
-References: <20220331150307.58777-1-jagan@amarulasolutions.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S232527AbiCaPG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:06:27 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA0531DC6;
+        Thu, 31 Mar 2022 08:04:36 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1648739073; bh=Gbs6tg3skhw4iV8rn16Vi4dTeQOEU2j8Ua0eJjFEIRI=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=UxK4BkneLgDYJnS9yHUey/xTnu7DvHl4N0bAER7LwYK9NaIywtoi1EgnY8dqwpDk1
+         T8BGOYtJy+NLEeIQ+tGNddxWMikOZNYJoWHVMjgVjx5hiNwemRZTjiqj7ehZmEmmqI
+         EkzlDxIPdcETMFA6N2eOy7+Q7vE2bXwkK1VUiDQo=
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
+Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <YkW4MPh8VWc8eSGg@sirena.org.uk>
+Date:   Thu, 31 Mar 2022 17:04:32 +0200
+Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <YkWfziQzprEsWL72@sirena.org.uk>
+ <CCE4A06E-6D6F-457D-B3C5-C36209BF38D3@cutebit.org>
+ <YkW4MPh8VWc8eSGg@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI DLPC3433 is a MIPI DSI based display controller bridge
-for processing high resolution DMD based projectors.
 
-It has a flexible configuration of MIPI DSI and DPI signal
-input that produces a DMD output in RGB565, RGB666, RGB888
-formats.
+> On 31. 3. 2022, at 16:18, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Thu, Mar 31, 2022 at 03:28:12PM +0200, Martin Povi=C5=A1er wrote:
+>>> On 31. 3. 2022, at 14:34, Mark Brown <broonie@kernel.org> wrote:
+>=20
+>>> The broad issue here is that what you consider ridiculous someone =
+else
+>>> might have some bright ideas for configuring dynamically - if things =
+are
+>>> being exposed for dynamic configuration it's probably because =
+someone
+>>> wanted them, if the control is genuinely useless then it should just =
+be
+>=20
+>> Well but these are codec drivers reused on different systems, it can =
+both
+>> be 'not genuinely useless=E2=80=99 on some system and ridiculous to =
+leave open on
+>> the systems I am trying to write drivers for.
+>=20
+> It wouldn't be the first time that we've had someone turn up with a =
+new
+> idea for how to configure an already existing bit of hardware, part of
+> the reason for this approach is that people do get surprised by user
+> creativity with their systems.
+>=20
+>>> The TDM swap thing you're mentioning looks like it's a left/right
+>>> selection which people do use sometimes as a way of doing mono mixes =
+and
+>>> reorientation.  The ISENSE/VSENSE is less obvious, though it's =
+possible
+>>> there's issues with not having enough slots on a heavily used TDM =
+bus or
+>>> sometimes disabling the speaker protection processing for whatever
+>>> reason.
+>=20
+>> Not only that. On TAS2770 the default value for =E2=80=98ASI1 Sel=E2=80=
+=99 is =E2=80=98I2C offset=E2=80=99
+>> meaning the speaker amp driver ignores my set_tdm_slot calls. If you =
+tell
+>> me it=E2=80=99s okay to change that behaviour and it won=E2=80=99t be =
+considered backwards
+>> compatibility breaking, that would be part of the solution I am =
+seeking
+>> here.
+>=20
+> Having the default state be muted or not routed is quite common, UCM
+> files or equivalent are typically required for embedded style hardware
+> like this.
+>=20
+>> But even then, what for example if the system has a single speaker =
+(as it
+>> does on the Mac mini to be covered by this driver) and the I2S bus is =
+left
+>> undriven for the duration of unused TDM slots? That may genuinely =
+pose
+>> a risk of people blowing their speakers by switching something in =
+alsamixer.
+>=20
+> Right, so that's a more sensible and valid use case.  We do have the
+> platform_max feature available for precisely this reason - that's
+> probably more appropriate here since if there's a danger of people
+> blowing their speaker with a floating input they could also blow their
+> speaker with just a very loud audio signal so limiting the volume =
+people
+> can set on the speaker driver seems sensible and would also cover them
+> for misrouting.  Whatever the device might pick up from noise on an
+> undriven bus could also be played as audio down the bus.  This does
+> become a little fun with speaker protection as we'd want to raise the
+> kernel limit so that userspace can dynamically manage the volume to
+> contorl power (though that might be done with software control), but
+> it's easy enoguh to raise limits later.
+>=20
+> On the other hand it seems like userspace might reasonably choose to =
+do
+> a mono mix for this output entirely in software, in which case telling
+> the speaker amp to pick up one channel would make sense, or to just =
+play
+> out a stereo signal over I2S and have the amplifier do a mono mix and
+> I'm not seeing why we'd force one or the other in the machine driver.
 
-It supports upto 720p resolution with 60 and 120 Hz refresh
-rates.
+Granted. If we make sure the volume caps are there to prevent damage
+under arbitrary input (which we should anyway) that covers slot
+misconfiguration too.
 
-Add bridge driver for it.
+>> The ISENSE/VSENSE controls are also actually useless on these systems =
+as we
+>> are not doing anything to pick up the measured values (which are sent =
+back
+>> over the I2S lines). I don=E2=80=99t know if there can be driver =
+conflict between
+>=20
+> Presumably someone might want to work on figuring that out though, and
+> from a hardware safety point of view it would be better if they did.
+>=20
+>> two speaker amps trying to drive the I2S lines at the same time =
+should
+>> the user happen to enable SENSE facilities on more than one of them.
+>> Now I can grudgingly study that and rule it out but I would rather =
+hide
+>> the controls altogether.
+>=20
+> Yes, having two devices driving the bus at the same time wouldn't be
+> great.  How is the TDM slot selection for the signals done in the
+> hardware, I'm not seeing anything immediately obvious in the driver?
+> I'd have thought that things would be implemented such that you could
+> implement speaker protection on all speakers simultaneously but =
+perhaps
+> not.
 
-Signed-off-by: Christopher Vollo <chris@renewoutreach.org>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v2:
-- fixed license
-- filled display size buffer
-- fixed power off
-- fixed dev_err_probe
+I don=E2=80=99t know. I would have to go study the details of this. =
+Should I see
+if I can find a combination of =E2=80=98ASI1 Sel=E2=80=99 =E2=80=98VSENSE=E2=
+=80=99 =E2=80=98ISENSE=E2=80=99 settings
+that would lead to driver conflict on one of the models, or is there
+a chance we could hide those controls just on the basis of =E2=80=98it =
+doesn=E2=80=99t
+do anything usable and is possibly dangerous=E2=80=99?
 
- MAINTAINERS                          |   1 +
- drivers/gpu/drm/bridge/Kconfig       |  16 +
- drivers/gpu/drm/bridge/Makefile      |   1 +
- drivers/gpu/drm/bridge/ti-dlpc3433.c | 417 +++++++++++++++++++++++++++
- 4 files changed, 435 insertions(+)
- create mode 100644 drivers/gpu/drm/bridge/ti-dlpc3433.c
+>> That=E2=80=99s the reasoning anyway. To reiterate, seems to me the =
+controls
+>> are useless/confusing at best and dangerous at worst.
+>=20
+> I'm just not seeing an issue for the slot selection.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1af52d1178be..e3fc2eafd74b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6397,6 +6397,7 @@ M:	Jagan Teki <jagan@amarulasolutions.com>
- M:	Christopher Vollo <chris@renewoutreach.org>
- S:	Maintained
- F:	Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
-+F:	drivers/gpu/drm/bridge/ti-dlpc3433.c
- 
- DRM DRIVER FOR TPO TPG110 PANELS
- M:	Linus Walleij <linus.walleij@linaro.org>
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index c86f5be4dfe0..f434cdca351a 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -291,6 +291,22 @@ config DRM_TOSHIBA_TC358775
- 	help
- 	  Toshiba TC358775 DSI/LVDS bridge chip driver.
- 
-+config DRM_TI_DLPC3433
-+	tristate "TI DLPC3433 Display controller"
-+	depends on DRM && DRM_PANEL
-+	depends on OF
-+	select DRM_MIPI_DSI
-+	help
-+	  TI DLPC3433 is a MIPI DSI based display controller bridge
-+	  for processing high resolution DMD based projectors.
-+
-+	  It has a flexible configuration of MIPI DSI and DPI signal
-+	  input that produces a DMD output in RGB565, RGB666, RGB888
-+	  formats.
-+
-+	  It supports upto 720p resolution with 60 and 120 Hz refresh
-+	  rates.
-+
- config DRM_TI_TFP410
- 	tristate "TI TFP410 DVI/HDMI bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 425844c30495..52e9638510bd 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -24,6 +24,7 @@ obj-$(CONFIG_DRM_TOSHIBA_TC358767) += tc358767.o
- obj-$(CONFIG_DRM_TOSHIBA_TC358768) += tc358768.o
- obj-$(CONFIG_DRM_TOSHIBA_TC358775) += tc358775.o
- obj-$(CONFIG_DRM_I2C_ADV7511) += adv7511/
-+obj-$(CONFIG_DRM_TI_DLPC3433) += ti-dlpc3433.o
- obj-$(CONFIG_DRM_TI_SN65DSI83) += ti-sn65dsi83.o
- obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
- obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
-diff --git a/drivers/gpu/drm/bridge/ti-dlpc3433.c b/drivers/gpu/drm/bridge/ti-dlpc3433.c
-new file mode 100644
-index 000000000000..06e519798ac5
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/ti-dlpc3433.c
-@@ -0,0 +1,417 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2021 RenewOutReach
-+ * Copyright (C) 2021 Amarula Solutions(India)
-+ *
-+ * Author:
-+ * Jagan Teki <jagan@amarulasolutions.com>
-+ * Christopher Vollo <chris@renewoutreach.org>
-+ */
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_of.h>
-+#include <drm/drm_print.h>
-+#include <drm/drm_mipi_dsi.h>
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+enum cmd_registers {
-+	WR_INPUT_SOURCE		= 0x05,	/* Write Input Source Select */
-+	WR_EXT_SOURCE_FMT	= 0x07, /* Write External Video Source Format */
-+	WR_IMAGE_CROP		= 0x10,	/* Write Image Crop */
-+	WR_DISPLAY_SIZE		= 0x12,	/* Write Display Size */
-+	WR_IMAGE_FREEZE		= 0x1A,	/* Write Image Freeze */
-+	WR_INPUT_IMAGE_SIZE	= 0x2E,	/* Write External Input Image Size */
-+	WR_RGB_LED_EN		= 0x52,	/* Write RGB LED Enable */
-+	WR_RGB_LED_CURRENT	= 0x54,	/* Write RGB LED Current */
-+	WR_RGB_LED_MAX_CURRENT	= 0x5C,	/* Write RGB LED Max Current */
-+	WR_DSI_HS_CLK		= 0xBD,	/* Write DSI HS Clock */
-+	RD_DEVICE_ID		= 0xD4,	/* Read Controller Device ID */
-+	WR_DSI_PORT_EN		= 0xD7,	/* Write DSI Port Enable */
-+};
-+
-+enum input_source {
-+	INPUT_EXTERNAL_VIDEO	= 0,
-+	INPUT_TEST_PATTERN,
-+	INPUT_SPLASH_SCREEN,
-+};
-+
-+#define DEV_ID_MASK		GENMASK(3, 0)
-+#define IMAGE_FREESE_EN		BIT(0)
-+#define DSI_PORT_EN		0
-+#define EXT_SOURCE_FMT_DSI	0
-+#define RED_LED_EN		BIT(0)
-+#define GREEN_LED_EN		BIT(1)
-+#define BLUE_LED_EN		BIT(2)
-+#define LED_MASK		GENMASK(2, 0)
-+#define MAX_BYTE_SIZE		8
-+
-+struct dlpc {
-+	struct device		*dev;
-+	struct drm_bridge	bridge;
-+	struct drm_bridge	*next_bridge;
-+	struct device_node	*host_node;
-+	struct mipi_dsi_device	*dsi;
-+	struct drm_display_mode	mode;
-+
-+	struct gpio_desc	*enable_gpio;
-+	struct regulator	*vcc_intf;
-+	struct regulator	*vcc_flsh;
-+	struct regmap		*regmap;
-+	unsigned int		dsi_lanes;
-+};
-+
-+static inline struct dlpc *bridge_to_dlpc(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct dlpc, bridge);
-+}
-+
-+static bool dlpc_writeable_noinc_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case WR_IMAGE_CROP:
-+	case WR_DISPLAY_SIZE:
-+	case WR_INPUT_IMAGE_SIZE:
-+	case WR_DSI_HS_CLK:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct regmap_range dlpc_volatile_ranges[] = {
-+	{ .range_min = 0x10, .range_max = 0xBF },
-+};
-+
-+static const struct regmap_access_table dlpc_volatile_table = {
-+	.yes_ranges = dlpc_volatile_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(dlpc_volatile_ranges),
-+};
-+
-+static struct regmap_config dlpc_regmap_config = {
-+	.reg_bits		= 8,
-+	.val_bits		= 8,
-+	.max_register		= WR_DSI_PORT_EN,
-+	.writeable_noinc_reg	= dlpc_writeable_noinc_reg,
-+	.volatile_table		= &dlpc_volatile_table,
-+	.cache_type		= REGCACHE_RBTREE,
-+	.name			= "dlpc3433",
-+};
-+
-+static void dlpc_atomic_enable(struct drm_bridge *bridge,
-+			       struct drm_bridge_state *old_bridge_state)
-+{
-+	struct dlpc *dlpc = bridge_to_dlpc(bridge);
-+	struct device *dev = dlpc->dev;
-+	struct drm_display_mode *mode = &dlpc->mode;
-+	struct regmap *regmap = dlpc->regmap;
-+	char buf[MAX_BYTE_SIZE];
-+	unsigned int devid;
-+
-+	regmap_read(regmap, RD_DEVICE_ID, &devid);
-+	devid &= DEV_ID_MASK;
-+
-+	DRM_DEV_DEBUG(dev, "DLPC3433 device id: 0x%02x\n", devid);
-+
-+	if (devid != 0x01) {
-+		DRM_DEV_ERROR(dev, "Unsupported DLPC device id: 0x%02x\n", devid);
-+		return;
-+	}
-+
-+	/* disable image freeze */
-+	regmap_write(regmap, WR_IMAGE_FREEZE, IMAGE_FREESE_EN);
-+
-+	/* enable DSI port */
-+	regmap_write(regmap, WR_DSI_PORT_EN, DSI_PORT_EN);
-+
-+	memset(buf, 0, MAX_BYTE_SIZE);
-+
-+	/* set image crop */
-+	buf[4] = mode->hdisplay & 0xff;
-+	buf[5] = (mode->hdisplay & 0xff00) >> 8;
-+	buf[6] = mode->vdisplay & 0xff;
-+	buf[7] = (mode->vdisplay & 0xff00) >> 8;
-+	regmap_noinc_write(regmap, WR_IMAGE_CROP, buf, MAX_BYTE_SIZE);
-+
-+	/* set display size */
-+	buf[4] = mode->hdisplay & 0xff;
-+	buf[5] = (mode->hdisplay & 0xff00) >> 8;
-+	buf[6] = mode->vdisplay & 0xff;
-+	buf[7] = (mode->vdisplay & 0xff00) >> 8;
-+	regmap_noinc_write(regmap, WR_DISPLAY_SIZE, buf, MAX_BYTE_SIZE);
-+
-+	/* set input image size */
-+	buf[0] = mode->hdisplay & 0xff;
-+	buf[1] = (mode->hdisplay & 0xff00) >> 8;
-+	buf[2] = mode->vdisplay & 0xff;
-+	buf[3] = (mode->vdisplay & 0xff00) >> 8;
-+	regmap_noinc_write(regmap, WR_INPUT_IMAGE_SIZE, buf, 4);
-+
-+	/* set external video port */
-+	regmap_write(regmap, WR_INPUT_SOURCE, INPUT_EXTERNAL_VIDEO);
-+
-+	/* set external video format select as DSI */
-+	regmap_write(regmap, WR_EXT_SOURCE_FMT, EXT_SOURCE_FMT_DSI);
-+
-+	/* disable image freeze */
-+	regmap_write(regmap, WR_IMAGE_FREEZE, 0x00);
-+
-+	/* enable RGB led */
-+	regmap_update_bits(regmap, WR_RGB_LED_EN, LED_MASK,
-+			   RED_LED_EN | GREEN_LED_EN | BLUE_LED_EN);
-+
-+	msleep(10);
-+}
-+
-+static void dlpc_atomic_pre_enable(struct drm_bridge *bridge,
-+				   struct drm_bridge_state *old_bridge_state)
-+{
-+	struct dlpc *dlpc = bridge_to_dlpc(bridge);
-+	int ret;
-+
-+	gpiod_set_value(dlpc->enable_gpio, 1);
-+
-+	msleep(500);
-+
-+	ret = regulator_enable(dlpc->vcc_intf);
-+	if (ret)
-+		DRM_DEV_ERROR(dlpc->dev,
-+			      "failed to enable VCC_INTF regulator: %d\n", ret);
-+
-+	ret = regulator_enable(dlpc->vcc_flsh);
-+	if (ret)
-+		DRM_DEV_ERROR(dlpc->dev,
-+			      "failed to enable VCC_FLSH regulator: %d\n", ret);
-+
-+	msleep(10);
-+}
-+
-+static void dlpc_atomic_post_disable(struct drm_bridge *bridge,
-+				     struct drm_bridge_state *old_bridge_state)
-+{
-+	struct dlpc *dlpc = bridge_to_dlpc(bridge);
-+
-+	regulator_disable(dlpc->vcc_flsh);
-+	regulator_disable(dlpc->vcc_intf);
-+
-+	msleep(10);
-+
-+	gpiod_set_value(dlpc->enable_gpio, 0);
-+
-+	msleep(500);
-+}
-+
-+#define MAX_INPUT_SEL_FORMATS	1
-+
-+static u32 *
-+dlpc_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+			       struct drm_bridge_state *bridge_state,
-+			       struct drm_crtc_state *crtc_state,
-+			       struct drm_connector_state *conn_state,
-+			       u32 output_fmt,
-+			       unsigned int *num_input_fmts)
-+{
-+	u32 *input_fmts;
-+
-+	*num_input_fmts = 0;
-+
-+	input_fmts = kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts),
-+			     GFP_KERNEL);
-+	if (!input_fmts)
-+		return NULL;
-+
-+	/* This is the DSI-end bus format */
-+	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-+	*num_input_fmts = 1;
-+
-+	return input_fmts;
-+}
-+
-+static void dlpc_mode_set(struct drm_bridge *bridge,
-+			  const struct drm_display_mode *mode,
-+			  const struct drm_display_mode *adjusted_mode)
-+{
-+	struct dlpc *dlpc = bridge_to_dlpc(bridge);
-+
-+	drm_mode_copy(&dlpc->mode, adjusted_mode);
-+}
-+
-+static int dlpc_attach(struct drm_bridge *bridge,
-+		       enum drm_bridge_attach_flags flags)
-+{
-+	struct dlpc *dlpc = bridge_to_dlpc(bridge);
-+
-+	return drm_bridge_attach(bridge->encoder, dlpc->next_bridge, bridge, flags);
-+}
-+
-+static const struct drm_bridge_funcs dlpc_bridge_funcs = {
-+	.atomic_duplicate_state		= drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,
-+	.atomic_get_input_bus_fmts	= dlpc_atomic_get_input_bus_fmts,
-+	.atomic_reset			= drm_atomic_helper_bridge_reset,
-+	.atomic_pre_enable		= dlpc_atomic_pre_enable,
-+	.atomic_enable			= dlpc_atomic_enable,
-+	.atomic_post_disable		= dlpc_atomic_post_disable,
-+	.mode_set			= dlpc_mode_set,
-+	.attach				= dlpc_attach,
-+};
-+
-+static int dlpc3433_parse_dt(struct dlpc *dlpc)
-+{
-+	struct device *dev = dlpc->dev;
-+	struct device_node *endpoint;
-+	int ret;
-+
-+	dlpc->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(dlpc->enable_gpio))
-+		return PTR_ERR(dlpc->enable_gpio);
-+
-+	dlpc->vcc_intf = devm_regulator_get(dlpc->dev, "vcc_intf");
-+	if (IS_ERR(dlpc->vcc_intf))
-+		return dev_err_probe(dev, PTR_ERR(dlpc->vcc_intf),
-+				     "failed to get VCC_INTF supply\n");
-+
-+	dlpc->vcc_flsh = devm_regulator_get(dlpc->dev, "vcc_flsh");
-+	if (IS_ERR(dlpc->vcc_flsh))
-+		return dev_err_probe(dev, PTR_ERR(dlpc->vcc_flsh),
-+				     "failed to get VCC_FLSH supply\n");
-+
-+	dlpc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(dlpc->next_bridge))
-+		return PTR_ERR(dlpc->next_bridge);
-+
-+	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, 0);
-+	dlpc->dsi_lanes = of_property_count_u32_elems(endpoint, "data-lanes");
-+	if (dlpc->dsi_lanes < 0 || dlpc->dsi_lanes > 4) {
-+		ret = -EINVAL;
-+		goto err_put_endpoint;
-+	}
-+
-+	dlpc->host_node = of_graph_get_remote_port_parent(endpoint);
-+	if (!dlpc->host_node) {
-+		ret = -ENODEV;
-+		goto err_put_host;
-+	}
-+
-+	of_node_put(endpoint);
-+
-+	return 0;
-+
-+err_put_host:
-+	of_node_put(dlpc->host_node);
-+err_put_endpoint:
-+	of_node_put(endpoint);
-+	return ret;
-+}
-+
-+static int dlpc_host_attach(struct dlpc *dlpc)
-+{
-+	struct device *dev = dlpc->dev;
-+	struct mipi_dsi_host *host;
-+	struct mipi_dsi_device_info info = {
-+		.type = "dlpc3433",
-+		.channel = 0,
-+		.node = NULL,
-+	};
-+
-+	host = of_find_mipi_dsi_host_by_node(dlpc->host_node);
-+	if (!host) {
-+		DRM_DEV_ERROR(dev, "failed to find dsi host\n");
-+		return -EPROBE_DEFER;
-+	}
-+
-+	dlpc->dsi = mipi_dsi_device_register_full(host, &info);
-+	if (IS_ERR(dlpc->dsi)) {
-+		DRM_DEV_ERROR(dev, "failed to create dsi device\n");
-+		return PTR_ERR(dlpc->dsi);
-+	}
-+
-+	dlpc->dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST;
-+	dlpc->dsi->format = MIPI_DSI_FMT_RGB565;
-+	dlpc->dsi->lanes = dlpc->dsi_lanes;
-+
-+	return devm_mipi_dsi_attach(dev, dlpc->dsi);
-+}
-+
-+static int dlpc3433_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct dlpc *dlpc;
-+	int ret;
-+
-+	dlpc = devm_kzalloc(dev, sizeof(*dlpc), GFP_KERNEL);
-+	if (!dlpc)
-+		return -ENOMEM;
-+
-+	dlpc->dev = dev;
-+
-+	dlpc->regmap = devm_regmap_init_i2c(client, &dlpc_regmap_config);
-+	if (IS_ERR(dlpc->regmap))
-+		return PTR_ERR(dlpc->regmap);
-+
-+	ret = dlpc3433_parse_dt(dlpc);
-+	if (ret)
-+		return ret;
-+
-+	dev_set_drvdata(dev, dlpc);
-+	i2c_set_clientdata(client, dlpc);
-+
-+	dlpc->bridge.funcs = &dlpc_bridge_funcs;
-+	dlpc->bridge.of_node = dev->of_node;
-+	drm_bridge_add(&dlpc->bridge);
-+
-+	ret = dlpc_host_attach(dlpc);
-+	if (ret) {
-+		DRM_DEV_ERROR(dev, "failed to attach dsi host\n");
-+		goto err_remove_bridge;
-+	}
-+
-+	return 0;
-+
-+err_remove_bridge:
-+	drm_bridge_remove(&dlpc->bridge);
-+	return ret;
-+}
-+
-+static int dlpc3433_remove(struct i2c_client *client)
-+{
-+	struct dlpc *dlpc = i2c_get_clientdata(client);
-+
-+	drm_bridge_remove(&dlpc->bridge);
-+	of_node_put(dlpc->host_node);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id dlpc3433_id[] = {
-+	{ "ti,dlpc3433", 0 },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, dlpc3433_id);
-+
-+static const struct of_device_id dlpc3433_match_table[] = {
-+	{ .compatible = "ti,dlpc3433" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, dlpc3433_match_table);
-+
-+static struct i2c_driver dlpc3433_driver = {
-+	.probe_new = dlpc3433_probe,
-+	.remove = dlpc3433_remove,
-+	.id_table = dlpc3433_id,
-+	.driver = {
-+		.name = "ti-dlpc3433",
-+		.of_match_table = dlpc3433_match_table,
-+	},
-+};
-+module_i2c_driver(dlpc3433_driver);
-+
-+MODULE_AUTHOR("Jagan Teki <jagan@amarulasolutions.com>");
-+MODULE_AUTHOR("Christopher Vollo <chris@renewoutreach.org>");
-+MODULE_DESCRIPTION("TI DLPC3433 MIPI DSI Display Controller Bridge");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+Yeah, agreed there=E2=80=99s no (damage) issue as we should to proper =
+volume
+caps anyway.
+
+Martin
 
