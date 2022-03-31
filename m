@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC6544EE4BA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 01:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B20C44EE4C7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 01:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239069AbiCaXZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 19:25:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54314 "EHLO
+        id S242845AbiCaXbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 19:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243158AbiCaXZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 19:25:32 -0400
+        with ESMTP id S241822AbiCaXbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 19:31:42 -0400
 Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF505749A
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:23:40 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id r13so2398780ejd.5
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:23:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5231637FA
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:29:54 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id lr4so2347580ejb.11
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:29:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=LLB/4ErH2KmNX4icsPtz8gcVd91Ba8xsooM5WCEu/To=;
-        b=nO2IsBJyBf/P3KA7s8QuuGM6xFZSrWZovU/MfhkXj0KUNNuFJ3JGAq+Rs/3rX52qsY
-         7P5N2AMJME5FGhl9OxAp3JLusS1z1TEB+mUKXGDbBLppxe902V/8Zo5Zc7k50FYB1oxq
-         GxXAOnEIWO1JRgUrPmufk1e5oNiZETTlMRBzM=
+        bh=oU/P0lUIzx1uZfbuXoLmvC/k7etlrfD8HbND/4uBtMs=;
+        b=CVm3r8sEiJHudIn3wBe5psgjEjOXEvg7kAXV5xw19t+3DbObpkYUHppzcz6qWIyEKC
+         iD+uGmLJdXzgNCcEVX3/o2rL3pH35aBBGYvKh1WC1iiWOWhQglndY1DyhfDoBvDHciUT
+         HKdhiizGnGLfo9pL1ZqNneKf5bIxKreY/JwCs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LLB/4ErH2KmNX4icsPtz8gcVd91Ba8xsooM5WCEu/To=;
-        b=HPITvrepKRw4J7SK72FYME96dLyh++LqN7Kf6jXcGVA1HycO41rNXxfxrEkgeSaWNn
-         lsJSK5HVQ6WIyEPONuqPp9jgQtSdVm26cDStF4fVSyEiHdNzDOxgHJVK74j/kaVa1sRI
-         AqGjWuu5XRaVeGxNOagseKyNv++0FHEFWHQBKo/5DWR6QxFVoOV5Sdsq9HKfGd+L+5BU
-         Rw75CofvuXhRjUk5UwwOHtGJDiLQoQDN4Oto82cWLZeVLxbJHFuKoMqZrxFZimvrsAJg
-         ZvTerg4MTyApfFauwPEQiRIuYZRKuoTw42Xas1VMaAIpJTpI4cZgOxZKsO+GLsineslA
-         aj+g==
-X-Gm-Message-State: AOAM532diIBOP5vlVeVtskGxlDrErAcAxjfTNo0xUBvIX3Aj5w2nXzCs
-        xDUXYz/cEak6BlcoIULIvddSFpnW0qs+DBgR
-X-Google-Smtp-Source: ABdhPJwklODFDinaIHCdmnOJ0RuoUeF/IVw8a1U1uVJzoZGq74JsvlWoW8lMOU9DF4p1F+cg4aGcgQ==
-X-Received: by 2002:a17:906:9f28:b0:6df:f811:5286 with SMTP id fy40-20020a1709069f2800b006dff8115286mr6582585ejc.745.1648769019176;
-        Thu, 31 Mar 2022 16:23:39 -0700 (PDT)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com. [209.85.128.45])
-        by smtp.gmail.com with ESMTPSA id o2-20020a50d802000000b00410d7f0c52csm391195edj.8.2022.03.31.16.23.36
+        bh=oU/P0lUIzx1uZfbuXoLmvC/k7etlrfD8HbND/4uBtMs=;
+        b=TB6CaLOMctKIx5y2JNEnRmbeaHitunkt+Pdh8SFnxsuo4RIMVD4sT058waqVgIuCJm
+         dyJyjaul07DIjpM/1h4+C370kg7cNpLZ9Ctemux4Cu3q07Dm+fRqBzDiT0S1SlX+pIOp
+         T6R1MYmMn3OpdJgLUaCqUHxS4emzXovWRtm5OlnTOHT7eFLhdeBQNSJHsabJyBOAK7Zj
+         QWuU4JW3Eq/if0Lu3keF/6Vn1Q5S4K54ArxgI1DIESQPC/gohS3w8S1CpEV8ClzxGE2V
+         EZrIDRmia4YI74P+2eOBF3vdOXTrXJzhQi/GG7mOa9apni1iGdHFUjXjqOMZ9lDxO4vu
+         mxVw==
+X-Gm-Message-State: AOAM531H3BSl+2VaxRq2gTthP0tdBvPFsWo52PIDnaUyupBRGjnPRVH3
+        zZNBQUCBsOkEK1oOnh0ZesIR2XRn0c7m/wURayo=
+X-Google-Smtp-Source: ABdhPJzFyhBMpKw4V0q9lo5GtgbdOWjYmSpLQ/Dq1SAJ7wbYL9Hf3M+5sHVS45i21OXjVY9AicfoNw==
+X-Received: by 2002:a17:906:7943:b0:6df:e5b3:6553 with SMTP id l3-20020a170906794300b006dfe5b36553mr7018047ejo.398.1648769392964;
+        Thu, 31 Mar 2022 16:29:52 -0700 (PDT)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com. [209.85.218.44])
+        by smtp.gmail.com with ESMTPSA id a4-20020a170906274400b006da9456e802sm324014ejd.102.2022.03.31.16.29.52
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 16:23:37 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id p189so689811wmp.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:23:36 -0700 (PDT)
-X-Received: by 2002:a1c:7518:0:b0:37c:7eb:f255 with SMTP id
- o24-20020a1c7518000000b0037c07ebf255mr6394707wmc.29.1648769016448; Thu, 31
- Mar 2022 16:23:36 -0700 (PDT)
+        Thu, 31 Mar 2022 16:29:52 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id yy13so2456345ejb.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:29:52 -0700 (PDT)
+X-Received: by 2002:a5d:4491:0:b0:203:f63a:e89b with SMTP id
+ j17-20020a5d4491000000b00203f63ae89bmr5618171wrq.342.1648769032444; Thu, 31
+ Mar 2022 16:23:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com> <1648656179-10347-7-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1648656179-10347-7-git-send-email-quic_sbillaka@quicinc.com>
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com> <1648656179-10347-8-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1648656179-10347-8-git-send-email-quic_sbillaka@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 31 Mar 2022 16:23:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UX9Mg71EKvgNp_wNG5q7_ugBgVPbcFWFX5XBG+cQCi8Q@mail.gmail.com>
-Message-ID: <CAD=FV=UX9Mg71EKvgNp_wNG5q7_ugBgVPbcFWFX5XBG+cQCi8Q@mail.gmail.com>
-Subject: Re: [PATCH v6 6/8] drm/msm/dp: remove unnecessary delay during boot
+Date:   Thu, 31 Mar 2022 16:23:40 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V92j=yEoaM4REO6ws=AXpBjM6zWwBtZ8SbPiFd2cu3yw@mail.gmail.com>
+Message-ID: <CAD=FV=V92j=yEoaM4REO6ws=AXpBjM6zWwBtZ8SbPiFd2cu3yw@mail.gmail.com>
+Subject: Re: [PATCH v6 7/8] drm/msm/dp: Support edp/dp without hpd
 To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>,
@@ -79,7 +79,7 @@ Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,10 +92,64 @@ Hi,
 On Wed, Mar 30, 2022 at 9:04 AM Sankeerth Billakanti
 <quic_sbillaka@quicinc.com> wrote:
 >
-> Remove the unnecessary delay in executing the EV_HPD_INIT_SETUP event.
+> Some eDP sinks or platform boards will not support hpd.
+> This patch adds support for those cases.
 
-Tell me more and put it in the commit message! Why did it used to be
-necessary and why is it no longer necessary? Inquiring minds want to
-know.
+You could say more, like:
+
+If we're not using HPD then _both_ the panel node and the eDP
+controller node will have "no-hpd". This tells the eDP panel code to
+hardcode the maximum possible delay for a panel to power up and tells
+the eDP driver that it should continue to do transfers even if HPD
+isn't asserted.
+
+
+> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> ---
+>  drivers/gpu/drm/msm/dp/dp_catalog.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> index 1809ce2..8f1fc71 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> @@ -244,10 +244,17 @@ void dp_catalog_aux_update_cfg(struct dp_catalog *dp_catalog)
+>
+>  int dp_catalog_aux_wait_for_hpd_connect_state(struct dp_catalog *dp_catalog)
+>  {
+> -       u32 state;
+> +       u32 state, hpd_en;
+>         struct dp_catalog_private *catalog = container_of(dp_catalog,
+>                                 struct dp_catalog_private, dp_catalog);
+>
+> +       hpd_en = dp_read_aux(catalog, REG_DP_DP_HPD_CTRL);
+> +       hpd_en &= DP_DP_HPD_CTRL_HPD_EN;
+> +
+> +       /* no-hpd case */
+> +       if (!hpd_en)
+> +               return 0;
+> +
+>         /* poll for hpd connected status every 2ms and timeout after 500ms */
+>         return readl_poll_timeout(catalog->io->dp_controller.aux.base +
+>                                 REG_DP_DP_HPD_INT_STATUS,
+> @@ -586,8 +593,10 @@ void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog)
+>         reftimer |= DP_DP_HPD_REFTIMER_ENABLE;
+>         dp_write_aux(catalog, REG_DP_DP_HPD_REFTIMER, reftimer);
+>
+> -       /* Enable HPD */
+> -       dp_write_aux(catalog, REG_DP_DP_HPD_CTRL, DP_DP_HPD_CTRL_HPD_EN);
+> +       /* Enable HPD if supported*/
+> +       if (!of_property_read_bool(catalog->dev->of_node, "no-hpd"))
+
+I don't think this is a particularly lightweight operation. It's
+literally iterating through all of our device tree properties and
+doing string compares on them. ...but this function is called somewhat
+often, isn't it? It feels like the kind of thing that should happen at
+probe time and be stored in a boolean.
+
+...and then you can use that same boolean in
+dp_catalog_aux_wait_for_hpd_connect_state() rather than reading the
+register value, right?
+
 
 -Doug
