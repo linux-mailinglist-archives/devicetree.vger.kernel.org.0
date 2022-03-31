@@ -2,145 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93FCC4EDE69
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A06D4EDE77
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233738AbiCaQIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 12:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50296 "EHLO
+        id S236486AbiCaQPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 12:15:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbiCaQIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:08:40 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B80D5567
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:06:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648742812; x=1680278812;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=kFnw7dJUzYNVuYo76Qjh+kui113vMoaYyH7pGpND/9o=;
-  b=m9nxHo6CxZwMnRc6/6MkcnBAChXIsCkpyvUNPxUoRGpQCbAGJXkjTAVf
-   wnoiX4m8nxaZukLVJRg6gPmifDfbqW++FXMSaGRqP6cKJFFvxsvG5D6IG
-   YH2HDSi+7M2+bKOrKUidDi/Nhno6z++HAQ5ZE0Q+qZPT3dHjihzRIauDO
-   I=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 31 Mar 2022 09:06:51 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2022 09:06:47 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 31 Mar 2022 09:06:15 -0700
-Received: from [10.110.21.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 31 Mar
- 2022 09:06:14 -0700
-Message-ID: <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
-Date:   Thu, 31 Mar 2022 09:06:13 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
-Content-Language: en-US
-To:     =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
-        Joel Stanley <joel@jms.id.au>
-CC:     devicetree <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jamie Iles <quic_jiles@quicinc.com>,
+        with ESMTP id S236112AbiCaQPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:15:48 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A319FF8;
+        Thu, 31 Mar 2022 09:13:58 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1648743234; bh=BxE8wIN6zo6oZw87Bp/sf89zaabaM2ryoJcy+5lANO8=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=S4LvguHX5OQUd+3hqCus3jymE1UDI9kMSUb0WNJ8hP64BQ2FzC5y7QCNO2BK0ySIJ
+         T4k1A4IfwBXRH4IKEGwSWwfXpsgEog/XCLRvbmsjie1ZIuRYukWI6RCN009VeZicjU
+         MhIXhFIuYBpAoZnX/abRjc6QzzesEMFoW+LUMqZQ=
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <YkW2OG3dU4YFYJEZ@matsya>
+Date:   Thu, 31 Mar 2022 18:13:53 +0200
+Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Graeme Gregory" <quic_ggregory@quicinc.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
- <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
- <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
- <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-In-Reply-To: <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B75EEC8B-FE88-47EA-8F56-0DD7EDE0DB77@cutebit.org>
+References: <20220330164458.93055-1-povik+lin@cutebit.org>
+ <20220330164458.93055-2-povik+lin@cutebit.org> <YkU6yvUQ6v4VdXiJ@matsya>
+ <C2D8BDAF-0ACF-4756-B10F-B5097BC93670@cutebit.org>
+ <265B2992-06E5-4E45-A971-B170A385EFD4@cutebit.org> <YkW2OG3dU4YFYJEZ@matsya>
+To:     Vinod Koul <vkoul@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Cédric,
 
-On 3/31/2022 8:56 AM, Cédric Le Goater wrote:
-> Hello Jae,
-> 
-> On 3/31/22 17:44, Jae Hyun Yoo wrote:
->> On 3/30/2022 10:50 PM, Joel Stanley wrote:
->>> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo <quic_jaehyoo@quicinc.com> 
->>> wrote:
->>>>
->>>> I’m sending this patch series to fix current issues in AST2600 pinmux
->>>> settings while enabling quad mode SPI support.
->>>>
->>>> FWSPI18 pins are basically 1.8v logic pins that are different from the
->>>> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins 
->>>> can’t
->>>> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
->>>>
->>>> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl 
->>>> dtsi to
->>>> make it able to enable quad mode on SPI1 and SPI2 interfaces.
->>>>
->>>> With this series, quad mode pinmux can be set like below.
->>>>
->>>> FW SPI:
->>>> &fmc {
->>>>          pinctrl-names = "default";
->>>>          pinctrl-0 = <&pinctrl_fwqspi_default>;
->>>> }
->>>>
->>>> SPI1:
->>>> &spi1 {
->>>>          pinctrl-names = "default";
->>>>          pinctrl-0 = <&pinctrl_qspi1_default>;
->>>> }
->>>>
->>>> SPI2:
->>>> &spi2 {
->>>>          pinctrl-names = "default";
->>>>          pinctrl-0 = <&pinctrl_qspi2_default>;
->>>> }
->>>
->>> Thanks. I hope to see a board from you that uses this soon :)
->>>
->>> I'll send the patches as fixes once -rc1 is out.
->>
->> Thanks Joel!
->>
->> Yes, I would be able to send my BMC board dts soon.
->> Thanks in advance for your review on that too.
-> 
-> Out of curiosity, which driver are you using ? the one from SDK ?
-> 
-> I proposed a new one for upstream supporting all AST2400, AST2500, AST2600
-> controllers. I would be glad to have some feedback if you have time.
+> On 31. 3. 2022, at 16:10, Vinod Koul <vkoul@kernel.org> wrote:
+>=20
+> On 31-03-22, 09:06, Martin Povi=C5=A1er wrote:
+>>=20
+>>> On 31. 3. 2022, at 8:50, Martin Povi=C5=A1er <povik@cutebit.org> =
+wrote:
+>>>>=20
+>>>> On 31. 3. 2022, at 7:23, Vinod Koul <vkoul@kernel.org> wrote:
+>>>>=20
+>>>> On 30-03-22, 18:44, Martin Povi=C5=A1er wrote:
+>>>>> Apple's Audio DMA Controller (ADMAC) is used to fetch and store =
+audio
+>>>>> samples on Apple SoCs from the "Apple Silicon" family.
+>>>>>=20
+>>>>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+>>>>> ---
+>>>>> .../devicetree/bindings/dma/apple,admac.yaml  | 73 =
++++++++++++++++++++
+>>>>> 1 file changed, 73 insertions(+)
+>>>>> create mode 100644 =
+Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>>>=20
+>>>>> diff --git =
+a/Documentation/devicetree/bindings/dma/apple,admac.yaml =
+b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..34f76a9a2983
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>=20
+>>>>> +  apple,internal-irq-destination:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description: Index influencing internal routing of the IRQs
+>>>>> +      within the peripheral.
+>>>>=20
+>>>> do you have more details for this, is this for peripheral and if so
+>>>> suited to be in dam-cells?
+>>>=20
+>>> By peripheral I meant the DMA controller itself here.=20
+>=20
+> Dmaengine convention is that peripheral is device which we are doing =
+dma
+> to/from, like audio controller/fifo here
+>=20
+>>> Effectively the controller has four independent IRQ outputs and the =
+driver
+>>> needs to know which one we are using. (It need not be the same =
+output even
+>>> for different ADMAC instances on one die.)
+>=20
+> That smells like a mux to me.. why not use dma-requests for this?
 
-Yes, I saw your patch set of the new driver.
+I am not sure that=E2=80=99s right. Reading the dmaengine docs, DMA =
+requests seem to have
+to do with the DMA-controller-to-peripheral connection, but the proposed =
+property
+tells us which of four independent IRQ outputs of the DMA controller we =
+actually
+have in the interrupts=3D property. That is, it has to do with the =
+DMA-controller-to-CPU
+connection.
 
-I'm currently using this fix with legacy aspeed-smc driver after
-adding some fixes. I'll give it a try with your new driver as well and
-will give you some feedback if I find any.
+(I took the liberty of correcting my typo in the quotation.)
 
-Thanks,
-Jae
+>=20
+> --=20
+> ~Vinod
 
-> Thanks,
-> 
-> C.
