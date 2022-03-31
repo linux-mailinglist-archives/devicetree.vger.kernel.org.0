@@ -2,70 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E45774EDDB7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A9F74EDDBE
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238315AbiCaPsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 11:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47304 "EHLO
+        id S236395AbiCaPsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 11:48:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235518AbiCaPro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:47:44 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C391DEC1C
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:44:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648741453; x=1680277453;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=3cAwNZRD/3Fe85aRtAT8s08+6sVv/l46Q0SjTymOWMo=;
-  b=ecG+krTnNxRuW5lGIh8/ttlBL7PnLNI2DOLIz4Q4Rh0+4CybWPISMbc/
-   cXf2odlUJySGh61dpOcEYehTjC+ptK3Ju0XjfP2cp/hNC2yNEd9U8azWU
-   NVU52oJJSUOGRGVqHmY/7J2dATQc6UjHbfheqFPOyAqpaiing3e76IBEN
-   E=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 31 Mar 2022 08:44:12 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2022 08:44:12 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 31 Mar 2022 08:44:12 -0700
-Received: from [10.110.21.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 31 Mar
- 2022 08:44:10 -0700
-Message-ID: <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
-Date:   Thu, 31 Mar 2022 08:44:09 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
-Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>
-CC:     Andrew Jeffery <andrew@aj.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S239578AbiCaPsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:48:14 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 94E9955751
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:44:56 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 512D2139F;
+        Thu, 31 Mar 2022 08:44:56 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3248A3F73B;
+        Thu, 31 Mar 2022 08:44:55 -0700 (PDT)
+Date:   Thu, 31 Mar 2022 16:44:52 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rui Miguel Silva <rui.silva@linaro.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
-References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
- <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-In-Reply-To: <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: smsc,lan91c111 convert to
+ schema
+Message-ID: <20220331164452.094a9308@donnerap.cambridge.arm.com>
+In-Reply-To: <20220330131053.1122502-2-rui.silva@linaro.org>
+References: <20220330131053.1122502-1-rui.silva@linaro.org>
+        <20220330131053.1122502-2-rui.silva@linaro.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,79 +49,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/30/2022 10:50 PM, Joel Stanley wrote:
-> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo <quic_jaehyoo@quicinc.com> wrote:
->>
->> I’m sending this patch series to fix current issues in AST2600 pinmux
->> settings while enabling quad mode SPI support.
->>
->> FWSPI18 pins are basically 1.8v logic pins that are different from the
->> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins can’t
->> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
->>
->> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl dtsi to
->> make it able to enable quad mode on SPI1 and SPI2 interfaces.
->>
->> With this series, quad mode pinmux can be set like below.
->>
->> FW SPI:
->> &fmc {
->>          pinctrl-names = "default";
->>          pinctrl-0 = <&pinctrl_fwqspi_default>;
->> }
->>
->> SPI1:
->> &spi1 {
->>          pinctrl-names = "default";
->>          pinctrl-0 = <&pinctrl_qspi1_default>;
->> }
->>
->> SPI2:
->> &spi2 {
->>          pinctrl-names = "default";
->>          pinctrl-0 = <&pinctrl_qspi2_default>;
->> }
+On Wed, 30 Mar 2022 14:10:51 +0100
+Rui Miguel Silva <rui.silva@linaro.org> wrote:
+
+Hi,
+
+> Convert the smsc lan91c9x and lan91c1xx controller device tree
+> bindings documentation to json-schema.
 > 
-> Thanks. I hope to see a board from you that uses this soon :)
+> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
+> ---
+>  .../bindings/net/smsc,lan91c111.yaml          | 61 +++++++++++++++++++
+>  .../bindings/net/smsc-lan91c111.txt           | 17 ------
+>  2 files changed, 61 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/smsc-lan91c111.txt
 > 
-> I'll send the patches as fixes once -rc1 is out.
+> diff --git a/Documentation/devicetree/bindings/net/smsc,lan91c111.yaml b/Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
+> new file mode 100644
+> index 000000000000..1730284430bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/smsc,lan91c111.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/smsc,lan91c111.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Smart Mixed-Signal Connectivity (SMSC) LAN91C9x/91C1xx Controller
+> +
+> +maintainers:
+> +  - Nicolas Pitre <nico@fluxnic.net>
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: smsc,lan91c111
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg-shift: true
+> +
+> +  reg-io-width:
+> +    enum: [ 1, 2, 4 ]
 
-Thanks Joel!
+The old binding spoke of a possible mask, so you could have "6" here to
+signify that your hardware can do both 16 and 32-bit accesses, IIUC.
+And from quickly glancing through the Linux driver it seems to support
+this idea as well.
+So shall this be:
+       minimum: 1
+       maximum: 7
+instead?
 
-Yes, I would be able to send my BMC board dts soon.
-Thanks in advance for your review on that too.
+> +    default: 4
 
-Best,
-Jae
+The old binding said: "If it's omitted or invalid, the size would be 2
+meaning 16-bit access only". That's also what the Linux driver implements.
+So this shall be: "default: 2" then?
 
->>
->> Please review.
->>
->> Thanks,
->> Jae
->>
->> Changes in v3:
->>   * Added bindings patches. (Andrew)
->>
->> Changes in v2:
->>   * Rebased it on the latest.
->>
->> Jae Hyun Yoo (5):
->>    ARM: dts: aspeed-g6: remove FWQSPID group in pinctrl dtsi
->>    pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
->>    dt-bindings: pinctrl: aspeed-g6: remove FWQSPID group
->>    dt-bindings: pinctrl: aspeed-g6: add FWQSPI function/group
->>    ARM: dts: aspeed-g6: fix SPI1/SPI2 quad pin group
->>
->> Johnny Huang (2):
->>    pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
->>    ARM: dts: aspeed-g6: add FWQSPI group in pinctrl dtsi
->>
->>   .../pinctrl/aspeed,ast2600-pinctrl.yaml         |  4 ++--
->>   arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi        | 10 +++++-----
->>   drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c      | 17 ++++++++---------
->>   3 files changed, 15 insertions(+), 16 deletions(-)
->>
->> --
->> 2.25.1
->>
+> +
+> +  reset-gpios:
+> +    description: GPIO connected to control RESET pin
+> +    maxItems: 1
+> +
+> +  power-gpios:
+> +    description: GPIO connect to control PWRDEWN pin
+
+                         connected
+
+Rest looks fine to me, and passes dt_binding_check.
+
+Cheers,
+Andre
+
+> +    maxItems: 1
+> +
+> +  pxa-u16-align4:
+> +    description: put in place the workaround the force all u16 writes to be
+> +      32 bits aligned
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    ethernet@4010000 {
+> +          compatible = "smsc,lan91c111";
+> +          reg = <0x40100000 0x10000>;
+> +          phy-mode = "mii";
+> +          interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
+> +          reg-io-width = <2>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/smsc-lan91c111.txt b/Documentation/devicetree/bindings/net/smsc-lan91c111.txt
+> deleted file mode 100644
+> index 309e37eb7c7c..000000000000
+> --- a/Documentation/devicetree/bindings/net/smsc-lan91c111.txt
+> +++ /dev/null
+> @@ -1,17 +0,0 @@
+> -SMSC LAN91c111 Ethernet mac
+> -
+> -Required properties:
+> -- compatible = "smsc,lan91c111";
+> -- reg : physical address and size of registers
+> -- interrupts : interrupt connection
+> -
+> -Optional properties:
+> -- phy-device : see ethernet.txt file in the same directory
+> -- reg-io-width : Mask of sizes (in bytes) of the IO accesses that
+> -  are supported on the device.  Valid value for SMSC LAN91c111 are
+> -  1, 2 or 4.  If it's omitted or invalid, the size would be 2 meaning
+> -  16-bit access only.
+> -- power-gpios: GPIO to control the PWRDWN pin
+> -- reset-gpios: GPIO to control the RESET pin
+> -- pxa-u16-align4 : Boolean, put in place the workaround the force all
+> -		   u16 writes to be 32 bits aligned
+
