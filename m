@@ -2,282 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 808D34EE3A5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8824EE3C2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 00:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238719AbiCaWAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 18:00:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51890 "EHLO
+        id S241139AbiCaWF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 18:05:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242137AbiCaWAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 18:00:35 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3828EBC12
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:58:45 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id x20so1794981ybi.5
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:58:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WoI8mM1NJCZkfQML5mKIT2Rv7qzNK940Kv5GbOWpC7s=;
-        b=qWc+DBm1ELA/StZvYKoVa1g47edClJWfqb5tZZ6Ae4Jf0pUHOX5PjFoxR0s0efjbKK
-         eGMWkGwMB5yGyNbmEt8FIbs9b9M/0CLcW/D67kUHokCzL0kR4WT5XGa0YXxpaX+aJyNb
-         vca3Q01+u8vDpmURlclG/PmX8+ZI85mi12LjzfALqa2e9c0+2kWzoutwSLZxQoLusxIg
-         Gs79cuEaHA9sy9wUMoUadkloYhM/+4ErjnW/eD9W7G2VzijmjVO8xZtqoudspOJirrvJ
-         21mlzqmh0MkRscp27WroNgI3G8MNJKBcgWZF/H2zl6jJ9cumpSr2wviv3Hh3LULt6Ntc
-         l7rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WoI8mM1NJCZkfQML5mKIT2Rv7qzNK940Kv5GbOWpC7s=;
-        b=zRrs4X1U0m3kvTEZRj8qowyq8TgG4SGsJDrI2YXB368lEEnRZ1lQhJ3sXKnUh/NuVP
-         bWVrRHJEqSdVwOF/nhkMh1hDe0rjOyyRT3f4xyXmZotpETGenPYBZceXki05obo2QECw
-         /ygcciiGZW0fhUHIUQvRgSIET8WOZ5Q1kJvmSjFFD+zNrd2vAkPNi2sRg04XBfmp9qUE
-         WN0N2EXnmHOZ8xrf6KRUXuFF8Er3PTfyl3Df7ebdfRBtkg9438QaORrJzg/nQfSHLgn/
-         oTHEb4wj3lnrNKArhTQOGlo83rBs7/x5W2o/tDFNHfe0/gvb/PKS2m9t30NnEi8FcsBA
-         zVqA==
-X-Gm-Message-State: AOAM5302G8TNO7OXBtuO62TREIpCEtmc8J6Dlo5UwrsLn7gRJpCG1pca
-        1IlzJa/PmWQq1KeepbqLd9fypxjpQflM8pievuPt/Q==
-X-Google-Smtp-Source: ABdhPJzI/jXc4QND6SsniUS/XE90fBCnaNZ/1hb6OnbRI7HvlBO/bqypC2EiSkt35ljHpjeBGpzAuHTgAfSay9aJtFA=
-X-Received: by 2002:a05:6902:528:b0:63c:d888:1da2 with SMTP id
- y8-20020a056902052800b0063cd8881da2mr6043829ybs.614.1648763924228; Thu, 31
- Mar 2022 14:58:44 -0700 (PDT)
+        with ESMTP id S242022AbiCaWF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 18:05:58 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 597AC148641;
+        Thu, 31 Mar 2022 15:04:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0BFA6B82271;
+        Thu, 31 Mar 2022 22:04:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9246C340F0;
+        Thu, 31 Mar 2022 22:04:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648764246;
+        bh=4xVNdxBqaOVelyuYC2NTicn7Q2prJGEUjhHB+LPAEfM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=A8n1KsdbCA+kmhsUFUWkc/f6UB0evGNGV2r+m4o6sOVjFyyfp9cVFERV/T2f80NIY
+         0cT+3fGm4iiOA8qhThrOOlGGw8yGfGBjlhbXmhFApeRGkhu3nryPoxsVfR3dLFkKW9
+         HFfSwlQOycv1j64erLNQvag7hwy/moPQApZqHqKrd7zMAmZQvviXOxZiDThAMn9Ajv
+         9ZxVdxjCalMkv5+c8/DZdGMo/p+s/MDK9UwuEVLD/zv1/3rdDp26uFn0WryZwdK0xS
+         k3egXtDQ64TBXAxtVd5MYlztrpEs/DI4NwTJnao4kz8/5BkD5vILZH4hJXM1rsUHXG
+         Uo6aAUpnLfGZg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20220306223016.2239094-1-ctshao@google.com> <CAKwvOdnmtRYnSx3VvG=PEnzpzWa8f=0bn1xDymjER5EShS2tmw@mail.gmail.com>
- <YiaMJCHOOuujHwiK@google.com> <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
- <YjFQvhv7I6w8xjbK@google.com> <CAK7LNATmPXs6f-Oe4XmfcZSRPsCsuexSebA=4-jyNsMYHu9cag@mail.gmail.com>
- <CAKwvOd=D22k53yXFC=E=VkJotn6q-AYCu5QsaFPmH_v+fWGVwA@mail.gmail.com> <YjovutS5McV8A8z4@google.com>
-In-Reply-To: <YjovutS5McV8A8z4@google.com>
-From:   Chun-Tse Shao <ctshao@google.com>
-Date:   Thu, 31 Mar 2022 14:58:33 -0700
-Message-ID: <CAJpZYjXxFBz-d5qCbHLcdbPsqMJ569_91NDcsuRZ02g9QpiQBw@mail.gmail.com>
-Subject: Re: [PATCH v4] config: Allow kernel installation packaging to
- override pkg-config
-To:     Nick Desaulniers <ndesaulniers@google.com>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Steven Rostedt <rostedt@goodmis.org>,
-        Nicolas Schier <nicolas@fjasle.eu>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
+References: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
+Subject: Re: [next] db845c: WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139 divider_recalc_rate
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     gabriel.fernandez@foss.st.com,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        David Howells <dhowells@redhat.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        keyrings@vger.kernel.org, DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>
+To:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        lkft-triage@lists.linaro.org,
+        open list <linux-kernel@vger.kernel.org>,
+        regressions@lists.linux.dev
+Date:   Thu, 31 Mar 2022 15:04:04 -0700
+User-Agent: alot/0.10
+Message-Id: <20220331220406.A9246C340F0@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 1:21 PM Chun-Tse Shao <ctshao@google.com> wrote:
->
-> On Tue, Mar 22, 2022 at 10:19:14AM -0700, Nick Desaulniers wrote:
-> > On Tue, Mar 22, 2022 at 12:44 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
-> > >
-> > > On Wed, Mar 16, 2022 at 11:51 AM Chun-Tse Shao <ctshao@google.com> wrote:
-> > > >
-> > > > Tue, Mar 08, 2022 at 01:01:45PM +0900, Masahiro Yamada wrote:
-> > > > > On Tue, Mar 8, 2022 at 7:50 AM Chun-Tse Shao <ctshao@google.com> wrote:
-> > > > > >
-> > > > > > On Mon, Mar 07, 2022 at 10:17:17AM -0800, Nick Desaulniers wrote:
-> > > > > > > On Sun, Mar 6, 2022 at 2:39 PM Chun-Tse Shao <ctshao@google.com> wrote:
-> > > > > > > >
-> > > > > > > > Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
-> > > > > > > > what pkg-config and parameters are used.
-> > > > > > >
-> > > > > > > Sorry, kind a late thought here for v4, but we don't seem to prefix
-> > > > > > > many other host side tools with HOST_, i.e. LEX, YACC, AWK, PERL,
-> > > > > > > PYTHON3, etc.  Maybe just having the variable identifier be simply
-> > > > > > > PKGCONFIG rather than HOSTPKG_CONFIG then put it at the end of the
-> > > > > > > list in the top level Makefile after ZSTD (i.e. the list of host
-> > > > > > > tools)?  There's HOST_ prefixes when there's more than one tool
-> > > > > > > involved (i.e. host compiler vs target compiler), but I suspect
-> > > > > > > there's no such distinction for the existing uses of pkg-config?
-> > > > > > >
-> > > > > > Thanks for your suggestion, Nick! Yes I think it makes sense with PKGCONFIG
-> > > > > > instead of HOSTPKG_CONFIG since there is only one tool involved. I will
-> > > > > > work on it and submit a new patch.
-> > > > > >
-> > > > >
-> > > > > Please hold on.
-> > > > >
-> > > > > I was also wondering what to do with the "HOST" prefix.
-> > > > >
-> > > > > Libraries are usually arch-dependent.
-> > > > > (in other words, pkg-config should return different library paths
-> > > > > for $(CC) and $(HOSTCC) )
-> > > > >
-> > > > > You already understood this, so you added "HOST" prefix.
-> > > > >
-> > > > >
-> > > > > Please let me take time for further discussion.
-> > > > > I will come back to this when I get some time.
-> > > > >
-> > > > >
-> > > >
-> > > > Hi Mashiro,
-> > > >
-> > > > I was wondering if you were able to look more into this.
-> > > >
-> > > > Thank you!
-> > > >
-> > > > -CT
-> > > >
-> > > > > In the meantime,
-> > > > >   a8a5cd8b472ca20e5b8fa649c43b3756867322f8
-> > > > > as reference info if you have not seen it.
-> > > > >
-> > > > >
-> > > > > How many distros support something like
-> > > > > "aarch64-linux-gnu-pkg-config"  ?
-> > > > >
-> > > > > Ubuntu 18.04 and 20.04 seem to support it.
-> > > > > I do not know for others.
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > >
-> > >
-> > >
-> > > Sorry for the delay.
-> > > I am OK with the idea of allowing users to override the pkg-config command,
-> > > but I tend to take time before making a decision.
-> > >
-> > >
-> > >
-> > >
-> > > Does anybody have any insight / thoughts about the following points?
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > > [Q1]   with/without "HOST" prefix
-> > >
-> > >
-> > > Apparently, "pkg-config" should return different libs/cflags
-> > > for $(CC) and $(HOSTCC).
-> > >
-> > > I think the non-prefixed macro name "PKG_CONFIG" should be
-> > > reserved for $(CC)  (building for the target system).
-> >
-> > Ok. I retract my comment on v4 about removing the HOST prefix then.
-> >
-> > >
-> > > "HOSTPKG_CONFIG" looks unbalanced
-> > > due to the underscore.
-> > >
-> > > Perhaps, "HOST_PKG_CONFIG" might be better?
-> >
-> > I'm fine with HOSTPKG_CONFIG (what's in v4); follows the style of
-> > HOSTCC and HOSTCXX.
-> >
->
-> Agree, it should follow the style of HOSTCC/HOSTCXX.
->
-> > >
-> > >
-> > >
-> > >
-> > > [Q2]    "pkg-config" vs "pkgconf"
-> > >
-> > > The traditional pkg-config implementation [1] is not actively
-> > > maintained these days.
-> > > The last commit was more than one year ago.
-> > >
-> > > The alternative one 'pkgconf' [2] is more active.
-> > >
-> > > In fact, Fedora already switched to 'pkgconf' [3].
-> > > Now 'pkg-config' is just a wrapper of 'pkgconf'.
-> > > Many distributions already support pkgconf.
-> > >
-> > >
-> > > I considered the shorter macro name "HOSTPKGCONF" and
-> > >
-> > >    HOSTPKGCONF  = pkgconf
-> > >
-> > > but I am not sure if this is the right decision.
-> > > Maybe we should stick to "PKG_CONFIG" / "HOST_PKG_CONFIG"
-> > > for the macro names.
-> > >
-> > >
-> > >   [1]  https://gitlab.freedesktop.org/pkg-config/pkg-config.git
-> > >   [2]  https://github.com/pkgconf/pkgconf.git
-> > >   [3]  https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation
-> >
-> > If the folks sending this are working on CrOS, better find what's in
-> > their build system. Chun-Tse?
-> >
-> > (I feel like I'm behind the times again, like when `apt-get install`
-> > became old news in favor of `apt install`...)
-> >
->
-> In Cros we only support pkg-config, and that is the reason we would like
-> to make this change in upstream.
->
-> > >
-> > >
-> > >
-> > >
-> > >
-> > > [Q3] What is the trend of handling cross-compile by pkg-config (or pkgconf).
-> > >
-> > >
-> > > By default, pkg-config returns the libs/cflags for native builds.
-> > >
-> > > For cross builds, the search paths for the *.pc files must be changed
-> > > via the "PKG_CONFIG_LIBDIR" environment variable.
-> > >
-> > > To ease this, some distributions provide  <triplet>-pkg-config
-> > > (for example,   aarch64-linux-gnu-pkg-config).
-> > > This became the nationale for tools/build/feature/Makefile defining:
-> > >
-> > >    PKG_CONFIG ?= $(CROSS_COMPILE)pkg-config
-> > >
-> > > But, this wrapper shell script is not always available.
-> > > I do not know how to do it with the LLVM tool suite.
-> > > I am not quite sure if this is the global solution.
-> > >
-> > >
-> > > These days, pkgconf supports another way, .personality file [4]
-> > > to specify the .pc search paths for cross builds.
-> > >
-> > > Is it reasonable to use an option to distinguish native / cross builds
-> > > and use the same macro   "PKG_CONFIG = pkg-config" everywhere ?
-> > >
-> > >
-> > > [4] http://manpages.ubuntu.com/manpages/focal/en/man5/pkgconf-personality.5.html
-> >
-> > I'm not sure, but do we need to cross that bridge for this patch if
-> > it's just adding support for the HOST? No cross pkg-config necessary,
-> > yet. (Famous last words).
->
-> Agree with Nick.
->
-> Thanks,
-> CT
-> > --
-> > Thanks,
-> > ~Nick Desaulniers
++Maxime
 
-Hi Masahiro,
+Quoting Naresh Kamboju (2022-03-31 05:03:57)
+> Following kernel warning noticed on db845c while booting linux next-20220=
+331.
+>=20
+> metadata:
+>   git_ref: master
+>   git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
+>   git_sha: fdcbcd1348f4ef713668bae1b0fa9774e1811205
+>   git_describe: next-20220331
+>   kernel_version: 5.17.0
+>   kernel-config: https://builds.tuxbuild.com/278RLnhgJL7XdlJbcbv07jiwbYB/=
+config
 
-I was wondering if you have any suggestions and thoughts.
+I guess we really just shouldn't call clk_set_rate_range()
+unconditionally on clk_put().
 
-Thank you!
-
--CT
+>=20
+> Boot log:
+> [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x517f803c]
+> [    0.000000] Linux version 5.17.0-next-20220331 (tuxmake@tuxmake)
+> (aarch64-linux-gnu-gcc (Debian 11.2.0-18) 11.2.0, GNU ld (GNU Binutils
+> for Debian) 2.38) #1 SMP PREEMPT @1648699852
+> [    0.000000] Machine model: Thundercomm Dragonboard 845c
+> <trim>
+> [    8.131366] ------------[ cut here ]------------
+> [    8.131374] dsi0_pll_bit_clk: Zero divisor and CLK_DIVIDER_ALLOW_ZERO =
+not set
+> [    8.131387] WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
+> divider_recalc_rate+0x8c/0xc0
+> [    8.131398] Modules linked in: qcom_spmi_adc5 snd_soc_sdm845
+> qcom_vadc_common qcom_spmi_temp_alarm qcom_pon crct10dif_ce rtc_pm8xxx
+> snd_soc_rt5663 msm snd_soc_qcom_common gpu_sched snd_soc_rl6231
+> soundwire_bus reset_qcom_pdc drm_dp_helper qcom_camss hci_uart
+> videobuf2_dma_sg btqca v4l2_fwnode venus_core ath10k_snoc v4l2_async
+> btbcm ath10k_core i2c_qcom_geni v4l2_mem2mem videobuf2_memops
+> videobuf2_v4l2 ath bluetooth camcc_sdm845 videobuf2_common
+> spi_geni_qcom i2c_qcom_cci qcom_rng mac80211 xhci_pci qcom_q6v5_mss
+> xhci_pci_renesas cfg80211 icc_osm_l3 slim_qcom_ngd_ctrl qcom_wdt
+> rfkill qrtr lmh pdr_interface display_connector slimbus qcom_q6v5_pas
+> drm_kms_helper qcom_pil_info qcom_q6v5 qcom_sysmon qcom_common
+> qcom_glink_smem qmi_helpers drm mdt_loader socinfo rmtfs_mem fuse
+> [    8.131462] CPU: 5 PID: 8 Comm: kworker/u16:0 Not tainted
+> 5.17.0-next-20220331 #1
+> [    8.131465] Hardware name: Thundercomm Dragonboard 845c (DT)
+> [    8.131467] Workqueue: events_unbound deferred_probe_work_func
+> [    8.131475] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
+E=3D--)
+> [    8.131477] pc : divider_recalc_rate+0x8c/0xc0
+> [    8.131479] lr : divider_recalc_rate+0x8c/0xc0
+> [    8.131481] sp : ffff8000080936c0
+> [    8.131482] x29: ffff8000080936c0 x28: ffff781940e58d00 x27: ffffa7f3f=
+1bc6d38
+> [    8.131485] x26: ffffa7f3f1bc6cf8 x25: 0000000000000000 x24: fffffffff=
+fffffff
+> [    8.131488] x23: ffff781947e8a400 x22: 000000003b9aca50 x21: ffff78194=
+0be0800
+> [    8.131491] x20: ffff781947e8a800 x19: 000000003b9aca50 x18: 000000000=
+0000000
+> [    8.131494] x17: 0000000000000000 x16: 0000000000000000 x15: 000000000=
+0000000
+> [    8.131497] x14: ffff7819bd718000 x13: 0a74657320746f6e x12: 204f52455=
+a5f574f
+> [    8.131500] x11: 4c4c415f52454449 x10: 5649445f4b4c4320 x9 : ffffa7f3f=
+011de84
+> [    8.131502] x8 : 445f4b4c4320646e x7 : 6120726f73697669 x6 : 000000000=
+0000001
+> [    8.131505] x5 : ffffa7f3f288f000 x4 : ffffa7f3f288f2d0 x3 : 000000000=
+0000000
+> [    8.131508] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff78194=
+02c7000
+> [    8.131511] Call trace:
+> [    8.131512]  divider_recalc_rate+0x8c/0xc0
+> [    8.131513]  clk_divider_recalc_rate+0x64/0x90
+> [    8.131515]  clk_recalc+0x40/0xb0
+> [    8.131519]  clk_calc_subtree+0x58/0x90
+> [    8.131521]  clk_calc_subtree+0x70/0x90
+> [    8.131523]  clk_calc_new_rates+0x150/0x290
+> [    8.131526]  clk_calc_new_rates+0x100/0x290
+> [    8.131528]  clk_calc_new_rates+0x100/0x290
+> [    8.131530]  clk_calc_new_rates+0x100/0x290
+> [    8.131533]  clk_core_set_rate_nolock+0xa0/0x2a4
+> [    8.131535]  clk_set_rate_range_nolock.part.0+0xbc/0x2a0
+> [    8.131538]  __clk_put+0x70/0x140
+> [    8.131540]  clk_put+0x1c/0x30
+> [    8.131543]  of_clk_set_defaults+0x140/0x3c0
+> [    8.131546]  platform_probe+0x48/0xf0
+> [    8.131548]  really_probe+0x184/0x3d0
+> [    8.131550]  __driver_probe_device+0x11c/0x190
+> [    8.131553]  driver_probe_device+0x44/0xf4
+> [    8.131556]  __device_attach_driver+0xa4/0x140
+> [    8.131558]  bus_for_each_drv+0x84/0xe0
+> [    8.131561]  __device_attach+0xe4/0x1c0
+> [    8.131563]  device_initial_probe+0x20/0x30
+> [    8.131565]  bus_probe_device+0xa4/0xb0
+> [    8.131567]  deferred_probe_work_func+0xa8/0xfc
+> [    8.131570]  process_one_work+0x1dc/0x450
+> [    8.131575]  worker_thread+0x154/0x450
+> [    8.131577]  kthread+0x100/0x110
+> [    8.131579]  ret_from_fork+0x10/0x20
+> [    8.131584] ---[ end trace 0000000000000000 ]---
+> [    8.131588] ------------[ cut here ]------------
+> [    8.131589] dsi0_phy_pll_out_dsiclk: Zero divisor and
+> CLK_DIVIDER_ALLOW_ZERO not set
+> [    8.131596] WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
+> divider_recalc_rate+0x8c/0xc0
+> [    8.131599] Modules linked in: qcom_spmi_adc5 snd_soc_sdm845 qcom_vadc=
+_commo#
+> n qcom_spmi_temp_alarm qcom_pon crct10dif_ce rtc_pm8xxx snd_soc_rt5663
+> msm snd_soc_qcom_common gpu_sched snd_soc_rl6231 soundwire_bus
+> reset_qcom_pdc drm_dp_helper qcom_camss hci_uart videobuf2_dma_sg
+> btqca v4l2_fwnode venus_core ath10k_snoc v4l2_async btbcm ath10k_core
+> i2c_qcom_geni v4l2_mem2mem videobuf2_memops videobuf2_v4l2 ath
+> bluetooth camcc_sdm845 videobuf2_common spi_geni_qcom i2c_qcom_cci
+> qcom_rng mac80211 xhci_pci qcom_q6v5_mss xhci_pci_renesas cfg80211
+> icc_osm_l3 slim_qcom_ngd_ctrl qcom_wdt rfkill qrtr lmh pdr_interface
+> display_connector slimbus qcom_q6v5_pas drm_kms_helper qcom_pil_info
+> qcom_q6v5 qcom_sysmon qcom_common qcom_glink_smem qmi_helpers drm
+> mdt_loader socinfo rmtfs_mem fuse
+> [    8.131637] CPU: 5 PID: 8 Comm: kworker/u16:0 Tainted: G        W
+>       5.17.0-next-20220331 #1
+> [    8.131639] Hardware name: Thundercomm Dragonboard 845c (DT)
+> [    8.131640] Workqueue: events_unbound deferred_probe_work_func
+> [    8.131643] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
+E=3D--)
+> [    8.131645] pc : divider_recalc_rate+0x8c/0xc0
+> [    8.131647] lr : divider_recalc_rate+0x8c/0xc0
+> [    8.131648] sp : ffff800008093680
+> [    8.131649] x29: ffff800008093680 x28: ffff781940e58d00 x27: ffffa7f3f=
+1bc6d38
+> [    8.131652] x26: ffffa7f3f1bc6cf8 x25: 0000000000000000 x24: fffffffff=
+fffffff
+> [    8.131655] x23: ffff781947e8a400 x22: 000000003b9aca50 x21: ffff78194=
+0be0800
+> [    8.131657] x20: ffff781947e8b300 x19: 000000003b9aca50 x18: 000000000=
+0000000
+> [    8.131660] x17: 0000000000000000 x16: 0000000000000000 x15: 000000000=
+0000000
+> [    8.131663] x14: ffff7819bd718000 x13: 0a74657320746f6e x12: 204f52455=
+a5f574f
+> [    8.131666] x11: 4c4c415f52454449 x10: 5649445f4b4c4320 x9 : ffffa7f3f=
+011de84
+> [    8.131669] x8 : 445f4b4c4320646e x7 : 6120726f73697669 x6 : 000000000=
+0000001
+> [    8.131671] x5 : ffffa7f3f288f000 x4 : ffffa7f3f288f2d0 x3 : 000000000=
+0000000
+> [    8.131674] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff78194=
+02c7000
+> [    8.131677] Call trace:
+> [    8.131677]  divider_recalc_rate+0x8c/0xc0
+> [    8.131679]  clk_divider_recalc_rate+0x64/0x90
+> [    8.131680]  clk_recalc+0x40/0xb0
+> [    8.131683]  clk_calc_subtree+0x58/0x90
+> [    8.131685]  clk_calc_subtree+0x70/0x90
+> [    8.131687]  clk_calc_subtree+0x70/0x90
+> [    8.131690]  clk_calc_subtree+0x70/0x90
+> [    8.131692]  clk_calc_new_rates+0x150/0x290
+> [    8.131694]  clk_calc_new_rates+0x100/0x290
+> [    8.131697]  clk_calc_new_rates+0x100/0x290
+> [    8.131699]  clk_calc_new_rates+0x100/0x290
+> [    8.131701]  clk_core_set_rate_nolock+0xa0/0x2a4
+> [    8.131704]  clk_set_rate_range_nolock.part.0+0xbc/0x2a0
+> [    8.131707]  __clk_put+0x70/0x140
+> [    8.131708]  clk_put+0x1c/0x30
+> [    8.131710]  of_clk_set_defaults+0x140/0x3c0
+> [    8.131712]  platform_probe+0x48/0xf0
+> [    8.131714]  really_probe+0x184/0x3d0
+> [    8.131716]  __driver_probe_device+0x11c/0x190
+> [    8.131719]  driver_probe_device+0x44/0xf4
+> [    8.131722]  __device_attach_driver+0xa4/0x140
+> [    8.131723]  bus_for_each_drv+0x84/0xe0
+> [    8.131726]  __device_attach+0xe4/0x1c0
+> [    8.131728]  device_initial_probe+0x20/0x30
+> [    8.131730]  bus_probe_device+0xa4/0xb0
+> [    8.131732]  deferred_probe_work_func+0xa8/0xfc
+> [    8.131735]  process_one_work+0x1dc/0x450
+> [    8.131737]  worker_thread+0x154/0x450
+> [    8.131739]  kthread+0x100/0x110
+> [    8.131741]  ret_from_fork+0x10/0x20
+> [    8.131743] ---[ end trace 0000000000000000 ]---
+> [    8.131756] ------------[ cut here ]#
+> ------------
+> [    8.131757] dsi0_pll_bit_clk: Zero divisor and CLK_DIVIDER_ALLOW_ZERO =
+not set
+>=20
+>=20
+> Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
+>=20
+> --
+> Linaro LKFT
+> https://lkft.linaro.org
+>=20
+> [1] https://qa-reports.linaro.org/lkft/linux-next-master/build/next-20220=
+331/testrun/8808185/suite/linux-log-parser/test/check-kernel-exception-4814=
+166/log
