@@ -2,54 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 418524EE45D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 00:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7BE4EE49A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 01:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242206AbiCaWz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 18:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39580 "EHLO
+        id S241126AbiCaXWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 19:22:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233346AbiCaWz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 18:55:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9382E6351C;
-        Thu, 31 Mar 2022 15:54:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4CB18B82278;
-        Thu, 31 Mar 2022 22:54:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C945C340ED;
-        Thu, 31 Mar 2022 22:54:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648767246;
-        bh=LX9sRJomQSNzLVPo+TLLNQVLhf0zSJX7M/h2n5GyPT8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=ibv0zJ9jINegOaaYAoQ/WES61Mov/1uBn2DfjaI395tMsoR4BTL3lMAOgOnfFF3Lp
-         t38x/S/JZOUAg9zawWw6XU1ua2eFYMUeirLO7kbegla6cPN6AP2M7DSAbU15uRVW3k
-         yW0YNgI5bGChzEIDEh5LEDpcw+BSpdEazBV8RIlL1de4JhPzFpe76NnOHUFwDK+wkL
-         GZ2mgt2QniU1v4eOY/zemwqoVp+sihWzgwxFRchcQwnrDOugcl0WlP4CnMBHNtMoqs
-         Zv4JlxzQo4Cmn2OT4om8XsIwOJV28PtEqJxXQ8qdrYyH5fDuk4KtK8I0WfguKMM/Tg
-         FYuXC7tYQxbpw==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231898AbiCaXWR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 19:22:17 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8074F44E;
+        Thu, 31 Mar 2022 16:20:24 -0700 (PDT)
+X-UUID: 8cebddf497a846c9bc48a9843a7deda5-20220401
+X-UUID: 8cebddf497a846c9bc48a9843a7deda5-20220401
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 256301875; Fri, 01 Apr 2022 07:20:18 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 1 Apr 2022 07:20:17 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 1 Apr 2022 07:20:17 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <xinlei.lee@mediatek.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>, <jitao.shi@mediatek.com>,
+        <lee.jones@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-pwm@vger.kernel.org>,
+        <matthias.bgg@gmail.com>, <rex-bc.chen@mediatek.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>
+Subject: Re: [PATCH v5,1/4] dt-bindings: pwm: Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format
+Date:   Fri, 1 Apr 2022 07:20:17 +0800
+Message-ID: <20220331232017.8829-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <1648730873-18505-2-git-send-email-xinlei.lee@mediatek.com>
+References: <1648730873-18505-2-git-send-email-xinlei.lee@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220329113657.4567-1-jbx6244@gmail.com>
-References: <20220329113657.4567-1-jbx6244@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: convert rockchip,rk3288-cru.txt to YAML
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
-        zhangqing@rock-chips.com
-Date:   Thu, 31 Mar 2022 15:54:04 -0700
-User-Agent: alot/0.10
-Message-Id: <20220331225406.0C945C340ED@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,22 +54,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Johan Jonker (2022-03-29 04:36:56)
-> Current dts files with RK3288 'cru' nodes are manually verified.
-> In order to automate this process rockchip,rk3288-cru.txt has to be
-> converted to YAML.
->=20
-> Changed:
->   Add properties to fix notifications by clocks.yaml for example:
->     clocks
->     clock-names
->=20
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
+> Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format as suggested by maintainer
+> 
+> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Same comments about clocks applies here. Please send a cover letter
-anytime there's more than one patch being sent so that we can easily see
-the topic at a top-level of the patch series "Convert Rockchip clk
-bindings to yaml and add clocks property". Furthermore, I don't see why
-we need to have a different series for each file. Just combine
-everything into one series please with a cover letter.
+Reviewed-by: Miles Chen <miles.chen@mediatek.com> 
