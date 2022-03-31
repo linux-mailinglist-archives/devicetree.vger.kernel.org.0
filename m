@@ -2,110 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25F644EE43C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 00:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A4484EE44E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 00:42:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242569AbiCaWjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 18:39:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34764 "EHLO
+        id S242641AbiCaWnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 18:43:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242560AbiCaWjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 18:39:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC301FF406;
-        Thu, 31 Mar 2022 15:38:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1C4F5B8225B;
-        Thu, 31 Mar 2022 22:38:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B12C340ED;
-        Thu, 31 Mar 2022 22:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648766279;
-        bh=0+cqxY3wgXl1ZxgBlYb2Pw1E+eA45qGlrrGxGV6BP4Q=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=KVubnGXunMJIF0ThNkEy70N0q5PMBLlBFHZtwDDlcF/LEM30o5NILdXywFFrb8Mfc
-         ky7xDb6uCD4Uq5P+YIK0JXy/82QVa7PNArud3iXwsD5Iau9k1s91+EARvK9nB8dHpe
-         4vBaeI10JPTgNi+n1jcuDoQHMUkhMO1DNZQG5u/KveYKZBPKI+qcrYKLHXt7clQOH3
-         heENiVEo2e3zffwSV2wtufCT5wlmCKwc6wlvxoJs23Fa1vvMgHgyNR1B4RXf8/Z+St
-         9/W6lO1dTqMP7gpPu7WhKM5soFhWTd+O3lsNeubAc0SwUOkZnQsP57x/LmzTDPgsww
-         ohHY7YDlIt5UA==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <bf438af8-5969-73e4-009d-cb7d93095a5e@kernel.org>
-References: <20220324133229.24035-1-jbx6244@gmail.com> <f7493d93-6c8a-efa9-1f2c-a0003a6d43b2@kernel.org> <bf62ad40-6bcf-62ae-f56a-cdc8d17456ec@gmail.com> <20220325005130.C45A3C340EC@smtp.kernel.org> <bf438af8-5969-73e4-009d-cb7d93095a5e@kernel.org>
-Subject: Re: [PATCH v1] dt-bindings: clock: convert rockchip,rk3188-cru.txt to YAML
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Johan Jonker <jbx6244@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Date:   Thu, 31 Mar 2022 15:37:57 -0700
-User-Agent: alot/0.10
-Message-Id: <20220331223759.B8B12C340ED@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S242638AbiCaWnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 18:43:50 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52AF22D648
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 15:42:02 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id c15-20020a17090a8d0f00b001c9c81d9648so812294pjo.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 15:42:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yv9Wzw03+NukkaSaVZZG3A+e/UbaRsd8qeLIgoxYYGI=;
+        b=aLtSxaTzBBfLrrs6Yqf07PKFqBsmzaPzZr4oCPxsKElf8kiRNH12fyraf+9osQPlA6
+         nWW0TdKR12qeZa5fqH+vC9HP/3odKQ6hI1oAxbayxR9vaf3F1KGyttkH5lX4i6VksxXu
+         0xTvzKY3GYCmzhee9Cl/y5RMFqT1DmqCZRziWA8NF3naBvhnmTQWsjPxf6EmQPRB3k44
+         yPQc8Z2d9rbZTnN7tnNdq3BqES9JSP/Gno/o8Rc1w4eD3F0uNfqj6mCScR/H9U9Xbbes
+         e0CBI6ZpomHJG4s4WiA4H1eBQuW+kw1whOvqnA0jEoZ7imEhea5GKa5Uo6qClnjrplAr
+         vJyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=yv9Wzw03+NukkaSaVZZG3A+e/UbaRsd8qeLIgoxYYGI=;
+        b=YjrXWTKWhCdEDxPuBPBUgvRuRQsrHqrkUIsWinvOosJH4efirOuBLFnAUn9cN9o/xu
+         PmkBGa5skHiVJgHfSmSkg8splnBZPgGpT/CEs3K7fLXb289hOmhJ1CiOrk1MYJ3iaQ8E
+         3eto0yDCGWpMZH0jzfSDLTjjC7ClvEsXZMuu9cvQ8KN+UPny3VcZg0yuimCoIFQJqnax
+         w6nkxt6YF5j+xSMAzX2MI0RH1cwl/i5AXCCGyHUVO8sFFC+CxSmDxxIWDVQSxRP5Od79
+         4HVpDtiRm/oDLFOMQ7sbK3w2gAHFIY4DLnnpkatbDGSbi/H82LMNceIaoCC+MSVWHs2/
+         VlWA==
+X-Gm-Message-State: AOAM531Cd5oCCfzsJoQ6GW79G95BLO2D2U2FnVyMAKqRUthd9yAfJgte
+        vvnnq5Odaulxx1o5MyUC980toQ==
+X-Google-Smtp-Source: ABdhPJxnnPsasTSwvvvGeMWLk7XXYDekjDntq0m5UMM6IsliYxKEdKVMexqOiT84oCZZ+WVMGKn/sg==
+X-Received: by 2002:a17:903:18c:b0:154:9ee:cedc with SMTP id z12-20020a170903018c00b0015409eecedcmr44211037plg.123.1648766522196;
+        Thu, 31 Mar 2022 15:42:02 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id u11-20020a056a00158b00b004fb07effe2esm510368pfk.130.2022.03.31.15.42.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Mar 2022 15:42:00 -0700 (PDT)
+Date:   Thu, 31 Mar 2022 15:42:00 -0700 (PDT)
+X-Google-Original-Date: Thu, 31 Mar 2022 15:41:57 PDT (-0700)
+Subject:     Re: [PATCH v8 0/4] Determine the number of DMA channels by 'dma-channels' property
+In-Reply-To: <mhng-c6a04a4f-1e85-49e9-baee-b56b0e78c602@palmer-ri-x1c9>
+CC:     zong.li@sifive.com, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        conor.dooley@microchip.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, green.wan@sifive.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     vkoul@kernel.org
+Message-ID: <mhng-5afad1be-9b06-4cd1-95e3-c21605b9086a@palmer-mbp2014>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2022-03-25 00:31:25)
-> On 25/03/2022 01:51, Stephen Boyd wrote:
-> > Quoting Johan Jonker (2022-03-24 12:51:36)
-> >> Hi Heiko, Krzysztof,
-> >>
-> >> Question for the Rockchip clock maintainer:
-> >> What clock should be used here and other SoCs with several clock paren=
-ts
-> >> in the tree?
-> >>
-> >> The clock.yaml produces a lot off notifications like:
-> >>
-> >> /arch/arm/boot/dts/rk3036-evb.dtb: clock-controller@20000000: 'clocks'
-> >> is a dependency of 'assigned-clocks'
-> >=20
-> > 'clocks' is not a dependency of 'assigned-clocks'. The dt-schema should
-> > be fixed to remove that requirement.
->=20
-> If the driver does not have any clock inputs ("clocks" property), why
-> does it care about some clock frequencies and parents?
+On Wed, 30 Mar 2022 22:54:47 PDT (-0700), Palmer Dabbelt wrote:
+> On Wed, 30 Mar 2022 22:21:56 PDT (-0700), vkoul@kernel.org wrote:
+>> On 30-03-22, 20:15, Palmer Dabbelt wrote:
+>>> On Mon, 28 Mar 2022 02:52:21 PDT (-0700), zong.li@sifive.com wrote:
+>>> > The PDMA driver currently assumes there are four channels by default, it
+>>> > might cause the error if there is actually less than four channels.
+>>> > Change that by getting number of channel dynamically from device tree.
+>>> > For backwards-compatible, it uses the default value (i.e. 4) when there
+>>> > is no 'dma-channels' information in dts.
+>>> >
+>>> > This patch set contains the dts and dt-bindings change.
+>>> >
+>>> > Changed in v8:
+>>> >  - Rebase on master
+>>> >  - Remove modification of microchip-mpfs.dtsi
+>>> >  - Rename DMA node name of fu540-c000.dtsi
+>>> >
+>>> > Changed in v7:
+>>> >  - Rebase on tag v5.17-rc7
+>>> >  - Modify the subject of patch
+>>> >
+>>> > Changed in v6:
+>>> >  - Rebase on tag v5.17-rc6
+>>> >  - Change sf_pdma.chans[] to a flexible array member.
+>>> >
+>>> > Changed in v5:
+>>> >  - Rebase on tag v5.17-rc3
+>>> >  - Fix typo in dt-bindings and commit message
+>>> >  - Add PDMA versioning scheme for compatible
+>>> >
+>>> > Changed in v4:
+>>> >  - Remove cflags of debug use reported-by: kernel test robot <lkp@intel.com>
+>>> >
+>>> > Changed in v3:
+>>> >  - Fix allocating wrong size
+>>> >  - Return error if 'dma-channels' is larger than maximum
+>>> >
+>>> > Changed in v2:
+>>> >  - Rebase on tag v5.16
+>>> >  - Use 4 as default value of dma-channels
+>>> >
+>>> > Zong Li (4):
+>>> >   dt-bindings: dma-engine: sifive,fu540: Add dma-channels property and
+>>> >     modify compatible
+>>> >   riscv: dts: Add dma-channels property and modify compatible
+>>> >   riscv: dts: rename the node name of dma
+>>> >   dmaengine: sf-pdma: Get number of channel by device tree
+>>> >
+>>> >  .../bindings/dma/sifive,fu540-c000-pdma.yaml  | 19 +++++++++++++--
+>>> >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  5 ++--
+>>> >  drivers/dma/sf-pdma/sf-pdma.c                 | 24 ++++++++++++-------
+>>> >  drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++-----
+>>> >  4 files changed, 38 insertions(+), 18 deletions(-)
+>>>
+>>> Thanks, these are on for-next.
+>>
+>> The drivers/dma/ should go thru dmaengine tree. During merge window I
+>> dont apply the patches
+>
+> OK, I can drop this from my tree if you'd like?
 
-Because it's a clock provider itself. In this case I suspect because
-this is a clock-controller node it was skipping describing some crystal
-input though. Maybe it wants to configure the various PLLs in the
-clock-controller for a particular board. I can imagine some node with
-#clock-cells may want to configure the frequency of the clock outputs or
-configure the clk parents for a certain board/SoC. In that case there
-may not be any clocks property, but we still want to configure things.
-
->=20
-> The clocks is the logical dependency of assigned-clocks, because
-> otherwise hardware description is not complete.
-
-Sure, but also #clock-cells indicating that this is a clock-controller
-itself means something. The existing bindings are what they are so
-forcing bindings to be updated to comply with having a 'clocks' property
-doesn't seem very nice.
-
->=20
-> What should be here for Rockhip? We had similar cases like this for many
-> drivers, I was fixing some of Exynos as well. In my case usually the
-> root/external clock was missing, so I supplied is as input clock to the
-> clock controller.
->=20
-
-Can the schema consider either #clock-cells or clocks? I think that will
-work for most cases. It would also be good to have a comment in the
-schema or more detail around the definition of assigned-clocks in
-bindings/clock/clock-bindings.txt that clocks or #clock-cells are
-required. It would be super cool if assigned-clocks only applied if
-#clock-cells was present, otherwise clocks property applies, but I doubt
-we can do that anymore given how long the binding has been around.
+Just to follow up from IRC: I'm dropping these from my tree.
