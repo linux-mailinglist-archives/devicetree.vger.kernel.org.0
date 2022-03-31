@@ -2,141 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 531FE4EDB79
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 16:11:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F364EDB86
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 16:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237354AbiCaOND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 10:13:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37258 "EHLO
+        id S233212AbiCaORM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 10:17:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237342AbiCaONC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 10:13:02 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453971AA4A1;
-        Thu, 31 Mar 2022 07:11:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1648735875; x=1680271875;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=s14Q9frxV/DdiV00e2n8rH5uoNNzzoof8snfleEcI58=;
-  b=xD+IVauBKfNNeVcAZt82mhrwq5S8MaiMyYJgD0FuoQ8lGR3DE/D7ckOR
-   M5lDaEjlTwNUJjWtmcHiaDrDxXG7+iRj/aHKQGYS8BkoAJ144djmR7eSF
-   3bmF6Y3SITw+pxRgbxWgRjSYc1G8Jn7MtAN7FGmAmVMueXhdG75ZBvce1
-   9ffkD1ZlwOsiRD7eiKlSuViH7s1TEMF+td7xwy0e2O6thjfsT30Yn6poZ
-   2rHqegfpfZ+jVk0qIjc1UA06TLSMYRvDZSEOAQODb2vcLlJpPhz4rmzwC
-   fv/5Y/H66/HSYWLk4SKzyzkAgECjnkKRwmBAmsSKmwdrqLBB1H0twvqP6
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,225,1643698800"; 
-   d="scan'208";a="158386519"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Mar 2022 07:11:15 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 31 Mar 2022 07:11:14 -0700
-Received: from localhost.localdomain (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Thu, 31 Mar 2022 07:11:12 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+        with ESMTP id S231631AbiCaORM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 10:17:12 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40D15AEDD;
+        Thu, 31 Mar 2022 07:15:23 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22VEFHmC021598;
+        Thu, 31 Mar 2022 09:15:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1648736117;
+        bh=psfq1z0RHn/I3okmGZt0F8Lscov57xnCw7rlyj0rgMA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=LkdEmsG52G2u5jMIskHhR1dkrBFRaKR6lXmr7SxbwPNI0qRUc1TD+xb2afbZCtdW/
+         23xAAADpihYlEp/ZGjBsVTlv34k/muf++htkvZxt6CLJTI5IGUqXnQwJqnHJMHICBv
+         c/+wqrc+5Z5WwbdoRXVF/jQdHcTxiPpm1MEe2VuM=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22VEFHbl077710
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 31 Mar 2022 09:15:17 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 31
+ Mar 2022 09:15:17 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 31 Mar 2022 09:15:16 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22VEFF9w104847;
+        Thu, 31 Mar 2022 09:15:16 -0500
+Date:   Thu, 31 Mar 2022 19:45:15 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Ajay Kathat <ajay.kathat@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: at91: fix pinctrl phandles
-Date:   Thu, 31 Mar 2022 17:13:23 +0300
-Message-ID: <20220331141323.194355-2-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220331141323.194355-1-claudiu.beznea@microchip.com>
-References: <20220331141323.194355-1-claudiu.beznea@microchip.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+Message-ID: <20220331141514.kr2synsaodqd6w2c@uda0490373>
+References: <20220222163230.1566-1-r-ravikumar@ti.com>
+ <20220222163230.1566-2-r-ravikumar@ti.com>
+ <069c1751-41a9-e47c-96d7-8ed83e1fe3f9@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <069c1751-41a9-e47c-96d7-8ed83e1fe3f9@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit bf781869e5cf ("ARM: dts: at91: add pinctrl-{names, 0} for all
-gpios") introduces pinctrl phandles for pins used by individual
-controllers to avoid failures due to commit 2ab73c6d8323 ("gpio:
-Support GPIO controllers without pin-ranges"). For SPI controllers
-available on SAMA5D4 and SAMA5D3 some of the pins are defined in
-SoC specific dtsi on behalf of pinctrl-0. Adding extra pinctrl phandles
-on board specific dts also on behalf of pinctrl-0 overwrite the pinctrl-0
-phandle specified in SoC specific dtsi. Thus add the board specific
-pinctrl to pinctrl-1.
+On 09:47-20220228, Kishon Vijay Abraham I wrote:
+> Hi Rahul,
+> 
+> On 22/02/22 10:02 pm, Rahul T R wrote:
+> > From: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > 
+> > Add DT nodes for DisplayPort and DisplayPort PHY. The DP is Cadence MHDP
+> > 8546 and the PHY is a Cadence Torrent PHY with TI WIZ wrapper.
+> > 
+> > A slight irregularity in the bindings is the DPTX PHY register block,
+> > which is in the MHDP IP, but is needed and mapped by the PHY.
+> > 
+> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 102 ++++++++++++++++++++++
+> >  1 file changed, 102 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > index 599861259a30..9e2b212100bb 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > @@ -786,6 +786,82 @@
+> >  		#size-cells = <2>;
+> >  	};
+> >  
+> > +	serdes_wiz4: wiz@5050000 {
+> > +		compatible = "ti,j721e-wiz-10g";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&k3_clks 297 1>, <&k3_clks 297 9>, <&cmn_refclk>;
+> > +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
+> > +		assigned-clocks = <&k3_clks 297 9>;
+> > +		assigned-clock-parents = <&k3_clks 297 10>;
+> > +		assigned-clock-rates = <19200000>;
+> > +		num-lanes = <4>;
+> > +		#reset-cells = <1>;
+> > +		ranges = <0x5050000 0x0 0x5050000 0x10000>,
+> > +			<0xa030a00 0x0 0xa030a00 0x40>;
+> > +
+> > +		wiz4_pll0_refclk: pll0-refclk {
+> > +			clocks = <&k3_clks 297 9>, <&cmn_refclk>;
+> > +			clock-output-names = "wiz4_pll0_refclk";
+> > +			#clock-cells = <0>;
+> > +			assigned-clocks = <&wiz4_pll0_refclk>;
+> > +			assigned-clock-parents = <&k3_clks 297 9>;
+> > +		};
+> > +
+> > +		wiz4_pll1_refclk: pll1-refclk {
+> > +			clocks = <&k3_clks 297 9>, <&cmn_refclk>;
+> > +			clock-output-names = "wiz4_pll1_refclk";
+> > +			#clock-cells = <0>;
+> > +			assigned-clocks = <&wiz4_pll1_refclk>;
+> > +			assigned-clock-parents = <&k3_clks 297 9>;
+> > +		};
+> > +
+> > +		wiz4_refclk_dig: refclk-dig {
+> > +			clocks = <&k3_clks 297 9>, <&cmn_refclk>;
+> > +			clock-output-names = "wiz4_refclk_dig";
+> > +			#clock-cells = <0>;
+> > +			assigned-clocks = <&wiz4_refclk_dig>;
+> > +			assigned-clock-parents = <&k3_clks 297 9>;
+> > +		};
+> > +
+> > +		wiz4_cmn_refclk_dig_div: cmn-refclk-dig-div {
+> > +			clocks = <&wiz4_refclk_dig>;
+> > +			#clock-cells = <0>;
+> > +		};
+> > +
+> > +		wiz4_cmn_refclk1_dig_div: cmn-refclk1-dig-div {
+> > +			clocks = <&wiz4_pll1_refclk>;
+> > +			#clock-cells = <0>;
+> > +		};
+> 
+> I'd prefer we deprecate creating clock sub-nodes for new platform additions and
+> use a similar approach as that used for AM64 (use phandle with a parameter to
+> refer clocks). Please refer how this was created for AM64
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-am64-main.dtsi#n795
+> 
+> Since this is the same SERDES IP as used in AM64, you should be able to use the
+> same DT binding as that used in AM64. But if you'd like to adapt
+> "ti,j721e-wiz-10g" to use phandle with parameter in the WIZ driver (while making
+> sure the existing sub-node based binding is not broken), that is highly welcomed.
+>
 
-Fixes: bf781869e5cf ("ARM: dts: at91: add pinctrl-{names, 0} for all gpios")
-Depends-on: e8042102d11e ("ARM: dts: at91: sama5d4_xplained: fix pinctrl phandle name")
-Reported-by: Ajay Kathat <ajay.kathat@microchip.com>
-Co-developed-by: Ajay Kathat <ajay.kathat@microchip.com>
-Signed-off-by: Ajay Kathat <ajay.kathat@microchip.com>
-Tested-by: Ajay Kathat <ajay.kathat@microchip.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
+Thanks Kishon,
 
-Hi, Nicolas,
+Will address this in the respin
 
-If all good with this patches please update the SHA1 on "Depends-on"
-tag.
-
-Thank you,
-Claudiu Beznea
-
- arch/arm/boot/dts/at91-sama5d3_xplained.dts | 8 ++++----
- arch/arm/boot/dts/at91-sama5d4_xplained.dts | 4 ++--
- 2 files changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
-index d72c042f2850..a49c2966b41e 100644
---- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
-@@ -57,8 +57,8 @@ slot@0 {
- 			};
+Regards
+Rahul T R
  
- 			spi0: spi@f0004000 {
--				pinctrl-names = "default";
--				pinctrl-0 = <&pinctrl_spi0_cs>;
-+				pinctrl-names = "default", "cs";
-+				pinctrl-1 = <&pinctrl_spi0_cs>;
- 				cs-gpios = <&pioD 13 0>, <0>, <0>, <&pioD 16 0>;
- 				status = "okay";
- 			};
-@@ -171,8 +171,8 @@ slot@0 {
- 			};
- 
- 			spi1: spi@f8008000 {
--				pinctrl-names = "default";
--				pinctrl-0 = <&pinctrl_spi1_cs>;
-+				pinctrl-names = "default", "cs";
-+				pinctrl-1 = <&pinctrl_spi1_cs>;
- 				cs-gpios = <&pioC 25 0>;
- 				status = "okay";
- 			};
-diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
-index accb92cfac44..e519d2747936 100644
---- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
-@@ -81,8 +81,8 @@ usart4: serial@fc010000 {
- 			};
- 
- 			spi1: spi@fc018000 {
--				pinctrl-names = "default";
--				pinctrl-0 = <&pinctrl_spi1_cs>;
-+				pinctrl-names = "default", "cs";
-+				pinctrl-1 = <&pinctrl_spi1_cs>;
- 				cs-gpios = <&pioB 21 0>;
- 				status = "okay";
- 			};
--- 
-2.32.0
-
+> > +
+> > +		serdes4: serdes@5050000 {
+> > +			/*
+> > +			 * Note: we also map DPTX PHY registers as the Torrent
+> > +			 * needs to manage those.
+> > +			 */
+> > +			compatible = "ti,j721e-serdes-10g";
+> > +			reg = <0x5050000 0x10000>,
+> > +			      <0xa030a00 0x40>; /* DPTX PHY */
+> > +			reg-names = "torrent_phy", "dptx_phy";
+> > +
+> > +			resets = <&serdes_wiz4 0>;
+> > +			reset-names = "torrent_reset";
+> > +			clocks = <&wiz4_pll0_refclk>;
+> > +			clock-names = "refclk";
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +			torrent_phy_dp: phy@0 {
+> > +				reg = <0>;
+> > +				resets = <&serdes_wiz4 1>;
+> > +				cdns,phy-type = <PHY_TYPE_DP>;
+> > +				cdns,num-lanes = <4>;
+> > +				cdns,max-bit-rate = <5400>;
+> > +				#phy-cells = <0>;
+> > +			};
+> 
+> The link sub-nodes should be in the board DTS file.
+> 
+> Thanks,
+> Kishon
