@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F374EE291
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 22:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A10BD4EE29B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 22:25:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235453AbiCaUXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 16:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
+        id S240693AbiCaU1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 16:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234915AbiCaUXQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 16:23:16 -0400
+        with ESMTP id S233225AbiCaU1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 16:27:20 -0400
 Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61CAE241B5D
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:21:27 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bq8so1591611ejb.10
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:21:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7EE6231AD3
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:25:32 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id r13so1670089ejd.5
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:25:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ILnXUCualFGuYlaEUrjI+Jt4xkDksiZWcqq6tSgI9Zw=;
-        b=ZW1CjLONxlLC58VYQbdnqzQGqdnzwh/8Jk3XX/BhEOsvEfvlBmszlJ6XyM5eEnPruf
-         ZCS8+Ef8Fm7zTkrvkaUmsNd6yxjOHKT5fuo3aqu44qhaFhWNSf+NvGqvZSxcTwKRqAJt
-         stYv5p90mRuHeOp9QCy1vKheAwT2tNH0T/7A49oA9r8ou4/MZhQRUAbba+aYebPwm3H1
-         LbMszmPMllWpW6qAwEni1zTUW9XoV2j3Tq5S61bi7W5yoTRzi5A6EiMa8Gvqfjk1+TH5
-         2f8UPKADYzfeRb/r8i3KIDWkZ1EIgq22lpKipKLiaRyn4LdTQtDXpiUwQjBvRvwhdYOC
-         P8Qg==
+        bh=EnDTCNJ+7XU4ln4xyk+2CVy4Rghf4UHAtu/NaCOKaBw=;
+        b=JjMKEBcrX7m9SwYbSuUNE9FeMNTF0HKQRWR7m4rnjwg0CugqGEiVkTz49KWmhsD+Pt
+         DQFcJWQpiouy4sd/+3AMtRgy3AfPM1hz0jKgR6xnBZxOVy0cx/j+WQPWCRDYK8BM1dpQ
+         BXUUmmUY4dCPCjkebnVvsUB/jwMde9ZLABKuwn9ANjdhyghM+V2+tt1xq6KNVfneoc65
+         C4AUVQGb65ENqT9sO5nR6ME075xaY0fifaf3ph+kzzROF+T3nV9jHZzV+BC2vPf+K1e3
+         oUqO/59TmJ8zDeKFHNqzOl2tm3otQyj0pesutRdiwDO2pJdv/ewPt9iScOOoG9KF0vcP
+         Jo4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ILnXUCualFGuYlaEUrjI+Jt4xkDksiZWcqq6tSgI9Zw=;
-        b=vornizjbMX7e20o6NjjCfQeHIUChCiwTxbgkoTIRvhY7OkB/Iu4dhwswMHGOPouE2E
-         rhXlMMWb3en3Z/I1uO64RFTkT/F6AOpYE38kd/UQRLHneybuBh8LgF1TY3NANL1aCECr
-         +9X5dNhawhlyWQvzqK+J56rIz9m4+QBrhmolib08h8UM0TrXkx95Udb0fFeD/73aq65S
-         PkAqdQ+t68XzBdvEsBECYIIitLCZKE95D73kkSD6qDH/Bp9IUJSzm2LSKUHx+jmcYHxJ
-         IqkHyBJefgfV99WmpSEvBwENWF9LZdGEVsHEQInY51iNVa2rVcdUYvgvtJhGlcn6ynI5
-         4qVg==
-X-Gm-Message-State: AOAM533QMb1tijoAkyBCsC31f2V/OMuiiEqpGyy0Y0wo22MQoTNnuNha
-        sdw1HfT0aAXHayshLBV6tYItSg==
-X-Google-Smtp-Source: ABdhPJwThRh2Gmkgw1Udsp9CkVtNz9RvwQbVrpKMO/HzmZ5TUdL2hXfqZOSOSrdGFCizgq6F8zT8BA==
-X-Received: by 2002:a17:907:9705:b0:6e4:b769:286f with SMTP id jg5-20020a170907970500b006e4b769286fmr2781454ejc.728.1648758085933;
-        Thu, 31 Mar 2022 13:21:25 -0700 (PDT)
+        bh=EnDTCNJ+7XU4ln4xyk+2CVy4Rghf4UHAtu/NaCOKaBw=;
+        b=MWS4uD7VYd8QqxocYGe6zfqiKa6Iy1wkP2BXjq7CRL2W72gOFngqbZowyW+tHU78pQ
+         c9R+LhN9vKifjuu+UWcUUCofHWCGwYfL6UHbOhcahPjT1drG5WaXLvMdBiVYgp/SB1dz
+         kzWx/qQhr08PJ4p1lifAibktOiXM4q/CBI0VEKjWNKdU3SYIwCriinyQZ60gvMIE4/h0
+         kYi4cPwKkn+dzc/NY0Ypk81W7pNIDJ8vVSu47pH33Y5mgNgTAHaZDnMlbtQp0CNk+BNV
+         17BncLiDX8GZ1TwNqef8ImcPRKfAxBPp2P02uaoQRMUPfunvJzrvt3ygP5b20jhaSkw5
+         88UQ==
+X-Gm-Message-State: AOAM532TO0irz/iBpGGXODmWJakwcFryoOc0fiobrZvVgsKkOKLTPZU3
+        VXF0ALRu2juK//0Ba2iJkdk/dQ==
+X-Google-Smtp-Source: ABdhPJypNYgpGQOMm7TyLEDGxO2W5njStEgyvsioj1MkvFKTEWNVFi1MFwPb0ZXBrqnEMm1OubfDnA==
+X-Received: by 2002:a17:906:1153:b0:6df:d816:264a with SMTP id i19-20020a170906115300b006dfd816264amr6259674eja.546.1648758331416;
+        Thu, 31 Mar 2022 13:25:31 -0700 (PDT)
 Received: from [192.168.0.168] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id ch26-20020a0564021bda00b00418f99695f0sm202380edb.23.2022.03.31.13.21.24
+        by smtp.gmail.com with ESMTPSA id wj1-20020a170907050100b006e0f9bc719bsm168499ejb.72.2022.03.31.13.25.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 13:21:25 -0700 (PDT)
-Message-ID: <84d1e5b6-caa5-cf98-a4b2-2f1ca738b795@linaro.org>
-Date:   Thu, 31 Mar 2022 22:21:24 +0200
+        Thu, 31 Mar 2022 13:25:31 -0700 (PDT)
+Message-ID: <3eb287ae-3eb7-604a-ed5d-8b71e8315323@linaro.org>
+Date:   Thu, 31 Mar 2022 22:25:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v12 4/9] dt-bindings: clock: Add bindings for SP7021 clock
- driver
+Subject: Re: [PATCH v5,2/4] dt-bindings: pwm: Add compatible for MediaTek
+ MT8192
 Content-Language: en-US
-To:     Qin Jian <qinjian@cqplus1.com>, krzysztof.kozlowski@canonical.com
-Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, p.zabel@pengutronix.de,
-        linux@armlinux.org.uk, arnd@arndb.de,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1648714851.git.qinjian@cqplus1.com>
- <c535be1e977098993850789faceea1db605df81d.1648714851.git.qinjian@cqplus1.com>
+To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, matthias.bgg@gmail.com
+Cc:     linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        rex-bc.chen@mediatek.com, jitao.shi@mediatek.com
+References: <1648730873-18505-1-git-send-email-xinlei.lee@mediatek.com>
+ <1648730873-18505-3-git-send-email-xinlei.lee@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c535be1e977098993850789faceea1db605df81d.1648714851.git.qinjian@cqplus1.com>
+In-Reply-To: <1648730873-18505-3-git-send-email-xinlei.lee@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,113 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2022 10:29, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 clock driver bindings.
+On 31/03/2022 14:47, xinlei.lee@mediatek.com wrote:
+> From: Xinlei Lee <xinlei.lee@mediatek.com>
 > 
-> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
-> ---
-> Move 'reg' after 'compatible'
-> ---
->  .../bindings/clock/sunplus,sp7021-clkc.yaml   |  39 ++++++
->  MAINTAINERS                                   |   2 +
->  include/dt-bindings/clock/sp-sp7021.h         | 112 ++++++++++++++++++
->  3 files changed, 153 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/sp-sp7021.h
+> Add dt-binding documentation of pwm for MediaTek MT8192 SoC.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml b/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
-> new file mode 100644
-> index 000000000..41e73a088
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd. 2021
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/sunplus,sp7021-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sunplus SP7021 SoC Clock Controller Binding
-> +
-> +maintainers:
-> +  - Qin Jian <qinjian@cqplus1.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: sunplus,sp7021-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    clkc: clock-controller@9c000000 {
-> +      compatible = "sunplus,sp7021-clkc";
-> +      reg = <0x9c000000 0x280>;
-> +      #clock-cells = <1>;
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 26066f199..5d8b420d0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2744,8 +2744,10 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for mon-subscribers)
->  S:	Maintained
->  W:	https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
->  F:	Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
-> +F:	Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
->  F:	Documentation/devicetree/bindings/reset/sunplus,reset.yaml
->  F:	drivers/reset/reset-sunplus.c
-> +F:	include/dt-bindings/clock/sp-sp7021.h
->  F:	include/dt-bindings/reset/sp-sp7021.h
->  
->  ARM/Synaptics SoC support
-> diff --git a/include/dt-bindings/clock/sp-sp7021.h b/include/dt-bindings/clock/sp-sp7021.h
-> new file mode 100644
-> index 000000000..45dac6de8
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/sp-sp7021.h
-> @@ -0,0 +1,112 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (C) Sunplus Technology Co., Ltd.
-> + *       All rights reserved.
-> + */
-> +#ifndef _DT_BINDINGS_CLOCK_SUNPLUS_SP7021_H
-> +#define _DT_BINDINGS_CLOCK_SUNPLUS_SP7021_H
-> +
-> +#define XTAL			27000000
-> +
-> +/* plls */
-> +#define PLL_A			0
-> +#define PLL_E			1
-> +#define PLL_E_2P5		2
-> +#define PLL_E_25		3
-> +#define PLL_E_112P5		4
-> +#define PLL_F			5
-> +#define PLL_TV			6
-> +#define PLL_TV_A		7
-> +#define PLL_SYS			8
-> +
-> +/* gates: mo_clken0 ~ mo_clken9 */
-> +#define CLK_SYSTEM		0x10
-> +#define CLK_RTC			0x12
+> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-YAML looks ok, but here comment from Arnd also applies. These should be
-regular decimal numbers incremented by one.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
