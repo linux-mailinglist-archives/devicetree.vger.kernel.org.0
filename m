@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F40104ED54E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B74A44ED553
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232508AbiCaITg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 04:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55214 "EHLO
+        id S232246AbiCaIUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 04:20:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232139AbiCaITf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:19:35 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB3BD198962
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:17:48 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id yy13so46475591ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:17:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=w0KfXsbzeIrNHrKKkv2V0cx1OieJGFoPF6Fv17J0LVQ=;
-        b=WtIod8sS7uO4FK2nN4pFY1fKiCl8AVS4P46EYgiJBWtzjXB89obVkYTAoutQP5Ldr3
-         MopnPh7Dsn6b8IhE+ayXXRhiHCK0+efS0bzuQsIQbVm73RoHh+LAxAk6gWJlgOwUX0vT
-         3HwaVfyQjnKJWSpGN506V+BrSlcaCcdenoEsbNOW/ZP95jcW30ehgy58Q1G/Q4/ZRji8
-         9D0ExzEwECrI4mHzcV7DVMDq9NHVsVOR8aHaPgZKA45dQvHOS6GnXH65FWpNTlCtEzM7
-         zhI7noAytn7J1de7BEqwAYzi0Zv+lOrIRQPgn9H5sR2ibbNfm8K5UXc2w82GGxRCLabD
-         WZlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=w0KfXsbzeIrNHrKKkv2V0cx1OieJGFoPF6Fv17J0LVQ=;
-        b=0FMfNlU9zpyVZEiFinxVU1oiTXtW23+6cKCbK9wz7FrvOmeopDHd+S0zLtOTpZyX46
-         wOlvwAbD3O9CKR+9R9E1oAJZxYWz/rzUhvPwcaQtSNfcXwUd6u66rLsle+LIefp2y2ug
-         a6a22peq6WkS+DLNs+ZLB10rqZZaS11ZoZvKFWYb5zSQfTKVwjiCtUp9yFQDpyTpwoOj
-         OhKAHbpoVNdvucjG+WAz1tXt30cXeP/PA3BuA4Ctm04FuVguPyLUATu7vsTpxhqG63vt
-         tCm+TuLLsVZl2Q5hSS0250zNasD8rMdHm2iHEhE6IGRinzhBI7pyckPcxEK/TUMe5Fwk
-         B1dw==
-X-Gm-Message-State: AOAM530j2TTIBTsjygfxv+LQTHQvxf4SZXtVzXRYEjtqRqcwYER28wyW
-        LK2xQx2cL3LJcBnik2UoRIhwAg==
-X-Google-Smtp-Source: ABdhPJxRIMXPlQnwj42Aa8D7sA0lT59SZrwiSuROOvIxKCAydKhA4YPbUoerwALndoqO/0N37rwrBQ==
-X-Received: by 2002:a17:906:3ec7:b0:6d6:e52b:b with SMTP id d7-20020a1709063ec700b006d6e52b000bmr4040298ejj.521.1648714667248;
-        Thu, 31 Mar 2022 01:17:47 -0700 (PDT)
-Received: from [192.168.0.165] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id m20-20020a056402431400b00419315cc3e2sm11037633edc.61.2022.03.31.01.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 01:17:46 -0700 (PDT)
-Message-ID: <0f7677ba-bffa-7ec6-7c74-3fad84a1d2c5@linaro.org>
-Date:   Thu, 31 Mar 2022 10:17:46 +0200
+        with ESMTP id S230169AbiCaIUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:20:11 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF6201A8C38
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:18:23 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZq0Y-0004iA-3i; Thu, 31 Mar 2022 10:18:18 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZq0V-0008Bi-59; Thu, 31 Mar 2022 10:18:15 +0200
+Date:   Thu, 31 Mar 2022 10:18:15 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Andy Yan <andy.yan@rock-chips.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <Kever.yang@rock-chips.com>
+Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
+Message-ID: <20220331081815.GF4012@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <20220328151116.2034635-21-s.hauer@pengutronix.de>
+ <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
+ <20220330063913.GW12181@pengutronix.de>
+ <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
+ <20220331070614.GD4012@pengutronix.de>
+ <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC PATCH 1/5] dt-bindings: sound: Add Apple Macs sound system
-Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik@cutebit.org>
-Cc:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-2-povik+lin@cutebit.org>
- <9e3ba11c-d179-c229-fb7c-bf5611a15b1b@linaro.org>
- <DAFA4249-4B0A-4D1F-A36A-4352FE783488@cutebit.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DAFA4249-4B0A-4D1F-A36A-4352FE783488@cutebit.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:11:42 up 20:41, 46 users,  load average: 0.12, 0.17, 0.21
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,133 +69,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2022 08:57, Martin Povišer wrote:
+On Thu, Mar 31, 2022 at 03:20:37PM +0800, Andy Yan wrote:
+> Hi Sascha:
 > 
->> On 31. 3. 2022, at 8:43, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 31/03/2022 02:04, Martin Povišer wrote:
->>> Add binding for Apple Silicon Macs' machine-level sound system.
->>>
->>> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
->>> ---
->>> .../bindings/sound/apple,macaudio.yaml        | 103 ++++++++++++++++++
->>> 1 file changed, 103 insertions(+)
->>> create mode 100644 Documentation/devicetree/bindings/sound/apple,macaudio.yaml
->>>
->>
->> Commit title does not match subsystem.
+> On 3/31/22 15:06, Sascha Hauer wrote:
+> > On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
+> > > Hi Sascha:
+> > > 
+> > > On 3/30/22 14:39, Sascha Hauer wrote:
+> > > > Hi Andy,
+> > > > 
+> > > > On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
+> > > > > Hi Sascha:
+> > > > > 
+> > > > > On 3/28/22 23:11, Sascha Hauer wrote:
+> > > > > > With upcoming VOP2 support VOP won't be the only choice anymore, so make
+> > > > > > the VOP driver optional.
+> > > > > > 
+> > > > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > > > ---
+> > > > > >     drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
+> > > > > >     drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+> > > > > >     drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+> > > > > >     3 files changed, 11 insertions(+), 2 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+> > > > > > index fa5cfda4e90e3..7d22e2997a571 100644
+> > > > > > --- a/drivers/gpu/drm/rockchip/Kconfig
+> > > > > > +++ b/drivers/gpu/drm/rockchip/Kconfig
+> > > > > > @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
+> > > > > >     if DRM_ROCKCHIP
+> > > > > > +config ROCKCHIP_VOP
+> > > > > > +	bool "Rockchip VOP driver"
+> > > > > > +	default y
+> > > > > > +	help
+> > > > > > +	  This selects support for the VOP driver. You should enable it
+> > > > > > +	  on all older SoCs up to RK3399.
+> > > > That reminds me that I wanted to rephrase this. Will change in next
+> > > > round.
+> > > > 
+> > > > > > +
+> > > > > >     config ROCKCHIP_ANALOGIX_DP
+> > > > > >     	bool "Rockchip specific extensions for Analogix DP driver"
+> > > > > > +	depends on ROCKCHIP_VOP
+> > > > > Aanlogix dp is also on vop2 base soc such as� rk356x and rk3588.
+> > BTW I just looked at the downstream driver. Here we have the same
+> > situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
+> > which is implemented in the VOP driver, so when the analogix dp driver
+> > is actually used on a VOP2 SoC then it is either used in a way that
+> > rockchip_drm_wait_vact_end() will never be called or it explodes in all
+> > colours.
+> > 
+> > > > I added the dependency because analogix_dp-rockchip.c calls
+> > > > rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
+> > > > so this driver currenty can't work with the VOP2 driver and can't
+> > > > be linked without the VOP driver being present.
+> > > > I'll add a few words to the commit message.
+> > > 
+> > > Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
+> > > driver to rockchip_drm_drv.c
+> > I am not sure if that's really worth it. Yes, the direction might be the
+> > right one, but I would really prefer when somebody does the change who
+> > can test and confirm that the analogix dp really works with VOP2 in the
+> > end.
 > 
-> Tell more please. I don’t see it.
-
-git log --oneline  -- Documentation/devicetree/bindings/sound/
-
-
-Mark expects "ASoC: dt-bindings:"
-
+> If follow this point, the current DW_MIPI also has not been tested for
+> confirm that it
 > 
->>
->>> diff --git a/Documentation/devicetree/bindings/sound/apple,macaudio.yaml b/Documentation/devicetree/bindings/sound/apple,macaudio.yaml
->>> new file mode 100644
->>> index 000000000000..a6380e4bdd1a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/apple,macaudio.yaml
->>> @@ -0,0 +1,103 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/sound/apple,macaudio.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Apple Silicon Macs integrated sound system
->>> +
->>> +maintainers:
->>> +  - Martin Povišer <povik+lin@cutebit.org>
->>> +
->>
->> Add description.
->>
->>> +definitions:
->>
->> This does not make code more readable.
+> can really work with VOP2, so you should also make it depends on
+> ROCKCHIP_VOP.
+
+Well at least I have patches here which make DW_MIPI work with VOP2 ;)
+
+What about the others, like LVDS and RGB?
 > 
-> Are you sure? It prevents duplication later on for ‘codec' and ‘cpu’.
+> I think the current solution is just a workaround to make your patch pass
+> the kernel compile
 
-That's true, but duplication is small, unless you think this will be
-extended. I guess it is a trade-off, but so far for few lines and just
-two users of such definition, I would prefer to duplicate. I don't have
-strong opinion, though.
+Indeed.
 
-> 
->>
->>> +  dai:
->>> +    type: object
->>> +    properties:
->>> +      sound-dai: true
->>> +    required:
->>> +      - sound-dai
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - apple,j274-macaudio
->>> +          - apple,j293-macaudio
->>> +          - apple,j314-macaudio
->>> +      - const: apple,macaudio
->>
->> Open example-schema.yaml and look at formatting plus general coding
->> style. You miss line breaks making it unreadable.
->>
->>> +  "#address-cells":
->>> +    const: 1
->>> +  "#size-cells":
->>> +    const: 0
->>> +  model:
->>> +    description: |
->>> +      Model name to use when the sound system is presented to users as a sound card.
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +
->>> +patternProperties:
->>> +  "^dai-link(@[0-9a-f]+)?$":
->>> +    description: |
->>> +      A DAI link comprising of CPU and CODEC DAI specifiers and supplemental properties.
->>> +    type: object
->>> +    properties:
->>> +      reg:
->>> +        maxItems: 1
->>> +      mclk-fs:
->>> +        description: |
->>> +          Forced MCLK/samplerate factor (optional).
->>
->> Optional is obvious from !required.
->>
->> Description is different than existing field in simple card. Is this the
->> same field or not?
-> 
-> It is the same. I didn’t want to copy the simple card text because this is optionally BSD,
-> simple card wasn’t.
+I agree that it would be good to add a note somewhere which outputs
+work with the VOP2 driver (currently only HDMI), but I wonder if Kconfig
+dependencies is the right place for it, because only people who deliberately
+disable VOP support will see this information.
+Maybe we should rather add it to the Kconfig help text?
 
-OK
+Sascha
 
-> 
->>
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +      link-name:
->>> +        description: Name for the DAI link to present to users.
->>> +        $ref: /schemas/types.yaml#/definitions/string
->>> +      cpu:
->>> +        $ref: "#/definitions/dai"
->>> +      codec:
->>> +        $ref: "#/definitions/dai"
->>
->> missing maxItems for DAI phandles.
-> 
-> Well there’s not a maximum.
-
-There should be some maximum of supported codecs. Hardware might have
-such constraints. If really unsure, choose some reasonable (small)
-amount. It could be later raised, if needed.
-
-
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
