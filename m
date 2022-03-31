@@ -2,134 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A2564ED2BE
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 06:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498574ED292
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 06:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiCaEKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 00:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51056 "EHLO
+        id S229680AbiCaEK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 00:10:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbiCaEKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 00:10:16 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D9921480DC;
-        Wed, 30 Mar 2022 20:43:49 -0700 (PDT)
-X-UUID: f24d7e7d1dca462ebf738e23181e66f2-20220331
-X-UUID: f24d7e7d1dca462ebf738e23181e66f2-20220331
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 559236251; Thu, 31 Mar 2022 10:48:57 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 31 Mar 2022 10:48:55 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 31 Mar 2022 10:48:53 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v8, 17/17] media: mediatek: vcodec: prevent kernel crash when rmmod mtk-vcodec-dec.ko
-Date:   Thu, 31 Mar 2022 10:48:01 +0800
-Message-ID: <20220331024801.29229-18-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220331024801.29229-1-yunfei.dong@mediatek.com>
-References: <20220331024801.29229-1-yunfei.dong@mediatek.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229915AbiCaEJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 00:09:35 -0400
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6881814750F
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 20:43:44 -0700 (PDT)
+Received: by mail-io1-xd34.google.com with SMTP id r2so27152589iod.9
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 20:43:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=su81uPGLPlEfo3kKBvUrtbr7Q1bO5QHvXSGg8dkL+fQ=;
+        b=GYdBweRk6GWXxrgZswn1g1wP5TqlOb2xYijX08he5T593LHNvihsBdxclepFnR7wPA
+         EFDojWqpJICiiOKuQB//cisuhUNkO2u5FfDMfQ7xraDnZxIEaXhE6D+qkAGFe35j0/rl
+         RO1qQO2LmKibxy7DGGirkpOSCxRw8dZ1qqwkj5cP30AjJuMIpCmQTXt3dxGQDeMiEtGh
+         d5Q45bU3pivpOU71UsQ4SeFHJOX5d+mhVbGaKTWoO3ihezhVAZ1Mq0dvBZ4CY44+2+zJ
+         Rnop+XYoeO70UTzueOxVxj/wtrVhWM9hBdPQqsaCO5lfOkdCgm02VVu0RnVDsDwNYnXW
+         NNcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=su81uPGLPlEfo3kKBvUrtbr7Q1bO5QHvXSGg8dkL+fQ=;
+        b=E9SpB6mNj/gf4CbNCWatXpHYSnRl0CkPQ7RAfFn+n0BB0mhV01yajNHi6emR+Ozvti
+         vRJmAODnUW+GMoOMmfHYyjh6fpSxxEd/Q+j9jqxd3BXmyD6J0mKp7t731XgBySwcnkAq
+         EcOgp3x+yC1xCMm4dtXK5cOe+NuSknVIlp4uH/WSq/7eQjLDNcoVoxOl/OMNW/cJ937V
+         1ZJWTh5sivXZPzPesHB0O2MjuBi7KfMbN5ucMGXC7Pu5SiFO+YSrRsm1dqc1j/FD9D3y
+         nQRKgLoIMgBeuSHyOUbD6GM5Er/zBHFc3m/hnm3WFVQ1FBFnHqgmy6o/vkkOEfCQlO9t
+         o8Iw==
+X-Gm-Message-State: AOAM530iHm0cCcEjd1wdGMkNENsGkSuyTyE7PMfzsVqtq/emX1iyso9E
+        7IetGcRv2cUQQh05BesqM+9xYod+CvYhjQ==
+X-Google-Smtp-Source: ABdhPJxn9RkJDNkJxLQzGDRKo5bfKfQwmmRCBZ37Qr3/YIQ4rdiA5g9/oIepoLeX5+Fe6RYyeS5Nqw==
+X-Received: by 2002:a65:6d87:0:b0:374:2525:dcb0 with SMTP id bc7-20020a656d87000000b003742525dcb0mr8997668pgb.248.1648696554441;
+        Wed, 30 Mar 2022 20:15:54 -0700 (PDT)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id w9-20020a056a0014c900b004fb2ca5f6d7sm17801820pfu.136.2022.03.30.20.15.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Mar 2022 20:15:53 -0700 (PDT)
+Date:   Wed, 30 Mar 2022 20:15:53 -0700 (PDT)
+X-Google-Original-Date: Wed, 30 Mar 2022 20:15:50 PDT (-0700)
+Subject:     Re: [PATCH v8 0/4] Determine the number of DMA channels by 'dma-channels' property
+In-Reply-To: <cover.1648461096.git.zong.li@sifive.com>
+CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        conor.dooley@microchip.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        zong.li@sifive.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     zong.li@sifive.com
+Message-ID: <mhng-6ddf988e-9f86-4f3e-8b6a-6be65f384829@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the driver support subdev mode, the parameter "dev->pm.dev" will be
-NULL in mtk_vcodec_dec_remove. Kernel will crash when try to rmmod
-mtk-vcodec-dec.ko.
+On Mon, 28 Mar 2022 02:52:21 PDT (-0700), zong.li@sifive.com wrote:
+> The PDMA driver currently assumes there are four channels by default, it
+> might cause the error if there is actually less than four channels.
+> Change that by getting number of channel dynamically from device tree.
+> For backwards-compatible, it uses the default value (i.e. 4) when there
+> is no 'dma-channels' information in dts.
+>
+> This patch set contains the dts and dt-bindings change.
+>
+> Changed in v8:
+>  - Rebase on master
+>  - Remove modification of microchip-mpfs.dtsi
+>  - Rename DMA node name of fu540-c000.dtsi
+>
+> Changed in v7:
+>  - Rebase on tag v5.17-rc7
+>  - Modify the subject of patch
+>
+> Changed in v6:
+>  - Rebase on tag v5.17-rc6
+>  - Change sf_pdma.chans[] to a flexible array member.
+>
+> Changed in v5:
+>  - Rebase on tag v5.17-rc3
+>  - Fix typo in dt-bindings and commit message
+>  - Add PDMA versioning scheme for compatible
+>
+> Changed in v4:
+>  - Remove cflags of debug use reported-by: kernel test robot <lkp@intel.com>
+>
+> Changed in v3:
+>  - Fix allocating wrong size
+>  - Return error if 'dma-channels' is larger than maximum
+>
+> Changed in v2:
+>  - Rebase on tag v5.16
+>  - Use 4 as default value of dma-channels
+>
+> Zong Li (4):
+>   dt-bindings: dma-engine: sifive,fu540: Add dma-channels property and
+>     modify compatible
+>   riscv: dts: Add dma-channels property and modify compatible
+>   riscv: dts: rename the node name of dma
+>   dmaengine: sf-pdma: Get number of channel by device tree
+>
+>  .../bindings/dma/sifive,fu540-c000-pdma.yaml  | 19 +++++++++++++--
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  5 ++--
+>  drivers/dma/sf-pdma/sf-pdma.c                 | 24 ++++++++++++-------
+>  drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++-----
+>  4 files changed, 38 insertions(+), 18 deletions(-)
 
-[ 4380.702726] pc : do_raw_spin_trylock+0x4/0x80
-[ 4380.707075] lr : _raw_spin_lock_irq+0x90/0x14c
-[ 4380.711509] sp : ffff80000819bc10
-[ 4380.714811] x29: ffff80000819bc10 x28: ffff3600c03e4000 x27: 0000000000000000
-[ 4380.721934] x26: 0000000000000000 x25: 0000000000000000 x24: 0000000000000000
-[ 4380.729057] x23: ffff3600c0f34930 x22: ffffd5e923549000 x21: 0000000000000220
-[ 4380.736179] x20: 0000000000000208 x19: ffffd5e9213e8ebc x18: 0000000000000020
-[ 4380.743298] x17: 0000002000000000 x16: ffffd5e9213e8e90 x15: 696c346f65646976
-[ 4380.750420] x14: 0000000000000000 x13: 0000000000000001 x12: 0000000000000040
-[ 4380.757542] x11: 0000000000000000 x10: 0000000000000000 x9 : 0000000000000000
-[ 4380.764664] x8 : 0000000000000000 x7 : ffff3600c7273ae8 x6 : ffffd5e9213e8ebc
-[ 4380.771786] x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000000000
-[ 4380.778908] x2 : 0000000000000000 x1 : ffff3600c03e4000 x0 : 0000000000000208
-[ 4380.786031] Call trace:
-[ 4380.788465]  do_raw_spin_trylock+0x4/0x80
-[ 4380.792462]  __pm_runtime_disable+0x2c/0x1b0
-[ 4380.796723]  mtk_vcodec_dec_remove+0x5c/0xa0 [mtk_vcodec_dec]
-[ 4380.802466]  platform_remove+0x2c/0x60
-[ 4380.806204]  __device_release_driver+0x194/0x250
-[ 4380.810810]  driver_detach+0xc8/0x15c
-[ 4380.814462]  bus_remove_driver+0x5c/0xb0
-[ 4380.818375]  driver_unregister+0x34/0x64
-[ 4380.822288]  platform_driver_unregister+0x18/0x24
-[ 4380.826979]  mtk_vcodec_dec_driver_exit+0x1c/0x888 [mtk_vcodec_dec]
-[ 4380.833240]  __arm64_sys_delete_module+0x190/0x224
-[ 4380.838020]  invoke_syscall+0x48/0x114
-[ 4380.841760]  el0_svc_common.constprop.0+0x60/0x11c
-[ 4380.846540]  do_el0_svc+0x28/0x90
-[ 4380.849844]  el0_svc+0x4c/0x100
-[ 4380.852975]  el0t_64_sync_handler+0xec/0xf0
-[ 4380.857148]  el0t_64_sync+0x190/0x194
-[ 4380.860801] Code: 94431515 17ffffca d503201f d503245f (b9400004)
-
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-index a84df6596aaa..5da4572c5b14 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-@@ -482,7 +482,8 @@ static int mtk_vcodec_dec_remove(struct platform_device *pdev)
- 		video_unregister_device(dev->vfd_dec);
- 
- 	v4l2_device_unregister(&dev->v4l2_dev);
--	pm_runtime_disable(dev->pm.dev);
-+	if (!dev->vdec_pdata->is_subdev_supported)
-+		pm_runtime_disable(dev->pm.dev);
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return 0;
- }
--- 
-2.18.0
-
+Thanks, these are on for-next.
