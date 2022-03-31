@@ -2,112 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B787E4EDC63
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E863A4EDC78
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234424AbiCaPIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 11:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51310 "EHLO
+        id S234757AbiCaPQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 11:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232527AbiCaPIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:08:36 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8BF141441
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:06:47 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id e16so41999193lfc.13
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:06:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=iEeqXgqN7qNwmQ7SU0adYJu3zAo5+AxJKS/k66U7Uuw=;
-        b=cSdCZGdJoMjReN01pR3Q7RjqXLfM/ds+zF+IGB5HU994zhdMp0MUwm7zC4myMiGEIC
-         8R5ssSK40FIlevjSNoHjC8kXgJFSILuT/JItQh4qmwXwKnutMvBXuiRdQBnp1jv0iemr
-         kYZR0Vrlwu9rj6pF+2LiP+biOfQkfK+kamY1vle2Ye0KNJpORClIuM25P/G9ndQMo3ka
-         Evb7/Q2iWADK9ySutmkfanI748dH8qelFdtI4CcrD8H4HJt4lWpqRuif896AdevqTW+B
-         ZCS+6ITiFb7poKmgiSIoEX9A+zj6J0QeufKFHyLIf563VeF3Kt0tf9WxGuhXAAS4zobe
-         F+vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=iEeqXgqN7qNwmQ7SU0adYJu3zAo5+AxJKS/k66U7Uuw=;
-        b=0Z3/1IjSDEvuZH1WNmEE0o3TSH3dUPEvqcktUGE7qzA3clATZhASrsUjnVoNGBTKTM
-         rFqlpKuq0lj9UHJvZCF69TLt1HrNsPDZQy+uDbvKmNhlsfWgkHYwH9Xrf46MkyyZLCE9
-         nS1OLils3szfbkYCCROtDiv+htWQqIsqZgVH5oFvX4r1CypeBn2e28T3tUbokMyXTobt
-         PAoVYCNNMcXrt1IwXDivnqYQSBVlBbs1M7Xo/bmsTU75VEep1wlzQ4YCip43QWZGxAEh
-         juZOhI053pdfb+y8qRaGEdVquR+6Lt24fjJeZq0AGKepc2DOuDyK9zHm4+BBiJNeROTk
-         3WqA==
-X-Gm-Message-State: AOAM530ZJSfj8ro9HO5BhbxHqU3fVunxP11z++G5r2dK4sXt4z3/DhQj
-        ikEyn9gJ1mXNV8NZUU7P+24=
-X-Google-Smtp-Source: ABdhPJwqfhKwVkGEAlyRMgBOZAf1wO/XCh9gwyq4jSKNAmK7zbJ0HROyx7wXfMKYpLhCy8ArHZKcZg==
-X-Received: by 2002:a05:6512:3f86:b0:448:9448:5561 with SMTP id x6-20020a0565123f8600b0044894485561mr10757975lfa.489.1648739198577;
-        Thu, 31 Mar 2022 08:06:38 -0700 (PDT)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id e3-20020a196743000000b0044311216c42sm2694691lfj.307.2022.03.31.08.06.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 31 Mar 2022 08:06:37 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220331150056.GH4012@pengutronix.de>
-Date:   Thu, 31 Mar 2022 17:06:35 +0200
-Cc:     Andy Yan <andy.yan@rock-chips.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <3A5C5A71-0CE0-4072-9502-75385C1C43F7@gmail.com>
-References: <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220330072822.GX12181@pengutronix.de>
- <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
- <20220330094556.GZ12181@pengutronix.de>
- <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
- <20220330102046.GA12181@pengutronix.de>
- <60601619-EF07-457B-91F2-64FEB598FEBE@gmail.com>
- <20220330192054.GA4012@pengutronix.de>
- <af8445e0-f4af-721b-709e-2eb7c488a8a4@rock-chips.com>
- <B7CD9D55-9F2D-42F4-9D04-17C6A5FEBB08@gmail.com>
- <20220331150056.GH4012@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S238012AbiCaPQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:16:35 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560545F4E1;
+        Thu, 31 Mar 2022 08:14:47 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 86A1A22239;
+        Thu, 31 Mar 2022 17:14:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1648739685;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=VP/Da2KU/KvVRv1w5CJ8MPYa3ybCiY6xeLu5JOpZZw8=;
+        b=YP43wAP05o86tLDTu9U5ctYkgOm+yNh4x1CGFAlj5SGW0AxwXvdWbeQUmNUgnA/MlJjsh+
+        S76lZ2abPsZeXTvSeuwHeXrHnQegbYfdM/gPNEMA7XMjVoguhNaIdQzAidDo1paeiO4S4W
+        plbMrfqcupM8zWEwPzORNa6JFTY/ARs=
+From:   Michael Walle <michael@walle.cc>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
+Subject: [PATCH RFC net-next 1/3] dt-bindings: net: convert mscc-miim to YAML format
+Date:   Thu, 31 Mar 2022 17:14:38 +0200
+Message-Id: <20220331151440.3643482-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the mscc-miim device tree binding to the new YAML format.
 
+The original binding don't mention if the interrupt property is optional
+or not. But on the SparX-5 SoC, for example, the interrupt property isn't
+used, thus in the new binding that property is optional. FWIW the driver
+doesn't use interrupts at all.
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 31.03.2022, o godz. 17:00:
->=20
->=20
-> Have you applied the bugfix I shared with you here:
->=20
-> =
-https://lore.kernel.org/linux-arm-kernel/20220330072822.GX12181@pengutroni=
-x.de/
->=20
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+ .../devicetree/bindings/net/mscc,miim.yaml    | 55 +++++++++++++++++++
+ .../devicetree/bindings/net/mscc-miim.txt     | 26 ---------
+ 2 files changed, 55 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/mscc,miim.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/mscc-miim.txt
 
-oooops
-
-noooooo
-didn't noticed :-(
-
-let me try with it!
+diff --git a/Documentation/devicetree/bindings/net/mscc,miim.yaml b/Documentation/devicetree/bindings/net/mscc,miim.yaml
+new file mode 100644
+index 000000000000..b52bf1732755
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/mscc,miim.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mscc,miim.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microsemi MII Management Controller (MIIM)
++
++maintainers:
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++
++allOf:
++  - $ref: "mdio.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - mscc,ocelot-miim
++      - microchip,lan966x-miim
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  reg:
++    items:
++      - description: base address
++      - description: associated reset register for internal PHYs
++    minItems: 1
++
++  interrupts: true
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    mdio@107009c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      compatible = "mscc,ocelot-miim";
++      reg = <0x107009c 0x36>, <0x10700f0 0x8>;
++      interrupts = <14>;
++
++      phy0: ethernet-phy@0 {
++        reg = <0>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/net/mscc-miim.txt b/Documentation/devicetree/bindings/net/mscc-miim.txt
+deleted file mode 100644
+index 70e0cb1ee485..000000000000
+--- a/Documentation/devicetree/bindings/net/mscc-miim.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Microsemi MII Management Controller (MIIM) / MDIO
+-=================================================
+-
+-Properties:
+-- compatible: must be "mscc,ocelot-miim" or "microchip,lan966x-miim"
+-- reg: The base address of the MDIO bus controller register bank. Optionally, a
+-  second register bank can be defined if there is an associated reset register
+-  for internal PHYs
+-- #address-cells: Must be <1>.
+-- #size-cells: Must be <0>.  MDIO addresses have no size component.
+-- interrupts: interrupt specifier (refer to the interrupt binding)
+-
+-Typically an MDIO bus might have several children.
+-
+-Example:
+-	mdio@107009c {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		compatible = "mscc,ocelot-miim";
+-		reg = <0x107009c 0x36>, <0x10700f0 0x8>;
+-		interrupts = <14>;
+-
+-		phy0: ethernet-phy@0 {
+-			reg = <0>;
+-		};
+-	};
+-- 
+2.30.2
 
