@@ -2,178 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD5D4ED457
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5715B4ED45D
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231642AbiCaHFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 03:05:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40222 "EHLO
+        id S231243AbiCaHIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 03:08:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231640AbiCaHFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:05:14 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F774191422;
-        Thu, 31 Mar 2022 00:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648710207; x=1680246207;
-  h=from:to:cc:subject:date:message-id;
-  bh=sCoqz6QKAilKORklG/iHwiNVmje57nIoCYnJdb8vI34=;
-  b=QQj7jknlBWuwQSvoF/hIdTm3wPycyjIKND6BW42Y0z2fjxPXRusduf77
-   Iid3c6Ypc7S1QoRKn6cDzO1+yI9Hv++Gxv6IXHEoOW7/CVLAvyBHiYTHv
-   ruMxwM/8ShTl6ZQn4/TOn6IntvcuqqPpoa+0+lryb5hEjFstbTAc5o67g
-   o=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 31 Mar 2022 00:03:27 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 31 Mar 2022 00:03:26 -0700
-X-QCInternal: smtphost
-Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 31 Mar 2022 12:33:05 +0530
-Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
-        id 3CF73521B; Thu, 31 Mar 2022 12:33:04 +0530 (IST)
-From:   Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     quic_asutoshd@quicinc.com, quic_rampraka@quicinc.com,
-        quic_pragalla@quicinc.com, quic_sartgarg@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_sayalil@quicinc.com,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        krzysztof.kozlowski@canonical.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
-Subject: [PATCH V3] mmc: sdhci-msm: Reset GCC_SDCC_BCR register for SDHC
-Date:   Thu, 31 Mar 2022 12:33:02 +0530
-Message-Id: <1648710182-31899-1-git-send-email-quic_c_sbhanu@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231528AbiCaHIJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:08:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39EDF19C82D
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 00:06:22 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZosr-0003a1-8a; Thu, 31 Mar 2022 09:06:17 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZoso-0002cC-OG; Thu, 31 Mar 2022 09:06:14 +0200
+Date:   Thu, 31 Mar 2022 09:06:14 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Andy Yan <andy.yan@rock-chips.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <Kever.yang@rock-chips.com>
+Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
+Message-ID: <20220331070614.GD4012@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <20220328151116.2034635-21-s.hauer@pengutronix.de>
+ <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
+ <20220330063913.GW12181@pengutronix.de>
+ <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:59:10 up 19:28, 39 users,  load average: 0.07, 0.09, 0.15
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reset GCC_SDCC_BCR register before every fresh initilazation. This will
-reset whole SDHC-msm controller, clears the previous power control
-states and avoids, software reset timeout issues as below.
+On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
+> Hi Sascha:
+> 
+> On 3/30/22 14:39, Sascha Hauer wrote:
+> > Hi Andy,
+> > 
+> > On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
+> > > Hi Sascha:
+> > > 
+> > > On 3/28/22 23:11, Sascha Hauer wrote:
+> > > > With upcoming VOP2 support VOP won't be the only choice anymore, so make
+> > > > the VOP driver optional.
+> > > > 
+> > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > ---
+> > > >    drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
+> > > >    drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+> > > >    drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+> > > >    3 files changed, 11 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+> > > > index fa5cfda4e90e3..7d22e2997a571 100644
+> > > > --- a/drivers/gpu/drm/rockchip/Kconfig
+> > > > +++ b/drivers/gpu/drm/rockchip/Kconfig
+> > > > @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
+> > > >    if DRM_ROCKCHIP
+> > > > +config ROCKCHIP_VOP
+> > > > +	bool "Rockchip VOP driver"
+> > > > +	default y
+> > > > +	help
+> > > > +	  This selects support for the VOP driver. You should enable it
+> > > > +	  on all older SoCs up to RK3399.
+> > That reminds me that I wanted to rephrase this. Will change in next
+> > round.
+> > 
+> > > > +
+> > > >    config ROCKCHIP_ANALOGIX_DP
+> > > >    	bool "Rockchip specific extensions for Analogix DP driver"
+> > > > +	depends on ROCKCHIP_VOP
+> > > 
+> > > Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
 
-[ 5.458061][ T262] mmc1: Reset 0x1 never completed.
-[ 5.462454][ T262] mmc1: sdhci: ============ SDHCI REGISTER DUMP ===========
-[ 5.469065][ T262] mmc1: sdhci: Sys addr: 0x00000000 | Version: 0x00007202
-[ 5.475688][ T262] mmc1: sdhci: Blk size: 0x00000000 | Blk cnt: 0x00000000
-[ 5.482315][ T262] mmc1: sdhci: Argument: 0x00000000 | Trn mode: 0x00000000
-[ 5.488927][ T262] mmc1: sdhci: Present: 0x01f800f0 | Host ctl: 0x00000000
-[ 5.495539][ T262] mmc1: sdhci: Power: 0x00000000 | Blk gap: 0x00000000
-[ 5.502162][ T262] mmc1: sdhci: Wake-up: 0x00000000 | Clock: 0x00000003
-[ 5.508768][ T262] mmc1: sdhci: Timeout: 0x00000000 | Int stat: 0x00000000
-[ 5.515381][ T262] mmc1: sdhci: Int enab: 0x00000000 | Sig enab: 0x00000000
-[ 5.521996][ T262] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
-[ 5.528607][ T262] mmc1: sdhci: Caps: 0x362dc8b2 | Caps_1: 0x0000808f
-[ 5.535227][ T262] mmc1: sdhci: Cmd: 0x00000000 | Max curr: 0x00000000
-[ 5.541841][ T262] mmc1: sdhci: Resp[0]: 0x00000000 | Resp[1]: 0x00000000
-[ 5.548454][ T262] mmc1: sdhci: Resp[2]: 0x00000000 | Resp[3]: 0x00000000
-[ 5.555079][ T262] mmc1: sdhci: Host ctl2: 0x00000000
-[ 5.559651][ T262] mmc1: sdhci_msm: ----------- VENDOR REGISTER DUMP-----------
-[ 5.566621][ T262] mmc1: sdhci_msm: DLL sts: 0x00000000 | DLL cfg: 0x6000642c | DLL cfg2: 0x0020a000
-[ 5.575465][ T262] mmc1: sdhci_msm: DLL cfg3: 0x00000000 | DLL usr ctl: 0x00010800 | DDR cfg: 0x80040873
-[ 5.584658][ T262] mmc1: sdhci_msm: Vndr func: 0x00018a9c | Vndr func2 : 0xf88218a8 Vndr func3: 0x02626040
+BTW I just looked at the downstream driver. Here we have the same
+situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
+which is implemented in the VOP driver, so when the analogix dp driver
+is actually used on a VOP2 SoC then it is either used in a way that
+rockchip_drm_wait_vact_end() will never be called or it explodes in all
+colours.
 
-Fixes: 0eb0d9f4de34 ("mmc: sdhci-msm: Initial support for Qualcomm chipsets")
-Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
----
+> > I added the dependency because analogix_dp-rockchip.c calls
+> > rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
+> > so this driver currenty can't work with the VOP2 driver and can't
+> > be linked without the VOP driver being present.
+> > I'll add a few words to the commit message.
+> 
+> 
+> Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
+> driver to rockchip_drm_drv.c
 
-Changes since V2:
-	- Dropped new line after fixes tag as suggested by Bjorn
-	  Andersson.
-	- Passed device structure instead of passing platform_device
-	  structure as a argument for sdhci_msm_gcc_reset() as suggested
-	  by Bjorn Andersson.
-	- Replaced dev_err() with dev_err_probe() as suggested by Bjorn
-	  Andersson.
-Changes since V1:
-	- Added fixes tag as suggested by Ulf Hansson.
-	- Replaced devm_reset_control_get() with
-	  devm_reset_control_get_optional_exclusive() as suggested by
-	  Ulf Hansson.
----
- drivers/mmc/host/sdhci-msm.c | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+I am not sure if that's really worth it. Yes, the direction might be the
+right one, but I would really prefer when somebody does the change who
+can test and confirm that the analogix dp really works with VOP2 in the
+end.
 
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index 50c71e0..e15e789 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -17,6 +17,7 @@
- #include <linux/regulator/consumer.h>
- #include <linux/interconnect.h>
- #include <linux/pinctrl/consumer.h>
-+#include <linux/reset.h>
- 
- #include "sdhci-pltfm.h"
- #include "cqhci.h"
-@@ -284,6 +285,7 @@ struct sdhci_msm_host {
- 	bool uses_tassadar_dll;
- 	u32 dll_config;
- 	u32 ddr_config;
-+	struct reset_control *core_reset;
- 	bool vqmmc_enabled;
- };
- 
-@@ -2482,6 +2484,39 @@ static inline void sdhci_msm_get_of_property(struct platform_device *pdev,
- 	of_property_read_u32(node, "qcom,dll-config", &msm_host->dll_config);
- }
- 
-+static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-+	int ret = 0;
-+
-+	msm_host->core_reset = devm_reset_control_get_optional_exclusive(dev, "core_reset");
-+	if (IS_ERR(msm_host->core_reset))
-+		return dev_err_probe(dev, PTR_ERR(msm_host->core_reset),
-+				"unable to acquire core_reset\n");
-+
-+	if (!msm_host->core_reset)
-+		return 0;
-+
-+	ret = reset_control_assert(msm_host->core_reset);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "core_reset assert failed\n");
-+
-+	/*
-+	 * The hardware requirement for delay between assert/deassert
-+	 * is at least 3-4 sleep clock (32.7KHz) cycles, which comes to
-+	 * ~125us (4/32768). To be on the safe side add 200us delay.
-+	 */
-+	usleep_range(200, 210);
-+
-+	ret = reset_control_deassert(msm_host->core_reset);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "core_reset deassert failed\n");
-+
-+	usleep_range(200, 210);
-+
-+	return 0;
-+}
- 
- static int sdhci_msm_probe(struct platform_device *pdev)
- {
-@@ -2529,6 +2564,10 @@ static int sdhci_msm_probe(struct platform_device *pdev)
- 
- 	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
- 
-+	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
-+	if (ret)
-+		goto pltfm_free;
-+
- 	/* Setup SDCC bus voter clock. */
- 	msm_host->bus_clk = devm_clk_get(&pdev->dev, "bus");
- 	if (!IS_ERR(msm_host->bus_clk)) {
+Sascha
+
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
