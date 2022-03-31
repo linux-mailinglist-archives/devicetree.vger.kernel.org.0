@@ -2,110 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA2C84ED511
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9304ED53F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232438AbiCaIAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 04:00:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41940 "EHLO
+        id S232580AbiCaIOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 04:14:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232422AbiCaIAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:00:18 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2068.outbound.protection.outlook.com [40.107.223.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2C01402B;
-        Thu, 31 Mar 2022 00:58:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LolAmc/H5JW8WmmvFbetK5WjFGNzERsXvfeFFm+EhhHPpTiydKXa0O0SehPdBQICurQe35ceZro6NKBzP9dQv2ynMujJxc1ozvLVsCtd0dkfxL4aHPsUlz98mCAi9voooT8V4vHN7G6Qe4j6lnCTG0m4UVPqCLuDiyY8h8TaZ7IhrygulmmTAyAowQB0InKSJ0dmjUjaCYX/v/AR6a8tQmLhIc1oEDKbC0PQ45MR/5bUBH9N7SbX4mwBZbIt5GpuHKGHoJiCyN0ojjqFW6ySh7b4VU/uXMqlDeK+YK7cwad9J+O7PLoQWzsuVVVqMIK9ipw1v+6uh4oG8tbV/rfnfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i+026ONd9VEBhKGbI2RtjtU9J8DfdB27nUZS56jqlsk=;
- b=YrVRMeOc42EwXPAXLSBm0ywsMvWlQBbl1x+WeVsqgbV7j2erwxjBqJsUdONvJKj1Yy2+NzfddjJCxO31413IGq1xl81ipN1x5PxeNO9lqkCrQzm7dbKCFnn2kxh2MNmissq9S2uc9L27FbvBRPgnA2YL3YVqyC9922E5UdYqZxbJrxFhCwVJ9memDMFlkdzCZosI6S4zbYw1OlrT/lk0WK8VBvm9xPJz+YAS4zYAaXanIcUwM0uQO7tzOxHHSs6NqO30ECLd3LXPm6yvZCnw00byEf2H7Ff41+FheI09TcS6cqIkTOttvjwHK9R7vmsaPJRVFR8+zdNfTNGYff1+mQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.235) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i+026ONd9VEBhKGbI2RtjtU9J8DfdB27nUZS56jqlsk=;
- b=TaT6mFpDIOwjlIFixLAuYunQSAUwqfqcpi+DH7tuQHsLA9g3je/y60Y6KSJ9rUlkpeX24GRFdPKSJm3R+MinG1MoiAlTC1h7eHlHh/FCmiJLzKxQ0tW2X86mRJDf3mJNlHJ3OLAsW6gLTh1271fDcBUb+PJ2mgRCTpUtwSwF67XkOh9FXtERWWywuWfzVUiOPA70CJeSZ3Yf2pCnsRwPX/mlUNGVAp+PDch0Vftn6uzhl3h9UrYlcY8qPc3sax0cCPpZR/DhTtfm/Iafpk4dvAHV7ZwG1Wezqji//95IDS482W/T6u+fyqCyOc/hWJgjard25MNLOJzB8NK5x4vK0g==
-Received: from BN6PR18CA0001.namprd18.prod.outlook.com (2603:10b6:404:121::11)
- by MN2PR12MB4550.namprd12.prod.outlook.com (2603:10b6:208:24e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.17; Thu, 31 Mar
- 2022 07:58:27 +0000
-Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:121:cafe::ec) by BN6PR18CA0001.outlook.office365.com
- (2603:10b6:404:121::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.22 via Frontend
- Transport; Thu, 31 Mar 2022 07:58:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.235; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.235) by
- BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.5123.19 via Frontend Transport; Thu, 31 Mar 2022 07:58:27 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Thu, 31 Mar
- 2022 07:58:26 +0000
-Received: from [10.41.21.79] (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 31 Mar
- 2022 00:58:22 -0700
-Message-ID: <512f17bd-b252-462e-ec2f-32983d92356d@nvidia.com>
-Date:   Thu, 31 Mar 2022 13:28:20 +0530
+        with ESMTP id S229924AbiCaIOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:14:10 -0400
+X-Greylist: delayed 1205 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 31 Mar 2022 01:12:22 PDT
+Received: from 8.mo548.mail-out.ovh.net (8.mo548.mail-out.ovh.net [46.105.45.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75351EDA39
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:12:21 -0700 (PDT)
+Received: from mxplan5.mail.ovh.net (unknown [10.109.146.27])
+        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id EB566222D0;
+        Thu, 31 Mar 2022 07:36:25 +0000 (UTC)
+Received: from kaod.org (37.59.142.106) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 31 Mar
+ 2022 09:36:25 +0200
+Authentication-Results: garm.ovh; auth=pass (GARM-106R0063e6c707f-2c73-4ce7-b171-35deabf783d6,
+                    FC9088D273F6636B0CAAD4892A2C3D02B7ACC8E0) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <2a411a3e-4b7f-c116-b595-f33bffccb4e7@kaod.org>
+Date:   Thu, 31 Mar 2022 09:36:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [Patch v2 2/4] dt-bindings: arm: tegra: Add bindins for
- nvidia,tegra-ccplex-cluster
+Subject: Re: [PATCH v4 02/11] dt-bindings: spi: Add Aspeed SMC controllers
+ device tree binding
 Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <treding@nvidia.com>,
-        <linux-pm@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <ksitaraman@nvidia.com>, <sanjayc@nvidia.com>, <bbasu@nvidia.com>,
-        "Sumit Gupta" <sumitg@nvidia.com>
-References: <20220330143819.27476-1-sumitg@nvidia.com>
- <20220330143819.27476-3-sumitg@nvidia.com>
- <cfc6a2ac-1489-e221-f262-aab0ad5b701c@nvidia.com>
-From:   Sumit Gupta <sumitg@nvidia.com>
-In-Reply-To: <cfc6a2ac-1489-e221-f262-aab0ad5b701c@nvidia.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>,
+        Rob Herring <robh@kernel.org>
+References: <20220325100849.2019209-1-clg@kaod.org>
+ <20220325100849.2019209-3-clg@kaod.org>
+ <20220330191908.nhg52a5ayzczpzai@ti.com>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <20220330191908.nhg52a5ayzczpzai@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9233e860-5293-425a-4e50-08da12ec3d54
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4550:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4550FF60B0A6FCB7B759C6D6B9E19@MN2PR12MB4550.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XwdRFLjGiON47d3LHdQYQLD6pnMCQh1cfSaDMC+nPVNUNCsmfqnodL1Pvv+ld4Sps5KDBA0dKrxwVnX1k20PbvRlmM3VUyRi5zp4X+P9C9o3Qrl/w5/HbizgHdILbiqhI/d9hEWi4KV6FndxP9MGpyYizZ7/8LDwKTMbZJLLtKmC2sOOcopv8X69nBn2S5debZodtLbRhl1RfHJmPJL8/xVCAnwMsJGKbKkzIeUhIaqbwzerbEpfV0NcqFHiBkDI1z3nvvpH7UQoKYmB7qKBS68eLIThyC70MJUpiVp5DMYNbb2SmSQ6+H7YT4LQFtIlYAbsRLambH4P+gDK/qSjv3dWoeNKMy5kStkPvoJMMAPnWXqUrlRKNv3yKajwXj4PR5ryFkiXPHo9Wr6h1rI1k+jjb0VzE2iVrbO4ExBrGlyhMA1Dqyr/GbbRyJA1lUXxMZ+Augh7NMupD4afyCcYozfUPJ07iPrIegqgULlbawss2RpuHsWrIh55X/yuSUv16wi8CrZrjoX3rJ7CKtAIbktugt/DoZvoUQVfwuOWTR/vj55SmdPH86P2iZ9HaW2KsH77hCz6oK6lUPgGitLye3Q9gWJjMtRMLfnCqEq7lTXx/vE/wO4OZVxqNoA2jXLof40fB4N1ITEv38On+sQcwxc5xVPlunnDgXntPdWJw0NXaS24cavxg8jinHX+c5xNHDtCls2hCon+MM21yBCNPf1CElyXQPeixOMf11S9upEZ/dHoN2hokMBOQcT4c+mDtLvOwYcp8xFIEVvzbPh3F8i89aAjXRnZlJc/L9TWiafD7j3/YyKvLKpmalEgCw1r+z6EXI+i5+OhhV15knW5N3xhGl8G85TdrCzecnIEHcXgbWBvP503JFIXs4XUHDmB9IqVZTHThAT7HPP1z8CoVA==
-X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(921005)(45080400002)(508600001)(2616005)(81166007)(26005)(426003)(336012)(186003)(40460700003)(31686004)(2906002)(8936002)(47076005)(16526019)(356005)(107886003)(36860700001)(53546011)(316002)(70586007)(31696002)(36756003)(86362001)(4326008)(16576012)(110136005)(5660300002)(70206006)(54906003)(83380400001)(82310400004)(8676002)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2022 07:58:27.5144
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9233e860-5293-425a-4e50-08da12ec3d54
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4550
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+X-Originating-IP: [37.59.142.106]
+X-ClientProxiedBy: DAG3EX1.mxp5.local (172.16.2.21) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 42cf838e-2d6c-452a-9ac1-8df5f67bb224
+X-Ovh-Tracer-Id: 6483213140691618762
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrudeifedgudduiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgihesthekredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeduuedtgedugeehfedvfefhieetieefhfeiudeutefhffekieduueeuheegudegfeenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrddutdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -113,108 +72,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Pratyush,
 
-
-On 31/03/22 12:30, Jon Hunter wrote:
-> Please update the subject to be something like ...
-> 
-> "dt-bindings: Document Tegra CCPLEX Cluster"
-Ok. will do the change and send v3.
-
-> 
-> On 30/03/2022 15:38, Sumit Gupta wrote:
->> The Tegra CCPLEX_CLUSTER area contains memory-mapped
-> 
-> Here you have CCPLEX_CLUSTER and ...
-> 
->> registers that initiate CPU frequency/voltage transitions.
+On 3/30/22 21:19, Pratyush Yadav wrote:
+> On 25/03/22 11:08AM, Cédric Le Goater wrote:
+>> The "interrupt" property is optional because it is only necessary for
+>> controllers supporting DMAs (Not implemented yet in the new driver).
 >>
->> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+>> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> Tested-by: Joel Stanley <joel@jms.id.au>
+>> Tested-by: Tao Ren <rentao.bupt@gmail.com>
+>> Reviewed-by: Joel Stanley <joel@jms.id.au>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Cédric Le Goater <clg@kaod.org>
 >> ---
->>   .../tegra/nvidia,tegra-ccplex-cluster.yaml    | 52 +++++++++++++++++++
->>   1 file changed, 52 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml 
+>>   .../bindings/spi/aspeed,ast2600-fmc.yaml      | 87 +++++++++++++++++++
+>>   MAINTAINERS                                   |  9 ++
+>>   2 files changed, 96 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
 >>
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml 
->> b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml 
->>
+>> diff --git a/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
 >> new file mode 100644
->> index 000000000000..74afa06f695e
+>> index 000000000000..e16bbcd38560
 >> --- /dev/null
->> +++ 
->> b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml 
->>
->> @@ -0,0 +1,52 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +++ b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>> @@ -0,0 +1,87 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 >> +%YAML 1.2
 >> +---
->> +$id: 
->> "https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Farm%2Ftegra%2Fnvidia%2Ctegra-ccplex-cluster.yaml%23&amp;data=04%7C01%7Csumitg%40nvidia.com%7C15234587dd2e46ad722108da12e42b88%7C43083d15727340c1b7db39efd9ccc17a%7C0%7C0%7C637843068437808995%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=tDheliQYxde7WJ5hqLYUz7dsq4tsUnFe3gHlaTRa7i4%3D&amp;reserved=0" 
->>
->> +$schema: 
->> "https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Csumitg%40nvidia.com%7C15234587dd2e46ad722108da12e42b88%7C43083d15727340c1b7db39efd9ccc17a%7C0%7C0%7C637843068437808995%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=%2BWDvqJkJKdG0z85Bfn%2F3AMejwHVvi02cVLarmKbZ0iE%3D&amp;reserved=0" 
->>
+>> +$id: http://devicetree.org/schemas/spi/aspeed,ast2600-fmc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +title: NVIDIA Tegra CPU_CLUSTER area device tree bindings
-> 
-> ... here we have "CPU_CLUSTER" and ...
-> 
+>> +title: Aspeed SMC controllers bindings
 >> +
 >> +maintainers:
->> +  - Sumit Gupta <sumitg@nvidia.com>
->> +  - Mikko Perttunen <mperttunen@nvidia.com>
->> +  - Jon Hunter <jonathanh@nvidia.com>
->> +  - Thierry Reding <thierry.reding@gmail.com>
+>> +  - Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> +  - Cédric Le Goater <clg@kaod.org>
 >> +
->> +description: |+
->> +  The Tegra CCPLEX_CLUSTER area contains memory-mapped
-> 
-> .. then we have CCPLEX_CLUSTER again. Let's have a consistent name such 
-> as 'CPU COMPLEX CLUSTER' (admittedly a mouthful but that is what is 
-> means). I don't think we need the '_' in the name.
-Sure. will update all places to 'CPU COMPLEX CLUSTER' in v3.
-
-> 
->> +  registers that initiate CPU frequency/voltage transitions.
+>> +description: |
+>> +  This binding describes the Aspeed Static Memory Controllers (FMC and
+>> +  SPI) of the AST2400, AST2500 and AST2600 SOCs.
+>> +
+>> +allOf:
+>> +  - $ref: "spi-controller.yaml#"
 >> +
 >> +properties:
->> +  $nodename:
->> +    pattern: "ccplex@([0-9a-f]+)$"
+>> +  compatible:
+>> +    enum:
+>> +      - aspeed,ast2600-fmc
+>> +      - aspeed,ast2600-spi
+>> +      - aspeed,ast2500-fmc
+>> +      - aspeed,ast2500-spi
+>> +      - aspeed,ast2400-fmc
+>> +      - aspeed,ast2400-spi
 >> +
->> +  compatible:
->> +    enum:
->> +      - nvidia,tegra186-ccplex-cluster
->> +      - nvidia,tegra234-ccplex-cluster
+>> +  reg:
+>> +    items:
+>> +      - description: registers
+>> +      - description: memory mapping
 >> +
->> +  reg:
->> +    maxItems: 1
+>> +  clocks:
+>> +    maxItems: 1
 >> +
->> +  nvidia,bpmp:
->> +    $ref: '/schemas/types.yaml#/definitions/phandle'
->> +    description: |
->> +      Specifies the bpmp node that needs to be queried to get
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "@[0-9a-f]+":
+>> +    type: object
+>> +
+>> +    properties:
+>> +      spi-rx-bus-width:
+>> +        enum: [1, 2, 4]
 > 
-> s/bpmp/BPMP
+> No need for this. It should already be taken care of by
+> spi-peripheral-props.yaml
+
+So we could drop the whole 'patternProperties' section ?
+
 > 
->> +      operating point data for all CPUs.
->> +
->> +additionalProperties: true
 >> +
 >> +required:
->> +  - compatible
->> +  - reg
->> +  - nvidia,bpmp
->> +  - status
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +
+>> +unevaluatedProperties: false
 >> +
 >> +examples:
->> +  - |
->> +    ccplex@e000000 {
->> +      compatible = "nvidia,tegra234-ccplex-cluster";
->> +      reg = <0x0 0x0e000000 0x0 0x5ffff>;
->> +      nvidia,bpmp = <&bpmp>;
->> +      status = "okay";
->> +    };
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/aspeed-scu-ic.h>
+>> +    #include <dt-bindings/clock/ast2600-clock.h>
+>> +
+>> +    spi@1e620000 {
+>> +        reg = <0x1e620000 0xc4>, <0x20000000 0x10000000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        compatible = "aspeed,ast2600-fmc";
+>> +        clocks = <&syscon ASPEED_CLK_AHB>;
+>> +        interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
 > 
+> Nitpick: Add a blank line here
+> 
+>> +        flash@0 {
+>> +                reg = < 0 >;
+>> +                compatible = "jedec,spi-nor";
+>> +                spi-max-frequency = <50000000>;
+>> +                spi-rx-bus-width = <2>;
+>> +        };
+> 
+> and here
+> 
+>> +        flash@1 {
+>> +                reg = < 1 >;
+>> +                compatible = "jedec,spi-nor";
+>> +                spi-max-frequency = <50000000>;
+>> +                spi-rx-bus-width = <2>;
+>> +        };
+> 
+> and here. Looks a bit nicer.
+
+Thanks for the comments, I will provide the cleanups in v5.
+
+C.
+
+
+
+> 
+>> +        flash@2 {
+>> +                reg = < 2 >;
+>> +                compatible = "jedec,spi-nor";
+>> +                spi-max-frequency = <50000000>;
+>> +                spi-rx-bus-width = <2>;
+>> +        };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index ea9d74b6236f..7d5f81dcd837 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -3021,6 +3021,15 @@ S:	Maintained
+>>   F:	Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>>   F:	drivers/mmc/host/sdhci-of-aspeed*
+>>   
+>> +ASPEED SMC SPI DRIVER
+>> +M:	Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> +M:	Cédric Le Goater <clg@kaod.org>
+>> +L:	linux-aspeed@lists.ozlabs.org (moderated for non-subscribers)
+>> +L:	openbmc@lists.ozlabs.org (moderated for non-subscribers)
+>> +L:	linux-spi@vger.kernel.org
+>> +S:	Maintained
+>> +F:	Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>> +
+>>   ASPEED VIDEO ENGINE DRIVER
+>>   M:	Eddie James <eajames@linux.ibm.com>
+>>   L:	linux-media@vger.kernel.org
+>> -- 
+>> 2.34.1
+>>
+> 
+
