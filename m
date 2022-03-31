@@ -2,32 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B26144ED567
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BFCF4ED58E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232664AbiCaIZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 04:25:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50304 "EHLO
+        id S229823AbiCaI2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 04:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232087AbiCaIZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:25:11 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F38C6EDB;
-        Thu, 31 Mar 2022 01:23:21 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1648714997; bh=iDBMY197GWWnst83wC1Tob2jp5vtx/AimRG78sGrwlo=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=aG0KI2SM/9+gcA9rLrq8QIXI2anoy0jX6J85T+T90QPChe8pYkTo6507F3c4NbXFX
-         mjhD3ALdyV2JWKsmjfeKZQn5xUIARb4+0z5OaiidzmrkK1gDHSCjuLU2uIKh5o+9Uv
-         QV4iq+0uzG8XMkXYQMLTqsntTuJyRkyugd8ynOMU=
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
+        with ESMTP id S233013AbiCaI15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:27:57 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D061B84D3
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:26:10 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id yy13so46517708ejb.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:26:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wSpQ7kqPRes8y+BZixCtHBBiimor8r8yx7SKBxj6uhY=;
+        b=nWwIJGsTAKrLDuHNXKIXHp9RpvIRgtxeWtzVp+O/Y/A8RzskUgdcBk+Wj+IoIAESe/
+         bmX7I7pRcJ3BYrAXmQtTCAekUuCm2oFpWmHoqAau0q7EGeth5Str74hkdeaLuuv4ERck
+         m/+shJR/zREUNt+oC2zayqP9aR8d322VREq4FU3eRWzdb1KBsEsHtrhjLTB3yWNAFoOl
+         WsldT9mpQf2QyKN9lENzjCaRB+LwNz55KcCuZh0rVc4GqP2KenBKBCZatBVXtKrnQo5O
+         XApijhtU+VtZTFtkXzDzAX4nRnKqWphvpVviT5pHsqoYGw8NWdPFZtBOzKVDFJiYdc6j
+         IR6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wSpQ7kqPRes8y+BZixCtHBBiimor8r8yx7SKBxj6uhY=;
+        b=tHz9F5vevGuxW/LqSdgng5GgvcJ11QK4mLbWZfLuldfuz++oyN0gB8To8tXYAx8Ku+
+         aEahdZi/1u4kTCU+nuQxvt4l0jEB4E1gi7XyhmGWl3OHFjZW4/C+2T0avyGk6awa22Ng
+         ccYCJwY4Q1pm1KdwcIwUFyaDd1UuaN2MeHsO110dP9refAPnH0UD/DxjMlAoPgrTvx45
+         nM7pIftt02yvlLCGD5h4GRLeaPTOS3Hf2bvTFG0YDgoeHF0ilnyEXGL9bO3CGKoLI4uo
+         ogAxP+ZvczsDylg0jVpdMihA+cZ35E9bOl9qvCxAlm0H1/C3zqLJ7FWjnd7pFi/5OMbn
+         0T5w==
+X-Gm-Message-State: AOAM532EYXY9X/1jFmRmJjMSu/ZwdiVDmtn/iILLYymaN2X86/i1RU3P
+        1+gZtuwVDAIy1jnI3RVANiAwyw==
+X-Google-Smtp-Source: ABdhPJwF+TCl2dlZMkSxyCJJT3DeIcHZ/t9GgyB741Ak637RCd4tSwotlqumdO66bQuGcUviRlGudQ==
+X-Received: by 2002:a17:907:a0c8:b0:6df:ef3c:5eb6 with SMTP id hw8-20020a170907a0c800b006dfef3c5eb6mr4052580ejc.646.1648715168694;
+        Thu, 31 Mar 2022 01:26:08 -0700 (PDT)
+Received: from [192.168.0.165] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id hs12-20020a1709073e8c00b006dfdfdac005sm9233409ejc.174.2022.03.31.01.26.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 01:26:08 -0700 (PDT)
+Message-ID: <224d1d98-5d6f-515e-feef-a1ebf20a90d9@linaro.org>
+Date:   Thu, 31 Mar 2022 10:26:07 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
 Subject: Re: [RFC PATCH 1/5] dt-bindings: sound: Add Apple Macs sound system
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <0f7677ba-bffa-7ec6-7c74-3fad84a1d2c5@linaro.org>
-Date:   Thu, 31 Mar 2022 10:23:17 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+Content-Language: en-US
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik@cutebit.org>
+Cc:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -38,118 +67,46 @@ Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
         Mark Kettenis <kettenis@openbsd.org>,
         Hector Martin <marcan@marcan.st>,
         Sven Peter <sven@svenpeter.dev>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <E5F73642-DF9A-46ED-B310-7D69CAE22C82@cutebit.org>
 References: <20220331000449.41062-1-povik+lin@cutebit.org>
  <20220331000449.41062-2-povik+lin@cutebit.org>
  <9e3ba11c-d179-c229-fb7c-bf5611a15b1b@linaro.org>
  <DAFA4249-4B0A-4D1F-A36A-4352FE783488@cutebit.org>
  <0f7677ba-bffa-7ec6-7c74-3fad84a1d2c5@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <E5F73642-DF9A-46ED-B310-7D69CAE22C82@cutebit.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <E5F73642-DF9A-46ED-B310-7D69CAE22C82@cutebit.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 31/03/2022 10:23, Martin Povišer wrote:
+> 
+>> There should be some maximum of supported codecs. Hardware might have
+>> such constraints. If really unsure, choose some reasonable (small)
+>> amount. It could be later raised, if needed.
+> 
+> There are some constraints but technically not in the driver that binds
+> on this binding. I thought no limit is better than an arbitrary one, but
+> if the preference is to have one, I will add it, no problem.
 
-> On 31. 3. 2022, at 10:17, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->=20
-> On 31/03/2022 08:57, Martin Povi=C5=A1er wrote:
->>=20
->>> On 31. 3. 2022, at 8:43, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->>>=20
->>> On 31/03/2022 02:04, Martin Povi=C5=A1er wrote:
->>>> Add binding for Apple Silicon Macs' machine-level sound system.
->>>>=20
->>>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
->>>> ---
->>>> .../bindings/sound/apple,macaudio.yaml        | 103 =
-++++++++++++++++++
->>>> 1 file changed, 103 insertions(+)
->>>> create mode 100644 =
-Documentation/devicetree/bindings/sound/apple,macaudio.yaml
->>>>=20
->>>=20
->>> Commit title does not match subsystem.
->>=20
->> Tell more please. I don=E2=80=99t see it.
->=20
-> git log --oneline  -- Documentation/devicetree/bindings/sound/
->=20
->=20
-> Mark expects "ASoC: dt-bindings:"
+Just to clarify this - bindings are not about the driver, but about the
+hardware. We model here the hardware and its programming model, not the
+driver implementation (although of course it's always somehow related).
+Hardware has some limitations for sure. The question is whether we know
+them. :)
 
-Aha! Thanks.
+I prefer even arbitrary limit, because then schema will check DTSes for
+simple mistakes. You can also explain this in commit msg, that maxItems
+are arbitrary, so whoever in the future wants to change it, will know
+the background.
 
->>>> diff --git =
-a/Documentation/devicetree/bindings/sound/apple,macaudio.yaml =
-b/Documentation/devicetree/bindings/sound/apple,macaudio.yaml
->>>> new file mode 100644
->>>> index 000000000000..a6380e4bdd1a
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/sound/apple,macaudio.yaml
->>>> @@ -0,0 +1,103 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/sound/apple,macaudio.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Apple Silicon Macs integrated sound system
->>>> +
->>>> +maintainers:
->>>> +  - Martin Povi=C5=A1er <povik+lin@cutebit.org>
->>>> +
->>>=20
->>> Add description.
->>>=20
->>>> +definitions:
->>>=20
->>> This does not make code more readable.
->>=20
->> Are you sure? It prevents duplication later on for =E2=80=98codec' =
-and =E2=80=98cpu=E2=80=99.
->=20
-> That's true, but duplication is small, unless you think this will be
-> extended. I guess it is a trade-off, but so far for few lines and just
-> two users of such definition, I would prefer to duplicate. I don't =
-have
-> strong opinion, though.
-
-OK
-
->>=20
->>>=20
->>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>> +      link-name:
->>>> +        description: Name for the DAI link to present to users.
->>>> +        $ref: /schemas/types.yaml#/definitions/string
->>>> +      cpu:
->>>> +        $ref: "#/definitions/dai"
->>>> +      codec:
->>>> +        $ref: "#/definitions/dai"
->>>=20
->>> missing maxItems for DAI phandles.
->>=20
->> Well there=E2=80=99s not a maximum.
->=20
-> There should be some maximum of supported codecs. Hardware might have
-> such constraints. If really unsure, choose some reasonable (small)
-> amount. It could be later raised, if needed.
-
-There are some constraints but technically not in the driver that binds
-on this binding. I thought no limit is better than an arbitrary one, but
-if the preference is to have one, I will add it, no problem.
-
-> Best regards,
-> Krzysztof
-
-Best,
-Martin
-
+Best regards,
+Krzysztof
