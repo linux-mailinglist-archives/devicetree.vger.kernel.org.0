@@ -2,78 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF94D4EDECD
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 845114EDF03
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237862AbiCaQaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 12:30:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51134 "EHLO
+        id S240144AbiCaQoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 12:44:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233616AbiCaQaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:30:09 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132262BE8;
-        Thu, 31 Mar 2022 09:28:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=f1Ud/0ViaYH+MGCkH++baXNjD1EX24kMqzHI2gaaGxs=; b=4lrScKXgukeKAmWs+GkIxg97+1
-        RHfXVnt0Y21w75FyV8jYpfj33s4RDYd83N/aDGv2lJJkoHqVK2gMYngzvSOXtxVwauOxw/NECZQ3O
-        PHzD60K+KvU03fhchiCe7MXrM+N276i2uG4+ZiIUeTsPaCxjKvUDn83ls0ngzpUvx5pM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nZxeT-00DUoA-L2; Thu, 31 Mar 2022 18:28:01 +0200
-Date:   Thu, 31 Mar 2022 18:28:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michael Walle <michael@walle.cc>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC net-next 3/3] net: phy: mscc-miim: add support to set
- MDIO bus frequency
-Message-ID: <YkXWkaVRp4I1Gj0p@lunn.ch>
-References: <20220331151440.3643482-1-michael@walle.cc>
- <20220331151440.3643482-3-michael@walle.cc>
+        with ESMTP id S232615AbiCaQoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:44:02 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E0420E947;
+        Thu, 31 Mar 2022 09:42:13 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22VGfHbT077632;
+        Thu, 31 Mar 2022 11:41:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1648744877;
+        bh=q4I8OmbE9lpXlZiTsZ65bC0HGywDTKwPLArPoG/uE2k=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=q0Xzj8+bwKSW6n1SqCu0ajMaUE0JPYpjhHRhw91vS23GJPbmNB2y4KvnSyMwK4b0G
+         tICwB/nlIKOZogc7v+AgBb7Nkgi4L+dNaEnoD/OTRXYvqtb41WlnIaWJh/1ja6UlnB
+         Z/18XT7txfkmCyGW5GBJXH9G+eMWUZRcGGK66ZrM=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22VGfHo6024529
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 31 Mar 2022 11:41:17 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 31
+ Mar 2022 11:41:17 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 31 Mar 2022 11:41:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22VGfG1R087297;
+        Thu, 31 Mar 2022 11:41:16 -0500
+Date:   Thu, 31 Mar 2022 22:11:15 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>
+CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>
+Subject: Re: [PATCH v4 08/11] spi: aspeed: Calibrate read timings
+Message-ID: <20220331164115.w5q3wxlmwcg3w4ns@ti.com>
+References: <20220325100849.2019209-1-clg@kaod.org>
+ <20220325100849.2019209-9-clg@kaod.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20220331151440.3643482-3-michael@walle.cc>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220325100849.2019209-9-clg@kaod.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> @@ -295,21 +323,41 @@ static int mscc_miim_probe(struct platform_device *pdev)
->  	if (!miim->info)
->  		return -EINVAL;
+Hi,
+
+On 25/03/22 11:08AM, Cédric Le Goater wrote:
+> To accommodate the different response time of SPI transfers on different
+> boards and different SPI NOR devices, the Aspeed controllers provide a
+> set of Read Timing Compensation registers to tune the timing delays
+> depending on the frequency being used. The AST2600 SoC has one of these
+> registers per device. On the AST2500 and AST2400 SoCs, the timing
+> register is shared by all devices which is problematic to get good
+> results other than for one device.
+> 
+> The algorithm first reads a golden buffer at low speed and then performs
+> reads with different clocks and delay cycle settings to find a breaking
+> point. This selects a default good frequency for the CEx control register.
+> The current settings are a bit optimistic as we pick the first delay giving
+> good results. A safer approach would be to determine an interval and
+> choose the middle value.
+> 
+> Calibration is performed when the direct mapping for reads is created.
+> Since the underlying spi-nor object needs to be initialized to create
+> the spi_mem operation for direct mapping, we should be fine. Having a
+> specific API would clarify the requirements though.
+> 
+> Cc: Pratyush Yadav <p.yadav@ti.com>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> Tested-by: Joel Stanley <joel@jms.id.au>
+> Tested-by: Tao Ren <rentao.bupt@gmail.com>
+> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+> ---
+>  drivers/spi/spi-aspeed-smc.c | 281 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 281 insertions(+)
+> 
+[...]
+> @@ -517,6 +527,8 @@ static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
+>  	return 0;
+>  }
 >  
-> -	ret = of_mdiobus_register(bus, pdev->dev.of_node);
-> +	miim->clk = devm_clk_get_optional(&pdev->dev, NULL);
-> +	if (IS_ERR(miim->clk))
-> +		return PTR_ERR(miim->clk);
+> +static int aspeed_spi_do_calibration(struct aspeed_spi_chip *chip);
 > +
-> +	ret = clk_prepare_enable(miim->clk);
-> +	if (ret)
-> +		return ret;
+>  static int aspeed_spi_dirmap_create(struct spi_mem_dirmap_desc *desc)
+>  {
+>  	struct aspeed_spi *aspi = spi_controller_get_devdata(desc->mem->spi->master);
+> @@ -565,6 +577,8 @@ static int aspeed_spi_dirmap_create(struct spi_mem_dirmap_desc *desc)
+>  	chip->ctl_val[ASPEED_SPI_READ] = ctl_val;
+>  	writel(chip->ctl_val[ASPEED_SPI_READ], chip->ctl);
+>  
+> +	ret = aspeed_spi_do_calibration(chip);
 > +
-> +	of_property_read_u32(np, "clock-frequency", &miim->clk_freq);
 
-The clock is optional if there is no "clock-frequency" property.  If
-the property does exist, the clock should be mandatory. I don't think
-it should silently fail setting the bus frequency because the clock is
-missing.
+I am still not convinced this is a good idea. The API does not say 
+anywhere what dirmap_create must be called after the flash is completely 
+initialized, though that is what is done currently in practice. I think 
+an explicit API to mark flash as "ready for calibration" would be a 
+better idea.
 
-	Andrew
+Tudor/Mark/Miquel, what do you think?
+
+>  	dev_info(aspi->dev, "CE%d read buswidth:%d [0x%08x]\n",
+>  		 chip->cs, op->data.buswidth, chip->ctl_val[ASPEED_SPI_READ]);
+>  
+[...]
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
