@@ -2,85 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADD394EE4E1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 01:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CED934EE4ED
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 01:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243163AbiCaXqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 19:46:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58202 "EHLO
+        id S232742AbiCaXyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 19:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243160AbiCaXqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 19:46:48 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700AA1C9B63;
-        Thu, 31 Mar 2022 16:45:00 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id q189so1155446oia.9;
-        Thu, 31 Mar 2022 16:45:00 -0700 (PDT)
+        with ESMTP id S229912AbiCaXyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 19:54:43 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B3224A8AE
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:52:54 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id k25-20020a056830151900b005b25d8588dbso1014005otp.4
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:52:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=M6mtxbYAAiRsPFMK/tL1H1rQ1Kmj2pVg6YIYinuDAw4=;
-        b=xEAGxc2tXX6ap4Gy7zGl9HoqU+2TPoUkcZn+9i00zCOxDrbKi7zd2YPjAJyXutvUF6
-         KJZ15z/UGECL3Kodrsl7MkNf0ZP3T5TSOtLrzgm2AM2xMYyC2H6Le6nzer9LUdcZjMyY
-         pE+YVOUhQi7BiPVxyefEmSS43j0OwxugdgMvv924sN/yqQcARNr6Z/OpWfsI92JwJDGz
-         L/rNbdaVKhhDcXh1psNBKdDydCuRLLHnxit2lLSskdTdsYzmamPEikpeFFpFKN+2C0Y6
-         UP0PWFxTk/hF7SXRm6vmkWd2/U4xDgbNqIjd8wTQFiJ5h4eCW9Ac7CrO4epz2Nh+K7ZS
-         bSgg==
-X-Gm-Message-State: AOAM533WhP5X5UlH6etPmejF6JF/1DKShRijbFWlUFYDP8Z1JA9rSUCN
-        vGdPTaIJQa7gzIk2ZTAekIkRp+KVow==
-X-Google-Smtp-Source: ABdhPJzcJTikTpcNMLinxP9sVo0KCKV1+n2mF98uXathWXEvHlZeRZiDR5JjErBsNWB2HSTSm57dtQ==
-X-Received: by 2002:a05:6808:189a:b0:2ec:c59c:71e9 with SMTP id bi26-20020a056808189a00b002ecc59c71e9mr389518oib.153.1648770299780;
-        Thu, 31 Mar 2022 16:44:59 -0700 (PDT)
+        bh=QtLleTaHCucGPsRaBTO86s6P+Sr59PZKXVV2CO1MOzI=;
+        b=sQw2t01Upe1XnUSK1enNsrJFX/Y9Vj07eo+hb5znSxi8pEi3KCgI8G7SxHesEmnRjQ
+         34ULiadQej+2EAj+LOlEqiLKkR8X83SsCyMGKdtsresfi3N9kgvodaOhj/tnwGQxuaLP
+         9L+rZKLsxNeaUJELip6w1TkNigLhPvNZR+P/oVUJQqq7wGT/VGVGL4cFR3sgx8hxiTXO
+         rvVOJbW4jFDMy/byYOllUTY63hw5gb9cQbraNinmLLr0epykQrY2JVu0z3k0LqzzTlSA
+         BD3ZPgC0MDZ1MrwI6bW9v1+QZXUTPBCI8Ccm6zQJpPJ/3cI6mXsdYkFhQN7sZIfbnfMu
+         uyPA==
+X-Gm-Message-State: AOAM5310LcVz6m5awPqi23RFFYvO4G7mjD7yKjFQXY9rEX3JF5groGh7
+        gOsLDOqvjbXBeweB8uEdmqhwAvGPxg==
+X-Google-Smtp-Source: ABdhPJyX8xvZxfDgWuF9nXNoW7PdIaVk5mK36vc6rmjM3if5pWl4svyYXlRWWFyKrZa+wn8F80OdFg==
+X-Received: by 2002:a9d:75cd:0:b0:5c9:61fa:3a42 with SMTP id c13-20020a9d75cd000000b005c961fa3a42mr6614511otl.15.1648770773424;
+        Thu, 31 Mar 2022 16:52:53 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k14-20020a056830168e00b005b22c20b195sm485058otr.45.2022.03.31.16.44.59
+        by smtp.gmail.com with ESMTPSA id e22-20020a9d5616000000b005ceb68be2f6sm280208oti.63.2022.03.31.16.52.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 16:44:59 -0700 (PDT)
-Received: (nullmailer pid 1719043 invoked by uid 1000);
-        Thu, 31 Mar 2022 23:44:58 -0000
-Date:   Thu, 31 Mar 2022 18:44:58 -0500
+        Thu, 31 Mar 2022 16:52:52 -0700 (PDT)
+Received: (nullmailer pid 1730141 invoked by uid 1000);
+        Thu, 31 Mar 2022 23:52:52 -0000
+Date:   Thu, 31 Mar 2022 18:52:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Peng Fan <peng.fan@nxp.com>, linux-serial@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        krzk+dt@kernel.org
-Subject: Re: [PATCH V2] dt-bindings: serial: fsl-lpuart: Add imx93 compatible
- string
-Message-ID: <YkY8+lYorUkQ8pIn@robh.at.kernel.org>
-References: <20220323093659.1722463-1-peng.fan@oss.nxp.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Robert Foss <robert.foss@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <YkY+1IZtQ8oSi7wR@robh.at.kernel.org>
+References: <20220323154823.839469-1-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220323093659.1722463-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220323154823.839469-1-maxime@cerno.tech>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Mar 2022 17:36:59 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Wed, 23 Mar 2022 16:48:23 +0100, Maxime Ripard wrote:
+> MIPI-DSI devices, if they are controlled through the bus itself, have to
+> be described as a child node of the controller they are attached to.
 > 
-> The lpuart on i.MX93 is derived from i.MX7ULP with some industrial
-> enhancements, it uses two compatible strings, so update the
-> compatible string for i.MX93.
+> Thus, there's no requirement on the controller having an OF-Graph output
+> port to model the data stream: it's assumed that it would go from the
+> parent to the child.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> However, some bridges controlled through the DSI bus still require an
+> input OF-Graph port, thus requiring a controller with an OF-Graph output
+> port. This prevents those bridges from being used with the controllers
+> that do not have one without any particular reason to.
+> 
+> Let's drop that requirement.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
-> 
-> V2:
->  Drop fsl,imx93-lpuart-v2, that is software controllable per Design team,
->  so we may update driver for that.
->  Update commit message
-> 
->  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/display/bridge/chipone,icn6211.yaml      | 1 -
+>  .../devicetree/bindings/display/bridge/toshiba,tc358762.yaml     | 1 -
+>  2 files changed, 2 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+I tend to agree with port@0 not being needed and really like 
+consistency.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
