@@ -2,79 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FA954ED4AE
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC244ED4B1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:18:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232152AbiCaHQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 03:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40802 "EHLO
+        id S230490AbiCaHTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 03:19:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232014AbiCaHQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:16:10 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793341C9B51;
-        Thu, 31 Mar 2022 00:12:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Cftje8rQgS4kiDHkpH8Em2qt4GFjMGVk4OywwnZsT04=; b=ssEaxSvrpdL50MKhgA/GLcEdZz
-        i9m33P4y2/jk8y2I+ZL/elPceIuEkXA45RCJWN2KjxG9mRjZdJEWo5KxtSZKCtqdqr+bJ6cuLQyLx
-        CDsD/PeJ316Q+x8leqTfW4Z6s3jwQzC6UXvfTfnA9joUyWfUiRqolCSc1R3nrYXV2GIU6lohQpgzw
-        I44ZNFkMqJLHtpEx3bYmUGX08DrMgSsJLL8ZTLU3ZeDVmVIhif+8NkU92cRiSa4uyS5eM2d/3vsSc
-        9/bKLjQHacLGo6bsKXPWHznODqpyla/o/Y2B3CaNoCo1QQk7IKfBeO9SD07zpTdNP4pl47EUusC+T
-        srf56/xQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58042)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1nZoyt-0004LR-Vq; Thu, 31 Mar 2022 08:12:31 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1nZoyn-0007QN-D8; Thu, 31 Mar 2022 08:12:25 +0100
-Date:   Thu, 31 Mar 2022 08:12:25 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Dylan Hung <dylan_hung@aspeedtech.com>
-Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
-        andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH v3 2/3] net: mdio: add reset control for Aspeed MDIO
-Message-ID: <YkVUWV0czTzo6MrJ@shell.armlinux.org.uk>
-References: <20220325041451.894-1-dylan_hung@aspeedtech.com>
- <20220325041451.894-3-dylan_hung@aspeedtech.com>
+        with ESMTP id S232190AbiCaHRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:17:50 -0400
+Received: from 4.mo548.mail-out.ovh.net (4.mo548.mail-out.ovh.net [188.165.42.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D9A2558E
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 00:15:35 -0700 (PDT)
+Received: from mxplan5.mail.ovh.net (unknown [10.108.4.108])
+        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id 647A321D6D;
+        Thu, 31 Mar 2022 07:15:31 +0000 (UTC)
+Received: from kaod.org (37.59.142.95) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 31 Mar
+ 2022 09:15:31 +0200
+Authentication-Results: garm.ovh; auth=pass (GARM-95G0017a140443-46ad-4610-9aab-007a7028463b,
+                    FC9088D273F6636B0CAAD4892A2C3D02B7ACC8E0) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <d12860e6-cc56-6073-0bf2-bfae02cbbd88@kaod.org>
+Date:   Thu, 31 Mar 2022 09:15:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220325041451.894-3-dylan_hung@aspeedtech.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 08/11] spi: aspeed: Calibrate read timings
+Content-Language: en-US
+To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Richard Weinberger <richard@nod.at>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220325100849.2019209-1-clg@kaod.org>
+ <20220325100849.2019209-9-clg@kaod.org>
+ <HK0PR06MB2786548534B370AE0C691C32B21F9@HK0PR06MB2786.apcprd06.prod.outlook.com>
+ <0ec477b5-e404-536f-ff60-39f43208c3cc@kaod.org>
+ <HK0PR06MB27866B5CC29F46436A4F6230B2E19@HK0PR06MB2786.apcprd06.prod.outlook.com>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <HK0PR06MB27866B5CC29F46436A4F6230B2E19@HK0PR06MB2786.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [37.59.142.95]
+X-ClientProxiedBy: DAG4EX1.mxp5.local (172.16.2.31) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 302d5792-24cf-4c48-bed0-3ba3d01619e2
+X-Ovh-Tracer-Id: 6130243521099631422
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrudeifedgudduvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgihesthejredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeekfeeiudekhfeujeetffevtdfhhfekheehhfdtjeekfeehieefjedvgfffgfeifeenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrdelheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Chin-Ting,
 
-On Fri, Mar 25, 2022 at 12:14:50PM +0800, Dylan Hung wrote:
-> Add reset assertion/deassertion for Aspeed MDIO.  There are 4 MDIO
-> controllers embedded in Aspeed AST2600 SOC and share one reset control
-> register SCU50[3].  To work with old DT blobs which don't have the reset
-> property, devm_reset_control_get_optional_shared is used in this change.
+>>> - Maybe, if the calibration process is not executed, the frequency setting
+>> calculated from max_frequency in the device tree can be filled in FMC10
+>> instead of using dumb slow one, 12.5MHz, always.
+>>
+>> Indeed.
+>>
+>>>    For example, except for uniform content case, the calibration process will
+>> be ignored when SPI clock frequency in the device tree is smaller than 40MHz.
+>>> - The function, aspeed_2600_spi_clk_basic_setting, in [2] can be added to
+>> support lower SPI clock frequency, e.g., 4MHz.
+>>>    For AST2600, SPI clock frequency can be calculated by
+>> HCLK/(FMC10[27:24] + FMC10[11:8]).
+>>
+>> Could you please send patches on top of this series ? Here are the branches :
+>>
 > 
-> Signed-off-by: Dylan Hung <dylan_hung@aspeedtech.com>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Of course. How do I provide you the patch? By private mail or send a PR?
 
-Should this really be specific to one driver rather than being handled
-in the core mdio code?
+We should discuss first by email on the openbmc@ and linux-aspeed@ lists.
+Please send as follow ups on top of v4.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Using the openbmc tree should be easier :
+
+      https://github.com/legoater/linux/commits/openbmc-5.15
+
+> Besides, I may add a new callback function for this part due to difference 
+> between AST2500 and AST2600.
+
+ok.
+
+Given all the reviews and tests that were done on AST2400, AST2500, AST2600
+platforms, I will be careful not to break the existing proposal.
+
+Thanks,
+
+C.
