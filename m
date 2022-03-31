@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBED74EE007
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 20:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2658E4EE0C1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 20:39:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233042AbiCaSCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 14:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
+        id S235340AbiCaSlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 14:41:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233017AbiCaSCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 14:02:11 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF459154731;
-        Thu, 31 Mar 2022 11:00:20 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id e4so342460oif.2;
-        Thu, 31 Mar 2022 11:00:20 -0700 (PDT)
+        with ESMTP id S235286AbiCaSld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 14:41:33 -0400
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A2B1114E
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 11:39:45 -0700 (PDT)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-df0940c4eeso186165fac.8
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 11:39:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=e9jkAgjwsi1IJSGTXHmKAcaACDiJsAOI5quMymW0VDc=;
+        b=mMD97fQDv0+2FvvZYf5+fdkYUQipERsAb3C2YcKnLOOEQ/PsJUTDDX5i376ABpBGWC
+         8TpaoyFX9P3UccJmlhrrqlSG+ka+WkQfRZFsFNnxBtpTwOpjT/x3Lzt9HADfuPpu7OS7
+         QU+9iTOz1sDnXxGrb0mS9cmpSLomtfZalfKPVbntBxVwZkTTnhqBYisXjdlU7goWLDkM
+         laUKXVA0VLRefOHvgcNMqbM2Shr1AH7O2d7elvTBpQ9ZmSUzDNCbzRS3cbBLKLE+kBsK
+         I6c/dZZlvp6SopotuACCLG3keVMeHJOquxTiNQjJRKkGlYfxw8wYJcbmi+rjvkUxeo7i
+         AXJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=I3BwVGA5gvEgHgvpjpOrGZt3ZZ8DgU2AYuBU6ajRMYQ=;
-        b=uSDZWIIRtlEaJYcIDyVSLgndSIavboC0DvL3VUyRAfSkMBODMsfImneMWzzWLQVb6K
-         ft4Q50iZvq2oX0PO+QcZpvGJyu1fLOrKQTFdz8iIZNaEKsD8Rf0udPoHh5M8XtW6twZv
-         3evbKktEKXqtmrdpx8wAdXCd8n6ORNdXy8grJsgG0SSXV2Tt5KUdSLNkQUkbd7VxcJ5a
-         t2TIrj0Qu7/S6qbDXCccTem/d9SEam5L++iQOS7QeBnTeXfIDbdvUhLKKdPH+fbFqdFO
-         m8XFOpaPFEmR/qvHXM3Bedk6WlFapsefdCmj/z98wb4nYNMCHmXHW002WnFbUIKYFodb
-         Tmxw==
-X-Gm-Message-State: AOAM533zjjdiazwgoxwFxcpvNQhxBa/66J64RoFbLIZ9z0kyClW6ga2m
-        AwVxfFC0Xt8OmiJKLAQ8ZQ==
-X-Google-Smtp-Source: ABdhPJxsFMds5NLOAeqJP1PDVG65OgRHVIDdVYYrMbaAaF2R3OmrHV+UeMG2+Ea+FnB9nREtrySkmg==
-X-Received: by 2002:a54:4714:0:b0:2ec:f566:8da5 with SMTP id k20-20020a544714000000b002ecf5668da5mr3005994oik.97.1648749619926;
-        Thu, 31 Mar 2022 11:00:19 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h12-20020a9d6a4c000000b005b9d727d4b9sm97792otn.14.2022.03.31.11.00.18
+        bh=e9jkAgjwsi1IJSGTXHmKAcaACDiJsAOI5quMymW0VDc=;
+        b=ZtU2dobG4/rL+vjGogyNv1hLn8r+kevsO6/PHdKSkEaWuJ4vYWlaWoJyG9bb2L7x0z
+         tN6sQ+ax4BFwBMHeJ5l7/hCheFgz0vdfyqx9miNC7bf9XeH5xA5UXBDGOGDFwaY/6Ine
+         JMV77HsRoPYA1+h5pOoPALwz4DO30d0t/be5TeCKe5zGPiABgWbfXsx5gOWawNLKhbgO
+         1XJtt0cm547qfUZ4e+NLrMzlS9Bj1SYNZwxHlXU9VtaDjZ91vN2TZoFdXl906G9LL83x
+         XA5x/51qt5smGz0BUNfs+7LWy5uAyKh+d5PUsSThowdE/G5MdPbOQMUEZb6a3jPD7zOD
+         2GTQ==
+X-Gm-Message-State: AOAM532MKtFCzPqjyNGY0MCLrLFJIVDBRGod7jTb7qskC8a90ag3S5/9
+        4OFSgSDeMEmQOUgrD3TcuaNshw==
+X-Google-Smtp-Source: ABdhPJw/a/7CrFLyGEY0Z/DS0/Ws4lqIc4WJ3cyuGTmJnxDrq9I4ThBrzgRb24j8nj+NdhQfCvPQBw==
+X-Received: by 2002:a05:6870:d0ce:b0:de:79e2:7ec7 with SMTP id k14-20020a056870d0ce00b000de79e27ec7mr3185850oaa.245.1648751985239;
+        Thu, 31 Mar 2022 11:39:45 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id e7-20020a9d2a87000000b005af548abe73sm175078otb.4.2022.03.31.11.39.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 11:00:19 -0700 (PDT)
-Received: (nullmailer pid 1222855 invoked by uid 1000);
-        Thu, 31 Mar 2022 18:00:18 -0000
-Date:   Thu, 31 Mar 2022 13:00:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        angelogioacchino.delregno@collabora.com,
-        Yong Wu <yong.wu@mediatek.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3, 03/10] dt-bindings: media: mtk-vcodec: Adds encoder
- cores dt-bindings for mt8195
-Message-ID: <YkXsMoqjOHz4Rf6L@robh.at.kernel.org>
-References: <20220317082230.23622-1-irui.wang@mediatek.com>
- <20220317082230.23622-4-irui.wang@mediatek.com>
- <Yj4s0zcHxz3U3wlc@robh.at.kernel.org>
- <ab2b24eeb51048227ad7b2ac659617a7da5b2e45.camel@mediatek.com>
- <YkG8ka1xY2k+HWi1@robh.at.kernel.org>
- <e41e909f85e3891edb6b66d7d5a810af103113c8.camel@mediatek.com>
- <YkMFGbgYq5DhLjt8@robh.at.kernel.org>
- <8e87e98a0b261dcdca9beb41bd1cd5030a4690ab.camel@mediatek.com>
+        Thu, 31 Mar 2022 11:39:44 -0700 (PDT)
+Date:   Thu, 31 Mar 2022 11:42:14 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, quic_asutoshd@quicinc.com,
+        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
+        quic_sartgarg@quicinc.com, quic_nitirawa@quicinc.com,
+        quic_sayalil@quicinc.com, agross@kernel.org,
+        krzysztof.kozlowski@canonical.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3] mmc: sdhci-msm: Reset GCC_SDCC_BCR register for SDHC
+Message-ID: <YkX2BrTjgexrIHtR@ripper>
+References: <1648710182-31899-1-git-send-email-quic_c_sbhanu@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8e87e98a0b261dcdca9beb41bd1cd5030a4690ab.camel@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <1648710182-31899-1-git-send-email-quic_c_sbhanu@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,126 +74,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 04:48:47PM +0800, Irui Wang wrote:
-> Dear Rob,
+On Thu 31 Mar 00:03 PDT 2022, Shaik Sajida Bhanu wrote:
+
+> Reset GCC_SDCC_BCR register before every fresh initilazation. This will
+> reset whole SDHC-msm controller, clears the previous power control
+> states and avoids, software reset timeout issues as below.
 > 
-> A sample encoder hardware block diagram attached.
-> On Tue, 2022-03-29 at 08:09 -0500, Rob Herring wrote:
-> > On Tue, Mar 29, 2022 at 09:26:37AM +0800, Irui Wang wrote:
-> > > Dear Rob,
-> > > 
-> > > Many thanks for your attention.
-> > > 
-> > > On Mon, 2022-03-28 at 08:48 -0500, Rob Herring wrote:
-> > > > On Sat, Mar 26, 2022 at 10:00:55AM +0800, Irui Wang wrote:
-> > > > > Dear Rob,
-> > > > > 
-> > > > > Thanks for your review and comments.
-> > > > > 
-> > > > > On Fri, 2022-03-25 at 15:57 -0500, Rob Herring wrote:
-> > > > > > On Thu, Mar 17, 2022 at 04:22:23PM +0800, Irui Wang wrote:
-> > > > > > > Adds encoder cores dt-bindings for mt8195.
-> > 
-> > [...]
-> > 
-> > > > > > > +      mediatek,core-id:
-> > > > > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > > +        description: |
-> > > > > > > +          Current encoder core id.
-> > > > > > 
-> > > > > > What is this for and what does its value correspond to in the
-> > > > > > h/w.
-> > > > > > We 
-> > > > > > generally don't do made up indices in DT.
-> > > > > 
-> > > > > It's for encoder core id, core@1a020000 must be core-0, 
-> > > > > core@1b020000
-> > > > > must be core-1, we add this property in each child node, so we
-> > > > > can 
-> > > > > get core-id in drivers. If it can't ref "uint32" types yaml,
-> > > > > would 
-> > > > > you mind giving some more suggestions ?
-> > > > 
-> > > > I still don't understand why it is needed. What is 'core-0'?
-> > > > 
-> > > > Is there some functional difference between the cores? If so,
-> > > > describe 
-> > > > that difference.
-> > > > 
-> > > > Rob
-> > > 
-> > > They are two different pieces of hardware, it's our encoder
-> > > hardware
-> > > design. There are two encoder hardware cores inside MT8195, named
-> > > core0
-> > > and core1(we can rename it, but core id should be declared),
-> > > for core0, its module base address is 0x1A02_0000, uses IOMMU
-> > > "vdo0_iommu" and power domain "POWER_DOMAIN_VENC",
-> > > for core1, its module base address is 0x1B02_0000, uses IOMMU
-> > > "vpp_iommu" and power domain "POWER_DOMAIN_VENC_CORE1".
-> > > So the two encoder cores have their own base, IRQ, clock, power,
-> > > etc.
-> > > Each core can encode independently, moreover, they can work
-> > > together
-> > > for higher performance. 
-> > > We will describe more details in YAML about it if it's OK for you.
-> > 
-> > All the resources you list are in the child nodes, so you don't need
-> > 0 
-> > and 1 numbering for those. 
-> > 
-> > Looking at the driver patches, the only thing I see distinguishing 
-> > core numbers is this:
-> > 
-> > "frame#0 uses core#0, frame#1 uses core#1, frame#2 uses core#0...,
-> > 
-> > Lock the device and enable the clock by used core, for sequence
-> > header encoding, it always uses core#0."
-> > 
-> > Is this a requirement in the h/w or just what the driver picked?
-> > IOW, 
-> > could frame#0 use core#1?
-> No, it's a requirement in the h/w, driver trigger core start encoding
-> is in order.
-> About the encoder hardware block diagram, please check below:
-> --------------------------------------------------------------
-> Input Buffer: 0     1     2     3     4     5     6
->               |     |     |     |     |     |     |
->               v     |     v     |     v     |     v
->           +-------+ | +-------+ | +-------+ | +-------+
->           | core0 | | | core0 | | | core0 | | | core0 |
->           +-------+ | +-------+ | +-------+ | +-------+
->               |     |     |     |     |     |     |
->               |     v     |     v     |     v     |
->               | +-------+ | +-------+ | +-------+ |
->               | | core1 | | | core1 | | | core1 | |
->               | +-------+ | +-------+ | +-------+ |
->               |     |     |     |     |     |     |
->               v     v     v     v     v     v     v    <parent>
-> --------------------------------------------------------------
->                         core || index                  <child>
->                              \/
->        +-----------------------------------------------+
->        |                  core0/core1                  |
->        |          enable/disable power/clk/irq         |
->        +-----------------------------------------------+
-> --------------------------------------------------------------
-> As above , there are parent and child devices, child mean each venc
-> core, the child device controls the information of each core
-> independent which inlcude power/clk/irq.
-> When start encoding, input buffer 0 will be encoded by core0, and input
-> buffer 1 can be encoded by core1 even if buffer 0 has not been encoded
-> done yet, after buffer 0 encoded done, buffer 2 will be encoded by
-> core0, and buffer 1 encoded done by core1. These two encoder cores will
-> encode each input in this overlapping manner.
+> [ 5.458061][ T262] mmc1: Reset 0x1 never completed.
+> [ 5.462454][ T262] mmc1: sdhci: ============ SDHCI REGISTER DUMP ===========
+> [ 5.469065][ T262] mmc1: sdhci: Sys addr: 0x00000000 | Version: 0x00007202
+> [ 5.475688][ T262] mmc1: sdhci: Blk size: 0x00000000 | Blk cnt: 0x00000000
+> [ 5.482315][ T262] mmc1: sdhci: Argument: 0x00000000 | Trn mode: 0x00000000
+> [ 5.488927][ T262] mmc1: sdhci: Present: 0x01f800f0 | Host ctl: 0x00000000
+> [ 5.495539][ T262] mmc1: sdhci: Power: 0x00000000 | Blk gap: 0x00000000
+> [ 5.502162][ T262] mmc1: sdhci: Wake-up: 0x00000000 | Clock: 0x00000003
+> [ 5.508768][ T262] mmc1: sdhci: Timeout: 0x00000000 | Int stat: 0x00000000
+> [ 5.515381][ T262] mmc1: sdhci: Int enab: 0x00000000 | Sig enab: 0x00000000
+> [ 5.521996][ T262] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
+> [ 5.528607][ T262] mmc1: sdhci: Caps: 0x362dc8b2 | Caps_1: 0x0000808f
+> [ 5.535227][ T262] mmc1: sdhci: Cmd: 0x00000000 | Max curr: 0x00000000
+> [ 5.541841][ T262] mmc1: sdhci: Resp[0]: 0x00000000 | Resp[1]: 0x00000000
+> [ 5.548454][ T262] mmc1: sdhci: Resp[2]: 0x00000000 | Resp[3]: 0x00000000
+> [ 5.555079][ T262] mmc1: sdhci: Host ctl2: 0x00000000
+> [ 5.559651][ T262] mmc1: sdhci_msm: ----------- VENDOR REGISTER DUMP-----------
+> [ 5.566621][ T262] mmc1: sdhci_msm: DLL sts: 0x00000000 | DLL cfg: 0x6000642c | DLL cfg2: 0x0020a000
+> [ 5.575465][ T262] mmc1: sdhci_msm: DLL cfg3: 0x00000000 | DLL usr ctl: 0x00010800 | DDR cfg: 0x80040873
+> [ 5.584658][ T262] mmc1: sdhci_msm: Vndr func: 0x00018a9c | Vndr func2 : 0xf88218a8 Vndr func3: 0x02626040
 > 
-> We need manage each child device in parent device by core-id property.
-> And we also need record current encoding input buffer, encode done
-> output buffers and which one core is in used through core-id, because
-> the two cores are encoding at the same time under one parent driver.
+> Fixes: 0eb0d9f4de34 ("mmc: sdhci-msm: Initial support for Qualcomm chipsets")
+> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+> ---
+> 
+> Changes since V2:
+> 	- Dropped new line after fixes tag as suggested by Bjorn
+> 	  Andersson.
+> 	- Passed device structure instead of passing platform_device
+> 	  structure as a argument for sdhci_msm_gcc_reset() as suggested
+> 	  by Bjorn Andersson.
+> 	- Replaced dev_err() with dev_err_probe() as suggested by Bjorn
+> 	  Andersson.
 
-Okay, please summarize the h/w requirement in the property description.
+Thanks, looks much better. Still some things I would like to see
+improved below.
 
-You might put the above diagram in the top description too.
+> Changes since V1:
+> 	- Added fixes tag as suggested by Ulf Hansson.
+> 	- Replaced devm_reset_control_get() with
+> 	  devm_reset_control_get_optional_exclusive() as suggested by
+> 	  Ulf Hansson.
+> ---
+>  drivers/mmc/host/sdhci-msm.c | 39 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+> index 50c71e0..e15e789 100644
+> --- a/drivers/mmc/host/sdhci-msm.c
+> +++ b/drivers/mmc/host/sdhci-msm.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/interconnect.h>
+>  #include <linux/pinctrl/consumer.h>
+> +#include <linux/reset.h>
+>  
+>  #include "sdhci-pltfm.h"
+>  #include "cqhci.h"
+> @@ -284,6 +285,7 @@ struct sdhci_msm_host {
+>  	bool uses_tassadar_dll;
+>  	u32 dll_config;
+>  	u32 ddr_config;
+> +	struct reset_control *core_reset;
+>  	bool vqmmc_enabled;
+>  };
+>  
+> @@ -2482,6 +2484,39 @@ static inline void sdhci_msm_get_of_property(struct platform_device *pdev,
+>  	of_property_read_u32(node, "qcom,dll-config", &msm_host->dll_config);
+>  }
+>  
+> +static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
+> +{
+> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
+> +	int ret = 0;
 
-Rob
+First use of this variable is an assignment, so no need to initialize it
+here.
+
+> +
+> +	msm_host->core_reset = devm_reset_control_get_optional_exclusive(dev, "core_reset");
+
+reset-names will only be used to identify resets and hence there's no
+reason to include "_reset" in the identifier.
+
+If this is the only reset for the controller, there's actually no reason
+for identifying it, you can omit reset-names from the binding and just
+pass NULL here (to get the first resets = <>).
+
+> +	if (IS_ERR(msm_host->core_reset))
+> +		return dev_err_probe(dev, PTR_ERR(msm_host->core_reset),
+> +				"unable to acquire core_reset\n");
+> +
+> +	if (!msm_host->core_reset)
+> +		return 0;
+> +
+> +	ret = reset_control_assert(msm_host->core_reset);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "core_reset assert failed\n");
+> +
+> +	/*
+> +	 * The hardware requirement for delay between assert/deassert
+> +	 * is at least 3-4 sleep clock (32.7KHz) cycles, which comes to
+> +	 * ~125us (4/32768). To be on the safe side add 200us delay.
+> +	 */
+> +	usleep_range(200, 210);
+> +
+> +	ret = reset_control_deassert(msm_host->core_reset);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "core_reset deassert failed\n");
+> +
+> +	usleep_range(200, 210);
+> +
+
+sdhci_msm_gcc_reset() is only called once during probe(), so there's no
+reason to carry the reset_control pointer in struct sdhci_msm_host. Make
+it a local variable and use reset_control_get_optional_exclusive() and
+reset_control_put() the reset here before returning.
+
+Regards,
+Bjorn
+
+> +	return 0;
+> +}
+>  
+>  static int sdhci_msm_probe(struct platform_device *pdev)
+>  {
+> @@ -2529,6 +2564,10 @@ static int sdhci_msm_probe(struct platform_device *pdev)
+>  
+>  	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
+>  
+> +	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
+> +	if (ret)
+> +		goto pltfm_free;
+> +
+>  	/* Setup SDCC bus voter clock. */
+>  	msm_host->bus_clk = devm_clk_get(&pdev->dev, "bus");
+>  	if (!IS_ERR(msm_host->bus_clk)) {
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
