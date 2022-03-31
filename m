@@ -2,166 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1358D4ED98B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:20:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34D464ED996
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235999AbiCaMWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:22:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50316 "EHLO
+        id S236042AbiCaM07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:26:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235996AbiCaMWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:22:41 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840B365170;
-        Thu, 31 Mar 2022 05:20:53 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22VCK404046663;
-        Thu, 31 Mar 2022 07:20:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1648729204;
-        bh=U/Bd5JEPMZiETyPMjxTZkK0xTLGPXruq7bxamvC/BPE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=p/8v7ChWKtnstAQkNaNKlPYO5HNv82HVDZDet7QGSG/V+7MQvfJ0L1rLZSrS3cYVQ
-         L60fynQTGf9ZeFkH483HHSEwH8AuIsvGGAlRHDANvK833a3Z8cySbMJzx2T82HQjcI
-         FeQy5iJdInmuqxeeAnxXgE+wrN+S9S16BOMbqRyk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22VCK4cX045704
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 31 Mar 2022 07:20:04 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 31
- Mar 2022 07:20:03 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 31 Mar 2022 07:20:03 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22VCK2XC083438;
-        Thu, 31 Mar 2022 07:20:03 -0500
-Date:   Thu, 31 Mar 2022 17:50:02 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>
-CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 02/11] dt-bindings: spi: Add Aspeed SMC controllers
- device tree binding
-Message-ID: <20220331122002.55vwda6fnnenuqhf@ti.com>
-References: <20220325100849.2019209-1-clg@kaod.org>
- <20220325100849.2019209-3-clg@kaod.org>
- <20220330191908.nhg52a5ayzczpzai@ti.com>
- <2a411a3e-4b7f-c116-b595-f33bffccb4e7@kaod.org>
+        with ESMTP id S232837AbiCaM05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:26:57 -0400
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4051FB501;
+        Thu, 31 Mar 2022 05:25:10 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id 1so19563043qke.1;
+        Thu, 31 Mar 2022 05:25:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+xJl2Z2uDFXuDHWFAismAnDcDRzgKNsrBhzEfpkL5Zs=;
+        b=L9dyS8olOVHZR9zUmSfdRrvhw99nTXrAH2K6Sn4a9M2oHgtiaRthLT1K86F0pA/O35
+         dviKcIj+4oTeNlXIls7CyV9sXKGsGrIe2wm4jzwXS/ihyCME67y3nxas2/IQh3sgvrW7
+         w6D50+TFx7t3SjuARYCMkJm9tpOo5iwO7HWQ4zWCV0KKgacECBQtPW5um/yaSH0vJuk5
+         RXgH634sZtsfdQjqDbDm3l9GhPI2s/lTeM0DlHsHgkHe//ZSUHw99c+BZmsUXroHvTRL
+         lL71bprSK1DsdgmamhH6mpHkZfJBLHnF/muXhuUjAebJ12j60ZT43sIpe9UHlBYmnmsZ
+         n66Q==
+X-Gm-Message-State: AOAM530eJBYwiZmNRf+DEDQ0aDA8pZ64HynEqjyXrkcSMoqJw6/h/4i5
+        TqDG7pNQvq9VGAkrw6mJIrQ3VuuXi2q7uw==
+X-Google-Smtp-Source: ABdhPJzFFrQXtrUh/jQQM6Ck+PzhQBGeIj+2YqItPz2dy99DXfy/LFd3ftBLsgwyntSNA3AStssttg==
+X-Received: by 2002:a37:414c:0:b0:67e:6d68:c585 with SMTP id o73-20020a37414c000000b0067e6d68c585mr3063870qka.196.1648729509553;
+        Thu, 31 Mar 2022 05:25:09 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id 64-20020a370343000000b0067b31f32693sm12573335qkd.109.2022.03.31.05.25.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 05:25:08 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id f23so11554902ybj.7;
+        Thu, 31 Mar 2022 05:25:08 -0700 (PDT)
+X-Received: by 2002:a25:45:0:b0:633:96e2:2179 with SMTP id 66-20020a250045000000b0063396e22179mr3960616yba.393.1648729507793;
+ Thu, 31 Mar 2022 05:25:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a411a3e-4b7f-c116-b595-f33bffccb4e7@kaod.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220315152717.20045-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220315152717.20045-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 31 Mar 2022 14:24:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVNow9XjoP4LSv=as-QXSu55mA2RWWqQtxUt9aNJHT=xA@mail.gmail.com>
+Message-ID: <CAMuHMdVNow9XjoP4LSv=as-QXSu55mA2RWWqQtxUt9aNJHT=xA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Document RZ/G2UL pinctrl
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/22 09:36AM, Cédric Le Goater wrote:
-> Hello Pratyush,
-> 
-> On 3/30/22 21:19, Pratyush Yadav wrote:
-> > On 25/03/22 11:08AM, Cédric Le Goater wrote:
-> > > The "interrupt" property is optional because it is only necessary for
-> > > controllers supporting DMAs (Not implemented yet in the new driver).
-> > > 
-> > > Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> > > Tested-by: Joel Stanley <joel@jms.id.au>
-> > > Tested-by: Tao Ren <rentao.bupt@gmail.com>
-> > > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Cédric Le Goater <clg@kaod.org>
-> > > ---
-> > >   .../bindings/spi/aspeed,ast2600-fmc.yaml      | 87 +++++++++++++++++++
-> > >   MAINTAINERS                                   |  9 ++
-> > >   2 files changed, 96 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
-> > > new file mode 100644
-> > > index 000000000000..e16bbcd38560
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
-> > > @@ -0,0 +1,87 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/spi/aspeed,ast2600-fmc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Aspeed SMC controllers bindings
-> > > +
-> > > +maintainers:
-> > > +  - Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> > > +  - Cédric Le Goater <clg@kaod.org>
-> > > +
-> > > +description: |
-> > > +  This binding describes the Aspeed Static Memory Controllers (FMC and
-> > > +  SPI) of the AST2400, AST2500 and AST2600 SOCs.
-> > > +
-> > > +allOf:
-> > > +  - $ref: "spi-controller.yaml#"
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - aspeed,ast2600-fmc
-> > > +      - aspeed,ast2600-spi
-> > > +      - aspeed,ast2500-fmc
-> > > +      - aspeed,ast2500-spi
-> > > +      - aspeed,ast2400-fmc
-> > > +      - aspeed,ast2400-spi
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: registers
-> > > +      - description: memory mapping
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +patternProperties:
-> > > +  "@[0-9a-f]+":
-> > > +    type: object
-> > > +
-> > > +    properties:
-> > > +      spi-rx-bus-width:
-> > > +        enum: [1, 2, 4]
-> > 
-> > No need for this. It should already be taken care of by
-> > spi-peripheral-props.yaml
-> 
-> So we could drop the whole 'patternProperties' section ?
+Hi Biju,
 
-Yes.
+On Tue, Mar 15, 2022 at 4:27 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Document Renesas RZ/G2UL pinctrl bindings. RZ/G2UL GPIO block is
+> almost identical to RZ/G2L and has lesser pins compared to RZ/G2L.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-[...]
+Thanks for your patch!
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> @@ -21,6 +21,10 @@ description:
+>  properties:
+>    compatible:
+>      oneOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2}
+
+This can be combined with the enum below.
+
+> +
+>        - items:
+>            - enum:
+>                - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-pinctrl-for-v5.19, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
