@@ -2,660 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9187D4ED77D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4D4F4ED788
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234276AbiCaKFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 06:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45414 "EHLO
+        id S234587AbiCaKIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 06:08:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233454AbiCaKF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:05:29 -0400
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D55AD115;
-        Thu, 31 Mar 2022 03:03:40 -0700 (PDT)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-        by localhost (Postfix) with ESMTP id 4KTf5Q5ZxHz9sS8;
-        Thu, 31 Mar 2022 12:03:38 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Y6sq6hD1DYVJ; Thu, 31 Mar 2022 12:03:38 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase2.c-s.fr (Postfix) with ESMTP id 4KTf5N5W80z9sSJ;
-        Thu, 31 Mar 2022 12:03:36 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id AADE28B788;
-        Thu, 31 Mar 2022 12:03:36 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id 0CZHxdw_GTyH; Thu, 31 Mar 2022 12:03:36 +0200 (CEST)
-Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.202.54])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 4DE388B780;
-        Thu, 31 Mar 2022 12:03:36 +0200 (CEST)
-Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 22VA3KIk547662
-        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-        Thu, 31 Mar 2022 12:03:20 +0200
-Received: (from chleroy@localhost)
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 22VA3Ho2547659;
-        Thu, 31 Mar 2022 12:03:17 +0200
-X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to christophe.leroy@csgroup.eu using -f
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-To:     Scott Wood <oss@buserror.net>, devicetree@vger.kernel.org,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH] powerpc/85xx: Remove FSL_85XX_CACHE_SRAM
-Date:   Thu, 31 Mar 2022 12:03:06 +0200
-Message-Id: <9949813a6b758903b7bee910f798ba2ca82ff8ee.1648720908.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S234566AbiCaKIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:08:01 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80129.outbound.protection.outlook.com [40.107.8.129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3BD61E3DF
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 03:06:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SHv4lBlBma8HApr9NITYg7L98UN7HsdFLmwwxSO0hoELd7tK2JdOC5edK7YVxrJSkGOeOiOil6qC9v7GDEZ82tk7MFo0A3m64ivthLdEiq4RQEB6YsR03t6UBc8BcFxJm3pGUiWuY7AL0W3v7om6+7sumr5B/+RqrGmKiaM0nKQiDCK/043niy5IKFXD7CjrfwnJqVI3S1Kiqv4FuOTMLEDTZ62zYXM1x+GOMf81xVMd+KUlrqr8QlFBwmon88f6mrhWrkNeSqyfGsSK57Ppe6vct3//5Hxce5mF8JYq5mF/crANn5BbF1vnXuxDc7qd0bhbmv46NsIWhXJmE7Xu1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BD+oOckdTziICcGGlW29bJ1P3aGN51+zPwU775JDVhk=;
+ b=Oen6DY6zi/yLVnu/M/a8F+Izz37jC6pLf58AMD3M9YqFsYbRrift8EHcDpdiaYat+vON7AniHDmuFAFyca7VdPpMulILyEztcp4WqYS9u458D0j54a5YauPEFxEI08pt0SbtSitK7C0CfY+CPZuEZJF9tW67MERXZTy14QwXHbggou4NWmunsQdlCfBs/M/QLFeeIs/UUBlAK5kPwc4N451yoBCDdHfq4WxHiJjNWfROYZbw5yXolB4tEiTnpSMGp5gFypA/3flZrzIHcwxlOH+CsBY0dDdYTgdVUi4AaxxxK6pGsbNTfrgtnmXuz3tN0QY6MJZXCk9TIlZF7X9Lwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BD+oOckdTziICcGGlW29bJ1P3aGN51+zPwU775JDVhk=;
+ b=qoYv+HNExXS2+3K9zPqWvzvTcBPuwniK7tv1HNPkN3LWXCT7QDede52HHvXO/1iSKJ0oUFYYFdLcZVHJGGM5DTYfkoG5B8Xv9NSKAMIYIRG5x/aSnEDdjGu0Dhu7tP/jnj3bFooJNsW7l2vo1mPIEuwTq2fTSdCLrZiTBUFRv+Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+Received: from AM0PR07MB4531.eurprd07.prod.outlook.com (2603:10a6:208:6e::15)
+ by VI1PR07MB6703.eurprd07.prod.outlook.com (2603:10a6:800:18f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.21; Thu, 31 Mar
+ 2022 10:06:12 +0000
+Received: from AM0PR07MB4531.eurprd07.prod.outlook.com
+ ([fe80::30a5:64a8:1672:4169]) by AM0PR07MB4531.eurprd07.prod.outlook.com
+ ([fe80::30a5:64a8:1672:4169%4]) with mapi id 15.20.5123.021; Thu, 31 Mar 2022
+ 10:06:12 +0000
+Message-ID: <9db940a1-825b-55d2-5710-6af68cfe8a1b@nokia.com>
+Date:   Thu, 31 Mar 2022 12:06:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] of: overlay: set 'overlay_tree' and 'fdt' fields only on
+ success
+Content-Language: en-US
+To:     Slawomir Stepien <sst@poczta.fm>, pantelis.antoniou@konsulko.com,
+        frowand.list@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     krzysztof.adamski@nokia.com, tomasz.medrek@nokia.com
+References: <YkV60TQ+d3sltkNU@t480s.localdomain>
+From:   Alexander Sverdlin <alexander.sverdlin@nokia.com>
+In-Reply-To: <YkV60TQ+d3sltkNU@t480s.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0035.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::8) To AM0PR07MB4531.eurprd07.prod.outlook.com
+ (2603:10a6:208:6e::15)
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1648720959; l=17869; s=20211009; h=from:subject:message-id; bh=G+uiPkIy/NrncVf4wAYoXqjh2bTITTBBD/fwfLjXq0k=; b=uV+YEdrp3pyX8GOuv73t/f8F+BKFzTeJLS6f4m3HHR9BipiF8GcIUP3iu8/9g7g9IM/4XphlX7Jb eZqDMUE0AvnK+731P84xFxRwUD7Nbr5v+vpoMvZ4pxBpg9y3hOPa
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 913ee2aa-4b8e-4b39-e045-08da12fe157d
+X-MS-TrafficTypeDiagnostic: VI1PR07MB6703:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR07MB6703019106006E6F466BF03B88E19@VI1PR07MB6703.eurprd07.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oWwOYFcSadpaITYtz1rupOtzIQ+YbykOG9zl3I9/wIPqkU2pxgFSXno+GoqSCRDor/pb31MF4y0kSf8P8L2rKqlx8TyXU+tBd/BCSnPSqWALcxSZ2w/e8/xsszjhS43d3FiE0MFgBTRkaV5k2PamISxTwAStohNbZp3gdso0kEikbSGLFtInbdWq7urYWYyOEnAdoDExwyhkJCdo0HOpq0K81aRCnX0ZS0b4QNZKHlEfi5PjIA5N+V57bqAoLmcA4but44prnvEvwXHXGtz8MQCD9j/FN3eidgMecp7VpoDZ/7zSgxT6Sb2FjUruOeP0/xoN7RtNyX4K6k/IWYs717Xuv5nwmDhr0i+fgdB57ZxhxUpkVogozIf4Nsu/igCCUkM+5Kgv9jt86+3HRHoHYF/XA4nlY+qJ6TCc01/aKkZfQbVovSJ+VkV/y99yXVkdWpSEYnZrX8i3QG3SDpSPSzi6XGr9uRcKpBgzWWcMdCPZetxFT1IA/ThNn7zkmy+va0tE1HvtLJbpbIPqz2YsGL5hhlazqfdujtc6E0gsawHAh7+4phy32x00kQsgQGT98ym8hSf4sBhK9oO2wvIlC9SbIZX4N7B+FqTRCWzHvfaUiVmJVGxj2WWi0FFLEsWY3J0BdlM5CdRscyLKHyecS6Qub/mw5Yv2K3G+wzKpzTW0a11SGg9Fh/LGgvjZ93PwDs5aCzad3dy/sHj2icHEe5E4nKHhuKL53exEJwPCZrDONuZXFGnjD95Mbj0eraQDuPjtHx8XcoyoMYBCdfv+zVBXcK475LceH0TgJR4blhD49l0KAjBTXWXsASoUCk6A
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR07MB4531.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6666004)(53546011)(6506007)(83380400001)(52116002)(31696002)(6512007)(2616005)(26005)(86362001)(186003)(107886003)(38350700002)(82960400001)(38100700002)(8936002)(5660300002)(44832011)(4326008)(8676002)(31686004)(66476007)(66946007)(36756003)(66556008)(2906002)(6486002)(508600001)(316002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFEvdXhFNWNielp1OTUvL2ZsYVBrQUkrUEZLRE9jK1RJUVBacGhDWEhYdkRS?=
+ =?utf-8?B?ajZkcXBheERzem5DL3ZKQ1MrUGs0eXUzQ1JWbDZiRWlMU2E0QU1mZnhGTEdE?=
+ =?utf-8?B?NW90dlV0NmloM2xzVXBUd0M2VUZMRVlEYllXcUFZZ25tcUZzRjJ1Wmk1Nmd1?=
+ =?utf-8?B?ZjBYd0RUV0dtS2xDbTY5ZmVoUm9zY2JlYUhHcnVuNlZVK3VPRWswVUk0dkgx?=
+ =?utf-8?B?aHQwcU9XUG5jcTZUOU5BenFCVkhsQkU2c1dOOUFZejdkTklBVVlwRTJNaEZn?=
+ =?utf-8?B?KzV0T0JrNnYyYXUzUExMRFFlYityNURpbGk3bWx6T0VuVnAwZUFlZVZhbnhu?=
+ =?utf-8?B?bXJmSGF3cTBlWHdoc1k0Q20rWjBwT3JKS2lZT2toaS9hazFrWHYvd1BZMDQw?=
+ =?utf-8?B?OHJ1SHJYQTMxdzkzMlpqc2pmdG5UWUd2aDMvZ0xWUkYzWHJoN1VKWnI3TEpF?=
+ =?utf-8?B?R3VzS25mY1ZicEVtWXFlbGsyTUlGd1RFVzh0dllqZW9TemVOczR2SEt0V1JU?=
+ =?utf-8?B?b21uU1NmRGpZd0NtY3hzWjZkaTk3K0RqTnQrMGExb2J5TlZKc0xmV2ZtOVhW?=
+ =?utf-8?B?TjJsbFV5VXR3WjJ3dFdtSzdOanpvZUdwVlQwNEZxeGtQQ3YwV3d5alVZTXRY?=
+ =?utf-8?B?cE1QL3NaMERWZHFWcm9qUk1vbkl1V1lGL1NRN2hwOWZWNzNvYkNoRDBYUzZD?=
+ =?utf-8?B?dG9ZWlhYSXVwVWN1NysrQ0NYV0RONEYwV0RSVVJJRlY0aGc0SHZjcWZtWTBO?=
+ =?utf-8?B?L0czUDR4TnNwbXJ5dlA3NkdTd1RUeDY4WmVrRHF0cC9HSkwrUlQ1MUptVUVW?=
+ =?utf-8?B?TzRXRjZWUUI1dVZraXVIcFBTbmxoTXFuY0xpMHJ2REtmYndWSUFSVHgvTXE2?=
+ =?utf-8?B?NFJKNGxaRlA5TS9SeFYrY2RzQVJUbHcvYUQrSEtTWHVMNjFKYlBlRkFYRTdY?=
+ =?utf-8?B?bEdNQU00cG5jdTBuSDI5Y21ZWU9jVzBwYW1ob3F1RVhjMTgzTjZjdnpldWk2?=
+ =?utf-8?B?V2d3L2tMSHBHczJHSTFkN0xPM09pYWZKQTUxcksrRWZRS3lQNTRaZ3c1d1dN?=
+ =?utf-8?B?bjZXN04xMnBPWjRnQmptb0paVDR1MVhRMW42eUVtYjRjVUk4ZHI4cTFER1NU?=
+ =?utf-8?B?K3kzRWd1QTArajJ5K3hYN3ozOEI0Y0pUUTFZNk5RMmpuZkdTMXhNWitFZWYv?=
+ =?utf-8?B?T3p3M1pmb2ppZ1lGalZkc25xbnRDTWdhNmQveFp6VW1kWWNWM2krUzZwZFYv?=
+ =?utf-8?B?a2loSTF3SlcvRzk1Nmx5K0M5aDErZHVYQ2hRZGRVYjBtZHhqRkZoQVVlejgv?=
+ =?utf-8?B?dkl0Q3BjRlpHQTZMUWlHK1lFdldkdTFGZWE2ZVZXU2UwVVI0SlRFalJ2R3N4?=
+ =?utf-8?B?bGdiOCtMUlNqSk42TjhBWGVJYzNmcUZVdVFnYjdkVlFNR1RlbWk2b2toZkNv?=
+ =?utf-8?B?c2JZYzF1N0xBYndlRnltemdiL2k3cjREeU91NDNNNjBwUSs5OXVneDU5d004?=
+ =?utf-8?B?WG9UZlBZbEFzalV5ZmRjUWdnSUVpZ2NRQW1RSUp6Qk9zSHVFME5WcVQ4U2Np?=
+ =?utf-8?B?Lzh1QWNRdzFqazJadVNWZldQeUMrSzZEdjNBbHV3WlBlOERpTGtmaWx1S2x3?=
+ =?utf-8?B?YWxYK0xleHhPc2ZmcC9zR3grWUNHdkY1ZkZpeUlpbENGZ1ByaTZkOElQdFRv?=
+ =?utf-8?B?eUhxdjlQKzhiWU9uSzgrNU1yREozVW9FRlp4K2dCc01xbmF4Y2VBM3lEVzhn?=
+ =?utf-8?B?SXd6QU8wNEZqbWpjaTlYaHpDcTQxTlZPQkJYUkh1MlRDWnZDOHZua0s2UnA1?=
+ =?utf-8?B?ZXdVK3NTZW8zSGZrTnluVGp0YlQvVUxZbEViaDdPcjZvM1pZcjltT1NXc09l?=
+ =?utf-8?B?MWcvU1V2UDZWZE1aamhZbGRZZkxDRWp6Sk4rN0UyazVXaC9UTVBLNDN5bTZn?=
+ =?utf-8?B?Q0xKaGkxRW8ySWlqRmdVYWRmTy9pOGs3cnJ2a2RUYitkdGdTMnN0OTR0YnU2?=
+ =?utf-8?B?YW9IcGoxa0VZeWRzMlozK2MzUUdJUXQ3THNPZUJVZDZHUTFhZ09acHBCSWF2?=
+ =?utf-8?B?eXNsamk0eXJjdmk3NTh1eFlITlYrMHRURms5UEhRMWdGTWNxZTJWY1g2eGJ4?=
+ =?utf-8?B?ekcranB6MUpYZU1QWUZlK0JKYXY2eG16cm45YWY4T2xrVUhTQVB6RFVPVk94?=
+ =?utf-8?B?K2JJcjhYeEl5QVNtalpXUkxlS1dXaGFGVk9XRmh1OEdIelhhZGhKcUJPd2Yz?=
+ =?utf-8?B?a2pvT3Zjb0FYNnJHaXk5cnJKVWxpNEdqaG45M3REYi9zbXdwSFpnYXYyaGdp?=
+ =?utf-8?B?dkJaU0tMRWlvSTRmUHBRWHQ1dGU0cjFIQ0lBWldVeW5qN2Z6cUlSMXIvR0Na?=
+ =?utf-8?Q?ehur2H6IaKNRopn0=3D?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 913ee2aa-4b8e-4b39-e045-08da12fe157d
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR07MB4531.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2022 10:06:11.9785
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NkzTZptib9Ua2YWfhBN56PYTzc7P8ujohqclog/Od98PkO0Y68LUhhYiP/77j6aoAz3MvsTRMtteYnGszQMie6/dMm/qkVf8ZHmatuUGko8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR07MB6703
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CONFIG_FSL_85XX_CACHE_SRAM is an option that is not
-user selectable and which is not selected by any driver
-nor any defconfig.
+Hi Slawomir,
 
-Remove it and all associated code.
+Thank you for the patch!
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- .../bindings/powerpc/fsl/cache_sram.txt       |  20 --
- .../powerpc/include/asm/fsl_85xx_cache_sram.h |  35 ---
- arch/powerpc/platforms/85xx/Kconfig           |   9 -
- arch/powerpc/sysdev/Makefile                  |   1 -
- arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h     |  88 -------
- arch/powerpc/sysdev/fsl_85xx_cache_sram.c     | 147 ------------
- arch/powerpc/sysdev/fsl_85xx_l2ctlr.c         | 216 ------------------
- 7 files changed, 516 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/cache_sram.txt
- delete mode 100644 arch/powerpc/include/asm/fsl_85xx_cache_sram.h
- delete mode 100644 arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h
- delete mode 100644 arch/powerpc/sysdev/fsl_85xx_cache_sram.c
- delete mode 100644 arch/powerpc/sysdev/fsl_85xx_l2ctlr.c
+On 31/03/2022 11:56, Slawomir Stepien wrote:
+> From: Slawomir Stepien <slawomir.stepien@nokia.com>
+> 
+> Before this change, the memory pointed by fields 'overlay_tree' and
+> 'fdt' will be double freed by a call to free_overlay_changeset() from
+> of_overlay_apply(), when the init_overlay_changeset() fails.
+> 
+> The first free will happen under 'err_free_tree' label and for the
+> second time under 'err_free_overlay_changeset' label, where we call
+> free_overlay_changeset().
+> 
+> This could happen for example, when you are applying an overlay to a
+> target path that does not exists.
+> 
+> By setting the pointers only when we are sure that
+> init_overlay_changeset() will not fail, will prevent this double free.
+> 
+> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
 
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/cache_sram.txt b/Documentation/devicetree/bindings/powerpc/fsl/cache_sram.txt
-deleted file mode 100644
-index 781955f5217d..000000000000
---- a/Documentation/devicetree/bindings/powerpc/fsl/cache_sram.txt
-+++ /dev/null
-@@ -1,20 +0,0 @@
--* Freescale PQ3 and QorIQ based Cache SRAM
--
--Freescale's mpc85xx and some QorIQ platforms provide an
--option of configuring a part of (or full) cache memory
--as SRAM. This cache SRAM representation in the device
--tree should be done as under:-
--
--Required properties:
--
--- compatible : should be "fsl,p2020-cache-sram"
--- fsl,cache-sram-ctlr-handle : points to the L2 controller
--- reg : offset and length of the cache-sram.
--
--Example:
--
--cache-sram@fff00000 {
--	fsl,cache-sram-ctlr-handle = <&L2>;
--	reg = <0 0xfff00000 0 0x10000>;
--	compatible = "fsl,p2020-cache-sram";
--};
-diff --git a/arch/powerpc/include/asm/fsl_85xx_cache_sram.h b/arch/powerpc/include/asm/fsl_85xx_cache_sram.h
-deleted file mode 100644
-index 0235a0447baa..000000000000
---- a/arch/powerpc/include/asm/fsl_85xx_cache_sram.h
-+++ /dev/null
-@@ -1,35 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-or-later */
--/*
-- * Copyright 2009 Freescale Semiconductor, Inc.
-- *
-- * Cache SRAM handling for QorIQ platform
-- *
-- * Author: Vivek Mahajan <vivek.mahajan@freescale.com>
--
-- * This file is derived from the original work done
-- * by Sylvain Munaut for the Bestcomm SRAM allocator.
-- */
--
--#ifndef __ASM_POWERPC_FSL_85XX_CACHE_SRAM_H__
--#define __ASM_POWERPC_FSL_85XX_CACHE_SRAM_H__
--
--#include <asm/rheap.h>
--#include <linux/spinlock.h>
--
--/*
-- * Cache-SRAM
-- */
--
--struct mpc85xx_cache_sram {
--	phys_addr_t base_phys;
--	void *base_virt;
--	unsigned int size;
--	rh_info_t *rh;
--	spinlock_t lock;
--};
--
--extern void mpc85xx_cache_sram_free(void *ptr);
--extern void *mpc85xx_cache_sram_alloc(unsigned int size,
--				  phys_addr_t *phys, unsigned int align);
--
--#endif /* __AMS_POWERPC_FSL_85XX_CACHE_SRAM_H__ */
-diff --git a/arch/powerpc/platforms/85xx/Kconfig b/arch/powerpc/platforms/85xx/Kconfig
-index 4142ebf01382..2be17ffe8714 100644
---- a/arch/powerpc/platforms/85xx/Kconfig
-+++ b/arch/powerpc/platforms/85xx/Kconfig
-@@ -16,15 +16,6 @@ if FSL_SOC_BOOKE
- 
- if PPC32
- 
--config FSL_85XX_CACHE_SRAM
--	bool
--	select PPC_LIB_RHEAP
--	help
--	  When selected, this option enables cache-sram support
--	  for memory allocation on P1/P2 QorIQ platforms.
--	  cache-sram-size and cache-sram-offset kernel boot
--	  parameters should be passed when this option is enabled.
--
- config BSC9131_RDB
- 	bool "Freescale BSC9131RDB"
- 	select DEFAULT_UIMAGE
-diff --git a/arch/powerpc/sysdev/Makefile b/arch/powerpc/sysdev/Makefile
-index 026b3f01a991..9cb1d029511a 100644
---- a/arch/powerpc/sysdev/Makefile
-+++ b/arch/powerpc/sysdev/Makefile
-@@ -23,7 +23,6 @@ obj-$(CONFIG_FSL_PMC)		+= fsl_pmc.o
- obj-$(CONFIG_FSL_CORENET_RCPM)	+= fsl_rcpm.o
- obj-$(CONFIG_FSL_LBC)		+= fsl_lbc.o
- obj-$(CONFIG_FSL_GTM)		+= fsl_gtm.o
--obj-$(CONFIG_FSL_85XX_CACHE_SRAM)	+= fsl_85xx_l2ctlr.o fsl_85xx_cache_sram.o
- obj-$(CONFIG_FSL_RIO)		+= fsl_rio.o fsl_rmu.o
- obj-$(CONFIG_TSI108_BRIDGE)	+= tsi108_pci.o tsi108_dev.o
- obj-$(CONFIG_RTC_DRV_CMOS)	+= rtc_cmos_setup.o
-diff --git a/arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h b/arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h
-deleted file mode 100644
-index ce370749add9..000000000000
---- a/arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h
-+++ /dev/null
-@@ -1,88 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-or-later */
--/*
-- * Copyright 2009-2010, 2012 Freescale Semiconductor, Inc
-- *
-- * QorIQ based Cache Controller Memory Mapped Registers
-- *
-- * Author: Vivek Mahajan <vivek.mahajan@freescale.com>
-- */
--
--#ifndef __FSL_85XX_CACHE_CTLR_H__
--#define __FSL_85XX_CACHE_CTLR_H__
--
--#define L2CR_L2FI		0x40000000	/* L2 flash invalidate */
--#define L2CR_L2IO		0x00200000	/* L2 instruction only */
--#define L2CR_SRAM_ZERO		0x00000000	/* L2SRAM zero size */
--#define L2CR_SRAM_FULL		0x00010000	/* L2SRAM full size */
--#define L2CR_SRAM_HALF		0x00020000	/* L2SRAM half size */
--#define L2CR_SRAM_TWO_HALFS	0x00030000	/* L2SRAM two half sizes */
--#define L2CR_SRAM_QUART		0x00040000	/* L2SRAM one quarter size */
--#define L2CR_SRAM_TWO_QUARTS	0x00050000	/* L2SRAM two quarter size */
--#define L2CR_SRAM_EIGHTH	0x00060000	/* L2SRAM one eighth size */
--#define L2CR_SRAM_TWO_EIGHTH	0x00070000	/* L2SRAM two eighth size */
--
--#define L2SRAM_OPTIMAL_SZ_SHIFT	0x00000003	/* Optimum size for L2SRAM */
--
--#define L2SRAM_BAR_MSK_LO18	0xFFFFC000	/* Lower 18 bits */
--#define L2SRAM_BARE_MSK_HI4	0x0000000F	/* Upper 4 bits */
--
--enum cache_sram_lock_ways {
--	LOCK_WAYS_ZERO,
--	LOCK_WAYS_EIGHTH,
--	LOCK_WAYS_TWO_EIGHTH,
--	LOCK_WAYS_HALF = 4,
--	LOCK_WAYS_FULL = 8,
--};
--
--struct mpc85xx_l2ctlr {
--	u32	ctl;		/* 0x000 - L2 control */
--	u8	res1[0xC];
--	u32	ewar0;		/* 0x010 - External write address 0 */
--	u32	ewarea0;	/* 0x014 - External write address extended 0 */
--	u32	ewcr0;		/* 0x018 - External write ctrl */
--	u8	res2[4];
--	u32	ewar1;		/* 0x020 - External write address 1 */
--	u32	ewarea1;	/* 0x024 - External write address extended 1 */
--	u32	ewcr1;		/* 0x028 - External write ctrl 1 */
--	u8	res3[4];
--	u32	ewar2;		/* 0x030 - External write address 2 */
--	u32	ewarea2;	/* 0x034 - External write address extended 2 */
--	u32	ewcr2;		/* 0x038 - External write ctrl 2 */
--	u8	res4[4];
--	u32	ewar3;		/* 0x040 - External write address 3 */
--	u32	ewarea3;	/* 0x044 - External write address extended 3 */
--	u32	ewcr3;		/* 0x048 - External write ctrl 3 */
--	u8	res5[0xB4];
--	u32	srbar0;		/* 0x100 - SRAM base address 0 */
--	u32	srbarea0;	/* 0x104 - SRAM base addr reg ext address 0 */
--	u32	srbar1;		/* 0x108 - SRAM base address 1 */
--	u32	srbarea1;	/* 0x10C - SRAM base addr reg ext address 1 */
--	u8	res6[0xCF0];
--	u32	errinjhi;	/* 0xE00 - Error injection mask high */
--	u32	errinjlo;	/* 0xE04 - Error injection mask low */
--	u32	errinjctl;	/* 0xE08 - Error injection tag/ecc control */
--	u8	res7[0x14];
--	u32	captdatahi;	/* 0xE20 - Error data high capture */
--	u32	captdatalo;	/* 0xE24 - Error data low capture */
--	u32	captecc;	/* 0xE28 - Error syndrome */
--	u8	res8[0x14];
--	u32	errdet;		/* 0xE40 - Error detect */
--	u32	errdis;		/* 0xE44 - Error disable */
--	u32	errinten;	/* 0xE48 - Error interrupt enable */
--	u32	errattr;	/* 0xE4c - Error attribute capture */
--	u32	erradrrl;	/* 0xE50 - Error address capture low */
--	u32	erradrrh;	/* 0xE54 - Error address capture high */
--	u32	errctl;		/* 0xE58 - Error control */
--	u8	res9[0x1A4];
--};
--
--struct sram_parameters {
--	unsigned int sram_size;
--	phys_addr_t sram_offset;
--};
--
--extern int instantiate_cache_sram(struct platform_device *dev,
--		struct sram_parameters sram_params);
--extern void remove_cache_sram(struct platform_device *dev);
--
--#endif /* __FSL_85XX_CACHE_CTLR_H__ */
-diff --git a/arch/powerpc/sysdev/fsl_85xx_cache_sram.c b/arch/powerpc/sysdev/fsl_85xx_cache_sram.c
-deleted file mode 100644
-index a3aeaa5f0f1b..000000000000
---- a/arch/powerpc/sysdev/fsl_85xx_cache_sram.c
-+++ /dev/null
-@@ -1,147 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-or-later
--/*
-- * Copyright 2009-2010 Freescale Semiconductor, Inc.
-- *
-- * Simple memory allocator abstraction for QorIQ (P1/P2) based Cache-SRAM
-- *
-- * Author: Vivek Mahajan <vivek.mahajan@freescale.com>
-- *
-- * This file is derived from the original work done
-- * by Sylvain Munaut for the Bestcomm SRAM allocator.
-- */
--
--#include <linux/kernel.h>
--#include <linux/export.h>
--#include <linux/slab.h>
--#include <linux/err.h>
--#include <linux/of_platform.h>
--#include <linux/pgtable.h>
--#include <asm/fsl_85xx_cache_sram.h>
--
--#include "fsl_85xx_cache_ctlr.h"
--
--struct mpc85xx_cache_sram *cache_sram;
--
--void *mpc85xx_cache_sram_alloc(unsigned int size,
--				phys_addr_t *phys, unsigned int align)
--{
--	unsigned long offset;
--	unsigned long flags;
--
--	if (unlikely(cache_sram == NULL))
--		return NULL;
--
--	if (!size || (size > cache_sram->size) || (align > cache_sram->size)) {
--		pr_err("%s(): size(=%x) or align(=%x) zero or too big\n",
--			__func__, size, align);
--		return NULL;
--	}
--
--	if ((align & (align - 1)) || align <= 1) {
--		pr_err("%s(): align(=%x) must be power of two and >1\n",
--			__func__, align);
--		return NULL;
--	}
--
--	spin_lock_irqsave(&cache_sram->lock, flags);
--	offset = rh_alloc_align(cache_sram->rh, size, align, NULL);
--	spin_unlock_irqrestore(&cache_sram->lock, flags);
--
--	if (IS_ERR_VALUE(offset))
--		return NULL;
--
--	*phys = cache_sram->base_phys + offset;
--
--	return (unsigned char *)cache_sram->base_virt + offset;
--}
--EXPORT_SYMBOL(mpc85xx_cache_sram_alloc);
--
--void mpc85xx_cache_sram_free(void *ptr)
--{
--	unsigned long flags;
--	BUG_ON(!ptr);
--
--	spin_lock_irqsave(&cache_sram->lock, flags);
--	rh_free(cache_sram->rh, ptr - cache_sram->base_virt);
--	spin_unlock_irqrestore(&cache_sram->lock, flags);
--}
--EXPORT_SYMBOL(mpc85xx_cache_sram_free);
--
--int __init instantiate_cache_sram(struct platform_device *dev,
--		struct sram_parameters sram_params)
--{
--	int ret = 0;
--
--	if (cache_sram) {
--		dev_err(&dev->dev, "Already initialized cache-sram\n");
--		return -EBUSY;
--	}
--
--	cache_sram = kzalloc(sizeof(struct mpc85xx_cache_sram), GFP_KERNEL);
--	if (!cache_sram) {
--		dev_err(&dev->dev, "Out of memory for cache_sram structure\n");
--		return -ENOMEM;
--	}
--
--	cache_sram->base_phys = sram_params.sram_offset;
--	cache_sram->size = sram_params.sram_size;
--
--	if (!request_mem_region(cache_sram->base_phys, cache_sram->size,
--						"fsl_85xx_cache_sram")) {
--		dev_err(&dev->dev, "%pOF: request memory failed\n",
--				dev->dev.of_node);
--		ret = -ENXIO;
--		goto out_free;
--	}
--
--	cache_sram->base_virt = ioremap_coherent(cache_sram->base_phys,
--						 cache_sram->size);
--	if (!cache_sram->base_virt) {
--		dev_err(&dev->dev, "%pOF: ioremap_coherent failed\n",
--			dev->dev.of_node);
--		ret = -ENOMEM;
--		goto out_release;
--	}
--
--	cache_sram->rh = rh_create(sizeof(unsigned int));
--	if (IS_ERR(cache_sram->rh)) {
--		dev_err(&dev->dev, "%pOF: Unable to create remote heap\n",
--				dev->dev.of_node);
--		ret = PTR_ERR(cache_sram->rh);
--		goto out_unmap;
--	}
--
--	rh_attach_region(cache_sram->rh, 0, cache_sram->size);
--	spin_lock_init(&cache_sram->lock);
--
--	dev_info(&dev->dev, "[base:0x%llx, size:0x%x] configured and loaded\n",
--		(unsigned long long)cache_sram->base_phys, cache_sram->size);
--
--	return 0;
--
--out_unmap:
--	iounmap(cache_sram->base_virt);
--
--out_release:
--	release_mem_region(cache_sram->base_phys, cache_sram->size);
--
--out_free:
--	kfree(cache_sram);
--	return ret;
--}
--
--void remove_cache_sram(struct platform_device *dev)
--{
--	BUG_ON(!cache_sram);
--
--	rh_detach_region(cache_sram->rh, 0, cache_sram->size);
--	rh_destroy(cache_sram->rh);
--
--	iounmap(cache_sram->base_virt);
--	release_mem_region(cache_sram->base_phys, cache_sram->size);
--
--	kfree(cache_sram);
--	cache_sram = NULL;
--
--	dev_info(&dev->dev, "MPC85xx Cache-SRAM driver unloaded\n");
--}
-diff --git a/arch/powerpc/sysdev/fsl_85xx_l2ctlr.c b/arch/powerpc/sysdev/fsl_85xx_l2ctlr.c
-deleted file mode 100644
-index 2d0af0c517bb..000000000000
---- a/arch/powerpc/sysdev/fsl_85xx_l2ctlr.c
-+++ /dev/null
-@@ -1,216 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-or-later
--/*
-- * Copyright 2009-2010, 2012 Freescale Semiconductor, Inc.
-- *
-- * QorIQ (P1/P2) L2 controller init for Cache-SRAM instantiation
-- *
-- * Author: Vivek Mahajan <vivek.mahajan@freescale.com>
-- */
--
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <linux/of_platform.h>
--#include <asm/io.h>
--
--#include "fsl_85xx_cache_ctlr.h"
--
--static char *sram_size;
--static char *sram_offset;
--struct mpc85xx_l2ctlr __iomem *l2ctlr;
--
--static int get_cache_sram_params(struct sram_parameters *sram_params)
--{
--	unsigned long long addr;
--	unsigned int size;
--
--	if (!sram_size || (kstrtouint(sram_size, 0, &size) < 0))
--		return -EINVAL;
--
--	if (!sram_offset || (kstrtoull(sram_offset, 0, &addr) < 0))
--		return -EINVAL;
--
--	sram_params->sram_offset = addr;
--	sram_params->sram_size = size;
--
--	return 0;
--}
--
--static int __init get_size_from_cmdline(char *str)
--{
--	if (!str)
--		return 0;
--
--	sram_size = str;
--	return 1;
--}
--
--static int __init get_offset_from_cmdline(char *str)
--{
--	if (!str)
--		return 0;
--
--	sram_offset = str;
--	return 1;
--}
--
--__setup("cache-sram-size=", get_size_from_cmdline);
--__setup("cache-sram-offset=", get_offset_from_cmdline);
--
--static int mpc85xx_l2ctlr_of_probe(struct platform_device *dev)
--{
--	long rval;
--	unsigned int rem;
--	unsigned char ways;
--	const unsigned int *prop;
--	unsigned int l2cache_size;
--	struct sram_parameters sram_params;
--
--	if (!dev->dev.of_node) {
--		dev_err(&dev->dev, "Device's OF-node is NULL\n");
--		return -EINVAL;
--	}
--
--	prop = of_get_property(dev->dev.of_node, "cache-size", NULL);
--	if (!prop) {
--		dev_err(&dev->dev, "Missing L2 cache-size\n");
--		return -EINVAL;
--	}
--	l2cache_size = *prop;
--
--	if (get_cache_sram_params(&sram_params))
--		return 0; /* fall back to L2 cache only */
--
--	rem = l2cache_size % sram_params.sram_size;
--	ways = LOCK_WAYS_FULL * sram_params.sram_size / l2cache_size;
--	if (rem || (ways & (ways - 1))) {
--		dev_err(&dev->dev, "Illegal cache-sram-size in command line\n");
--		return -EINVAL;
--	}
--
--	l2ctlr = of_iomap(dev->dev.of_node, 0);
--	if (!l2ctlr) {
--		dev_err(&dev->dev, "Can't map L2 controller\n");
--		return -EINVAL;
--	}
--
--	/*
--	 * Write bits[0-17] to srbar0
--	 */
--	out_be32(&l2ctlr->srbar0,
--		lower_32_bits(sram_params.sram_offset) & L2SRAM_BAR_MSK_LO18);
--
--	/*
--	 * Write bits[18-21] to srbare0
--	 */
--#ifdef CONFIG_PHYS_64BIT
--	out_be32(&l2ctlr->srbarea0,
--		upper_32_bits(sram_params.sram_offset) & L2SRAM_BARE_MSK_HI4);
--#endif
--
--	clrsetbits_be32(&l2ctlr->ctl, L2CR_L2E, L2CR_L2FI);
--
--	switch (ways) {
--	case LOCK_WAYS_EIGHTH:
--		setbits32(&l2ctlr->ctl,
--			L2CR_L2E | L2CR_L2FI | L2CR_SRAM_EIGHTH);
--		break;
--
--	case LOCK_WAYS_TWO_EIGHTH:
--		setbits32(&l2ctlr->ctl,
--			L2CR_L2E | L2CR_L2FI | L2CR_SRAM_QUART);
--		break;
--
--	case LOCK_WAYS_HALF:
--		setbits32(&l2ctlr->ctl,
--			L2CR_L2E | L2CR_L2FI | L2CR_SRAM_HALF);
--		break;
--
--	case LOCK_WAYS_FULL:
--	default:
--		setbits32(&l2ctlr->ctl,
--			L2CR_L2E | L2CR_L2FI | L2CR_SRAM_FULL);
--		break;
--	}
--	eieio();
--
--	rval = instantiate_cache_sram(dev, sram_params);
--	if (rval < 0) {
--		dev_err(&dev->dev, "Can't instantiate Cache-SRAM\n");
--		iounmap(l2ctlr);
--		return -EINVAL;
--	}
--
--	return 0;
--}
--
--static int mpc85xx_l2ctlr_of_remove(struct platform_device *dev)
--{
--	BUG_ON(!l2ctlr);
--
--	iounmap(l2ctlr);
--	remove_cache_sram(dev);
--	dev_info(&dev->dev, "MPC85xx L2 controller unloaded\n");
--
--	return 0;
--}
--
--static const struct of_device_id mpc85xx_l2ctlr_of_match[] = {
--	{
--		.compatible = "fsl,p2020-l2-cache-controller",
--	},
--	{
--		.compatible = "fsl,p2010-l2-cache-controller",
--	},
--	{
--		.compatible = "fsl,p1020-l2-cache-controller",
--	},
--	{
--		.compatible = "fsl,p1011-l2-cache-controller",
--	},
--	{
--		.compatible = "fsl,p1013-l2-cache-controller",
--	},
--	{
--		.compatible = "fsl,p1022-l2-cache-controller",
--	},
--	{
--		.compatible = "fsl,mpc8548-l2-cache-controller",
--	},
--	{	.compatible = "fsl,mpc8544-l2-cache-controller",},
--	{	.compatible = "fsl,mpc8572-l2-cache-controller",},
--	{	.compatible = "fsl,mpc8536-l2-cache-controller",},
--	{	.compatible = "fsl,p1021-l2-cache-controller",},
--	{	.compatible = "fsl,p1012-l2-cache-controller",},
--	{	.compatible = "fsl,p1025-l2-cache-controller",},
--	{	.compatible = "fsl,p1016-l2-cache-controller",},
--	{	.compatible = "fsl,p1024-l2-cache-controller",},
--	{	.compatible = "fsl,p1015-l2-cache-controller",},
--	{	.compatible = "fsl,p1010-l2-cache-controller",},
--	{	.compatible = "fsl,bsc9131-l2-cache-controller",},
--	{},
--};
--
--static struct platform_driver mpc85xx_l2ctlr_of_platform_driver = {
--	.driver	= {
--		.name		= "fsl-l2ctlr",
--		.of_match_table	= mpc85xx_l2ctlr_of_match,
--	},
--	.probe		= mpc85xx_l2ctlr_of_probe,
--	.remove		= mpc85xx_l2ctlr_of_remove,
--};
--
--static __init int mpc85xx_l2ctlr_of_init(void)
--{
--	return platform_driver_register(&mpc85xx_l2ctlr_of_platform_driver);
--}
--
--static void __exit mpc85xx_l2ctlr_of_exit(void)
--{
--	platform_driver_unregister(&mpc85xx_l2ctlr_of_platform_driver);
--}
--
--subsys_initcall(mpc85xx_l2ctlr_of_init);
--module_exit(mpc85xx_l2ctlr_of_exit);
--
--MODULE_DESCRIPTION("Freescale MPC85xx L2 controller init");
--MODULE_LICENSE("GPL v2");
+Reviewed-by: Alexander Sverdlin <alexander.sverdlin@nokia.com>
+
+> ---
+>  drivers/of/overlay.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index d80160cf34bb..a72a9a415f8f 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -750,9 +750,6 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
+>  	if (!of_node_is_root(tree))
+>  		pr_debug("%s() tree is not root\n", __func__);
+>  
+> -	ovcs->overlay_tree = tree;
+> -	ovcs->fdt = fdt;
+> -
+>  	INIT_LIST_HEAD(&ovcs->ovcs_list);
+>  
+>  	of_changeset_init(&ovcs->cset);
+> @@ -829,6 +826,8 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
+>  		goto err_free_fragments;
+>  	}
+>  
+> +	ovcs->overlay_tree = tree;
+> +	ovcs->fdt = fdt;
+>  	ovcs->id = id;
+>  	ovcs->count = cnt;
+>  	ovcs->fragments = fragments;
+
 -- 
-2.35.1
-
+Best regards,
+Alexander Sverdlin.
