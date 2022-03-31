@@ -2,64 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 654EF4EE2CE
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 22:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD324EE2D1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 22:46:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240530AbiCaUqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 16:46:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
+        id S239075AbiCaUrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 16:47:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234435AbiCaUqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 16:46:47 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8992A522D2;
-        Thu, 31 Mar 2022 13:44:58 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id b188so734734oia.13;
-        Thu, 31 Mar 2022 13:44:58 -0700 (PDT)
+        with ESMTP id S234435AbiCaUrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 16:47:43 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63C01DFDC4
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:45:54 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id r13so1765738ejd.5
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:45:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=hrushPIifaJMbhX/D5OgtEyyLGYhBGFXWtYmvQr1CG8=;
+        b=Kgtyd0AkXJGT1r4sxTxz17MzmIjQdk+iU+hsHcUzIJT6EnymL6nQqAaCaW7RHLEJCB
+         F+XOmMjF/1lm04ymqZvJknr7zLRXTIUUnjfLYlEm2ZpPttRsVYdyV946NKJ1UILanT+f
+         S6ebmyeG8Q+oi0v4kZcewNUkTa0L0sXrzO/5x9rbgUN5y5uyRt1ZyqB37Esi82UlLP8E
+         256GWHvL5UEAhri/4mfKzoR1cx++q7/PRErD8j3MN3kW0yLZ/u1YuXg8adshwiUpVB0U
+         6fhwBXel+g3HLeMirOVQ7veGewBkytIcGvllCDlQ+SPGFvR0E/IkrXnVcWPd7h1ECSgX
+         zuzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fGtAk0+XCya2tuDgY9VrbuZe8tnyjhnFimlASLoNPI8=;
-        b=F5vPyLcPsYpRO6ShpLxMM3JMYtw3qcnLZWjzcPfPZFwv1NHjTvVPXUj/2qYZpjsFzD
-         Ge+XdX2tgBY+Jk63wxobt2QNbGFGjZtjzOHB0WLrLXti5bb7l2lJHzUZw0TFSUeGNmDL
-         2ZAbAzJEPTmjXIMyZ/EiSKr9K0/A4OQRdNQURdsWMlFiYfzNQNOVRBuftqPFY6bW/p+m
-         O36XFTTOWbScvdoV3Jb0o9j1c7HTX5KED1AGWEkmiAQHlxOcwJoj7W+xBXQc46LLt9hS
-         Qsqb9dfxxwea1x7vNvjLdrxAhofoighovRl3CyCaVzsJ1jcCWGwfYWoO8J/yaW2CmcJ2
-         lcgg==
-X-Gm-Message-State: AOAM5313llfqmBal46IfRi3rcefeELILnxZvZwjXLo+RdSqYkxO+5ovP
-        Xx+s+cJ+ocNObN4zVYfyUesT98W+AA==
-X-Google-Smtp-Source: ABdhPJw3anR6siPHibQz2MGfN4iffr/8wQurbIagIlKD/2cmHXZ0tfwA8JUognsm1JUZEWJ+Xerd6A==
-X-Received: by 2002:a05:6808:1402:b0:2da:b72:74f2 with SMTP id w2-20020a056808140200b002da0b7274f2mr3333790oiv.113.1648759497901;
-        Thu, 31 Mar 2022 13:44:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h6-20020a9d7986000000b005ce0d5433cdsm275155otm.15.2022.03.31.13.44.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 13:44:57 -0700 (PDT)
-Received: (nullmailer pid 1462775 invoked by uid 1000);
-        Thu, 31 Mar 2022 20:44:56 -0000
-Date:   Thu, 31 Mar 2022 15:44:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Qin Jian <qinjian@cqplus1.com>
-Cc:     arnd@arndb.de, linux-clk@vger.kernel.org, p.zabel@pengutronix.de,
-        maz@kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org,
-        linux@armlinux.org.uk, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski@canonical.com,
-        tglx@linutronix.de
-Subject: Re: [PATCH v12 6/9] dt-bindings: interrupt-controller: Add bindings
- for SP7021 interrupt controller
-Message-ID: <YkYSyHVGsXkGs0uf@robh.at.kernel.org>
-References: <cover.1648714851.git.qinjian@cqplus1.com>
- <ff5bfd5611ab0defe0c98f98edbbf655e33cd16d.1648714851.git.qinjian@cqplus1.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=hrushPIifaJMbhX/D5OgtEyyLGYhBGFXWtYmvQr1CG8=;
+        b=wOnI/GE52fNDn8zN2IFUinmTUt3w5vqFsy/OJ121XIoUEO29w8ODbT/M8q0xQCNhNt
+         RNp3/oEvGIyqdN3Q8LHMopVtOKPR/7FxMs52+UbBdKc4vU4fOOOYWuwpGwAO3jBGnt4K
+         EYhss4asjnp7zYankw/fdR9vR3YyVFpTLKmyXET8ZHLPtCZuNASPCcNqfzJ6yJNHRqxq
+         PIraUtF60V996Nip19R0NscWI8bDJHjosWvQ2kmsTK31QHcMZQhjrN2kh1gKTSHflC9t
+         mwXbzKtbVccf3r/1kJBNTnKMJFuctQJB3WMNV9sRLTqYzSjf449NhifE77zi6hBDr8DA
+         vW+Q==
+X-Gm-Message-State: AOAM533xG8ro9BJuZHhLuViTS89+mxCAx6rk0ky6xDnTLdBsRlMbm3TJ
+        rtWXqMKkOxH2O6XAmxAjuVfV8w==
+X-Google-Smtp-Source: ABdhPJxQcTE7XkMAIVQK9kiJTdoua6mXCjN4D0gpGnHKyw5vjpQMMkd5Fpxe0nf8+F+y4YhzSVFbsw==
+X-Received: by 2002:a17:907:7f09:b0:6e0:395d:cc88 with SMTP id qf9-20020a1709077f0900b006e0395dcc88mr6675257ejc.566.1648759553334;
+        Thu, 31 Mar 2022 13:45:53 -0700 (PDT)
+Received: from [192.168.0.168] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id i25-20020a056402055900b004191a652e3bsm233329edx.30.2022.03.31.13.45.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 13:45:52 -0700 (PDT)
+Message-ID: <dce02cb9-c173-f1c5-a645-461d314e467a@linaro.org>
+Date:   Thu, 31 Mar 2022 22:45:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ff5bfd5611ab0defe0c98f98edbbf655e33cd16d.1648714851.git.qinjian@cqplus1.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+ <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
+ <YkR57poibmnvmkjk@shell.armlinux.org.uk>
+ <259ac0f4-50e9-291b-9ed3-91b52840fb9e@linaro.org>
+In-Reply-To: <259ac0f4-50e9-291b-9ed3-91b52840fb9e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,23 +77,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Mar 2022 16:29:53 +0800, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 interrupt controller bindings.
+On 30/03/2022 18:51, Krzysztof Kozlowski wrote:
+> On 30/03/2022 17:40, Russell King (Oracle) wrote:
+>>
+>>>> +
+>>>> +  - | # Serdes to PHY to SFP connection
+>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>
+>>> Are you sure it works fine? Double define?
+>>
+>> Err what? Sorry, I don't understand what you're saying here, please
+>> explain what the issue is.
 > 
-> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
-> ---
-> Move 'reg' after 'compatible'
-> ---
->  .../sunplus,sp7021-intc.yaml                  | 62 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
-> 
+> Including the same header twice causes duplicate defines, which should
+> be visible when testing the binding.
 
+I don't see such errors now, so either something changed or I confused
+with something else. It should work, so let's skip my comment here.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Best regards,
+Krzysztof
