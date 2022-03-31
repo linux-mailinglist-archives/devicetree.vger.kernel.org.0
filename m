@@ -2,153 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDB554ED9FD
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4D54ED9F1
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236448AbiCaM7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:59:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49166 "EHLO
+        id S236372AbiCaM6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:58:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236426AbiCaM67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:58:59 -0400
-Received: from hillosipuli.retiisi.eu (hillosipuli.retiisi.eu [IPv6:2a01:4f9:c010:4572::81:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99CA213517;
-        Thu, 31 Mar 2022 05:57:09 -0700 (PDT)
-Received: from lanttu.localdomain (unknown [IPv6:fd35:1bc8:1a6:d3d5::c1:2])
-        by hillosipuli.retiisi.eu (Postfix) with ESMTP id 4C828634C96;
-        Thu, 31 Mar 2022 15:57:05 +0300 (EEST)
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     linux-acpi@vger.kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
-        "Rafael J.Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        with ESMTP id S236475AbiCaM6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:58:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01402128D9;
+        Thu, 31 Mar 2022 05:56:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D1CE1617C0;
+        Thu, 31 Mar 2022 12:56:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84ED6C340F2;
+        Thu, 31 Mar 2022 12:56:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648731372;
+        bh=DfI4w1o+FCYxsAC0rPn+xFaT1PUgndy6Pzulupfti64=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k/1uDpG0COuH/xMycH1jXEnaAzYEpDjT5p7kU8rL4PHWzMMQXC+b+2cYoSf0m2F12
+         qxbJx8hW/8ikoGtSzP79VFsft4uHhbHea2hb00KmUMLsNcb/lBaBICgpkEhL1kfrRR
+         FhCaLlT9xc5IhKlKDyMom56/wnaMhWeIgHSM72t9LH7QgBaWFcjznoWhPtebcvDsGz
+         R1qbHGThUeONUvt2Ahw6SsUmSNlNGcl4G4rEcY8ubwIecE37Y8mMekI9I/iwHiK226
+         ueWktgb253XuGKtf35tC2WuDIaiSIUvtbZj123P2me2Gpmf7oaNVeKDksy+TMEQyWt
+         z8+yBENsT3S1A==
+Date:   Thu, 31 Mar 2022 13:56:06 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
+Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 4/4] device property: Add irq_get to fwnode operation
-Date:   Thu, 31 Mar 2022 15:54:50 +0300
-Message-Id: <20220331125450.218045-5-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220331125450.218045-1-sakari.ailus@linux.intel.com>
-References: <20220331125450.218045-1-sakari.ailus@linux.intel.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [RFC PATCH 5/5] ASoC: Add macaudio machine driver
+Message-ID: <YkWk5vvBlC/Orpdr@sirena.org.uk>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <20220331000449.41062-6-povik+lin@cutebit.org>
+ <YkWXs/f7edZwg1+W@sirena.org.uk>
+ <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2p1SKEdgaX+tzFpw"
+Content-Disposition: inline
+In-Reply-To: <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
+X-Cookie: Reunite Gondwondaland!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add irq_get() fwnode operation to implement fwnode_irq_get() through
-fwnode operations, moving the code in fwnode_irq_get() to OF and ACPI
-frameworks.
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/acpi/property.c | 14 ++++++++++++++
- drivers/base/property.c | 12 +-----------
- drivers/of/property.c   |  7 +++++++
- include/linux/fwnode.h  |  1 +
- 4 files changed, 23 insertions(+), 11 deletions(-)
+--2p1SKEdgaX+tzFpw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/acpi/property.c b/drivers/acpi/property.c
-index 75dc22c117a5..1ad5f097c33a 100644
---- a/drivers/acpi/property.c
-+++ b/drivers/acpi/property.c
-@@ -1391,6 +1391,19 @@ static int acpi_fwnode_graph_parse_endpoint(const struct fwnode_handle *fwnode,
- 	return 0;
- }
- 
-+static int acpi_fwnode_irq_get(const struct fwnode_handle *fwnode,
-+			       unsigned int index)
-+{
-+	struct resource res;
-+	int ret;
-+
-+	ret = acpi_irq_get(ACPI_HANDLE_FWNODE(fwnode), index, &res);
-+	if (ret)
-+		return ret;
-+
-+	return res.start;
-+}
-+
- #define DECLARE_ACPI_FWNODE_OPS(ops) \
- 	const struct fwnode_operations ops = {				\
- 		.device_is_available = acpi_fwnode_device_is_available, \
-@@ -1415,6 +1428,7 @@ static int acpi_fwnode_graph_parse_endpoint(const struct fwnode_handle *fwnode,
- 			acpi_graph_get_remote_endpoint,			\
- 		.graph_get_port_parent = acpi_fwnode_get_parent,	\
- 		.graph_parse_endpoint = acpi_fwnode_graph_parse_endpoint, \
-+		.irq_get = acpi_fwnode_irq_get,				\
- 	};								\
- 	EXPORT_SYMBOL_GPL(ops)
- 
-diff --git a/drivers/base/property.c b/drivers/base/property.c
-index 83dd22e7cb81..3560c4419d11 100644
---- a/drivers/base/property.c
-+++ b/drivers/base/property.c
-@@ -901,17 +901,7 @@ EXPORT_SYMBOL(fwnode_iomap);
-  */
- int fwnode_irq_get(const struct fwnode_handle *fwnode, unsigned int index)
- {
--	struct resource res;
--	int ret;
--
--	if (is_of_node(fwnode))
--		return of_irq_get(to_of_node(fwnode), index);
--
--	ret = acpi_irq_get(ACPI_HANDLE_FWNODE(fwnode), index, &res);
--	if (ret)
--		return ret;
--
--	return res.start;
-+	return fwnode_call_int_op(fwnode, irq_get, index);
- }
- EXPORT_SYMBOL(fwnode_irq_get);
- 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index ac2aa5221069..9a50ad25906e 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1474,6 +1474,12 @@ static void __iomem *of_fwnode_iomap(struct fwnode_handle *fwnode, int index)
- #endif
- }
- 
-+static int of_fwnode_irq_get(const struct fwnode_handle *fwnode,
-+			     unsigned int index)
-+{
-+	return of_irq_get(to_of_node(fwnode), index);
-+}
-+
- static int of_fwnode_add_links(struct fwnode_handle *fwnode)
- {
- 	struct property *p;
-@@ -1512,6 +1518,7 @@ const struct fwnode_operations of_fwnode_ops = {
- 	.graph_get_port_parent = of_fwnode_graph_get_port_parent,
- 	.graph_parse_endpoint = of_fwnode_graph_parse_endpoint,
- 	.iomap = of_fwnode_iomap,
-+	.irq_get = of_fwnode_irq_get,
- 	.add_links = of_fwnode_add_links,
- };
- EXPORT_SYMBOL_GPL(of_fwnode_ops);
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index ebbc3bf03f95..6ab69871b06d 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -149,6 +149,7 @@ struct fwnode_operations {
- 	int (*graph_parse_endpoint)(const struct fwnode_handle *fwnode,
- 				    struct fwnode_endpoint *endpoint);
- 	void __iomem *(*iomap)(struct fwnode_handle *fwnode, int index);
-+	int (*irq_get)(const struct fwnode_handle *fwnode, unsigned int index);
- 	int (*add_links)(struct fwnode_handle *fwnode);
- };
- 
--- 
-2.30.2
+On Thu, Mar 31, 2022 at 02:08:51PM +0200, Martin Povi=C5=A1er wrote:
+> > On 31. 3. 2022, at 13:59, Mark Brown <broonie@kernel.org> wrote:
 
+> >> +	for_each_rtd_components(rtd, i, component)
+> >> +		snd_soc_component_set_jack(component, &ma->jack, NULL);
+
+> > What is the jack configuration this is attempting to describe?  It looks
+> > like you have some dedicated speaker driver devices which are going to
+> > get attached to jacks here for example.
+
+> We know the speakers will ignore the set_jack call. There=E2=80=99s one j=
+ack and
+> this way we know the jack codec will attach to it, for speakers it=E2=80=
+=99s a no-op.
+> (If you prefer I will special-case it to the jack codec.)
+
+It would be better to special case, this looks obviously wrong and will
+break if someone adds error handling.
+
+> >> +	return !strcmp(name, pattern);
+> >> +}
+
+> > This looks worryingly like use case configuration.
+
+> I go over this in the cover letter! This is fixing the TDM slot selection
+> and disabling voltage/current sensing on the speaker amp codecs, which ha=
+ve
+> no business being exposed to userspace as options. This is not use case,
+> this not letting people blow their speakers from userspace.
+
+Your comments in the cover letter are all pretty vague too, that just
+says that these controls are "ridiculous" which isn't terribly specific
+about what the actual goal is.  If it's just "I can't see why anyone
+would want to configure this" then that's a decision you're taking about
+what people might want to do which is broadly a use case configuration
+and the control should be left there in case someone comes up with an
+idea.
+
+--2p1SKEdgaX+tzFpw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJFpOUACgkQJNaLcl1U
+h9CYzQf/Y08TIa0AXiiPTKniPzL9m3d7ArsJSmeKBxGOiqTtZ7kzWb4ElKSSGfRR
+SQBABq69Qoxq9aWhUfdocdGNf3I/MtDc8k0XUs4bO3MQgKJ0WIivkGNpRPield9D
+tbiVirXSxTSN28zrzJHzZZti6MVAFNCRjlrF+qOhAH2K6qKQNwcFwOYSFEjQaGLp
+noni9E2T7cwSkwem3gxTP6FDHdT2ivx3fwBArNpZ3WqWwK+3cBrlSD+pMYoPdWVD
+PMv8/IfgYHYm+ojMI6ILkAic1KojFLwM1stvNfFtR7fOO8QJEeSfPhKg18zLwvHj
+N1ZH9xNFrO4kKrMnwL7uEZAtBTHoGQ==
+=khz2
+-----END PGP SIGNATURE-----
+
+--2p1SKEdgaX+tzFpw--
