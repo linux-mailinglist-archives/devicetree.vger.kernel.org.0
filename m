@@ -2,224 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F29D4ED450
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:00:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD5D4ED457
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:03:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231574AbiCaHCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 03:02:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56214 "EHLO
+        id S231642AbiCaHFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 03:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230463AbiCaHCa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:02:30 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017391EE8F7;
-        Thu, 31 Mar 2022 00:00:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nczkmHb3KeXtiZ2AudzfZ4UlZBiiFTJiReDmNJAXX3Bt7Bp9w7xNA70eYDXIgoZPpj7aV3Bw4JE0YGGoWQCv0ThvyYuEDNMh/dYspPj+zovZpOjaq1pjr0fD5K2/TbkX7oYv1vs1AYElJVaXa/X+/Y+/s9MOXqcMbCZ2rtNntk6nsA5ypyEZIPDfbpOvhE3rw3F55hBF0jvQyHiWTn+9S9iE+8sDFw2Y2KBiOUojIYTO6P1TXy7KYPcbdz2l9kP1p/nQ2/8GGEmJPBzRMEzU8nC+YK6Niw5L6LAJ43zH0lvrWzhGDUbfODO/Qh7JPXOmqfZeW9w8ktLyx/ro/4dYGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qeu5vCOhQL8VfRrfNcTI5X8v1W1CN/Ul859YGrUQBkg=;
- b=S2nfHxjU7ofNeIa9EtRqmsjQ80Tv2ETva9pwV6ddRYZGYnEUR0owyuhjRRXlakxtKeDd4DAaPqOuzEgSsYfY8BFAKBLEssJYcWIk2O6PFJ/UY4rCUnumRcHdKjZunPuFB9Kg1wWpbOqiFTePBmJqB/FSOCYj+59vAMV0wSJw/ERk2fEQ2Qmcc2Qi3/nHWcqt/Y4gO41yQOUGRYUcQPfKVivkPd+8Bt7sxBxdq7pf7qpziSgi7cIloBW7kxjFvI1FGuliT4rpgC07dkXHlzgYCXFJ8KUJleZf9zlAfpaUTaTWEyrXbvbx4R+3ShVpZ4gRciEEeUh7R78NUpCj0fxhfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qeu5vCOhQL8VfRrfNcTI5X8v1W1CN/Ul859YGrUQBkg=;
- b=e9P5i6Et11jmM7L2w3BE8ipXfF7aw5E9i7MkraCBuAEFDhX4vAIcgEEzkBb4g4orFh4vsIwdr3A+oardGNG6TLxqiV10wp3SQQF/T5MRITZcaauE/LNNRWnvd8RaP86YwBuN2Z1EQVI66H3g7wRzDT212o6sE2pfHpHy/Mvvf7MFO8XvZ3PU7teKSRGtB6UxM+WCt2JqzAH9ptVsAO4+7pq4KWxOx0/ItO7pWjdwz8gnHaStbXtdWWXBqDOPNfXLmr/+zdYb9mQzJesDmPcnCM+Z4bcI0llOWrWvKhg8u9D2bo00p1lJ1KVoc2/t5/hUHd1ZYRqOuqhgknfleJqtaw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- BY5PR12MB4020.namprd12.prod.outlook.com (2603:10b6:a03:196::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.21; Thu, 31 Mar
- 2022 07:00:42 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::10ef:dc56:bb21:76f6]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::10ef:dc56:bb21:76f6%4]) with mapi id 15.20.5123.019; Thu, 31 Mar 2022
- 07:00:42 +0000
-Message-ID: <cfc6a2ac-1489-e221-f262-aab0ad5b701c@nvidia.com>
-Date:   Thu, 31 Mar 2022 08:00:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [Patch v2 2/4] dt-bindings: arm: tegra: Add bindins for
- nvidia,tegra-ccplex-cluster
-Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        treding@nvidia.com, linux-pm@vger.kernel.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ksitaraman@nvidia.com, sanjayc@nvidia.com, bbasu@nvidia.com
-References: <20220330143819.27476-1-sumitg@nvidia.com>
- <20220330143819.27476-3-sumitg@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20220330143819.27476-3-sumitg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0516.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:13b::23) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 15234587-dd2e-46ad-7221-08da12e42b88
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4020:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4020425CB0630D3A77BC3D6ED9E19@BY5PR12MB4020.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B8RJLzBPn8U5evqVVogVKnLK+PR0nk+LbgUuMwgz1otSAudwAdnyGyGYhwMuDPDxjSzDuS6WgYWQQnIjJXICJui0OBwTF+CeOgIpFWw7cFdpZfPnDmHRxno5KLjqAJ7/5/vxpZhpADKalETnZ9uttn8SkadkbKPXDSWV9NM1oX+bNgxqreJoCkgLZ6KPFtbkma0CzTKylLZpiDwtFob1D1biSzlhpXr0YJsWNpPFSw72rvbGTwHhgxRfqmxAIoanDfXN9YQUt8RFlL7HSEczQ+RD4rScOz2WkyW6agiERXDczQfqFjCTRgBBs9YZwveCUvdEaNtfxJVI+a8DEiDINz2Wsft//GN9IsFO3t7gWvY+U7ochM/qw5XgM/gmSL4iwgKDWBVp5KbLIohgls4csu4Q6E6daMwqOXClATTev+/oRq1X30mx3ChP+T5bpoQ4sa1fomk78CSN3Nqh0RU8XzybuoZg1SrbkaQyn9OcMi7cun4E+ZehQNIU39OYa0IwTtrle6wnWOO0qoJeDFwRJf30kMzLdrnLVHngVgbfOo9vb3kmNOa7FK5TeuBxIw/tPbTSpmOdhhJbgWIEzxf7GoLrSg48SbeuBlsDnUJRj5pny6ub3iTjiqadynE7sosa8/UYF9gf6KrExRnv4N5QPh+89Xwsg5IMBjozyEoDWhXdLEgUa0xP4POcyMSNtMcr9lfo+6YvfZ3Ps3estFbQvMlw2xZh0RGUWnEPxlcjFq6sBvxX7u8Ksl+R51CL5jl7JyAc8RCfaOyIWGiw+w7q4J+Ax0zIX+tmJXGHkHwH7nNdictCEl8KdBnn62w27F1KEO+dbdfNIujVKCs6LtILNGkODOEQ0w3mZHXW2vnbnV8HnaSJZiXeApeD5NE/1XGD
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(31696002)(86362001)(2906002)(6512007)(26005)(186003)(53546011)(316002)(8676002)(66556008)(921005)(38100700002)(66946007)(83380400001)(66476007)(5660300002)(6486002)(4326008)(36756003)(55236004)(508600001)(8936002)(31686004)(6506007)(2616005)(107886003)(6666004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T3U2ZUFxZ0VsNjU0Q2g2djVtSEk5aVZZS3dsOTgyK3dOTmNNODhjVy92UHd1?=
- =?utf-8?B?UlFWYURsSjhjL0lMdEVnbHdlN2JNSWhDazVuZnVoakpoamlXZVY3dWRXdlU2?=
- =?utf-8?B?NDNLQzErNEk4eGVGY1p0d1R1U1JBR1dmZzcvblpyMG0vTktyRkpzQmQrQ0dH?=
- =?utf-8?B?ekRJb1FuaE0vSHdVTzUvNjdxdnNUZEFJM0NVQ0w0MmVpWmV0TjRlc25nRHBy?=
- =?utf-8?B?cTVSQW9pcC8wczVSemNkV09rWDFrMjZ3QTM3K3BSdnl3YWE0ZUhGeVlNVHFu?=
- =?utf-8?B?ZHJYMzRGYVFVVTg1Y3lVZVViNlNNNFNmcVVqNjU1WGFyWlJKY004eTBaM2Ex?=
- =?utf-8?B?WXY1QWFNcUVuNkR2YjNlK2cyN3U3Vm5hU21qNDMzdlBlOFZTUy9mbnJIcW5B?=
- =?utf-8?B?VVZoaWxPSi91bkF5S05hM2pkR1d0TjdnazcxRkg2NEFLZWFxakhBWS9wRXNW?=
- =?utf-8?B?ZFRNeWlWTlI2QUFFMCt0OHJGTWYyNlBURWxHOVR1dnhFREdwYU9UUjZaOFM1?=
- =?utf-8?B?R0JVdVJ1NENHTVViSnN2YnBJUlpYUWhyMG5wZkU5WmN0T3kyemJUay9YMzNk?=
- =?utf-8?B?dDNKQndCWHRFZlN3QWE4cnJwY2R1blBrREdlOWphMFFOZ0hMb0NIc0FsbUlW?=
- =?utf-8?B?aHBPckc2WEJneERLcFBBM2VNd0ZhajJEQ3BGSndvd3ljZE9pTjVWaUxxVXVL?=
- =?utf-8?B?RVdQdWl6eXdLU0NPTS9hcmV1aThNMDNFRHVYaWZEMXpocldkY2pwM28zUk5B?=
- =?utf-8?B?Qm1pTmNQWWFmMDFKOUZLV1d5eHg1NGMweDhrSjBXYWlMMzhPQXB6dXZ4bXo1?=
- =?utf-8?B?VFdJUzR0b1Ivam5BR1JxMm9TZGdWNnBuTFd4S0lYM0ZMWS93aFhielcydmdz?=
- =?utf-8?B?U3hsVW40Z3plalU5Vy90THgzNkJ0azhuNzN5WHRjSGJSWG9nS1N6TjJFODU2?=
- =?utf-8?B?cy8wT0ZQRlQ4QnYwSFNPWTZ6OEYxaWZFN25ENUwvVjdpRElrNVRvRitKeWZ0?=
- =?utf-8?B?eno5TEFCaDNDSFZaMkY0RDJRODVDQzE5T0ZXL1prZUQwZ2xqa1dsK3lFcWpN?=
- =?utf-8?B?OEZPN2hua0hJYWRHOGNCZDJwLzJPTFpVcVhLTWVhYmV2M1BhR0JaTVMrRExp?=
- =?utf-8?B?VkdLTE1KWEI4VUdwWjJ5RGovTHlGK2xVV1NqUThUcXYvaS9QNEhvWHBQZ3ZC?=
- =?utf-8?B?T0NwQzdPNmo3S0hYV3h3OHNlTGwwWEVyWnhacnZVcmd2WFBiWWJseW9EdEp2?=
- =?utf-8?B?bjV1MW1xWlNkVDB6cFVpSXI3QnFuSU1ITlA0bDZqNHptL2dIdjluVVJZNU1G?=
- =?utf-8?B?U1BSeHVNZUlMeHlOSFppZnFqWGZCb1VFV0pDMm5uYVRqdGtsV0tlb2ZZTVhK?=
- =?utf-8?B?Si9rV1A0bC9wam5OdUJFNGdSN1d1Q00rTUJJK0s0aU00R0dVYjBFazZvSjZa?=
- =?utf-8?B?djdtSGlMOE1VRU5BeldmUXBrMFdOYWVhSzBzQzFDckg1dGtTSTZlOFV3NzY1?=
- =?utf-8?B?cGJPd0M1NGVFeEVlQ3M1RXgzdkczVi9QcGR1VWxnanJvZHQzQVN1cTh2ZlI1?=
- =?utf-8?B?dENiRkxkL2V2Rk9yeXV3RmJPOGVJNjc1QnlLSzRtanppSnp0NGJoM2pGMGc2?=
- =?utf-8?B?VDNBOTh5SWh5U3ZwL1laQkd1NmorWHNRSTdCTlM1QUw1Wk14MzVCaU41TW9J?=
- =?utf-8?B?WStpOFFGMUNtSzNXODYrUWpRUnpLUndRMkdQTVJyVmRMOFFNSkFUdWtzblh6?=
- =?utf-8?B?VlBsLzBlbVZYVnU2Z0doYk5pVlY5TWN1S05zTEFZMnB1cGZ2NnRrVlhONHNE?=
- =?utf-8?B?WktVNHZubG9UWUVMU2pwbHBvRHBvUFlxWndYSnZHaHllcnZJT3hIREZOTjBF?=
- =?utf-8?B?YVlXRmRKMVFJWE9vczZNUkVIRFFWZjRoT1BhR1IrRU1rcVhrc1kzTVNQZ2Mx?=
- =?utf-8?B?Wk80UkFzdmwrVnVpQVN0NVpFQ2hhZkVNVllzOHFoTVRoRTR6ajNyNFU1dlk3?=
- =?utf-8?B?TzRCbWdFUWNLS1VXemYwLy9SWlFNN2o3aktabmRXWDNldVorTjVrczFUUmF4?=
- =?utf-8?B?bHE3c1V6OXRqUlRocTlzOXNBMTNIT2F1S2RWSks1ZFBZNkp6L3ZTdStBODdt?=
- =?utf-8?B?clpKMW9maXlGWm1rTUJsVGVyU2w5UEs4Vm13eW8va3F6VGVDZngwd0VIWHow?=
- =?utf-8?B?Tk9sUWtVWTJiWkFYYjJzMVg2QWdmS1BLbFZEZzFoK1VlTjVCZTJKeW5LWERX?=
- =?utf-8?B?N2dHRjRUUTNhVHVMV0lLdlRPNFBiZjJOMnNjWWJjOER3aEZKdlBJeVRraEtu?=
- =?utf-8?B?NDZxMHFJbjI4cnprU2tLYUE0ZDg2dDdMcGx1WXAwZTBEWVZhWG9lQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15234587-dd2e-46ad-7221-08da12e42b88
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2022 07:00:42.0895
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aJTFn0eUmP+nZOKpMXM6dfaaUBd97p4BqVQ0gMg/a/fOj9X2hW8gpXOOTpgU/O3jngGzny0wS+E+dAIRXd2/fg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4020
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231640AbiCaHFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:05:14 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F774191422;
+        Thu, 31 Mar 2022 00:03:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648710207; x=1680246207;
+  h=from:to:cc:subject:date:message-id;
+  bh=sCoqz6QKAilKORklG/iHwiNVmje57nIoCYnJdb8vI34=;
+  b=QQj7jknlBWuwQSvoF/hIdTm3wPycyjIKND6BW42Y0z2fjxPXRusduf77
+   Iid3c6Ypc7S1QoRKn6cDzO1+yI9Hv++Gxv6IXHEoOW7/CVLAvyBHiYTHv
+   ruMxwM/8ShTl6ZQn4/TOn6IntvcuqqPpoa+0+lryb5hEjFstbTAc5o67g
+   o=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 31 Mar 2022 00:03:27 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 31 Mar 2022 00:03:26 -0700
+X-QCInternal: smtphost
+Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 31 Mar 2022 12:33:05 +0530
+Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
+        id 3CF73521B; Thu, 31 Mar 2022 12:33:04 +0530 (IST)
+From:   Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+To:     adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     quic_asutoshd@quicinc.com, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sartgarg@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_sayalil@quicinc.com,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski@canonical.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Subject: [PATCH V3] mmc: sdhci-msm: Reset GCC_SDCC_BCR register for SDHC
+Date:   Thu, 31 Mar 2022 12:33:02 +0530
+Message-Id: <1648710182-31899-1-git-send-email-quic_c_sbhanu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please update the subject to be something like ...
+Reset GCC_SDCC_BCR register before every fresh initilazation. This will
+reset whole SDHC-msm controller, clears the previous power control
+states and avoids, software reset timeout issues as below.
 
-"dt-bindings: Document Tegra CCPLEX Cluster"
+[ 5.458061][ T262] mmc1: Reset 0x1 never completed.
+[ 5.462454][ T262] mmc1: sdhci: ============ SDHCI REGISTER DUMP ===========
+[ 5.469065][ T262] mmc1: sdhci: Sys addr: 0x00000000 | Version: 0x00007202
+[ 5.475688][ T262] mmc1: sdhci: Blk size: 0x00000000 | Blk cnt: 0x00000000
+[ 5.482315][ T262] mmc1: sdhci: Argument: 0x00000000 | Trn mode: 0x00000000
+[ 5.488927][ T262] mmc1: sdhci: Present: 0x01f800f0 | Host ctl: 0x00000000
+[ 5.495539][ T262] mmc1: sdhci: Power: 0x00000000 | Blk gap: 0x00000000
+[ 5.502162][ T262] mmc1: sdhci: Wake-up: 0x00000000 | Clock: 0x00000003
+[ 5.508768][ T262] mmc1: sdhci: Timeout: 0x00000000 | Int stat: 0x00000000
+[ 5.515381][ T262] mmc1: sdhci: Int enab: 0x00000000 | Sig enab: 0x00000000
+[ 5.521996][ T262] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
+[ 5.528607][ T262] mmc1: sdhci: Caps: 0x362dc8b2 | Caps_1: 0x0000808f
+[ 5.535227][ T262] mmc1: sdhci: Cmd: 0x00000000 | Max curr: 0x00000000
+[ 5.541841][ T262] mmc1: sdhci: Resp[0]: 0x00000000 | Resp[1]: 0x00000000
+[ 5.548454][ T262] mmc1: sdhci: Resp[2]: 0x00000000 | Resp[3]: 0x00000000
+[ 5.555079][ T262] mmc1: sdhci: Host ctl2: 0x00000000
+[ 5.559651][ T262] mmc1: sdhci_msm: ----------- VENDOR REGISTER DUMP-----------
+[ 5.566621][ T262] mmc1: sdhci_msm: DLL sts: 0x00000000 | DLL cfg: 0x6000642c | DLL cfg2: 0x0020a000
+[ 5.575465][ T262] mmc1: sdhci_msm: DLL cfg3: 0x00000000 | DLL usr ctl: 0x00010800 | DDR cfg: 0x80040873
+[ 5.584658][ T262] mmc1: sdhci_msm: Vndr func: 0x00018a9c | Vndr func2 : 0xf88218a8 Vndr func3: 0x02626040
 
-On 30/03/2022 15:38, Sumit Gupta wrote:
-> The Tegra CCPLEX_CLUSTER area contains memory-mapped
+Fixes: 0eb0d9f4de34 ("mmc: sdhci-msm: Initial support for Qualcomm chipsets")
+Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+---
 
-Here you have CCPLEX_CLUSTER and ...
+Changes since V2:
+	- Dropped new line after fixes tag as suggested by Bjorn
+	  Andersson.
+	- Passed device structure instead of passing platform_device
+	  structure as a argument for sdhci_msm_gcc_reset() as suggested
+	  by Bjorn Andersson.
+	- Replaced dev_err() with dev_err_probe() as suggested by Bjorn
+	  Andersson.
+Changes since V1:
+	- Added fixes tag as suggested by Ulf Hansson.
+	- Replaced devm_reset_control_get() with
+	  devm_reset_control_get_optional_exclusive() as suggested by
+	  Ulf Hansson.
+---
+ drivers/mmc/host/sdhci-msm.c | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-> registers that initiate CPU frequency/voltage transitions.
-> 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> ---
->   .../tegra/nvidia,tegra-ccplex-cluster.yaml    | 52 +++++++++++++++++++
->   1 file changed, 52 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-> new file mode 100644
-> index 000000000000..74afa06f695e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/tegra/nvidia,tegra-ccplex-cluster.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NVIDIA Tegra CPU_CLUSTER area device tree bindings
-
-... here we have "CPU_CLUSTER" and ...
-
-> +
-> +maintainers:
-> +  - Sumit Gupta <sumitg@nvidia.com>
-> +  - Mikko Perttunen <mperttunen@nvidia.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +
-> +description: |+
-> +  The Tegra CCPLEX_CLUSTER area contains memory-mapped
-
-.. then we have CCPLEX_CLUSTER again. Let's have a consistent name such 
-as 'CPU COMPLEX CLUSTER' (admittedly a mouthful but that is what is 
-means). I don't think we need the '_' in the name.
-
-> +  registers that initiate CPU frequency/voltage transitions.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "ccplex@([0-9a-f]+)$"
-> +
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra186-ccplex-cluster
-> +      - nvidia,tegra234-ccplex-cluster
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  nvidia,bpmp:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> +    description: |
-> +      Specifies the bpmp node that needs to be queried to get
-
-s/bpmp/BPMP
-
-> +      operating point data for all CPUs.
-> +
-> +additionalProperties: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - nvidia,bpmp
-> +  - status
-> +
-> +examples:
-> +  - |
-> +    ccplex@e000000 {
-> +      compatible = "nvidia,tegra234-ccplex-cluster";
-> +      reg = <0x0 0x0e000000 0x0 0x5ffff>;
-> +      nvidia,bpmp = <&bpmp>;
-> +      status = "okay";
-> +    };
-
+diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+index 50c71e0..e15e789 100644
+--- a/drivers/mmc/host/sdhci-msm.c
++++ b/drivers/mmc/host/sdhci-msm.c
+@@ -17,6 +17,7 @@
+ #include <linux/regulator/consumer.h>
+ #include <linux/interconnect.h>
+ #include <linux/pinctrl/consumer.h>
++#include <linux/reset.h>
+ 
+ #include "sdhci-pltfm.h"
+ #include "cqhci.h"
+@@ -284,6 +285,7 @@ struct sdhci_msm_host {
+ 	bool uses_tassadar_dll;
+ 	u32 dll_config;
+ 	u32 ddr_config;
++	struct reset_control *core_reset;
+ 	bool vqmmc_enabled;
+ };
+ 
+@@ -2482,6 +2484,39 @@ static inline void sdhci_msm_get_of_property(struct platform_device *pdev,
+ 	of_property_read_u32(node, "qcom,dll-config", &msm_host->dll_config);
+ }
+ 
++static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
++{
++	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
++	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
++	int ret = 0;
++
++	msm_host->core_reset = devm_reset_control_get_optional_exclusive(dev, "core_reset");
++	if (IS_ERR(msm_host->core_reset))
++		return dev_err_probe(dev, PTR_ERR(msm_host->core_reset),
++				"unable to acquire core_reset\n");
++
++	if (!msm_host->core_reset)
++		return 0;
++
++	ret = reset_control_assert(msm_host->core_reset);
++	if (ret)
++		return dev_err_probe(dev, ret, "core_reset assert failed\n");
++
++	/*
++	 * The hardware requirement for delay between assert/deassert
++	 * is at least 3-4 sleep clock (32.7KHz) cycles, which comes to
++	 * ~125us (4/32768). To be on the safe side add 200us delay.
++	 */
++	usleep_range(200, 210);
++
++	ret = reset_control_deassert(msm_host->core_reset);
++	if (ret)
++		return dev_err_probe(dev, ret, "core_reset deassert failed\n");
++
++	usleep_range(200, 210);
++
++	return 0;
++}
+ 
+ static int sdhci_msm_probe(struct platform_device *pdev)
+ {
+@@ -2529,6 +2564,10 @@ static int sdhci_msm_probe(struct platform_device *pdev)
+ 
+ 	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
+ 
++	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
++	if (ret)
++		goto pltfm_free;
++
+ 	/* Setup SDCC bus voter clock. */
+ 	msm_host->bus_clk = devm_clk_get(&pdev->dev, "bus");
+ 	if (!IS_ERR(msm_host->bus_clk)) {
 -- 
-nvpublic
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
