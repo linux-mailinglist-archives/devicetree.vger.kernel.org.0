@@ -2,127 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4D54ED9F1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 269BC4ED9F8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236372AbiCaM6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:58:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44558 "EHLO
+        id S236413AbiCaM6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:58:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236475AbiCaM6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:58:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01402128D9;
-        Thu, 31 Mar 2022 05:56:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D1CE1617C0;
-        Thu, 31 Mar 2022 12:56:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84ED6C340F2;
-        Thu, 31 Mar 2022 12:56:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648731372;
-        bh=DfI4w1o+FCYxsAC0rPn+xFaT1PUgndy6Pzulupfti64=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k/1uDpG0COuH/xMycH1jXEnaAzYEpDjT5p7kU8rL4PHWzMMQXC+b+2cYoSf0m2F12
-         qxbJx8hW/8ikoGtSzP79VFsft4uHhbHea2hb00KmUMLsNcb/lBaBICgpkEhL1kfrRR
-         FhCaLlT9xc5IhKlKDyMom56/wnaMhWeIgHSM72t9LH7QgBaWFcjznoWhPtebcvDsGz
-         R1qbHGThUeONUvt2Ahw6SsUmSNlNGcl4G4rEcY8ubwIecE37Y8mMekI9I/iwHiK226
-         ueWktgb253XuGKtf35tC2WuDIaiSIUvtbZj123P2me2Gpmf7oaNVeKDksy+TMEQyWt
-         z8+yBENsT3S1A==
-Date:   Thu, 31 Mar 2022 13:56:06 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
-Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [RFC PATCH 5/5] ASoC: Add macaudio machine driver
-Message-ID: <YkWk5vvBlC/Orpdr@sirena.org.uk>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-6-povik+lin@cutebit.org>
- <YkWXs/f7edZwg1+W@sirena.org.uk>
- <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
+        with ESMTP id S236420AbiCaM6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:58:42 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E34442128ED;
+        Thu, 31 Mar 2022 05:56:54 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id r13so47921327ejd.5;
+        Thu, 31 Mar 2022 05:56:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UccPI0Vs3BzsfOsGfndf21BCZr1jQY6N7hAg1waRF/s=;
+        b=HfBw6vWTgOJCYdKg8YHaESl+8G04ToxxeF63XQSjns6Dk+LBjFpbBsyMKo8RR9icBD
+         +YR4nv9rtSCx5OGsTlaCwev6n1dE1syjwnmouQztZ2cmWQoA8hQrchrcjb/ebU9JgXOa
+         lIlY/nrjEoeJG5A+IvN9TEgvVoSUeyGUzsJd71GFxt6/tJkDuZgBTqMid0URZoE4V7Tk
+         H0mU6yhuHBdRwqlJ25JgCMpKt3BCBU4CCSkJAenBdHODIxshDWGsgjoLNQR32LvIoNwa
+         L31o07H/PXupHDCPC5pHjrI3doD7IcnH6SbMgZBSh9W0WAbk7K0YN5I/0HpeXO+fPN8p
+         BBFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UccPI0Vs3BzsfOsGfndf21BCZr1jQY6N7hAg1waRF/s=;
+        b=c2OXo4F1z57WD3KNVqnCTMJT3BuHvIEKWHhfHFV0qxoyOnJ1gi4QdQA7xX4213nja0
+         EHhx7Pu9OYPCvxuDnRcWnseXgQAWpd+GiydQMlSFYdUbgsW37F1ncD/jVTp+pO6f0CBm
+         oTBW49Tokvn5Kw3+NIHTvnD7PS0m85rtxjfcCvm/RgVwePjwd0y+rLm0EYs8Nf8OGsRW
+         TEH2lOZIpQCY3BvHLu71aWOX5MH95kucH39DKSJmJKpiehL1iMrV9Q0nrxQhQI0LFveq
+         4fFmfF/UHOijiZwI0/YFqtaTSfv/a+/tlGJcX9bNvehtEjhb7WRne2BXG4KYpKu1GJQB
+         aunQ==
+X-Gm-Message-State: AOAM533+p8wd8HgSljJ0lQcSyBQKtgKxFJTWYoB2UKZ77Id16nqO69kc
+        6YFqRdUH7sO5JRgox09AGhGBdsqAlYc=
+X-Google-Smtp-Source: ABdhPJwB1bY+CLWE7b4PuZ+68hjf+J3CT+jsxTI7VrbqdpniDeNCJLs0u5gD62CZ6M9aKGk6OHNNVQ==
+X-Received: by 2002:a17:907:1606:b0:6df:f528:4033 with SMTP id hb6-20020a170907160600b006dff5284033mr4847028ejc.433.1648731413350;
+        Thu, 31 Mar 2022 05:56:53 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id u4-20020aa7db84000000b004136c2c357csm11203745edt.70.2022.03.31.05.56.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Mar 2022 05:56:52 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: rockchip: use generic node name for dma rk3036/rk322x
+Date:   Thu, 31 Mar 2022 14:56:44 +0200
+Message-Id: <20220331125644.6841-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2p1SKEdgaX+tzFpw"
-Content-Disposition: inline
-In-Reply-To: <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
-X-Cookie: Reunite Gondwondaland!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The node names should be generic, so fix this for the rk3036 and
+rk322x dma node and rename it to "dma-controller".
 
---2p1SKEdgaX+tzFpw
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3036.dtsi | 2 +-
+ arch/arm/boot/dts/rk322x.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On Thu, Mar 31, 2022 at 02:08:51PM +0200, Martin Povi=C5=A1er wrote:
-> > On 31. 3. 2022, at 13:59, Mark Brown <broonie@kernel.org> wrote:
+diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
+index 24f868d06..9b0f04975 100644
+--- a/arch/arm/boot/dts/rk3036.dtsi
++++ b/arch/arm/boot/dts/rk3036.dtsi
+@@ -558,7 +558,7 @@
+ 		status = "disabled";
+ 	};
+ 
+-	pdma: pdma@20078000 {
++	pdma: dma-controller@20078000 {
+ 		compatible = "arm,pl330", "arm,primecell";
+ 		reg = <0x20078000 0x4000>;
+ 		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm/boot/dts/rk322x.dtsi b/arch/arm/boot/dts/rk322x.dtsi
+index 2547f46fe..ffc16d6b9 100644
+--- a/arch/arm/boot/dts/rk322x.dtsi
++++ b/arch/arm/boot/dts/rk322x.dtsi
+@@ -503,7 +503,7 @@
+ 			<75000000>;
+ 	};
+ 
+-	pdma: pdma@110f0000 {
++	pdma: dma-controller@110f0000 {
+ 		compatible = "arm,pl330", "arm,primecell";
+ 		reg = <0x110f0000 0x4000>;
+ 		interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.20.1
 
-> >> +	for_each_rtd_components(rtd, i, component)
-> >> +		snd_soc_component_set_jack(component, &ma->jack, NULL);
-
-> > What is the jack configuration this is attempting to describe?  It looks
-> > like you have some dedicated speaker driver devices which are going to
-> > get attached to jacks here for example.
-
-> We know the speakers will ignore the set_jack call. There=E2=80=99s one j=
-ack and
-> this way we know the jack codec will attach to it, for speakers it=E2=80=
-=99s a no-op.
-> (If you prefer I will special-case it to the jack codec.)
-
-It would be better to special case, this looks obviously wrong and will
-break if someone adds error handling.
-
-> >> +	return !strcmp(name, pattern);
-> >> +}
-
-> > This looks worryingly like use case configuration.
-
-> I go over this in the cover letter! This is fixing the TDM slot selection
-> and disabling voltage/current sensing on the speaker amp codecs, which ha=
-ve
-> no business being exposed to userspace as options. This is not use case,
-> this not letting people blow their speakers from userspace.
-
-Your comments in the cover letter are all pretty vague too, that just
-says that these controls are "ridiculous" which isn't terribly specific
-about what the actual goal is.  If it's just "I can't see why anyone
-would want to configure this" then that's a decision you're taking about
-what people might want to do which is broadly a use case configuration
-and the control should be left there in case someone comes up with an
-idea.
-
---2p1SKEdgaX+tzFpw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJFpOUACgkQJNaLcl1U
-h9CYzQf/Y08TIa0AXiiPTKniPzL9m3d7ArsJSmeKBxGOiqTtZ7kzWb4ElKSSGfRR
-SQBABq69Qoxq9aWhUfdocdGNf3I/MtDc8k0XUs4bO3MQgKJ0WIivkGNpRPield9D
-tbiVirXSxTSN28zrzJHzZZti6MVAFNCRjlrF+qOhAH2K6qKQNwcFwOYSFEjQaGLp
-noni9E2T7cwSkwem3gxTP6FDHdT2ivx3fwBArNpZ3WqWwK+3cBrlSD+pMYoPdWVD
-PMv8/IfgYHYm+ojMI6ILkAic1KojFLwM1stvNfFtR7fOO8QJEeSfPhKg18zLwvHj
-N1ZH9xNFrO4kKrMnwL7uEZAtBTHoGQ==
-=khz2
------END PGP SIGNATURE-----
-
---2p1SKEdgaX+tzFpw--
