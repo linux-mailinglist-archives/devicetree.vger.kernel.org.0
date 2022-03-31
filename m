@@ -2,51 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57E294EDC50
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B787E4EDC63
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:06:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233431AbiCaPG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 11:06:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44114 "EHLO
+        id S234424AbiCaPIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 11:08:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232527AbiCaPG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:06:27 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA0531DC6;
-        Thu, 31 Mar 2022 08:04:36 -0700 (PDT)
+        with ESMTP id S232527AbiCaPIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:08:36 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8BF141441
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:06:47 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id e16so41999193lfc.13
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:06:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=iEeqXgqN7qNwmQ7SU0adYJu3zAo5+AxJKS/k66U7Uuw=;
+        b=cSdCZGdJoMjReN01pR3Q7RjqXLfM/ds+zF+IGB5HU994zhdMp0MUwm7zC4myMiGEIC
+         8R5ssSK40FIlevjSNoHjC8kXgJFSILuT/JItQh4qmwXwKnutMvBXuiRdQBnp1jv0iemr
+         kYZR0Vrlwu9rj6pF+2LiP+biOfQkfK+kamY1vle2Ye0KNJpORClIuM25P/G9ndQMo3ka
+         Evb7/Q2iWADK9ySutmkfanI748dH8qelFdtI4CcrD8H4HJt4lWpqRuif896AdevqTW+B
+         ZCS+6ITiFb7poKmgiSIoEX9A+zj6J0QeufKFHyLIf563VeF3Kt0tf9WxGuhXAAS4zobe
+         F+vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=iEeqXgqN7qNwmQ7SU0adYJu3zAo5+AxJKS/k66U7Uuw=;
+        b=0Z3/1IjSDEvuZH1WNmEE0o3TSH3dUPEvqcktUGE7qzA3clATZhASrsUjnVoNGBTKTM
+         rFqlpKuq0lj9UHJvZCF69TLt1HrNsPDZQy+uDbvKmNhlsfWgkHYwH9Xrf46MkyyZLCE9
+         nS1OLils3szfbkYCCROtDiv+htWQqIsqZgVH5oFvX4r1CypeBn2e28T3tUbokMyXTobt
+         PAoVYCNNMcXrt1IwXDivnqYQSBVlBbs1M7Xo/bmsTU75VEep1wlzQ4YCip43QWZGxAEh
+         juZOhI053pdfb+y8qRaGEdVquR+6Lt24fjJeZq0AGKepc2DOuDyK9zHm4+BBiJNeROTk
+         3WqA==
+X-Gm-Message-State: AOAM530ZJSfj8ro9HO5BhbxHqU3fVunxP11z++G5r2dK4sXt4z3/DhQj
+        ikEyn9gJ1mXNV8NZUU7P+24=
+X-Google-Smtp-Source: ABdhPJwqfhKwVkGEAlyRMgBOZAf1wO/XCh9gwyq4jSKNAmK7zbJ0HROyx7wXfMKYpLhCy8ArHZKcZg==
+X-Received: by 2002:a05:6512:3f86:b0:448:9448:5561 with SMTP id x6-20020a0565123f8600b0044894485561mr10757975lfa.489.1648739198577;
+        Thu, 31 Mar 2022 08:06:38 -0700 (PDT)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id e3-20020a196743000000b0044311216c42sm2694691lfj.307.2022.03.31.08.06.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 31 Mar 2022 08:06:37 -0700 (PDT)
 Content-Type: text/plain;
         charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1648739073; bh=Gbs6tg3skhw4iV8rn16Vi4dTeQOEU2j8Ua0eJjFEIRI=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=UxK4BkneLgDYJnS9yHUey/xTnu7DvHl4N0bAER7LwYK9NaIywtoi1EgnY8dqwpDk1
-         T8BGOYtJy+NLEeIQ+tGNddxWMikOZNYJoWHVMjgVjx5hiNwemRZTjiqj7ehZmEmmqI
-         EkzlDxIPdcETMFA6N2eOy7+Q7vE2bXwkK1VUiDQo=
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
-Subject: Re: [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <YkW4MPh8VWc8eSGg@sirena.org.uk>
-Date:   Thu, 31 Mar 2022 17:04:32 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20220331150056.GH4012@pengutronix.de>
+Date:   Thu, 31 Mar 2022 17:06:35 +0200
+Cc:     Andy Yan <andy.yan@rock-chips.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <6D199EAB-FE14-4030-96A7-2E0E89D25FAB@cutebit.org>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <YkWfziQzprEsWL72@sirena.org.uk>
- <CCE4A06E-6D6F-457D-B3C5-C36209BF38D3@cutebit.org>
- <YkW4MPh8VWc8eSGg@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
+Message-Id: <3A5C5A71-0CE0-4072-9502-75385C1C43F7@gmail.com>
+References: <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220330072822.GX12181@pengutronix.de>
+ <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
+ <20220330094556.GZ12181@pengutronix.de>
+ <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
+ <20220330102046.GA12181@pengutronix.de>
+ <60601619-EF07-457B-91F2-64FEB598FEBE@gmail.com>
+ <20220330192054.GA4012@pengutronix.de>
+ <af8445e0-f4af-721b-709e-2eb7c488a8a4@rock-chips.com>
+ <B7CD9D55-9F2D-42F4-9D04-17C6A5FEBB08@gmail.com>
+ <20220331150056.GH4012@pengutronix.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -54,134 +92,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-> On 31. 3. 2022, at 16:18, Mark Brown <broonie@kernel.org> wrote:
->=20
-> On Thu, Mar 31, 2022 at 03:28:12PM +0200, Martin Povi=C5=A1er wrote:
->>> On 31. 3. 2022, at 14:34, Mark Brown <broonie@kernel.org> wrote:
->=20
->>> The broad issue here is that what you consider ridiculous someone =
-else
->>> might have some bright ideas for configuring dynamically - if things =
-are
->>> being exposed for dynamic configuration it's probably because =
-someone
->>> wanted them, if the control is genuinely useless then it should just =
-be
->=20
->> Well but these are codec drivers reused on different systems, it can =
-both
->> be 'not genuinely useless=E2=80=99 on some system and ridiculous to =
-leave open on
->> the systems I am trying to write drivers for.
->=20
-> It wouldn't be the first time that we've had someone turn up with a =
-new
-> idea for how to configure an already existing bit of hardware, part of
-> the reason for this approach is that people do get surprised by user
-> creativity with their systems.
->=20
->>> The TDM swap thing you're mentioning looks like it's a left/right
->>> selection which people do use sometimes as a way of doing mono mixes =
-and
->>> reorientation.  The ISENSE/VSENSE is less obvious, though it's =
-possible
->>> there's issues with not having enough slots on a heavily used TDM =
-bus or
->>> sometimes disabling the speaker protection processing for whatever
->>> reason.
->=20
->> Not only that. On TAS2770 the default value for =E2=80=98ASI1 Sel=E2=80=
-=99 is =E2=80=98I2C offset=E2=80=99
->> meaning the speaker amp driver ignores my set_tdm_slot calls. If you =
-tell
->> me it=E2=80=99s okay to change that behaviour and it won=E2=80=99t be =
-considered backwards
->> compatibility breaking, that would be part of the solution I am =
-seeking
->> here.
->=20
-> Having the default state be muted or not routed is quite common, UCM
-> files or equivalent are typically required for embedded style hardware
-> like this.
->=20
->> But even then, what for example if the system has a single speaker =
-(as it
->> does on the Mac mini to be covered by this driver) and the I2S bus is =
-left
->> undriven for the duration of unused TDM slots? That may genuinely =
-pose
->> a risk of people blowing their speakers by switching something in =
-alsamixer.
->=20
-> Right, so that's a more sensible and valid use case.  We do have the
-> platform_max feature available for precisely this reason - that's
-> probably more appropriate here since if there's a danger of people
-> blowing their speaker with a floating input they could also blow their
-> speaker with just a very loud audio signal so limiting the volume =
-people
-> can set on the speaker driver seems sensible and would also cover them
-> for misrouting.  Whatever the device might pick up from noise on an
-> undriven bus could also be played as audio down the bus.  This does
-> become a little fun with speaker protection as we'd want to raise the
-> kernel limit so that userspace can dynamically manage the volume to
-> contorl power (though that might be done with software control), but
-> it's easy enoguh to raise limits later.
->=20
-> On the other hand it seems like userspace might reasonably choose to =
-do
-> a mono mix for this output entirely in software, in which case telling
-> the speaker amp to pick up one channel would make sense, or to just =
-play
-> out a stereo signal over I2S and have the amplifier do a mono mix and
-> I'm not seeing why we'd force one or the other in the machine driver.
 
-Granted. If we make sure the volume caps are there to prevent damage
-under arbitrary input (which we should anyway) that covers slot
-misconfiguration too.
-
->> The ISENSE/VSENSE controls are also actually useless on these systems =
-as we
->> are not doing anything to pick up the measured values (which are sent =
-back
->> over the I2S lines). I don=E2=80=99t know if there can be driver =
-conflict between
+> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
+<s.hauer@pengutronix.de> w dniu 31.03.2022, o godz. 17:00:
 >=20
-> Presumably someone might want to work on figuring that out though, and
-> from a hardware safety point of view it would be better if they did.
 >=20
->> two speaker amps trying to drive the I2S lines at the same time =
-should
->> the user happen to enable SENSE facilities on more than one of them.
->> Now I can grudgingly study that and rule it out but I would rather =
-hide
->> the controls altogether.
+> Have you applied the bugfix I shared with you here:
 >=20
-> Yes, having two devices driving the bus at the same time wouldn't be
-> great.  How is the TDM slot selection for the signals done in the
-> hardware, I'm not seeing anything immediately obvious in the driver?
-> I'd have thought that things would be implemented such that you could
-> implement speaker protection on all speakers simultaneously but =
-perhaps
-> not.
-
-I don=E2=80=99t know. I would have to go study the details of this. =
-Should I see
-if I can find a combination of =E2=80=98ASI1 Sel=E2=80=99 =E2=80=98VSENSE=E2=
-=80=99 =E2=80=98ISENSE=E2=80=99 settings
-that would lead to driver conflict on one of the models, or is there
-a chance we could hide those controls just on the basis of =E2=80=98it =
-doesn=E2=80=99t
-do anything usable and is possibly dangerous=E2=80=99?
-
->> That=E2=80=99s the reasoning anyway. To reiterate, seems to me the =
-controls
->> are useless/confusing at best and dangerous at worst.
+> =
+https://lore.kernel.org/linux-arm-kernel/20220330072822.GX12181@pengutroni=
+x.de/
 >=20
-> I'm just not seeing an issue for the slot selection.
 
-Yeah, agreed there=E2=80=99s no (damage) issue as we should to proper =
-volume
-caps anyway.
+oooops
 
-Martin
+noooooo
+didn't noticed :-(
+
+let me try with it!
 
