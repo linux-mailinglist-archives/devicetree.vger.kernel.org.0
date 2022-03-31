@@ -2,97 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7DC04EE29E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 22:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4484EE2A2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 22:28:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239582AbiCaU2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 16:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
+        id S235264AbiCaU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 16:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbiCaU2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 16:28:34 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD5D8231AFD
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:26:46 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id c10so1578715ejs.13
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:26:46 -0700 (PDT)
+        with ESMTP id S233604AbiCaU34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 16:29:56 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09613231AEC
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:28:08 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id i11so600465plg.12
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 13:28:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=f73Q9p0qBCca26wqwVLG1FDBxAuPXokqsFB4tXzSY4s=;
-        b=P1skQxIlyDTPvqcv9bZzPF+oUpOHenY/Gfo0gUL4RedTQ4WTOA22DjejZ964QW9UOd
-         bAAY5DyScLh5swcrBUpsuWKxnCByTweeiZ9jTEmsXZ/+QHpPdNOQDXUhIqAhzzag81zB
-         MnKxir38ncBHR/4uVJtUpE2SPTnoSlAkaEXYEf/0QJvo18vX65LtePtZOLI8gjeRB5Og
-         VoxSi0fs/58Ozvx3++XfoCLAZtIzM6UmHXHVr4pMcq1Rn5tqGjxpC43U0bmsqK1wCOYg
-         gCJywvyZ/I1MKiltB4X6f9mhEdTv9/3L0klCkkT/qkF/Opg6WSDJR7/dOhLh1PAgydMS
-         ND3g==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bnq3RGPMzBMV/g9aWknvx9FGXd6IFr5H5AAWOs4ymHk=;
+        b=1uYsPp4Tl1AUltqW3P44nhWS7GvP4CJgKOhn+4VSW6tjebojOna8+DqcXGZ9k0L/qg
+         /kFWpO1A9VCxXURXGLxWREhOlFDrf7SGsxEcHzf+/1uE2v7LBC1dWVqweOKhApxLgw9D
+         amggZOnWK8/4wpWGOGhiK4cjY2SQMXyCD0VEruU0dGq6NnWYK88rwYoSegTMJzw1+tk3
+         HxcB/8JTpf60c1hpvFHq7hYKJ2LX9yB1v55R/v8Dni9DydCTumhK63hi5FUT8HXbvn5w
+         bDcJd/qTfwfOiArpTbcdXfkKKBEw5RYSV5PG8FRRIY48vM4BJn5dkI4bFNb4KeQt435X
+         zj9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=f73Q9p0qBCca26wqwVLG1FDBxAuPXokqsFB4tXzSY4s=;
-        b=ldBk4fa2K0aqFLYaKX3SKsJpompjG3i1lqxnDl8oaELJO4VRXXfR649AghYST48KOd
-         dwogCci4UGmfCXDn5zV6rDXXcq+mpFrHWH2CZB/uhHXLK6sVHLgSyttJm6If1B3GftKl
-         lBVWo2HyuWohlbE55ofaU3wukHRkNXyDaUmkFBmY5LneHdAM3L3a3CgvH/9ARqU/Nhwd
-         nyT+OQ43Sq0NdnGYsTmyXbFP3Rvq6FT34CWUoxi3a6bsByP/uGM4iXQRzzkAbSLuG//a
-         D7VCLPZtbdaLxtIMwyZFaJ4yT9t55Rjxh0YHqyKS01QjLCeIruEnM3XO7Uo1QpFiOO9b
-         c9Lg==
-X-Gm-Message-State: AOAM531l3K1MM3f1nDSCia/Z3W23ufpvzpvL/it4CXjb5w7NgXqzCHNz
-        X1zLDQDV0Dp7BNzpsBopFPaEpg==
-X-Google-Smtp-Source: ABdhPJyCds3H8JnxYm26h5BcmMiI9/uHrBY5EdQ2TztoTWFjtsUXlKgqLZSrG4ZzrDNPIR7yzNIFmQ==
-X-Received: by 2002:a17:907:da0:b0:6df:d4a4:9d0f with SMTP id go32-20020a1709070da000b006dfd4a49d0fmr6678791ejc.407.1648758405390;
-        Thu, 31 Mar 2022 13:26:45 -0700 (PDT)
-Received: from [192.168.0.168] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id n19-20020a170906165300b006a625c583b9sm170876ejd.155.2022.03.31.13.26.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 13:26:44 -0700 (PDT)
-Message-ID: <00b2d9c7-6052-45f7-6176-e6d7694508ce@linaro.org>
-Date:   Thu, 31 Mar 2022 22:26:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 4/4] dt-bindings: pwm: Add compatible for MediaTek
- MT8186
-Content-Language: en-US
-To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        rex-bc.chen@mediatek.com, jitao.shi@mediatek.com
-References: <1648730873-18505-1-git-send-email-xinlei.lee@mediatek.com>
- <1648730873-18505-5-git-send-email-xinlei.lee@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648730873-18505-5-git-send-email-xinlei.lee@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=bnq3RGPMzBMV/g9aWknvx9FGXd6IFr5H5AAWOs4ymHk=;
+        b=USrElWUIACqTlGdmK2t9d8wkPltu91/ciQktizTN43aKzJq3rmFqFVRb6UmK2rMuWj
+         TmLS35Na14f68ni39Fz9TxRVqjFWsITfJbbQE7L5vNzSubeOLoRT+lCyTD/9LTJqte0S
+         /bAkoqH+I2Gjijw3odAVs3wPPbuLC2pqHK5/A5tNN5mSXAJ3e07L2M58k3a/xhbFJQVV
+         Fl3A9IQJr43zEcwBQ9H6gVK6x9/tMPg5s4K6AhBovYxCODm2DqjOr7ojatAki2XnAIBX
+         qYeDcf1/WQ3+R5brt8it/rSjDS/HW8BJtl2pr7t65DBQsROhE9zXIRVq8eFUQMjAGRas
+         MTTQ==
+X-Gm-Message-State: AOAM533Y18AXRb9wIPZzjxJWUGubh1cuKSjYNlq8FH0ODiQu6Iln+6xk
+        K/wY7CCwI9HRFCFGpIxaDOFUbg==
+X-Google-Smtp-Source: ABdhPJz8WAGQPMzQnR1/kKYbzZSKsNbVNJ28AVKuGN4my5flJHiGhwEnQ3iZcV5Chnf26dEqytnXVg==
+X-Received: by 2002:a17:902:f544:b0:154:5ecb:eb24 with SMTP id h4-20020a170902f54400b001545ecbeb24mr7143398plf.11.1648758487456;
+        Thu, 31 Mar 2022 13:28:07 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id y13-20020a17090a390d00b001c995e0a481sm203407pjb.30.2022.03.31.13.28.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Mar 2022 13:28:06 -0700 (PDT)
+Date:   Thu, 31 Mar 2022 13:28:06 -0700 (PDT)
+X-Google-Original-Date: Thu, 31 Mar 2022 13:04:31 PDT (-0700)
+Subject:     Re: [PATCH] RISC-V: Declare per cpu boot data as static
+In-Reply-To: <20220323171726.1303706-1-atishp@rivosinc.com>
+CC:     linux-kernel@vger.kernel.org, Atish Patra <atishp@rivosinc.com>,
+        lkp@intel.com, aou@eecs.berkeley.edu, atishp@atishpatra.org,
+        anup@brainfault.org, damien.lemoal@wdc.com,
+        devicetree@vger.kernel.org, jszhang@kernel.org,
+        krzysztof.kozlowski@canonical.com, linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Atish Patra <atishp@rivosinc.com>
+Message-ID: <mhng-00dae2b9-e45c-43c7-a67d-75c937215a19@palmer-mbp2014>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2022 14:47, xinlei.lee@mediatek.com wrote:
-> From: Xinlei Lee <xinlei.lee@mediatek.com>
-> 
-> Add dt-binding documentation of pwm for MediaTek MT8186 SoC.
-> 
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+On Wed, 23 Mar 2022 10:17:26 PDT (-0700), Atish Patra wrote:
+> The per cpu boot data is only used within the cpu_ops_sbi.c. It can
+> be delcared as static.
+>
+> Fixes: 9a2451f18663 ("RISC-V: Avoid using per cpu array for ordered booting")
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
 > ---
+>  arch/riscv/kernel/cpu_ops_sbi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/kernel/cpu_ops_sbi.c b/arch/riscv/kernel/cpu_ops_sbi.c
+> index dae29cbfe550..7f2ad008274f 100644
+> --- a/arch/riscv/kernel/cpu_ops_sbi.c
+> +++ b/arch/riscv/kernel/cpu_ops_sbi.c
+> @@ -21,7 +21,7 @@ const struct cpu_operations cpu_ops_sbi;
+>   * be invoked from multiple threads in parallel. Define a per cpu data
+>   * to handle that.
+>   */
+> -DEFINE_PER_CPU(struct sbi_hart_boot_data, boot_data);
+> +static DEFINE_PER_CPU(struct sbi_hart_boot_data, boot_data);
+>
+>  static int sbi_hsm_hart_start(unsigned long hartid, unsigned long saddr,
+>  			      unsigned long priv)
 
-You could squash all three last patches into one... It's a bit churn
-with every compatible. :)
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Thanks, this is on for-next.
