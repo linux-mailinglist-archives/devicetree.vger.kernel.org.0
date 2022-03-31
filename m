@@ -2,108 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CEBD4EDA23
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC7B4EDA2B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234061AbiCaNEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 09:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41952 "EHLO
+        id S236560AbiCaNG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 09:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232134AbiCaNED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:04:03 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E357214078
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 06:02:14 -0700 (PDT)
+        with ESMTP id S236561AbiCaNGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:06:53 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386A549926
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 06:05:06 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id o5so42181122ybe.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 06:05:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1648731735; x=1680267735;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=WQNzt8/7obQzyydz7wX8hH1DC72ml6JxCI2528MRrrs=;
-  b=ZzpxziN9PMU91zoUBV21ifbqElhixzuW043bLA/G6Ere5HYwS56QuZgL
-   vi9gpMGhuy+dF6gp66pQEGoETtzx04ITYIf9vM8r4lxkBtRQtrYHe7zqH
-   FuIiA/cFmmAdFg/vO6hC/JRf3oeDncl2d9WOrraUI9ujO2/IExt/Cg7Pd
-   0+QSGDQ7B7R8JCHcs3ikyWFUADwJcYrYK5xymRBeH+9da0J9ThTDhFdjU
-   68rvbiFXLBCZKluWB46pxra5VY2ChRPQ/Ed/xW8CunkvCAe01gFsTdfg/
-   Wi2pJpawL/6fCC74eOygmffzZ0BNKIDYnYbXpwb3P0yiAQ3lhPZfcU8Eq
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,225,1643670000"; 
-   d="scan'208";a="23018119"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 31 Mar 2022 15:02:13 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 31 Mar 2022 15:02:13 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 31 Mar 2022 15:02:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1648731733; x=1680267733;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=WQNzt8/7obQzyydz7wX8hH1DC72ml6JxCI2528MRrrs=;
-  b=Bxed/zyNBudAFek0FI8MdF9roPBa9xXYf844zODlNiO3fl9OWJ8iWGcc
-   vYzX55Q0ChDfmYOWQ7zS0t5KZ66UNolQ7JFuCqilEDNxb3RxjiWzZ6iNt
-   3usLygJyW8gNGqfNe33ZPiPx65DvjuGt0c0tc7wa8LEFGlXmhEQCg45BZ
-   b+nxNU081UlINPyKOC0lU7OrUtn6//s23fmGPa8AyjPhibSW2R5xsctHE
-   /4ZaGJ/3hYAPLGBVFwshsFbluk/kZvgO056OY/KZwNd73pduyD15Qg2cg
-   ert/LN3en8V2NEqkP3lCKQmlDWYllJniAUCPlJ6iZQPCbr7Lcgiz3PVHd
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,225,1643670000"; 
-   d="scan'208";a="23018118"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 31 Mar 2022 15:02:13 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3A2CA280065;
-        Thu, 31 Mar 2022 15:02:13 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FlAYsloNunK4Gbn5Ha6Q08Ocp9zz+BcFgNosISbfqtk=;
+        b=G0uZeSd+qqMGgJ2xiJ5K3OzVnaapobjGnFXQ2JtKC3KH8q89GRNMoNrKttClsOy+SC
+         peLYHOwLnUvDDnJCMsz/OxkdekTKN0mtQnW1nbwiosDAVD+7NZPZ8b34HxCI8H/pPOPc
+         Yy2CjHRvsdhlWcUoW6EezGhhLVOPT6JeofwdBFDPpKNdPKUthfp+OxIVBBP07vdHJSa1
+         gooq9xMn/Lo1sGuSLcJX+8MrXMsIN451ZSArGHSpTIdey+Lvo1AhK6ekmC4+pJy/x1yK
+         GqlDjHgth9+PHzco8w6dal8xErbo0JYgrz0NUYXVMdewotcgmvqryVGZCi/hYRIzXf2l
+         cmYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FlAYsloNunK4Gbn5Ha6Q08Ocp9zz+BcFgNosISbfqtk=;
+        b=fQUAWzTVPfGObkhfqdt+XkZw+2hlaIMmou9AbaE+0vjnaWDhHD7Vc5zkNZJixmyMYx
+         5fkF63ldznJuB7ABsqOFWirEFkd8UwT/VbfWexHhl+EsIi0C2drxVUc0Cr0VgEWX851U
+         pcCX3MNcaLA0Mqe50LtzS4nXNopGdOt2XyPcUZ5BjyGJwxjubj814G4kbShwCBWAH/Cs
+         IuGl/y1jmRuSu78qBpJ3VI+rWNeXPneb008Y+V/q8DXZIKYpHA7aToG5DiD6iXjN5ADt
+         n0cG6JMtlZA3PRBWO4DkyxPnmjOfXMlM59V16o+u66PHyAaUUp9N2ayWuHU3ggNSC6+S
+         eG+Q==
+X-Gm-Message-State: AOAM532cVyg0TSTBJ6Pf07EZDms5smmuyeFLvQ8C5EcByR07+iVCNX5m
+        JBIYb8AuTqEdQXlmhkDV3FKCf6en3y7xH9M3mdaIbw==
+X-Google-Smtp-Source: ABdhPJwZXmsaPYtsaDbjfgUdhDDpX5HR0bzBi4bSsJgQ5eP/9NBsWXRIsIuywjwq2d4nVrBrvCK7BwxMWXJAgCPaJZY=
+X-Received: by 2002:a25:c5d2:0:b0:636:e78a:866d with SMTP id
+ v201-20020a25c5d2000000b00636e78a866dmr4133366ybe.225.1648731904948; Thu, 31
+ Mar 2022 06:05:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220327123835.28329-1-aford173@gmail.com>
+In-Reply-To: <20220327123835.28329-1-aford173@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 31 Mar 2022 15:04:28 +0200
+Message-ID: <CAPDyKFrhiaJHqsB8tVp_SkJwTtfanS5eN8wucntUHLL589Snww@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: mmc: imx-esdhc: Update compatible fallbacks
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-mmc@vger.kernel.org, haibo.chen@nxp.com,
+        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8mq-tqma8mq: change the spi-nor tx
-Date:   Thu, 31 Mar 2022 15:02:06 +0200
-Message-Id: <20220331130206.80349-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Pengutronix Kernel Team <Kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the qspi read command by importing the changes from commit
-04aa946d57b2 ("arm64: dts: imx8: change the spi-nor tx").
+On Sun, 27 Mar 2022 at 14:39, Adam Ford <aford173@gmail.com> wrote:
+>
+> The SDHC controller in the imx8mn and imx8mp have the same controller
+> as the imx8mm which is slightly different than that of the imx7d.
+> Using the fallback of the imx8mm enables the controllers to support
+> HS400-ES which is not available on the imx7d. After discussion with NXP,
+> it turns out that the imx8qm should fall back to the imx8qxp, because
+> those have some additional flags not present in the imx8mm.
+>
+> Suggested-by: haibo.chen@nxp.com
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Fixes: b186b8b6e770 ("arm64: dts: freescale: add initial device tree for TQMa8Mx with i.MX8M")
+I didn't quite follow all the discussions on patch3 - and whether that
+may affect the binding. Anyway, I assume you will send a new version.
+If not, please tell and will pick this up.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Kind regards
+Uffe
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-index 38ffcd145b33..899e8e7dbc24 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-@@ -253,7 +253,7 @@ flash0: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		spi-max-frequency = <84000000>;
--		spi-tx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
- 		spi-rx-bus-width = <4>;
- 	};
- };
--- 
-2.25.1
 
+> ---
+> V2:  Added suggested-by note and imx8qxp updates.
+> ---
+>  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml   | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 7dbbcae9485c..1427e9b5a6ec 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -34,23 +34,25 @@ properties:
+>            - fsl,imx6ull-usdhc
+>            - fsl,imx7d-usdhc
+>            - fsl,imx7ulp-usdhc
+> +          - fsl,imx8mm-usdhc
+> +          - fsl,imx8qxp-usdhc
+>            - fsl,imxrt1050-usdhc
+>            - nxp,s32g2-usdhc
+>        - items:
+>            - enum:
+> -              - fsl,imx8mm-usdhc
+> -              - fsl,imx8mn-usdhc
+> -              - fsl,imx8mp-usdhc
+>                - fsl,imx8mq-usdhc
+> -              - fsl,imx8qm-usdhc
+> -              - fsl,imx8qxp-usdhc
+>            - const: fsl,imx7d-usdhc
+>        - items:
+>            - enum:
+> -              - fsl,imx93-usdhc
+> +              - fsl,imx8mn-usdhc
+> +              - fsl,imx8mp-usdhc
+>                - fsl,imx8ulp-usdhc
+> +              - fsl,imx93-usdhc
+>            - const: fsl,imx8mm-usdhc
+> -
+> +      - items:
+> +          - enum:
+> +              - fsl,imx8qm-usdhc
+> +          - const: fsl,imx8qxp-usdhc
+>    reg:
+>      maxItems: 1
+>
+> --
+> 2.34.1
+>
