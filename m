@@ -2,223 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2658E4EE0C1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 20:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0E64EE16E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 21:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235340AbiCaSlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 14:41:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
+        id S239760AbiCaTLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 15:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235286AbiCaSld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 14:41:33 -0400
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A2B1114E
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 11:39:45 -0700 (PDT)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-df0940c4eeso186165fac.8
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 11:39:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=e9jkAgjwsi1IJSGTXHmKAcaACDiJsAOI5quMymW0VDc=;
-        b=mMD97fQDv0+2FvvZYf5+fdkYUQipERsAb3C2YcKnLOOEQ/PsJUTDDX5i376ABpBGWC
-         8TpaoyFX9P3UccJmlhrrqlSG+ka+WkQfRZFsFNnxBtpTwOpjT/x3Lzt9HADfuPpu7OS7
-         QU+9iTOz1sDnXxGrb0mS9cmpSLomtfZalfKPVbntBxVwZkTTnhqBYisXjdlU7goWLDkM
-         laUKXVA0VLRefOHvgcNMqbM2Shr1AH7O2d7elvTBpQ9ZmSUzDNCbzRS3cbBLKLE+kBsK
-         I6c/dZZlvp6SopotuACCLG3keVMeHJOquxTiNQjJRKkGlYfxw8wYJcbmi+rjvkUxeo7i
-         AXJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=e9jkAgjwsi1IJSGTXHmKAcaACDiJsAOI5quMymW0VDc=;
-        b=ZtU2dobG4/rL+vjGogyNv1hLn8r+kevsO6/PHdKSkEaWuJ4vYWlaWoJyG9bb2L7x0z
-         tN6sQ+ax4BFwBMHeJ5l7/hCheFgz0vdfyqx9miNC7bf9XeH5xA5UXBDGOGDFwaY/6Ine
-         JMV77HsRoPYA1+h5pOoPALwz4DO30d0t/be5TeCKe5zGPiABgWbfXsx5gOWawNLKhbgO
-         1XJtt0cm547qfUZ4e+NLrMzlS9Bj1SYNZwxHlXU9VtaDjZ91vN2TZoFdXl906G9LL83x
-         XA5x/51qt5smGz0BUNfs+7LWy5uAyKh+d5PUsSThowdE/G5MdPbOQMUEZb6a3jPD7zOD
-         2GTQ==
-X-Gm-Message-State: AOAM532MKtFCzPqjyNGY0MCLrLFJIVDBRGod7jTb7qskC8a90ag3S5/9
-        4OFSgSDeMEmQOUgrD3TcuaNshw==
-X-Google-Smtp-Source: ABdhPJw/a/7CrFLyGEY0Z/DS0/Ws4lqIc4WJ3cyuGTmJnxDrq9I4ThBrzgRb24j8nj+NdhQfCvPQBw==
-X-Received: by 2002:a05:6870:d0ce:b0:de:79e2:7ec7 with SMTP id k14-20020a056870d0ce00b000de79e27ec7mr3185850oaa.245.1648751985239;
-        Thu, 31 Mar 2022 11:39:45 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id e7-20020a9d2a87000000b005af548abe73sm175078otb.4.2022.03.31.11.39.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 11:39:44 -0700 (PDT)
-Date:   Thu, 31 Mar 2022 11:42:14 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, quic_asutoshd@quicinc.com,
-        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
-        quic_sartgarg@quicinc.com, quic_nitirawa@quicinc.com,
-        quic_sayalil@quicinc.com, agross@kernel.org,
-        krzysztof.kozlowski@canonical.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3] mmc: sdhci-msm: Reset GCC_SDCC_BCR register for SDHC
-Message-ID: <YkX2BrTjgexrIHtR@ripper>
-References: <1648710182-31899-1-git-send-email-quic_c_sbhanu@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1648710182-31899-1-git-send-email-quic_c_sbhanu@quicinc.com>
+        with ESMTP id S239644AbiCaTLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 15:11:00 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CF15839B;
+        Thu, 31 Mar 2022 12:09:10 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1648753746; bh=//WRUbMNTTLY5xDGXoVd0QltQT6Y2dnCm92ZELsf8+0=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=VlhacMYsOlJLMKMhb+Win12GlUkyWxCZZ8nkGMsoSB0e9P1IBzPtfXBpH5RMza9c2
+         xZLnupfK7pWQNx0gZae1mIvmo0GoG8C2uYTN1W8S4Sy/gc1hOcJyLMD5lEXMbFXRwl
+         OlirjY2B9lgL13j/VU9Q5gtF7mmmADC8J/rBVDuA=
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <YkXjJ2gtX4sL000U@robh.at.kernel.org>
+Date:   Thu, 31 Mar 2022 21:09:05 +0200
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <13047464-BDFC-455C-AC5E-E7BC249908F3@cutebit.org>
+References: <20220330164458.93055-1-povik+lin@cutebit.org>
+ <20220330164458.93055-2-povik+lin@cutebit.org> <YkU6yvUQ6v4VdXiJ@matsya>
+ <C2D8BDAF-0ACF-4756-B10F-B5097BC93670@cutebit.org>
+ <265B2992-06E5-4E45-A971-B170A385EFD4@cutebit.org> <YkW2OG3dU4YFYJEZ@matsya>
+ <B75EEC8B-FE88-47EA-8F56-0DD7EDE0DB77@cutebit.org>
+ <YkXjJ2gtX4sL000U@robh.at.kernel.org>
+To:     Rob Herring <robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 31 Mar 00:03 PDT 2022, Shaik Sajida Bhanu wrote:
 
-> Reset GCC_SDCC_BCR register before every fresh initilazation. This will
-> reset whole SDHC-msm controller, clears the previous power control
-> states and avoids, software reset timeout issues as below.
-> 
-> [ 5.458061][ T262] mmc1: Reset 0x1 never completed.
-> [ 5.462454][ T262] mmc1: sdhci: ============ SDHCI REGISTER DUMP ===========
-> [ 5.469065][ T262] mmc1: sdhci: Sys addr: 0x00000000 | Version: 0x00007202
-> [ 5.475688][ T262] mmc1: sdhci: Blk size: 0x00000000 | Blk cnt: 0x00000000
-> [ 5.482315][ T262] mmc1: sdhci: Argument: 0x00000000 | Trn mode: 0x00000000
-> [ 5.488927][ T262] mmc1: sdhci: Present: 0x01f800f0 | Host ctl: 0x00000000
-> [ 5.495539][ T262] mmc1: sdhci: Power: 0x00000000 | Blk gap: 0x00000000
-> [ 5.502162][ T262] mmc1: sdhci: Wake-up: 0x00000000 | Clock: 0x00000003
-> [ 5.508768][ T262] mmc1: sdhci: Timeout: 0x00000000 | Int stat: 0x00000000
-> [ 5.515381][ T262] mmc1: sdhci: Int enab: 0x00000000 | Sig enab: 0x00000000
-> [ 5.521996][ T262] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
-> [ 5.528607][ T262] mmc1: sdhci: Caps: 0x362dc8b2 | Caps_1: 0x0000808f
-> [ 5.535227][ T262] mmc1: sdhci: Cmd: 0x00000000 | Max curr: 0x00000000
-> [ 5.541841][ T262] mmc1: sdhci: Resp[0]: 0x00000000 | Resp[1]: 0x00000000
-> [ 5.548454][ T262] mmc1: sdhci: Resp[2]: 0x00000000 | Resp[3]: 0x00000000
-> [ 5.555079][ T262] mmc1: sdhci: Host ctl2: 0x00000000
-> [ 5.559651][ T262] mmc1: sdhci_msm: ----------- VENDOR REGISTER DUMP-----------
-> [ 5.566621][ T262] mmc1: sdhci_msm: DLL sts: 0x00000000 | DLL cfg: 0x6000642c | DLL cfg2: 0x0020a000
-> [ 5.575465][ T262] mmc1: sdhci_msm: DLL cfg3: 0x00000000 | DLL usr ctl: 0x00010800 | DDR cfg: 0x80040873
-> [ 5.584658][ T262] mmc1: sdhci_msm: Vndr func: 0x00018a9c | Vndr func2 : 0xf88218a8 Vndr func3: 0x02626040
-> 
-> Fixes: 0eb0d9f4de34 ("mmc: sdhci-msm: Initial support for Qualcomm chipsets")
-> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
-> ---
-> 
-> Changes since V2:
-> 	- Dropped new line after fixes tag as suggested by Bjorn
-> 	  Andersson.
-> 	- Passed device structure instead of passing platform_device
-> 	  structure as a argument for sdhci_msm_gcc_reset() as suggested
-> 	  by Bjorn Andersson.
-> 	- Replaced dev_err() with dev_err_probe() as suggested by Bjorn
-> 	  Andersson.
 
-Thanks, looks much better. Still some things I would like to see
-improved below.
+> On 31. 3. 2022, at 19:21, Rob Herring <robh@kernel.org> wrote:
+>=20
+> On Thu, Mar 31, 2022 at 06:13:53PM +0200, Martin Povi=C5=A1er wrote:
+>>=20
+>>> On 31. 3. 2022, at 16:10, Vinod Koul <vkoul@kernel.org> wrote:
+>>>=20
+>>> On 31-03-22, 09:06, Martin Povi=C5=A1er wrote:
+>>>>=20
+>>>>> On 31. 3. 2022, at 8:50, Martin Povi=C5=A1er <povik@cutebit.org> =
+wrote:
+>>>>>>=20
+>>>>>> On 31. 3. 2022, at 7:23, Vinod Koul <vkoul@kernel.org> wrote:
+>>>>>>=20
+>>>>>> On 30-03-22, 18:44, Martin Povi=C5=A1er wrote:
+>>>>>>> Apple's Audio DMA Controller (ADMAC) is used to fetch and store =
+audio
+>>>>>>> samples on Apple SoCs from the "Apple Silicon" family.
+>>>>>>>=20
+>>>>>>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+>>>>>>> ---
+>>>>>>> .../devicetree/bindings/dma/apple,admac.yaml  | 73 =
++++++++++++++++++++
+>>>>>>> 1 file changed, 73 insertions(+)
+>>>>>>> create mode 100644 =
+Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>>>>>=20
+>>>>>>> diff --git =
+a/Documentation/devicetree/bindings/dma/apple,admac.yaml =
+b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..34f76a9a2983
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>>>=20
+>>>>>>> +  apple,internal-irq-destination:
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>> +    description: Index influencing internal routing of the IRQs
+>>>>>>> +      within the peripheral.
+>>>>>>=20
+>>>>>> do you have more details for this, is this for peripheral and if =
+so
+>>>>>> suited to be in dam-cells?
+>>>>>=20
+>>>>> By peripheral I meant the DMA controller itself here.=20
+>>>=20
+>>> Dmaengine convention is that peripheral is device which we are doing =
+dma
+>>> to/from, like audio controller/fifo here
+>>>=20
+>>>>> Effectively the controller has four independent IRQ outputs and =
+the driver
+>>>>> needs to know which one we are using. (It need not be the same =
+output even
+>>>>> for different ADMAC instances on one die.)
+>>>=20
+>>> That smells like a mux to me.. why not use dma-requests for this?
+>>=20
+>> I am not sure that=E2=80=99s right. Reading the dmaengine docs, DMA =
+requests seem to have
+>> to do with the DMA-controller-to-peripheral connection, but the =
+proposed property
+>> tells us which of four independent IRQ outputs of the DMA controller =
+we actually
+>> have in the interrupts=3D property. That is, it has to do with the =
+DMA-controller-to-CPU
+>> connection.
+>=20
+> Why do they have to be different? IRQF_SHARED doesn't work?
 
-> Changes since V1:
-> 	- Added fixes tag as suggested by Ulf Hansson.
-> 	- Replaced devm_reset_control_get() with
-> 	  devm_reset_control_get_optional_exclusive() as suggested by
-> 	  Ulf Hansson.
-> ---
->  drivers/mmc/host/sdhci-msm.c | 39 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 50c71e0..e15e789 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -17,6 +17,7 @@
->  #include <linux/regulator/consumer.h>
->  #include <linux/interconnect.h>
->  #include <linux/pinctrl/consumer.h>
-> +#include <linux/reset.h>
->  
->  #include "sdhci-pltfm.h"
->  #include "cqhci.h"
-> @@ -284,6 +285,7 @@ struct sdhci_msm_host {
->  	bool uses_tassadar_dll;
->  	u32 dll_config;
->  	u32 ddr_config;
-> +	struct reset_control *core_reset;
->  	bool vqmmc_enabled;
->  };
->  
-> @@ -2482,6 +2484,39 @@ static inline void sdhci_msm_get_of_property(struct platform_device *pdev,
->  	of_property_read_u32(node, "qcom,dll-config", &msm_host->dll_config);
->  }
->  
-> +static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> +	int ret = 0;
+It=E2=80=99s not that the IRQ outputs of different controllers are =
+overlaid. It=E2=80=99s
+that e.g. first output of controller A is hooked up to some input of the =
+AP=E2=80=99s
+interrupt controller, the third output of controller B is hooked to =
+another
+input, but for all we know the other controller outputs lead to nowhere =
+or
+to some coprocessor.
 
-First use of this variable is an assignment, so no need to initialize it
-here.
+> Why can't you request each IRQ until it succeeds?
+>=20
+> What happens when there are 5 DMA controllers?
+>=20
+> If using more than 1 interrupt will never work or be needed, then I'm=20=
 
-> +
-> +	msm_host->core_reset = devm_reset_control_get_optional_exclusive(dev, "core_reset");
+> inclined to say just describe that 1 interrupt. Yes, that goes against=20=
 
-reset-names will only be used to identify resets and hence there's no
-reason to include "_reset" in the identifier.
+> 'describe all the h/w', but there's always exceptions. I suppose you=20=
 
-If this is the only reset for the controller, there's actually no reason
-for identifying it, you can omit reset-names from the binding and just
-pass NULL here (to get the first resets = <>).
+> need to know which 'interrupts' index (output) you are using. If so, =
+you=20
+> can do something like this:
+>=20
+> interrupts =3D <-1>, <-1>, <3 0>, <-1>;
 
-> +	if (IS_ERR(msm_host->core_reset))
-> +		return dev_err_probe(dev, PTR_ERR(msm_host->core_reset),
-> +				"unable to acquire core_reset\n");
-> +
-> +	if (!msm_host->core_reset)
-> +		return 0;
-> +
-> +	ret = reset_control_assert(msm_host->core_reset);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "core_reset assert failed\n");
-> +
-> +	/*
-> +	 * The hardware requirement for delay between assert/deassert
-> +	 * is at least 3-4 sleep clock (32.7KHz) cycles, which comes to
-> +	 * ~125us (4/32768). To be on the safe side add 200us delay.
-> +	 */
-> +	usleep_range(200, 210);
-> +
-> +	ret = reset_control_deassert(msm_host->core_reset);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "core_reset deassert failed\n");
-> +
-> +	usleep_range(200, 210);
-> +
+That=E2=80=99s actually exactly what I want! In next iteration of the =
+binding I will
+drop the vendor property and do that.
 
-sdhci_msm_gcc_reset() is only called once during probe(), so there's no
-reason to carry the reset_control pointer in struct sdhci_msm_host. Make
-it a local variable and use reset_control_get_optional_exclusive() and
-reset_control_put() the reset here before returning.
+>=20
+> Rob
 
-Regards,
-Bjorn
+Martin
 
-> +	return 0;
-> +}
->  
->  static int sdhci_msm_probe(struct platform_device *pdev)
->  {
-> @@ -2529,6 +2564,10 @@ static int sdhci_msm_probe(struct platform_device *pdev)
->  
->  	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
->  
-> +	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
-> +	if (ret)
-> +		goto pltfm_free;
-> +
->  	/* Setup SDCC bus voter clock. */
->  	msm_host->bus_clk = devm_clk_get(&pdev->dev, "bus");
->  	if (!IS_ERR(msm_host->bus_clk)) {
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
