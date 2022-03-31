@@ -2,142 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 292354EDAE8
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:50:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0395E4EDAF3
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237063AbiCaNvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 09:51:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51670 "EHLO
+        id S237068AbiCaN6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 09:58:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237043AbiCaNvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:51:35 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2281275DA;
-        Thu, 31 Mar 2022 06:49:47 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id t19so21431493qtc.4;
-        Thu, 31 Mar 2022 06:49:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HZyiCBkkM2Ze6R2JjxEo9dQJhfbwUCcXHcL4NICnY2s=;
-        b=h54BgAjLuXaQldmwAOVO1UyXjidE0LzcJyD1l08btAiOF5+Gq1A0/Wiec2nsFSXvmx
-         5ToNtXJtNPuhnHVNBfey7rWiVxZep7rSXw+SgeUpBp/On+dasA9mHRFJgVSag/KEvra7
-         ZTjWsCFYg8D9VugBs2TEjg2FwKdbEjoxChsTrOYGEYpXkIIIJD9LvE7aHQUK7e13FZvN
-         3ozgPSrQcjA7sCcuEC9sJCeMq0kDQtyF2pCx1jDZ37IIPogNUeS46aoHNhLs4gVFwn5N
-         kLM6qXSd8BIdCtBkzelwPiZRvWhTyiH72CGwkmw9QREv1eTiXCo/+84q2fHbyuRDgXT+
-         oPtg==
-X-Gm-Message-State: AOAM5302Dq35HxjQOmzNFB4LWduLDHfMTKUZy++20B9Xbdp76PC4AOur
-        rQKFmPovv1bmFoLAB3umTGfWdm1cNYgFHQ==
-X-Google-Smtp-Source: ABdhPJxAk+dvmxDULvhw/cjadsKF+Q6mUHivDebFsAh/gNsJfjWfA0ui4fGOlDPsh03VboXxrHY8uA==
-X-Received: by 2002:a05:622a:1aaa:b0:2e1:a40d:8253 with SMTP id s42-20020a05622a1aaa00b002e1a40d8253mr4288120qtc.135.1648734586289;
-        Thu, 31 Mar 2022 06:49:46 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id 11-20020ac8590b000000b002e1e5c5c866sm20591458qty.42.2022.03.31.06.49.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 06:49:46 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id m67so42401445ybm.4;
-        Thu, 31 Mar 2022 06:49:45 -0700 (PDT)
-X-Received: by 2002:a05:6902:1146:b0:634:6b3f:4908 with SMTP id
- p6-20020a056902114600b006346b3f4908mr4102824ybu.613.1648734584828; Thu, 31
- Mar 2022 06:49:44 -0700 (PDT)
+        with ESMTP id S231445AbiCaN6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:58:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73C2216FAB;
+        Thu, 31 Mar 2022 06:56:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 62F82B81FB7;
+        Thu, 31 Mar 2022 13:56:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68BB6C340F3;
+        Thu, 31 Mar 2022 13:56:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1648735013;
+        bh=nGAWwdrBLbof0MlXW0yomhyhqY4p0AJh0Mm0ExRZmOI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FXX6Eup6BXRhvEIt5nDMtEY53v6+v/5OG4UUBdrPltDwzyAsAW2hhF1O5/lKX6x8h
+         kTejUZ7JHYK0xbNk93JrQpYTXQRwX5DxFOhPhmLbi022p/9Ag3bLcbe4KgCtXhEpED
+         dgKBnCWeoaH2OqFhCsBsb6jfSYLN5Eydo5nWUGrI=
+Date:   Thu, 31 Mar 2022 15:56:48 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     niravkumar.l.rabara@intel.com
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Add Altera hardware mutex driver
+Message-ID: <YkWzIJ2G/NZ8JCzK@kroah.com>
+References: <20220331214911.27194-1-niravkumar.l.rabara@intel.com>
 MIME-Version: 1.0
-References: <20220315155919.23451-1-biju.das.jz@bp.renesas.com>
- <20220315155919.23451-6-biju.das.jz@bp.renesas.com> <CAMuHMdUPfMMK2Mv0ffQcYVitpOLv5Y4iB-eVPa1u=nYXF5o7mw@mail.gmail.com>
- <OS0PR01MB5922002E2AABB44A6A679F2286E19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922002E2AABB44A6A679F2286E19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 31 Mar 2022 15:49:33 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXjrvoCe-11GRz68+a-n=Knw6qnsJUSqEwv0Uxt2WZ_7A@mail.gmail.com>
-Message-ID: <CAMuHMdXjrvoCe-11GRz68+a-n=Knw6qnsJUSqEwv0Uxt2WZ_7A@mail.gmail.com>
-Subject: Re: [PATCH 5/7] arm64: dts: renesas: rzg2ul-smarc: Enable microSD on
- SMARC platform
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220331214911.27194-1-niravkumar.l.rabara@intel.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Fri, Apr 01, 2022 at 05:49:11AM +0800, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> Altera hardware mutex soft IP provides hardware assistance for
+> synchronization and mutual exclusion between processors in
+> asymmetric/symmetric multiprocessing (AMP/SMP) system or
+> multi processes/threads in uniprocessor system.
+> 
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-On Thu, Mar 31, 2022 at 3:36 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH 5/7] arm64: dts: renesas: rzg2ul-smarc: Enable microSD
-> > on SMARC platform
-> > On Tue, Mar 15, 2022 at 4:59 PM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > Enable the microSD card slot connected to SDHI1 on the RZ/G2UL SMARC
-> > > platform by removing the sdhi1 override which disabled it, and by
-> > > adding the necessary pinmux required for SDHI1.
-> > >
-> > > This patch also overrides vqmmc-supply for SDHI1.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-> > > @@ -0,0 +1,27 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +/*
-> > > + * Device Tree Source for the RZ/G2UL Type-1 SMARC EVK parts
-> > > + *
-> > > + * Copyright (C) 2022 Renesas Electronics Corp.
-> > > + */
-> > > +
-> > > +#include "rzg2ul-smarc-som.dtsi"
-> > > +#include "rzg2ul-smarc-pinfunction.dtsi"
-> > > +#include "rz-smarc-common.dtsi"
-> > > +
-> > > +/ {
-> > > +       vccq_sdhi1: regulator-vccq-sdhi1 {
-> > > +               compatible = "regulator-gpio";
-> > > +               regulator-name = "SDHI1 VccQ";
-> > > +               regulator-min-microvolt = <1800000>;
-> > > +               regulator-max-microvolt = <3300000>;
-> > > +               gpios = <&pinctrl RZG2L_GPIO(6, 1) GPIO_ACTIVE_HIGH>;
-> > > +               gpios-states = <1>;
-> > > +               states = <3300000 1>, <1800000 0>;
-> > > +       };
-> >
-> > This regulator is already defined in rz-smarc-common.dtsi, which is
-> > included above?  That definition does use a different gpios property,
-> > though.
->
-> Yes, Only for this RZ/G2UL and RZ/Five SMARC EVK it is different compared to
-> RZ/{G2L,V2L,G2LC} SMARC EVK.
->
-> Shall I move regulator from rz-smarc-common.dtsi to RZ/{G2L,V2L} and RZ/G2LC SMARC dtsi?
+Sorry, but you have not followed the Intel-required rules for submitting
+changes to the kernel.  Please contact the Intel Linux kernel team for
+details about this to help prevent some of the problems that this
+submission contains.
 
-Either move the regulator to the individual SMARC dtsi files, or
-keep it in rz-smarc-common.dtsi without gpios property, and add the
-gpios property in the individual SMARC dtsi files.
+thanks!
 
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+greg k-h
