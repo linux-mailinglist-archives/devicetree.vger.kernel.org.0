@@ -2,177 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F59E4EDB97
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 16:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B10154EDBAB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 16:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237452AbiCaOVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 10:21:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
+        id S237498AbiCaO27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 10:28:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237455AbiCaOVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 10:21:36 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2E51BE4F9;
-        Thu, 31 Mar 2022 07:19:49 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id b17-20020a0568301df100b005ce0456a9efso3774500otj.9;
-        Thu, 31 Mar 2022 07:19:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Vm/tLIcwztm/cAKbFq5hHS63stt8moqDI9vFQVEX30w=;
-        b=BacBToiK8uRJiYP8U49LBgQIIk48GIXBiDcFFbQX70JKSoZiVymsFSN84pgd2xGBUP
-         I3hhs4i+5uCE3p+wCmcL+oJk+n/mLbzzymDDLXeIVLVU+o2pcWQHSsuE6Sq9TjyeaMi5
-         FLt3FFJzp10/llYMGVcgIMsbUBKhefUl1PY3LUzM1rINwwg7Gb87cTpfA59pkFiW0Q6s
-         K/SE5gAjNWlrL532/Ng+WvWcZ8dRsL+35hHVQ/sJ/gslQbFz26rIB+54RaRBuUqIMDLi
-         VFTX/NBB5Wr0Y14Nl8nVs8bjFssMJrX2GRNq+yjFLZWwUq22gvirxt4jtWFCe/RTCTkX
-         d0Vg==
+        with ESMTP id S237550AbiCaO25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 10:28:57 -0400
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B04021DF0E;
+        Thu, 31 Mar 2022 07:27:08 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id a5so19826518qvx.1;
+        Thu, 31 Mar 2022 07:27:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Vm/tLIcwztm/cAKbFq5hHS63stt8moqDI9vFQVEX30w=;
-        b=VpQlx7EMa49oMBgfuHxkMjmZI7/1pvs2st0YPvnctaV6B7mBNa2OJG+F7tzyckPkqf
-         Mm6X6nAdN1XxzprrmjBXz7j0wR4Vv3xn6gIYQnPwHZ0NILpg4/p5zCSvTeAMrAgM9yO1
-         KzK1xC0yfkP0qs3gBbU+7GYrUsxNVFDQdaEYt3apPISUUHeuIDvSEcu9EhDGXZWDNZlk
-         t3brlfHoN7ZPAdxe256KG8r5svlavqi7qw+8WreamQy4gYuH4SDPeXHuDfnGmFpoLMMf
-         7U3mGFK3CUMt/ozWcdvqno4U7VFgKjYM34ATNqIy/U92moGhgOviNTVzE71yOAaXvNDb
-         p2YQ==
-X-Gm-Message-State: AOAM531X9vBCRtdM7PMTT4lcEAkCn35oXoC+CS5pHkUXX1rOMJJbF1Kp
-        KUaLcwF65h164SoaWl64csc=
-X-Google-Smtp-Source: ABdhPJxvaMnWlIqOGNm++kxUq/OI22tXvuvCi7hITtxpHtFZJ3FqhnurnjI95U9h2jczQz9rtAONIQ==
-X-Received: by 2002:a05:6830:2b0d:b0:5cd:aca2:f3f2 with SMTP id l13-20020a0568302b0d00b005cdaca2f3f2mr5709703otv.212.1648736388863;
-        Thu, 31 Mar 2022 07:19:48 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id x25-20020a056830409900b005af164235b4sm11919171ott.2.2022.03.31.07.19.45
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jlIMe9sv+wgzo0JqpzhcxhPs0NywybZMLTd0SfGlhWc=;
+        b=a2SqAWg6G3F0HNe6e9582JgYdP/3eHoOQeYqMbiL4jhiDBz4ACFlYUIf6i2sTjcKX2
+         HnettJgQo26yPxP6djIFu5Msdo5BtbxgagbjRmsT+NlYHuvOt4Hvk2o0CwLvniq8epQN
+         1GilhdmaoUAZ6/EK1llSSyZbVxe0jpfd0JLlxCASO/fsQGUaSAbermaNG11neJv+fqPr
+         pGoEhhILOSeYa/3DOWmcNIp5eRFzoY5Z2fzanZGf+jH31k5U3+K0ByCXqUz170uShWBX
+         zkuW/+hs40amFAnBJfVdPoHxk4xDyL0j3UTGMm0BxAEQKTifiokTEuxr0HSMtWM9RcAo
+         5DZQ==
+X-Gm-Message-State: AOAM532HSV4JkLmnwUxxxVtUeiTsrrUWMT3nIeTyCUu5N2SqVJKmcbsI
+        wywcZazxMQms4xButGWTZkAvktSnql1PvQ==
+X-Google-Smtp-Source: ABdhPJyesV6fO4PnM3RjOoHVdOyvg86dUsSrnCxvbDES9h8+KBsmv10rw55D0LIxLD1ZoZl5kxkOIg==
+X-Received: by 2002:a05:6214:c48:b0:440:cded:f2ab with SMTP id r8-20020a0562140c4800b00440cdedf2abmr35563289qvj.18.1648736827365;
+        Thu, 31 Mar 2022 07:27:07 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id s11-20020a05620a16ab00b0067b3bc3c35bsm12279825qkj.113.2022.03.31.07.27.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 07:19:47 -0700 (PDT)
-Message-ID: <68f66e54-e5e4-28ff-96a9-d4eaffc08c82@gmail.com>
-Date:   Thu, 31 Mar 2022 16:19:43 +0200
+        Thu, 31 Mar 2022 07:27:07 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id e203so33763335ybc.12;
+        Thu, 31 Mar 2022 07:27:06 -0700 (PDT)
+X-Received: by 2002:a05:6902:1146:b0:634:6b3f:4908 with SMTP id
+ p6-20020a056902114600b006346b3f4908mr4256212ybu.613.1648736826671; Thu, 31
+ Mar 2022 07:27:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 2/4] arm64: dts: mt8192: Add mmc device nodes
-Content-Language: en-US
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220330133816.30806-1-allen-kh.cheng@mediatek.com>
- <20220330133816.30806-3-allen-kh.cheng@mediatek.com>
- <4cd1c5fa-0982-0355-d5b6-7025b82174a4@gmail.com>
- <ccd28405c8f2c420354f3355fc9d4ef1dd7ea35d.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <ccd28405c8f2c420354f3355fc9d4ef1dd7ea35d.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220315142644.17660-1-biju.das.jz@bp.renesas.com> <20220315142644.17660-8-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220315142644.17660-8-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 31 Mar 2022 16:26:54 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXE+ighcDngxWzECsNd1bVnb3+RRmrEKWzpmGJFrFYEEQ@mail.gmail.com>
+Message-ID: <CAMuHMdXE+ighcDngxWzECsNd1bVnb3+RRmrEKWzpmGJFrFYEEQ@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] arm64: dts: renesas: Add initial device tree for
+ RZ/G2UL Type-1 SMARC EVK
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Biju,
+
+On Tue, Mar 15, 2022 at 3:27 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add basic support for RZ/G2UL SMARC EVK (based on R9A07G043U11):
+> - memory
+> - External input clock
+> - CPG
+> - DMA
+> - SCIF
+>
+> It shares the same carrier board with RZ/G2L, but the pin mapping is
+> different. Disable the device nodes which are not tested and delete the
+> corresponding pinctrl definitions.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
+> @@ -0,0 +1,111 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the RZ/G2UL Type-1 SMARC EVK board
+> + *
+> + * Copyright (C) 2022 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +#include "r9a07g043.dtsi"
+> +#include "rzg2ul-smarc-som.dtsi"
+> +#include "rz-smarc-common.dtsi"
+> +
+> +/ {
+> +       model = "Renesas SMARC EVK based on r9a07g043u11";
+> +       compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
+
+Can you please send a patch to add this combination to
+Documentation/devicetree/bindings/arm/renesas.yaml?
+
+Thanks!
+
+> +};
 
 
-On 31/03/2022 14:48, allen-kh.cheng wrote:
-> Hi Matthias,
-> 
-> On Thu, 2022-03-31 at 14:02 +0200, Matthias Brugger wrote:
->>
->> On 30/03/2022 15:38, Allen-KH Cheng wrote:
->>> Add mmc nodes for mt8192 SoC.
->>>
->>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->>> Reviewed-by: AngeloGioacchino Del Regno <
->>> angelogioacchino.delregno@collabora.com>
->>
->> You forgot to disable the msdc clock node, which I understood we
->> agreed on in in
->> v4. I would consider this change as an substantial one, so in this
->> case please
->> delete the reviewed-by tags.
->>
->> Regards,
->> Matthias
->>
-> 
-> Is it ok I send a new patch for this instead of a series?
+Gr{oetje,eeting}s,
 
-Yes sure.
+                        Geert
 
-Matthias
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> Best regards,
-> Allen
-> 
->>> ---
->>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 32
->>> ++++++++++++++++++++++++
->>>    1 file changed, 32 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> index 69e8d1934d53..c1057878e2c6 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
->>> @@ -991,6 +991,38 @@
->>>    			#clock-cells = <1>;
->>>    		};
->>>    
->>> +		mmc0: mmc@11f60000 {
->>> +			compatible = "mediatek,mt8192-mmc",
->>> "mediatek,mt8183-mmc";
->>> +			reg = <0 0x11f60000 0 0x1000>, <0 0x11f50000 0
->>> 0x1000>;
->>> +			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH
->>> 0>;
->>> +			clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>,
->>> +				 <&msdc_top CLK_MSDC_TOP_H_MST_0P>,
->>> +				 <&msdc_top CLK_MSDC_TOP_SRC_0P>,
->>> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
->>> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC0>,
->>> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
->>> +				 <&msdc_top
->>> CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
->>> +			clock-names = "source", "hclk", "source_cg",
->>> "sys_cg",
->>> +				      "pclk_cg", "axi_cg", "ahb_cg";
->>> +			status = "disabled";
->>> +		};
->>> +
->>> +		mmc1: mmc@11f70000 {
->>> +			compatible = "mediatek,mt8192-mmc",
->>> "mediatek,mt8183-mmc";
->>> +			reg = <0 0x11f70000 0 0x1000>, <0 0x11c70000 0
->>> 0x1000>;
->>> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH
->>> 0>;
->>> +			clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>,
->>> +				 <&msdc_top CLK_MSDC_TOP_H_MST_1P>,
->>> +				 <&msdc_top CLK_MSDC_TOP_SRC_1P>,
->>> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
->>> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC1>,
->>> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
->>> +				 <&msdc_top
->>> CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
->>> +			clock-names = "source", "hclk", "source_cg",
->>> "sys_cg",
->>> +				      "pclk_cg", "axi_cg", "ahb_cg";
->>> +			status = "disabled";
->>> +		};
->>> +
->>>    		mfgcfg: clock-controller@13fbf000 {
->>>    			compatible = "mediatek,mt8192-mfgcfg";
->>>    			reg = <0 0x13fbf000 0 0x1000>;
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
