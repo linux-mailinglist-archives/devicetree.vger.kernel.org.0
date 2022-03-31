@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9C9D4ED123
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 03:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 982CD4ED12C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 03:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352201AbiCaBCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Mar 2022 21:02:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47914 "EHLO
+        id S1352227AbiCaBIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Mar 2022 21:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346065AbiCaBCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 21:02:04 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6783365D10;
-        Wed, 30 Mar 2022 18:00:18 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id e4so23845966oif.2;
-        Wed, 30 Mar 2022 18:00:18 -0700 (PDT)
+        with ESMTP id S1352225AbiCaBIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Mar 2022 21:08:22 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED54E66208
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 18:06:34 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z12so24974848lfu.10
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 18:06:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=pQin6zzGAuRacO9FVhrB5u1rqYNKK0HG35yvZRfDw/0=;
+        b=LoZF0VUPCeyR0nPwrZ7ben+plaiet+DBjQmDF1p7B+WWSESHbWu9AsK7Zc43BNgN/w
+         9AdEkpPqx5fOG+1e/cyBfU/ZYawfrMeJp95XaDhxSMkxVQXpqVmt4uq2hSevQzxorIA9
+         wmZlE2Esg9QY3W6cjtFed7CZRvYiSKgDcIfnPCq+bKP3rj0M4V3IVZ6/OfiPyApAzmpF
+         OafI3BTBfz0QF5VovF7+W35/N0qXM9WfYzYOpufuFo0RDKDgA7lsUQNv8WFuE3NCbA9+
+         K2kEJTmO+4d89le22vJNdOXGCvFYybh3xqSMLzhQ6qRNuRno8rDIDiMCNbvcrSUceuC/
+         qXAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MA12qnKm1ceMQI3Fku8u66b+ikv0ibJvyYHXba44Nq8=;
-        b=U07Mn0D+6UH6qqY6lMvvO+Z22kBhnneLOWC0zkc61EpAbaDzrQszQ8SFtd4JG7hFPA
-         beilO7wepZAbhLQBrSaSqXvKpYQ+2A4NypRwqvrSK+2bEMCM0HJ79rcCdY8McXf4+JQB
-         ZiNnl2Q5O6hc45wYPDpOEHl8rZZWdWYEPmEzJ0LYqEn4gP9toU4ONP8B5xLbJ6scFi/L
-         p0Sf1AoX0BeYl0K06yN1tvPVIvmaAAIIO/7kIfZm0gONqK4YT2YSzuQRl6SPZ26lvGbe
-         +aRxBXdENBppgNuCjW1jrKcxr6MqeheDXXz5GbKFwjzgt8mPWmldDGH+XAr8iSILHeJ2
-         HY0g==
-X-Gm-Message-State: AOAM5326xyKpuE07jQL/avrr1K327SDF9ytVayZXtkIPLbEJb3f5+3lU
-        U3/fFUxDTR25K7EmCR4IYKOR2Sk9Iw==
-X-Google-Smtp-Source: ABdhPJxE68EL8aL8GTYB+UYnBt/e2Dr9E24iTCHNTEL6ZagdmVa1T4AzTMpCaLD/ziMuzcoHKH1Qnw==
-X-Received: by 2002:a05:6808:55:b0:2ec:a4ae:fdde with SMTP id v21-20020a056808005500b002eca4aefddemr1547529oic.106.1648688417736;
-        Wed, 30 Mar 2022 18:00:17 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 38-20020a9d0da9000000b005cb437ac0e2sm11538034ots.44.2022.03.30.18.00.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Mar 2022 18:00:17 -0700 (PDT)
-Received: (nullmailer pid 4000825 invoked by uid 1000);
-        Thu, 31 Mar 2022 01:00:16 -0000
-Date:   Wed, 30 Mar 2022 20:00:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: renesas,apmu: Fix cpus property
- limits
-Message-ID: <YkT9IFHc1k3uiUW+@robh.at.kernel.org>
-References: <9ece1a07bbcb95abc9d80e6a6ecc95806a294a11.1648645279.git.geert+renesas@glider.be>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=pQin6zzGAuRacO9FVhrB5u1rqYNKK0HG35yvZRfDw/0=;
+        b=6bKopy7aoFgVYYX0Z690niTDd7qyIBj+nItMQGxxMh3NoCgviCVW4V/W+5kjpsGjrM
+         uhwLFLjOCbII8rvVyX7hBmZuxMrRuWqK4iL2ydHW57kOhzcO9GuX4sZ4JsO0hirZJt6I
+         ObBlihayiS6m1hI+FL0PWRY+KIfWUWu7OMFrEsnuLR5qClA1I+tSZWhV2UgEQDJRPQRD
+         U/J8HbZ6LhgGT+Hi1gLEmJB7GnZzBk8UZI4rAY+UAIiZSzkIvLtonsWgMLMGVT8l9Ny8
+         rEWrRRh8LUDCLLrJpgJTehykFj8f0HjpWP4UTXLTJRxqOxYV+ZJgpSIdZ9g7lSoCnmWq
+         HkvQ==
+X-Gm-Message-State: AOAM533s9XzcgVeTFG7bNszqdQL3OeEON5U79Lsdo6APJ1kRL7n8mbTW
+        Yxjk7PJX3nRA4Ces5D8v8synYAiK/ELdfaYRurfz8Q==
+X-Google-Smtp-Source: ABdhPJwRI/M8FbLpqXsPZDNWG2rFpgPuua67WqFCLmYKJgq6Z/6FsQGUHVJQ/05ReOq1eRD1RvJQ664QpAYl0Yz3Fus=
+X-Received: by 2002:a19:c20e:0:b0:44a:375c:6eb0 with SMTP id
+ l14-20020a19c20e000000b0044a375c6eb0mr8919131lfc.5.1648688793121; Wed, 30 Mar
+ 2022 18:06:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9ece1a07bbcb95abc9d80e6a6ecc95806a294a11.1648645279.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <cover.1648461096.git.zong.li@sifive.com>
+In-Reply-To: <cover.1648461096.git.zong.li@sifive.com>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Thu, 31 Mar 2022 09:06:22 +0800
+Message-ID: <CANXhq0oRB6dEHM8of6pySWM-6CkJ3WZVsqDC5J1fKuFzJnVJKw@mail.gmail.com>
+Subject: Re: [PATCH v8 0/4] Determine the number of DMA channels by
+ 'dma-channels' property
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,20 +76,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Mar 2022 15:04:16 +0200, Geert Uytterhoeven wrote:
-> "make dtbs_check":
-> 
->     arch/arm/boot/dts/r8a7791-koelsch.dtb: apmu@e6152000: cpus:0: [6, 7] is too long
-> 	    From schema: Documentation/devicetree/bindings/power/renesas,apmu.yaml
-> 
-> Correct the minimum and maximum number of CPUs controlled by a single
-> APMU instance.
-> 
-> Fixes: 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array schemas")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/power/renesas,apmu.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+Hi Vinod and Palmer,
+This patchset got some reviewed-by and acked-by, if it is good to you
+as well, are you willing to help me to pick them? Thanks.
 
-Applied, thanks!
+On Mon, Mar 28, 2022 at 5:52 PM Zong Li <zong.li@sifive.com> wrote:
+>
+> The PDMA driver currently assumes there are four channels by default, it
+> might cause the error if there is actually less than four channels.
+> Change that by getting number of channel dynamically from device tree.
+> For backwards-compatible, it uses the default value (i.e. 4) when there
+> is no 'dma-channels' information in dts.
+>
+> This patch set contains the dts and dt-bindings change.
+>
+> Changed in v8:
+>  - Rebase on master
+>  - Remove modification of microchip-mpfs.dtsi
+>  - Rename DMA node name of fu540-c000.dtsi
+>
+> Changed in v7:
+>  - Rebase on tag v5.17-rc7
+>  - Modify the subject of patch
+>
+> Changed in v6:
+>  - Rebase on tag v5.17-rc6
+>  - Change sf_pdma.chans[] to a flexible array member.
+>
+> Changed in v5:
+>  - Rebase on tag v5.17-rc3
+>  - Fix typo in dt-bindings and commit message
+>  - Add PDMA versioning scheme for compatible
+>
+> Changed in v4:
+>  - Remove cflags of debug use reported-by: kernel test robot <lkp@intel.com>
+>
+> Changed in v3:
+>  - Fix allocating wrong size
+>  - Return error if 'dma-channels' is larger than maximum
+>
+> Changed in v2:
+>  - Rebase on tag v5.16
+>  - Use 4 as default value of dma-channels
+>
+> Zong Li (4):
+>   dt-bindings: dma-engine: sifive,fu540: Add dma-channels property and
+>     modify compatible
+>   riscv: dts: Add dma-channels property and modify compatible
+>   riscv: dts: rename the node name of dma
+>   dmaengine: sf-pdma: Get number of channel by device tree
+>
+>  .../bindings/dma/sifive,fu540-c000-pdma.yaml  | 19 +++++++++++++--
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  5 ++--
+>  drivers/dma/sf-pdma/sf-pdma.c                 | 24 ++++++++++++-------
+>  drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++-----
+>  4 files changed, 38 insertions(+), 18 deletions(-)
+>
+> --
+> 2.35.1
+>
