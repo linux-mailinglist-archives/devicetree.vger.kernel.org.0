@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA0074EE329
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D67D24EE32B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239207AbiCaVSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 17:18:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52298 "EHLO
+        id S241713AbiCaVS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 17:18:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbiCaVSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 17:18:55 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0264023587B
+        with ESMTP id S241701AbiCaVS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 17:18:56 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0976239331
         for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:17:07 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id a17so742992edm.9
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:17:06 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id dr20so1884810ejc.6
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:17:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nGcgYb47kFSx74hsKvREuLMWHX29e0A5Arswhl9so/I=;
-        b=Qpdl0PbxwpOkOlh910SskE4x/GdaL9SnivqJYn79n/FxmKqv7Qs3m2aJI1WjeytT9W
-         IRgg5DNFp/nnzwnHLekDO4NesduELa8+gWKKbQfiMqgNaKmi7daEavGKioqJiPoMV5q4
-         TeasXyT+DtVJ2PS3j4Vz2vJcLygBYqnwwWTyHpk5QfeBZIKblQujEim/RHFAXLFSkMQo
-         +tlUwGLq1z1WU9o0XncaBWOhDT5jsJldMWUd/9Ts0xzfmRYiaZyAIbll/jov3zWmvH0e
-         pW44+ulRxVV1X2mHK4ayByZ7j2ctjB1x/dMyX2wCf5LGU4Nl7EGAwS6wHDGoQ9Ymhvw8
-         cWXQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=OhUgoUjmHfkmZB66Ljg+9BeuLZIJH4fmuI4EW/8GfzI=;
+        b=YPb7yEyvES+dt9sHShI1By6hbIuwJMoBkGCPyvywEl10wdUYLHpyRz6ttW3nS19EoB
+         0Scw63WuhrpxDyPhFmQF5POGjAENRqmJs2F7bKJDWekzzCX/F8GH7395WjBcys/rLSKq
+         933w0xbpcUSlkNg4SHoitM2JuItD5yxMhU1HkjaFADRxDzJGurZM+ENUlIUcL/T+I3F3
+         UYQ8GnnPV0CN9j2tHB5mSQgIyvQJDn+/dSCU4Hd4IK6vA8OctoeENwKjg0arRlsRqvJV
+         3uV3qXPwQZ+bQBqSp+antnUeCmrCbJA9z+Fbvd2oETMUXTbFfBH8NQdAi13eugRD96zt
+         HkVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nGcgYb47kFSx74hsKvREuLMWHX29e0A5Arswhl9so/I=;
-        b=s1DNl48Yviut6khWov50KbNUeLWQ1ghpX4Ppe6CCZe/0RqqnVWhASjT9+mO0+gkEsO
-         sZmMjj4UAbvGlYM9F1jEniON/Tb+0trpWQboziLh90H8r1jHwU8wDUDjgIZ3yrwgvvey
-         5fAFLFM8YfGSQbYp2o+jhYaMAhcUucbtMw+jKYXBJZsbBMQjE7zCHcCjG3zImUrCjTbI
-         xyTzz5jeUwz6Ia/ZhDEaSEkur9ET5d3fb2Ifv2xsfN2QKis1Z02MD/808ucN7waB6z52
-         htrhTXRM+Qb4758/og8Uo6hjnyAtAFticGJRc6lWvzI4tjlElwM3PxcNE8YY44nnxIul
-         CsvA==
-X-Gm-Message-State: AOAM533VbfzF5FWGXY6judwzy1JVfZlCon14vHAoen82idMqhzQParvz
-        YGXSghPV1Yw7oMjBRGhX7yPhXg==
-X-Google-Smtp-Source: ABdhPJxNK4evBG/fjORvTq2QCSAzbQ+XVW5+JJOQVqLpEY5JfONx42J+VjQtSuAlKnwFD9fDJndCYw==
-X-Received: by 2002:a05:6402:2747:b0:419:4817:ba22 with SMTP id z7-20020a056402274700b004194817ba22mr17922903edd.253.1648761425514;
-        Thu, 31 Mar 2022 14:17:05 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=OhUgoUjmHfkmZB66Ljg+9BeuLZIJH4fmuI4EW/8GfzI=;
+        b=JUHxQBavMyFQfftmLTW0uANJqxo1Bb8iQYsTLnXQqaNiBq7Vy5LCzUa0ZUkgd1EfmY
+         FNuCLdhAcQqkX3fzwDAvOc8T8K4kBhDARLmYSg/yMKSOSO7zc499oRmzyqpG0/9v7NeZ
+         fy7jt8IhIWnl1at5kRpeG1XNo90clCby7fwnubTVeIXoBYdeFfkVbm2i8qFpF89SSO0j
+         zQFXgC/2yHIrNAgcLGDS963vnsEhgbpxxy8F1G5efgcP0i4q4UfJHfMiJkEilWu6uv7H
+         GKLihRBuKUXnRO7veqODnXrUm8/sGhFCzsn7DF/WXSO8kcC2RIOnTmKirRrThOigVVhN
+         CT9A==
+X-Gm-Message-State: AOAM530ISEi74aa7lJiRPEfPmx5Zs9qrRiohC2bQyQKiXYKj9anxIOya
+        2jeguge7e0AcVKUBG+jV1tTdug==
+X-Google-Smtp-Source: ABdhPJznpX+KjZxb6pXEL6EoqM5vXbcnxtx2K142UoNbZtdPIFgL+oOQNPa0G2T6B6EaAQgFtY8ugg==
+X-Received: by 2002:a17:906:c1d6:b0:6d6:e0a3:bbc7 with SMTP id bw22-20020a170906c1d600b006d6e0a3bbc7mr6741191ejb.484.1648761426516;
+        Thu, 31 Mar 2022 14:17:06 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id nc13-20020a1709071c0d00b006dfa376ee55sm202518ejc.131.2022.03.31.14.17.04
+        by smtp.gmail.com with ESMTPSA id nc13-20020a1709071c0d00b006dfa376ee55sm202518ejc.131.2022.03.31.14.17.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 14:17:04 -0700 (PDT)
+        Thu, 31 Mar 2022 14:17:06 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -58,15 +58,17 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
         linux-samsung-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH 1/2] regulator: dt-bindings: maxim,max8997: correct array of voltages
-Date:   Thu, 31 Mar 2022 23:16:52 +0200
-Message-Id: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] ARM: dts: exynos: correct array of voltages in i9100 and Trats
+Date:   Thu, 31 Mar 2022 23:16:53 +0200
+Message-Id: <20220331211653.175200-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
+References: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,124 +76,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-uint32-array with voltages should be within one bracket pair <>, not
-each number in its own <>.  Also the number of elements in the array
-should be defined within "items:".
+Array of uint32 numbers (voltages) should be within one bracket pair <>,
+according to Devicetree types and DT schema.
 
 This fixes DT schema warnings like:
 
-  maxim,max8997.example.dtb: pmic@66: max8997,pmic-buck1-dvs-voltage:
-    [[1350000, 1300000, 1250000, 1200000, 1150000, 1100000, 1000000, 950000]] is too short
+  exynos4210-trats.dtb: pmic@66: max8997,pmic-buck1-dvs-voltage: [[1350000, 1300000, 1250000, 1200000, 1150000, 1100000, 1000000, 950000]] is too short
+    From schema: Documentation/devicetree/bindings/regulator/maxim,max8997.yaml
 
-Fixes: 1d2104f21618 ("regulator: dt-bindings: maxim,max8997: convert to dtschema")
 Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ arch/arm/boot/dts/exynos4210-i9100.dts | 28 +++++++++++++-------------
+ arch/arm/boot/dts/exynos4210-trats.dts | 28 +++++++++++++-------------
+ 2 files changed, 28 insertions(+), 28 deletions(-)
 
-Patch is independent of DTS.
----
- .../bindings/regulator/maxim,max8997.yaml     | 55 +++++++++++--------
- 1 file changed, 31 insertions(+), 24 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml b/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml
-index d5a44ca3df04..6305a9abaead 100644
---- a/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml
-+++ b/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml
-@@ -32,8 +32,9 @@ properties:
+diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
+index 3c0a18b30837..4058e780e288 100644
+--- a/arch/arm/boot/dts/exynos4210-i9100.dts
++++ b/arch/arm/boot/dts/exynos4210-i9100.dts
+@@ -421,20 +421,20 @@ pmic@66 {
+ 						 <&gpx0 6 GPIO_ACTIVE_HIGH>,
+ 						 <&gpl0 0 GPIO_ACTIVE_HIGH>;
  
-   max8997,pmic-buck1-dvs-voltage:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
--    minItems: 1
--    maxItems: 8
-+    items:
-+      minItems: 1
-+      maxItems: 8
-     description: |
-       A set of 8 voltage values in micro-volt (uV) units for buck1 when
-       changing voltage using GPIO DVS.
-@@ -44,8 +45,9 @@ properties:
- 
-   max8997,pmic-buck2-dvs-voltage:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
--    minItems: 1
--    maxItems: 8
-+    items:
-+      minItems: 1
-+      maxItems: 8
-     description: |
-       A set of 8 voltage values in micro-volt (uV) units for buck2 when
-       changing voltage using GPIO DVS.
-@@ -56,8 +58,9 @@ properties:
- 
-   max8997,pmic-buck5-dvs-voltage:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
--    minItems: 1
--    maxItems: 8
-+    items:
-+      minItems: 1
-+      maxItems: 8
-     description: |
-       A set of 8 voltage values in micro-volt (uV) units for buck5 when
-       changing voltage using GPIO DVS.
-@@ -267,14 +270,17 @@ if:
- then:
-   properties:
-     max8997,pmic-buck1-dvs-voltage:
--      minItems: 8
--      maxItems: 8
-+      items:
-+        minItems: 8
-+        maxItems: 8
-     max8997,pmic-buck2-dvs-voltage:
--      minItems: 8
--      maxItems: 8
-+      items:
-+        minItems: 8
-+        maxItems: 8
-     max8997,pmic-buck5-dvs-voltage:
--      minItems: 8
--      maxItems: 8
-+      items:
-+        minItems: 8
-+        maxItems: 8
- 
- examples:
-   - |
-@@ -303,20 +309,21 @@ examples:
-                                              <&gpx0 6 GPIO_ACTIVE_HIGH>,
-                                              <&gpl0 0 GPIO_ACTIVE_HIGH>;
- 
--            max8997,pmic-buck1-dvs-voltage = <1350000>, <1300000>,
--                                             <1250000>, <1200000>,
--                                             <1150000>, <1100000>,
--                                             <1000000>, <950000>;
-+            max8997,pmic-buck1-dvs-voltage = <1350000 1300000
-+                                              1250000 1200000
-+                                              1150000 1100000
-+                                              1000000  950000>;
+-		max8997,pmic-buck1-dvs-voltage = <1350000>, <1300000>,
+-						 <1250000>, <1200000>,
+-						 <1150000>, <1100000>,
+-						 <1000000>, <950000>;
+-
+-		max8997,pmic-buck2-dvs-voltage = <1100000>, <1000000>,
+-						 <950000>,  <900000>,
+-						 <1100000>, <1000000>,
+-						 <950000>,  <900000>;
+-
+-		max8997,pmic-buck5-dvs-voltage = <1200000>, <1200000>,
+-						 <1200000>, <1200000>,
+-						 <1200000>, <1200000>,
+-						 <1200000>, <1200000>;
++		max8997,pmic-buck1-dvs-voltage = <1350000 1300000
++						  1250000 1200000
++						  1150000 1100000
++						  1000000  950000>;
 +
-+            max8997,pmic-buck2-dvs-voltage = <1100000 1000000
-+                                               950000  900000
-+                                              1100000 1000000
-+                                               950000  900000>;
++		max8997,pmic-buck2-dvs-voltage = <1100000 1000000
++						   950000  900000
++						  1100000 1000000
++						   950000  900000>;
++
++		max8997,pmic-buck5-dvs-voltage = <1200000 1200000
++						  1200000 1200000
++						  1200000 1200000
++						  1200000 1200000>;
  
--            max8997,pmic-buck2-dvs-voltage = <1100000>, <1000000>,
--                                             <950000>,  <900000>,
--                                             <1100000>, <1000000>,
--                                             <950000>,  <900000>;
+ 		pinctrl-0 = <&max8997_irq>, <&otg_gp>, <&usb_sel>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+index 01f44d95f671..23041db78f2e 100644
+--- a/arch/arm/boot/dts/exynos4210-trats.dts
++++ b/arch/arm/boot/dts/exynos4210-trats.dts
+@@ -302,20 +302,20 @@ pmic@66 {
+ 						 <&gpx0 6 GPIO_ACTIVE_HIGH>,
+ 						 <&gpl0 0 GPIO_ACTIVE_HIGH>;
  
--            max8997,pmic-buck5-dvs-voltage = <1200000>, <1200000>,
--                                             <1200000>, <1200000>,
--                                             <1200000>, <1200000>,
--                                             <1200000>, <1200000>;
-+            max8997,pmic-buck5-dvs-voltage = <1200000 1200000
-+                                              1200000 1200000
-+                                              1200000 1200000
-+                                              1200000 1200000>;
+-		max8997,pmic-buck1-dvs-voltage = <1350000>, <1300000>,
+-						 <1250000>, <1200000>,
+-						 <1150000>, <1100000>,
+-						 <1000000>, <950000>;
+-
+-		max8997,pmic-buck2-dvs-voltage = <1100000>, <1000000>,
+-						 <950000>,  <900000>,
+-						 <1100000>, <1000000>,
+-						 <950000>,  <900000>;
+-
+-		max8997,pmic-buck5-dvs-voltage = <1200000>, <1200000>,
+-						 <1200000>, <1200000>,
+-						 <1200000>, <1200000>,
+-						 <1200000>, <1200000>;
++		max8997,pmic-buck1-dvs-voltage = <1350000 1300000
++						  1250000 1200000
++						  1150000 1100000
++						  1000000  950000>;
++
++		max8997,pmic-buck2-dvs-voltage = <1100000 1000000
++						   950000  900000
++						  1100000 1000000
++						   950000  900000>;
++
++		max8997,pmic-buck5-dvs-voltage = <1200000 1200000
++						  1200000 1200000
++						  1200000 1200000
++						  1200000 1200000>;
  
-             pinctrl-0 = <&max8997_irq>, <&otg_gp>, <&usb_sel>;
-             pinctrl-names = "default";
+ 		regulators {
+ 			valive_reg: LDO2 {
 -- 
 2.32.0
 
