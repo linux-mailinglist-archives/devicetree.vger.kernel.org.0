@@ -2,70 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7072E4EDC43
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F674EDC4C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 17:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237917AbiCaPC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 11:02:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36666 "EHLO
+        id S237935AbiCaPFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 11:05:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237943AbiCaPCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:02:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBA2208C37
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:01:03 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZwIH-0003rZ-OK; Thu, 31 Mar 2022 17:01:01 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZwIC-0001Hb-97; Thu, 31 Mar 2022 17:00:56 +0200
-Date:   Thu, 31 Mar 2022 17:00:56 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     Andy Yan <andy.yan@rock-chips.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Message-ID: <20220331150056.GH4012@pengutronix.de>
-References: <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220330072822.GX12181@pengutronix.de>
- <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
- <20220330094556.GZ12181@pengutronix.de>
- <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
- <20220330102046.GA12181@pengutronix.de>
- <60601619-EF07-457B-91F2-64FEB598FEBE@gmail.com>
- <20220330192054.GA4012@pengutronix.de>
- <af8445e0-f4af-721b-709e-2eb7c488a8a4@rock-chips.com>
- <B7CD9D55-9F2D-42F4-9D04-17C6A5FEBB08@gmail.com>
+        with ESMTP id S232527AbiCaPFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 11:05:04 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE73A62D1
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:03:16 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id c11so49280pgu.11
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 08:03:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XJ3Km75M4TTt2y9JsJdWBiwdvtUwu0/oIDbwD8B5Wf4=;
+        b=nFSMoAlg7w9JSEmSlfY7/ULyT7r4KruC8grBtW+uXP5YXpjQ2S41kR1ZMtBjnTIysC
+         wiEUoHOSXBqmidqDWtbfep+AagK6nyoqTzA42Qz5PgAm8zLV2KO8qrzYLOT4sBBnY2nU
+         2Ma3ResIxhtLpCMKrewKSp/u5i0Mot3mjHv1A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XJ3Km75M4TTt2y9JsJdWBiwdvtUwu0/oIDbwD8B5Wf4=;
+        b=3KRbzrbqUGqXzpohNKyVRw3Gm3QyX22/1I9gigQuCSdsYPCLk24ATMParxoJ8x5TUS
+         coxLEgVHI66jv0u75D6bblLFLZauLv69Y/pnxGy7W4VbH9TdWUvsdhGlG1Ri9xusF0+z
+         C88s65E2EWKMheslzNBNEm5Q3qLRyWbWWqPTFQ9yRScQY4WHEHnRI2LS80GuR5Pbb+3r
+         rBIthC8FCZVdU/eMXP050PA8R4GD/1Ezae9uMTLVCDoayLvHxCxOypovT1CCJjMARup9
+         UqP5TYE52m599W+lP3rmzj/8bhsnKB4I9yr+6I/9BM/zN6VEanuFrp6sr00GXPuLPPS+
+         kD6Q==
+X-Gm-Message-State: AOAM532FhT/Ua6FtrBVQyOCO5WGn+/Hh41+zq8n9rWMJhoMPJ21Uurd4
+        YcnPlc37vvYSi/M1HKrWEsLjGg==
+X-Google-Smtp-Source: ABdhPJzpI0K2R58KUJrq7Bo0XT8ahaoThYllS5rO1G/qGGG+WF93iPbN67m1B1pIcLEPDywjIyFN5w==
+X-Received: by 2002:a62:1c8d:0:b0:4fa:8dcb:6da2 with SMTP id c135-20020a621c8d000000b004fa8dcb6da2mr5817541pfc.19.1648738996109;
+        Thu, 31 Mar 2022 08:03:16 -0700 (PDT)
+Received: from localhost.localdomain ([183.83.137.38])
+        by smtp.gmail.com with ESMTPSA id w79-20020a627b52000000b004fd8d1e5489sm10151058pfc.87.2022.03.31.08.03.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Mar 2022 08:03:15 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Christopher Vollo <chris@renewoutreach.org>
+Subject: [PATCH v2 1/2] dt-bindings: display: bridge: Add TI DLPC3433 DSI to DMD
+Date:   Thu, 31 Mar 2022 20:33:06 +0530
+Message-Id: <20220331150307.58777-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <B7CD9D55-9F2D-42F4-9D04-17C6A5FEBB08@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 17:00:25 up 1 day,  3:30, 52 users,  load average: 0.42, 0.22, 0.20
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,53 +70,172 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 04:53:05PM +0200, Piotr Oniszczuk wrote:
-> 
-> 
-> > Wiadomość napisana przez Andy Yan <andy.yan@rock-chips.com> w dniu 31.03.2022, o godz. 14:13:
-> > 
-> > 
-> > Piotr:
-> > 
-> > What soc is on you board? rk3566 or rk3568?
-> 
-> it is rk3566 in x96-x6 tvbox
-> 
-> 
-> > 
-> > I have a scripts[0]  use io[1] command to dump the VOP2 register you can use it dump the register configuration when you meet a display failure,
-> > 
-> > then send the dump to me, maybe I can figure out something.
-> > 
-> > [0]https://github.com/andyshrk/buildroot/blob/2022/board/andyshrk/rootfs_overlay/usr/bin/vop2_dump.sh
-> > 
-> > [1] https://github.com/andyshrk/io
-> 
-> Andy
-> 
-> Pls see https://pastebin.com/CHmu9s22
-> 
-> I put dumps for following scenarios:
-> 
-> 1.
-> -boot
-> -modetest -s 69@67:1920x1080 -> ok
-> -modetest -P 43@67:1920x1080@NV12 -> green screen
-> 
-> 
-> 2.
-> -boot
-> -modetest -s 69@67:1920x1080 -> ok
-> -modetest -P 49@67:1920x1080@NV12 -> ok (but shifted horizontally by about 5% of screen width)
+TI DLPC3433 is a MIPI DSI based display controller bridge
+for processing high resolution DMD based projectors.
 
-Have you applied the bugfix I shared with you here:
+It has a flexible configuration of MIPI DSI and DPI signal
+input that produces a DMD output in RGB565, RGB666, RGB888
+formats.
 
-https://lore.kernel.org/linux-arm-kernel/20220330072822.GX12181@pengutronix.de/
+It supports upto 720p resolution with 60 and 120 Hz refresh
+rates.
 
-Sascha
+Add dt-bingings for it.
 
+Signed-off-by: Christopher Vollo <chris@renewoutreach.org>
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+Changes for v2:
+- fix compatible
+- drop reg description
+- fix enable_gpio description
+- fix port@2
+
+ .../bindings/display/bridge/ti,dlpc3433.yaml  | 117 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +
+ 2 files changed, 123 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml b/Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
+new file mode 100644
+index 000000000000..542193d77cdf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/ti,dlpc3433.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI DLPC3433 MIPI DSI to DMD bridge
++
++maintainers:
++  - Jagan Teki <jagan@amarulasolutions.com>
++  - Christopher Vollo <chris@renewoutreach.org>
++
++description: |
++  TI DLPC3433 is a MIPI DSI based display controller bridge
++  for processing high resolution DMD based projectors.
++
++  It has a flexible configuration of MIPI DSI and DPI signal
++  input that produces a DMD output in RGB565, RGB666, RGB888
++  formats.
++
++  It supports upto 720p resolution with 60 and 120 Hz refresh
++  rates.
++
++properties:
++  compatible:
++    const: ti,dlpc3433
++
++  reg:
++    enum:
++      - 0x1b
++      - 0x1d
++
++  enable-gpios:
++    description: PROJ_ON pin, chip powers up PROJ_ON is high.
++
++  vcc_intf-supply:
++    description: A 1.8V/3.3V supply that power the Host I/O.
++
++  vcc_flsh-supply:
++    description: A 1.8V/3.3V supply that power the Flash I/O.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: Video port for MIPI DSI input.
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for DMD output.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - enable-gpios
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        bridge@1b {
++            compatible = "ti,dlpc3433";
++            reg = <0x1b>;
++            enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++
++                    bridge_in_dsi: endpoint {
++                        remote-endpoint = <&dsi_out_bridge>;
++                        data-lanes = <1 2 3 4>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++
++                    bridge_out_panel: endpoint {
++                        remote-endpoint = <&panel_out_bridge>;
++                    };
++                };
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 70cd8a1c9495..1af52d1178be 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6392,6 +6392,12 @@ DRM DRIVER FOR TDFX VIDEO CARDS
+ S:	Orphan / Obsolete
+ F:	drivers/gpu/drm/tdfx/
+ 
++DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
++M:	Jagan Teki <jagan@amarulasolutions.com>
++M:	Christopher Vollo <chris@renewoutreach.org>
++S:	Maintained
++F:	Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
++
+ DRM DRIVER FOR TPO TPG110 PANELS
+ M:	Linus Walleij <linus.walleij@linaro.org>
+ S:	Maintained
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.25.1
+
