@@ -2,84 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFCF4ED58E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 288D84ED5BF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 10:36:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbiCaI2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 04:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
+        id S231307AbiCaIii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 04:38:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233013AbiCaI15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:27:57 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D061B84D3
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:26:10 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id yy13so46517708ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:26:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wSpQ7kqPRes8y+BZixCtHBBiimor8r8yx7SKBxj6uhY=;
-        b=nWwIJGsTAKrLDuHNXKIXHp9RpvIRgtxeWtzVp+O/Y/A8RzskUgdcBk+Wj+IoIAESe/
-         bmX7I7pRcJ3BYrAXmQtTCAekUuCm2oFpWmHoqAau0q7EGeth5Str74hkdeaLuuv4ERck
-         m/+shJR/zREUNt+oC2zayqP9aR8d322VREq4FU3eRWzdb1KBsEsHtrhjLTB3yWNAFoOl
-         WsldT9mpQf2QyKN9lENzjCaRB+LwNz55KcCuZh0rVc4GqP2KenBKBCZatBVXtKrnQo5O
-         XApijhtU+VtZTFtkXzDzAX4nRnKqWphvpVviT5pHsqoYGw8NWdPFZtBOzKVDFJiYdc6j
-         IR6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wSpQ7kqPRes8y+BZixCtHBBiimor8r8yx7SKBxj6uhY=;
-        b=tHz9F5vevGuxW/LqSdgng5GgvcJ11QK4mLbWZfLuldfuz++oyN0gB8To8tXYAx8Ku+
-         aEahdZi/1u4kTCU+nuQxvt4l0jEB4E1gi7XyhmGWl3OHFjZW4/C+2T0avyGk6awa22Ng
-         ccYCJwY4Q1pm1KdwcIwUFyaDd1UuaN2MeHsO110dP9refAPnH0UD/DxjMlAoPgrTvx45
-         nM7pIftt02yvlLCGD5h4GRLeaPTOS3Hf2bvTFG0YDgoeHF0ilnyEXGL9bO3CGKoLI4uo
-         ogAxP+ZvczsDylg0jVpdMihA+cZ35E9bOl9qvCxAlm0H1/C3zqLJ7FWjnd7pFi/5OMbn
-         0T5w==
-X-Gm-Message-State: AOAM532EYXY9X/1jFmRmJjMSu/ZwdiVDmtn/iILLYymaN2X86/i1RU3P
-        1+gZtuwVDAIy1jnI3RVANiAwyw==
-X-Google-Smtp-Source: ABdhPJwF+TCl2dlZMkSxyCJJT3DeIcHZ/t9GgyB741Ak637RCd4tSwotlqumdO66bQuGcUviRlGudQ==
-X-Received: by 2002:a17:907:a0c8:b0:6df:ef3c:5eb6 with SMTP id hw8-20020a170907a0c800b006dfef3c5eb6mr4052580ejc.646.1648715168694;
-        Thu, 31 Mar 2022 01:26:08 -0700 (PDT)
-Received: from [192.168.0.165] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id hs12-20020a1709073e8c00b006dfdfdac005sm9233409ejc.174.2022.03.31.01.26.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 01:26:08 -0700 (PDT)
-Message-ID: <224d1d98-5d6f-515e-feef-a1ebf20a90d9@linaro.org>
-Date:   Thu, 31 Mar 2022 10:26:07 +0200
+        with ESMTP id S232053AbiCaIih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 04:38:37 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD0F21EFE0C
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 01:36:40 -0700 (PDT)
+X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
+        LIVER,40,3)
+Received: from 172.28.114.216
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(1188:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Thu, 31 Mar 2022 16:28:59 +0800 (CST)
+From:   Qin Jian <qinjian@cqplus1.com>
+To:     krzysztof.kozlowski@canonical.com
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, p.zabel@pengutronix.de,
+        linux@armlinux.org.uk, arnd@arndb.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Qin Jian <qinjian@cqplus1.com>
+Subject: [PATCH v12 0/9] Add Sunplus SP7021 SoC Support
+Date:   Thu, 31 Mar 2022 16:29:47 +0800
+Message-Id: <cover.1648714851.git.qinjian@cqplus1.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC PATCH 1/5] dt-bindings: sound: Add Apple Macs sound system
-Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik@cutebit.org>
-Cc:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-2-povik+lin@cutebit.org>
- <9e3ba11c-d179-c229-fb7c-bf5611a15b1b@linaro.org>
- <DAFA4249-4B0A-4D1F-A36A-4352FE783488@cutebit.org>
- <0f7677ba-bffa-7ec6-7c74-3fad84a1d2c5@linaro.org>
- <E5F73642-DF9A-46ED-B310-7D69CAE22C82@cutebit.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E5F73642-DF9A-46ED-B310-7D69CAE22C82@cutebit.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,26 +42,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2022 10:23, Martin Povišer wrote:
-> 
->> There should be some maximum of supported codecs. Hardware might have
->> such constraints. If really unsure, choose some reasonable (small)
->> amount. It could be later raised, if needed.
-> 
-> There are some constraints but technically not in the driver that binds
-> on this binding. I thought no limit is better than an arbitrary one, but
-> if the preference is to have one, I will add it, no problem.
+This patch series add Sunplus SP7021 SoC support.
 
-Just to clarify this - bindings are not about the driver, but about the
-hardware. We model here the hardware and its programming model, not the
-driver implementation (although of course it's always somehow related).
-Hardware has some limitations for sure. The question is whether we know
-them. :)
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates many
+peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and etc.) into a
+single chip. It is designed for industrial control.
 
-I prefer even arbitrary limit, because then schema will check DTSes for
-simple mistakes. You can also explain this in commit msg, that maxItems
-are arbitrary, so whoever in the future wants to change it, will know
-the background.
+SP7021 consists of two chips (dies) in a package. One is called C-chip
+(computing chip). It is a 4-core ARM Cortex A7 CPU. It adopts high-level
+process (22 nm) for high performance computing. The other is called P-
+chip (peripheral chip). It has many peripherals and an ARM A926 added
+especially for real-time control. P-chip is made for customers. It adopts
+low-level process (ex: 0.11 um) to reduce cost.
 
-Best regards,
-Krzysztof
+Refer to (for documentations):
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+
+Refer to (applications):
+https://tibbo.com/store/plus1.html
+
+Refer to (applications):
+http://www.sinovoip.com.cn/ecp_view.asp?id=586
+
+Changes in v12:
+- sunplus,sp7021-clkc.yaml: Move 'reg' after 'compatible'
+- sunplus,sp7021-intc.yaml: Move 'reg' after 'compatible'
+- sunplus,reset.yaml: Move 'reg' after 'compatible'
+- Remove wrong reviewed-tags
+
+Changes in v11:
+- clk-sp7021.c: Remove the dead code
+
+Changes in v10:
+- arm/sunplus,sp7021.yaml: Add SoC compatible: "sunplus,sp7021"
+- clock/sunplus,sp7021-clkc.yaml: Remove the internal clock parent from DTS
+- clk-sp7021.c: Refine the macro DBG_CLK
+- clk-sp7021.c: Refine the clock_parent_data
+
+Changes in v9:
+- clk/Kconfig: fix the comments form Stephen Boyd
+- clk-sp7021.c: fix the comments form Stephen Boyd
+
+Changes in v8:
+- clk-sp7021.c: fix the comments form Stephen Boyd
+
+Changes in v7:
+- sunplus,sp7021-clkc.yaml: Add clocks & clock-names
+- clk-sp7021.c: fix the comments form Stephen Boyd
+- irq-sp7021-intc.c: fix the comments from Marc
+
+Changes in v6:
+- reset-sunplus.c: fix the comments from Philipp
+- irq-sp7021-intc.c: fix the comments from Marc
+- mach-sunplus: fix the comments from Arnd
+
+Changes in v5:
+- reset-sunplus.c: fix strict checks
+- clk/Kconfig: fix spell
+- clk-sp7021.c: using bitfield ops, fix strict checks
+- irqchip/Kconfig: fix spell
+- irq-sp7021-intc.c: cleanup error path in probe, fix strict checks
+- arm/Kconfig: fix spell & typo, remove CONFIG_SERIAL_SUNPLUS
+- mach-sunplus/Kconfig: fix typo
+- sp7021_defconfig: add CONFIG_SERIAL_SUNPLUS
+
+Changes in v4:
+- mach-sunplus: add initial support for SP7021
+- sp7021_defconfig: add generic SP7021 defconfig
+- reset-sunplus: remove Q645 support
+- reset-sunplus.c: refine code based on Philipp's review
+- clk-sp7021: clock defines add prefix, more clean up
+
+Changes in v3:
+- sp7021-intc: remove primary controller mode due to P-chip running Linux
+  not supported any more.
+- sp7021-intc.h: removed, not set ext through the DT but sp_intc_set_ext()
+- sunplus,sp7021-intc.yaml: update descriptions for above changes
+- irq-sp7021-intc.c: more cleanup based on Marc's review
+- all driver's Kconfig removed default, it's selected by platform config
+
+Changes in v2:
+- sunplus,sp7021-intc.yaml: add descrption for "#interrupt-cells", interrupts
+- sunplus,sp7021-intc.yaml: drop "ext0-mask"/"ext1-mask" from DT
+- sunplus,sp7021-intc.yaml: fix example.dt too long error
+- irq-sp7021-intc.c: major rewrite
+- all files with dual license
+
+Qin Jian (9):
+  dt-bindings: arm: sunplus: Add bindings for Sunplus SP7021 SoC boards
+  dt-bindings: reset: Add bindings for SP7021 reset driver
+  reset: Add Sunplus SP7021 reset driver
+  dt-bindings: clock: Add bindings for SP7021 clock driver
+  clk: Add Sunplus SP7021 clock driver
+  dt-bindings: interrupt-controller: Add bindings for SP7021 interrupt
+    controller
+  irqchip: Add Sunplus SP7021 interrupt controller driver
+  ARM: sunplus: Add initial support for Sunplus SP7021 SoC
+  ARM: sp7021_defconfig: Add Sunplus SP7021 defconfig
+
+ .../bindings/arm/sunplus,sp7021.yaml          |  28 +
+ .../bindings/clock/sunplus,sp7021-clkc.yaml   |  39 +
+ .../sunplus,sp7021-intc.yaml                  |  62 ++
+ .../bindings/reset/sunplus,reset.yaml         |  38 +
+ MAINTAINERS                                   |  17 +
+ arch/arm/Kconfig                              |   2 +
+ arch/arm/Makefile                             |   1 +
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ arch/arm/configs/sp7021_defconfig             |  61 ++
+ arch/arm/mach-sunplus/Kconfig                 |  26 +
+ arch/arm/mach-sunplus/Makefile                |   9 +
+ arch/arm/mach-sunplus/sp7021.c                |  16 +
+ drivers/clk/Kconfig                           |  10 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-sp7021.c                      | 736 ++++++++++++++++++
+ drivers/irqchip/Kconfig                       |   9 +
+ drivers/irqchip/Makefile                      |   2 +
+ drivers/irqchip/irq-sp7021-intc.c             | 288 +++++++
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sunplus.c                 | 130 ++++
+ include/dt-bindings/clock/sp-sp7021.h         | 112 +++
+ include/dt-bindings/reset/sp-sp7021.h         |  97 +++
+ 23 files changed, 1695 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
+ create mode 100644 arch/arm/configs/sp7021_defconfig
+ create mode 100644 arch/arm/mach-sunplus/Kconfig
+ create mode 100644 arch/arm/mach-sunplus/Makefile
+ create mode 100644 arch/arm/mach-sunplus/sp7021.c
+ create mode 100644 drivers/clk/clk-sp7021.c
+ create mode 100644 drivers/irqchip/irq-sp7021-intc.c
+ create mode 100644 drivers/reset/reset-sunplus.c
+ create mode 100644 include/dt-bindings/clock/sp-sp7021.h
+ create mode 100644 include/dt-bindings/reset/sp-sp7021.h
+
+-- 
+2.33.1
+
