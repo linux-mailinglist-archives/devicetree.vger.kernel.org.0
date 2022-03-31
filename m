@@ -2,139 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5715B4ED45D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B974ED45F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbiCaHIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 03:08:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51436 "EHLO
+        id S231379AbiCaHIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 03:08:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231528AbiCaHIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:08:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39EDF19C82D
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 00:06:22 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZosr-0003a1-8a; Thu, 31 Mar 2022 09:06:17 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nZoso-0002cC-OG; Thu, 31 Mar 2022 09:06:14 +0200
-Date:   Thu, 31 Mar 2022 09:06:14 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <Kever.yang@rock-chips.com>
-Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
-Message-ID: <20220331070614.GD4012@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <20220328151116.2034635-21-s.hauer@pengutronix.de>
- <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
- <20220330063913.GW12181@pengutronix.de>
- <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:59:10 up 19:28, 39 users,  load average: 0.07, 0.09, 0.15
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231315AbiCaHIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:08:35 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64AB1AAA5C;
+        Thu, 31 Mar 2022 00:06:48 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1648710406; bh=E9Fz8PhIkj82LsVwjeRSlBVyoUrMc8J6qZRK95jJdng=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=IOl3Zwaqj93GibGB1CZjPC/RquumLOvc2LqMggtgCMV377UKKoSGfLkLB3D05BXGW
+         uPgTa3v3Z0XfE8ui4CXmOB4OhUH+35j745lEEvDqfDWSDal8wm9Pv82T5eWjfwz+oI
+         029ZjKd3blm2zAPmMd4jcsNtPc48GEmDWEJHU3w4=
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
+In-Reply-To: <C2D8BDAF-0ACF-4756-B10F-B5097BC93670@cutebit.org>
+Date:   Thu, 31 Mar 2022 09:06:46 +0200
+Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <265B2992-06E5-4E45-A971-B170A385EFD4@cutebit.org>
+References: <20220330164458.93055-1-povik+lin@cutebit.org>
+ <20220330164458.93055-2-povik+lin@cutebit.org> <YkU6yvUQ6v4VdXiJ@matsya>
+ <C2D8BDAF-0ACF-4756-B10F-B5097BC93670@cutebit.org>
+To:     Vinod Koul <vkoul@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
-> Hi Sascha:
-> 
-> On 3/30/22 14:39, Sascha Hauer wrote:
-> > Hi Andy,
-> > 
-> > On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
-> > > Hi Sascha:
-> > > 
-> > > On 3/28/22 23:11, Sascha Hauer wrote:
-> > > > With upcoming VOP2 support VOP won't be the only choice anymore, so make
-> > > > the VOP driver optional.
-> > > > 
-> > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > > ---
-> > > >    drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
-> > > >    drivers/gpu/drm/rockchip/Makefile           | 3 ++-
-> > > >    drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
-> > > >    3 files changed, 11 insertions(+), 2 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> > > > index fa5cfda4e90e3..7d22e2997a571 100644
-> > > > --- a/drivers/gpu/drm/rockchip/Kconfig
-> > > > +++ b/drivers/gpu/drm/rockchip/Kconfig
-> > > > @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
-> > > >    if DRM_ROCKCHIP
-> > > > +config ROCKCHIP_VOP
-> > > > +	bool "Rockchip VOP driver"
-> > > > +	default y
-> > > > +	help
-> > > > +	  This selects support for the VOP driver. You should enable it
-> > > > +	  on all older SoCs up to RK3399.
-> > That reminds me that I wanted to rephrase this. Will change in next
-> > round.
-> > 
-> > > > +
-> > > >    config ROCKCHIP_ANALOGIX_DP
-> > > >    	bool "Rockchip specific extensions for Analogix DP driver"
-> > > > +	depends on ROCKCHIP_VOP
-> > > 
-> > > Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
 
-BTW I just looked at the downstream driver. Here we have the same
-situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
-which is implemented in the VOP driver, so when the analogix dp driver
-is actually used on a VOP2 SoC then it is either used in a way that
-rockchip_drm_wait_vact_end() will never be called or it explodes in all
-colours.
+> On 31. 3. 2022, at 8:50, Martin Povi=C5=A1er <povik@cutebit.org> =
+wrote:
+>=20
+>>=20
+>> On 31. 3. 2022, at 7:23, Vinod Koul <vkoul@kernel.org> wrote:
+>>=20
+>> On 30-03-22, 18:44, Martin Povi=C5=A1er wrote:
+>>> Apple's Audio DMA Controller (ADMAC) is used to fetch and store =
+audio
+>>> samples on Apple SoCs from the "Apple Silicon" family.
+>>>=20
+>>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+>>> ---
+>>> .../devicetree/bindings/dma/apple,admac.yaml  | 73 =
++++++++++++++++++++
+>>> 1 file changed, 73 insertions(+)
+>>> create mode 100644 =
+Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>>=20
+>>> diff --git a/Documentation/devicetree/bindings/dma/apple,admac.yaml =
+b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+>>> new file mode 100644
+>>> index 000000000000..34f76a9a2983
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+>=20
+>>> +  apple,internal-irq-destination:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: Index influencing internal routing of the IRQs
+>>> +      within the peripheral.
+>>=20
+>> do you have more details for this, is this for peripheral and if so
+>> suited to be in dam-cells?
+>=20
+> By peripheral I meant the DMA controller itself here.=20
+>=20
+> Effectively the controller has four independent IRQ outputs and the =
+driver
+> needs to know which one we are using. (It need to be the same output =
+even
+> for different ADMAC instances on one die.)
 
-> > I added the dependency because analogix_dp-rockchip.c calls
-> > rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
-> > so this driver currenty can't work with the VOP2 driver and can't
-> > be linked without the VOP driver being present.
-> > I'll add a few words to the commit message.
-> 
-> 
-> Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
-> driver to rockchip_drm_drv.c
+Pardon, got an evil typo there: It need *not* be the same output... (And =
+pardon
+the other rich non-plaintext reply...)
 
-I am not sure if that's really worth it. Yes, the direction might be the
-right one, but I would really prefer when somebody does the change who
-can test and confirm that the analogix dp really works with VOP2 in the
-end.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
