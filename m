@@ -2,97 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B77D4ED770
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85C3F4ED82B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 13:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233829AbiCaKB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 06:01:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35424 "EHLO
+        id S232629AbiCaLIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 07:08:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234417AbiCaKBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:01:54 -0400
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A5F3BBCF;
-        Thu, 31 Mar 2022 03:00:04 -0700 (PDT)
-Received: by mail-qv1-f49.google.com with SMTP id f3so19299480qvz.10;
-        Thu, 31 Mar 2022 03:00:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qK54c3q2I2ReV8M9JIlTX8IFmN4MIvAI/UOlL3xuQW0=;
-        b=zGmoRXOKTLuUMGyboNFFbbTF1CINVlAb2KCa/umeyU9l8MFi3s8kSf9LZKU0WSAtJP
-         1TKS/fPwT36J+yCoOeCyd81rGrtX9QoCOX9lRw5+qBVAolnhQpOURQpCOwwzAh+pRAh7
-         z60FTEYrtFOlviXAzcd6CyghIEQOWt9ySoQd29Mi4Zvrwh8eZxpqqTWoGUfR3LHx2foA
-         rQVk6xDshnujeTMuueI8DcW8SmGXNzzHHDCa9HXQbfJwalzP/O9QAUXl+P0Co2OWmhxB
-         1azNL+8PdYkxm9vLeN2p0OH3Y48/rM9ivs6bIt3Ufyb48KyqqdnvIatiMlw577YiL9xn
-         rR5Q==
-X-Gm-Message-State: AOAM532NF7fHXOIweT62DteVxEBF7Z6JaCum97PEkCgUE+obLEG2ojZZ
-        JPxxIpB24lcX/v3DoRP4/ybKuGSKXyCQAw==
-X-Google-Smtp-Source: ABdhPJyQExNPZgzd82QIcXy3aAU+xHtJ9IMmXZjhdf0KO9GJHGRtspt3ZzxYGEfkbEM9ZTTpI7sjmg==
-X-Received: by 2002:a05:6214:21a5:b0:440:f3b8:d0aa with SMTP id t5-20020a05621421a500b00440f3b8d0aamr2919061qvc.61.1648720802803;
-        Thu, 31 Mar 2022 03:00:02 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 21-20020ac85715000000b002e1ce9605ffsm19717651qtw.65.2022.03.31.03.00.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 03:00:02 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-2e5e176e1b6so248024317b3.13;
-        Thu, 31 Mar 2022 03:00:02 -0700 (PDT)
-X-Received: by 2002:a81:c703:0:b0:2d0:cc6b:3092 with SMTP id
- m3-20020a81c703000000b002d0cc6b3092mr3967223ywi.449.1648720801719; Thu, 31
- Mar 2022 03:00:01 -0700 (PDT)
+        with ESMTP id S232452AbiCaLIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 07:08:41 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 174F71F42DF;
+        Thu, 31 Mar 2022 04:06:53 -0700 (PDT)
+Received: from mail-lf1-f54.google.com ([209.85.167.54]) by
+ mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1M8ysi-1ndkWg0Zle-0065B1; Thu, 31 Mar 2022 13:06:52 +0200
+Received: by mail-lf1-f54.google.com with SMTP id 5so40832298lfp.1;
+        Thu, 31 Mar 2022 04:06:51 -0700 (PDT)
+X-Gm-Message-State: AOAM533bTn7O7a11LnD4LBzLwpr8imLMTdfFqwRtGO9j/dD6jGxgn29N
+        Bk7dTw89SdYYprRoFXYSxHk4FidIZHqvl2i5TfY=
+X-Google-Smtp-Source: ABdhPJwGAKwpvIMNsQM9nFO11Su4f6CfBdGu0DMcmygJKo9OCuKECCNyCiW9rLz7dH/8XUmg1E8wSHe238gGnDMMuwI=
+X-Received: by 2002:a5d:6505:0:b0:205:9a98:e184 with SMTP id
+ x5-20020a5d6505000000b002059a98e184mr3173055wru.317.1648717802947; Thu, 31
+ Mar 2022 02:10:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220315142644.17660-1-biju.das.jz@bp.renesas.com> <20220315142644.17660-7-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220315142644.17660-7-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 31 Mar 2022 11:59:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWa2tU2Jf7tGGyz5U-i9C4fS-iXeqBCnnNAKoc6kTSPHQ@mail.gmail.com>
-Message-ID: <CAMuHMdWa2tU2Jf7tGGyz5U-i9C4fS-iXeqBCnnNAKoc6kTSPHQ@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] arm64: dts: renesas: Add initial DTSI for RZ/G2UL SoC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <cover.1648714851.git.qinjian@cqplus1.com> <84a0839e7724fa39dd07fef491cf6bb357db2e7d.1648714851.git.qinjian@cqplus1.com>
+In-Reply-To: <84a0839e7724fa39dd07fef491cf6bb357db2e7d.1648714851.git.qinjian@cqplus1.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 31 Mar 2022 11:09:47 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2SQCj8pqyJvS+TpgqQu51+YyB4SOi2cd_WU9ObgAjZOw@mail.gmail.com>
+Message-ID: <CAK8P3a2SQCj8pqyJvS+TpgqQu51+YyB4SOi2cd_WU9ObgAjZOw@mail.gmail.com>
+Subject: Re: [PATCH v12 9/9] ARM: sp7021_defconfig: Add Sunplus SP7021 defconfig
+To:     Qin Jian <qinjian@cqplus1.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:z/4tzUqmZYGQZ24spxksEyOysVr2PtahhN9T25NYZZ8BcxpPVMr
+ 7f0+JFCQTAp6cESgArBXyjsnxp2HR+EBu8UPfgzj4IXgFZlfvqB7RfFHhSU91nDYWmAMn0s
+ UgOI3VfA50GGzeQd4uK/Ykpco/lJvUf8beq/MtMtFGXrfaPljzWiiqrOGNQZ8/gMr4pDlw2
+ S5kaIkofDm98f5Tq87h4Q==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:xVcAQc2Awu4=:hwb6QFIeCg4f7N1+6qDCFw
+ II8nUS/pwqqjYfLzOCKul2jVXf2QzxTig08IcFquWGBR5HMPS9SFSEA6AtPMBqTTR/2hLPJrd
+ 6/FoYlkTXX1+dOkb9KMfMMg/XwSPDU2KJCKKbc2RqYnCDs2JvzyDWcZZYCoD9qn1+EDhmnS4z
+ ed5qC2Llc6tJSy6dWc6lEwzTqR2wDsi6dSYmAlR830wmow02+MG8XhHAHY2xUmc79Bf1vqvDX
+ O5EWgV3F73maFjP0Yde9mnNn//yZpZCzdXIhW2rtYTys4lTHSwOKJfRuo+bcrMBpKfVd2Ho+H
+ d5x5ndkG3kuacL9RcY2BQzq7NK+7lhTMHZ7MUBCYdqKxo6x9QNYUJHq5SlK39uOhzleDT2bRk
+ uoSq/Aged+O8whfZaYRC/9LC3lDdbvLDofCf0MpDrGQwTCzL7MZVaA8RtEaF4P1oOIgmtqXNE
+ mqqj+G+T65Y4jC/zmtd841dhs6VXofcOdrUhNqvWTAPLn6zna9zljK9pq/b4q2Ht6ka2sr7QI
+ qRp6UJKXw/wVsQQidaGMkZQpKgAQc0cYVUgS6o8NpJt1a5fj/Eh15JOkx+dmCwSLOn/iOrSI0
+ vG14Me2fh/r5vzAcygtG2/+OhZbM9+Rj4MUFnPw/VGOix4/ciTO21LUQJoKIIsA9rJ5+/PXfG
+ qy7onI0hMRPB1Wb6xn6Ldj/zBzRLAAsKLs2d0SVkgIMSZNlE61UXGtfs+W7riRvGrj0gjjHn9
+ tMhcU21Scw1rF9VzJpaYlmsIa62QynohvBW70av2ECfozL+0ua5Ck34D/C3zastqXYUp1mWe9
+ y15D7q9t6U/Mii0uBCLTq5Dvu+JUspoUuV7VPg7hbu1sMEailI9iVB444iauZ2aMgfccLtL
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 3:27 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add initial DTSI for RZ/G2UL SoC.
->
-> Both RZ/G2L and RZ/G2UL uses the same SMARC EVK. Therefore they share
-> the common dtsi (rz-smarc.dtsi) file. Place holders are added in
-> device nodes to avoid compilation errors for the devices which have
-> not been enabled yet on RZ/G2UL SoC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
->  * Replaced clocks from R9A07G043U->R9A07G043
->  * Replaced compatible from r9a07g043u->r9a07g043
+On Thu, Mar 31, 2022 at 10:29 AM Qin Jian <qinjian@cqplus1.com> wrote:
+> Add generic Sunplus SP7021 based board defconfig
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Here, you should explain why you need a custom defconfig for this SoC, as
+most platforms are fine just using the generic one. Are you too memory
+constrained,
+or are there other problems?
 
-Gr{oetje,eeting}s,
+> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+> index 8863fa969..a3bd9dbd8 100644
+> --- a/arch/arm/configs/multi_v7_defconfig
+> +++ b/arch/arm/configs/multi_v7_defconfig
+> @@ -86,6 +86,7 @@ CONFIG_MACH_SPEAR1310=y
+>  CONFIG_MACH_SPEAR1340=y
+>  CONFIG_ARCH_STI=y
+>  CONFIG_ARCH_STM32=y
+> +CONFIG_ARCH_SUNPLUS=y
+>  CONFIG_ARCH_SUNXI=y
+>  CONFIG_ARCH_TEGRA=y
+>  CONFIG_ARCH_UNIPHIER=y
 
-                        Geert
+Don't you need any drivers here?
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> diff --git a/arch/arm/configs/sp7021_defconfig b/arch/arm/configs/sp7021_defconfig
+> new file mode 100644
+> index 000000000..cda16d33a
+> --- /dev/null
+> +++ b/arch/arm/configs/sp7021_defconfig
+...
+> +CONFIG_HAVE_ARM_ARCH_TIMER=y
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+I checked this one again, as most others don't enable it in the defconfig.
+
+I don't remember if I recommended removing the 'select' from Kconfig
+in a previous round, but as that is where other platforms have it, I'd add
+it there as well.
+
+> +CONFIG_STAGING=y
+
+Do you actually enable any staging drivers here? If not, I'd drop that bit.
+
+          Arnd
