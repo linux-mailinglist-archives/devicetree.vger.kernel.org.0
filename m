@@ -2,92 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 204FA4EDAE1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292354EDAE8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:50:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237013AbiCaNuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 09:50:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47368 "EHLO
+        id S237063AbiCaNvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 09:51:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237008AbiCaNuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:50:10 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39D71DA60;
-        Thu, 31 Mar 2022 06:48:19 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id g22so17155064edz.2;
-        Thu, 31 Mar 2022 06:48:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1FmWFtFPrGFw3jPfN32jgX8K91mK4Fw6kVZq2e3W06A=;
-        b=GuBynw1bR30DfiMh5e8Nh5WD+dkT0noit+4UtYMJK3iKZ35qa0dPkAbev0Ox7RYOms
-         3dBIoSRbPCMsJy1VhC68ogz6X3AZc3fGy3Bps2B4GzDsKbcccaO9aFOV7Xfrl/AJfwOL
-         Lf54fxuRDFulTu4JdbLWUzLAhvd9LSrSizfBOGHs8NE+MDdhNX2w/W2kdJ4TdpWS9DBO
-         KR/oQpoQRKLEiJYlThLZXpJ95lZRtKRA0zscywXTz9B7D+9HhuaCLPhf7O83sgaEeWH1
-         AWbglg8K0D4RQ/zFbM2+L4koc/6hHCvbtiRVXLetfX+GXEtcDjosdBlNbdwGNCckPyhV
-         Tkyg==
+        with ESMTP id S237043AbiCaNvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:51:35 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2281275DA;
+        Thu, 31 Mar 2022 06:49:47 -0700 (PDT)
+Received: by mail-qt1-f169.google.com with SMTP id t19so21431493qtc.4;
+        Thu, 31 Mar 2022 06:49:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1FmWFtFPrGFw3jPfN32jgX8K91mK4Fw6kVZq2e3W06A=;
-        b=vZkfZJtLRgNe5kgMuVGeGC09rMKxzqSPHxUyH7jZqAmeMvRLlmpD2qM8m22eGQUqlr
-         lm0QaUKPITkmp0SF+3uYmVrz+vmFRgMM5mVhNoaymn1tIsoS9ewddvTD7u+PThVbxqL/
-         vOYTDqqGXlHyxJtMF2ghUtYupB8B1PMq+x8oz+OATgly5uk12fNuUPGD1eV5sRXrwoEB
-         mrddtTwySsT8fuK1yEgBwE6QTyFhnKmo2wMjBLf6bnfbvf3tfaA9/Z4f/pK+6C8QfyOI
-         J7p49ZMVmURoQUv8bcnHOavvgAEDJxjJhiyS8cwajj4ZLwo2e1zPWjJbgP7HwMSzLryL
-         vUMw==
-X-Gm-Message-State: AOAM530vBUsKwjoVHS5d35ACVT66imREBnjt4S3cnz0V2MdJUYDuj/yJ
-        8ZZU7K4WSlLCxi3TivZlFPd6riAAfVVEbG7oyyg=
-X-Google-Smtp-Source: ABdhPJzgmF3q9RuLnrcHquNydyMYB8kqL9v5TvHww44KBOahY3umU53CaQRZK2bfteXGp/QRBvjn0bir8PkTUp3+a1k=
-X-Received: by 2002:a05:6402:27d4:b0:419:5105:f7e7 with SMTP id
- c20-20020a05640227d400b004195105f7e7mr16672565ede.356.1648734498411; Thu, 31
- Mar 2022 06:48:18 -0700 (PDT)
+        bh=HZyiCBkkM2Ze6R2JjxEo9dQJhfbwUCcXHcL4NICnY2s=;
+        b=h54BgAjLuXaQldmwAOVO1UyXjidE0LzcJyD1l08btAiOF5+Gq1A0/Wiec2nsFSXvmx
+         5ToNtXJtNPuhnHVNBfey7rWiVxZep7rSXw+SgeUpBp/On+dasA9mHRFJgVSag/KEvra7
+         ZTjWsCFYg8D9VugBs2TEjg2FwKdbEjoxChsTrOYGEYpXkIIIJD9LvE7aHQUK7e13FZvN
+         3ozgPSrQcjA7sCcuEC9sJCeMq0kDQtyF2pCx1jDZ37IIPogNUeS46aoHNhLs4gVFwn5N
+         kLM6qXSd8BIdCtBkzelwPiZRvWhTyiH72CGwkmw9QREv1eTiXCo/+84q2fHbyuRDgXT+
+         oPtg==
+X-Gm-Message-State: AOAM5302Dq35HxjQOmzNFB4LWduLDHfMTKUZy++20B9Xbdp76PC4AOur
+        rQKFmPovv1bmFoLAB3umTGfWdm1cNYgFHQ==
+X-Google-Smtp-Source: ABdhPJxAk+dvmxDULvhw/cjadsKF+Q6mUHivDebFsAh/gNsJfjWfA0ui4fGOlDPsh03VboXxrHY8uA==
+X-Received: by 2002:a05:622a:1aaa:b0:2e1:a40d:8253 with SMTP id s42-20020a05622a1aaa00b002e1a40d8253mr4288120qtc.135.1648734586289;
+        Thu, 31 Mar 2022 06:49:46 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id 11-20020ac8590b000000b002e1e5c5c866sm20591458qty.42.2022.03.31.06.49.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 06:49:46 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id m67so42401445ybm.4;
+        Thu, 31 Mar 2022 06:49:45 -0700 (PDT)
+X-Received: by 2002:a05:6902:1146:b0:634:6b3f:4908 with SMTP id
+ p6-20020a056902114600b006346b3f4908mr4102824ybu.613.1648734584828; Thu, 31
+ Mar 2022 06:49:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220323135601.42435-1-ariel.dalessandro@collabora.com>
- <CAOMZO5D4_WboF4S0dgSLD1m15a13c2irK2yjDV4C77_Wb15=2w@mail.gmail.com>
- <d9f14221-b0ad-9853-e9c8-a35d9111549b@collabora.com> <3e3b223f-7d05-f439-625a-a15afb44b95f@collabora.com>
-In-Reply-To: <3e3b223f-7d05-f439-625a-a15afb44b95f@collabora.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 31 Mar 2022 10:48:07 -0300
-Message-ID: <CAOMZO5D8UHkkyJE9uJ4yBmf+ajjbzJOrLM57OHpyAiATvMNXcw@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: imx8mn-bsh-smm-s2pro: Add tlv320aic31xx
- audio card node
-To:     "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
+References: <20220315155919.23451-1-biju.das.jz@bp.renesas.com>
+ <20220315155919.23451-6-biju.das.jz@bp.renesas.com> <CAMuHMdUPfMMK2Mv0ffQcYVitpOLv5Y4iB-eVPa1u=nYXF5o7mw@mail.gmail.com>
+ <OS0PR01MB5922002E2AABB44A6A679F2286E19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922002E2AABB44A6A679F2286E19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 31 Mar 2022 15:49:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXjrvoCe-11GRz68+a-n=Knw6qnsJUSqEwv0Uxt2WZ_7A@mail.gmail.com>
+Message-ID: <CAMuHMdXjrvoCe-11GRz68+a-n=Knw6qnsJUSqEwv0Uxt2WZ_7A@mail.gmail.com>
+Subject: Re: [PATCH 5/7] arm64: dts: renesas: rzg2ul-smarc: Enable microSD on
+ SMARC platform
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ariel,
+Hi Biju,
 
-On Thu, Mar 31, 2022 at 10:35 AM Ariel D'Alessandro
-<ariel.dalessandro@collabora.com> wrote:
+On Thu, Mar 31, 2022 at 3:36 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH 5/7] arm64: dts: renesas: rzg2ul-smarc: Enable microSD
+> > on SMARC platform
+> > On Tue, Mar 15, 2022 at 4:59 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > Enable the microSD card slot connected to SDHI1 on the RZ/G2UL SMARC
+> > > platform by removing the sdhi1 override which disabled it, and by
+> > > adding the necessary pinmux required for SDHI1.
+> > >
+> > > This patch also overrides vqmmc-supply for SDHI1.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
+> > > @@ -0,0 +1,27 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +/*
+> > > + * Device Tree Source for the RZ/G2UL Type-1 SMARC EVK parts
+> > > + *
+> > > + * Copyright (C) 2022 Renesas Electronics Corp.
+> > > + */
+> > > +
+> > > +#include "rzg2ul-smarc-som.dtsi"
+> > > +#include "rzg2ul-smarc-pinfunction.dtsi"
+> > > +#include "rz-smarc-common.dtsi"
+> > > +
+> > > +/ {
+> > > +       vccq_sdhi1: regulator-vccq-sdhi1 {
+> > > +               compatible = "regulator-gpio";
+> > > +               regulator-name = "SDHI1 VccQ";
+> > > +               regulator-min-microvolt = <1800000>;
+> > > +               regulator-max-microvolt = <3300000>;
+> > > +               gpios = <&pinctrl RZG2L_GPIO(6, 1) GPIO_ACTIVE_HIGH>;
+> > > +               gpios-states = <1>;
+> > > +               states = <3300000 1>, <1800000 0>;
+> > > +       };
+> >
+> > This regulator is already defined in rz-smarc-common.dtsi, which is
+> > included above?  That definition does use a different gpios property,
+> > though.
 >
-> Hi Fabio, Shawn,
+> Yes, Only for this RZ/G2UL and RZ/Five SMARC EVK it is different compared to
+> RZ/{G2L,V2L,G2LC} SMARC EVK.
 >
-> Can we merge this please?
+> Shall I move regulator from rz-smarc-common.dtsi to RZ/{G2L,V2L} and RZ/G2LC SMARC dtsi?
 
-Shawn will probably start picking the patches for the next cycle after
-5.18-rc1 is released.
+Either move the regulator to the individual SMARC dtsi files, or
+keep it in rz-smarc-common.dtsi without gpios property, and add the
+gpios property in the individual SMARC dtsi files.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
