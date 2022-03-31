@@ -2,100 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DF884ED97D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF08B4ED983
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:19:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235444AbiCaMSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:18:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37884 "EHLO
+        id S234944AbiCaMUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:20:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234428AbiCaMSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:18:45 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09616419B9;
-        Thu, 31 Mar 2022 05:16:58 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1648729016; bh=2YK9PobV56vBSewgMTaSA0OXwlHtMdyVGAlP+LxlCGs=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=DHnb0BoWtg1BWG7/iwtgO9Fh9MZFwAdD9k0FZmKZs8K6KK0pDvQm5w6KeOVLYa0ej
-         zRpdy8PZwATSMFjvTyJT22o1/6WO5D2qWJqwbkeMrEeS0FeqiHM8zL741fH5dtKZgc
-         JBWvre/zYpZCNjRXkdp5D3X7eX0JxZa9p6RLkJ34=
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
-Subject: Re: [RFC PATCH 5/5] ASoC: Add macaudio machine driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
-Date:   Thu, 31 Mar 2022 14:16:56 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F6666436-293B-4D13-8A61-D5ED620BEB05@cutebit.org>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-6-povik+lin@cutebit.org>
- <YkWXs/f7edZwg1+W@sirena.org.uk>
- <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
-To:     Mark Brown <broonie@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S234029AbiCaMUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:20:51 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436DB57169
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 05:19:04 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZtlW-0000gs-Ff; Thu, 31 Mar 2022 14:19:02 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nZtlV-0008D1-0u; Thu, 31 Mar 2022 14:19:01 +0200
+Date:   Thu, 31 Mar 2022 14:19:01 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Andy Yan <andy.yan@rock-chips.com>
+Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Peter Geis <pgwipeout@gmail.com>, kernel@pengutronix.de,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Message-ID: <20220331121900.GG4012@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220330072822.GX12181@pengutronix.de>
+ <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
+ <20220330094556.GZ12181@pengutronix.de>
+ <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
+ <20220330102046.GA12181@pengutronix.de>
+ <60601619-EF07-457B-91F2-64FEB598FEBE@gmail.com>
+ <20220330192054.GA4012@pengutronix.de>
+ <af8445e0-f4af-721b-709e-2eb7c488a8a4@rock-chips.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <af8445e0-f4af-721b-709e-2eb7c488a8a4@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:17:51 up 1 day, 47 min, 51 users,  load average: 0.11, 0.15, 0.14
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 31, 2022 at 08:13:09PM +0800, Andy Yan wrote:
+> Hi Piotr:
+> 
+> On 3/31/22 03:20, Sascha Hauer wrote:
+> > On Wed, Mar 30, 2022 at 04:52:22PM +0200, Piotr Oniszczuk wrote:
+> > > 
+> > > > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 12:20:
+> > > > 
+> > > > Does it change anything if you do a "modetest -s 69@67:1920x1080" before
+> > > > starting the app? Or if you run "modetest -P 43@67:1920x1080@NV12"
+> > > > before starting the app? Or other combinations thereof?
+> > > So i tried following combinations
+> > > 
+> > > -boot
+> > > -modetest -s 69@67:1920x1080 -> ok
+> > > -modetest -P 43@67:1920x1080@NV12 -> green screen
+> > I have no idea what is going on here. There same commands work for me.
+> > You could provide me your kernel config and upstream commitish you are
+> > working on, maybe that gets me closer to your setup.
+> 
+> 
+> It's a little strange, I can't reproduce this issue neither.
+> 
+> But I have problem with this two step command sequence.
+> 
+> step 1:  modetest -s 69@67:1920x1080 -> ok
+> 
+> step 2:  modetest -P 43@67:1920x1080@NV12,
+> 
+> I got the failed message:  "failed to enable plane: Permission denied"
+> 
+> Because the drm core will stop step2 by drm_ioctrl_permit as
+> DRM_IOCTL_SETPLANE need a master,
+> 
+> but the current master is the modetest run by step1.
+>
 
-> On 31. 3. 2022, at 14:08, Martin Povi=C5=A1er <povik@cutebit.org> =
-wrote:
->=20
->>=20
->> On 31. 3. 2022, at 13:59, Mark Brown <broonie@kernel.org> wrote:
->>=20
->> On Thu, Mar 31, 2022 at 02:04:49AM +0200, Martin Povi=C5=A1er wrote:
->>=20
->>> --- /dev/null
->>> +++ b/sound/soc/apple/macaudio.c
->>> @@ -0,0 +1,597 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +/*
->>> + * ASoC machine driver for Apple Silicon Macs
->>> + *
+[...]
 
-(snip)
+> 
+> So how you two got step two run success?
 
->>> +/*
->>> + * Maybe this could be a general ASoC function?
->>> + */
->>> +static void snd_soc_kcontrol_set_strval(struct snd_soc_card *card,
->>> +				struct snd_kcontrol *kcontrol, const =
-char *strvalue)
->>=20
->> No, we should not be setting user visible control values from the
->> kernel.  This shouldn't be a machine driver function either.  What =
-are
->> you trying to accomplish here?
->=20
-> See above.
->=20
-> Martin
+You have to stop the first modetest by hitting return. Alternatively you
+could pass the -d option to the first modetest.
 
-One thing I didn=E2=80=99t point out. The controls we are setting here =
-are not
-visible from userspace. That=E2=80=99s the point of the =E2=80=98filter=E2=
-=80=99 card method
-I am trying to establish in the other commit. With it, the card decides
-which controls are okay to be exported and which should be hidden.
+Sascha
 
-Here we are only setting hidden controls.
-
-Martin
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
