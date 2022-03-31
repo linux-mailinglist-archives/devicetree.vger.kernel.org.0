@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2674ED4B8
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F6CC4ED4CE
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 09:30:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231597AbiCaHW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 03:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55276 "EHLO
+        id S229731AbiCaHcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 03:32:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231246AbiCaHW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:22:28 -0400
-Received: from mail-m176237.qiye.163.com (mail-m176237.qiye.163.com [59.111.176.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CCF1E31A7
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 00:20:40 -0700 (PDT)
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-        by mail-m176237.qiye.163.com (Hmail) with ESMTPA id B1807C402A9;
-        Thu, 31 Mar 2022 15:20:37 +0800 (CST)
-Message-ID: <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
-Date:   Thu, 31 Mar 2022 15:20:37 +0800
+        with ESMTP id S232206AbiCaHb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 03:31:59 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F13DD4458;
+        Thu, 31 Mar 2022 00:30:07 -0700 (PDT)
+X-UUID: a5d89c6f4df54789b388472aa1669bc9-20220331
+X-UUID: a5d89c6f4df54789b388472aa1669bc9-20220331
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1085765277; Thu, 31 Mar 2022 15:30:00 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 31 Mar 2022 15:29:59 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 31 Mar 2022 15:29:58 +0800
+Message-ID: <58f498a19f6c7be85823b2e2d5955272e78f0176.camel@mediatek.com>
+Subject: Re: [PATCH v13 2/2] arm64: dts: Add mediatek SoC mt8195 and
+ evaluation board
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>
+CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        Seiya Wang <seiya.wang@mediatek.com>
+Date:   Thu, 31 Mar 2022 15:29:58 +0800
+In-Reply-To: <20220330094532.21721-3-tinghan.shen@mediatek.com>
+References: <20220330094532.21721-1-tinghan.shen@mediatek.com>
+         <20220330094532.21721-3-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <Kever.yang@rock-chips.com>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <20220328151116.2034635-21-s.hauer@pengutronix.de>
- <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
- <20220330063913.GW12181@pengutronix.de>
- <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
- <20220331070614.GD4012@pengutronix.de>
-From:   Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20220331070614.GD4012@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWRlDHxlWQxlITUpDTk
-        kfT0odVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktITUpVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OBA6ITo5CD4BIw4SGEo*OjQp
-        Dk5PChJVSlVKTU9DTEpKSUhDTUhJVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBTkhITzcG
-X-HM-Tid: 0a7fded902bbd9afkuwsb1807c402a9
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,79 +65,217 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha:
+On Wed, 2022-03-30 at 17:45 +0800, Tinghan Shen wrote:
+> Add basic chip support for mediatek mt8195.
+> 
+> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/Makefile       |    1 +
+>  arch/arm64/boot/dts/mediatek/mt8195-evb.dts |  173 +++
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi    | 1045
+> +++++++++++++++++++
+>  3 files changed, 1219 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile
+> b/arch/arm64/boot/dts/mediatek/Makefile
+> index 8c1e18032f9f..5da29e7223e4 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -38,4 +38,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-
+> sku0.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
+>  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> new file mode 100644
+> index 000000000000..76b5aaad7263
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> @@ -0,0 +1,173 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2021 MediaTek Inc.
+> + * Author: Seiya Wang <seiya.wang@mediatek.com>
+> + */
+> +/dts-v1/;
+> +#include "mt8195.dtsi"
+> +
+> +/ {
+> +	model = "MediaTek MT8195 evaluation board";
+> +	compatible = "mediatek,mt8195-evb", "mediatek,mt8195";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:921600n8";
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		reg = <0 0x40000000 0 0x80000000>;
+> +	};
+> +};
+> +
+> +&auxadc {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_pin>;
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1_pin>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c4_pin>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c6_pin>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&nor_flash {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&nor_pins_default>;
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <50000000>;
+> +	};
+> +};
+> +
+> +&pio {
+> +	i2c0_pin: i2c0-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
+> +				 <PINMUX_GPIO9__FUNC_SCL0>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +			mediatek,drive-strength-adv = <0>;
+> +			drive-strength = <6>;
+> +		};
+> +	};
+> +
+> +	i2c1_pin: i2c1-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO10__FUNC_SDA1>,
+> +				 <PINMUX_GPIO11__FUNC_SCL1>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +			mediatek,drive-strength-adv = <0>;
+> +			drive-strength = <6>;
+> +		};
+> +	};
+> +
+> +	i2c4_pin: i2c4-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO16__FUNC_SDA4>,
+> +				 <PINMUX_GPIO17__FUNC_SCL4>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +			mediatek,drive-strength-adv = <7>;
+> +		};
+> +	};
+> +
+> +	i2c6_pin: i2c6-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO25__FUNC_SDA6>,
+> +				 <PINMUX_GPIO26__FUNC_SCL6>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +		};
+> +	};
+> +
+> +	i2c7_pin: i2c7-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO27__FUNC_SCL7>,
+> +				 <PINMUX_GPIO28__FUNC_SDA7>;
+> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> +		};
+> +	};
+> +
+> +	nor_pins_default: nor-pins {
+> +		pins0 {
+> +			pinmux = <PINMUX_GPIO142__FUNC_SPINOR_IO0>,
+> +				 <PINMUX_GPIO141__FUNC_SPINOR_CK>,
+> +				 <PINMUX_GPIO143__FUNC_SPINOR_IO1>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pins1 {
+> +			pinmux = <PINMUX_GPIO140__FUNC_SPINOR_CS>,
+> +				 <PINMUX_GPIO130__FUNC_SPINOR_IO2>,
+> +				 <PINMUX_GPIO131__FUNC_SPINOR_IO3>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	uart0_pin: uart0-pins {
+> +		pins {
+> +			pinmux = <PINMUX_GPIO98__FUNC_UTXD0>,
+> +				 <PINMUX_GPIO99__FUNC_URXD0>;
+> +		};
+> +	};
+> +};
+> +
+> +&u3phy0 {
+> +	status="okay";
+> +};
+> +
+> +&u3phy1 {
+> +	status="okay";
+> +};
 
-On 3/31/22 15:06, Sascha Hauer wrote:
-> On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
->> Hi Sascha:
->>
->> On 3/30/22 14:39, Sascha Hauer wrote:
->>> Hi Andy,
->>>
->>> On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
->>>> Hi Sascha:
->>>>
->>>> On 3/28/22 23:11, Sascha Hauer wrote:
->>>>> With upcoming VOP2 support VOP won't be the only choice anymore, so make
->>>>> the VOP driver optional.
->>>>>
->>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
->>>>> ---
->>>>>     drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
->>>>>     drivers/gpu/drm/rockchip/Makefile           | 3 ++-
->>>>>     drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
->>>>>     3 files changed, 11 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
->>>>> index fa5cfda4e90e3..7d22e2997a571 100644
->>>>> --- a/drivers/gpu/drm/rockchip/Kconfig
->>>>> +++ b/drivers/gpu/drm/rockchip/Kconfig
->>>>> @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
->>>>>     if DRM_ROCKCHIP
->>>>> +config ROCKCHIP_VOP
->>>>> +	bool "Rockchip VOP driver"
->>>>> +	default y
->>>>> +	help
->>>>> +	  This selects support for the VOP driver. You should enable it
->>>>> +	  on all older SoCs up to RK3399.
->>> That reminds me that I wanted to rephrase this. Will change in next
->>> round.
->>>
->>>>> +
->>>>>     config ROCKCHIP_ANALOGIX_DP
->>>>>     	bool "Rockchip specific extensions for Analogix DP driver"
->>>>> +	depends on ROCKCHIP_VOP
->>>> Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
-> BTW I just looked at the downstream driver. Here we have the same
-> situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
-> which is implemented in the VOP driver, so when the analogix dp driver
-> is actually used on a VOP2 SoC then it is either used in a way that
-> rockchip_drm_wait_vact_end() will never be called or it explodes in all
-> colours.
->
->>> I added the dependency because analogix_dp-rockchip.c calls
->>> rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
->>> so this driver currenty can't work with the VOP2 driver and can't
->>> be linked without the VOP driver being present.
->>> I'll add a few words to the commit message.
->>
->> Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
->> driver to rockchip_drm_drv.c
-> I am not sure if that's really worth it. Yes, the direction might be the
-> right one, but I would really prefer when somebody does the change who
-> can test and confirm that the analogix dp really works with VOP2 in the
-> end.
+Seems forget to enable &phy2/3? due to xhci2/3 are enabled below
 
-If follow this point, the current DW_MIPI also has not been tested for 
-confirm that it
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_pin>;
+> +	status = "okay";
+> +};
+> +
+> +&xhci0 {
+> +	status = "okay";
+> +};
+> +
+> +&xhci1 {
+> +	status = "okay";
+> +};
+> +
+> +&xhci2 {
+> +	status = "okay";
+> +};
+> +
+> +&xhci3 {
+> +	/* This controller is connected with a BT device.
+> +	 * Disable usb2 lpm to prevent known issues.
+> +	 */
+> +	usb2-lpm-disable;
+> +	status = "okay";
+> +};
+> 
+[skip]
 
-can really work with VOP2, so you should also make it depends on 
-ROCKCHIP_VOP.
-
-I think the current solution is just a workaround to make your patch 
-pass the kernel compile
-
-but not reflect the real situation.
-
-> Sascha
->
