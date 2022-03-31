@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2DE4EDE53
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93FCC4EDE69
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239540AbiCaQFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 12:05:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38910 "EHLO
+        id S233738AbiCaQIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 12:08:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239578AbiCaQFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:05:51 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D5F4E38F
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:04:02 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id bq8so253774ejb.10
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:04:02 -0700 (PDT)
+        with ESMTP id S230379AbiCaQIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:08:40 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B80D5567
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:06:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=i8exGV0bEfz7fockPDZIKH4DGjNDQmL1A2DdSanaA7k=;
-        b=IhU2wwo68dPixujjFS6hH/gAYbuctadDiy/If18pSZUCMCNprATz0oYCXVL5pSvVAG
-         bhDMnPn5qkBHVe8jw2TCF2PXVjYKf+ieCgLJFAK6XGGN2nQFld+ECzvY/SIPJYcK9gar
-         LISOK+NThskRi1GE4JJnYnqto41X30GBteiG5ZwKxGoXY8/tim9YCiR3yi5dQhOOL/M5
-         95UR5fxHjsJ1VVqVnffDD40i8cbp2LyeElS1YoxqN1KS5PdwyUb/8vJ+OQMuuSSRixW3
-         EZUrjFuKmD2ALNe0zmGdJdq/2/wIlD0BaWp7f89F18JUF4/hWybszVCMB3SaCCqcNn8x
-         iJhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=i8exGV0bEfz7fockPDZIKH4DGjNDQmL1A2DdSanaA7k=;
-        b=6QcjiQ7dJLLkiRR9ylcyyPaCB+IZy/7rIuuFRo0Q53NHnKI2d7ZcQmaf5NPUd9NJLG
-         UDpyOB91esl2R6pqLj1ofYKLDYyVXj+1xu4hsQlr/t2lWudkwDJNxSskLC3r2igZRaA9
-         0d8Z8SbKbYty4AzKTMRm5FdRwqKBNQXq1VCYmP+7Io7xsDJDNM4bQ7AjfP40jnzjhXMR
-         ebUVNXv9VyLCG9Gh4zj7l9XR88Lu+o7cbbReyADM5tjfn5gjQjlCjqldJEh9j6xxBKs2
-         44xe7BOp5hw+MXgtSF55dcXRGMSXcUjnqV6scYVBmoNF+IPsHJEhtE4pA/kF/wq4453O
-         TfjA==
-X-Gm-Message-State: AOAM531O7Qa0VpW2xJBQyfmFLJHJ8p1vXqm8Aq10I6KLQGLD8p1huToH
-        XEnDMqSnNDE70i0fjpoqsWQgfL/gKSfTRxVc
-X-Google-Smtp-Source: ABdhPJy69ag8KVOrx4BRxgGGK2T7r/5GAGO/MSehpQqn+sTUWTGcI/9ZWNOTYQpCVeKhWbd54mQOjw==
-X-Received: by 2002:a17:907:1b07:b0:6e4:b202:db8f with SMTP id mp7-20020a1709071b0700b006e4b202db8fmr2701516ejc.76.1648742641536;
-        Thu, 31 Mar 2022 09:04:01 -0700 (PDT)
-Received: from [192.168.0.167] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id b25-20020a056402139900b0041904036ab1sm11452823edv.5.2022.03.31.09.04.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 09:04:01 -0700 (PDT)
-Message-ID: <1e2a48f8-e6b5-abf9-0996-3b8d2d97b4de@linaro.org>
-Date:   Thu, 31 Mar 2022 18:04:00 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648742812; x=1680278812;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=kFnw7dJUzYNVuYo76Qjh+kui113vMoaYyH7pGpND/9o=;
+  b=m9nxHo6CxZwMnRc6/6MkcnBAChXIsCkpyvUNPxUoRGpQCbAGJXkjTAVf
+   wnoiX4m8nxaZukLVJRg6gPmifDfbqW++FXMSaGRqP6cKJFFvxsvG5D6IG
+   YH2HDSi+7M2+bKOrKUidDi/Nhno6z++HAQ5ZE0Q+qZPT3dHjihzRIauDO
+   I=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 31 Mar 2022 09:06:51 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2022 09:06:47 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 31 Mar 2022 09:06:15 -0700
+Received: from [10.110.21.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 31 Mar
+ 2022 09:06:14 -0700
+Message-ID: <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
+Date:   Thu, 31 Mar 2022 09:06:13 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 0/4] spi: dt-bindings: qcom: convert qcom,spi-qup to DT
- schema
+Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
 Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
+        Joel Stanley <joel@jms.id.au>
+CC:     devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jamie Iles <quic_jiles@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-References: <20220331155320.714754-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220331155320.714754-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        "Graeme Gregory" <quic_ggregory@quicinc.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
+ <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
+ <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
+ <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+In-Reply-To: <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,29 +76,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2022 17:53, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> Changes since v1
-> ================
-> 1. Fix path in com/qcom,gsbi.txt.
-> 2. Merge clock-names in example, correct $ref path (Kuldeep).
-> 
-> Merging
-> =======
-> The DTS patches are independent and silence warnings pointed
-> out by schema.
-> 
-> Best regards,
-> Krzysztof
-> 
-> Cc: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> 
+Hello Cédric,
 
-I forgot to add the ack from Kuldeep:
+On 3/31/2022 8:56 AM, Cédric Le Goater wrote:
+> Hello Jae,
+> 
+> On 3/31/22 17:44, Jae Hyun Yoo wrote:
+>> On 3/30/2022 10:50 PM, Joel Stanley wrote:
+>>> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo <quic_jaehyoo@quicinc.com> 
+>>> wrote:
+>>>>
+>>>> I’m sending this patch series to fix current issues in AST2600 pinmux
+>>>> settings while enabling quad mode SPI support.
+>>>>
+>>>> FWSPI18 pins are basically 1.8v logic pins that are different from the
+>>>> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins 
+>>>> can’t
+>>>> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
+>>>>
+>>>> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl 
+>>>> dtsi to
+>>>> make it able to enable quad mode on SPI1 and SPI2 interfaces.
+>>>>
+>>>> With this series, quad mode pinmux can be set like below.
+>>>>
+>>>> FW SPI:
+>>>> &fmc {
+>>>>          pinctrl-names = "default";
+>>>>          pinctrl-0 = <&pinctrl_fwqspi_default>;
+>>>> }
+>>>>
+>>>> SPI1:
+>>>> &spi1 {
+>>>>          pinctrl-names = "default";
+>>>>          pinctrl-0 = <&pinctrl_qspi1_default>;
+>>>> }
+>>>>
+>>>> SPI2:
+>>>> &spi2 {
+>>>>          pinctrl-names = "default";
+>>>>          pinctrl-0 = <&pinctrl_qspi2_default>;
+>>>> }
+>>>
+>>> Thanks. I hope to see a board from you that uses this soon :)
+>>>
+>>> I'll send the patches as fixes once -rc1 is out.
+>>
+>> Thanks Joel!
+>>
+>> Yes, I would be able to send my BMC board dts soon.
+>> Thanks in advance for your review on that too.
+> 
+> Out of curiosity, which driver are you using ? the one from SDK ?
+> 
+> I proposed a new one for upstream supporting all AST2400, AST2500, AST2600
+> controllers. I would be glad to have some feedback if you have time.
 
-Acked-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Yes, I saw your patch set of the new driver.
 
+I'm currently using this fix with legacy aspeed-smc driver after
+adding some fixes. I'll give it a try with your new driver as well and
+will give you some feedback if I find any.
 
-Best regards,
-Krzysztof
+Thanks,
+Jae
+
+> Thanks,
+> 
+> C.
