@@ -2,56 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95AA64ED92B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFFA84ED91F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:02:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235738AbiCaMCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46958 "EHLO
+        id S234761AbiCaMDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:03:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235652AbiCaMCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:02:24 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D491C6ED4;
-        Thu, 31 Mar 2022 04:59:24 -0700 (PDT)
-X-UUID: 8989adea57284d6fb7d6a5c98c5e7e74-20220331
-X-UUID: 8989adea57284d6fb7d6a5c98c5e7e74-20220331
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1629266243; Thu, 31 Mar 2022 19:59:18 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 31 Mar 2022 19:59:17 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 31 Mar
- 2022 19:59:15 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Thu, 31 Mar 2022 19:59:08 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <jitao.shi@mediatek.com>,
-        Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: [PATCH v2,2/2] drm/mediatek: Add mt8186 dpi compatible to mtk_dpi.c
-Date:   Thu, 31 Mar 2022 19:58:37 +0800
-Message-ID: <1648727917-3099-3-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1648727917-3099-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1648727917-3099-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S235880AbiCaMC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:02:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C11CC6EED;
+        Thu, 31 Mar 2022 04:59:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8CF00616BF;
+        Thu, 31 Mar 2022 11:59:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67C23C340EE;
+        Thu, 31 Mar 2022 11:59:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648727994;
+        bh=adnfpVD7oqXHj4mfPH8O1DTjb8aRLseC4Dvlx5i6vF0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=swJP9pqiZw1PBslMi6kbCZdmGGEiPUICuHiBfiDTo4t2rDC46yANqiK8ahb1iwCkX
+         DUKLDUtfxGiKLaeh1DnLq0GkGDygdI+QfwlZG51KvYHQzsyJ6ZQr1rB+RRYqmz62aH
+         xxAoeYM0TzoLffX/gwbxmZUy80qqN92o7WT69od3BeuS7D6GHl9mDzFz4hto9EWKsN
+         rk3i8v7+tcoCKMWomAkTTUtSqgCzrxXiXFtQwE32YwMtNtwcWuJAeDSogo2RTVCSKX
+         1/DffffixgiTFrqYd0HJ3aGu4c6IHkp47snP0VeE1Iahf9juWMpgZK5qkX/ZMSNpZN
+         cBvqxDx9+y6qQ==
+Date:   Thu, 31 Mar 2022 12:59:47 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [RFC PATCH 5/5] ASoC: Add macaudio machine driver
+Message-ID: <YkWXs/f7edZwg1+W@sirena.org.uk>
+References: <20220331000449.41062-1-povik+lin@cutebit.org>
+ <20220331000449.41062-6-povik+lin@cutebit.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+MLBZhiivx60M6iZ"
+Content-Disposition: inline
+In-Reply-To: <20220331000449.41062-6-povik+lin@cutebit.org>
+X-Cookie: Reunite Gondwondaland!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,44 +63,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xinlei Lee <xinlei.lee@mediatek.com>
 
-Add the compatible because use different .data in mt8186.
+--+MLBZhiivx60M6iZ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dpi.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On Thu, Mar 31, 2022 at 02:04:49AM +0200, Martin Povi=C5=A1er wrote:
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 4554e2de1430..6fac146cf1fb 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -823,6 +823,14 @@ static const struct mtk_dpi_conf mt8192_conf = {
- 	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
- };
- 
-+static const struct mtk_dpi_conf mt8186_conf = {
-+	.cal_factor =  mt8183_calculate_factor,
-+	.reg_h_fre_con = 0xe0,
-+	.max_clock_khz = 150000,
-+	.output_fmts = mt8183_output_fmts,
-+	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
-+};
-+
- static int mtk_dpi_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -945,6 +953,9 @@ static const struct of_device_id mtk_dpi_of_ids[] = {
- 	{ .compatible = "mediatek,mt8192-dpi",
- 	  .data = &mt8192_conf,
- 	},
-+	{ .compatible = "mediatek,mt8186-dpi",
-+	  .data = &mt8186_conf,
-+	},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, mtk_dpi_of_ids);
--- 
-2.18.0
+> --- /dev/null
+> +++ b/sound/soc/apple/macaudio.c
+> @@ -0,0 +1,597 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * ASoC machine driver for Apple Silicon Macs
+> + *
 
+Please make the entire comment a C++ one so things look more
+intentional.
+
+> +		/* CPU side is bit and frame clock master, I2S with both clocks invert=
+ed */
+
+Please refer to clock providers here.
+
+> +		ret =3D of_property_read_string(np, "link-name", &link->name);
+> +		if (ret) {
+> +			dev_err(card->dev, "Missing link name\n");
+> +			goto err_put_np;
+> +		}
+
+This doesn't look like it's mandatory in the binding.
+
+> +static int macaudio_init(struct snd_soc_pcm_runtime *rtd)
+> +{
+> +	struct snd_soc_card *card =3D rtd->card;
+> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
+> +	struct snd_soc_component *component;
+> +	int ret, i;
+> +
+> +	if (rtd->num_codecs > 1) {
+> +		ret =3D macaudio_assign_tdm(rtd);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	for_each_rtd_components(rtd, i, component)
+> +		snd_soc_component_set_jack(component, &ma->jack, NULL);
+
+What is the jack configuration this is attempting to describe?  It looks
+like you have some dedicated speaker driver devices which are going to
+get attached to jacks here for example.
+
+> +} macaudio_kctlfixes[] =3D {
+> +	{"* ASI1 Sel", "Left"},
+> +	{"* ISENSE Switch", "Off"},
+> +	{"* VSENSE Switch", "Off"},
+> +	{ }
+> +};
+> +
+> +static bool macaudio_kctlfix_matches(const char *pattern, const char *na=
+me)
+> +{
+> +	if (pattern[0] =3D=3D '*') {
+> +		int namelen, patternlen;
+> +
+> +		pattern++;
+> +		if (pattern[0] =3D=3D ' ')
+> +			pattern++;
+> +
+> +		namelen =3D strlen(name);
+> +		patternlen =3D strlen(pattern);
+> +
+> +		if (namelen > patternlen)
+> +			name +=3D (namelen - patternlen);
+> +	}
+> +
+> +	return !strcmp(name, pattern);
+> +}
+
+This looks worryingly like use case configuration.
+
+> +/*
+> + * Maybe this could be a general ASoC function?
+> + */
+> +static void snd_soc_kcontrol_set_strval(struct snd_soc_card *card,
+> +				struct snd_kcontrol *kcontrol, const char *strvalue)
+
+No, we should not be setting user visible control values from the
+kernel.  This shouldn't be a machine driver function either.  What are
+you trying to accomplish here?
+
+--+MLBZhiivx60M6iZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJFl7MACgkQJNaLcl1U
+h9AvpQf+NQTe35sa2gGAL6J5r3unBmmRuUI+0Lmize/e9oyklq/3LgUI3zy2In6m
+gWr5laQlG/Eq41KJZecdtZ5BrY+BENGZ4PzCtR06uc8hM7KJV17O6hdRXrK3VSWZ
+9Tl8uSSh2xNqw6bwflA6XyfULttxC6NLsKP1RxCOaHJGG4cU1G5GkvT9sTpcQH9/
+bi7Y9TzxUi6Q7zgK6vVHXygqusZ4UTHdt5fyxX4ou1tV2V1fYAO64eMJ4pA+8jUA
+0ZafQA1BVTbkHK7JZjbc2ILGcu5NBR1eJK/hbv9X0OknpKrRsafaQQTRywE1hWb5
+NM2xv163DU7RQTC8vqYC+rKBiQ/ypQ==
+=dyOa
+-----END PGP SIGNATURE-----
+
+--+MLBZhiivx60M6iZ--
