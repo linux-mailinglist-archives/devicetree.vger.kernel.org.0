@@ -2,164 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1000F4ED95D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77BF04ED96C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:13:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235818AbiCaMKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39608 "EHLO
+        id S232806AbiCaMPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235797AbiCaMKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:10:46 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B2CC457B7;
-        Thu, 31 Mar 2022 05:08:55 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1648728531; bh=o0s8+g9O9ptEUPJSHpyizR5cnYWekpbCjfSIKFYgW5M=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=K3eA+hrvPQ7rnRY1xefkH25uA65TIlMtFlXRqItvNKPSb3gNDMCXKWCcU5KIow4zd
-         PfxtaOk4qkcLF9IRD56uT6aamjWVop9XUyQMBd3EAUJcL3Etc+DHrF6uZzi/3mvFAw
-         7uqF+SxBQG/o7hiwzQ6wVjEZH4pP+DD78fucp6Ss=
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
-Subject: Re: [RFC PATCH 5/5] ASoC: Add macaudio machine driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <YkWXs/f7edZwg1+W@sirena.org.uk>
-Date:   Thu, 31 Mar 2022 14:08:51 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <4651D426-BA1A-418F-90E5-278C705DA984@cutebit.org>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-6-povik+lin@cutebit.org>
- <YkWXs/f7edZwg1+W@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S235899AbiCaMPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:15:03 -0400
+Received: from mail-m176237.qiye.163.com (mail-m176237.qiye.163.com [59.111.176.237])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99FD91FF21E
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 05:13:16 -0700 (PDT)
+Received: from [192.168.60.102] (unknown [103.29.142.67])
+        by mail-m176237.qiye.163.com (Hmail) with ESMTPA id CB9D1C40311;
+        Thu, 31 Mar 2022 20:13:11 +0800 (CST)
+Message-ID: <af8445e0-f4af-721b-709e-2eb7c488a8a4@rock-chips.com>
+Date:   Thu, 31 Mar 2022 20:13:09 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220330072822.GX12181@pengutronix.de>
+ <0D8F5951-5375-46B5-BFF0-7ED410371EB7@gmail.com>
+ <20220330094556.GZ12181@pengutronix.de>
+ <D3DA14F9-C9C6-4927-B015-5B7D25689DAA@gmail.com>
+ <20220330102046.GA12181@pengutronix.de>
+ <60601619-EF07-457B-91F2-64FEB598FEBE@gmail.com>
+ <20220330192054.GA4012@pengutronix.de>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20220330192054.GA4012@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUMaGkhWSk1LSU9NQh8fSE
+        4aVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkxVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OjI6Qxw*HD4BSg05SjpMOBwS
+        DkoaCjpVSlVKTU9DTElDTEJPS0lOVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZSktIVUlCVUpPSVVNTFlXWQgBWUFNS0NCNwY+
+X-HM-Tid: 0a7fdfe4e207d9afkuwscb9d1c40311
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Piotr:
 
-> On 31. 3. 2022, at 13:59, Mark Brown <broonie@kernel.org> wrote:
->=20
-> On Thu, Mar 31, 2022 at 02:04:49AM +0200, Martin Povi=C5=A1er wrote:
->=20
->> --- /dev/null
->> +++ b/sound/soc/apple/macaudio.c
->> @@ -0,0 +1,597 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * ASoC machine driver for Apple Silicon Macs
->> + *
->=20
-> Please make the entire comment a C++ one so things look more
-> intentional.
->=20
->> +		/* CPU side is bit and frame clock master, I2S with both =
-clocks inverted */
->=20
-> Please refer to clock providers here.
->=20
->> +		ret =3D of_property_read_string(np, "link-name", =
-&link->name);
->> +		if (ret) {
->> +			dev_err(card->dev, "Missing link name\n");
->> +			goto err_put_np;
->> +		}
->=20
-> This doesn't look like it's mandatory in the binding.
+On 3/31/22 03:20, Sascha Hauer wrote:
+> On Wed, Mar 30, 2022 at 04:52:22PM +0200, Piotr Oniszczuk wrote:
+>>
+>>> Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 30.03.2022, o godz. 12:20:
+>>>
+>>> Does it change anything if you do a "modetest -s 69@67:1920x1080" before
+>>> starting the app? Or if you run "modetest -P 43@67:1920x1080@NV12"
+>>> before starting the app? Or other combinations thereof?
+>> So i tried following combinations
+>>
+>> -boot
+>> -modetest -s 69@67:1920x1080 -> ok
+>> -modetest -P 43@67:1920x1080@NV12 -> green screen
+> I have no idea what is going on here. There same commands work for me.
+> You could provide me your kernel config and upstream commitish you are
+> working on, maybe that gets me closer to your setup.
 
-Good catch!
 
->> +static int macaudio_init(struct snd_soc_pcm_runtime *rtd)
->> +{
->> +	struct snd_soc_card *card =3D rtd->card;
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	struct snd_soc_component *component;
->> +	int ret, i;
->> +
->> +	if (rtd->num_codecs > 1) {
->> +		ret =3D macaudio_assign_tdm(rtd);
->> +		if (ret < 0)
->> +			return ret;
->> +	}
->> +
->> +	for_each_rtd_components(rtd, i, component)
->> +		snd_soc_component_set_jack(component, &ma->jack, NULL);
->=20
-> What is the jack configuration this is attempting to describe?  It =
-looks
-> like you have some dedicated speaker driver devices which are going to
-> get attached to jacks here for example.
+It's a little strange, I can't reproduce this issue neither.
 
-We know the speakers will ignore the set_jack call. There=E2=80=99s one =
-jack and
-this way we know the jack codec will attach to it, for speakers it=E2=80=99=
-s a no-op.
-(If you prefer I will special-case it to the jack codec.)
+But I have problem with this two step command sequence.
 
->> +} macaudio_kctlfixes[] =3D {
->> +	{"* ASI1 Sel", "Left"},
->> +	{"* ISENSE Switch", "Off"},
->> +	{"* VSENSE Switch", "Off"},
->> +	{ }
->> +};
->> +
->> +static bool macaudio_kctlfix_matches(const char *pattern, const char =
-*name)
->> +{
->> +	if (pattern[0] =3D=3D '*') {
->> +		int namelen, patternlen;
->> +
->> +		pattern++;
->> +		if (pattern[0] =3D=3D ' ')
->> +			pattern++;
->> +
->> +		namelen =3D strlen(name);
->> +		patternlen =3D strlen(pattern);
->> +
->> +		if (namelen > patternlen)
->> +			name +=3D (namelen - patternlen);
->> +	}
->> +
->> +	return !strcmp(name, pattern);
->> +}
->=20
-> This looks worryingly like use case configuration.
+step 1:  modetest -s 69@67:1920x1080 -> ok
 
-I go over this in the cover letter! This is fixing the TDM slot =
-selection
-and disabling voltage/current sensing on the speaker amp codecs, which =
-have
-no business being exposed to userspace as options. This is not use case,
-this not letting people blow their speakers from userspace.
+step 2:  modetest -P 43@67:1920x1080@NV12,
 
->=20
->> +/*
->> + * Maybe this could be a general ASoC function?
->> + */
->> +static void snd_soc_kcontrol_set_strval(struct snd_soc_card *card,
->> +				struct snd_kcontrol *kcontrol, const =
-char *strvalue)
->=20
-> No, we should not be setting user visible control values from the
-> kernel.  This shouldn't be a machine driver function either.  What are
-> you trying to accomplish here?
+I got the failed message:  "failed to enable plane: Permission denied"
 
-See above.
+Because the drm core will stop step2 by drm_ioctrl_permit as 
+DRM_IOCTL_SETPLANE need a master,
 
-Martin
+but the current master is the modetest run by step1.
 
+static int drm_ioctl_permit(u32 flags, struct drm_file *file_priv)
+{
+
+         /* ROOT_ONLY is only for CAP_SYS_ADMIN */
+         if (unlikely((flags & DRM_ROOT_ONLY) && !capable(CAP_SYS_ADMIN))) {
+                 printk("DRM_ROOT_ONLY\n");
+                 return -EACCES;
+         }
+
+         /* AUTH is only for authenticated or render client */
+         if (unlikely((flags & DRM_AUTH) && 
+!drm_is_render_client(file_priv) &&
+                      !file_priv->authenticated)) {
+                 printk("DRM_AUTH\n");
+                 return -EACCES;
+         }
+
+         /* MASTER is only for master or control clients */
+         if (unlikely((flags & DRM_MASTER) &&
+                      !drm_is_current_master(file_priv))) {
+                 printk("DRM_MASTER\n");
+                 return -EACCES;
+         }
+
+         /* Render clients must be explicitly allowed */
+         if (unlikely(!(flags & DRM_RENDER_ALLOW) &&
+                      drm_is_render_client(file_priv))) {
+                 printk("DRM_RENDER_NOT_ALLOW\n");
+                 return -EACCES;
+         }
+
+         return 0;
+}
+
+
+After bypass the permission check, I can run step 2 , but the display on 
+the screen will have a shift as the wrong dly configuration.
+
+So how you two got step two run success?
+
+Piotr:
+
+What soc is on you board? rk3566 or rk3568?
+
+I have a scripts[0]  use io[1] command to dump the VOP2 register you can 
+use it dump the register configuration when you meet a display failure,
+
+then send the dump to me, maybe I can figure out something.
+
+[0]https://github.com/andyshrk/buildroot/blob/2022/board/andyshrk/rootfs_overlay/usr/bin/vop2_dump.sh
+
+[1] https://github.com/andyshrk/io
+
+>
+> Sascha
+>
