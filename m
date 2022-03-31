@@ -2,122 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A06D4EDE77
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE36E4EDE81
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236486AbiCaQPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 12:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39170 "EHLO
+        id S239722AbiCaQQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 12:16:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236112AbiCaQPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:15:48 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A319FF8;
-        Thu, 31 Mar 2022 09:13:58 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1648743234; bh=BxE8wIN6zo6oZw87Bp/sf89zaabaM2ryoJcy+5lANO8=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=S4LvguHX5OQUd+3hqCus3jymE1UDI9kMSUb0WNJ8hP64BQ2FzC5y7QCNO2BK0ySIJ
-         T4k1A4IfwBXRH4IKEGwSWwfXpsgEog/XCLRvbmsjie1ZIuRYukWI6RCN009VeZicjU
-         MhIXhFIuYBpAoZnX/abRjc6QzzesEMFoW+LUMqZQ=
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
-Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@cutebit.org>
-In-Reply-To: <YkW2OG3dU4YFYJEZ@matsya>
-Date:   Thu, 31 Mar 2022 18:13:53 +0200
-Cc:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B75EEC8B-FE88-47EA-8F56-0DD7EDE0DB77@cutebit.org>
-References: <20220330164458.93055-1-povik+lin@cutebit.org>
- <20220330164458.93055-2-povik+lin@cutebit.org> <YkU6yvUQ6v4VdXiJ@matsya>
- <C2D8BDAF-0ACF-4756-B10F-B5097BC93670@cutebit.org>
- <265B2992-06E5-4E45-A971-B170A385EFD4@cutebit.org> <YkW2OG3dU4YFYJEZ@matsya>
-To:     Vinod Koul <vkoul@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S238725AbiCaQQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:16:56 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2926A055;
+        Thu, 31 Mar 2022 09:15:09 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id i16so298703ejk.12;
+        Thu, 31 Mar 2022 09:15:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+u7U4lkAOPwXzqxmTC35x80J2g9XLsoz+L2N9wyTohY=;
+        b=PUC6N/Eg9LKVu5tj1jbTOigoGg7wLIGUd1C9HHwSnHBO6nwZT56KCotobFtRMOaeAT
+         dIF1XO+SMxvmBabi4Su/N270JhrfT15ajm3aPgwrV0bmjUVr9/d4Q82c05hl8i9cEnqk
+         nCD2DP0L7fWkb0RoIER/RgSR94dOClajIFWUyEHUDs0T87fgv0GIhX6DOs0jpvTPKNi/
+         LQdNL4aCDLgHO3VhWe3tJgmEB+QqkXLlbiPQT1rfU7c5E0tmvEMayaUiq1s/2UtAGFpu
+         JS/Qh6LZLqNWY/hx9RAOwOKvvEaNr7D9mzKHZJ36ffi0crgiOdmhDPXPScd/Ln9iWyOU
+         8Krg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+u7U4lkAOPwXzqxmTC35x80J2g9XLsoz+L2N9wyTohY=;
+        b=yJh/yO9bdP38Q93xv/5XahaAV4SLF5oNHmIfwT3ojdOaBqZA57Yia9UKkI9aAze0VH
+         SA6qdlNVN/wrtnqgegD33/ZmIjCcS2MBjeFM0fTF6SFMk9oGyGHb1FAMZ1XJxymyo54r
+         ZLxsV11NuqPIAS53K+k5yscUsRjuf8XQh8OZzC8KbVWqq8CaHjwwfvrI2RQDIy9gyfBQ
+         9kqoNZRG8Gf5iT/Dzb/YgJHEDtJwH9McOTd0mgErLedwnGkYKDI1RDS2qY7dR5VxvtF0
+         FC84rHn8Uzy/FEYPIq1tzd2c18OQz9VuZ4Nu1T/a7kXepquJcBwobqgBaGnjwp9j+cSb
+         /+9w==
+X-Gm-Message-State: AOAM532g1raiecNsN/sCax/UkpSpR4CeSP+g5NPRLr9d+/NWiQoKkct2
+        7hKEGIifgEyqNdgDaH2qmG8=
+X-Google-Smtp-Source: ABdhPJwxKCicJviIPSIyZMU1lu4jDR1x73XK4Lvn/gKq/VKorNpLelOeI1MdCC1fsJrVTXx6dLoLFg==
+X-Received: by 2002:a17:906:2bc1:b0:6cf:d009:7f6b with SMTP id n1-20020a1709062bc100b006cfd0097f6bmr5522692ejg.17.1648743307481;
+        Thu, 31 Mar 2022 09:15:07 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g4-20020a170906520400b006e0b798a0b8sm7600302ejm.94.2022.03.31.09.15.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Mar 2022 09:15:06 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, davem@davemloft.net,
+        kuba@kernel.org, pabeni@redhat.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/3] dt-bindings: net: convert emac_rockchip.txt to YAML
+Date:   Thu, 31 Mar 2022 18:14:57 +0200
+Message-Id: <20220331161459.16499-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert emac_rockchip.txt to YAML.
 
-> On 31. 3. 2022, at 16:10, Vinod Koul <vkoul@kernel.org> wrote:
->=20
-> On 31-03-22, 09:06, Martin Povi=C5=A1er wrote:
->>=20
->>> On 31. 3. 2022, at 8:50, Martin Povi=C5=A1er <povik@cutebit.org> =
-wrote:
->>>>=20
->>>> On 31. 3. 2022, at 7:23, Vinod Koul <vkoul@kernel.org> wrote:
->>>>=20
->>>> On 30-03-22, 18:44, Martin Povi=C5=A1er wrote:
->>>>> Apple's Audio DMA Controller (ADMAC) is used to fetch and store =
-audio
->>>>> samples on Apple SoCs from the "Apple Silicon" family.
->>>>>=20
->>>>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
->>>>> ---
->>>>> .../devicetree/bindings/dma/apple,admac.yaml  | 73 =
-+++++++++++++++++++
->>>>> 1 file changed, 73 insertions(+)
->>>>> create mode 100644 =
-Documentation/devicetree/bindings/dma/apple,admac.yaml
->>>>>=20
->>>>> diff --git =
-a/Documentation/devicetree/bindings/dma/apple,admac.yaml =
-b/Documentation/devicetree/bindings/dma/apple,admac.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..34f76a9a2983
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
->>>=20
->>>>> +  apple,internal-irq-destination:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    description: Index influencing internal routing of the IRQs
->>>>> +      within the peripheral.
->>>>=20
->>>> do you have more details for this, is this for peripheral and if so
->>>> suited to be in dam-cells?
->>>=20
->>> By peripheral I meant the DMA controller itself here.=20
->=20
-> Dmaengine convention is that peripheral is device which we are doing =
-dma
-> to/from, like audio controller/fifo here
->=20
->>> Effectively the controller has four independent IRQ outputs and the =
-driver
->>> needs to know which one we are using. (It need not be the same =
-output even
->>> for different ADMAC instances on one die.)
->=20
-> That smells like a mux to me.. why not use dma-requests for this?
+Changes against original bindings:
+  Add mdio sub node.
 
-I am not sure that=E2=80=99s right. Reading the dmaengine docs, DMA =
-requests seem to have
-to do with the DMA-controller-to-peripheral connection, but the proposed =
-property
-tells us which of four independent IRQ outputs of the DMA controller we =
-actually
-have in the interrupts=3D property. That is, it has to do with the =
-DMA-controller-to-CPU
-connection.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../devicetree/bindings/net/emac_rockchip.txt |  52 --------
+ .../bindings/net/emac_rockchip.yaml           | 112 ++++++++++++++++++
+ 2 files changed, 112 insertions(+), 52 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/emac_rockchip.txt
+ create mode 100644 Documentation/devicetree/bindings/net/emac_rockchip.yaml
 
-(I took the liberty of correcting my typo in the quotation.)
-
->=20
-> --=20
-> ~Vinod
+diff --git a/Documentation/devicetree/bindings/net/emac_rockchip.txt b/Documentation/devicetree/bindings/net/emac_rockchip.txt
+deleted file mode 100644
+index 05bd7dafc..000000000
+--- a/Documentation/devicetree/bindings/net/emac_rockchip.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-* ARC EMAC 10/100 Ethernet platform driver for Rockchip RK3036/RK3066/RK3188 SoCs
+-
+-Required properties:
+-- compatible: should be "rockchip,<name>-emac"
+-   "rockchip,rk3036-emac": found on RK3036 SoCs
+-   "rockchip,rk3066-emac": found on RK3066 SoCs
+-   "rockchip,rk3188-emac": found on RK3188 SoCs
+-- reg: Address and length of the register set for the device
+-- interrupts: Should contain the EMAC interrupts
+-- rockchip,grf: phandle to the syscon grf used to control speed and mode
+-  for emac.
+-- phy: see ethernet.txt file in the same directory.
+-- phy-mode: see ethernet.txt file in the same directory.
+-
+-Optional properties:
+-- phy-supply: phandle to a regulator if the PHY needs one
+-
+-Clock handling:
+-- clocks: Must contain an entry for each entry in clock-names.
+-- clock-names: Shall be "hclk" for the host clock needed to calculate and set
+-  polling period of EMAC and "macref" for the reference clock needed to transfer
+-  data to and from the phy.
+-
+-Child nodes of the driver are the individual PHY devices connected to the
+-MDIO bus. They must have a "reg" property given the PHY address on the MDIO bus.
+-
+-Examples:
+-
+-ethernet@10204000 {
+-	compatible = "rockchip,rk3188-emac";
+-	reg = <0xc0fc2000 0x3c>;
+-	interrupts = <6>;
+-	mac-address = [ 00 11 22 33 44 55 ];
+-
+-	clocks = <&cru HCLK_EMAC>, <&cru SCLK_MAC>;
+-	clock-names = "hclk", "macref";
+-
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
+-
+-	rockchip,grf = <&grf>;
+-
+-	phy = <&phy0>;
+-	phy-mode = "rmii";
+-	phy-supply = <&vcc_rmii>;
+-
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	phy0: ethernet-phy@0 {
+-	      reg = <1>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/net/emac_rockchip.yaml b/Documentation/devicetree/bindings/net/emac_rockchip.yaml
+new file mode 100644
+index 000000000..03173fa7b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/emac_rockchip.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/emac_rockchip.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip RK3036/RK3066/RK3188 Ethernet Media Access Controller (EMAC)
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++
++properties:
++  compatible:
++    enum:
++      - rockchip,rk3036-emac
++      - rockchip,rk3066-emac
++      - rockchip,rk3188-emac
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 2
++    items:
++      - description: host clock
++      - description: reference clock
++      - description: mac TX/RX clock
++
++  clock-names:
++    minItems: 2
++    items:
++      - const: hclk
++      - const: macref
++      - const: macclk
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the syscon GRF used to control speed and mode for the EMAC.
++
++  phy-supply:
++    description:
++      Phandle to a regulator if the PHY needs one.
++
++  mdio:
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - rockchip,grf
++
++allOf:
++  - $ref: "ethernet-controller.yaml#"
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3036-emac
++
++    then:
++      properties:
++        clocks:
++          minItems: 3
++
++        clock-names:
++          minItems: 3
++
++    else:
++      properties:
++        clocks:
++          maxItems: 2
++
++        clock-names:
++          maxItems: 2
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3188-cru-common.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    ethernet@10204000 {
++      compatible = "rockchip,rk3188-emac";
++      reg = <0xc0fc2000 0x3c>;
++      interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&cru HCLK_EMAC>, <&cru SCLK_MAC>;
++      clock-names = "hclk", "macref";
++      rockchip,grf = <&grf>;
++      pinctrl-0 = <&emac_xfer>, <&emac_mdio>, <&phy_int>;
++      pinctrl-names = "default";
++      phy-handle = <&phy0>;
++      phy-mode = "rmii";
++      phy-supply = <&vcc_rmii>;
++
++      mdio {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        phy0: ethernet-phy@0 {
++          reg = <1>;
++        };
++      };
++    };
+-- 
+2.20.1
 
