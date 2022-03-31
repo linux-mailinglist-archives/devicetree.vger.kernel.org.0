@@ -2,61 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFFA84ED91F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A18C74ED930
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234761AbiCaMDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
+        id S235786AbiCaME0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:04:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235880AbiCaMC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:02:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C11CC6EED;
-        Thu, 31 Mar 2022 04:59:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8CF00616BF;
-        Thu, 31 Mar 2022 11:59:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67C23C340EE;
-        Thu, 31 Mar 2022 11:59:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648727994;
-        bh=adnfpVD7oqXHj4mfPH8O1DTjb8aRLseC4Dvlx5i6vF0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=swJP9pqiZw1PBslMi6kbCZdmGGEiPUICuHiBfiDTo4t2rDC46yANqiK8ahb1iwCkX
-         DUKLDUtfxGiKLaeh1DnLq0GkGDygdI+QfwlZG51KvYHQzsyJ6ZQr1rB+RRYqmz62aH
-         xxAoeYM0TzoLffX/gwbxmZUy80qqN92o7WT69od3BeuS7D6GHl9mDzFz4hto9EWKsN
-         rk3i8v7+tcoCKMWomAkTTUtSqgCzrxXiXFtQwE32YwMtNtwcWuJAeDSogo2RTVCSKX
-         1/DffffixgiTFrqYd0HJ3aGu4c6IHkp47snP0VeE1Iahf9juWMpgZK5qkX/ZMSNpZN
-         cBvqxDx9+y6qQ==
-Date:   Thu, 31 Mar 2022 12:59:47 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
-Subject: Re: [RFC PATCH 5/5] ASoC: Add macaudio machine driver
-Message-ID: <YkWXs/f7edZwg1+W@sirena.org.uk>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
- <20220331000449.41062-6-povik+lin@cutebit.org>
+        with ESMTP id S235780AbiCaMEX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:04:23 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B729208C26;
+        Thu, 31 Mar 2022 05:02:14 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id h23so33469491wrb.8;
+        Thu, 31 Mar 2022 05:02:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=A4Zjm/xBLp9YxmFT/DNtR5IxUCWdPvGVNi6dsCwjlvs=;
+        b=hs1mRpoxuE6ZpUUnB6ufTgWOqqKRMlwZk7UDkYvnKGNfNaFa5kiy2kivZyhLrqXN+M
+         iLOmA6pRfoJPDsUf+L9H95Xeuta15xztQkd5PxNID2AvHYeyyMv1+wwW3Ki/AdU6rWcQ
+         orKBN+Jv70ZNVgEoCHvXATcpAbHpggbrtJmj4ZxX8Uk8YqJ76WlPyDodhGFbgTsFMUf+
+         ozqSH5sd2hMaFTclgBsW8y9A4uYFYLZ9qSM0do8pJlrCcowHx1LDo1925nd/cFiTuWci
+         x+pIBkfqWBSnFCPCAZCoT3ZYwCOhLWBoo3Xe/de4TTJUj/gFHDuXfWK9B9qn+53yL7FZ
+         Nt6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=A4Zjm/xBLp9YxmFT/DNtR5IxUCWdPvGVNi6dsCwjlvs=;
+        b=MypxIpZze4LhD57iPE5TKi0FnZBCrwwknhWVhY8jMJ6pZ5Im8zCEPQGYe4V5om9LRo
+         +NR9BOT4QkO+uPNUzHKDI8xVKFJ+NBS/HJ84J64dMEPtF9wVS4ZfYYZk09jEiD42GR12
+         yt04H3kOmp3t0cRICinoLMVoSqJwheKk4ag0nWoXnT0z1HiVnXS4Xb7b1fajieZ5811P
+         k4S3YuaHIA3ovwwj2alBPVsvohU0PRQGUhrYrFebMCBsjH/3Hl4cPfzRyCSK/eCLg3NH
+         I+xAbMMgw3RIVau/sMvhW/jmbQvOpFdhhuv5teNE/TQPC0TzBsWEw7+cbN+kJG1dPjTn
+         bN2g==
+X-Gm-Message-State: AOAM531NVYQT0SCW0GfhrOTH2AhqITIHtAazZMfkWWmp/1pb7PF8PijA
+        y40h2FQjLzrOLtdq0tKHpeI=
+X-Google-Smtp-Source: ABdhPJy1pwWwEsM0zqdfSBXpyPAD0/x0pcEIXNpZNqEniEbmMNwfmK6IiIHr/hlxLOMYZdRzHxD8rw==
+X-Received: by 2002:a05:6000:1:b0:205:e7cd:2a5 with SMTP id h1-20020a056000000100b00205e7cd02a5mr2498122wrx.485.1648728132726;
+        Thu, 31 Mar 2022 05:02:12 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id w8-20020a1cf608000000b0038c8fdc93d6sm6881237wmc.28.2022.03.31.05.02.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 05:02:12 -0700 (PDT)
+Message-ID: <4cd1c5fa-0982-0355-d5b6-7025b82174a4@gmail.com>
+Date:   Thu, 31 Mar 2022 14:02:09 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+MLBZhiivx60M6iZ"
-Content-Disposition: inline
-In-Reply-To: <20220331000449.41062-6-povik+lin@cutebit.org>
-X-Cookie: Reunite Gondwondaland!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 2/4] arm64: dts: mt8192: Add mmc device nodes
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>
+References: <20220330133816.30806-1-allen-kh.cheng@mediatek.com>
+ <20220330133816.30806-3-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220330133816.30806-3-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,109 +81,64 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---+MLBZhiivx60M6iZ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 31, 2022 at 02:04:49AM +0200, Martin Povi=C5=A1er wrote:
+On 30/03/2022 15:38, Allen-KH Cheng wrote:
+> Add mmc nodes for mt8192 SoC.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> --- /dev/null
-> +++ b/sound/soc/apple/macaudio.c
-> @@ -0,0 +1,597 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ASoC machine driver for Apple Silicon Macs
-> + *
+You forgot to disable the msdc clock node, which I understood we agreed on in in 
+v4. I would consider this change as an substantial one, so in this case please 
+delete the reviewed-by tags.
 
-Please make the entire comment a C++ one so things look more
-intentional.
+Regards,
+Matthias
 
-> +		/* CPU side is bit and frame clock master, I2S with both clocks invert=
-ed */
-
-Please refer to clock providers here.
-
-> +		ret =3D of_property_read_string(np, "link-name", &link->name);
-> +		if (ret) {
-> +			dev_err(card->dev, "Missing link name\n");
-> +			goto err_put_np;
-> +		}
-
-This doesn't look like it's mandatory in the binding.
-
-> +static int macaudio_init(struct snd_soc_pcm_runtime *rtd)
-> +{
-> +	struct snd_soc_card *card =3D rtd->card;
-> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
-> +	struct snd_soc_component *component;
-> +	int ret, i;
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 32 ++++++++++++++++++++++++
+>   1 file changed, 32 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 69e8d1934d53..c1057878e2c6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -991,6 +991,38 @@
+>   			#clock-cells = <1>;
+>   		};
+>   
+> +		mmc0: mmc@11f60000 {
+> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
+> +			reg = <0 0x11f60000 0 0x1000>, <0 0x11f50000 0 0x1000>;
+> +			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>,
+> +				 <&msdc_top CLK_MSDC_TOP_H_MST_0P>,
+> +				 <&msdc_top CLK_MSDC_TOP_SRC_0P>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC0>,
+> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
+> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
+> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
+> +				      "pclk_cg", "axi_cg", "ahb_cg";
+> +			status = "disabled";
+> +		};
 > +
-> +	if (rtd->num_codecs > 1) {
-> +		ret =3D macaudio_assign_tdm(rtd);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
+> +		mmc1: mmc@11f70000 {
+> +			compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
+> +			reg = <0 0x11f70000 0 0x1000>, <0 0x11c70000 0 0x1000>;
+> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&topckgen CLK_TOP_MSDC30_1_SEL>,
+> +				 <&msdc_top CLK_MSDC_TOP_H_MST_1P>,
+> +				 <&msdc_top CLK_MSDC_TOP_SRC_1P>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_CFG>,
+> +				 <&msdc_top CLK_MSDC_TOP_P_MSDC1>,
+> +				 <&msdc_top CLK_MSDC_TOP_AXI>,
+> +				 <&msdc_top CLK_MSDC_TOP_AHB2AXI_BRG_AXI>;
+> +			clock-names = "source", "hclk", "source_cg", "sys_cg",
+> +				      "pclk_cg", "axi_cg", "ahb_cg";
+> +			status = "disabled";
+> +		};
 > +
-> +	for_each_rtd_components(rtd, i, component)
-> +		snd_soc_component_set_jack(component, &ma->jack, NULL);
-
-What is the jack configuration this is attempting to describe?  It looks
-like you have some dedicated speaker driver devices which are going to
-get attached to jacks here for example.
-
-> +} macaudio_kctlfixes[] =3D {
-> +	{"* ASI1 Sel", "Left"},
-> +	{"* ISENSE Switch", "Off"},
-> +	{"* VSENSE Switch", "Off"},
-> +	{ }
-> +};
-> +
-> +static bool macaudio_kctlfix_matches(const char *pattern, const char *na=
-me)
-> +{
-> +	if (pattern[0] =3D=3D '*') {
-> +		int namelen, patternlen;
-> +
-> +		pattern++;
-> +		if (pattern[0] =3D=3D ' ')
-> +			pattern++;
-> +
-> +		namelen =3D strlen(name);
-> +		patternlen =3D strlen(pattern);
-> +
-> +		if (namelen > patternlen)
-> +			name +=3D (namelen - patternlen);
-> +	}
-> +
-> +	return !strcmp(name, pattern);
-> +}
-
-This looks worryingly like use case configuration.
-
-> +/*
-> + * Maybe this could be a general ASoC function?
-> + */
-> +static void snd_soc_kcontrol_set_strval(struct snd_soc_card *card,
-> +				struct snd_kcontrol *kcontrol, const char *strvalue)
-
-No, we should not be setting user visible control values from the
-kernel.  This shouldn't be a machine driver function either.  What are
-you trying to accomplish here?
-
---+MLBZhiivx60M6iZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJFl7MACgkQJNaLcl1U
-h9AvpQf+NQTe35sa2gGAL6J5r3unBmmRuUI+0Lmize/e9oyklq/3LgUI3zy2In6m
-gWr5laQlG/Eq41KJZecdtZ5BrY+BENGZ4PzCtR06uc8hM7KJV17O6hdRXrK3VSWZ
-9Tl8uSSh2xNqw6bwflA6XyfULttxC6NLsKP1RxCOaHJGG4cU1G5GkvT9sTpcQH9/
-bi7Y9TzxUi6Q7zgK6vVHXygqusZ4UTHdt5fyxX4ou1tV2V1fYAO64eMJ4pA+8jUA
-0ZafQA1BVTbkHK7JZjbc2ILGcu5NBR1eJK/hbv9X0OknpKrRsafaQQTRywE1hWb5
-NM2xv163DU7RQTC8vqYC+rKBiQ/ypQ==
-=dyOa
------END PGP SIGNATURE-----
-
---+MLBZhiivx60M6iZ--
+>   		mfgcfg: clock-controller@13fbf000 {
+>   			compatible = "mediatek,mt8192-mfgcfg";
+>   			reg = <0 0x13fbf000 0 0x1000>;
