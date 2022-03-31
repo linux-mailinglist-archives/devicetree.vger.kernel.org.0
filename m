@@ -2,110 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2534EDB73
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 16:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D094EDB7C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 16:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233122AbiCaOLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 10:11:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60712 "EHLO
+        id S236458AbiCaOND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 10:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233116AbiCaOLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 10:11:55 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A16190EAA;
-        Thu, 31 Mar 2022 07:10:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 76CDBCE21DC;
-        Thu, 31 Mar 2022 14:10:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E601BC340ED;
-        Thu, 31 Mar 2022 14:10:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648735804;
-        bh=/oDSuFCb4Ah81sJx/T9N4CSUj6w3B5456zC1kELXHUo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UG25bqPpgpokUu4QvKKYHWUMBmKCw8Ww11I2VbcQdbth/Tyq64wQLPOEK2vBAm6vR
-         K5qWbVGidELXybyUDj8XBvO00TtkQjiLXKtv3T/NOCujdSI4aKSNNorP7MptZBvioD
-         beGXTc3Bh0uDoo5t++JxHwfJiBFnXjakUuTPLacIQghA+tiuqeVDQs3UFElcXEvKRC
-         4BKd6f6oiUK3r0m8fFCURtJ8zr/SQEa4t7gwJooaZy0URbKeKo/nPH9HqVGBDpd3Ob
-         T0XLWZ0nf0xF1bk+CHDkLOGIGXjtrjPoRf0fJBtsl73+r/Ka/yBxnwyIjE4AcTRV6T
-         o0Br9+GVdyekw==
-Date:   Thu, 31 Mar 2022 19:40:00 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@cutebit.org>
-Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>
-Subject: Re: [PATCH 1/2] dt-bindings: dma: Add Apple ADMAC
-Message-ID: <YkW2OG3dU4YFYJEZ@matsya>
-References: <20220330164458.93055-1-povik+lin@cutebit.org>
- <20220330164458.93055-2-povik+lin@cutebit.org>
- <YkU6yvUQ6v4VdXiJ@matsya>
- <C2D8BDAF-0ACF-4756-B10F-B5097BC93670@cutebit.org>
- <265B2992-06E5-4E45-A971-B170A385EFD4@cutebit.org>
+        with ESMTP id S237333AbiCaONC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 10:13:02 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB851A9C9E;
+        Thu, 31 Mar 2022 07:11:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1648735873; x=1680271873;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DTlZMPyBAjhVeiotBWdlFP85K8A9aL9sjqg7w9Ombhs=;
+  b=snxaDYqsGX/AJvok1qc/qb5WZ4D3yRKHa22xxJq9eT3OPiXEafBFVjux
+   ZfypAtJGxJMjSuvzGWDpT3ISZA4QiKiMSKYYbJ8gOJtdxtGqimlT39Jog
+   18Ce/ZASuLXzx9iXETR2cLuOfzw8GjZVG3zwc3X2cJzgkBJmqXy4bf6qY
+   uktZtjQsPWGZpdTeDrnWpLDaT2Ucr1bGKSMANNutWd9EaCZfyAswESzCu
+   Ltk44lQgS89e5f2C9rm6lM8Nk0eduGhF53rApGI/SN01xDao/cT48uUnx
+   /XaVHv5xBgjModJ1zk2X2BDFK1p/++EJbZIvQw9H7pQNlW44dH5hYjzA7
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,225,1643698800"; 
+   d="scan'208";a="158386498"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Mar 2022 07:11:12 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 31 Mar 2022 07:11:11 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Thu, 31 Mar 2022 07:11:10 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 1/2] ARM: dts: at91: sama5d4_xplained: fix pinctrl phandle name
+Date:   Thu, 31 Mar 2022 17:13:22 +0300
+Message-ID: <20220331141323.194355-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <265B2992-06E5-4E45-A971-B170A385EFD4@cutebit.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-03-22, 09:06, Martin Povišer wrote:
-> 
-> > On 31. 3. 2022, at 8:50, Martin Povišer <povik@cutebit.org> wrote:
-> > 
-> >> 
-> >> On 31. 3. 2022, at 7:23, Vinod Koul <vkoul@kernel.org> wrote:
-> >> 
-> >> On 30-03-22, 18:44, Martin Povišer wrote:
-> >>> Apple's Audio DMA Controller (ADMAC) is used to fetch and store audio
-> >>> samples on Apple SoCs from the "Apple Silicon" family.
-> >>> 
-> >>> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
-> >>> ---
-> >>> .../devicetree/bindings/dma/apple,admac.yaml  | 73 +++++++++++++++++++
-> >>> 1 file changed, 73 insertions(+)
-> >>> create mode 100644 Documentation/devicetree/bindings/dma/apple,admac.yaml
-> >>> 
-> >>> diff --git a/Documentation/devicetree/bindings/dma/apple,admac.yaml b/Documentation/devicetree/bindings/dma/apple,admac.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..34f76a9a2983
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
-> > 
-> >>> +  apple,internal-irq-destination:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: Index influencing internal routing of the IRQs
-> >>> +      within the peripheral.
-> >> 
-> >> do you have more details for this, is this for peripheral and if so
-> >> suited to be in dam-cells?
-> > 
-> > By peripheral I meant the DMA controller itself here. 
+Pinctrl phandle is for spi1 so rename it to reflect this.
 
-Dmaengine convention is that peripheral is device which we are doing dma
-to/from, like audio controller/fifo here
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+---
+ arch/arm/boot/dts/at91-sama5d4_xplained.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> > Effectively the controller has four independent IRQ outputs and the driver
-> > needs to know which one we are using. (It need to be the same output even
-> > for different ADMAC instances on one die.)
-
-That smells like a mux to me.. why not use dma-requests for this?
-
+diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+index d241c24f0d83..accb92cfac44 100644
+--- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
++++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+@@ -82,7 +82,7 @@ usart4: serial@fc010000 {
+ 
+ 			spi1: spi@fc018000 {
+ 				pinctrl-names = "default";
+-				pinctrl-0 = <&pinctrl_spi0_cs>;
++				pinctrl-0 = <&pinctrl_spi1_cs>;
+ 				cs-gpios = <&pioB 21 0>;
+ 				status = "okay";
+ 			};
+@@ -140,7 +140,7 @@ pinctrl_macb0_phy_irq: macb0_phy_irq_0 {
+ 						atmel,pins =
+ 							<AT91_PIOE 1 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
+ 					};
+-					pinctrl_spi0_cs: spi0_cs_default {
++					pinctrl_spi1_cs: spi1_cs_default {
+ 						atmel,pins =
+ 							<AT91_PIOB 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
+ 					};
 -- 
-~Vinod
+2.32.0
+
