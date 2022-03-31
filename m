@@ -2,143 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E2D4ED378
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 07:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 371134ED37C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 07:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbiCaFwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 01:52:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53512 "EHLO
+        id S229842AbiCaFw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 01:52:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbiCaFwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 01:52:09 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC6D1EF
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 22:50:23 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id f3so18960068qvz.10
-        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 22:50:23 -0700 (PDT)
+        with ESMTP id S230128AbiCaFwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 01:52:54 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6821BD8E
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 22:51:07 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id z92so26868257ede.13
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 22:51:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2oBpHtrBdpM0TGFuOASxC4p1tI7RPpF06aJ0LQ4yyNY=;
-        b=QONXwZBYl68by23h+aqXxcvVrpAmyM13ha2EKDpwQPkRvt5bIFsl6+t7jzFrbFe3FF
-         bqEkvNqd3PyKCNIvQajvODv6hZ6HwtIPhLxP2kD23ichzQkNpvB4s4mkL+VHFIVojsZL
-         hch26KOlqKQ1O3DkETMoNhQ1Zb/cH8hCSgWa4=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=qxjL86gtMljIddXIzPKuviVzSJGFhewpgBskTBo4D0c=;
+        b=ZMeWY0sbFGFwjxiZSSv82z7XB7hkWzu9HSU+f1tA+ajKRRIT2gSwRxVFVkERKBzmv1
+         vYu+kZEJDbW9OVvLV+QdXvI/cy8tF1rFdrzSBF4keiTVMVPzu+ZUDZ8AZmuMfdA4hFqg
+         g9b5Y/H/w3mw72IXtiN4LUEUUd0mX75FVL7FyHHfw75XvT1wEe5PIRDKHBJQh659FtD5
+         epurch5c/bSk/Z5oU78UIS+em8dnETuRvYSHxgTkwNzK4ZdvShIlIBmmyS23CyaH/A3C
+         zZ2dnSKxUpkhc56CdHNpdGHE6oLSeb51Pyi5RHnd9pZ61IfECCKCVCVitzI7WWVILFXD
+         RDSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2oBpHtrBdpM0TGFuOASxC4p1tI7RPpF06aJ0LQ4yyNY=;
-        b=BgUi5YHTLFz4RKAWO+nVURstzQjOLSm46z5/uSDOnbPK0Sy8tVF1iGeECgkyAPXLkI
-         t8+eGaUkekcMwgIVIRZvXzliYmX0m3Mcn7Ow+k+h4C+qbFNMyOpt5TvaRbVD/WubH86u
-         1h5GVnmRo0jqHd24akRGRKOVfSIKVt/lFgUq1owrgZf3mFKoBBRHRN5RdnFhW6Z+Eo5+
-         FVkJP/HZZc7hqKgyb0/QsgzHrG463Vsz7ZzxOLnSE7j2777PVbRStDRfFVvvYxP1n+Q8
-         OlKl6/a2O2cdwK5JCUcfkb26LwWxgPTT35omuBI/j2gYUzd+5fdnvcJNXmRmdBWomWR1
-         e0pA==
-X-Gm-Message-State: AOAM530zQF27pSoLWs8Aq5HlZDddp7Ibvktf6jUGJeKyvAqUFwaLcKCx
-        X/4R/nK1Jm19iIuxJ9GFE1UFBj9Qg9fDTxDhQ3w=
-X-Google-Smtp-Source: ABdhPJy14y1rZ/Fa9UzlR9zIAvnQEzWiwJB0Dy2xlYMEZuCiIsR/C1QoNXpzjR5oLu+5kC5ushrdfnh1NkPe50mihYk=
-X-Received: by 2002:a05:6214:c27:b0:441:1e99:4de3 with SMTP id
- a7-20020a0562140c2700b004411e994de3mr33853973qvd.49.1648705822234; Wed, 30
- Mar 2022 22:50:22 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=qxjL86gtMljIddXIzPKuviVzSJGFhewpgBskTBo4D0c=;
+        b=jxMoOMeynIppZKZGU//n1aaRueDiAeCQklstQG6k8pvVFpGvHIAENsJPKM+DRu6Rod
+         HnOBMhZbM0zbagisTrWjjaBpO5Oe+NiDvW2oad+8KLVAvuFvr2KegDjMDpDzHu+WcuzS
+         hktzxYVvMug+E0GvXXexNPnn1rKSejCcVoOszaXyFWXXuzmN5i+saxRO1VT2QGwhpYMB
+         CvncUnY4lb6cpsWIElbzcvhyGDOzCwK/XvJWAipOgvddohF2ch5ctvFvIzEzk3FnWfVw
+         HCZAhYz5IOgSG9NNJ6f+gelBr2FXTxUTEBOZJ5Z9BjqKMJFq7mzxRvB243q6vPlKhmJ+
+         k5/g==
+X-Gm-Message-State: AOAM531eKFND6wwZnHuuZzruQ8tXxmNStYSQWl4talqeq6odKx6A/3no
+        71sJTd8Y3AMtBkHxFkGc77JCvw==
+X-Google-Smtp-Source: ABdhPJwuP+z7tdvKFYDNlqCY2FhiCSmSsCGrRt5N8dCEFSthRoTckPvlFhnE3EOUTVVB2IAfVroRTw==
+X-Received: by 2002:a05:6402:176b:b0:41a:fb21:ad41 with SMTP id da11-20020a056402176b00b0041afb21ad41mr14891395edb.339.1648705865928;
+        Wed, 30 Mar 2022 22:51:05 -0700 (PDT)
+Received: from [192.168.0.164] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id n25-20020aa7db59000000b00415965e9727sm10513846edt.18.2022.03.30.22.51.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Mar 2022 22:51:05 -0700 (PDT)
+Message-ID: <23e6158f-47a9-aeeb-8965-85d48759c843@linaro.org>
+Date:   Thu, 31 Mar 2022 07:51:04 +0200
 MIME-Version: 1.0
-References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
-In-Reply-To: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 31 Mar 2022 05:50:10 +0000
-Message-ID: <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
-To:     Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/3] arm64: dts: imx8mp: Add Engicam i.Core MX8M Plus SoM
+Content-Language: en-US
+To:     Manoj Sai <abbaraju.manojsai@amarulasolutions.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+References: <20220330191437.614065-1-abbaraju.manojsai@amarulasolutions.com>
+ <20220330191437.614065-3-abbaraju.manojsai@amarulasolutions.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220330191437.614065-3-abbaraju.manojsai@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo <quic_jaehyoo@quicinc.com> wrote=
-:
->
-> I=E2=80=99m sending this patch series to fix current issues in AST2600 pi=
-nmux
-> settings while enabling quad mode SPI support.
->
-> FWSPI18 pins are basically 1.8v logic pins that are different from the
-> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins can=
-=E2=80=99t
-> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
->
-> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl dtsi to
-> make it able to enable quad mode on SPI1 and SPI2 interfaces.
->
-> With this series, quad mode pinmux can be set like below.
->
-> FW SPI:
-> &fmc {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&pinctrl_fwqspi_default>;
-> }
->
-> SPI1:
-> &spi1 {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&pinctrl_qspi1_default>;
-> }
->
-> SPI2:
-> &spi2 {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&pinctrl_qspi2_default>;
-> }
+On 30/03/2022 21:14, Manoj Sai wrote:
+> i.Core MX8M Plus is an EDIMM SoM based on NXP i.MX8M Plus
+> from Engicam.
+> 
+> General features:
+> - NXP i.MX8M Plus
+> - Up to 4GB LDDR4
+> - 8 eMMC
+> - Gigabit Ethernet
+> - USB 3.0, 2.0 Host/OTG
+> - PCIe 3.0 interface
+> - I2S
+> - LVDS
+> - rest of i.MX8M Plus features
+> 
+> i.Core MX8M Plus needs to mount on top of Engicam baseboards
+> for creating complete platform solutions.
+> 
+> Add support for it.
+> 
+> Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+> Signed-off-by: Matteo Lisi <matteo.lisi@engicam.com>
+> Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  .../dts/freescale/imx8mp-icore-mx8mp.dtsi     | 202 ++++++++++++++++++
+>  1 file changed, 202 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> new file mode 100644
+> index 000000000000..10afa8983700
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp.dtsi
+> @@ -0,0 +1,202 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2018 NXP
+> + * Copyright (c) 2019 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutons(India)
+> + */
+> +
+> +/ {
+> +	compatible = "engicam,icore-mx8mp", "fsl,imx8mp";
+> +};
+> +
+> +&A53_0 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
+> +
+> +	pmic: pca9450@25 {
 
-Thanks. I hope to see a board from you that uses this soon :)
+Generic node names, so pmic.
 
-I'll send the patches as fixes once -rc1 is out.
+> +		reg = <0x25>;
+> +		compatible = "nxp,pca9450c";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pmic>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 GPIO_ACTIVE_LOW>;
+> +
+> +		regulators {
+> +			buck1: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay =  <3125>;
+> +			};
+> +
+> +			buck2: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <2187500>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +				nxp,dvs-run-voltage = <950000>;
+> +				nxp,dvs-standby-voltage = <850000>;
+> +			};
+> +
+> +			buck4: BUCK4{
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck5: BUCK5{
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck6: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <3400000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1600000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo2: LDO2 {
+> +				regulator-name = "LDO2";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <1150000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3: LDO3 {
+> +				regulator-name = "LDO3";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo5: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c3
+> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_pmic: pmicirq {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
 
->
-> Please review.
->
-> Thanks,
-> Jae
->
-> Changes in v3:
->  * Added bindings patches. (Andrew)
->
-> Changes in v2:
->  * Rebased it on the latest.
->
-> Jae Hyun Yoo (5):
->   ARM: dts: aspeed-g6: remove FWQSPID group in pinctrl dtsi
->   pinctrl: pinctrl-aspeed-g6: remove FWQSPID group in pinctrl
->   dt-bindings: pinctrl: aspeed-g6: remove FWQSPID group
->   dt-bindings: pinctrl: aspeed-g6: add FWQSPI function/group
->   ARM: dts: aspeed-g6: fix SPI1/SPI2 quad pin group
->
-> Johnny Huang (2):
->   pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
->   ARM: dts: aspeed-g6: add FWQSPI group in pinctrl dtsi
->
->  .../pinctrl/aspeed,ast2600-pinctrl.yaml         |  4 ++--
->  arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi        | 10 +++++-----
->  drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c      | 17 ++++++++---------
->  3 files changed, 15 insertions(+), 16 deletions(-)
->
-> --
-> 2.25.1
->
+Incorrect node names. Please take a look how this is done in existing
+sources and bindings.
+
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3grp-200mhz {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
+> +		>;
+> +	};
+> +};
+> +
+> +/* EMMC */
+> +&usdhc3 {
+
+iomux by convention in NXP goes at the end.
+
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+
+
+Best regards,
+Krzysztof
