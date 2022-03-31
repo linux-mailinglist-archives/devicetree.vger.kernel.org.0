@@ -2,159 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD74A4EE351
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9220F4EE37A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237130AbiCaVYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 17:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40480 "EHLO
+        id S241947AbiCaVzG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 31 Mar 2022 17:55:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237536AbiCaVYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 17:24:55 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791B0236BB8;
-        Thu, 31 Mar 2022 14:23:07 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id z9-20020a05683020c900b005b22bf41872so755358otq.13;
-        Thu, 31 Mar 2022 14:23:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vzLcBKO/XDK59tDp87Wl8eFLtQUNXGUQdW4J6/vdSnM=;
-        b=sJnOoIoNnpCOpcojn3p+SMLCY579fG5qEOCu5bcLF9q4hdZsy/SYOEK9pNdo6y6+si
-         gxAafF3F66JLNwIDfohbH+FEz0Zn4RbvZQaRibfdpOPZnYoILsXlVEUyXgC27+mVN975
-         rc3nl7L+MFGtP3z2p30pQUvfMzodOKn5XMDYWV+z9pte8ljZudkcY5iwLE87rxvzg8b1
-         +u+wu85AvkRkrtQ3ivs43rPc/oEtMM4usXuzxAjGFlsfnMwhnLpyX6fNtdQNID7jTXUD
-         HKE3LuqIGX/g6GVVtfUUuogKvD5Z5OB6IDYNR2Ju6EahSOofxDkZXoyW44No5R/GFuWG
-         Y0kw==
-X-Gm-Message-State: AOAM533QFlX4kc2+PdeS7LATpy1/IT9z/TJS19fAp9UBum8Q/dKt1h/P
-        BQh4tyN87VuQTfMYnz0/kQ==
-X-Google-Smtp-Source: ABdhPJwseFEEdKZk3qwsEVG8HRLBOBuwND9QrZ5NLEH5I03RtbXWF+Qpo07hT4Xv0inLxP4ssIR7fw==
-X-Received: by 2002:a05:6830:2099:b0:5c9:4715:2c80 with SMTP id y25-20020a056830209900b005c947152c80mr6518629otq.244.1648761786754;
-        Thu, 31 Mar 2022 14:23:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x18-20020a056830245200b005ce01c28c77sm333676otr.1.2022.03.31.14.23.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 14:23:06 -0700 (PDT)
-Received: (nullmailer pid 1522501 invoked by uid 1000);
-        Thu, 31 Mar 2022 21:23:05 -0000
-Date:   Thu, 31 Mar 2022 16:23:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
-        Jens Axboe <axboe@fb.com>, Christoph Hellwig <hch@lst.de>,
-        Sagi Grimberg <sagi@grimberg.me>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 1/9] dt-bindings: soc: apple: Add Apple SART
-Message-ID: <YkYbubNBD+J2XUCg@robh.at.kernel.org>
-References: <20220321165049.35985-1-sven@svenpeter.dev>
- <20220321165049.35985-2-sven@svenpeter.dev>
+        with ESMTP id S242004AbiCaVzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 17:55:05 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2329C;
+        Thu, 31 Mar 2022 14:53:15 -0700 (PDT)
+Received: from mail-wm1-f43.google.com ([209.85.128.43]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1McHQA-1oAUTN2kzU-00cdqe; Thu, 31 Mar 2022 23:53:13 +0200
+Received: by mail-wm1-f43.google.com with SMTP id n63-20020a1c2742000000b0038d0c31db6eso429078wmn.1;
+        Thu, 31 Mar 2022 14:53:13 -0700 (PDT)
+X-Gm-Message-State: AOAM5305OXLMlTXJuVThcnnOdrTLpgEYdyda/hmiJt+ilwn4OgZxhj1i
+        WqRT5rdB2HBjfM8N/RtEYEcHuL5kNLUsjDUkqXc=
+X-Google-Smtp-Source: ABdhPJzSHATsHDA8OPQsrpSCw7bzrU0ceQWFZH98PATzuINEPVrGLYQQfA2Y7GDA3HyQPXtd6FxMBYyz2bZIsZjTXz4=
+X-Received: by 2002:a1c:f219:0:b0:38c:782c:3bb with SMTP id
+ s25-20020a1cf219000000b0038c782c03bbmr6160589wmc.94.1648763593322; Thu, 31
+ Mar 2022 14:53:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220321165049.35985-2-sven@svenpeter.dev>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220310195229.109477-1-nick.hawkins@hpe.com> <20220310195229.109477-9-nick.hawkins@hpe.com>
+ <eb66cc83-2da9-8e19-db69-633e34fef946@canonical.com> <PH0PR84MB1718C31DB71AA2A67FEC5F6E88119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <b1cc2566-cd78-7cb4-f8a5-d6fc8065fe6e@canonical.com> <PH0PR84MB1718292B1C11F4FE83326A5388119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <fb4def96-4b20-604f-d15d-fef87eb2232d@canonical.com> <PH0PR84MB1718A2CFBFC90C9C0CAA5515881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAK8P3a0fCE_NM=z68d1m9BTfuKixh1pKLw3gn+Sr7SxKb6UJAg@mail.gmail.com>
+ <PH0PR84MB17181C316E55073EBC28C386881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <PH0PR84MB17185ADBA824F9CC9EB3E022881F9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAK8P3a1080yz9jggOrwz2iQ1sAB2Xe2Emh22uCuqRok60BQSiA@mail.gmail.com> <PH0PR84MB17186189F5025374AA39584D88E19@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <PH0PR84MB17186189F5025374AA39584D88E19@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 31 Mar 2022 23:52:57 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2b+ESAAkc=_2hqx0kOxwYVS6mNjMGBKhhipaSj_5jV9g@mail.gmail.com>
+Message-ID: <CAK8P3a2b+ESAAkc=_2hqx0kOxwYVS6mNjMGBKhhipaSj_5jV9g@mail.gmail.com>
+Subject: Re: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device tree
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:dPX2QrCBwjyyBFklQRFdGm6/RQRV4vXf4kV7XhROMWwEGX6FXrw
+ KZIzwfpt4kK/Pbhfi5zJbBnMJM0Bd1iPVqK8lzN/cCjMTIqLlhaV0zdk6muZ3Z4nA/3jdDE
+ 4XvPZ5huUg8fBdbePoCa/CkzzlWc+EzhsLARswxnjU8wFcwAOJ0VFRKSDYyKgwVVMGJXWIH
+ dhk4v+ZYe3XHXvcrfOC4A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dvkznSxNqDI=:DsE35yqgJj1v1QpJsOmvkz
+ E66/7cH6BsPYxD9yRpnIQubXtcDYAr8CZ6zTB2TDk9RHP6l1t1p7hcnJ5PCkUwSwHfdzG83pn
+ zhM5LI5TQkxr3iFAugHgaDv75OhRMYiKrl36Kh9HQM78bOgKMvt9ucjtP8HxGVAUYmk2XisbL
+ QT0ncych37ZsF8g5s1jUjQI6/iKfWTeU0acaRN3wnXyJoLUeJF2uXvkZjFGvEeVM5GMDIkQj8
+ pk94zkpsqT6NuqZb0Hfz9kMz04O8TsPCeya99YUFk8BkXtJ4hbmUDmcawkDBjpNYNqB1zHC4n
+ hwRzikiY/iN4CINHIsl5OAqiGMJ1dS13t7B4z64yLalldjWqAt/O1HfwgIn707W6bszjZ2+AY
+ IXYvoV3UUccQp96AIQsdui/NM3AQB3FyoDZ4Kmk6O6ytIEC79YNiuWiLB7g/TKysdCDauh2Ro
+ hGZGdBHSRXcRydpCKml9IO1S0s2x6FqMuRIIliP49DVttjY0fZW3h+xB8nRBM2mWBKuw2TQ3/
+ 5PIm0DfezXur5X3rUDw916NQ1KiHpybgcJ+v75HKMXVcyxIc4yww4I5QXk/VhihwaNu+5VOYv
+ hZxXD9pUxRU7M3g1RHyrF/eA8NLkMKtZKcbfc0zZApuYgtf0JC6L3qigGIh4CUh/yIlwSdkfK
+ 9+ehN6+zLrcLnVL1oCLzqPOj+krSyZz4SjRw+DWk3F+JLF1NzTuSDsCoWYQFsg1+w/Lk=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 05:50:41PM +0100, Sven Peter wrote:
-> Apple SoCs such as the M1 come with a simple DMA address filter called
-> SART. Unlike a real IOMMU no pagetables can be configured but instead
-> DMA transactions can be allowed for up to 16 paddr regions.
-> 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  .../bindings/soc/apple/apple,sart.yaml        | 52 +++++++++++++++++++
+On Thu, Mar 31, 2022 at 11:09 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
+> On Thu, Mar 31, 2022 at 12:27 AM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
+> > On Tue, Mar 29, 2022 at 9:38 PM Hawkins, Nick <nick.hawkins@hpe.com>> wrote:
+> > I'd have to study the other examples myself to see what is most common.
+>
+> > My feeling would be that it's better to either have a "hpe,gxp-timer" parent device with a watchdog child but no syscon, or to have a syscon/simple-mfd parent with both the timer and the watchdog as children.
+>
+> Arnd, thanks for the feedback. I am trying to use the approach you recommend where you have a syscon/simple-mfd parent with watchdog and timer as children.
+>
+> st: chip-controller@80 {
+>                                 compatible = "hpe,gxp-ctrl-st","syscon","simple-mfd";
+>                                 reg = <0x80 0x16>;
+>
+>                                 timer0: timer {
+>                                         compatible = "hpe,gxp-timer";
+>                                         interrupts = <0>;
+>                                         interrupt-parent = <&vic0>;
+>                                         clocks = <&ppuclk>;
+>                                         clock-names = "ppuclk";
+>                                 };
+>
+>                                 watchdog {
+>                                         compatible = "hpe,gxp-wdt";
+>                                 };
+> };
+>
+> This compiles without any errors but I do have some questions about accessing the regmap in both drivers, specifically the timer code. How do you use a regmap with clocksource_mmio_init? I tried searching through the codebase and could not find the answer. I assume I am missing some vital step.
 
-Close enough to an IOMMU in terms of its purpose, so put in 
-bindings/iommu/
+I don't think you can do this, if you are using the syscon regmap, you
+go through the
+regmap indirection rather than accessing the mmio register by virtual address,
+and this may result in some extra code in your driver, and a little
+runtime overhead.
 
->  MAINTAINERS                                   |  1 +
->  2 files changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/apple/apple,sart.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/apple/apple,sart.yaml b/Documentation/devicetree/bindings/soc/apple/apple,sart.yaml
-> new file mode 100644
-> index 000000000000..d8177b3a3fba
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/apple/apple,sart.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/apple/apple,sart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple SART DMA address filter
-> +
-> +maintainers:
-> +  - Sven Peter <sven@svenpeter.dev>
-> +
-> +description:
-> +  Apple SART is a simple address filter for DMA transactions. Regions of
-> +  physical memory must be added to the SART's allow list before any
-> +  DMA can target these. Unlike a proper IOMMU no remapping can be done and
-> +  special support in the consumer driver is required since not all DMA
-> +  transactions of a single device are subject to SART filtering.
-> +
-> +  SART1 has first been used since at least the A11 (iPhone 8 and iPhone X)
-> +  and allows 36 bit of physical address space and filter entries with sizes
-> +  up to 24 bit.
-> +
-> +  SART2, first seen in A14 and M1, allows 36 bit of physical address space
-> +  and filter entry size up to 36 bit.
-> +
-> +  SART3, first seen in M1 Pro/Max, extends both the address space and filter
-> +  entry size to 42 bit.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - apple,t6000-sart
-> +      - apple,t8103-sart
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sart@7bc50000 {
-> +      compatible = "apple,t8103-sart";
-> +      reg = <0x7bc50000 0x4000>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index cd0f68d4a34a..027c3b4ad61c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1774,6 +1774,7 @@ F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
->  F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
->  F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
->  F:	Documentation/devicetree/bindings/power/apple*
-> +F:	Documentation/devicetree/bindings/soc/apple/*
->  F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
->  F:	arch/arm64/boot/dts/apple/
->  F:	drivers/i2c/busses/i2c-pasemi-core.c
-> -- 
-> 2.25.1
-> 
-> 
+If you prefer to avoid that, you can go back to having the timer node as the
+parent, but without being a syscon. In this case, the watchdog would be handled
+in one of these ways:
+
+a) a child device gets created from the clocksource driver and bound to the
+    watchdog driver, which then uses a private interface between the clocksource
+    and the watchdog to access the registers
+
+b) the clocksource driver itself registers as a watchdog driver, without
+    having a separate driver module
+
+One thing to consider is whether the register range here contains any
+registers that may be used in another driver, e.g. a second timer,
+a PWM, or a clk controller. If not, you are fairly free to pick any of these
+approaches.
+
+        Arnd
