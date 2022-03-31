@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E04854ED9DE
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24D224ED9FB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 14:57:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236347AbiCaMus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 08:50:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42182 "EHLO
+        id S236396AbiCaM67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 08:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236367AbiCaMuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:50:46 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E3C13BBFC;
-        Thu, 31 Mar 2022 05:48:59 -0700 (PDT)
-X-UUID: 4ccc5e66205145a4b06b9a67e9c8fd67-20220331
-X-UUID: 4ccc5e66205145a4b06b9a67e9c8fd67-20220331
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 576965627; Thu, 31 Mar 2022 20:48:54 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 31 Mar 2022 20:48:52 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 31 Mar
- 2022 20:48:51 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Thu, 31 Mar 2022 20:48:42 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <lee.jones@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <linux-pwm@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <jitao.shi@mediatek.com>,
-        Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: [PATCH v5 4/4] dt-bindings: pwm: Add compatible for MediaTek MT8186
-Date:   Thu, 31 Mar 2022 20:47:53 +0800
-Message-ID: <1648730873-18505-5-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1648730873-18505-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1648730873-18505-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S236427AbiCaM67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 08:58:59 -0400
+Received: from hillosipuli.retiisi.eu (hillosipuli.retiisi.eu [IPv6:2a01:4f9:c010:4572::81:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E996D213516;
+        Thu, 31 Mar 2022 05:57:09 -0700 (PDT)
+Received: from lanttu.localdomain (unknown [IPv6:fd35:1bc8:1a6:d3d5::c1:2])
+        by hillosipuli.retiisi.eu (Postfix) with ESMTP id 02A35634C91;
+        Thu, 31 Mar 2022 15:57:04 +0300 (EEST)
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     linux-acpi@vger.kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
+        "Rafael J.Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [PATCH v3 0/4] Shovel firmware specific code to appropriate locations
+Date:   Thu, 31 Mar 2022 15:54:46 +0300
+Message-Id: <20220331125450.218045-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xinlei Lee <xinlei.lee@mediatek.com>
+Hi folks,
 
-Add dt-binding documentation of pwm for MediaTek MT8186 SoC.
+This set moves the implementation of recently added device property API
+functions to OF and ACPI frameworks, where the rest of such functionality
+resides.
 
-Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
----
- Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Compile tested.
 
-diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-index e5da918eaa33..4b71bd668d33 100644
---- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-+++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-@@ -26,6 +26,7 @@ properties:
-           - const: mediatek,mt8173-disp-pwm
-       - items:
-           - enum:
-+              - mediatek,mt8186-disp-pwm
-               - mediatek,mt8192-disp-pwm
-               - mediatek,mt8195-disp-pwm
-           - const: mediatek,mt8183-disp-pwm
+The dependencies can be found in Rafael's devprop branch now.
+
+since v2:
+
+- Add pre-processor check for CONFIG_OF_ADDRESS in of_fwnode_iomap() (3rd
+  patch).
+
+changes since v1:
+
+- Drop wrongly placed Depends-on: tag from the first patch.
+
+- Drop IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode) check (3rd
+  patch).
+
+Sakari Ailus (4):
+  device property: Convert device_{dma_supported,get_dma_attr} to fwnode
+  ACPI: property: Move acpi_fwnode_device_get_match_data() up
+  device property: Add iomap to fwnode operations
+  device property: Add irq_get to fwnode operation
+
+ drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
+ drivers/base/property.c | 42 ++++++-----------------------------------
+ drivers/of/property.c   | 34 +++++++++++++++++++++++++++++++++
+ include/linux/fwnode.h  |  5 +++++
+ 4 files changed, 77 insertions(+), 40 deletions(-)
+
+
+base-commit: b2638e56c2ced2ca258d22f939c47327b189e00c
 -- 
-2.18.0
+2.30.2
 
