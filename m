@@ -2,52 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E13D34EDE42
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE2DE4EDE53
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 18:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237776AbiCaQFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 12:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36002 "EHLO
+        id S239540AbiCaQFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 12:05:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239543AbiCaQFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:05:00 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D67B1F2DFD
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:03:04 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id r13so306601ejd.5
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:03:04 -0700 (PDT)
+        with ESMTP id S239578AbiCaQFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 12:05:51 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D5F4E38F
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:04:02 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id bq8so253774ejb.10
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 09:04:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jcWrz5TrJyNhaxoFYmO4lgnq7eBGtoxjK7xbYha4PXo=;
-        b=r8BzjMpTRoFPYlIcrhEIiiFNqY3nDeQh5cIMgCU6NFdupw6iD7IDIvNvdmnWgQ979v
-         jgBn4cpKlh/unHpVACD3KTbOvzOtNja+h07cQOMJ7o3C3t6uEZpldb9TmzDJiOAq5Pab
-         LI54TUm13y1yk9To0Y7D8odhUtFjPMF52K+2AnQQHdtrrvSW4Svpcfai+awC1K3LKr73
-         xqEoKsws3QspmXRysN5uK4xnYICil8RaLIeKaIbk7ptiIsW22swu50OvkmdzHmETAkKD
-         FDS4XzH54CB7cPSXWfGT5wdT7shxYYNKlG7xcejTlhQE80T6WTFQr21p6EY4xd9y2RJa
-         2iDA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=i8exGV0bEfz7fockPDZIKH4DGjNDQmL1A2DdSanaA7k=;
+        b=IhU2wwo68dPixujjFS6hH/gAYbuctadDiy/If18pSZUCMCNprATz0oYCXVL5pSvVAG
+         bhDMnPn5qkBHVe8jw2TCF2PXVjYKf+ieCgLJFAK6XGGN2nQFld+ECzvY/SIPJYcK9gar
+         LISOK+NThskRi1GE4JJnYnqto41X30GBteiG5ZwKxGoXY8/tim9YCiR3yi5dQhOOL/M5
+         95UR5fxHjsJ1VVqVnffDD40i8cbp2LyeElS1YoxqN1KS5PdwyUb/8vJ+OQMuuSSRixW3
+         EZUrjFuKmD2ALNe0zmGdJdq/2/wIlD0BaWp7f89F18JUF4/hWybszVCMB3SaCCqcNn8x
+         iJhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jcWrz5TrJyNhaxoFYmO4lgnq7eBGtoxjK7xbYha4PXo=;
-        b=c784NvOCroGBUms0ySVoGSxOdCMYjXeGGu4YxvzQsMhBgAu6Us63GS4c7sfjTgCT6m
-         SxCaovEh/oc2k7HEcxANpqa6T52dYC9C7Wpj8Nzz9aU8nNVBniEJ7j8Q6EbKiP1id/jN
-         p7Gwn5gVYdQiESXruHrnDmTaHNJnaMdUFyvl4OjAbMFjH6DJSngF6t+wLmuYKJY8tLc1
-         odaHhyxM3SPEiWWE6OmLeCEKHkW+v+TEReI6VLaGFumZNGBn6wAoReEx9BvNANkOAB/r
-         tgp1gUtY6u0wQGqCPIGmpO2sqvB2YtLC+FLgnXAOgXBFr2RloLBSnxaBOb1jF2oTm0G4
-         YRlA==
-X-Gm-Message-State: AOAM533zfDLB8BQHISwwMjd9sEwEu1+l/kU3CxeiiEihWHzFVR6JPTW1
-        H7aWN9usGHM3y+0HPpshGXhP1w==
-X-Google-Smtp-Source: ABdhPJzHZfsaSRYFEYW1zDw0qHQ7SsFDFv29uM2aL/nyJztaVS7eVwEPTx8XC77b9ZSrfkkFO1EUlw==
-X-Received: by 2002:a17:907:3f82:b0:6df:919c:97a with SMTP id hr2-20020a1709073f8200b006df919c097amr5586102ejc.19.1648742582530;
-        Thu, 31 Mar 2022 09:03:02 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id n6-20020aa7c786000000b00410d2403ccfsm11441148eds.21.2022.03.31.09.03.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 09:03:02 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=i8exGV0bEfz7fockPDZIKH4DGjNDQmL1A2DdSanaA7k=;
+        b=6QcjiQ7dJLLkiRR9ylcyyPaCB+IZy/7rIuuFRo0Q53NHnKI2d7ZcQmaf5NPUd9NJLG
+         UDpyOB91esl2R6pqLj1ofYKLDYyVXj+1xu4hsQlr/t2lWudkwDJNxSskLC3r2igZRaA9
+         0d8Z8SbKbYty4AzKTMRm5FdRwqKBNQXq1VCYmP+7Io7xsDJDNM4bQ7AjfP40jnzjhXMR
+         ebUVNXv9VyLCG9Gh4zj7l9XR88Lu+o7cbbReyADM5tjfn5gjQjlCjqldJEh9j6xxBKs2
+         44xe7BOp5hw+MXgtSF55dcXRGMSXcUjnqV6scYVBmoNF+IPsHJEhtE4pA/kF/wq4453O
+         TfjA==
+X-Gm-Message-State: AOAM531O7Qa0VpW2xJBQyfmFLJHJ8p1vXqm8Aq10I6KLQGLD8p1huToH
+        XEnDMqSnNDE70i0fjpoqsWQgfL/gKSfTRxVc
+X-Google-Smtp-Source: ABdhPJy69ag8KVOrx4BRxgGGK2T7r/5GAGO/MSehpQqn+sTUWTGcI/9ZWNOTYQpCVeKhWbd54mQOjw==
+X-Received: by 2002:a17:907:1b07:b0:6e4:b202:db8f with SMTP id mp7-20020a1709071b0700b006e4b202db8fmr2701516ejc.76.1648742641536;
+        Thu, 31 Mar 2022 09:04:01 -0700 (PDT)
+Received: from [192.168.0.167] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id b25-20020a056402139900b0041904036ab1sm11452823edv.5.2022.03.31.09.04.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 09:04:01 -0700 (PDT)
+Message-ID: <1e2a48f8-e6b5-abf9-0996-3b8d2d97b4de@linaro.org>
+Date:   Thu, 31 Mar 2022 18:04:00 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 0/4] spi: dt-bindings: qcom: convert qcom,spi-qup to DT
+ schema
+Content-Language: en-US
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -55,19 +63,15 @@ To:     Andy Gross <agross@kernel.org>,
         Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-spi@vger.kernel.org
-Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: qcom: qcom,geni-se: refer to dtschema for SPI
-Date:   Thu, 31 Mar 2022 18:02:48 +0200
-Message-Id: <20220331160248.716234-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220331160248.716234-1-krzysztof.kozlowski@linaro.org>
-References: <20220331160248.716234-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+References: <20220331155320.714754-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220331155320.714754-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,55 +79,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After adding DT schema for the SPI controller, the Qualcomm GENI Serial
-Engine QUP Wrapper Controller bindings can reference it directly for
-full schema validation.
+On 31/03/2022 17:53, Krzysztof Kozlowski wrote:
+> Hi,
+> 
+> Changes since v1
+> ================
+> 1. Fix path in com/qcom,gsbi.txt.
+> 2. Merge clock-names in example, correct $ref path (Kuldeep).
+> 
+> Merging
+> =======
+> The DTS patches are independent and silence warnings pointed
+> out by schema.
+> 
+> Best regards,
+> Krzysztof
+> 
+> Cc: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I forgot to add the ack from Kuldeep:
 
----
+Acked-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
 
-Changes since v1:
-1. None
 
-Patch depends on previous patch (DT schema conversion).
----
- .../bindings/soc/qcom/qcom,geni-se.yaml       | 22 +------------------
- 1 file changed, 1 insertion(+), 21 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-index 690ce6a355de..1bc12b6a7e01 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-@@ -103,27 +103,7 @@ patternProperties:
-                  supports up to 50MHz, up to four chip selects, programmable
-                  data path from 4 bits to 32 bits and numerous protocol
-                  variants.
--    $ref: /spi/spi-controller.yaml#
--
--    properties:
--      compatible:
--        enum:
--          - qcom,geni-spi
--
--      interrupts:
--        maxItems: 1
--
--      "#address-cells":
--        const: 1
--
--      "#size-cells":
--        const: 0
--
--    required:
--      - compatible
--      - interrupts
--      - "#address-cells"
--      - "#size-cells"
-+    $ref: /schemas/spi/qcom,spi-geni-qcom.yaml#
- 
-   "i2c@[0-9a-f]+$":
-     type: object
--- 
-2.32.0
-
+Best regards,
+Krzysztof
