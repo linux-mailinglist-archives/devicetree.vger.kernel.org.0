@@ -2,140 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC7B4EDA2B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92814EDA58
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 15:17:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236560AbiCaNG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 09:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49898 "EHLO
+        id S233038AbiCaNTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 09:19:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236561AbiCaNGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:06:53 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386A549926
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 06:05:06 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id o5so42181122ybe.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 06:05:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FlAYsloNunK4Gbn5Ha6Q08Ocp9zz+BcFgNosISbfqtk=;
-        b=G0uZeSd+qqMGgJ2xiJ5K3OzVnaapobjGnFXQ2JtKC3KH8q89GRNMoNrKttClsOy+SC
-         peLYHOwLnUvDDnJCMsz/OxkdekTKN0mtQnW1nbwiosDAVD+7NZPZ8b34HxCI8H/pPOPc
-         Yy2CjHRvsdhlWcUoW6EezGhhLVOPT6JeofwdBFDPpKNdPKUthfp+OxIVBBP07vdHJSa1
-         gooq9xMn/Lo1sGuSLcJX+8MrXMsIN451ZSArGHSpTIdey+Lvo1AhK6ekmC4+pJy/x1yK
-         GqlDjHgth9+PHzco8w6dal8xErbo0JYgrz0NUYXVMdewotcgmvqryVGZCi/hYRIzXf2l
-         cmYA==
+        with ESMTP id S233027AbiCaNTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 09:19:04 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2178320E975;
+        Thu, 31 Mar 2022 06:17:17 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id v15so19651372qkg.8;
+        Thu, 31 Mar 2022 06:17:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FlAYsloNunK4Gbn5Ha6Q08Ocp9zz+BcFgNosISbfqtk=;
-        b=fQUAWzTVPfGObkhfqdt+XkZw+2hlaIMmou9AbaE+0vjnaWDhHD7Vc5zkNZJixmyMYx
-         5fkF63ldznJuB7ABsqOFWirEFkd8UwT/VbfWexHhl+EsIi0C2drxVUc0Cr0VgEWX851U
-         pcCX3MNcaLA0Mqe50LtzS4nXNopGdOt2XyPcUZ5BjyGJwxjubj814G4kbShwCBWAH/Cs
-         IuGl/y1jmRuSu78qBpJ3VI+rWNeXPneb008Y+V/q8DXZIKYpHA7aToG5DiD6iXjN5ADt
-         n0cG6JMtlZA3PRBWO4DkyxPnmjOfXMlM59V16o+u66PHyAaUUp9N2ayWuHU3ggNSC6+S
-         eG+Q==
-X-Gm-Message-State: AOAM532cVyg0TSTBJ6Pf07EZDms5smmuyeFLvQ8C5EcByR07+iVCNX5m
-        JBIYb8AuTqEdQXlmhkDV3FKCf6en3y7xH9M3mdaIbw==
-X-Google-Smtp-Source: ABdhPJwZXmsaPYtsaDbjfgUdhDDpX5HR0bzBi4bSsJgQ5eP/9NBsWXRIsIuywjwq2d4nVrBrvCK7BwxMWXJAgCPaJZY=
-X-Received: by 2002:a25:c5d2:0:b0:636:e78a:866d with SMTP id
- v201-20020a25c5d2000000b00636e78a866dmr4133366ybe.225.1648731904948; Thu, 31
- Mar 2022 06:05:04 -0700 (PDT)
+        bh=1kqJIdbzCzFXveL5saW8SXO4YRgdYy2o2NLkfN1Vvfg=;
+        b=6o/IaeNwmt2GYtzzp7wIyT9QR2v+4FC1Wx+LRZcZn0I6+iCya15ymAWen4nt+1DINe
+         VpqtLIptyU8CUQSDgAXeH1ANkEUodkvpydO8jTHghSZMd1VN91waUSQeiIaZ4HEja5+g
+         yl9+8SPpltibIxPKs/IUS7tG02l2n9ppJm5grok07Ej2U6X7AUR/9MoXBSZc80RNbjkw
+         nYF2FMKigiw7mvM6Kc97oK0yqUmqJdmRyVDuk1xk2Maj6IC7UjLT76shTXShbbd3rF0j
+         NfXz4hFz8FZslOJICeC8XN3Np0SCDwafCD8AxeXo+E06C1noVb9ARBWdzUUITftqUV3x
+         QbdQ==
+X-Gm-Message-State: AOAM531iz1/NybwjjvhqJtKVKxyibSH5r/pjeCC93D/88jjeYrmp7G70
+        tw98fBJUTQNsuiqt+4iLWNRjf5qBSLcKZQ==
+X-Google-Smtp-Source: ABdhPJyewe2UvxAr7Gpj8kF3dPI2XsLz1WOevQQ9EWcVU4TADNHP0mqJnpkFful3MMZEQumKredGlw==
+X-Received: by 2002:a05:620a:22cf:b0:67e:e43:239d with SMTP id o15-20020a05620a22cf00b0067e0e43239dmr3278957qki.299.1648732635815;
+        Thu, 31 Mar 2022 06:17:15 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id o27-20020a05620a111b00b0067d5f359007sm11892328qkk.23.2022.03.31.06.17.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 06:17:15 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id u103so42219798ybi.9;
+        Thu, 31 Mar 2022 06:17:15 -0700 (PDT)
+X-Received: by 2002:a25:aa0e:0:b0:633:7c3b:94a0 with SMTP id
+ s14-20020a25aa0e000000b006337c3b94a0mr4290739ybi.546.1648732635065; Thu, 31
+ Mar 2022 06:17:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220327123835.28329-1-aford173@gmail.com>
-In-Reply-To: <20220327123835.28329-1-aford173@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 31 Mar 2022 15:04:28 +0200
-Message-ID: <CAPDyKFrhiaJHqsB8tVp_SkJwTtfanS5eN8wucntUHLL589Snww@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: mmc: imx-esdhc: Update compatible fallbacks
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-mmc@vger.kernel.org, haibo.chen@nxp.com,
-        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <Kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+References: <20220315155919.23451-1-biju.das.jz@bp.renesas.com> <20220315155919.23451-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220315155919.23451-4-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 31 Mar 2022 15:17:03 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXnxMDfCh+Q8gPbrVgZbHgxgHQngC46B3azORxhen=pOw@mail.gmail.com>
+Message-ID: <CAMuHMdXnxMDfCh+Q8gPbrVgZbHgxgHQngC46B3azORxhen=pOw@mail.gmail.com>
+Subject: Re: [PATCH 3/7] arm64: dts: renesas: r9a07g043: Add SDHI nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Mar 2022 at 14:39, Adam Ford <aford173@gmail.com> wrote:
+On Tue, Mar 15, 2022 at 4:59 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add SDHI{0, 1} nodes to RZ/G2UL SoC DTSI.
 >
-> The SDHC controller in the imx8mn and imx8mp have the same controller
-> as the imx8mm which is slightly different than that of the imx7d.
-> Using the fallback of the imx8mm enables the controllers to support
-> HS400-ES which is not available on the imx7d. After discussion with NXP,
-> it turns out that the imx8qm should fall back to the imx8qxp, because
-> those have some additional flags not present in the imx8mm.
->
-> Suggested-by: haibo.chen@nxp.com
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I didn't quite follow all the discussions on patch3 - and whether that
-may affect the binding. Anyway, I assume you will send a new version.
-If not, please tell and will pick this up.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Kind regards
-Uffe
+Gr{oetje,eeting}s,
 
+                        Geert
 
-> ---
-> V2:  Added suggested-by note and imx8qxp updates.
-> ---
->  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml   | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index 7dbbcae9485c..1427e9b5a6ec 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -34,23 +34,25 @@ properties:
->            - fsl,imx6ull-usdhc
->            - fsl,imx7d-usdhc
->            - fsl,imx7ulp-usdhc
-> +          - fsl,imx8mm-usdhc
-> +          - fsl,imx8qxp-usdhc
->            - fsl,imxrt1050-usdhc
->            - nxp,s32g2-usdhc
->        - items:
->            - enum:
-> -              - fsl,imx8mm-usdhc
-> -              - fsl,imx8mn-usdhc
-> -              - fsl,imx8mp-usdhc
->                - fsl,imx8mq-usdhc
-> -              - fsl,imx8qm-usdhc
-> -              - fsl,imx8qxp-usdhc
->            - const: fsl,imx7d-usdhc
->        - items:
->            - enum:
-> -              - fsl,imx93-usdhc
-> +              - fsl,imx8mn-usdhc
-> +              - fsl,imx8mp-usdhc
->                - fsl,imx8ulp-usdhc
-> +              - fsl,imx93-usdhc
->            - const: fsl,imx8mm-usdhc
-> -
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8qm-usdhc
-> +          - const: fsl,imx8qxp-usdhc
->    reg:
->      maxItems: 1
->
-> --
-> 2.34.1
->
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
