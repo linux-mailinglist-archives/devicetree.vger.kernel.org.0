@@ -2,337 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E506E4ED7EF
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1AD54ED805
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 12:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232484AbiCaKus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 06:50:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49472 "EHLO
+        id S232580AbiCaK4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 06:56:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232246AbiCaKur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:50:47 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DEC171B9FE8
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 03:48:59 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2CEB623A;
-        Thu, 31 Mar 2022 03:48:59 -0700 (PDT)
-Received: from bogus (unknown [10.57.43.163])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 546C63F718;
-        Thu, 31 Mar 2022 03:48:57 -0700 (PDT)
-Date:   Thu, 31 Mar 2022 11:48:54 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rui Miguel Silva <rui.silva@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: arm: add corstone1000 device tree
-Message-ID: <20220331104854.sffey43mlxlg343o@bogus>
-References: <20220330131053.1122502-1-rui.silva@linaro.org>
- <20220330131053.1122502-4-rui.silva@linaro.org>
+        with ESMTP id S232452AbiCaK4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 06:56:11 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8388340909;
+        Thu, 31 Mar 2022 03:54:24 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-df22f50e0cso7664843fac.3;
+        Thu, 31 Mar 2022 03:54:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=r9MO9CjxH2HfDd+vRxfevxhMbQ63nHf2fy/t+/G6Jc0=;
+        b=h937QY9LPyg4HH13nvZYx0qmQ5VKURkH9NHhO0hnEC+biUZ+nzMTp/8e3pQinIJXwv
+         EvZ9QNhsFAkQAmmvtrAS0O2/qHbG52mf6mXI8r8j+Ohj03nodEL2WOp15IgT01muDFZg
+         C3GHkS+2anejUbnNYOlZCIJIwShD9B7RbJ8gc2MdIPMY1eNbEZldItXyrzWZr76yZZ2U
+         cBUtZwRL81QmxRuMdkT86/YTIhvs4lyPM+xMFx0ZCiejG9OD7ofSg3Wfrk+gdW+l1c3R
+         wXOB/XEzjBb5LPo8OslS452WzlI6ZjmNyBoTAb+AI1NhBNXlpSND8K+WT4l5jCrbdZ9z
+         Etgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=r9MO9CjxH2HfDd+vRxfevxhMbQ63nHf2fy/t+/G6Jc0=;
+        b=GR1zWbNzv24uyPN3UvfysUso3I6ZDyD2u7JNS0TXyTsXhxwnSCSwI+SG8xq+6H4P1q
+         qXixo+hDlfa55S4oZjfBR4ycHKyD3kFsi4UbtyFjiGxLgBQaPOutCwV5FXakXqriPd0L
+         JXK9Yui4tT3rAo7hbfFCAZChEpO3/2n63u7hBl+0MyNl8ydxNH+jz29wyGR2Yg7IVLxe
+         qofzmZR3u1/TbMjko8aVYwKwlYqBQJLjNhiLnkmmT+wu42fuBtNWACTJfNIATcNe9jbs
+         FY7BWcWYVDsrkZZJj4ZO96HGd01DCLcKYI8Xjvi5ZF3WYVfBRzvhjmE1wJs2A1Ewc8Sq
+         ab1Q==
+X-Gm-Message-State: AOAM533rRLetMv+dV9j3YVKYw85x3eOvnfQXgyWD+EJM7xjevCaf5XrE
+        EsHYBcIMJdZ8TXqrkktA7DN/pNJG/R8=
+X-Google-Smtp-Source: ABdhPJzeYp620vLruglmRKCzBWwVvuiTG66YWc4vci+zzvBDZ356PQ8IORZSh2k5wvNENuSDBoGD4w==
+X-Received: by 2002:a05:6870:c154:b0:dd:986c:afa9 with SMTP id g20-20020a056870c15400b000dd986cafa9mr2318919oad.160.1648724063688;
+        Thu, 31 Mar 2022 03:54:23 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id v24-20020a9d5a18000000b005ad458facbdsm12352123oth.27.2022.03.31.03.54.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Mar 2022 03:54:21 -0700 (PDT)
+Message-ID: <aebbb5c8-1d27-5e66-e18a-e2b647bc8cb4@gmail.com>
+Date:   Thu, 31 Mar 2022 12:54:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220330131053.1122502-4-rui.silva@linaro.org>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v13 1/2] dt-bindings: mmc: mtk-sd: increase reg items
+Content-Language: en-US
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
+References: <20220330094532.21721-1-tinghan.shen@mediatek.com>
+ <20220330094532.21721-2-tinghan.shen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220330094532.21721-2-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 02:10:53PM +0100, Rui Miguel Silva wrote:
-> Corstone1000 is a platform from arm, which includes pre
-> verified Corstone SSE710 sub-system that combines Cortex-A and
-> Cortex-M processors [0].
->
-> These device trees contains the necessary bits to support the
-> Corstone 1000 FVP (Fixed Virtual Platform) [1] and the
-> FPGA MPS3 board Cortex-A35 implementation at Cortex-A35 host
-> side of this platform. [2]
->
 
-I prefer not to have these static URLs in the commit log or in the files
-as they tend to get stale soon.
 
-> 0: https://documentation-service.arm.com/static/619e02b1f45f0b1fbf3a8f16
-
-https://developer.arm.com/documentation/102360/0000
-
-> 1: https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps
-> 2: https://documentation-service.arm.com/static/61f3f4d7fa8173727a1b71bf
-
-https://developer.arm.com/documentation/dai0550/c/
-
-Please use the above alternatives instead.
-
+On 30/03/2022 11:45, Tinghan Shen wrote:
+> MediaTek has a new version of mmc IP since mt8183. Some IO registers
+> are moved to top to improve hardware design and named as "host top
+> registers".
 > 
-> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
+> Add host top register in the reg binding description for mt8183 and
+> successors.
+> 
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
->  arch/arm64/boot/dts/arm/Makefile              |   1 +
->  arch/arm64/boot/dts/arm/corstone1000-fvp.dts  |  27 +++
->  arch/arm64/boot/dts/arm/corstone1000-mps3.dts |  36 ++++
->  arch/arm64/boot/dts/arm/corstone1000.dtsi     | 161 ++++++++++++++++++
->  4 files changed, 225 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-fvp.dts
->  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-mps3.dts
->  create mode 100644 arch/arm64/boot/dts/arm/corstone1000.dtsi
+>   Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 15 ++++++++++++++-
+>   1 file changed, 14 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-> index 4382b73baef5..d908e96d7ddc 100644
-> --- a/arch/arm64/boot/dts/arm/Makefile
-> +++ b/arch/arm64/boot/dts/arm/Makefile
-> @@ -6,3 +6,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += juno.dtb juno-r1.dtb juno-r2.dtb juno-scmi.dtb ju
->  dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
-> +dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000-fvp.dts b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> new file mode 100644
-> index 000000000000..dea8b5f4d68a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/corstone1000-fvp.dts
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: GPL-2.0 or MIT
-> +/*
-> + * Copyright (c) 2022, Arm Limited. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited. All rights reserved.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "corstone1000.dtsi"
-> +
-> +/ {
-> +	model = "ARM Corstone1000 FVP (Fixed Virtual Platform)";
-> +	compatible = "arm,corstone1000-fvp";
-> +
-> +	smsc: ethernet@4010000 {
-> +		compatible = "smsc,lan91c111";
-> +		reg = <0x40100000 0x10000>;
-> +		phy-mode = "mii";
-> +		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-> +		reg-io-width = <2>;
-> +	};
-> +};
-> +
-> +&cpu {
-> +	compatible = "arm,armv8";
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index 297ada03e3de..2a2e9fa8c188 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -40,7 +40,10 @@ properties:
+>             - const: mediatek,mt8183-mmc
+>   
+>     reg:
+> -    maxItems: 1
+> +    minItems: 1
 
-I see the publicly available model contains Cortex-A35, looks like FVP
-does model the core and is not same as AEMs. So you can move this to dtsi IMO.
+ From my understanding adding minItems is correct, but you need to add also 
+maxItems: 2 as there can't be more then two register entries.
 
-> +};
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000-mps3.dts b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
-> new file mode 100644
-> index 000000000000..9989586db70e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/corstone1000-mps3.dts
-> @@ -0,0 +1,36 @@
-> +// SPDX-License-Identifier: GPL-2.0 or MIT
-> +/*
-> + * Copyright (c) 2022, Arm Limited. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited. All rights reserved.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "corstone1000.dtsi"
-> +
-> +/ {
-> +	model = "ARM Corstone1000 FPGA MPS3 board";
-> +	compatible = "arm,corstone1000-mps3";
-> +
-> +	smsc: ethernet@4010000 {
-> +		compatible = "smsc,lan9220", "smsc,lan9115";
-> +		reg = <0x40100000 0x10000>;
-> +		phy-mode = "mii";
-> +		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-> +		reg-io-width = <2>;
-> +		smsc,irq-push-pull;
-> +	};
-> +
-> +	usb_host: usb@40200000 {
-> +		compatible = "nxp,usb-isp1763";
-> +		reg = <0x40200000 0x100000>;
-> +		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-> +		bus-width = <16>;
-> +		dr_mode = "host";
-> +	};
-> +};
-> +
-> +&cpu {
-> +	compatible = "arm,cortex-a35";
-> +};
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000.dtsi b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-> new file mode 100644
-> index 000000000000..194d959de828
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-> @@ -0,0 +1,161 @@
-> +// SPDX-License-Identifier: GPL-2.0 or MIT
-> +/*
-> + * Copyright (c) 2022, Arm Limited. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited. All rights reserved.
-> + *
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu: cpu@0 {
-> +			device_type = "cpu";
-> +			reg = <0>;
-> +			next-level-cache = <&L2_0>;
-> +		};
-> +	};
-> +
-> +	memory@88200000 {
-> +		device_type = "memory";
-> +		reg = <0x88200000 0x77e00000>;
-> +	};
-> +
-> +	gic: interrupt-controller@1c000000 {
-> +		compatible = "arm,gic-400";
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <0>;
-> +		interrupt-controller;
-> +		reg =	<0x1c010000 0x1000>,
-> +			<0x1c02f000 0x2000>,
-> +			<0x1c04f000 0x1000>,
-> +			<0x1c06f000 0x2000>;
-> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(1) |
-> +			      IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	L2_0: l2-cache0 {
-> +		compatible = "cache";
-
-Any other properties ?
-
-> +	};
-> +
-> +	refclk100mhz: refclk100mhz {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +		clock-output-names = "apb_pclk";
-> +	};
-> +
-> +	smbclk: refclk24mhzx2 {
-> +		/* Reference 24MHz clock x 2 */
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <48000000>;
-> +		clock-output-names = "smclk";
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts =	<GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) |
-> +				 IRQ_TYPE_LEVEL_LOW)>,
-> +				<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) |
-> +				 IRQ_TYPE_LEVEL_LOW)>,
-> +				<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) |
-> +				 IRQ_TYPE_LEVEL_LOW)>,
-> +				<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) |
-> +				 IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	uartclk: uartclk {
-> +		/* UART clock - 50MHz */
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <50000000>;
-> +		clock-output-names = "uartclk";
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0", "arm,psci-0.2";
-> +		method = "smc";
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		timer@1a220000 {
-> +			compatible = "arm,armv7-timer-mem";
-> +			reg = <0x1a220000 0x1000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			clock-frequency = <50000000>;
-> +			ranges;
-> +
-> +			frame@1a230000 {
-> +				frame-number = <0>;
-> +				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-> +				reg = <0x1a230000 0x1000>;
-> +			};
-> +		};
-> +
-> +		uart0: serial@1a510000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0x1a510000 0x1000>;
-> +			interrupt-parent = <&gic>;
-
-Are these really needed even if there is only one interrupt controller
-in the system ?
-
-> +			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&uartclk>, <&refclk100mhz>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		uart1: serial@1a520000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0x1a520000 0x1000>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&uartclk>, <&refclk100mhz>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		mhu_hse1: mailbox@1b820000 {
-> +			compatible = "arm,mhuv2-tx", "arm,primecell";
-> +			reg = <0x1b820000 0x1000>;
-> +			clocks = <&refclk100mhz>;
-> +			clock-names = "apb_pclk";
-> +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +			#mbox-cells = <2>;
-> +			arm,mhuv2-protocols = <0 0>;
-> +			secure-status = "okay";     /* secure-world-only */
-
-Please drop the above. Though I see it is in the binding, no one uses
-it in the kernel and I prefer not to have this.
-
--- 
 Regards,
-Sudeep
+Matthias
+
+> +    items:
+> +      - description: base register (required).
+> +      - description: top base register (required for MT8183).
+>   
+>     clocks:
+>       description:
+> @@ -168,6 +171,16 @@ required:
+>     - vmmc-supply
+>     - vqmmc-supply
+>   
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: mediatek,mt8183-mmc
+> +then:
+> +  properties:
+> +    reg:
+> +      minItems: 2
+> +
+>   unevaluatedProperties: false
+>   
+>   examples:
