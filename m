@@ -2,124 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9FA4ED3B3
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 08:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6BE84ED444
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 08:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbiCaGHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 02:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39764 "EHLO
+        id S229924AbiCaG6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 02:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbiCaGHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 02:07:32 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E81E81DC9A0;
-        Wed, 30 Mar 2022 23:05:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 99D63B81EA0;
-        Thu, 31 Mar 2022 06:05:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2AFDC340ED;
-        Thu, 31 Mar 2022 06:05:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648706743;
-        bh=QQKn+Kv4FLipNOaxDBLqAUQ//ylLu2B/5Kt8RPNpRr4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fbInko8+mnPe6uxn0w7FVcGvtXjG+NE7LfwKIopJqKNt8OPhQaDArQMOt0qc8ge/t
-         SLJoRK0tMmLrcbeSgGx6LtbRXc8qtzM/Be2+YkRBVmStrHi/VT2RMl8o14WGcwx1J1
-         zIDZcTJU56GTnvNNDIk5SSzqqRj2OoHAvFlc+Ikjj0lNDPH349iGDORgJ2OWtMJ6Xp
-         P4kxh8gOv+wANKWvGjqEzWIMsPOvxgiIapuvkjPBGGBJhdwDPwJpTiPXotmDdOjYKa
-         QG96BQbQl0Ih7K5swrwEPWAXi7Kv402R/xuxng8j/zVMCxB4oigcKrQP4ENgLueBlf
-         IUWluFcNjF4HQ==
-Date:   Thu, 31 Mar 2022 11:35:38 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229666AbiCaG6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 02:58:16 -0400
+X-Greylist: delayed 2836 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Mar 2022 23:56:30 PDT
+Received: from mx0a-00268f01.pphosted.com (mx0a-00268f01.pphosted.com [148.163.148.236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2BE65CE
+        for <devicetree@vger.kernel.org>; Wed, 30 Mar 2022 23:56:30 -0700 (PDT)
+Received: from pps.filterd (m0165118.ppops.net [127.0.0.1])
+        by mx0a-00268f01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22V4VfIn031310;
+        Thu, 31 Mar 2022 06:08:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=equinix.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-id : content-transfer-encoding : mime-version; s=pps202002;
+ bh=5SzygrKVLjZUVq2O7UpjZiub2jL/JYJIodS9YfFbmZ4=;
+ b=WJpnJHVb68LDZp57pgu85ABTC0LCRQ/nDQo71J4YAe4Jx7SAIXq/QRqGMqU+ku8brSdT
+ tQVzCZWmPoOO76U5i/ouFoJUw7nJcO2eUuGYaKBqdEEQ9WUXqDpqa/xYN3TMzBvnUCCT
+ XFpmGO/8yMbvj+H7WY1jZPGaZlXSExKINLhC5XD6+FOeVE2ms1jdiEPBBmg0CdIDxZYO
+ qgZ7UYc7vvcoM7R2PT/wE7rJPN1aop2UNkLNleLXrA2u8/LRQCenH5zDSHD2S4JahfGA
+ PpWS/ZHmJe24+oFSDMSVjuHaUHcLQJ1dNtbPSe/Bzi36JSiOSLzPtG+BWJS0aIh53gfx 0g== 
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2109.outbound.protection.outlook.com [104.47.70.109])
+        by mx0a-00268f01.pphosted.com (PPS) with ESMTPS id 3f4u12sys4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Mar 2022 06:08:49 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LZcAQzwTKJvW04gQpXLSyM9xSoPNs/GY/Ec2zHD6eT9KKVNwNXNJwzAE5+cg4yyGuecPow78vVEkkYhDsUmVej6wecxt5wtVvEyNo5s5bwlC45wSX6+sb6W4qoBczcayRkEHe9TQlaHby/c3Vjb1PYOpBJiAGyMhKqiFVFe6Lz6N1eRAUWfs2Z1RQalnKF5v1tyaUhDkjnli0O6Z5sMlGF4bmYpUEOrdzWELW/MrPO9vdCGyFVThbp54FZ2XkWAXjlnMoifl2f6yVuRe4ss6Hyp5FySG82+/HQz9UtqxryyGkQA0uoUrKeLr93wK4K4tCQy3A/Co1qZKQC8RX6RxHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5SzygrKVLjZUVq2O7UpjZiub2jL/JYJIodS9YfFbmZ4=;
+ b=AJgiM8WrN5p0vsKH4PgBTSX1ldhMxJL7XfzkBRp97+tbW38YTsDuUpDk6wfmO4jm6SQcBj9/f6VPg4IeWpVKMgCzAAGlcvYN5pvJXH01++327lhaySiZkJn/dGzeFwA+4MGEtMGj6WmQkEI9X04yYupCwpqqiOWMe9oSsJ5ql5SV3hi6oSmvkt9kOSY97M7j6v6t30LT9G84WT+T38zpw2DcQ/4vbKWPI2SVZVT4qUH73AE2ok6OIyPYb/AlGz88wUDAPNe/IDedUMObURt2Z85m25e1qwHsBzxRoiatZfyldIoy1+hUe9ky4z13UXJQXNiBio2Kv7Qk83vZbTS6OQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
+ dkim=pass header.d=equinix.com; arc=none
+Received: from DM8PR04MB8007.namprd04.prod.outlook.com (2603:10b6:5:314::20)
+ by DM6PR04MB4521.namprd04.prod.outlook.com (2603:10b6:5:26::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.19; Thu, 31 Mar
+ 2022 06:08:45 +0000
+Received: from DM8PR04MB8007.namprd04.prod.outlook.com
+ ([fe80::6dd0:3d61:f3fb:43d2]) by DM8PR04MB8007.namprd04.prod.outlook.com
+ ([fe80::6dd0:3d61:f3fb:43d2%5]) with mapi id 15.20.5123.019; Thu, 31 Mar 2022
+ 06:08:45 +0000
+From:   Zev Weiss <zweiss@equinix.com>
+To:     Joel Stanley <joel@jms.id.au>
+CC:     Zev Weiss <zev@bewilderbeest.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: msm: dsi: remove address/size cells
-Message-ID: <YkVEsqiRamfTmNi0@matsya>
-References: <20220328152923.90623-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJprWoxWwk5EWEfWdLquPR+2=u6V0-v1-+wHMHOk8HiEyNw@mail.gmail.com>
- <YkHtY9absUjmqmW7@matsya>
- <12b0056b-8032-452b-f325-6f36037b5a80@linaro.org>
- <CAL_Jsq+6rx0UU6ryH+z_8KLQqKKuhTCnh=Oft2F03bcze+EV0Q@mail.gmail.com>
- <YkKmPSesQfS6RLCD@matsya>
- <YkMrPnRbsl3FBig8@robh.at.kernel.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: romed8hm3: Fix GPIOB0 name
+Thread-Topic: [PATCH 2/2] ARM: dts: aspeed: romed8hm3: Fix GPIOB0 name
+Thread-Index: AQHYRMXHlUu2oaprC0emyEqBQXdKmg==
+Date:   Thu, 31 Mar 2022 06:08:45 +0000
+Message-ID: <20220331060844.GE24501@packtop>
+References: <20220331022425.28606-1-zev@bewilderbeest.net>
+ <20220331022425.28606-2-zev@bewilderbeest.net>
+ <CACPK8XeeFDSN8L89BPkV+UfGTYNiULyUPBTYso7Z7e+VEdgc4A@mail.gmail.com>
+In-Reply-To: <CACPK8XeeFDSN8L89BPkV+UfGTYNiULyUPBTYso7Z7e+VEdgc4A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 28661c18-d52d-4a34-2c2c-08da12dcea28
+x-ms-traffictypediagnostic: DM6PR04MB4521:EE_
+x-microsoft-antispam-prvs: <DM6PR04MB4521DD670F1D042AE1678CE5C3E19@DM6PR04MB4521.namprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: smQMDxlCJQZmNfgyO/gRiDhBLbBeeVlQBy4pcWFXBYbZhWgnZvoku7IDQpT9b+U2M4zjg6W/kwjIfcZX/ubg4i/qVpMw0EsXTfYKx+s3Kn23q+P/AQPoszZpPch6UNm2Ybk5C0RLcBlDGCtkVyVQsf4cWtqM4OOMWBQz6/rm+9+4IPZfJBWncVBaQZ6AJm3B4AdKgwdjYWQLA9c2gjSXET5pm3JBe5bbiDEVNpaTCZB8ElBeIjKSp4O4oChEbWQ7SHZAlAoA8Mn1CPtW7HMyndmeS8IkArwNM7sdglHaoGeDiHDv9qvtzlM9b2c1oQ4EKKYV7u4+elzdgkZVjClTbwRX0lL+GgGC9m2YO3zOtrJ7XLnbSm5fbchaqneScmBuHVQNvhzXntdhB4BnSHugIKiBXUjm2UxblWggVUX5ZBb6nRYVkkuvdbxEIwHhUWYNolWyBBf9fPTCquLT6Tp9o/jq428a4RTYK8ndZ3FS7KP/JOI9U165rFonakei8AULBacez4C8MBPXlSIv62GhTVCUhaboIDFIqTDz8VEA/BV+BvjwTHffBbPv3qQeSKFnzGudarlETxkD3CEzrfu2CKexWLV/iNXnvP4cUhVPtz+Ejat2rRUs8WC2kGkWxVaN+c2T1lHh1D9dncjRuyYFYecGtj7mAT5Ug/bVrZX+z6q26yV9Tk3D5IW8d6soF9ONkkgpT9qDoip3MUivUFuhQQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB8007.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(86362001)(1076003)(26005)(5660300002)(8676002)(2906002)(38100700002)(122000001)(38070700005)(7416002)(4744005)(186003)(33716001)(4326008)(316002)(66476007)(6506007)(6486002)(6916009)(9686003)(71200400001)(6512007)(8936002)(33656002)(66446008)(508600001)(91956017)(54906003)(66556008)(76116006)(66946007)(64756008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?oZcRgQ1XMFEVbwn+uRj8DaSQc8cJt/7q1PYZHyc3nDMthKjikMLajQjGq1Ac?=
+ =?us-ascii?Q?TQtfX7Zjkkf7R+ZBZtC9TtHG/jM8CZhZArC8cjdrQEWatwFNq263+QScwzDw?=
+ =?us-ascii?Q?z0iZPTQIWc67AsY8uy56aORxXlqRf/hrpiEw00yI77pbZNmcrdToTSpBlWD/?=
+ =?us-ascii?Q?wy9tvpjEyNEqoLBb6hGq9DX53XkMBg+sJV3QQqTZnGEogU6xEEoWAuD1ujBp?=
+ =?us-ascii?Q?PYbScbpHnePtDrNRzjEjnoTUyn6zT+nyHsTSoUFy3TzK2xqKbXsIMCopiKK3?=
+ =?us-ascii?Q?aw620NiOcpSyhxZokbpVPFlcdav7xp3vKWC5bckmFf6XczYBq4cL7gX0XO5q?=
+ =?us-ascii?Q?UfbtOCZU0EEGiCvnloZd12lyVsZXHZU0awXIVMk/PT2KjYDh5+8yHQvxutNX?=
+ =?us-ascii?Q?Dbo6GVlJTjdJnCQ49sSkZhhN/9WD1mWlJxRGArzPYsh6E18OvBK4onm3rseX?=
+ =?us-ascii?Q?tOtdeISl+wepyMEUEhjUNV/BDkI0yv37zQgBKezo9tnqLLFnVmy8dN0npBde?=
+ =?us-ascii?Q?1nfHHZDCu/sbGPpwPahP6WeFV9g5hCmxMxIJHxsapZRygPwwxHYr3B4ovzDA?=
+ =?us-ascii?Q?pFFvHvqygbz40n/5R/dRwFEslrg3x+C8YB0yQVq2hkjOlCBMNKYCjV13o8JS?=
+ =?us-ascii?Q?F0LMvWaUQgpK9FvknE4MCla22wZfig6F4FkJZcwUhHSTCgCcfDQK9scyBNUp?=
+ =?us-ascii?Q?LukUv9FJmKQhj3FYw0ekdLK9eQojWY/qJcgu6IdRcdekk3eEDa4vskSJWN4D?=
+ =?us-ascii?Q?+18X9zuVDsL074yHspR8CGr3J5yq/kqBsW71QIicavDBklg4clv6E8mpJeee?=
+ =?us-ascii?Q?0jJ2IR77wnIV/Wz+LIihRpfMsHwJeCOyHKyroKeG8WSulujZOn6L4k1YzYSG?=
+ =?us-ascii?Q?k+JAQzekiF/SER8Ft4vZnDvDi+ueoIj3Ss04ek+vsOZjRyeUBdonGKyd6Pgu?=
+ =?us-ascii?Q?O6OfTCfQZZJYX8Umn1j6y2TWJyq/4Qqq5ncp1uZWtZCJ5tUhFkTeg7sEQErq?=
+ =?us-ascii?Q?RPzYT/HZnllEO01+UpmgkxZdVHsMH++REfxsTs+i9tIz3yk7LUjIX6x5x/mP?=
+ =?us-ascii?Q?CjtFuwavvRStm85r5hF+99S/OOMcRyOSIb4FiM92Q6rqiOMBADECOZvpREEP?=
+ =?us-ascii?Q?UXynvcxdRDl7ctcYhSwENElOQgFk3sKmR8Bg2dG8C7fPpx3xgEDrvmcCYjQR?=
+ =?us-ascii?Q?t4tHCQ97tNUj9hOfAyWPv+lf7EM9lYr9mtfkexOlXhot3wL8jxEWlOH98Soy?=
+ =?us-ascii?Q?ZtnL7O1Q/qUIOLFPXHRv0MGOrl8VIkR2/bovhT6Y5jpVOJCzk5DfdnMOE/Rh?=
+ =?us-ascii?Q?VscIMREub/io13wtAS4Q0QkXh5wEtJT4goTh3XNNcLuZpyKjcUYCijhJr2h1?=
+ =?us-ascii?Q?kW0Md8PfGfY0gcF0t1y5qxlhu2TD8LJLnNlwH9wsbOC5UZi+5NjvMV045E+N?=
+ =?us-ascii?Q?4TL/FjtHlzzQgeVrOEvqFAv/LLoW6okF0bPPMp4+2Qsko7y2TSCKdT+ljipt?=
+ =?us-ascii?Q?rFWWsU5+sSm17Z5wd9ZT81i7edYKFVoswSfnYvl8b2jje28IoRaGHnkmQPDe?=
+ =?us-ascii?Q?9PYQnaDYbpRcYW+DD7IavF9fC+E8RUCAYldMKxQCY7wKl5Xg0g2434hopnyk?=
+ =?us-ascii?Q?o+sfw8HJcZzimpi1lA7clflcxFxEJa6zbm4kTuMpG1+dQE+J1w0EQC+R79vT?=
+ =?us-ascii?Q?kuR+vjrMCqeFQ/vskHQQTx0ksEWZSHsFkzpO78ol8PckE49bxROMZlOhYM/x?=
+ =?us-ascii?Q?bSWbDNRXFb2g4W98tfZoLPAZXBMUAl8=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <E39F349BBCBA214D8E545B7BBD52B908@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YkMrPnRbsl3FBig8@robh.at.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: equinix.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB8007.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28661c18-d52d-4a34-2c2c-08da12dcea28
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2022 06:08:45.6172
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Hia+8GoKWQ8rRF4DLlVrzkoNcDFK8/1NWJANTzpMH/A6eUZmc3bH7ti1RTonKHake7YLuQ/jhrVr/4mRYNcyQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB4521
+X-Proofpoint-GUID: KArcqPQ8HRcU6DNZqSTuPdBSkKTuKnK_
+X-Proofpoint-ORIG-GUID: KArcqPQ8HRcU6DNZqSTuPdBSkKTuKnK_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-31_02,2022-03-30_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=675 suspectscore=0 lowpriorityscore=0 impostorscore=0
+ clxscore=1011 adultscore=0 spamscore=0 priorityscore=1501 mlxscore=0
+ phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2203310036
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-03-22, 10:52, Rob Herring wrote:
-> On Tue, Mar 29, 2022 at 12:01:52PM +0530, Vinod Koul wrote:
-> > On 28-03-22, 13:21, Rob Herring wrote:
-> > > On Mon, Mar 28, 2022 at 12:18 PM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > >
-> > > > On 28/03/2022 19:16, Vinod Koul wrote:
-> > > > > On 28-03-22, 19:43, Dmitry Baryshkov wrote:
-> > > > >> On Mon, 28 Mar 2022 at 18:30, Krzysztof Kozlowski
-> > > > >> <krzysztof.kozlowski@linaro.org> wrote:
-> > > > >>>
-> > > > >>> The DSI node is not a bus and the children do not have unit addresses.
-> > > > >>>
-> > > > >>> Reported-by: Vinod Koul <vkoul@kernel.org>
-> > > > >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > >>
-> > > > >> NAK.
-> > > > >> DSI panels are children of the DSI device tree node with the reg = <0>; address.
-> > > > >> This is the convention used by other platforms too (see e.g.
-> > > > >> arch/arm64/boot/dts/freescale/imx8mq-evk.dts).
-> > > > >
-> > > > > So we should add reg = 0, i will update my dtsi fix
-> > > > >
-> > > >
-> > > > To "ports" node? No. The reg=0 is for children of the bus, so the
-> > > > panels. How to combine both without warnings - ports and panel@0 - I
-> > > > don't know yet...
-> > > 
-> > > I don't think that should case a warning. Or at least it's one we turn off.
-> > 
-> > Well in this case I think we might need a fix:
-> > Here is the example quoted in the binding. We have ports{} and then the
-> > two port@0 and port@1 underneath.
-> 
-> It's the #address-cells/#size-cells under 'ports' that applies to 'port' 
-> nodes. As 'ports' has no address (reg) itself, it doesn't need 
-> #address-cells/#size-cells in its parent node.
-> 
-> > 
-> > So it should be okay to drop #address-cells/#size-cells from dsi node
-> > but keep in ports node...
-> 
-> Yes.
-> 
-> > Thoughts...?
-> 
-> But I thought a panel@0 node was being added? If so then you need to add 
-> them back.
+On Wed, Mar 30, 2022 at 10:35:47PM PDT, Joel Stanley wrote:
+>On Thu, 31 Mar 2022 at 02:24, Zev Weiss <zev@bewilderbeest.net> wrote:
+>>
+>> This GPIO was mislabeled as DDR_MEM_TEMP in the schematic; after a
+>> correction from ASRock Rack its name now reflects its actual
+>> functionality (POST_COMPLETE_N).
+>
+>Those are quite different functions :)
+>
 
-I guess we should make this optional, keep it when adding panel@0 node
-and skip for rest where not applicable..? Dmitry is that fine with you?
+Yes, rather -- that little tidbit resolved quite a bit of
+head-scratching that had been going on...
 
--- 
-~Vinod
+>>
+>> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>
+>Fixes: a9a3d60b937a ("ARM: dts: aspeed: Add ASRock ROMED8HM3 BMC")
+
+Ah yes, I'll try to remember to include those to start with.
+
+>Reviewed-by: Joel Stanley <joel@jms.id.au>
+>
+>I'll send some fixes in after -rc1.
+>
+
+Thanks!
+
+Zev
