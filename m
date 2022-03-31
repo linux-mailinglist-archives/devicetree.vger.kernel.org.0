@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D67D24EE32B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 780C34EE33A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Mar 2022 23:19:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241713AbiCaVS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 17:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52318 "EHLO
+        id S236195AbiCaVUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 17:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241701AbiCaVS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 17:18:56 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0976239331
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:17:07 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id dr20so1884810ejc.6
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:17:07 -0700 (PDT)
+        with ESMTP id S237187AbiCaVUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 17:20:21 -0400
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77F601277F
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:18:32 -0700 (PDT)
+Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-df26ea5bfbso672597fac.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 14:18:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OhUgoUjmHfkmZB66Ljg+9BeuLZIJH4fmuI4EW/8GfzI=;
-        b=YPb7yEyvES+dt9sHShI1By6hbIuwJMoBkGCPyvywEl10wdUYLHpyRz6ttW3nS19EoB
-         0Scw63WuhrpxDyPhFmQF5POGjAENRqmJs2F7bKJDWekzzCX/F8GH7395WjBcys/rLSKq
-         933w0xbpcUSlkNg4SHoitM2JuItD5yxMhU1HkjaFADRxDzJGurZM+ENUlIUcL/T+I3F3
-         UYQ8GnnPV0CN9j2tHB5mSQgIyvQJDn+/dSCU4Hd4IK6vA8OctoeENwKjg0arRlsRqvJV
-         3uV3qXPwQZ+bQBqSp+antnUeCmrCbJA9z+Fbvd2oETMUXTbFfBH8NQdAi13eugRD96zt
-         HkVQ==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=5tewtVH4AG8KY8Zi+lKOWP3q7/lgqF7baGpu82kuyIY=;
+        b=HO/XidmOh6O1mLaZzRwaAWMD0ksLSqOqNih/0cePtCkm2XfI0APg5sbKHiY3iYDGOp
+         n7hMPpU71o8VdW7qv+/U31BxUhJAGl0zjsBIfAhSLlhrvqyOh3AIPha1kEh6Zaed5Ekv
+         dSzISimULrt7G8ZyRN8LfeKEgbxly/wdrwseY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OhUgoUjmHfkmZB66Ljg+9BeuLZIJH4fmuI4EW/8GfzI=;
-        b=JUHxQBavMyFQfftmLTW0uANJqxo1Bb8iQYsTLnXQqaNiBq7Vy5LCzUa0ZUkgd1EfmY
-         FNuCLdhAcQqkX3fzwDAvOc8T8K4kBhDARLmYSg/yMKSOSO7zc499oRmzyqpG0/9v7NeZ
-         fy7jt8IhIWnl1at5kRpeG1XNo90clCby7fwnubTVeIXoBYdeFfkVbm2i8qFpF89SSO0j
-         zQFXgC/2yHIrNAgcLGDS963vnsEhgbpxxy8F1G5efgcP0i4q4UfJHfMiJkEilWu6uv7H
-         GKLihRBuKUXnRO7veqODnXrUm8/sGhFCzsn7DF/WXSO8kcC2RIOnTmKirRrThOigVVhN
-         CT9A==
-X-Gm-Message-State: AOAM530ISEi74aa7lJiRPEfPmx5Zs9qrRiohC2bQyQKiXYKj9anxIOya
-        2jeguge7e0AcVKUBG+jV1tTdug==
-X-Google-Smtp-Source: ABdhPJznpX+KjZxb6pXEL6EoqM5vXbcnxtx2K142UoNbZtdPIFgL+oOQNPa0G2T6B6EaAQgFtY8ugg==
-X-Received: by 2002:a17:906:c1d6:b0:6d6:e0a3:bbc7 with SMTP id bw22-20020a170906c1d600b006d6e0a3bbc7mr6741191ejb.484.1648761426516;
-        Thu, 31 Mar 2022 14:17:06 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id nc13-20020a1709071c0d00b006dfa376ee55sm202518ejc.131.2022.03.31.14.17.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 14:17:06 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH 2/2] ARM: dts: exynos: correct array of voltages in i9100 and Trats
-Date:   Thu, 31 Mar 2022 23:16:53 +0200
-Message-Id: <20220331211653.175200-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
-References: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=5tewtVH4AG8KY8Zi+lKOWP3q7/lgqF7baGpu82kuyIY=;
+        b=Lj6REg8cG4IOHOPXoL7tTsLxSuap/FKmN849fYeWcJL920/IYGoL0xKroHrQLTy9Ht
+         3mhcWPdbTpUmpJGxuhRyaS7qbZuSI1IkJd2+T10Jvp6lq56i6E8LwutYRLju0yNLalED
+         42fhfV2mwoiRsdD68//cqVtBxXo0eVRtsCJSH1vqcuPCmnHqfEF7ANqQ5WhHBr+HgYK0
+         c7mq/OlJFPawg382joseB5uselehA+6CUPcYnzHmumSwaCp4Qyi7HRDFZ/ncBHYOzywQ
+         9s+wBKm8HVaR4090wcqKYeCRefnvgIvPiVqHghOwFyizr6pQGIHaTRnL5X8wqLAHU9Bk
+         GxnQ==
+X-Gm-Message-State: AOAM530rxxJWB/dWyLqikKQZzEi40TL4aXHngQaQ1Iwhnr8iIAsPtNYK
+        2P+l/eGrVVD45t2cbrJeRQYHdHNN3V37ufC4a/tlEA==
+X-Google-Smtp-Source: ABdhPJzMwsXdxTR0m9DYSxxmGH1ubNPKIIiNyFd3yZQzwSM5ILbKgnGh4kEAwRu0jrUAIArl5nrbGYO2Ot1jNJJJzW0=
+X-Received: by 2002:a05:6870:46ac:b0:de:5d48:9d27 with SMTP id
+ a44-20020a05687046ac00b000de5d489d27mr3646771oap.63.1648761511849; Thu, 31
+ Mar 2022 14:18:31 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 31 Mar 2022 14:18:31 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <094d8faa-c42b-be1b-cf92-04232d618a3e@quicinc.com>
+References: <1648209491-30165-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1648209491-30165-8-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n511eQTnJHqt0B=uiiSjigy-RHZ52YuYz4kfEpX1x6CMfw@mail.gmail.com> <094d8faa-c42b-be1b-cf92-04232d618a3e@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 31 Mar 2022 14:18:31 -0700
+Message-ID: <CAE-0n52CVuc_kQbpwEnHEEODS8jPt52v6P=gAdVxqenPu4ehkw@mail.gmail.com>
+Subject: Re: [PATCH V8 7/7] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,99 +75,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Array of uint32 numbers (voltages) should be within one bracket pair <>,
-according to Devicetree types and DT schema.
+Quoting Satya Priya Kakitapalli (Temp) (2022-03-30 03:44:01)
+>
+> On 3/25/2022 11:18 PM, Stephen Boyd wrote:
+> >       #include "pm8008.dtsi"
+> >
+> > and then the nodes below.
+>
+>
+> You mean
+>
+> pm8008_bus: &i2c1 {
+>
+>  =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 status =3D "okay";
+>
+> };
+>
+> &pm8008_bus {
+>
+>  =C2=A0=C2=A0=C2=A0 #include "pm8008.dtsi"
+>
+> };
+>
+> and remaining nodes, right?
+>
 
-This fixes DT schema warnings like:
+No. I meant what I wrote.
 
-  exynos4210-trats.dtb: pmic@66: max8997,pmic-buck1-dvs-voltage: [[1350000, 1300000, 1250000, 1200000, 1150000, 1100000, 1000000, 950000]] is too short
-    From schema: Documentation/devicetree/bindings/regulator/maxim,max8997.yaml
 
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/exynos4210-i9100.dts | 28 +++++++++++++-------------
- arch/arm/boot/dts/exynos4210-trats.dts | 28 +++++++++++++-------------
- 2 files changed, 28 insertions(+), 28 deletions(-)
+       &pm8008_bus: &i2c1 {
+               status =3D "okay";
+       };
 
-diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-index 3c0a18b30837..4058e780e288 100644
---- a/arch/arm/boot/dts/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-@@ -421,20 +421,20 @@ pmic@66 {
- 						 <&gpx0 6 GPIO_ACTIVE_HIGH>,
- 						 <&gpl0 0 GPIO_ACTIVE_HIGH>;
- 
--		max8997,pmic-buck1-dvs-voltage = <1350000>, <1300000>,
--						 <1250000>, <1200000>,
--						 <1150000>, <1100000>,
--						 <1000000>, <950000>;
--
--		max8997,pmic-buck2-dvs-voltage = <1100000>, <1000000>,
--						 <950000>,  <900000>,
--						 <1100000>, <1000000>,
--						 <950000>,  <900000>;
--
--		max8997,pmic-buck5-dvs-voltage = <1200000>, <1200000>,
--						 <1200000>, <1200000>,
--						 <1200000>, <1200000>,
--						 <1200000>, <1200000>;
-+		max8997,pmic-buck1-dvs-voltage = <1350000 1300000
-+						  1250000 1200000
-+						  1150000 1100000
-+						  1000000  950000>;
-+
-+		max8997,pmic-buck2-dvs-voltage = <1100000 1000000
-+						   950000  900000
-+						  1100000 1000000
-+						   950000  900000>;
-+
-+		max8997,pmic-buck5-dvs-voltage = <1200000 1200000
-+						  1200000 1200000
-+						  1200000 1200000
-+						  1200000 1200000>;
- 
- 		pinctrl-0 = <&max8997_irq>, <&otg_gp>, <&usb_sel>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
-index 01f44d95f671..23041db78f2e 100644
---- a/arch/arm/boot/dts/exynos4210-trats.dts
-+++ b/arch/arm/boot/dts/exynos4210-trats.dts
-@@ -302,20 +302,20 @@ pmic@66 {
- 						 <&gpx0 6 GPIO_ACTIVE_HIGH>,
- 						 <&gpl0 0 GPIO_ACTIVE_HIGH>;
- 
--		max8997,pmic-buck1-dvs-voltage = <1350000>, <1300000>,
--						 <1250000>, <1200000>,
--						 <1150000>, <1100000>,
--						 <1000000>, <950000>;
--
--		max8997,pmic-buck2-dvs-voltage = <1100000>, <1000000>,
--						 <950000>,  <900000>,
--						 <1100000>, <1000000>,
--						 <950000>,  <900000>;
--
--		max8997,pmic-buck5-dvs-voltage = <1200000>, <1200000>,
--						 <1200000>, <1200000>,
--						 <1200000>, <1200000>,
--						 <1200000>, <1200000>;
-+		max8997,pmic-buck1-dvs-voltage = <1350000 1300000
-+						  1250000 1200000
-+						  1150000 1100000
-+						  1000000  950000>;
-+
-+		max8997,pmic-buck2-dvs-voltage = <1100000 1000000
-+						   950000  900000
-+						  1100000 1000000
-+						   950000  900000>;
-+
-+		max8997,pmic-buck5-dvs-voltage = <1200000 1200000
-+						  1200000 1200000
-+						  1200000 1200000
-+						  1200000 1200000>;
- 
- 		regulators {
- 			valive_reg: LDO2 {
--- 
-2.32.0
+       #include "pm8008.dtsi"
 
+and then the pm8008.dtsi file would have
+
+	&pm8008_bus {
+		pm8008: pmic@8 {
+			compatible =3D "qcom,pm8008";
+			...
+		};
+
+		pm8008_regulators: regulators@9 {
+			compatible =3D "qcom,pm8008-regulators";
+			...
+		};
+	};
+
+and then this patch would modify those nodes with phandles.
