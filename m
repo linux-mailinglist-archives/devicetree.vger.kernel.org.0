@@ -2,89 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C67894EEC50
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 13:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 243314EEC71
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 13:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345511AbiDALZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 07:25:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
+        id S233663AbiDALiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 07:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345047AbiDALZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 07:25:53 -0400
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70E91959E2;
-        Fri,  1 Apr 2022 04:24:01 -0700 (PDT)
-Received: by mail-qv1-f41.google.com with SMTP id kd21so1761324qvb.6;
-        Fri, 01 Apr 2022 04:24:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VNvUftVCEKC0bpyKbjKycTe+r8kmy0rLW5024E4vA5g=;
-        b=Lmtq4Hd3Y8yeatieUlsIonP2Yx0+u8L9lEPV4BFDtYNkXsVOoSNfOVmwpxo0tOYQlN
-         x1fKC5sopWXuFlKWXcDxLOjRZnWB8ge9Cwil08KOmOpe3E7Ml+nNYHuvbcoKklE0ivJy
-         kZiL7lBrrmwffE2632GwNX0EThtg6HWonJWRCjtbhhE75M9D9t9DkBC3/iq8mCOtf5Pl
-         aec1N1RaMur7BpYwswLIC2lOfnh6ItGX/7ZO3HuNHiwuhRkpjC0YezoPHSfxKnDSOYrp
-         hnA8TBdiFHgxqzoNuJIGXvkYnRZPaH8o5Iajw3kcZPEdaMqhHBIX5ZOXqvCcRP4ABx4a
-         TNMA==
-X-Gm-Message-State: AOAM531rnewdzN1qZrEkon2ScjulmVkBWXlqlMZZu1Or5K9OOrJeHI9P
-        nzFlYNa5GoI5sBvRBrA4l8ccFZbEgF/y/g==
-X-Google-Smtp-Source: ABdhPJyJJTOBiWvjVvpdqgRR0r8ZqufZNFHC0TIKxFJ5A2MBjT3ruQb/iS4AjyC4WON3AopyCkElBg==
-X-Received: by 2002:a05:6214:e48:b0:441:7bd1:29b9 with SMTP id o8-20020a0562140e4800b004417bd129b9mr7582539qvc.98.1648812240387;
-        Fri, 01 Apr 2022 04:24:00 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id u129-20020a376087000000b0067e401d7177sm1128855qkb.3.2022.04.01.04.23.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Apr 2022 04:23:59 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-2e592e700acso29019797b3.5;
-        Fri, 01 Apr 2022 04:23:59 -0700 (PDT)
-X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
- v133-20020a81618b000000b002dbd9528a39mr9546650ywb.132.1648812239496; Fri, 01
- Apr 2022 04:23:59 -0700 (PDT)
+        with ESMTP id S1345557AbiDALis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 07:38:48 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 924D21DB89E
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 04:36:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1648812991; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=OgEt7hU1WFt1EsYYAzAuGCH8HYTw6Q8xJJSfoP3lJr2/fPD8dmimtlym3+ToG0a6s91Z9YzbPPjCneaeoY0tcaUpWCSjMNQ5m/3lLqltllif6bulBigrTbD8+HW1T6/iLdnH8Elj+vbnPxQDyS/7fHHbgEsYrVJbbuA+h2wn4jk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1648812991; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=hbH2afc7nkmlO89fFtEIUOIGGe+kbgS1V9p6lPPSTAE=; 
+        b=KWwPUh8NdUkR2JwQ20Ez8l+fuFn5BK/3WdndOaH5zEB6fV/fmValmuLMgJ2K/BHhl0rgH5DR20phiYdXW/AK+uYMJ2NzRYNpbeZJr3nK1gRBYqj++gKYE30YViwHKN80NUSIswha7cr6l7fJHhgHoItM84kUl/xFERXqqxaON2E=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1648812991;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=hbH2afc7nkmlO89fFtEIUOIGGe+kbgS1V9p6lPPSTAE=;
+        b=c0ZHM86kuWovZ6shNM/HHtrhSlMg76zdAh8vOvwlqWVuzm8H3k/yOctVeXZefiWP
+        hNbM2uIx6q09CDT5PlAxYdeTkFRtNOG4IgUSsHzMx6Lx4RVEasN4W2n0/IKNIDUBhGP
+        a+NB7QXsjWwOFGLCzzivj51fcIrBB76Mg4zNfSYI=
+Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1648812990043236.47392098240425; Fri, 1 Apr 2022 04:36:30 -0700 (PDT)
+Message-ID: <21285586-7c9a-5fda-0f07-1d43312ea8c6@arinc9.com>
+Date:   Fri, 1 Apr 2022 14:36:26 +0300
 MIME-Version: 1.0
-References: <20220315155919.23451-1-biju.das.jz@bp.renesas.com> <20220315155919.23451-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220315155919.23451-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 1 Apr 2022 13:23:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWj-mgoBm1nGaBjtoO4i4dbLkxOhz5DpywB7mUhgvRFUg@mail.gmail.com>
-Message-ID: <CAMuHMdWj-mgoBm1nGaBjtoO4i4dbLkxOhz5DpywB7mUhgvRFUg@mail.gmail.com>
-Subject: Re: [PATCH 1/7] arm64: dts: renesas: r9a07g043: Fillup the pinctrl
- stub node
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 5/5] ARM: dts: BCM5301X: Disable unused gmac0 and gmac2 on
+ Asus RT-AC88U
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20220401102002.15765-1-arinc.unal@arinc9.com>
+ <20220401102002.15765-5-arinc.unal@arinc9.com>
+ <06e49b67a2e2f75040c51f8a05c329ef@milecki.pl>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <06e49b67a2e2f75040c51f8a05c329ef@milecki.pl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 4:59 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Fillup the pinctrl(GPIO) stub node in RZ/G2UL SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 01/04/2022 13:40, Rafał Miłecki wrote:
+> On 2022-04-01 12:20, Arınç ÜNAL wrote:
+>> Disable gmac0 and gmac2 which are currently not used. This doesn't 
+>> seem to
+>> be implemented yet on drivers/net/ethernet/broadcom/bgmac-bcma.c but this
+>> change is harmless, nonetheless.
+> 
+> It doesn't matter whether Linux respects that.
+> 
+> 
+>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>> ---
+>>  arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+>> b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+>> index 2f944d1c0330..0f5c5d576814 100644
+>> --- a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+>> +++ b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+>> @@ -242,11 +242,19 @@ fixed-link {
+>>      };
+>>  };
+>>
+>> +&gmac0 {
+>> +    status = "disabled";
+>> +};
+>> +
+>>  &gmac1 {
+>>      nvmem-cells = <&et1macaddr>;
+>>      nvmem-cell-names = "mac-address";
+>>  };
+>>
+>> +&gmac2 {
+>> +    status = "disabled";
+>> +};
+> 
+> I don't think that is correct. Those interfaces are still there and
+> they are actually connected to switch ports. If you configure your
+> switch properly you can use them.
+> 
+> Someone may want to use e.g. gmac0 & gmac1 with two sets of ports to
+> speed up network communication.
+> 
+> I think gmac2 is required if you want to enable FA (flow acceleration /
+> accelerator) - even though there isn't Linux driver for it yet.
+> 
+> They are not disabled / unpopulated / non functional interfaces.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I understand your point. However, while we're not supposed to care 
+whether the kernel respects the bindings, don't we also need to make the 
+bindings work on the version of the Linux kernel we're submitting the 
+bindings to?
 
-Gr{oetje,eeting}s,
+With the current way DSA works, only one switch port can be used as a 
+CPU port. If we were to remove the status = "disabled" property from 
+port@8 which connects to gmac2, it'd break the communication between the 
+switch and the CPU on the current Linux kernel.
 
-                        Geert
+If a new driver or a feature is introduced, we should update the 
+bindings accordingly afterwards.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+For this reason, I don't see an issue with explaining the driver side of 
+it on the commit log for DT bindings.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+DT bindings are not exactly static either. Someone could want to use 
+gmac2 instead of gmac1. In that case, I think they should change the 
+bindings themselves as it's for their own use.
+
+By the way, gmac0 would be wired to port@5 but since port@5 is wired to 
+realtek switch's port@6 instead, it's actually non-functional.
+
+Arınç
