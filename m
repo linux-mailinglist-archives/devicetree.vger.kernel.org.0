@@ -2,59 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1648F4EF780
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0C964EF7A6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245712AbiDAQER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 12:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44932 "EHLO
+        id S1349008AbiDAQLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 12:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241829AbiDAP5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:57:24 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F8929341C;
-        Fri,  1 Apr 2022 08:28:15 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id CD6A51F47CE7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648826893;
-        bh=0+Qy6DqL3DzylnNPp1BpGcwg8sHoEzTpg9tt+67cetk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oaadmmE9l2jBobRHcuF+5apmP/oV1M+yQTgaQXh/490G5z2SvOZp7QLQgtzJgg9LJ
-         kSSRoR/nvZ9CwLp45EzhG+gsEx3koHVUSuHt1JW59/t+bmT8pXUVS2QmnY9xmsUTpC
-         X1WV89JttUN6+Th3tQeeGyVC1YwWsXUAEy4E+P0Xan4XfKtfPr4ZtwGN333euh6WrD
-         N3loL42J+dcFCtia8Qc/ofLuqb3G3buKPaL9WdfbuFavNDoIIMZDK0K3IoFi0LcBXI
-         AskMmI0jNnVIhTdrzAIT7CJxNibpnxmJUqkKLyDRo57zBD7XpsP3QwbD56h1ddTp85
-         QH8WLFv/Q71Kg==
-Received: by mercury (Postfix, from userid 1000)
-        id 2CCD61060582; Fri,  1 Apr 2022 17:28:11 +0200 (CEST)
-Date:   Fri, 1 Apr 2022 17:28:11 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        - <patches@opensource.cirrus.com>, linux-media@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix 'enum' lists with duplicate entries
-Message-ID: <20220401152811.uv3wm55byrmk4gqc@mercury.elektranox.org>
-References: <20220401141247.2993925-1-robh@kernel.org>
+        with ESMTP id S1352262AbiDAQLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 12:11:05 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A862CA6
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 08:37:17 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id bh17so6639202ejb.8
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 08:37:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5lN//07PpztSXdT/l1Q7wLTBSohg5QXeX41GRcjjA3w=;
+        b=Vo0NRVJYkpcefUMBQNkTXCviEnXt1+lBlj4Abpz62bbTjfS0Sn+p0Pk39BMnELOYuM
+         6oEErk+Ps2ZVnkRzixmeXtsSM/1Xdr7hYOxDzCCt2rqDILc+8TZM0bug69MvwshLKCkF
+         O7gPC+UAFdKHU5A9aTWAckLrCJZ1J8x5xDXJlws+iBjLYBqBB4LBXfkWK6Lol4GJCAC3
+         E0noTsYOaokePlBZvCvMIJNR69pCZ9jq8Im39RpvGdxjUf7uIqufPhL6Fhr/vpZZSolU
+         XdcF26Zm/HQF+k7io+1KQQ6txw65+jf7I5goC/Ah1rff8x7V3yvbfalBJz9isIsfpbGW
+         OMUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5lN//07PpztSXdT/l1Q7wLTBSohg5QXeX41GRcjjA3w=;
+        b=V48hnqDtuIFTQv93pgKEs/X6x6U7zByzJqObynyF7Okf9/69kRC8YYFZWokOHyDakW
+         J5MePmHdZd7pQBuWUzRW0wSePAYRfbwaAck0dm5LNzB1hgXeX6xPf2/pVauCHB7KYed/
+         CE9L9nZnJw98kTtgAD9G9oyBRJyLFgmFfVXbuhLXo0reRkpDBRPDcEmR9FkortsnUau1
+         8vOiaAxYq1dP2tfuFa8P5eYTnytPUQvs1ePgeIiu19/j4mZeb4l/Vbf+mJzyrRIQgJMR
+         pP6ZnccE00W2PYIm1cyyb8pKsijP60RLoF7VB5lPegCLvVXbGIP64nxrL4OdcfPYrRq1
+         2trA==
+X-Gm-Message-State: AOAM531Dv6YdQND59c76VsyIplLJXNjWZVrKFo+ZmK2l++kHe9yqH0DV
+        KduLTrhenb3H2zprHZzqTkCSvXBEqsdzqKzw
+X-Google-Smtp-Source: ABdhPJzn/CErWgq1p027Y/X/ko5lxEZxVAH5Rdh4zhZYEfDKLon+ss8aVA0mnp2U936AqAjG4TNByA==
+X-Received: by 2002:a17:906:1615:b0:6bb:150f:adf8 with SMTP id m21-20020a170906161500b006bb150fadf8mr358897ejd.272.1648827436142;
+        Fri, 01 Apr 2022 08:37:16 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id dm8-20020a170907948800b006dfe5b317d3sm1150187ejc.75.2022.04.01.08.37.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Apr 2022 08:37:15 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] regulator: dt-bindings: richtek,rt4801: minor comments adjustments
+Date:   Fri,  1 Apr 2022 17:37:11 +0200
+Message-Id: <20220401153711.1057853-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gjfd7i3tbgmmz62e"
-Content-Disposition: inline
-In-Reply-To: <20220401141247.2993925-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,154 +71,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Correct grammar in 'enable-gpios' description and remove useless comment
+about regulator nodes, because these are obvious from patternProperties.
 
---gjfd7i3tbgmmz62e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hi,
+---
 
-On Fri, Apr 01, 2022 at 09:12:47AM -0500, Rob Herring wrote:
-> There's no reason to list the same value twice in an 'enum'. Fix all the
-> occurrences in the tree. A meta-schema change will catch future ones.
->=20
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Jonathan Hunter <jonathanh@nvidia.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Charles Keepax <ckeepax@opensource.cirrus.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Yunfei Dong <yunfei.dong@mediatek.com>
-> Cc: - <patches@opensource.cirrus.com>
-> Cc: linux-media@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+Changes since v1:
+1. Correct also "spefied"
+---
+ .../bindings/regulator/richtek,rt4801-regulator.yaml       | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
+index 235e593b3b2c..4a4dfa7d9d09 100644
+--- a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
+@@ -17,9 +17,6 @@ description: |
+   Datasheet is available at
+   https://www.richtek.com/assets/product_file/RT4801H/DS4801H-00.pdf
+ 
+-#The valid names for RT4801 regulator nodes are:
+-#DSVP, DSVN
+-
+ properties:
+   compatible:
+     enum:
+@@ -33,8 +30,8 @@ properties:
+       The first one is ENP to enable DSVP, and second one is ENM to enable DSVN.
+       Number of GPIO in the array list could be 1 or 2.
+       If only one gpio is specified, only one gpio used to control ENP/ENM.
+-      Else both are spefied, DSVP/DSVN could be controlled individually.
+-      Othersie, this property not specified. treat both as always-on regulator.
++      Else if both are specified, DSVP/DSVN could be controlled individually.
++      If this property not specified, treat both as always-on regulators.
+     minItems: 1
+     maxItems: 2
+ 
+-- 
+2.32.0
 
--- Sebastian
-
-> There's also one other occurrence in snps,dwmac.yaml I didn't fix as=20
-> there's a patch[1] for it which prompted this patch.
->=20
-> Rob
->=20
-> [1] https://lore.kernel.org/r/20220401030847epcms1p8cf7a8e1d8cd7d325dacf3=
-0f78da36328@epcms1p8
->=20
->  .../bindings/arm/tegra/nvidia,tegra20-pmc.yaml        |  1 -
->  Documentation/devicetree/bindings/bus/ti-sysc.yaml    |  1 -
->  .../bindings/media/mediatek,vcodec-encoder.yaml       |  1 -
->  .../devicetree/bindings/pinctrl/cirrus,madera.yaml    | 11 +++++------
->  .../devicetree/bindings/power/supply/bq2415x.yaml     |  1 -
->  5 files changed, 5 insertions(+), 10 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-p=
-mc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.ya=
-ml
-> index 0afec83cc723..564ae6aaccf7 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
-> @@ -13,7 +13,6 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> -      - nvidia,tegra20-pmc
->        - nvidia,tegra20-pmc
->        - nvidia,tegra30-pmc
->        - nvidia,tegra114-pmc
-> diff --git a/Documentation/devicetree/bindings/bus/ti-sysc.yaml b/Documen=
-tation/devicetree/bindings/bus/ti-sysc.yaml
-> index bd40213302da..fced4082b047 100644
-> --- a/Documentation/devicetree/bindings/bus/ti-sysc.yaml
-> +++ b/Documentation/devicetree/bindings/bus/ti-sysc.yaml
-> @@ -34,7 +34,6 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> -              - ti,sysc-omap2
->                - ti,sysc-omap2
->                - ti,sysc-omap4
->                - ti,sysc-omap4-simple
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-enco=
-der.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.=
-yaml
-> index e7b65a91c92c..df7df06c378f 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> @@ -106,7 +106,6 @@ allOf:
->            enum:
->              - mediatek,mt8173-vcodec-enc
->              - mediatek,mt8192-vcodec-enc
-> -            - mediatek,mt8173-vcodec-enc
-> =20
->      then:
->        properties:
-> diff --git a/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml=
- b/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
-> index 8a90d8273767..6bd42e43cdab 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
-> @@ -48,13 +48,12 @@ properties:
->                Name of one pin group to configure.
->              enum: [ aif1, aif2, aif3, aif4, mif1, mif2, mif3, pdmspk1,
->                      pdmspk2, dmic4, dmic5, dmic6, gpio1, gpio2, gpio3,
-> -                    gpio4, gpio5, gpio6, gpio7, gpio7, gpio8, gpio9,
-> +                    gpio4, gpio5, gpio6, gpio7, gpio8, gpio9,
->                      gpio10, gpio11, gpio12, gpio13, gpio14, gpio15,
-> -                    gpio16, gpio17, gpio17, gpio18, gpio19, gpio20,
-> -                    gpio21, gpio22, gpio23, gpio24, gpio25, gpio26,
-> -                    gpio27, gpio27, gpio28, gpio29, gpio30, gpio31,
-> -                    gpio32, gpio33, gpio34, gpio35, gpio36, gpio37,
-> -                    gpio37, gpio38, gpio39 ]
-> +                    gpio16, gpio17, gpio18, gpio19, gpio20, gpio21,
-> +                    gpio22, gpio23, gpio24, gpio25, gpio26, gpio27,
-> +                    gpio28, gpio29, gpio30, gpio31, gpio32, gpio33,
-> +                    gpio34, gpio35, gpio36, gpio37, gpio38, gpio39 ]
-> =20
->            function:
->              description:
-> diff --git a/Documentation/devicetree/bindings/power/supply/bq2415x.yaml =
-b/Documentation/devicetree/bindings/power/supply/bq2415x.yaml
-> index f8461f06e6f4..118cf484cc69 100644
-> --- a/Documentation/devicetree/bindings/power/supply/bq2415x.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/bq2415x.yaml
-> @@ -16,7 +16,6 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> -      - ti,bq24150
->        - ti,bq24150
->        - ti,bq24150a
->        - ti,bq24151
-> --=20
-> 2.32.0
->=20
-
---gjfd7i3tbgmmz62e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmJHGggACgkQ2O7X88g7
-+po2uA/+OS0hkCudE7TWE85KDv5+/Qb+6/JFLz20iy0f8rQr3U1VOufXZccdMBmV
-lPY7v8Tzl+P3F2tHUdy1A6MSRvSrfxGQi32YeaSR/jNylRY7Lpmm73psjokmXsX/
-FZZMXB7SvHvSLPqIdfKfs9sxuWjeZqw/YsYTDXHvubTSX5LkDuxx1p9KYYoTtZ5y
-jDDUYqCdc1j8+z6u302ErkzZLLxowhYXlfy5I0D3I9VlVA42X6+gVT6j108fgLMw
-ARg8mB8LrTwigl+qpW4E91pH0IOwwVbyIoUAJOUEQlj2qsAxfxAvNOaAbT5KbRZS
-Tj+4TqPQYM+srE8e4dqKCQHB5GQFqHlgFa4r4ATqaqCddL04Zvl1MhaVqoXIuGL/
-NH28aDPnRib2ZR7JkbAQ77NyLnBFtfEbJ7EU58YeTkD+QWJ41Xj9OzH4oEDdurCx
-ggml7FuQj4LaC4uy4cR2MDyHlsrg2wS24+R9rFeXc47HchTboXS14r+a5fOLetpp
-BydxRULRfek5NWLZZGaWLzZZmWwGgG3/hNeNFXDPazkECoHC6HtfpNGX5XAuR3dx
-/PUycmAYpb2KfL3gVZksITrrAZ2qc3tGJgn//rsmCHcouG1w5Kf9NlvRsCzCUAAY
-gbTebdGk0p0ilzuOB4jo1QTy5xJgR6pUMzCWXigh4jkRzJU2pYI=
-=3CSB
------END PGP SIGNATURE-----
-
---gjfd7i3tbgmmz62e--
