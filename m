@@ -2,80 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7033C4EEA7D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 11:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7835D4EEAB8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 11:49:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344625AbiDAJhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 05:37:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40704 "EHLO
+        id S1344770AbiDAJvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 05:51:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344616AbiDAJhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 05:37:07 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D045FF2D
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 02:35:17 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id a30so3072713ljq.13
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 02:35:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/4FSuKnccX1iFN0uwomkiOn5u1Xbdrve2qg2JRoojKE=;
-        b=VogYOcScEozGo2HMiWfqxuG6WYR1q4RB22WpLk5JKZJ7C7863bdDZMoez1zh52xN3E
-         tQRCs5L9iLeEb3iV/aDNvioJiF6J1FXPf/1x+Jyf0ZnUG8mzmEooJR7j+y5YldogbuP+
-         5ezZ26ojecVxEvsIhBKIacbEiCW3aRA9iQwLnC0eJIRp9QpLT3gCIlLWTVPWekSneKDD
-         gETW8elTB+iNq/ztsFTbH9BsNjgxNo1YX7KDi+JnJHg6QgCVPbLGDuQJi9sf2ve2FCoA
-         TVnlbcWW+EXB4ILmmm8EcrghRQ2R5G/sodiSOxtoOtAHy5iED1RwUgHk4B4qiR9ViDYB
-         1gFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/4FSuKnccX1iFN0uwomkiOn5u1Xbdrve2qg2JRoojKE=;
-        b=4NHwHEdvqxzckMnpHjI6iiyB/KdujxrxoU2sEBwS7nonscOPpr45Q9z+6BFhHkpLxD
-         28S9R1F1BrR/w07qCrs70I2SKkdCjpa3N/q2dD/5yE2NFG9FIOVVFL9LWhaSnA2AWY7i
-         5Pq/rxylJ+fD7VRD6pmqBko2qSeRfh4Z1KCqyD0vdiUDlt6lwp1nIIKTn88KJ0gy/aSf
-         zK4FCf3KV1ID6U3Id1tfe3FMkgXuGuQytK+OPuqeBWkHNJ1YynbB/l2e1tb5/FjWK03r
-         RvXcUHHV/jMPL1MGoaEwLdeSzgkDZTEX333arT841srT/0d+PSC2EGfCdXHXGGXl/x5e
-         doGg==
-X-Gm-Message-State: AOAM532221WGPWgC4XIb3G28aWdUa9RI7caAZP5EHTtLR1E5A1fG8bGX
-        y9tXFPwTcS5AilXBzV0l/iMJP/0mkS5+bfcTMhsklQ==
-X-Google-Smtp-Source: ABdhPJz6psO/sjbUT/j1r3XjHcZRBUCIC5sFVlTg1I2riC4zd4S5suzIVESlXB2FKEJIV3qX81Z8ZtW69b0xCIMwSA8=
-X-Received: by 2002:a2e:8189:0:b0:249:7d3a:ceb0 with SMTP id
- e9-20020a2e8189000000b002497d3aceb0mr12136101ljg.367.1648805715996; Fri, 01
- Apr 2022 02:35:15 -0700 (PDT)
+        with ESMTP id S244173AbiDAJvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 05:51:00 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 026B7506F0
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 02:49:00 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(1179:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 01 Apr 2022 17:46:50 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Fri, 1 Apr 2022 17:47:49 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.018; Fri, 1 Apr 2022 17:47:49 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Russell King - ARM Linux" <linux@armlinux.org.uk>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v12 5/9] clk: Add Sunplus SP7021 clock driver
+Thread-Topic: [PATCH v12 5/9] clk: Add Sunplus SP7021 clock driver
+Thread-Index: AQHYRNqOjCd6CVvOR0G759g8P20c0KzYsc4AgAIYlbA=
+Date:   Fri, 1 Apr 2022 09:47:48 +0000
+Message-ID: <2fa0ce6048f6449d883e2454ceea9540@cqplus1.com>
+References: <cover.1648714851.git.qinjian@cqplus1.com>
+ <fe4f4c3b0c768d1cd66fb648d74fa302e86787c0.1648714851.git.qinjian@cqplus1.com>
+ <CAK8P3a0OGM4aiaE2Nfc=7XGkGwAbnB99-j3PhVUmuA1z2FWeKg@mail.gmail.com>
+In-Reply-To: <CAK8P3a0OGM4aiaE2Nfc=7XGkGwAbnB99-j3PhVUmuA1z2FWeKg@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220329032913.8750-1-axe.yang@mediatek.com> <20220329032913.8750-2-axe.yang@mediatek.com>
- <CAPDyKFqoTN1pF-L6qCHxpdMCmPtHP0aHHaDURN2QJsN3v+wZBw@mail.gmail.com>
-In-Reply-To: <CAPDyKFqoTN1pF-L6qCHxpdMCmPtHP0aHHaDURN2QJsN3v+wZBw@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 1 Apr 2022 11:34:39 +0200
-Message-ID: <CAPDyKFo_PYc9ofWuXeaE86oK6FqOAnHsH-ZSG58MfNq8nEOVOw@mail.gmail.com>
-Subject: Re: [PATCH v9 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
- pinctrls properties
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,45 +65,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Apr 2022 at 11:22, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Tue, 29 Mar 2022 at 05:29, Axe Yang <axe.yang@mediatek.com> wrote:
-> >
-> > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
-> > This feature allow SDIO devices alarm asynchronous interrupt to host
-> > even when host stop providing clock to SDIO card. An extra wakeup
-> > interrupt and pinctrl states for SDIO DAT1 pin state switching are
-> > required in this scenario.
-> >
-> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/mmc/mtk-sd.yaml         | 17 ++++++++++++++++-
-> >  1 file changed, 16 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > index 297ada03e3de..3872a6ce2867 100644
-> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > @@ -69,12 +69,22 @@ properties:
-> >        - const: ahb_cg
-> >
-> >    interrupts:
-> > -    maxItems: 1
-> > +    description:
-> > +      Should at least contain MSDC GIC interrupt. To support SDIO in-band wakeup, an extended
-> > +      interrupt is required and be configured as wakeup source irq.
->
-> If I understand correctly, the extended interrupt (a GPIO irq) may not
-> necessarily share the same interrupt parent as the primary device
-> interrupt.
->
-> Perhaps it's then better to extend this with "interrupts-extended"
-> instead. See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt.
-
-One more thing, looks like using the "interrupt-names" property would
-be good to use too. To easier distinguish the different irqs.
-
-[...]
-
-Kind regards
-Uffe
+PiANCj4gPiArc3RhdGljIGludCBzcF9wbGxfZW5hYmxlKHN0cnVjdCBjbGtfaHcgKmh3KQ0KPiA+
+ICt7DQo+ID4gKyAgICAgICBzdHJ1Y3Qgc3BfcGxsICpjbGsgPSB0b19zcF9wbGwoaHcpOw0KPiA+
+ICsgICAgICAgdW5zaWduZWQgbG9uZyBmbGFnczsNCj4gPiArDQo+ID4gKyAgICAgICBzcGluX2xv
+Y2tfaXJxc2F2ZShjbGstPmxvY2ssIGZsYWdzKTsNCj4gPiArICAgICAgIHdyaXRlbChCSVQoY2xr
+LT5wZF9iaXQgKyAxNikgfCBCSVQoY2xrLT5wZF9iaXQpLCBjbGstPnJlZyk7IC8qIHBvd2VyIHVw
+ICovDQo+ID4gKyAgICAgICBzcGluX3VubG9ja19pcnFyZXN0b3JlKGNsay0+bG9jaywgZmxhZ3Mp
+Ow0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0
+aWMgdm9pZCBzcF9wbGxfZGlzYWJsZShzdHJ1Y3QgY2xrX2h3ICpodykNCj4gPiArew0KPiA+ICsg
+ICAgICAgc3RydWN0IHNwX3BsbCAqY2xrID0gdG9fc3BfcGxsKGh3KTsNCj4gPiArICAgICAgIHVu
+c2lnbmVkIGxvbmcgZmxhZ3M7DQo+ID4gKw0KPiA+ICsgICAgICAgc3Bpbl9sb2NrX2lycXNhdmUo
+Y2xrLT5sb2NrLCBmbGFncyk7DQo+ID4gKyAgICAgICB3cml0ZWwoQklUKGNsay0+cGRfYml0ICsg
+MTYpLCBjbGstPnJlZyk7IC8qIHBvd2VyIGRvd24gKi8NCj4gPiArICAgICAgIHNwaW5fdW5sb2Nr
+X2lycXJlc3RvcmUoY2xrLT5sb2NrLCBmbGFncyk7DQo+ID4gK30NCj4gDQo+IFdoYXQgZG9lcyB0
+aGUgc3BpbmxvY2sgYWN0dWFsbHkgcHJvdGVjdCBoZXJlPyBBcyB3cml0ZWwoKSBpcyBwb3N0ZWQs
+IGl0DQo+IGNhbiBhbHJlYWR5IGxlYWsgb2Ygb2YgdGhlIGxvY2ssIGFuZCB0aGUgaW5wdXRzIHdv
+dWxkIGFwcGVhciB0byBiZQ0KPiBjb25zdGFudC4NCj4gDQoNClRoZXNlIGNvZGUgaXMgcmVmZXJl
+ZCBmcm9tIG90aGVyIGNsayBkcml2ZXIuDQpCdXQsIG90aGVyIGRyaXZlciBuZWVkIHJlYWQgdGhl
+biB3cml0ZSwgc28gbmVlZCBsb2NrIHByb3RlY3RlZC4NCk91ciAgSFcgaXMgSElXT1JEX01BU0tF
+RF9SRUcsIG1lYW5zIG1vZGlmeSBiaXRzIG5vIG5lZWQgdG8gcmVhZCwganVzdCAxIHdyaXRlIG9u
+bHkuDQpTbywgdGhlIGxvY2sgaXMgdXNlbGVzcy4NCkRpZCBJIHJpZ2h0Pw0KDQo+ID4gKyAgICAg
+ICAvKiBUaGlzIG1lbW9yeSByZWdpb24gaW5jbHVkZSBtdWx0aSBIVyByZWdzIGluIGRpc2NvbnRp
+bnVvdXMgb3JkZXIuDQo+ID4gKyAgICAgICAgKiBjbGsgZHJpdmVyIHVzZWQgc29tZSBkaXNjb250
+aW51b3VzIGFyZWFzIGluIHRoZSBtZW1vcnkgcmVnaW9uLg0KPiA+ICsgICAgICAgICogVXNpbmcg
+ZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlKCkgd291bGQgY29uZmxpY3RlZCB3aXRoIG90
+aGVyIGRyaXZlcnMuDQo+ID4gKyAgICAgICAgKi8NCj4gPiArICAgICAgIHJlcyA9IHBsYXRmb3Jt
+X2dldF9yZXNvdXJjZShwZGV2LCBJT1JFU09VUkNFX01FTSwgMCk7DQo+ID4gKyAgICAgICBzcF9j
+bGtfYmFzZSA9IGRldm1faW9yZW1hcChkZXYsIHJlcy0+c3RhcnQsIHJlc291cmNlX3NpemUocmVz
+KSk7DQo+ID4gKyAgICAgICBpZiAoIXNwX2Nsa19iYXNlKQ0KPiA+ICsgICAgICAgICAgICAgICBy
+ZXR1cm4gLUVOWElPOw0KPiANCj4gQ2FuIHlvdSBleHBsYWluIHRoaXMgY29tbWVudCBpbiBtb3Jl
+IGRldGFpbD8gR2VuZXJhbGx5LCB0aGUgJ3JlZycgcHJvcGVydGllcw0KPiBvZiBkcml2ZXJzIHNo
+b3VsZCBub3Qgb3ZlcmxhcCwgc28gaXQgaXMgc3VwcG9zZWQgdG8gYmUgc2FmZSB0byBjYWxsDQo+
+IGRldm1fcGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZSgpIGhlcmUuDQo+IA0KPiBXZSBkaXNjdXNz
+ZWQgdGhpcyBpbiB0aGUgY29udGV4dCBvZiB0aGUgaW9wIGRyaXZlciB0aGF0IGRpZCBoYXZlIG92
+ZXJsYXBwaW5nDQo+IHJlZ2lzdGVycyB3aXRoIHRoaXMgZHJpdmVyLCBhbmQgdGhhdCB3YXMgaW5j
+b3JyZWN0LiBBcmUgdGhlcmUgYW55IG90aGVyIGRyaXZlcnMNCj4gdGhhdCBjb25mbGljdCB3aXRo
+IHRoZSBjbGsgZHJpdmVyPw0KPiANCj4gICAgICAgQXJuZA0KDQpJIG1lYW5zLCBJIG11c3Qgc3Bs
+aXQgdXAgdGhlIG9yaWdpbiByZWcgcmVnaW9uIGludG8gNCBzbWFsbCBwaWVjZXMsDQphbmQgY2Fs
+bCBkZXZtX3BsYXRmb3JtX2lvcmVtYXBfcmVzb3VyY2UoKSA0IHRpbWVzLg0KRGlkIEkgc2hvdWxk
+IGZvbGxvdyB0aGlzIHdheT8NCg==
