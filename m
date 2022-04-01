@@ -2,106 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E55294EFA14
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81AA44EFA18
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:47:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235854AbiDASr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 14:47:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56396 "EHLO
+        id S235316AbiDASsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 14:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235316AbiDASr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:47:57 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0772B1544BC
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 11:46:03 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 348F92F7;
-        Fri,  1 Apr 2022 20:46:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1648838761;
-        bh=bIPnJlMFDVmi0C1I8Q2bPj5LFxQ4imZIJVNx9HE6Nwg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j3/dgBqn91Fd07hpAMTcNUbc3I/u9WoPvb38QJyYB6PVZKVIL5lFU+xd+YH30kjob
-         gskPGn8cDTtBhdk1MzLczSI4ejtjRrdoh1OBIz3SruxITLJV4E8e7MwAmIMXrNwTz1
-         ftDnTnwtRXdLwHlGS4v5exk8Gqc7Oy6gZVu5MxBc=
-Date:   Fri, 1 Apr 2022 21:45:58 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC][PATCH 1/3] dt-bindings: display: panel: mipi-dbi-spi: Make
- width-mm/height-mm mandatory
-Message-ID: <YkdIZhpy6px3Xgk9@pendragon.ideasonboard.com>
-References: <20220401163755.302548-1-marex@denx.de>
- <CAL_JsqKVkc51sXWE6Sh5yHxLX0vJWgFpn8cmjjKSBx4dYzA8qA@mail.gmail.com>
+        with ESMTP id S236332AbiDASsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:48:51 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 458DA220B10
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 11:47:01 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id y38so6567639ybi.8
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 11:47:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KHwVWHL7L6HTe2gQfSQb8Mhf5JWtkQAFwHffatgw3Es=;
+        b=ESJ35r6Soz3GoZhs4/iCaSgJ1H5iixLvtUeVbp8SMsTqOu7sPNt5Pt63aoZtQ9Gcy0
+         SrxH6F5EwyCwASWBNoryIheBo6XtCLv3VCV9FKV6axXrquEegjmORt3OLe2NP+Oh5vMj
+         6eiDCqxJwaDwjbuPyalFin+ZAyfRlCVmq1sfL3jXoMP5dYFk8qt5e6gIbpl6ByJCFHpi
+         45G8Ulfuq6EiLJOh6hKZP5MixWyE236KrdFKFLWFbYskpgpTNs07rfXS1ytSWh61FPTs
+         RbLrApZVP4f1+GphMyt/1nM3/REYmUoXnuKEdx+mQa2n8M5YRkHq1sWe6vCT0GgSCG2g
+         po1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KHwVWHL7L6HTe2gQfSQb8Mhf5JWtkQAFwHffatgw3Es=;
+        b=MpUjeQfVU1zisB9kQNSR42ZM8AUCyoUca/p5qoUxnSMZV+hBLym3AH6EKsHdQps+8B
+         QKAcUHbN1nUsj7bhNiW/65TslfKY0uKuWrQNPyOfTPiYcGYacnQoRCcV1+86kVSMbdCk
+         eQ9AAsU15bFPbbSC/fSvt4mhRTfZQOaL+dwDxFkxJM3toz6yX73LSPeIwD4qwJOX2hpg
+         1NAT+QJdes1zLAlteMxv7UAGlrjlAF3kxIdziblZ8BWIjVhkoFM4znpofxnsjYHBbDKJ
+         0AzVcBTCZNNuVfZSrklQefqtAQVeO/RqWKgO9GPfQYbz2yMZPoVw64dQv5dak8QWr7mg
+         /XdA==
+X-Gm-Message-State: AOAM532R7dd7HYI7XUWEVoawW9Dp5IjkZiXZmvIWZjBqNMJurKTFYrRo
+        hCW8x0l2cEc2JwFjGy3ovYvtfYEHTWNKJwND1jRuKA==
+X-Google-Smtp-Source: ABdhPJyWFhvCTOuWsnUZ1wF2W4+gUa9RiTNz4mEEbStDzWibyXeAUKdg/4Tk05i1j56aFF/Yn/cxNWLVdWmLGZfQZ94=
+X-Received: by 2002:a25:9846:0:b0:61a:3deb:4d39 with SMTP id
+ k6-20020a259846000000b0061a3deb4d39mr10149476ybo.537.1648838820325; Fri, 01
+ Apr 2022 11:47:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKVkc51sXWE6Sh5yHxLX0vJWgFpn8cmjjKSBx4dYzA8qA@mail.gmail.com>
+References: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
+ <20220401151058.fipdax3kvmxknctv@houat>
+In-Reply-To: <20220401151058.fipdax3kvmxknctv@houat>
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Sat, 2 Apr 2022 00:16:48 +0530
+Message-ID: <CA+G9fYu+WddXTb0NcbviUfGQHhsmThssVCafLPw7+nj3JsoFAA@mail.gmail.com>
+Subject: Re: [next] db845c: WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
+ divider_recalc_rate
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        lkft-triage@lists.linaro.org, regressions@lists.linux.dev,
+        gabriel.fernandez@foss.st.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 01, 2022 at 01:36:53PM -0500, Rob Herring wrote:
-> On Fri, Apr 1, 2022 at 11:38 AM Marek Vasut <marex@denx.de> wrote:
+On Fri, 1 Apr 2022 at 20:41, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi,
+>
+> On Thu, Mar 31, 2022 at 05:33:57PM +0530, Naresh Kamboju wrote:
+> > Following kernel warning noticed on db845c while booting linux next-20220331.
 > >
-> > Make the width-mm/height-mm panel properties mandatory
-> > to correctly report the panel dimensions to the OS.
-> 
-> Adding required properties is an ABI break.
-
-Only if drivers don't provide backward compatibility.
-
-There's still the issue of validation warnings of course. We can ensure
-that DT sources in the kernel are updated. For out-of-tree DT, I'll
-argue that a validation warning is a good thing, it will notify that an
-update is needed.
-
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Dmitry Osipenko <digetx@gmail.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Noralf Trønnes <noralf@tronnes.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Robert Foss <robert.foss@linaro.org>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: devicetree@vger.kernel.org
-> > To: dri-devel@lists.freedesktop.org
-> > ---
-> >  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
-> >  1 file changed, 2 insertions(+)
+> > metadata:
+> >   git_ref: master
+> >   git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
+> >   git_sha: fdcbcd1348f4ef713668bae1b0fa9774e1811205
+> >   git_describe: next-20220331
+> >   kernel_version: 5.17.0
+> >   kernel-config: https://builds.tuxbuild.com/278RLnhgJL7XdlJbcbv07jiwbYB/config
 > >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> > index f29789994b18..c2df8d28aaf5 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> > @@ -83,6 +83,8 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - width-mm
-> > +  - height-mm
-> >    - panel-timing
-> >
-> >  unevaluatedProperties: false
+> > Boot log:
+> > [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x517f803c]
+> > [    0.000000] Linux version 5.17.0-next-20220331 (tuxmake@tuxmake)
+> > (aarch64-linux-gnu-gcc (Debian 11.2.0-18) 11.2.0, GNU ld (GNU Binutils
+> > for Debian) 2.38) #1 SMP PREEMPT @1648699852
+> > [    0.000000] Machine model: Thundercomm Dragonboard 845c
+> > <trim>
+> > [    8.131366] ------------[ cut here ]------------
+> > [    8.131374] dsi0_pll_bit_clk: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set
+> > [    8.131387] WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
+> > divider_recalc_rate+0x8c/0xc0
+> > [    8.131398] Modules linked in: qcom_spmi_adc5 snd_soc_sdm845
+> > qcom_vadc_common qcom_spmi_temp_alarm qcom_pon crct10dif_ce rtc_pm8xxx
+> > snd_soc_rt5663 msm snd_soc_qcom_common gpu_sched snd_soc_rl6231
+> > soundwire_bus reset_qcom_pdc drm_dp_helper qcom_camss hci_uart
+> > videobuf2_dma_sg btqca v4l2_fwnode venus_core ath10k_snoc v4l2_async
+> > btbcm ath10k_core i2c_qcom_geni v4l2_mem2mem videobuf2_memops
+> > videobuf2_v4l2 ath bluetooth camcc_sdm845 videobuf2_common
+> > spi_geni_qcom i2c_qcom_cci qcom_rng mac80211 xhci_pci qcom_q6v5_mss
+> > xhci_pci_renesas cfg80211 icc_osm_l3 slim_qcom_ngd_ctrl qcom_wdt
+> > rfkill qrtr lmh pdr_interface display_connector slimbus qcom_q6v5_pas
+> > drm_kms_helper qcom_pil_info qcom_q6v5 qcom_sysmon qcom_common
+> > qcom_glink_smem qmi_helpers drm mdt_loader socinfo rmtfs_mem fuse
+> > [    8.131462] CPU: 5 PID: 8 Comm: kworker/u16:0 Not tainted
+> > 5.17.0-next-20220331 #1
+> > [    8.131465] Hardware name: Thundercomm Dragonboard 845c (DT)
+> > [    8.131467] Workqueue: events_unbound deferred_probe_work_func
+> > [    8.131475] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> > [    8.131477] pc : divider_recalc_rate+0x8c/0xc0
+> > [    8.131479] lr : divider_recalc_rate+0x8c/0xc0
+> > [    8.131481] sp : ffff8000080936c0
+> > [    8.131482] x29: ffff8000080936c0 x28: ffff781940e58d00 x27: ffffa7f3f1bc6d38
+> > [    8.131485] x26: ffffa7f3f1bc6cf8 x25: 0000000000000000 x24: ffffffffffffffff
+> > [    8.131488] x23: ffff781947e8a400 x22: 000000003b9aca50 x21: ffff781940be0800
+> > [    8.131491] x20: ffff781947e8a800 x19: 000000003b9aca50 x18: 0000000000000000
+> > [    8.131494] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
+> > [    8.131497] x14: ffff7819bd718000 x13: 0a74657320746f6e x12: 204f52455a5f574f
+> > [    8.131500] x11: 4c4c415f52454449 x10: 5649445f4b4c4320 x9 : ffffa7f3f011de84
+> > [    8.131502] x8 : 445f4b4c4320646e x7 : 6120726f73697669 x6 : 0000000000000001
+> > [    8.131505] x5 : ffffa7f3f288f000 x4 : ffffa7f3f288f2d0 x3 : 0000000000000000
+> > [    8.131508] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff7819402c7000
+> > [    8.131511] Call trace:
+> > [    8.131512]  divider_recalc_rate+0x8c/0xc0
+> > [    8.131513]  clk_divider_recalc_rate+0x64/0x90
+> > [    8.131515]  clk_recalc+0x40/0xb0
+> > [    8.131519]  clk_calc_subtree+0x58/0x90
+> > [    8.131521]  clk_calc_subtree+0x70/0x90
+> > [    8.131523]  clk_calc_new_rates+0x150/0x290
+> > [    8.131526]  clk_calc_new_rates+0x100/0x290
+> > [    8.131528]  clk_calc_new_rates+0x100/0x290
+> > [    8.131530]  clk_calc_new_rates+0x100/0x290
+> > [    8.131533]  clk_core_set_rate_nolock+0xa0/0x2a4
+> > [    8.131535]  clk_set_rate_range_nolock.part.0+0xbc/0x2a0
+> > [    8.131538]  __clk_put+0x70/0x140
+> > [    8.131540]  clk_put+0x1c/0x30
+> > [    8.131543]  of_clk_set_defaults+0x140/0x3c0
+> > [    8.131546]  platform_probe+0x48/0xf0
+> > [    8.131548]  really_probe+0x184/0x3d0
+> > [    8.131550]  __driver_probe_device+0x11c/0x190
+> > [    8.131553]  driver_probe_device+0x44/0xf4
+> > [    8.131556]  __device_attach_driver+0xa4/0x140
+> > [    8.131558]  bus_for_each_drv+0x84/0xe0
+> > [    8.131561]  __device_attach+0xe4/0x1c0
+> > [    8.131563]  device_initial_probe+0x20/0x30
+> > [    8.131565]  bus_probe_device+0xa4/0xb0
+> > [    8.131567]  deferred_probe_work_func+0xa8/0xfc
+> > [    8.131570]  process_one_work+0x1dc/0x450
+> > [    8.131575]  worker_thread+0x154/0x450
+> > [    8.131577]  kthread+0x100/0x110
+> > [    8.131579]  ret_from_fork+0x10/0x20
+> > [    8.131584] ---[ end trace 0000000000000000 ]---
+> > [    8.131588] ------------[ cut here ]------------
+>
+> I'm not sure if it's feasible, but if it is, it looks like something
+> that could be fixed by the patch pasted here:
+>
+> https://lore.kernel.org/linux-clk/20220401122736.5yvanksa4pla7uql@houat/
+> Could you test it?
 
--- 
-Regards,
+I have tested the single line patch and reported problems not fixed.
 
-Laurent Pinchart
+
+--->8---
+
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index 91f863b7a824..ee5a0223e47d 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -2599,6 +2599,8 @@ static int clk_core_set_parent_nolock(struct
+clk_core *core,
+  } else {
+  __clk_recalc_rates(core, POST_RATE_CHANGE);
+  __clk_recalc_accuracies(core);
++
++ core->req_rate = core->rate;
+  }
+
+
+- Naresh
