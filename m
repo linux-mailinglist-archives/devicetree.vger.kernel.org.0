@@ -2,57 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F8904EFA22
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:48:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A6F4EFA28
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:50:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344949AbiDASuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 14:50:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36668 "EHLO
+        id S244608AbiDASvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 14:51:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351387AbiDASuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:50:24 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4CA63DDFC
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 11:48:33 -0700 (PDT)
+        with ESMTP id S233785AbiDASvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:51:49 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9D134661
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 11:50:00 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1A8D62F7;
-        Fri,  1 Apr 2022 20:48:31 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9CF072F7;
+        Fri,  1 Apr 2022 20:49:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1648838911;
-        bh=dujnelcPNk6p4CPVgNhMrG7u9/pxO/a8Ef1tc/FG5g8=;
+        s=mail; t=1648838998;
+        bh=QY1TllLAVyjYuESIhQkEahZ1N+amExQqInuVbGhDYQg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C448RAHkb851knPnWOoU22kqCqcMUdrSIT3Y4q7CH3s994gbPtVuGPfDqeLYp4+zd
-         utH2X1f/E1dP4O4zB4ACZY6bxCJ5dRmH75CcgMQSHj1LFRpwOsuhtH8vvqrRQ2LFvf
-         wlEg+JOPFA2JZfVDZ//EBsfNPkmVMedLFeYNLoPY=
-Date:   Fri, 1 Apr 2022 21:48:28 +0300
+        b=p6V5J2jdAcj9Q5bYxkybypKGpUpEEExdAJpt9+tqYtTjNrID/OQL743BWhWLnbNNo
+         h6TkzypVnwnXhHJkqYnFDtMPVY+rLrSnrXll1kkUjUJqvo/tHCavFMokzqMFwH9MTX
+         ArY44XwjWcaYLaT2fv/cvamZoDIew0v3xHPFzxVA=
+Date:   Fri, 1 Apr 2022 21:49:56 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>, Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Robert Foss <robert.foss@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
- port for DSI devices
-Message-ID: <YkdI/BSp/lvKYRjO@pendragon.ideasonboard.com>
-References: <20220323154823.839469-1-maxime@cerno.tech>
- <YkY+1IZtQ8oSi7wR@robh.at.kernel.org>
- <b3dcf3fe-63a0-fbef-a3c4-f42e8cd395fe@denx.de>
- <Ykc3wm5pqJIA1jCn@robh.at.kernel.org>
- <1fddec5f-5fb3-4ea0-a1e5-9d1b9e54de81@denx.de>
- <CAL_JsqLmin2qXdeNrvraAf=fGzttOAYxwFCUSbC5TeHYaN+LhQ@mail.gmail.com>
- <30ea889f-f65e-e887-e230-935d6207c919@denx.de>
- <CAL_JsqLHsZW0DJNDxKNApk1AKo=91JYnTNVvemF4iCkyYq88bQ@mail.gmail.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC][PATCH 3/3] drm/panel: lvds: Drop duplicate
+ width-mm/height-mm check
+Message-ID: <YkdJVMizZ5mvmPSn@pendragon.ideasonboard.com>
+References: <20220401163755.302548-1-marex@denx.de>
+ <20220401163755.302548-3-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLHsZW0DJNDxKNApk1AKo=91JYnTNVvemF4iCkyYq88bQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220401163755.302548-3-marex@denx.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -62,70 +55,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 01, 2022 at 01:33:15PM -0500, Rob Herring wrote:
-> On Fri, Apr 1, 2022 at 1:25 PM Marek Vasut wrote:
-> > On 4/1/22 20:21, Rob Herring wrote:
-> > > On Fri, Apr 1, 2022 at 1:06 PM Marek Vasut wrote:
-> > >> On 4/1/22 19:34, Rob Herring wrote:
-> > >>> On Fri, Apr 01, 2022 at 03:22:19AM +0200, Marek Vasut wrote:
-> > >>>> On 4/1/22 01:52, Rob Herring wrote:
-> > >>>>> On Wed, 23 Mar 2022 16:48:23 +0100, Maxime Ripard wrote:
-> > >>>>>> MIPI-DSI devices, if they are controlled through the bus itself, have to
-> > >>>>>> be described as a child node of the controller they are attached to.
-> > >>>>>>
-> > >>>>>> Thus, there's no requirement on the controller having an OF-Graph output
-> > >>>>>> port to model the data stream: it's assumed that it would go from the
-> > >>>>>> parent to the child.
-> > >>>>>>
-> > >>>>>> However, some bridges controlled through the DSI bus still require an
-> > >>>>>> input OF-Graph port, thus requiring a controller with an OF-Graph output
-> > >>>>>> port. This prevents those bridges from being used with the controllers
-> > >>>>>> that do not have one without any particular reason to.
-> > >>>>>>
-> > >>>>>> Let's drop that requirement.
-> > >>>>>>
-> > >>>>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > >>>>>> ---
-> > >>>>>>     .../devicetree/bindings/display/bridge/chipone,icn6211.yaml      | 1 -
-> > >>>>>>     .../devicetree/bindings/display/bridge/toshiba,tc358762.yaml     | 1 -
-> > >>>>>>     2 files changed, 2 deletions(-)
-> > >>>>>>
-> > >>>>>
-> > >>>>> I tend to agree with port@0 not being needed and really like
-> > >>>>> consistency.
-> > >>>>
-> > >>>> The consistent thing to do would be to always use port@0 and OF graph, no ?
-> > >>>
-> > >>> I guess it depends how wide our scope for consistency is. Just DSI bus
-> > >>> controlled bridges? DSI panels? All bridges and panels? Any panel
-> > >>> without a control interface has the same dilemma as those can be a child
-> > >>> of the display controller (or bridge) and not even use OF graph.
-> > >>
-> > >> I would likely opt for the OF graph in all cases, panels, bridges,
-> > >> controllers. Then it would be consistent.
-> > >>
-> > >>> All simple panels don't require 'port' either. That's presumably only
-> > >>> consistent because we made a single schema. I'd assume 'non-simple'
-> > >>> panels with their own schema are not consistent.
-> > >>
-> > >> Maybe we would start requiring that port even for simple panels ?
-> > >> The port is physically there on that panel after all.
-> > >
-> > > Fix this in all the dts files and then I'll agree. Though I think this
-> > > ship has already sailed. I'd like to someday get to platforms without
-> > > warnings and not just keep adding new warnings.
-> >
-> > I doubt we can fix existing DTs, but can we at least require it for new
-> > DTs ?
-> 
-> We don't have any way to do that currently and get to warning free for
-> all DTs. We'd need to be able to disable specific checks for specific
-> DTs. I've thought about it, but haven't come up with a way to do it.
+Hi Marek,
 
-I think Marek may have meant new bindings. While I do agree that
-inconsistencies in sources can cause new submissions to blindly copy
-mistakes, it shouldn't be a reason in itself to carry historical binding
-design mistakes in new bindings.
+Thank you for the patch.
+
+On Fri, Apr 01, 2022 at 06:37:55PM +0200, Marek Vasut wrote:
+> The of_get_drm_panel_display_mode() now does check for
+> presence of width-mm/height-mm DT properties, drop the
+> duplicate check here.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Dmitry Osipenko <digetx@gmail.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Noralf Trønnes <noralf@tronnes.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+assuming patches 1/3 and 2/3 get accepted.
+
+> ---
+>  drivers/gpu/drm/panel/panel-lvds.c | 12 ------------
+>  1 file changed, 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-lvds.c b/drivers/gpu/drm/panel/panel-lvds.c
+> index eca067e78579..f11252fb00fe 100644
+> --- a/drivers/gpu/drm/panel/panel-lvds.c
+> +++ b/drivers/gpu/drm/panel/panel-lvds.c
+> @@ -128,18 +128,6 @@ static int panel_lvds_parse_dt(struct panel_lvds *lvds)
+>  		return ret;
+>  	}
+>  
+> -	if (lvds->dmode.width_mm == 0) {
+> -		dev_err(lvds->dev, "%pOF: invalid or missing %s DT property\n",
+> -			np, "width-mm");
+> -		return -ENODEV;
+> -	}
+> -
+> -	if (lvds->dmode.height_mm == 0) {
+> -		dev_err(lvds->dev, "%pOF: invalid or missing %s DT property\n",
+> -			np, "height-mm");
+> -		return -ENODEV;
+> -	}
+> -
+>  	of_property_read_string(np, "label", &lvds->label);
+>  
+>  	ret = drm_of_lvds_get_data_mapping(np);
 
 -- 
 Regards,
