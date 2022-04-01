@@ -2,226 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D65E94EF735
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BD984EF742
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346020AbiDAPzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 11:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38860 "EHLO
+        id S1349273AbiDAPzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 11:55:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355275AbiDAPhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:37:33 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E35B76A023;
-        Fri,  1 Apr 2022 08:11:03 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 10C1E3201FCD;
-        Fri,  1 Apr 2022 11:11:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Fri, 01 Apr 2022 11:11:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; bh=85vYE7geyFacYR8Bxp5rx99f4lvCAgcFm8Mv3d
-        x7Et0=; b=uqN93OsRY4pv8Qlr/shSQR72EtAJvueZ4TOqtxSPxzqVAPgyt85kgc
-        cpMk5Lr8S1rzv2WZwkk3w2+5YNXaJJVfFw/Z+g6H0TTQC0S+SfnN1f1weInrqNn1
-        KEFnLK1tcldUUraA3PQwMEtGkjGb7wzO1VfyArh/PrMIVe173PfI5PTfr5VR1m65
-        IXRDtfnn9VU7v2+08pjeE2yZVs53uErgnIxWwQT3souvEkpongoI6yWYKgUnW8at
-        Of5GBu4yewyL3p+ObxO3PlovJ61Fn5IJpaKZeF5ZAxHYn7E6AVppyvn4qex72eQo
-        1fDd/bToXqZfaIngYJNGTvUNdQ9Pez0g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=85vYE7geyFacYR8Bx
-        p5rx99f4lvCAgcFm8Mv3dx7Et0=; b=YzOT3Ye3jL23wTFhiPMZJJ7XWXtE5Si61
-        9RgwF0BkNxIEmWBbxNzStCCcf/1J4JBs/VdstTG86BtsK3sbtQdop5eDQHNc9TVE
-        zyWBe3I4cxJ6fRuKvcyRUVc1SbUYBabsI4wCpkV5lkg3I6qqqV5oZ6csy1B5L6D3
-        px3EAXXZVY+YdzdSuuy//l9zQQf3hzbbKqFkeV3fzyP9YkBaksjtAcvMtdmpV54I
-        Lbo2sso+eyfTh4wLmORkqKzyXxqDMKS1qsRRKfdVfIorUKGJ7TfczSThkOzkftLK
-        M0HuO8F/DggXrRRU/epXiT5/drz11Y5IfPVM9Q5iCKdThC1V4QjeQ==
-X-ME-Sender: <xms:BBZHYtDBn6wWaMWqZOdMlkJeiLCpB-RBe39EhkuR0RF6lfII6025Pw>
-    <xme:BBZHYriB3FsZBzKU3s1yEkr62J4qyvjJ5i0P6ehGAeYYG6WB7HKnTMrla4R2IEOcx
-    U9W9-xtm6EKMHiXxg4>
-X-ME-Received: <xmr:BBZHYonjblZ8br7N4xFtMF40JIsY1NXrzpUASr_srJhdj0t1hRQFasXFe8X-NY5pVxyLpf_tR_nz0E5tmgaEoDPYhEe1oHuNKULSm2o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeiiedgkeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepffdujefgtefhudelleekffegteejueduudekveffteeuvdehgeefffeutdff
-    jeevnecuffhomhgrihhnpehgihhtlhgrsgdrtghomhdpthhugigsuhhilhgurdgtohhmpd
-    hkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgr
-    ihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:BBZHYnxj00KQNhZOIa2UXOPFEHTYLF9SwXltBLj1a3tul2GjE4Wvxw>
-    <xmx:BBZHYiSI9tnfJfHxZsHMUbH2872XFVhQMZbjpqtfrbdARI9T3yfabA>
-    <xmx:BBZHYqbrXoaCOUK4Bre_ME6PlieSVBTevTYlH3UTsWNkYpggbAYzhA>
-    <xmx:BRZHYnjAd0ulsaL8ThUtEh1UENCL3aCitf3l9-dmJQ_fh062608-dg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 1 Apr 2022 11:11:00 -0400 (EDT)
-Date:   Fri, 1 Apr 2022 17:10:58 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Naresh Kamboju <naresh.kamboju@linaro.org>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        lkft-triage@lists.linaro.org, regressions@lists.linux.dev,
-        gabriel.fernandez@foss.st.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Subject: Re: [next] db845c: WARNING: CPU: 5 PID: 8 at
- drivers/clk/clk-divider.c:139 divider_recalc_rate
-Message-ID: <20220401151058.fipdax3kvmxknctv@houat>
-References: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
+        with ESMTP id S1356832AbiDAPh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:37:59 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6E31FE55D
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 08:12:00 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id p15so6489908ejc.7
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 08:12:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=bK5zN02piKxWIk/6UMJiGgRQ3Uln4tKl+u+3PJjeJ9U=;
+        b=PwOjW5VXNmA6ij5Ch2hbqeW4H0bcrVSkLBzXuMazW+XksQN7k4QMIgDB6sqj/oCgtH
+         75OctHwFONeWYEXAekLgTKRRvPmLiQwqxNBfXmQXoIF8nHo197g1p0jCbCzey+BdRRUz
+         Bjdr7LHTn7e1R7dk6z1JmrCiRH+vGfvnISC7Gqeu1KpvWVAF+WodZHsC46Cd17YoBZDO
+         Yrz1izCJyDs0eTwe8Pl0GlquegxPbDhx+UG4es9QAGsKjaAUmgiRJKuCTn3eWUOhJ1zA
+         cHj0HlZtiv8eJmaI2TWNfALpSSR7HtX5jffZCdybyGq6E5UFxr9MplficuH58Xv4IZDE
+         n4dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=bK5zN02piKxWIk/6UMJiGgRQ3Uln4tKl+u+3PJjeJ9U=;
+        b=uq91IcrozJnAmJsftam8u9R18vk0f2JdhLwhnNeAE5+ch13zul5nHSarvXFHRARNbb
+         1Mhkg0dvyYpyx7aq6xkKmt4urlAwPFhzQrLUGymqrxLK4i6yAd7XTiOVMbhvCy45F0PX
+         A1dvCkNRZMrWXvoJMc83mPcTrvhHZJdYdhQBqUfTFuSAiOi8gMTfCeCs5YfaR7+Xp4w+
+         yDIJ/99KNeK3HhV/Nq/ODnq7HKvrelewPmOk+L6BeiHgE0V7FvBHWW1QvYQF9GT3NRNR
+         2bjqE1IUNuSII5o8FMvVClhznSBNl2pFSXXs1hsomA09JJ6D+ih5rg6WBmXSHDQh7Scz
+         mk3w==
+X-Gm-Message-State: AOAM532U9J3/yD71k3m+Q5jg4+Mz9Go1jkAsAzySjvQiW5uwWorEE/eZ
+        zlOTgl37aSiTVL7L1cst0iQy0A==
+X-Google-Smtp-Source: ABdhPJwHJI71DQg3Z7PxDw693WJbmBUCgHeXgg4AbrZI3L/uv740/kFBf4B4GQhWCdHKEhkuwlLA7A==
+X-Received: by 2002:a17:907:6d19:b0:6db:89c8:52e3 with SMTP id sa25-20020a1709076d1900b006db89c852e3mr238932ejc.754.1648825918964;
+        Fri, 01 Apr 2022 08:11:58 -0700 (PDT)
+Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id e11-20020a50becb000000b0041b64129200sm1352312edk.50.2022.04.01.08.11.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Apr 2022 08:11:58 -0700 (PDT)
+Message-ID: <b035194e-c27f-ca23-cdb9-8d0dc38f6e5e@linaro.org>
+Date:   Fri, 1 Apr 2022 17:11:57 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="25docxotcljt756a"
-Content-Disposition: inline
-In-Reply-To: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3] dt-bindings: gpio: add common consumer GPIO lines
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20220401072714.106403-1-krzysztof.kozlowski@linaro.org>
+ <1648818806.914066.2864970.nullmailer@robh.at.kernel.org>
+ <2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org>
+ <CAL_JsqJxZZVpregyGK93oKd6KMfhGXVjNYWYhoUZiPJXjELTxQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_JsqJxZZVpregyGK93oKd6KMfhGXVjNYWYhoUZiPJXjELTxQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/04/2022 17:01, Rob Herring wrote:
+> On Fri, Apr 1, 2022 at 8:27 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 01/04/2022 15:13, Rob Herring wrote:
+>>> On Fri, 01 Apr 2022 09:27:14 +0200, Krzysztof Kozlowski wrote:
+>>>> Typical GPIO lines like enable, powerdown, reset or wakeup are not
+>>>> documented as common, which leads to new variations of these (e.g.
+>>>> pwdn-gpios).  Add a common schema which serves also as a documentation
+>>>> for preferred naming.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>
+>>>> ---
+>>>>
+>>>> Changes since v2:
+>>>> 1. Correct email.
+>>>>
+>>>> Changes since v1:
+>>>> 1. Select-true, add maxItems and description for each entry (Rob).
+>>>> 2. Mention ACTIVE_LOW in bindings description (Linus).
+>>>> 3. Add allOf for pwrseq reset-gpios case.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>  .../bindings/gpio/gpio-consumer-common.yaml   | 64 +++++++++++++++++++
+>>>>  1 file changed, 64 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+>>>>
+>>>
+>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>
+>>> yamllint warnings/errors:
+>>>
+>>> dtschema/dtc warnings/errors:
+>>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.example.dt.yaml: rt4801@73: enable-gpios: [[4294967295, 2, 0], [4294967295, 3, 0]] is too long
+>>>       From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+>>>
+>>
+>> Hi Rob,
+>>
+>> With v1, you proposed to use maxItems for all these standard gpios, but
+>> as we see here there are two exceptions:
+>> 1. pwrseq might have up to 32 reset-gpios,
+>> 2. richtek,rt4801 uses up to 2 enable-gpios.
+> 
+> There's always an outlier...
+> 
+>> One way is to add exceptions in gpio-consumer-common.yaml, like I did
+>> for reset-gpios and pwrseq. However this scales poor if more of such
+>> usages appear.
+> 
+> I'd reject any new cases, but even just 2 I don't really like.
 
---25docxotcljt756a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The richtek,rt4801 enable-gpios are for controlling two separate
+regulators, so it should have been under regulator subnodes/children.
+Some other regulators follow this pattern, so only this one is done that
+way.
 
-Hi,
+That driver could be converted to enable-gpios per regulator, so if you
+are sure about rejection of new cases, how about keeping current
+exceptions in allOf:if?
 
-On Thu, Mar 31, 2022 at 05:33:57PM +0530, Naresh Kamboju wrote:
-> Following kernel warning noticed on db845c while booting linux next-20220=
-331.
->=20
-> metadata:
->   git_ref: master
->   git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
->   git_sha: fdcbcd1348f4ef713668bae1b0fa9774e1811205
->   git_describe: next-20220331
->   kernel_version: 5.17.0
->   kernel-config: https://builds.tuxbuild.com/278RLnhgJL7XdlJbcbv07jiwbYB/=
-config
->=20
-> Boot log:
-> [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x517f803c]
-> [    0.000000] Linux version 5.17.0-next-20220331 (tuxmake@tuxmake)
-> (aarch64-linux-gnu-gcc (Debian 11.2.0-18) 11.2.0, GNU ld (GNU Binutils
-> for Debian) 2.38) #1 SMP PREEMPT @1648699852
-> [    0.000000] Machine model: Thundercomm Dragonboard 845c
-> <trim>
-> [    8.131366] ------------[ cut here ]------------
-> [    8.131374] dsi0_pll_bit_clk: Zero divisor and CLK_DIVIDER_ALLOW_ZERO =
-not set
-> [    8.131387] WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
-> divider_recalc_rate+0x8c/0xc0
-> [    8.131398] Modules linked in: qcom_spmi_adc5 snd_soc_sdm845
-> qcom_vadc_common qcom_spmi_temp_alarm qcom_pon crct10dif_ce rtc_pm8xxx
-> snd_soc_rt5663 msm snd_soc_qcom_common gpu_sched snd_soc_rl6231
-> soundwire_bus reset_qcom_pdc drm_dp_helper qcom_camss hci_uart
-> videobuf2_dma_sg btqca v4l2_fwnode venus_core ath10k_snoc v4l2_async
-> btbcm ath10k_core i2c_qcom_geni v4l2_mem2mem videobuf2_memops
-> videobuf2_v4l2 ath bluetooth camcc_sdm845 videobuf2_common
-> spi_geni_qcom i2c_qcom_cci qcom_rng mac80211 xhci_pci qcom_q6v5_mss
-> xhci_pci_renesas cfg80211 icc_osm_l3 slim_qcom_ngd_ctrl qcom_wdt
-> rfkill qrtr lmh pdr_interface display_connector slimbus qcom_q6v5_pas
-> drm_kms_helper qcom_pil_info qcom_q6v5 qcom_sysmon qcom_common
-> qcom_glink_smem qmi_helpers drm mdt_loader socinfo rmtfs_mem fuse
-> [    8.131462] CPU: 5 PID: 8 Comm: kworker/u16:0 Not tainted
-> 5.17.0-next-20220331 #1
-> [    8.131465] Hardware name: Thundercomm Dragonboard 845c (DT)
-> [    8.131467] Workqueue: events_unbound deferred_probe_work_func
-> [    8.131475] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
-E=3D--)
-> [    8.131477] pc : divider_recalc_rate+0x8c/0xc0
-> [    8.131479] lr : divider_recalc_rate+0x8c/0xc0
-> [    8.131481] sp : ffff8000080936c0
-> [    8.131482] x29: ffff8000080936c0 x28: ffff781940e58d00 x27: ffffa7f3f=
-1bc6d38
-> [    8.131485] x26: ffffa7f3f1bc6cf8 x25: 0000000000000000 x24: fffffffff=
-fffffff
-> [    8.131488] x23: ffff781947e8a400 x22: 000000003b9aca50 x21: ffff78194=
-0be0800
-> [    8.131491] x20: ffff781947e8a800 x19: 000000003b9aca50 x18: 000000000=
-0000000
-> [    8.131494] x17: 0000000000000000 x16: 0000000000000000 x15: 000000000=
-0000000
-> [    8.131497] x14: ffff7819bd718000 x13: 0a74657320746f6e x12: 204f52455=
-a5f574f
-> [    8.131500] x11: 4c4c415f52454449 x10: 5649445f4b4c4320 x9 : ffffa7f3f=
-011de84
-> [    8.131502] x8 : 445f4b4c4320646e x7 : 6120726f73697669 x6 : 000000000=
-0000001
-> [    8.131505] x5 : ffffa7f3f288f000 x4 : ffffa7f3f288f2d0 x3 : 000000000=
-0000000
-> [    8.131508] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff78194=
-02c7000
-> [    8.131511] Call trace:
-> [    8.131512]  divider_recalc_rate+0x8c/0xc0
-> [    8.131513]  clk_divider_recalc_rate+0x64/0x90
-> [    8.131515]  clk_recalc+0x40/0xb0
-> [    8.131519]  clk_calc_subtree+0x58/0x90
-> [    8.131521]  clk_calc_subtree+0x70/0x90
-> [    8.131523]  clk_calc_new_rates+0x150/0x290
-> [    8.131526]  clk_calc_new_rates+0x100/0x290
-> [    8.131528]  clk_calc_new_rates+0x100/0x290
-> [    8.131530]  clk_calc_new_rates+0x100/0x290
-> [    8.131533]  clk_core_set_rate_nolock+0xa0/0x2a4
-> [    8.131535]  clk_set_rate_range_nolock.part.0+0xbc/0x2a0
-> [    8.131538]  __clk_put+0x70/0x140
-> [    8.131540]  clk_put+0x1c/0x30
-> [    8.131543]  of_clk_set_defaults+0x140/0x3c0
-> [    8.131546]  platform_probe+0x48/0xf0
-> [    8.131548]  really_probe+0x184/0x3d0
-> [    8.131550]  __driver_probe_device+0x11c/0x190
-> [    8.131553]  driver_probe_device+0x44/0xf4
-> [    8.131556]  __device_attach_driver+0xa4/0x140
-> [    8.131558]  bus_for_each_drv+0x84/0xe0
-> [    8.131561]  __device_attach+0xe4/0x1c0
-> [    8.131563]  device_initial_probe+0x20/0x30
-> [    8.131565]  bus_probe_device+0xa4/0xb0
-> [    8.131567]  deferred_probe_work_func+0xa8/0xfc
-> [    8.131570]  process_one_work+0x1dc/0x450
-> [    8.131575]  worker_thread+0x154/0x450
-> [    8.131577]  kthread+0x100/0x110
-> [    8.131579]  ret_from_fork+0x10/0x20
-> [    8.131584] ---[ end trace 0000000000000000 ]---
-> [    8.131588] ------------[ cut here ]------------
+> 
+>> Maybe let's drop the maxItems for all of them?
+> 
+> Let's just drop it at least for now (though it seems we can keep it
+> for powerdown-gpios).
+> 
+> A possible solution here may be adding 'maxItems: 1' automatically to
+> schemas if not specified. I've been thinking of doing this on standard
+> unit properties. That's another case of
+> 99% of cases are a single entry with a few outliers.
+> 
 
-I'm not sure if it's feasible, but if it is, it looks like something
-that could be fixed by the patch pasted here:
 
-https://lore.kernel.org/linux-clk/20220401122736.5yvanksa4pla7uql@houat/
-
-Could you test it?
-
-Thanks!
-Maxime
-
---25docxotcljt756a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYkcWAgAKCRDj7w1vZxhR
-xQhqAQD9TRfKP+yInwBbsA9UH7rk4a9uaL5qTy8IEhUfFGVMcgEA+j6eFXzx3DyM
-UV7SUiD406ZMAkW0dK1UzfyTnNfYagE=
-=U5oE
------END PGP SIGNATURE-----
-
---25docxotcljt756a--
+Best regards,
+Krzysztof
