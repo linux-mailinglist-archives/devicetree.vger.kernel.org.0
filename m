@@ -2,89 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06AE34EFA1D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8904EFA22
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:48:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351378AbiDASuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 14:50:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35312 "EHLO
+        id S1344949AbiDASuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 14:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348109AbiDASuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:50:06 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A86220B2B
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 11:48:16 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id r8so3697304oib.5
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 11:48:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=D9fxps+Ewc6UANsIutZd0wuOMYK+iuzQT7EbeWRMeUQ=;
-        b=X0Y+wDvLjYzdPycS2xcK3xyquS/nSm8FFz4SNtheTeLLhWUQbT4tpNhTzwHlQA1Ml1
-         kaDwoXUElWpe1nM4Dv4ZTCscEz/t9WFLfqQWwyV2um+pxmIqUgEIEv8oY+osc6jAjqgc
-         0HcnQRw5UDzHwiPbArFgO/cMHH6+aMrT1IGpQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=D9fxps+Ewc6UANsIutZd0wuOMYK+iuzQT7EbeWRMeUQ=;
-        b=rnmaSUiOqGTvkI2CJyOi6nEzHh7m8Qr01EeyuNHkauzPMfHujEieyKPh9SzTEHq29A
-         2nB0zRYphZumfAYMQ/Txke8rFfJuCxw0+pyQSIEymw3m3ymw3kkJNFoooPavZvE91n/d
-         +QeTKqJwTVXPQJDGMGwD/ThCJWiR1yjLfXxdqjSk7Bc4pORG6ZK5QzbdHpnziB/x9MxP
-         pzpOOb72s5U5EqJzkM4+SomBg51RMtHHd9Gz5onSEKB/garq2xKGhZVGfO89cSNW3jn6
-         BTKFvEZihCa9pUnq1EDA7BP/AcCso9kywzf6mP7QRf25w4WiZNAl3pgKXZe64fCv5/8t
-         8Sgg==
-X-Gm-Message-State: AOAM531784GH5J21LPmck2KJxAOrAnp4AeqW3ncY0q+fNtkob1bTHGa+
-        HvTJteSUfsAlJM6Upxu/gNsQ4BLPrQXxRjSKWcYWNw==
-X-Google-Smtp-Source: ABdhPJz1TQRc5Yb6vyKTkezkbj85ZwfeXqoZaXKRnSn4CcsOsS2zY8ZrRcoyLi5/lOZh2VukBMnldkdiQH4XSVzbjFI=
-X-Received: by 2002:aca:a9c8:0:b0:2da:45b6:b796 with SMTP id
- s191-20020acaa9c8000000b002da45b6b796mr5109437oie.193.1648838896186; Fri, 01
- Apr 2022 11:48:16 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 1 Apr 2022 13:48:15 -0500
+        with ESMTP id S1351387AbiDASuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:50:24 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4CA63DDFC
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 11:48:33 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1A8D62F7;
+        Fri,  1 Apr 2022 20:48:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1648838911;
+        bh=dujnelcPNk6p4CPVgNhMrG7u9/pxO/a8Ef1tc/FG5g8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C448RAHkb851knPnWOoU22kqCqcMUdrSIT3Y4q7CH3s994gbPtVuGPfDqeLYp4+zd
+         utH2X1f/E1dP4O4zB4ACZY6bxCJ5dRmH75CcgMQSHj1LFRpwOsuhtH8vvqrRQ2LFvf
+         wlEg+JOPFA2JZfVDZ//EBsfNPkmVMedLFeYNLoPY=
+Date:   Fri, 1 Apr 2022 21:48:28 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek Vasut <marex@denx.de>, Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Robert Foss <robert.foss@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
+ port for DSI devices
+Message-ID: <YkdI/BSp/lvKYRjO@pendragon.ideasonboard.com>
+References: <20220323154823.839469-1-maxime@cerno.tech>
+ <YkY+1IZtQ8oSi7wR@robh.at.kernel.org>
+ <b3dcf3fe-63a0-fbef-a3c4-f42e8cd395fe@denx.de>
+ <Ykc3wm5pqJIA1jCn@robh.at.kernel.org>
+ <1fddec5f-5fb3-4ea0-a1e5-9d1b9e54de81@denx.de>
+ <CAL_JsqLmin2qXdeNrvraAf=fGzttOAYxwFCUSbC5TeHYaN+LhQ@mail.gmail.com>
+ <30ea889f-f65e-e887-e230-935d6207c919@denx.de>
+ <CAL_JsqLHsZW0DJNDxKNApk1AKo=91JYnTNVvemF4iCkyYq88bQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <3b4dcf83-bb13-2159-d7c1-f0aadfc53566@quicinc.com>
-References: <1648209491-30165-1-git-send-email-quic_c_skakit@quicinc.com>
- <1648209491-30165-8-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n511eQTnJHqt0B=uiiSjigy-RHZ52YuYz4kfEpX1x6CMfw@mail.gmail.com>
- <094d8faa-c42b-be1b-cf92-04232d618a3e@quicinc.com> <CAE-0n52CVuc_kQbpwEnHEEODS8jPt52v6P=gAdVxqenPu4ehkw@mail.gmail.com>
- <3b4dcf83-bb13-2159-d7c1-f0aadfc53566@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 1 Apr 2022 13:48:15 -0500
-Message-ID: <CAE-0n5282FJ01We_mRfN69mYJk4NKwjAZvnTG9RVOyt__6xVfg@mail.gmail.com>
-Subject: Re: [PATCH V8 7/7] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLHsZW0DJNDxKNApk1AKo=91JYnTNVvemF4iCkyYq88bQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya Kakitapalli (Temp) (2022-04-01 03:48:46)
->
-> On 4/1/2022 2:48 AM, Stephen Boyd wrote:
->
->
-> >         &pm8008_bus: &i2c1 {
->
->
-> but this still needs to be "pm8008_bus: &i2c {" right.. no '&' before
-> pm8008_bus.
+On Fri, Apr 01, 2022 at 01:33:15PM -0500, Rob Herring wrote:
+> On Fri, Apr 1, 2022 at 1:25 PM Marek Vasut wrote:
+> > On 4/1/22 20:21, Rob Herring wrote:
+> > > On Fri, Apr 1, 2022 at 1:06 PM Marek Vasut wrote:
+> > >> On 4/1/22 19:34, Rob Herring wrote:
+> > >>> On Fri, Apr 01, 2022 at 03:22:19AM +0200, Marek Vasut wrote:
+> > >>>> On 4/1/22 01:52, Rob Herring wrote:
+> > >>>>> On Wed, 23 Mar 2022 16:48:23 +0100, Maxime Ripard wrote:
+> > >>>>>> MIPI-DSI devices, if they are controlled through the bus itself, have to
+> > >>>>>> be described as a child node of the controller they are attached to.
+> > >>>>>>
+> > >>>>>> Thus, there's no requirement on the controller having an OF-Graph output
+> > >>>>>> port to model the data stream: it's assumed that it would go from the
+> > >>>>>> parent to the child.
+> > >>>>>>
+> > >>>>>> However, some bridges controlled through the DSI bus still require an
+> > >>>>>> input OF-Graph port, thus requiring a controller with an OF-Graph output
+> > >>>>>> port. This prevents those bridges from being used with the controllers
+> > >>>>>> that do not have one without any particular reason to.
+> > >>>>>>
+> > >>>>>> Let's drop that requirement.
+> > >>>>>>
+> > >>>>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > >>>>>> ---
+> > >>>>>>     .../devicetree/bindings/display/bridge/chipone,icn6211.yaml      | 1 -
+> > >>>>>>     .../devicetree/bindings/display/bridge/toshiba,tc358762.yaml     | 1 -
+> > >>>>>>     2 files changed, 2 deletions(-)
+> > >>>>>>
+> > >>>>>
+> > >>>>> I tend to agree with port@0 not being needed and really like
+> > >>>>> consistency.
+> > >>>>
+> > >>>> The consistent thing to do would be to always use port@0 and OF graph, no ?
+> > >>>
+> > >>> I guess it depends how wide our scope for consistency is. Just DSI bus
+> > >>> controlled bridges? DSI panels? All bridges and panels? Any panel
+> > >>> without a control interface has the same dilemma as those can be a child
+> > >>> of the display controller (or bridge) and not even use OF graph.
+> > >>
+> > >> I would likely opt for the OF graph in all cases, panels, bridges,
+> > >> controllers. Then it would be consistent.
+> > >>
+> > >>> All simple panels don't require 'port' either. That's presumably only
+> > >>> consistent because we made a single schema. I'd assume 'non-simple'
+> > >>> panels with their own schema are not consistent.
+> > >>
+> > >> Maybe we would start requiring that port even for simple panels ?
+> > >> The port is physically there on that panel after all.
+> > >
+> > > Fix this in all the dts files and then I'll agree. Though I think this
+> > > ship has already sailed. I'd like to someday get to platforms without
+> > > warnings and not just keep adding new warnings.
+> >
+> > I doubt we can fix existing DTs, but can we at least require it for new
+> > DTs ?
+> 
+> We don't have any way to do that currently and get to warning free for
+> all DTs. We'd need to be able to disable specific checks for specific
+> DTs. I've thought about it, but haven't come up with a way to do it.
 
-Correct. Thanks for spotting my typo.
+I think Marek may have meant new bindings. While I do agree that
+inconsistencies in sources can cause new submissions to blindly copy
+mistakes, it shouldn't be a reason in itself to carry historical binding
+design mistakes in new bindings.
+
+-- 
+Regards,
+
+Laurent Pinchart
