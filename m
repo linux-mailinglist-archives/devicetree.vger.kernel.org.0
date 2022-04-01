@@ -2,118 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DD034EF72E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB2F4EF72B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345102AbiDAPym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 11:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60562 "EHLO
+        id S238201AbiDAPyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 11:54:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348692AbiDAPPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:15:11 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C0D892B658A;
-        Fri,  1 Apr 2022 07:57:08 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,227,1643641200"; 
-   d="scan'208";a="116451900"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 01 Apr 2022 23:57:08 +0900
-Received: from localhost.localdomain (unknown [10.226.92.166])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0BC68400F95D;
-        Fri,  1 Apr 2022 23:57:05 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3] arm64: dts: renesas: rzg2lc-smarc: Enable RSPI1 on carrier board
-Date:   Fri,  1 Apr 2022 15:57:02 +0100
-Message-Id: <20220401145702.17954-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S1349932AbiDAPQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:16:40 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA95211A39
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 07:58:26 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id h4so4581607wrc.13
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 07:58:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=76a94LQu3rPoYffS/gDEHiTMZGGkCXPKcYRhl1KmpQU=;
+        b=FZ/ZDpkCU0djVj4XyAI7m5UPpa4SlwCKTGlM1Rj9RUWz//rOC9j/LUQYzDk1Gjw4Q0
+         AsbiLQA4Rdmj2qeJkpB70YhhXnTQByZqqayYpCmkxiFCeisjQVVps+92F9430mN7UlMh
+         xtPfJJba20MTPN9enY664ka9wxQ7asaIFKkPUplOdGBGcaY7/TxvF1GPxKW2fTaarqAW
+         +vsxCOnExuctwCF6g/FahFnG7PMBgdqiYknLTWy+HnDAQ6nKZp9UqbEfrJ2NNTxpzSzd
+         DEfo7hOfxl+nOIaXdn3s2mK2aVS6rlfcn07LWUAToobReKpKTZ1xwC5BZ7Qkd2ugAeZs
+         51Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=76a94LQu3rPoYffS/gDEHiTMZGGkCXPKcYRhl1KmpQU=;
+        b=sZbw81LNRLRdS8+pCZ+wswFo4wW30ZTC4ZKSec+Wgo0WCy0HpwsEtmVjlnkiVAIWLd
+         3hg3sipDVDXo2qHncyW7Pde5ZtmV6JzEhJpe4jGgh3y8J2LRo4PCRwJCX0Nv64XB7j+0
+         StG9e09CKfBfo31blrVDaUWrIQQwmtwylFsEbvRXB6H3ul65fsHY3kt0n342Gfg4FMNE
+         nCUNj7PcF1t+lTiUXbNLBy4bGLkrCZYtB714dmNq5xJHmm2lTVL6InuGhXcZOkcUQOZV
+         FLIEzaBrvMy1v0N9ZjZ25vN6ZMG3kaII/wkDJ8l4Nn9Ll87jf8I1GK2ce8RN6lHdI0il
+         4Rjw==
+X-Gm-Message-State: AOAM532P3uwow7IwNLJYYihybv5DVuAaP+GEPZN8E1VJuu+K22jFiab5
+        dVZbvWIJlB/i5vHYxB+AQMuPEA==
+X-Google-Smtp-Source: ABdhPJxi8Y6f6lrLshYHx+nvxgkTyKctJN8K3nHCREVNRv1HkEkJFWZspLSclpT12ofkeOYjbKJ8qQ==
+X-Received: by 2002:adf:fb48:0:b0:203:f986:874a with SMTP id c8-20020adffb48000000b00203f986874amr8067141wrs.614.1648825105436;
+        Fri, 01 Apr 2022 07:58:25 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id j8-20020a05600c404800b0038cc9c7670bsm8530722wmm.3.2022.04.01.07.58.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Apr 2022 07:58:25 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Bean Huo <beanhuo@micron.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RFC PATCH 0/4] ufs: set power domain performance state when scaling gears
+Date:   Fri,  1 Apr 2022 16:58:16 +0200
+Message-Id: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on the
-carrier board.  This patch adds pinmux and spi1 nodes to the carrier
-board dtsi file and drops deleting pinctl* properties from DTS file.
+Hi,
 
-RSPI1 interface is tested by setting the macro SW_RSPI_CAN to 0.
+This is a proof-of-concept/RFC for changing the performance state
+of power rails when scaling gears.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3:
- * Removed redundant spi1 node, as it is already enabled in common.
-v1->v2:
- * Sorted the node alphabetically
- * Delete/disable pinctrl/spi node, when SW_RSPI_CAN macro is set to 1.
-   This change is done in common file, so that both single core and 
-   dual core RZ/G2LC SMARC EVK can reuse the same.
----
- arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts         | 6 ------
- arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 7 +++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi             | 8 ++++++++
- 3 files changed, 15 insertions(+), 6 deletions(-)
+So far I added it as a parallel method to scaling clocks, thus
+freq-table-hz stays in DTS, however OPP table should be probably
+replace freq-table-hz entirely.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 74a2f2bade10..fc34058002e2 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -13,9 +13,3 @@
- 	model = "Renesas SMARC EVK based on r9a07g044c2";
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
- };
--
--&spi1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index d275a55333e3..a78a8def363e 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -106,6 +106,13 @@
- 		input-enable;
- 	};
- 
-+	spi1_pins: spi1 {
-+		pinmux = <RZG2L_PORT_PINMUX(44, 0, 1)>, /* CK */
-+			 <RZG2L_PORT_PINMUX(44, 1, 1)>, /* MOSI */
-+			 <RZG2L_PORT_PINMUX(44, 2, 1)>, /* MISO */
-+			 <RZG2L_PORT_PINMUX(44, 3, 1)>; /* SSL */
-+	};
-+
- 	ssi0_pins: ssi0 {
- 		pinmux = <RZG2L_PORT_PINMUX(45, 0, 1)>, /* BCK */
- 			 <RZG2L_PORT_PINMUX(45, 1, 1)>, /* RCK */
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 74ad1ede3d0b..9ec8c503b0a3 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -158,3 +158,11 @@
- 	status = "okay";
- };
- #endif
-+
-+#if (SW_RSPI_CAN)
-+&spi1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+#endif
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (4):
+  dt-bindings: clock: qcom,gcc-sdm845: add parent power domain
+  dt-bindings: ufs: common: allow OPP table
+  arm64: dts: qcom: sdm845: control RPMHPD performance states with UFS
+  ufs: set power domain performance state when scaling gears
+
+ .../bindings/clock/qcom,gcc-sdm845.yaml       |  3 ++
+ .../devicetree/bindings/ufs/ufs-common.yaml   |  4 ++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 17 +++++++-
+ drivers/scsi/ufs/ufshcd-pltfrm.c              |  6 +++
+ drivers/scsi/ufs/ufshcd.c                     | 42 +++++++++++++++----
+ drivers/scsi/ufs/ufshcd.h                     |  3 ++
+ 6 files changed, 65 insertions(+), 10 deletions(-)
+
 -- 
-2.17.1
+2.32.0
 
