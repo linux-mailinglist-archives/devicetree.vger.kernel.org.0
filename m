@@ -2,160 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CDC54EFC83
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 00:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D636E4EFCB5
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 00:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244541AbiDAWD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 18:03:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
+        id S238470AbiDAWTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 18:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344925AbiDAWD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 18:03:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532C12675A0
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 15:01:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05120B8267F
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 22:01:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1642C34112
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 22:01:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648850494;
-        bh=ZQrbLPkLo5sfQcE73yUfUj3P2ZSop1t4uB2pIrb+x5s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=M7Gw+J81HNta4UOZK1b5DyWKrKW6HKh1VcNWFV6Pl0XWEaxxxbzWB3JxBZadCJHen
-         KqkaquNDuy6VAtgKBM+puNzLN/35Tb5J/NmiGFeBN5OX1X846buCpticFxaJCPdzgm
-         ro6wU+BpnqYsXcnqNxFhQz15zvWA4liIIn09Q4pjkr/X31wZD/hp2b0QMfh9xNYRoW
-         j+MSu9mrXbq9UZLBdfQvrYHkHndTUedPSgNX1a7A90K7c4WHQTudmQRlMNw4UU+ftq
-         HxX2uFSghDrLaquvtN5tF4JtyLV5TkbatKPsZ884vb5KNjwmKDOpt+Gth4NQ9jDmIj
-         wA1WEB2hc42MQ==
-Received: by mail-io1-f46.google.com with SMTP id z7so4805622iom.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 15:01:34 -0700 (PDT)
-X-Gm-Message-State: AOAM533G3fezHHiyCu9h4SB0LvYvSuYmc0aHk4300a+RJjap2nwR2PtN
-        0YPgxhJta0itLPCBjrpbttCWiY4lXoZJyscFmw==
-X-Google-Smtp-Source: ABdhPJw+LFcARwzaNCp2hP95MsT4VXSzQqMED1c5B/P2R3LB+Lv/I0+UJvyO4WpdpbHhv1y8zZlcKAkCdFFoaahnD14=
-X-Received: by 2002:a05:6638:1301:b0:323:3b47:8b3f with SMTP id
- r1-20020a056638130100b003233b478b3fmr6606952jad.291.1648850493856; Fri, 01
- Apr 2022 15:01:33 -0700 (PDT)
+        with ESMTP id S236871AbiDAWTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 18:19:36 -0400
+Received: from smtpout1.mo529.mail-out.ovh.net (smtpout1.mo529.mail-out.ovh.net [178.32.125.2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30351FC9CE
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 15:17:44 -0700 (PDT)
+Received: from mxplan5.mail.ovh.net (unknown [10.108.4.188])
+        by mo529.mail-out.ovh.net (Postfix) with ESMTPS id 672C0F25DD57;
+        Sat,  2 Apr 2022 00:07:36 +0200 (CEST)
+Received: from kaod.org (37.59.142.106) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Sat, 2 Apr
+ 2022 00:07:35 +0200
+Authentication-Results: garm.ovh; auth=pass (GARM-106R006e3700b63-f463-4ad6-a72b-c19128217135,
+                    A74503F7E5587F569FD34A1240EFF25B47FA7F20) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <d652e592-29ce-3920-d1f8-66b3a617033f@kaod.org>
+Date:   Sat, 2 Apr 2022 00:07:30 +0200
 MIME-Version: 1.0
-References: <alpine.DEB.2.22.394.2203311740450.2910984@ubuntu-linux-20-04-desktop>
- <CAL_Jsq+udUpUK3y7WOeLF2dtGs0=Jz59ed0mu_sgzstB-=TDzA@mail.gmail.com> <alpine.DEB.2.22.394.2204011338140.2910984@ubuntu-linux-20-04-desktop>
-In-Reply-To: <alpine.DEB.2.22.394.2204011338140.2910984@ubuntu-linux-20-04-desktop>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 1 Apr 2022 17:01:22 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ6Yoc-gq=qUw+cS-34ZOsxtHAA01aa+FjaBySz1vwtuQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ6Yoc-gq=qUw+cS-34ZOsxtHAA01aa+FjaBySz1vwtuQ@mail.gmail.com>
-Subject: Re: [PATCH] of: of_property_read_string return -ENODATA when !length
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        Julien Grall <julien@xen.org>,
-        xen-devel <xen-devel@lists.xenproject.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
+Content-Language: en-US
+To:     Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
+        Joel Stanley <joel@jms.id.au>
+CC:     devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jamie Iles <quic_jiles@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
+ <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
+ <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
+ <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
+ <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
+ <e362f6dd-785f-87b3-3090-554be0fb860c@quicinc.com>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <e362f6dd-785f-87b3-3090-554be0fb860c@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [37.59.142.106]
+X-ClientProxiedBy: DAG1EX1.mxp5.local (172.16.2.1) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: c00a9726-7d7c-46c0-b22a-64bd659383fd
+X-Ovh-Tracer-Id: 8622141490564074485
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrudeiiedgudeilecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgihesthekredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeejkedvgfduveekfeekledtjeetkedvgeffgeduteegtedtffejfeehkeeflefftdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrddutdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 1, 2022 at 3:49 PM Stefano Stabellini
-<sstabellini@kernel.org> wrote:
->
-> On Fri, 1 Apr 2022, Rob Herring wrote:
-> > On Thu, Mar 31, 2022 at 7:46 PM Stefano Stabellini
-> > <sstabellini@kernel.org> wrote:
-> > >
-> > > From: Stefano Stabellini <stefano.stabellini@xilinx.com>
-> > >
-> > > When the length of the string is zero of_property_read_string should
-> > > return -ENODATA according to the description of the function.
-> >
-> > Perhaps it is a difference of:
-> >
-> > prop;
-> >
-> > vs.
-> >
-> > prop = "";
-> >
-> > Both are 0 length by some definition. The description, '-ENODATA if
-> > property does not have a value', matches the first case.
-> >
-> > >
-> > > However, of_property_read_string doesn't check pp->length. If pp->length
-> > > is zero, return -ENODATA.
-> > >
-> > > Without this patch the following command in u-boot:
-> > >
-> > > fdt set /chosen/node property-name
-> > >
-> > > results in of_property_read_string returning -EILSEQ when attempting to
-> > > read property-name. With this patch, it returns -ENODATA as expected.
-> >
-> > Why do you care? Do you have a user? There could be an in tree user
-> > that doesn't like this change.
->
-> During review of a Xen patch series (we have libfdt is Xen too, synced
-> with the kernel) Julien noticed a check for -EILSEQ. I added the check
-> so that Xen would behave correctly in cases like the u-boot example in
-> the patch description.
->
-> Looking more into it, it seemed to be a mismatch between the description
-> of of_property_read_string and the behavior (e.g. -ENODATA would seem to
-> be the right return value, not -EILSEQ.)
->
-> I added a printk to confirm what was going on when -EILSEQ was returned:
->
-> printk("DEBUG %s %d value=%s value[0]=%d length=%u len=%lu\n",__func__,__LINE__,(char*)pp->value, *((char*)pp->value),pp->length,
-> strlen(pp->value));
->
-> This is the output:
-> DEBUG of_property_read_string 205 value= value[0]=0 length=0 len=0
+Hello Jae,
 
-It turns out that we never set pp->value to NULL when unflattening
-(and libfdt always returns a value). This function is assuming we do.
->
-> As the description says:
->
->  *
->  * Return: 0 on success, -EINVAL if the property does not exist, -ENODATA if
->  * property does not have a value, and -EILSEQ if the string is not
->  * null-terminated within the length of the property data.
->  *
->
-> It seems that this case matches "property does not have a value" which
-> is expected to be -ENODATA instead of -EILSEQ. I guess one could also
-> say that length is zero, so the string cannot be null-terminated,
-> thus -EILSEQ?
->
-> I am happy to go with your interpretation but -ENODATA seems to be the
-> best match in my opinion.
+On 4/1/22 16:10, Jae Hyun Yoo wrote:
+> Hi Cédric,
+> 
+> On 3/31/2022 9:06 AM, Jae Hyun Yoo wrote:
+>> Hello Cédric,
+>>
+>> On 3/31/2022 8:56 AM, Cédric Le Goater wrote:
+>>> Hello Jae,
+>>>
+>>> On 3/31/22 17:44, Jae Hyun Yoo wrote:
+>>>> On 3/30/2022 10:50 PM, Joel Stanley wrote:
+>>>>> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo <quic_jaehyoo@quicinc.com> wrote:
+>>>>>>
+>>>>>> I’m sending this patch series to fix current issues in AST2600 pinmux
+>>>>>> settings while enabling quad mode SPI support.
+>>>>>>
+>>>>>> FWSPI18 pins are basically 1.8v logic pins that are different from the
+>>>>>> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins can’t
+>>>>>> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
+>>>>>>
+>>>>>> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl dtsi to
+>>>>>> make it able to enable quad mode on SPI1 and SPI2 interfaces.
+>>>>>>
+>>>>>> With this series, quad mode pinmux can be set like below.
+>>>>>>
+>>>>>> FW SPI:
+>>>>>> &fmc {
+>>>>>>          pinctrl-names = "default";
+>>>>>>          pinctrl-0 = <&pinctrl_fwqspi_default>;
+>>>>>> }
+>>>>>>
+>>>>>> SPI1:
+>>>>>> &spi1 {
+>>>>>>          pinctrl-names = "default";
+>>>>>>          pinctrl-0 = <&pinctrl_qspi1_default>;
+>>>>>> }
+>>>>>>
+>>>>>> SPI2:
+>>>>>> &spi2 {
+>>>>>>          pinctrl-names = "default";
+>>>>>>          pinctrl-0 = <&pinctrl_qspi2_default>;
+>>>>>> }
+>>>>>
+>>>>> Thanks. I hope to see a board from you that uses this soon :)
+>>>>>
+>>>>> I'll send the patches as fixes once -rc1 is out.
+>>>>
+>>>> Thanks Joel!
+>>>>
+>>>> Yes, I would be able to send my BMC board dts soon.
+>>>> Thanks in advance for your review on that too.
+>>>
+>>> Out of curiosity, which driver are you using ? the one from SDK ?
+>>>
+>>> I proposed a new one for upstream supporting all AST2400, AST2500, AST2600
+>>> controllers. I would be glad to have some feedback if you have time.
+>>
+>> Yes, I saw your patch set of the new driver.
+>>
+>> I'm currently using this fix with legacy aspeed-smc driver after
+>> adding some fixes. I'll give it a try with your new driver as well and
+>> will give you some feedback if I find any.
+> 
+> I tested this patch series using the new spi-aspeed-smc driver you
+> proposed.
+> 
+> https://lore.kernel.org/linux-arm-kernel/20220325100849.2019209-1-clg@kaod.org/
+> 
+> I modified my BMC's device tree like below to enable quad mode.
+> 
+>      &fmc {
+>          status = "okay";
+>          pinctrl-names = "default";
+>          pinctrl-0 = <&pinctrl_fwqspi_default>;
+> 
+>          flash@0 {
+>              status = "okay";
+>              m25p,fast-read;
+>              label = "bmc";
+>              spi-rx-bus-width = <4>;
+>              spi-max-frequency = <133000000>;
+>      #include "openbmc-flash-layout-64.dtsi"
+>          };
+> 
+>          flash@1 {
+>              status = "okay";
+>              m25p,fast-read;
+>              label = "alt-bmc";
+>              spi-rx-bus-width = <4>;
+>              spi-max-frequency = <133000000>;
+>      #include "openbmc-flash-layout-64-alt.dtsi"
+>          };
+>      };
 
-I agree. I just think empty property should have a NULL value and 0
-length, but we should only have to check one. I don't want check
-length as that could be different for Sparc or non-FDT. So I think we
-need this instead:
+Ah ! I have an AST2600 A0 EVB without FWQSPI wires and I could not test.
+I am glad you did. Thanks.
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index ec315b060cd5..d6b2b0d49d89 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -165,7 +165,7 @@ static void populate_properties(const void *blob,
+I did test the SPI1/SPI2 controllers with Quad SPI activated and results
+were OK. I think we could include your changes above in my patchset
+since A0 boards are pretty rare these days and unsupported.
 
-                pp->name   = (char *)pname;
-                pp->length = sz;
--               pp->value  = (__be32 *)val;
-+               pp->value  = sz ? (__be32 *)val : NULL;
-                *pprev     = pp;
-                pprev      = &pp->next;
-        }
+> And I got these kernel boot logs.
+> 
+> [    0.720745] spi-nor spi0.0: w25q512nwfm (65536 Kbytes)
+> [    0.837368] spi-aspeed-smc 1e620000.spi: CE0 read buswidth:4 [0x406c0741]
+> [    0.846352] 5 fixed-partitions partitions found on MTD device bmc
+> [    0.853220] Creating 5 MTD partitions on "bmc":
+> [    0.858295] 0x000000000000-0x0000000e0000 : "u-boot"
+> [    0.865014] 0x0000000e0000-0x000000100000 : "u-boot-env"
+> [    0.872229] 0x000000100000-0x000000a00000 : "kernel"
+> [    0.878963] 0x000000a00000-0x000002a00000 : "rofs"
+> [    0.885406] 0x000002a00000-0x000004000000 : "rwfs"
+> [    0.892880] spi-nor spi0.1: w25q512nwfm (65536 Kbytes)
+> [    1.009460] spi-aspeed-smc 1e620000.spi: CE1 read buswidth:4 [0x406c0741]
+> [    1.018334] 5 fixed-partitions partitions found on MTD device alt-bmc
+> [    1.025537] Creating 5 MTD partitions on "alt-bmc":
+> [    1.031027] 0x000000000000-0x0000000e0000 : "u-boot-alt"
+> [    1.038165] 0x0000000e0000-0x000000100000 : "u-boot-env-alt"
+> [    1.045623] 0x000000100000-0x000000a00000 : "kernel-alt"
+> [    1.052807] 0x000000a00000-0x000002a00000 : "rofs-alt"
+> [    1.059800] 0x000002a00000-0x000004000000 : "rwfs-alt"
+> 
+> As you can see in the log, FMC10[31:28] and FMC14[31:28] are properly
+> set to 0100b which means 'quad bit read/write, data cycle only'.
 
+yes and Quad Output SPI opcode (0x6c)
 
-It looks like setting 'value' has been like this at least since 2010.
+> I verified that your new driver supports quad mode properly and it has
+> worked well so far without making any issue.
+> 
+> Thanks for your making the new driver.
+> I left my comment in your patch proposal thread.
 
-Rob
+I will include your 'Tested' tag in v5. I hope to address Pratyush comments
+next week. Thanks a lot for the support.
+
+Cheers,
+
+C.
