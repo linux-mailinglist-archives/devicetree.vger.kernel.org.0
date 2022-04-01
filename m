@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB7C34EE818
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 08:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C43B4EE829
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 08:24:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245320AbiDAGTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 02:19:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41578 "EHLO
+        id S245333AbiDAGZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 02:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbiDAGTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 02:19:06 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF321E6EB5
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 23:17:17 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id o10so3756691ejd.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 23:17:17 -0700 (PDT)
+        with ESMTP id S234798AbiDAGZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 02:25:43 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E3125FD40
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 23:23:53 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id z92so1716844ede.13
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 23:23:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2TwJKrePsfMG+vTEocsT56Q0z7ebW1hBFsv6Y12aibY=;
-        b=aLVtx7qPaGlbo7sC9oaFRHo6sy3YxvNEi1YbDdnBX0tdlJV2Iec401aNv5l+WOJ4Ft
-         TRrCBOrXCVMJq2HtqciitvAi2coYs9KPozl9trDHNdqD6bOeotOatK4vpdC01We+E8/m
-         1RBFRn2qcyilCs0Jfxa1lgWdfVQb0vsisLeCHNZuaN6pVBr/KZPiylqwTsp1j1J5WP3v
-         JYP6GK53acRgy4zZzE5mkE4iIULUE8jN3KRs/N8nn0HYu5qYD0BteYidJWR/RdCTvhV3
-         jlTw6c2tsJvFFkeLlqffXRlngyYTjHRBffyVEZq387TvjThgLKXamxHS7xJjscmVbub0
-         k9kA==
+        bh=xQMDBGJX/jflZ53QpHSB8LvVGDDFW1x1dQ4Ucf7ki+I=;
+        b=nrwJeBN8hHzwkveYcjMDzL7r0pd3kmP3pk9rP2aTD0OqdjGdkLRB7D1Kavw+U8BATM
+         p7bvS/4WHFtb+cGNSozE3xiZ2wUpTf3XI/tJB1kNZp3e9KyF9+9TEKnzfNeRqipJ++y7
+         3O0VQqmzMSY2PzXSqiYaRLO3bSWpzY2UQiGkcuBhJAz6ZRj0UILs2QTPix4z2zuEAjmP
+         uOyDh7x13Xn2v/vdlfS5396MXJPwn+acbO9Ulieh3n+7oALSuHmts6M3hH4OxvxHLbOq
+         GTcl+PJ2Hve0UhB09AFJQRgU4dtUThG2jaC2AeQ+n9MIS82yRvndjO8elv3SH+pweUer
+         nJNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2TwJKrePsfMG+vTEocsT56Q0z7ebW1hBFsv6Y12aibY=;
-        b=PRcpNenDVHPvgUmtfoHqAFFlDMMrRzgCSkK0aL7GQ54LTD7s+N52C8TbZ0A+1BSS60
-         5szRAewvafYLFi0HwwCpw1KHZlm1WdCxiLpV+MlGXtXQy3DsLFtfYmNBO721XC+kRXqU
-         Alv5Ec5e2Y37fbnFZAgW0vsC+VjgEPHTDIglv1Vid5ejELAzxRJZ9HIyGvWj50nljXjT
-         vCQ1t0AJX3S8lkc6edn7wGlDbCpUIAPLc84xCsZcPRtLqopy+nt3x5Z6dBz8/P3Cv36B
-         f2ILG3jTLfWjDr3gI3vTkojir1/qwz0jUiXaOQ+6QUTiB0R6QPL95NU2Sp/jUqSNjN+V
-         4OxA==
-X-Gm-Message-State: AOAM53125glZmEq6rPd1wr7rhYIpwDGwsbSkj3DEgGr8J+ond/BmoXjH
-        UlS6+vblA2Hfh0jQDXnOqJ/qog==
-X-Google-Smtp-Source: ABdhPJx0+06TUOISc+VO1MjT01uD6Ml5n1QTeFunR8KRUAfAhDO43QTr7KtZezI5fbtl0e7HJ6cyaw==
-X-Received: by 2002:a17:907:1614:b0:6df:678a:a7d5 with SMTP id hb20-20020a170907161400b006df678aa7d5mr7836538ejc.719.1648793835880;
-        Thu, 31 Mar 2022 23:17:15 -0700 (PDT)
+        bh=xQMDBGJX/jflZ53QpHSB8LvVGDDFW1x1dQ4Ucf7ki+I=;
+        b=4UwDo6Ax801qh0RW6EPvArZd/kJtPqHwIXsf+7zEKJpSMhtQO5IHA4sA2fLy5xMGQz
+         UxYUMruO7Gz+t5Y3sKHDm0WDrBJhn/15DzIrwRRiT2Fz+ODrTGt6fcq2n1pCIe7/jJKi
+         slGKU1xqXRud40v6nYBeIbkLEdzPX4PMPrYlUX757FOqkaLvVzUsTThgSf9ZgoJpwnBf
+         av7oTzSQxLAAB2t5Beh0FEtSR/bvtxIF4vN37oqa63+9Rd8CjybNgEkSU97S6FT8tHzx
+         3LAYXAveIEfx2zVT23H8Ot++G38VM6c1r0Z9kJYN2GwJB1iNYbq+le2iaPJV59Blm1ny
+         gWzQ==
+X-Gm-Message-State: AOAM531N+LcMgZhz9DjM0CVbBbEG/5P8sW3NQxdktW/O3IB4P8odwXe5
+        xrpnM2qvaHxnJsyNNXBXzQKBSQ==
+X-Google-Smtp-Source: ABdhPJxMB1TEIOVvp+9kCB/IjTZAOwtiVWwPHZdkhtPIcHDQGxejHUBCt/HIVRegmbHmO9aQXtI3Iw==
+X-Received: by 2002:a05:6402:4414:b0:408:4dc0:3ee9 with SMTP id y20-20020a056402441400b004084dc03ee9mr19553120eda.203.1648794231818;
+        Thu, 31 Mar 2022 23:23:51 -0700 (PDT)
 Received: from [192.168.0.168] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id fx3-20020a170906b74300b006daecedee44sm634137ejb.220.2022.03.31.23.17.14
+        by smtp.gmail.com with ESMTPSA id bn14-20020a170906c0ce00b006c5ef0494besm647740ejb.86.2022.03.31.23.23.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Mar 2022 23:17:15 -0700 (PDT)
-Message-ID: <9fe715a5-8ab5-ff86-7d8f-de72eac72c97@linaro.org>
-Date:   Fri, 1 Apr 2022 08:17:14 +0200
+        Thu, 31 Mar 2022 23:23:51 -0700 (PDT)
+Message-ID: <f45a7b96-4110-c9e0-f0ba-6c4432977bc2@linaro.org>
+Date:   Fri, 1 Apr 2022 08:23:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] powerpc/85xx: Remove fsl,85... bindings
+Subject: Re: [PATCH] dt-bindings: gpio: davinci: list contents of GPIO hogs
 Content-Language: en-US
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Scott Wood <oss@buserror.net>,
-        Johannes Thumshirn <morbidrsa@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-edac@vger.kernel.org,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-References: <82a8bc4450a4daee50ee5fada75621fecb3703ff.1648721299.git.christophe.leroy@csgroup.eu>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Keerthy <j-keerthy@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220328191153.171241-1-krzysztof.kozlowski@linaro.org>
+ <YkZK1OzF5Wq2bDma@robh.at.kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <82a8bc4450a4daee50ee5fada75621fecb3703ff.1648721299.git.christophe.leroy@csgroup.eu>
+In-Reply-To: <YkZK1OzF5Wq2bDma@robh.at.kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,24 +77,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/03/2022 12:13, Christophe Leroy wrote:
-> Since commit 8a4ab218ef70 ("powerpc/85xx: Change deprecated binding
-> for 85xx-based boards"), those bindings are not used anymore.
+On 01/04/2022 02:44, Rob Herring wrote:
+> On Mon, Mar 28, 2022 at 09:11:53PM +0200, Krzysztof Kozlowski wrote:
+>> The hogs children should list allowed properties, otherwise any property
+>> would be accepted.  Simplify also GPIO hog node name pattern.
 > 
-> A comment in drivers/edac/mpc85xx_edac.c say they are to be removed
-> with kernel 2.6.30.
+> Only if 'gpio-hog' is missing, because the gpio-hog.yaml schema will 
+> check every node with that property.
 > 
-> Remove them now.
-> 
-> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> ---
->  .../bindings/memory-controllers/fsl/fsl,ddr.yaml   |  6 ------
->  .../devicetree/bindings/powerpc/fsl/l2cache.txt    |  6 ------
->  drivers/edac/mpc85xx_edac.c                        | 14 --------------
->  3 files changed, 26 deletions(-)
-> 
+> Hogs are allowed on any GPIO controller, but I don't think we to 
+> duplicate what's here on every schema.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I understand, so the patch could be dropped because it requires
+gpio-hog, thus the schema will always match.
 
 
 Best regards,
