@@ -2,109 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2799C4EFAE8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DBA4EFB0C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351929AbiDAUNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:13:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
+        id S1351900AbiDAUUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 16:20:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351840AbiDAUMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:12:55 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6A02228DB
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:10:59 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id b24so4207480edu.10
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:10:59 -0700 (PDT)
+        with ESMTP id S1351896AbiDAUUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:20:03 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4503B2706EF
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:18:12 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id j18so5799779wrd.6
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:18:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AvfLRaJBW6E1M5nvBx02fvTqKdSpIJZJoIrrhvppE/c=;
-        b=biZjMi8Gi9Wa+XAWZfKljcKy6CGsNOfMCuvMA1MN2UQ2gQ7qRM1zytyuuCisemvT4n
-         eKVC3DRJur0w9NnJtl4JtehrItD1Z9STJe0cKv3h7Y9LFLg+fc/NSDp2+OcZdc3MORUc
-         ArC2Tx3XIBcrbxS2UJjJT/ztOLXwdl536GAcdsgkXGy7JlRxiGNuVlNsB/bxLAQiP6RB
-         SXBUBk7fUgmWbpC1zJkBjFOE0RkbJgdVnAPNFDRL18XYpILCww7uBZgyZTHV/xmFTMYm
-         5T4I0hQpJ/sRm88tKr/wqceEgF5V02ZBoXGjS7RNcGf3wlIZ9uBWFfafyBVZTjIPUPJO
-         DvXg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DGCkJrK8CjpNQTEj6b9xsgDCufMl9t/fhMg36upVCms=;
+        b=38Mjyy4PUG1qifiYjaGuBmEDmQ4cmC1Vw4iv4rSOVWiedsiaKCAgQ52NExOc1pE49w
+         Pfx10onQLS+nade8OH/OngJw8Mwhu+Igi6N4asQGVuij6Au/8vRUk1VPSSuCbGLTfMag
+         yO9pXlNGNQDXIcumWVkPfzz9S6fw2nwZs+tWyF5SpuvGQap4ze8OGlDit23nsgXqoQGU
+         7sJqivbmofTw/UXVRw8mKCmrD7zdGL7U55yAaSrRoQqgNw2gp4CQeBGCDkPG2QRGFuaA
+         ebz16tPUHI/5QrSQP+zwxqlOw1tT3YDc1PqdAPFPwHtoo6LUJ62j4p0UQF3FZg7ygBar
+         1Usg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AvfLRaJBW6E1M5nvBx02fvTqKdSpIJZJoIrrhvppE/c=;
-        b=NfaozTfekJcFVKS3ftI5Qda+o8/DbUHd7p6+tG5uxteBECQXJ2Zsuds7P+Q+UvSRLt
-         DAp6ZbZMQTuUGmdrti0/LxX7oYPQlw6zjLdaLWVhJEWJmxJ9WYzmzr9J5+xhnt1Aun9P
-         0Q1ArdX3KkCnXmokZjNDFPoQ11dKXgym0KjzaLDeOX7VD62KTP5iaO+wMGZO6k/SDAKG
-         En6/SHyp4AmFpTa1YbyZDUfIrzauiYmDkgGaXqwRK0lSPchfCFj0hiKI3krUfV0MeHs6
-         r7JHdKddn6fwd4dnJeCaSWXJXUFUUwTRlyOi8U5N3YDS3n2RMbut30YTN2ZB6skXtLbS
-         jDlQ==
-X-Gm-Message-State: AOAM531OJGy//j0vvS2ZyX8dAH73rMj1PX1SEzgTny4/bMdoKNH8jEQ8
-        afO7Ynjx9vsXqq9+V88fhJ8Icw==
-X-Google-Smtp-Source: ABdhPJzpUkQ6LrIZFlL2INaIFr88n0WL3JjUr/av2XB8sIX4zOzgm2+AQvyGZeA5W7bXKfcLuNLhBw==
-X-Received: by 2002:a05:6402:14b:b0:418:d06e:5d38 with SMTP id s11-20020a056402014b00b00418d06e5d38mr22375521edu.90.1648843858064;
-        Fri, 01 Apr 2022 13:10:58 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bx5-20020a0564020b4500b00418fca53406sm1509041edb.27.2022.04.01.13.10.56
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DGCkJrK8CjpNQTEj6b9xsgDCufMl9t/fhMg36upVCms=;
+        b=Ag6OtOmtFD2cAwdslkEECFfax3JLnE4GZvTJYnUhv+nV9y61s5sglTF/KDprubP9og
+         RLaErVxy98v1hAjMbudqOwW3cFza4pR3+eyBJCWiBmlQxN7ICnQu59lHwJeWWGBWfKMR
+         tyFVgEx1DIEsZXicxa7gyfNZ3laM3QVk4l0iOjvh/voTfYyl1sT7mp117LvMgTL92nwD
+         E9Ax8J4QPvee6AcXvSlEhRaYeobNORAtfvk5djcMOAfAoHyBcJBLEZSVPs2sZYlcACeA
+         YW2thvLlTLuEq9oBSKxX9FksF+TgpMrQQEzLs1w89sg1ZPSVgTvvYdLf46JYgguytlsx
+         z9HA==
+X-Gm-Message-State: AOAM5302wnc7JdKYRM9TSZde72axfJoKcK2FyfzmyfaRWhCS2sx+NgY/
+        2BfXS7ji//GEeWIKKzB0oL68eA==
+X-Google-Smtp-Source: ABdhPJxCCclvL39vPD0mGH4xeRxi6oEYQtYAcXEue88joWnUg/FnejMfCx7WSBAmHhxBXfdea8nR1A==
+X-Received: by 2002:adf:d1e5:0:b0:205:85f5:656c with SMTP id g5-20020adfd1e5000000b0020585f5656cmr8795652wrd.65.1648844290722;
+        Fri, 01 Apr 2022 13:18:10 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id j16-20020a05600c191000b0038ca3500494sm17823838wmq.27.2022.04.01.13.18.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 13:10:57 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/10] dt-bindings: clock: qcom,rpmcc: add clocks property
-Date:   Fri,  1 Apr 2022 22:10:35 +0200
-Message-Id: <20220401201035.189106-11-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220401201035.189106-1-krzysztof.kozlowski@linaro.org>
-References: <20220401201035.189106-1-krzysztof.kozlowski@linaro.org>
+        Fri, 01 Apr 2022 13:18:10 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v4 00/33] crypto: rockchip: permit to pass self-tests
+Date:   Fri,  1 Apr 2022 20:17:31 +0000
+Message-Id: <20220401201804.2867154-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RPM clock controller receive input clock ("xo").  It is modelled on
-only one chip - MSM8953.
+Hello
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+The rockchip crypto driver is broken and do not pass self-tests.
+This serie's goal is to permit to become usable and pass self-tests.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-index 6a492b1ebc7c..9d296b89a8d0 100644
---- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-@@ -48,6 +48,12 @@ properties:
-   '#clock-cells':
-     const: 1
- 
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: xo
-+
- required:
-   - compatible
-   - '#clock-cells'
+This serie also adds support for 2 more SoCs.
+
+This whole serie is tested on a rk3328-rock64, rk3288-miqi with selftests (with
+CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+The serie is also tested on a rk3399 by Hugh Cole-Baker
+<sigmaris@gmail.com> and Igor Velkov <iav@iav.lv>, Thanks to them for
+testing.
+
+Regards
+
+Changes since v1:
+- select CRYPTO_ENGINE
+- forgot to free fallbacks TFMs
+- fixed kernel test robots warning
+- add the PM patch
+
+Changes since v2:
+- Added DMA clock back to 3288 since it dont work without it
+- fallback needed to select CBC and ECB configs
+- Added support for rk3399
+- Added more patch (style, read_poll_timeout)
+
+Changes since v3:
+- full rewrite of support for RK3399
+- splited dt-binding patch in two
+
+Corentin Labbe (33):
+  crypto: rockchip: use dev_err for error message about interrupt
+  crypto: rockchip: do not use uninitialized variable
+  crypto: rockchip: do not do custom power management
+  crypto: rockchip: fix privete/private typo
+  crypto: rockchip: do not store mode globally
+  crypto: rockchip: add fallback for cipher
+  crypto: rockchip: add fallback for ahash
+  crypto: rockchip: better handle cipher key
+  crypto: rockchip: remove non-aligned handling
+  crypto: rockchip: rework by using crypto_engine
+  crypto: rockchip: rewrite type
+  crypto: rockchip: add debugfs
+  crypto: rockchip: introduce PM
+  crypto: rockchip: handle reset also in PM
+  crypto: rockchip: use clk_bulk to simplify clock management
+  crypto: rockchip: add myself as maintainer
+  crypto: rockchip: use read_poll_timeout
+  crypto: rockchip: fix style issue
+  crypto: rockchip: add support for rk3328
+  crypto: rockchip: rename ablk functions to cipher
+  crypto: rockchip: rework rk_handle_req function
+  crypto: rockchip: use a rk_crypto_info variable instead of lot of indirection
+  crypto: rockchip: use the rk_crypto_info given as parameter
+  crypto: rockchip: rename crypto_info to main in TFM context
+  crypto: rockchip: store crypto_info in request context
+  crypto: rockchip: Add support for rk3399
+  dt-bindings: crypto: convert rockchip-crypto to yaml
+  dt-bindings: crypto: rockchip: convert to new driver bindings
+  clk: rk3399: use proper crypto0 name
+  ARM: dts: rk3288: crypto does not need reset-names anymore
+  arm64: dts: rockchip: add rk3328 crypto node
+  arm64: dts: rockchip: rk3399: add crypto node
+  crypto: rockchip: Check for clocks numbers and their frequencies
+
+ .../crypto/rockchip,rk3288-crypto.yaml        | 117 ++++
+ .../bindings/crypto/rockchip-crypto.txt       |  28 -
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/rk3288.dtsi                 |   1 -
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |  10 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  18 +
+ drivers/crypto/Kconfig                        |  15 +
+ drivers/crypto/rockchip/rk3288_crypto.c       | 505 ++++++++--------
+ drivers/crypto/rockchip/rk3288_crypto.h       |  99 +--
+ drivers/crypto/rockchip/rk3288_crypto_ahash.c | 256 +++++---
+ .../crypto/rockchip/rk3288_crypto_skcipher.c  | 571 ++++++++++--------
+ include/dt-bindings/clock/rk3399-cru.h        |   6 +-
+ 12 files changed, 959 insertions(+), 674 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+ delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+
 -- 
-2.32.0
+2.35.1
 
