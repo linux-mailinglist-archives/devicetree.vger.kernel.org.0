@@ -2,186 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 103DF4EFC74
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 00:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2184EFC79
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 00:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353125AbiDAWBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 18:01:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53330 "EHLO
+        id S1353205AbiDAWBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 18:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353022AbiDAWAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 18:00:53 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713EE1C1EF2;
-        Fri,  1 Apr 2022 14:59:01 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 61E142224D;
-        Fri,  1 Apr 2022 23:58:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1648850339;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lXaKgxGNpuK0yYdrx+h4AvW9g4SuXjOi+hv1ZjALUpE=;
-        b=ulQqJeOZYsv6bAPWVqubJXZzXQ4y4NqiVoP4UsHY6wVZga68Bvt7r9aF48ks1z5mqfMJs7
-        2/K5jXv/+Z7ZwUfOX40jyv7dWtFfBF4B86hdSOU5XdAI4r3KaeGduuh4qP728ri/vbaU5p
-        XUK2p8JXs9ro+y9T+N6uVy5a095wAfE=
-From:   Michael Walle <michael@walle.cc>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S1353184AbiDAWBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 18:01:45 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273241C2D9B
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 14:59:54 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id r13so8589654ejd.5
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 14:59:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GV+7pAZohwI4MwdjqMNQX+D+U+rbeGwoLu73W6afMP4=;
+        b=ZBOh3r18k94t1Nd8We8CztDWD2n2VD6cwmAbOrOLf+nAcMXUPCIy56rg9iOC7HcMLt
+         JTSjRAF50LGJiFE7M9yHs6DT2R/UWoXzwHUyJqvhl1WnDeWGNYqZSm2527b8rclAjcY9
+         z0qwyx9LMfrq3/b8mahIzKwZgzaXuvlIf9NnPC0KsT/b2t/im4MaOt/OOYz5yuYmbBFe
+         HHWKti6/Y0CqWdTmsJTcGGivSCmpupUDqRMcpkGt3+z2HTtTopbIdNIRL8fsY2lvCB0M
+         N7gVtLQTo1Iahms9uAwLOwhK8QNWNquJlvBg97Wj2o1/NYwRRxAOPmVDxTr4rE0pLUiB
+         vBbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GV+7pAZohwI4MwdjqMNQX+D+U+rbeGwoLu73W6afMP4=;
+        b=1PHc2stnmi5slEaD7jGd8JeNUVbzaUBpMRXhd8zxaZECpg5bXd6ieKiJLBHWTqXWgS
+         QbazIABS67q6J5IQ/GAK/0Qb0SJBQMnDHlflTFIfE90q6joRsgHtQDTWeawceafFcafr
+         kB/mQdsERr4O3ZT2P/3s4RFNAxTYlTRmBhVMB1ZoD1Fty7jcVPC/JUg11kKeTzp003I/
+         3u1m79tirYW/T+cvpmVJaKpOmO/MlA7giUIrpvrTjFL35eZLTIWH1Tn+kenNaqquDtXT
+         0jiH3mw051XcGxbzX9cmu3XMiRTu1aqgD7Kf0wYXPqZhT2ymiuOZwsKQE03Xri8u4lZe
+         tzUA==
+X-Gm-Message-State: AOAM533NjfmckqzU2gkQdp2kO37q47MWkrZebvoOlzNbPHzN/Jh0go45
+        RpQWKBQIWHAnL0eZdAlIqMxq+w==
+X-Google-Smtp-Source: ABdhPJxt29ToBqJIoq8d5LJdbtpfa3FI0Jelg40i4cQ33FmwhmnorZA7v0HF47cWmInhdYms2Fog+g==
+X-Received: by 2002:a17:906:4fc8:b0:6d8:5059:f998 with SMTP id i8-20020a1709064fc800b006d85059f998mr1596592ejw.487.1648850392641;
+        Fri, 01 Apr 2022 14:59:52 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id og49-20020a1709071df100b006db0dcf673esm1444995ejc.27.2022.04.01.14.59.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Apr 2022 14:59:52 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH RFC net-next v2 3/3] net: phy: mscc-miim: add support to set MDIO bus frequency
-Date:   Fri,  1 Apr 2022 23:58:34 +0200
-Message-Id: <20220401215834.3757692-4-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220401215834.3757692-1-michael@walle.cc>
-References: <20220401215834.3757692-1-michael@walle.cc>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: clock: qcom,smsm: convert to dtschema
+Date:   Fri,  1 Apr 2022 23:59:49 +0200
+Message-Id: <20220401215949.222965-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Until now, the MDIO bus will have the hardware default bus frequency.
-Read the desired frequency of the bus from the device tree and configure
-it.
+Convert the Qualcomm Shared Memory State Machine to DT schema.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/net/mdio/mdio-mscc-miim.c | 58 +++++++++++++++++++++++++++++--
- 1 file changed, 56 insertions(+), 2 deletions(-)
+ .../bindings/soc/qcom/qcom,smsm.txt           | 104 -------------
+ .../bindings/soc/qcom/qcom,smsm.yaml          | 138 ++++++++++++++++++
+ 2 files changed, 138 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml
 
-diff --git a/drivers/net/mdio/mdio-mscc-miim.c b/drivers/net/mdio/mdio-mscc-miim.c
-index c9efcfa2a1ce..7fd979f68dc0 100644
---- a/drivers/net/mdio/mdio-mscc-miim.c
-+++ b/drivers/net/mdio/mdio-mscc-miim.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <linux/bitops.h>
-+#include <linux/clk.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -30,6 +31,8 @@
- #define		MSCC_MIIM_CMD_VLD		BIT(31)
- #define MSCC_MIIM_REG_DATA		0xC
- #define		MSCC_MIIM_DATA_ERROR		(BIT(16) | BIT(17))
-+#define MSCC_MIIM_REG_CFG		0x10
-+#define		MSCC_MIIM_CFG_PRESCALE_MASK	GENMASK(7, 0)
- 
- #define MSCC_PHY_REG_PHY_CFG	0x0
- #define		PHY_CFG_PHY_ENA		(BIT(0) | BIT(1) | BIT(2) | BIT(3))
-@@ -50,6 +53,8 @@ struct mscc_miim_dev {
- 	int mii_status_offset;
- 	struct regmap *phy_regs;
- 	const struct mscc_miim_info *info;
-+	struct clk *clk;
-+	u32 bus_freq;
- };
- 
- /* When high resolution timers aren't built-in: we can't use usleep_range() as
-@@ -242,9 +247,32 @@ int mscc_miim_setup(struct device *dev, struct mii_bus **pbus, const char *name,
- }
- EXPORT_SYMBOL(mscc_miim_setup);
- 
-+static int mscc_miim_clk_set(struct mii_bus *bus)
-+{
-+	struct mscc_miim_dev *miim = bus->priv;
-+	unsigned long rate;
-+	u32 div;
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt
+deleted file mode 100644
+index 2993b5a97dd6..000000000000
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt
++++ /dev/null
+@@ -1,104 +0,0 @@
+-Qualcomm Shared Memory State Machine
+-
+-The Shared Memory State Machine facilitates broadcasting of single bit state
+-information between the processors in a Qualcomm SoC. Each processor is
+-assigned 32 bits of state that can be modified. A processor can through a
+-matrix of bitmaps signal subscription of notifications upon changes to a
+-certain bit owned by a certain remote processor.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: must be one of:
+-		    "qcom,smsm"
+-
+-- qcom,ipc-N:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: three entries specifying the outgoing ipc bit used for
+-		    signaling the N:th remote processor
+-		    - phandle to a syscon node representing the apcs registers
+-		    - u32 representing offset to the register within the syscon
+-		    - u32 representing the ipc bit within the register
+-
+-- qcom,local-host:
+-	Usage: optional
+-	Value type: <u32>
+-	Definition: identifier of the local processor in the list of hosts, or
+-		    in other words specifier of the column in the subscription
+-		    matrix representing the local processor
+-		    defaults to host 0
+-
+-- #address-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: must be 1
+-
+-- #size-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: must be 0
+-
+-= SUBNODES
+-Each processor's state bits are described by a subnode of the smsm device node.
+-Nodes can either be flagged as an interrupt-controller to denote a remote
+-processor's state bits or the local processors bits.  The node names are not
+-important.
+-
+-- reg:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: specifies the offset, in words, of the first bit for this
+-		    entry
+-
+-- #qcom,smem-state-cells:
+-	Usage: required for local entry
+-	Value type: <u32>
+-	Definition: must be 1 - denotes bit number
+-
+-- interrupt-controller:
+-	Usage: required for remote entries
+-	Value type: <empty>
+-	Definition: marks the entry as a interrupt-controller and the state bits
+-		    to belong to a remote processor
+-
+-- #interrupt-cells:
+-	Usage: required for remote entries
+-	Value type: <u32>
+-	Definition: must be 2 - denotes bit number and IRQ flags
+-
+-- interrupts:
+-	Usage: required for remote entries
+-	Value type: <prop-encoded-array>
+-	Definition: one entry specifying remote IRQ used by the remote processor
+-		    to signal changes of its state bits
+-
+-
+-= EXAMPLE
+-The following example shows the SMEM setup for controlling properties of the
+-wireless processor, defined from the 8974 apps processor's point-of-view. It
+-encompasses one outbound entry and the outgoing interrupt for the wireless
+-processor.
+-
+-smsm {
+-	compatible = "qcom,smsm";
+-
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	qcom,ipc-3 = <&apcs 8 19>;
+-
+-	apps_smsm: apps@0 {
+-		reg = <0>;
+-
+-		#qcom,smem-state-cells = <1>;
+-	};
+-
+-	wcnss_smsm: wcnss@7 {
+-		reg = <7>;
+-		interrupts = <0 144 1>;
+-
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml
+new file mode 100644
+index 000000000000..a40d7fa13325
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml
+@@ -0,0 +1,138 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/qcom,smsm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/* Keep the current settings */
-+	if (!miim->bus_freq)
-+		return 0;
++title: Qualcomm Shared Memory State Machine
 +
-+	rate = clk_get_rate(miim->clk);
++maintainers:
++  - Andy Gross <agross@kernel.org>
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 +
-+	div = DIV_ROUND_UP(rate, 2 * miim->bus_freq) - 1;
-+	if (div == 0 || div & ~MSCC_MIIM_CFG_PRESCALE_MASK) {
-+		dev_err(&bus->dev, "Incorrect MDIO clock frequency\n");
-+		return -EINVAL;
-+	}
++description:
++  The Shared Memory State Machine facilitates broadcasting of single bit state
++  information between the processors in a Qualcomm SoC. Each processor is
++  assigned 32 bits of state that can be modified. A processor can through a
++  matrix of bitmaps signal subscription of notifications upon changes to a
++  certain bit owned by a certain remote processor.
 +
-+	return regmap_update_bits(miim->regs, MSCC_MIIM_REG_CFG,
-+				  MSCC_MIIM_CFG_PRESCALE_MASK, div);
-+}
++properties:
++  compatible:
++    const: qcom,smsm
 +
- static int mscc_miim_probe(struct platform_device *pdev)
- {
- 	struct regmap *mii_regmap, *phy_regmap = NULL;
-+	struct device_node *np = pdev->dev.of_node;
- 	void __iomem *regs, *phy_regs;
- 	struct mscc_miim_dev *miim;
- 	struct resource *res;
-@@ -295,21 +323,47 @@ static int mscc_miim_probe(struct platform_device *pdev)
- 	if (!miim->info)
- 		return -EINVAL;
- 
--	ret = of_mdiobus_register(bus, pdev->dev.of_node);
-+	miim->clk = devm_clk_get_optional(&pdev->dev, NULL);
-+	if (IS_ERR(miim->clk))
-+		return PTR_ERR(miim->clk);
++  '#address-cells':
++    const: 1
 +
-+	of_property_read_u32(np, "clock-frequency", &miim->bus_freq);
++  qcom,local-host:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description:
++      Identifier of the local processor in the list of hosts, or in other words
++      specifier of the column in the subscription matrix representing the local
++      processor.
 +
-+	if (miim->bus_freq && !miim->clk) {
-+		dev_err(&pdev->dev,
-+			"cannot use clock-frequency without a clock\n");
-+		return -EINVAL;
-+	}
++  '#size-cells':
++    const: 0
 +
-+	ret = clk_prepare_enable(miim->clk);
-+	if (ret)
-+		return ret;
++patternProperties:
++  "^qcom,ipc-[1-4]$":
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to a syscon node representing the APCS registers
++          - description: u32 representing offset to the register within the syscon
++          - description: u32 representing the ipc bit within the register
++    description:
++      Three entries specifying the outgoing ipc bit used for signaling the N:th
++      remote processor.
 +
-+	ret = mscc_miim_clk_set(bus);
-+	if (ret)
-+		goto out_disable_clk;
++  "^.*@[0-9a-f]$":
++    type: object
++    description:
++      Each processor's state bits are described by a subnode of the SMSM device
++      node.  Nodes can either be flagged as an interrupt-controller to denote a
++      remote processor's state bits or the local processors bits.  The node
++      names are not important.
 +
-+	ret = of_mdiobus_register(bus, np);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Cannot register MDIO bus (%d)\n", ret);
--		return ret;
-+		goto out_disable_clk;
- 	}
- 
- 	platform_set_drvdata(pdev, bus);
- 
- 	return 0;
++    properties:
++      reg:
++        maxItems: 1
 +
-+out_disable_clk:
-+	clk_disable_unprepare(miim->clk);
-+	return ret;
- }
- 
- static int mscc_miim_remove(struct platform_device *pdev)
- {
- 	struct mii_bus *bus = platform_get_drvdata(pdev);
-+	struct mscc_miim_dev *miim = bus->priv;
- 
-+	clk_disable_unprepare(miim->clk);
- 	mdiobus_unregister(bus);
- 
- 	return 0;
++      interrupt-controller:
++        description:
++          Marks the entry as a interrupt-controller and the state bits to
++          belong to a remote processor.
++
++      '#interrupt-cells':
++        const: 2
++
++      interrupts:
++        maxItems: 1
++        description:
++          One entry specifying remote IRQ used by the remote processor to
++          signal changes of its state bits.
++
++      '#qcom,smem-state-cells':
++        $ref: /schemas/types.yaml#/definitions/uint32
++        const: 1
++        description:
++          Required for local entry. Denotes bit number.
++
++    required:
++      - reg
++
++    oneOf:
++      - required:
++          - '#qcom,smem-state-cells'
++      - required:
++          - interrupt-controller
++          - '#interrupt-cells'
++          - interrupts
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - '#address-cells'
++  - '#size-cells'
++
++anyOf:
++  - required:
++      - qcom,ipc-1
++  - required:
++      - qcom,ipc-2
++  - required:
++      - qcom,ipc-3
++  - required:
++      - qcom,ipc-4
++
++additionalProperties: false
++
++examples:
++  # The following example shows the SMEM setup for controlling properties of
++  # the wireless processor, defined from the 8974 apps processor's
++  # point-of-view. It encompasses one outbound entry and the outgoing interrupt
++  # for the wireless processor.
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    shared-memory {
++        compatible = "qcom,smsm";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        qcom,ipc-3 = <&apcs 8 19>;
++
++        apps_smsm: apps@0 {
++            reg = <0>;
++            #qcom,smem-state-cells = <1>;
++        };
++
++        wcnss_smsm: wcnss@7 {
++            reg = <7>;
++            interrupts = <GIC_SPI 144 IRQ_TYPE_EDGE_RISING>;
++            interrupt-controller;
++            #interrupt-cells = <2>;
++        };
++    };
 -- 
-2.30.2
+2.32.0
 
