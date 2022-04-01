@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99BAD4EFACD
+	by mail.lfdr.de (Postfix) with ESMTP id E5BA44EFACE
 	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236230AbiDAUMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:12:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48716 "EHLO
+        id S1351744AbiDAUMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 16:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345860AbiDAUMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:12:35 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F41215472
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:10:45 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id r23so4288811edb.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:10:45 -0700 (PDT)
+        with ESMTP id S1351693AbiDAUMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:12:37 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB164215472
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:10:46 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id c62so4229822edf.5
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:10:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=vZSpTcuUm8K1XcOnNjGfRvdX99iMAx27okwDjYgvL64=;
-        b=s514l3cehwTECRMHAc4oVh8Lhac5rDM7VsZkihN1to6DI5SOrc/DmRwA66MZNpOGeN
-         z1KAOi70gQsdnwn1BEUXtd9eMOSfcgdFjNyWXQtXFuyGKJVi/EsXwNDusRU2WBZe7+5g
-         BA2+5Zcbv+WHmg0p4cGHgSSpNcsXZKxlRVnBCrVfRNwLvwbva71VHr7yFlMEDcVb++c2
-         3B0VR371koPWu9tIs2/3ZTl73e5UoamFfqj79J2QMgmNtJENQWj/wYjczFyKAkRQ0sfG
-         uSIkn0cy5+Ty7wxteoxqdbE3chIr0GYBJK7unkvRWSRhjN5Kxm8xBJOBuEOrhLyDPBVL
-         fURQ==
+        bh=sPCP8q2t9mmowMCPujklX+PmP86KwmADww9ebRiXDzI=;
+        b=GhS363ByZRL86Pn4YX8QGeTEZNgcgve9rTtFhLsS6bfdKrvWBwj5oY8x5J9F2HfuCw
+         ntx5GCboVcvYtoBfU5vFRJFlLkxNeOMIaqI8H9mmAGU1T0QP0qetLL6RDFLdg9VpBeZP
+         bAqed/UQPjQgnOg/QA9bcvxkHke8iZ98KOl671sIP2vtyGdKSk3yu40naSh7LvNems29
+         IDMAf1PZjfeahL6DCkr2ZUlnN9vzYKbMW+0pubDA1OBpl0bWnDXW2MMw4Jbww4YKytqV
+         n5IW/G778o+MzJjO9FEXFKOsoq8JWdjdEmdQYdbxl6Pz0kd6onyIwam9uQumYGEtVC9s
+         Q1Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=vZSpTcuUm8K1XcOnNjGfRvdX99iMAx27okwDjYgvL64=;
-        b=MivboHpa7aTsWy7qwy61oeDQA0DY5UOaqH5gZHABwUGR6TMqvWk76TdTMRfYz+NZMH
-         tRKYwlEIkgpntOcMYTiChG1vOIHRGLMYywf8SJT5oCXG1VRcgUCdJk8m7Ld317A1yuu4
-         JUXpKHRP7Qim21ExTIIJ6hlVERQgRszJuqvYeSuh/Iddq2vjx68a9GKcLY8XEdymWwik
-         +afIRigASgasllQw6C+amgCVLcIiba/GyixmJLYhVOji3jUgj5Q1rJeCSY2Xh6z76BMT
-         KJ//E/RrZaMptkKETjqRgrkP6r47iCyDYsKkKhUMKaObp0k9nNU4kCcN5gganJ0r/7KN
-         gwPA==
-X-Gm-Message-State: AOAM532FuQD+y3eAQQuooSc9xcAAaqBVN0gwwZo0mKry53Q72b5xHXb5
-        dPcN136nBalLoBJ+Ve4srIARuA==
-X-Google-Smtp-Source: ABdhPJyu5vqa1NpW1FvnOrBS6maT+upb58FT6mJWm3l3rhXpz0gVmoF9622SkOdt3PUlF4HSdh1GuA==
-X-Received: by 2002:aa7:da81:0:b0:419:11e8:1039 with SMTP id q1-20020aa7da81000000b0041911e81039mr22622742eds.285.1648843844267;
-        Fri, 01 Apr 2022 13:10:44 -0700 (PDT)
+        bh=sPCP8q2t9mmowMCPujklX+PmP86KwmADww9ebRiXDzI=;
+        b=AZfhsBRSXqrfYXOm6iYaAvyqr3bvUt9sdZ128HG4QRmMbx/PJwDzOAxl/qJJL3hev5
+         nGq1X60r5PrN9Cw97PT0KHD5jtk6ZGfsuWoeUkKBGq+SOX2hJc70sOOGiJQxiTexVdGf
+         KQVYkt9rWU5I9fSrYV10XxLYEvlKQdc7yolkEVgzpY1gzkqA8B89CS5rskFnKLQDXlVN
+         FE56I6ehbtGVZQtrCMwMwxAA3vNnXmixUc4mQ/phx/xT8WHa3cloFb8abtt6HaTCdLj2
+         1tVTUuPpybT6Bhdh2s8fLRY2Uasowr4SWvJW8MclKF1mfeBt607bl/IZJr5VMeM8P3ZN
+         Tgdg==
+X-Gm-Message-State: AOAM5334fihnKBBVZgA6WVJbcDJqyFBweFhHd5ZXkWityuTdQb6eLOVM
+        1FVOok4jX41PRSwXkWPcEvPzYA==
+X-Google-Smtp-Source: ABdhPJxO17RtK3iw3c/J8HVKLZjSSJh2uya5eLbv6I7iVraHoeBQFAiBf5MNJGKlZV3bDnlQ4kmZzA==
+X-Received: by 2002:a05:6402:2794:b0:419:2ea9:7de3 with SMTP id b20-20020a056402279400b004192ea97de3mr22563439ede.169.1648843845493;
+        Fri, 01 Apr 2022 13:10:45 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bx5-20020a0564020b4500b00418fca53406sm1509041edb.27.2022.04.01.13.10.42
+        by smtp.gmail.com with ESMTPSA id bx5-20020a0564020b4500b00418fca53406sm1509041edb.27.2022.04.01.13.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 13:10:42 -0700 (PDT)
+        Fri, 01 Apr 2022 13:10:45 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -62,9 +62,9 @@ To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-remoteproc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 02/10] arm64: dts: qcom: msm8994: remove SMD qcom,local-pid property
-Date:   Fri,  1 Apr 2022 22:10:27 +0200
-Message-Id: <20220401201035.189106-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 03/10] arm64: dts: qcom: add RPM clock controller fallback compatible
+Date:   Fri,  1 Apr 2022 22:10:28 +0200
+Message-Id: <20220401201035.189106-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220401201035.189106-1-krzysztof.kozlowski@linaro.org>
 References: <20220401201035.189106-1-krzysztof.kozlowski@linaro.org>
@@ -80,25 +80,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SMD does not use qcom,local-pid property.
+The bindings require a fallback compatible to RPM clock controller.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8994.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8992.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi  | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index e34963505e07..cf0482fdf69d 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -299,7 +299,7 @@ rpm_requests: rpm-requests {
+ 				qcom,smd-channels = "rpm_requests";
+ 
+ 				rpmcc: clock-controller {
+-					compatible = "qcom,rpmcc-msm8916";
++					compatible = "qcom,rpmcc-msm8916", "qcom,rpmcc";
+ 					#clock-cells = <1>;
+ 				};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+index aca13760bb75..4fa0091d7a5e 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+@@ -326,7 +326,7 @@ rpm_requests: rpm-requests {
+ 				qcom,smd-channels = "rpm_requests";
+ 
+ 				rpmcc: rpmcc {
+-					compatible = "qcom,rpmcc-msm8953";
++					compatible = "qcom,rpmcc-msm8953", "qcom,rpmcc";
+ 					clocks = <&xo_board>;
+ 					clock-names = "xo";
+ 					#clock-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8992.dtsi b/arch/arm64/boot/dts/qcom/msm8992.dtsi
+index 58fe58cc7703..c286381240ed 100644
+--- a/arch/arm64/boot/dts/qcom/msm8992.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8992.dtsi
+@@ -11,7 +11,7 @@
+ /delete-node/ &cpu7_map;
+ 
+ &rpmcc {
+-	compatible = "qcom,rpmcc-msm8992";
++	compatible = "qcom,rpmcc-msm8992", "qcom,rpmcc";
+ };
+ 
+ &tcsr_mutex {
 diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-index 8c1dc5155b71..1ff7e2c03ce3 100644
+index 1ff7e2c03ce3..a36b1c7cf10e 100644
 --- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-@@ -233,7 +233,6 @@ rpm {
- 			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
- 			qcom,ipc = <&apcs 8 0>;
- 			qcom,smd-edge = <15>;
--			qcom,local-pid = <0>;
- 			qcom,remote-pid = <6>;
+@@ -240,7 +240,7 @@ rpm_requests: rpm-requests {
+ 				qcom,smd-channels = "rpm_requests";
  
- 			rpm_requests: rpm-requests {
+ 				rpmcc: rpmcc {
+-					compatible = "qcom,rpmcc-msm8994";
++					compatible = "qcom,rpmcc-msm8994", "qcom,rpmcc";
+ 					#clock-cells = <1>;
+ 				};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index f0f81c23c16f..527afc90d9ef 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -456,7 +456,7 @@ rpm_requests: rpm-requests {
+ 			qcom,glink-channels = "rpm_requests";
+ 
+ 			rpmcc: qcom,rpmcc {
+-				compatible = "qcom,rpmcc-msm8996";
++				compatible = "qcom,rpmcc-msm8996", "qcom,rpmcc";
+ 				#clock-cells = <1>;
+ 			};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 3f06f7cd3cf2..f0ade6a03208 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -226,7 +226,7 @@ rpm_requests: glink-channel {
+ 			qcom,glink-channels = "rpm_requests";
+ 
+ 			rpmcc: clock-controller {
+-				compatible = "qcom,rpmcc-qcs404";
++				compatible = "qcom,rpmcc-qcs404", "qcom,rpmcc";
+ 				#clock-cells = <1>;
+ 			};
+ 
 -- 
 2.32.0
 
