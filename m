@@ -2,68 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 166364EEB03
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 12:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 119DE4EEB27
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 12:20:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232435AbiDAKMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 06:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38782 "EHLO
+        id S245425AbiDAKWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 06:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231555AbiDAKMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 06:12:20 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B8318EE88
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 03:10:31 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id v15so1683297qkg.8
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 03:10:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HsUIHTEkEX4dNPNs4mJuWVn9eB7wmeCMVszwS4PG+T0=;
-        b=1i62CfN6puk2l/umbrv4rWIiIWOFMK1kgowUOpV9YloyhrzJbzKchSMGaVQeQpwhJo
-         bTrRPHj2gqm3xKEoxQHeeJJ/NR652X7RaSAmmp85HFXNVA+7bbASMyqFCak653bJmLCN
-         eaRibX0URdggtwqPtU1Zudy7JvR1gNMWQzqzMm+MxUMMNyieuSNdeg+2ivPJJq9onrHB
-         Vp1biXpQ48VHyl1m9fKGggpu6tR86z+pxd4QALkKNSf19JZDCt6FQlvDgHTD/nvEeCzE
-         O4Em5SgPT9YRx3fqHlmtsZh6IFGYj+4JQxRtK57grskA8lQAUlQn03yPsgNWGqRGvPfZ
-         qNHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HsUIHTEkEX4dNPNs4mJuWVn9eB7wmeCMVszwS4PG+T0=;
-        b=koDASkC5GpRaBzLcZFJ1wuI/yN+Q8tgGA+kqgiT5ylouxejNzbgbE/stX3U+WGM4Ds
-         g3UWcf70xowiFItdLQXYPVFJjYDTac7hhSEKcPMvenNnlGA5OpeZ53wbyemUThxY6qZB
-         W3o+cphTCCFdUC4O5IKVxhDM/l4wvzMJj35KDqKE/f/xHDXxFfrA7YYapQ6IwdwR7zs3
-         7uNHt004LUtieXp2/ioyBM54gg80X05jjmFH/FHrL/OkifK99y//B6SbMCzqed+2tANz
-         ZddPSCKusKq+vLvjzU8nklXYe6YnnD3QoMHBgB/ztgFZQHAN7MpOKYbWB3rjnDhY5vU5
-         m6bQ==
-X-Gm-Message-State: AOAM533KNjk3AueRddCyd3SZnDka/73dKjE6L2rrbXF/T9VH2QKiqhf1
-        42OqlL2Q9kPp39qrhblAMXYYqcVqUIO7vzR4sNCUCg==
-X-Google-Smtp-Source: ABdhPJxt/76dG0Y6LgNpzsQV9mOqe9cHsfLvhC1TBXpD/vUZKq0hL7o05A0RxPOjktM8zN0QsJ2TDdEIJz1/DwFpbfI=
-X-Received: by 2002:a05:620a:6c4:b0:67d:3912:ea39 with SMTP id
- 4-20020a05620a06c400b0067d3912ea39mr5960625qky.447.1648807830299; Fri, 01 Apr
- 2022 03:10:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220330190846.13997-1-wens@kernel.org> <20220330190846.13997-5-wens@kernel.org>
-In-Reply-To: <20220330190846.13997-5-wens@kernel.org>
-From:   Javier Martinez Canillas <javier@dowhile0.org>
-Date:   Fri, 1 Apr 2022 12:10:19 +0200
-Message-ID: <CABxcv=nLQdz9bVrfqw1MaKREh0uRBvc4wX14AORETaDJAin-Fw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] drm: ssd130x: Add support for SINO WEALTH SH1106
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Javier Martinez Canillas <javierm@redhat.com>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S245369AbiDAKW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 06:22:29 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3D31C8A81
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 03:20:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1648808414; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=Pg66HM7IjtDCBmxn7FipZwxPREL7049yNw4vQy3ONx8uSA9ELwhHW2h6MOsLsaBexdWCborfAz2N0rbcn0/wUbBe4USiVTyaY6LsCk1yvXzHFGv5n2hiVHFj9Lgi6gThQF6A3f3wypbxLx4OuCDJmdMWf8O+7OciUtzM/iAoga4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1648808414; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=+dmV2YhEto56L4QtQz/NwowczTM9IlbxM1SdZmkUe3A=; 
+        b=YMaq8gZeQa/LiLLQMChsnQZWTwGMs0eEQ6DhRkFAl7jhwcCjD+TPmATP3mJEo5y3bxlm+jAoeRUK9I1Z1Pj4S7wlS83LIIwcMEoMkUo3ZT9fCH0Um0RLBnKDSV416cjl1/Hm1c8KgmCQN1gXEzVNhY8Io0py3erVirT7UB/L3kg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1648808414;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=+dmV2YhEto56L4QtQz/NwowczTM9IlbxM1SdZmkUe3A=;
+        b=HNI0Lvn1lLwg0aUAbaD3rVUXP2csMt0T7lvvA2GtRJ/AJzzUKj8hrH6MeK8QLg2P
+        OC09GfE8UpbN5Re0Yd2clGKgiKZO3uhIOmCOL5r8GkBuVuoLPYB86aYKi0A/m8Xuirc
+        vwkgXbr8sbx7pNGgoc7qflHsreP7cEoilEw+CYGE=
+Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1648808412518966.3548061519505; Fri, 1 Apr 2022 03:20:12 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH 1/5] ARM: dts: BCM5301X: Fix DTC warning for NAND node
+Date:   Fri,  1 Apr 2022 13:19:58 +0300
+Message-Id: <20220401102002.15765-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,33 +60,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 9:09 PM Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> From: Chen-Yu Tsai <wens@csie.org>
->
-> The SINO WEALTH SH1106 is an OLED display driver that is somewhat
-> compatible with the SSD1306. It supports a slightly wider display,
-> at 132 instead of 128 pixels. The basic commands are the same, but
-> the SH1106 doesn't support the horizontal or vertical address modes.
->
-> Add support for this display driver. The default values for some of
-> the hardware settings are taken from the datasheet.
->
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  drivers/gpu/drm/solomon/ssd130x-i2c.c | 11 +++++++++++
+Remove the unnecessary #address-cells and #size-cells properties on the
+nand@0 node to fix the warning below.
 
-Thanks a lot for this patch. It's very nice to see that another
-variant of the OLED controller is being supported!
+Warning (avoid_unnecessary_addr_size): /nand-controller@18028000/nand@0: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
 
-I wonder if we should also list SH1106 in the
-drivers/gpu/drm/solomon/Kconfig file so people can find it ?
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+ arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-ah, one comment I forgot in 3/4 but that also applies to this patch, I
-believe the convention in DRM is for the subject line to be
-"drm/ssd130x:" instead of "drm: ssd130x:"
+diff --git a/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi b/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
+index be9a00ff752d..bdf1b4a608e6 100644
+--- a/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
++++ b/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
+@@ -10,8 +10,6 @@ nand-controller@18028000 {
+ 		nandcs: nand@0 {
+ 			compatible = "brcm,nandcs";
+ 			reg = <0>;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+ 
+ 			partitions {
+ 				compatible = "brcm,bcm947xx-cfe-partitions";
+-- 
+2.25.1
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
-Best regards,
-Javier
