@@ -2,238 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 360004EF856
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 160744EF85A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:49:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344964AbiDAQrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 12:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60848 "EHLO
+        id S1348875AbiDAQva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 12:51:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349503AbiDAQrO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 12:47:14 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EEA317B0EC
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 09:32:15 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id yy13so7015330ejb.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 09:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jxwsv/tK/OR4aZvoT2efCdL/z7ltygvpIDrQHk7UAeg=;
-        b=dQ7NaD4ErcjM4rk/CAt9aSek5NQW1Z67YLnC1elXBDk0QCJTneOWHBYv3PAEziPh3c
-         v09UBoe54h9qLZvflDz268s6U+lU/K78WvEncHMu6XGJ1H5GbvO8RMyzhSbMEGIJ9x8Y
-         p3FW9mugKO9SDgnzqZEn7oru+uDhIFRukc6x52V/nTMbsnIwrrpFSRRB5rwyvUW+HzXG
-         1/yOJqKkj0225DsOjnqW4JPUvXfDJbay8FmZrxbWSUlUBRtEETsQLDhUoP+v1gFJvwZp
-         xOjsDoy3NqND1GgK10yoe1xWS1C0o4nwB/ER71FkP757tLGGZfi5RZTTZTVnRdYSZ3WD
-         3SKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=jxwsv/tK/OR4aZvoT2efCdL/z7ltygvpIDrQHk7UAeg=;
-        b=P2ppjgaIKqfx7U+fvYua4BYbC6d28Nl0bthUs/id0LFW+lOzPU+7HLGlezCjRcx6+M
-         gDSud639jCVtt1flVb3l/CFgAiUMd9nDfv/lPbq4Mg76NqsXvqS2WD4TmlnQ+owkzBiM
-         QYogs9v59Wc/CEiSQTqX9eq4s3MQBG7GRqesA1SA/9wD1lb4maG+IWyKgIrFFHlYlQ6k
-         NOntY3y+qEVxEAAKVoXraH3t4YdZZ88pYR0B0jGIexqTx3k8IqLrvQcINpIGjJD2Hoal
-         SvI+okmVqgXE2RRb65erCcv6zSizvHYaSEP9pK9dICiBtJ4Z/9SnFZuyHuOtaywSh3rq
-         jNPA==
-X-Gm-Message-State: AOAM532JSg2vlNAWEkEXLnqMedSk9iINGADLZOIRHu5JHoG/FiX89Dkx
-        nOxCM8H1kAe1TDAqWiWpn9j8sw==
-X-Google-Smtp-Source: ABdhPJwXp/PWCtXCv3kqxNIkREk9755IcXW/iVBmukMqjgiMu5JSpqtF4NfLyi6tJAhzvVLKlfTqrw==
-X-Received: by 2002:a17:907:1ca4:b0:6da:86a4:1ec7 with SMTP id nb36-20020a1709071ca400b006da86a41ec7mr567316ejc.556.1648830733527;
-        Fri, 01 Apr 2022 09:32:13 -0700 (PDT)
-Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id c14-20020a170906340e00b006ce98f2581asm1175799ejb.205.2022.04.01.09.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Apr 2022 09:32:12 -0700 (PDT)
-Message-ID: <56c5870e-bc41-39be-6b53-785396d8812b@linaro.org>
-Date:   Fri, 1 Apr 2022 18:32:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/4] dt-bindings: cpufreq: mediatek: transform
- cpufreq-mediatek into yaml
-Content-Language: en-US
-To:     Jia-Wei Chang <jia-wei.chang@mediatek.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        with ESMTP id S1349831AbiDAQvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 12:51:19 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C966F1C
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 09:38:20 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 28DC384042;
+        Fri,  1 Apr 2022 18:38:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1648831098;
+        bh=681/ecAfuGyug/aKomT5gTVBLC3jqCPuH5Xv9vjRARY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ajUimAb5nrq0PXOK+abU7Q0HPvmGiJfxe5v5zjUTIKJnaW6daJq5zbDrBoPwEKAaR
+         Eyt9H0Xm/9i3z/QDIIMDuqIH5L+gCCFoctXWJ4OdPgv+HKa/5Gc8F5rkG6vi9zVo8A
+         +v46Cq+YE0fTT/SemFmnR2zOiYc4Xo66lmlrlrJCd0PgLb48TfdvdzFmBrfYHLpTZr
+         pFLUikor/GouKzqdhS715+I+YemFAscsSn0k3f4lgzMd5kZX8us0DbV4cdBzNAKFPq
+         TmCa0Eki2kcAaV+bGSJclTNFljNXdHngeeT3qiKzeg2nIIVnFoLv02oRVCr/7xt+/k
+         hpbF9RtbrTqkw==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, fan.chen@mediatek.com,
-        louis.yu@mediatek.com, roger.lu@mediatek.com,
-        Allen-yy.Lin@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        hsinyi@google.com,
-        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
-References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
- <20220307122151.11666-2-jia-wei.chang@mediatek.com>
- <ee98d248-b2cd-e975-84df-448917a79287@canonical.com>
- <2cf526d400c011b5172ba4fc2c3f03b4a4f371dc.camel@mediatek.com>
- <96a823a2-f3b6-9fb7-c9d6-f1315f6056fd@kernel.org>
- <de1751bb13fb14b591fbe046ff274530ad62162e.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <de1751bb13fb14b591fbe046ff274530ad62162e.camel@mediatek.com>
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: [RFC][PATCH 1/3] dt-bindings: display: panel: mipi-dbi-spi: Make width-mm/height-mm mandatory
+Date:   Fri,  1 Apr 2022 18:37:53 +0200
+Message-Id: <20220401163755.302548-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 15:26, Jia-Wei Chang wrote:
-> On Thu, 2022-03-24 at 11:33 +0100, Krzysztof Kozlowski wrote:
->> On 24/03/2022 10:38, Jia-Wei Chang wrote:
->>>>
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>>> mediatek.yaml
->>>>> b/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>>> mediatek.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..584946eb3790
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
->>>>> mediatek.yaml
->>>>> @@ -0,0 +1,131 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: 
->>>>>
-> https://urldefense.com/v3/__http://devicetree.org/schemas/cpufreq/cpufreq-mediatek.yaml*__;Iw!!CTRNKA9wMg0ARbw!xbKG4TgD0MRpMLyGJVBZEGpZFrNOclrcxOCx_APKo5Nmg8nF2x5PcBdE0unvL2NdpChkMA$
->>>>>  
->>>>> +$schema: 
->>>>>
-> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xbKG4TgD0MRpMLyGJVBZEGpZFrNOclrcxOCx_APKo5Nmg8nF2x5PcBdE0unvL2O8T_oxCQ$
->>>>>  
->>>>> +
->>>>> +title: Mediatek CPUFREQ driver Device Tree Bindings
->>>>
->>>> Please remove "driver Device Tree Bindings" because the title
->>>> should
->>>> describe the hardware. Therefore it could be something like
->>>> "Mediatek
->>>> SoC CPU frequency and voltage scaling".
->>>
->>> Thanks for your suggestion of title.
->>> Or should I use the origin title "Binding for MediaTek's CPUFreq
->>> driver"?
->>
->> Mediatek CPUFREQ
->> or
->> Mediatek CPU frequency scaling
-> 
-> Ok, I will choose one of it.
-> 
->>
->>>
->>>>
->>>> How is it related to cpufreq-mediatek-hw.yaml? The names/title
->>>> look
->>>> unfortunately too similar.
->>>
->>> No, mediatek-cpufreq is performing in kernel driver rather than on
->>> hardware.
->>> On the other hand, mediatek-cpufreq-hw is performing on hardware.
->>> That's why "hw" is present in its name.
->>
->> Unfortunately, I do not get it. The bindings are only about hardware,
->> so
->> how bindings could be about CPU frequency scaling not in hardware?
-> 
-> Sorry, let me correct my statements.
-> 
-> For mediatek-cpufreq here, the required hardware are clock and
-> regulator which have to be under control of mediatek-cpufreq. That's
-> the reason why it needs bindings.
-> 
-> mediatek-cpufreq scales up and down voltage and frequency via kernel
-> framework of clock and regulator, however, mediatek-cpufreq-hw delegate
-> the voltage and frequency control to a hardware agent instead.
+Make the width-mm/height-mm panel properties mandatory
+to correctly report the panel dimensions to the OS.
 
-OK, that makes sense, thanks for explanation.
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Dmitry Osipenko <digetx@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Noralf Trønnes <noralf@tronnes.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+ .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 
->>
->>>
->>>>
->>>> In general this does not look like proper bindings (see also
->>>> below
->>>> lack
->>>> of compatible). Bindings describe the hardware, so what is
->>>> exactly
->>>> the
->>>> hardware here?
->>>
->>> Except for SoC, there's no requirement of hardware binding for
->>> mediatek-cpufreq.
->>> mediatek-cpufreq recognizes the compatible of Mediatek SoC while
->>> probing.
->>
->> What is the hardware here? If there is no requirement for bindings
->> for
->> mediate-cpufreq, why do we have this patch here?
-> 
-> Sorry, that's my mistake.
-> Clock and regulator are required hardware for mediatek-cpufreq.
-> 
->>
->>>
->>>>
->>>>> +
->>>>> +maintainers:
->>>>> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
->>>>> +
->>>>> +description: |
->>>>> +  CPUFREQ is used for scaling clock frequency of CPUs.
->>>>> +  The module cooperates with CCI DEVFREQ to manage frequency
->>>>> for
->>>>> some Mediatek
->>>>> +  SoCs.
->>>>> +
->>>>> +properties:
->>>>
->>>> How is this schema going to be applied? I don't see here select
->>>> neither
->>>> compatible.
->>>
->>> As mentioned above, only compatible of SoC is required for
->>> mediatek-
->>> cpufreq.
->>
->> It does not answer my questions. How the schema is going to be
->> applied?
-> 
-> Currently, we do use compatible of SoC to probe mediatek-cpufreq.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+index f29789994b18..c2df8d28aaf5 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+@@ -83,6 +83,8 @@ properties:
+ required:
+   - compatible
+   - reg
++  - width-mm
++  - height-mm
+   - panel-timing
+ 
+ unevaluatedProperties: false
+-- 
+2.35.1
 
-Probing and binding to compatible is correct, but there is no compatible
-here, so the schema is a no-op. Does nothing.
-
-> If the better way is using clock and regulator opp, do you have a
-> suggestion to approach that?
-> I mean I can't find a good example from other vendors trying to do that
-> way. Or maybe I miss something?
-
-One other way (proper) is to use cpufreq-dt and existing bindings. I
-understand that maybe you need some specific bindings here, but I fail
-to see how they would work. IOW, you don't have the compatible, no
-select, so nothing can use these bindings. Also bindings do not refer to
-any specific hardware, like SoC model.
-
-It's good that you try to convert existing bindings to DT schema, but
-with that they should be probably fixed/updated to match proper bindings.
-
-Best regards,
-Krzysztof
