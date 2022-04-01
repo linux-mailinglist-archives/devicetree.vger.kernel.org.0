@@ -2,55 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B924EE8EF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 632FC4EE8FC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343786AbiDAHSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 03:18:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41322 "EHLO
+        id S231869AbiDAHU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 03:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343777AbiDAHST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:18:19 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6DF25CBA2;
-        Fri,  1 Apr 2022 00:16:28 -0700 (PDT)
-X-UUID: 6924b0fd02a34aeb89897902d0ca4045-20220401
-X-UUID: 6924b0fd02a34aeb89897902d0ca4045-20220401
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 328314622; Fri, 01 Apr 2022 15:16:24 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 1 Apr 2022 15:16:23 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 1 Apr
- 2022 15:16:23 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 1 Apr 2022 15:16:22 +0800
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        Leilk Liu <leilk.liu@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH V7 3/3] spi: mediatek: support hclk
-Date:   Fri, 1 Apr 2022 15:16:16 +0800
-Message-ID: <20220401071616.8874-4-leilk.liu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220401071616.8874-1-leilk.liu@mediatek.com>
-References: <20220401071616.8874-1-leilk.liu@mediatek.com>
+        with ESMTP id S243692AbiDAHU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:20:56 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2291FB7C9
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 00:18:41 -0700 (PDT)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(1166:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 01 Apr 2022 15:16:54 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Fri, 1 Apr 2022 15:17:53 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.018; Fri, 1 Apr 2022 15:17:53 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Russell King - ARM Linux" <linux@armlinux.org.uk>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: RE: [PATCH v12 7/9] irqchip: Add Sunplus SP7021 interrupt controller
+ driver
+Thread-Topic: [PATCH v12 7/9] irqchip: Add Sunplus SP7021 interrupt controller
+ driver
+Thread-Index: AQHYRNqOFHiqRDi4BESy0Jgu755hDKzYsFoAgAH1GCA=
+Date:   Fri, 1 Apr 2022 07:17:52 +0000
+Message-ID: <49a391f2636d4bb193b80c301ce0832d@cqplus1.com>
+References: <cover.1648714851.git.qinjian@cqplus1.com>
+ <c75df921c121c047d48a34de29cd18cf9a631d01.1648714851.git.qinjian@cqplus1.com>
+ <CAK8P3a16M3nv+TQWsC-0Pr5M2vcTttC2WWTzctMBaqdODMFX-A@mail.gmail.com>
+In-Reply-To: <CAK8P3a16M3nv+TQWsC-0Pr5M2vcTttC2WWTzctMBaqdODMFX-A@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,183 +67,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-this patch adds hclk support.
-
-Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/spi/spi-mt65xx.c | 85 ++++++++++++++++++++++++++++++++--------
- 1 file changed, 69 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-index 0f91c176b878..99ce570a88a7 100644
---- a/drivers/spi/spi-mt65xx.c
-+++ b/drivers/spi/spi-mt65xx.c
-@@ -129,7 +129,7 @@ struct mtk_spi {
- 	u32 state;
- 	int pad_num;
- 	u32 *pad_sel;
--	struct clk *parent_clk, *sel_clk, *spi_clk;
-+	struct clk *parent_clk, *sel_clk, *spi_clk, *spi_hclk;
- 	struct spi_transfer *cur_transfer;
- 	u32 xfer_len;
- 	u32 num_xfered;
-@@ -1204,25 +1204,40 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 		goto err_put_master;
- 	}
- 
-+	mdata->spi_hclk = devm_clk_get_optional(&pdev->dev, "hclk");
-+	if (IS_ERR(mdata->spi_hclk)) {
-+		ret = PTR_ERR(mdata->spi_hclk);
-+		dev_err(&pdev->dev, "failed to get hclk: %d\n", ret);
-+		goto err_put_master;
-+	}
-+
-+	ret = clk_prepare_enable(mdata->spi_hclk);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to enable hclk (%d)\n", ret);
-+		goto err_put_master;
-+	}
-+
- 	ret = clk_prepare_enable(mdata->spi_clk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to enable spi_clk (%d)\n", ret);
--		goto err_put_master;
-+		goto err_disable_spi_hclk;
- 	}
- 
- 	ret = clk_set_parent(mdata->sel_clk, mdata->parent_clk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to clk_set_parent (%d)\n", ret);
--		clk_disable_unprepare(mdata->spi_clk);
--		goto err_put_master;
-+		goto err_disable_spi_clk;
- 	}
- 
- 	mdata->spi_clk_hz = clk_get_rate(mdata->spi_clk);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_disable(mdata->spi_clk);
--	else
-+		clk_disable(mdata->spi_hclk);
-+	} else {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	pm_runtime_enable(&pdev->dev);
- 
-@@ -1262,6 +1277,10 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 
- err_disable_runtime_pm:
- 	pm_runtime_disable(&pdev->dev);
-+err_disable_spi_clk:
-+	clk_disable_unprepare(mdata->spi_clk);
-+err_disable_spi_hclk:
-+	clk_disable_unprepare(mdata->spi_hclk);
- err_put_master:
- 	spi_master_put(master);
- 
-@@ -1277,8 +1296,10 @@ static int mtk_spi_remove(struct platform_device *pdev)
- 
- 	mtk_spi_reset(mdata);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_unprepare(mdata->spi_clk);
-+		clk_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return 0;
- }
-@@ -1294,8 +1315,10 @@ static int mtk_spi_suspend(struct device *dev)
- 	if (ret)
- 		return ret;
- 
--	if (!pm_runtime_suspended(dev))
-+	if (!pm_runtime_suspended(dev)) {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return ret;
- }
-@@ -1312,11 +1335,20 @@ static int mtk_spi_resume(struct device *dev)
- 			dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
- 			return ret;
- 		}
-+
-+		ret = clk_prepare_enable(mdata->spi_hclk);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable spi_hclk (%d)\n", ret);
-+			clk_disable_unprepare(mdata->spi_clk);
-+			return ret;
-+		}
- 	}
- 
- 	ret = spi_master_resume(master);
--	if (ret < 0)
-+	if (ret < 0) {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return ret;
- }
-@@ -1328,10 +1360,13 @@ static int mtk_spi_runtime_suspend(struct device *dev)
- 	struct spi_master *master = dev_get_drvdata(dev);
- 	struct mtk_spi *mdata = spi_master_get_devdata(master);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_disable(mdata->spi_clk);
--	else
-+		clk_disable(mdata->spi_hclk);
-+	} else {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return 0;
- }
-@@ -1342,13 +1377,31 @@ static int mtk_spi_runtime_resume(struct device *dev)
- 	struct mtk_spi *mdata = spi_master_get_devdata(master);
- 	int ret;
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		ret = clk_enable(mdata->spi_clk);
--	else
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
-+			return ret;
-+		}
-+		ret = clk_enable(mdata->spi_hclk);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable spi_hclk (%d)\n", ret);
-+			clk_disable(mdata->spi_clk);
-+			return ret;
-+		}
-+	} else {
- 		ret = clk_prepare_enable(mdata->spi_clk);
--	if (ret < 0) {
--		dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
--		return ret;
-+		if (ret < 0) {
-+			dev_err(dev, "failed to prepare_enable spi_clk (%d)\n", ret);
-+			return ret;
-+		}
-+
-+		ret = clk_prepare_enable(mdata->spi_hclk);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to prepare_enable spi_hclk (%d)\n", ret);
-+			clk_disable_unprepare(mdata->spi_clk);
-+			return ret;
-+		}
- 	}
- 
- 	return 0;
--- 
-2.25.1
-
+PiANCj4gT24gVGh1LCBNYXIgMzEsIDIwMjIgYXQgMTA6MjkgQU0gUWluIEppYW4gPHFpbmppYW5A
+Y3FwbHVzMS5jb20+IHdyb3RlOg0KPiANCj4gPiArI2lmZGVmIENPTkZJR19TTVANCj4gPiArc3Rh
+dGljIGludCBzcF9pbnRjX3NldF9hZmZpbml0eShzdHJ1Y3QgaXJxX2RhdGEgKmQsIGNvbnN0IHN0
+cnVjdCBjcHVtYXNrICptYXNrLCBib29sIGZvcmNlKQ0KPiA+ICt7DQo+ID4gKyAgICAgICByZXR1
+cm4gLUVJTlZBTDsNCj4gPiArfQ0KPiA+ICsjZW5kaWYNCj4gPiArDQo+ID4gK3N0YXRpYyBzdHJ1
+Y3QgaXJxX2NoaXAgc3BfaW50Y19jaGlwID0gew0KPiA+ICsgICAgICAgLm5hbWUgPSAic3BfaW50
+YyIsDQo+ID4gKyAgICAgICAuaXJxX2FjayA9IHNwX2ludGNfYWNrX2lycSwNCj4gPiArICAgICAg
+IC5pcnFfbWFzayA9IHNwX2ludGNfbWFza19pcnEsDQo+ID4gKyAgICAgICAuaXJxX3VubWFzayA9
+IHNwX2ludGNfdW5tYXNrX2lycSwNCj4gPiArICAgICAgIC5pcnFfc2V0X3R5cGUgPSBzcF9pbnRj
+X3NldF90eXBlLA0KPiA+ICsjaWZkZWYgQ09ORklHX1NNUA0KPiA+ICsgICAgICAgLmlycV9zZXRf
+YWZmaW5pdHkgPSBzcF9pbnRjX3NldF9hZmZpbml0eSwNCj4gPiArI2VuZGlmDQo+ID4gK307DQo+
+IA0KPiBJIGRvbid0IHRoaW5rIHlvdSBuZWVkIHRvIGRlZmluZSBhbiBpcnFfc2V0X2FmZmluaXR5
+KCkgY2FsbGJhY2sgYXQgYWxsIGlmIHlvdQ0KPiBqdXN0IHJldHVybiAtRUlOVkFMLCBhbGwgdGhl
+IGNhbGxlcnMgc2hvdWxkIGhhdmUgYSBjaGVjayBhbHJlYWR5LiBFdmVuDQo+IGlmIHlvdSBkbyBu
+ZWVkIHRoZSBmdW5jdGlvbiwgSSB0aGluayB5b3UgY2FuIHJlbW92ZSB0aGUgI2lmZGVmLCBhcyBs
+b25nDQo+IGFzIHRoZSBmdW5jdGlvbiBpdHNlbGYgY2FuIGJlIGJ1aWx0IHRoYXQgd2F5Lg0KPiAN
+Cj4gICAgICAgQXJuZA0KDQpUaGFua3MgZm9yIHlvdXIgY29tbWVudHMsIEknbGwgcmVtb3ZlIHRo
+aXMgZW1wdHkgZnVuY3Rpb24uDQo=
