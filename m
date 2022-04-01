@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122B24EE5C4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 03:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 932FA4EE5F9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 04:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243827AbiDABka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 21:40:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
+        id S244006AbiDACUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 22:20:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233381AbiDABk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 21:40:29 -0400
+        with ESMTP id S238038AbiDACUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 22:20:09 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4635011143;
-        Thu, 31 Mar 2022 18:38:35 -0700 (PDT)
-X-UUID: e575b3055c5842668a04d53803df5c83-20220401
-X-UUID: e575b3055c5842668a04d53803df5c83-20220401
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE5F192BA;
+        Thu, 31 Mar 2022 19:18:19 -0700 (PDT)
+X-UUID: b491eb1115b14c9188e725920ef79dbd-20220401
+X-UUID: b491eb1115b14c9188e725920ef79dbd-20220401
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 418093412; Fri, 01 Apr 2022 09:38:23 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 1 Apr 2022 09:38:22 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 1 Apr
- 2022 09:38:21 +0800
+        with ESMTP id 1063335137; Fri, 01 Apr 2022 10:18:10 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 1 Apr 2022 10:18:08 +0800
 Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 1 Apr 2022 09:38:21 +0800
-Message-ID: <e0d5a344c8ec1f92357bd9d5b8782dded862c549.camel@mediatek.com>
-Subject: Re: [PATCH v2,1/2] dt-bindings: display: mediatek: dpi: Add
- compatible for MediaTek MT8186
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <xinlei.lee@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ Transport; Fri, 1 Apr 2022 10:18:08 +0800
+Message-ID: <53cb53b8614aa39e0785b99f46b708ad201c3dd8.camel@mediatek.com>
+Subject: Re: [PATCH v13 1/2] dt-bindings: mmc: mtk-sd: increase reg items
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>
+CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <jitao.shi@mediatek.com>
-Date:   Fri, 1 Apr 2022 09:38:20 +0800
-In-Reply-To: <1648727917-3099-2-git-send-email-xinlei.lee@mediatek.com>
-References: <1648727917-3099-1-git-send-email-xinlei.lee@mediatek.com>
-         <1648727917-3099-2-git-send-email-xinlei.lee@mediatek.com>
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>
+Date:   Fri, 1 Apr 2022 10:18:08 +0800
+In-Reply-To: <aebbb5c8-1d27-5e66-e18a-e2b647bc8cb4@gmail.com>
+References: <20220330094532.21721-1-tinghan.shen@mediatek.com>
+         <20220330094532.21721-2-tinghan.shen@mediatek.com>
+         <aebbb5c8-1d27-5e66-e18a-e2b647bc8cb4@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,48 +64,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-03-31 at 19:58 +0800, xinlei.lee@mediatek.com wrote:
-> From: Xinlei Lee <xinlei.lee@mediatek.com>
+Hi Matthias,
+
+On Thu, 2022-03-31 at 12:54 +0200, Matthias Brugger wrote:
 > 
-> Add dt-binding documentation of dpi for MediaTek MT8186 SoC.
+> On 30/03/2022 11:45, Tinghan Shen wrote:
+> > MediaTek has a new version of mmc IP since mt8183. Some IO registers
+> > are moved to top to improve hardware design and named as "host top
+> > registers".
+> > 
+> > Add host top register in the reg binding description for mt8183 and
+> > successors.
+> > 
+> > Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > ---
+> >   Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 15 ++++++++++++++-
+> >   1 file changed, 14 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > index 297ada03e3de..2a2e9fa8c188 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > @@ -40,7 +40,10 @@ properties:
+> >             - const: mediatek,mt8183-mmc
+> >   
+> >     reg:
+> > -    maxItems: 1
+> > +    minItems: 1
 > 
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       | 1
-> +
->  1 file changed, 1 insertion(+)
+>  From my understanding adding minItems is correct, but you need to add also 
+> maxItems: 2 as there can't be more then two register entries.
 > 
-> diff --git
-> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> index dd2896a40ff0..a73044c50b5f 100644
-> ---
-> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> +++
-> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> @@ -22,6 +22,7 @@ properties:
->        - mediatek,mt7623-dpi
->        - mediatek,mt8173-dpi
->        - mediatek,mt8183-dpi
-> +      - mediatek,mt8186-dpi
->        - mediatek,mt8192-dpi
->  
->    reg:
+> Regards,
+> Matthias
+> 
 
-Hello Xinlei,
+After add "maxItems: 2", I get following message when doing dt_binding_check.
+from this message, it looks like that maxItems is not necessary.
 
-From the dts we use, the dpi node needs other properties for MT8186.
-Please send another patch and add these properties to binding.
+/proj/mtk15399/2cros/src/third_party/kernel/v5.10/Documentation/devicetree/bindings/mmc/mtk-sd.yaml: 
+properties:reg: {'minItems': 1, 'maxItems': 2, 'items': [{'description': 'base register
+(required).'}, {'description': 'top base register (required for MT8183).'}]} should not be valid
+under {'required': ['maxItems']}
+        hint: "maxItems" is not needed with an "items" list
+        from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
 
-assigned-clocks = <&topckgen CLK_TOP_DPI>;
-assigned-clock-parents = <&topckgen CLK_TOP_TVDPLL_D2>;
+Best regards,
+Tinghan
 
-Thanks
-
-BRs,
-Rex
+> > +    items:
+> > +      - description: base register (required).
+> > +      - description: top base register (required for MT8183).
+> >   
+> >     clocks:
+> >       description:
+> > @@ -168,6 +171,16 @@ required:
+> >     - vmmc-supply
+> >     - vqmmc-supply
+> >   
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: mediatek,mt8183-mmc
+> > +then:
+> > +  properties:
+> > +    reg:
+> > +      minItems: 2
+> > +
+> >   unevaluatedProperties: false
+> >   
+> >   examples:
 
