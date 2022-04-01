@@ -2,168 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDC494EECBB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 14:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CEA24EED46
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 14:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345614AbiDAMED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 08:04:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40422 "EHLO
+        id S1345910AbiDAMjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 08:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233112AbiDAMD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 08:03:59 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6B9269A7B;
-        Fri,  1 Apr 2022 05:02:10 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id v2so1940812qtc.5;
-        Fri, 01 Apr 2022 05:02:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t9Wo/cU/iKKQyEg8YiMM/+tVeVg2N56NAMeVbYnz6jc=;
-        b=70XAUdqkrUzsF4acs6KWMk8VpAPe/2+T5tYmR3zKbvd9Rp7wwR8kOWfSx9QYgPq8w5
-         rkr5tUhVKtyHSTy0HCYe3TaXvCkh6jO8cwelLFLmqwzjFosv7lTU/ST3p+qkoZcphtxG
-         Vi3OLNgZnmQzv/qEXG71FEDxM/m0RBYuh15GCEg3gUFGyLFeaYI8h5+FJPYQLLE22Gkl
-         XUUxzIDl0clGNj9hnvTFXQ/uP9y3cCqmcMCB1NAkaTnvj6RQTNNdGTzlkzyR6Kseub1Z
-         Kci2kJqJToro822ytcwPpkLyAZ0D162P3btJcZBxWn18QQVjs0QMSQdJZZf52eR9ppPK
-         PWsA==
-X-Gm-Message-State: AOAM530+eh5FiOdW2pEkP9HB+3GDy47Z++rXM8ncBsc5erWXO0feeyTm
-        e6tKTTKs9wANMkyF6ZPxKWjaEAQNYT04kw==
-X-Google-Smtp-Source: ABdhPJxXhAnwdMEZbNqonSRK9eKfpmi7TUorgurJHAYHmH1xXMKoE5FLWsLWMlNxzq6dETLY93rp6Q==
-X-Received: by 2002:a05:622a:14c8:b0:2e1:d626:66ea with SMTP id u8-20020a05622a14c800b002e1d62666eamr8096056qtx.58.1648814527938;
-        Fri, 01 Apr 2022 05:02:07 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id 78-20020a370551000000b0067e3a58c090sm1158291qkf.82.2022.04.01.05.02.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Apr 2022 05:02:07 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id v35so4556585ybi.10;
-        Fri, 01 Apr 2022 05:02:07 -0700 (PDT)
-X-Received: by 2002:a25:45:0:b0:633:96e2:2179 with SMTP id 66-20020a250045000000b0063396e22179mr8451190yba.393.1648814527141;
- Fri, 01 Apr 2022 05:02:07 -0700 (PDT)
+        with ESMTP id S1344160AbiDAMjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 08:39:11 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B5425AEEE;
+        Fri,  1 Apr 2022 05:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=A65FHQzB5wzN/vTaWYJa0lug1PmkY+gb72rfwJwaMM0=; b=SIeo0eUxgWgHXr/tg8eqKOogw6
+        XZ4ZobMs8s9X4+wl2k4HZVemCLxQZ1+j5PajaTrmxG3r1GntyS+F8zQGrf8QkgMkohxejWKNd6+Pb
+        bYU/9dY0LP9RaOuwuyvK9PKs88W8Mm+ox4/vHUTa/rFL4aivdEtglU27htAizvuvge80=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1naGWm-00DfYe-QZ; Fri, 01 Apr 2022 14:37:20 +0200
+Date:   Fri, 1 Apr 2022 14:37:20 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, Divya.Koppera@microchip.com,
+        davem@davemloft.net, kuba@kernel.org, richardcochran@gmail.com,
+        UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net 1/3] dt-bindings: net: micrel: Revert latency support
+ and timestamping check
+Message-ID: <YkbyAPVP0MHRBncd@lunn.ch>
+References: <20220401094805.3343464-1-horatiu.vultur@microchip.com>
+ <20220401094805.3343464-2-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-References: <20220315155919.23451-1-biju.das.jz@bp.renesas.com> <20220315155919.23451-8-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220315155919.23451-8-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 1 Apr 2022 14:01:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW15oNDrDk0CGvf9ABX83HB6rs3tXz+33a80K-dmJ0fuA@mail.gmail.com>
-Message-ID: <CAMuHMdW15oNDrDk0CGvf9ABX83HB6rs3tXz+33a80K-dmJ0fuA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: renesas: rzg2ul-smarc-som: Enable
- Ethernet on SMARC platform
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220401094805.3343464-2-horatiu.vultur@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Fri, Apr 01, 2022 at 11:48:03AM +0200, Horatiu Vultur wrote:
+> Revert latency support from binding.
+> Based on the discussion[1], the DT is the wrong place to have the
+> lantecies for the PHY.
+> 
+> [1] https://lkml.org/lkml/2022/3/4/325
+> 
+> Fixes: 2358dd3fd325fc ("dt-bindings: net: micrel: Configure latency values and timestamping check for LAN8814 phy")
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-On Tue, Mar 15, 2022 at 4:59 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable Ethernet{0,1} interfaces on RZ/G2UL SMARC EVK.
->
-> Ethernet0 pins are muxed with CAN0, CAN1, SSI1 and RSPI1 pins and Ethernet0
-> device selection is based on the SW1[3] switch position.
->
-> Set SW1[3] to position OFF for selecting CAN0, CAN1, SSI1 and RSPI1.
-> Set SW1[3] to position ON for selecting Ethernet0.
->
-> This patch disables Ethernet0 on RZ/G2UL SMARC platform by default.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-> @@ -52,11 +57,101 @@
->  #endif
->  };
->
-> +#if (!SW_ET0_EN_N)
-> +&eth0 {
-> +       pinctrl-0 = <&eth0_pins>;
-> +       pinctrl-names = "default";
-> +       phy-handle = <&phy0>;
-> +       phy-mode = "rgmii-id";
-> +       status = "okay";
-> +
-> +       phy0: ethernet-phy@7 {
-> +               compatible = "ethernet-phy-id0022.1640",
-> +                            "ethernet-phy-ieee802.3-c22";
-
-To be augmented with interrupt properties when the RZ/G2L IRQC driver
-and bindings have been completed.  But that can be done later..
-
-> +               reg = <7>;
-> +               rxc-skew-psec = <2400>;
-> +               txc-skew-psec = <2400>;
-> +               rxdv-skew-psec = <0>;
-> +               txdv-skew-psec = <0>;
-> +               rxd0-skew-psec = <0>;
-> +               rxd1-skew-psec = <0>;
-> +               rxd2-skew-psec = <0>;
-> +               rxd3-skew-psec = <0>;
-> +               txd0-skew-psec = <0>;
-> +               txd1-skew-psec = <0>;
-> +               txd2-skew-psec = <0>;
-> +               txd3-skew-psec = <0>;
-> +       };
-> +};
-> +#endif
-> +
-> +&eth1 {
-> +       pinctrl-0 = <&eth1_pins>;
-> +       pinctrl-names = "default";
-> +       phy-handle = <&phy1>;
-> +       phy-mode = "rgmii-id";
-> +       status = "okay";
-> +
-> +       phy1: ethernet-phy@7 {
-> +               compatible = "ethernet-phy-id0022.1640",
-> +                            "ethernet-phy-ieee802.3-c22";
-> +               reg = <7>;
-
-Likewise.
-
-> +               rxc-skew-psec = <2400>;
-> +               txc-skew-psec = <2400>;
-> +               rxdv-skew-psec = <0>;
-> +               txdv-skew-psec = <0>;
-> +               rxd0-skew-psec = <0>;
-> +               rxd1-skew-psec = <0>;
-> +               rxd2-skew-psec = <0>;
-> +               rxd3-skew-psec = <0>;
-> +               txd0-skew-psec = <0>;
-> +               txd1-skew-psec = <0>;
-> +               txd2-skew-psec = <0>;
-> +               txd3-skew-psec = <0>;
-> +       };
-> +};
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+    Andrew
