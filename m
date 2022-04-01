@@ -2,66 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CED934EE4ED
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 01:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D01604EE4FE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 02:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232742AbiCaXyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 19:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51490 "EHLO
+        id S242414AbiDAAIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 20:08:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbiCaXyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 19:54:43 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B3224A8AE
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:52:54 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id k25-20020a056830151900b005b25d8588dbso1014005otp.4
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 16:52:54 -0700 (PDT)
+        with ESMTP id S240613AbiDAAIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 20:08:18 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6243D1DB88F;
+        Thu, 31 Mar 2022 17:06:29 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id n19-20020a9d7113000000b005cd9cff76c3so1047757otj.1;
+        Thu, 31 Mar 2022 17:06:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=QtLleTaHCucGPsRaBTO86s6P+Sr59PZKXVV2CO1MOzI=;
-        b=sQw2t01Upe1XnUSK1enNsrJFX/Y9Vj07eo+hb5znSxi8pEi3KCgI8G7SxHesEmnRjQ
-         34ULiadQej+2EAj+LOlEqiLKkR8X83SsCyMGKdtsresfi3N9kgvodaOhj/tnwGQxuaLP
-         9L+rZKLsxNeaUJELip6w1TkNigLhPvNZR+P/oVUJQqq7wGT/VGVGL4cFR3sgx8hxiTXO
-         rvVOJbW4jFDMy/byYOllUTY63hw5gb9cQbraNinmLLr0epykQrY2JVu0z3k0LqzzTlSA
-         BD3ZPgC0MDZ1MrwI6bW9v1+QZXUTPBCI8Ccm6zQJpPJ/3cI6mXsdYkFhQN7sZIfbnfMu
-         uyPA==
-X-Gm-Message-State: AOAM5310LcVz6m5awPqi23RFFYvO4G7mjD7yKjFQXY9rEX3JF5groGh7
-        gOsLDOqvjbXBeweB8uEdmqhwAvGPxg==
-X-Google-Smtp-Source: ABdhPJyX8xvZxfDgWuF9nXNoW7PdIaVk5mK36vc6rmjM3if5pWl4svyYXlRWWFyKrZa+wn8F80OdFg==
-X-Received: by 2002:a9d:75cd:0:b0:5c9:61fa:3a42 with SMTP id c13-20020a9d75cd000000b005c961fa3a42mr6614511otl.15.1648770773424;
-        Thu, 31 Mar 2022 16:52:53 -0700 (PDT)
+        bh=PCmWVNwJqGG8J6v9brInFeE4eL7KqzGs5peJQaBGQBk=;
+        b=p40yHpPqXEwBPhtc0acCwybJIXuwdQsmR6Vgty+DU3qVwoUR4f+ojSRLYGgTsiF5oe
+         1i8qEcsoFSzklXIHJ5K0RtAiGJkAksI8hTSXpmPUiyBAsEgPV81Z1oitpmNgiI1ZaTRw
+         n7KQucYkwWzb5CkDuj1JaK3g2uzfHEJtvrKGchUEcTJLat+CMYRdGx0OkPKFvaI/Q4ze
+         /B32ubM7PZXc0LdcNS3rOXSA/Lm6jwfpSvIDMci+1m/nW3QkiUrSOfPi8CGPVoWOV6VF
+         BSxDa3Per/gzRBMRnsNB+aC4UtKahF8AT2MR0OpLTnQVEx+58HK15sdphR7a4hqzFTI7
+         0R6g==
+X-Gm-Message-State: AOAM530WA4wDoDZWBuLJrx+xQug84R28KXoPKtBnpXEYdavXrmhT66yY
+        ijztWJr+nk6LneEy1f9sakZG9qYyHA==
+X-Google-Smtp-Source: ABdhPJzW6OJ8B0dPnE/OHwPEY9o6TKU2FhrjWeaez+zcM9WbtuvIgJruB5BdPa77EZcitEVaM84XTQ==
+X-Received: by 2002:a9d:65d2:0:b0:5cb:5d55:ae24 with SMTP id z18-20020a9d65d2000000b005cb5d55ae24mr6528157oth.249.1648771588622;
+        Thu, 31 Mar 2022 17:06:28 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e22-20020a9d5616000000b005ceb68be2f6sm280208oti.63.2022.03.31.16.52.52
+        by smtp.gmail.com with ESMTPSA id r6-20020a0568301ac600b005cdbc6e62a9sm489668otc.39.2022.03.31.17.06.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 16:52:52 -0700 (PDT)
-Received: (nullmailer pid 1730141 invoked by uid 1000);
-        Thu, 31 Mar 2022 23:52:52 -0000
-Date:   Thu, 31 Mar 2022 18:52:52 -0500
+        Thu, 31 Mar 2022 17:06:28 -0700 (PDT)
+Received: (nullmailer pid 1749493 invoked by uid 1000);
+        Fri, 01 Apr 2022 00:06:27 -0000
+Date:   Thu, 31 Mar 2022 19:06:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Robert Foss <robert.foss@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] dt-bindings: display: bridge: Drop requirement on input
- port for DSI devices
-Message-ID: <YkY+1IZtQ8oSi7wR@robh.at.kernel.org>
-References: <20220323154823.839469-1-maxime@cerno.tech>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 16/21] dt-bindings: ata: ahci: Add DWC AHCI SATA
+ controller DT schema
+Message-ID: <YkZCA08HZ6Nx1IqQ@robh.at.kernel.org>
+References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
+ <20220324001628.13028-17-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220323154823.839469-1-maxime@cerno.tech>
+In-Reply-To: <20220324001628.13028-17-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -73,29 +69,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Mar 2022 16:48:23 +0100, Maxime Ripard wrote:
-> MIPI-DSI devices, if they are controlled through the bus itself, have to
-> be described as a child node of the controller they are attached to.
+On Thu, Mar 24, 2022 at 03:16:23AM +0300, Serge Semin wrote:
+> Synopsys AHCI SATA controller is mainly compatible with the generic AHCI
+> SATA controller except a few peculiarities and the platform environment
+> requirements. In particular it can have one or two reference clocks to
+> feed up its AXI/AHB interface and SATA PHYs domain and at least one reset
+> control for the application clock domain. In addition to that the DMA
+> interface of each port can be tuned up to work with the predefined maximum
+> data chunk size. Note unlike generic AHCI controller DWC AHCI can't have
+> more than 8 ports. All of that is reflected in the new DWC AHCI SATA
+> device DT binding.
 > 
-> Thus, there's no requirement on the controller having an OF-Graph output
-> port to model the data stream: it's assumed that it would go from the
-> parent to the child.
+> Note the DWC AHCI SATA controller DT-schema has been created in a way so
+> to be reused for the vendor-specific DT-schemas. One of which we are about
+> to introduce.
 > 
-> However, some bridges controlled through the DSI bus still require an
-> input OF-Graph port, thus requiring a controller with an OF-Graph output
-> port. This prevents those bridges from being used with the controllers
-> that do not have one without any particular reason to.
-> 
-> Let's drop that requirement.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > ---
->  .../devicetree/bindings/display/bridge/chipone,icn6211.yaml      | 1 -
->  .../devicetree/bindings/display/bridge/toshiba,tc358762.yaml     | 1 -
->  2 files changed, 2 deletions(-)
+>  .../bindings/ata/snps,dwc-ahci.yaml           | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> new file mode 100644
+> index 000000000000..b443154b63aa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ata/snps,dwc-ahci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DWC AHCI SATA controller
+> +
+> +maintainers:
+> +  - Serge Semin <fancer.lancer@gmail.com>
+> +
+> +description: |
+> +  This document defines device tree bindings for the Synopsys DWC
+> +  implementation of the AHCI SATA controller.
+> +
+> +allOf:
+> +  - $ref: ahci-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: Synopsys AHCI SATA-compatible devices
+> +        contains:
+> +          const: snps,dwc-ahci
+> +      - description: SPEAr1340 AHCI SATA device
+> +        const: snps,spear-ahci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Basic DWC AHCI SATA clock sources like application AXI/AHB BIU clock
+> +      and embedded PHYs reference clock together with vendor-specific set
+> +      of clocks.
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    contains:
+> +      anyOf:
+> +        - description: Application AXI/AHB BIU clock source
+> +          enum:
+> +            - aclk
+> +            - sata
+> +        - description: SATA Ports reference clock
+> +          enum:
+> +            - ref
+> +            - sata_ref
+> +
+> +  resets:
+> +    description:
+> +      At least basic core and application clock domains reset is normally
+> +      supported by the DWC AHCI SATA controller. Some platform specific
+> +      clocks can be also specified though.
+> +
+> +  reset-names:
+> +    contains:
+> +      description: Core and application clock domains reset control
+> +      const: arst
+> +
+> +patternProperties:
+> +  "^sata-port@[0-9a-e]$":
+> +    type: object
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 7
+> +
+> +      snps,tx-ts-max:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Maximal size of Tx DMA transactions in FIFO words
+> +        minimum: 1
+> +        maximum: 1024
+> +
+> +      snps,rx-ts-max:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Maximal size of Rx DMA transactions in FIFO words
+> +        minimum: 1
+> +        maximum: 1024
 
-I tend to agree with port@0 not being needed and really like 
-consistency.
+Are you reading these somewhere? 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Only powers of 2 are valid. (Guess what Calxeda's controller uses.)
+
+Rob
