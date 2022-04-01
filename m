@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 049A74EFBB2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C5C94EFBB5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352782AbiDAUiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:38:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37350 "EHLO
+        id S1352510AbiDAUi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 16:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352678AbiDAUh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:37:58 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D359F13700A
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:36:07 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id h1so4334979edj.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:36:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=teWkJ4CoTDO5mMTrqx6InWM0rnqqHmOdFQ5U6F0SH00=;
-        b=sslPqovAkCG/x1GpP6Loog5grP3TlZXipIhu/hTWV0pzafGbuGVekkVaUL++Je5ikN
-         tM/8QWAWlF6nrNclOfDQEk4QBCecTh50OFxY03V2DXM4AjQfkv+xGM3BkHQExUCxPXHF
-         r7aOl5H3nDjIRWyc2yN7FOg73ugzr8pGIL2v09kt8ztmoRfRc9q0axgPi1MnwXFiBNfF
-         A43nEClwt1GIJcr3lz9OYSlsEHnj4EWD50yV49YE29idZBMiGJp2XWDnu6xJ6HurOJ7q
-         5ZK/SgK44qlFM2PhoRAqr5RQN/NuSAcDM6mYIUjOUsvGdr+KHacS/s7ezYJW/NjS08ux
-         h4zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=teWkJ4CoTDO5mMTrqx6InWM0rnqqHmOdFQ5U6F0SH00=;
-        b=irW+BILzJDCrKFQjYBZQB0AQt55jPc6qlH87JvywobrRV2iTaHCHFVhH3EqzmmhS9V
-         3Irp4K4fYz7PkL1fu/kzglcgpWDHdi5JPcQuyHln5ASILRNctGsPlKOBF1JRwns1xy2f
-         E0Ou4583B2VA/zJV2G/Prh/WNTjTb/CLiSV48MAWtqeoLrShcvJf6Ow8iKnrDk/5zkzp
-         zlI4L/ilnr7tZXtCmAZo+PDHnP0Pago640NPfWDHOuVrATY9+6ckGM9uhD6S21cGIhbe
-         +36qVtKrA+CxQghcm6frPCAn8LYVrR49R2B5fEGPdh6uobjJjTn/5SqSQrfCy1OeDRW9
-         ij8w==
-X-Gm-Message-State: AOAM5300CapVQ1UBU2APTCNqcLJeXu2eD8bis1LMbVhoL6kWoaRRYNN8
-        KKMfAHpgsPI/rd3TvCe5zciBHQ==
-X-Google-Smtp-Source: ABdhPJwveJo4luP3uof9lK/lq+qxgaM5BCB8OpF6wk47aGBGg69GVrOyISr7+SrsCRtn2V8VljTOxQ==
-X-Received: by 2002:a05:6402:5146:b0:415:fd95:6afa with SMTP id n6-20020a056402514600b00415fd956afamr22919059edd.200.1648845365450;
-        Fri, 01 Apr 2022 13:36:05 -0700 (PDT)
-Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id u4-20020aa7db84000000b004136c2c357csm1595857edt.70.2022.04.01.13.36.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Apr 2022 13:36:04 -0700 (PDT)
-Message-ID: <1a26fd19-0f5e-d9f1-08e7-c5e3edd610a1@linaro.org>
-Date:   Fri, 1 Apr 2022 22:36:04 +0200
+        with ESMTP id S1352568AbiDAUiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:38:25 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065DD13F8DF
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:36:35 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 23BE68428C;
+        Fri,  1 Apr 2022 22:36:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1648845392;
+        bh=i+KWy4qDX7bCrAOl/rOMbkxLO75xz0UBbrARoMX7Bnc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=HixoDvQhlon5d0o/HXLD2rIa+0Cuasp7O6XdeznZBkIO0OgECl2XEvC/Zyel2TPl+
+         vF5a775S/3iC1zZSIUZrzs6dVnbuJuyyb3amsGJRyP1EJyUSSOAthQHT+7gvki0VvC
+         kWdiVyP5+ikgQwnQkfRoxVlYNHg3EOKOkg4NN2frAyJ4vGkJV+Wz9Zu2hcNcRC29tA
+         tJvrGmW0qIxXhnjYAH+J2rQV7suupPDM99pGUsoYDqP9VrWz9OI9D2JtIV4PtcwYfh
+         ehX5fCTU9gghGPAlArUOKJo6QoK7vdpJixO5ac6MOz8Md0l+GM3w+mijpCWlQBdy0O
+         DeInkcCRb9+Cg==
+Message-ID: <efaa195a-bbdc-ca24-eccc-271995dfd27f@denx.de>
+Date:   Fri, 1 Apr 2022 22:36:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [RFT PATCH 0/2] regulator: richtek,rt4801: use existing ena_gpiod
- feature
+Subject: Re: [RFC][PATCH 2/3] drm/modes: Make width-mm/height-mm mandatory in
+ of_get_drm_panel_display_mode()
 Content-Language: en-US
-To:     =?UTF-8?B?Y3lfaHVhbmco6buD5ZWf5Y6fKQ==?= <cy_huang@richtek.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220401154237.1061331-1-krzysztof.kozlowski@linaro.org>
- <1648831895.12596.6.camel@richtek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648831895.12596.6.camel@richtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220401163755.302548-1-marex@denx.de>
+ <20220401163755.302548-2-marex@denx.de>
+ <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,27 +67,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 18:51, cy_huang(黃啟原) wrote:
-> 
-> 於 五，2022-04-01 於 17:42 +0200，Krzysztof Kozlowski 提到：
->> Hi,
->>
->> Not tested.
->>
->> Follow up of discussion:
->> https://lore.kernel.org/all/2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org/#t
->>  <https://lore.kernel.org/all/2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org/#t
->> >
-> 
-> If RT4801 enable-gpio both go from high to low, the voltage reg will be
-> reset, and I2C cannot be accessibele.
-> This patch can be used to individually control enable for DSVP and DSVN,
-> but the above i2c behavior is not considered.
-> You can check rt4801_enable/rt4801_disable for the details.
+On 4/1/22 20:46, Laurent Pinchart wrote:
 
-Ah, so this is why this custom enable methods is there (pus bitmap etc).
-Then the core ena_gpiod cannot be used, although still we want to move
-on from two GPIOs in one enable-gpios property.
+Hi,
 
-Best regards,
-Krzysztof
+> On Fri, Apr 01, 2022 at 06:37:54PM +0200, Marek Vasut wrote:
+>> Make the width-mm/height-mm panel properties mandatory in
+>> of_get_drm_panel_display_mode(), print error message and
+>> return -ve in case these DT properties are not present.
+>> This is needed to correctly report panel dimensions.
+> 
+> Can we guarantee this won't cause a regression ?
+
+For the upstream DTs, I think we can.
+For downstream DTs, we cannot know.
