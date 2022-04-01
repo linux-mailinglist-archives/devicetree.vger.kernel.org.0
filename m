@@ -2,51 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCEF54EEEC8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD794EEEDD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237180AbiDAOHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 10:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52494 "EHLO
+        id S237498AbiDAOKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 10:10:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239154AbiDAOHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:07:30 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DFA0FFF83;
-        Fri,  1 Apr 2022 07:05:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=5PTm0JMl8ZB8L2fZ+VGxDNX3rqsw2KJq19WqYqVhp7U=; b=jraTzZ0FjDbBYf66DScLypn3TN
-        ar3fR9A39VnIEYQ78ThkKcF/g2JsRnqH2qgB6KQdnTDqgv3BKXmN/TfJY55QnZwnIh9vojzN6LQ/t
-        2R/dEZcJoBCsqmTM+InnpYWZXS9ctxdIiEAqyur90BAHo+tDrUo6pF9MGHjpPFNohQ4U=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1naHuE-00DgQl-Ik; Fri, 01 Apr 2022 16:05:38 +0200
-Date:   Fri, 1 Apr 2022 16:05:38 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Allan W. Nielsen" <allan.nielsen@microchip.com>
-Cc:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, Divya.Koppera@microchip.com,
-        davem@davemloft.net, kuba@kernel.org, richardcochran@gmail.com,
-        UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH net 2/3] net: phy: micrel: Remove latency from driver
-Message-ID: <YkcGsiEmnk9sKjEj@lunn.ch>
-References: <20220401094805.3343464-1-horatiu.vultur@microchip.com>
- <20220401094805.3343464-3-horatiu.vultur@microchip.com>
- <Ykb0RgM+fnzOUTNx@lunn.ch>
- <20220401133454.ic6jxnripuxjhp5g@soft-dev3-1.localhost>
- <20220401135918.4tvwe6cfyku6l5wf@lx-anielsen>
+        with ESMTP id S240955AbiDAOKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:10:19 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93495E76F;
+        Fri,  1 Apr 2022 07:08:28 -0700 (PDT)
+Received: from mail-wr1-f53.google.com ([209.85.221.53]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1M1pfy-1ncUs63R2u-002CaI; Fri, 01 Apr 2022 16:08:26 +0200
+Received: by mail-wr1-f53.google.com with SMTP id u16so4455159wru.4;
+        Fri, 01 Apr 2022 07:08:26 -0700 (PDT)
+X-Gm-Message-State: AOAM53308P+I1g1RVY6Dxv2b/ayNNmdXiS+6XHPE2J/allHD5v7hICcQ
+        5NgaMMfA2accpEcQE2rslZ9SOg7OMKGBRma6b64=
+X-Google-Smtp-Source: ABdhPJzQDr+Ev2rOkNJ6HmiZl7h44p304n4e4eF9V8C/+5wOh6QPM5NAog2ZBHar+vrcy6HRg1QWm7dpliXLyiIf6l8=
+X-Received: by 2002:a5d:66ca:0:b0:203:fb72:a223 with SMTP id
+ k10-20020a5d66ca000000b00203fb72a223mr7757069wrw.12.1648822106460; Fri, 01
+ Apr 2022 07:08:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220401135918.4tvwe6cfyku6l5wf@lx-anielsen>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+References: <20220331214911.27194-1-niravkumar.l.rabara@intel.com>
+In-Reply-To: <20220331214911.27194-1-niravkumar.l.rabara@intel.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 1 Apr 2022 16:08:09 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2AMqSyUPFqMC=cytLqBAM2Ugo6f1tph5je1NCVS=DkcQ@mail.gmail.com>
+Message-ID: <CAK8P3a2AMqSyUPFqMC=cytLqBAM2Ugo6f1tph5je1NCVS=DkcQ@mail.gmail.com>
+Subject: Re: [PATCH] Add Altera hardware mutex driver
+To:     niravkumar.l.rabara@intel.com
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:K8YBfl2zUyBcuoMXWgX0o5NYaEVhLB6LwnKUAY/ZgPB9bATmvPF
+ QPiORRLw51+SKftTsJ6zBx9aXshKXORNoQPUJ18YsJfFySs6+g2hX5w+e64xn0L0784rMnA
+ JsCXGewzZGeVozgDGiy+oEUkiX1YGXiON+gWSspCIRRqIi9yrFOFY9fOOm2cWlm9wBr3Qw9
+ Q8roYLX3HPVCWf2ZfAw6Q==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:T4TYvQhVzGc=:58EK2y0QuIAJnj/gDPQUH5
+ UvP5YlvoRkMWpCPK5177MN2uOgm+VAogjKbTNsPWoop30DmPXUellxp5Lr7iPBQZFXUVTFwKm
+ 0EAJqLQ40Cvwbs1Btv2BlMxL7X94FcFQe+ZkknNqIWxDEcrhpxsnXqyS3BeuQhiBNRkkljgXe
+ mugxQfp9jBZAk1y/YYexh4Lw9sTIZStuQKXkf9DkxW9LhSRLfasXeUZ1/jgLUCBEwDJjmKFcq
+ 6cUsC3L8j51O5bw85GYVpD1XFUP4WgTGRsa+ZoZwgg3YrBUYp1M4QrRbpshFbtTv5PyEGbWek
+ jleE//YNAQFiYT1gG0ZqMulaXGGFL8tgo9Px12nbYVcIFDYbKQCYgqXV+jMeL7YoE1Gfl8PyC
+ sSp6bfkbIJQH7XTh37CCUshmnufxeJULq9FxaRWUvD+dAMdmX03hYujZk0jJ6rzPq4DM9CNxg
+ nf5avgtQrV+FnIqOvDIkjgIzozJalFlzKdrg7EeIlQJ2OvIlIY/XqKg+OKRNNsPaLYr8Xn/U5
+ hHeqNISaXL6F/ox5FgEu078maawOFMRyBzcnJ1fRv3qsjD8ESjGmverpsrHcfC96AM9n4Hn0+
+ IxvPVfgHFClQ10KbWRrrMq3/1Vx5OAmuzyLCKXFsLVR0iO2XPP5quICL4Oihe4UscvYtwr4o8
+ QkqdhD1upiDYVjPrCzI8pf/ELdq8SC3yDIJLNjUowHktDnuDXiomVp5DeLN11Se305FU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,15 +66,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I would like to keep the default values. With default values, you can
-> get PTP working (accuracy is not great - but it is much better than
-> if set to zero).
-> 
-> There is no risk of bootloaders to pre-load other values, as the kernel
-> will reset the PHY, and after reset we will be back to these numbers.
+On Thu, Mar 31, 2022 at 11:49 PM <niravkumar.l.rabara@intel.com> wrote:
+>
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>
+> Altera hardware mutex soft IP provides hardware assistance for
+> synchronization and mutual exclusion between processors in
+> asymmetric/symmetric multiprocessing (AMP/SMP) system or
+> multi processes/threads in uniprocessor system.
+>
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> ---
+>  .../bindings/misc/altera-hwmutex.yaml         |  47 +++
+>  drivers/misc/Kconfig                          |   6 +
+>  drivers/misc/Makefile                         |   1 +
+>  drivers/misc/altera_hwmutex.c                 | 321 ++++++++++++++++++
+>  include/linux/altera_hwmutex.h                |  42 +++
 
-O.K, that is what i wanted to know. It should be reasonable safe to
-assume these values, and userspace daemons can apply whatever
-correction they want, assuming this is what the hardware is doing.
+Why does this use a custom interface rather than the generic drivers/hwspinlock/
+subsystem?
 
-       Andrew
+        Arnd
