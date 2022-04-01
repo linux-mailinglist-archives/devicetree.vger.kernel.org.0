@@ -2,212 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC684EFB6C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC444EFB8B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:27:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240531AbiDAUVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:21:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50870 "EHLO
+        id S1352331AbiDAU3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 16:29:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352339AbiDAUVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:21:22 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B4E1027
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:18:36 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id b19so5761201wrh.11
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:18:36 -0700 (PDT)
+        with ESMTP id S1352903AbiDAU24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:28:56 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62C48FE46
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:27:05 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id b15so4296997edn.4
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:27:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4CfXM7leMN5pRFOjPHWHxGcJrApetL12geqzG0hLkdA=;
-        b=xgTbv0BySELvx8Y6w1muFk/fSYXMJa+Ne1fthEts2plXS8pZu/NuZSx5P8+V5wIg+D
-         n8UVA2MVIvhx9nfmseXaju/85nmFurPxGG//0WdLCecD62vejPXRW8CqUQrrL6fG0+VZ
-         0+2f0vlHwtMaoV9YK5EM37kv26mif+jrfbWTVHHw1sxZj9ShApITGr1AuqZtg72gGrGi
-         Kh5Ki1YJC+k2oFvkaGa25mQguTTrXVBkPtxPFpKZsnDcTSizxfQTCmpManurk2GVZ89F
-         aaaC+ewHiIfQsmDUGSg6oiwzjTbKbAnhsefDal7jnShyMmml64ASz/BYNntU4d/Z5LSr
-         fyfw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W/JwoXAcjqpUeNN5rrXlo11fHlP+fYByEFJ34EyPDQ4=;
+        b=z4d9SYyBZioII/u1DVvwwX/yVHWqJ2PqRyvTNe9OXAF2qqCQ4HNspqkY1qfLlXZkzo
+         QvE3agotx83Ip2w4aR0v8q1GU42qBmma10TUNG1rW9e/0wZejTSuXuj6NeAuzD2W1VDb
+         LGAeg0NguiK1kOapyXFvQNiO2xVw4so17vgrV7s9asQc/aZdZHvOsfOxvCn5dqfxBFbE
+         AZfXu/oOBPXM9myX/vlMZanmY500YaU+9IMzt5E7b95g9G/wLG5E45D6/kkt14UEGRvJ
+         KRI7OXcSImCnqqL++zh7JBOS09oeYcGe0NHAkv7fY5v9NJaP7M909M1MkLB6xFN02tc3
+         LVPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4CfXM7leMN5pRFOjPHWHxGcJrApetL12geqzG0hLkdA=;
-        b=rHOmfUfPRyy/v8d4hAXJ44AvwQ2OyWyYEazgeNvMiF+XRjRHemd9eMeayNiKsEq+1u
-         r3gX/aqiSARwWupmoSTbtu+jx1XpxSA0gmZn1tWIzwqo4QJEOFPDF5BE+lnTCBu7V7aT
-         z1Ik6MrwsIjwaqoVuFYW9O+c2ix0DRYSC09eAQUKwBEu1AJJjSiPbqcBMMHTIcqJM/58
-         X9FcHcuozeRMxk3GLjw0335IpmeMH47wYdJL2XvB8CDlMTzwNwneHsAmFgmtC5pTQLXT
-         tf+LKWDJCKPgQ6WJnfENPk0NGzvvX/uWFYBDK1ftEeDBUFR+NyRHPKjz/OZ/zRCGvvp9
-         dxOw==
-X-Gm-Message-State: AOAM5334ZsgR/2/sD/aGUrxiEnhBtuPxt3fJlL0K+qkkxxq3qqwc/U+3
-        icMm1JGTCHLs9zFhjNsvNoH/eg==
-X-Google-Smtp-Source: ABdhPJwL0g8nYklbcJJtem7pvN8rmEB5bnkJhEB8bG5p00EedbdcmqrsBo0vMQsd6IexZoar32yoIw==
-X-Received: by 2002:adf:eb4d:0:b0:1ed:c1f7:a951 with SMTP id u13-20020adfeb4d000000b001edc1f7a951mr8648367wrn.454.1648844314873;
-        Fri, 01 Apr 2022 13:18:34 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id j16-20020a05600c191000b0038ca3500494sm17823838wmq.27.2022.04.01.13.18.34
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W/JwoXAcjqpUeNN5rrXlo11fHlP+fYByEFJ34EyPDQ4=;
+        b=VR9lckR9cW16SUyZ0d7RDu2AUdUU1IDUlEyB7AdUAggik6qu/0Vs6dWVQ5lkxmND/l
+         qz1Mgqc/OsjaCrw9/X5Nnlr/PeFMuDW5PsGNMTevjvGeT0GtdmkvphteqHfK0qcylUkd
+         Nsd5GzCZ+9BrV3HnfemUbj9TuIDbP+X+ojoCxhiWFfLXKLGxDhy35xHe38raMHdRmpzs
+         nk8nRz2ItlxzFZnDCga3Os7PBHaHWcRe8PdXhBgBWfYmHuHhPBQzAJ1bQ/RyVljO7ZpK
+         4yUMAZKlBg+KhmVQsWV8tKgBpNg/prKdWX1TZ+Qtn5XdVSNORIqlzPlLuG0uA//WLx8S
+         iR4g==
+X-Gm-Message-State: AOAM531kKlO0qPO8+CYPjyXrGW4ljzKF5m+CyszADJeCtyCB72Hwl8Yo
+        1VA+vSkcxZRDr8LY0c+7W2FO3Q==
+X-Google-Smtp-Source: ABdhPJx9nANjqq4+8ixZjJbQGQrULdad43yJO+knWbgLK8q95XKiW1gXmt4aZK9nCD2zWU5MqzIgQA==
+X-Received: by 2002:aa7:c30f:0:b0:419:2af:4845 with SMTP id l15-20020aa7c30f000000b0041902af4845mr22948828edq.296.1648844824221;
+        Fri, 01 Apr 2022 13:27:04 -0700 (PDT)
+Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id k14-20020a50e18e000000b0041b6f23f7f6sm1619346edl.22.2022.04.01.13.27.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 13:18:34 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v4 33/33] crypto: rockchip: Check for clocks numbers and their frequencies
-Date:   Fri,  1 Apr 2022 20:18:04 +0000
-Message-Id: <20220401201804.2867154-34-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220401201804.2867154-1-clabbe@baylibre.com>
-References: <20220401201804.2867154-1-clabbe@baylibre.com>
+        Fri, 01 Apr 2022 13:27:03 -0700 (PDT)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     caleb.connolly@linaro.org, Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     Amit Pundir <amit.pundir@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+Subject: [PATCH 0/6] power: supply: introduce the Qualcomm smb2
+Date:   Fri,  1 Apr 2022 21:26:37 +0100
+Message-Id: <20220401202643.877609-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the number of clocks needed for each compatible.
-Rockchip's datasheet give maximum frequencies for some clocks, so add
-checks for verifying they are within limits. Let's start with rk3288 for
-clock frequency check, other will came later.
+Add a driver for the Qualcomm PMI8998/SDM660 Switch-Mode Battery Charger
+"2". This replaces the previous SMBB hardware found in older PMICs.
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+This driver provides basic support for initialising the hardware,
+configuring the USB input current limit and reporting information about
+the state of the charger. Features like type-c dual role support and OTG
+switching will be added in future patches.
+
+This patch series depends on my previous series adding support for
+the Round Robin ADC which is used for reading the USB voltage and
+current, it can be found here:
+https://lore.kernel.org/linux-arm-msm/20220323162820.110806-1-caleb@connolly.tech/
+
 ---
- drivers/crypto/rockchip/rk3288_crypto.c | 56 +++++++++++++++++++++----
- drivers/crypto/rockchip/rk3288_crypto.h |  9 ++++
- 2 files changed, 57 insertions(+), 8 deletions(-)
+Caleb Connolly (6):
+  power: supply: add Qualcomm SMB2 driver
+  arm64: dts: qcom: pmi8998: add smb2 node
+  arm64: dts: sdm845-oneplus: enable smb2
+  arm64: dts: qcom: sdm845-db845c: enable smb2
+  arm64: dts: qcom: sdm845-xiaomi-beryllium enable smb2
+  dt-bindings: power: supply: qcom,smb2: add bindings for smb2 driver
 
-diff --git a/drivers/crypto/rockchip/rk3288_crypto.c b/drivers/crypto/rockchip/rk3288_crypto.c
-index 89a6aa65d2c1..f759ed7160d0 100644
---- a/drivers/crypto/rockchip/rk3288_crypto.c
-+++ b/drivers/crypto/rockchip/rk3288_crypto.c
-@@ -29,20 +29,63 @@ static struct rk_crypto_info *main;
- 
- static const struct rk_variant rk3288_variant = {
- 	.main = true,
-+	.num_clks = 4,
-+	.rkclks = {
-+		{ "sclk", 150000000},
-+	}
- };
- 
- static const struct rk_variant rk3328_variant = {
- 	.main = true,
-+	.num_clks = 3,
- };
- 
- static const struct rk_variant rk3399_variant0 = {
- 	.main = true,
-+	.num_clks = 3,
- };
- 
- static const struct rk_variant rk3399_variant1 = {
- 	.sub = true,
-+	.num_clks = 3,
- };
- 
-+static int rk_crypto_get_clks(struct rk_crypto_info *dev)
-+{
-+	int i, j, err;
-+	unsigned long cr;
-+
-+	dev->num_clks = devm_clk_bulk_get_all(dev->dev, &dev->clks);
-+	if (dev->num_clks < dev->variant->num_clks) {
-+		dev_err(dev->dev, "Missing clocks, got %d instead of %d\n",
-+			dev->num_clks, dev->variant->num_clks);
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < dev->num_clks; i++) {
-+		cr = clk_get_rate(dev->clks[i].clk);
-+		for (j = 0; j < ARRAY_SIZE(dev->variant->rkclks); j++) {
-+			if (dev->variant->rkclks[j].max == 0)
-+				continue;
-+			if (strcmp(dev->variant->rkclks[j].name, dev->clks[i].id))
-+				continue;
-+			if (cr > dev->variant->rkclks[j].max) {
-+				err = clk_set_rate(dev->clks[i].clk,
-+						   dev->variant->rkclks[j].max);
-+				if (err)
-+					dev_err(dev->dev, "Fail downclocking %s from %lu to %lu\n",
-+						dev->variant->rkclks[j].name, cr,
-+						dev->variant->rkclks[j].max);
-+				else
-+					dev_info(dev->dev, "Downclocking %s from %lu to %lu\n",
-+						 dev->variant->rkclks[j].name, cr,
-+						 dev->variant->rkclks[j].max);
-+			}
-+		}
-+	}
-+	return 0;
-+}
-+
- static int rk_crypto_enable_clk(struct rk_crypto_info *dev)
- {
- 	int err;
-@@ -266,6 +309,9 @@ static int rk_crypto_probe(struct platform_device *pdev)
- 		goto err_crypto;
- 	}
- 
-+	crypto_info->dev = &pdev->dev;
-+	platform_set_drvdata(pdev, crypto_info);
-+
- 	crypto_info->variant = of_device_get_match_data(&pdev->dev);
- 	if (!crypto_info->variant) {
- 		dev_err(&pdev->dev, "Missing variant\n");
-@@ -289,12 +335,9 @@ static int rk_crypto_probe(struct platform_device *pdev)
- 		goto err_crypto;
- 	}
- 
--	crypto_info->num_clks = devm_clk_bulk_get_all(&pdev->dev,
--						      &crypto_info->clks);
--	if (crypto_info->num_clks < 3) {
--		err = -EINVAL;
-+	err = rk_crypto_get_clks(crypto_info);
-+	if (err)
- 		goto err_crypto;
--	}
- 
- 	crypto_info->irq = platform_get_irq(pdev, 0);
- 	if (crypto_info->irq < 0) {
-@@ -312,9 +355,6 @@ static int rk_crypto_probe(struct platform_device *pdev)
- 		goto err_crypto;
- 	}
- 
--	crypto_info->dev = &pdev->dev;
--	platform_set_drvdata(pdev, crypto_info);
--
- 	crypto_info->engine = crypto_engine_alloc_init(&pdev->dev, true);
- 	crypto_engine_start(crypto_info->engine);
- 	init_completion(&crypto_info->complete);
-diff --git a/drivers/crypto/rockchip/rk3288_crypto.h b/drivers/crypto/rockchip/rk3288_crypto.h
-index 5662a1491a9e..b49bdc7541b1 100644
---- a/drivers/crypto/rockchip/rk3288_crypto.h
-+++ b/drivers/crypto/rockchip/rk3288_crypto.h
-@@ -188,9 +188,18 @@
- #define CRYPTO_WRITE(dev, offset, val)	  \
- 		writel_relaxed((val), ((dev)->reg + (offset)))
- 
-+#define RK_MAX_CLKS 4
-+
-+struct rk_clks {
-+	const char *name;
-+	unsigned long max;
-+};
-+
- struct rk_variant {
- 	bool main;
- 	bool sub;
-+	int num_clks;
-+	struct rk_clks rkclks[RK_MAX_CLKS];
- };
- 
- struct rk_crypto_info {
+ .../bindings/power/supply/qcom,smb2.yaml      |  68 ++
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  15 +
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  18 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |   4 +
+ .../dts/qcom/sdm845-oneplus-enchilada.dts     |   4 +
+ .../boot/dts/qcom/sdm845-oneplus-fajita.dts   |   4 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |  14 +
+ drivers/power/supply/Kconfig                  |   9 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/qcom_smb2.c              | 930 ++++++++++++++++++
+ 10 files changed, 1067 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,smb2.yaml
+ create mode 100644 drivers/power/supply/qcom_smb2.c
+
 -- 
 2.35.1
 
