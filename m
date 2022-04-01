@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC4D4EEE14
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869A14EEE2F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346317AbiDAN2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 09:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37646 "EHLO
+        id S1345975AbiDANea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 09:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345001AbiDAN2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:28:49 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ACB21E5A76
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 06:26:59 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id u26so2930374eda.12
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 06:26:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=c4TFc6dDVfP+m4iaxd5LBsYoboaZaz5jrosk4mseQdE=;
-        b=lG7pTGAZGsHxCcg5A13YHpatqaUnMFUbaMtlRGFYlz0lXnAV88MKbEtoejMV0rBK4w
-         NbuZ2Yu/syq3ed4iW50Dg+RiND1xfDpCxzFXu6XBIv1OmHU03i4MTqrffwsr8KrMedT+
-         ouYf822NV1/7OEtCROnBTixdBbCoNVDTfvU6nbQ4ylo0Tm0AwBSGYHWw0R7W6Npf9JUc
-         gDMBtPhjrcrYNYnEQAMM07AK5Yti6Q33h/TwsUG3KdQIOJonH7AU5nUREtw/4Zs5XhMy
-         zfEtFJr9rgxRJCyDZ3/S/N/StRefXZ3wDE0otyJQNOO9L/ZvclfaRQ3yLF32pmVmpCF2
-         PCjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=c4TFc6dDVfP+m4iaxd5LBsYoboaZaz5jrosk4mseQdE=;
-        b=pVkDzGxiP8cPb5e1bycT/QWG312JfufwqWiVEDZBmD+nmHFdVrKvJ2M6xyMHqkZKX3
-         EbqBBsd2ZecygbbSv6194PBKMWLoqJ67fe4f1Dq1L/vFPBdipz9r6lr7rROOU9gXXtUK
-         gA4a3xax1QyVJgWCDfEnpa5YuCkEJkGjptDjSqGgJ0C+81vgLuISfj4deIRx23LE6EHv
-         Tws9mIgmffgAoNgrzcIU1ohTFHTtDP+E+bk7T7Yfc+AtcLVngTGpx68bAhu1uyQoB9ZF
-         w+eR/CS/ZI6V4Hv7mNGbX+unTLJpJrEMGLBFnNsJFFq3APnuNVOxbWyy5SInsOaRQtkV
-         4yZw==
-X-Gm-Message-State: AOAM531BUjyY/BDG9C2TE7rTeAgpJX3l96zGOm+fGUIxdqleCyfWmW8D
-        m4vjkkpXS02fR0EVJyTBw8pYmA==
-X-Google-Smtp-Source: ABdhPJwPnRe412GU5cNhV8IFmhcwunmgYfOQEGuTVvdzU6Wke5/MXjP/9qUdVZxVnQzP1JUfGr8WIw==
-X-Received: by 2002:aa7:c704:0:b0:418:ee8f:3fd0 with SMTP id i4-20020aa7c704000000b00418ee8f3fd0mr21000866edq.248.1648819618182;
-        Fri, 01 Apr 2022 06:26:58 -0700 (PDT)
-Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id qb10-20020a1709077e8a00b006dfedd50ce3sm1020409ejc.143.2022.04.01.06.26.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Apr 2022 06:26:57 -0700 (PDT)
-Message-ID: <2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org>
-Date:   Fri, 1 Apr 2022 15:26:56 +0200
+        with ESMTP id S1346390AbiDANe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:34:29 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464EE27E843;
+        Fri,  1 Apr 2022 06:32:38 -0700 (PDT)
+X-UUID: 6fd7bcdb20df4918b71ce6db4b724572-20220401
+X-UUID: 6fd7bcdb20df4918b71ce6db4b724572-20220401
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 849117271; Fri, 01 Apr 2022 21:32:33 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 1 Apr 2022 21:32:32 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 1 Apr 2022 21:32:32 +0800
+Message-ID: <14bfabd88ecbe8cc4ec359f8249f180128a6572e.camel@mediatek.com>
+Subject: Re: [PATCH 2/4] dt-bindings: cpufreq: mediatek: add mt8186 cpufreq
+ dt-bindings
+From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <fan.chen@mediatek.com>,
+        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
+        <Allen-yy.Lin@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+Date:   Fri, 1 Apr 2022 21:32:32 +0800
+In-Reply-To: <18c791ce-059a-87a5-eaf4-057f8e232fe7@kernel.org>
+References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
+         <20220307122151.11666-3-jia-wei.chang@mediatek.com>
+         <d5c5e3f7-7f50-6c57-f82a-41d5494ea514@canonical.com>
+         <c150e9ed7faa4c06f55f7d7623655b65c8575121.camel@mediatek.com>
+         <18c791ce-059a-87a5-eaf4-057f8e232fe7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3] dt-bindings: gpio: add common consumer GPIO lines
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20220401072714.106403-1-krzysztof.kozlowski@linaro.org>
- <1648818806.914066.2864970.nullmailer@robh.at.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1648818806.914066.2864970.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,54 +67,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 15:13, Rob Herring wrote:
-> On Fri, 01 Apr 2022 09:27:14 +0200, Krzysztof Kozlowski wrote:
->> Typical GPIO lines like enable, powerdown, reset or wakeup are not
->> documented as common, which leads to new variations of these (e.g.
->> pwdn-gpios).  Add a common schema which serves also as a documentation
->> for preferred naming.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes since v2:
->> 1. Correct email.
->>
->> Changes since v1:
->> 1. Select-true, add maxItems and description for each entry (Rob).
->> 2. Mention ACTIVE_LOW in bindings description (Linus).
->> 3. Add allOf for pwrseq reset-gpios case.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/gpio/gpio-consumer-common.yaml   | 64 +++++++++++++++++++
->>  1 file changed, 64 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
->>
+On Thu, 2022-03-24 at 11:35 +0100, Krzysztof Kozlowski wrote:
+> On 24/03/2022 10:42, Jia-Wei Chang wrote:
+> > On Mon, 2022-03-07 at 19:59 +0100, Krzysztof Kozlowski wrote:
+> > > On 07/03/2022 13:21, Tim Chang wrote:
+> > > > 1. add cci property.
+> > > > 2. add example of MT8186.
+> > > 
+> > > One logical change at a time. Are these related? Why entirely new
+> > > example just for "cci" node? Maybe this should be part of
+> > > existing
+> > > example?
+> > 
+> > Yes, the cci property is required in some SoC, e.g. mt8183 and
+> > mt8186,
+> > because cpu and cci share the same power supplies.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> I asked why this cannot be part of existing example.
+
+I misunderstood that.
+I will update the complete example in the next version.
+
 > 
-> yamllint warnings/errors:
+> > I will update the commit message and add an example of mt8186 to
+> > present usage of cci.
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.example.dt.yaml: rt4801@73: enable-gpios: [[4294967295, 2, 0], [4294967295, 3, 0]] is too long
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+> You added the example here, didn't you?
+
+Yes, I did add it here.
+
 > 
+> Best regards,
+> Krzysztof
 
-Hi Rob,
-
-With v1, you proposed to use maxItems for all these standard gpios, but
-as we see here there are two exceptions:
-1. pwrseq might have up to 32 reset-gpios,
-2. richtek,rt4801 uses up to 2 enable-gpios.
-
-One way is to add exceptions in gpio-consumer-common.yaml, like I did
-for reset-gpios and pwrseq. However this scales poor if more of such
-usages appear.
-
-Maybe let's drop the maxItems for all of them?
-
-Best regards,
-Krzysztof
