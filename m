@@ -2,113 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691614EEEB0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F3284EEEB3
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:59:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346622AbiDAOB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 10:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57422 "EHLO
+        id S1346129AbiDAOBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 10:01:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346643AbiDAOBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:01:24 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B119658E4D;
-        Fri,  1 Apr 2022 06:59:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1648821574; x=1680357574;
+        with ESMTP id S1346629AbiDAOBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:01:33 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4816623A;
+        Fri,  1 Apr 2022 06:59:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1648821584; x=1680357584;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=HS53eDMBd+hdkP/TyH5YuRd2CDwQeuvPwLfTlKoio/U=;
-  b=Ja4j8SaxTHieed+YIkIudM2wslEMmwH/gb8Q5vMKyDvZ91oueSe5YAal
-   ERdctjPdhW2GAw+ru24I2DVKUV33d7csp1p0KeT2UZpbcfw36a4XEaRWY
-   nfqGi7AtjGHcx/E5+/3+zaMF6kby3WkovhOTOZTpqv0eJp74Lve2997N+
-   H6VURtew43hg/dDJfzGiiyocBrrJEeTmBjbtYE309KYIu/ZVeR8Kzjg8l
-   floX2jIxW/N3OS3Qvv98ML1ixp7ArfIBrQwTqaP8oCDw2IsjibJhfg6vU
-   vWERQbDUTxIlHXAThAQDU+2NZqnPNhdgY3RnM3ZkcfEqJuaLYuhZ3bEMp
+  bh=TNn0jwiZyy2Bm4qdeuMEH72Uk556e7hle8S7qhOqgZo=;
+  b=ku7VbdEwEjvjk8erCmekbdbyJtmzP8CwcovJgu2TycFHOizv6IyKOm/9
+   zqRDNC7HwqnLoroAdYw1Fq80uPJgyV7kuIhq4HhdGa3Rckyy5pwwr86sN
+   wz7cbRWmdeBD8SBzzbfoLayn37MMqB13Pbu3U3SryafpGfXpsn6QzcjRn
+   JoJoeeBUcr/YOR4oCQ0UiUPXE9esu0RHoGcK3xaIIyOFt7UuJ4aY+0iBT
+   Ch6YlYKrdHEK7IH8JtcRVSqYqY1+acuolRACH04Yj7Mj0bv1bNNInx91F
+   7yDW905JzPq0wPq4G5cHYOTavkl6Qqs7udXKAYIEEOtegB+CS3WPIXLm3
    g==;
-X-IronPort-AV: E=Sophos;i="5.90,227,1643698800"; 
-   d="scan'208";a="90927628"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Apr 2022 06:59:33 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 1 Apr 2022 06:59:33 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Fri, 1 Apr 2022 06:59:32 -0700
-Date:   Fri, 1 Apr 2022 15:59:18 +0200
-From:   "Allan W. Nielsen" <allan.nielsen@microchip.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-CC:     Andrew Lunn <andrew@lunn.ch>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <Divya.Koppera@microchip.com>, <davem@davemloft.net>,
-        <kuba@kernel.org>, <richardcochran@gmail.com>,
-        <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH net 2/3] net: phy: micrel: Remove latency from driver
-Message-ID: <20220401135918.4tvwe6cfyku6l5wf@lx-anielsen>
-References: <20220401094805.3343464-1-horatiu.vultur@microchip.com>
- <20220401094805.3343464-3-horatiu.vultur@microchip.com>
- <Ykb0RgM+fnzOUTNx@lunn.ch>
- <20220401133454.ic6jxnripuxjhp5g@soft-dev3-1.localhost>
+X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="260127023"
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; 
+   d="scan'208";a="260127023"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 06:59:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,227,1643702400"; 
+   d="scan'208";a="695901161"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 01 Apr 2022 06:59:39 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 01 Apr 2022 16:59:38 +0300
+Date:   Fri, 1 Apr 2022 16:59:38 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     linux-acpi@vger.kernel.org, andriy.shevchenko@linux.intel.com,
+        devicetree@vger.kernel.org, "Rafael J.Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v3 0/4] Shovel firmware specific code to appropriate
+ locations
+Message-ID: <YkcFSgL+j1IvSsby@kuha.fi.intel.com>
+References: <20220331125450.218045-1-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220401133454.ic6jxnripuxjhp5g@soft-dev3-1.localhost>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220331125450.218045-1-sakari.ailus@linux.intel.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01.04.2022 15:34, Horatiu Vultur wrote:
->The 04/01/2022 14:47, Andrew Lunn wrote:
->>
->> On Fri, Apr 01, 2022 at 11:48:04AM +0200, Horatiu Vultur wrote:
->> > Based on the discussions here[1], the PHY driver is the wrong place
->> > to set the latencies, therefore remove them.
->> >
->> > [1] https://lkml.org/lkml/2022/3/4/325
->> >
->> > Fixes: ece19502834d84 ("net: phy: micrel: 1588 support for LAN8814 phy")
->> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
->>
->> Thanks for the revert.
->>
->> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>
->> > -static struct kszphy_latencies lan8814_latencies = {
->> > -     .rx_10          = 0x22AA,
->> > -     .tx_10          = 0x2E4A,
->> > -     .rx_100         = 0x092A,
->> > -     .tx_100         = 0x02C1,
->> > -     .rx_1000        = 0x01AD,
->> > -     .tx_1000        = 0x00C9,
->> > -};
->>
->> What are the reset defaults of these?
->
->Those are actually the reset values.
->
->> I'm just wondering if we should
->> explicitly set them to 0, so we don't get into a mess where some
->> vendor bootloader sets values but mainline bootloader does not,
->> breaking a configuration where the userspace daemon does the correct?
->
->It would be fine for me to set them to 0. But then definitely we need a
->way to set these latencies from userspace.
-I would like to keep the default values. With default values, you can
-get PTP working (accuracy is not great - but it is much better than
-if set to zero).
+On Thu, Mar 31, 2022 at 03:54:46PM +0300, Sakari Ailus wrote:
+> Hi folks,
+> 
+> This set moves the implementation of recently added device property API
+> functions to OF and ACPI frameworks, where the rest of such functionality
+> resides.
+> 
+> Compile tested.
+> 
+> The dependencies can be found in Rafael's devprop branch now.
+> 
+> since v2:
+> 
+> - Add pre-processor check for CONFIG_OF_ADDRESS in of_fwnode_iomap() (3rd
+>   patch).
+> 
+> changes since v1:
+> 
+> - Drop wrongly placed Depends-on: tag from the first patch.
+> 
+> - Drop IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode) check (3rd
+>   patch).
+> 
+> Sakari Ailus (4):
+>   device property: Convert device_{dma_supported,get_dma_attr} to fwnode
+>   ACPI: property: Move acpi_fwnode_device_get_match_data() up
+>   device property: Add iomap to fwnode operations
+>   device property: Add irq_get to fwnode operation
+> 
+>  drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
+>  drivers/base/property.c | 42 ++++++-----------------------------------
+>  drivers/of/property.c   | 34 +++++++++++++++++++++++++++++++++
+>  include/linux/fwnode.h  |  5 +++++
+>  4 files changed, 77 insertions(+), 40 deletions(-)
 
-There is no risk of bootloaders to pre-load other values, as the kernel
-will reset the PHY, and after reset we will be back to these numbers.
+These look good to me. FWIW:
 
-/Allan
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
+thanks,
+
+-- 
+heikki
