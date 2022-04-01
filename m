@@ -2,51 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605D64EFBCD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6B94EFC16
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 23:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352627AbiDAUvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:51:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
+        id S1346406AbiDAVRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 17:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbiDAUvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:51:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2601C34B2
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:49:43 -0700 (PDT)
+        with ESMTP id S234925AbiDAVRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 17:17:21 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C859E7A98C;
+        Fri,  1 Apr 2022 14:15:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ABC05619F3
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 20:49:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE41DC340EC;
-        Fri,  1 Apr 2022 20:49:41 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 00168B82505;
+        Fri,  1 Apr 2022 21:15:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2EC3C2BBE4;
+        Fri,  1 Apr 2022 21:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648846182;
-        bh=jEtgBQpJcj+wCxPvue6be/xKRiBRj0GT+qxovqCEaqo=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=LTfgALa3U/tHu2xtmMckDdSMs/1yq3O2zKb4JzcLKTKRCQhWmSCNBeuoATvlJ5JQ+
-         +Zi13iuTmyLy8K9GtziArRRlrQ52fXnuS/diQoVZPbegkRcVIa2dva/Nt1dS42zXqM
-         SHkH+J6o5NHgo/oW5WYrWcbHTPFJvSMc4UnSvud8Jarqop001WiBP6CM7lnudXomh6
-         dqx0gxfi5le4QOz4rakaZUVGXvfYQhYF+kS3cp3RzddukBRFNEvI4O0Nmq8mbSWwQo
-         AfjeZr+ilqug4MbzlEiVY8Leq1VlgCFQwzgFWv2PPJ69asql26L8kx/srR4RdU1RNU
-         eetfk5nbyV7HQ==
-Date:   Fri, 1 Apr 2022 13:49:41 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Rob Herring <robh+dt@kernel.org>
-cc:     Stefano Stabellini <sstabellini@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Julien Grall <julien@xen.org>,
-        xen-devel <xen-devel@lists.xenproject.org>
-Subject: Re: [PATCH] of: of_property_read_string return -ENODATA when
- !length
-In-Reply-To: <CAL_Jsq+udUpUK3y7WOeLF2dtGs0=Jz59ed0mu_sgzstB-=TDzA@mail.gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2204011338140.2910984@ubuntu-linux-20-04-desktop>
-References: <alpine.DEB.2.22.394.2203311740450.2910984@ubuntu-linux-20-04-desktop> <CAL_Jsq+udUpUK3y7WOeLF2dtGs0=Jz59ed0mu_sgzstB-=TDzA@mail.gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        s=k20201202; t=1648847728;
+        bh=TMC2lxjFF/69h0u5qOKYS/bbP77+QCpSH+WipT6atYo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aXldOcwmEiQWYMEcq5ev2wNzg1h3hWsksE5NKJhhhunaPJT5MOCY2kCYWIJCx20zB
+         XqJQPe7vYfY+srPArI0uQeL8UG6YUb13TBmMRubipai8+cJvBvVt+nSMfsL1Nx0Jn0
+         NTAgSQ4C+MPV6bxSJ7Ecc6Rp4bR//yJGo021FATXP5YZ8JiP50CZZ+H1DlFvSz1/Nq
+         KylaDGG8CKkoSm3+Q+H/qvlU4/p90PsMoiiKv7l5Cl6ouv8DVJev6g2S/47saNGV+r
+         kXeNxo8o6V2iWrTBWVPvK+JH93lpehP3gmhLQ6e1bWMqMrOMfVeAz1nBk7GP6f7ILH
+         +xG7Kj/WN6RFg==
+Date:   Fri, 1 Apr 2022 22:15:23 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: qcom,smd-rpm: update maintainers (drop
+ Kathiravan)
+Message-ID: <Ykdra8vV6IxjUaRH@sirena.org.uk>
+References: <20220401202759.191560-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="N7jqBAFlRuRLdVOL"
+Content-Disposition: inline
+In-Reply-To: <20220401202759.191560-1-krzysztof.kozlowski@linaro.org>
+X-Cookie: Universe, n.:
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -57,87 +61,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Apr 2022, Rob Herring wrote:
-> On Thu, Mar 31, 2022 at 7:46 PM Stefano Stabellini
-> <sstabellini@kernel.org> wrote:
-> >
-> > From: Stefano Stabellini <stefano.stabellini@xilinx.com>
-> >
-> > When the length of the string is zero of_property_read_string should
-> > return -ENODATA according to the description of the function.
-> 
-> Perhaps it is a difference of:
-> 
-> prop;
-> 
-> vs.
-> 
-> prop = "";
-> 
-> Both are 0 length by some definition. The description, '-ENODATA if
-> property does not have a value', matches the first case.
-> 
-> >
-> > However, of_property_read_string doesn't check pp->length. If pp->length
-> > is zero, return -ENODATA.
-> >
-> > Without this patch the following command in u-boot:
-> >
-> > fdt set /chosen/node property-name
-> >
-> > results in of_property_read_string returning -EILSEQ when attempting to
-> > read property-name. With this patch, it returns -ENODATA as expected.
-> 
-> Why do you care? Do you have a user? There could be an in tree user
-> that doesn't like this change.
 
-During review of a Xen patch series (we have libfdt is Xen too, synced
-with the kernel) Julien noticed a check for -EILSEQ. I added the check
-so that Xen would behave correctly in cases like the u-boot example in
-the patch description.
+--N7jqBAFlRuRLdVOL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Looking more into it, it seemed to be a mismatch between the description
-of of_property_read_string and the behavior (e.g. -ENODATA would seem to
-be the right return value, not -EILSEQ.)
+On Fri, Apr 01, 2022 at 10:27:59PM +0200, Krzysztof Kozlowski wrote:
+> Kathiravan's email bounces (585: Recipient address rejected:
+> undeliverable address: No such user here) so switch maintainers to Andy
+> and Bjorn (as Qualcomm platform maintainers).
 
-I added a printk to confirm what was going on when -EILSEQ was returned:
+Acked-by: Mark Brown <broonie@kernel.org>
 
-printk("DEBUG %s %d value=%s value[0]=%d length=%u len=%lu\n",__func__,__LINE__,(char*)pp->value, *((char*)pp->value),pp->length,
-strlen(pp->value));
- 
-This is the output:
-DEBUG of_property_read_string 205 value= value[0]=0 length=0 len=0
+--N7jqBAFlRuRLdVOL
+Content-Type: application/pgp-signature; name="signature.asc"
 
-As the description says:
+-----BEGIN PGP SIGNATURE-----
 
- *
- * Return: 0 on success, -EINVAL if the property does not exist, -ENODATA if
- * property does not have a value, and -EILSEQ if the string is not
- * null-terminated within the length of the property data.
- *
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJHa2oACgkQJNaLcl1U
+h9B4qgf8CMZZLIY0wIj858AnHDOmx0Q0TleK9Jc52emgEcvQFHK1uMznH0azLAtY
+ex4Hvf6EaAgyTksyBVH/JdEv2RLgyEUzf6mjYItFX+vJn3N9pLn02QSTyXlKPIa1
+Zjmo+rL9RuMmiuBng3ARlIuFM50GmvyQb/EtkGPv1hVXWvEoaByY7xsygLu+4o/L
+QX5lWzS0k7EWj6fVvjRCkQiJMNyHj3ZOSw0EECy7LW6xCF/iOTh0i+j6JHOSOJ0E
+/bdTinxZydO6y6NZS3FfYwzjljs2BkVRQL/tVjaXKLVw7z+KF2Wg5zk7nwkjVSon
+BCMRpnZvrjSSCt6sqK8hmoRyRYj8Xg==
+=p3Q7
+-----END PGP SIGNATURE-----
 
-It seems that this case matches "property does not have a value" which
-is expected to be -ENODATA instead of -EILSEQ. I guess one could also
-say that length is zero, so the string cannot be null-terminated,
-thus -EILSEQ?
-
-I am happy to go with your interpretation but -ENODATA seems to be the
-best match in my opinion.
-
-
-> > Signed-off-by: Stefano Stabellini <stefano.stabellini@xilinx.com>
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 8e90071de6ed..da0f02c98bb2 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -439,7 +439,7 @@ int of_property_read_string(const struct device_node *np, const char *propname,
-> >         const struct property *prop = of_find_property(np, propname, NULL);
-> >         if (!prop)
-> >                 return -EINVAL;
-> > -       if (!prop->value)
-> > +       if (!prop->value || !pp->length)
-> >                 return -ENODATA;
-> >         if (strnlen(prop->value, prop->length) >= prop->length)
-> >                 return -EILSEQ;
-> 
+--N7jqBAFlRuRLdVOL--
