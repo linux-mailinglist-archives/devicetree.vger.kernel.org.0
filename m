@@ -2,126 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D634EEF10
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA8CC4EEFD9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346764AbiDAOPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 10:15:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51742 "EHLO
+        id S1347246AbiDAOaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 10:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238589AbiDAOPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:15:51 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094BC1D8306
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 07:14:01 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id h23so4446493wrb.8
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 07:14:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=1btWfQ/cwwDf+2zR7TTJasEyjJMKEHxOGQFvSsQzUNo=;
-        b=drDk9UlAfQl8dv0tbJ/z6xC2Grcsru7JjL9gwD6kTbH9HdbjLZOcMoA3136FCkDdpF
-         ASVS7qUzI5h87CsTvYm0MQt+YnCxecL2ATTP7l4XrckrmcIpEsjgMyWnlVdihMW9L6Xj
-         Lh/2jEjU52rzyd4P0b3asys1JtxtM119FjajeeKUfeX1/V1UaSmVcdIzwvfRemSqLZ6K
-         cVnZULgvP972s2W3XHzv5vTsGEo0zrJPRehSFVHQ+/qwF0GdN9T0Fu+YermCJkZ02nNu
-         uISKnWIUWLcS7fwkiUTrzpukOXV4SCI2INJpSPTRz7/bPnPQydVqfjsiL3eJn8qF8K+x
-         PfvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=1btWfQ/cwwDf+2zR7TTJasEyjJMKEHxOGQFvSsQzUNo=;
-        b=mKU2pPk5SEFl53kc094DKiPBqEzmn+R0630ZjTnNKFKKI+TwSzgG+pMUzwvzjhNx9H
-         vojmOB/pgEJI0o4OfJCjJNIqPhEQ+XUPy2aiPTDGrzlDmR5SCXKCowbKSwvUP/qXq6I2
-         snNhug2Nep1ITqMkFMFueq8S9TRH0cv/Mlnwr+Tdkh4lCyWkyNhYncTsaAdzEkimh/vR
-         3CJPlLv4ePVMrwBLD52ALuDZ1aGtokQljtBVT8w/c6nyZI1h4f2Drmo0BDCYD62mHhnA
-         iUiwhNEMaImlUNFbryEXsVSnYDJQFiHTBNJVPiBEaKHngPROGL1tBM6dQX8rQ8IZl7pz
-         tLyQ==
-X-Gm-Message-State: AOAM532WNmyDSdZoMRunBuGWkLCuht3jOZPa4tvF0gbo8jaskvYRnF2E
-        XY59Wsvuly6BP/gUkudjNJuQ6aKdLHD06A==
-X-Google-Smtp-Source: ABdhPJxziInbIQM7rU7QrfHhBeMrpFnpjbR2ITa3QPuqaB6h2ay9esiw6GE7JzxYi1mnlF+O56b9dQ==
-X-Received: by 2002:a05:6000:1cc:b0:203:fdbf:e576 with SMTP id t12-20020a05600001cc00b00203fdbfe576mr8043910wrx.147.1648822439548;
-        Fri, 01 Apr 2022 07:13:59 -0700 (PDT)
-Received: from localhost ([2a01:cb19:826e:8e00:843b:fbda:3082:4270])
-        by smtp.gmail.com with ESMTPSA id j16-20020a05600c191000b0038ca3500494sm16727828wmq.27.2022.04.01.07.13.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 07:13:59 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] arm64: dts: mediatek: Add device-tree for MT8195
- Demo board
-In-Reply-To: <0b042c71-4d07-76a6-53bb-94bbd4bad6c0@collabora.com>
-References: <20220327200312.3090515-1-fparent@baylibre.com>
- <20220327200312.3090515-3-fparent@baylibre.com>
- <94d231cf-ce4c-22f5-b9af-41ae68f1e659@collabora.com>
- <20220328144107.ed4xwzuiezzixqrx@radium>
- <0b042c71-4d07-76a6-53bb-94bbd4bad6c0@collabora.com>
-Date:   Fri, 01 Apr 2022 16:13:58 +0200
-Message-ID: <875yns51sp.fsf@baylibre.com>
+        with ESMTP id S1347212AbiDAO3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:29:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C64FF28AB03;
+        Fri,  1 Apr 2022 07:27:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2049FB824FD;
+        Fri,  1 Apr 2022 14:27:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86889C2BBE4;
+        Fri,  1 Apr 2022 14:27:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648823238;
+        bh=b51VNEiKO+Fx8+RwLfJTXx0nWoth9Ssof+K5dUkMstw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lzRb5qcLN1/53yc5oKT7sO3W6zaQ42oQ3Jca7Tb2yP2UboEfdR/V5+nrf9uI/ET2b
+         dRE6ku5jr+MY/+L0VJS6m88I/eXQYZX0Vzl8imU5JPcPP9lZrwuONARZLCqW9FE6yO
+         f7ZSbCaHSXF2n936Jsbmpcg1M8ccdLZmlAqAIg/Gc1AtP3dwLTIThIHCMGwzX5uvod
+         6o5u3hMQo5QaUDXA3R8/hUS11rULghiEn0RSN0hXkGlIufBTJhkG8iT4IS0rdZW0L7
+         o33WLfkdHswI+WXTxg+K6fHgRmniEgrciDxsUFGi5zDoXJ1SuSXCUs4AA8AxqTliIf
+         4g13TgkmDEIXg==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH AUTOSEL 5.17 028/149] powerpc: dts: t104xrdb: fix phy type for FMAN 4/5
+Date:   Fri,  1 Apr 2022 10:23:35 -0400
+Message-Id: <20220401142536.1948161-28-sashal@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220401142536.1948161-1-sashal@kernel.org>
+References: <20220401142536.1948161-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On lun., mars 28, 2022 at 16:50, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
+From: Maxim Kiselev <bigunclemax@gmail.com>
 
-> Il 28/03/22 16:41, Fabien Parent ha scritto:
->> On Mon, Mar 28, 2022 at 03:47:09PM +0200, AngeloGioacchino Del Regno wrote:
->>> Il 27/03/22 22:03, Fabien Parent ha scritto:
->>>> Add basic device-tree for the MT8195 Demo board. The
->>>> Demo board is made by MediaTek and has a MT8195 SoC,
->>>> associated with the MT6359 and MT6360 PMICs, and
->>>> the MT7921 connectivity chip.
->>>>
->>>> The IOs available on that board are:
->>>> * 1 USB Type-C connector with DP aux mode support
->>>> * 1 USB Type-A connector
->>>> * 1 full size HDMI RX and 1 full size HDMI TX connector
->>>> * 1 uSD slot
->>>> * 40 pins header
->>>> * SPI interface header
->>>> * 1 M.2 slot
->>>> * 1 audio jack
->>>> * 1 micro-USB port for serial debug
->>>> * 2 connectors for DSI displays
->>>> * 3 connectors for CSI cameras
->>>> * 1 connector for a eDP panel
->>>> * 1 MMC storage
->>>>
->>>> This commit adds basic support in order to be able to boot.
->>>>
->>>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
->>>> ---
->>>> v2:
->>>>    * remove empty i2c nodes
->>>>    * remove empty spi node
->>>>    * remove unused pcie pinctrls
->>>>    * fixup node nodes to not contains underscore
->>>>    * rename mt6360 pmic node
->>>>    * move mmc1 node right after mmc0 node
->>>>    * use generic node name for gpio-keys
->>>>    * uniformize pinctrl node names
->>>>
->>>>    arch/arm64/boot/dts/mediatek/Makefile        |   1 +
->>>>    arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 447 +++++++++++++++++++
->>>>    2 files changed, 448 insertions(+)
->>>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->>>>
-Boot-tested to console on i1200-demo board.
+[ Upstream commit 17846485dff91acce1ad47b508b633dffc32e838 ]
 
-Tested-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+T1040RDB has two RTL8211E-VB phys which requires setting
+of internal delays for correct work.
+
+Changing the phy-connection-type property to `rgmii-id`
+will fix this issue.
+
+Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+Link: https://lore.kernel.org/r/20211230151123.1258321-1-bigunclemax@gmail.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/powerpc/boot/dts/fsl/t104xrdb.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
+index 099a598c74c0..bfe1ed5be337 100644
+--- a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
++++ b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
+@@ -139,12 +139,12 @@ pca9546@77 {
+ 		fman@400000 {
+ 			ethernet@e6000 {
+ 				phy-handle = <&phy_rgmii_0>;
+-				phy-connection-type = "rgmii";
++				phy-connection-type = "rgmii-id";
+ 			};
+ 
+ 			ethernet@e8000 {
+ 				phy-handle = <&phy_rgmii_1>;
+-				phy-connection-type = "rgmii";
++				phy-connection-type = "rgmii-id";
+ 			};
+ 
+ 			mdio0: mdio@fc000 {
+-- 
+2.34.1
+
