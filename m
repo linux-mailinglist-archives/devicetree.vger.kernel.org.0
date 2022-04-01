@@ -2,114 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1524EEA78
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 11:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7033C4EEA7D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 11:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344601AbiDAJee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 05:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60034 "EHLO
+        id S1344625AbiDAJhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 05:37:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344600AbiDAJed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 05:34:33 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27D026A97F
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 02:32:44 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id kl29so1600149qvb.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 02:32:44 -0700 (PDT)
+        with ESMTP id S1344616AbiDAJhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 05:37:07 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D045FF2D
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 02:35:17 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id a30so3072713ljq.13
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 02:35:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=MicAAIxYy/iDzT2iR5+kPbLoF8E6ss/329hg63ZuCOU=;
-        b=3CnCTumz9YY76lxgWN2UlTVuzhev3Nna6J9Du2HqvA02Ij7ZZAjLKRk12K5FieougC
-         d5Zn5GbFenpld2+RH3IV09sfmWtBZyk1Xi9A5PPqT8XBxUS4Hm27jFj+tIRNbIMTOuCn
-         DPvka0Ye9GhRE0FfJMhXRxRE54vxK2VkbEkY9dPdmEeTQvKxlTdwMYaFo7/SG8p+d/0W
-         8AGA75haiy9s12RjV6772ct/rs/eS23jKFaTL26ya6TVYy+VkYskp6iAsh0MTs8ffZMv
-         CB0qHW21RXJLAHtsWEQTVIBYi0Qlnrs2d51fNiVgvgUGiA8oQBDRln13hNzk+D4yc313
-         29aw==
+        bh=/4FSuKnccX1iFN0uwomkiOn5u1Xbdrve2qg2JRoojKE=;
+        b=VogYOcScEozGo2HMiWfqxuG6WYR1q4RB22WpLk5JKZJ7C7863bdDZMoez1zh52xN3E
+         tQRCs5L9iLeEb3iV/aDNvioJiF6J1FXPf/1x+Jyf0ZnUG8mzmEooJR7j+y5YldogbuP+
+         5ezZ26ojecVxEvsIhBKIacbEiCW3aRA9iQwLnC0eJIRp9QpLT3gCIlLWTVPWekSneKDD
+         gETW8elTB+iNq/ztsFTbH9BsNjgxNo1YX7KDi+JnJHg6QgCVPbLGDuQJi9sf2ve2FCoA
+         TVnlbcWW+EXB4ILmmm8EcrghRQ2R5G/sodiSOxtoOtAHy5iED1RwUgHk4B4qiR9ViDYB
+         1gFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MicAAIxYy/iDzT2iR5+kPbLoF8E6ss/329hg63ZuCOU=;
-        b=6qEg8jNRzsN4ErnEHUDhicuk/hqX26BMkCoYdQefrh/T3IpiCr0CtAoPz2gNWcXZGb
-         24NsqtW/MWSi5qvyzRdT+N2oS8hPcNbdvfAyfFYgjRD08JPIpE7O6WQJ/dSQUCA4+7UX
-         eqa43MFwJOS3pN2B9SCbW4redQc90+GyZ+HlN5jynr2lFcllA2tjEt5/nFvnjj3KGXns
-         H8Mq5M9sV1ewZw5V/dDG8rXua0sAht9Kpg1E2rB6m7+aY5Ae/f2U+2XSNknhj/eYbhka
-         yME8fiquU+hYn8TX/fIEWh3q1jSQZAwbkZDrQEF2n05eppZiqakdiRb9NMHoHyftmRAn
-         tAlw==
-X-Gm-Message-State: AOAM5301MPct9wmbJS2FISsTQZDx4qT5GTtMNYoyzJ1URuX+lGWNR28Q
-        g0EQtpi8cVojbuZQvsyrsbeBnwlwrbsUStPWk4n5lg==
-X-Google-Smtp-Source: ABdhPJxMrWFRgnJ0HABbALsyEWn++3TYT3GlrWCdJTKoJ5qhP66rEVIDTbtidg6sinbHg72xQektuQEkP9W4JCYNA8A=
-X-Received: by 2002:ad4:4eaf:0:b0:441:7ff6:f639 with SMTP id
- ed15-20020ad44eaf000000b004417ff6f639mr7098344qvb.73.1648805564076; Fri, 01
- Apr 2022 02:32:44 -0700 (PDT)
+        bh=/4FSuKnccX1iFN0uwomkiOn5u1Xbdrve2qg2JRoojKE=;
+        b=4NHwHEdvqxzckMnpHjI6iiyB/KdujxrxoU2sEBwS7nonscOPpr45Q9z+6BFhHkpLxD
+         28S9R1F1BrR/w07qCrs70I2SKkdCjpa3N/q2dD/5yE2NFG9FIOVVFL9LWhaSnA2AWY7i
+         5Pq/rxylJ+fD7VRD6pmqBko2qSeRfh4Z1KCqyD0vdiUDlt6lwp1nIIKTn88KJ0gy/aSf
+         zK4FCf3KV1ID6U3Id1tfe3FMkgXuGuQytK+OPuqeBWkHNJ1YynbB/l2e1tb5/FjWK03r
+         RvXcUHHV/jMPL1MGoaEwLdeSzgkDZTEX333arT841srT/0d+PSC2EGfCdXHXGGXl/x5e
+         doGg==
+X-Gm-Message-State: AOAM532221WGPWgC4XIb3G28aWdUa9RI7caAZP5EHTtLR1E5A1fG8bGX
+        y9tXFPwTcS5AilXBzV0l/iMJP/0mkS5+bfcTMhsklQ==
+X-Google-Smtp-Source: ABdhPJz6psO/sjbUT/j1r3XjHcZRBUCIC5sFVlTg1I2riC4zd4S5suzIVESlXB2FKEJIV3qX81Z8ZtW69b0xCIMwSA8=
+X-Received: by 2002:a2e:8189:0:b0:249:7d3a:ceb0 with SMTP id
+ e9-20020a2e8189000000b002497d3aceb0mr12136101ljg.367.1648805715996; Fri, 01
+ Apr 2022 02:35:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220330190846.13997-1-wens@kernel.org> <20220330190846.13997-3-wens@kernel.org>
-In-Reply-To: <20220330190846.13997-3-wens@kernel.org>
-From:   Javier Martinez Canillas <javier@dowhile0.org>
-Date:   Fri, 1 Apr 2022 11:32:33 +0200
-Message-ID: <CABxcv==csvqsxM46ce2LecDh4E-UxxD2DG+3E-hCFoyrdtRv7A@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: display: ssd1307fb: Add entry for SINO
- WEALTH SH1106
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Javier Martinez Canillas <javierm@redhat.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>
+References: <20220329032913.8750-1-axe.yang@mediatek.com> <20220329032913.8750-2-axe.yang@mediatek.com>
+ <CAPDyKFqoTN1pF-L6qCHxpdMCmPtHP0aHHaDURN2QJsN3v+wZBw@mail.gmail.com>
+In-Reply-To: <CAPDyKFqoTN1pF-L6qCHxpdMCmPtHP0aHHaDURN2QJsN3v+wZBw@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 1 Apr 2022 11:34:39 +0200
+Message-ID: <CAPDyKFo_PYc9ofWuXeaE86oK6FqOAnHsH-ZSG58MfNq8nEOVOw@mail.gmail.com>
+Subject: Re: [PATCH v9 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
+ pinctrls properties
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Chen-Yu,
-
-Thanks a lot for your patch.
-
-On Wed, Mar 30, 2022 at 9:09 PM Chen-Yu Tsai <wens@kernel.org> wrote:
+On Fri, 1 Apr 2022 at 11:22, Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
-> From: Chen-Yu Tsai <wens@csie.org>
+> On Tue, 29 Mar 2022 at 05:29, Axe Yang <axe.yang@mediatek.com> wrote:
+> >
+> > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
+> > This feature allow SDIO devices alarm asynchronous interrupt to host
+> > even when host stop providing clock to SDIO card. An extra wakeup
+> > interrupt and pinctrl states for SDIO DAT1 pin state switching are
+> > required in this scenario.
+> >
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/mmc/mtk-sd.yaml         | 17 ++++++++++++++++-
+> >  1 file changed, 16 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > index 297ada03e3de..3872a6ce2867 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > @@ -69,12 +69,22 @@ properties:
+> >        - const: ahb_cg
+> >
+> >    interrupts:
+> > -    maxItems: 1
+> > +    description:
+> > +      Should at least contain MSDC GIC interrupt. To support SDIO in-band wakeup, an extended
+> > +      interrupt is required and be configured as wakeup source irq.
 >
-> The SINO WEALTH SH1106 is an OLED display driver that is somewhat
-> compatible with the SSD1306. It supports a slightly wider display,
-> at 132 instead of 128 pixels. The basic commands are the same, but
-> the SH1106 doesn't support the horizontal or vertical address modes.
+> If I understand correctly, the extended interrupt (a GPIO irq) may not
+> necessarily share the same interrupt parent as the primary device
+> interrupt.
 >
-> Add a compatible string for it.
->
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> index 9baafd0c42dd..1ac016a2d847 100644
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -13,6 +13,7 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> +      - sinowealth,sh1106-i2c
+> Perhaps it's then better to extend this with "interrupts-extended"
+> instead. See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt.
 
-I like that you didn't include a "fb" suffix for this, the existing
-ones are cargo culting from the previous fbdev driver to make existing
-DTBs compatible with the DRM driver.
+One more thing, looks like using the "interrupt-names" property would
+be good to use too. To easier distinguish the different irqs.
 
-I've been thinking if I should post a patch to compatible strings
-without the "fb" and mark the current ones as deprecated...
+[...]
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
-Best regards,
-Javier
+Kind regards
+Uffe
