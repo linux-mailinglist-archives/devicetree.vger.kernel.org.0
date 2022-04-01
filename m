@@ -2,182 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 526AC4EED87
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 14:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7DAB4EED92
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 14:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346005AbiDAM5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 08:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46074 "EHLO
+        id S1345868AbiDAM7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 08:59:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345997AbiDAM5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 08:57:22 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BEFC1DB8BE
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 05:55:33 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1naGoK-000709-7q; Fri, 01 Apr 2022 14:55:28 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1naGoJ-0002ZA-D5; Fri, 01 Apr 2022 14:55:27 +0200
-Date:   Fri, 1 Apr 2022 14:55:27 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <Kever.yang@rock-chips.com>
-Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
-Message-ID: <20220401125527.GM4012@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <20220328151116.2034635-21-s.hauer@pengutronix.de>
- <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
- <20220330063913.GW12181@pengutronix.de>
- <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
- <20220331070614.GD4012@pengutronix.de>
- <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
- <20220331081815.GF4012@pengutronix.de>
- <8aa9da47-d7ed-41bf-384c-103757c19fe2@rock-chips.com>
+        with ESMTP id S244229AbiDAM7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 08:59:13 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85649276817;
+        Fri,  1 Apr 2022 05:57:23 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id A73BA22175;
+        Fri,  1 Apr 2022 14:57:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1648817842;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Ii8bJFrSBBTNQOn9Hd5ysSOcsf0u0Vom9C20hgPfKt4=;
+        b=l6Mc9TWypMsLH1SihE67EFm9g8ACmcZNyFsXurSEXmAVyaT+usNuAn1nZ7YrbnXyRENzIl
+        8AVcrXDtdghjVNXA3XOgKQT7vvr8fPaFXXR2uuZ3hMTPM1McRl7mXHn8zB4aufoxpm1nEa
+        t3HjoBnw2kG9WeQWQqME3BL8ZYDvPIM=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8aa9da47-d7ed-41bf-384c-103757c19fe2@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:54:05 up 2 days,  1:23, 55 users,  load average: 0.13, 0.21, 0.17
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 01 Apr 2022 14:57:21 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] hwmon: add driver for the Microchip LAN966x SoC
+In-Reply-To: <06ff3ca0-9d2b-205f-064d-24bcb86e5362@roeck-us.net>
+References: <20220331162431.3648535-1-michael@walle.cc>
+ <20220331162431.3648535-5-michael@walle.cc>
+ <06ff3ca0-9d2b-205f-064d-24bcb86e5362@roeck-us.net>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <415334e3278a610bc603b316d4af6502@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 07:00:34PM +0800, Andy Yan wrote:
-> Hi:
-> 
-> On 3/31/22 16:18, Sascha Hauer wrote:
-> > On Thu, Mar 31, 2022 at 03:20:37PM +0800, Andy Yan wrote:
-> > > Hi Sascha:
-> > > 
-> > > On 3/31/22 15:06, Sascha Hauer wrote:
-> > > > On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
-> > > > > Hi Sascha:
-> > > > > 
-> > > > > On 3/30/22 14:39, Sascha Hauer wrote:
-> > > > > > Hi Andy,
-> > > > > > 
-> > > > > > On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
-> > > > > > > Hi Sascha:
-> > > > > > > 
-> > > > > > > On 3/28/22 23:11, Sascha Hauer wrote:
-> > > > > > > > With upcoming VOP2 support VOP won't be the only choice anymore, so make
-> > > > > > > > the VOP driver optional.
-> > > > > > > > 
-> > > > > > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > > > > > > ---
-> > > > > > > >      drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
-> > > > > > > >      drivers/gpu/drm/rockchip/Makefile           | 3 ++-
-> > > > > > > >      drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
-> > > > > > > >      3 files changed, 11 insertions(+), 2 deletions(-)
-> > > > > > > > 
-> > > > > > > > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> > > > > > > > index fa5cfda4e90e3..7d22e2997a571 100644
-> > > > > > > > --- a/drivers/gpu/drm/rockchip/Kconfig
-> > > > > > > > +++ b/drivers/gpu/drm/rockchip/Kconfig
-> > > > > > > > @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
-> > > > > > > >      if DRM_ROCKCHIP
-> > > > > > > > +config ROCKCHIP_VOP
-> > > > > > > > +	bool "Rockchip VOP driver"
-> > > > > > > > +	default y
-> > > > > > > > +	help
-> > > > > > > > +	  This selects support for the VOP driver. You should enable it
-> > > > > > > > +	  on all older SoCs up to RK3399.
-> > > > > > That reminds me that I wanted to rephrase this. Will change in next
-> > > > > > round.
-> > > > > > 
-> > > > > > > > +
-> > > > > > > >      config ROCKCHIP_ANALOGIX_DP
-> > > > > > > >      	bool "Rockchip specific extensions for Analogix DP driver"
-> > > > > > > > +	depends on ROCKCHIP_VOP
-> > > > > > > Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
-> > > > BTW I just looked at the downstream driver. Here we have the same
-> > > > situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
-> > > > which is implemented in the VOP driver, so when the analogix dp driver
-> > > > is actually used on a VOP2 SoC then it is either used in a way that
-> > > > rockchip_drm_wait_vact_end() will never be called or it explodes in all
-> > > > colours.
-> > > > 
-> > > > > > I added the dependency because analogix_dp-rockchip.c calls
-> > > > > > rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
-> > > > > > so this driver currenty can't work with the VOP2 driver and can't
-> > > > > > be linked without the VOP driver being present.
-> > > > > > I'll add a few words to the commit message.
-> > > > > Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
-> > > > > driver to rockchip_drm_drv.c
-> > > > I am not sure if that's really worth it. Yes, the direction might be the
-> > > > right one, but I would really prefer when somebody does the change who
-> > > > can test and confirm that the analogix dp really works with VOP2 in the
-> > > > end.
-> > > If follow this point, the current DW_MIPI also has not been tested for
-> > > confirm that it
-> > > 
-> > > can really work with VOP2, so you should also make it depends on
-> > > ROCKCHIP_VOP.
-> > Well at least I have patches here which make DW_MIPI work with VOP2 ;)
-> 
-> 
-> But you DW_MIPI patches for rk356x didn't come. So this is not keep
-> consistency with this point.
-> 
-> > 
-> > What about the others, like LVDS and RGB?
-> 
-> 
-> Yes, we also have other interface , RK356X has LVDS/RGB/BT1120/BT656, RK3588
-> has BT1120/BT656, no LVDS or RGB.
-> 
-> > > I think the current solution is just a workaround to make your patch pass
-> > > the kernel compile
-> > Indeed.
-> > 
-> > I agree that it would be good to add a note somewhere which outputs
-> > work with the VOP2 driver (currently only HDMI), but I wonder if Kconfig
-> > dependencies is the right place for it, because only people who deliberately
-> > disable VOP support will see this information.
-> > Maybe we should rather add it to the Kconfig help text?
-> 
-> 
-> If a device is supported for this soc, we will add dt node at the dtsi file.
-> 
-> A Kconfig dependencies don't seems a good idea.
+Am 2022-03-31 19:28, schrieb Guenter Roeck:
 
-Ok, this means we can keep my current approach with just letting
-ROCKCHIP_ANALOGIX_DP depend on ROCKCHIP_VOP to avoid having a non
-buildable kernel.
+>> +static int lan966x_hwmon_write_pwm_freq(struct device *dev, long val)
+>> +{
+>> +	struct lan966x_hwmon *hwmon = dev_get_drvdata(dev);
+>> +
+>> +	val = DIV_ROUND_CLOSEST(hwmon->clk_rate, val);
+> 
+> I must have looked at this for an hour, but I didn't see the problem.
+> Sorry for that. Try writing "0" as new pwm frequency.
 
-Sascha
+Ohh, and negative values..
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+I'll add a
+
+if (val <= 0)
+     return -EINVAL;
+
+>> +static int lan966x_hwmon_enable(struct lan966x_hwmon *hwmon)
+>> +{
+>> +	unsigned int mask = SENSOR_CFG_SAMPLE_ENA |
+>> +			    SENSOR_CFG_START_CAPTURE |
+>> +			    SENSOR_CFG_CONTINIOUS_MODE |
+>> +			    SENSOR_CFG_PSAMPLE_ENA;
+>> +	unsigned int val;
+>> +
+>> +	/* enable continuous mode */
+>> +	val = SENSOR_CFG_SAMPLE_ENA | SENSOR_CFG_CONTINIOUS_MODE;
+>> +
+> 
+> I am curious: Why not as part of the assignment, similar to 'mask' ?
+
+There was code to set the clock divider, but I've removed
+it as the hardware has a sane default. That left just that one
+line, but moving the comment above the declaration looked
+weird.
+
+Now thinking about it again, it might make sense to bring
+back the code to set the clock divider in case someone
+will fiddle around with it before the driver is probed.
+
+#define LAN966X_PVT_CLK 1200000 /* 1.2 MHz */
+
+/* set PVT clock to be between 1.15 and 1.25 MHz */
+div = DIV_ROUND_CLOSEST(hwmon->clk_rate, LAN966X_PVT_CLK);
+val |= FIELD_PREP(SENSOR_CFG_CLK_CFG, div);
+
+>> +static int lan966x_hwmon_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct lan966x_hwmon *hwmon;
+>> +	struct device *hwmon_dev;
+>> +	int ret;
+>> +
+>> +	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
+>> +	if (!hwmon)
+>> +		return -ENOMEM;
+>> +
+>> +	hwmon->clk = devm_clk_get(dev, NULL);
+>> +	if (IS_ERR(hwmon->clk))
+>> +		return dev_err_probe(dev, PTR_ERR(hwmon->clk),
+>> +				     "failed to get clock\n");
+>> +
+>> +	ret = lan966x_clk_enable(dev, hwmon);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "failed to enable clock\n");
+>> +
+>> +	hwmon->clk_rate = clk_get_rate(hwmon->clk);
+>> +
+>> +	hwmon->regmap_pvt = lan966x_init_regmap(pdev, "pvt");
+>> +	if (IS_ERR(hwmon->regmap_pvt))
+>> +		return dev_err_probe(dev, PTR_ERR(hwmon->regmap_pvt),
+>> +				     "failed to get regmap for PVT registers\n");
+>> +
+>> +	hwmon->regmap_fan = lan966x_init_regmap(pdev, "fan");
+>> +	if (IS_ERR(hwmon->regmap_fan))
+>> +		return dev_err_probe(dev, PTR_ERR(hwmon->regmap_fan),
+>> +				     "failed to get regmap for fan registers\n");
+>> +
+>> +	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev,
+>> +				"lan966x_hwmon", hwmon,
+>> +				&lan966x_hwmon_chip_info, NULL);
+>> +	if (IS_ERR(hwmon_dev))
+>> +		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
+>> +				     "failed to register hwmon device\n");
+>> +
+>> +	return lan966x_hwmon_enable(hwmon);
+> 
+> Since I am nitpicking: It may make sense to call this function before
+> registering the hwmon device, and it may make sense to disable sampling
+> when unloading the driver (you could trigger that by calling
+> devm_add_action_or_reset() from lan966x_hwmon_enable).
+
+sure
+
+-michael
