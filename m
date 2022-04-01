@@ -2,64 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DB44EE8D7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 097E14EE8EA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:16:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235431AbiDAHMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 03:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51486 "EHLO
+        id S1343769AbiDAHST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 03:18:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232721AbiDAHMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:12:21 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5EE521D66FD
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 00:10:23 -0700 (PDT)
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(1184:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Fri, 01 Apr 2022 15:07:40 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Fri, 1 Apr 2022 15:08:39 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.018; Fri, 1 Apr 2022 15:08:39 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Russell King - ARM Linux" <linux@armlinux.org.uk>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH v12 9/9] ARM: sp7021_defconfig: Add Sunplus SP7021
- defconfig
-Thread-Topic: [PATCH v12 9/9] ARM: sp7021_defconfig: Add Sunplus SP7021
- defconfig
-Thread-Index: AQHYRNqKgpvhY+D7NEGLNwOJ/bBEBKzYrlGAgAGgdnA=
-Date:   Fri, 1 Apr 2022 07:08:39 +0000
-Message-ID: <334463c7f78b4b25a62ddd01bba5fe06@cqplus1.com>
-References: <cover.1648714851.git.qinjian@cqplus1.com>
- <84a0839e7724fa39dd07fef491cf6bb357db2e7d.1648714851.git.qinjian@cqplus1.com>
- <CAK8P3a2SQCj8pqyJvS+TpgqQu51+YyB4SOi2cd_WU9ObgAjZOw@mail.gmail.com>
-In-Reply-To: <CAK8P3a2SQCj8pqyJvS+TpgqQu51+YyB4SOi2cd_WU9ObgAjZOw@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S235587AbiDAHSS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:18:18 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A6725CBA0;
+        Fri,  1 Apr 2022 00:16:26 -0700 (PDT)
+X-UUID: d5c908bba9ca447f8dc5113c76938d63-20220401
+X-UUID: d5c908bba9ca447f8dc5113c76938d63-20220401
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 650611933; Fri, 01 Apr 2022 15:16:21 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 1 Apr 2022 15:16:21 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 1 Apr
+ 2022 15:16:21 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 1 Apr 2022 15:16:20 +0800
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH V7 0/3] spi: mediatek: add single/quad mode support 
+Date:   Fri, 1 Apr 2022 15:16:13 +0800
+Message-ID: <20220401071616.8874-1-leilk.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,40 +54,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBPbiBUaHUsIE1hciAzMSwgMjAyMiBhdCAxMDoyOSBBTSBRaW4gSmlhbiA8cWluamlhbkBjcXBs
-dXMxLmNvbT4gd3JvdGU6DQo+ID4gQWRkIGdlbmVyaWMgU3VucGx1cyBTUDcwMjEgYmFzZWQgYm9h
-cmQgZGVmY29uZmlnDQo+IA0KPiBIZXJlLCB5b3Ugc2hvdWxkIGV4cGxhaW4gd2h5IHlvdSBuZWVk
-IGEgY3VzdG9tIGRlZmNvbmZpZyBmb3IgdGhpcyBTb0MsIGFzDQo+IG1vc3QgcGxhdGZvcm1zIGFy
-ZSBmaW5lIGp1c3QgdXNpbmcgdGhlIGdlbmVyaWMgb25lLiBBcmUgeW91IHRvbyBtZW1vcnkNCj4g
-Y29uc3RyYWluZWQsDQo+IG9yIGFyZSB0aGVyZSBvdGhlciBwcm9ibGVtcz8NCj4gDQoNCkZvciBt
-ZW1vcnkgY29uc3RyYWluZWQgYm9hcmQgb25seS4NCg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
-bS9jb25maWdzL211bHRpX3Y3X2RlZmNvbmZpZyBiL2FyY2gvYXJtL2NvbmZpZ3MvbXVsdGlfdjdf
-ZGVmY29uZmlnDQo+ID4gaW5kZXggODg2M2ZhOTY5Li5hM2JkOWRiZDggMTAwNjQ0DQo+ID4gLS0t
-IGEvYXJjaC9hcm0vY29uZmlncy9tdWx0aV92N19kZWZjb25maWcNCj4gPiArKysgYi9hcmNoL2Fy
-bS9jb25maWdzL211bHRpX3Y3X2RlZmNvbmZpZw0KPiA+IEBAIC04Niw2ICs4Niw3IEBAIENPTkZJ
-R19NQUNIX1NQRUFSMTMxMD15DQo+ID4gIENPTkZJR19NQUNIX1NQRUFSMTM0MD15DQo+ID4gIENP
-TkZJR19BUkNIX1NUST15DQo+ID4gIENPTkZJR19BUkNIX1NUTTMyPXkNCj4gPiArQ09ORklHX0FS
-Q0hfU1VOUExVUz15DQo+ID4gIENPTkZJR19BUkNIX1NVTlhJPXkNCj4gPiAgQ09ORklHX0FSQ0hf
-VEVHUkE9eQ0KPiA+ICBDT05GSUdfQVJDSF9VTklQSElFUj15DQo+IA0KPiBEb24ndCB5b3UgbmVl
-ZCBhbnkgZHJpdmVycyBoZXJlPw0KPiANCg0KQ3VycmVudGx5LCBhbGwgYmFzaWMgZHJpdmVycyBh
-dXRvIGVuYWJsZWQgYnkgbWFjaC1zdW5wbHVzL0tjb25maWc6DQouLi4NCmNvbmZpZyBTT0NfU1A3
-MDIxDQoJYm9vbCAiU3VucGx1cyBTUDcwMjEgU29DIHN1cHBvcnQiDQoJZGVwZW5kcyBvbiBBUkNI
-X1NVTlBMVVMNCglkZWZhdWx0IEFSQ0hfU1VOUExVUw0KCXNlbGVjdCBBUk1fR0lDDQoJc2VsZWN0
-IEFSTV9QU0NJDQoJc2VsZWN0IFBJTkNUUkwNCglzZWxlY3QgUElOQ1RSTF9TUFBDVEwNCglzZWxl
-Y3QgU0VSSUFMX1NVTlBMVVMNCglzZWxlY3QgU0VSSUFMX1NVTlBMVVNfQ09OU09MRQ0KDQphbmQg
-ZHJpdmVyJ3MgS2NvbmZpZzoNCi4uLg0KY29uZmlnIFJFU0VUX1NVTlBMVVMNCiAgICAgICAgYm9v
-bCAiU3VucGx1cyBTb0NzIFJlc2V0IERyaXZlciIgaWYgQ09NUElMRV9URVNUDQogICAgICAgIGRl
-ZmF1bHQgQVJDSF9TVU5QTFVTDQouLi4NCg0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9jb25m
-aWdzL3NwNzAyMV9kZWZjb25maWcgYi9hcmNoL2FybS9jb25maWdzL3NwNzAyMV9kZWZjb25maWcN
-Cj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMC4uY2RhMTZkMzNh
-DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2FyY2gvYXJtL2NvbmZpZ3Mvc3A3MDIxX2Rl
-ZmNvbmZpZw0KPiAuLi4NCj4gPiArQ09ORklHX0hBVkVfQVJNX0FSQ0hfVElNRVI9eQ0KPiANCj4g
-SSBjaGVja2VkIHRoaXMgb25lIGFnYWluLCBhcyBtb3N0IG90aGVycyBkb24ndCBlbmFibGUgaXQg
-aW4gdGhlIGRlZmNvbmZpZy4NCj4gDQo+IEkgZG9uJ3QgcmVtZW1iZXIgaWYgSSByZWNvbW1lbmRl
-ZCByZW1vdmluZyB0aGUgJ3NlbGVjdCcgZnJvbSBLY29uZmlnDQo+IGluIGEgcHJldmlvdXMgcm91
-bmQsIGJ1dCBhcyB0aGF0IGlzIHdoZXJlIG90aGVyIHBsYXRmb3JtcyBoYXZlIGl0LCBJJ2QgYWRk
-DQo+IGl0IHRoZXJlIGFzIHdlbGwuDQo+IA0KDQpJJ2xsIG1vdmUgdGhpcyB0byBtYWNoLXN1bnBs
-dXMvS2NvbmZpZy4NCg0KPiA+ICtDT05GSUdfU1RBR0lORz15DQo+IA0KPiBEbyB5b3UgYWN0dWFs
-bHkgZW5hYmxlIGFueSBzdGFnaW5nIGRyaXZlcnMgaGVyZT8gSWYgbm90LCBJJ2QgZHJvcCB0aGF0
-IGJpdC4NCj4gDQoNCknigJlsbCBkcm9wIGl0Lg0KDQoNClRoYW5rcyBhbGwgeW91ciBjb21tZW50
-cy4NCg==
+This series of patches are based on spi for-next, and provide 3 patches to support MT7986.
+
+V7:
+1. add Reviewed-by: Rob Herring
+
+V6:
+ 1. remove SPI_CFG3_IPM_PIN_MODE_OFFSET.
+ 2. add Reviewed-by: AngeloGioacchino Del Regno
+
+V5:
+ 1. remove 3 patches that already applied.
+ 2. use devm_clk_get_optional.
+ 3. remove of_mtk_spi_parse_dt()
+
+v4:
+ 1. fix Rob comment in v3;
+ 2. use "mediatek,mt7986-spi-ipm","mediatek,spi-ipm"
+
+v3:
+ 1. add Rob Acked-by in "dt-bindings: spi: Add compatible for MT7986 with single mode";
+ 2. add a fix patch "spi: mediatek: support tick_delay without enhance_timing";
+ 3. fix Angelogioacchino comments;
+ 4. use mt7986 instead of ipm in dt-binding.
+
+v2:
+ 1. rebase this series on spi for-next.
+ 2. fix Rob and Krzysztof comments in v1.
+
+Leilk Liu (3):
+  spi: mediatek: add spi memory support for ipm design
+  dt-bindings: spi: support hclk
+  spi: mediatek: support hclk
+
+ .../bindings/spi/mediatek,spi-mt65xx.yaml     |   4 +
+ drivers/spi/spi-mt65xx.c                      | 386 +++++++++++++++++-
+ 2 files changed, 373 insertions(+), 17 deletions(-)
+
+--
+2.25.1
+
+
