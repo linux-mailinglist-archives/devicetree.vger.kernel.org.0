@@ -2,46 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CED7C4EF4EA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 17:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B84D04EF3B1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 17:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351130AbiDAPGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 11:06:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55864 "EHLO
+        id S243020AbiDAPHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 11:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350503AbiDAPAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:00:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E805AEDE;
-        Fri,  1 Apr 2022 07:47:20 -0700 (PDT)
+        with ESMTP id S1350537AbiDAPAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:00:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367285F25A;
+        Fri,  1 Apr 2022 07:47:39 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7C3F7B824D5;
-        Fri,  1 Apr 2022 14:47:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EBFFC340F2;
-        Fri,  1 Apr 2022 14:47:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 868C260A53;
+        Fri,  1 Apr 2022 14:47:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC35EC2BBE4;
+        Fri,  1 Apr 2022 14:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648824438;
-        bh=LhYPBZufSIIUYsYfgK8Zvs0kn4YmUTSXiOrYVvfFpMU=;
+        s=k20201202; t=1648824459;
+        bh=fQXfzlsh01tVuWw+AORT+j1Ydmr/gqUsu6N0pEcOq34=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=O9EKNWLjz1fFn7oQlP4XL9wZAefQHwOB3uL2qt2/JOXM/AgiZRJFyNxen5KY5DgYq
-         ZblJ9n7jWCg1QPXIS7lK7sscZcb4FfyAJgZz5AH/4F+euJCyfFpmltIvdxho5Xnx37
-         FEWNJRnAJHBQbt25GMaFaPZ3Ov7g+0GmvYbPt3wJfaX1c0naHUFS/ftkwktX3SXx1Q
-         hah7KA75HNB5tKdJLTyHcEv55RLaJvmOTGhSDhTrEtDWyRqTVNK93ZxbyMpfQ2Hf+K
-         QNrLIDS5m7HRV/lix0Sshew1efCmDgWDfryPmkoNxNivEvA9q33cV58nQWgipEtx+/
-         zQ9Yrub6v7CcQ==
+        b=Nv8xpSGhQBGPO6WEn/ops/KYXGT88FimVyLr9b8PvFmPeCVlKhIoCjPdWT6cZwAej
+         aqVzQWZf9PBZLlv1ihT2rKzB59dHrA+js5u8zFLI3BdJRMYBXdDqimetW2GL9G52DW
+         U5M1da+KbEBdrbE3DkdZOnHqBKTF1AKmDFPKK+yUYaEvvdAHqgwRYIBjjem7O6T/nS
+         nR3eptes3RS4/dJueVZ9L23Jz6U0LokQgGrRInIIzxaKHCvIRp1Yw5uojCUTB5gF9Z
+         A8/NNn0l7hyJda4oI5A6m2hmhn4WAngXlxdXkJOK9DhMAs4jl6RKf0uCSpbniBgym4
+         0u9j9AmHWBt3g==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Max Filippov <jcmvbkbc@gmail.com>, Sasha Levin <sashal@kernel.org>,
-        robh+dt@kernel.org, krzk+dt@kernel.org, chris@zankel.net,
-        devicetree@vger.kernel.org, linux-xtensa@linux-xtensa.org
-Subject: [PATCH AUTOSEL 4.19 26/29] xtensa: fix DTC warning unit_address_format
-Date:   Fri,  1 Apr 2022 10:46:09 -0400
-Message-Id: <20220401144612.1955177-26-sashal@kernel.org>
+Cc:     Maxim Kiselev <bigunclemax@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH AUTOSEL 4.14 03/22] powerpc: dts: t104xrdb: fix phy type for FMAN 4/5
+Date:   Fri,  1 Apr 2022 10:47:10 -0400
+Message-Id: <20220401144729.1955554-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220401144612.1955177-1-sashal@kernel.org>
-References: <20220401144612.1955177-1-sashal@kernel.org>
+In-Reply-To: <20220401144729.1955554-1-sashal@kernel.org>
+References: <20220401144729.1955554-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -56,101 +60,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Filippov <jcmvbkbc@gmail.com>
+From: Maxim Kiselev <bigunclemax@gmail.com>
 
-[ Upstream commit e85d29ba4b24f68e7a78cb85c55e754362eeb2de ]
+[ Upstream commit 17846485dff91acce1ad47b508b633dffc32e838 ]
 
-DTC issues the following warnings when building xtfpga device trees:
+T1040RDB has two RTL8211E-VB phys which requires setting
+of internal delays for correct work.
 
- /soc/flash@00000000/partition@0x0: unit name should not have leading "0x"
- /soc/flash@00000000/partition@0x6000000: unit name should not have leading "0x"
- /soc/flash@00000000/partition@0x6800000: unit name should not have leading "0x"
- /soc/flash@00000000/partition@0x7fe0000: unit name should not have leading "0x"
+Changing the phy-connection-type property to `rgmii-id`
+will fix this issue.
 
-Drop leading 0x from flash partition unit names.
-
-Signed-off-by: Max Filippov <jcmvbkbc@gmail.com>
+Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+Link: https://lore.kernel.org/r/20211230151123.1258321-1-bigunclemax@gmail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/xtensa/boot/dts/xtfpga-flash-128m.dtsi | 8 ++++----
- arch/xtensa/boot/dts/xtfpga-flash-16m.dtsi  | 8 ++++----
- arch/xtensa/boot/dts/xtfpga-flash-4m.dtsi   | 4 ++--
- 3 files changed, 10 insertions(+), 10 deletions(-)
+ arch/powerpc/boot/dts/fsl/t104xrdb.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/xtensa/boot/dts/xtfpga-flash-128m.dtsi b/arch/xtensa/boot/dts/xtfpga-flash-128m.dtsi
-index 9bf8bad1dd18..c33932568aa7 100644
---- a/arch/xtensa/boot/dts/xtfpga-flash-128m.dtsi
-+++ b/arch/xtensa/boot/dts/xtfpga-flash-128m.dtsi
-@@ -8,19 +8,19 @@ flash: flash@00000000 {
- 			reg = <0x00000000 0x08000000>;
- 			bank-width = <2>;
- 			device-width = <2>;
--			partition@0x0 {
-+			partition@0 {
- 				label = "data";
- 				reg = <0x00000000 0x06000000>;
+diff --git a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
+index 5fdddbd2a62b..b0a9beab1c26 100644
+--- a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
++++ b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
+@@ -139,12 +139,12 @@ pca9546@77 {
+ 		fman@400000 {
+ 			ethernet@e6000 {
+ 				phy-handle = <&phy_rgmii_0>;
+-				phy-connection-type = "rgmii";
++				phy-connection-type = "rgmii-id";
  			};
--			partition@0x6000000 {
-+			partition@6000000 {
- 				label = "boot loader area";
- 				reg = <0x06000000 0x00800000>;
+ 
+ 			ethernet@e8000 {
+ 				phy-handle = <&phy_rgmii_1>;
+-				phy-connection-type = "rgmii";
++				phy-connection-type = "rgmii-id";
  			};
--			partition@0x6800000 {
-+			partition@6800000 {
- 				label = "kernel image";
- 				reg = <0x06800000 0x017e0000>;
- 			};
--			partition@0x7fe0000 {
-+			partition@7fe0000 {
- 				label = "boot environment";
- 				reg = <0x07fe0000 0x00020000>;
- 			};
-diff --git a/arch/xtensa/boot/dts/xtfpga-flash-16m.dtsi b/arch/xtensa/boot/dts/xtfpga-flash-16m.dtsi
-index 40c2f81f7cb6..7bde2ab2d6fb 100644
---- a/arch/xtensa/boot/dts/xtfpga-flash-16m.dtsi
-+++ b/arch/xtensa/boot/dts/xtfpga-flash-16m.dtsi
-@@ -8,19 +8,19 @@ flash: flash@08000000 {
- 			reg = <0x08000000 0x01000000>;
- 			bank-width = <2>;
- 			device-width = <2>;
--			partition@0x0 {
-+			partition@0 {
- 				label = "boot loader area";
- 				reg = <0x00000000 0x00400000>;
- 			};
--			partition@0x400000 {
-+			partition@400000 {
- 				label = "kernel image";
- 				reg = <0x00400000 0x00600000>;
- 			};
--			partition@0xa00000 {
-+			partition@a00000 {
- 				label = "data";
- 				reg = <0x00a00000 0x005e0000>;
- 			};
--			partition@0xfe0000 {
-+			partition@fe0000 {
- 				label = "boot environment";
- 				reg = <0x00fe0000 0x00020000>;
- 			};
-diff --git a/arch/xtensa/boot/dts/xtfpga-flash-4m.dtsi b/arch/xtensa/boot/dts/xtfpga-flash-4m.dtsi
-index fb8d3a9f33c2..0655b868749a 100644
---- a/arch/xtensa/boot/dts/xtfpga-flash-4m.dtsi
-+++ b/arch/xtensa/boot/dts/xtfpga-flash-4m.dtsi
-@@ -8,11 +8,11 @@ flash: flash@08000000 {
- 			reg = <0x08000000 0x00400000>;
- 			bank-width = <2>;
- 			device-width = <2>;
--			partition@0x0 {
-+			partition@0 {
- 				label = "boot loader area";
- 				reg = <0x00000000 0x003f0000>;
- 			};
--			partition@0x3f0000 {
-+			partition@3f0000 {
- 				label = "boot environment";
- 				reg = <0x003f0000 0x00010000>;
- 			};
+ 
+ 			mdio0: mdio@fc000 {
 -- 
 2.34.1
 
