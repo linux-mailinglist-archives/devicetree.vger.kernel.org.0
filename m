@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A680E4EEBF3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 13:03:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C67894EEC50
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 13:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238796AbiDALEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 07:04:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44802 "EHLO
+        id S1345511AbiDALZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 07:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345314AbiDALEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 07:04:44 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF2F2706C4;
-        Fri,  1 Apr 2022 04:02:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1648810975; x=1680346975;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=iQO9f8iaENIV19XBT+seKvipVsM/1nu/lvqiaWsIUus=;
-  b=s45eiVSDw4JEOknXnf6TZcNTaF8qgM8UuvXeIZWTLn+GssNGAaX1C8iU
-   r55WEOWtjdvli12q0uYBQmhz+FYMK0mfu6sSRu3EyBvBd6ogXSbicS6Ex
-   1AZX602N0m6SjRpD+wfjq0NjQnK60mXOm0Lx3tmj4HwPKodvs1DV2QxWi
-   v2TXEQ18nvLMDFIt7Z96SubcspWdkcNcSChBTmyxicn/aAAROFxDPoAJm
-   5PUURhx6FkeWrVt01jbirOpmdhx2+qdPGhRfAE+qgIk/gnceV7zHXsbJZ
-   Sc7Jt11xW85PIvXLB26mJKF0vSQLTn0mJeV62wTyJKwJt/ZqO3b2+p/R+
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,227,1643698800"; 
-   d="scan'208";a="158520209"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Apr 2022 04:02:55 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 1 Apr 2022 04:02:54 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 1 Apr 2022 04:02:52 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <Divya.Koppera@microchip.com>, <davem@davemloft.net>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <richardcochran@gmail.com>,
-        <UNGLinuxDriver@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH net v2 3/3] net: phy: micrel: Remove DT option lan8814,ignore-ts
-Date:   Fri, 1 Apr 2022 13:05:22 +0200
-Message-ID: <20220401110522.3418258-4-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220401110522.3418258-1-horatiu.vultur@microchip.com>
-References: <20220401110522.3418258-1-horatiu.vultur@microchip.com>
+        with ESMTP id S1345047AbiDALZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 07:25:53 -0400
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70E91959E2;
+        Fri,  1 Apr 2022 04:24:01 -0700 (PDT)
+Received: by mail-qv1-f41.google.com with SMTP id kd21so1761324qvb.6;
+        Fri, 01 Apr 2022 04:24:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VNvUftVCEKC0bpyKbjKycTe+r8kmy0rLW5024E4vA5g=;
+        b=Lmtq4Hd3Y8yeatieUlsIonP2Yx0+u8L9lEPV4BFDtYNkXsVOoSNfOVmwpxo0tOYQlN
+         x1fKC5sopWXuFlKWXcDxLOjRZnWB8ge9Cwil08KOmOpe3E7Ml+nNYHuvbcoKklE0ivJy
+         kZiL7lBrrmwffE2632GwNX0EThtg6HWonJWRCjtbhhE75M9D9t9DkBC3/iq8mCOtf5Pl
+         aec1N1RaMur7BpYwswLIC2lOfnh6ItGX/7ZO3HuNHiwuhRkpjC0YezoPHSfxKnDSOYrp
+         hnA8TBdiFHgxqzoNuJIGXvkYnRZPaH8o5Iajw3kcZPEdaMqhHBIX5ZOXqvCcRP4ABx4a
+         TNMA==
+X-Gm-Message-State: AOAM531rnewdzN1qZrEkon2ScjulmVkBWXlqlMZZu1Or5K9OOrJeHI9P
+        nzFlYNa5GoI5sBvRBrA4l8ccFZbEgF/y/g==
+X-Google-Smtp-Source: ABdhPJyJJTOBiWvjVvpdqgRR0r8ZqufZNFHC0TIKxFJ5A2MBjT3ruQb/iS4AjyC4WON3AopyCkElBg==
+X-Received: by 2002:a05:6214:e48:b0:441:7bd1:29b9 with SMTP id o8-20020a0562140e4800b004417bd129b9mr7582539qvc.98.1648812240387;
+        Fri, 01 Apr 2022 04:24:00 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id u129-20020a376087000000b0067e401d7177sm1128855qkb.3.2022.04.01.04.23.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Apr 2022 04:23:59 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-2e592e700acso29019797b3.5;
+        Fri, 01 Apr 2022 04:23:59 -0700 (PDT)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr9546650ywb.132.1648812239496; Fri, 01
+ Apr 2022 04:23:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220315155919.23451-1-biju.das.jz@bp.renesas.com> <20220315155919.23451-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220315155919.23451-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 1 Apr 2022 13:23:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWj-mgoBm1nGaBjtoO4i4dbLkxOhz5DpywB7mUhgvRFUg@mail.gmail.com>
+Message-ID: <CAMuHMdWj-mgoBm1nGaBjtoO4i4dbLkxOhz5DpywB7mUhgvRFUg@mail.gmail.com>
+Subject: Re: [PATCH 1/7] arm64: dts: renesas: r9a07g043: Fillup the pinctrl
+ stub node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the PHY and the MAC are capable of doing timestamping, the PHY has
-priority. Therefore the DT option lan8814,ignore-ts was added such that
-the PHY will not expose a PHC so then the timestamping was done in the
-MAC. This is not the correct approach of doing it, therefore remove
-this.
+On Tue, Mar 15, 2022 at 4:59 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Fillup the pinctrl(GPIO) stub node in RZ/G2UL SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Fixes: ece19502834d84 ("net: phy: micrel: 1588 support for LAN8814 phy")
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/net/phy/micrel.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/drivers/net/phy/micrel.c b/drivers/net/phy/micrel.c
-index a873df07ad24..fc53b71dc872 100644
---- a/drivers/net/phy/micrel.c
-+++ b/drivers/net/phy/micrel.c
-@@ -2616,7 +2616,6 @@ static int lan8814_config_init(struct phy_device *phydev)
- 
- static int lan8814_probe(struct phy_device *phydev)
- {
--	const struct device_node *np = phydev->mdio.dev.of_node;
- 	struct kszphy_priv *priv;
- 	u16 addr;
- 	int err;
-@@ -2630,8 +2629,7 @@ static int lan8814_probe(struct phy_device *phydev)
- 	phydev->priv = priv;
- 
- 	if (!IS_ENABLED(CONFIG_PTP_1588_CLOCK) ||
--	    !IS_ENABLED(CONFIG_NETWORK_PHY_TIMESTAMPING) ||
--	    of_property_read_bool(np, "lan8814,ignore-ts"))
-+	    !IS_ENABLED(CONFIG_NETWORK_PHY_TIMESTAMPING))
- 		return 0;
- 
- 	/* Strap-in value for PHY address, below register read gives starting
--- 
-2.33.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
