@@ -2,135 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 476B04EE51D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 02:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1A464EE527
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 02:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243317AbiDAARV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 20:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
+        id S241601AbiDAAUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 20:20:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243312AbiDAARU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 20:17:20 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D1893C72B;
-        Thu, 31 Mar 2022 17:15:32 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-dacc470e03so1062975fac.5;
-        Thu, 31 Mar 2022 17:15:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=kgDedcBJcc+tv/OOgxKjgk/SoshOh6AR9hwsk4pYsLw=;
-        b=1xsJ2ZfiQ5wEvzuC8CYkkWA4D4dVF0QRHSFazuz+YXFKE5EzIyjEAw6b1fL6qza+Qt
-         fw2yGZq0WPJb2gWYQ3fqEaXXXc0y0anUChlWOorELWDjKiK+MjQ61b9sEcJFAzO/jM6w
-         aJcw6qgbYLExQjGR3rPTvnuOMfHFHNwsYlMKzxr0I2QfIdcvIPblwCq0mXw+/5HoLTQP
-         Q31fc2BeGpKxknfxoF93kbH6AIRM7ms7UGDj4/NlmaO48b13p7bORa5zv/Oo8kH2YR47
-         UcAW4OhGkAy0L+ncUSt1pQgVyejNLLzsu+8sUDIygz+AEUvEfa2dTFaXbVcp/mHgPdTa
-         kSxQ==
-X-Gm-Message-State: AOAM532umhlA9LeJ2JStM71lg8gE6MJuCmDi2iDbprDLPjjRtiUuIY7Y
-        aCvRcz6PtJCvz+cFSS9qnw==
-X-Google-Smtp-Source: ABdhPJxOduw+Z9X08dI1UdH+GcjThmH7U3p+ZG1PL2p1hT2KQYDpoCnYsTC2oy0JMhvgskl1k1Dz6g==
-X-Received: by 2002:a05:6870:f71f:b0:d7:5f1b:534f with SMTP id ej31-20020a056870f71f00b000d75f1b534fmr3922617oab.109.1648772131730;
-        Thu, 31 Mar 2022 17:15:31 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g8-20020a9d2d88000000b005b238f7551csm462301otb.53.2022.03.31.17.15.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 17:15:30 -0700 (PDT)
-Received: (nullmailer pid 1762367 invoked by uid 1000);
-        Fri, 01 Apr 2022 00:15:29 -0000
-Date:   Thu, 31 Mar 2022 19:15:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, ulf.hansson@linaro.org,
-        krzk+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, qiangqing.zhang@nxp.com,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        netdev@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/4] dt-bindings: imx: add nvmem property
-Message-ID: <YkZEIR1XqJ6sseto@robh.at.kernel.org>
-References: <20220324042024.26813-1-peng.fan@oss.nxp.com>
- <20220324111104.cd7clpkzzedtcrja@pengutronix.de>
+        with ESMTP id S230519AbiDAAUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 20:20:41 -0400
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam08olkn2089.outbound.protection.outlook.com [40.92.46.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0935AB7C9;
+        Thu, 31 Mar 2022 17:18:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JmeSs/fjoElj+5sRCzN8cCZCU3TtjG8xeVZM9tSQ9XRLyS0/UD0R1oyqrSWabA1Vm3suEWnBJDtpTBd7f7ZF7Isb2t2j9eKpb6KL1NYlZr6IcTWh2J7eZW4szRh5oLV4ht630b829mJ9UrIyQaysK9d/Bi+3dkxy5uiF8Civ/w5Dq3Dh4Ftg7kAksqR2fxPgSt1vqml/l1c2ADFkPTSlnFseDvtdLYXbzDUNMvGW+Ovo81pluuKdAhMjR3c6KiJsZSfQ2tujZS6vAaUg+ZACfMAAzX5lKcv9YNJNE+p2ce/7EerVTVRSc/SJC2e3h/GJLDz6LZyxlypRBSn9XACQuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HzQXKBfYcDy7r5ggQhgb6FY5CoUf+8zmG22PyzGZa3s=;
+ b=JMMJGXoP/CoMqYIRvdr4QGgZLceN4B9XApMQ/x3NPUwsvl4Sq2BP+OkFrcMwlqKVl1vxVuXktfup1Opvjf3CLz9FzTVQyWdw/eT7jKYpvH79I9G2yKK1DEJUUXpLZoiH1bQ5SIUDl9qDhbnqRco9E6uw8oJcDwfJ5oR/3cnGxDMB5ZWspzrmHVJ/+/Gi0M/QxVaiEcIKzghhMdlShTueQhrtZGl1Cib0rSr3ejifZXH221Zyl2I9C4lLE10oOLrvby1cpe79evihHk3ZgMPXFXB1Smfp8NQAvPi+g9VIn8e3a1XACNYXyey2NnNXtgvr6N+K+iCKqvlwySogcANJuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com (2603:10b6:a03:236::13)
+ by DM6PR02MB4892.namprd02.prod.outlook.com (2603:10b6:5:12::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.16; Fri, 1 Apr
+ 2022 00:18:50 +0000
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::413f:bae6:4e5e:5ae6]) by BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::413f:bae6:4e5e:5ae6%6]) with mapi id 15.20.5123.025; Fri, 1 Apr 2022
+ 00:18:50 +0000
+From:   Joel Selvaraj <jo@jsfamily.in>
+To:     Sumit Semwal <sumit.semwal@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Joel Selvaraj <jo@jsfamily.in>
+Subject: [PATCH v2 0/3] drm/panel: nt36672a: add backlight support
+Date:   Fri,  1 Apr 2022 05:48:07 +0530
+Message-ID: <BY5PR02MB7009FBF8DC8BD5C055DB41AED9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
+X-Mailer: git-send-email 2.35.1
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-TMN:  [TUKS7Jx8SlI5uNSfe57+hAIfLWI0zDo6epeBAJhio5vH3MzcV6N6EpNQ/mYdgULk]
+X-ClientProxiedBy: BM1PR0101CA0055.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:19::17) To BY5PR02MB7009.namprd02.prod.outlook.com
+ (2603:10b6:a03:236::13)
+X-Microsoft-Original-Message-ID: <20220401001810.81507-1-jo@jsfamily.in>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220324111104.cd7clpkzzedtcrja@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3d4a71c6-3681-4e54-e084-08da137531e4
+X-MS-TrafficTypeDiagnostic: DM6PR02MB4892:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7k6h+/Ft+XKAoZeKvzeNKB5kae2X+Q8vfNUM0G6tyAVBZg9eJKGarYuLQ/px0Opc50W2f4YS4GGEvFu6/uo097EeexYwvi37a73lm78kEf5Tpm8hTrfkXvDLfOuIFA/5MWc7Dcp3x0KDaeI4eTVy2jURLdGoSQ59SJKBpcUtDAwpIQwYVKwt+fd4i8bPbnOVq4Oz3Z5Bn67avH7TcSefxTUCJ2+bp0xlw9iZU5euJl177SBCRhIvsb2Q1QgruMEnUyKmSJlT6oVEpHK/diMfttE4rBOZ7+G+MMZK3Q4buyZ44U+usacuy8v+i1tYYYRM2cFXSLoqXQg2rdOBwilmXYmVHj2cGg6E+bYtfe8ALdJ9qhK3FQfeb/y1lxXCxXRwzIDbPts9NynG75ALy9AbeQ0DsvrJQtNXOxFHbFglekkJQQwbV5XZ5RU3Imgyuqm+sQnIYzm2i53HapghtKeTiDYUgEtGJvEjgw0O+ga/Gl0s69n+FVlhb2RErS1HODC5x4Pq7VuQ3XvJ8zqGAt8XaK19MtQN+v2WH53okaoyat0XeLVh+jiChXoq+lo8pkORmdoFFvvkqvWKbhj9kjc3aA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bc9sBfIpFHct7vGj2lDKqJoSjDcGE2m1Bc4HDBtH5w86HrOGtIcOSHANF8fV?=
+ =?us-ascii?Q?CFSUS22y+FY4W/u5MFnctAl5tpB+ZEAHSdBoQbN9ij9zfXPOh8xd04U9ZE2D?=
+ =?us-ascii?Q?YNnAO8ejOluJc7qA+qVqhPTNzZXcNiVBpivi+Z2z6cIdZNN/2RcwkoZmSm/t?=
+ =?us-ascii?Q?i51z1GSAjMMa+BTaaX7omPLnIhg9DlGIZxW6nX+Abmaombyoif2iogkJY6eq?=
+ =?us-ascii?Q?/AHIcXl/KdmUfPEg6zQsbZYsEr64RkuIMt53YMlxs9jimpHKGNjL/g/AS+Yg?=
+ =?us-ascii?Q?2Gn7kRf/5IzmfUgoRYT/DKS1tV3klmCMcRgr/pYoqIXsOh31tyAOtP1Xqv3r?=
+ =?us-ascii?Q?mr+epFhIQ6dXk4+pdpoe0W46vldOAnQ+yDBYerB6wnOqsc41hsuZLma6kyaJ?=
+ =?us-ascii?Q?7lJ2xZNVACJ7hP2snnqhMiN/GZjKzc0OEMR8h2Wt2NA89/X2Z9WIg5eh/IID?=
+ =?us-ascii?Q?ePdwrPH0qHWJzlGZ9wNOXoxAzVoWOsCM8rxJu7iCZD6ymWulyzL8XkPCGA86?=
+ =?us-ascii?Q?nIo2oWITAytctR3X0vbWj4bSrs1zxFsHPNSIx7ryy5c2uTdTEJxMKIP0alIn?=
+ =?us-ascii?Q?DpIiySq/OMMN0+BkuUYk/wDvyLGnWVsejKxEbatnOSh15k899SFyg8iFD2ZZ?=
+ =?us-ascii?Q?dmIZRBdJJAindAtJVSz4JIJK28jgM/3h+SP15EaWZrhDW/PR/lp7ebfZh4tW?=
+ =?us-ascii?Q?HeZkQGfYCgz7OnNRaItPiYYx2ekTtXvmxOd5hO1+4NxywDiJsH5shhnmj67N?=
+ =?us-ascii?Q?5wWZ7i7ofQ931Fr3hdMYEjq3+P353ZjBc05VIv/EpgR8koyPX6qiD9/Qhfqf?=
+ =?us-ascii?Q?TpZOY4g7LPcZWNgm0Z7t3rV2JXN5v/RT7e8513jtczBuGPmDC/gfa7jpHsAZ?=
+ =?us-ascii?Q?wTTA7FULIQsqsSmWPgMSf+VfHxsgmXwIzsdikbvLx4c9GylR/ekx+O8aaclu?=
+ =?us-ascii?Q?CkofAyPgXwzLK4wzcgsl0YipxairRkwhCm8QspiUQVPGQhU2HT1f+aQ7NnER?=
+ =?us-ascii?Q?K9dBpBt+R925Q+v1pFW45THslqk3+4s/OK5zISR6et+WF56z43vP4MGmorMz?=
+ =?us-ascii?Q?+o9jpdM+78zugLWONzXpgfmMJZ8LfbH+z1dIQGDxUhTMiJYhooBAwJuG7o6S?=
+ =?us-ascii?Q?BlbXhCd7KXwbk0yl4akQpOnkKJuCpv3m8ZttNtVwzINDYqzZUf7Lg5Ktxm5O?=
+ =?us-ascii?Q?ltnRwQBIcIge02VAYq/R1lK0Kf27P1novGyTsvO2sRfLaRLwyuQKYj000vk4?=
+ =?us-ascii?Q?ty0adt3xo9wAiGzV/IVcHKVonQ9KmDaXLWa/saIw0WsJbpiM8BRInzjkHH35?=
+ =?us-ascii?Q?qcXmS+heA6P3HU2ViJSL8yYv1hLNsu7fM2mgX7nAjKh5N4Z3iTRYjD6vDvMI?=
+ =?us-ascii?Q?DqzwG6m0vTJuLM0bgwcmWwghLBNCYqPKXHLUN4zWXiWeB9mjNqffLiA4fPS4?=
+ =?us-ascii?Q?9ueqFvFMVXKD93KtIRogpnVN0oTza3mUc4ZbHTFYpKtforXc7xpaRg=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d4a71c6-3681-4e54-e084-08da137531e4
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB7009.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2022 00:18:50.3654
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB4892
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 12:11:04PM +0100, Uwe Kleine-König wrote:
-> Hello,
-> 
-> On Thu, Mar 24, 2022 at 12:20:20PM +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> > 
-> > To i.MX SoC, there are many variants, such as i.MX8M Plus which
-> > feature 4 A53, GPU, VPU, SDHC, FLEXCAN, FEC, eQOS and etc.
-> > But i.MX8M Plus has many parts, one part may not have FLEXCAN,
-> > the other part may not have eQOS or GPU.
-> > But we use one device tree to support i.MX8MP including its parts,
-> > then we need update device tree to mark the disabled IP status "disabled".
-> > 
-> > In NXP U-Boot, we hardcoded node path and runtime update device tree
-> > status in U-Boot according to fuse value. But this method is not
-> > scalable and need encoding all the node paths that needs check.
-> > 
-> > By introducing nvmem property for each node that needs runtime update
-> > status property accoridng fuse value, we could use one Bootloader
-> > code piece to support all i.MX SoCs.
-> > 
-> > The drawback is we need nvmem property for all the nodes which maybe
-> > fused out.
-> 
-> I'd rather not have that in an official binding as the syntax is
-> orthogonal to status = "..." but the semantic isn't. Also if we want
-> something like that, I'd rather not want to adapt all bindings, but
-> would like to see this being generic enough to be described in a single
-> catch-all binding.
-> 
-> I also wonder if it would be nicer to abstract that as something like:
-> 
-> 	/ {
-> 		fuse-info {
-> 			compatible = "otp-fuse-info";
-> 
-> 			flexcan {
-> 				devices = <&flexcan1>, <&flexcan2>;
-> 				nvmem-cells = <&flexcan_disabled>;
-> 				nvmem-cell-names = "disabled";
-> 			};
-> 
-> 			m7 {
-> 				....
-> 			};
-> 		};
-> 	};
-> 
-> as then the driver evaluating this wouldn't need to iterate over the
-> whole dtb but just over this node. But I'd still keep this private to
-> the bootloader and not describe it in the generic binding.
+Changes in v2:
+ - Remove qcom,enabled-strings property as either it or qcom,num-strings
+   should be present. qcom,num-strings is specified and sufficient.
+   (Marijn Suijten's Suggestion)
 
-There's been discussions (under the system DT umbrella mostly) about 
-bindings for peripheral enable/disable control/status. Most of the time 
-it is in context of device assignment to secure/non-secure world or 
-partitions in a system (via a partitioning hypervisor).
+Joel Selvaraj (3):
+  drm/panel: nt36672a: add backlight support
+  dt-bindings: display: novatek,nt36672a: add backlight property
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: enable qcom wled backlight
+    and link to panel
 
-This feels like the same thing and could use the same binding. But 
-someone has to take into account all the uses and come up with 
-something. One off solutions are a NAK.
+ .../bindings/display/panel/novatek,nt36672a.yaml     |  2 ++
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 12 ++++++++++++
+ drivers/gpu/drm/panel/panel-novatek-nt36672a.c       |  4 ++++
+ 3 files changed, 18 insertions(+)
 
-Rob
+-- 
+2.35.1
+
