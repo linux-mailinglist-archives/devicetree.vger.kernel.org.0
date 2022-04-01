@@ -2,71 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D85FF4EE949
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 455014EE96A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343984AbiDAHw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 03:52:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34462 "EHLO
+        id S1344061AbiDAH6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 03:58:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235432AbiDAHw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:52:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44BB118DABE;
-        Fri,  1 Apr 2022 00:50:37 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 6975B1F40FA7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1648799436;
-        bh=GEf0nEJQNZXszGDptrQO3o7b80i82CTwEgPl8PZMhOA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jOwCiMnFbtrL2h5VrTaakpahFkQ9lyJBlI+5o/TInsHv9DsHVBS42/SycdxYzP8Z7
-         2rnV/9eeI3dLUgM+WIuGpo/jElJoqHM+bCHH9xZyitktLLhraAak+Hx5UbfxdzZ+2u
-         09VpPaI4M69e3oYBIfHgPPIIEbMOQt5+IyJJaGNcDFn3wLfAf3dMH0aFnpYBYFVxOb
-         TNVaUw1dyMzcLzJx8mVvm7Kc9S9OuKR7+GFBz+/B+3SrWooUnyCE3mbRjqMjctG/aW
-         fpqN9VDrR2AgU41yVkrpGsNR8Gt/DJKI2obowakUufYAB+yHvoP4mbVVmP0kA3PP7A
-         CpfJT++gxUrlg==
-Message-ID: <38c9685e-380e-87ce-4a3a-5d274c0892fa@collabora.com>
-Date:   Fri, 1 Apr 2022 09:50:33 +0200
+        with ESMTP id S1344157AbiDAH55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:57:57 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0FB1AA8F5;
+        Fri,  1 Apr 2022 00:56:06 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1naC8T-0006pi-L5; Fri, 01 Apr 2022 09:55:57 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>, zhangqing@rock-chips.com,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: convert rockchip,rk3188-cru.txt to YAML
+Date:   Fri, 01 Apr 2022 09:55:55 +0200
+Message-ID: <3107512.vfdyTQepKt@diego>
+In-Reply-To: <20220331225134.7A0A9C340ED@smtp.kernel.org>
+References: <20220329111323.3569-1-jbx6244@gmail.com> <20220331225134.7A0A9C340ED@smtp.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] media: mediatek: vcodec: fix v4l2 compliance decoder cmd
- test fail
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220401030406.6437-1-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220401030406.6437-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,38 +43,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/04/22 05:04, Yunfei Dong ha scritto:
-> Will return -EINVAL using standard framework api when test stateless
-> decoder with cmd VIDIOC_(TRY)DECODER_CMD.
+Hi Stephen,
+
+Am Freitag, 1. April 2022, 00:51:32 CEST schrieb Stephen Boyd:
+> Quoting Johan Jonker (2022-03-29 04:13:22)
+> > diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+> > new file mode 100644
+> > index 000000000..ddd7e46af
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+> > @@ -0,0 +1,78 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/rockchip,rk3188-cru.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip RK3188/RK3066 Clock and Reset Unit (CRU)
+> > +
+> > +maintainers:
+> > +  - Elaine Zhang <zhangqing@rock-chips.com>
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +description: |
+> > +  The RK3188/RK3066 clock controller generates and supplies clocks to various
+> > +  controllers within the SoC and also implements a reset controller for SoC
+> > +  peripherals.
+> > +  Each clock is assigned an identifier and client nodes can use this identifier
+> > +  to specify the clock which they consume. All available clocks are defined as
+> > +  preprocessor macros in the dt-bindings/clock/rk3188-cru.h and
+> > +  dt-bindings/clock/rk3066-cru.h headers and can be used in device tree sources.
+> > +  Similar macros exist for the reset sources in these files.
+> > +  There are several clocks that are generated outside the SoC. It is expected
+> > +  that they are defined using standard clock bindings with following
+> > +  clock-output-names:
+> > +    - "xin24m"    - crystal input                 - required
+> > +    - "xin32k"    - RTC clock                     - optional
+> > +    - "xin27m"    - 27mhz crystal input on RK3066 - optional
+> > +    - "ext_hsadc" - external HSADC clock          - optional
+> > +    - "ext_cif0"  - external camera clock         - optional
+> > +    - "ext_rmii"  - external RMII clock           - optional
+> > +    - "ext_jtag"  - external JTAG clock           - optional
 > 
-> Using another return value to adjust v4l2 compliance test for user
-> driver(GStreamer/Chrome) won't use decode cmd.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> I'd expect all these clks here to be inputs to this node.
 
-Hello Yunfei,
+The optional clocks are all part of a circular dependency.
 
-this patch is a fix.. hence, this needs an appropriate Fixes: tag.
-Please add one.
+So for example xin32k normally is generated by the pmic and fed
+back into the system, so to get xin32k, we need the pmic to probe,
+which needs i2c, which in turn already needs the clock controller.
 
-Thanks,
-Angelo
+Or optional clocks may not be available at all.
 
-> ---
->   drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> index 3859e4c651c6..69b0e797d342 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> @@ -51,8 +51,7 @@ static int vidioc_try_decoder_cmd(struct file *file, void *priv,
->   
->   	/* Use M2M stateless helper if relevant */
->   	if (ctx->dev->vdec_pdata->uses_stateless_api)
-> -		return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv,
-> -								cmd);
-> +		return -ENOTTY;
->   	else
->   		return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
->   }
+So for the past years we already relied on the clock-system's
+self adaptation if a clock becomes available at some point
+during later boot and hence do not have those in a clocks-property.
+
+Heiko
+
+
