@@ -2,126 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 850344EE9BB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 10:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A8894EEA2E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 11:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233606AbiDAIaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 04:30:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44064 "EHLO
+        id S243360AbiDAJQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 05:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiDAI37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 04:29:59 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CD424B5D4;
-        Fri,  1 Apr 2022 01:28:06 -0700 (PDT)
-X-UUID: f63152e4361742fda2355397c663cf3d-20220401
-X-UUID: f63152e4361742fda2355397c663cf3d-20220401
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1068890426; Fri, 01 Apr 2022 16:28:01 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 1 Apr 2022 16:27:59 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 1 Apr
- 2022 16:27:58 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 1 Apr 2022 16:27:57 +0800
-Message-ID: <61b8e1e7e53a0d560b0e0a4107c63922190e7cec.camel@mediatek.com>
-Subject: Re: [PATCH] media: mediatek: vcodec: fix v4l2 compliance decoder
- cmd test fail
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Benjamin Gaignard" <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 1 Apr 2022 16:27:57 +0800
-In-Reply-To: <38c9685e-380e-87ce-4a3a-5d274c0892fa@collabora.com>
-References: <20220401030406.6437-1-yunfei.dong@mediatek.com>
-         <38c9685e-380e-87ce-4a3a-5d274c0892fa@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S243987AbiDAJQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 05:16:24 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EBF362106;
+        Fri,  1 Apr 2022 02:14:34 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id p15so4510019ejc.7;
+        Fri, 01 Apr 2022 02:14:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OsrH6lo/DuV4Px4EXvnPoTR1hR5ZaTVHAh03QaHrq6A=;
+        b=JmWHvJBisgImhvOyUD8tzZMza46HKn1xukfz2TVuVZcwQiW9r9bWuZyTHbZLLjJ7YL
+         X7BQgSpD2BU67vo8E0YuDzJiVY3X8CerJ7uQqa8FIEfl8GMq1q7RgFDVX4ai82UeSHBA
+         4tut4Lm5wrlvMi5icLLJpU/0bXRjZFaesEVK9O6S5oseWYrhc2zW4yH8AzF5AJz7xHfP
+         vei6msMEn0JTcdKwSKeEs/fDy2Pho8f/JBbBurn86M97KSq3LGE6wFvoXcsMqqgTIHvi
+         p36K9x3StE7pLaRVB4BA3VHheIcxA8UUmz0nn9FoszQvo4dpAWHyEt85XpscOyqKY1ol
+         OVrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OsrH6lo/DuV4Px4EXvnPoTR1hR5ZaTVHAh03QaHrq6A=;
+        b=VIr47Pm78nEj5/WRcB91tco+w25ByDcQOaDc+71IV/4MwlBWC2friBCmB5guvpcH8v
+         /TeuiSkn+WYgk+Nr1JExW03n+zzo9f3XNaTNt6d3qXeogj4pbNsQc2+MK8fo4J1/DuPy
+         7s2ojNceBnHXuSEsE6M1BevdBO+RU0E9cmjFFJaSBix9cUFAHdvz54eWwb1aTxeZcGaF
+         PHJuHIKj3dismTaw6q1RzKiIqAARtRkpUesayTPZYbpsbWLtb5YjWbHxLq2aEdhr/Fqy
+         P1xDpDMXU2qbcgOWbahXo/N8MTZI5Nrl0LDyIwtH7nGReWBsvCm4alpuPrmglInfsSCD
+         stew==
+X-Gm-Message-State: AOAM530pfk8KgzUmG/BUm0OEpWXpK/wxLd6A6KQr/lnB6BC85xAhycYq
+        Jlv/AXBRHgKKVugMv33JG4OMZehnI/ezvcSUc+I=
+X-Google-Smtp-Source: ABdhPJyTnf43naj3nJDmc6O7XIWY7gMqZWU+WWhlCaIeW80QNYOMdTnt+kvt5LZoJvx6LXwsuS005Jw0OlQBDMx+QOo=
+X-Received: by 2002:a17:907:160b:b0:6e1:116e:7a59 with SMTP id
+ hb11-20020a170907160b00b006e1116e7a59mr8365081ejc.579.1648804472914; Fri, 01
+ Apr 2022 02:14:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1648540212-9790-1-git-send-email-unSimple1993@163.com>
+ <CAHp75VdwLPkzE9AHkXg=+vsagh4SGam40vz8uRdSRUpr6Cyv7A@mail.gmail.com> <2e3426e0.2d71.17fe315bdb6.Coremail.unsimple1993@163.com>
+In-Reply-To: <2e3426e0.2d71.17fe315bdb6.Coremail.unsimple1993@163.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 1 Apr 2022 12:13:27 +0300
+Message-ID: <CAHp75Vcs+HG-e=BHhgWP6Ndh5nZWXXnqhZ2jfN33Fs0qu5U_Bw@mail.gmail.com>
+Subject: Re: Re: [PATCH v1] pinctrl: ralink: rt2880: Check for return value of devm_kcalloc()
+To:     unSimple <unsimple1993@163.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jason Yan <yanaijie@huawei.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+On Fri, Apr 1, 2022 at 6:06 AM unSimple <unsimple1993@163.com> wrote:
 
-Thanks for your suggestion.
+>
+> The main consideration of the 'continue' in the patch is that those statements are inner a loop.
+>
+> The next allocation may be successful so I think it is better to use 'continue' here.
 
-On Fri, 2022-04-01 at 09:50 +0200, AngeloGioacchino Del Regno wrote:
-> Il 01/04/22 05:04, Yunfei Dong ha scritto:
-> > Will return -EINVAL using standard framework api when test
-> > stateless
-> > decoder with cmd VIDIOC_(TRY)DECODER_CMD.
-> > 
-> > Using another return value to adjust v4l2 compliance test for user
-> > driver(GStreamer/Chrome) won't use decode cmd.
-> > 
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> 
-> Hello Yunfei,
-> 
-> this patch is a fix.. hence, this needs an appropriate Fixes: tag.
-> Please add one.
-> 
-Add "Fixes: " in patch v2.
-> Thanks,
-> Angelo
-> 
-Thanks,
-Yunfei Dong
-> > ---
-> >   drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 3 +--
-> >   1 file changed, 1 insertion(+), 2 deletions(-)
-> > 
-> > diff --git
-> > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> > index 3859e4c651c6..69b0e797d342 100644
-> > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
-> > @@ -51,8 +51,7 @@ static int vidioc_try_decoder_cmd(struct file
-> > *file, void *priv,
-> >   
-> >   	/* Use M2M stateless helper if relevant */
-> >   	if (ctx->dev->vdec_pdata->uses_stateless_api)
-> > -		return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file,
-> > priv,
-> > -								cmd);
-> > +		return -ENOTTY;
-> >   	else
-> >   		return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
-> >   }
+Please, do not top-post!
 
+What you explained is logical from APIs point of view, what I was
+asking is about functional point of view.
+Why do you think the skipping iteration is fine?
+
+You need to explain this in the code/commit message.
+
+> At 2022-03-29 19:45:50, "Andy Shevchenko" <andy.shevchenko@gmail.com> wrote:
+> >On Tue, Mar 29, 2022 at 11:36 AM QintaoShen <unSimple1993@163.com> wrote:
+> >>
+> >> The memory allocation function devm_kcalloc() may return NULL pointer,
+> >
+> >may --> might
+> >
+> >> so it is better to add a check for 'p->func[i]->pins' to avoid possible
+> >> NULL pointer dereference.
+
+...
+
+> >> @@ -266,6 +266,10 @@ static int rt2880_pinmux_pins(struct rt2880_priv *p)
+> >>                                                 p->func[i]->pin_count,
+> >>                                                 sizeof(int),
+> >>                                                 GFP_KERNEL);
+> >
+> >> +
+> >
+> >Stray change. Also it seems it has trailing space character(s).
+> >
+> >> +        if (!p->func[i]->pins)
+> >
+> >> +            continue;
+> >
+> >Why is 'continue' the proper choice here? No clarification is given in
+> >the commit message.
+> >
+> >>                 for (j = 0; j < p->func[i]->pin_count; j++)
+> >>                         p->func[i]->pins[j] = p->func[i]->pin_first + j;
+
+-- 
+With Best Regards,
+Andy Shevchenko
