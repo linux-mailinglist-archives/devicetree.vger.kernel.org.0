@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C3144EFB2E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DCD74EFB51
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:20:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351973AbiDAUUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:20:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49252 "EHLO
+        id S1352267AbiDAUVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 16:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352094AbiDAUUi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:20:38 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32F472335F0
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:18:24 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id c7so5896077wrd.0
+        with ESMTP id S1352145AbiDAUUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:20:45 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02452270858
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:18:25 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id u16so5814702wru.4
         for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:18:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=JSFleWzrdsVbfp76J0nZbw1NClVkvSpLHtH7RE9jkRs=;
-        b=TjfHtdu71Zr1OsnHmJFojygbrytwG15ix1WIAML6l/Ksanl3O75cRxcUTNh35ZaLbt
-         5fNy8B+wTUQe6R8WaM+AI8jMoDUanqa5/xrCuF2XEOBXl6StcncbQebtHfBVxUzeuWif
-         H+3PzsQX6U7jqked9n9i4ypLM0Q47fdzUMkvjwFees4Ss+N7iJFdVtH1MSztF44r8fHX
-         WjWjinZdGaVLjE0A9rEImoJQyDINEDbnDt4foQMSSv9/ah8gYWT4MxmFhKFUxqvEPJeB
-         CeFCX+xAzDxbK2JstV4vUjprNh4SKgCk/ET0pB9AYLygB9xHKtqboIuHdWiVc+aHbR5I
-         QNPA==
+        bh=FcH8eAoI6yz+8TC9BMdMFxwPGrpdfZxlhw/9L623qlU=;
+        b=llsrWDxNsvEMzNlzLU35oj0tkJ0Y7D2I5R00fLAEedh+oepe72uq1hj/+DV5thVha8
+         MOwOBAubNz7hOE9SG5/J+GOdeEeOfomzibIyfFgBNL6TK4FHGB9W7kRl7IVFMm8NNwaI
+         k8ttDsR8fw38yuiR2SKn8CQ/Uv/SMH5/ZLP3HUuFJmyr/R/TOwSV3Qjco1tOqHRmUJ+q
+         JzYL5DrxggHdIBxEJkOT//D1ExWyHndxqGUusZOYpzYMNbZi+8LYwBumNMXyb9F3C376
+         rXiAKWkih8+yQk+spVNJy5Fgit1HNX/dKraydCblNQLPSAUrjTQLi1ntgw7KY1X9HsmL
+         tcjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=JSFleWzrdsVbfp76J0nZbw1NClVkvSpLHtH7RE9jkRs=;
-        b=rGEi++D/9ufthRZ+Um6Tl3m38LriV/A9jk1lx9BDzrheeMy5h8QfiCtwVh1gLNLkvZ
-         z2E/lPH9j0mMYryeyRGXk2WaEcj1J7Vbcfw5tgmrsegtHOhaGwf8PvB9Eev4Yb2fp+Wy
-         h+QEvybtKpPgfVO8/5/pR2oFnT/J/Z4xoThfk1izz3esE79hXsQmB1B+mum7bw58ABpP
-         6Q0T+ExQSLBZncvGG/XkBhxFKK24Gp/I1QRzBaBHZhc+cevG9Uvq6tR8dgjHuCNk0WjS
-         9qKc6ftgcYKRubpUwQGdVpA0EaossVPxnfPDwKW4yH9640+Ym7zRXQ1tevVZtthVQ9tn
-         CKtA==
-X-Gm-Message-State: AOAM532NyEtBSOig4ZWD9Dwn5kAKLPM7HfQT9ZFd/kTwZZHvbAnvdYad
-        Kvjgq8HdDr0Wv6Q93EIOToSHSg==
-X-Google-Smtp-Source: ABdhPJyVkLT0AZgz4GOL4/42AJH9cfjelfykjHRuCbl0zKR/Jvr/gHI+20fFVbGUT1YYYu2ml8ZsMg==
-X-Received: by 2002:a05:6000:1d2:b0:204:7fc:d6c1 with SMTP id t18-20020a05600001d200b0020407fcd6c1mr8731359wrx.367.1648844302622;
-        Fri, 01 Apr 2022 13:18:22 -0700 (PDT)
+        bh=FcH8eAoI6yz+8TC9BMdMFxwPGrpdfZxlhw/9L623qlU=;
+        b=WvVyhPqJWUkbT04BUtztOl0xJ7MNYyfB6FdKoWLyr/oWocQyvlE14TPwwyq4H4bbJ6
+         1HaCKlG3+KnV4O1b4h/oI177nbmb0vfxB6+EDoZA8fxYCmvYcFy7HqpWisjZs5/BlVZ2
+         yv91J6j3sgpESVklK/ve+29L1YiUTgkH7l6NcpR2bdw/V7WzZI0lUcQNgvwzGZ3qi4GV
+         IMj0r5q3fKjzD4HPweKHVA9mnf+muOmIaD1gfE9Ba/FDtzHehAGRawOqzBFbnsq+BY20
+         7sGr2rLe+wiG/F0jWFaYVTkFAWl0xSnYLsj1t/pOibB0iUavlHRAtRONABrehZ2Zotz7
+         vBkg==
+X-Gm-Message-State: AOAM533yz4Pqs/ctdLvPCwLAHl5bRiDow8B8SSq7jlKtZyTknJ4RVGxM
+        plUbq8Oi6WMKe8SFZWC2IFkiMu4+uMVcCQ==
+X-Google-Smtp-Source: ABdhPJzTOemI9rOSCOekpTcQ631Yx6r9L6brdVTB1mC6yBy5nExdFsXzYxX4lJq0AzOsYlxq5h2XjQ==
+X-Received: by 2002:adf:eb4d:0:b0:1ed:c1f7:a951 with SMTP id u13-20020adfeb4d000000b001edc1f7a951mr8648033wrn.454.1648844303336;
+        Fri, 01 Apr 2022 13:18:23 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
         by smtp.googlemail.com with ESMTPSA id j16-20020a05600c191000b0038ca3500494sm17823838wmq.27.2022.04.01.13.18.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 13:18:22 -0700 (PDT)
+        Fri, 01 Apr 2022 13:18:23 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
         robh+dt@kernel.org
@@ -54,9 +54,9 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-rockchip@lists.infradead.org,
         Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v4 16/33] crypto: rockchip: add myself as maintainer
-Date:   Fri,  1 Apr 2022 20:17:47 +0000
-Message-Id: <20220401201804.2867154-17-clabbe@baylibre.com>
+Subject: [PATCH v4 17/33] crypto: rockchip: use read_poll_timeout
+Date:   Fri,  1 Apr 2022 20:17:48 +0000
+Message-Id: <20220401201804.2867154-18-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220401201804.2867154-1-clabbe@baylibre.com>
 References: <20220401201804.2867154-1-clabbe@baylibre.com>
@@ -72,32 +72,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nobody is set as maintainer of rockchip crypto, I propose to do it as I
-have already reworked lot of this code.
+Use read_poll_timeout instead of open coding it
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/crypto/rockchip/rk3288_crypto_ahash.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 64e15af4fab1..70e2e46d0710 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16952,6 +16952,13 @@ F:	Documentation/ABI/*/sysfs-driver-hid-roccat*
- F:	drivers/hid/hid-roccat*
- F:	include/linux/hid-roccat*
+diff --git a/drivers/crypto/rockchip/rk3288_crypto_ahash.c b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+index 137013bd4410..21c9a0327ddf 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto_ahash.c
++++ b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+@@ -10,6 +10,7 @@
+  */
+ #include <linux/device.h>
+ #include <asm/unaligned.h>
++#include <linux/iopoll.h>
+ #include "rk3288_crypto.h"
  
-+ROCKCHIP CRYPTO DRIVERS
-+M:	Corentin Labbe <clabbe@baylibre.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-+F:	drivers/crypto/rockchip/
-+
- ROCKCHIP I2S TDM DRIVER
- M:	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
- L:	linux-rockchip@lists.infradead.org
+ /*
+@@ -305,8 +306,8 @@ static int rk_hash_run(struct crypto_engine *engine, void *breq)
+ 		 * efficiency, and make it response quickly when dma
+ 		 * complete.
+ 		 */
+-	while (!CRYPTO_READ(tctx->dev, RK_CRYPTO_HASH_STS))
+-		udelay(10);
++	read_poll_timeout(readl, v, v == 0, 10, 1000, false,
++			  tctx->dev->dev + RK_CRYPTO_HASH_STS);
+ 
+ 	for (i = 0; i < crypto_ahash_digestsize(tfm) / 4; i++) {
+ 		v = readl(tctx->dev->reg + RK_CRYPTO_HASH_DOUT_0 + i * 4);
 -- 
 2.35.1
 
