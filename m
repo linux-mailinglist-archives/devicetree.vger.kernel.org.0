@@ -2,67 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6FC4EE610
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 04:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 872FA4EE63F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 04:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244104AbiDACdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 22:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45850 "EHLO
+        id S244222AbiDACtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 22:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244098AbiDACdM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 22:33:12 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8FCC8258FF8
-        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 19:31:15 -0700 (PDT)
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(1172:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Fri, 01 Apr 2022 10:28:59 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Fri, 1 Apr 2022 10:29:58 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.018; Fri, 1 Apr 2022 10:29:58 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski@canonical.com" 
-        <krzysztof.kozlowski@canonical.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>
-Subject: RE: [PATCH v12 6/9] dt-bindings: interrupt-controller: Add bindings
- for SP7021 interrupt controller
-Thread-Topic: [PATCH v12 6/9] dt-bindings: interrupt-controller: Add bindings
- for SP7021 interrupt controller
-Thread-Index: AQHYRNqIBkj2YEKP8ka+VOn6WZsX66zZcIoAgADkMAA=
-Date:   Fri, 1 Apr 2022 02:29:58 +0000
-Message-ID: <3373b11528214394baae71198df3adff@cqplus1.com>
-References: <cover.1648714851.git.qinjian@cqplus1.com>
- <ff5bfd5611ab0defe0c98f98edbbf655e33cd16d.1648714851.git.qinjian@cqplus1.com>
- <YkYSyHVGsXkGs0uf@robh.at.kernel.org>
-In-Reply-To: <YkYSyHVGsXkGs0uf@robh.at.kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S230504AbiDACtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 22:49:39 -0400
+Received: from gateway22.websitewelcome.com (gateway22.websitewelcome.com [192.185.47.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A31A1EFE36
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 19:47:51 -0700 (PDT)
+Received: from cm14.websitewelcome.com (cm14.websitewelcome.com [100.42.49.7])
+        by gateway22.websitewelcome.com (Postfix) with ESMTP id 95D89CF77
+        for <devicetree@vger.kernel.org>; Thu, 31 Mar 2022 21:47:50 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id a7KInHK1eHnota7KIn6cv8; Thu, 31 Mar 2022 21:47:50 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=XPMIYxgvctKhc67UpwQUIZ5z17//+6k0vlaXY6E/1DE=; b=GWt7XBamNm5br0OKlCmLe8A63Y
+        QTB3FgP3uo5CUWsWj5YOfl2cxYI7qVU23Is4JjPPsbKYN6htw20IbixgYhM9EX08P/GZNuAuLAbk2
+        12mvLWvwJj6kiq2JQpk2F6tg7x23iNHHgk+zxvWGNIodsHrJfDW8dUy1xkOmtGfbqXetm8kIkzsVP
+        ECbtcrj+RwSbhwrpU1vxwYmLU84cg1fiK4c58XMFLX8qHRSWXwGG06bhBYowVUEkeWPdZdnx0cplr
+        jjBFbJtVGXb2cNXR3E7EjTVrivbxO9ETjPCne4P40VmC74wQB/1ic1IWVua3XTyxm4eYyqFY5Twrf
+        L7K/Y6Hg==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54612)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1na7KH-004FHU-Qw; Fri, 01 Apr 2022 02:47:49 +0000
+Message-ID: <99c8a2b0-ce78-0874-038e-f7defe15301b@roeck-us.net>
+Date:   Thu, 31 Mar 2022 19:47:48 -0700
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5] watchdog: imx2_wdg: Allow ping on suspend
+Content-Language: en-US
+To:     Alistair Francis <alistair@alistair23.me>, wim@linux-watchdog.org,
+        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, s.hauer@pengutronix.de
+Cc:     festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <20220330094552.31039-1-alistair@alistair23.me>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220330094552.31039-1-alistair@alistair23.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1na7KH-004FHU-Qw
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54612
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 9
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,22 +83,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiANCj4gT24gVGh1LCAzMSBNYXIgMjAyMiAxNjoyOTo1MyArMDgwMCwgUWluIEppYW4gd3JvdGU6
-DQo+ID4gQWRkIGRvY3VtZW50YXRpb24gdG8gZGVzY3JpYmUgU3VucGx1cyBTUDcwMjEgaW50ZXJy
-dXB0IGNvbnRyb2xsZXIgYmluZGluZ3MuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBRaW4gSmlh
-biA8cWluamlhbkBjcXBsdXMxLmNvbT4NCj4gPiAtLS0NCj4gPiBNb3ZlICdyZWcnIGFmdGVyICdj
-b21wYXRpYmxlJw0KPiA+IC0tLQ0KPiA+ICAuLi4vc3VucGx1cyxzcDcwMjEtaW50Yy55YW1sICAg
-ICAgICAgICAgICAgICAgfCA2MiArKysrKysrKysrKysrKysrKysrDQo+ID4gIE1BSU5UQUlORVJT
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAxICsNCj4gPiAgMiBmaWxlcyBj
-aGFuZ2VkLCA2MyBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvc3VucGx1cyxz
-cDcwMjEtaW50Yy55YW1sDQo+ID4NCj4gDQo+IA0KPiBQbGVhc2UgYWRkIEFja2VkLWJ5L1Jldmll
-d2VkLWJ5IHRhZ3Mgd2hlbiBwb3N0aW5nIG5ldyB2ZXJzaW9ucy4gSG93ZXZlciwNCj4gdGhlcmUn
-cyBubyBuZWVkIHRvIHJlcG9zdCBwYXRjaGVzICpvbmx5KiB0byBhZGQgdGhlIHRhZ3MuIFRoZSB1
-cHN0cmVhbQ0KPiBtYWludGFpbmVyIHdpbGwgZG8gdGhhdCBmb3IgYWNrcyByZWNlaXZlZCBvbiB0
-aGUgdmVyc2lvbiB0aGV5IGFwcGx5Lg0KPiANCj4gSWYgYSB0YWcgd2FzIG5vdCBhZGRlZCBvbiBw
-dXJwb3NlLCBwbGVhc2Ugc3RhdGUgd2h5IGFuZCB3aGF0IGNoYW5nZWQuDQoNCkNoYW5nZXM6IE1v
-dmUgJ3JlZycgYWZ0ZXIgJ2NvbXBhdGlibGUnDQpJIGRpZCBhIG1vZGlmaWNhdGlvbiBiYXNlZCBv
-biBjb21tZW50cyBmcm9tIGtyenlzenRvZi5rb3psb3dza2lAY2Fub25pY2FsLmNvbSBbMV0NCg0K
-WzFdIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC82ZGJlZGExOC1hMTFjLTYwOWQtN2E4Zi1i
-ZjJlNmYyN2FlYTdAa2VybmVsLm9yZy8NCg0K
+On 3/30/22 02:45, Alistair Francis wrote:
+> The i.MX watchdog cannot be disabled by software once it has been
+> enabled. This means that it can't be stopped before suspend.
+> 
+> For systems that enter low power mode this is fine, as the watchdog will
+> be automatically stopped by hardware in low power mode. Not all i.MX
+> platforms support low power mode in the mainline kernel. For example the
+> i.MX7D does not enter low power mode and so will be rebooted 2 minutes
+> after entering sleep states.
+> 
+> This patch introduces the "fsl,imx7d-wdt" compatible string
+> which enables ping on suspend support. This allows the i.MX7D systems to
+> suspend without triggering the watchdog.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+> v5:
+>   - Fixup commit message description
+
+Too late ;-)
+
+Guenter
+
+> v4:
+>   - Fix spelling on allow/alow in title
+> 
+>   drivers/watchdog/imx2_wdt.c | 27 ++++++++++++++++++++-------
+>   1 file changed, 20 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
+> index 51bfb796898b..d0c5d47ddede 100644
+> --- a/drivers/watchdog/imx2_wdt.c
+> +++ b/drivers/watchdog/imx2_wdt.c
+> @@ -66,6 +66,7 @@ struct imx2_wdt_device {
+>   	struct watchdog_device wdog;
+>   	bool ext_reset;
+>   	bool clk_is_on;
+> +	bool no_ping;
+>   };
+>   
+>   static bool nowayout = WATCHDOG_NOWAYOUT;
+> @@ -312,12 +313,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
+>   
+>   	wdev->ext_reset = of_property_read_bool(dev->of_node,
+>   						"fsl,ext-reset-output");
+> +	/*
+> +	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
+> +	 * during suspend.
+> +	 */
+> +	wdev->no_ping = !of_device_is_compatible(dev->of_node, "fsl,imx7d-wdt");
+>   	platform_set_drvdata(pdev, wdog);
+>   	watchdog_set_drvdata(wdog, wdev);
+>   	watchdog_set_nowayout(wdog, nowayout);
+>   	watchdog_set_restart_priority(wdog, 128);
+>   	watchdog_init_timeout(wdog, timeout, dev);
+> -	watchdog_stop_ping_on_suspend(wdog);
+> +	if (wdev->no_ping)
+> +		watchdog_stop_ping_on_suspend(wdog);
+>   
+>   	if (imx2_wdt_is_running(wdev)) {
+>   		imx2_wdt_set_timeout(wdog, wdog->timeout);
+> @@ -366,9 +373,11 @@ static int __maybe_unused imx2_wdt_suspend(struct device *dev)
+>   		imx2_wdt_ping(wdog);
+>   	}
+>   
+> -	clk_disable_unprepare(wdev->clk);
+> +	if (wdev->no_ping) {
+> +		clk_disable_unprepare(wdev->clk);
+>   
+> -	wdev->clk_is_on = false;
+> +		wdev->clk_is_on = false;
+> +	}
+>   
+>   	return 0;
+>   }
+> @@ -380,11 +389,14 @@ static int __maybe_unused imx2_wdt_resume(struct device *dev)
+>   	struct imx2_wdt_device *wdev = watchdog_get_drvdata(wdog);
+>   	int ret;
+>   
+> -	ret = clk_prepare_enable(wdev->clk);
+> -	if (ret)
+> -		return ret;
+> +	if (wdev->no_ping) {
+> +		ret = clk_prepare_enable(wdev->clk);
+>   
+> -	wdev->clk_is_on = true;
+> +		if (ret)
+> +			return ret;
+> +
+> +		wdev->clk_is_on = true;
+> +	}
+>   
+>   	if (watchdog_active(wdog) && !imx2_wdt_is_running(wdev)) {
+>   		/*
+> @@ -407,6 +419,7 @@ static SIMPLE_DEV_PM_OPS(imx2_wdt_pm_ops, imx2_wdt_suspend,
+>   
+>   static const struct of_device_id imx2_wdt_dt_ids[] = {
+>   	{ .compatible = "fsl,imx21-wdt", },
+> +	{ .compatible = "fsl,imx7d-wdt", },
+>   	{ /* sentinel */ }
+>   };
+>   MODULE_DEVICE_TABLE(of, imx2_wdt_dt_ids);
+
