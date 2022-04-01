@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66DD04EEDE9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 440334EEE00
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346242AbiDANPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 09:15:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45792 "EHLO
+        id S245631AbiDANZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 09:25:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241686AbiDANPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:15:19 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB483EA9D;
-        Fri,  1 Apr 2022 06:13:30 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id b188so2722518oia.13;
-        Fri, 01 Apr 2022 06:13:30 -0700 (PDT)
+        with ESMTP id S234577AbiDANZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:25:05 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1AE26EC91
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 06:23:16 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 8-20020a1c0208000000b0038ccb70e239so196460wmc.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 06:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ySJwETHpWDKKyAZvqLfjxNf0H3moszvQ74LGpXqQJbk=;
+        b=r09Df/g+9gVYcS3kXrgZjc05u2PZaF4ges6JZgG84LcXzjUr4d3bN6wjWWt0fn2OwO
+         tQUMqm1Bce5DoveGGEmjVPQd5n7CApCaYktyEc31v4DP8ygJUn2ZI0YGRktjS5B8Kfuv
+         o9CYlyvAo4/iEucHtkKUyVLJ3L5sospesGGkK+pmDCzcX63MUhZLkWzohVOnHXiBgTuP
+         hPnXk+0L9S+Nfdd7WEY6lkxGo9tuJmZt6+dgGmZFmAb/O1+4GqKJ5bCmQyVpoDiueyOV
+         U9drGkl9gG4pfbCG5W7kKf32/ofdg5icO0CRKVo88xdoO7iHR6fICFQdAws/SudPMzUw
+         HIzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Dt6DUcWZe68wNzFOcmf1w5pbg157v95Sfa3KdIbLtuY=;
-        b=ygOs0ijOlu9kSRz6xLgL2o974GzCt2H6RZXZM+SrE1kgXmwzlRoosKtRS4k16XRY4Y
-         IBflj+MZOAsUk+CuLbKNoeuMk/uCldAQgT0ARtcn5N/l6/9WezAacs//wB11c0+ctEso
-         tlmw4qk6gxEHbzZ8apRmQjRESTz4o7PtXAYuuE/ngoeuD23sQzrnxFw5EDebjDDvpdPU
-         lfN5sEhGNmpy7mAnbDUadLqqt7/JAOdrUz9FTVTX1Mi6P2ceAWHJoF1QebNdfip9YPVr
-         7NPkFPxNsB7mo7MIqR1EbHkYuN9CHRORhdKcwPTjzPJsI3R9xlpjGErrQgkb3Bdikg+B
-         x3Bw==
-X-Gm-Message-State: AOAM530mLzKRgZ1btgoSco0haNcq4G7/CR/F1RO5oomg6gl3TaWJuYJJ
-        p6aoInN5y9oYroWAG8m2rg==
-X-Google-Smtp-Source: ABdhPJx0RcNvDjmuubFatcz4ZzB3jxBfl9sx/UlLM31HKdGp5LJoSd3+/HrnySHLnCdBMlFeh+WiWA==
-X-Received: by 2002:aca:1303:0:b0:2ec:cae7:acc4 with SMTP id e3-20020aca1303000000b002eccae7acc4mr4664170oii.179.1648818809222;
-        Fri, 01 Apr 2022 06:13:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r19-20020acaa813000000b002ed02ca6a3fsm981706oie.1.2022.04.01.06.13.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ySJwETHpWDKKyAZvqLfjxNf0H3moszvQ74LGpXqQJbk=;
+        b=vGt70Ra5IHlge2M4unx7/MVlPvZp9L2F7sFu4lYug5C+UV5h9yUUUqHOi+UuTVU2jp
+         yzWMEbJTHCu/KuzdjusNbrCEZvdLT8Wis0sQeBPqbAw8MqYCErvVqglzm89t+7iF0Atj
+         n8Z0x6qW0C15FbuV2EEGPajAsAFSJ3Oz0u0Tq+gEVUE1C13dlon1WabJigmRayui0PFY
+         8Ar29dzmqdz7tWVOyhcLcLWspMMGnyh6NZp9TKV5YoIAOZW5ULNZKnmsCciv7UKS1iOd
+         facNE7ie7PssRsodkkeW/Ib9pgC7eqs4hOCK+E4VuSAkCmYuL3KmN8rRDEoRvTBfZpzW
+         eTeg==
+X-Gm-Message-State: AOAM533iliPi/5VYp+cCThyszu7Gw6/BP0UMmx3cDfLBlb8lFTEP8juW
+        xnI8jAK5YMvzPmMLlyNbP2utFnk8EAKzaMJ/
+X-Google-Smtp-Source: ABdhPJyIM1k3E8ZpfQjB6FEVfcoHZ2cmWg6O46jdnlTi5pIXjttYPtO0MkxYD567xlI0ikYZWVHGvw==
+X-Received: by 2002:a05:600c:1d8e:b0:389:d079:cc0 with SMTP id p14-20020a05600c1d8e00b00389d0790cc0mr8838746wms.98.1648819394893;
+        Fri, 01 Apr 2022 06:23:14 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id q14-20020a1cf30e000000b0038986a18ec8sm1876503wmq.46.2022.04.01.06.23.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 06:13:27 -0700 (PDT)
-Received: (nullmailer pid 2864971 invoked by uid 1000);
-        Fri, 01 Apr 2022 13:13:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Fri, 01 Apr 2022 06:23:14 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <20220401072714.106403-1-krzysztof.kozlowski@linaro.org>
-References: <20220401072714.106403-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: gpio: add common consumer GPIO lines
-Date:   Fri, 01 Apr 2022 08:13:26 -0500
-Message-Id: <1648818806.914066.2864970.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        ChiYuan Huang <cy_huang@richtek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] regulator: dt-bindings: richtek,rt4801: minor comments adjustments
+Date:   Fri,  1 Apr 2022 15:23:06 +0200
+Message-Id: <20220401132306.854991-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,52 +71,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Apr 2022 09:27:14 +0200, Krzysztof Kozlowski wrote:
-> Typical GPIO lines like enable, powerdown, reset or wakeup are not
-> documented as common, which leads to new variations of these (e.g.
-> pwdn-gpios).  Add a common schema which serves also as a documentation
-> for preferred naming.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Correct email.
-> 
-> Changes since v1:
-> 1. Select-true, add maxItems and description for each entry (Rob).
-> 2. Mention ACTIVE_LOW in bindings description (Linus).
-> 3. Add allOf for pwrseq reset-gpios case.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/gpio/gpio-consumer-common.yaml   | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
-> 
+Correct grammar in 'enable-gpios' description and remove useless comment
+about regulator nodes, because these are obvious from patternProperties.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/regulator/richtek,rt4801-regulator.yaml         | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.example.dt.yaml: rt4801@73: enable-gpios: [[4294967295, 2, 0], [4294967295, 3, 0]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
+index 235e593b3b2c..9c4abc7ae6e2 100644
+--- a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
+@@ -17,9 +17,6 @@ description: |
+   Datasheet is available at
+   https://www.richtek.com/assets/product_file/RT4801H/DS4801H-00.pdf
+ 
+-#The valid names for RT4801 regulator nodes are:
+-#DSVP, DSVN
+-
+ properties:
+   compatible:
+     enum:
+@@ -34,7 +31,7 @@ properties:
+       Number of GPIO in the array list could be 1 or 2.
+       If only one gpio is specified, only one gpio used to control ENP/ENM.
+       Else both are spefied, DSVP/DSVN could be controlled individually.
+-      Othersie, this property not specified. treat both as always-on regulator.
++      If this property not specified, treat both as always-on regulators.
+     minItems: 1
+     maxItems: 2
+ 
+-- 
+2.32.0
 
