@@ -2,101 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 869A14EEE2F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB60A4EEE25
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345975AbiDANea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 09:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54226 "EHLO
+        id S1346353AbiDANdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 09:33:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346390AbiDANe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:34:29 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464EE27E843;
-        Fri,  1 Apr 2022 06:32:38 -0700 (PDT)
-X-UUID: 6fd7bcdb20df4918b71ce6db4b724572-20220401
-X-UUID: 6fd7bcdb20df4918b71ce6db4b724572-20220401
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 849117271; Fri, 01 Apr 2022 21:32:33 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 1 Apr 2022 21:32:32 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 1 Apr 2022 21:32:32 +0800
-Message-ID: <14bfabd88ecbe8cc4ec359f8249f180128a6572e.camel@mediatek.com>
-Subject: Re: [PATCH 2/4] dt-bindings: cpufreq: mediatek: add mt8186 cpufreq
- dt-bindings
-From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <fan.chen@mediatek.com>,
-        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
-        <Allen-yy.Lin@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>,
-        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
-Date:   Fri, 1 Apr 2022 21:32:32 +0800
-In-Reply-To: <18c791ce-059a-87a5-eaf4-057f8e232fe7@kernel.org>
-References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
-         <20220307122151.11666-3-jia-wei.chang@mediatek.com>
-         <d5c5e3f7-7f50-6c57-f82a-41d5494ea514@canonical.com>
-         <c150e9ed7faa4c06f55f7d7623655b65c8575121.camel@mediatek.com>
-         <18c791ce-059a-87a5-eaf4-057f8e232fe7@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1345975AbiDANdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:33:40 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D25027DEA6;
+        Fri,  1 Apr 2022 06:31:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1648819909; x=1680355909;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lOHpdOenq/fYFzyDMijV5NodHbSZD635rAmVNUrJjAs=;
+  b=LXlqkFAVQeMRZgo02TR8wYLY51ymTpt0kg1Dmct8GLHAl8f526xEgYct
+   l+y0TgWtft2/Z9COa87xaKRfsVViyXwhzeuu5dSpU1igAeYKAtAZuX+zd
+   bfSflxkoy5uPrEPrqOxX38yIYfSrsn8Xtdv4yoSZceU0M9ijvaxa2YvaL
+   7M07rkkLfuiLXKuAn2sD4oRH4W8avbjaZvu5qCnTUgS+0mdho8XMvLgI2
+   5zmT0ahkuyGev1KQ8bYIWfoDu1/0kV5KDAZGLq3R6ynbDyiWm7vbsXlHB
+   1eCKddLGzsHDhGj2t3xmn+fhIr0NPXuwiUupbf7E6+nSgfMZqI/PHCdMU
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,227,1643698800"; 
+   d="scan'208";a="158536030"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Apr 2022 06:31:47 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 1 Apr 2022 06:31:46 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 1 Apr 2022 06:31:46 -0700
+Date:   Fri, 1 Apr 2022 15:34:54 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <Divya.Koppera@microchip.com>,
+        <davem@davemloft.net>, <kuba@kernel.org>,
+        <richardcochran@gmail.com>, <UNGLinuxDriver@microchip.com>
+Subject: Re: [PATCH net 2/3] net: phy: micrel: Remove latency from driver
+Message-ID: <20220401133454.ic6jxnripuxjhp5g@soft-dev3-1.localhost>
+References: <20220401094805.3343464-1-horatiu.vultur@microchip.com>
+ <20220401094805.3343464-3-horatiu.vultur@microchip.com>
+ <Ykb0RgM+fnzOUTNx@lunn.ch>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <Ykb0RgM+fnzOUTNx@lunn.ch>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-03-24 at 11:35 +0100, Krzysztof Kozlowski wrote:
-> On 24/03/2022 10:42, Jia-Wei Chang wrote:
-> > On Mon, 2022-03-07 at 19:59 +0100, Krzysztof Kozlowski wrote:
-> > > On 07/03/2022 13:21, Tim Chang wrote:
-> > > > 1. add cci property.
-> > > > 2. add example of MT8186.
-> > > 
-> > > One logical change at a time. Are these related? Why entirely new
-> > > example just for "cci" node? Maybe this should be part of
-> > > existing
-> > > example?
-> > 
-> > Yes, the cci property is required in some SoC, e.g. mt8183 and
-> > mt8186,
-> > because cpu and cci share the same power supplies.
+The 04/01/2022 14:47, Andrew Lunn wrote:
 > 
-> I asked why this cannot be part of existing example.
+> On Fri, Apr 01, 2022 at 11:48:04AM +0200, Horatiu Vultur wrote:
+> > Based on the discussions here[1], the PHY driver is the wrong place
+> > to set the latencies, therefore remove them.
+> >
+> > [1] https://lkml.org/lkml/2022/3/4/325
+> >
+> > Fixes: ece19502834d84 ("net: phy: micrel: 1588 support for LAN8814 phy")
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> 
+> Thanks for the revert.
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> 
+> > -static struct kszphy_latencies lan8814_latencies = {
+> > -     .rx_10          = 0x22AA,
+> > -     .tx_10          = 0x2E4A,
+> > -     .rx_100         = 0x092A,
+> > -     .tx_100         = 0x02C1,
+> > -     .rx_1000        = 0x01AD,
+> > -     .tx_1000        = 0x00C9,
+> > -};
+> 
+> What are the reset defaults of these? 
 
-I misunderstood that.
-I will update the complete example in the next version.
+Those are actually the reset values.
+
+> I'm just wondering if we should
+> explicitly set them to 0, so we don't get into a mess where some
+> vendor bootloader sets values but mainline bootloader does not,
+> breaking a configuration where the userspace daemon does the correct?
+
+It would be fine for me to set them to 0. But then definitely we need a
+way to set these latencies from userspace.
 
 > 
-> > I will update the commit message and add an example of mt8186 to
-> > present usage of cci.
-> 
-> You added the example here, didn't you?
+>          Andrew
 
-Yes, I did add it here.
-
-> 
-> Best regards,
-> Krzysztof
-
+-- 
+/Horatiu
