@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A3B4EF73F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FADB4EF733
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348913AbiDAPzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 11:55:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
+        id S1345508AbiDAPyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 11:54:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350131AbiDAPRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:17:06 -0400
+        with ESMTP id S1349359AbiDAPRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 11:17:11 -0400
 Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2A659392
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 07:58:30 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 8-20020a1c0208000000b0038ccb70e239so365507wmc.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 07:58:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD2F16E7DA
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 07:58:31 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id n63-20020a1c2742000000b0038d0c31db6eso1633800wmn.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 07:58:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=K8iJL2q3As3zzwdz8529fEEZQXinzEbA6iVffO5JCw4=;
-        b=gAw9uKXxBpP0+l/FsExGrFZKGlfbBOnEzDF2KtQgPGeonCt5ot3PcKIvm+oUPMtT8n
-         y5ZqXPaqAarqpi8xfYYLJvu5tzPW9wT70R3am9D7xFITmMFwt4vsYIVqX/n8dhCnsH85
-         Ai6a5VeuNV4ZTtZBlcot20j4htC0DD/R4/mPB19BrA5i1HyplNnU9mSSOc0QsDhZ44x4
-         aZfaQ07vN4E/mgE4B1qqbokUKXCPJpaI0z7l5Y7d4Z9vF2GgZScHNyfiIVXhDS4W1IOu
-         mowELakVMDfvVYVilPSjq6nwCjV6Zv1fbAqINaNJAy8z4f/Gw2HMoMgFBEYqlSiY/QWc
-         Go5g==
+        bh=gtC9x4ytC3JDkJusbSvfvwpkttX0Il5swFlaQVUSd6c=;
+        b=kK1jfQ/KvmctsoV8Tq0dqinBZV+u8tXoMPNhe3nJx+b+MoKfJNH5DCOS/7mnV7dRhk
+         q7YGYC7vI4tS09qSlHHi5vYpf2gJQgGEn/kEG8zveAPRv31NwjTAvHxO35H7LqmbArFn
+         2hZ4i1umE/adcAO/idQ50Om0Yl8lWDwl6IfGWmEWrB5IpwJig/nA7gDhEV9VDy8qdtou
+         gEVysoaVnaGHsMfJKA0Tx3mTsavQEGHggt9MOxnUCdhgp+07onYLi/unPjqxGQcnQKKM
+         g7d6FKvax+/9q50tUz1Vz8qjUxPUmkMoS5QxH8Jc31ELRcrr3z16cjH14w6SFy+e55eX
+         tS8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=K8iJL2q3As3zzwdz8529fEEZQXinzEbA6iVffO5JCw4=;
-        b=6Go9dPa5biG3XgMPrBl1/8IRODoe1gNqZ9QBU7xeSREm6xLg4b7DQEa7A664kfY2Zk
-         7Sb7nZuqUehK8iOuPcAu3Mpwabjf1XisGWZVfy2GvF6INjXs9HdqHHcqZBPNlriMuDs1
-         Mfb9Jm/LGAL55hwTQIILSTHMU7UAHoGZSnLn3BwIXL3FKkN4tTIH015G8YZ3DaHetckX
-         xGKEe/peyg6fqlRpK9zX3eyC7ZlD9AmZpawHDIwqkspfcfjkM+DC7I+waerBDDw9JBUj
-         lIsNM7ZZLzlXjZILPK0LyeBJoBnLyVSqlfF38n2D7VaBl8sIlTe0Yyw3niG2ZxWGssoM
-         0TEA==
-X-Gm-Message-State: AOAM530cCCLfO+2OekmepLhEM1HCaeWJyMAxBG+fU+oryIONJDhVRCeT
-        vrkysy8hwNGvhh7H00NbP4D8IQ==
-X-Google-Smtp-Source: ABdhPJzRdJIaIzMFeeJvk97VMkntf14Z4PyRXAxrDx3BRlFhHFG2iJWpnqp97DFOyl9gYTo2sakUJA==
-X-Received: by 2002:a1c:7308:0:b0:38c:7b63:e385 with SMTP id d8-20020a1c7308000000b0038c7b63e385mr9094276wmb.116.1648825108956;
-        Fri, 01 Apr 2022 07:58:28 -0700 (PDT)
+        bh=gtC9x4ytC3JDkJusbSvfvwpkttX0Il5swFlaQVUSd6c=;
+        b=HOMURiAt7RHbMceg4m8BkNzYJIBpvIpEWklLyub0o3G5FpBnkacFs57yyVhsWud8tx
+         OUjATjB8NDxshD80GOOz9zHWrYg1GqBzn+BcjOqLeTEAWi48aHD6QVBfLC8GU7z5aBFg
+         JZWx7IXhZtTYHtFP23Sa6OIQxLycF7E7gsn65x2PukhLyNv52g1JviSaHu1Ls1m/oK08
+         xR/kPCZKEFQBpCgkpQDHrePK8s8DJSXHznf7KmpU2Pq/7ozGfC4/vK6jCfPEifkpXKZP
+         oU4+3ReVPedfeVeCKkkDK/EicYw7GvEhNLI4tOP3oRrhkVXY/kr/kb2Bpo+sG20rOEeV
+         dOvg==
+X-Gm-Message-State: AOAM530eVQamGdBTzfHY4LDUVsaqSMewiSqWO29v4rY8gVdpwfYNibFS
+        uMGDxFooOXM9s0nSLvQ0sHwfrg==
+X-Google-Smtp-Source: ABdhPJwtaWcw36Blxc0IzRLdygI31LgDSHd4FsVTGI0QR6xX+M9Y0j+RkfQerB0BG0DZ9gy7GpF2HA==
+X-Received: by 2002:a05:600c:34ce:b0:38c:a579:944a with SMTP id d14-20020a05600c34ce00b0038ca579944amr9037672wmq.113.1648825110300;
+        Fri, 01 Apr 2022 07:58:30 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05600c404800b0038cc9c7670bsm8530722wmm.3.2022.04.01.07.58.27
+        by smtp.gmail.com with ESMTPSA id j8-20020a05600c404800b0038cc9c7670bsm8530722wmm.3.2022.04.01.07.58.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 07:58:28 -0700 (PDT)
+        Fri, 01 Apr 2022 07:58:29 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -66,9 +66,9 @@ To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-scsi@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFC PATCH 3/4] arm64: dts: qcom: sdm845: control RPMHPD performance states with UFS
-Date:   Fri,  1 Apr 2022 16:58:19 +0200
-Message-Id: <20220401145820.1003826-4-krzysztof.kozlowski@linaro.org>
+Subject: [RFC PATCH 4/4] ufs: set power domain performance state when scaling gears
+Date:   Fri,  1 Apr 2022 16:58:20 +0200
+Message-Id: <20220401145820.1003826-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
 References: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
@@ -84,51 +84,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UFS, when scaling gears, should choose appropriate performance state of
-RPMHPD power domain controller.  Since UFS belongs to UFS_PHY_GDSC power
-domain, add necessary parent power domain to GCC.
+Scaling gears requires not only scaling clocks, but also voltage levels,
+e.g. via performance states.
+
+USe the provided OPP table, to set proper OPP frequency which through
+required-opps will trigger performance state change.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/scsi/ufs/ufshcd-pltfrm.c |  6 +++++
+ drivers/scsi/ufs/ufshcd.c        | 42 +++++++++++++++++++++++++-------
+ drivers/scsi/ufs/ufshcd.h        |  3 +++
+ 3 files changed, 42 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index b31bf62e8680..c999b41c2605 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1078,6 +1078,7 @@ gcc: clock-controller@100000 {
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
-+			power-domains = <&rpmhpd SDM845_CX>;
- 		};
+diff --git a/drivers/scsi/ufs/ufshcd-pltfrm.c b/drivers/scsi/ufs/ufshcd-pltfrm.c
+index cca4b2181a81..c8f19b54be92 100644
+--- a/drivers/scsi/ufs/ufshcd-pltfrm.c
++++ b/drivers/scsi/ufs/ufshcd-pltfrm.c
+@@ -360,6 +360,12 @@ int ufshcd_pltfrm_init(struct platform_device *pdev,
+ 		goto dealloc_host;
+ 	}
  
- 		qfprom@784000 {
-@@ -2336,8 +2337,22 @@ ufs_mem_hc: ufshc@1d84000 {
- 				<0 0>,
- 				<0 0>,
- 				<0 300000000>;
--
-+			operating-points-v2 = <&ufs_opp_table>;
- 			status = "disabled";
++	if (devm_pm_opp_of_add_table(dev))
++		dev_dbg(dev, "no OPP table (%d), no performance state control\n",
++			err);
++	else
++		hba->use_pm_opp = true;
 +
-+			ufs_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-50000000 {
-+					opp-hz = /bits/ 64 <50000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+				};
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+				};
-+			};
- 		};
+ 	ufshcd_init_lanes_per_dir(hba);
  
- 		ufs_mem_phy: phy@1d87000 {
+ 	err = ufshcd_init(hba, mmio_base, irq);
+diff --git a/drivers/scsi/ufs/ufshcd.c b/drivers/scsi/ufs/ufshcd.c
+index 3f9caafa91bf..84912db86da8 100644
+--- a/drivers/scsi/ufs/ufshcd.c
++++ b/drivers/scsi/ufs/ufshcd.c
+@@ -1164,11 +1164,16 @@ static int ufshcd_wait_for_doorbell_clr(struct ufs_hba *hba,
+ static int ufshcd_scale_gear(struct ufs_hba *hba, bool scale_up)
+ {
+ 	int ret = 0;
++	struct ufs_clk_info *clki;
++	unsigned long pm_opp_target_rate;
+ 	struct ufs_pa_layer_attr new_pwr_info;
+ 
++	clki = list_first_entry(&hba->clk_list_head, struct ufs_clk_info, list);
++
+ 	if (scale_up) {
+ 		memcpy(&new_pwr_info, &hba->clk_scaling.saved_pwr_info.info,
+ 		       sizeof(struct ufs_pa_layer_attr));
++		pm_opp_target_rate = clki->max_freq;
+ 	} else {
+ 		memcpy(&new_pwr_info, &hba->pwr_info,
+ 		       sizeof(struct ufs_pa_layer_attr));
+@@ -1184,6 +1189,13 @@ static int ufshcd_scale_gear(struct ufs_hba *hba, bool scale_up)
+ 			new_pwr_info.gear_tx = hba->clk_scaling.min_gear;
+ 			new_pwr_info.gear_rx = hba->clk_scaling.min_gear;
+ 		}
++		pm_opp_target_rate = clki->min_freq;
++	}
++
++	if (hba->use_pm_opp && scale_up) {
++		ret = dev_pm_opp_set_rate(hba->dev, pm_opp_target_rate);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	/* check if the power mode needs to be changed or not? */
+@@ -1194,6 +1206,11 @@ static int ufshcd_scale_gear(struct ufs_hba *hba, bool scale_up)
+ 			hba->pwr_info.gear_tx, hba->pwr_info.gear_rx,
+ 			new_pwr_info.gear_tx, new_pwr_info.gear_rx);
+ 
++	if (ret && hba->use_pm_opp && scale_up)
++		dev_pm_opp_set_rate(hba->dev, hba->devfreq->previous_freq);
++	else if (hba->use_pm_opp && !scale_up)
++		ret = dev_pm_opp_set_rate(hba->dev, pm_opp_target_rate);
++
+ 	return ret;
+ }
+ 
+@@ -1435,9 +1452,11 @@ static int ufshcd_devfreq_init(struct ufs_hba *hba)
+ 	if (list_empty(clk_list))
+ 		return 0;
+ 
+-	clki = list_first_entry(clk_list, struct ufs_clk_info, list);
+-	dev_pm_opp_add(hba->dev, clki->min_freq, 0);
+-	dev_pm_opp_add(hba->dev, clki->max_freq, 0);
++	if (!hba->use_pm_opp) {
++		clki = list_first_entry(clk_list, struct ufs_clk_info, list);
++		dev_pm_opp_add(hba->dev, clki->min_freq, 0);
++		dev_pm_opp_add(hba->dev, clki->max_freq, 0);
++	}
+ 
+ 	ufshcd_vops_config_scaling_param(hba, &hba->vps->devfreq_profile,
+ 					 &hba->vps->ondemand_data);
+@@ -1449,8 +1468,10 @@ static int ufshcd_devfreq_init(struct ufs_hba *hba)
+ 		ret = PTR_ERR(devfreq);
+ 		dev_err(hba->dev, "Unable to register with devfreq %d\n", ret);
+ 
+-		dev_pm_opp_remove(hba->dev, clki->min_freq);
+-		dev_pm_opp_remove(hba->dev, clki->max_freq);
++		if (!hba->use_pm_opp) {
++			dev_pm_opp_remove(hba->dev, clki->min_freq);
++			dev_pm_opp_remove(hba->dev, clki->max_freq);
++		}
+ 		return ret;
+ 	}
+ 
+@@ -1462,7 +1483,6 @@ static int ufshcd_devfreq_init(struct ufs_hba *hba)
+ static void ufshcd_devfreq_remove(struct ufs_hba *hba)
+ {
+ 	struct list_head *clk_list = &hba->clk_list_head;
+-	struct ufs_clk_info *clki;
+ 
+ 	if (!hba->devfreq)
+ 		return;
+@@ -1470,9 +1490,13 @@ static void ufshcd_devfreq_remove(struct ufs_hba *hba)
+ 	devfreq_remove_device(hba->devfreq);
+ 	hba->devfreq = NULL;
+ 
+-	clki = list_first_entry(clk_list, struct ufs_clk_info, list);
+-	dev_pm_opp_remove(hba->dev, clki->min_freq);
+-	dev_pm_opp_remove(hba->dev, clki->max_freq);
++	if (!hba->use_pm_opp) {
++		struct ufs_clk_info *clki;
++
++		clki = list_first_entry(clk_list, struct ufs_clk_info, list);
++		dev_pm_opp_remove(hba->dev, clki->min_freq);
++		dev_pm_opp_remove(hba->dev, clki->max_freq);
++	}
+ }
+ 
+ static void __ufshcd_suspend_clkscaling(struct ufs_hba *hba)
+diff --git a/drivers/scsi/ufs/ufshcd.h b/drivers/scsi/ufs/ufshcd.h
+index 88c20f3608c2..3bd02095897f 100644
+--- a/drivers/scsi/ufs/ufshcd.h
++++ b/drivers/scsi/ufs/ufshcd.h
+@@ -776,6 +776,8 @@ struct ufs_hba_monitor {
+  * @auto_bkops_enabled: to track whether bkops is enabled in device
+  * @vreg_info: UFS device voltage regulator information
+  * @clk_list_head: UFS host controller clocks list node head
++ * @use_pm_opp: whether OPP table is provided and scaling gears should trigger
++ *              setting OPP
+  * @pwr_info: holds current power mode
+  * @max_pwr_info: keeps the device max valid pwm
+  * @clk_scaling_lock: used to serialize device commands and clock scaling
+@@ -894,6 +896,7 @@ struct ufs_hba {
+ 	bool auto_bkops_enabled;
+ 	struct ufs_vreg_info vreg_info;
+ 	struct list_head clk_list_head;
++	bool use_pm_opp;
+ 
+ 	/* Number of requests aborts */
+ 	int req_abort_count;
 -- 
 2.32.0
 
