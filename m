@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D01604EE4FE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 02:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476B04EE51D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 02:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242414AbiDAAIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Mar 2022 20:08:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41372 "EHLO
+        id S243317AbiDAARV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Mar 2022 20:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240613AbiDAAIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 20:08:18 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6243D1DB88F;
-        Thu, 31 Mar 2022 17:06:29 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id n19-20020a9d7113000000b005cd9cff76c3so1047757otj.1;
-        Thu, 31 Mar 2022 17:06:29 -0700 (PDT)
+        with ESMTP id S243312AbiDAARU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Mar 2022 20:17:20 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D1893C72B;
+        Thu, 31 Mar 2022 17:15:32 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-dacc470e03so1062975fac.5;
+        Thu, 31 Mar 2022 17:15:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PCmWVNwJqGG8J6v9brInFeE4eL7KqzGs5peJQaBGQBk=;
-        b=p40yHpPqXEwBPhtc0acCwybJIXuwdQsmR6Vgty+DU3qVwoUR4f+ojSRLYGgTsiF5oe
-         1i8qEcsoFSzklXIHJ5K0RtAiGJkAksI8hTSXpmPUiyBAsEgPV81Z1oitpmNgiI1ZaTRw
-         n7KQucYkwWzb5CkDuj1JaK3g2uzfHEJtvrKGchUEcTJLat+CMYRdGx0OkPKFvaI/Q4ze
-         /B32ubM7PZXc0LdcNS3rOXSA/Lm6jwfpSvIDMci+1m/nW3QkiUrSOfPi8CGPVoWOV6VF
-         BSxDa3Per/gzRBMRnsNB+aC4UtKahF8AT2MR0OpLTnQVEx+58HK15sdphR7a4hqzFTI7
-         0R6g==
-X-Gm-Message-State: AOAM530WA4wDoDZWBuLJrx+xQug84R28KXoPKtBnpXEYdavXrmhT66yY
-        ijztWJr+nk6LneEy1f9sakZG9qYyHA==
-X-Google-Smtp-Source: ABdhPJzW6OJ8B0dPnE/OHwPEY9o6TKU2FhrjWeaez+zcM9WbtuvIgJruB5BdPa77EZcitEVaM84XTQ==
-X-Received: by 2002:a9d:65d2:0:b0:5cb:5d55:ae24 with SMTP id z18-20020a9d65d2000000b005cb5d55ae24mr6528157oth.249.1648771588622;
-        Thu, 31 Mar 2022 17:06:28 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=kgDedcBJcc+tv/OOgxKjgk/SoshOh6AR9hwsk4pYsLw=;
+        b=1xsJ2ZfiQ5wEvzuC8CYkkWA4D4dVF0QRHSFazuz+YXFKE5EzIyjEAw6b1fL6qza+Qt
+         fw2yGZq0WPJb2gWYQ3fqEaXXXc0y0anUChlWOorELWDjKiK+MjQ61b9sEcJFAzO/jM6w
+         aJcw6qgbYLExQjGR3rPTvnuOMfHFHNwsYlMKzxr0I2QfIdcvIPblwCq0mXw+/5HoLTQP
+         Q31fc2BeGpKxknfxoF93kbH6AIRM7ms7UGDj4/NlmaO48b13p7bORa5zv/Oo8kH2YR47
+         UcAW4OhGkAy0L+ncUSt1pQgVyejNLLzsu+8sUDIygz+AEUvEfa2dTFaXbVcp/mHgPdTa
+         kSxQ==
+X-Gm-Message-State: AOAM532umhlA9LeJ2JStM71lg8gE6MJuCmDi2iDbprDLPjjRtiUuIY7Y
+        aCvRcz6PtJCvz+cFSS9qnw==
+X-Google-Smtp-Source: ABdhPJxOduw+Z9X08dI1UdH+GcjThmH7U3p+ZG1PL2p1hT2KQYDpoCnYsTC2oy0JMhvgskl1k1Dz6g==
+X-Received: by 2002:a05:6870:f71f:b0:d7:5f1b:534f with SMTP id ej31-20020a056870f71f00b000d75f1b534fmr3922617oab.109.1648772131730;
+        Thu, 31 Mar 2022 17:15:31 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r6-20020a0568301ac600b005cdbc6e62a9sm489668otc.39.2022.03.31.17.06.27
+        by smtp.gmail.com with ESMTPSA id g8-20020a9d2d88000000b005b238f7551csm462301otb.53.2022.03.31.17.15.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Mar 2022 17:06:28 -0700 (PDT)
-Received: (nullmailer pid 1749493 invoked by uid 1000);
-        Fri, 01 Apr 2022 00:06:27 -0000
-Date:   Thu, 31 Mar 2022 19:06:27 -0500
+        Thu, 31 Mar 2022 17:15:30 -0700 (PDT)
+Received: (nullmailer pid 1762367 invoked by uid 1000);
+        Fri, 01 Apr 2022 00:15:29 -0000
+Date:   Thu, 31 Mar 2022 19:15:29 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 16/21] dt-bindings: ata: ahci: Add DWC AHCI SATA
- controller DT schema
-Message-ID: <YkZCA08HZ6Nx1IqQ@robh.at.kernel.org>
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-17-Sergey.Semin@baikalelectronics.ru>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, ulf.hansson@linaro.org,
+        krzk+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
+        kuba@kernel.org, pabeni@redhat.com, qiangqing.zhang@nxp.com,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        netdev@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/4] dt-bindings: imx: add nvmem property
+Message-ID: <YkZEIR1XqJ6sseto@robh.at.kernel.org>
+References: <20220324042024.26813-1-peng.fan@oss.nxp.com>
+ <20220324111104.cd7clpkzzedtcrja@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220324001628.13028-17-Sergey.Semin@baikalelectronics.ru>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220324111104.cd7clpkzzedtcrja@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,120 +72,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 03:16:23AM +0300, Serge Semin wrote:
-> Synopsys AHCI SATA controller is mainly compatible with the generic AHCI
-> SATA controller except a few peculiarities and the platform environment
-> requirements. In particular it can have one or two reference clocks to
-> feed up its AXI/AHB interface and SATA PHYs domain and at least one reset
-> control for the application clock domain. In addition to that the DMA
-> interface of each port can be tuned up to work with the predefined maximum
-> data chunk size. Note unlike generic AHCI controller DWC AHCI can't have
-> more than 8 ports. All of that is reflected in the new DWC AHCI SATA
-> device DT binding.
+On Thu, Mar 24, 2022 at 12:11:04PM +0100, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Note the DWC AHCI SATA controller DT-schema has been created in a way so
-> to be reused for the vendor-specific DT-schemas. One of which we are about
-> to introduce.
+> On Thu, Mar 24, 2022 at 12:20:20PM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> > 
+> > To i.MX SoC, there are many variants, such as i.MX8M Plus which
+> > feature 4 A53, GPU, VPU, SDHC, FLEXCAN, FEC, eQOS and etc.
+> > But i.MX8M Plus has many parts, one part may not have FLEXCAN,
+> > the other part may not have eQOS or GPU.
+> > But we use one device tree to support i.MX8MP including its parts,
+> > then we need update device tree to mark the disabled IP status "disabled".
+> > 
+> > In NXP U-Boot, we hardcoded node path and runtime update device tree
+> > status in U-Boot according to fuse value. But this method is not
+> > scalable and need encoding all the node paths that needs check.
+> > 
+> > By introducing nvmem property for each node that needs runtime update
+> > status property accoridng fuse value, we could use one Bootloader
+> > code piece to support all i.MX SoCs.
+> > 
+> > The drawback is we need nvmem property for all the nodes which maybe
+> > fused out.
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> ---
->  .../bindings/ata/snps,dwc-ahci.yaml           | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
+> I'd rather not have that in an official binding as the syntax is
+> orthogonal to status = "..." but the semantic isn't. Also if we want
+> something like that, I'd rather not want to adapt all bindings, but
+> would like to see this being generic enough to be described in a single
+> catch-all binding.
 > 
-> diff --git a/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> new file mode 100644
-> index 000000000000..b443154b63aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-> @@ -0,0 +1,121 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/snps,dwc-ahci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DWC AHCI SATA controller
-> +
-> +maintainers:
-> +  - Serge Semin <fancer.lancer@gmail.com>
-> +
-> +description: |
-> +  This document defines device tree bindings for the Synopsys DWC
-> +  implementation of the AHCI SATA controller.
-> +
-> +allOf:
-> +  - $ref: ahci-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: Synopsys AHCI SATA-compatible devices
-> +        contains:
-> +          const: snps,dwc-ahci
-> +      - description: SPEAr1340 AHCI SATA device
-> +        const: snps,spear-ahci
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Basic DWC AHCI SATA clock sources like application AXI/AHB BIU clock
-> +      and embedded PHYs reference clock together with vendor-specific set
-> +      of clocks.
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    contains:
-> +      anyOf:
-> +        - description: Application AXI/AHB BIU clock source
-> +          enum:
-> +            - aclk
-> +            - sata
-> +        - description: SATA Ports reference clock
-> +          enum:
-> +            - ref
-> +            - sata_ref
-> +
-> +  resets:
-> +    description:
-> +      At least basic core and application clock domains reset is normally
-> +      supported by the DWC AHCI SATA controller. Some platform specific
-> +      clocks can be also specified though.
-> +
-> +  reset-names:
-> +    contains:
-> +      description: Core and application clock domains reset control
-> +      const: arst
-> +
-> +patternProperties:
-> +  "^sata-port@[0-9a-e]$":
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 7
-> +
-> +      snps,tx-ts-max:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: Maximal size of Tx DMA transactions in FIFO words
-> +        minimum: 1
-> +        maximum: 1024
-> +
-> +      snps,rx-ts-max:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: Maximal size of Rx DMA transactions in FIFO words
-> +        minimum: 1
-> +        maximum: 1024
+> I also wonder if it would be nicer to abstract that as something like:
+> 
+> 	/ {
+> 		fuse-info {
+> 			compatible = "otp-fuse-info";
+> 
+> 			flexcan {
+> 				devices = <&flexcan1>, <&flexcan2>;
+> 				nvmem-cells = <&flexcan_disabled>;
+> 				nvmem-cell-names = "disabled";
+> 			};
+> 
+> 			m7 {
+> 				....
+> 			};
+> 		};
+> 	};
+> 
+> as then the driver evaluating this wouldn't need to iterate over the
+> whole dtb but just over this node. But I'd still keep this private to
+> the bootloader and not describe it in the generic binding.
 
-Are you reading these somewhere? 
+There's been discussions (under the system DT umbrella mostly) about 
+bindings for peripheral enable/disable control/status. Most of the time 
+it is in context of device assignment to secure/non-secure world or 
+partitions in a system (via a partitioning hypervisor).
 
-Only powers of 2 are valid. (Guess what Calxeda's controller uses.)
+This feels like the same thing and could use the same binding. But 
+someone has to take into account all the uses and come up with 
+something. One off solutions are a NAK.
 
 Rob
