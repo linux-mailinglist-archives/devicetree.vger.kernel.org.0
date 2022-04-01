@@ -2,224 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AED14EF7F9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32ECC4EF81F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 18:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237314AbiDAQeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 12:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
+        id S1349018AbiDAQmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 12:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350410AbiDAQdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 12:33:36 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A66F1DD3F3;
-        Fri,  1 Apr 2022 09:06:32 -0700 (PDT)
-Received: from pps.filterd (m0134424.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 231G57Zg011078;
-        Fri, 1 Apr 2022 16:05:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pps0720;
- bh=fThyDFb+b2ERfCQ9pvQKhPqGHGIaH0hBICL3n9sMBDI=;
- b=PCAJ6ZMHtIPTTH1n6h00c4vR1aUX/PRutwNSTXw3JNsLrupxWN/9jS0QUOyTq9bjiZ4H
- YwHUBZfRro2yccUwggycNNnXaRt7TgYQjwLCNouti7tww2Vjl0GF5KMw6Zu9q8qNW755
- ZMLotD5uU4O1fbslPzpHqj/J2xSLN/JLea9pD06hXlPbNPrO4HUBAmbaUgTKONU3ph+X
- 6AkH+AOlTHj7BAGG+rM7aaLoT88QW7SiIPIAqsaQ0nJ4V6j4c6Ffj/3/ot8yq5twnUmp
- F6MxJroGWzvTcwHAauZhUzVmi6nyzNPGevH+UC7cwKt0naxlmWBJ+XQv9AzJTP+sqgGN Fw== 
-Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3f63fd0nf4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 Apr 2022 16:05:28 +0000
-Received: from p1wg14926.americas.hpqcorp.net (unknown [10.119.18.115])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 980CF8003A1;
-        Fri,  1 Apr 2022 16:05:27 +0000 (UTC)
-Received: from p1wg14927.americas.hpqcorp.net (10.119.18.117) by
- p1wg14926.americas.hpqcorp.net (10.119.18.115) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 1 Apr 2022 04:05:27 -1200
-Received: from p1wg14927.americas.hpqcorp.net (10.119.18.117) by
- p1wg14927.americas.hpqcorp.net (10.119.18.117) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 1 Apr 2022 04:05:26 -1200
-Received: from p1wg14921.americas.hpqcorp.net (16.230.19.124) by
- p1wg14927.americas.hpqcorp.net (10.119.18.117) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15
- via Frontend Transport; Fri, 1 Apr 2022 04:05:26 -1200
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (192.58.206.38)
- by edge.it.hpe.com (16.230.19.124) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 1 Apr 2022 04:05:26 -1200
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FkD69UNJdo4pEEVEdaMrBlBqi6vORNfx8ggvSQ4cRkL2rJoJ0HC6EaoxgBGUWTpghD1eR7a6vfijqDnm5bkueIXK/xyEegfmMN6RIMR+h2eQGGtqgcxXaqb7BstUSEDHjJ5BpdQGYiXjjSt+7Y06pBv5MJAzpOtL82FkVvSSSXwEER6SbpLTlkrqeEOHf0XzlWIx+LJ2GIV8KS5yJgd4oR1LTkTjGynO2xkyH9Ix5NyYON0nhVxLODXAvVNau4+grO3mNEeJTUM/gYPe3kBUAD42gIHec1WrYCGyh80Y92zSdQ5qmuHfI38NzQ6k6n7X3L4a77MUC0r6RQ0SISYIHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fThyDFb+b2ERfCQ9pvQKhPqGHGIaH0hBICL3n9sMBDI=;
- b=G1ZEwpDe2ksR4NZva21ZXcnwymSdbs86FDF2H+RI5B119lIXmPd2llZ/vNf5XfxyWD7QgaM9D0zAecj4wWqp6lzeg4Fi2gUryaoeKomkSQwFuB1xm0AkyezeYCelqo1wdOT1FEpC9RXRvUlRXPHOR9WDHY0Bw43Dlg2JDeZgwpApJw5DTaIEekqeW/CyJYYUqEZxqdDkCMNMxYDSrLe4CiIbK1QThjOATSfTm2DIuRu3UCZYpnRMZlnfu8Av/YDNAVsdWfSOUXCH6PDxH6Z7LpQr23wALoMC7D1qgJbjSFS6W3OVX8lMUsGwUykcDcgMB0M87vvLr6GvLPdC1rKx3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:510:172::21)
- by MW5PR84MB1425.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1ab::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.21; Fri, 1 Apr
- 2022 16:05:25 +0000
-Received: from PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::bd27:815e:7c03:d1e4]) by PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::bd27:815e:7c03:d1e4%7]) with mapi id 15.20.5102.022; Fri, 1 Apr 2022
- 16:05:25 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
+        with ESMTP id S1345930AbiDAQmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 12:42:12 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0391B2AE9FC;
+        Fri,  1 Apr 2022 09:23:08 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.43:38814.38631177
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+        by 189.cn (HERMES) with SMTP id A3891100207;
+        Sat,  2 Apr 2022 00:22:53 +0800 (CST)
+Received: from  ([172.27.8.53])
+        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id 643e5b21678247c69198971f03a9a550 for mripard@kernel.org;
+        Sat, 02 Apr 2022 00:23:07 CST
+X-Transaction-ID: 643e5b21678247c69198971f03a9a550
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 172.27.8.53
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device
- tree
-Thread-Topic: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device
- tree
-Thread-Index: AQHYNLgx692NqDgvU0iOWKp+QCe0Uqy5/HOAgAgo3qCAAAx5AIAAD3gwgAEJmYCAE5R/wIAAGtkAgAAFszCAAZ7G8IAAu8qAgAC9QRCAABI1gIABMDvg
-Date:   Fri, 1 Apr 2022 16:05:25 +0000
-Message-ID: <PH0PR84MB17182115D57EF6032782659C88E09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-References: <20220310195229.109477-1-nick.hawkins@hpe.com>
- <20220310195229.109477-9-nick.hawkins@hpe.com>
- <eb66cc83-2da9-8e19-db69-633e34fef946@canonical.com>
- <PH0PR84MB1718C31DB71AA2A67FEC5F6E88119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <b1cc2566-cd78-7cb4-f8a5-d6fc8065fe6e@canonical.com>
- <PH0PR84MB1718292B1C11F4FE83326A5388119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <fb4def96-4b20-604f-d15d-fef87eb2232d@canonical.com>
- <PH0PR84MB1718A2CFBFC90C9C0CAA5515881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a0fCE_NM=z68d1m9BTfuKixh1pKLw3gn+Sr7SxKb6UJAg@mail.gmail.com>
- <PH0PR84MB17181C316E55073EBC28C386881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <PH0PR84MB17185ADBA824F9CC9EB3E022881F9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a1080yz9jggOrwz2iQ1sAB2Xe2Emh22uCuqRok60BQSiA@mail.gmail.com>
- <PH0PR84MB17186189F5025374AA39584D88E19@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a2b+ESAAkc=_2hqx0kOxwYVS6mNjMGBKhhipaSj_5jV9g@mail.gmail.com>
-In-Reply-To: <CAK8P3a2b+ESAAkc=_2hqx0kOxwYVS6mNjMGBKhhipaSj_5jV9g@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f380fd1f-ea47-465c-9e30-08da13f96eb8
-x-ms-traffictypediagnostic: MW5PR84MB1425:EE_
-x-microsoft-antispam-prvs: <MW5PR84MB1425E5703C585801CD937BD688E09@MW5PR84MB1425.NAMPRD84.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mSaOGXHWhcVfRcowjYmZLtpXWlZ/mCDO16ipEPTtvYuMpURTbDxw9wejI2Of8dwn7jLZEQbkRgj1O8eOsy7jXy3DaiDQQ+qMKMzgIJ6HPcE2tBDHhHkX3PDhHfcSclrcPbvyqCCK8M8kCD46gMPRZG99cs2+rQdYzKMoo9CBeN9A3pTvz+lrSvVlIOWmJLRqHXyx8JZfEfQw1ssPJLE3njvbEB5C029eWJSo2BT1fbElsBpo+Q4Nz8TaCAty4axskf1fH2VoYINicFJ9QbksmZIPAcaBCQBlmkPNlGYdOrXCAtLOnj7XfKLEGhK5+8zR1HLuCqmmCrDgpVGZHG9D12ltHlZiXAtKHxELE1OqBFf4iTNZIMdsQqN5Lzkrfy1u+8bsQCsBGsCxDJVztLR4Crjc/8Sm50RHc15aTVGXz8D04ns/00qcA/e4VFejWJI0iikdHKEIeiajhB8DQnDeS/N682+VDWwbqF/7EZnbdUd6vjy3AxtuHvFDAd9Sr+CapLiGWqhWKutqyQq1qu6HHrUjRMnB+suHEEigKt9+itTpeJ0e+y8bCLG075dg6TVtF+T4GAoScMZOR5amMBE4UnXd66/gN9ptACEi+k34PcoWcy2BGhj4pq5nwS7Oie5L+md4spCtbbrasgmDraQpMNUbcG6ipob1BtHrDtVpNwdW+0oG3m5OFsF1/Nf/Ft0JLt4OW+n4biDWxTZsZRgLgQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(366004)(5660300002)(186003)(26005)(508600001)(2906002)(8936002)(55016003)(71200400001)(52536014)(54906003)(6916009)(38070700005)(122000001)(66946007)(66556008)(38100700002)(66476007)(76116006)(82960400001)(33656002)(53546011)(86362001)(6506007)(8676002)(9686003)(55236004)(316002)(66446008)(4326008)(64756008)(7696005)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aDZOZ25rS1EycklYL0pZMnVWb3Q3M1lCdlFrV0NVVE9oKzBuWUpiTko1WXdy?=
- =?utf-8?B?bVFsN09JWEpEMmtXVUk0WFBObVhzek5yUTRlOW1pa2NEWWdCTk1oWkZnL04v?=
- =?utf-8?B?cHNnQ08wRUZkUjlnMEl4bTRySktzcS9uM1dMWFViMlh6ZEZJdVlaWFZ2Vm1R?=
- =?utf-8?B?akJYSnh1emUreDliSzhUWFpUNG9Cd0RqRG8wVDNianVFa0xsRXBaNGtDOTJT?=
- =?utf-8?B?cHh1Qlo3VzBIamdNNXRlbXRiNVlDL0tKOCtXNDk0NnNNbzhCZmFZcnArL0pv?=
- =?utf-8?B?OHlVeGZTQVE4aFdLU2g1UnlhVWZhSXJmcXp2bjRWKzhqTDhyYW9nTDk1NTZZ?=
- =?utf-8?B?RmdDM3JRUHVPcVlUNnNPeWlpSWZVZnRnU3ZlSDFCTUtHZnlybWVRMnU5NG05?=
- =?utf-8?B?bDRxTEY2bCtOUVZzbkMvZFhRSnEySkQ0U3RqOUt3eUJGai8zUVlkK2t2Q3lj?=
- =?utf-8?B?dm5XbTZUaUZYTzdtZVAzR0VWUHc1QUJEdmxHWmRUYnRJdVdVZW5kRGlJN0FD?=
- =?utf-8?B?VnJJc2RmRmJWYzd0TEY5bmJaUzZoTmxVZFdXbXZCVGk0aGhmKzNwMnVtSlFs?=
- =?utf-8?B?M0dRZGloOHJtMzc1VElOU3ZiTXlMcDJQdVJkZXAzR2ZRVUtzUzArWGJaVHM2?=
- =?utf-8?B?OFM1N05taC9ubGNZYzhSVSsrdlFGSDRhVGtvWEhZVjRDRzFQanhBQW9DeXhp?=
- =?utf-8?B?dDJtTkRSQjFaS3NpYllGRm5UbnBHM21SVDBSWWd4blNtM3lwV0ZRRndna3hW?=
- =?utf-8?B?dW9VaUhBZm9CUmlwS1BncnJEV01kVUJDdHFaOUFpb0hOVHdUT2EvNWcyNVNt?=
- =?utf-8?B?MDV6NTV0OWYzR0xDLzNidFpSczM4M2VKbDAxbFRWMlJ4L0N3Y3hsUlJSNm5r?=
- =?utf-8?B?Sy9OMDNmMnVEZ3Q0L2dDVG9FeFBSNlZjbmVqMk52dFlhZkp2OW1JTnR1ZlRq?=
- =?utf-8?B?M01lWDlhRzh6K3lMeEVPem1KdEErU3JEUCtFSmVlcUxRY2cvajBHd0VXZXlI?=
- =?utf-8?B?WWRyUElwek93ZzRiU1BYWGdOM2lWZzFmaGhnem1GT3Q0TUsrNnA1WGU5RFBB?=
- =?utf-8?B?Y1JOZHRtSFVjZTlPQm95aXB2aHZLU0w2c0Nhblk4cGxlQVBRVG95QzZCYkRD?=
- =?utf-8?B?ajFVbG02R0FiV21sMnJhRnRsY0lGTmpZUkg3bjcwV3RNNkdobHFHeFIzSWdD?=
- =?utf-8?B?N3h0NXQ2TXB3UG1Tck1oRjQ0TGJUeWl1VHdvRm9hR1F1YXBEajNFY3F3ZnY5?=
- =?utf-8?B?NmhDR3grVitGRkxHRitrMmlSUkVVeXk1dm9WbnZ0WGZocEdmOTFpV3FMNHNu?=
- =?utf-8?B?SkQzUXdwTmFUTnZmbDNnYWQvWURmVWVGV2VuTHRmbjJveWFrWmpvOU5mOUNn?=
- =?utf-8?B?UWI0M3NCU1ZFQnFpUTVPNmppQW1GL3ZhYjJZNENsaW9QZ0lRczVacHFzT2x4?=
- =?utf-8?B?bVhlM2JQRGFRc3VMYWpGV0JHdXRsNVBRVjNrZHN6WkVpeFlMZURCbzlXZ3Zz?=
- =?utf-8?B?MklsTEJjMVErQVQ3M3h1VHVaVUFXbzdFd0VDUjBVOVBad2xxTnFvYjVGa0VW?=
- =?utf-8?B?WThQMnRiRk90QlVkUnpZRVhrOHVHWVZhQkVYdjVJMjYxdVA3bzgxRXNnQ1lN?=
- =?utf-8?B?UnVUcVZqRFp4emRuZUNnWnlZaVhNc3lJaVhnUFNjQzZxaVJOMlUxNzFHT1hE?=
- =?utf-8?B?cjVwcHNqdFpqOXFYajBmdUNZbE9TaGM1ZlllZzVwL2EvcUZQRnhDSTZuQ1l4?=
- =?utf-8?B?cU1TeHI1YVBjeXgwcWk2WTFCWWFEU01TOTczNnJjT2hIMGhKenE0OFpnS3Z6?=
- =?utf-8?B?VUhpY2ZySkMxVzA3N2NJYVJqSFVwTEo0M2toZFI4VFg1SUxvUTdoczBVaVVO?=
- =?utf-8?B?VHB4eURDTUdOQXhoVE5FQVp4WUFzd0NOYnplLzZvMEFKdGRGMXU2R2dwbDN6?=
- =?utf-8?B?VE9kRWRGZDRYYVFNZTdWbEh4TWtPaE5CNGdMckl5NWQ4L09ObFFNcVZNblFY?=
- =?utf-8?B?SHcrS3RPM1lFRk5sMzdYKzhyRTVXV3BwT3ZIaVBSOEg4c1lETTZlYzVlZGlK?=
- =?utf-8?B?cHF1dzFxMm02a1dDdzNhN2FEOUpLNm94RDFma2lTR25SNm54SC8zclZCYUZj?=
- =?utf-8?B?UEc5Rk1HOXA4dFFKLzBwdi9VNjJCYWNYQitCTGR5YVRTbzY5a1IrZnRrelVu?=
- =?utf-8?B?a3h3RURZdzlqRnJ2RHFDSXpMWC8xekxoNWpmRmlodThJUTNhN0hIU0puSG5I?=
- =?utf-8?B?THlJL0FkSTlZSXdUS1IvdVpSUW9EeldvajVQR0tFcEowMFpmVFRIaVNuYnR4?=
- =?utf-8?B?SXhDUUhGd0M3MHhXYlhVVDAxMi9HUE1UZDZQVStzQlVCUUhuNDYwUT09?=
-Content-Type: text/plain; charset="utf-8"
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: f380fd1f-ea47-465c-9e30-08da13f96eb8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2022 16:05:25.1098
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6xEY/SibrmAT4W9tEIJPSXE9QHBgy6lkIDQE2WfaZZEhlkJXCtznh44WN34VTm++j8a/MlQJpZUrHhx87Rn5fw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR84MB1425
-X-OriginatorOrg: hpe.com
-X-Proofpoint-ORIG-GUID: uZwbuXvoagRTRxMgVhZgGmyGcMuK7Iwu
-X-Proofpoint-GUID: uZwbuXvoagRTRxMgVhZgGmyGcMuK7Iwu
-Content-Transfer-Encoding: base64
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v14 0/6] drm/loongson: add drm driver for loongson display controller
+Date:   Sat,  2 Apr 2022 00:22:45 +0800
+Message-Id: <20220401162251.1665081-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-04-01_05,2022-03-31_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- spamscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0
- mlxlogscore=883 bulkscore=0 adultscore=0 phishscore=0 priorityscore=1501
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2204010078
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBBcm5kIEJlcmdtYW5uIFttYWls
-dG86YXJuZEBhcm5kYi5kZV0gDQpTZW50OiBUaHVyc2RheSwgTWFyY2ggMzEsIDIwMjIgNDo1MyBQ
-TQ0KVG86IEhhd2tpbnMsIE5pY2sgPG5pY2suaGF3a2luc0BocGUuY29tPg0KQ2M6IEFybmQgQmVy
-Z21hbm4gPGFybmRAYXJuZGIuZGU+OyBWZXJkdW4sIEplYW4tTWFyaWUgPHZlcmR1bkBocGUuY29t
-PjsgT2xvZiBKb2hhbnNzb24gPG9sb2ZAbGl4b20ubmV0Pjsgc29jQGtlcm5lbC5vcmc7IFJvYiBI
-ZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJh
-ZGVhZC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5r
-ZXJuZWwub3JnDQpTdWJqZWN0OiBSZTogW1BBVENIIHYzIDA5LzEwXSBhcmNoOiBhcm06IGJvb3Q6
-IGR0czogSW50cm9kdWNlIEhQRSBHWFAgRGV2aWNlIHRyZWUNCg0KDQo+IEkgZG9uJ3QgdGhpbmsg
-eW91IGNhbiBkbyB0aGlzLCBpZiB5b3UgYXJlIHVzaW5nIHRoZSBzeXNjb24gcmVnbWFwLCB5b3Ug
-Z28gdGhyb3VnaCB0aGUgcmVnbWFwIGluZGlyZWN0aW9uIHJhdGhlciB0aGFuIGFjY2Vzc2luZyB0
-aGUgbW1pbyByZWdpc3RlciBieSB2aXJ0dWFsIGFkZHJlc3MsIGFuZCB0aGlzIG1heSByZXN1bHQg
-aW4gc29tZSBleHRyYSBjb2RlIGluIHlvdXIgZHJpdmVyLCBhbmQgYSBsaXR0bGUgcnVudGltZSBv
-dmVyaGVhZC4NCg0KPiBJZiB5b3UgcHJlZmVyIHRvIGF2b2lkIHRoYXQsIHlvdSBjYW4gZ28gYmFj
-ayB0byBoYXZpbmcgdGhlIHRpbWVyIG5vZGUgYXMgdGhlIHBhcmVudCwgYnV0IHdpdGhvdXQgYmVp
-bmcgYSBzeXNjb24uIEluIHRoaXMgY2FzZSwgdGhlIHdhdGNoZG9nIHdvdWxkIGJlIGhhbmRsZWQg
-aW4gb25lIG9mIHRoZXNlIHdheXM6DQoNCj4gYSkgYSBjaGlsZCBkZXZpY2UgZ2V0cyBjcmVhdGVk
-IGZyb20gdGhlIGNsb2Nrc291cmNlIGRyaXZlciBhbmQgYm91bmQgdG8gdGhlDQogICAgd2F0Y2hk
-b2cgZHJpdmVyLCB3aGljaCB0aGVuIHVzZXMgYSBwcml2YXRlIGludGVyZmFjZSBiZXR3ZWVuIHRo
-ZSBjbG9ja3NvdXJjZQ0KICAgIGFuZCB0aGUgd2F0Y2hkb2cgdG8gYWNjZXNzIHRoZSByZWdpc3Rl
-cnMNCg0KPiBiKSB0aGUgY2xvY2tzb3VyY2UgZHJpdmVyIGl0c2VsZiByZWdpc3RlcnMgYXMgYSB3
-YXRjaGRvZyBkcml2ZXIsIHdpdGhvdXQNCiAgICBoYXZpbmcgYSBzZXBhcmF0ZSBkcml2ZXIgbW9k
-dWxlDQoNCj4gT25lIHRoaW5nIHRvIGNvbnNpZGVyIGlzIHdoZXRoZXIgdGhlIHJlZ2lzdGVyIHJh
-bmdlIGhlcmUgY29udGFpbnMgYW55IHJlZ2lzdGVycyB0aGF0IG1heSBiZSB1c2VkIGluIGFub3Ro
-ZXIgZHJpdmVyLCBlLmcuIGEgc2Vjb25kIHRpbWVyLCBhIFBXTSwgb3IgYSBjbGsgY29udHJvbGxl
-ci4gSWYgbm90LCB5b3UgYXJlIGZhaXJseSBmcmVlIHRvIHBpY2sgYW55IG9mIHRoZXNlIGFwcHJv
-YWNoZXMuDQoNCkkgd2lsbCB0cnkgdG8gdXNlIHRoZSBiKSBhcHByb2FjaCBldmVyeXRoaW5nIGlu
-IHRoYXQgcmFuZ2UgaXMgdGltZXIgb3Igd2F0Y2hkb2cgcmVsYXRlZC4gVGhlcmUgaXMgYSBzZWNv
-bmQgdGltZXIgaG93ZXZlciB0aGVyZSBhcmUgbm8gcGxhbnMgb24gdXNpbmcgdGhhdC4gU2hvdWxk
-IHRoZSBjb21iaW5lZCBjb2RlIHN0aWxsIGxpdmUgaW5zaWRlIHRoZSBkcml2ZXIvdGltZXIgZGly
-ZWN0b3J5IG9yIHNob3VsZCBpdCBiZSBtb3ZlZCB0byBtZmQ/DQoNClRoYW5rcywNCg0KLU5pY2sN
-Cg==
+There is a display controller in loongson's LS2K1000 SoC and LS7A1000
+bridge chip, the display controller is a PCI device. It have two display
+pipes but with only one hardware cursor. Each way has a DVO interface
+which provide RGB888 signals, vertical & horizontal synchronisations,
+data enable and the pixel clock.
+
+Each CRTC is able to drive a 1920x1080@60Hz monitor, the maxmium
+resolution is 2048x2048. Loongson display controllers are simple which
+require scanout buffers to be physically contiguous.
+
+For LS7A1000 bridge chip, the DC is equipped with a dedicated video RAM
+which is typically 64MB or more. In this case, VRAM helper based driver
+is intended to be used even through the DC can scanout form system memory.
+
+While LS2K1000 is a SoC which is a typically UMA device, only system
+memory is available. Therefore CMA helper based driver is intended to be
+used. It is possible to use VRAM helper based driver on LS2K1000 by
+carving out part of system memory as VRAM though.
+
+For LS7A1000, there are 4 dedicated GPIOs whose control registers is
+located at the DC register space, They are used to emulate two way i2c.
+One for DVO0, another for DVO1. LS2K1000 and LS2K0500 SoC don't have such
+GPIO hardwared, they grab i2c adapter from other module, either general
+purpose GPIO emulated i2c or hardware i2c adapter.
+
+    +------+            +-----------------------------------+
+    | DDR4 |            |  +-------------------+            |
+    +------+            |  | PCIe Root complex |   LS7A1000 |
+       || MC0           |  +--++---------++----+            |
+  +----------+  HT 3.0  |     ||         ||                 |
+  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+       || MC1           +---------------|--|----------------+
+    +------+                            |  |
+    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+                      +-------+                      +------+
+
+The above picture give a simple usage of LS7A1000, note that the encoder
+is not necessary adv7125 or tfp410, other candicates can be ch7034b,
+sil9022, ite66121 and lt8618 etc.
+
+Below is a brief introduction of loongson's CPU, bridge chip and SoC.
+LS2K1000 is a double core 1.0Ghz mips64r2 compatible SoC[1]. LS7A1000 is
+a bridge chip made by Loongson corporation which act as north and/or south
+bridge of loongson's desktop and server level processor. It is equivalent
+to AMD RS780E+SB710 or something like that. More details can be read from
+its user manual[2].
+
+This bridge chip is typically use with LS3A3000, LS3A4000 and LS3A5000 cpu.
+LS3A3000 is 4 core 1.45gHz mips64r2 compatible cpu.
+LS3A4000 is 4 core 1.8gHz mips64r5 compatible cpu[3].
+LS3A5000 is 4 core 2.5gHz loongarch cpu[4].
+
+Nearly all loongson cpu has the hardware maintain the cache coherency,
+this is the most distinct feature from other Mips cpu.
+
+[1] https://wiki.debian.org/InstallingDebianOn/Lemote/Loongson2K1000
+[2] https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.html
+[3] https://ee-paper.com/loongson-3a4000-3b4000-motherboard-products-are-compatible-with-uos-system/
+[4] https://loongson.github.io/LoongArch-Documentation/Loongson-3A5000-usermanual-EN.html
+[5] https://github.com/loongson-community/pmon
+
+Sui Jingfeng (6):
+  MIPS: Loongson64: dts: update the display controller device node
+  MIPS: Loongson64: introduce board specific dts and add model property
+  dt-bindings: display: Add Loongson display controller
+  MIPS: Loongson64: defconfig: enable display bridge drivers
+  drm/loongson: add drm driver for loongson display controller
+  MAINTAINERS: add maintainers for DRM LOONGSON driver
+
+ .../loongson/loongson,display-controller.yaml | 295 +++++++++
+ MAINTAINERS                                   |   9 +
+ arch/mips/boot/dts/loongson/Makefile          |   4 +
+ arch/mips/boot/dts/loongson/lemote_a1901.dts  |  96 +++
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 +
+ .../boot/dts/loongson/ls2k1000_pai_udb.dts    | 107 ++++
+ .../boot/dts/loongson/ls3a4000_7a1000_evb.dts | 138 +++++
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |  22 +-
+ arch/mips/configs/loongson2k_defconfig        |   5 +
+ arch/mips/configs/loongson3_defconfig         |   5 +
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/loongson/Kconfig              |  25 +
+ drivers/gpu/drm/loongson/Makefile             |  16 +
+ drivers/gpu/drm/loongson/lsdc_crtc.c          | 400 ++++++++++++
+ drivers/gpu/drm/loongson/lsdc_debugfs.c       | 176 ++++++
+ drivers/gpu/drm/loongson/lsdc_debugfs.h       |  17 +
+ drivers/gpu/drm/loongson/lsdc_drv.c           | 413 +++++++++++++
+ drivers/gpu/drm/loongson/lsdc_drv.h           | 186 ++++++
+ drivers/gpu/drm/loongson/lsdc_i2c.c           | 268 ++++++++
+ drivers/gpu/drm/loongson/lsdc_i2c.h           |  38 ++
+ drivers/gpu/drm/loongson/lsdc_irq.c           |  57 ++
+ drivers/gpu/drm/loongson/lsdc_irq.h           |  17 +
+ drivers/gpu/drm/loongson/lsdc_output.c        | 261 ++++++++
+ drivers/gpu/drm/loongson/lsdc_output.h        |  21 +
+ drivers/gpu/drm/loongson/lsdc_pci_drv.c       | 342 +++++++++++
+ drivers/gpu/drm/loongson/lsdc_plane.c         | 436 +++++++++++++
+ drivers/gpu/drm/loongson/lsdc_pll.c           | 573 ++++++++++++++++++
+ drivers/gpu/drm/loongson/lsdc_pll.h           |  87 +++
+ drivers/gpu/drm/loongson/lsdc_regs.h          | 219 +++++++
+ 30 files changed, 4239 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+ create mode 100644 arch/mips/boot/dts/loongson/lemote_a1901.dts
+ create mode 100644 arch/mips/boot/dts/loongson/ls2k1000_pai_udb.dts
+ create mode 100644 arch/mips/boot/dts/loongson/ls3a4000_7a1000_evb.dts
+ create mode 100644 drivers/gpu/drm/loongson/Kconfig
+ create mode 100644 drivers/gpu/drm/loongson/Makefile
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_crtc.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_debugfs.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_debugfs.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_drv.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_drv.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_i2c.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_i2c.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_irq.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_irq.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_output.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_output.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_pci_drv.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_plane.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_pll.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_pll.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_regs.h
+
+-- 
+2.25.1
+
