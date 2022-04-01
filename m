@@ -2,40 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 455014EE96A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 851854EE975
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 10:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344061AbiDAH6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 03:58:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
+        id S1344134AbiDAIE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 04:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344157AbiDAH55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:57:57 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0FB1AA8F5;
-        Fri,  1 Apr 2022 00:56:06 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1naC8T-0006pi-L5; Fri, 01 Apr 2022 09:55:57 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>, zhangqing@rock-chips.com,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: convert rockchip,rk3188-cru.txt to YAML
-Date:   Fri, 01 Apr 2022 09:55:55 +0200
-Message-ID: <3107512.vfdyTQepKt@diego>
-In-Reply-To: <20220331225134.7A0A9C340ED@smtp.kernel.org>
-References: <20220329111323.3569-1-jbx6244@gmail.com> <20220331225134.7A0A9C340ED@smtp.kernel.org>
+        with ESMTP id S1344126AbiDAIE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 04:04:26 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009CA1CABCE;
+        Fri,  1 Apr 2022 01:02:35 -0700 (PDT)
+X-UUID: 93d2fd38057740cc9e3ce94c513447b5-20220401
+X-UUID: 93d2fd38057740cc9e3ce94c513447b5-20220401
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 320020926; Fri, 01 Apr 2022 16:02:27 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 1 Apr 2022 16:02:26 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 1 Apr 2022 16:02:26 +0800
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Subject: [RESEND v2 0/2] Add support for MediaTek PMIC MT6366
+Date:   Fri, 1 Apr 2022 16:02:10 +0800
+Message-ID: <20220401080212.27383-1-johnson.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,62 +50,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+This patchset adds support for MediaTek PMIC MT6366.
+MT6366 is the primary PMIC for MT8186 and probably other SOCs.
 
-Am Freitag, 1. April 2022, 00:51:32 CEST schrieb Stephen Boyd:
-> Quoting Johan Jonker (2022-03-29 04:13:22)
-> > diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
-> > new file mode 100644
-> > index 000000000..ddd7e46af
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
-> > @@ -0,0 +1,78 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/rockchip,rk3188-cru.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip RK3188/RK3066 Clock and Reset Unit (CRU)
-> > +
-> > +maintainers:
-> > +  - Elaine Zhang <zhangqing@rock-chips.com>
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +
-> > +description: |
-> > +  The RK3188/RK3066 clock controller generates and supplies clocks to various
-> > +  controllers within the SoC and also implements a reset controller for SoC
-> > +  peripherals.
-> > +  Each clock is assigned an identifier and client nodes can use this identifier
-> > +  to specify the clock which they consume. All available clocks are defined as
-> > +  preprocessor macros in the dt-bindings/clock/rk3188-cru.h and
-> > +  dt-bindings/clock/rk3066-cru.h headers and can be used in device tree sources.
-> > +  Similar macros exist for the reset sources in these files.
-> > +  There are several clocks that are generated outside the SoC. It is expected
-> > +  that they are defined using standard clock bindings with following
-> > +  clock-output-names:
-> > +    - "xin24m"    - crystal input                 - required
-> > +    - "xin32k"    - RTC clock                     - optional
-> > +    - "xin27m"    - 27mhz crystal input on RK3066 - optional
-> > +    - "ext_hsadc" - external HSADC clock          - optional
-> > +    - "ext_cif0"  - external camera clock         - optional
-> > +    - "ext_rmii"  - external RMII clock           - optional
-> > +    - "ext_jtag"  - external JTAG clock           - optional
-> 
-> I'd expect all these clks here to be inputs to this node.
+Resend v2:
+- rebase on Linux 5.17
 
-The optional clocks are all part of a circular dependency.
+Changes in v2:
+- rebase on Linux 5.17-rc8
+- change subject line
 
-So for example xin32k normally is generated by the pmic and fed
-back into the system, so to get xin32k, we need the pmic to probe,
-which needs i2c, which in turn already needs the clock controller.
+Johnson Wang (2):
+  regulator: mt6366: Add support for MT6366 regulator
+  dt-bindings: regulator: Add BUCK and LDO document for MT6358 and
+    MT6366
 
-Or optional clocks may not be available at all.
+ .../bindings/regulator/mt6358-regulator.txt   |  22 +-
+ drivers/regulator/mt6358-regulator.c          | 213 +++++++++++++++++-
+ include/linux/regulator/mt6358-regulator.h    |  45 ++++
+ 3 files changed, 270 insertions(+), 10 deletions(-)
 
-So for the past years we already relied on the clock-system's
-self adaptation if a clock becomes available at some point
-during later boot and hence do not have those in a clocks-property.
-
-Heiko
-
+-- 
+2.18.0
 
