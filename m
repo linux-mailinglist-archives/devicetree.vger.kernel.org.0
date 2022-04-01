@@ -2,196 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA18B4EE782
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 07:04:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 482D34EE7C7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 07:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233970AbiDAFGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 01:06:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
+        id S245103AbiDAFcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 01:32:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233411AbiDAFGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 01:06:01 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4627512E77C;
-        Thu, 31 Mar 2022 22:04:11 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 231547da086462;
-        Fri, 1 Apr 2022 00:04:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1648789447;
-        bh=pdOte0r4buZls7OnQjcRXzHmqGaFLMm2LPj/7uZYXPs=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Cy8sIj06UcND2JtGwRgSpICAq45rrQP9fQJxNECIsUwAX6cWsTsrXkUYZOoBs7Qxx
-         kv3EzG+Hl49Bmk8MOzVHahdEd8RGZNbxo+Vm21bZmml3FQ6w2yQN+GyyvubVnFHI1i
-         5Sqd0i6vvcEncprMD2gTHSQBq9vYZmQ5H9RM+33A=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 231547ts047177
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 1 Apr 2022 00:04:07 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 1
- Apr 2022 00:04:06 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 1 Apr 2022 00:04:06 -0500
-Received: from [10.24.69.236] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 231542Bb017599;
-        Fri, 1 Apr 2022 00:04:03 -0500
-Message-ID: <1fcac9c3-4b84-6572-ebc6-4d6a50f0132a@ti.com>
-Date:   Fri, 1 Apr 2022 10:34:02 +0530
+        with ESMTP id S234670AbiDAFcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 01:32:53 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82453A5C5;
+        Thu, 31 Mar 2022 22:31:01 -0700 (PDT)
+X-UUID: f9346e8933214fee973d836414c06e83-20220401
+X-UUID: f9346e8933214fee973d836414c06e83-20220401
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1937204018; Fri, 01 Apr 2022 13:30:55 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 1 Apr 2022 13:30:53 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 1 Apr 2022 13:30:53 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH 0/1] mt8192: Add mmc device nodes
+Date:   Fri, 1 Apr 2022 13:30:51 +0800
+Message-ID: <20220401053052.2160-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add documentation for AM62 USB
- Wrapper module
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20220324073425.18607-1-a-govindraju@ti.com>
- <20220324073425.18607-2-a-govindraju@ti.com>
- <93fe6a41-3b59-2fbc-6f95-833f337815ee@kernel.org>
- <41f79aa5-1e04-53f8-ab21-85fe6039e24e@ti.com>
- <2b33798e-23c2-d4a5-171a-55c28bc40c40@kernel.org>
- <YkZFV4h/vvmKg6iw@robh.at.kernel.org>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-In-Reply-To: <YkZFV4h/vvmKg6iw@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Take mmc device patch from series 20220330133816.30806-1-allen-kh.cheng@mediatek.com/
 
-On 01/04/22 05:50, Rob Herring wrote:
-> On Thu, Mar 24, 2022 at 12:53:08PM +0100, Krzysztof Kozlowski wrote:
->> On 24/03/2022 12:40, Aswath Govindraju wrote:
->>> Hi Krzysztof,
->>>
->>> On 24/03/22 16:37, Krzysztof Kozlowski wrote:
->>>> On 24/03/2022 08:34, Aswath Govindraju wrote:
->>>>> Add bindings for the TI's AM62 wrapper module for the Synopsys USBSS-DRD
->>>>> controller.
->>>>>
->>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>>>> ---
->>>>>
->>>>> Changes since v1:
->>>>> - made correction in grammer of clocks property description
->>>>>   and added maxItems in the interrupts property based on comments
->>>>>   received from Roger
->>>>> - corrected the title, fixed the description of
->>>>>   ti,syscon-phy-pll-refclk, added pattern properties and child node
->>>>>   in the example based on the comments from Krzysztof.
->>>>>
->>>>>  .../devicetree/bindings/usb/ti,am62-usb.yaml  | 117 ++++++++++++++++++
->>>>>  1 file changed, 117 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..452bfdc6fb09
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
->>>>> @@ -0,0 +1,117 @@
->>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/usb/ti,am62-usb.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: TI's AM62 wrapper module for the Synopsys USBSS-DRD controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Aswath Govindraju <a-govindraju@ti.com>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: ti,am62-usb
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  ranges: true
->>>>> +
->>>>> +  power-domains:
->>>>> +    description:
->>>>> +      PM domain provider node and an args specifier containing
->>>>> +      the USB ISO device id value. See,
->>>>> +      Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    description: Clock phandle to usb2_refclk
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: ref
->>>>> +
->>>>> +  id-gpio:
->>>>> +    description:
->>>>> +      GPIO to be used as ID pin
->>>>> +    maxItems: 1
->>>>
->>>> I have doubts about this. If you USB controller handles the ID pin, then
->>>> probably this should be moved to usb-connector.yaml. I did not see
->>>> id-gpio in any other USB controller blocks.
->>>>
->>>
->>> Yes, the USB wrapper handles the ID pin operation only. It also reads
->>> the status of VBUS by reading a register from its MMR and not using a
->>> gpio. After evaluating the role the based on the states if id pin and
->>> VBUS, this role is communicated to the dwc3 core driver using extcon.
->>> There is no way for the dwc3 driver to detect the role on its own.
->>>
->>>
->>> The usb-connector(drivers/usb/common/usb-conn-gpio.c) driver, seems to
->>> be implemented for driving the VBUS, based on ID and VBUS pin status.
->>> However, in case of the above implementation we need to communicate the
->>> detected role to the dwc3 core driver. Also, the wrapper does not
->>> control VBUS but it is the dwc3 core driver that drives the VBUS.
->>> Therefore, I think the usb-connector implementation cannot be used here.
->>
->> I don't think about usb-conn-gpio.c but using the binding generic
->> binding for usb-X-connector and define a connector with ID.
->>
->> Actually Rob could help here.
->>
->> Rob,
->> Should the id-gpio be modeled as a property in this glue/wrapper driver
->> or rather as part of usb-connector child node?
-> 
-> That's a simple question. Where does the ID GPIO signal go to? The 
-> connector, so it goes in the connector node.
-> 
+This series are based on matthias.bgg/linux.git, v5.18-next/dts64
 
-Thank you for the clarification. Here ID-gpio is directly read by the
-wrapper and hence, I have modeled it as a property in the wrapper dt
-node. May I know if this wrong and should the modelling be looked at
-differently?
+Changes history of mmc:
+changes since v5:$
+- mmc: diable the msdc clock node, drop reviewed-by tags.
 
-Thanks,
-Aswath
+changes since v4:
+- mmc: reserve msdc node
 
-> If we have a driver for the usb-connector node, that's news to me. Not 
-> that we couldn't, but that has nothing to do with designing the binding.
-> 
-> Rob
+changes since v3:
+- mmc: reorder clocks as specified in the dt-bindings
+
+changes since v2:
+- mmc: use single line for reg
+
+changes since v1:
+- none
+
+Allen-KH Cheng (1):
+  arm64: dts: mt8192: Add mmc device nodes
+
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 33 ++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+-- 
+2.18.0
 
