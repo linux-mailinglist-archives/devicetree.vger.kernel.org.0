@@ -2,65 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BE94EEDCF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66DD04EEDE9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346165AbiDANJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 09:09:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59458 "EHLO
+        id S1346242AbiDANPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 09:15:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234848AbiDANI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:08:59 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121E7268C26;
-        Fri,  1 Apr 2022 06:07:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B3E33B824D3;
-        Fri,  1 Apr 2022 13:07:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70B93C3410F;
-        Fri,  1 Apr 2022 13:07:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648818427;
-        bh=NxIz7F5Ix7ujuYeTmjItcADAGgHavHcVWcqI1LZ7iuI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pHoul7yeo4S4WCdbiySBxEeao4t68t55oiq+0nBbRWnetlNqSCqMU4NxltjowIueN
-         bEsRsmnLsKoEcWCnsymRsYtudgJ7Pva9ogQhN18jwJzW35e1W3F52eurA2ae1Py+Nl
-         bWCWRy2XXIZXhmXPvGRf3kZpLkM5/UKl1UYI2+nrzfmBw0tH+klQJmW8tqKDSicNar
-         ZTd4O9cEu6iL9/dd80DAqOaDU1iTHc/dIMAOF6k8Hdz7ym4MEd6aT4JLziOoV5UFkk
-         L0zvAOEIDU156W2BXGjpMYWYfxq2W5t4bEc8HSYieJYpll8a1Bfj+Kll0UtOOmAR5y
-         FKm7vKSc2+E2g==
-Received: by mail-io1-f50.google.com with SMTP id z7so3108728iom.1;
-        Fri, 01 Apr 2022 06:07:07 -0700 (PDT)
-X-Gm-Message-State: AOAM530wmEjJCUuCSj3Mtm6Q9uvLalVseS6VUGQyzeVIgdzNaZVjdJLg
-        pnuoCkjUgZjlhlezHZSvnrrK0AYNTihydQVWjg==
-X-Google-Smtp-Source: ABdhPJxGvqOqt7HA/fYx1QugaDiqtYmr9VZyOQdG68K+8h5LGz2aCIQ064fcbTMpqrNVR/4RerP6xeeUIi8vABzQHzQ=
-X-Received: by 2002:a02:1107:0:b0:321:78dc:890d with SMTP id
- 7-20020a021107000000b0032178dc890dmr5872819jaf.236.1648818426623; Fri, 01 Apr
- 2022 06:07:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YkYWzf7J17AfXgLl@robh.at.kernel.org> <CA+V-a8sia2YgWmry+SxJu3asD47PSD6UnND33599ygTBymPy_g@mail.gmail.com>
-In-Reply-To: <CA+V-a8sia2YgWmry+SxJu3asD47PSD6UnND33599ygTBymPy_g@mail.gmail.com>
+        with ESMTP id S241686AbiDANPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:15:19 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB483EA9D;
+        Fri,  1 Apr 2022 06:13:30 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id b188so2722518oia.13;
+        Fri, 01 Apr 2022 06:13:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Dt6DUcWZe68wNzFOcmf1w5pbg157v95Sfa3KdIbLtuY=;
+        b=ygOs0ijOlu9kSRz6xLgL2o974GzCt2H6RZXZM+SrE1kgXmwzlRoosKtRS4k16XRY4Y
+         IBflj+MZOAsUk+CuLbKNoeuMk/uCldAQgT0ARtcn5N/l6/9WezAacs//wB11c0+ctEso
+         tlmw4qk6gxEHbzZ8apRmQjRESTz4o7PtXAYuuE/ngoeuD23sQzrnxFw5EDebjDDvpdPU
+         lfN5sEhGNmpy7mAnbDUadLqqt7/JAOdrUz9FTVTX1Mi6P2ceAWHJoF1QebNdfip9YPVr
+         7NPkFPxNsB7mo7MIqR1EbHkYuN9CHRORhdKcwPTjzPJsI3R9xlpjGErrQgkb3Bdikg+B
+         x3Bw==
+X-Gm-Message-State: AOAM530mLzKRgZ1btgoSco0haNcq4G7/CR/F1RO5oomg6gl3TaWJuYJJ
+        p6aoInN5y9oYroWAG8m2rg==
+X-Google-Smtp-Source: ABdhPJx0RcNvDjmuubFatcz4ZzB3jxBfl9sx/UlLM31HKdGp5LJoSd3+/HrnySHLnCdBMlFeh+WiWA==
+X-Received: by 2002:aca:1303:0:b0:2ec:cae7:acc4 with SMTP id e3-20020aca1303000000b002eccae7acc4mr4664170oii.179.1648818809222;
+        Fri, 01 Apr 2022 06:13:29 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r19-20020acaa813000000b002ed02ca6a3fsm981706oie.1.2022.04.01.06.13.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Apr 2022 06:13:27 -0700 (PDT)
+Received: (nullmailer pid 2864971 invoked by uid 1000);
+        Fri, 01 Apr 2022 13:13:26 -0000
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 1 Apr 2022 08:06:55 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+P6GTXcwqf8EL+vBdJWSDM+Bxxm5MPEyJPF8A3ZWaQ3A@mail.gmail.com>
-Message-ID: <CAL_Jsq+P6GTXcwqf8EL+vBdJWSDM+Bxxm5MPEyJPF8A3ZWaQ3A@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
- DT core
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20220401072714.106403-1-krzysztof.kozlowski@linaro.org>
+References: <20220401072714.106403-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: gpio: add common consumer GPIO lines
+Date:   Fri, 01 Apr 2022 08:13:26 -0500
+Message-Id: <1648818806.914066.2864970.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,40 +61,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 1, 2022 at 2:42 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Rob,
->
-> On Thu, Mar 31, 2022 at 10:02 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Wed, Mar 16, 2022 at 08:06:33PM +0000, Lad Prabhakar wrote:
-> > > Now that all the DT drivers have switched to platform_get_irq() we can now
-> > > safely drop the static setup of IRQ resource from DT core code.
-> > >
-> > > With the above change hierarchical setup of irq domains is no longer
-> > > bypassed and thus allowing hierarchical interrupt domains to describe
-> > > interrupts using "interrupts" DT property.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > Hi All,
-> > >
-> > > Sending this as RFC as couple of more drivers need to hit -rc yet with
-> > > the platform_get_irq() change while that is in progress I wanted to get
-> > > some feedback on this patch.
-> >
-> > I just applied this on top of current master and pushed to my
-> > for-kernelci branch. It should show up in kernelCI in a bit. I did this
-> > before all the fixes too and there were definitely a couple of test
-> > regressions.
-> >
-> Any chance you can share the regressions or maybe the CI script so
-> that I can reproduce it locally.
+On Fri, 01 Apr 2022 09:27:14 +0200, Krzysztof Kozlowski wrote:
+> Typical GPIO lines like enable, powerdown, reset or wakeup are not
+> documented as common, which leads to new variations of these (e.g.
+> pwdn-gpios).  Add a common schema which serves also as a documentation
+> for preferred naming.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v2:
+> 1. Correct email.
+> 
+> Changes since v1:
+> 1. Select-true, add maxItems and description for each entry (Rob).
+> 2. Mention ACTIVE_LOW in bindings description (Linus).
+> 3. Add allOf for pwrseq reset-gpios case.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/gpio/gpio-consumer-common.yaml   | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+> 
 
-It will show up here[1] as 'robh', but it still hasn't built yet which
-is strange.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Rob
+yamllint warnings/errors:
 
-[1] https://linux.kernelci.org/job/
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.example.dt.yaml: rt4801@73: enable-gpios: [[4294967295, 2, 0], [4294967295, 3, 0]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
