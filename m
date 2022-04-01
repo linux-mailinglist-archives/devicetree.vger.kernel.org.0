@@ -2,355 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9F74EF8AF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 19:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6B64EF8EA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 19:25:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349585AbiDARMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 13:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60074 "EHLO
+        id S1347896AbiDAR1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 13:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344943AbiDARMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 13:12:31 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 195782DAA2
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 10:10:40 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id h4so5090654wrc.13
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 10:10:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gtc0r33WP14cEsrZqwD4QZdIHMMUqw4VRfbzyFN9zcI=;
-        b=T86KnLvcENK6vxHzQQBGs+xno70D0fUd5uHERzr2EUB2h1RyMvB3L8bFM2kARK2wEw
-         zpqa8lwLvGiCtLqaU7Xyo8BIJiwzW8xifpHUHbYVWtMTts+ysAd19ytTaH+Uy3w1xZx3
-         7REKmZmq8Oo42q3J2zKP3nxjAmwaSozY7nE/Qk3IlNPPvi+lIimmabSia+I/truHNKEc
-         GLXqVkJnvF77KGkJiYW8sjZmvz1S24oFDNPafeCgjL5wsxb1y/V9v/5pPKRuD4hhm8nC
-         65d6WzqNF0IZ+jDniL2urfXfGhQKDywghq/LeNIthHTNMalGtX0FMcUQY653Az+w9SZ/
-         drJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gtc0r33WP14cEsrZqwD4QZdIHMMUqw4VRfbzyFN9zcI=;
-        b=Aj5CIuLf3rrL9w6LI9fFgOtDnHtWtzY4v9c1qsSRKWLyQF9VUKa5rUrSiE/tE/18yH
-         /DbSN+TywEf0GWIa/FeMZZddKfkPPrfty0XBAtf7+hMUGg4p5of/BtsV9q0YGjb7h891
-         PalE+LHPBVz/azg8scF7oUpAgbEIn7Ntve0SpJIEBtTnlDh1D2RwVAboP5CVwyU/DxQc
-         iWg66i90ih8zUIBAlXxJD/sJ1SmmPzdxSlxxCTlWgDNibPaUYKQcWxSfg4M9rNreHa9a
-         +UXc6QN/f8AyHrcCbmGrNfcMpQQigapUmoQ7V5OKnljinm34D9gpMOvdpSL4y1uytuhU
-         Kg0A==
-X-Gm-Message-State: AOAM531poO6SFBoA4RbWXnzT2ttoOJj1TmL6VPgpeHz0+jaL5vDtLHs0
-        Ul05mGgqFP6oBVJMtr68JNyK6g==
-X-Google-Smtp-Source: ABdhPJweuNmNgYcc50tSfFZ4+bVpsorn2yZtJtgONlQG0fxnUHa8+DlQjc/iAekVuWT/1loBlkWiOQ==
-X-Received: by 2002:a05:6000:1010:b0:204:c3c0:ad93 with SMTP id a16-20020a056000101000b00204c3c0ad93mr8342432wrx.311.1648833038514;
-        Fri, 01 Apr 2022 10:10:38 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id l19-20020a05600c4f1300b0038cb924c3d7sm2601728wmq.45.2022.04.01.10.10.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 10:10:38 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S1349931AbiDAR1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 13:27:15 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90261B8FF0;
+        Fri,  1 Apr 2022 10:25:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1648833899; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=A+qVXCI8B/v/0h/89awxMV8kULVcp1PZrXFsVavkmLBPAOtWtHKYGp85PIeX0eaIPrp+0+PgKMfjJPGLAGKiTY+7aoTerK7WPmkpcq5w6bT+wxnnb287rT0/QZ6DoUmCNKWnTPzjakm6N5pjwhkEoVAcFEFn3ar+EQI38Ypazy8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1648833899; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=o5HN4+D5UQ9euR0BVh4ZToQJDW/64+Gz9slpGZrQ7b0=; 
+        b=guv5aZD5o1M2LJfUSxYNJxrYsHvldaMeCw6hTDtLB1eoZ9nF+Mv3+60XJnQ2TFDhA8fff6rMRp2HBmuBRhP0pth5XesgIFjxSOU/YrbPrLqMK7eFOExjliXDnucdjYAXOvlvky3jf+b/5dqThNUwom/8izBcZI2a2XGbemrkHTI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1648833899;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=o5HN4+D5UQ9euR0BVh4ZToQJDW/64+Gz9slpGZrQ7b0=;
+        b=IXK/gkmJRb7yKtYwtcMvkRYxsiqUITMf3libtsxsaO+jpZASqrRFCoZhmHkiGRrs
+        BJa1f89MdYmryvNK5tZQv3lsycDtG6+lM4Nat5O8Vj/7VdU+6ZIDjX9U5jpEbiWU9kJ
+        uH30VD3/MqHez5BhjM4GcSGkFcpTSINUjk2Af+fo=
+Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1648833897593238.78338422234162; Fri, 1 Apr 2022 10:24:57 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: soc: qcom,smp2p: convert to dtschema
-Date:   Fri,  1 Apr 2022 19:10:35 +0200
-Message-Id: <20220401171035.1096670-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        Scott Branden <scott.branden@broadcom.com>,
+        Christian Lamparter <chunkeey@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH 1/2] dt-bindings: arm: bcm: fix BCM53012 and BCM53016 SoC strings
+Date:   Fri,  1 Apr 2022 20:24:27 +0300
+Message-Id: <20220401172427.2806-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm Shared Memory Point 2 Point bindings to DT Schema.
+Fix inaccurate SoC strings brcm,brcm53012 and brcm,brcm53016 to respectively
+brcm,bcm53012 and brcm,bcm53016.
 
-Changes against original bindings: enforce only specific names of child
-nodes, instead of any names.
+Create a new description for BCM53016 and move Meraki MR32 under it.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fixes: 4cb5201fcb5d ("dt-bindings: arm: bcm: Convert BCM4708 to YAML")
+Fixes: a2e385f5374d ("dt-bindings: ARM: add bindings for the Meraki MR32")
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 ---
- .../bindings/soc/qcom/qcom,smp2p.txt          | 110 -------------
- .../bindings/soc/qcom/qcom,smp2p.yaml         | 145 ++++++++++++++++++
- 2 files changed, 145 insertions(+), 110 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+brcm,bcm53012 string was silently changed to brcm,brcm53012 after
+converting to YAML. Let me know if this was intentional.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
-deleted file mode 100644
-index 49e1d72d3648..000000000000
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
-+++ /dev/null
-@@ -1,110 +0,0 @@
--Qualcomm Shared Memory Point 2 Point binding
--
--The Shared Memory Point to Point (SMP2P) protocol facilitates communication of
--a single 32-bit value between two processors.  Each value has a single writer
--(the local side) and a single reader (the remote side).  Values are uniquely
--identified in the system by the directed edge (local processor ID to remote
--processor ID) and a string identifier.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,smp2p"
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: one entry specifying the smp2p notification interrupt
--
--- mboxes:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to the associated doorbell in APCS, as described
--		    in mailbox/mailbox.txt
--
--- qcom,ipc:
--	Usage: required, unless mboxes is specified
--	Value type: <prop-encoded-array>
--	Definition: three entries specifying the outgoing ipc bit used for
--		    signaling the remote end of the smp2p edge:
--		    - phandle to a syscon node representing the apcs registers
--		    - u32 representing offset to the register within the syscon
--		    - u32 representing the ipc bit within the register
--
--- qcom,smem:
--	Usage: required
--	Value type: <u32 array>
--	Definition: two identifiers of the inbound and outbound smem items used
--		    for this edge
--
--- qcom,local-pid:
--	Usage: required
--	Value type: <u32>
--	Definition: specifies the identifier of the local endpoint of this edge
--
--- qcom,remote-pid:
--	Usage: required
--	Value type: <u32>
--	Definition: specifies the identifier of the remote endpoint of this edge
--
--= SUBNODES
--Each SMP2P pair contain a set of inbound and outbound entries, these are
--described in subnodes of the smp2p device node. The node names are not
--important.
--
--- qcom,entry-name:
--	Usage: required
--	Value type: <string>
--	Definition: specifies the name of this entry, for inbound entries this
--		    will be used to match against the remotely allocated entry
--		    and for outbound entries this name is used for allocating
--		    entries
--
--- interrupt-controller:
--	Usage: required for incoming entries
--	Value type: <empty>
--	Definition: marks the entry as inbound; the node should be specified
--		    as a two cell interrupt-controller as defined in
--		    "../interrupt-controller/interrupts.txt"
--		    If not specified this node will denote the outgoing entry
--
--- #interrupt-cells:
--	Usage: required for incoming entries
--	Value type: <u32>
--	Definition: must be 2 - denoting the bit in the entry and IRQ flags
--
--- #qcom,smem-state-cells:
--	Usage: required for outgoing entries
--	Value type: <u32>
--	Definition: must be 1 - denoting the bit in the entry
--
--= EXAMPLE
--The following example shows the SMP2P setup with the wireless processor,
--defined from the 8974 apps processor's point-of-view. It encompasses one
--inbound and one outbound entry:
--
--wcnss-smp2p {
--	compatible = "qcom,smp2p";
--	qcom,smem = <431>, <451>;
--
--	interrupts = <0 143 1>;
--
--	qcom,ipc = <&apcs 8 18>;
--
--	qcom,local-pid = <0>;
--	qcom,remote-pid = <4>;
--
--	wcnss_smp2p_out: master-kernel {
--		qcom,entry-name = "master-kernel";
--
--		#qcom,smem-state-cells = <1>;
--	};
--
--	wcnss_smp2p_in: slave-kernel {
--		qcom,entry-name = "slave-kernel";
--
--		interrupt-controller;
--		#interrupt-cells = <2>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
-new file mode 100644
-index 000000000000..8c362ce3c05b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
-@@ -0,0 +1,145 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/qcom/qcom,smp2p.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+Arınç
+---
+ .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml        | 9 +++++++--
+ arch/arm/boot/dts/bcm53016-meraki-mr32.dts               | 2 +-
+ arch/arm/boot/dts/bcm953012er.dts                        | 2 +-
+ arch/arm/boot/dts/bcm953012hr.dts                        | 2 +-
+ arch/arm/boot/dts/bcm953012k.dts                         | 2 +-
+ 5 files changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+index 434d3c6db61e..8a97ee048053 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+@@ -83,9 +83,14 @@ properties:
+               - brcm,bcm953012er
+               - brcm,bcm953012hr
+               - brcm,bcm953012k
++          - const: brcm,bcm53012
++          - const: brcm,bcm4708
 +
-+title: Qualcomm Shared Memory Point 2 Point
-+
-+maintainers:
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+description:
-+  The Shared Memory Point to Point (SMP2P) protocol facilitates communication
-+  of a single 32-bit value between two processors.  Each value has a single
-+  writer (the local side) and a single reader (the remote side).  Values are
-+  uniquely identified in the system by the directed edge (local processor ID to
-+  remote processor ID) and a string identifier.
-+
-+properties:
-+  compatible:
-+    const: qcom,smp2p
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  mboxes:
-+    maxItems: 1
-+    description:
-+      Reference to the mailbox representing the outgoing doorbell in APCS for
-+      this client.
-+
-+  qcom,ipc:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to a syscon node representing the apcs registers
-+          - description: u32 representing offset to the register within the syscon
-+          - description: u32 representing the ipc bit within the register
-+    description:
-+      Three entries specifying the outgoing ipc bit used for signaling the
-+      remote end of the smp2p edge.
-+
-+  qcom,local-pid:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      The identifier of the local endpoint of this edge.
-+
-+  qcom,remote-pid:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      The identifier of the remote endpoint of this edge.
-+
-+  qcom,smem:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      maxItems: 2
-+    description:
-+      Two identifiers of the inbound and outbound smem items used for this edge.
-+
-+patternProperties:
-+  "^master-kernel|slave-kernel|ipa-ap-to-modem|ipa-modem-to-ap$":
-+    type: object
-+    description:
-+      Each SMP2P pair contain a set of inbound and outbound entries, these are
-+      described in subnodes of the smp2p device node. The node names are not
-+      important.
-+
-+    properties:
-+      interrupt-controller:
-+        description:
-+          Marks the entry as inbound; the node should be specified as a two
-+          cell interrupt-controller.  If not specified this node will denote
-+          the outgoing entry.
-+
-+      '#interrupt-cells':
-+        const: 2
-+
-+      qcom,entry-name:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description:
-+          The name of this entry, for inbound entries this will be used to
-+          match against the remotely allocated entry and for outbound entries
-+          this name is used for allocating entries.
-+
-+      '#qcom,smem-state-cells':
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        const: 1
-+        description:
-+          Required for outgoing entries.
-+
-+    required:
-+      - qcom,entry-name
-+
-+    oneOf:
-+      - required:
-+          - interrupt-controller
-+          - '#interrupt-cells'
-+      - required:
-+          - '#qcom,smem-state-cells'
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - qcom,local-pid
-+  - qcom,remote-pid
-+  - qcom,smem
-+
-+oneOf:
-+  - required:
-+      - mboxes
-+  - required:
-+      - qcom,ipc
-+
-+additionalProperties: false
-+
-+examples:
-+  # The following example shows the SMP2P setup with the wireless processor,
-+  # defined from the 8974 apps processor's point-of-view. It encompasses one
-+  # inbound and one outbound entry.
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    shared-memory {
-+        compatible = "qcom,smp2p";
-+        qcom,smem = <431>, <451>;
-+        interrupts = <GIC_SPI 143 IRQ_TYPE_EDGE_RISING>;
-+        qcom,ipc = <&apcs 8 18>;
-+        qcom,local-pid = <0>;
-+        qcom,remote-pid = <4>;
-+
-+        wcnss_smp2p_out: master-kernel {
-+            qcom,entry-name = "master-kernel";
-+            #qcom,smem-state-cells = <1>;
-+        };
-+
-+        wcnss_smp2p_in: slave-kernel {
-+            qcom,entry-name = "slave-kernel";
-+            interrupt-controller;
-+            #interrupt-cells = <2>;
-+        };
-+    };
++      - description: BCM53016 based boards
++        items:
++          - enum:
+               - meraki,mr32
+-          - const: brcm,brcm53012
+-          - const: brcm,brcm53016
++          - const: brcm,bcm53016
+           - const: brcm,bcm4708
+ 
+ additionalProperties: true
+diff --git a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+index 66c64a6ec414..daca63f25134 100644
+--- a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
++++ b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+@@ -13,7 +13,7 @@
+ #include <dt-bindings/leds/common.h>
+ 
+ / {
+-	compatible = "meraki,mr32", "brcm,brcm53016", "brcm,bcm4708";
++	compatible = "meraki,mr32", "brcm,bcm53016", "brcm,bcm4708";
+ 	model = "Meraki MR32";
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/bcm953012er.dts b/arch/arm/boot/dts/bcm953012er.dts
+index 52feca0fb906..dd63a148a16b 100644
+--- a/arch/arm/boot/dts/bcm953012er.dts
++++ b/arch/arm/boot/dts/bcm953012er.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Enterprise Router (BCM953012ER)";
+-	compatible = "brcm,bcm953012er", "brcm,brcm53012", "brcm,bcm4708";
++	compatible = "brcm,bcm953012er", "brcm,bcm53012", "brcm,bcm4708";
+ 
+ 	memory@0 {
+ 		device_type = "memory";
+diff --git a/arch/arm/boot/dts/bcm953012hr.dts b/arch/arm/boot/dts/bcm953012hr.dts
+index 9140be7ec053..b070b69466bd 100644
+--- a/arch/arm/boot/dts/bcm953012hr.dts
++++ b/arch/arm/boot/dts/bcm953012hr.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar HR (BCM953012HR)";
+-	compatible = "brcm,bcm953012hr", "brcm,brcm53012", "brcm,bcm4708";
++	compatible = "brcm,bcm953012hr", "brcm,bcm53012", "brcm,bcm4708";
+ 
+ 	aliases {
+ 		ethernet0 = &gmac0;
+diff --git a/arch/arm/boot/dts/bcm953012k.dts b/arch/arm/boot/dts/bcm953012k.dts
+index de40bd59a5fa..f1e6bcaa1edd 100644
+--- a/arch/arm/boot/dts/bcm953012k.dts
++++ b/arch/arm/boot/dts/bcm953012k.dts
+@@ -36,7 +36,7 @@
+ 
+ / {
+ 	model = "NorthStar SVK (BCM953012K)";
+-	compatible = "brcm,bcm953012k", "brcm,brcm53012", "brcm,bcm4708";
++	compatible = "brcm,bcm953012k", "brcm,bcm53012", "brcm,bcm4708";
+ 
+ 	aliases {
+ 		serial0 = &uart0;
 -- 
-2.32.0
+2.25.1
 
