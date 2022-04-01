@@ -2,139 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAF954EED5D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 14:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 849EE4EED66
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 14:47:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235661AbiDAMol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 08:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59626 "EHLO
+        id S234912AbiDAMsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 08:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234656AbiDAMol (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 08:44:41 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C506F260C69
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 05:42:51 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-2e5827a76f4so31382017b3.6
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 05:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Wr+mFET+ztEiJpTYfAk9pLOZKM9Kx7FBprGkyZzhxS0=;
-        b=KM0TJGBdcQQngOeNHboefqLI4uHbz6uV9J+uQy1zcNZfFR34k8gkutoi8XLXUTohHv
-         1Z95jzkeHay1dm7TbPcx+gDcNbUlvz3f7lsRIQhkrRWFVrz0weE6IwJHpVDsML0uICUS
-         692Qc5DoJOXPJ+Az3s+6Mip3gUbMd133dyCly6PW1Nzd0MFb2tgGakrWDJiY3fwHYIdP
-         3r6EZ/o03HGN5zmxJkM/JdZj454m4fGERvYjmoAJVDS5+LqTYuVzTXro68p8w6pqsknw
-         iamHYkpAOStzhn2JfC6uyU3706j26dZcdaKmpHNlQuyvQuX3mJvqU4IRVZ8URKrg5kgd
-         jo2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Wr+mFET+ztEiJpTYfAk9pLOZKM9Kx7FBprGkyZzhxS0=;
-        b=xxXea/Z+7qqipbC7/kbAi/nGxippD0FHVxWhIjlQNH7n/M6InY3RUAWzLz50N62WBR
-         5A7ARpdsdB475pGsgeUmXOcGA3jXGdtO3mo39p4Hp9G7Z5EKkxALYCjMKFhyCD2bVqvT
-         mYYkNcBq+Kr298CZ1H1kUsV/NR+AAJ/KlVmoiO7C5XPx5IM70mbaW8YLflA3emIeGKDH
-         q6zIQTz7aqY21D3pY6mFi9tsKADavSM0/nTiteWFZjKVGK3PX4ng9IKrpn1NdrDzD3w0
-         It3l3HAomVgeqgTqrHEqiKTVXYgV9mxofmfnWRuyVkUJvWcA248Wau8G3Nu4aTRiBFfb
-         FmzQ==
-X-Gm-Message-State: AOAM530Osgxc4g/WwyxIp9WGaxh43/shnlDsArbwrc1zulsQko6DGAfv
-        QOPwtN/tl2vvEog2UUzaUcQsiUyXdO6JHp28wB3Png==
-X-Google-Smtp-Source: ABdhPJw5Lf2dY4cBbTNOwmsSY9juu3wQscQ3aPtqvEuQGh8Q8VFuF9YD6PF38LZ4ttaWRJj/1l6Srm4bsJfUdsq5Nv0=
-X-Received: by 2002:a0d:d84f:0:b0:2e5:f8f1:7272 with SMTP id
- a76-20020a0dd84f000000b002e5f8f17272mr9960403ywe.376.1648816970864; Fri, 01
- Apr 2022 05:42:50 -0700 (PDT)
+        with ESMTP id S241268AbiDAMsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 08:48:53 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68016276804;
+        Fri,  1 Apr 2022 05:47:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Y0armm1KiIuoc6DnVg3dMpBaEu3JBi1aG/XPYwHQLCc=; b=YhRUSYvRc5nlh03A/sSx8rIsSV
+        dRigeXcD/bsUY5xVTIun0eYV6I+vsPeWrHYsjObydh8MWhMQJevAXmp+rcpcdL0jgJ53SPgRwG6At
+        K4gK5oK6z1bVNRuBaTiNCe7X8SawKJRCPaBbNmGF+z7tjpR0THiiFLg6jWW19X7eCVBg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1naGgA-00DfeL-8s; Fri, 01 Apr 2022 14:47:02 +0200
+Date:   Fri, 1 Apr 2022 14:47:02 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, Divya.Koppera@microchip.com,
+        davem@davemloft.net, kuba@kernel.org, richardcochran@gmail.com,
+        UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net 2/3] net: phy: micrel: Remove latency from driver
+Message-ID: <Ykb0RgM+fnzOUTNx@lunn.ch>
+References: <20220401094805.3343464-1-horatiu.vultur@microchip.com>
+ <20220401094805.3343464-3-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-References: <20220329032913.8750-1-axe.yang@mediatek.com> <20220329032913.8750-3-axe.yang@mediatek.com>
-In-Reply-To: <20220329032913.8750-3-axe.yang@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 1 Apr 2022 14:42:14 +0200
-Message-ID: <CAPDyKFqzNJxt8RhQ5ABLqqkVaJmRPDFu=QuSUvAr-eW9SK4fSw@mail.gmail.com>
-Subject: Re: [PATCH v9 2/3] mmc: core: Add support for SDIO wakeup interrupt
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220401094805.3343464-3-horatiu.vultur@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Mar 2022 at 05:29, Axe Yang <axe.yang@mediatek.com> wrote:
->
-> If wakeup-source flag is set in host dts node, parse EAI information
-> from SDIO CCCR interrupt externsion segment for in-band wakeup. If
-> async interrupt is supported by SDIO card then enable it and set
-> enable_async_irq flag in sdio_cccr structure to 1. The parse flow is
-> implemented in sdio_read_cccr().
->
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> ---
->  drivers/mmc/core/sdio.c  | 17 +++++++++++++++++
->  include/linux/mmc/card.h |  8 +++++++-
->  include/linux/mmc/sdio.h |  5 +++++
->  3 files changed, 29 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mmc/core/sdio.c b/drivers/mmc/core/sdio.c
-> index 25799accf8a0..4898c5e9a299 100644
-> --- a/drivers/mmc/core/sdio.c
-> +++ b/drivers/mmc/core/sdio.c
-> @@ -226,6 +226,23 @@ static int sdio_read_cccr(struct mmc_card *card, u32 ocr)
->                                 card->sw_caps.sd3_drv_type |= SD_DRIVER_TYPE_C;
->                         if (data & SDIO_DRIVE_SDTD)
->                                 card->sw_caps.sd3_drv_type |= SD_DRIVER_TYPE_D;
-> +
-> +                       if (card->host->pm_caps & MMC_PM_WAKE_SDIO_IRQ) {
+On Fri, Apr 01, 2022 at 11:48:04AM +0200, Horatiu Vultur wrote:
+> Based on the discussions here[1], the PHY driver is the wrong place
+> to set the latencies, therefore remove them.
+> 
+> [1] https://lkml.org/lkml/2022/3/4/325
+> 
+> Fixes: ece19502834d84 ("net: phy: micrel: 1588 support for LAN8814 phy")
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-After a second thought, I think we can just skip this check. The
-MMC_PM_WAKE_SDIO_IRQ indicates that the host supports SDIO IRQs as
-*system wakeups*.
+Thanks for the revert.
 
-But, in fact, I think we want this feature to be enabled to allow
-waking up for runtime_suspend (RPM_SUSPENDED) too.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-> +                               ret = mmc_io_rw_direct(card, 0, 0, SDIO_CCCR_INTERRUPT_EXT, 0,
-> +                                                      &data);
-> +                               if (ret)
-> +                                       goto out;
-> +
-> +                               if (data & SDIO_INTERRUPT_EXT_SAI) {
-> +                                       data |= SDIO_INTERRUPT_EXT_EAI;
-> +                                       ret = mmc_io_rw_direct(card, 1, 0, SDIO_CCCR_INTERRUPT_EXT,
-> +                                                              data, NULL);
-> +                                       if (ret)
-> +                                               goto out;
-> +
-> +                                       card->cccr.enable_async_irq = 1;
-> +                               }
-> +                       }
->                 }
+> -static struct kszphy_latencies lan8814_latencies = {
+> -	.rx_10		= 0x22AA,
+> -	.tx_10		= 0x2E4A,
+> -	.rx_100		= 0x092A,
+> -	.tx_100		= 0x02C1,
+> -	.rx_1000	= 0x01AD,
+> -	.tx_1000	= 0x00C9,
+> -};
 
-[...]
+What are the reset defaults of these? I'm just wondering if we should
+explicitly set them to 0, so we don't get into a mess where some
+vendor bootloader sets values but mainline bootloader does not,
+breaking a configuration where the userspace daemon does the correct?
 
-Other than the above, this looks good to me!
-
-Kind regards
-Uffe
+	 Andrew
