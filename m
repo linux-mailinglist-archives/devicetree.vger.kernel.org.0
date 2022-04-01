@@ -2,83 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86ABF4EEC8A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 13:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EEBC4EEBCF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 12:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345603AbiDALuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 07:50:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54464 "EHLO
+        id S1345213AbiDAKuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 06:50:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239071AbiDALt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 07:49:58 -0400
-X-Greylist: delayed 2398 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 01 Apr 2022 04:48:08 PDT
-Received: from 3.mo560.mail-out.ovh.net (3.mo560.mail-out.ovh.net [46.105.58.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1AD216A6A
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 04:48:08 -0700 (PDT)
-Received: from player698.ha.ovh.net (unknown [10.111.208.112])
-        by mo560.mail-out.ovh.net (Postfix) with ESMTP id D88F524397
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 10:32:43 +0000 (UTC)
-Received: from RCM-web8.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player698.ha.ovh.net (Postfix) with ESMTPSA id 9562E28FD4A27;
-        Fri,  1 Apr 2022 10:32:37 +0000 (UTC)
+        with ESMTP id S1345212AbiDAKut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 06:50:49 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FE911A0C;
+        Fri,  1 Apr 2022 03:48:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648810139; x=1680346139;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=qwuvo8H5lFxF+LKvcIYg9u8Ja3zfM1aZ7xaB65MQwrw=;
+  b=MTvT9Ejznd3buA8o1IRaBmtOVkcjJC4gAq0rdIBDfvAUuyMhXuIVtMC3
+   Xen6ugRAr1pC3BSme+ttOWsQLhFwme95suIEUrPX7cZNoqcEswV+ncuEY
+   4UxJa3mrgvpvSeMadq4nyBaupx4vd98wTPpx3cVa3K8nSqfm6ayYMZjlA
+   4=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 01 Apr 2022 03:48:58 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 03:48:56 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Apr 2022 03:48:55 -0700
+Received: from [10.216.22.244] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 1 Apr 2022
+ 03:48:50 -0700
+Subject: Re: [PATCH V8 7/7] arm64: dts: qcom: sc7280: Add pm8008 support for
+ sc7280-idp
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
+References: <1648209491-30165-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1648209491-30165-8-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n511eQTnJHqt0B=uiiSjigy-RHZ52YuYz4kfEpX1x6CMfw@mail.gmail.com>
+ <094d8faa-c42b-be1b-cf92-04232d618a3e@quicinc.com>
+ <CAE-0n52CVuc_kQbpwEnHEEODS8jPt52v6P=gAdVxqenPu4ehkw@mail.gmail.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <3b4dcf83-bb13-2159-d7c1-f0aadfc53566@quicinc.com>
+Date:   Fri, 1 Apr 2022 16:18:46 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Date:   Fri, 01 Apr 2022 12:32:37 +0200
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH 4/5] ARM: dts: BCM5301X: Retrieve gmac1 MAC address from
- NVRAM on Asus RT-AC88U
-In-Reply-To: <20220401102002.15765-4-arinc.unal@arinc9.com>
-References: <20220401102002.15765-1-arinc.unal@arinc9.com>
- <20220401102002.15765-4-arinc.unal@arinc9.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <4cd234fd46673ec935eec09129853b47@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+In-Reply-To: <CAE-0n52CVuc_kQbpwEnHEEODS8jPt52v6P=gAdVxqenPu4ehkw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 15333349360337398618
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrudeiiedgfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhgpofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeffudffgfejgfdvieegudekffefveehjeeuieekheduieduhedvieefudetheeinecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrieelkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-04-01 12:20, Arınç ÜNAL wrote:
-> The et1macaddr NVRAM variable contains a MAC address for gmac1 on Asus
-> RT-AC88U. Add NVMEM cell for it and reference it in the gmac1 node.
-> 
-> The Broadcom GBit BCMA driver will issue the MAC address for 
-> gmac{0,1,2}
-> retrieved from et{0,1,2}mac from SPROM without this but let's 
-> explicitly
-> define it as mac-address on the devicetree.
-> Refer to drivers/net/ethernet/broadcom/bgmac-bcma.c:147.
 
-It doesn't matter how Linux handles that in details. You're working on
-hardware binding.
+On 4/1/2022 2:48 AM, Stephen Boyd wrote:
+> Quoting Satya Priya Kakitapalli (Temp) (2022-03-30 03:44:01)
+>> On 3/25/2022 11:18 PM, Stephen Boyd wrote:
+>>>        #include "pm8008.dtsi"
+>>>
+>>> and then the nodes below.
+>>
+>> You mean
+>>
+>> pm8008_bus: &i2c1 {
+>>
+>>           status = "okay";
+>>
+>> };
+>>
+>> &pm8008_bus {
+>>
+>>       #include "pm8008.dtsi"
+>>
+>> };
+>>
+>> and remaining nodes, right?
+>>
+> No. I meant what I wrote.
+>
 
-Change is OK of course.
-
-If you need to reference sth it should be
-Documentation/devicetree/bindings/net/ethernet-controller.yaml
+Okay thank you for elaborating,
 
 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>         &pm8008_bus: &i2c1 {
 
-I'd drop bgmac-bcma.c reference but nevertheless:
 
-Acked-by: Rafał Miłecki <rafal@milecki.pl>
+but this still needs to be "pm8008_bus: &i2c {" right.. no '&' before 
+pm8008_bus.
+
+
+>                 status = "okay";
+>         };
+>
+>         #include "pm8008.dtsi"
+>
+> and then the pm8008.dtsi file would have
+>
+> 	&pm8008_bus {
+> 		pm8008: pmic@8 {
+> 			compatible = "qcom,pm8008";
+> 			...
+> 		};
+>
+> 		pm8008_regulators: regulators@9 {
+> 			compatible = "qcom,pm8008-regulators";
+> 			...
+> 		};
+> 	};
+>
+> and then this patch would modify those nodes with phandles.
