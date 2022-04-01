@@ -2,210 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 270EA4EEEE6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A87914EEEF0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242069AbiDAOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 10:12:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42262 "EHLO
+        id S1346711AbiDAON1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 10:13:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346701AbiDAOMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:12:31 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7160E5C641
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 07:10:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1648822241; x=1680358241;
-  h=message-id:date:mime-version:from:subject:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=dkTlAeeJHnW6x5durlVRIAr/mTlPWjaWqH3/KAYh+Y8=;
-  b=aS1T8kWyu7Su+UAwBuhczPI6iyuq6YR1ONmSmIBs9XOtWOBSokZZoHtp
-   QMgKobk4h/15gOEznCI/yX/y+9umZmjSk+NjBjUYwvayI/OzbUnpfNRfM
-   KoWxlyGOazIIyXQH968H1uQqMljrOi4/hStNesTPGAD12m7TKH7OjovZU
-   0=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 01 Apr 2022 07:10:41 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 07:10:40 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 1 Apr 2022 07:10:28 -0700
-Received: from [10.110.21.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 1 Apr 2022
- 07:10:27 -0700
-Message-ID: <e362f6dd-785f-87b3-3090-554be0fb860c@quicinc.com>
-Date:   Fri, 1 Apr 2022 07:10:26 -0700
+        with ESMTP id S1346706AbiDAONY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:13:24 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9084C5C641;
+        Fri,  1 Apr 2022 07:11:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1648822296; x=1680358296;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oR155vuc+E55A131IrM2oF6LW3I3FCsWE5dYbfq7kQI=;
+  b=D3wDClp3ZKye1HI1REETEESnYeUcyilZJE+ivLlW2XUtbrTVFj6ianXV
+   Dgxxwf0zCPKGVNL8JPBjWmxJZOm02GaBuNb+piM602J+8nEVztwUdsRdd
+   Cdf+hUMTfkJBPZNaisWtyc0lD+7ngCHiMm8uikt9DlmphMGDv++g5U2Pg
+   WDg28oCjuhu99KybHCBYfW+3WaSmE5vcmGDskY9eB41M4jJnqqdzV3EU1
+   GogBTMcvLzj4mjT0/Kha6Vjqt77F/LEuA7YH4JVEWQVsUZ6XkD0wEEAZR
+   BXKj/W/gkbCokV1aHcvldA//KEy/5oRCJTX6yHok0JzOZV3lnldvE862L
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,227,1643698800"; 
+   d="scan'208";a="158540795"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Apr 2022 07:11:35 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 1 Apr 2022 07:11:34 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 1 Apr 2022 07:11:34 -0700
+Date:   Fri, 1 Apr 2022 16:11:20 +0200
+From:   "Allan W. Nielsen" <allan.nielsen@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <Divya.Koppera@microchip.com>,
+        <davem@davemloft.net>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <richardcochran@gmail.com>, <UNGLinuxDriver@microchip.com>
+Subject: Re: [PATCH net v2 0/3] net: phy: micrel: Remove latencies support
+ lan8814
+Message-ID: <20220401141120.imsolvsl2xpnnf4q@lx-anielsen>
+References: <20220401110522.3418258-1-horatiu.vultur@microchip.com>
+ <Ykb2yoXHib6l9gkT@lunn.ch>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
-To:     =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
-        Joel Stanley <joel@jms.id.au>
-CC:     devicetree <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jamie Iles <quic_jiles@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Graeme Gregory" <quic_ggregory@quicinc.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
- <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
- <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
- <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
- <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <Ykb2yoXHib6l9gkT@lunn.ch>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cédric,
+On 01.04.2022 14:57, Andrew Lunn wrote:
+>On Fri, Apr 01, 2022 at 01:05:19PM +0200, Horatiu Vultur wrote:
+>> Remove the latencies support both from the PHY driver and from the DT.
+>> The IP already has some default latencies values which can be used to get
+>> decent results. It has the following values(defined in ns):
+>> rx-1000mbit: 429
+>> tx-1000mbit: 201
+>> rx-100mbit:  2346
+>> tx-100mbit:  705
+>
+>So one alternative option here is that ptp4l looks at
+>
+>/sys/class/net/<ifname>/phydev/phy_id
+>
+>to identify the PHY, listens to netlink messages to determine the link
+>speed and then applies the correction itself in user space. That gives
+>you a pretty generic solution, works for any existing PHY and pretty
+>much any existing kernel version.  And if you want board specific
+>values you can override them in the ptp4l configuration file.
+I think it is good to have both options. If you want PTP4L to compensate
+in user-space, do not call the tunable, if you want to HW to compensate,
+call the tunable (this is useful both for users using ptp4l and other
+ptpimplementations).
 
-On 3/31/2022 9:06 AM, Jae Hyun Yoo wrote:
-> Hello Cédric,
-> 
-> On 3/31/2022 8:56 AM, Cédric Le Goater wrote:
->> Hello Jae,
->>
->> On 3/31/22 17:44, Jae Hyun Yoo wrote:
->>> On 3/30/2022 10:50 PM, Joel Stanley wrote:
->>>> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo 
->>>> <quic_jaehyoo@quicinc.com> wrote:
->>>>>
->>>>> I’m sending this patch series to fix current issues in AST2600 pinmux
->>>>> settings while enabling quad mode SPI support.
->>>>>
->>>>> FWSPI18 pins are basically 1.8v logic pins that are different from the
->>>>> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins 
->>>>> can’t
->>>>> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
->>>>>
->>>>> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl 
->>>>> dtsi to
->>>>> make it able to enable quad mode on SPI1 and SPI2 interfaces.
->>>>>
->>>>> With this series, quad mode pinmux can be set like below.
->>>>>
->>>>> FW SPI:
->>>>> &fmc {
->>>>>          pinctrl-names = "default";
->>>>>          pinctrl-0 = <&pinctrl_fwqspi_default>;
->>>>> }
->>>>>
->>>>> SPI1:
->>>>> &spi1 {
->>>>>          pinctrl-names = "default";
->>>>>          pinctrl-0 = <&pinctrl_qspi1_default>;
->>>>> }
->>>>>
->>>>> SPI2:
->>>>> &spi2 {
->>>>>          pinctrl-names = "default";
->>>>>          pinctrl-0 = <&pinctrl_qspi2_default>;
->>>>> }
->>>>
->>>> Thanks. I hope to see a board from you that uses this soon :)
->>>>
->>>> I'll send the patches as fixes once -rc1 is out.
->>>
->>> Thanks Joel!
->>>
->>> Yes, I would be able to send my BMC board dts soon.
->>> Thanks in advance for your review on that too.
->>
->> Out of curiosity, which driver are you using ? the one from SDK ?
->>
->> I proposed a new one for upstream supporting all AST2400, AST2500, 
->> AST2600
->> controllers. I would be glad to have some feedback if you have time.
-> 
-> Yes, I saw your patch set of the new driver.
-> 
-> I'm currently using this fix with legacy aspeed-smc driver after
-> adding some fixes. I'll give it a try with your new driver as well and
-> will give you some feedback if I find any.
+If system behaves strange, it is easy to see what delays has been
+applied.
 
-I tested this patch series using the new spi-aspeed-smc driver you
-proposed.
+We are planning on creating a small proejct, which go through all PHYs
+in the current system. It shall check a config file to see if the user
+has configured interface specific numbers, then apply them, other wise
+see if we have default numbers based on the PHY-ID (like you describe).
 
-https://lore.kernel.org/linux-arm-kernel/20220325100849.2019209-1-clg@kaod.org/
+Idea is to run this at boot as a one-off. It will apply the adjustments
+on all speeds, all capable PHYs regardless of they PHY-Timestamping is
+used or not.
 
-I modified my BMC's device tree like below to enable quad mode.
+BTW: If there is a desire, we can add a flag to this tool which can set
+all the delay-values to zero.
 
-	&fmc {
-		status = "okay";
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_fwqspi_default>;
+Just for the record: It is not that I do not like PTP4L - it is by far
+the best PTP implementation I have seen. But I'm keen on having a
+solution that also works for non-ptp4l users.
 
-		flash@0 {
-			status = "okay";
-			m25p,fast-read;
-			label = "bmc";
-			spi-rx-bus-width = <4>;
-			spi-max-frequency = <133000000>;
-	#include "openbmc-flash-layout-64.dtsi"
-		};
-
-		flash@1 {
-			status = "okay";
-			m25p,fast-read;
-			label = "alt-bmc";
-			spi-rx-bus-width = <4>;
-			spi-max-frequency = <133000000>;
-	#include "openbmc-flash-layout-64-alt.dtsi"
-		};
-	};
-
-And I got these kernel boot logs.
-
-[    0.720745] spi-nor spi0.0: w25q512nwfm (65536 Kbytes)
-[    0.837368] spi-aspeed-smc 1e620000.spi: CE0 read buswidth:4 [0x406c0741]
-[    0.846352] 5 fixed-partitions partitions found on MTD device bmc
-[    0.853220] Creating 5 MTD partitions on "bmc":
-[    0.858295] 0x000000000000-0x0000000e0000 : "u-boot"
-[    0.865014] 0x0000000e0000-0x000000100000 : "u-boot-env"
-[    0.872229] 0x000000100000-0x000000a00000 : "kernel"
-[    0.878963] 0x000000a00000-0x000002a00000 : "rofs"
-[    0.885406] 0x000002a00000-0x000004000000 : "rwfs"
-[    0.892880] spi-nor spi0.1: w25q512nwfm (65536 Kbytes)
-[    1.009460] spi-aspeed-smc 1e620000.spi: CE1 read buswidth:4 [0x406c0741]
-[    1.018334] 5 fixed-partitions partitions found on MTD device alt-bmc
-[    1.025537] Creating 5 MTD partitions on "alt-bmc":
-[    1.031027] 0x000000000000-0x0000000e0000 : "u-boot-alt"
-[    1.038165] 0x0000000e0000-0x000000100000 : "u-boot-env-alt"
-[    1.045623] 0x000000100000-0x000000a00000 : "kernel-alt"
-[    1.052807] 0x000000a00000-0x000002a00000 : "rofs-alt"
-[    1.059800] 0x000002a00000-0x000004000000 : "rwfs-alt"
-
-As you can see in the log, FMC10[31:28] and FMC14[31:28] are properly
-set to 0100b which means 'quad bit read/write, data cycle only'.
-I verified that your new driver supports quad mode properly and it has
-worked well so far without making any issue.
-
-Thanks for your making the new driver.
-I left my comment in your patch proposal thread.
-
-Cheers,
-
-Jae
-
-
+/Allan
 
