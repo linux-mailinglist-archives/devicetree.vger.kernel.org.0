@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2184EFC79
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 00:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDC54EFC83
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 00:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353205AbiDAWBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 18:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S244541AbiDAWD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 18:03:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353184AbiDAWBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 18:01:45 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273241C2D9B
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 14:59:54 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id r13so8589654ejd.5
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 14:59:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GV+7pAZohwI4MwdjqMNQX+D+U+rbeGwoLu73W6afMP4=;
-        b=ZBOh3r18k94t1Nd8We8CztDWD2n2VD6cwmAbOrOLf+nAcMXUPCIy56rg9iOC7HcMLt
-         JTSjRAF50LGJiFE7M9yHs6DT2R/UWoXzwHUyJqvhl1WnDeWGNYqZSm2527b8rclAjcY9
-         z0qwyx9LMfrq3/b8mahIzKwZgzaXuvlIf9NnPC0KsT/b2t/im4MaOt/OOYz5yuYmbBFe
-         HHWKti6/Y0CqWdTmsJTcGGivSCmpupUDqRMcpkGt3+z2HTtTopbIdNIRL8fsY2lvCB0M
-         N7gVtLQTo1Iahms9uAwLOwhK8QNWNquJlvBg97Wj2o1/NYwRRxAOPmVDxTr4rE0pLUiB
-         vBbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GV+7pAZohwI4MwdjqMNQX+D+U+rbeGwoLu73W6afMP4=;
-        b=1PHc2stnmi5slEaD7jGd8JeNUVbzaUBpMRXhd8zxaZECpg5bXd6ieKiJLBHWTqXWgS
-         QbazIABS67q6J5IQ/GAK/0Qb0SJBQMnDHlflTFIfE90q6joRsgHtQDTWeawceafFcafr
-         kB/mQdsERr4O3ZT2P/3s4RFNAxTYlTRmBhVMB1ZoD1Fty7jcVPC/JUg11kKeTzp003I/
-         3u1m79tirYW/T+cvpmVJaKpOmO/MlA7giUIrpvrTjFL35eZLTIWH1Tn+kenNaqquDtXT
-         0jiH3mw051XcGxbzX9cmu3XMiRTu1aqgD7Kf0wYXPqZhT2ymiuOZwsKQE03Xri8u4lZe
-         tzUA==
-X-Gm-Message-State: AOAM533NjfmckqzU2gkQdp2kO37q47MWkrZebvoOlzNbPHzN/Jh0go45
-        RpQWKBQIWHAnL0eZdAlIqMxq+w==
-X-Google-Smtp-Source: ABdhPJxt29ToBqJIoq8d5LJdbtpfa3FI0Jelg40i4cQ33FmwhmnorZA7v0HF47cWmInhdYms2Fog+g==
-X-Received: by 2002:a17:906:4fc8:b0:6d8:5059:f998 with SMTP id i8-20020a1709064fc800b006d85059f998mr1596592ejw.487.1648850392641;
-        Fri, 01 Apr 2022 14:59:52 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id og49-20020a1709071df100b006db0dcf673esm1444995ejc.27.2022.04.01.14.59.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 14:59:52 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: clock: qcom,smsm: convert to dtschema
-Date:   Fri,  1 Apr 2022 23:59:49 +0200
-Message-Id: <20220401215949.222965-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S1344925AbiDAWD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 18:03:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532C12675A0
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 15:01:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 05120B8267F
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 22:01:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1642C34112
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 22:01:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648850494;
+        bh=ZQrbLPkLo5sfQcE73yUfUj3P2ZSop1t4uB2pIrb+x5s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=M7Gw+J81HNta4UOZK1b5DyWKrKW6HKh1VcNWFV6Pl0XWEaxxxbzWB3JxBZadCJHen
+         KqkaquNDuy6VAtgKBM+puNzLN/35Tb5J/NmiGFeBN5OX1X846buCpticFxaJCPdzgm
+         ro6wU+BpnqYsXcnqNxFhQz15zvWA4liIIn09Q4pjkr/X31wZD/hp2b0QMfh9xNYRoW
+         j+MSu9mrXbq9UZLBdfQvrYHkHndTUedPSgNX1a7A90K7c4WHQTudmQRlMNw4UU+ftq
+         HxX2uFSghDrLaquvtN5tF4JtyLV5TkbatKPsZ884vb5KNjwmKDOpt+Gth4NQ9jDmIj
+         wA1WEB2hc42MQ==
+Received: by mail-io1-f46.google.com with SMTP id z7so4805622iom.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 15:01:34 -0700 (PDT)
+X-Gm-Message-State: AOAM533G3fezHHiyCu9h4SB0LvYvSuYmc0aHk4300a+RJjap2nwR2PtN
+        0YPgxhJta0itLPCBjrpbttCWiY4lXoZJyscFmw==
+X-Google-Smtp-Source: ABdhPJw+LFcARwzaNCp2hP95MsT4VXSzQqMED1c5B/P2R3LB+Lv/I0+UJvyO4WpdpbHhv1y8zZlcKAkCdFFoaahnD14=
+X-Received: by 2002:a05:6638:1301:b0:323:3b47:8b3f with SMTP id
+ r1-20020a056638130100b003233b478b3fmr6606952jad.291.1648850493856; Fri, 01
+ Apr 2022 15:01:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <alpine.DEB.2.22.394.2203311740450.2910984@ubuntu-linux-20-04-desktop>
+ <CAL_Jsq+udUpUK3y7WOeLF2dtGs0=Jz59ed0mu_sgzstB-=TDzA@mail.gmail.com> <alpine.DEB.2.22.394.2204011338140.2910984@ubuntu-linux-20-04-desktop>
+In-Reply-To: <alpine.DEB.2.22.394.2204011338140.2910984@ubuntu-linux-20-04-desktop>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 1 Apr 2022 17:01:22 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ6Yoc-gq=qUw+cS-34ZOsxtHAA01aa+FjaBySz1vwtuQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ6Yoc-gq=qUw+cS-34ZOsxtHAA01aa+FjaBySz1vwtuQ@mail.gmail.com>
+Subject: Re: [PATCH] of: of_property_read_string return -ENODATA when !length
+To:     Stefano Stabellini <sstabellini@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        Julien Grall <julien@xen.org>,
+        xen-devel <xen-devel@lists.xenproject.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,270 +63,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm Shared Memory State Machine to DT schema.
+On Fri, Apr 1, 2022 at 3:49 PM Stefano Stabellini
+<sstabellini@kernel.org> wrote:
+>
+> On Fri, 1 Apr 2022, Rob Herring wrote:
+> > On Thu, Mar 31, 2022 at 7:46 PM Stefano Stabellini
+> > <sstabellini@kernel.org> wrote:
+> > >
+> > > From: Stefano Stabellini <stefano.stabellini@xilinx.com>
+> > >
+> > > When the length of the string is zero of_property_read_string should
+> > > return -ENODATA according to the description of the function.
+> >
+> > Perhaps it is a difference of:
+> >
+> > prop;
+> >
+> > vs.
+> >
+> > prop = "";
+> >
+> > Both are 0 length by some definition. The description, '-ENODATA if
+> > property does not have a value', matches the first case.
+> >
+> > >
+> > > However, of_property_read_string doesn't check pp->length. If pp->length
+> > > is zero, return -ENODATA.
+> > >
+> > > Without this patch the following command in u-boot:
+> > >
+> > > fdt set /chosen/node property-name
+> > >
+> > > results in of_property_read_string returning -EILSEQ when attempting to
+> > > read property-name. With this patch, it returns -ENODATA as expected.
+> >
+> > Why do you care? Do you have a user? There could be an in tree user
+> > that doesn't like this change.
+>
+> During review of a Xen patch series (we have libfdt is Xen too, synced
+> with the kernel) Julien noticed a check for -EILSEQ. I added the check
+> so that Xen would behave correctly in cases like the u-boot example in
+> the patch description.
+>
+> Looking more into it, it seemed to be a mismatch between the description
+> of of_property_read_string and the behavior (e.g. -ENODATA would seem to
+> be the right return value, not -EILSEQ.)
+>
+> I added a printk to confirm what was going on when -EILSEQ was returned:
+>
+> printk("DEBUG %s %d value=%s value[0]=%d length=%u len=%lu\n",__func__,__LINE__,(char*)pp->value, *((char*)pp->value),pp->length,
+> strlen(pp->value));
+>
+> This is the output:
+> DEBUG of_property_read_string 205 value= value[0]=0 length=0 len=0
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/soc/qcom/qcom,smsm.txt           | 104 -------------
- .../bindings/soc/qcom/qcom,smsm.yaml          | 138 ++++++++++++++++++
- 2 files changed, 138 insertions(+), 104 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml
+It turns out that we never set pp->value to NULL when unflattening
+(and libfdt always returns a value). This function is assuming we do.
+>
+> As the description says:
+>
+>  *
+>  * Return: 0 on success, -EINVAL if the property does not exist, -ENODATA if
+>  * property does not have a value, and -EILSEQ if the string is not
+>  * null-terminated within the length of the property data.
+>  *
+>
+> It seems that this case matches "property does not have a value" which
+> is expected to be -ENODATA instead of -EILSEQ. I guess one could also
+> say that length is zero, so the string cannot be null-terminated,
+> thus -EILSEQ?
+>
+> I am happy to go with your interpretation but -ENODATA seems to be the
+> best match in my opinion.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt
-deleted file mode 100644
-index 2993b5a97dd6..000000000000
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.txt
-+++ /dev/null
-@@ -1,104 +0,0 @@
--Qualcomm Shared Memory State Machine
--
--The Shared Memory State Machine facilitates broadcasting of single bit state
--information between the processors in a Qualcomm SoC. Each processor is
--assigned 32 bits of state that can be modified. A processor can through a
--matrix of bitmaps signal subscription of notifications upon changes to a
--certain bit owned by a certain remote processor.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,smsm"
--
--- qcom,ipc-N:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: three entries specifying the outgoing ipc bit used for
--		    signaling the N:th remote processor
--		    - phandle to a syscon node representing the apcs registers
--		    - u32 representing offset to the register within the syscon
--		    - u32 representing the ipc bit within the register
--
--- qcom,local-host:
--	Usage: optional
--	Value type: <u32>
--	Definition: identifier of the local processor in the list of hosts, or
--		    in other words specifier of the column in the subscription
--		    matrix representing the local processor
--		    defaults to host 0
--
--- #address-cells:
--	Usage: required
--	Value type: <u32>
--	Definition: must be 1
--
--- #size-cells:
--	Usage: required
--	Value type: <u32>
--	Definition: must be 0
--
--= SUBNODES
--Each processor's state bits are described by a subnode of the smsm device node.
--Nodes can either be flagged as an interrupt-controller to denote a remote
--processor's state bits or the local processors bits.  The node names are not
--important.
--
--- reg:
--	Usage: required
--	Value type: <u32>
--	Definition: specifies the offset, in words, of the first bit for this
--		    entry
--
--- #qcom,smem-state-cells:
--	Usage: required for local entry
--	Value type: <u32>
--	Definition: must be 1 - denotes bit number
--
--- interrupt-controller:
--	Usage: required for remote entries
--	Value type: <empty>
--	Definition: marks the entry as a interrupt-controller and the state bits
--		    to belong to a remote processor
--
--- #interrupt-cells:
--	Usage: required for remote entries
--	Value type: <u32>
--	Definition: must be 2 - denotes bit number and IRQ flags
--
--- interrupts:
--	Usage: required for remote entries
--	Value type: <prop-encoded-array>
--	Definition: one entry specifying remote IRQ used by the remote processor
--		    to signal changes of its state bits
--
--
--= EXAMPLE
--The following example shows the SMEM setup for controlling properties of the
--wireless processor, defined from the 8974 apps processor's point-of-view. It
--encompasses one outbound entry and the outgoing interrupt for the wireless
--processor.
--
--smsm {
--	compatible = "qcom,smsm";
--
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	qcom,ipc-3 = <&apcs 8 19>;
--
--	apps_smsm: apps@0 {
--		reg = <0>;
--
--		#qcom,smem-state-cells = <1>;
--	};
--
--	wcnss_smsm: wcnss@7 {
--		reg = <7>;
--		interrupts = <0 144 1>;
--
--		interrupt-controller;
--		#interrupt-cells = <2>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml
-new file mode 100644
-index 000000000000..a40d7fa13325
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smsm.yaml
-@@ -0,0 +1,138 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/qcom/qcom,smsm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Shared Memory State Machine
-+
-+maintainers:
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+description:
-+  The Shared Memory State Machine facilitates broadcasting of single bit state
-+  information between the processors in a Qualcomm SoC. Each processor is
-+  assigned 32 bits of state that can be modified. A processor can through a
-+  matrix of bitmaps signal subscription of notifications upon changes to a
-+  certain bit owned by a certain remote processor.
-+
-+properties:
-+  compatible:
-+    const: qcom,smsm
-+
-+  '#address-cells':
-+    const: 1
-+
-+  qcom,local-host:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description:
-+      Identifier of the local processor in the list of hosts, or in other words
-+      specifier of the column in the subscription matrix representing the local
-+      processor.
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^qcom,ipc-[1-4]$":
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to a syscon node representing the APCS registers
-+          - description: u32 representing offset to the register within the syscon
-+          - description: u32 representing the ipc bit within the register
-+    description:
-+      Three entries specifying the outgoing ipc bit used for signaling the N:th
-+      remote processor.
-+
-+  "^.*@[0-9a-f]$":
-+    type: object
-+    description:
-+      Each processor's state bits are described by a subnode of the SMSM device
-+      node.  Nodes can either be flagged as an interrupt-controller to denote a
-+      remote processor's state bits or the local processors bits.  The node
-+      names are not important.
-+
-+    properties:
-+      reg:
-+        maxItems: 1
-+
-+      interrupt-controller:
-+        description:
-+          Marks the entry as a interrupt-controller and the state bits to
-+          belong to a remote processor.
-+
-+      '#interrupt-cells':
-+        const: 2
-+
-+      interrupts:
-+        maxItems: 1
-+        description:
-+          One entry specifying remote IRQ used by the remote processor to
-+          signal changes of its state bits.
-+
-+      '#qcom,smem-state-cells':
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        const: 1
-+        description:
-+          Required for local entry. Denotes bit number.
-+
-+    required:
-+      - reg
-+
-+    oneOf:
-+      - required:
-+          - '#qcom,smem-state-cells'
-+      - required:
-+          - interrupt-controller
-+          - '#interrupt-cells'
-+          - interrupts
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+anyOf:
-+  - required:
-+      - qcom,ipc-1
-+  - required:
-+      - qcom,ipc-2
-+  - required:
-+      - qcom,ipc-3
-+  - required:
-+      - qcom,ipc-4
-+
-+additionalProperties: false
-+
-+examples:
-+  # The following example shows the SMEM setup for controlling properties of
-+  # the wireless processor, defined from the 8974 apps processor's
-+  # point-of-view. It encompasses one outbound entry and the outgoing interrupt
-+  # for the wireless processor.
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    shared-memory {
-+        compatible = "qcom,smsm";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        qcom,ipc-3 = <&apcs 8 19>;
-+
-+        apps_smsm: apps@0 {
-+            reg = <0>;
-+            #qcom,smem-state-cells = <1>;
-+        };
-+
-+        wcnss_smsm: wcnss@7 {
-+            reg = <7>;
-+            interrupts = <GIC_SPI 144 IRQ_TYPE_EDGE_RISING>;
-+            interrupt-controller;
-+            #interrupt-cells = <2>;
-+        };
-+    };
--- 
-2.32.0
+I agree. I just think empty property should have a NULL value and 0
+length, but we should only have to check one. I don't want check
+length as that could be different for Sparc or non-FDT. So I think we
+need this instead:
 
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index ec315b060cd5..d6b2b0d49d89 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -165,7 +165,7 @@ static void populate_properties(const void *blob,
+
+                pp->name   = (char *)pname;
+                pp->length = sz;
+-               pp->value  = (__be32 *)val;
++               pp->value  = sz ? (__be32 *)val : NULL;
+                *pprev     = pp;
+                pprev      = &pp->next;
+        }
+
+
+It looks like setting 'value' has been like this at least since 2010.
+
+Rob
