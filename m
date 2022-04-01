@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 440334EEE00
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 235B54EEE0B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 15:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245631AbiDANZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 09:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49970 "EHLO
+        id S235288AbiDAN2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 09:28:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234577AbiDANZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:25:05 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1AE26EC91
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 06:23:16 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 8-20020a1c0208000000b0038ccb70e239so196460wmc.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 06:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ySJwETHpWDKKyAZvqLfjxNf0H3moszvQ74LGpXqQJbk=;
-        b=r09Df/g+9gVYcS3kXrgZjc05u2PZaF4ges6JZgG84LcXzjUr4d3bN6wjWWt0fn2OwO
-         tQUMqm1Bce5DoveGGEmjVPQd5n7CApCaYktyEc31v4DP8ygJUn2ZI0YGRktjS5B8Kfuv
-         o9CYlyvAo4/iEucHtkKUyVLJ3L5sospesGGkK+pmDCzcX63MUhZLkWzohVOnHXiBgTuP
-         hPnXk+0L9S+Nfdd7WEY6lkxGo9tuJmZt6+dgGmZFmAb/O1+4GqKJ5bCmQyVpoDiueyOV
-         U9drGkl9gG4pfbCG5W7kKf32/ofdg5icO0CRKVo88xdoO7iHR6fICFQdAws/SudPMzUw
-         HIzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ySJwETHpWDKKyAZvqLfjxNf0H3moszvQ74LGpXqQJbk=;
-        b=vGt70Ra5IHlge2M4unx7/MVlPvZp9L2F7sFu4lYug5C+UV5h9yUUUqHOi+UuTVU2jp
-         yzWMEbJTHCu/KuzdjusNbrCEZvdLT8Wis0sQeBPqbAw8MqYCErvVqglzm89t+7iF0Atj
-         n8Z0x6qW0C15FbuV2EEGPajAsAFSJ3Oz0u0Tq+gEVUE1C13dlon1WabJigmRayui0PFY
-         8Ar29dzmqdz7tWVOyhcLcLWspMMGnyh6NZp9TKV5YoIAOZW5ULNZKnmsCciv7UKS1iOd
-         facNE7ie7PssRsodkkeW/Ib9pgC7eqs4hOCK+E4VuSAkCmYuL3KmN8rRDEoRvTBfZpzW
-         eTeg==
-X-Gm-Message-State: AOAM533iliPi/5VYp+cCThyszu7Gw6/BP0UMmx3cDfLBlb8lFTEP8juW
-        xnI8jAK5YMvzPmMLlyNbP2utFnk8EAKzaMJ/
-X-Google-Smtp-Source: ABdhPJyIM1k3E8ZpfQjB6FEVfcoHZ2cmWg6O46jdnlTi5pIXjttYPtO0MkxYD567xlI0ikYZWVHGvw==
-X-Received: by 2002:a05:600c:1d8e:b0:389:d079:cc0 with SMTP id p14-20020a05600c1d8e00b00389d0790cc0mr8838746wms.98.1648819394893;
-        Fri, 01 Apr 2022 06:23:14 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id q14-20020a1cf30e000000b0038986a18ec8sm1876503wmq.46.2022.04.01.06.23.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 06:23:14 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S234879AbiDAN2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 09:28:03 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7760D1E5A76;
+        Fri,  1 Apr 2022 06:26:09 -0700 (PDT)
+X-UUID: dee1b64c61124726bc8e9091fbac4a30-20220401
+X-UUID: dee1b64c61124726bc8e9091fbac4a30-20220401
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1610955157; Fri, 01 Apr 2022 21:26:03 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 1 Apr 2022 21:26:02 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 1 Apr
+ 2022 21:26:00 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 1 Apr 2022 21:26:00 +0800
+Message-ID: <de1751bb13fb14b591fbe046ff274530ad62162e.camel@mediatek.com>
+Subject: Re: [PATCH 1/4] dt-bindings: cpufreq: mediatek: transform
+ cpufreq-mediatek into yaml
+From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] regulator: dt-bindings: richtek,rt4801: minor comments adjustments
-Date:   Fri,  1 Apr 2022 15:23:06 +0200
-Message-Id: <20220401132306.854991-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <fan.chen@mediatek.com>,
+        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
+        <Allen-yy.Lin@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+Date:   Fri, 1 Apr 2022 21:26:00 +0800
+In-Reply-To: <96a823a2-f3b6-9fb7-c9d6-f1315f6056fd@kernel.org>
+References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
+         <20220307122151.11666-2-jia-wei.chang@mediatek.com>
+         <ee98d248-b2cd-e975-84df-448917a79287@canonical.com>
+         <2cf526d400c011b5172ba4fc2c3f03b4a4f371dc.camel@mediatek.com>
+         <96a823a2-f3b6-9fb7-c9d6-f1315f6056fd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,37 +71,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct grammar in 'enable-gpios' description and remove useless comment
-about regulator nodes, because these are obvious from patternProperties.
+On Thu, 2022-03-24 at 11:33 +0100, Krzysztof Kozlowski wrote:
+> On 24/03/2022 10:38, Jia-Wei Chang wrote:
+> > > 
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > mediatek.yaml
+> > > > b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > mediatek.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..584946eb3790
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > > > mediatek.yaml
+> > > > @@ -0,0 +1,131 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: 
+> > > > 
+https://urldefense.com/v3/__http://devicetree.org/schemas/cpufreq/cpufreq-mediatek.yaml*__;Iw!!CTRNKA9wMg0ARbw!xbKG4TgD0MRpMLyGJVBZEGpZFrNOclrcxOCx_APKo5Nmg8nF2x5PcBdE0unvL2NdpChkMA$
+> > > >  
+> > > > +$schema: 
+> > > > 
+https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xbKG4TgD0MRpMLyGJVBZEGpZFrNOclrcxOCx_APKo5Nmg8nF2x5PcBdE0unvL2O8T_oxCQ$
+> > > >  
+> > > > +
+> > > > +title: Mediatek CPUFREQ driver Device Tree Bindings
+> > > 
+> > > Please remove "driver Device Tree Bindings" because the title
+> > > should
+> > > describe the hardware. Therefore it could be something like
+> > > "Mediatek
+> > > SoC CPU frequency and voltage scaling".
+> > 
+> > Thanks for your suggestion of title.
+> > Or should I use the origin title "Binding for MediaTek's CPUFreq
+> > driver"?
+> 
+> Mediatek CPUFREQ
+> or
+> Mediatek CPU frequency scaling
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/regulator/richtek,rt4801-regulator.yaml         | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Ok, I will choose one of it.
 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
-index 235e593b3b2c..9c4abc7ae6e2 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rt4801-regulator.yaml
-@@ -17,9 +17,6 @@ description: |
-   Datasheet is available at
-   https://www.richtek.com/assets/product_file/RT4801H/DS4801H-00.pdf
- 
--#The valid names for RT4801 regulator nodes are:
--#DSVP, DSVN
--
- properties:
-   compatible:
-     enum:
-@@ -34,7 +31,7 @@ properties:
-       Number of GPIO in the array list could be 1 or 2.
-       If only one gpio is specified, only one gpio used to control ENP/ENM.
-       Else both are spefied, DSVP/DSVN could be controlled individually.
--      Othersie, this property not specified. treat both as always-on regulator.
-+      If this property not specified, treat both as always-on regulators.
-     minItems: 1
-     maxItems: 2
- 
--- 
-2.32.0
+> 
+> > 
+> > > 
+> > > How is it related to cpufreq-mediatek-hw.yaml? The names/title
+> > > look
+> > > unfortunately too similar.
+> > 
+> > No, mediatek-cpufreq is performing in kernel driver rather than on
+> > hardware.
+> > On the other hand, mediatek-cpufreq-hw is performing on hardware.
+> > That's why "hw" is present in its name.
+> 
+> Unfortunately, I do not get it. The bindings are only about hardware,
+> so
+> how bindings could be about CPU frequency scaling not in hardware?
+
+Sorry, let me correct my statements.
+
+For mediatek-cpufreq here, the required hardware are clock and
+regulator which have to be under control of mediatek-cpufreq. That's
+the reason why it needs bindings.
+
+mediatek-cpufreq scales up and down voltage and frequency via kernel
+framework of clock and regulator, however, mediatek-cpufreq-hw delegate
+the voltage and frequency control to a hardware agent instead.
+
+> 
+> > 
+> > > 
+> > > In general this does not look like proper bindings (see also
+> > > below
+> > > lack
+> > > of compatible). Bindings describe the hardware, so what is
+> > > exactly
+> > > the
+> > > hardware here?
+> > 
+> > Except for SoC, there's no requirement of hardware binding for
+> > mediatek-cpufreq.
+> > mediatek-cpufreq recognizes the compatible of Mediatek SoC while
+> > probing.
+> 
+> What is the hardware here? If there is no requirement for bindings
+> for
+> mediate-cpufreq, why do we have this patch here?
+
+Sorry, that's my mistake.
+Clock and regulator are required hardware for mediatek-cpufreq.
+
+> 
+> > 
+> > > 
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > > > +
+> > > > +description: |
+> > > > +  CPUFREQ is used for scaling clock frequency of CPUs.
+> > > > +  The module cooperates with CCI DEVFREQ to manage frequency
+> > > > for
+> > > > some Mediatek
+> > > > +  SoCs.
+> > > > +
+> > > > +properties:
+> > > 
+> > > How is this schema going to be applied? I don't see here select
+> > > neither
+> > > compatible.
+> > 
+> > As mentioned above, only compatible of SoC is required for
+> > mediatek-
+> > cpufreq.
+> 
+> It does not answer my questions. How the schema is going to be
+> applied?
+
+Currently, we do use compatible of SoC to probe mediatek-cpufreq.
+
+If the better way is using clock and regulator opp, do you have a
+suggestion to approach that?
+I mean I can't find a good example from other vendors trying to do that
+way. Or maybe I miss something?
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
