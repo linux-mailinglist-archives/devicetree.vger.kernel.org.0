@@ -2,102 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8F54EE92E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FC914EE938
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 09:47:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235618AbiDAHnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 03:43:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36232 "EHLO
+        id S1343952AbiDAHtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 03:49:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235607AbiDAHnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:43:52 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23DEB25E32B;
-        Fri,  1 Apr 2022 00:42:00 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2e592e700acso23421367b3.5;
-        Fri, 01 Apr 2022 00:42:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D57KhCyXWppjWMlxegqq8QrdaCvKLyGDT+/mDhkcfao=;
-        b=oEwgIAvR84Cr82p6tkGSq/QGT+3Am17w4Qxl+9/7YvSlHkGmnBuKnkeahOHeWvuDjd
-         C6bkPcTnsNEidPruyaKA4HtVqTCWDNu1LyyDfy2Uf3A8boKJojoFDFSnEA3qngUkis8L
-         uPYnrka0B3CYolh/bQ2FaRFg4jpg9XfM3tGeAB+KYCltvKOZv/WNII/p3tHEbngIix1o
-         3oVuZT3ORu4DKG6S43zeOfj3yh/RGL+GevIeCd60tUaKV+a8nH39EPW7dVRuaBCGnYWq
-         V0Fz/vSqL0gStvTBnwR5Tca8RSzmpvRXLt8J5Ce0M9lZoTiyq/81GA4y8s8Em6lbw6gr
-         rFgw==
+        with ESMTP id S243493AbiDAHtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 03:49:02 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64AB218C0F8;
+        Fri,  1 Apr 2022 00:47:13 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id t2so1521844qtw.9;
+        Fri, 01 Apr 2022 00:47:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=D57KhCyXWppjWMlxegqq8QrdaCvKLyGDT+/mDhkcfao=;
-        b=NnF3wrqwfBzfQDqt9PFPnUjaD793+ZJhmo2d/4icp11AUlpXOB00p6v8/ozGJVvFfE
-         A81xapKr8wp7l8U4RA2XF0JJvQIYszFp3ggqFw7vMVjf7DKpMraE7bwg2lPKm0JorYGR
-         YY4JGC4D3lISAN45nVXneMLsM8eKB4d6WOn0GkN1MHb8A62TBTDG8liNAL8JqqKMkXrI
-         A7uAmjIhfaigdQ88E/UUndbNFXrkHHC/BOyhmo8uGtZGtyEwcKo7o+HqmWXDxYCFbAKu
-         D3hY0N2ZFsom/YF+yxfSj7ARscqI1vr4YTAPkfMF+bGbC4N0ukZHQdZ7HuIGAZToe3xH
-         2pwg==
-X-Gm-Message-State: AOAM530WNP69hWUVQ7O+mso2eJ8S2PX0dVp6g4GDk3vN+rKwymi/tQth
-        hmUB6DXCq24UD+h90/4DjIQ/hWGwyPd/5d+6/FuyQUPOpHUvNw==
-X-Google-Smtp-Source: ABdhPJwc9fh3Rv/jfT3zBI2wuBLJmieHUjQD1s8VKau3ct3ymn1EXNYUXDqKWn9oH8HbQHtRaQQlfEwBQEfLJq8Oxbk=
-X-Received: by 2002:a81:d0d:0:b0:2ea:61b1:181d with SMTP id
- 13-20020a810d0d000000b002ea61b1181dmr8729677ywn.16.1648798919207; Fri, 01 Apr
- 2022 00:41:59 -0700 (PDT)
+        bh=hsgG5k1IRB7JkkSvYRKFqt0X90anL2wVYww9yxyb0VA=;
+        b=lnOnBBtJyi+ptYHryHFTbrSIM8RtWYeGSVrzVT8ziC8F/Nvt53QglIDMITc2ZX7AhZ
+         lrvLKKpXG1PL5hdaAM8vmXsVVGAU/Vd2+aC8GketleM3dPW9YNP0ai6RePkDhl5LVzT0
+         FObZUBHwcESGALGiPZLUAugR1xpF5buIXSAhIe4UiaFHlj5D4UyufWZTWiAr2DoDJIfu
+         eQ2fID1iWNGcmc5ctX+QJgdx9dPAF5llfXwhwMa/75goEfEsOtIvFwx/nQ6sHtAz8MSD
+         Jn0hfb2U4f41ebz2Qndq/UuapX/YJ5UBpzplb0f//nqX69RyWMR3tkk5kQG+00TfP5O8
+         Z3yw==
+X-Gm-Message-State: AOAM5337dPgbNs8vtYMzN2DFDS9dvLaeg979Rh6dNmtx6Af/MNsw5pmj
+        M9Svs/HHxLvSBtctklh2Hg6p3+hxKUWgVw==
+X-Google-Smtp-Source: ABdhPJwZE4sp1jfUL16KYUDF2Yg41lwFL597VHQxrQFo3hwFvOCVshdhzRqByH59tiWLWbTzIE+Mzg==
+X-Received: by 2002:a05:622a:2d5:b0:2e1:ea60:231 with SMTP id a21-20020a05622a02d500b002e1ea600231mr7530800qtx.460.1648799232308;
+        Fri, 01 Apr 2022 00:47:12 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id y17-20020a05622a121100b002e0702457b2sm1303952qtx.20.2022.04.01.00.47.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Apr 2022 00:47:12 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-2e592e700acso23523827b3.5;
+        Fri, 01 Apr 2022 00:47:11 -0700 (PDT)
+X-Received: by 2002:a81:5c2:0:b0:2e5:e4eb:c3e7 with SMTP id
+ 185-20020a8105c2000000b002e5e4ebc3e7mr8846053ywf.62.1648799231230; Fri, 01
+ Apr 2022 00:47:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <YkYWzf7J17AfXgLl@robh.at.kernel.org>
-In-Reply-To: <YkYWzf7J17AfXgLl@robh.at.kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 1 Apr 2022 08:41:33 +0100
-Message-ID: <CA+V-a8sia2YgWmry+SxJu3asD47PSD6UnND33599ygTBymPy_g@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
- DT core
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+References: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 1 Apr 2022 09:46:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVX-6A5KH1+WodNviq1LKqZ4qo7aq92S-j+zf79xQD0gQ@mail.gmail.com>
+Message-ID: <CAMuHMdVX-6A5KH1+WodNviq1LKqZ4qo7aq92S-j+zf79xQD0gQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: maxim,max8997: correct array
+ of voltages
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, Mar 31, 2022 at 11:17 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> uint32-array with voltages should be within one bracket pair <>, not
+> each number in its own <>.  Also the number of elements in the array
+> should be defined within "items:".
+>
+> This fixes DT schema warnings like:
+>
+>   maxim,max8997.example.dtb: pmic@66: max8997,pmic-buck1-dvs-voltage:
+>     [[1350000, 1300000, 1250000, 1200000, 1150000, 1100000, 1000000, 950000]] is too short
+>
+> Fixes: 1d2104f21618 ("regulator: dt-bindings: maxim,max8997: convert to dtschema")
+> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Thu, Mar 31, 2022 at 10:02 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Mar 16, 2022 at 08:06:33PM +0000, Lad Prabhakar wrote:
-> > Now that all the DT drivers have switched to platform_get_irq() we can now
-> > safely drop the static setup of IRQ resource from DT core code.
-> >
-> > With the above change hierarchical setup of irq domains is no longer
-> > bypassed and thus allowing hierarchical interrupt domains to describe
-> > interrupts using "interrupts" DT property.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > Hi All,
-> >
-> > Sending this as RFC as couple of more drivers need to hit -rc yet with
-> > the platform_get_irq() change while that is in progress I wanted to get
-> > some feedback on this patch.
->
-> I just applied this on top of current master and pushed to my
-> for-kernelci branch. It should show up in kernelCI in a bit. I did this
-> before all the fixes too and there were definitely a couple of test
-> regressions.
->
-Any chance you can share the regressions or maybe the CI script so
-that I can reproduce it locally.
+Thanks!
+Warning going, and if I add one entry too much, it still complains, so:
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Cheers,
-Prabhakar
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
