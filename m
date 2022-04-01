@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF5CD4EFBA0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 049A74EFBB2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 22:36:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352651AbiDAUaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 16:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33190 "EHLO
+        id S1352782AbiDAUiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 16:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352814AbiDAUaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:30:00 -0400
+        with ESMTP id S1352678AbiDAUh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 16:37:58 -0400
 Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3862706F7
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:28:03 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id h4so4301296edr.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:28:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D359F13700A
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 13:36:07 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id h1so4334979edj.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 13:36:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=E/uYZwJv4qOMJdSh4QC+fOSVjVZQvMo857xnnr6uG3Y=;
-        b=HdYKLktMOpNGpDkytMi3ugQSj2eYeTDTin0govK5Z2QnKeDD0goHA1sp8HepIe0YN5
-         6XNt4KzL0KUPa287Qi211ygoUEpzUZ/HIs3bjm3BrGR5UZ87UR5XNWvmPawvwFqfyO3D
-         julaLPVZ85fVl7Dar013jGPtxkw9RY7dImSuxsjSD9ZViVUT8e+V/prO8dWQvdIqgcpg
-         941nhXmpFu3DOjJ3Jdg8LlmJBXj7XcJ0nlRdWIITA0LTG66BNwphJpYGEkI/zTW1FEkf
-         H9VhfH3S3H1wla+mTe3xFkRzX1HEhHnh3lmm5kF678NULkQntMtHoTrPt/lit25bLYCE
-         mU9g==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=teWkJ4CoTDO5mMTrqx6InWM0rnqqHmOdFQ5U6F0SH00=;
+        b=sslPqovAkCG/x1GpP6Loog5grP3TlZXipIhu/hTWV0pzafGbuGVekkVaUL++Je5ikN
+         tM/8QWAWlF6nrNclOfDQEk4QBCecTh50OFxY03V2DXM4AjQfkv+xGM3BkHQExUCxPXHF
+         r7aOl5H3nDjIRWyc2yN7FOg73ugzr8pGIL2v09kt8ztmoRfRc9q0axgPi1MnwXFiBNfF
+         A43nEClwt1GIJcr3lz9OYSlsEHnj4EWD50yV49YE29idZBMiGJp2XWDnu6xJ6HurOJ7q
+         5ZK/SgK44qlFM2PhoRAqr5RQN/NuSAcDM6mYIUjOUsvGdr+KHacS/s7ezYJW/NjS08ux
+         h4zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=E/uYZwJv4qOMJdSh4QC+fOSVjVZQvMo857xnnr6uG3Y=;
-        b=Omr2vrrVjC81SFElDQvPVlw18RpVfbtwIYvmw8H4YJJ3GEeD6k+M0bKe94C65dqXYo
-         beZKKXKHiXVZ+j1M7NVIxl31R+EEFwDNjMxzBgpRTpdaxygxl+dycMOZcpJvfRn7GDhb
-         DuHjbF0LWdJc1IEMxE77lAoVm64GyojZTeK4XcsEG5IdJtGtcqrskVjKttQTd5SXob4n
-         /2kT0NgczLL7hzB9MjwIXYgchOt8LjPPKV0+CN+jLKGoKnQtfHnfS8NSj8dxGnWA+JH4
-         SqR78gpKFolafm8H0Xrj7D1EssPNwb+pygR9DvOhxXC9xLoONcgGFdw7hpC2ZYlGkpdS
-         5QFg==
-X-Gm-Message-State: AOAM530drodvMs3uzQy2ntCw1kiSKNmEpifnjywVa8r1c4HRVTNlDu5d
-        J53GbBJlyJKH3uFIH3ZWf53sBA==
-X-Google-Smtp-Source: ABdhPJw8Wux1sPx1JVJOa5MrP8GuPRljGHUkUxfIrbDJcSI+GVjbIs33571XBu0v3Bg0KInVFN5u7g==
-X-Received: by 2002:a05:6402:26c7:b0:41b:7aef:bdf6 with SMTP id x7-20020a05640226c700b0041b7aefbdf6mr9692665edd.210.1648844882314;
-        Fri, 01 Apr 2022 13:28:02 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id ga42-20020a1709070c2a00b006df76956b53sm1340155ejc.212.2022.04.01.13.28.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 13:28:01 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: qcom,smd-rpm: update maintainers (drop Kathiravan)
-Date:   Fri,  1 Apr 2022 22:27:59 +0200
-Message-Id: <20220401202759.191560-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        bh=teWkJ4CoTDO5mMTrqx6InWM0rnqqHmOdFQ5U6F0SH00=;
+        b=irW+BILzJDCrKFQjYBZQB0AQt55jPc6qlH87JvywobrRV2iTaHCHFVhH3EqzmmhS9V
+         3Irp4K4fYz7PkL1fu/kzglcgpWDHdi5JPcQuyHln5ASILRNctGsPlKOBF1JRwns1xy2f
+         E0Ou4583B2VA/zJV2G/Prh/WNTjTb/CLiSV48MAWtqeoLrShcvJf6Ow8iKnrDk/5zkzp
+         zlI4L/ilnr7tZXtCmAZo+PDHnP0Pago640NPfWDHOuVrATY9+6ckGM9uhD6S21cGIhbe
+         +36qVtKrA+CxQghcm6frPCAn8LYVrR49R2B5fEGPdh6uobjJjTn/5SqSQrfCy1OeDRW9
+         ij8w==
+X-Gm-Message-State: AOAM5300CapVQ1UBU2APTCNqcLJeXu2eD8bis1LMbVhoL6kWoaRRYNN8
+        KKMfAHpgsPI/rd3TvCe5zciBHQ==
+X-Google-Smtp-Source: ABdhPJwveJo4luP3uof9lK/lq+qxgaM5BCB8OpF6wk47aGBGg69GVrOyISr7+SrsCRtn2V8VljTOxQ==
+X-Received: by 2002:a05:6402:5146:b0:415:fd95:6afa with SMTP id n6-20020a056402514600b00415fd956afamr22919059edd.200.1648845365450;
+        Fri, 01 Apr 2022 13:36:05 -0700 (PDT)
+Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id u4-20020aa7db84000000b004136c2c357csm1595857edt.70.2022.04.01.13.36.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Apr 2022 13:36:04 -0700 (PDT)
+Message-ID: <1a26fd19-0f5e-d9f1-08e7-c5e3edd610a1@linaro.org>
+Date:   Fri, 1 Apr 2022 22:36:04 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFT PATCH 0/2] regulator: richtek,rt4801: use existing ena_gpiod
+ feature
+Content-Language: en-US
+To:     =?UTF-8?B?Y3lfaHVhbmco6buD5ZWf5Y6fKQ==?= <cy_huang@richtek.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220401154237.1061331-1-krzysztof.kozlowski@linaro.org>
+ <1648831895.12596.6.camel@richtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1648831895.12596.6.camel@richtek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,44 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kathiravan's email bounces (585: Recipient address rejected:
-undeliverable address: No such user here) so switch maintainers to Andy
-and Bjorn (as Qualcomm platform maintainers).
+On 01/04/2022 18:51, cy_huang(黃啟原) wrote:
+> 
+> 於 五，2022-04-01 於 17:42 +0200，Krzysztof Kozlowski 提到：
+>> Hi,
+>>
+>> Not tested.
+>>
+>> Follow up of discussion:
+>> https://lore.kernel.org/all/2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org/#t
+>>  <https://lore.kernel.org/all/2d124d53-1f36-5315-3877-af8f8ad5f824@linaro.org/#t
+>> >
+> 
+> If RT4801 enable-gpio both go from high to low, the voltage reg will be
+> reset, and I2C cannot be accessibele.
+> This patch can be used to individually control enable for DSVP and DSVN,
+> but the above i2c behavior is not considered.
+> You can check rt4801_enable/rt4801_disable for the details.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml  | 3 ++-
- Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml   | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Ah, so this is why this custom enable methods is there (pus bitmap etc).
+Then the core ena_gpiod cannot be used, although still we want to move
+on from two GPIOs in one enable-gpios property.
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-index 0daad8e3e260..6a9a7eed466f 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-@@ -69,7 +69,8 @@ description:
-   l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22
- 
- maintainers:
--  - Kathiravan T <kathirav@codeaurora.org>
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-index 49e9755b3a90..000d61afbea3 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-@@ -25,7 +25,8 @@ description: |
-   rpm_requests.
- 
- maintainers:
--  - Kathiravan T <kathirav@codeaurora.org>
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
- 
- properties:
-   compatible:
--- 
-2.32.0
-
+Best regards,
+Krzysztof
