@@ -2,88 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD794EEEDD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 270EA4EEEE6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 16:10:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237498AbiDAOKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 10:10:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33980 "EHLO
+        id S242069AbiDAOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 10:12:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240955AbiDAOKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:10:19 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93495E76F;
-        Fri,  1 Apr 2022 07:08:28 -0700 (PDT)
-Received: from mail-wr1-f53.google.com ([209.85.221.53]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1M1pfy-1ncUs63R2u-002CaI; Fri, 01 Apr 2022 16:08:26 +0200
-Received: by mail-wr1-f53.google.com with SMTP id u16so4455159wru.4;
-        Fri, 01 Apr 2022 07:08:26 -0700 (PDT)
-X-Gm-Message-State: AOAM53308P+I1g1RVY6Dxv2b/ayNNmdXiS+6XHPE2J/allHD5v7hICcQ
-        5NgaMMfA2accpEcQE2rslZ9SOg7OMKGBRma6b64=
-X-Google-Smtp-Source: ABdhPJzQDr+Ev2rOkNJ6HmiZl7h44p304n4e4eF9V8C/+5wOh6QPM5NAog2ZBHar+vrcy6HRg1QWm7dpliXLyiIf6l8=
-X-Received: by 2002:a5d:66ca:0:b0:203:fb72:a223 with SMTP id
- k10-20020a5d66ca000000b00203fb72a223mr7757069wrw.12.1648822106460; Fri, 01
- Apr 2022 07:08:26 -0700 (PDT)
+        with ESMTP id S1346701AbiDAOMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 10:12:31 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7160E5C641
+        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 07:10:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648822241; x=1680358241;
+  h=message-id:date:mime-version:from:subject:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=dkTlAeeJHnW6x5durlVRIAr/mTlPWjaWqH3/KAYh+Y8=;
+  b=aS1T8kWyu7Su+UAwBuhczPI6iyuq6YR1ONmSmIBs9XOtWOBSokZZoHtp
+   QMgKobk4h/15gOEznCI/yX/y+9umZmjSk+NjBjUYwvayI/OzbUnpfNRfM
+   KoWxlyGOazIIyXQH968H1uQqMljrOi4/hStNesTPGAD12m7TKH7OjovZU
+   0=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 01 Apr 2022 07:10:41 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Apr 2022 07:10:40 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Apr 2022 07:10:28 -0700
+Received: from [10.110.21.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 1 Apr 2022
+ 07:10:27 -0700
+Message-ID: <e362f6dd-785f-87b3-3090-554be0fb860c@quicinc.com>
+Date:   Fri, 1 Apr 2022 07:10:26 -0700
 MIME-Version: 1.0
-References: <20220331214911.27194-1-niravkumar.l.rabara@intel.com>
-In-Reply-To: <20220331214911.27194-1-niravkumar.l.rabara@intel.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 1 Apr 2022 16:08:09 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2AMqSyUPFqMC=cytLqBAM2Ugo6f1tph5je1NCVS=DkcQ@mail.gmail.com>
-Message-ID: <CAK8P3a2AMqSyUPFqMC=cytLqBAM2Ugo6f1tph5je1NCVS=DkcQ@mail.gmail.com>
-Subject: Re: [PATCH] Add Altera hardware mutex driver
-To:     niravkumar.l.rabara@intel.com
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+Subject: Re: [PATCH v3 0/7] Fix AST2600 quad mode SPI pinmux settings
+To:     =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
+        Joel Stanley <joel@jms.id.au>
+CC:     devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jamie Iles <quic_jiles@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:K8YBfl2zUyBcuoMXWgX0o5NYaEVhLB6LwnKUAY/ZgPB9bATmvPF
- QPiORRLw51+SKftTsJ6zBx9aXshKXORNoQPUJ18YsJfFySs6+g2hX5w+e64xn0L0784rMnA
- JsCXGewzZGeVozgDGiy+oEUkiX1YGXiON+gWSspCIRRqIi9yrFOFY9fOOm2cWlm9wBr3Qw9
- Q8roYLX3HPVCWf2ZfAw6Q==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:T4TYvQhVzGc=:58EK2y0QuIAJnj/gDPQUH5
- UvP5YlvoRkMWpCPK5177MN2uOgm+VAogjKbTNsPWoop30DmPXUellxp5Lr7iPBQZFXUVTFwKm
- 0EAJqLQ40Cvwbs1Btv2BlMxL7X94FcFQe+ZkknNqIWxDEcrhpxsnXqyS3BeuQhiBNRkkljgXe
- mugxQfp9jBZAk1y/YYexh4Lw9sTIZStuQKXkf9DkxW9LhSRLfasXeUZ1/jgLUCBEwDJjmKFcq
- 6cUsC3L8j51O5bw85GYVpD1XFUP4WgTGRsa+ZoZwgg3YrBUYp1M4QrRbpshFbtTv5PyEGbWek
- jleE//YNAQFiYT1gG0ZqMulaXGGFL8tgo9Px12nbYVcIFDYbKQCYgqXV+jMeL7YoE1Gfl8PyC
- sSp6bfkbIJQH7XTh37CCUshmnufxeJULq9FxaRWUvD+dAMdmX03hYujZk0jJ6rzPq4DM9CNxg
- nf5avgtQrV+FnIqOvDIkjgIzozJalFlzKdrg7EeIlQJ2OvIlIY/XqKg+OKRNNsPaLYr8Xn/U5
- hHeqNISaXL6F/ox5FgEu078maawOFMRyBzcnJ1fRv3qsjD8ESjGmverpsrHcfC96AM9n4Hn0+
- IxvPVfgHFClQ10KbWRrrMq3/1Vx5OAmuzyLCKXFsLVR0iO2XPP5quICL4Oihe4UscvYtwr4o8
- QkqdhD1upiDYVjPrCzI8pf/ELdq8SC3yDIJLNjUowHktDnuDXiomVp5DeLN11Se305FU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Graeme Gregory" <quic_ggregory@quicinc.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220329173932.2588289-1-quic_jaehyoo@quicinc.com>
+ <CACPK8Xed5Kh_Y2B3NY41bjgoALvz1gC4zbNfmUaHn_8EbHio4g@mail.gmail.com>
+ <ea2ecef9-f47f-2a4e-8dda-ffd0c3691389@quicinc.com>
+ <c4bcb633-02d2-1cd5-3485-787ebd4b1e0a@kaod.org>
+ <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <42694139-61d0-fb0d-d4c3-a81cc31488d2@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 11:49 PM <niravkumar.l.rabara@intel.com> wrote:
->
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
->
-> Altera hardware mutex soft IP provides hardware assistance for
-> synchronization and mutual exclusion between processors in
-> asymmetric/symmetric multiprocessing (AMP/SMP) system or
-> multi processes/threads in uniprocessor system.
->
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
->  .../bindings/misc/altera-hwmutex.yaml         |  47 +++
->  drivers/misc/Kconfig                          |   6 +
->  drivers/misc/Makefile                         |   1 +
->  drivers/misc/altera_hwmutex.c                 | 321 ++++++++++++++++++
->  include/linux/altera_hwmutex.h                |  42 +++
+Hi Cédric,
 
-Why does this use a custom interface rather than the generic drivers/hwspinlock/
-subsystem?
+On 3/31/2022 9:06 AM, Jae Hyun Yoo wrote:
+> Hello Cédric,
+> 
+> On 3/31/2022 8:56 AM, Cédric Le Goater wrote:
+>> Hello Jae,
+>>
+>> On 3/31/22 17:44, Jae Hyun Yoo wrote:
+>>> On 3/30/2022 10:50 PM, Joel Stanley wrote:
+>>>> On Tue, 29 Mar 2022 at 17:40, Jae Hyun Yoo 
+>>>> <quic_jaehyoo@quicinc.com> wrote:
+>>>>>
+>>>>> I’m sending this patch series to fix current issues in AST2600 pinmux
+>>>>> settings while enabling quad mode SPI support.
+>>>>>
+>>>>> FWSPI18 pins are basically 1.8v logic pins that are different from the
+>>>>> dedicated FWSPI pins that provide 3.3v logic level, so FWSPI18 pins 
+>>>>> can’t
+>>>>> be grouped with FWSPIDQ2 and FWSPIDQ3, so this series fix the issue.
+>>>>>
+>>>>> Also, fixes QSPI1 and QSPI2 function settings in AST2600 pinctrl 
+>>>>> dtsi to
+>>>>> make it able to enable quad mode on SPI1 and SPI2 interfaces.
+>>>>>
+>>>>> With this series, quad mode pinmux can be set like below.
+>>>>>
+>>>>> FW SPI:
+>>>>> &fmc {
+>>>>>          pinctrl-names = "default";
+>>>>>          pinctrl-0 = <&pinctrl_fwqspi_default>;
+>>>>> }
+>>>>>
+>>>>> SPI1:
+>>>>> &spi1 {
+>>>>>          pinctrl-names = "default";
+>>>>>          pinctrl-0 = <&pinctrl_qspi1_default>;
+>>>>> }
+>>>>>
+>>>>> SPI2:
+>>>>> &spi2 {
+>>>>>          pinctrl-names = "default";
+>>>>>          pinctrl-0 = <&pinctrl_qspi2_default>;
+>>>>> }
+>>>>
+>>>> Thanks. I hope to see a board from you that uses this soon :)
+>>>>
+>>>> I'll send the patches as fixes once -rc1 is out.
+>>>
+>>> Thanks Joel!
+>>>
+>>> Yes, I would be able to send my BMC board dts soon.
+>>> Thanks in advance for your review on that too.
+>>
+>> Out of curiosity, which driver are you using ? the one from SDK ?
+>>
+>> I proposed a new one for upstream supporting all AST2400, AST2500, 
+>> AST2600
+>> controllers. I would be glad to have some feedback if you have time.
+> 
+> Yes, I saw your patch set of the new driver.
+> 
+> I'm currently using this fix with legacy aspeed-smc driver after
+> adding some fixes. I'll give it a try with your new driver as well and
+> will give you some feedback if I find any.
 
-        Arnd
+I tested this patch series using the new spi-aspeed-smc driver you
+proposed.
+
+https://lore.kernel.org/linux-arm-kernel/20220325100849.2019209-1-clg@kaod.org/
+
+I modified my BMC's device tree like below to enable quad mode.
+
+	&fmc {
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_fwqspi_default>;
+
+		flash@0 {
+			status = "okay";
+			m25p,fast-read;
+			label = "bmc";
+			spi-rx-bus-width = <4>;
+			spi-max-frequency = <133000000>;
+	#include "openbmc-flash-layout-64.dtsi"
+		};
+
+		flash@1 {
+			status = "okay";
+			m25p,fast-read;
+			label = "alt-bmc";
+			spi-rx-bus-width = <4>;
+			spi-max-frequency = <133000000>;
+	#include "openbmc-flash-layout-64-alt.dtsi"
+		};
+	};
+
+And I got these kernel boot logs.
+
+[    0.720745] spi-nor spi0.0: w25q512nwfm (65536 Kbytes)
+[    0.837368] spi-aspeed-smc 1e620000.spi: CE0 read buswidth:4 [0x406c0741]
+[    0.846352] 5 fixed-partitions partitions found on MTD device bmc
+[    0.853220] Creating 5 MTD partitions on "bmc":
+[    0.858295] 0x000000000000-0x0000000e0000 : "u-boot"
+[    0.865014] 0x0000000e0000-0x000000100000 : "u-boot-env"
+[    0.872229] 0x000000100000-0x000000a00000 : "kernel"
+[    0.878963] 0x000000a00000-0x000002a00000 : "rofs"
+[    0.885406] 0x000002a00000-0x000004000000 : "rwfs"
+[    0.892880] spi-nor spi0.1: w25q512nwfm (65536 Kbytes)
+[    1.009460] spi-aspeed-smc 1e620000.spi: CE1 read buswidth:4 [0x406c0741]
+[    1.018334] 5 fixed-partitions partitions found on MTD device alt-bmc
+[    1.025537] Creating 5 MTD partitions on "alt-bmc":
+[    1.031027] 0x000000000000-0x0000000e0000 : "u-boot-alt"
+[    1.038165] 0x0000000e0000-0x000000100000 : "u-boot-env-alt"
+[    1.045623] 0x000000100000-0x000000a00000 : "kernel-alt"
+[    1.052807] 0x000000a00000-0x000002a00000 : "rofs-alt"
+[    1.059800] 0x000002a00000-0x000004000000 : "rwfs-alt"
+
+As you can see in the log, FMC10[31:28] and FMC14[31:28] are properly
+set to 0100b which means 'quad bit read/write, data cycle only'.
+I verified that your new driver supports quad mode properly and it has
+worked well so far without making any issue.
+
+Thanks for your making the new driver.
+I left my comment in your patch proposal thread.
+
+Cheers,
+
+Jae
+
+
+
