@@ -2,98 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 380A34EF931
-	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 19:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ED1E4EF984
+	for <lists+devicetree@lfdr.de>; Fri,  1 Apr 2022 20:07:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348094AbiDAR4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 13:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55486 "EHLO
+        id S1344731AbiDASJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 14:09:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235952AbiDAR4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 13:56:23 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D873F5419D;
-        Fri,  1 Apr 2022 10:54:32 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,228,1643641200"; 
-   d="scan'208";a="115449343"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Apr 2022 02:54:32 +0900
-Received: from localhost.localdomain (unknown [10.226.92.166])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4890B40C73A8;
-        Sat,  2 Apr 2022 02:54:30 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzg2l-smarc: Move gpios property of vccq_sdhi1 from common dtsi
-Date:   Fri,  1 Apr 2022 18:54:27 +0100
-Message-Id: <20220401175427.19078-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S236250AbiDASJV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 14:09:21 -0400
+X-Greylist: delayed 1466 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 01 Apr 2022 11:07:31 PDT
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72B511A9BA;
+        Fri,  1 Apr 2022 11:07:31 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1naLIS-00C92z-8l; Fri, 01 Apr 2022 17:42:52 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Tim Harvey <tharvey@gateworks.com>, stable@vger.kernel.org
+Subject: [PATCH] ARM: dts: imx8mm-venice-gw{72xx,73xx}: fix OTG controller OC mode
+Date:   Fri,  1 Apr 2022 10:42:49 -0700
+Message-Id: <20220401174249.10252-1-tharvey@gateworks.com>
 X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On RZ/G2{L,LC} SoM module, gpio for power selection is connected to
-P39_1 whereas on RZ/G2UL it is connected to P6_1. So move gpios property
-of vccq_sdhi1 regulator from common dtsi to soc specific dtsi.
+Both the GW72xx and GW73xx boards have USB1 routed to a USB OTG
+connector and USB2 routed to a USB hub.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-This patch depend upon [1]
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220401145702.17954-1-biju.das.jz@bp.renesas.com/
----
- arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi | 1 -
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi     | 4 ++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi    | 4 ++++
- 3 files changed, 8 insertions(+), 1 deletion(-)
+The OTG connector has over-current protection with an active-low
+pin and the USB1 to HUB connection has no over-current protection (as
+the HUB itself implements this for its downstream ports).
 
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index 8dd1c69a6749..0e61b85efb43 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -74,7 +74,6 @@
- 		regulator-name = "SDHI1 VccQ";
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <3300000>;
--		gpios = <&pinctrl RZG2L_GPIO(39, 1) GPIO_ACTIVE_HIGH>;
- 		gpios-states = <1>;
- 		states = <3300000 1>, <1800000 0>;
- 	};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index c934cd3633a4..aadc41515093 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -48,3 +48,7 @@
+Add proper dt nodes to specify the over-current pin polarity for USB1
+and disable over-current protection for USB2.
+
+Fixes: 6f30b27c5ef5 ("arm64: dts: imx8mm: Add Gateworks i.MX 8M Mini Development Kits")
+Cc: stable@vger.kernel.org
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi | 2 ++
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+index 27afa46a253a..b0de99b4a608 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+@@ -139,12 +139,14 @@
+ 
+ &usbotg1 {
+ 	dr_mode = "otg";
++	over-current-active-low;
+ 	vbus-supply = <&reg_usb_otg1_vbus>;
  	status = "okay";
  };
- #endif
-+
-+&vccq_sdhi1 {
-+	gpios = <&pinctrl RZG2L_GPIO(39, 1) GPIO_ACTIVE_HIGH>;
-+};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 856c949796ff..74a844ea7537 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -98,3 +98,7 @@
- 	status = "disabled";
+ 
+ &usbotg2 {
+ 	dr_mode = "host";
++	disable-over-current;
+ 	vbus-supply = <&reg_usb_otg2_vbus>;
+ 	status = "okay";
  };
- #endif
-+
-+&vccq_sdhi1 {
-+	gpios = <&pinctrl RZG2L_GPIO(39, 1) GPIO_ACTIVE_HIGH>;
-+};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+index a59e849c7be2..3c26c125678d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+@@ -166,12 +166,14 @@
+ 
+ &usbotg1 {
+ 	dr_mode = "otg";
++	over-current-active-low;
+ 	vbus-supply = <&reg_usb_otg1_vbus>;
+ 	status = "okay";
+ };
+ 
+ &usbotg2 {
+ 	dr_mode = "host";
++	disable-over-current;
+ 	vbus-supply = <&reg_usb_otg2_vbus>;
+ 	status = "okay";
+ };
 -- 
 2.17.1
 
