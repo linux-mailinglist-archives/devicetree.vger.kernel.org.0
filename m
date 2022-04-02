@@ -2,146 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 103844F00E5
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 13:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D40714F011A
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 13:32:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354621AbiDBLDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 07:03:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40552 "EHLO
+        id S244528AbiDBLd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 07:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbiDBLCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 07:02:52 -0400
-Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736715C64A;
-        Sat,  2 Apr 2022 04:01:00 -0700 (PDT)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout3.routing.net (Postfix) with ESMTP id C5B4C62646;
-        Sat,  2 Apr 2022 11:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1648897258;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=rVlsNMjXQQ4jdCL0TbPne+ht1OtgQ3f4+EzKpSKvrX8=;
-        b=swkdD0x3TBBMxA6IIt68vV136Ukio9/0J4qdADpFPOgGC+yP7O1HvdJCs96zAKFr2g/Fh9
-        6jdwMZk5w5cA/E7Sl2xHDRCPmfsQCk4zV0q8ThqFr3MGs0u//QGAO/2a37kI9r6owa9M38
-        FF7gD4bup1CeOcB6+uvcAwQ1gV3Gzio=
-Received: from localhost.localdomain (fttx-pool-80.245.79.107.bambit.de [80.245.79.107])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 211523602D1;
-        Sat,  2 Apr 2022 11:00:58 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: rockchip: Add gmac1 and change network settings
-Date:   Sat,  2 Apr 2022 13:00:45 +0200
-Message-Id: <20220402110045.104031-3-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220402110045.104031-1-linux@fw-web.de>
-References: <20220402110045.104031-1-linux@fw-web.de>
+        with ESMTP id S241104AbiDBLd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 07:33:26 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C95B14A3E4;
+        Sat,  2 Apr 2022 04:31:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7B974B8075A;
+        Sat,  2 Apr 2022 11:31:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C65C340EC;
+        Sat,  2 Apr 2022 11:31:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648899092;
+        bh=hHiaN9oQ8ExvCLuAqHVX8GhGvr0JDcc8KoNUT7YzQeQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XKuIRDL43MpBpxr/RptIaKZKJR6EGeGWNkYtaNMCtIGwGXVqzA5i57XwxM54tVZ2N
+         SjEfIUs8wDBMf81/FJiWI633TR1Bqh5IbwxY44eD1obDH5wSpDPvoGug1iLEbJ9zl9
+         dF1SrQrFYf4IhpClRUs2MejERVXmb/nr9GW+YaBI2kfjIx6xNg5XE/DEuHkTwCKDZb
+         O2itFS38dngcTS/XWun70RifGDQFMBuryMyU/DyVxwpJ040NeR7+L9eAfaXo8lFnrU
+         4E+xDrArOnbh4T5cLQkNUSgcuoNZyvBWF1OM+aRt90V9CuznkyCNGqjf2JwyKD3IEg
+         jiimG0s8JPYjw==
+Message-ID: <ac0e3336-f9eb-def9-68ea-ab49e2c467a1@kernel.org>
+Date:   Sat, 2 Apr 2022 13:31:22 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 97d707e2-b6e5-46ae-8685-faf5e876b31a
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/3] dt-bindings: devfreq: mediatek: add mtk cci devfreq
+ dt-bindings
+Content-Language: en-US
+To:     Jia-Wei Chang <jia-wei.chang@mediatek.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        roger.lu@mediatek.com, Allen-yy.Lin@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        hsinyi@google.com,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+References: <20220307122513.11822-1-jia-wei.chang@mediatek.com>
+ <20220307122513.11822-2-jia-wei.chang@mediatek.com>
+ <bf418e08-2e32-5e61-abd8-abb0d8f5c080@canonical.com>
+ <13482b1b4244df5c0c0a4d6a60cdb2a7ba88500a.camel@mediatek.com>
+ <aa34eccf-ef08-4a8f-7a6c-7fbd05bd54b6@kernel.org>
+ <126e0905c2eb9f22a0be46dd7aa8ac891622346d.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <126e0905c2eb9f22a0be46dd7aa8ac891622346d.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On 01/04/2022 15:39, Jia-Wei Chang wrote:
+>>>>
+>>>>> +
+>>>>> +  operating-points-v2:
+>>>>> +    description:
+>>>>> +      For details, please refer to
+>>>>> +      Documentation/devicetree/bindings/opp/opp-v2.yaml
+>>>>> +
+>>>>> +  opp-table: true
+>>>>
+>>>> Same comments as your CPU freq bindings apply.
+>>>
+>>> mtk-cci-devfreq is a new driver and its arch is same as mediatek-
+>>> cpufreq so that the properties of mtk-cci are refer to mediatek-
+>>> cpufreq 
+>>> bindings.
+>>> operating-point-v2 is used to determine the voltage and frequency
+>>> of
+>>> dvfs which is further utilized by mtk-cci-devfreq.
+>>
+>> "operating-point-v2" is understood, but the same as in cpufreq
+>> bindings,
+>> I am questioning why do you have "opp-table: true". It's a bit
+>> confusing, so maybe I miss something?
+> 
+> Yes, you're correct.
+> "opp-table: true" should be removed.
+> I messed it up.
 
-New Version (v1.0) of R2 pro has swapped gmacs compared to the v00.
+No, I think I was wrong. The opp-table pretty frequently is embedded in
+the the device node itself. The operating-points-v2 references it.
 
-WAN-Port is now on gmac1 (RTL8211F) and lan-ports on gmac0 with mt7531
-switch.
+You don't use it in the example, but it might be a valid usage, so it
+can stay. Sorry for the confusion, it passed some time since I looked at
+OPP bindings.
 
-There is already a mt7531 dsa driver in mainline, but it needs to be
-modified to work for this board.
 
-Fixes: f901aaadaa2a ("arm64: dts: rockchip: Add Bananapi R2 Pro")
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 36 +++++++++++++++++--
- 1 file changed, 33 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index a0388ff85ddf..067fe4a6b178 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -16,6 +16,7 @@ / {
- 
- 	aliases {
- 		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
- 		mmc0 = &sdmmc0;
- 		mmc1 = &sdhci;
- 	};
-@@ -78,7 +79,6 @@ &gmac0 {
- 	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
- 	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
- 	clock_in_out = "input";
--	phy-handle = <&rgmii_phy0>;
- 	phy-mode = "rgmii";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&gmac0_miim
-@@ -90,8 +90,38 @@ &gmac0_rgmii_clk
- 	snps,reset-active-low;
- 	/* Reset time is 20ms, 100ms for rtl8211f */
- 	snps,reset-delays-us = <0 20000 100000>;
-+	tx_delay = <0x4f>;
-+	rx_delay = <0x0f>;
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+		pause;
-+	};
-+};
-+
-+&gmac1 {
-+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru CLK_MAC1_2TOP>;
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy1>;
-+	phy-mode = "rgmii";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1m1_miim
-+		     &gmac1m1_tx_bus2
-+		     &gmac1m1_rx_bus2
-+		     &gmac1m1_rgmii_clk
-+		     &gmac1m1_rgmii_bus>;
-+
-+	snps,reset-gpio = <&gpio3 RK_PB0 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	/* Reset time is 20ms, 100ms for rtl8211f */
-+	snps,reset-delays-us = <0 20000 100000>;
-+
- 	tx_delay = <0x3c>;
- 	rx_delay = <0x2f>;
-+
- 	status = "okay";
- };
- 
-@@ -315,8 +345,8 @@ &i2c5 {
- 	status = "disabled";
- };
- 
--&mdio0 {
--	rgmii_phy0: ethernet-phy@0 {
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@0 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
- 		reg = <0x0>;
- 	};
--- 
-2.25.1
-
+Best regards,
+Krzysztof
