@@ -2,176 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D88664F03E6
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 16:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 520C84F0415
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 16:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236962AbiDBOYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 10:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41880 "EHLO
+        id S1350421AbiDBOih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 10:38:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243649AbiDBOYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 10:24:15 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7531613CA07
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 07:22:23 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id g22so6085953edz.2
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 07:22:23 -0700 (PDT)
+        with ESMTP id S243878AbiDBOig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 10:38:36 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E973D181B13;
+        Sat,  2 Apr 2022 07:36:44 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id k23so7944183ejd.3;
+        Sat, 02 Apr 2022 07:36:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AMgcOOw5r9mv38XuA+c8CRwaFDTkeUsZRRq+V0PdcsY=;
-        b=ndRjC0RhMOJGBf5NZc9mOkR/bHebZ8B8V39sgXEZvBTOMKfN380968Na2TPAfrha+l
-         ZI9WodBoHES0w0Bp3iahPcQvrSvLGyEdKN9nzlOXYAno8LFwZbSXtL+Lc/tAJqOwEg1l
-         c+zclPub3nlJoZhvRhuCtyRf+bRdwySxsoovuLIJFRXx6ZDcMEoTBdzqNo267URsQr5J
-         7Sf8LB6qW65GLnhp6kQmzqluNbDqQxS41UCAI/nSNGTt8Wgzg19qt+gXBvZEupBKpxYx
-         IhHDskUw5bYaqEZWs8fz0XJt1vP+kkRC7pCQCmYequPos6I4Ouk9G9NfRueZhZHJ7Lq8
-         sFtw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RGNMGqDkFSJymA3pWafV2dnoGntv8svW3Mz+ef8XMI4=;
+        b=n2YqOiNjdDyk26irDah8NTksunLZcPMNnL/oHlMuFo4PrHUpUvaNmuvvMXbAtD9NSG
+         NRRD+yh311awcfb2sxa0t8zYyHoHPyy8PCd3riNnMuBfbIAWPY05JyQSdJTUsYXvBEc4
+         LRVKdcGYubDE2BnQun3hiJgGax7RJ+mlyy31ONdDky5QofmY/danhSCq63ZCWR9RKYH9
+         amr43JGdlguglwrUOKuF3jGmSpSS/BQ4UNInu5Ql7JRJMqXvFy4iY6MtjhUprrn91dqX
+         iTB6+jeqUwsOu9BHBjHkQkVShY2D/gOb6zLT+XEk9oCL6MrNWvH5j7hKGb6NSZXztx3Y
+         5kzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=AMgcOOw5r9mv38XuA+c8CRwaFDTkeUsZRRq+V0PdcsY=;
-        b=ZaV4TmJxFXHTC6jf8qkKVANMbMP5yLIp7qukIxOBi2taD0P7iir1NM/tOzyWblt6bN
-         cuq/iqeq9d/BTEeqm+/Pur/RhQ8eiiqFKnl3UPecNNvDOqBCVaKzGVlClI1oKSuMYxfa
-         s6xnUxd2TurpOywf5ESI7NNFxoY9MlVALQ7CBXUpHTRLw+TLxfOl4v3PamcmcKXwfDVs
-         950SJRmlhm+xsylGSjQSqKAfWW/1ywYrk7b0i4VoGIefwLxfr2NX2iiSyg6c452iVOsn
-         UYWTVdQmIhcO4sHXcVXO4KdzS1JBeCDfp9rm8eN1KkHMGOvw3RGkezsluomAv2B5rTsw
-         n83g==
-X-Gm-Message-State: AOAM531fj6mZbPC/HrLYP2QBHLETwUS/Qr8mayRrY32URTin/53IIdjb
-        v0Mo9hY2w1VU9Ilo3eZFAeE+Ew==
-X-Google-Smtp-Source: ABdhPJyO41m5nOt35fQMdoxrpqwQOe/Hbl42lUbDUic9chKbI6pE3cOvTVsoxLEMtoeouWLa4B+qbw==
-X-Received: by 2002:aa7:d517:0:b0:419:16c0:f313 with SMTP id y23-20020aa7d517000000b0041916c0f313mr25542499edq.379.1648909342042;
-        Sat, 02 Apr 2022 07:22:22 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id h30-20020a056402095e00b00412b81dd96esm2461485edz.29.2022.04.02.07.22.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 07:22:21 -0700 (PDT)
-Message-ID: <f737fd47-e557-45af-035b-af29a88e22e6@linaro.org>
-Date:   Sat, 2 Apr 2022 16:22:20 +0200
+        bh=RGNMGqDkFSJymA3pWafV2dnoGntv8svW3Mz+ef8XMI4=;
+        b=DZFhTsgZjA4JhoEm5pnia9ZIoI3t0XjyZyDGEX31VT7vQQWRoqZg8XB59tpYSONrP6
+         W85KWx7TtujUpdAxRTIPOQfFJvKqN5Ijzm1K2Hib+A1LWsOJ8NrfReeOdvEPD1I3CW1M
+         10z/bDYyJfNT/mEvSiFRKCl//9IciwCFqL1DtDMYIykKiIz0X90h8vAXg5rHB1f7wS2R
+         ugJJssTptHYU7hZc4TfZMQDk+B1IjvN14NNStEYYWpYshxwacBW7Ek63AtJ5A4nLdtWh
+         8UZOJkjdzyNoG3bwuTRsZe2rvx8zLHx3+GXEc1BPd3BFtWSyig2DmPbu8Nai6WDEnBzs
+         rS+w==
+X-Gm-Message-State: AOAM533Uzt/JaOrcAkWA2esNsK9+jgY65MdfbXUaiUY2Pnqsp7SO9eMu
+        dLdb3FwemIIvt+dDY/TK+5E=
+X-Google-Smtp-Source: ABdhPJzTbd5ywK0ecrPLfPLSq2IDdTj6OVySRGrIJcFomjN8tElW6y5sFBxCeefFejSxTebo5V8Ecw==
+X-Received: by 2002:a17:907:608c:b0:6e0:19fe:d689 with SMTP id ht12-20020a170907608c00b006e019fed689mr3995444ejc.164.1648910203449;
+        Sat, 02 Apr 2022 07:36:43 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id bp8-20020a170907918800b006e0daaa63ddsm2169557ejb.60.2022.04.02.07.36.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Apr 2022 07:36:42 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de, zhangqing@rock-chips.com
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 00/16] Convert Rockchip clk
+Date:   Sat,  2 Apr 2022 16:36:20 +0200
+Message-Id: <20220402143636.15222-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 6/6] dt-bindings: power: supply: qcom,smb2: add bindings
- for smb2 driver
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     Amit Pundir <amit.pundir@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-References: <20220401202643.877609-1-caleb.connolly@linaro.org>
- <20220401202643.877609-7-caleb.connolly@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220401202643.877609-7-caleb.connolly@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 22:26, Caleb Connolly wrote:
-> Add devicetree bindings for the Qualcomm PMI8998/PM660 SMB2 charger
-> drivers.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  .../bindings/power/supply/qcom,smb2.yaml      | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,smb2.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/qcom,smb2.yaml b/Documentation/devicetree/bindings/power/supply/qcom,smb2.yaml
-> new file mode 100644
-> index 000000000000..1bea1fef78b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/qcom,smb2.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/qcom,smb2.yaml#
+Combined serie of previously converted Rockchip clk bindings.
 
-Hi,
+Changed V4:
+  combine dts patches
+  add more clocks
+  add clocks to example
+  add clocks requirement
 
-Are you sure "smb2" is a real Qualcomm versioning? IOW, is there going
-to be smb3 in the future? If not, better to just name the file according
-to model, so like compatible and like other existing schemas from Qualcomm.
+Johan Jonker (16):
+  dt-bindings: clock: convert rockchip,px30-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3036-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3188-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3228-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3288-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3308-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3328-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rk3368-cru.txt to YAML
+  dt-bindings: clock: convert rockchip,rv1108-cru.txt to YAML
+  ARM: dts: rockchip: add clocks property to Rockchip cru nodes
+  arm64: dts: rockchip: add clocks property to Rockchip cru nodes
+  arm64: dts: rockchip: rk3399: use generic node name for pmucru
+  arm64: dts: rockchip: fix compatible string rk3328 cru node
+  dt-bindings: clock: replace a maintainer for rockchip,rk3399-cru.yaml
+  dt-bindings: clock: use generic node name for pmucru example in
+    rockchip,rk3399-cru.yaml
+  dt-bindings: clock: fix some conversion clock issues for
+    rockchip,rk3399-cru.yaml
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm PMI8998/PM660 Switch-Mode Battery Charger "2"
-> +
-> +maintainers:
-> +  - Caleb Connolly <caleb.connolly@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,pmi8998-smb2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: usb plugin
+ .../bindings/clock/rockchip,px30-cru.txt      |  70 ----------
+ .../bindings/clock/rockchip,px30-cru.yaml     | 120 ++++++++++++++++++
+ .../bindings/clock/rockchip,rk3036-cru.txt    |  56 --------
+ .../bindings/clock/rockchip,rk3036-cru.yaml   |  80 ++++++++++++
+ .../bindings/clock/rockchip,rk3188-cru.txt    |  61 ---------
+ .../bindings/clock/rockchip,rk3188-cru.yaml   |  86 +++++++++++++
+ .../bindings/clock/rockchip,rk3228-cru.txt    |  58 ---------
+ .../bindings/clock/rockchip,rk3228-cru.yaml   |  82 ++++++++++++
+ .../bindings/clock/rockchip,rk3288-cru.txt    |  67 ----------
+ .../bindings/clock/rockchip,rk3288-cru.yaml   |  93 ++++++++++++++
+ .../bindings/clock/rockchip,rk3308-cru.txt    |  60 ---------
+ .../bindings/clock/rockchip,rk3308-cru.yaml   |  86 +++++++++++++
+ .../bindings/clock/rockchip,rk3328-cru.txt    |  58 ---------
+ .../bindings/clock/rockchip,rk3328-cru.yaml   |  82 ++++++++++++
+ .../bindings/clock/rockchip,rk3368-cru.txt    |  61 ---------
+ .../bindings/clock/rockchip,rk3368-cru.yaml   |  86 +++++++++++++
+ .../bindings/clock/rockchip,rk3399-cru.yaml   |  59 ++++-----
+ .../bindings/clock/rockchip,rv1108-cru.txt    |  59 ---------
+ .../bindings/clock/rockchip,rv1108-cru.yaml   |  83 ++++++++++++
+ arch/arm/boot/dts/rk3036.dtsi                 |   2 +
+ arch/arm/boot/dts/rk3066a.dtsi                |   3 +-
+ arch/arm/boot/dts/rk3188.dtsi                 |   3 +-
+ arch/arm/boot/dts/rk322x.dtsi                 |   2 +
+ arch/arm/boot/dts/rk3288.dtsi                 |   2 +
+ arch/arm/boot/dts/rv1108.dtsi                 |   2 +
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi      |   5 +-
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |   4 +-
+ arch/arm64/boot/dts/rockchip/rk3368.dtsi      |   2 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |   6 +-
+ 29 files changed, 853 insertions(+), 585 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,px30-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,px30-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3036-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3228-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3288-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3308-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3328-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3328-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3368-cru.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1108-cru.yaml
 
-Just maxItems:1 (description is obvious and matches names).
+-- 
+2.20.1
 
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: usb-plugin
-> +
-> +  io-channels:
-> +    items:
-> +      - description: USB in current in uA
-> +      - description: USB in voltage in uV
-> +
-> +  io-channel-names:
-> +    items:
-> +      - const: usbin_i
-> +      - const: usbin_v
-> +
-
-What about monitored-battery? How do you configure the battery
-characteristics?
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - io-channels
-> +  - io-channel-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    pmic {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      #interrupt-cells = <4>;
-> +
-> +      smb2@1000 {
-
-Generic node name please, so "charger".
-
-
-
-Best regards,
-Krzysztof
