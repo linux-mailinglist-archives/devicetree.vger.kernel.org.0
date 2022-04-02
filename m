@@ -2,132 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5AC04EFEDB
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 07:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6CC4EFEED
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 07:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353745AbiDBFO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 01:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55610 "EHLO
+        id S237793AbiDBFUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 01:20:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353750AbiDBFO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 01:14:28 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04A51905A6;
-        Fri,  1 Apr 2022 22:12:31 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id b15so4383831pfm.5;
-        Fri, 01 Apr 2022 22:12:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Cmh3zBP9GsKXvL2pssHcTFPMISefgaLSJBLP3U0JXlQ=;
-        b=AoGYQZWG6wsdCVOGtMdF4xUeIPkQaO857bhsv+DdFDv8TAsgBuHcDnvGew1xll6gK5
-         klJwu4dxZcGZ7eQSROPJwcC+8p/a0sqnuL/fSoeZlIV8du8NOll29oVviZ5FmzNj9tAG
-         8WQ/UvBMM1sCbftS2oaY69leQOfS16+Svvf5SnXI+UXw/gghgbTjmpkAYV0jUWJnL3cR
-         cOzZC7kV2VXbDsMP7i7iv5CkTEPVIiRXxHFIkX9Gy1EA+q2eZo/Go6JdkMG6AkcjH7iv
-         Ap54wA3Gg4lQLaA/6whUmOcBY0gyIpB33Mv6MdA2MFXdGUp4/TnrSEdnZWeBPHHa/SzD
-         A3NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Cmh3zBP9GsKXvL2pssHcTFPMISefgaLSJBLP3U0JXlQ=;
-        b=JgqX5ULQJobdNwWgNvi06wiEJKvE3psANHdb94SnEONiudUqyeUl9EBdHXC1iVRegl
-         WC0y9S99DduH+yWFASVbi6ghqdCEkLpqX3eGzM40QLrId5DZEcBNRTvxIs5pJ0l87UzF
-         KeydrTuISVIpStJgMRHPRElm/jgfQa4aByw99t9AeHyKu82fYJeDhB+JUepYYyctgOrJ
-         USGJ3+ub0v20xHUhRJ3G268udT88zfCwlzzymSX+fJrWr0+qSYXAIxbiCQ7dGF2AAVXV
-         cynJ7Wl7kUCYJrrND2yWVHfpWf4P+Rw10OXLEPa2yoQRRdJMMSWoTYJVl10Bw7yPJ1Yv
-         BXaA==
-X-Gm-Message-State: AOAM530sDHZObovdvO8gfJB0QogCmCca22UblahJv8vfnkJZddTW7MyS
-        QGMulKoPkSrzuFsuSomGaVY=
-X-Google-Smtp-Source: ABdhPJzMIkQ8AIMYzYpn8QBnw3j8ONlhGOQgm+9wuTzXUlfUzp8VRj+3yZ9t8Ii9kLYIji7gvaHrPA==
-X-Received: by 2002:a63:1758:0:b0:381:effc:b48f with SMTP id 24-20020a631758000000b00381effcb48fmr17861363pgx.124.1648876351130;
-        Fri, 01 Apr 2022 22:12:31 -0700 (PDT)
-Received: from localhost.localdomain ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id u10-20020a63b54a000000b00380ea901cd2sm3834721pgo.6.2022.04.01.22.12.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 22:12:30 -0700 (PDT)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mukesh Savaliya <msavaliy@codeaurora.org>,
-        Akash Asthana <akashast@codeaurora.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 5/5] dt-bindings: qcom: geni-se: Remove common controller properties
-Date:   Sat,  2 Apr 2022 10:42:06 +0530
-Message-Id: <20220402051206.6115-6-singh.kuldeep87k@gmail.com>
+        with ESMTP id S231700AbiDBFUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 01:20:00 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7CE1AC72E;
+        Fri,  1 Apr 2022 22:18:04 -0700 (PDT)
+X-UUID: 08833e10c2624593a6c5ee6a6193b403-20220402
+X-UUID: 08833e10c2624593a6c5ee6a6193b403-20220402
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1983533025; Sat, 02 Apr 2022 13:17:58 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 2 Apr 2022 13:17:57 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 2 Apr
+ 2022 13:17:56 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 2 Apr 2022 13:17:56 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>
+CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [v8 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Date:   Sat, 2 Apr 2022 13:17:50 +0800
+Message-ID: <20220402051754.17513-1-jiaxin.yu@mediatek.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220402051206.6115-1-singh.kuldeep87k@gmail.com>
-References: <20220402051206.6115-1-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that Geni serial engine controllers(spi, i2c and uart) have their
-own individual bindings, it's time to remove all common properties of
-the controllers from parent schema.
+The series reuses mt8192-mt6359-rt10150rt5682.c for supporting machine
+driver with rt1015p speaker amplifier and rt5682s headset codec.
 
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
- .../bindings/soc/qcom/qcom,geni-se.yaml       | 33 -------------------
- 1 file changed, 33 deletions(-)
+Changes from v7:
+  - "mediatek,hdmi-codec" is an optional property, the code and the
+    binding document should match.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-index 9f72c676b22c..c8e1a4a87ba8 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-@@ -64,39 +64,6 @@ required:
-   - ranges
- 
- patternProperties:
--  "^.*@[0-9a-f]+$":
--    type: object
--    description: Common properties for GENI Serial Engine based I2C, SPI and
--                 UART controller.
--
--    properties:
--      reg:
--        description: GENI Serial Engine register address and length.
--        maxItems: 1
--
--      clock-names:
--        const: se
--
--      clocks:
--        description: Serial engine core clock needed by the device.
--        maxItems: 1
--
--      interconnects:
--        minItems: 2
--        maxItems: 3
--
--      interconnect-names:
--        minItems: 2
--        items:
--          - const: qup-core
--          - const: qup-config
--          - const: qup-memory
--
--    required:
--      - reg
--      - clock-names
--      - clocks
--
-   "spi@[0-9a-f]+$":
-     type: object
-     description: GENI serial engine based SPI controller. SPI in master mode
+Changes from v6:
+  - "speaker-codec" changes to "speaker-codecs" due to there may be two
+    speaker codec.
+
+Changes from v5:
+  - "mediatek,headset-codec" and "mediatek,speaker-codec" drop prefix
+    and move to properties from patternProperties.
+
+Changes form v4:
+  - split a large patch into three small patches for easy reviewing
+  - correct coding style
+
+Changes from v3:
+  - fix build error: too many arguments for format
+    [-Werror-format-extra-args]
+
+Changes from v2:
+  - fix build warnings such as "data argument not used by format string"
+
+Changes from v1:
+  - uses the snd_soc_of_get_dai_link_codecs to complete the
+  configuration of dai_link's codecs
+  - uses definitions to simplifies card name and compatible name
+
+Jiaxin Yu (4):
+  ASoC: dt-bindings: mt8192-mt6359: add new compatible and new
+    properties
+  ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
+  ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
+  ASoC: mediatek: mt8192: support rt1015p_rt5682s
+
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    |  32 +++
+ sound/soc/mediatek/Kconfig                    |   1 +
+ .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 199 +++++++++++-------
+ 3 files changed, 153 insertions(+), 79 deletions(-)
+
 -- 
-2.25.1
+2.18.0
 
