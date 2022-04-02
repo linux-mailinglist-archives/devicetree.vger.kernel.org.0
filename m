@@ -2,244 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C11B04EFFAB
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 10:23:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 477784EFFDE
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 11:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239231AbiDBIZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 04:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44088 "EHLO
+        id S240691AbiDBJFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 05:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239213AbiDBIZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 04:25:45 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8BF14F460;
-        Sat,  2 Apr 2022 01:23:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1648887833; x=1680423833;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Gnc7Vq8A0AMWRP1SecSxWIcpYauRkoVdUdGm+VQNnk4=;
-  b=IX/G6zEz1qzhXNMY22Xpsdpu2uU0a48uSYEQ3oELiDYmDqplvsdN2ib+
-   UgOOimYRSItO9PRLZQLeOQGE9x5OTse6SKsvIJ+G6+UN+bkTMsq95kZDG
-   MNSPk/IihmpNOMFo5csCeAy1rqbUL+I0CYDouBrORFzhTIgYqEez4jFAS
-   KwV/mGnyqP00/k6zmVm/8yCtOuOrykdZufWTVs+O4nqyozQ+Ln4zISNAG
-   eQRENExaXXJlSBUIwocO9O1bpmIpSGS149APlcp3qFkynHqXtJpcgF9nc
-   JMaIaDxQtuNgIuydGWHYJwRCJBoCVOxwlpPgp5RJ2lkix2tgVrebzrldr
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10304"; a="240225766"
-X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; 
-   d="scan'208";a="240225766"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2022 01:23:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,229,1643702400"; 
-   d="scan'208";a="587101927"
-Received: from lkp-server02.sh.intel.com (HELO 3231c491b0e2) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 02 Apr 2022 01:23:50 -0700
-Received: from kbuild by 3231c491b0e2 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1naZ2z-00025L-9v;
-        Sat, 02 Apr 2022 08:23:49 +0000
-Date:   Sat, 2 Apr 2022 16:22:56 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Corentin Labbe <clabbe@baylibre.com>, heiko@sntech.de,
-        herbert@gondor.apana.org.au, krzk+dt@kernel.org, robh+dt@kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH v4 10/33] crypto: rockchip: rework by using crypto_engine
-Message-ID: <202204021634.IhyHrjoT-lkp@intel.com>
-References: <20220401201804.2867154-11-clabbe@baylibre.com>
+        with ESMTP id S229984AbiDBJFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 05:05:09 -0400
+Received: from 189.cn (ptr.189.cn [183.61.185.103])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CEEA61697AF;
+        Sat,  2 Apr 2022 02:03:15 -0700 (PDT)
+HMM_SOURCE_IP: 10.64.8.41:50516.2041797902
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id DB04C100277;
+        Sat,  2 Apr 2022 17:02:54 +0800 (CST)
+Received: from  ([172.27.8.53])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id e85ed5efb2a74dd7ad033a2856bea132 for mripard@kernel.org;
+        Sat, 02 Apr 2022 17:03:14 CST
+X-Transaction-ID: e85ed5efb2a74dd7ad033a2856bea132
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 172.27.8.53
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v15 0/6] drm/loongson: add drm driver for loongson display controller
+Date:   Sat,  2 Apr 2022 17:02:46 +0800
+Message-Id: <20220402090252.1700974-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220401201804.2867154-11-clabbe@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Corentin,
+There is a display controller in loongson's LS2K1000 SoC and LS7A1000
+bridge chip, the display controller is a PCI device. It have two display
+pipes but with only one hardware cursor. Each way has a DVO interface
+which provide RGB888 signals, vertical & horizontal synchronisations,
+data enable and the pixel clock.
 
-I love your patch! Perhaps something to improve:
+Each CRTC is able to drive a 1920x1080@60Hz monitor, the maxmium
+resolution is 2048x2048. Loongson display controllers are simple which
+require scanout buffers to be physically contiguous.
 
-[auto build test WARNING on next-20220331]
-[also build test WARNING on v5.17]
-[cannot apply to rockchip/for-next herbert-cryptodev-2.6/master herbert-crypto-2.6/master v5.17 v5.17-rc8 v5.17-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+For LS7A1000 bridge chip, the DC is equipped with a dedicated video RAM
+which is typically 64MB or more. In this case, VRAM helper based driver
+is intended to be used even through the DC can scanout form system memory.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Corentin-Labbe/crypto-rockchip-permit-to-pass-self-tests/20220402-042221
-base:    fdcbcd1348f4ef713668bae1b0fa9774e1811205
-config: arm64-buildonly-randconfig-r001-20220402 (https://download.01.org/0day-ci/archive/20220402/202204021634.IhyHrjoT-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c4a1b07d0979e7ff20d7d541af666d822d66b566)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/be381eb03ba20a6e06f0e880a9929d14a1e13064
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Corentin-Labbe/crypto-rockchip-permit-to-pass-self-tests/20220402-042221
-        git checkout be381eb03ba20a6e06f0e880a9929d14a1e13064
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/crypto/rockchip/
+While LS2K1000 is a SoC which is a typically UMA device, only system
+memory is available. Therefore CMA helper based driver is intended to be
+used. It is possible to use VRAM helper based driver on LS2K1000 by
+carving out part of system memory as VRAM though.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+For LS7A1000, there are 4 dedicated GPIOs whose control registers is
+located at the DC register space, They are used to emulate two way i2c.
+One for DVO0, another for DVO1. LS2K1000 and LS2K0500 SoC don't have such
+GPIO hardwared, they grab i2c adapter from other module, either general
+purpose GPIO emulated i2c or hardware i2c adapter.
 
-All warnings (new ones prefixed by >>):
+    +------+            +-----------------------------------+
+    | DDR4 |            |  +-------------------+            |
+    +------+            |  | PCIe Root complex |   LS7A1000 |
+       || MC0           |  +--++---------++----+            |
+  +----------+  HT 3.0  |     ||         ||                 |
+  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+       || MC1           +---------------|--|----------------+
+    +------+                            |  |
+    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+                      +-------+                      +------+
 
-   drivers/crypto/rockchip/rk3288_crypto_skcipher.c:21:46: error: use of undeclared identifier 'tfm'
-           unsigned int bs = crypto_skcipher_blocksize(tfm);
-                                                       ^
->> drivers/crypto/rockchip/rk3288_crypto_skcipher.c:328:6: warning: variable 'n' set but not used [-Wunused-but-set-variable]
-           int n = 0;
-               ^
-   1 warning and 1 error generated.
+The above picture give a simple usage of LS7A1000, note that the encoder
+is not necessary adv7125 or tfp410, other candicates can be ch7034b,
+sil9022, ite66121 and lt8618 etc.
 
+Below is a brief introduction of loongson's CPU, bridge chip and SoC.
+LS2K1000 is a double core 1.0Ghz mips64r2 compatible SoC[1]. LS7A1000 is
+a bridge chip made by Loongson corporation which act as north and/or south
+bridge of loongson's desktop and server level processor. It is equivalent
+to AMD RS780E+SB710 or something like that. More details can be read from
+its user manual[2].
 
-vim +/n +328 drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+This bridge chip is typically use with LS3A3000, LS3A4000 and LS3A5000 cpu.
+LS3A3000 is 4 core 1.45gHz mips64r2 compatible cpu.
+LS3A4000 is 4 core 1.8gHz mips64r5 compatible cpu[3].
+LS3A5000 is 4 core 2.5gHz loongarch cpu[4].
 
-   319	
-   320	static int rk_cipher_run(struct crypto_engine *engine, void *async_req)
-   321	{
-   322		struct skcipher_request *areq = container_of(async_req, struct skcipher_request, base);
-   323		struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
-   324		struct rk_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
-   325		struct rk_cipher_rctx *rctx = skcipher_request_ctx(areq);
-   326		struct scatterlist *sgs, *sgd;
-   327		int err = 0;
- > 328		int n = 0;
-   329		int ivsize = crypto_skcipher_ivsize(tfm);
-   330		int offset;
-   331		u8 iv[AES_BLOCK_SIZE];
-   332		u8 biv[AES_BLOCK_SIZE];
-   333		u8 *ivtouse = areq->iv;
-   334		unsigned int len = areq->cryptlen;
-   335		unsigned int todo;
-   336	
-   337		ivsize = crypto_skcipher_ivsize(tfm);
-   338		if (areq->iv && crypto_skcipher_ivsize(tfm) > 0) {
-   339			if (rctx->mode & RK_CRYPTO_DEC) {
-   340				offset = areq->cryptlen - ivsize;
-   341				scatterwalk_map_and_copy(rctx->backup_iv, areq->src,
-   342							 offset, ivsize, 0);
-   343			}
-   344		}
-   345	
-   346		sgs = areq->src;
-   347		sgd = areq->dst;
-   348	
-   349		while (sgs && sgd && len) {
-   350			if (!sgs->length) {
-   351				sgs = sg_next(sgs);
-   352				sgd = sg_next(sgd);
-   353				continue;
-   354			}
-   355			if (rctx->mode & RK_CRYPTO_DEC) {
-   356				/* we backup last block of source to be used as IV at next step */
-   357				offset = sgs->length - ivsize;
-   358				scatterwalk_map_and_copy(biv, sgs, offset, ivsize, 0);
-   359			}
-   360			if (sgs == sgd) {
-   361				err = dma_map_sg(ctx->dev->dev, sgs, 1, DMA_BIDIRECTIONAL);
-   362				if (err <= 0) {
-   363					err = -EINVAL;
-   364					goto theend_iv;
-   365				}
-   366			} else {
-   367				err = dma_map_sg(ctx->dev->dev, sgs, 1, DMA_TO_DEVICE);
-   368				if (err <= 0) {
-   369					err = -EINVAL;
-   370					goto theend_iv;
-   371				}
-   372				err = dma_map_sg(ctx->dev->dev, sgd, 1, DMA_FROM_DEVICE);
-   373				if (err <= 0) {
-   374					err = -EINVAL;
-   375					goto theend_sgs;
-   376				}
-   377			}
-   378			err = 0;
-   379			rk_ablk_hw_init(ctx->dev, areq);
-   380			if (ivsize) {
-   381				if (ivsize == DES_BLOCK_SIZE)
-   382					memcpy_toio(ctx->dev->reg + RK_CRYPTO_TDES_IV_0, ivtouse, ivsize);
-   383				else
-   384					memcpy_toio(ctx->dev->reg + RK_CRYPTO_AES_IV_0, ivtouse, ivsize);
-   385			}
-   386			reinit_completion(&ctx->dev->complete);
-   387			ctx->dev->status = 0;
-   388	
-   389			todo = min(sg_dma_len(sgs), len);
-   390			len -= todo;
-   391			crypto_dma_start(ctx->dev, sgs, sgd, todo / 4);
-   392			wait_for_completion_interruptible_timeout(&ctx->dev->complete,
-   393								  msecs_to_jiffies(2000));
-   394			if (!ctx->dev->status) {
-   395				dev_err(ctx->dev->dev, "DMA timeout\n");
-   396				err = -EFAULT;
-   397				goto theend;
-   398			}
-   399			if (sgs == sgd) {
-   400				dma_unmap_sg(ctx->dev->dev, sgs, 1, DMA_BIDIRECTIONAL);
-   401			} else {
-   402				dma_unmap_sg(ctx->dev->dev, sgs, 1, DMA_TO_DEVICE);
-   403				dma_unmap_sg(ctx->dev->dev, sgd, 1, DMA_FROM_DEVICE);
-   404			}
-   405			if (rctx->mode & RK_CRYPTO_DEC) {
-   406				memcpy(iv, biv, ivsize);
-   407				ivtouse = iv;
-   408			} else {
-   409				offset = sgd->length - ivsize;
-   410				scatterwalk_map_and_copy(iv, sgd, offset, ivsize, 0);
-   411				ivtouse = iv;
-   412			}
-   413			sgs = sg_next(sgs);
-   414			sgd = sg_next(sgd);
-   415			n++;
-   416		}
-   417	
-   418		if (areq->iv && ivsize > 0) {
-   419			offset = areq->cryptlen - ivsize;
-   420			if (rctx->mode & RK_CRYPTO_DEC) {
-   421				memcpy(areq->iv, rctx->backup_iv, ivsize);
-   422				memzero_explicit(rctx->backup_iv, ivsize);
-   423			} else {
-   424				scatterwalk_map_and_copy(areq->iv, areq->dst, offset,
-   425							 ivsize, 0);
-   426			}
-   427		}
-   428	
-   429	theend:
-   430		local_bh_disable();
-   431		crypto_finalize_skcipher_request(engine, areq, err);
-   432		local_bh_enable();
-   433		return 0;
-   434	
-   435	theend_sgs:
-   436		if (sgs == sgd) {
-   437			dma_unmap_sg(ctx->dev->dev, sgs, 1, DMA_BIDIRECTIONAL);
-   438		} else {
-   439			dma_unmap_sg(ctx->dev->dev, sgs, 1, DMA_TO_DEVICE);
-   440			dma_unmap_sg(ctx->dev->dev, sgd, 1, DMA_FROM_DEVICE);
-   441		}
-   442	theend_iv:
-   443		return err;
-   444	}
-   445	
+Nearly all loongson cpu has the hardware maintain the cache coherency,
+this is the most distinct feature from other Mips cpu.
+
+[1] https://wiki.debian.org/InstallingDebianOn/Lemote/Loongson2K1000
+[2] https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.html
+[3] https://ee-paper.com/loongson-3a4000-3b4000-motherboard-products-are-compatible-with-uos-system/
+[4] https://loongson.github.io/LoongArch-Documentation/Loongson-3A5000-usermanual-EN.html
+[5] https://github.com/loongson-community/pmon
+
+Sui Jingfeng (6):
+  MIPS: Loongson64: dts: update the display controller device node
+  MIPS: Loongson64: introduce board specific dts and add model property
+  dt-bindings: display: Add Loongson display controller
+  MIPS: Loongson64: defconfig: enable display bridge drivers
+  drm/loongson: add drm driver for loongson display controller
+  MAINTAINERS: add maintainers for DRM LOONGSON driver
+
+ .../loongson/loongson,display-controller.yaml | 289 +++++++++
+ MAINTAINERS                                   |   9 +
+ arch/mips/boot/dts/loongson/Makefile          |   4 +
+ arch/mips/boot/dts/loongson/lemote_a1901.dts  |  96 +++
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 +
+ .../boot/dts/loongson/ls2k1000_pai_udb.dts    | 107 ++++
+ .../boot/dts/loongson/ls3a4000_7a1000_evb.dts | 138 +++++
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |  22 +-
+ arch/mips/configs/loongson2k_defconfig        |   5 +
+ arch/mips/configs/loongson3_defconfig         |   5 +
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/loongson/Kconfig              |  25 +
+ drivers/gpu/drm/loongson/Makefile             |  16 +
+ drivers/gpu/drm/loongson/lsdc_crtc.c          | 400 ++++++++++++
+ drivers/gpu/drm/loongson/lsdc_debugfs.c       | 176 ++++++
+ drivers/gpu/drm/loongson/lsdc_debugfs.h       |  17 +
+ drivers/gpu/drm/loongson/lsdc_drv.c           | 413 +++++++++++++
+ drivers/gpu/drm/loongson/lsdc_drv.h           | 186 ++++++
+ drivers/gpu/drm/loongson/lsdc_i2c.c           | 268 ++++++++
+ drivers/gpu/drm/loongson/lsdc_i2c.h           |  38 ++
+ drivers/gpu/drm/loongson/lsdc_irq.c           |  57 ++
+ drivers/gpu/drm/loongson/lsdc_irq.h           |  17 +
+ drivers/gpu/drm/loongson/lsdc_output.c        | 261 ++++++++
+ drivers/gpu/drm/loongson/lsdc_output.h        |  21 +
+ drivers/gpu/drm/loongson/lsdc_pci_drv.c       | 342 +++++++++++
+ drivers/gpu/drm/loongson/lsdc_plane.c         | 436 +++++++++++++
+ drivers/gpu/drm/loongson/lsdc_pll.c           | 573 ++++++++++++++++++
+ drivers/gpu/drm/loongson/lsdc_pll.h           |  87 +++
+ drivers/gpu/drm/loongson/lsdc_regs.h          | 219 +++++++
+ 30 files changed, 4233 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+ create mode 100644 arch/mips/boot/dts/loongson/lemote_a1901.dts
+ create mode 100644 arch/mips/boot/dts/loongson/ls2k1000_pai_udb.dts
+ create mode 100644 arch/mips/boot/dts/loongson/ls3a4000_7a1000_evb.dts
+ create mode 100644 drivers/gpu/drm/loongson/Kconfig
+ create mode 100644 drivers/gpu/drm/loongson/Makefile
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_crtc.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_debugfs.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_debugfs.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_drv.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_drv.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_i2c.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_i2c.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_irq.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_irq.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_output.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_output.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_pci_drv.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_plane.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_pll.c
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_pll.h
+ create mode 100644 drivers/gpu/drm/loongson/lsdc_regs.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
+
