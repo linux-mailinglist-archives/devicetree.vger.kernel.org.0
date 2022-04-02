@@ -2,53 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3AE04F04BE
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6F3C4F04D3
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:21:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241049AbiDBQMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 12:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47768 "EHLO
+        id S241186AbiDBQXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 12:23:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355029AbiDBQMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:12:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A64C275FF;
-        Sat,  2 Apr 2022 09:10:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ED394B80A36;
-        Sat,  2 Apr 2022 16:10:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34A16C340EE;
-        Sat,  2 Apr 2022 16:10:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648915811;
-        bh=Hyx7lu75/G4RsuKOXrcnoLbyXhT2t4mTxGnGPGH7SWk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=kwQSsXzYii+uajDWAwmOgV5coT3H+VYo2LyNAnZZEyxOv6zcz2x9hxDzvvt7czjzY
-         SMdaLBys8YXdWZulPdkovb6rZ+LA55jv+J5MWB0zZG5OjkjbyyhrTu2olAWOEDCq4q
-         Yfk/fglEX3T/gK3R0+ZWXIzEn5ihC5MFuyMpqcnnO68acJX+qXiNOcWeuP6H6+5Osc
-         lnxILeVfGxSo7r3IW5PX7jh2kVmBCOxcOd/1H4G01tn4LzA8XOXMJ23EahM9T86vmA
-         NJQNpb9TW49d5l0DF5OicSer2GS+tXdJQci5z85zQ95IxlfThP7vFtroKqx4Vfg4Jw
-         tylhFIJR3rejg==
-Date:   Sat, 2 Apr 2022 17:17:53 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>, linux-iio@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, lorenzo.bianconi@redhat.com,
-        robh@kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhx
- device bindings
-Message-ID: <20220402171753.638e71d5@jic23-huawei>
-In-Reply-To: <ce943fd9d99da9fcd942592a2b83590a8b06a2af.1648893892.git.lorenzo@kernel.org>
-References: <cover.1648893892.git.lorenzo@kernel.org>
-        <ce943fd9d99da9fcd942592a2b83590a8b06a2af.1648893892.git.lorenzo@kernel.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1357970AbiDBQW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:22:59 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E3C36A022
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:21:06 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id i27so4607289ejd.9
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:21:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mnGt6W+Yxzjo9+/+HIyfnhtyS1WFSMtagQnoizbL1R0=;
+        b=GJwZFGWMfHIBnC1wfxgc9r7rpLndt29L5PyMvPW1IFf+DRW2csbfA1olTD5scsM+SR
+         dR20QG4DtEqIoAKSZfVB4YCPysxcGzrePbMs9EpqU5RRbYmg2hVdja0oIjKH7Q8YA18B
+         Ah0LQQJJP56KZFtnNdO0nkaND7gz4n3Mrn3XDBRcfjc6LgMtUZpv/rrn7xdnr6upoqWK
+         G9QU/IDTJ3hwr48aPieGhLZ5ynK6xU/mXHC7pPFzx/3dhQEriL12ADhztEptk8Aaf7iP
+         0DeOfCQPgiZCPa29SoIWawVINwv3wuyypuV7fOLFHGwxOoLf4teOF0IXwcxqANHymCg8
+         nkwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=mnGt6W+Yxzjo9+/+HIyfnhtyS1WFSMtagQnoizbL1R0=;
+        b=WDLbskSRZYgW0+nje0eoS0NyvH+eSi/WjTlk+HiZS9clO0hn2AZGYw0bbIuylDiV8t
+         P+PgZOUNbj9dZHew2lf5jGdmYtswLQFZx6saprqHY33ab/eU5Gc0nKcqvP6NSCqoqenN
+         xo6OA6Icq8Oks/QOrz+aW+SwekkK/tyV85FMJ6E01vRlG1API1weHBT5P721CAmrUCGF
+         l1lRgcOEkNuDakGu3j5Ou414PjG1a4WTXh1LOyQXMMpUexN6nOL8//504sCPDD2HxCIj
+         kUarPB4qZuCRutOAvfUUIRrGXs5RHDH9S+ChfwfEayXLqxNax3n9zuWm4zxiqHj/nBem
+         NV/g==
+X-Gm-Message-State: AOAM532AM+ddMXQ5/Wpk7M6bTJLHHNQsBBKCLPjVY8zJ1n89LfEJGHmg
+        StViWnJfSZQZO5JVo/mJNvRGag==
+X-Google-Smtp-Source: ABdhPJwr6iufJ5ANsNQoEWLNc+tMOFQ/Hxw54wk/gFKN6u6OnQXSWTkJJ9vsUMAaFPtBFxpnVzSNBw==
+X-Received: by 2002:a17:907:9718:b0:6e0:6faa:3aa with SMTP id jg24-20020a170907971800b006e06faa03aamr4338206ejc.307.1648916464849;
+        Sat, 02 Apr 2022 09:21:04 -0700 (PDT)
+Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id e11-20020a50becb000000b0041b64129200sm2709359edk.50.2022.04.02.09.21.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Apr 2022 09:21:04 -0700 (PDT)
+Message-ID: <7d66c6ce-80d9-3a09-b34c-7ae5a7763465@linaro.org>
+Date:   Sat, 2 Apr 2022 18:21:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v13 1/2] dt-bindings: mmc: mtk-sd: increase reg items
+Content-Language: en-US
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
+References: <20220330094532.21721-1-tinghan.shen@mediatek.com>
+ <20220330094532.21721-2-tinghan.shen@mediatek.com>
+ <aebbb5c8-1d27-5e66-e18a-e2b647bc8cb4@gmail.com>
+ <53cb53b8614aa39e0785b99f46b708ad201c3dd8.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <53cb53b8614aa39e0785b99f46b708ad201c3dd8.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,74 +87,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  2 Apr 2022 12:09:30 +0200
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
-
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Hi Lorenzo,
-
-This runs in to the same feedback that was recently had for
-https://lore.kernel.org/all/?q=Add+support+for+ICM-20608-D
-but in a more extreme sense as this one presents the same whoami value
-as for other sensors already supported.  Things are made more
-fun by the fact that sensors with the same WAI seem to have different
-features (presence or not of a sensor hub - is there any documented
-way to detect that?). 
-
-As such, we should really be listing this as compatible with one 
-of the parts that is already supported such as the
-LSM6DSR.
-
-For that we'll need a slightly more complex binding and it would
-have the side effect that if the match was on that compatible we
-would list the name as whatever that part is.
-
-I'm not sure that really matters a great deal, but it could in theory
-create a userspace ABI change if we later needed to add explicit support
-for the part due to some real differences not indicated by the WAI value.
-
-An extension is whether we should relax the need to match on WAI if
-the part is considered compatible.  I guess that depends on just how
-compatible we think they are.
-
-So I see several steps to this process.
-
-1) Add fallback compatibles for existing entries to first one with same WAI and
-   same feature set.
-2) Add fallback compatibles beyond that to first part introduced with particular
-   characteristics.  For this we'd also want to have the driver relax its
-   handling to just warn if the WAI isn't listed for any of the parts that
-   share a particular set of characteristic (so you'll have to loop over the local
-   array again to check):
-https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c#L1197
-Same argument applies as for the mpu6050 that, whilst we should modify that code to
-cope, it's not a prerequisit for adding the compatible fallback to the binding.
-Personally I'd like it to be the first patch in the series that modifies the
-binding though.  Note it'll be easy to add the fallbacks for this new part as
-no mainline trees presumably use it.  To 'fix' the rest we'll have to find
-and update any DTs in mainline.
-
-Note this won't stop us needing to add compatibles to newer kernels (at very
-least to the dt-binding, but probably also the driver), but it should help a newer
-DT 'work' with an old kernel.
-
-Jonathan
-
-
-> ---
->  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 1 +
->  1 file changed, 1 insertion(+)
+On 01/04/2022 04:18, Tinghan Shen wrote:
+> Hi Matthias,
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> index 0750f700a143..23637c420d20 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> @@ -31,6 +31,7 @@ properties:
->        - st,lsm6dsrx
->        - st,lsm6dst
->        - st,lsm6dsop
-> +      - st,asm330lhhx
->  
->    reg:
->      maxItems: 1
+> On Thu, 2022-03-31 at 12:54 +0200, Matthias Brugger wrote:
+>>
+>> On 30/03/2022 11:45, Tinghan Shen wrote:
+>>> MediaTek has a new version of mmc IP since mt8183. Some IO registers
+>>> are moved to top to improve hardware design and named as "host top
+>>> registers".
+>>>
+>>> Add host top register in the reg binding description for mt8183 and
+>>> successors.
+>>>
+>>> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+>>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 15 ++++++++++++++-
+>>>   1 file changed, 14 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> index 297ada03e3de..2a2e9fa8c188 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> @@ -40,7 +40,10 @@ properties:
+>>>             - const: mediatek,mt8183-mmc
+>>>   
+>>>     reg:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>
+>>  From my understanding adding minItems is correct, but you need to add also 
+>> maxItems: 2 as there can't be more then two register entries.
+>>
+>> Regards,
+>> Matthias
+>>
+> 
+> After add "maxItems: 2", I get following message when doing dt_binding_check.
+> from this message, it looks like that maxItems is not necessary.
 
+
+That's correct, you don't need them because "items" defines it.
+
+
+Best regards,
+Krzysztof
