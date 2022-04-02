@@ -2,135 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2044F0607
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98D8B4F060B
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347717AbiDBUFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 16:05:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49836 "EHLO
+        id S1349333AbiDBUGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 16:06:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243739AbiDBUFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:05:41 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B8761C917
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:03:48 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id u3so8813872wrg.3
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:03:48 -0700 (PDT)
+        with ESMTP id S243739AbiDBUGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:06:10 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EFB13EBAA
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:04:16 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so5378181wmb.4
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:04:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZxBQNrUxZ2bYKpkYnxrQy2Q1Fb81oRgLKDLGAjU3iTc=;
-        b=hNIMFtLXTUY/dXMeG7fhPGOpw1rPp7YEme4BfHP1T19MfZUBh576lZvcz5r/ejttf/
-         pgZhZhw7s67b743b5LRlqjtKg8vFmkI2YKCyjVGnjltzZTNa9aOT/SIgKTV2skBltxdl
-         bUbq+gZ5eemtUHovQL4CcU4Nk4S+/uUp0p5XW32E2KmD7TamtjMloMPasOR0x9SpRrCg
-         Tu3doT1PLVFmDIpHHNB38tTLlDcw3TJwqBpDF+Gl0YTZqTlMwR8tayEqnYZr3uLkdt1X
-         +9c+9Lf4lY86xxiC3rCZJBIM7K2z8yWVC12HaIW3g7JHMFyDT/8lBErdbBjxb3O5DtDF
-         rBmQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=yQeqwIeqI5CMAgG8hDfKbZn0Debf8w0vr8QNNYkJmUI=;
+        b=rg468YkTGw4qq+7BTqNb+9e2AW7798nZyQsEw7APtpHfEScIn4mAxPp40epSJ/DqqM
+         FW1ukFdIVMS8churmP06RZyQPTzPyQdeidOkNAX+hpVRYnSNHIas4ePrAYUdilNlEtP6
+         yhnuvRTNyZSAysfMJPll2xZUF3wAuxL6zspWSXz5gwdt66ugNBr5eNsZNqbFT3zYWfIS
+         xF11MED8ko9Bbk+x/u3f9nXO5nIl3PYMXVFAdWugobCvQR8MjCmx7qd9kQCp38gnhfrO
+         fC+b2Ptuhb93WvKGvSwgJ6rFJy4o9pM7VSVPTbWuBDCRyrqbelhElQJYJEsZnujnWVO5
+         McYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZxBQNrUxZ2bYKpkYnxrQy2Q1Fb81oRgLKDLGAjU3iTc=;
-        b=lz7kNuTIMv3zS2gZsb2j7GnIiFwZukiZ12PKh4wdpUndw/FvgAsOlz+EZXnD22IigP
-         B90jgoFV645Byq8sw2UD8cpC6U7WVRvREEL++XkSCn9HbtpujaMaOkE60fRHgwUgAVNz
-         dUvOX0vF5GdLY0rcq4oSCMNXWXmZ+DigJGWq0cPekgZZ1ruQ1HLKitj1PlvyKTeSdjkw
-         RFYzqF5vCyXusJMPF8Kr3DaJVCD7uojdxhSRt4gyw5A8AGcs+2tSrSfgsxr7T/IIQRYN
-         tIVRB9ssyXFjTY2H74jVv5hyWn4mMrhUlyd9yfRbUixb/AIpob6Rrl6XSoiKfqGfq7V8
-         PIsQ==
-X-Gm-Message-State: AOAM533qcn9t5CjRAlYMtMrefaCZx0OellvVbZJwWCI8z6H0SzbB/ibK
-        GZ7wzX0BNGyRmQt65YP6ogMhXQ==
-X-Google-Smtp-Source: ABdhPJweT220kcjXjItzv0ff6OgWU6oTsUS4xbTWLhe8cl/alD5HirwTZUOA5n50kCPFby4vENrGww==
-X-Received: by 2002:adf:e950:0:b0:205:e07e:f165 with SMTP id m16-20020adfe950000000b00205e07ef165mr11691618wrn.270.1648929827179;
-        Sat, 02 Apr 2022 13:03:47 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id t15-20020adfeb8f000000b002060d26c211sm287158wrn.114.2022.04.02.13.03.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 13:03:46 -0700 (PDT)
-Message-ID: <e3ebc5d0-d2bc-b5a8-1b19-5e0c2f3d7c41@linaro.org>
-Date:   Sat, 2 Apr 2022 22:03:45 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=yQeqwIeqI5CMAgG8hDfKbZn0Debf8w0vr8QNNYkJmUI=;
+        b=52tQZRXYk4gC1+BEZGljG96EiR9c1lPgi04DcaOO6xPKtD2vzJoAZQSMC5nG8H9jMP
+         oX5zSX+DR1/ny3gmB6m1yit6yE46MFL8xk7cBYx/nEW6Kljr/zmQt7eW7SVx7GTlKBF7
+         28BC2PXImgCtuJBH3d/+TlsO8BYH1KUSeTcwl9dsb6p0rexK9CnA/5fB4KEl3/BULXcP
+         +k6+0j4HGut5w4TULtYQkHihZJksxzKz1waG5iJP6D5IadZy9ayIk1OS08QLcTluf7mX
+         doo+SQtfFSLyHFeqr2Ya2mpj+Lw3+7yScSJRPNP91xqIj45iNP1hzEjdkOm6n20se3wm
+         5k0Q==
+X-Gm-Message-State: AOAM531cDhkQaEn/Z96Hi47rABuCZ6NSI6XoP+zgSACWxwizwM4wzbrc
+        ZUtTBG7SXPKG6WhCaqKYYIDAI7nlnQCfHw==
+X-Google-Smtp-Source: ABdhPJy6NaiDP7v3t/VgL9bpERiXPtZ6xlytZQf5riyEAwmfhgWKXXpEcvulkX/plHpsKoVk6W8Z4A==
+X-Received: by 2002:a05:600c:5029:b0:38c:9768:b4c with SMTP id n41-20020a05600c502900b0038c97680b4cmr13117148wmr.123.1648929854661;
+        Sat, 02 Apr 2022 13:04:14 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id h10-20020a05600c144a00b0038ccc75a6adsm13008386wmi.37.2022.04.02.13.04.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Apr 2022 13:04:13 -0700 (PDT)
+Date:   Sat, 2 Apr 2022 22:04:11 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     kernel test robot <lkp@intel.com>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org, llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 10/33] crypto: rockchip: rework by using crypto_engine
+Message-ID: <YkisOxklZgCejfad@Red>
+References: <20220401201804.2867154-11-clabbe@baylibre.com>
+ <202204021634.IhyHrjoT-lkp@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 1/5] dt-bindings: arm: renesas: Document Renesas
- RZ/G2UL SMARC EVK
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220402073234.24625-1-biju.das.jz@bp.renesas.com>
- <cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org>
- <OS0PR01MB5922B49ED5DADA5DD3DDA60786E39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <d6989ea9-9e84-0022-aff0-c75b0e3203e2@linaro.org>
- <OS0PR01MB5922C1100BCF87341534FC6E86E39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922C1100BCF87341534FC6E86E39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <202204021634.IhyHrjoT-lkp@intel.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2022 21:54, Biju Das wrote:
->>
->> I understand that carrier board is the same, so the SoM differs.
+Le Sat, Apr 02, 2022 at 04:22:56PM +0800, kernel test robot a écrit :
+> Hi Corentin,
 > 
-> For R9A07G043 case, even SoM is same, only SOC differs.
-
-I assumed that you cannot have same SoMs with different SoCs...
-
+> I love your patch! Perhaps something to improve:
 > 
->> In your
->> model to figure out what type of hardware is it, your choice is to compare
->> two compatibles:
->> renesas,smarc-evk + renesas,r9a07g043u11
->>
->> If user-space compares only last compatible, it get's only SMARC, so it
->> does not know on what hardware it runs.
+> [auto build test WARNING on next-20220331]
+> [also build test WARNING on v5.17]
+> [cannot apply to rockchip/for-next herbert-cryptodev-2.6/master herbert-crypto-2.6/master v5.17 v5.17-rc8 v5.17-rc7]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
 > 
-> But Here user-space can easily identify the H/W with existing scheme. See the logs from user-space.
+> url:    https://github.com/intel-lab-lkp/linux/commits/Corentin-Labbe/crypto-rockchip-permit-to-pass-self-tests/20220402-042221
+> base:    fdcbcd1348f4ef713668bae1b0fa9774e1811205
+> config: arm64-buildonly-randconfig-r001-20220402 (https://download.01.org/0day-ci/archive/20220402/202204021634.IhyHrjoT-lkp@intel.com/config)
+> compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project c4a1b07d0979e7ff20d7d541af666d822d66b566)
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install arm64 cross compiling tool for clang build
+>         # apt-get install binutils-aarch64-linux-gnu
+>         # https://github.com/intel-lab-lkp/linux/commit/be381eb03ba20a6e06f0e880a9929d14a1e13064
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Corentin-Labbe/crypto-rockchip-permit-to-pass-self-tests/20220402-042221
+>         git checkout be381eb03ba20a6e06f0e880a9929d14a1e13064
+>         # save the config file to linux build tree
+>         mkdir build_dir
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/crypto/rockchip/
 > 
-> / # for i in machine family soc_id revision; do echo -n "$i: "; cat /sys/devices/soc0/$i;done
-> machine: Renesas SMARC EVK based on r9a07g043u11
-> family: RZ/G2UL
-> soc_id: r9a07g043
-> revision: 0
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>    drivers/crypto/rockchip/rk3288_crypto_skcipher.c:21:46: error: use of undeclared identifier 'tfm'
+>            unsigned int bs = crypto_skcipher_blocksize(tfm);
+>                                                        ^
+> >> drivers/crypto/rockchip/rk3288_crypto_skcipher.c:328:6: warning: variable 'n' set but not used [-Wunused-but-set-variable]
+>            int n = 0;
+>                ^
+>    1 warning and 1 error generated.
+> 
 
-User-space is one example. We don't limit to this. Anyway, the
-compatible is the main way to check it. Machine is just test, not
-compatible, not part of ABI. soc_id and revision could help, but these
-are separate ABIs. They can be not compiled-in and then you have only
-compatible.
+Argh, I didnt retry to compile this serie one patch by one.
 
-Regardless whether there is another way for user-space to figure out
-hardware, it does not change the fact that such usage of compatibles
-does not look correct with Devicetree spec.
-"...They
- allow a device to express its compatibility with a family of similar
-devices, potentially allowing a single
- device driver to match against several devices."
-
-The "renesas,smarc-evk" compatible is not the most specific one, because
-different configurations have it.
-
-Again - you intend to use a pair or even a triple of compatibles to
-uniquely identify type of hardware. I don't think it is correct - the
-final, most specific compatible, uniquely identifies the hardware. All
-other compatibles are just for fallback.
-
-Best regards,
-Krzysztof
+Thanks, I will fix that in v5.
