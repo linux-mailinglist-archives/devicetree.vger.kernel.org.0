@@ -2,55 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBE064EFF3D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 09:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C83FC4EFF55
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 09:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238474AbiDBHHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 03:07:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
+        id S241515AbiDBHci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 03:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbiDBHHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 03:07:14 -0400
-X-Greylist: delayed 359 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 02 Apr 2022 00:05:21 PDT
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF5B10241F;
-        Sat,  2 Apr 2022 00:05:21 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id B31FE403F2;
-        Sat,  2 Apr 2022 11:59:16 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1648882757; bh=g3dd49ZLEvD3b7UkZq09nzJLTrDcbZhjuvyIkuyxUww=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=rOhlGsQO/HTUiVU8OGWlJGCELzbuJLDlRNa5zJWC64lw2R6V66Vfo4vQg90/aWOM4
-         ptqXOjnOMgkSH236j+4w+8n5Co2yiCluXvASZKsMm7RGMaegx7OqCArSywud4CzGyC
-         fy2f5OFuN+er3HLk8tigyOkhM0/UZXdA57bL1C1A9Fq6aRNdBPD3BaiROs8vK0+j94
-         XJUVBBGhqHkCT0kscg/JSsO9oNw32bVDRM9JI5VnVT0x66RYA9LLP2gbh76oGZ+839
-         RAMeC6r8pcUNXPR/7HvfGHZxGZCVtrkItwCi4vMPx1sBg6Gn01y/TSEryhdP2nLZ6h
-         3TWDX5lPmP2wg==
-MIME-Version: 1.0
-Date:   Sat, 02 Apr 2022 11:59:15 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
-        masneyb@onstation.org, sean.anderson@seco.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, kernel@pengutronix.de
-Subject: Re: [PATCH v6 2/2] pwm: Add clock based PWM output driver
-In-Reply-To: <20220328105659.mg3pxbqynlufaq6z@pengutronix.de>
-References: <20220220115030.23772-1-nikita@trvn.ru>
- <20220220115030.23772-3-nikita@trvn.ru>
- <20220328105659.mg3pxbqynlufaq6z@pengutronix.de>
-Message-ID: <ce9a8bab61485ba06933cdb7fdea50ac@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,DOS_RCVD_IP_TWICE_B,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S240859AbiDBHch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 03:32:37 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 903CF173B2B;
+        Sat,  2 Apr 2022 00:30:43 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,229,1643641200"; 
+   d="scan'208";a="116497342"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 02 Apr 2022 16:30:42 +0900
+Received: from localhost.localdomain (unknown [10.226.92.166])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8713C4001944;
+        Sat,  2 Apr 2022 16:30:40 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/5] Add Renesas RZ/G2UL Type-1 {SoC,SMARC EVK} support
+Date:   Sat,  2 Apr 2022 08:30:32 +0100
+Message-Id: <20220402073037.23947-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,149 +46,229 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi All,
 
-Uwe Kleine-König писал(а) 28.03.2022 15:56:
-> Hello,
-> 
-> just a few minor things left to criticize, see below.
-> 
-> On Sun, Feb 20, 2022 at 04:50:30PM +0500, Nikita Travkin wrote:
->> Some systems have clocks exposed to external devices. If the clock
->> controller supports duty-cycle configuration, such clocks can be used as
->> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
->> similar way and an "opposite" driver already exists (clk-pwm). Add a
->> driver that would enable pwm devices to be used via clk subsystem.
->>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> --
->>
->> Changes in v2:
->>  - Address Uwe's review comments:
->>    - Round set clk rate up
->>    - Add a description with limitations of the driver
->>    - Disable and unprepare clock before removing pwmchip
->> Changes in v3:
->>  - Use 64bit version of div round up
->>  - Address Uwe's review comments:
->>    - Reword the limitations to avoid incorrect claims
->>    - Move the clk_enabled flag assignment
->>    - Drop unnecessary statements
->> Changes in v5:
->>  - add missed returns
->> Changes in v6:
->>  - Unprepare the clock on error
->>  - Drop redundant limitations points
->> ---
->>  drivers/pwm/Kconfig   |  10 +++
->>  drivers/pwm/Makefile  |   1 +
->>  drivers/pwm/pwm-clk.c | 139 ++++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 150 insertions(+)
->>  create mode 100644 drivers/pwm/pwm-clk.c
->>
->> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->> index 21e3b05a5153..daa2491a4054 100644
->> --- a/drivers/pwm/Kconfig
->> +++ b/drivers/pwm/Kconfig
->> @@ -140,6 +140,16 @@ config PWM_BRCMSTB
->>  	  To compile this driver as a module, choose M Here: the module
->>  	  will be called pwm-brcmstb.c.
->>
->> +config PWM_CLK
->> +	tristate "Clock based PWM support"
->> +	depends on HAVE_CLK || COMPILE_TEST
-> 
-> Can you really compile this driver if HAVE_CLK isn't available?
-> 
+RZ/G2UL Family SoC consists of Type-1 and Type-2 SoC's.
+Both these SoC's has single Core 1.0GHz CA-55 with similar
+peripheral IP's to that of RZ/G2LC and RZ/G2L.
 
-As I can see, clk.h has all the methods stubbed out if CONFIG_HAVE_CLK
-is not set. (And I think that all other headers like that do as well)
+The difference between Type1 and Type2 SoC's are as follows
+Function	Type1			Type2
+SCIF		5ch {0,1,2,3,4}		4ch {0,1,2,3}
+Ethernet	2ch {0,1}		1ch {0}
+SSI		4ch {0,1,2,3}		3ch {0,1,2}
+ADC		2ch {0,1}		N/A
+DU		1ch Parallel I/F	N/A
 
-I've tried to build it without clk right now and it builds with no
-errors, neither test robots complained about that.
+RZ/G2UL Type-2 is pin compatible with RZ/G2LC, so the number of channels
+for each IP matches with RZ/G2LC.
+The table below shows the functional differences between RZ/G2LC and 
+RZ/G2UL Type-2.
+Function	RZ/G2LC			RZ/G2UL Type-2
+Cortex-A55	Dual 1.2GHz		Single 1.0GHz
+DU		1ch MIPI-DSI		N/A
+GPT		6ch {0,3,4,5,6,7}	N/A
+Mali-31		1ch			N/A
 
->> +	help
->> +	  Generic PWM framework driver for outputs that can be
->> +	  muxed to clocks.
->> +
->> +	  To compile this driver as a module, choose M here: the module
->> +	  will be called pwm-clk.
->> +
->>  config PWM_CLPS711X
->>  	tristate "CLPS711X PWM support"
->>  	depends on ARCH_CLPS711X || COMPILE_TEST
->> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
->> index 708840b7fba8..4a860103c470 100644
->> --- a/drivers/pwm/Makefile
->> +++ b/drivers/pwm/Makefile
->> @@ -10,6 +10,7 @@ obj-$(CONFIG_PWM_BCM_KONA)	+= pwm-bcm-kona.o
->>  obj-$(CONFIG_PWM_BCM2835)	+= pwm-bcm2835.o
->>  obj-$(CONFIG_PWM_BERLIN)	+= pwm-berlin.o
->>  obj-$(CONFIG_PWM_BRCMSTB)	+= pwm-brcmstb.o
->> +obj-$(CONFIG_PWM_CLK)		+= pwm-clk.o
->>  obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
->>  obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
->>  obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
->> diff --git a/drivers/pwm/pwm-clk.c b/drivers/pwm/pwm-clk.c
->> new file mode 100644
->> index 000000000000..52c9923368cb
->> --- /dev/null
->> +++ b/drivers/pwm/pwm-clk.c
->> @@ -0,0 +1,139 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Clock based PWM controller
->> + *
->> + * Copyright (c) 2021 Nikita Travkin <nikita@trvn.ru>
->> + *
->> + * This is an "adapter" driver that allows PWM consumers to use
->> + * system clocks with duty cycle control as PWM outputs.
->> + *
->> + * Limitations:
->> + * - Due to the fact that exact behavior depends on the underlying
->> + *   clock driver, various limitations are possible.
->> + * - Underlying clock may not be able to give 0% or 100% duty cycle
->> + *   (constant off or on), exact behavior will depend on the clock.
->> + * - When the PWM is disabled, the clock will be disabled as well,
->> + *   line state will depend on the clock.
-> 
->  - The clk API doesn't expose the necessary calls to implement
->    .get_state().
-> 
->> + */
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/math64.h>
->> +#include <linux/err.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/clk.h>
->> +#include <linux/pwm.h>
->> +
->> +struct pwm_clk_chip {
->> +	struct pwm_chip chip;
->> +	struct clk *clk;
->> +	bool clk_enabled;
->> +};
->> +
->> +#define to_pwm_clk_chip(_chip) container_of(_chip, struct pwm_clk_chip, chip)
->> +
->> +static int pwm_clk_apply(struct pwm_chip *pwm_chip, struct pwm_device *pwm,
->> +			 const struct pwm_state *state)
->> +{
->> +	struct pwm_clk_chip *chip = to_pwm_clk_chip(pwm_chip);
-> 
-> I'd prefer this was not called chip, as this is how struct pwm_chip
-> variables are called usually. My suggestion is:
-> 
-> 	chip -> pcchip
-> 	pwm_chip -> chip
-> 
+This patch series aims to add support for Renesas RZ/G2UL Type-1 SoC and
+basic support for Renesas RZ/G2UL SMARC EVK (based on R9A07G043U11)
+- memory
+- External input clock
+- SCIF
+- GbEthernet
 
-Thanks for the suggestion, I'll use the common naming then.
+It shares the same carrier board with RZ/G2L, but the pin mapping is
+different. Place holders are added in device nodes to avoid compilation
+errors for the devices which have not been enabled yet on RZ/G2UL SoC.
 
-Nikita
+Also disable the device nodes which is not tested and delete the
+corresponding pinctrl definitions.
 
-> Best regards
-> Uwe
+Test logs:-
+
+/ # for i in machine family soc_id revision; do echo -n "$i: "; cat /sys/devices/soc0/$i;done
+machine: Renesas SMARC EVK based on r9a07g043u11
+family: RZ/G2UL
+soc_id: r9a07g043
+revision: 0
+
+/ # cat /proc/cpuinfo
+processor       : 0
+BogoMIPS        : 48.00
+Features        : fp asimd evtstrm crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp
+CPU implementer : 0x41
+CPU architecture: 8
+CPU variant     : 0x2
+CPU part        : 0xd05
+CPU revision    : 0
+
+/ # cat /proc/interrupts
+           CPU0
+ 11:       1439     GICv3  27 Level     arch_timer
+ 13:          0     GICv3 412 Level     1004b800.serial:rx err
+ 14:         15     GICv3 414 Level     1004b800.serial:rx full
+ 15:        351     GICv3 415 Level     1004b800.serial:tx empty
+ 16:          0     GICv3 413 Level     1004b800.serial:break
+ 17:          5     GICv3 416 Level     1004b800.serial:rx ready
+ 18:          0     GICv3 173 Edge      error
+ 19:          0     GICv3 157 Edge      11820000.dma-controller:0
+ 20:          0     GICv3 158 Edge      11820000.dma-controller:1
+ 21:          0     GICv3 159 Edge      11820000.dma-controller:2
+ 22:          0     GICv3 160 Edge      11820000.dma-controller:3
+ 23:          0     GICv3 161 Edge      11820000.dma-controller:4
+ 24:          0     GICv3 162 Edge      11820000.dma-controller:5
+ 25:          0     GICv3 163 Edge      11820000.dma-controller:6
+ 26:          0     GICv3 164 Edge      11820000.dma-controller:7
+ 27:          0     GICv3 165 Edge      11820000.dma-controller:8
+ 28:          0     GICv3 166 Edge      11820000.dma-controller:9
+ 29:          0     GICv3 167 Edge      11820000.dma-controller:10
+ 30:          0     GICv3 168 Edge      11820000.dma-controller:11
+ 31:          0     GICv3 169 Edge      11820000.dma-controller:12
+ 32:          0     GICv3 170 Edge      11820000.dma-controller:13
+ 33:          0     GICv3 171 Edge      11820000.dma-controller:14
+ 34:          0     GICv3 172 Edge      11820000.dma-controller:15
+IPI0:         0       Rescheduling interrupts
+IPI1:         0       Function call interrupts
+IPI2:         0       CPU stop interrupts
+IPI3:         0       CPU stop (for crash dump) interrupts
+IPI4:         0       Timer broadcast interrupts
+IPI5:         1       IRQ work interrupts
+IPI6:         0       CPU wake-up interrupts
+Err:          0
+
+/ # cat /proc/meminfo
+MemTotal:         868744 kB
+MemFree:          820840 kB
+MemAvailable:     797676 kB
+Buffers:               0 kB
+Cached:             3948 kB
+SwapCached:            0 kB
+Active:                4 kB
+Inactive:             72 kB
+Active(anon):          4 kB
+Inactive(anon):       72 kB
+Active(file):          0 kB
+Inactive(file):        0 kB
+Unevictable:        3948 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:           112 kB
+Mapped:             1300 kB
+Shmem:                 0 kB
+KReclaimable:      21256 kB
+Slab:              30352 kB
+SReclaimable:      21256 kB
+SUnreclaim:         9096 kB
+KernelStack:         908 kB
+PageTables:           64 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      434372 kB
+Committed_AS:        592 kB
+VmallocTotal:   133143592960 kB
+VmallocUsed:        1188 kB
+VmallocChunk:          0 kB
+Percpu:              120 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+CmaTotal:         131072 kB
+CmaFree:          130688 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+/ # mount -t debugfs none /sys/kernel/debug/
+/ # cat /sys/kernel/debug/clk/clk_summary
+                                 enable  prepare  protect                                duty  hardware
+   clock                          count    count    count        rate   accuracy phase  cycle    enable
+-------------------------------------------------------------------------------------------------------
+ audio_mclock                         0        0        0    11289600          0     0  50000         Y
+ extal                                2        2        0    24000000          0     0  50000         Y
+    .pll6                             0        0        0   500000000          0     0  50000         Y
+    .pll5                             0        0        0  3000000000          0     0  50000         Y
+    .pll3                             1        1        0  1600000000          0     0  50000         Y
+       .pll3_div2                     1        1        0   800000000          0     0  50000         Y
+          .pll3_div2_4                1        1        0   200000000          0     0  50000         Y
+             P1                       4        4        0   200000000          0     0  50000         Y
+                dmac_aclk             2        2        0   200000000          0     0  50000         Y
+                ia55_clk              1        1        0   200000000          0     0  50000         Y
+                gic                   1        1        0   200000000          0     0  50000         Y
+                P1_DIV2               1        1        0   100000000          0     0  50000         Y
+                   dmac_pclk          1        1        0   100000000          0     0  50000         Y
+             .pll3_div2_4_2           0        0        0   100000000          0     0  50000         Y
+                P2                    0        0        0   100000000          0     0  50000         Y
+                   ia55_pclk          0        0        0   100000000          0     0  50000         N
+    .pll2                             1        1        0  1600000000          0     0  50000         Y
+       .pll2_div2                     1        1        0   800000000          0     0  50000         Y
+          .pll2_div2_8                1        1        0   100000000          0     0  50000         Y
+             P0                       1        1        0   100000000          0     0  50000         Y
+                sci1                  0        0        0   100000000          0     0  50000         N
+                sci0                  0        0        0   100000000          0     0  50000         N
+                scif4                 0        0        0   100000000          0     0  50000         N
+                scif3                 0        0        0   100000000          0     0  50000         N
+                scif2                 0        0        0   100000000          0     0  50000         N
+                scif1                 0        0        0   100000000          0     0  50000         N
+                scif0                 2        2        0   100000000          0     0  50000         Y
+    .pll1                             0        0        0  1000000000          0     0  50000         Y
+       I                              0        0        0  1000000000          0     0  50000         Y
+    .osc_div1000                      0        0        0       24000          0     0  50000         Y
+    .osc                              0        0        0    24000000          0     0  50000         Y
+ can                                  0        0        0           0          0     0  50000         Y
+ audio_clk2                           0        0        0    12288000          0     0  50000         Y
+ audio_clk1                           0        0        0    11289600          0     0  50000         Y
+/ #
+
+v3->v4:
+ * Documented RZ/G2UL SMARC EVK
+ * Removed LAST_COMMON macro from clock and reset indices.
+ * Added comment for RZ/G2UL specific clocks
+ * Listed all clocks and reset in the same order as RZ/G2L.
+ * Added Rb tag from Geert
+ * Updated num_hw_mod_clks and num_resets.
+v2->v3:
+ * Changed the compatible from r9a07g043u-sysc->r9a07g043-sysc
+ * Changed the compatible from r9a07g043u-cpg->r9a07g043-cpg
+ * Retained Rb tag from Rob as it is trivial change.
+ * Changed the config from ARCH_R9A07G043U->ARCH_R9A07G043
+ * renamed the file r9a07g043u-cpg.h->r9a07g043-cpg.h
+ * Prepared Common Module Clock/Reset indices for RZ/G2UL and RZ/Five
+ * Prepared RZ/G2UL specific Module Clock/Reset indices.
+
+Biju Das (5):
+  dt-bindings: arm: renesas: Document Renesas RZ/G2UL SMARC EVK
+  dt-bindings: clock: Add R9A07G043 CPG Clock and Reset Definitions
+  clk: renesas: Add support for RZ/G2UL SoC
+  arm64: dts: renesas: Add initial DTSI for RZ/G2UL SoC
+  arm64: dts: renesas: Add initial device tree for RZ/G2UL Type-1 SMARC
+    EVK
+
+ .../devicetree/bindings/arm/renesas.yaml      |   2 +
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    | 413 ++++++++++++++++++
+ .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 +++++
+ .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    |  25 ++
+ drivers/clk/renesas/Kconfig                   |   7 +-
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r9a07g043-cpg.c           | 157 +++++++
+ drivers/clk/renesas/rzg2l-cpg.c               |   6 +
+ drivers/clk/renesas/rzg2l-cpg.h               |   1 +
+ include/dt-bindings/clock/r9a07g043-cpg.h     | 184 ++++++++
+ 11 files changed, 908 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+ create mode 100644 drivers/clk/renesas/r9a07g043-cpg.c
+ create mode 100644 include/dt-bindings/clock/r9a07g043-cpg.h
+
+-- 
+2.17.1
+
