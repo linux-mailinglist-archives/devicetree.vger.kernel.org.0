@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FDC44F061D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D154F0621
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244457AbiDBUVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 16:21:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
+        id S231889AbiDBUVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 16:21:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231939AbiDBUVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:21:01 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F9B36B48
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:19:07 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id m30so8856097wrb.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:19:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=efzOv4dIr4tgBETsjp5OsgnPN6Aum/KcEtDZ5+WY/5s=;
-        b=NWCjcZfwqzrcjp5G5OuxNnq/23Iby1ljMuBql2dbBOBMNfS6NzDqEVqTbC0EETLXxw
-         9U9H72AWN9sdKdf4Ds5vMKB0jy7J8JqOVB8NWX6zyWmv1ZNy9P71C9heOmKCvJhSX9sB
-         rJhUI5CgZwfD5XZxm7gS9hELr3qWF9wY3KHePW5cvO9ismWLhNC+9vbjVaawNAWYHt3E
-         t1OtmWsPSjuP1X4If5aUxoxG3bxQBBSDeMfnljMbpCyH/JvOStbnsesYxBL1Tg+gVmPi
-         r7ZDAFCaXKIaNjkgnKj9OOtz03dpR6cthm3YvqSBnJZ+8bELz8fvkBGlhVL8ViSPc9RW
-         6wFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=efzOv4dIr4tgBETsjp5OsgnPN6Aum/KcEtDZ5+WY/5s=;
-        b=UxzmHCR13lt3u20Ig5ixwVX0FWtxk+njitA6/dRWLZsPdYFe3PeF1oGlHRD3J/sACK
-         inUD3wjJrbqS9otREa7PwQJrQsEW4hCh2bdOfxRvacquEjxO457/FtzrJGCzxcNbzFKN
-         +WE2DEeLv6ghtk9WgReyPo4rA36yXyEt4khvCXCTvfcds0Ix/gTxddQkCKkMbH/qkmEZ
-         ZOJ4xHbt4skNthL2c0+rnvmfhdac/caxa8K9v8iOeaceq8Rhgem6ZpcWMx2fFpMvWVID
-         YJG2wYgo2Wzh+y4k0GVNNQXRnYqYdnGMH2Las5wy4zyb8oChdcrLR5dJkO98n6LMq77S
-         3flg==
-X-Gm-Message-State: AOAM531C+xne055JQWvhBpUyko2o6fMVMZeR2Ug6EPtWkBnW9eFaKk5a
-        NJv9s1RUnQJX/8NW5NmVob41BQ==
-X-Google-Smtp-Source: ABdhPJwwADkU22Qt/uwzkEAdoHaiz77EIhH44oK6ZYfgfzgGV14uHRVicGD7jKPWsdyDYtAt/fb4Sg==
-X-Received: by 2002:a5d:58d9:0:b0:203:fc5c:ba87 with SMTP id o25-20020a5d58d9000000b00203fc5cba87mr11845270wrf.79.1648930746405;
-        Sat, 02 Apr 2022 13:19:06 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id 2-20020a056000154200b00203ee1fd1desm5810812wry.64.2022.04.02.13.19.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 13:19:05 -0700 (PDT)
-Message-ID: <793a88b8-148e-c9a0-3c21-4f15380e1085@linaro.org>
-Date:   Sat, 2 Apr 2022 22:19:05 +0200
+        with ESMTP id S1349374AbiDBUVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:21:15 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E43903DA70
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:19:22 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id F3387808BA;
+        Sat,  2 Apr 2022 22:19:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1648930759;
+        bh=X9am6kwb2hWq84iy+3Afgbz8P1Wwfca1KRLHKXHKQZs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Dbmjv6aGjfhuEiNth9w+n1hfBDMergbUMq4yQ/9kib/VuSsDEw46Bdcu0I4Gf82xC
+         aQfzysl2dZwaDURFDlRNvy23rS3C9Q0GIBp4fi9jO4TzHQA6+GRfvMPSFVMKcxYLYj
+         Wl2/I0uxCinDQZusv6RHrskdXoQmD8fOa6BEiSZsVAziJ+m4HvriTL2UEnepw1GnIp
+         ngj1rpZpM2ppcDPRQGQ3wGc5QXFIIlHkT+KjK+dKrUUDhdP877CdSWc3Px/xkyf9FB
+         3uY1834py5z586XIiqU0y2vO1EfkwO0zSehh9O7UUaK3PKyxdu9oYjGJvYw7KLHQm9
+         1D6exxn84xGTg==
+Message-ID: <7952a5c9-01f1-ca8d-9ffb-e3e91bf0a0c5@denx.de>
+Date:   Sat, 2 Apr 2022 22:19:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 28/33] dt-bindings: crypto: rockchip: convert to new
- driver bindings
+Subject: Re: [RFC][PATCH 1/3] dt-bindings: display: panel: mipi-dbi-spi: Make
+ width-mm/height-mm mandatory
 Content-Language: en-US
-To:     LABBE Corentin <clabbe@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20220401201804.2867154-1-clabbe@baylibre.com>
- <20220401201804.2867154-29-clabbe@baylibre.com>
- <30305936-4b69-e1ce-44c2-0d1d113b460e@linaro.org> <Ykitm1uLmQtNy3b2@Red>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Ykitm1uLmQtNy3b2@Red>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220401163755.302548-1-marex@denx.de>
+ <CAL_JsqKVkc51sXWE6Sh5yHxLX0vJWgFpn8cmjjKSBx4dYzA8qA@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAL_JsqKVkc51sXWE6Sh5yHxLX0vJWgFpn8cmjjKSBx4dYzA8qA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,31 +67,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2022 22:10, LABBE Corentin wrote:
-> Le Sat, Apr 02, 2022 at 01:53:58PM +0200, Krzysztof Kozlowski a écrit :
->> On 01/04/2022 22:17, Corentin Labbe wrote:
->>> The latest addition to the rockchip crypto driver need to update the
->>> driver bindings.
->>>
-
->>>  
->>>    reset-names:
->>> -    maxItems: 1
->>> +    deprecated: true
+On 4/1/22 20:36, Rob Herring wrote:
+> On Fri, Apr 1, 2022 at 11:38 AM Marek Vasut <marex@denx.de> wrote:
 >>
->> Why reset-names are being deprecated? Did we talk about this?
->>
+>> Make the width-mm/height-mm panel properties mandatory
+>> to correctly report the panel dimensions to the OS.
 > 
-> Since I use the devm_reset_control_array_get_exclusive, there is no need to have reset-names.
+> Adding required properties is an ABI break.
 
-The reset-names are not only for Linux driver. In any case, Linux driver
-could get always reset/clock/gpio by index, not by name.
-
-Additionally, there can be different implementation in different
-system/user of bindings.
-
-Therefore the driver implementation does not matter (or matters little)
-for the bindings, so for multi entries the reset-names are needed.
-
-Best regards,
-Krzysztof
+Per discussion with Noralf in 2/3, these bindings entered in 5.18 merge 
+window, so maybe there is still chance to fix them before rc1/rc2 ? I.e. 
+they were not shipped in any kernel release yet.
