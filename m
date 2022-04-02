@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D0504F04B1
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 794E34F04B6
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353003AbiDBQDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 12:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45764 "EHLO
+        id S1357694AbiDBQIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 12:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357674AbiDBQDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:03:07 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF86667D38
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:01:14 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id r10so519824eda.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:01:14 -0700 (PDT)
+        with ESMTP id S1357690AbiDBQIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:08:32 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B599125C86
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:06:39 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id dr20so11663366ejc.6
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:06:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lmJCCJ8fgUPzUm6LeyDlcBmDbRHg8TIVpjOQGBqlZHk=;
-        b=wq63czqcdGAdUoH/+15ETJz8usSPQogFdLMvAZIavzBPSG6GW2VRfJSqcB9bJ9jFPA
-         mqvVEHeUKFa2veONrP0uYF10XNOpH/F0u1m6zj+oHx+bqrHtvbZxPhjjfgh1CaN165R7
-         N4ss4HBdWNiU8J5P4+pEiSOMv2p1I5bRnYUVAlJVqwkpiTQp21fVk45bt+Gc6PBd1ltR
-         4eDKLyhqZqg1WXvtPgaPy3q2/lubIXC62uiuQs6ugIMgWOmFzEp4+xEG1CXUFcGSNCmF
-         ohbLKwpl20Sbik5b/IApeOTXMrKm3sveQfXKZ8HSj0f5zEdx4op099MmOnrgdyAZXF8K
-         MbrQ==
+        bh=2dLCpFjGJHcbliLHP8vYjYtyDcLFIAxcHG+FWPlYX0Y=;
+        b=tBbneEJqkuWEmHvvIZ2sj5QjCxHGS/7MF+6hk0BfAE8Xwu14gShr3VDv9Mdxg+Nu0L
+         PBWZp0jZXBL2NekdL4AVdzt5ZswjSTTAOmS2JJhNXmmwX1hKTWhiCpmf63LX/AQE+UtY
+         y10dH21hYS4ZUw9S3dHRaGIpAN6S5pQeH3zOTfIl6Gj1aBMiyGH9Ud0wiDh7JBY+1zRz
+         /0JANA/gvz/x7iDVE9OVEmHqb7f0/BIa815oh6GRJKVwguhCA+BrgGH6VYvwZ9p5VxbP
+         8vqh+aIKx4jkPkQngehsTaqVvSG2klXmfuGhFtyp/dmQ0vCrIN08vKgGIrMEK2S2ZzVd
+         1yWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=lmJCCJ8fgUPzUm6LeyDlcBmDbRHg8TIVpjOQGBqlZHk=;
-        b=q0beqYF6V/roQ38L6KpXHpctCfkKnNXyASob4cUV+DXBuJ/GmXHVzy8Ha8BOE6oDph
-         OGJyJhhY34zvHJtmQHTqV5xTC9WGMd6IfUfNBnMhOzoLe9IGw/Bk3OS2Tuh+65GPtgS3
-         fAZDPv3IJrPoWm4fA/DihWOY0dmTKMGjRTDa4Pyil6QgNbCyovsU2AFHEuvOhzUE/vH9
-         C066WNKXpZyMrwOl5WkCxHfx3xYbwURZKkUVCV9ink7fInqlm+xCUbi/7lGweWebD6EX
-         WqbwShhxfMQQtAXLkVwSAC5o8H1k0D8L2QckUnNMo7KbnQuqiINWku2XfLRYBlCEnVwU
-         8DwA==
-X-Gm-Message-State: AOAM533xtOJHa3EChMsauyTQcQbbwsX1nNOdli3ACf6tb7q3yMekqE5q
-        Er45wsxprqRFIwL4U3DAb6SSzg==
-X-Google-Smtp-Source: ABdhPJxk2uVM8AfzL67ivCUJqnJfKP/vco7byneQz2mX7LZKuaoW7Llqvp4oorxKC7j40wUOq43fyg==
-X-Received: by 2002:a05:6402:4247:b0:419:3990:3db6 with SMTP id g7-20020a056402424700b0041939903db6mr25461773edb.193.1648915273352;
-        Sat, 02 Apr 2022 09:01:13 -0700 (PDT)
+        bh=2dLCpFjGJHcbliLHP8vYjYtyDcLFIAxcHG+FWPlYX0Y=;
+        b=UxieH3taBOwU0wCij2AajOVAuWb9NdbyB18MCRE1W0HAnYwqmlkN4gdj5SMcQqAz/X
+         hDgbBBt62M0mCahNO0TjlWP/XqzbS+zxhl1Yr6oFE2ge46u0Hu180KELdlDMs9uEnR2q
+         yGyosAdol9UNvfvcPphNUY8KpCcH1toa0Wguu9T8UFvexWSfFnrQe4SpA/ourKQ8eZTx
+         38DDIIhCDefPIrNE6Kr01gWxfaYVB2oWX5RhzIXWIh8s3gFf+6r42lzdoUxeFlmkD07F
+         kB2aM9RI7zX6/7lhDcC/ooucZsPEbhvu89kXsOwj+USioTZYwdXeORbSy3OyUa3hNIMj
+         rjqA==
+X-Gm-Message-State: AOAM532BFux3vlgDgDZoWMg9FwjKI7jnX4WybgYmGB+zAvnmzboEU1AF
+        YpyVqN7j6hw0kyqlhE8u4WBu9RU6SfP1udG4
+X-Google-Smtp-Source: ABdhPJyjLMYxJ0JD5o8civ66zWl9Ru0vm3ZudlXy8sQnWNkm60+Uf6naquLmpxZS2J/JRuxzyTi5Aw==
+X-Received: by 2002:a17:907:d8d:b0:6df:b214:392a with SMTP id go13-20020a1709070d8d00b006dfb214392amr4305563ejc.669.1648915597714;
+        Sat, 02 Apr 2022 09:06:37 -0700 (PDT)
 Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id uz12-20020a170907118c00b006e7475db2d6sm244830ejb.217.2022.04.02.09.01.12
+        by smtp.gmail.com with ESMTPSA id u25-20020a170906b11900b006e08588afedsm2209474ejy.132.2022.04.02.09.06.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 09:01:12 -0700 (PDT)
-Message-ID: <4b7af0ed-c5e1-7523-0abc-4204596edeb9@linaro.org>
-Date:   Sat, 2 Apr 2022 18:01:11 +0200
+        Sat, 02 Apr 2022 09:06:37 -0700 (PDT)
+Message-ID: <871296de-76f6-c587-9000-ce38ad14f519@linaro.org>
+Date:   Sat, 2 Apr 2022 18:06:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: convert
- rockchip,rk3188-cru.txt to YAML
+Subject: Re: [PATCH 2/9] dt-bindings: soc: apple: Add ANS NVMe
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        zhangqing@rock-chips.com, Stephen Boyd <sboyd@kernel.org>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220329111323.3569-1-jbx6244@gmail.com>
- <20220331225134.7A0A9C340ED@smtp.kernel.org> <3107512.vfdyTQepKt@diego>
- <c212c994-fc5d-6ad0-3cd6-88dc2c719e38@linaro.org>
- <7c786619-6fcf-21dd-8e5a-0ec67da2a63d@gmail.com>
- <5e1b6c09-0a8f-f1d9-728b-90ffbaedae83@linaro.org>
- <0eed395b-ca02-2308-a5c6-7c4a72720175@gmail.com>
+To:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
+        "axboe@fb.com" <axboe@fb.com>, "hch@lst.de" <hch@lst.de>,
+        "sagi@grimberg.me" <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-nvme@lists.infradead.org
+References: <20220321165049.35985-1-sven@svenpeter.dev>
+ <20220321165049.35985-3-sven@svenpeter.dev>
+ <40f7c074-198a-5ce0-02b3-e6042975e228@kernel.org>
+ <692ae417-f0c6-4932-95f3-2a0984df5ad0@www.fastmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0eed395b-ca02-2308-a5c6-7c4a72720175@gmail.com>
+In-Reply-To: <692ae417-f0c6-4932-95f3-2a0984df5ad0@www.fastmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -84,90 +82,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2022 14:20, Johan Jonker wrote:
+On 02/04/2022 15:05, Sven Peter wrote:
+> Hi,
 > 
+> thanks for the review!
 > 
-> On 4/2/22 14:16, Krzysztof Kozlowski wrote:
->> On 02/04/2022 13:45, Johan Jonker wrote:
+> On Wed, Mar 23, 2022, at 12:14, Krzysztof Kozlowski wrote:
+>> On 21/03/2022 17:50, Sven Peter wrote:
+>>> Apple SoCs such as the M1 come with an embedded NVMe coprocessor called
+>>> ANS2.
 >>>
+>>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>>> ---
+>>>  .../bindings/soc/apple/apple,nvme-ans.yaml    | 75 +++++++++++++++++++
+>>>  1 file changed, 75 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/soc/apple/apple,nvme-ans.yaml
 >>>
->>> On 4/2/22 13:41, Krzysztof Kozlowski wrote:
->>>> On 01/04/2022 09:55, Heiko Stübner wrote:
->>>>> Hi Stephen,
->>>>>
->>>>> Am Freitag, 1. April 2022, 00:51:32 CEST schrieb Stephen Boyd:
->>>>>> Quoting Johan Jonker (2022-03-29 04:13:22)
->>>>>>> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000..ddd7e46af
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
->>>>>>> @@ -0,0 +1,78 @@
->>>>>>> +# SPDX-License-Identifier: GPL-2.0
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/clock/rockchip,rk3188-cru.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: Rockchip RK3188/RK3066 Clock and Reset Unit (CRU)
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Elaine Zhang <zhangqing@rock-chips.com>
->>>>>>> +  - Heiko Stuebner <heiko@sntech.de>
->>>>>>> +
->>>>>>> +description: |
->>>>>>> +  The RK3188/RK3066 clock controller generates and supplies clocks to various
->>>>>>> +  controllers within the SoC and also implements a reset controller for SoC
->>>>>>> +  peripherals.
->>>>>>> +  Each clock is assigned an identifier and client nodes can use this identifier
->>>>>>> +  to specify the clock which they consume. All available clocks are defined as
->>>>>>> +  preprocessor macros in the dt-bindings/clock/rk3188-cru.h and
->>>>>>> +  dt-bindings/clock/rk3066-cru.h headers and can be used in device tree sources.
->>>>>>> +  Similar macros exist for the reset sources in these files.
->>>>>>> +  There are several clocks that are generated outside the SoC. It is expected
->>>>>>> +  that they are defined using standard clock bindings with following
->>>>>>> +  clock-output-names:
->>>>>>> +    - "xin24m"    - crystal input                 - required
->>>>>>> +    - "xin32k"    - RTC clock                     - optional
->>>>>>> +    - "xin27m"    - 27mhz crystal input on RK3066 - optional
->>>>>>> +    - "ext_hsadc" - external HSADC clock          - optional
->>>>>>> +    - "ext_cif0"  - external camera clock         - optional
->>>>>>> +    - "ext_rmii"  - external RMII clock           - optional
->>>>>>> +    - "ext_jtag"  - external JTAG clock           - optional
->>>>>>
->>>>>> I'd expect all these clks here to be inputs to this node.
->>>>>
->>>>> The optional clocks are all part of a circular dependency.
->>>>>
->>>>> So for example xin32k normally is generated by the pmic and fed
->>>>> back into the system, so to get xin32k, we need the pmic to probe,
->>>>> which needs i2c, which in turn already needs the clock controller.
->>>>
->>>> Are you sure that xin32k (RTC) clock should be input to the clock
->>>> controller? I would expect it is the input to the SoC RTC block, so
->>>> there is no circular dependency.
->>>
->>> clk-rk3188.c:
->>>
->>> PNAME(mux_pll_p)		= { "xin24m", "xin32k" };
+>>> diff --git a/Documentation/devicetree/bindings/soc/apple/apple,nvme-ans.yaml b/Documentation/devicetree/bindings/soc/apple/apple,nvme-ans.yaml
+>>> new file mode 100644
+>>> index 000000000000..e1f4c1c572aa
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soc/apple/apple,nvme-ans.yaml
+>>> @@ -0,0 +1,75 @@
+>>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soc/apple/apple,nvme-ans.yaml#
 >>
->> Thanks, but that's not the answer whether it is an input to the clock
->> controller. It's the answer how the driver implements this. :)
+>> Do not drop all code in soc/apple, but please use respective subsystems.
+>> Apple is not a subsystem, is not special.
+>>
 > 
-> PX2 == rk3066
-> 
-> Rockchip PX2 TRM V1.0.pdf
-> 
-> page 30
-> 
-> Chip Clock Architecture Diagram 1
+> Sure, the code is already inside drivers/nvme/host but I'll also create
+> Documentation/devicetree/bindings/nvme and put the bindings in there as
+> well.
 
-I found it, thanks. That's the answer, so indeed this is an input.
+Yes, please. We have also Documentation/devicetree/bindings/nvmem/ but
+it seems its entirely different stuff.
 
-Answering partially to Heiko/Stephen, this could be still modeled in DTS
-as a fixed-frequency clock going as input to the clock-controller. The
-trouble with that approach is that it would actually duplicate the
-definition (another one coming from PMIC).
 
 Best regards,
 Krzysztof
