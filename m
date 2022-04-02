@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 061074F002E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 11:39:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72C24F0041
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 11:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239825AbiDBJl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 05:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58878 "EHLO
+        id S1354242AbiDBJ57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 05:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239863AbiDBJlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 05:41:24 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D1414344B
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 02:39:32 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id k124-20020a1ca182000000b0038c9cf6e2a6so2802687wme.0
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 02:39:31 -0700 (PDT)
+        with ESMTP id S242816AbiDBJ5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 05:57:54 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551891A61DC
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 02:56:01 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id p26-20020a05600c1d9a00b0038ccbff1951so4287879wms.1
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 02:56:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KREN+AabFyAtaAW7Vfs0QIZLiq7RaWCj552NjbUfAnc=;
-        b=T+5eT04oZR8EPIk6JOx/jGHj/mDX5yyHaTLBfakEcGWxgF7ewG0+ehkhTF6I6FAzic
-         kL/nMbByfd/xuXFFOQCaTUTf0y/xAxo5vw/maunV/Wk+9WEF+AgINs/FEIMEZEfkhual
-         qDRGGqoGxJFUXGWJrh2RwZ7NmvnRAM+jPS8/5zR3PFufI5eUFDPwshswwdP7q3/+jT/4
-         Q2vOL2O6lg7MpvOFy2OM9r4zmKzrSSA9oOdLDbbmSDSiy2+v4q9epVTd6DFaxYN6F7GW
-         UUM8fSGWuAMxN1fCComany4aimAIYlwQG6JHQjoPS7qdvtP9Jnms8u4t2ua3z460Olhe
-         gY2A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=cgXEkA1NsSLqZo2p9htj8GcgXUNKhGzyClMqMaWIvDI=;
+        b=QUxAVBIGjxzUGhga2bGVCacVjSav4X+BIyqne/0zdL/4ikLPyuC4Mjo9T5inO7Kfxd
+         A9mBSL+/8fh5y8c027vJHrlNiIBlYi1N1/6zLsHYkpl5ApP/7ZLL1C0sVCCQw2nd1aNv
+         gndE6vmrp777SW893dYvMN0B6M71FQJ20kdc3KLxeqj8hvQuS8HCfyqA/PksE3ruxMTz
+         szpncBtYVQ2rTkKKlzKbMfZJeHAKl5xtnc7GWgWmRuR8BbciBg/b02QYjY4wRE8EVGzZ
+         iFbhbM5HW7RbEQ2H25yQ4U/yxlvntt09ODrON3n7UN4WcYSCXmbBJORg6p+Bbfl7fe84
+         91tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KREN+AabFyAtaAW7Vfs0QIZLiq7RaWCj552NjbUfAnc=;
-        b=GD0ky2Gmud4yHN0cUN8dPNPMFRpC9n0AsipZSQPXrfbg4MAuUQJbfDAmPTI4G6vtiY
-         41HQzJkFzn4qV1uS60mFdOywE9aXKDCr3AKnd+CD6ZyOxRCWon61yyysgKYPQpDueLyb
-         dfHztof65BI/fzY103ftK/mAhRdOSQuRqzZArWkpr1pTFGSY3EF5InrMMqg7Uty+tSvk
-         czCfHpjNNP/2FhvqyHWafqjd0f/76VOGsv5dABG6duWzFGlCjmkpdXFAwbv50PhL633z
-         FuSLyeKHrgsfdjoppl9bw3wCpKtRO31hYYuJ7GkBlakud3gqmtZyxcODLQHXrewiQf4m
-         ltsA==
-X-Gm-Message-State: AOAM530mzs0MetwPUvf3aoYzZK9J0aWQA3WRg1zHN1lHZNZHm0uLLrul
-        G/jYVKx77Z7xuXw791NwOB9Emg==
-X-Google-Smtp-Source: ABdhPJyTJOylDZ+3CAwbtCGDEx+/Fv47boVaquqNG6Oq+5Tbfn/AcmYdWx72lofYn3cVgqf26jXikw==
-X-Received: by 2002:a7b:c844:0:b0:37b:b986:7726 with SMTP id c4-20020a7bc844000000b0037bb9867726mr12449343wml.160.1648892370480;
-        Sat, 02 Apr 2022 02:39:30 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id y6-20020a05600015c600b00203fa70b4ebsm5265713wry.53.2022.04.02.02.39.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Apr 2022 02:39:30 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] dt-bindings: soc: qcom,wcnss: convert to dtschema
-Date:   Sat,  2 Apr 2022 11:39:19 +0200
-Message-Id: <20220402093919.50084-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220402093919.50084-1-krzysztof.kozlowski@linaro.org>
-References: <20220402093919.50084-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cgXEkA1NsSLqZo2p9htj8GcgXUNKhGzyClMqMaWIvDI=;
+        b=YkUk8xoV+I5Zkz/LvvJoNpbCWGHFaQWZRqTXtGQLVRCwiDyVKFeW9o/iQMG7YisMYi
+         mITiQzFOxDRmh2kxVtMbiXTIrvUTMGyqOdctSvdudJkbromGyYwNonyfS9QCnj/XN0oe
+         RCF+BArLkxP0l273IYEFuO0aKJ160mPHGTe+HkaAqJVOFYp2gAyHz6mSo4KxjtzwV1nb
+         1LSeDvbBwy1T78bHRQpe0rGB0doTZKWBZaX7cze6sbXOlMrhJaLWIozz+Ey4TTP5RX27
+         4nAnzKoY0G9LhIVVUseyJuwXeEyFRB6pGOXDFb4Rn5xJqvlzxyqbdQKO90Nij1nPlAJA
+         l1/g==
+X-Gm-Message-State: AOAM532jXj0baeJ3vxWyMJp4UkAs7ioZXorI/K7LlSL+vF4IxfJkTEcH
+        bcZMFockv7q54Wui15i8Bj2WAw==
+X-Google-Smtp-Source: ABdhPJyO5nRYykQjZ5CMS3S/+vibAHXkJMz2nRlIfC5YDxd6cIz2T4VjeRMkWl0YnnwiCnUamYDmeg==
+X-Received: by 2002:a7b:c14d:0:b0:38c:801a:a8b3 with SMTP id z13-20020a7bc14d000000b0038c801aa8b3mr11732685wmi.40.1648893359903;
+        Sat, 02 Apr 2022 02:55:59 -0700 (PDT)
+Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id i19-20020a05600c355300b0038e1d69af52sm4436420wmq.7.2022.04.02.02.55.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Apr 2022 02:55:59 -0700 (PDT)
+Message-ID: <e7b2d7d3-b0a8-3937-1947-acb65090dc87@linaro.org>
+Date:   Sat, 2 Apr 2022 11:55:58 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Jacky Huang <ychuang3@nuvoton.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org, cfli0@nuvoton.com
+References: <20220331024256.14762-1-ychuang3@nuvoton.com>
+ <20220331024256.14762-4-ychuang3@nuvoton.com>
+ <0c182962-0da0-c3b3-097a-090bf8d871e7@linaro.org>
+ <20220401233422.58670C2BBE4@smtp.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220401233422.58670C2BBE4@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,302 +79,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm WCNSS bindings to DT Schema.
+On 02/04/2022 01:34, Stephen Boyd wrote:
+> Quoting Krzysztof Kozlowski (2022-03-30 23:32:04)
+>> On 31/03/2022 04:42, Jacky Huang wrote:
+>>> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
+>>> new file mode 100644
+>>> index 000000000000..e1e0c466bf5e
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
+>>> @@ -0,0 +1,2 @@
+>>> +# SPDX-License-Identifier: GPL-2.0
+>>> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-evb.dtb
+>>
+>> NAK
+>>
+>> This is actually some resend, but you did not version it, did not
+>> provide changelog.
+>>
+>> What is more - you ignored previously received comments.
+>>
+>> We do not work like this. If you do not agree with a comment, please
+>> keep discussion, not resend ignoring it.
+>>
+> 
+> Please be kind to newcomers. Not everyone has been working on the kernel
+> for 10+ years.
 
-Changes against original bindings: fix qcom,smd-channels and
-qcom,smem-states names (how they are used in DTS and driver), enforce
-child node naming of bluetooth and wifi.
+Sorry for being harsh.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/soc/qcom/qcom,wcnss.txt          | 131 -----------------
- .../bindings/soc/qcom/qcom,wcnss.yaml         | 139 ++++++++++++++++++
- 2 files changed, 139 insertions(+), 131 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.txt
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
+> 
+> Please read Documentation/process/submitting-patches.rst. We should
+> probably add some more details to that document about including
+> changelogs comparing previous rounds, links to previous rounds for ease
+> of discovery, cover letters for multi-patch series, etc.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.txt
-deleted file mode 100644
-index 1382b64e1381..000000000000
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.txt
-+++ /dev/null
-@@ -1,131 +0,0 @@
--Qualcomm WCNSS Binding
--
--This binding describes the Qualcomm WCNSS hardware. It consists of control
--block and a BT, WiFi and FM radio block, all using SMD as command channels.
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be: "qcom,wcnss",
--
--- qcom,smd-channel:
--	Usage: required
--	Value type: <string>
--	Definition: standard SMD property specifying the SMD channel used for
--		    communication with the WiFi firmware.
--		    Should be "WCNSS_CTRL".
--
--- qcom,mmio:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to a node specifying the wcnss "ccu" and "dxe"
--		    register blocks. The node must be compatible with one of
--		    the following:
--		    "qcom,riva",
--		    "qcom,pronto"
--
--- firmware-name:
--	Usage: optional
--	Value type: <string>
--	Definition: specifies the relative firmware image path for the WLAN NV
--		    blob. Defaults to "wlan/prima/WCNSS_qcom_wlan_nv.bin" if
--		    not specified.
--
--= SUBNODES
--The subnodes of the wcnss node are optional and describe the individual blocks in
--the WCNSS.
--
--== Bluetooth
--The following properties are defined to the bluetooth node:
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be:
--		    "qcom,wcnss-bt"
--
--- local-bd-address:
--	Usage: optional
--	Value type: <u8 array>
--	Definition: see Documentation/devicetree/bindings/net/bluetooth.txt
--
--== WiFi
--The following properties are defined to the WiFi node:
--
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be one of:
--		    "qcom,wcnss-wlan",
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: should specify the "rx" and "tx" interrupts
--
--- interrupt-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must contain "rx" and "tx"
--
--- qcom,smem-state:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: should reference the tx-enable and tx-rings-empty SMEM states
--
--- qcom,smem-state-names:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must contain "tx-enable" and "tx-rings-empty"
--
--= EXAMPLE
--The following example represents a SMD node, with one edge representing the
--"pronto" subsystem, with the wcnss device and its wcn3680 BT and WiFi blocks
--described; as found on the 8974 platform.
--
--smd {
--	compatible = "qcom,smd";
--
--	pronto-edge {
--		interrupts = <0 142 1>;
--
--		qcom,ipc = <&apcs 8 17>;
--		qcom,smd-edge = <6>;
--
--		wcnss {
--			compatible = "qcom,wcnss";
--			qcom,smd-channels = "WCNSS_CTRL";
--
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			qcom,mmio = <&pronto>;
--
--			bt {
--				compatible = "qcom,wcnss-bt";
--
--				/* BD address 00:11:22:33:44:55 */
--				local-bd-address = [ 55 44 33 22 11 00 ];
--			};
--
--			wlan {
--				compatible = "qcom,wcnss-wlan";
--
--				interrupts = <0 145 0>, <0 146 0>;
--				interrupt-names = "tx", "rx";
--
--				qcom,smem-state = <&apps_smsm 10>, <&apps_smsm 9>;
--				qcom,smem-state-names = "tx-enable", "tx-rings-empty";
--			};
--		};
--	};
--};
--
--soc {
--	pronto: pronto {
--		compatible = "qcom,pronto";
--
--		reg = <0xfb204000 0x2000>, <0xfb202000 0x1000>, <0xfb21b000 0x3000>;
--		reg-names = "ccu", "dxe", "pmu";
--	};
--};
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
-new file mode 100644
-index 000000000000..1e37ec871185
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
-@@ -0,0 +1,139 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/qcom/qcom,wcnss.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm WCNSS
-+
-+maintainers:
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description:
-+  The Qualcomm WCNSS hardware consists of control block and a BT, WiFi and FM
-+  radio block, all using SMD as command channels.
-+
-+properties:
-+  compatible:
-+    const: qcom,wcnss
-+
-+  firmware-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    default: "wlan/prima/WCNSS_qcom_wlan_nv.bin"
-+    description:
-+      Relative firmware image path for the WLAN NV blob.
-+
-+  qcom,mmio:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      Reference to a node specifying the wcnss "ccu" and "dxe" register blocks.
-+      The node must be compatible with one of the following::
-+           - qcom,riva"
-+           - qcom,pronto"
-+
-+  qcom,smd-channels:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    const: WCNSS_CTRL
-+    description:
-+      Standard SMD property specifying the SMD channel used for communication
-+      with the WiFi firmware.
-+
-+  bluetooth:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      compatible:
-+        const: qcom,wcnss-bt
-+
-+      local-bd-address:
-+        $ref: /schemas/types.yaml#/definitions/uint8-array
-+        items:
-+          minItems: 6
-+          maxItems: 6
-+        description:
-+          See Documentation/devicetree/bindings/net/bluetooth.txt
-+
-+    required:
-+      - compatible
-+
-+  wifi:
-+    additionalProperties: false
-+    type: object
-+    properties:
-+      compatible:
-+        const: qcom,wcnss-wlan
-+
-+      interrupts:
-+        maxItems: 2
-+
-+      interrupt-names:
-+        items:
-+          - const: tx
-+          - const: rx
-+
-+      qcom,smem-states:
-+        $ref: /schemas/types.yaml#/definitions/phandle-array
-+        maxItems: 2
-+        description:
-+          Should reference the tx-enable and tx-rings-empty SMEM states.
-+
-+      qcom,smem-state-names:
-+        $ref: /schemas/types.yaml#/definitions/string-array
-+        items:
-+          - const: tx-enable
-+          - const: tx-rings-empty
-+        description:
-+          Names of SMEM states.
-+
-+    required:
-+      - compatible
-+      - interrupts
-+      - interrupt-names
-+      - qcom,smem-states
-+      - qcom,smem-state-names
-+
-+required:
-+  - compatible
-+  - qcom,mmio
-+  - qcom,smd-channels
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    smd-edge {
-+        interrupts = <GIC_SPI 142 IRQ_TYPE_EDGE_RISING>;
-+
-+        qcom,ipc = <&apcs 8 17>;
-+        qcom,smd-edge = <6>;
-+        qcom,remote-pid = <4>;
-+
-+        label = "pronto";
-+
-+        wcnss {
-+            compatible = "qcom,wcnss";
-+            qcom,smd-channels = "WCNSS_CTRL";
-+
-+            qcom,mmio = <&pronto>;
-+
-+            bluetooth {
-+                compatible = "qcom,wcnss-bt";
-+                /* BD address 00:11:22:33:44:55 */
-+                local-bd-address = [ 55 44 33 22 11 00 ];
-+            };
-+
-+            wifi {
-+                compatible = "qcom,wcnss-wlan";
-+
-+                interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+                             <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-+                interrupt-names = "tx", "rx";
-+
-+                qcom,smem-states = <&apps_smsm 10>, <&apps_smsm 9>;
-+                qcom,smem-state-names = "tx-enable", "tx-rings-empty";
-+            };
-+        };
-+    };
--- 
-2.32.0
+This is in general explained in:
+https://elixir.bootlin.com/linux/v5.13/source/Documentation/process/submitting-patches.rst#L311
+Just no one really reads it...
 
+I'll extend that section slightly.
+
+
+Best regards,
+Krzysztof
