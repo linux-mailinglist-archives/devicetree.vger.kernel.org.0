@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FEB74F059F
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 20:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E78B4F059A
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 20:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356500AbiDBSms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 14:42:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39078 "EHLO
+        id S1357118AbiDBSmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 14:42:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356884AbiDBSme (ORCPT
+        with ESMTP id S1357262AbiDBSme (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 14:42:34 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 450D34F465
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 11:40:27 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id l7-20020a05600c1d0700b0038c99618859so5333302wms.2
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 11:40:27 -0700 (PDT)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13A550047
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 11:40:28 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id h16so3570901wmd.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 11:40:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ioo4qYHnBpK0bxlPRJXj59EcubEzOJoJqknqq3RnCBw=;
-        b=xma+QvotMCwq4nd+T0G157q34QrtyX/iVRaUZgz9leMHEKtLfnGWtCQp1qauSyt8Oj
-         xZty09uDqkupVvcrNaESq5Nik+Zoh0e8dZ3Dx8YlbNIgMIOF/nnxiwJTdUTgdxzzrute
-         0fyVQVUC1+HecFIivTKLVoka9sQaTn8frreKf8BxLXcOGYe3fsol6PSCK7/sjycNRBka
-         oZfeqyaNf796DBAyPBJf3SRBqJiqUumAUj6sXEK6D+7zuotYZmppvdETD5odmtIFWKnp
-         /+MkcBXTotxDgZSFs0qfIsPJeTrlEg2kOLBHQAaGbG29ztAYkkyWjgMYRgu8zjVIKP20
-         Jw9w==
+        bh=Sp/oLqlbge5GU7mZsZW/vx3cnsSFA9iABPk+CXY4wNg=;
+        b=uQermoBxdAv6ihdtqTEbNjddI5LOjv2sgP8uaq/x7bM+rs+7OvofhXs1aFzKnXMqXs
+         VqZ9BIvz2+6qyO6KrBEjovUZvAY3RjAJXc+uk2MUj4xYKyfTyipQBym0Lyar3l6iTFye
+         gMChWkuyapkbpPU8fzvoZ8OzqRq7u7pUS5FWnSvzAjItqng+dJXb48A1IctyOJhTfL0y
+         wGc/+JvG2Sx4PcyZlO6YEyO/JEDehtr8sUeWLNLSHNCsIcDfupzDab8ij3duScj2m4YB
+         KfFLHIfkAIA7kIhfMJkQOS5xv55ZPFI8q9gLrlD+HUgU2kW+cwQ1eyQTSpOUIbDoi2qt
+         /+Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ioo4qYHnBpK0bxlPRJXj59EcubEzOJoJqknqq3RnCBw=;
-        b=2qNzh4Si+Tj7RbYSgQpYAz5gN0mEDfOWbomDMVhQeDiArZQkWQoHCa/GD9JdNnwpgF
-         NDako5gtly3WRikw0nlyG9gYxFcPUl6/k1l/z+X3m+r6xPjF058n+pcj2simsrhyod/y
-         5zu6wD5aXUqgJnH5LtDvvvH2i+d1s++Hmw6d0zgoHXlvQTxSgw+yQNokbdy10t9fU+l6
-         7iBwFdmLPrUaJou0QpJYR7CxTjIf1GEj4o+6LnjIjQ517PmwLyyefNPr9zOg231Lk+NH
-         YV7ndO0rSz5+SjjP2kH0bJmZqWHOO8TcE7u/SH+c4PYW6tEXAolEKq21XcnVN9gPuYlV
-         6MQg==
-X-Gm-Message-State: AOAM5300aAF8HSNL7xjVgqo9sDG68jaLu+n07CPkTS9Qy8bhC5rQVu6A
-        6QyYhJKiPNKMdsgE9pk3PvrGbg==
-X-Google-Smtp-Source: ABdhPJzpCLjjgITs+9CV2ej1DV1wUHUNq1oeHEUvFhvgoGV8sGtKsUPTboSbrVztBQfDTSWpsae2Xg==
-X-Received: by 2002:a05:600c:4f0f:b0:38c:c8f5:73e7 with SMTP id l15-20020a05600c4f0f00b0038cc8f573e7mr13045640wmq.201.1648924825831;
-        Sat, 02 Apr 2022 11:40:25 -0700 (PDT)
+        bh=Sp/oLqlbge5GU7mZsZW/vx3cnsSFA9iABPk+CXY4wNg=;
+        b=o0JXTT0YYx4vCmLVtztcZ2BXGeiPycCWtRxhZWSchqHqAQokVR7/Uo3zHTOBTds311
+         +nPb9PuloB/JE0+D53BPPz+UEUXiWWPpi5voIxVfmHoQNipMc6GJEJF9ZDwsAebVt1fN
+         3ts1ZXtAMrOZ3BLWLN060BNIVGM4napp3bgdz4ulqDU8HSwaxYvzw73OE4rnqFZZ/8R4
+         CU/x29HiB1uWn4C9tCFR/cKF7LfP3aB94oAlcmTCrBwJ7ozJsiRv/5TBy+G733hY5uRg
+         h+z831AIW0HDSWgytaVOWRH+U9CetP2ufe0sFh82/udilZ4YX8jQDGOrkUyqzR5fftKs
+         sZeg==
+X-Gm-Message-State: AOAM531ovBf1rQbGhOQHJzjbofG+SOcdKlTOQ65tve0PXbaPkdLzhUyk
+        KLFI7VzgsEtWLMczqK+6eTQrnw==
+X-Google-Smtp-Source: ABdhPJzKWhMSetsdvl9+noYgz+2YR/oqaR3HdqGzxC62zE4oTWSrcJcdEMLv0GwYLxCeb80tJWa+MA==
+X-Received: by 2002:a05:600c:600a:b0:38c:f953:adc0 with SMTP id az10-20020a05600c600a00b0038cf953adc0mr13523252wmb.188.1648924827120;
+        Sat, 02 Apr 2022 11:40:27 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b0038b5162260csm6760502wmq.23.2022.04.02.11.40.24
+        by smtp.gmail.com with ESMTPSA id m20-20020a05600c4f5400b0038b5162260csm6760502wmq.23.2022.04.02.11.40.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Apr 2022 11:40:25 -0700 (PDT)
+        Sat, 02 Apr 2022 11:40:26 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-spi@vger.kernel.org
 Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 8/9] dt-bindings: i2c: qcom,i2c-qup: convert to dtschema
-Date:   Sat,  2 Apr 2022 20:40:10 +0200
-Message-Id: <20220402184011.132465-9-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 9/9] dt-bindings: qcom: qcom,gsbi: convert to dtschema
+Date:   Sat,  2 Apr 2022 20:40:11 +0200
+Message-Id: <20220402184011.132465-10-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220402184011.132465-1-krzysztof.kozlowski@linaro.org>
 References: <20220402184011.132465-1-krzysztof.kozlowski@linaro.org>
@@ -69,7 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,160 +77,248 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm Universal Peripheral (QUP) I2C controller to DT
+Convert the Qualcomm General Serial Bus Interface (GSBI) to DT
 Schema.
-
-Add missing properties: dma and dma-names, pinctrl states (to indicate
-support for sleep pinctrl).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/i2c/qcom,i2c-qup.txt  | 40 ---------
- .../devicetree/bindings/i2c/qcom,i2c-qup.yaml | 89 +++++++++++++++++++
- 2 files changed, 89 insertions(+), 40 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
+ .../bindings/soc/qcom/qcom,gsbi.txt           |  87 ------------
+ .../bindings/soc/qcom/qcom,gsbi.yaml          | 133 ++++++++++++++++++
+ 2 files changed, 133 insertions(+), 87 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.yaml
 
-diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt
 deleted file mode 100644
-index dc71754a56af..000000000000
---- a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt
+index fe1855f09dcc..000000000000
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt
 +++ /dev/null
-@@ -1,40 +0,0 @@
--Qualcomm Universal Peripheral (QUP) I2C controller
+@@ -1,87 +0,0 @@
+-QCOM GSBI (General Serial Bus Interface) Driver
+-
+-The GSBI controller is modeled as a node with zero or more child nodes, each
+-representing a serial sub-node device that is mux'd as part of the GSBI
+-configuration settings.  The mode setting will govern the input/output mode of
+-the 4 GSBI IOs.
 -
 -Required properties:
-- - compatible: Should be:
--   * "qcom,i2c-qup-v1.1.1" for 8660, 8960 and 8064.
--   * "qcom,i2c-qup-v2.1.1" for 8974 v1.
--   * "qcom,i2c-qup-v2.2.1" for 8974 v2 and later.
-- - reg: Should contain QUP register address and length.
-- - interrupts: Should contain I2C interrupt.
--
-- - clocks: A list of phandles + clock-specifiers, one for each entry in
--   clock-names.
-- - clock-names: Should contain:
--   * "core" for the core clock
--   * "iface" for the AHB clock
--
-- - #address-cells: Should be <1> Address cells for i2c device address
-- - #size-cells: Should be <0> as i2c addresses have no size component
+-- compatible:	Should contain "qcom,gsbi-v1.0.0"
+-- cell-index:	Should contain the GSBI index
+-- reg: Address range for GSBI registers
+-- clocks: required clock
+-- clock-names: must contain "iface" entry
+-- qcom,mode : indicates MUX value for configuration of the serial interface.
+-  Please reference dt-bindings/soc/qcom,gsbi.h for valid mux values.
 -
 -Optional properties:
-- - clock-frequency: Should specify the desired i2c bus clock frequency in Hz,
--                    defaults to 100kHz if omitted.
+-- qcom,crci : indicates CRCI MUX value for QUP CRCI ports.  Please reference
+-  dt-bindings/soc/qcom,gsbi.h for valid CRCI mux values.
+-- syscon-tcsr: indicates phandle of TCSR syscon node.  Required if child uses
+-  dma.
 -
--Child nodes should conform to i2c bus binding.
+-Required properties if child node exists:
+-- #address-cells: Must be 1
+-- #size-cells: Must be 1
+-- ranges: Must be present
 -
--Example:
+-Properties for children:
 -
-- i2c@f9924000 {
-- 	compatible = "qcom,i2c-qup-v2.2.1";
-- 	reg = <0xf9924000 0x1000>;
-- 	interrupts = <0 96 0>;
+-A GSBI controller node can contain 0 or more child nodes representing serial
+-devices.  These serial devices can be a QCOM UART, I2C controller, spi
+-controller, or some combination of aforementioned devices.
 -
-- 	clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
-- 	clock-names = "core", "iface";
+-See the following for child node definitions:
+-Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt
+-Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+-Documentation/devicetree/bindings/serial/qcom,msm-uartdm.txt
 -
-- 	clock-frequency = <355000>;
+-Example for APQ8064:
 -
-- 	#address-cells = <1>;
-- 	#size-cells = <0>;
-- };
-diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
+-#include <dt-bindings/soc/qcom,gsbi.h>
+-
+-	gsbi4@16300000 {
+-		compatible = "qcom,gsbi-v1.0.0";
+-		cell-index = <4>;
+-		reg = <0x16300000 0x100>;
+-		clocks = <&gcc GSBI4_H_CLK>;
+-		clock-names = "iface";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-		qcom,mode = <GSBI_PROT_I2C_UART>;
+-		qcom,crci = <GSBI_CRCI_QUP>;
+-
+-		syscon-tcsr = <&tcsr>;
+-
+-		/* child nodes go under here */
+-
+-		i2c_qup4: i2c@16380000 {
+-			compatible = "qcom,i2c-qup-v1.1.1";
+-			reg = <0x16380000 0x1000>;
+-			interrupts = <0 153 0>;
+-
+-			clocks = <&gcc GSBI4_QUP_CLK>, <&gcc GSBI4_H_CLK>;
+-			clock-names = "core", "iface";
+-
+-			clock-frequency = <200000>;
+-
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-		};
+-
+-		uart4:	serial@16340000 {
+-			compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+-			reg = <0x16340000 0x1000>,
+-				<0x16300000 0x1000>;
+-			interrupts = <0 152 0x0>;
+-			clocks = <&gcc GSBI4_UART_CLK>, <&gcc GSBI4_H_CLK>;
+-			clock-names = "core", "iface";
+-		};
+-	};
+-
+-	tcsr: syscon@1a400000 {
+-		compatible = "qcom,apq8064-tcsr", "syscon";
+-		reg = <0x1a400000 0x100>;
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.yaml
 new file mode 100644
-index 000000000000..f43947514d48
+index 000000000000..b97e359f3f90
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
-@@ -0,0 +1,89 @@
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.yaml
+@@ -0,0 +1,133 @@
 +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/i2c/qcom,i2c-qup.yaml#
++$id: http://devicetree.org/schemas/soc/qcom/qcom,gsbi.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Universal Peripheral (QUP) I2C controller
++title: Qualcomm General Serial Bus Interface (GSBI)
 +
 +maintainers:
 +  - Andy Gross <agross@kernel.org>
 +  - Bjorn Andersson <bjorn.andersson@linaro.org>
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 +
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
++description:
++  The GSBI controller is modeled as a node with zero or more child nodes, each
++  representing a serial sub-node device that is mux'd as part of the GSBI
++  configuration settings.  The mode setting will govern the input/output mode
++  of the 4 GSBI IOs.
++
++  A GSBI controller node can contain 0 or more child nodes representing serial
++  devices.  These serial devices can be a QCOM UART, I2C controller, spi
++  controller, or some combination of aforementioned devices.
 +
 +properties:
 +  compatible:
 +    enum:
-+      - qcom,i2c-qup-v1.1.1     # for 8660, 8960 and 8064
-+      - qcom,i2c-qup-v2.1.1     # for 8974 v1
-+      - qcom,i2c-qup-v2.2.1     # for 8974 v2 and later
++      - qcom,gsbi-v1.0.0
++
++  '#address-cells':
++    const: 1
++
++  cell-index:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      The GSBI index.
 +
 +  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: iface
-+
-+  clock-frequency:
-+    default: 100000
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  interrupts:
 +    maxItems: 1
 +
-+  pinctrl-0: true
-+  pinctrl-1: true
++  clock-names:
++    const: iface
 +
-+  pinctrl-names:
-+    minItems: 1
-+    items:
-+      - const: default
-+      - const: sleep
++  qcom,crci:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      CRCI MUX value for QUP CRCI ports.  Please reference
++      include/dt-bindings/soc/qcom,gsbi.h for valid CRCI mux values.
++
++  qcom,mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      MUX value for configuration of the serial interface.  Please reference
++      include/dt-bindings/soc/qcom,gsbi.h for valid mux values.
++
++  '#size-cells':
++    const: 1
++
++  syscon-tcsr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle of TCSR syscon node.Required if child uses dma.
++
++  ranges: true
 +
 +  reg:
 +    maxItems: 1
 +
++patternProperties:
++  "spi@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/spi/qcom,spi-qup.yaml#
++
++  "i2c@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/i2c/qcom,i2c-qup.yaml#
++
++  "serial@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/serial/qcom,msm-uartdm.yaml#
++
 +required:
 +  - compatible
-+  - clock-names
++  - cell-index
 +  - clocks
-+  - interrupts
++  - clock-names
++  - qcom,mode
 +  - reg
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,gcc-msm8998.h>
++    #include <dt-bindings/clock/qcom,gcc-msm8960.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/soc/qcom,gsbi.h>
 +
-+    i2c@c175000 {
-+        compatible = "qcom,i2c-qup-v2.2.1";
-+        reg = <0x0c175000 0x600>;
-+        interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>,
-+                 <&gcc GCC_BLSP1_AHB_CLK>;
-+        clock-names = "core", "iface";
-+        dmas = <&blsp1_dma 6>, <&blsp1_dma 7>;
-+        dma-names = "tx", "rx";
-+        pinctrl-names = "default", "sleep";
-+        pinctrl-0 = <&blsp1_i2c1_default>;
-+        pinctrl-1 = <&blsp1_i2c1_sleep>;
-+        clock-frequency = <400000>;
-+
++    gsbi@12440000 {
++        compatible = "qcom,gsbi-v1.0.0";
++        reg = <0x12440000 0x100>;
++        cell-index = <1>;
++        clocks = <&gcc GSBI1_H_CLK>;
++        clock-names = "iface";
 +        #address-cells = <1>;
-+        #size-cells = <0>;
++        #size-cells = <1>;
++        ranges;
++
++        syscon-tcsr = <&tcsr>;
++        qcom,mode = <GSBI_PROT_I2C_UART>;
++
++        serial@12450000 {
++            compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
++            reg = <0x12450000 0x100>,
++                  <0x12400000 0x03>;
++            interrupts = <0 193 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&gcc GSBI1_UART_CLK>, <&gcc GSBI1_H_CLK>;
++            clock-names = "core", "iface";
++        };
++
++        i2c@12460000 {
++            compatible = "qcom,i2c-qup-v1.1.1";
++            reg = <0x12460000 0x1000>;
++            pinctrl-0 = <&i2c1_pins>;
++            pinctrl-1 = <&i2c1_pins_sleep>;
++            pinctrl-names = "default", "sleep";
++            interrupts = <0 194 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&gcc GSBI1_QUP_CLK>, <&gcc GSBI1_H_CLK>;
++            clock-names = "core", "iface";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            status = "disabled"; /* UART chosen */
++        };
 +    };
 -- 
 2.32.0
