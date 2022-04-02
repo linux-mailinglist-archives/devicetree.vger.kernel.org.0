@@ -2,74 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 390BA4EFF68
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 09:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7664EFF70
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 09:45:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349602AbiDBHeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 03:34:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33578 "EHLO
+        id S238805AbiDBHrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 03:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348987AbiDBHea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 03:34:30 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 820B9174EBA;
-        Sat,  2 Apr 2022 00:32:39 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,229,1643641200"; 
-   d="scan'208";a="115483369"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Apr 2022 16:32:38 +0900
-Received: from localhost.localdomain (unknown [10.226.92.166])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0C0BE40071E8;
-        Sat,  2 Apr 2022 16:32:36 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v4 1/5] dt-bindings: arm: renesas: Document Renesas RZ/G2UL SMARC EVK
-Date:   Sat,  2 Apr 2022 08:32:34 +0100
-Message-Id: <20220402073234.24625-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S229776AbiDBHre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 03:47:34 -0400
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E4245790
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 00:45:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=kMYEMkvcj9Vyt+7KufIcHqWQC9bQg4Rzk4UiwpvTz20=; b=P4cSCH+xosJ35RlJbMUZrtc/8U
+        tALJslHa9RsrAsoEp3v69xbFIwnQRNMx8JLprmqM9U8bj8q05RlTomKxYJ01zBySEIT/1S37x2NGU
+        FdqjTEYV6wgZjKJG51AzUcb6EhoK1jCE+v5Mg0X/f9JmuCdAhyLwF0o6t9qaDaRYPjpcgXgjZ0pn5
+        NQiB0IqwEwDP29xzm3XiaWRl/GtdN7Pj5sBAHh0SgDRzjLuEp6BLD9JelIoGqYmiAy/iVg5UGSBri
+        hHP9R7fW/u94daPT0J2jCbldB3VzKd0PiBTw6nq47v86VW+Ics4sQNp97rjcTxvejOhB6dLMH2b/y
+        XKk1jBhw==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:61309 helo=[192.168.10.61])
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1naYS4-00027Z-Bt; Sat, 02 Apr 2022 09:45:40 +0200
+Message-ID: <d16332a6-63cc-8fa6-91f2-59064ce333f1@tronnes.org>
+Date:   Sat, 2 Apr 2022 09:45:37 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC][PATCH 2/3] drm/modes: Make width-mm/height-mm mandatory in
+ of_get_drm_panel_display_mode()
+To:     Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220401163755.302548-1-marex@denx.de>
+ <20220401163755.302548-2-marex@denx.de>
+ <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
+ <efaa195a-bbdc-ca24-eccc-271995dfd27f@denx.de>
+ <YkfAtkOtaWksnrlH@pendragon.ideasonboard.com>
+ <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the Renesas SMARC EVK board which is based on the Renesas
-RZ/G2UL Type-1 (R9A07G043U11) SoC.  The SMARC EVK consists of an
-RZ/G2UL Type-1 SoM module and a SMARC carrier board.  The SoM module
-sits on top of the carrier board.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-V4:
-* new patch
----
- Documentation/devicetree/bindings/arm/renesas.yaml | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-index fa435d6fda77..f61807103867 100644
---- a/Documentation/devicetree/bindings/arm/renesas.yaml
-+++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-@@ -405,6 +405,8 @@ properties:
- 
-       - description: RZ/G2UL (R9A07G043)
-         items:
-+          - enum:
-+              - renesas,smarc-evk # SMARC EVK
-           - enum:
-               - renesas,r9a07g043u11 # RZ/G2UL Type-1
-               - renesas,r9a07g043u12 # RZ/G2UL Type-2
--- 
-2.17.1
+Den 02.04.2022 06.28, skrev Marek Vasut:
+> On 4/2/22 05:19, Laurent Pinchart wrote:
+>> On Fri, Apr 01, 2022 at 10:36:24PM +0200, Marek Vasut wrote:
+>>> On 4/1/22 20:46, Laurent Pinchart wrote:
+>>>> On Fri, Apr 01, 2022 at 06:37:54PM +0200, Marek Vasut wrote:
+>>>>> Make the width-mm/height-mm panel properties mandatory in
+>>>>> of_get_drm_panel_display_mode(), print error message and
+>>>>> return -ve in case these DT properties are not present.
+>>>>> This is needed to correctly report panel dimensions.
+>>>>
+>>>> Can we guarantee this won't cause a regression ?
+>>>
+>>> For the upstream DTs, I think we can.
+>>> For downstream DTs, we cannot know.
+>>
+>> Are there users of this function whose DT bindings don't require the
+>> width-mm and height-mm properties ?
+> 
+> There is literally one user of this function upstream:
+> drivers/gpu/drm/tiny/panel-mipi-dbi.c
 
+Yes, the function was added for that driver since it was so generic in
+nature. What about adding an argument to of_get_drm_panel_display_mode()
+that tells if the properties are mandatory or not?
+
+Noralf.
