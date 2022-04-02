@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC844F015C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 14:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B90FF4F0165
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 14:17:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241869AbiDBMMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 08:12:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60444 "EHLO
+        id S242288AbiDBMSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 08:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231604AbiDBMMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 08:12:16 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7369BAE66
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 05:10:24 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id u16so7719607wru.4
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 05:10:24 -0700 (PDT)
+        with ESMTP id S242039AbiDBMSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 08:18:34 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E93A19322F
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 05:16:42 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id d10so1043705edj.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 05:16:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LU4WxTcoo4DIwvyGzKiLAb7OdkkMkGG5Idq3rF5DsZw=;
-        b=ef8plMMHl5f+/DwKN6AYys4AGd20iAAP/lJWVnZ+USiqWdotHiVFucoV0Ns8yaIFqp
-         78VEj1B5qf0XCKvUiuIOb1isK2b8BMd5PdyVF+Q6KVT6KsBgU7Dy7bjMkICwStIQn5Xy
-         xQ8g0EpXq8uKhr3HE/51Sc66nAcs1WnrQWTA9/xgAgJ7bRvtPgzULl4xs/FMnuZMZsuf
-         uaLm/FEFF2uKvmNrxfhYVv0VoBAp6LVlw4QWpqPvRXircYkLNeK2ZkKHJMJUg4SNqhKR
-         kIYCDV5rTaBduHQHDTrJ7xz97BGs4x/oDXuPsXit13xE6gTbHthiQitk03Xy1DKUDtLc
-         wLSw==
+        bh=tMn5SFNOvtFJo+djtkMlHoY3ZjZs+JPd7szVA4qbR0Y=;
+        b=Pbq/ZW7pvqgrAMKrviMVZe4Bu5I043VMiSjnc93BbRDEuBloRuz2YHKay8cyFWYQtj
+         b9M8VQVyDNln+LyPr94C2m3TQUmwDCqQuXlpq5NtK3jdS1c3gyNaBSa1tm7bxNZPSz/5
+         jfNmGubEgRGt9TMc4/G29QDOcrViPofTHKy4md8UAjiK5iKPZT2PVJvbDi/zmLD7xlb6
+         /5wWpfTb9HXEuWLTBuo+eFkOnTLyNOBRTvZ4TgSyEIWx5y6Px41ypotky6iNGQ07/OA2
+         mfOKXHEiNnqyjmZPkhAJkQqqyOR6nRfMmlxeR9PqGw1Ch+nKr/5YIbXQ6kryFPQnTdOv
+         yNgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LU4WxTcoo4DIwvyGzKiLAb7OdkkMkGG5Idq3rF5DsZw=;
-        b=mWvR+Y3XQphuURu5tw6fYK2umZ/U0iBZxFuqve3bu5t6iRRcdlNkMeJwQg7HQcnKlD
-         tD8A8IljWA97q8prlzRcEOPxFmk9w+pKBS0KZ9BwXHJayeMHFan1NDEy/FtPp7Iczd/j
-         3e9g1CEdwZh16dd4jOCIP9kmbYQ2I6/jD4guQm2G8YetvUP2PbCJJ9fdV4vJia6JdYCp
-         gU7NLjm+ySPXXqcYvfFzc0P/pxnZ6kSbuUdkc3IhCIFGmsweoUzx5HPz2ErThEnAqdsj
-         vrs7vlHiNCY1d2mkb8j+Mmbemex6heFPONj5OmnaaTlFFx4b976jDNROtU5F+/pW7s5b
-         JVsQ==
-X-Gm-Message-State: AOAM533Nw7MDqbYh9wUFXPX66lvWYYIDAZ7af/FfYP/o0NtsI2KB3Woa
-        ZoV/Ug5yxoHiRrRlnpg2uwRVrg==
-X-Google-Smtp-Source: ABdhPJxiuq9UlKATWx/wJwEiZRHVK/pago1Lfs023MNtO94iCjNNQ67WIi2xbjW7sWPvyKpFfHrMMA==
-X-Received: by 2002:a05:6000:1789:b0:206:2d1:6f35 with SMTP id e9-20020a056000178900b0020602d16f35mr2227545wrg.613.1648901423075;
-        Sat, 02 Apr 2022 05:10:23 -0700 (PDT)
+        bh=tMn5SFNOvtFJo+djtkMlHoY3ZjZs+JPd7szVA4qbR0Y=;
+        b=kaP3fxCuyrgjvxLwRPAPf0bLolOOCDXpXgRNLQVMRgeaXCkd+7+l10JyvzsdrA1pde
+         3Sh55SBT2RVlJQzrJLnKEJ7N3cx3VWtK5yD3+0TWP1cpJ1CHvk7Fbya0r85nMOK1in4r
+         p0al8+NhN6ni1Xz7ffYOEIEdnopEKMg0CsBPj9pNXfCKGd7oGAZBK4d9V3pcWhykcCFa
+         imOdzsu4ho9/O1YvKI3A/cb86ZSBI+lYS1dLDpugbVGYjIcAhNbzN4XbpVrqpeuDmECK
+         3I+MaYXSBkZoHh4oPpRH6FK245RExt5hs4JdiRhHIa42vvgHiItO5Q/D/IqltrVC1Mof
+         wUug==
+X-Gm-Message-State: AOAM5315ztaK06RmZCU/t195ly4G+XtlTvAe7CTkVEQJKcxKh7ZwmF8C
+        J0TsHGJZ7WFQV3W2TwC2mKbYtA==
+X-Google-Smtp-Source: ABdhPJwvD68kVUcX+t7XPlpFYBOHkSMjj+wzKh++wVN9zNZNdR9qKez+wcEnMzzi99GmzWo/oy8K2A==
+X-Received: by 2002:a50:ee05:0:b0:419:39d9:ccd8 with SMTP id g5-20020a50ee05000000b0041939d9ccd8mr25171430eds.369.1648901800793;
+        Sat, 02 Apr 2022 05:16:40 -0700 (PDT)
 Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id m3-20020a5d64a3000000b00203ed35b0aesm7713966wrp.108.2022.04.02.05.10.22
+        by smtp.gmail.com with ESMTPSA id by4-20020a0564021b0400b00418fc410299sm2335191edb.62.2022.04.02.05.16.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 05:10:22 -0700 (PDT)
-Message-ID: <3969db0e-50e8-e042-4696-97f56bd38999@linaro.org>
-Date:   Sat, 2 Apr 2022 14:10:21 +0200
+        Sat, 02 Apr 2022 05:16:40 -0700 (PDT)
+Message-ID: <5e1b6c09-0a8f-f1d9-728b-90ffbaedae83@linaro.org>
+Date:   Sat, 2 Apr 2022 14:16:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 27/33] dt-bindings: crypto: convert rockchip-crypto to
- yaml
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: convert
+ rockchip,rk3188-cru.txt to YAML
 Content-Language: en-US
-To:     Corentin Labbe <clabbe@baylibre.com>, heiko@sntech.de,
-        herbert@gondor.apana.org.au, krzk+dt@kernel.org, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20220401201804.2867154-1-clabbe@baylibre.com>
- <20220401201804.2867154-28-clabbe@baylibre.com>
+To:     Johan Jonker <jbx6244@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        zhangqing@rock-chips.com, Stephen Boyd <sboyd@kernel.org>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220329111323.3569-1-jbx6244@gmail.com>
+ <20220331225134.7A0A9C340ED@smtp.kernel.org> <3107512.vfdyTQepKt@diego>
+ <c212c994-fc5d-6ad0-3cd6-88dc2c719e38@linaro.org>
+ <7c786619-6fcf-21dd-8e5a-0ec67da2a63d@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220401201804.2867154-28-clabbe@baylibre.com>
+In-Reply-To: <7c786619-6fcf-21dd-8e5a-0ec67da2a63d@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,40 +82,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 22:17, Corentin Labbe wrote:
-> Convert rockchip-crypto to yaml
-
-s/yaml/YAML/
-and a full stop.
-
-Looks good but please mention in commit msg that the names for clocks
-and resets will be provided in next patch. Otherwise it looks like
-incomplete conversion.
-
+On 02/04/2022 13:45, Johan Jonker wrote:
 > 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../crypto/rockchip,rk3288-crypto.yaml        | 59 +++++++++++++++++++
->  .../bindings/crypto/rockchip-crypto.txt       | 28 ---------
->  2 files changed, 59 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
->  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> new file mode 100644
-> index 000000000000..66db671118c3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip Electronics And Security Accelerator
+> On 4/2/22 13:41, Krzysztof Kozlowski wrote:
+>> On 01/04/2022 09:55, Heiko Stübner wrote:
+>>> Hi Stephen,
+>>>
+>>> Am Freitag, 1. April 2022, 00:51:32 CEST schrieb Stephen Boyd:
+>>>> Quoting Johan Jonker (2022-03-29 04:13:22)
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000..ddd7e46af
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3188-cru.yaml
+>>>>> @@ -0,0 +1,78 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/clock/rockchip,rk3188-cru.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Rockchip RK3188/RK3066 Clock and Reset Unit (CRU)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Elaine Zhang <zhangqing@rock-chips.com>
+>>>>> +  - Heiko Stuebner <heiko@sntech.de>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The RK3188/RK3066 clock controller generates and supplies clocks to various
+>>>>> +  controllers within the SoC and also implements a reset controller for SoC
+>>>>> +  peripherals.
+>>>>> +  Each clock is assigned an identifier and client nodes can use this identifier
+>>>>> +  to specify the clock which they consume. All available clocks are defined as
+>>>>> +  preprocessor macros in the dt-bindings/clock/rk3188-cru.h and
+>>>>> +  dt-bindings/clock/rk3066-cru.h headers and can be used in device tree sources.
+>>>>> +  Similar macros exist for the reset sources in these files.
+>>>>> +  There are several clocks that are generated outside the SoC. It is expected
+>>>>> +  that they are defined using standard clock bindings with following
+>>>>> +  clock-output-names:
+>>>>> +    - "xin24m"    - crystal input                 - required
+>>>>> +    - "xin32k"    - RTC clock                     - optional
+>>>>> +    - "xin27m"    - 27mhz crystal input on RK3066 - optional
+>>>>> +    - "ext_hsadc" - external HSADC clock          - optional
+>>>>> +    - "ext_cif0"  - external camera clock         - optional
+>>>>> +    - "ext_rmii"  - external RMII clock           - optional
+>>>>> +    - "ext_jtag"  - external JTAG clock           - optional
+>>>>
+>>>> I'd expect all these clks here to be inputs to this node.
+>>>
+>>> The optional clocks are all part of a circular dependency.
+>>>
+>>> So for example xin32k normally is generated by the pmic and fed
+>>> back into the system, so to get xin32k, we need the pmic to probe,
+>>> which needs i2c, which in turn already needs the clock controller.
+>>
+>> Are you sure that xin32k (RTC) clock should be input to the clock
+>> controller? I would expect it is the input to the SoC RTC block, so
+>> there is no circular dependency.
+> 
+> clk-rk3188.c:
+> 
+> PNAME(mux_pll_p)		= { "xin24m", "xin32k" };
 
-Remove "And". It looks like company name is the name of the hardware.
+Thanks, but that's not the answer whether it is an input to the clock
+controller. It's the answer how the driver implements this. :)
 
 Best regards,
 Krzysztof
