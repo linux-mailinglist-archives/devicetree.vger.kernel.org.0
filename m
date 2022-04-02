@@ -2,51 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0754B4F04C6
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7D2B4F04DC
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:28:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357844AbiDBQQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 12:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36808 "EHLO
+        id S1358056AbiDBQ35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 12:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357843AbiDBQQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:16:54 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED2402FFFC;
-        Sat,  2 Apr 2022 09:15:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AC297B80A25;
-        Sat,  2 Apr 2022 16:15:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED5ECC340EE;
-        Sat,  2 Apr 2022 16:14:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648916099;
-        bh=EayLZ6lxH+sJs16pkHM5UkBfG0pD4DNS+an1vp240j4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Ej6QB+ImXYXyFRauAlEhLVmGItNcVDXh8s29JW/VrOkNzsqndby96YjgcZ2EHImc/
-         taB+/40De1kRPNqwPtQtL2ltvTp87RqJ8WMdV2+p8PrW1iyYTkqKB1tPEPj/JGuCL8
-         EhtOkvJbsgvVkOzfB6wmyBbOieJEk5xGvx3yp8Qfi9s1OBv+IPxoWJOuH0DJRth3Qe
-         M0D8KxvCJGt08jFnhcsxabibcdbxUxzTOuIgsknnOnHGIiigOYpptd9UgdDuIDwthJ
-         1Nfvekl7O7GBaNDUw398n+KVA1GnmUy+pjjRKkcan6o8pYXcdq4FUGxsDlieMGxLO/
-         FmTzgDmISPG1A==
-Date:   Sat, 2 Apr 2022 17:22:40 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh@kernel.org
-Subject: Re: [PATCH 1/2] iio: imu: st_lsm6dsx: add support to ASM330LHHX
-Message-ID: <20220402172240.2465e7f5@jic23-huawei>
-In-Reply-To: <05cd9e612bf7304542aa1adf12025ae396b87cf2.1648893892.git.lorenzo@kernel.org>
-References: <cover.1648893892.git.lorenzo@kernel.org>
-        <05cd9e612bf7304542aa1adf12025ae396b87cf2.1648893892.git.lorenzo@kernel.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1358052AbiDBQ3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:29:55 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C50158DB2
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:28:03 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id a17so6268152edm.9
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:28:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=85K94gC6fjSv5+mFsUOnacf7TgjC5LIwnDsMPlBwdvE=;
+        b=VpeFPGN0HmleD2Jl1+XMRpn+P5x0hdN88iBjisIjms7Bi+lCv4HgWBQXgrn8TLIjtu
+         tJECLvb/VR1xrBSvUiE3Jwiw0MkrXZyKZ3ujqWzzxQOkHngI9REs+XbYoFipYyJOKCye
+         4BvCUpkp1Cjs8X8pr+25doAg1RNdSEhYf0Rb1noezEJQfX9tWHKA4/YJ/BQIf1fiHVZa
+         Kah5FB/1+00MtSTXyXRDCKrBNuXF4SCmLYrjH9ioGMQBtlQ/n4m5g33MlE9ifcvKmDQf
+         aTDpLtlWJISB48mza5FAmnbrOTe0+I/lJJrlxY0RBijey+nY60A2HMlXhha0WDB21q9P
+         ve2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=85K94gC6fjSv5+mFsUOnacf7TgjC5LIwnDsMPlBwdvE=;
+        b=IoLyrQHWV4PbWRN/LZ4LFBSD7HNvaBwjMChd3qBomHPFttQ82eQzWVArFnPEMCzKnX
+         /CSkbYbyorB1yVCZRimGJfsD88K77IumuTH6X7lcInWoP0YLp5k7jzhoXZRMaYekqcZW
+         JGI2HAmy+Wn4mRDcqnixyy7Dl9yikvyPzfUPYYUHQuwyeMrgXSCMi+ymHkxdtm1JG22X
+         aaPMDvgCR/1OjE2A2uPkO1ua77mC1RqbMI4y6202wl5FvDg7N7VqqcjMUhf8p0jN//X/
+         0BybUv1j85CQ/3rW1u3LU2BaWV2D4jExX77be15QSi9zPldMI7xG5kWk7DWjeoHU77OA
+         tEnA==
+X-Gm-Message-State: AOAM5331dhQa0hJt2ByNMR9+/io2UGVD3YAjtG7M+Jbv2n3iHVA6DfVH
+        +7iY8ZgD7Kc0CYD4l76+l6ngZQ==
+X-Google-Smtp-Source: ABdhPJzMki+SpO7ynQLrGREJgcJiMbYxfBKm5GoMZjh7NZz2e9H7iQoUbF2ejuba4CdkSQAmnFhAiw==
+X-Received: by 2002:a50:ec18:0:b0:419:3af:5736 with SMTP id g24-20020a50ec18000000b0041903af5736mr25863643edr.215.1648916882039;
+        Sat, 02 Apr 2022 09:28:02 -0700 (PDT)
+Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id o22-20020a170906289600b006e44a0c1105sm2278430ejd.46.2022.04.02.09.28.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Apr 2022 09:28:01 -0700 (PDT)
+Message-ID: <fbbd44cc-e839-9532-962a-538ce834930c@linaro.org>
+Date:   Sat, 2 Apr 2022 18:28:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: fix BCM53012 and BCM53016 SoC
+ strings
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <scott.branden@broadcom.com>,
+        Christian Lamparter <chunkeey@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+References: <20220401172427.2806-1-arinc.unal@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220401172427.2806-1-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,155 +80,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  2 Apr 2022 12:09:29 +0200
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
-
-> Add support to STM  ASM330LHHX (acc + gyro) Mems sensor
-> https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
-Use a Datasheet tag as below.
-Perhaps mention it's an automotive rated sensor and that
-it's compatible otherwise with xxx existing part.
-
-Quick glance at the datasheet suggests this part has a sensor hub...
-Should it be in a the block with parameters for that as you
-currently have it in the one for no sensorhub I think.
-
-Or is it using an incompatible sensor hub interface?
-
+On 01/04/2022 19:24, Arınç ÜNAL wrote:
+> Fix inaccurate SoC strings brcm,brcm53012 and brcm,brcm53016 to respectively
+> brcm,bcm53012 and brcm,bcm53016.
 > 
-Datasheet: https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Create a new description for BCM53016 and move Meraki MR32 under it.
+> 
+> Fixes: 4cb5201fcb5d ("dt-bindings: arm: bcm: Convert BCM4708 to YAML")
+> Fixes: a2e385f5374d ("dt-bindings: ARM: add bindings for the Meraki MR32")
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
->  drivers/iio/imu/st_lsm6dsx/Kconfig             | 6 +++---
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h        | 2 ++
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c | 3 ++-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c   | 6 +++++-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c    | 5 +++++
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c    | 5 +++++
->  6 files changed, 22 insertions(+), 5 deletions(-)
+> brcm,bcm53012 string was silently changed to brcm,brcm53012 after
+> converting to YAML. Let me know if this was intentional.
 > 
-> diff --git a/drivers/iio/imu/st_lsm6dsx/Kconfig b/drivers/iio/imu/st_lsm6dsx/Kconfig
-> index 85860217aaf3..fefd0b939100 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/Kconfig
-> +++ b/drivers/iio/imu/st_lsm6dsx/Kconfig
-> @@ -11,9 +11,9 @@ config IIO_ST_LSM6DSX
->  	help
->  	  Say yes here to build support for STMicroelectronics LSM6DSx imu
->  	  sensor. Supported devices: lsm6ds3, lsm6ds3h, lsm6dsl, lsm6dsm,
-> -	  ism330dlc, lsm6dso, lsm6dsox, asm330lhh, lsm6dsr, lsm6ds3tr-c,
-> -	  ism330dhcx, lsm6dsrx, lsm6ds0, lsm6dsop, the accelerometer/gyroscope
-> -	  of lsm9ds1 and lsm6dst.
-> +	  ism330dlc, lsm6dso, lsm6dsox, asm330lhh, asm330lhhx, lsm6dsr,
-> +	  lsm6ds3tr-c, ism330dhcx, lsm6dsrx, lsm6ds0, lsm6dsop,
-> +	  the accelerometer/gyroscope of lsm9ds1 and lsm6dst.
->  
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called st_lsm6dsx.
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> index 6ac4eac36458..a86dd29a4738 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> @@ -31,6 +31,7 @@
->  #define ST_LSM6DSRX_DEV_NAME	"lsm6dsrx"
->  #define ST_LSM6DST_DEV_NAME	"lsm6dst"
->  #define ST_LSM6DSOP_DEV_NAME	"lsm6dsop"
-> +#define ST_ASM330LHHX_DEV_NAME	"asm330lhhx"
->  
->  enum st_lsm6dsx_hw_id {
->  	ST_LSM6DS3_ID,
-> @@ -49,6 +50,7 @@ enum st_lsm6dsx_hw_id {
->  	ST_LSM6DSRX_ID,
->  	ST_LSM6DST_ID,
->  	ST_LSM6DSOP_ID,
-> +	ST_ASM330LHHX_ID,
->  	ST_LSM6DSX_MAX_ID,
->  };
->  
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
-> index 16730a780964..38bb5f645ebd 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
-> @@ -14,7 +14,8 @@
->   * (e.g. Gx, Gy, Gz, Ax, Ay, Az), then data are repeated depending on the
->   * value of the decimation factor and ODR set for each FIFO data set.
->   *
-> - * LSM6DSO/LSM6DSOX/ASM330LHH/LSM6DSR/LSM6DSRX/ISM330DHCX/LSM6DST/LSM6DSOP:
-> + * LSM6DSO/LSM6DSOX/ASM330LHH/ASM330LHHX/LSM6DSR/LSM6DSRX/ISM330DHCX/
-> + * LSM6DST/LSM6DSOP:
->   * The FIFO buffer can be configured to store data from gyroscope and
->   * accelerometer. Each sample is queued with a tag (1B) indicating data
->   * source (gyroscope, accelerometer, hw timer).
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> index b1d8d5a66f01..910397716833 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> @@ -26,7 +26,7 @@
->   *   - Gyroscope supported full-scale [dps]: +-125/+-245/+-500/+-1000/+-2000
->   *   - FIFO size: 4KB
->   *
-> - * - LSM6DSO/LSM6DSOX/ASM330LHH/LSM6DSR/ISM330DHCX/LSM6DST/LSM6DSOP:
-> + * - LSM6DSO/LSM6DSOX/ASM330LHH/ASM330LHHX/LSM6DSR/ISM330DHCX/LSM6DST/LSM6DSOP:
->   *   - Accelerometer/Gyroscope supported ODR [Hz]: 12.5, 26, 52, 104, 208, 416,
->   *     833
->   *   - Accelerometer supported full-scale [g]: +-2/+-4/+-8/+-16
-> @@ -786,6 +786,10 @@ static const struct st_lsm6dsx_settings st_lsm6dsx_sensor_settings[] = {
->  				.hw_id = ST_LSM6DST_ID,
->  				.name = ST_LSM6DST_DEV_NAME,
->  				.wai = 0x6d,
-> +			}, {
-> +				.hw_id = ST_ASM330LHHX_ID,
-> +				.name = ST_ASM330LHHX_DEV_NAME,
-> +				.wai = 0x6b,
 
-Probably nicer to put it next to he other 0x6b entries.
+Thanks for your patch. This looks like 2 or 3 separate patches:
+1. Correct meraki and BCM53016 bindings,
+2. Rename brcm->bcm, in bindings,
+3. Change DTS.
 
->  			},
->  		},
->  		.channels = {
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
-> index 8b4fc2c15622..715fbdc8190e 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
-> @@ -101,6 +101,10 @@ static const struct of_device_id st_lsm6dsx_i2c_of_match[] = {
->  		.compatible = "st,lsm6dsop",
->  		.data = (void *)ST_LSM6DSOP_ID,
->  	},
-> +	{
-> +		.compatible = "st,asm330lhhx",
-> +		.data = (void *)ST_ASM330LHHX_ID,
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, st_lsm6dsx_i2c_of_match);
-> @@ -122,6 +126,7 @@ static const struct i2c_device_id st_lsm6dsx_i2c_id_table[] = {
->  	{ ST_LSM6DSRX_DEV_NAME, ST_LSM6DSRX_ID },
->  	{ ST_LSM6DST_DEV_NAME, ST_LSM6DST_ID },
->  	{ ST_LSM6DSOP_DEV_NAME, ST_LSM6DSOP_ID },
-> +	{ ST_ASM330LHHX_DEV_NAME, ST_ASM330LHHX_ID },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(i2c, st_lsm6dsx_i2c_id_table);
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
-> index e80110b6b280..f5767cf76c1d 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
-> @@ -101,6 +101,10 @@ static const struct of_device_id st_lsm6dsx_spi_of_match[] = {
->  		.compatible = "st,lsm6dsop",
->  		.data = (void *)ST_LSM6DSOP_ID,
->  	},
-> +	{
-> +		.compatible = "st,asm330lhhx",
-> +		.data = (void *)ST_ASM330LHHX_ID,
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, st_lsm6dsx_spi_of_match);
-> @@ -122,6 +126,7 @@ static const struct spi_device_id st_lsm6dsx_spi_id_table[] = {
->  	{ ST_LSM6DSRX_DEV_NAME, ST_LSM6DSRX_ID },
->  	{ ST_LSM6DST_DEV_NAME, ST_LSM6DST_ID },
->  	{ ST_LSM6DSOP_DEV_NAME, ST_LSM6DSOP_ID },
-> +	{ ST_ASM330LHHX_DEV_NAME, ST_ASM330LHHX_ID },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(spi, st_lsm6dsx_spi_id_table);
-
+Best regards,
+Krzysztof
