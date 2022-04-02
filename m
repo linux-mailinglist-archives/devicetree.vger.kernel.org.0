@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C54D4F0610
+	by mail.lfdr.de (Postfix) with ESMTP id 338C64F060F
 	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233606AbiDBUJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 16:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34504 "EHLO
+        id S237684AbiDBUKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 16:10:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbiDBUJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:09:59 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE21E1017D2
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:08:06 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id q20so3627436wmq.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:08:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EMQqdSoa40fVCj26FqTvVX5CrHbphOJVetZErL+JYsg=;
-        b=k+C0vwqQ2WkpQk4r/wrfRONko+IrtaeBEVs7kfbzEy20BsY2OmrGhhe4ouJN/5Tz8Y
-         BDVpbxz/PoM7KZ57bN/daozl6GJLXieOQmJneeTkJAgmxHKO1fdykDPdD8NYuRynuvXQ
-         bkYy7gGkjh61GDv8+1LokfAry+ZrMjU6mgY4KZ2ulZ7Lc+yhB6NpukwfFMgXCBtoQimT
-         eK2jlLkB1giItBIQNAgeAgT+58zoR8pfVqdLAjOzf5qupcbNoWGa1wZQj0PV3ZrkHXo9
-         X7E+DGYXq1aZDFsMFRicmZnTgGZT9oCN+6QKe92suohb71YIlFWPqlf/T0EGmlQuKM97
-         pjpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EMQqdSoa40fVCj26FqTvVX5CrHbphOJVetZErL+JYsg=;
-        b=yYYCBum/IuhitsuEEoca8bQpaTzXkY37jV0Yg/6wsRN1nnTkqA5ZL01XnYZ+sagp4b
-         g0zG9g3Urpq5lOJ37k0XmC1JslYw5G9b61QevCADCJrAUhOmRPxCd5WqwlFYlwwDwdLo
-         VAUZD5I9Ep6EbVvOVI1BKubMjJIbuOu1JPqx+2u/hLvfcD8ajACdM7bLrFxkvxVJT5P0
-         8GDqYIulN8NZ64wVd0NY64uKDJAKcNqX9NWsAE/xydXUGTov+rKA9C/DEa1Zrf9CtLf2
-         Rc2bryKolV9OwflSOCuCxDkU6r4iVZL3I82ZZsMxPiWH1BjCFNBziHo5TU6oYlMjDSzJ
-         SVXw==
-X-Gm-Message-State: AOAM531vd/X/7Idt1/supkCIqavFT4PPMe4ymctI/OTiyw7sgACEDtV0
-        P8AiDuK8FJCT/xQAmjYrCpuFUQ==
-X-Google-Smtp-Source: ABdhPJz4NfRr+xsKojlBGB11wNSWga6mv8nLYJJ2WJ5oDpLOFryIXyLKjFGJKH0XiPqNiEf21JjlpA==
-X-Received: by 2002:a1c:cc01:0:b0:37b:dcc8:7dfd with SMTP id h1-20020a1ccc01000000b0037bdcc87dfdmr13408290wmb.134.1648930085483;
-        Sat, 02 Apr 2022 13:08:05 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id v13-20020adfe28d000000b0020375f27a5asm5535428wri.4.2022.04.02.13.08.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 13:08:05 -0700 (PDT)
-Message-ID: <6cb05255-2cfd-e941-5a7a-e15d7a00edbe@linaro.org>
-Date:   Sat, 2 Apr 2022 22:08:04 +0200
+        with ESMTP id S229776AbiDBUKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:10:04 -0400
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE43C10240E
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:08:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=OgpSvd+sEKNYnhFTtmz9rc03zoQTnAyTRtqKshoW03c=; b=O8i5i12gdbIiEYBkVUMTvyapiC
+        HO2iJvNBtGmhAS+HUvDLOYBMqqmRaB4tGtxvEUDl2yW0c1/qQqdU46LfMhP3aISchcfvhJxqWvMaf
+        zRwnk0MjioWJH+9G97IzT4MJQC4o7jbWNxgkdeVt4BJDGzSWE/2xHt6XLzpFtalfMD49GUHR6kj+v
+        jVoYEnNK4TlPYKiAwmphwJoZRrHTmRzQ3JHEOxxAEDAEEnePLqTTkZqaUbFQ5iTSCK/WFXl3R9LFI
+        rNCp+E50issSM+ZgVxj34p1F44gwqRPqU6X0hBz25Iby94IS1FIdW2ORq75KdX+kr9QS9WTnJlkm0
+        qrWXKZFQ==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:63235 helo=[192.168.10.61])
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1nak2b-0004sz-Hf; Sat, 02 Apr 2022 22:08:09 +0200
+Message-ID: <db7c6ab5-afe3-2e92-33c7-7ebf75801439@tronnes.org>
+Date:   Sat, 2 Apr 2022 22:08:05 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v4 4/5] arm64: dts: renesas: Add initial DTSI for RZ/G2UL
- SoC
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220402073037.23947-1-biju.das.jz@bp.renesas.com>
- <20220402073037.23947-5-biju.das.jz@bp.renesas.com>
- <dba54e8f-b575-1835-fd30-44d9dcb09635@linaro.org>
- <OS0PR01MB5922A0675D7928834AD33BFD86E39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922A0675D7928834AD33BFD86E39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Subject: Re: [RFC][PATCH 2/3] drm/modes: Make width-mm/height-mm mandatory in
+ of_get_drm_panel_display_mode()
+To:     Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220401163755.302548-1-marex@denx.de>
+ <20220401163755.302548-2-marex@denx.de>
+ <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
+ <efaa195a-bbdc-ca24-eccc-271995dfd27f@denx.de>
+ <YkfAtkOtaWksnrlH@pendragon.ideasonboard.com>
+ <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
+ <d16332a6-63cc-8fa6-91f2-59064ce333f1@tronnes.org>
+ <d230da1b-2649-2f8d-680b-015e9044540e@denx.de>
+ <35a66df7-5619-cb10-620e-008adb64f2d7@tronnes.org>
+ <92a5854f-0dc0-8bb9-0607-549d52822af1@denx.de>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <92a5854f-0dc0-8bb9-0607-549d52822af1@denx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,45 +72,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2022 21:37, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
-> 
-> Thanks for the feedback.
-> 
->> Subject: Re: [PATCH v4 4/5] arm64: dts: renesas: Add initial DTSI for
->> RZ/G2UL SoC
+
+
+Den 02.04.2022 19.55, skrev Marek Vasut:
+> On 4/2/22 19:08, Noralf Trønnes wrote:
 >>
->> On 02/04/2022 09:30, Biju Das wrote:
->>> Add initial DTSI for RZ/G2UL SoC.
+>>
+>> Den 02.04.2022 18.39, skrev Marek Vasut:
+>>> On 4/2/22 09:45, Noralf Trønnes wrote:
+>>>>
+>>>>
+>>>> Den 02.04.2022 06.28, skrev Marek Vasut:
+>>>>> On 4/2/22 05:19, Laurent Pinchart wrote:
+>>>>>> On Fri, Apr 01, 2022 at 10:36:24PM +0200, Marek Vasut wrote:
+>>>>>>> On 4/1/22 20:46, Laurent Pinchart wrote:
+>>>>>>>> On Fri, Apr 01, 2022 at 06:37:54PM +0200, Marek Vasut wrote:
+>>>>>>>>> Make the width-mm/height-mm panel properties mandatory in
+>>>>>>>>> of_get_drm_panel_display_mode(), print error message and
+>>>>>>>>> return -ve in case these DT properties are not present.
+>>>>>>>>> This is needed to correctly report panel dimensions.
+>>>>>>>>
+>>>>>>>> Can we guarantee this won't cause a regression ?
+>>>>>>>
+>>>>>>> For the upstream DTs, I think we can.
+>>>>>>> For downstream DTs, we cannot know.
+>>>>>>
+>>>>>> Are there users of this function whose DT bindings don't require the
+>>>>>> width-mm and height-mm properties ?
+>>>>>
+>>>>> There is literally one user of this function upstream:
+>>>>> drivers/gpu/drm/tiny/panel-mipi-dbi.c
+>>>>
+>>>> Yes, the function was added for that driver since it was so generic in
+>>>> nature. What about adding an argument to
+>>>> of_get_drm_panel_display_mode()
+>>>> that tells if the properties are mandatory or not?
 >>>
-
-(...)
-
->>> +	soc: soc {
->>> +		compatible = "simple-bus";
->>> +		interrupt-parent = <&gic>;
->>> +		#address-cells = <2>;
->>> +		#size-cells = <2>;
->>> +		ranges;
->>> +
->>> +		ssi0: ssi@10049c00 {
->>> +			reg = <0 0x10049c00 0 0x400>;
->>> +			#sound-dai-cells = <0>;
->>> +			/* place holder */
+>>> Sure, we can do that, but maybe the question here is even bigger than
+>>> this series.
+>>>
+>>> Should every panel set mandatory width_mm/height_mm so e.g. the user
+>>> space can infer DPI from it and set up scaling accordingly, or should
+>>> width_mm/height_mm be optional ?
+>>>
+>>> I think width_mm/height_mm should be mandatory for all panels.
+>>>
+>>> Thoughts ?
 >>
->> Here and in other place holders - why there are no compatibles here?
+>> If this had come up during the review of the driver I would have no
+>> problem making it mandatory. It makes sense for DPI. Maybe it's possible
+>> to get around the ABI break by getting in a change through -fixes before
+>> 5.18 is released? I'm fine with that.
 > 
-> These interface are not tested with mainline kernel and will be added later after testing.
-> 
->> What do you hold place for
-> 
-> As mentioned in commit description, I will get compilation error as the carrier board shared 
-> with other SoC's For eg:- RZ/G2L,RZ/G2LC and RZ/V2L.
-> 
+> Well that's awesome, the dbi-spi.yaml didn't land in any kernel release
+> yet, so we still have a chance to fix it ?
 
-OK, thanks for explanation. It looks a bit fragile, because it means
-that your rz-smarc-common.dtsi enables nodes which are not described.
-Although I see the point why it's done like this, so it's fine for me.
-
-Best regards,
-Krzysztof
+It entered this merge window.
