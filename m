@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D2B4F04DC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841654F04E0
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358056AbiDBQ35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 12:29:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55936 "EHLO
+        id S1354111AbiDBQae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 12:30:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358052AbiDBQ3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:29:55 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C50158DB2
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:28:03 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id a17so6268152edm.9
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:28:03 -0700 (PDT)
+        with ESMTP id S1358083AbiDBQad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:30:33 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C2F6332
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:28:41 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a6so827278ejk.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:28:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=85K94gC6fjSv5+mFsUOnacf7TgjC5LIwnDsMPlBwdvE=;
-        b=VpeFPGN0HmleD2Jl1+XMRpn+P5x0hdN88iBjisIjms7Bi+lCv4HgWBQXgrn8TLIjtu
-         tJECLvb/VR1xrBSvUiE3Jwiw0MkrXZyKZ3ujqWzzxQOkHngI9REs+XbYoFipYyJOKCye
-         4BvCUpkp1Cjs8X8pr+25doAg1RNdSEhYf0Rb1noezEJQfX9tWHKA4/YJ/BQIf1fiHVZa
-         Kah5FB/1+00MtSTXyXRDCKrBNuXF4SCmLYrjH9ioGMQBtlQ/n4m5g33MlE9ifcvKmDQf
-         aTDpLtlWJISB48mza5FAmnbrOTe0+I/lJJrlxY0RBijey+nY60A2HMlXhha0WDB21q9P
-         ve2g==
+        bh=DSB2bZhZo75SSWCziQt2t9Zgl7ePoq+TzKjDyyRKIhM=;
+        b=CdAM6q4dxl6fxdnqGxDYrzuFWlpgZHARUlO6m8ZQWVHXoLL8GzUgEGFQ9nYeEXFbF/
+         QEvdxMBjShvDOMsgyIvePkgZCnGrsPhBiLX5mZrDBOO7kMlSMUbA486htIWteJxPMrEY
+         F98RdgozoM7Aq9GHkhjPR9DKQbHBpowK/JQikESmA7J1c+6qlLLXpJzSYAMnJ/ng+e53
+         cibleewvc1eJy0P9F6YEP8CS/LshBzlQ6GVyHFw2vmN0n6zGMVUtUFTSDI5HyJVND3Io
+         QIgJYWCMV3GECCWmybW+SDQKxCHEzR0V/aEudcCwdZqGbW+rdk8qigdLpUIPrAc1GFr4
+         WijQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=85K94gC6fjSv5+mFsUOnacf7TgjC5LIwnDsMPlBwdvE=;
-        b=IoLyrQHWV4PbWRN/LZ4LFBSD7HNvaBwjMChd3qBomHPFttQ82eQzWVArFnPEMCzKnX
-         /CSkbYbyorB1yVCZRimGJfsD88K77IumuTH6X7lcInWoP0YLp5k7jzhoXZRMaYekqcZW
-         JGI2HAmy+Wn4mRDcqnixyy7Dl9yikvyPzfUPYYUHQuwyeMrgXSCMi+ymHkxdtm1JG22X
-         aaPMDvgCR/1OjE2A2uPkO1ua77mC1RqbMI4y6202wl5FvDg7N7VqqcjMUhf8p0jN//X/
-         0BybUv1j85CQ/3rW1u3LU2BaWV2D4jExX77be15QSi9zPldMI7xG5kWk7DWjeoHU77OA
-         tEnA==
-X-Gm-Message-State: AOAM5331dhQa0hJt2ByNMR9+/io2UGVD3YAjtG7M+Jbv2n3iHVA6DfVH
-        +7iY8ZgD7Kc0CYD4l76+l6ngZQ==
-X-Google-Smtp-Source: ABdhPJzMki+SpO7ynQLrGREJgcJiMbYxfBKm5GoMZjh7NZz2e9H7iQoUbF2ejuba4CdkSQAmnFhAiw==
-X-Received: by 2002:a50:ec18:0:b0:419:3af:5736 with SMTP id g24-20020a50ec18000000b0041903af5736mr25863643edr.215.1648916882039;
-        Sat, 02 Apr 2022 09:28:02 -0700 (PDT)
+        bh=DSB2bZhZo75SSWCziQt2t9Zgl7ePoq+TzKjDyyRKIhM=;
+        b=SO+DuhIMLRm9A0BDpmMdq7tysuGb9mD+6avM467vPSAn9QourwYMzbqHSBuG61W2Id
+         juIM7wjGMNtHR5w7Cw0ocQQobk+QIgt3Oc+/kaP1Hd8oaSKoFR0Si6rdnuLe/ju1aVFZ
+         ZZPWwi/3oqfQfJiOi5shd5kM4ROViWo7YE0o2fJjJ+mh55yXXDZON5XX46f/hfBgQbdF
+         uHzhfBSAER0J793eyIaJ76Kpn5JinkpzOl9FmQEvVzQF1JPqAcV4mI+O9u46TUoJIO1y
+         +L0DyyjLgbsx4/wIYoMdzccUGPKvCEw5jjnn5oplPdHbqcW06ouS7oKhp1Tl12Q2mDf6
+         q5eQ==
+X-Gm-Message-State: AOAM530WRSLrRhWamjPXMWLfh3wb5uIZ7Ujn+p/CHeA7ozTFRJ+RbLfq
+        WnI2NL68dez8zuLW4Y400EkQQw==
+X-Google-Smtp-Source: ABdhPJxwjjPCUC3hgZgk+ER1LyMOtHSTUdEWAISi3E6mNi9/P8EnyHGRuK7vcUs4ZlnWvNYBxnS2wQ==
+X-Received: by 2002:a17:907:c05:b0:6db:f118:8834 with SMTP id ga5-20020a1709070c0500b006dbf1188834mr4412970ejc.536.1648916920033;
+        Sat, 02 Apr 2022 09:28:40 -0700 (PDT)
 Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id o22-20020a170906289600b006e44a0c1105sm2278430ejd.46.2022.04.02.09.28.01
+        by smtp.gmail.com with ESMTPSA id x3-20020a50d9c3000000b0041c8ce4bcd7sm1319798edj.63.2022.04.02.09.28.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 09:28:01 -0700 (PDT)
-Message-ID: <fbbd44cc-e839-9532-962a-538ce834930c@linaro.org>
-Date:   Sat, 2 Apr 2022 18:28:00 +0200
+        Sat, 02 Apr 2022 09:28:39 -0700 (PDT)
+Message-ID: <a85dc713-a0b7-372f-1284-e8488b5b11a2@linaro.org>
+Date:   Sat, 2 Apr 2022 18:28:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: bcm: fix BCM53012 and BCM53016 SoC
- strings
+Subject: Re: [PATCH 2/2] dt-bindings: arm: bcm: add bindings for Asus RT-AC88U
 Content-Language: en-US
 To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -66,8 +65,9 @@ To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
 Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
 References: <20220401172427.2806-1-arinc.unal@arinc9.com>
+ <20220401172427.2806-2-arinc.unal@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220401172427.2806-1-arinc.unal@arinc9.com>
+In-Reply-To: <20220401172427.2806-2-arinc.unal@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,23 +81,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/04/2022 19:24, Arınç ÜNAL wrote:
-> Fix inaccurate SoC strings brcm,brcm53012 and brcm,brcm53016 to respectively
-> brcm,bcm53012 and brcm,bcm53016.
+> Add Asus RT-AC88U under BCM47094 based boards.
 > 
-> Create a new description for BCM53016 and move Meraki MR32 under it.
-> 
-> Fixes: 4cb5201fcb5d ("dt-bindings: arm: bcm: Convert BCM4708 to YAML")
-> Fixes: a2e385f5374d ("dt-bindings: ARM: add bindings for the Meraki MR32")
 > Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
-> brcm,bcm53012 string was silently changed to brcm,brcm53012 after
-> converting to YAML. Let me know if this was intentional.
+>  Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Thanks for your patch. This looks like 2 or 3 separate patches:
-1. Correct meraki and BCM53016 bindings,
-2. Rename brcm->bcm, in bindings,
-3. Change DTS.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
