@@ -2,50 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3F54F0058
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 12:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECD24F00BA
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 12:38:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348696AbiDBKL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 06:11:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
+        id S240217AbiDBKjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 06:39:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352566AbiDBKLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 06:11:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621B25AEED;
-        Sat,  2 Apr 2022 03:10:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0564AB80687;
-        Sat,  2 Apr 2022 10:10:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 584A6C36AE3;
-        Sat,  2 Apr 2022 10:09:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648894200;
-        bh=xkZF2Cdqtvpw73MfFlb9tfh/cEitpBymXDCQVEybeP8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fUphiuEX8rtSJ2fl2MZI5k5Qikm8Nw5/dTdiT+g/u95PNizvKJuUIjSxIm28gMjod
-         lS5rKNINTkLgW3tvtFxoDK2vc71oI3+zHNDXo4a2QKorZNinZ3N82HARXr7fn3PBGI
-         kGsqC3vmePbJ5LlRcl7Laby7NAJQY6yGI7t8hMQY4oLB2teEJUuoNcwHL1anzG75h9
-         O/jh+L8KhY2YEiq5F50KTqh0zoe75vKfx04lp7qlcb3+T4aUz0HzgqBgUFt0giODbG
-         H+xZxAPGRYZ0lBTHFFWBPgqZbi/MrUdqK1D0QzskCbB1HzjN30Kyz6FSTBhcdZIfJk
-         vYUAZ92QHRzrw==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh@kernel.org
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhx device bindings
-Date:   Sat,  2 Apr 2022 12:09:30 +0200
-Message-Id: <ce943fd9d99da9fcd942592a2b83590a8b06a2af.1648893892.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <cover.1648893892.git.lorenzo@kernel.org>
-References: <cover.1648893892.git.lorenzo@kernel.org>
+        with ESMTP id S235948AbiDBKjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 06:39:43 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E94761AFEA0
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 03:37:47 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id k21so9073248lfe.4
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 03:37:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Jx8e761MNPFyJ2/BAtkY0nyoED7Z8+xj5f0GT++V4DU=;
+        b=CM5tAEao5vQ2577zZq46eGT5uUdK6gdVlWEARVuyxYeNLnYiT8lvo5OCG2ZcKhDGfb
+         wy6RzILMGSWya1H7UCQr8Y4fjgCHbD+N0bIgO8rFWOwSygD60R87YX12LQBKXes0rNPR
+         FQOBFpPb/5zrL2nQxvW2rumRZWeKgIx/p9Ila06gACmYl8sawMjF2PLwS8QtgZb8I5qx
+         QyOD88AioP5g/0oCKIYAfuqniXGLgVHDyp5CkITXTV/3iv2MJ1nPjOiTehzvNKJJvomc
+         Oa3oNbA/WgWKKW3dNoiI/IVu3xfKKUao07GPXs4EzJA+/sVfrm6CUbZRq58SKFwbCDRs
+         CVjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Jx8e761MNPFyJ2/BAtkY0nyoED7Z8+xj5f0GT++V4DU=;
+        b=CZeuZF+jALpyVLlPZ/15OKN1OcjBrQBlJQ6dVzyDY8k3DY0uEBtWdAWNDdhKOalpu/
+         Fd5IdBd+89rlZ/IrWjW1xTcvA7VYDJTuftGj69HScZKQJOyWXfRQqcXHffvD21dlu2H+
+         weOgVNh3aIgq32q4ORwEJAf8PjBGxHBjyxGag2O5D+S738k68km30aR0kLYJkt+y82LF
+         82YW4shCaJPjNwhswJQZrFrCFzBU92SoGCldbTqBn1msT5auLBffIP079aiTO2ERHZjK
+         vJw5bLif+dqEpEMaYkWQ5a7j9lDgY+EOd+Yf9lqknJtl6WDKML+CYAYelw5XJIGVQetE
+         zZ/Q==
+X-Gm-Message-State: AOAM532Ommv0yCud9ReROMFTnjrDgnu5l/piGyDY6ofN32kve1FDg/BT
+        liUlXtY3KzyN0XGrZ7KMpG9SFA==
+X-Google-Smtp-Source: ABdhPJwCW+uY9rOuoWmKzwTgEAQFjN4YRpp4A7QPyITSlGphPJj0f1ExJfTaWODEaAXo0GmLCCHjuw==
+X-Received: by 2002:a05:6512:3c90:b0:44a:dc25:ab44 with SMTP id h16-20020a0565123c9000b0044adc25ab44mr4502073lfv.407.1648895865799;
+        Sat, 02 Apr 2022 03:37:45 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id i16-20020a056512319000b0044ae52c6365sm264006lfe.88.2022.04.02.03.37.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Apr 2022 03:37:45 -0700 (PDT)
+Message-ID: <392b933f-760c-3c81-1040-c514045df3da@linaro.org>
+Date:   Sat, 2 Apr 2022 13:37:44 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
+Content-Language: en-GB
+To:     Doug Anderson <dianders@chromium.org>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        quic_aravindh@quicinc.com
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,23 +90,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On 01/04/2022 02:22, Doug Anderson wrote:
+> Hi,
+> 
+> On Wed, Mar 30, 2022 at 9:03 AM Sankeerth Billakanti
+> <quic_sbillaka@quicinc.com> wrote:
+>>
+>> @@ -1547,6 +1593,10 @@ int msm_dp_modeset_init(struct msm_dp *dp_display, struct drm_device *dev,
+>>
+>>          dp_display->encoder = encoder;
+>>
+>> +       ret = dp_display_get_next_bridge(dp_display);
+>> +       if (ret)
+>> +               return ret;
+> 
+> It feels weird to me that this is in a function called "modeset_init",
+> though I certainly don't know the structure of the MSM display code
+> well enough to fully comment.
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 0750f700a143..23637c420d20 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -31,6 +31,7 @@ properties:
-       - st,lsm6dsrx
-       - st,lsm6dst
-       - st,lsm6dsop
-+      - st,asm330lhhx
- 
-   reg:
-     maxItems: 1
+It's called modeset_init() as it initializes KMS objects used by DP 
+driver. We have similar functions for dsi and hdmi
+
+> My expectation would have been that
+> devm_of_dp_aux_populate_ep_devices() would have been called from your
+> probe routine and then you would have returned -EPROBE_DEFER from your
+> probe if you were unable to find the panel afterwards.
+
+I don't think it's possible to call it from probe() since 
+drm_dp_aux_register() is called only from dp_display_bind().
+The PHY also isn't initialized at that moment, so we can not probe AUX 
+devices.
+
+The overall semantics of the AUX bus is not clear to me.
+Typically the bus is populated (and probed) when devices are accessible. 
+But for the display related buses this might not be the case.
+For example for the DSI bus we clearly define that DSI transfer are not 
+possible before the corresponding bridge's (or panel's) enable call.
+
+Maybe the same approach should be adopted for the AUX bus. This would 
+allow us to populate the AUX bus before hardware access is actually 
+possible, thus creating all the DRM bridges before the hardware is 
+actually up and running.
+
+> Huh, but I guess you _are_ getting called (indirectly) from
+> dpu_kms_hw_init() and I can't imagine AUX transfers working before
+> that function is called, so maybe I should just accept that it's
+> complicated and let those who understand this driver better confirm
+> that it's OK. ;-)
+> 
+> 
+>> @@ -140,5 +140,6 @@ struct dp_parser {
+>>    * can be parsed using this module.
+>>    */
+>>   struct dp_parser *dp_parser_get(struct platform_device *pdev);
+>> +int dp_parser_find_next_bridge(struct dp_parser *parser);
+> 
+> Everything else in this file is described w/ kerneldoc. Shouldn't your
+> function also have a kerneldoc comment?
+
 -- 
-2.35.1
-
+With best wishes
+Dmitry
