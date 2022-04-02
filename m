@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122EA4F050D
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 344FF4F0510
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 18:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345877AbiDBQvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 12:51:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37828 "EHLO
+        id S1351010AbiDBQzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 12:55:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358459AbiDBQvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:51:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CF545796;
-        Sat,  2 Apr 2022 09:49:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CBC18B80ABB;
-        Sat,  2 Apr 2022 16:49:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E783C340EC;
-        Sat,  2 Apr 2022 16:49:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648918156;
-        bh=YcbASg+GO+EkdDrt/yUxr7ywUjhesLogAnC+mnlYGEA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gKROR9zwBALojn4E5hRgpjZiVJ2LkOrTof3zTzdkKeM+dMCXvdfUVxVywlfSBKTub
-         83puUbTdqDcp1P251PGSzjxmW6syoAdNLuDeN+hRioLepDDj5fwjc72glUco9RLrH4
-         fWDlobGbvY3Yr2yv9yK1iiTxbYaQcl6GYEncv7FG8sBblfN8DjdB+Tko1GJarJkjzl
-         CqHukGU3+uetJTqBU35EufEhTJ/JQMLIQ232K9a2dqX0DRlpHNX2jj36iVIUYsK2D0
-         nAQ1S/5yDqL3HFxoV+WVOCFYetv2xOeXNJlDs/vD4NBXaJTnZonch1EXHHEO+vsxl7
-         3y6VKMwxlUUBA==
-Received: by mail-pl1-f175.google.com with SMTP id p17so4908418plo.9;
-        Sat, 02 Apr 2022 09:49:16 -0700 (PDT)
-X-Gm-Message-State: AOAM532AaYOh8i8uq6HzCP4xJa5aDwobX7GZ3xW2sF8gPoc37PYqkRQU
-        IbQek3ewghDsvLBbgMtsUgo81ilsrBrVzzQi0dw=
-X-Google-Smtp-Source: ABdhPJwGqwbLcVcTdQ+vwsrSjziLqOHB1myjd4wlosyh0cpYONLfR6rrENWAFdTWWindJ8begLSg9eEzj+9HuQBuDVs=
-X-Received: by 2002:a17:902:6ac7:b0:150:24d6:b2ee with SMTP id
- i7-20020a1709026ac700b0015024d6b2eemr15918616plt.168.1648918156115; Sat, 02
- Apr 2022 09:49:16 -0700 (PDT)
+        with ESMTP id S1358502AbiDBQz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 12:55:29 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AB431522
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 09:53:34 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id r13so11849154ejd.5
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 09:53:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dV6IVGS3xtBoxp634iqApehAfhXnWGthz6shqxCHOJY=;
+        b=xdCYaefrFlgRlWY5ZjIWEPHiKgKiA2vtfKW5Y0euF0sTobQvj6xyFrwMM+OihanzMQ
+         ilQsufRYRAEIlM2T49HA+RfTPyPPDWnu2rz1AD5YTkxF1Fq6YcU4b3Yr+w1RrMb2pmxV
+         CdRFcuDC9GCG35nhFY8oiKRnthT7LDr6jR65x80PxMvEkZpkzmQu3alNSsrKTlkbwNN5
+         9zrd9pjRMKKpUsBc9kGpP+eqidZxM4CVfPg+xsBhZbgRSrwE3WZcNys1K8igE87KY9uo
+         nYPsO2ARW+fP4qk09EkwaWHG2QUSrWuUgFGV0K9CndlDWuYxwBc/xbBftOXMZ9YBDN+3
+         amfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dV6IVGS3xtBoxp634iqApehAfhXnWGthz6shqxCHOJY=;
+        b=XxOHSRTKu0p0PT+r10LncfrY7PPyzEQxP9lQkjsLrah1PiJN/vbvre8KVmidvWgtvg
+         ZrpBaeVgL1guBFB7YdRN8Bhl99wf9HaWcsE9X4+fW4L6qsVHh6aL8BgJjHdyFmnRDBw+
+         s17jPOrb/S6JVnyrzAjj9PSM3M4DeUomJyO9Rh/sFzW7rUOM4qx7wXuTnGmfwMwY9nwM
+         kkDIZFz7+2afGsrnmRyPEEefOj9nrhBG+jkAYgu6vjKd8q7zeR0ysF7mL/BlnSanyy7f
+         ntY2GCJ4tvuzKwcBMmFDNPg8NGYvYl7SttuJxxvxto3JSqc7dUYRS6pm6ba5eXzfuKl2
+         dyRA==
+X-Gm-Message-State: AOAM532zyREhhMo7C1GJd6ADjlAMP/7VDTGrv23S5rejQ6YPNHHvO/Nc
+        9mSFzzpP4V6fHKq8bzNJp025BA==
+X-Google-Smtp-Source: ABdhPJwW+flQxA9xtEkBX7qU0QCW5KZc7m8vrd2rx8wwd40a3h5hQL51tp8x90gPY50XAaSj7eyo9w==
+X-Received: by 2002:a17:907:3e22:b0:6e7:d37:204e with SMTP id hp34-20020a1709073e2200b006e70d37204emr1516442ejc.375.1648918412768;
+        Sat, 02 Apr 2022 09:53:32 -0700 (PDT)
+Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id u3-20020a17090657c300b006d01de78926sm2293742ejr.22.2022.04.02.09.53.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Apr 2022 09:53:32 -0700 (PDT)
+Message-ID: <9fab978d-d24f-575b-959b-acfe05c5c4f3@linaro.org>
+Date:   Sat, 2 Apr 2022 18:53:31 +0200
 MIME-Version: 1.0
-References: <20200917185211.5483-1-krzk@kernel.org> <20201002161128.GB4542@kozik-lap>
- <2926877.yplJhP9KA3@diego>
-In-Reply-To: <2926877.yplJhP9KA3@diego>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Sat, 2 Apr 2022 18:49:05 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeX8su0dzHWRWUZfOdZaB5CXU1GpUOXg+pS7CQdX3XWOg@mail.gmail.com>
-Message-ID: <CAJKOXPeX8su0dzHWRWUZfOdZaB5CXU1GpUOXg+pS7CQdX3XWOg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ARM: dts: rk3188: correct interrupt flags
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Alexis Ballier <aballier@gentoo.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Anand Moon <linux.amoon@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 13/16] arm64: dts: rockchip: fix compatible string
+ rk3328 cru node
+Content-Language: en-US
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de,
+        zhangqing@rock-chips.com
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220402143636.15222-1-jbx6244@gmail.com>
+ <20220402143636.15222-14-jbx6244@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220402143636.15222-14-jbx6244@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,63 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Oct 2020 at 14:08, Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Hi,
->
-> Am Freitag, 2. Oktober 2020, 18:11:28 CEST schrieb Krzysztof Kozlowski:
-> > On Thu, Sep 17, 2020 at 08:52:10PM +0200, Krzysztof Kozlowski wrote:
-> > > GPIO_ACTIVE_x flags are not correct in the context of interrupt flags=
-.
-> > > These are simple defines so they could be used in DTS but they will n=
-ot
-> > > have the same meaning:
-> > > 1. GPIO_ACTIVE_HIGH =3D 0 =3D IRQ_TYPE_NONE
-> > > 2. GPIO_ACTIVE_LOW  =3D 1 =3D IRQ_TYPE_EDGE_RISING
-> > >
-> > > Correct the interrupt flags without affecting the code:
-> > >   ACTIVE_HIGH =3D> IRQ_TYPE_NONE
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > >
-> > > ---
-> > >
-> > > Not tested on HW.
-> > >
-> > > Changes since v1:
-> > > 1. Correct title
-> > > ---
-> > >  arch/arm/boot/dts/rk3188-bqedison2qc.dts | 3 ++-
-> > >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > Hi,
-> >
-> > Any comments/review/testing from Heiko or other Rockchip folks? Shall I
-> > cc here someone?
->
-> I'm actually wondering about this ... I somehow remember writing a respon=
-se,
-> but don't see it in my history - so it might have gotten lost before I
-> actually sent it.
->
-> I think the biggest issue I have is that none of that is tested on any
-> hardware and looking at other brcm wifi drivers in the kernel, the
-> interrupt polarity seems to be all over the place, some set it high,
-> some low and I even have seen edge triggers.
->
-> As all changes are in regard to (copied) brcm wifi node, it would be
-> really interesting to actually know what trigger is the right one.
->
-> I've Cc'ed Jagan who I think has worked on an affected board,
-> maybe he can check which trigger is correct.
+On 02/04/2022 16:36, Johan Jonker wrote:
+> The rockchip,rk3328-cru.txt file was converted to YAML.
+> A DT test of the rk3328 cru node gives notifications regarding
+> the compatible string. Bring it in line with the binding by
+> removing some unused fall back strings.
 
-Hi Heiko,
+I explained to you on your v1, syscon is not a fallback compatible.
 
-Nothing moved here since 2020 and the DTSes still have incorrect flags
-for interrupts.
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> index 9c76c288b..8ceac0388 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> @@ -756,7 +756,7 @@
+>  	};
+>  
+>  	cru: clock-controller@ff440000 {
+> -		compatible = "rockchip,rk3328-cru", "rockchip,cru", "syscon";
 
-I can rebase and resend (although maybe it still applies cleanly), but
-more important - is someone going to take this patch? or test it?
+Please do not resend the same patch without changes and without
+finishing the discussion. This looks wrong (and external references you
+gave support this). What does this resend means? Discussion is over?
 
 Best regards,
 Krzysztof
