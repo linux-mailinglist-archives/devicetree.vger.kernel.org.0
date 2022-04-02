@@ -2,129 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 338C64F060F
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5314F0611
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237684AbiDBUKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 16:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
+        id S244659AbiDBUMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 16:12:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbiDBUKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:10:04 -0400
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE43C10240E
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:08:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=OgpSvd+sEKNYnhFTtmz9rc03zoQTnAyTRtqKshoW03c=; b=O8i5i12gdbIiEYBkVUMTvyapiC
-        HO2iJvNBtGmhAS+HUvDLOYBMqqmRaB4tGtxvEUDl2yW0c1/qQqdU46LfMhP3aISchcfvhJxqWvMaf
-        zRwnk0MjioWJH+9G97IzT4MJQC4o7jbWNxgkdeVt4BJDGzSWE/2xHt6XLzpFtalfMD49GUHR6kj+v
-        jVoYEnNK4TlPYKiAwmphwJoZRrHTmRzQ3JHEOxxAEDAEEnePLqTTkZqaUbFQ5iTSCK/WFXl3R9LFI
-        rNCp+E50issSM+ZgVxj34p1F44gwqRPqU6X0hBz25Iby94IS1FIdW2ORq75KdX+kr9QS9WTnJlkm0
-        qrWXKZFQ==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:63235 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nak2b-0004sz-Hf; Sat, 02 Apr 2022 22:08:09 +0200
-Message-ID: <db7c6ab5-afe3-2e92-33c7-7ebf75801439@tronnes.org>
-Date:   Sat, 2 Apr 2022 22:08:05 +0200
+        with ESMTP id S229776AbiDBUMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:12:02 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C317667D14
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:10:07 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id u3so8827765wrg.3
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=0Jj1n8NaBhzqatfaJy+kbX/a+Snz7j/FCRrNIUPpydA=;
+        b=6eVmaNrP/P9vTibYEoyZ7MxfkgjcMxnzMdQ8BmvnLraLfWwOdC2tBfT6jI4JEa4D/Y
+         tZ/DCrshzH656mbgpxuj1/6mvctqyQygLVXJ4MsfzunS3JiOmP9lOAXeC8Rc7FTMS5Yr
+         oWjs02VJbgP20HULVaEhvnEejjjBJ/8a4LUAfwOp7AWLKWuXwwPvjqa2jXPOhSRFjHW6
+         DW/W6UGFVzfy6cwAKvTc/1Q2RkibpfWX7b3of7/ZyT1Q1hHwIntogescQ3/kTx0m3J+e
+         FeTt8biuBSRkF5X7Q9i2l3NsuEcytcFd0Sfg1RJMiOOMo6C7VDT4+nVqpXqGtjfjnIgK
+         fBGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0Jj1n8NaBhzqatfaJy+kbX/a+Snz7j/FCRrNIUPpydA=;
+        b=EcooGbhfvClWAXoGd4WFL7UuWlndS79es6lUCmgROJwPR5zs0Ln6W/wZE0O7lV2u8M
+         QC1wKfeKJsSY4PZMxG66wFsp8Ios7eu2pMVmSv96feB3nv/Ql3TH0llRsV5b8ifvKlJp
+         6ckzYfaK8W2XS62gGLyxvEWtxCG/+ybaCT7Cwl9J35ctaLRa8o8ILutIeyNJKzIKYJwz
+         XAU0ipTWxI8dO3yIIw4tlgmTFKnhYIXHuu9QVIo318ldPhr9vEBLto1jfCsiK95TGrc4
+         7200SXGW3RixxJ1aVb76bUlelFn6CLe0fM60Iobpt9JmnHWMd/E8va4Ul9FlGhfj2HkA
+         jeTw==
+X-Gm-Message-State: AOAM533CJAVHwfWvgJWHriCO0wcJzCdfolmbdEDlazvKemwM4Chcp5Fo
+        54S9z461NFupk8Gm6D74nJUuGg==
+X-Google-Smtp-Source: ABdhPJw1Jk2TR4G+F8lbC7iNS+1QyVWwMOCGaBhvPusnF28nGhCLUTQ9E4C7nAmOj/5f3e6JBWYfzw==
+X-Received: by 2002:a5d:58d9:0:b0:203:fc5c:ba87 with SMTP id o25-20020a5d58d9000000b00203fc5cba87mr11829086wrf.79.1648930206310;
+        Sat, 02 Apr 2022 13:10:06 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id o6-20020a05600002c600b002057f1738fcsm5705371wry.110.2022.04.02.13.10.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Apr 2022 13:10:05 -0700 (PDT)
+Date:   Sat, 2 Apr 2022 22:10:03 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 28/33] dt-bindings: crypto: rockchip: convert to new
+ driver bindings
+Message-ID: <Ykitm1uLmQtNy3b2@Red>
+References: <20220401201804.2867154-1-clabbe@baylibre.com>
+ <20220401201804.2867154-29-clabbe@baylibre.com>
+ <30305936-4b69-e1ce-44c2-0d1d113b460e@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC][PATCH 2/3] drm/modes: Make width-mm/height-mm mandatory in
- of_get_drm_panel_display_mode()
-To:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-References: <20220401163755.302548-1-marex@denx.de>
- <20220401163755.302548-2-marex@denx.de>
- <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
- <efaa195a-bbdc-ca24-eccc-271995dfd27f@denx.de>
- <YkfAtkOtaWksnrlH@pendragon.ideasonboard.com>
- <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
- <d16332a6-63cc-8fa6-91f2-59064ce333f1@tronnes.org>
- <d230da1b-2649-2f8d-680b-015e9044540e@denx.de>
- <35a66df7-5619-cb10-620e-008adb64f2d7@tronnes.org>
- <92a5854f-0dc0-8bb9-0607-549d52822af1@denx.de>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <92a5854f-0dc0-8bb9-0607-549d52822af1@denx.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <30305936-4b69-e1ce-44c2-0d1d113b460e@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Den 02.04.2022 19.55, skrev Marek Vasut:
-> On 4/2/22 19:08, Noralf Trønnes wrote:
->>
->>
->> Den 02.04.2022 18.39, skrev Marek Vasut:
->>> On 4/2/22 09:45, Noralf Trønnes wrote:
->>>>
->>>>
->>>> Den 02.04.2022 06.28, skrev Marek Vasut:
->>>>> On 4/2/22 05:19, Laurent Pinchart wrote:
->>>>>> On Fri, Apr 01, 2022 at 10:36:24PM +0200, Marek Vasut wrote:
->>>>>>> On 4/1/22 20:46, Laurent Pinchart wrote:
->>>>>>>> On Fri, Apr 01, 2022 at 06:37:54PM +0200, Marek Vasut wrote:
->>>>>>>>> Make the width-mm/height-mm panel properties mandatory in
->>>>>>>>> of_get_drm_panel_display_mode(), print error message and
->>>>>>>>> return -ve in case these DT properties are not present.
->>>>>>>>> This is needed to correctly report panel dimensions.
->>>>>>>>
->>>>>>>> Can we guarantee this won't cause a regression ?
->>>>>>>
->>>>>>> For the upstream DTs, I think we can.
->>>>>>> For downstream DTs, we cannot know.
->>>>>>
->>>>>> Are there users of this function whose DT bindings don't require the
->>>>>> width-mm and height-mm properties ?
->>>>>
->>>>> There is literally one user of this function upstream:
->>>>> drivers/gpu/drm/tiny/panel-mipi-dbi.c
->>>>
->>>> Yes, the function was added for that driver since it was so generic in
->>>> nature. What about adding an argument to
->>>> of_get_drm_panel_display_mode()
->>>> that tells if the properties are mandatory or not?
->>>
->>> Sure, we can do that, but maybe the question here is even bigger than
->>> this series.
->>>
->>> Should every panel set mandatory width_mm/height_mm so e.g. the user
->>> space can infer DPI from it and set up scaling accordingly, or should
->>> width_mm/height_mm be optional ?
->>>
->>> I think width_mm/height_mm should be mandatory for all panels.
->>>
->>> Thoughts ?
->>
->> If this had come up during the review of the driver I would have no
->> problem making it mandatory. It makes sense for DPI. Maybe it's possible
->> to get around the ABI break by getting in a change through -fixes before
->> 5.18 is released? I'm fine with that.
+Le Sat, Apr 02, 2022 at 01:53:58PM +0200, Krzysztof Kozlowski a �crit :
+> On 01/04/2022 22:17, Corentin Labbe wrote:
+> > The latest addition to the rockchip crypto driver need to update the
+> > driver bindings.
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> >  .../crypto/rockchip,rk3288-crypto.yaml        | 68 +++++++++++++++++--
+> >  1 file changed, 63 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > index 66db671118c3..e6c00bc8bebf 100644
+> > --- a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > @@ -11,8 +11,18 @@ maintainers:
+> >  
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - rockchip,rk3288-crypto
+> > +    oneOf:
+> > +      - description: crypto IP present on RK3288 SoCs
+> > +        items:
+> > +          - const: rockchip,rk3288-crypto
+> > +      - description: crypto IP present on RK3328 SoCs
 > 
-> Well that's awesome, the dbi-spi.yaml didn't land in any kernel release
-> yet, so we still have a chance to fix it ?
+> These two comments are not helping, so this should be just enum.
+> 
+> > +        items:
+> > +          - const: rockchip,rk3328-crypto
+> > +      - description: crypto IPs present on RK3399. crypto0 is the first IP with
+> > +                     RSA support, crypto1 is the second IP without RSA.
+> 
+> The second part of this comment is helpful, first not. You have chosen
+> enum in your first patch, so just extend it with comments. Additionally
+> indexing does not scale. What if next generation reverses it and crypto0
+> does not have RSA and crypto1 has?
+> 
+> Something like:
+> 
+> properties:
+>   compatible:
+>     enum:
+>       - rockchip,rk3288-crypto
+>       - rockchip,rk3328-crypto
+>         # With RSA
+>       - rockchip,rk3399-crypto-rsa
+>         # Without RSA
+>       - rockchip,rk3399-crypto-norsa
+> 
 
-It entered this merge window.
+Hello
+
+There will never be new SoCs with this crypto, rockchip seems to have dropped this IP for a different crypto v2 on their new SoCs.
+I will answer more on that on your second mail.
+
+> > +        enum:
+> > +          - rockchip,rk3399-crypto0
+> > +          - rockchip,rk3399-crypto1
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -21,16 +31,65 @@ properties:
+> >      maxItems: 1
+> >  
+> >    clocks:
+> > +    minItems: 3
+> >      maxItems: 4
+> >  
+> >    clock-names:
+> > +    minItems: 3
+> >      maxItems: 4
+> >  
+> >    resets:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 3
+> >  
+> >    reset-names:
+> > -    maxItems: 1
+> > +    deprecated: true
+> 
+> Why reset-names are being deprecated? Did we talk about this?
+> 
+
+Since I use the devm_reset_control_array_get_exclusive, there is no need to have reset-names.
+
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: rockchip,rk3288-crypto
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: "aclk"
+> > +            - const: "hclk"
+> > +            - const: "sclk"
+> > +            - const: "apb_pclk"
+> > +          minItems: 4
+> 
+> minItems for clocks
+> max for resets and reset-names
+> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: rockchip,rk3328-crypto
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: "hclk_master"
+> > +            - const: "hclk_slave"
+> > +            - const: "sclk"
+> > +          maxItems: 3
+> 
+> min/max for clocks
+> max for resets and reset-names
+> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - rockchip,rk3399-crypto0
+> > +              - rockchip,rk3399-crypto1
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: "hclk_master"
+> > +            - const: "hclk_slave"
+> > +            - const: "sclk"
+> > +          maxItems: 3
+> > +        resets:
+> > +          minItems: 3
+> 
+> Similarly.
+> 
+
+I will fix that in v5
+
+Thanks.
