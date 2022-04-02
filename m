@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB3A4F0619
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FDC44F061D
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 22:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344354AbiDBUOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 16:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
+        id S244457AbiDBUVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 16:21:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238922AbiDBUOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:14:37 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7962C10240E
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:12:41 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id q20so3631522wmq.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:12:41 -0700 (PDT)
+        with ESMTP id S231939AbiDBUVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 16:21:01 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F9B36B48
+        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 13:19:07 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id m30so8856097wrb.1
+        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 13:19:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=235ThmLY/OVM1F4sGmmgGyNEXw4TutBGz+wfTPM6Ezw=;
-        b=Cas6JHBkmCdF0GwcUU5QKOb+Sux8akmYDZH6laNOP59TCjA0pxhAvURsbet2GknsEB
-         0FylV/t4GYIz1vmY41D2vHCn3UzdxddfEveGTayYafYNRFwOmlAg73MnIZ1WoJ8p1J6M
-         qmWhHwIgeBtEsq5UTufZH6+u9tARe1W2dMFu/3ofsFpGARJBhDFU6pBqIlUyn1AVfa8n
-         DcAX9XeRxS89OjUS/fx/NlN+xRllNfMhPSjQDNu5MPwg2ppg+0wXJnUvKBDrJkUx8LxE
-         lB+lTNiTWMF15TpY8bcAbCmRoLzlcesC1W7Z7GH6xY66f7zxFs4NuoSuxta8Klw3urbA
-         zV9Q==
+        bh=efzOv4dIr4tgBETsjp5OsgnPN6Aum/KcEtDZ5+WY/5s=;
+        b=NWCjcZfwqzrcjp5G5OuxNnq/23Iby1ljMuBql2dbBOBMNfS6NzDqEVqTbC0EETLXxw
+         9U9H72AWN9sdKdf4Ds5vMKB0jy7J8JqOVB8NWX6zyWmv1ZNy9P71C9heOmKCvJhSX9sB
+         rJhUI5CgZwfD5XZxm7gS9hELr3qWF9wY3KHePW5cvO9ismWLhNC+9vbjVaawNAWYHt3E
+         t1OtmWsPSjuP1X4If5aUxoxG3bxQBBSDeMfnljMbpCyH/JvOStbnsesYxBL1Tg+gVmPi
+         r7ZDAFCaXKIaNjkgnKj9OOtz03dpR6cthm3YvqSBnJZ+8bELz8fvkBGlhVL8ViSPc9RW
+         6wFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=235ThmLY/OVM1F4sGmmgGyNEXw4TutBGz+wfTPM6Ezw=;
-        b=Vtl6qwEWv+LrKNoB8nwFhquuwlO9SRPQWb/b26RuvvdtOZH2RIMJ39gBglPwyDC3M6
-         5T4jtpkOWDWnCkhpyjGE1ih64E+mlC0KmHD17EqHNqNvUXu3bd8LpJ2Aw4VuI9ZQQ++/
-         xU9T7c5qGTpD10I8Lpun6JURMncmEhLUAG8xlCZKuh4DJ6kGhES8Zc25oecOKBEBsFZX
-         i6TEKfnaclAWKY/UnoW5gzNNitjYHf7jkCGeoly9GQSbkhKL5R06CMUbIWBz4D+iOmKW
-         GsxwhllLp0DLRv4Q1vYrnyyYVroHTINZmOK4BD86p5GShbuWeHg+205/RitoR5DQgmvH
-         BGNw==
-X-Gm-Message-State: AOAM532b2mxCYnZuWCCmfL7fy9IT4EcYr3RWOCjeYLZMhgYK3A1WDD2e
-        N+tiVOeztWHY1bDEKUqB6Uvr8A==
-X-Google-Smtp-Source: ABdhPJyVuEQmPjKz6+OoclhGClbXdqVtWWvLy2mu+DTaZ4xpHRVhCMsAwmv2SlZXnn0GLs1qmJVe+g==
-X-Received: by 2002:a7b:cd13:0:b0:38b:f39c:1181 with SMTP id f19-20020a7bcd13000000b0038bf39c1181mr13973422wmj.20.1648930360071;
-        Sat, 02 Apr 2022 13:12:40 -0700 (PDT)
+        bh=efzOv4dIr4tgBETsjp5OsgnPN6Aum/KcEtDZ5+WY/5s=;
+        b=UxzmHCR13lt3u20Ig5ixwVX0FWtxk+njitA6/dRWLZsPdYFe3PeF1oGlHRD3J/sACK
+         inUD3wjJrbqS9otREa7PwQJrQsEW4hCh2bdOfxRvacquEjxO457/FtzrJGCzxcNbzFKN
+         +WE2DEeLv6ghtk9WgReyPo4rA36yXyEt4khvCXCTvfcds0Ix/gTxddQkCKkMbH/qkmEZ
+         ZOJ4xHbt4skNthL2c0+rnvmfhdac/caxa8K9v8iOeaceq8Rhgem6ZpcWMx2fFpMvWVID
+         YJG2wYgo2Wzh+y4k0GVNNQXRnYqYdnGMH2Las5wy4zyb8oChdcrLR5dJkO98n6LMq77S
+         3flg==
+X-Gm-Message-State: AOAM531C+xne055JQWvhBpUyko2o6fMVMZeR2Ug6EPtWkBnW9eFaKk5a
+        NJv9s1RUnQJX/8NW5NmVob41BQ==
+X-Google-Smtp-Source: ABdhPJwwADkU22Qt/uwzkEAdoHaiz77EIhH44oK6ZYfgfzgGV14uHRVicGD7jKPWsdyDYtAt/fb4Sg==
+X-Received: by 2002:a5d:58d9:0:b0:203:fc5c:ba87 with SMTP id o25-20020a5d58d9000000b00203fc5cba87mr11845270wrf.79.1648930746405;
+        Sat, 02 Apr 2022 13:19:06 -0700 (PDT)
 Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id b15-20020a05600018af00b002057c72d45fsm6675904wri.77.2022.04.02.13.12.39
+        by smtp.gmail.com with ESMTPSA id 2-20020a056000154200b00203ee1fd1desm5810812wry.64.2022.04.02.13.19.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 13:12:39 -0700 (PDT)
-Message-ID: <a66f17c6-cec6-3eb8-92df-9990d74dd122@linaro.org>
-Date:   Sat, 2 Apr 2022 22:12:38 +0200
+        Sat, 02 Apr 2022 13:19:05 -0700 (PDT)
+Message-ID: <793a88b8-148e-c9a0-3c21-4f15380e1085@linaro.org>
+Date:   Sat, 2 Apr 2022 22:19:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH V3 1/3] dt-bindings: mmc: imx-esdhc: Update compatible
- fallbacks
+Subject: Re: [PATCH v4 28/33] dt-bindings: crypto: rockchip: convert to new
+ driver bindings
 Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>, linux-mmc@vger.kernel.org
-Cc:     haibo.chen@nxp.com, aford@beaconembedded.com,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220402193942.744737-1-aford173@gmail.com>
- <20220402193942.744737-2-aford173@gmail.com>
+To:     LABBE Corentin <clabbe@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20220401201804.2867154-1-clabbe@baylibre.com>
+ <20220401201804.2867154-29-clabbe@baylibre.com>
+ <30305936-4b69-e1ce-44c2-0d1d113b460e@linaro.org> <Ykitm1uLmQtNy3b2@Red>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220402193942.744737-2-aford173@gmail.com>
+In-Reply-To: <Ykitm1uLmQtNy3b2@Red>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,82 +79,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2022 21:39, Adam Ford wrote:
-> The SDHC controller in the imx8mn and imx8mp have the same controller
-> as the imx8mm which is slightly different than that of the imx7d.
-> Using the fallback of the imx8mm enables the controllers to support
-> HS400-ES which is not available on the imx7d. After discussion with NXP,
-> it turns out that the imx8qm should fall back to the imx8qxp, because
-> those have some additional flags not present in the imx8mm.
+On 02/04/2022 22:10, LABBE Corentin wrote:
+> Le Sat, Apr 02, 2022 at 01:53:58PM +0200, Krzysztof Kozlowski a écrit :
+>> On 01/04/2022 22:17, Corentin Labbe wrote:
+>>> The latest addition to the rockchip crypto driver need to update the
+>>> driver bindings.
+>>>
+
+>>>  
+>>>    reset-names:
+>>> -    maxItems: 1
+>>> +    deprecated: true
+>>
+>> Why reset-names are being deprecated? Did we talk about this?
+>>
 > 
-> Suggested-by: haibo.chen@nxp.com
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> V3:  Marked the imx7d-usdhc as deprecated when there are better
->      fallback options or the fallback isn't needed.
->      Leave the deprecated fallback in the YAML to prevent errors
->      Remove Reviewed-by from Krzysztof Kozlowski due to the above
-> 
-> V2:  Update the table per recomendation from Haibo.
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index 7dbbcae9485c..11f039320d79 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -34,23 +34,34 @@ properties:
->            - fsl,imx6ull-usdhc
->            - fsl,imx7d-usdhc
->            - fsl,imx7ulp-usdhc
-> +          - fsl,imx8mm-usdhc
-> +          - fsl,imx8qxp-usdhc
->            - fsl,imxrt1050-usdhc
->            - nxp,s32g2-usdhc
->        - items:
->            - enum:
->                - fsl,imx8mm-usdhc
-> +              - fsl,imx8mq-usdhc
-> +            # fsl,imx7d-usdhc fallback is deprecated for imx8mm-usdhc
-> +          - const: fsl,imx7d-usdhc
+> Since I use the devm_reset_control_array_get_exclusive, there is no need to have reset-names.
 
-Instead of comment use (I think on the same level as items):
+The reset-names are not only for Linux driver. In any case, Linux driver
+could get always reset/clock/gpio by index, not by name.
 
-deprecated: true
+Additionally, there can be different implementation in different
+system/user of bindings.
 
-> +      - items:
-> +          - enum:
->                - fsl,imx8mn-usdhc
->                - fsl,imx8mp-usdhc
-
-So if this is a deprecated list, where is a proper one? The list with
-this enum + imx8mm?
-
-IOW, you need to list here:
-1. Old combinations with "deprecated: true"
-2. New combinations.
-
-> -              - fsl,imx8mq-usdhc
-> -              - fsl,imx8qm-usdhc
-> -              - fsl,imx8qxp-usdhc
-> +          - const: fsl,imx8mm-usdhc
-> +            # fsl,imx7d-usdhc fallback is deprecated
->            - const: fsl,imx7d-usdhc
->        - items:
->            - enum:
-> -              - fsl,imx93-usdhc
->                - fsl,imx8ulp-usdhc
-> +              - fsl,imx93-usdhc
->            - const: fsl,imx8mm-usdhc
-> -
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8qm-usdhc
-> +          - const: fsl,imx8qxp-usdhc
-> +            # fsl,imx7d-usdhc fallback is deprecated
-> +          - const: fsl,imx7d-usdhc
->    reg:
->      maxItems: 1
->  
-
+Therefore the driver implementation does not matter (or matters little)
+for the bindings, so for multi entries the reset-names are needed.
 
 Best regards,
 Krzysztof
