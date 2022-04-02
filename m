@@ -2,177 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49DED4F05AF
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 21:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF464F05B0
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 21:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233295AbiDBTHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 15:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
+        id S234320AbiDBTJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 15:09:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbiDBTHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 15:07:18 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2137.outbound.protection.outlook.com [40.107.114.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BF738D84;
-        Sat,  2 Apr 2022 12:05:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AROmhXPzXPFlFvo/KcxZAP3KN8YpmXyVul55CoeaRoJ7gBRUUqbwbRgXELL8fqkneI9xpeebjK8uwHfC0RgVgEVWwV5r9d9xHay5uW7nTBKvcCRhmqGFjAozuHXDSxCBdcqJ71qdc/9xPaGRyPzBVR4BujBK6q7O5EqW6SaBhnE5B6DzXMeu75VlAu6BhT9UF+r+wUOCv0ZSza4cI2BK/FnPfj1G91vJ7Ey0p1gd2Uwk6SFNs/prZhAiQmxQjsK5iJfYChTrk0rHm6837kxev+vXl19m7+KrGqTWxfBzjQGNfIFNNLsYNvZBM3lxX3IGWJjPNtogeNNPu8+M4C5w1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CRn+PEnftDMgpTMVQv1ztgVd4K5SVGq8LXCe5vWUGgU=;
- b=Bn+BRC9/6lzKjY+EkZ86Rnj2aa4Cn8DvquZ+p5dT6k5wN31pDxfvYS+1PoMTnkuWPDtMtsqRRhqgYac/2h/N0xPd82ZLSLaZR8w1D1cyo9KnRYCP5lqx6o5AW4D2mZaEMo1+o0ef6+Z94A4xA/7+BCrEuwUO1efYWhSgu4WYV/UeTYVle8st9zPu6wGUH8j8nL/LsPIdOFTxm/vTELGAEH+crkiwqNgLHCREkkMvcP+i026V/h+WhQwuqPU2Avculr3ofTi5izeInFnYPSpGQ2Zdm6B27QQ8Gcu4EWJFStxMAmGRhDvcbPBQef//1VBNF7A5f9Ee8ImZ1mOoUH/kFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CRn+PEnftDMgpTMVQv1ztgVd4K5SVGq8LXCe5vWUGgU=;
- b=tH9LpOEacLFmbX2h1yTjkFFPofZp5Si4Z2MLMv3gtVaTT0eGaCUy8Q2ctckmDnHuVao8OGP3Yn/eVI/xLZoC36RIhYwYAG6+saOZGAjMkVo7uR7LlQiyCyCBijKdsDrb81UBFgL/1lRTKqaE4weQzgBlCn1aR7m+IqMPvRilFok=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYCPR01MB5998.jpnprd01.prod.outlook.com (2603:1096:400:60::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.23; Sat, 2 Apr
- 2022 19:05:21 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::7ccd:4eb0:e2ae:fca8]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::7ccd:4eb0:e2ae:fca8%3]) with mapi id 15.20.5123.030; Sat, 2 Apr 2022
- 19:05:21 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH v4 1/5] dt-bindings: arm: renesas: Document Renesas
- RZ/G2UL SMARC EVK
-Thread-Topic: [PATCH v4 1/5] dt-bindings: arm: renesas: Document Renesas
- RZ/G2UL SMARC EVK
-Thread-Index: AQHYRmPV/EWVE3M8n0+qBjpsuXfV0azc0uuAgAAmAPA=
-Date:   Sat, 2 Apr 2022 19:05:20 +0000
-Message-ID: <OS0PR01MB5922B49ED5DADA5DD3DDA60786E39@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220402073234.24625-1-biju.das.jz@bp.renesas.com>
- <cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org>
-In-Reply-To: <cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 833ed7c0-5095-4c04-236e-08da14dbbbfd
-x-ms-traffictypediagnostic: TYCPR01MB5998:EE_
-x-microsoft-antispam-prvs: <TYCPR01MB59983193B70C7DFACA52C07586E39@TYCPR01MB5998.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GIIkBwKVDKbQnMNDrFj/DSMFf+ZfsCPeW/0bZ49a1tXY/XBxwKYxVEz9KJxDg8mahElnCYFQ+ozjZDWL4RGZk9YxUD15p2IhfEuq6gw73kuAQ+iWoTopWOKxsaz5qqZ3OL56zR+CUbEhINHsspyo0qcvRRTZmwhaoQ1q0UN7Yv/Poc7ZpKE8DOIiFL5V+tqtZHSgvf24IYMPIplK/SQmJs3z2Fp4FeV0c2g6Bqlv/3Y0HH4l+dytpl4oHiSFAe6R7Vkt+AQwKdWkivTBriVao/c82wSVb4zmT8p1m2M21RgwhwBi+iN3buIK+h3NLLkcFDRnStEb0x0bFECLyyBbilWsP3TqJC6xzlOvBowf6iG9i0MU8ZHqk90JjfYmT4cnQW/ke/cPPhNaVZ3MAzebAhR/VCKFc6KiY3RJ6oVQfpOOj2gsw5arGNUK55CrOuXulBaID9agNkizKjbJcuIN42gbuhWprlnLsk94binUnjb3TI9TuSQogDJpHAm2t1ki5kRHbeq3qT4E/D+rHcT3HF+YpbF+HbTYfVnkw1CPbu3NvVsqLR2ExheTXC+C0ZKfSV4bVShkSSDkNlrPuVS3Te84LdHsde+sZhmUV27wIy1Iyhlj11ygIEVqov9aiZ3IGJ1vXJseYsRtsXRKF2/NyVAfgnjOoQ/6O1nPZOcn9DE+DjcCcxzQJvJak8miZZFE92JAcW2H01PKhk9R0TXp2A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(83380400001)(5660300002)(9686003)(53546011)(7696005)(2906002)(6506007)(33656002)(55016003)(66556008)(38100700002)(186003)(110136005)(122000001)(64756008)(86362001)(71200400001)(52536014)(66946007)(66476007)(107886003)(54906003)(26005)(316002)(4326008)(76116006)(38070700005)(8936002)(8676002)(66446008);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eUpiWjJsenlqU0k0YWpubFZIR3N4c3Q3S2VCV1p5RFUvYkZWZldkM0dOSVAw?=
- =?utf-8?B?ckgvbWozWDdkWGtWOTg2Zm5ldy9JQnpoVW10TzlPT0JDVEFQb2ZmbElibnB3?=
- =?utf-8?B?dlFBcXE3U3V4Ujl3TnNmRXdHTHZvZDk0SFJUUTJvckdsMW5SSDJ3cGp0Q2R4?=
- =?utf-8?B?dWNZV0ZJVk1TYjJkS0h0SXNTU1JNZlBjcDc1MVhPRGZjWjI5a3dUeU9GRGdN?=
- =?utf-8?B?UmNJdmUrTkYwQ3hadm5OS0g2WEkrS2FUaGRmTDB0ZFdUZ0J5Lys0dnVCT093?=
- =?utf-8?B?Q2s5SkZJTVNtRE0yY2FzNGhpc1NpK2tOV3lIUjNqTFY5elNXR1AzRlpETUJp?=
- =?utf-8?B?aDVlNms3czFlK3NJckJXVENBZElEQmFEbExHOUV3YlhLTTF5MjF6b3kvUitW?=
- =?utf-8?B?SDlDUFcxQTQ2K3NSWGdLK1JpYVZTemNmRDhDOStpbXhXcmZISExCQXpaMkdt?=
- =?utf-8?B?VGdHYWp4STFxangxTmJRTEQ1Qjd6ZjdTOFNSUTNDYXNxdkNSaXg5QlhNR2tU?=
- =?utf-8?B?NU1MZy9TVVNDM2IrL2dqeEY3aEdVQmw4Yk45R1d1OHRNQzdXeHFNdXZqRmZX?=
- =?utf-8?B?dG1pTTNSTytLUzRKbzVWalMydVBMbEhZYzhaWUtOTnFnQkU3SnNkSFdTaXQw?=
- =?utf-8?B?VDdLc2N2bENQRVhJdi81a3N0YUxTVTI5dTZkeFVRY0svWkpTRDVGQ0h4aEFC?=
- =?utf-8?B?bE50c0pzRTlBQ0hSREE3RUVuc09CYksyeGYvOHdSRmZoQXAxS05mZWlibG82?=
- =?utf-8?B?WklFQ1lDM1Z0Szg4ZkJVcHhncUlLa082aHNieDFkUDNMcVhOY0xiTVFGbVV4?=
- =?utf-8?B?U0cwMzlQMzlidk13OW9YZUpHTW92elhPRkZMOHlIK0hsM3RoUlpqa0lWR0xm?=
- =?utf-8?B?MkdIZCtMRzRQeE5sSUdxQ2t3MHZtUDN5Z1BwN3Q5elVuZjR2QllHQzl2YjM3?=
- =?utf-8?B?Y216UzZwVlNFbFkyd0Q2dTgxbnBEeHE0N0svaG12Q2N2bVdVKzdtSkFGUWxs?=
- =?utf-8?B?ckEzdjdvdkR4R3FTSDhTQ0M3MGlHaEpPclJuM0NvN2pMM3JPYUpaSTZTSEc1?=
- =?utf-8?B?Yk95Y3MxNERtVHlSTW1vM3ZoMTJoclorc1FBWVlELzh5WXp1cVZWVjk3cWRW?=
- =?utf-8?B?T1l4dERLZXNOK2p4UjQ1YUJRWllPTFRJMnBpNUpOeVJ4bS9mNGxiaG9xdzNL?=
- =?utf-8?B?Ky8xRWNPODNtN3RINDFVWElZZUdHYkptM1lFLzkzT1l3bS81RFdhS1d2WkY4?=
- =?utf-8?B?bUZqRHM0Wld4OUx0d0toYTFYdDZUcXdZUnMvNURod3QvVmxCcWJhNW83OEhN?=
- =?utf-8?B?NnA4c0hxb3JMZGxCZ1dXeVp5L3JZVDJ4QVVPUGtPWEwxKzN3aVJSUTBqb0J4?=
- =?utf-8?B?M2lUUjQvWURkTjZ2L1ovMkN1eWovRkhoQ3FDbWFPQjNSQXYzQkR5dmNXUHRw?=
- =?utf-8?B?cmIzYzVMYlhsS25yMkRINVE5UVFsY3hzQTdGOFYyOWtqKzJwQ3ZZdm10M0RL?=
- =?utf-8?B?RFNqakh0emthVHFweXAzcVlmRWZ0R0dDUnJTaDNEOWxHZXhDTndRRDU2a3ov?=
- =?utf-8?B?Yno2ZHQxZUdMaHA3UVdMT2YyN0NpRVA5NXV3Y0lXR3hmZW1FSmNQbXJjMWFP?=
- =?utf-8?B?WFhMODdJWVo2ZVBrVkJ3QS92enJVekUwc2NTU3VEQkRvQi9ORWIwY1JYS216?=
- =?utf-8?B?c2lWL0VxRU9xeWljS1B0M045YkMrWStaZEFkYnJTTk1PRUlxS0labllQSUFE?=
- =?utf-8?B?VVFDQnVKMXNuZERZUkdjVmc2MTZwK1kzdnd2Y1JIV3ViOTJoOGtTWFlwdGFs?=
- =?utf-8?B?K1ZyeVVRc0owbkZDUzNMYnhoR1lLOGFacjJMMU1KdXI3eGkyYndieE5aS0JF?=
- =?utf-8?B?K3VTZ3NmTFE4aVRSQmY1Z3ZHdEoyc1FxN09MRFptSVRCdkFlQzZRMWNBVUxa?=
- =?utf-8?B?QnVheDVqeUFGYVFReG1ZV3gwOUQvdTM1NTBwR0NMMGhySHBZZ0VDbm1kazJR?=
- =?utf-8?B?S0dWeW9PQlAxeVVnWnA0dm42OXdqTmhrdUdOQklXUmZqMDJQdkQxc0ZNUWVH?=
- =?utf-8?B?a1pZRnNZTlpDWHhRWnMzek91VXpSMGt0ME1vUno0NUx5L1hqOUJEcUVpQjl2?=
- =?utf-8?B?aHdaMmh1TXlESWVkSzFBMzZhNjl3ZWNkM2dTNDFQK2p1N1VNMXg5bGJJMTNJ?=
- =?utf-8?B?UTJkWllkQ21yZEVvZmczaXdiRThJeWRqb0orL2JUZWtqUloxNTYvdENib2VF?=
- =?utf-8?B?b2JmZmxodzc5NzNna3BQR0ZFbTRPc2FqZGJBRDkrbTIxYXRUcDdXVWErL1Zv?=
- =?utf-8?B?SnJBai9KbktzbWYweExuTlo1M0lzNU5kSEEzOVEzS2JpY1NET0lHd0daUnBG?=
- =?utf-8?Q?E3V9EvL1SIKsQhXE=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229629AbiDBTJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 15:09:28 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F208E12A8DD;
+        Sat,  2 Apr 2022 12:07:35 -0700 (PDT)
+Received: from mail-wm1-f54.google.com ([209.85.128.54]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MC3H1-1niiuB0qkv-00CPnt; Sat, 02 Apr 2022 21:07:34 +0200
+Received: by mail-wm1-f54.google.com with SMTP id q20so3573896wmq.1;
+        Sat, 02 Apr 2022 12:07:34 -0700 (PDT)
+X-Gm-Message-State: AOAM532WvDSooXWBhNNyCjvEapY+WnlGKEn1DBemeZgATB8czEOj0tbf
+        5BP0b7UWbSV5IXQyBeqYHcHpTdKtN05SHuPcuQA=
+X-Google-Smtp-Source: ABdhPJwIAkpxl+JZt9LjgRq9lJWnGHnJOqkbLJpfn319rdmgWy77pOsaUi8rkQeJc/4Nv+hf1X3LMml3uCdwMixVHak=
+X-Received: by 2002:a7b:cd13:0:b0:38b:f39c:1181 with SMTP id
+ f19-20020a7bcd13000000b0038bf39c1181mr13827152wmj.20.1648926453781; Sat, 02
+ Apr 2022 12:07:33 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 833ed7c0-5095-4c04-236e-08da14dbbbfd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2022 19:05:20.9418
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iw7FkzLedXjOMUdF9Gqd0TpXYBvdau63P73j6GdxqqVDFHV54Q4T8SDxnoBse8JgTHE1hokYNR9LzApSmR/TyF28+S7HEjawt6h1mUb9uqk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB5998
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220321165049.35985-1-sven@svenpeter.dev> <20220321165049.35985-5-sven@svenpeter.dev>
+ <CAK8P3a19F8K0MvZV_R6HrmmR+WBsDge+u6U3iEVEjZ74i6+nEg@mail.gmail.com> <f06576c8-76c6-41ae-874d-81ea0b5b5603@www.fastmail.com>
+In-Reply-To: <f06576c8-76c6-41ae-874d-81ea0b5b5603@www.fastmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Sat, 2 Apr 2022 21:07:17 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3xioqJDb7hQ3dvxQyHPg2hgJbeJywEP+N4cDzpo=8VhQ@mail.gmail.com>
+Message-ID: <CAK8P3a3xioqJDb7hQ3dvxQyHPg2hgJbeJywEP+N4cDzpo=8VhQ@mail.gmail.com>
+Subject: Re: [PATCH 4/9] soc: apple: Add SART driver
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Keith Busch <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
+        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:u5NOoiQ4rEi4dh4tfDGxLExnqqNZSURzhc/HD4eZvY96ATyEZlC
+ foNU9lXJjj6QTWCgD3EVneljiwx196JRipv8X4NVhVfLK+Gb3IdwtCIiCgv6PcSjl8he9IP
+ m3fNXVPT+NcSOzt8t1JjFqgGpfaWGWTmz78zOmgmTsdZA2LY9xgw9nrmnrHCf1yKaNON+rO
+ HrKXMFTndMPv40EF+n9oQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:R/NA65EZX+s=:i+QXtWZDna6xQuE85HNZAt
+ f17BOhoLSXQPnpsy0dwCJ/yZCWaCW+77RNvtqRRgDUM0nNdM5LUG9N4nrTl6ZZUYjTMYRV9RL
+ 5AgbT/o1iDfm3Ax8hNFZ6et1OdP1g1bqDD3uenLZGs2msasK5ihumIsSJJI0Tvh2d5kXcdMZY
+ ASzFG77Yqh/VFLFNPFmTPmu/rCQZXztI5hsJ0mlUHuWoRi0cAQI/41p7QCgam8Zrl8qH98rub
+ 7IP1bNLwMigmz7VwMhJxPRkrOu3bWGPWq6f3O0qlZmVfIkYXmqf9zzAK+Z+Vm+rQ95GXF3/jV
+ eXBDLoTKbOOujaCfE9PkGRziJd/D3rgAcc1TcXkk2eLFkcH8VWsqAE8pOZ7/qFuVlHJvKtXkl
+ 4E/rny11gdYrHRXM/NjYARukeCGmMinWD/e/jgMWNtfBUGNI/ybyUs5z9aLYqVdenrkYhFPx7
+ piE1GCrNwsgylxbAF52LfChJ4ydRDICyaLsq69iqo3dzlvHItUA5TvZUk82tbI+tygvjVTNjn
+ hZbOwitVrtQMI8R+Rf9FaoZzqb40oL+MHU2LRXdeUylcoNLtaeYfmGpaPL7xTB8Kw1pa4Gjwf
+ Ss2TGm2HHBV8QgNYbwBZOPHM/54iDWO0AD0pCCyI7D5NJvlaZ36n/DKvIgWeSCNPRmDgc6jz/
+ sqDoNWNgFg0Kj1k/yTBbfJwWdbR4YGTIirkxw8Z+lLj3KeE93MS0wVPSqQIcryfZuKnLMinYz
+ H6a5lVWj+D+0LMOC5hsQXLcIUYiL6Sekgb3XMnmb5MCaSKx9WoxfUJPPXYAClHw0PXYAE5p9L
+ x6hzrOazIbGWOi3TF3BHkCyeU3QE16FDu62m5AEwCvPXSXnVIk=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KVGhhbmtzIGZvciB0aGUgZmVlZGJhY2suDQoNCj4g
-U3ViamVjdDogUmU6IFtQQVRDSCB2NCAxLzVdIGR0LWJpbmRpbmdzOiBhcm06IHJlbmVzYXM6IERv
-Y3VtZW50IFJlbmVzYXMNCj4gUlovRzJVTCBTTUFSQyBFVksNCj4gDQo+IE9uIDAyLzA0LzIwMjIg
-MDk6MzIsIEJpanUgRGFzIHdyb3RlOg0KPiA+IERvY3VtZW50IHRoZSBSZW5lc2FzIFNNQVJDIEVW
-SyBib2FyZCB3aGljaCBpcyBiYXNlZCBvbiB0aGUgUmVuZXNhcw0KPiA+IFJaL0cyVUwgVHlwZS0x
-IChSOUEwN0cwNDNVMTEpIFNvQy4gIFRoZSBTTUFSQyBFVksgY29uc2lzdHMgb2YgYW4NCj4gPiBS
-Wi9HMlVMIFR5cGUtMSBTb00gbW9kdWxlIGFuZCBhIFNNQVJDIGNhcnJpZXIgYm9hcmQuICBUaGUg
-U29NIG1vZHVsZQ0KPiA+IHNpdHMgb24gdG9wIG9mIHRoZSBjYXJyaWVyIGJvYXJkLg0KPiA+DQo+
-ID4gU2lnbmVkLW9mZi1ieTogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPg0K
-PiA+IC0tLQ0KPiA+IFY0Og0KPiA+ICogbmV3IHBhdGNoDQo+ID4gLS0tDQo+ID4gIERvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vcmVuZXNhcy55YW1sIHwgMiArKw0KPiA+ICAx
-IGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9yZW5lc2FzLnlhbWwNCj4gPiBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vcmVuZXNhcy55YW1sDQo+ID4gaW5k
-ZXggZmE0MzVkNmZkYTc3Li5mNjE4MDcxMDM4NjcgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9yZW5lc2FzLnlhbWwNCj4gPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL3JlbmVzYXMueWFtbA0KPiA+IEBAIC00
-MDUsNiArNDA1LDggQEAgcHJvcGVydGllczoNCj4gPg0KPiA+ICAgICAgICAtIGRlc2NyaXB0aW9u
-OiBSWi9HMlVMIChSOUEwN0cwNDMpDQo+ID4gICAgICAgICAgaXRlbXM6DQo+ID4gKyAgICAgICAg
-ICAtIGVudW06DQo+ID4gKyAgICAgICAgICAgICAgLSByZW5lc2FzLHNtYXJjLWV2ayAjIFNNQVJD
-IEVWSw0KPiANCj4gSSBzZWUgeW91IGFyZSB1c2luZyBzYW1lIGNvbXBhdGlibGUgZm9yIGRpZmZl
-cmVudCBjb25maWd1cmF0aW9ucy4gSSB0aGluaw0KPiBpdCBzaG91bGQgYmUgcmF0aGVyIGEgc3Bl
-Y2lmaWMgY29tcGF0aWJsZSAoZS5nLg0KPiByZW5lc2FzLHNtYXJjLWV2ay1yOWEwN2cwNDMpLiBJ
-dCdzIHRoZSBtb3N0IGRldGFpbGVkIGNvbXBhdGlibGUsIHNvIHRoZQ0KPiB1c2VyIGlzIGV4cGVj
-dGVkIHRvIGNoZWNrIGl0IGFuZCBoYXZlIHRoZSBhbnN3ZXIgYWJvdXQgc3BlY2lmaWMgYm9hcmQu
-DQo+IEhlcmUgaXQgd29uJ3Qgd29yayAtIHlvdSBoYXZlIHRocmVlIGRpZmZlcmVudCBjb25maWd1
-cmF0aW9ucyB3aXRoIHRoZQ0KPiBzYW1lLCBtb3N0IHNwZWNpZmljIGNvbXBhdGlibGUuDQoNClNN
-QVJDLUVWSyBpcyBjb21tb24gdG8gUlovRzJMKFI5QTA3RzA0NEwpLCBSWi9HMkxDKFI5QTA3RzA0
-NEMpICwgUlovVjJMKFI5QTA3RzA1NEwpLA0KUlovRzJVTCBUeXBlLTEocjlhMDdnMDQzdTExKSBh
-bmQgUlovRml2ZShyOWEwN2cwNDNmKSBTb0Mncy4NCg0KRm9yIGNvbnNpc3RlbmN5IEkgaGF2ZSBt
-YWRlIHNpbWlsYXIgY2hhbmdlLiBTbyB5b3UgcmVjb21tZW5kIHRvIGNoYW5nZQ0KT3RoZXIgU29D
-J3MgYXMgd2VsbD8NCg0KU01BUkMtRVZLIGlzIGNvbW1vbiBjYXJyaWVyIGJvYXJkIGFuZCBXZSBo
-YXZlIGEgU29NIG1vZHVsZSB3aGljaCBjb250YWlucyBTb0MuDQoNClI5QTA3RzA0MyBpcyBnZW5l
-cmljIGNvbXBhdGlibGUgZm9yIFJaL0cyVUwgYXJtIGJhc2VkIFNvQyBhbmQgUlovRml2ZSBSSVND
-DQpCYXNlZCBTb0MuDQoNCkRvIEkgbWlzcyBhbnkgdGhpbmcgY29tcGFyZWQgdG8gb3RoZXIgZXhp
-c3RpbmcgIHJlbmVzYXMgU29DJ3MsIHBsZWFzZSBsZXQgbWUga25vdy4NCg0KQ2hlZXJzLA0KQmlq
-dQ0K
+On Sat, Apr 2, 2022 at 2:38 PM Sven Peter <sven@svenpeter.dev> wrote:
+> On Mon, Mar 21, 2022, at 18:07, Arnd Bergmann wrote:
+> > On Mon, Mar 21, 2022 at 5:50 PM Sven Peter <sven@svenpeter.dev> wrote:
+> >> The NVMe co-processor on the Apple M1 uses a DMA address filter called
+> >> SART for some DMA transactions. This adds a simple driver used to
+> >> configure the memory regions from which DMA transactions are allowed.
+> >>
+> >> Co-developed-by: Hector Martin <marcan@marcan.st>
+> >> Signed-off-by: Hector Martin <marcan@marcan.st>
+> >> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> >
+> > Can you add some explanation about why this uses a custom interface
+> > instead of hooking into the dma_map_ops?
+>
+> Sure.
+> In a perfect world this would just be an IOMMU implementation but since
+> SART can't create any real IOVA space using pagetables it doesn't fit
+> inside that subsytem.
+>
+> In a slightly less perfect world I could just implement dma_map_ops here
+> but that won't work either because not all DMA buffers of the NVMe
+> device have to go through SART and those allocations happen
+> inside the same device and would use the same dma_map_ops.
+>
+> The NVMe controller has two separate DMA filters:
+>
+>    - NVMMU, which must be set up for any command that uses PRPs and
+>      ensures that the DMA transactions only touch the pages listed
+>      inside the PRP structure. NVMMU itself is tightly coupled
+>      to the NVMe controller: The list of allowed pages is configured
+>      based on command's tag id and even commands that require no DMA
+>      transactions must be listed inside NVMMU before they are started.
+>    - SART, which must be set up for some shared memory buffers (e.g.
+>      log messages from the NVMe firmware) and for some NVMe debug
+>      commands that don't use PRPs.
+>      SART is only loosely coupled to the NVMe controller and could
+>      also be used together with other devices. It's also the only
+>      thing that changed between M1 and M1 Pro/Max/Ultra and that's
+>      why I decided to separate it from the NVMe driver.
+>
+> I'll add this explanation to the commit message.
+
+Ok, thanks.
+
+> >> +static void sart2_get_entry(struct apple_sart *sart, int index, u8 *flags,
+> >> +                           phys_addr_t *paddr, size_t *size)
+> >> +{
+> >> +       u32 cfg = readl_relaxed(sart->regs + APPLE_SART2_CONFIG(index));
+> >> +       u32 paddr_ = readl_relaxed(sart->regs + APPLE_SART2_PADDR(index));
+> >
+> > Why do you use the _relaxed() accessors here and elsewhere in the driver?
+>
+> This device itself doesn't do any DMA transactions so it needs no memory
+> synchronization barriers. Only the consumer (i.e. rtkit and nvme) read/write
+> from/to these buffers (multiple times) and they have the required barriers
+> in place whenever they are used.
+>
+> These buffers so far are only allocated at probe time though so even using
+> the normal writel/readl here won't hurt performance at all. I can just use
+> those if you prefer or alternatively add a comment why _relaxed is fine here.
+>
+> This is a bit similar to the discussion for the pinctrl series last year [1].
+
+I think it's better to only use the _relaxed version where it actually helps,
+with a comment about it, and use the normal version elsewhere, in
+particular in functions that you have copied from the normal nvme driver.
+I had tried to compare some of your code with the other version and
+was rather confused by that.
+
+        Arnd
