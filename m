@@ -2,76 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C72C24F0041
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 11:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BF334F0054
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 12:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354242AbiDBJ57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 05:57:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
+        id S240000AbiDBKLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 06:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242816AbiDBJ5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 05:57:54 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551891A61DC
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 02:56:01 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id p26-20020a05600c1d9a00b0038ccbff1951so4287879wms.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Apr 2022 02:56:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cgXEkA1NsSLqZo2p9htj8GcgXUNKhGzyClMqMaWIvDI=;
-        b=QUxAVBIGjxzUGhga2bGVCacVjSav4X+BIyqne/0zdL/4ikLPyuC4Mjo9T5inO7Kfxd
-         A9mBSL+/8fh5y8c027vJHrlNiIBlYi1N1/6zLsHYkpl5ApP/7ZLL1C0sVCCQw2nd1aNv
-         gndE6vmrp777SW893dYvMN0B6M71FQJ20kdc3KLxeqj8hvQuS8HCfyqA/PksE3ruxMTz
-         szpncBtYVQ2rTkKKlzKbMfZJeHAKl5xtnc7GWgWmRuR8BbciBg/b02QYjY4wRE8EVGzZ
-         iFbhbM5HW7RbEQ2H25yQ4U/yxlvntt09ODrON3n7UN4WcYSCXmbBJORg6p+Bbfl7fe84
-         91tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cgXEkA1NsSLqZo2p9htj8GcgXUNKhGzyClMqMaWIvDI=;
-        b=YkUk8xoV+I5Zkz/LvvJoNpbCWGHFaQWZRqTXtGQLVRCwiDyVKFeW9o/iQMG7YisMYi
-         mITiQzFOxDRmh2kxVtMbiXTIrvUTMGyqOdctSvdudJkbromGyYwNonyfS9QCnj/XN0oe
-         RCF+BArLkxP0l273IYEFuO0aKJ160mPHGTe+HkaAqJVOFYp2gAyHz6mSo4KxjtzwV1nb
-         1LSeDvbBwy1T78bHRQpe0rGB0doTZKWBZaX7cze6sbXOlMrhJaLWIozz+Ey4TTP5RX27
-         4nAnzKoY0G9LhIVVUseyJuwXeEyFRB6pGOXDFb4Rn5xJqvlzxyqbdQKO90Nij1nPlAJA
-         l1/g==
-X-Gm-Message-State: AOAM532jXj0baeJ3vxWyMJp4UkAs7ioZXorI/K7LlSL+vF4IxfJkTEcH
-        bcZMFockv7q54Wui15i8Bj2WAw==
-X-Google-Smtp-Source: ABdhPJyO5nRYykQjZ5CMS3S/+vibAHXkJMz2nRlIfC5YDxd6cIz2T4VjeRMkWl0YnnwiCnUamYDmeg==
-X-Received: by 2002:a7b:c14d:0:b0:38c:801a:a8b3 with SMTP id z13-20020a7bc14d000000b0038c801aa8b3mr11732685wmi.40.1648893359903;
-        Sat, 02 Apr 2022 02:55:59 -0700 (PDT)
-Received: from [192.168.0.170] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id i19-20020a05600c355300b0038e1d69af52sm4436420wmq.7.2022.04.02.02.55.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Apr 2022 02:55:59 -0700 (PDT)
-Message-ID: <e7b2d7d3-b0a8-3937-1947-acb65090dc87@linaro.org>
-Date:   Sat, 2 Apr 2022 11:55:58 +0200
+        with ESMTP id S236495AbiDBKLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 06:11:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16038527D3;
+        Sat,  2 Apr 2022 03:09:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D0C77B80689;
+        Sat,  2 Apr 2022 10:09:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E929C340EC;
+        Sat,  2 Apr 2022 10:09:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648894194;
+        bh=CXMartoYjubWeMV3E1H9s8ARDUAdYfTP7uWl0ij+SGg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kipW2BQRZ41shGiNObLooDWizusP+q192QYflwQiKGgepT+y66dJq2r/cvV5Fm+MY
+         mIO4zSduiXSIWDiKpZCVGRZUOojJuIjdsQEeoTuy4AtG1EGfm5vb7HUyQgyoaCubJc
+         6pjoZBDeDA9jbnHjtAgh1/GCbv3JHc4Pqd3HZXJcmNcjO9mBFyHZ28PCLmejzKvQUH
+         wGmNshvSNYysY7LVTSg/LzOYY4e6AsmOF1kxJEsBdbtvnD/qwfudxVoxk0TgWg3uCU
+         QIkGdm1mMnLiONN3zjYYssPBj2S6vsgTlo92+tkf4WIwubzV0LctaeK8HU6GxeuHxU
+         zJkWQU8lovR7Q==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, robh@kernel.org
+Subject: [PATCH 0/2] add support for ASM330LHHX
+Date:   Sat,  2 Apr 2022 12:09:28 +0200
+Message-Id: <cover.1648893892.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Jacky Huang <ychuang3@nuvoton.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, arnd@arndb.de,
-        olof@lixom.net, soc@kernel.org, cfli0@nuvoton.com
-References: <20220331024256.14762-1-ychuang3@nuvoton.com>
- <20220331024256.14762-4-ychuang3@nuvoton.com>
- <0c182962-0da0-c3b3-097a-090bf8d871e7@linaro.org>
- <20220401233422.58670C2BBE4@smtp.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220401233422.58670C2BBE4@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,46 +51,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/04/2022 01:34, Stephen Boyd wrote:
-> Quoting Krzysztof Kozlowski (2022-03-30 23:32:04)
->> On 31/03/2022 04:42, Jacky Huang wrote:
->>> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
->>> new file mode 100644
->>> index 000000000000..e1e0c466bf5e
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
->>> @@ -0,0 +1,2 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-evb.dtb
->>
->> NAK
->>
->> This is actually some resend, but you did not version it, did not
->> provide changelog.
->>
->> What is more - you ignored previously received comments.
->>
->> We do not work like this. If you do not agree with a comment, please
->> keep discussion, not resend ignoring it.
->>
-> 
-> Please be kind to newcomers. Not everyone has been working on the kernel
-> for 10+ years.
+Add support for ASM330LHHX IMU mems sensor
+https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
 
-Sorry for being harsh.
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add support to ASM330LHHX
+  dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhx device bindings
 
-> 
-> Please read Documentation/process/submitting-patches.rst. We should
-> probably add some more details to that document about including
-> changelogs comparing previous rounds, links to previous rounds for ease
-> of discovery, cover letters for multi-patch series, etc.
+ Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 1 +
+ drivers/iio/imu/st_lsm6dsx/Kconfig                        | 6 +++---
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                   | 2 ++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c            | 3 ++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c              | 6 +++++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c               | 5 +++++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c               | 5 +++++
+ 7 files changed, 23 insertions(+), 5 deletions(-)
 
-This is in general explained in:
-https://elixir.bootlin.com/linux/v5.13/source/Documentation/process/submitting-patches.rst#L311
-Just no one really reads it...
+-- 
+2.35.1
 
-I'll extend that section slightly.
-
-
-Best regards,
-Krzysztof
