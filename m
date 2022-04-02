@@ -2,114 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C9804F02DC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 15:47:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18B874F0300
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 15:52:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355629AbiDBNss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 09:48:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39350 "EHLO
+        id S238183AbiDBNyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 09:54:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240004AbiDBNsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 09:48:47 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF3F415DABB;
-        Sat,  2 Apr 2022 06:46:54 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id b188so5462633oia.13;
-        Sat, 02 Apr 2022 06:46:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=PYegHaEuhlY2VhKGl3I3pW9pPdgl7qRkG8VHF5n6JTw=;
-        b=FYPHnBWqroeBrbArtZQBD1Q3KEmj8oF0r9EHenL1v5o1HGQ5GSL+IF7sNvBSBaKidb
-         /Ak5Ra8JWE9owNnc0cK+diNu9keodYYrq2RE71FIYbEQps9FFXB89bzj/OoDE65qsDCm
-         aYTfcMuW7GZ2w5mAdEI7iMYq2XX18oTnB1rLBp1znY3cf+pMET8pXpIskMIKjtxBfZ2q
-         9RN2/u3y0HOla1VzI94nk0ybRBhT147OMgI37dWlXzeyaxbk113HRQZql/SUyvsVvI4I
-         UTDRCiPoXvjlI8F8+558ksDn9QNR3BgGlisZoJnqIdiHvw3x2z9k/ojT+7oZGYwazI2S
-         eCyQ==
-X-Gm-Message-State: AOAM532Reml2u8bo2nLFA9CLp5A0+Jydykh0Yqw+0y7Z+bVjZB39Lc2n
-        d7BRaV+6YjSb50wGHttRjGo48YS13Q==
-X-Google-Smtp-Source: ABdhPJx1x7E35z39ft+D4POeguSDa0gubfQC2fnl4EmTmsyuU+lI7tGV/uos8UwZuGXiMoWb3u+Qsg==
-X-Received: by 2002:a05:6808:2008:b0:2da:5b12:83ff with SMTP id q8-20020a056808200800b002da5b1283ffmr6521278oiw.216.1648907214036;
-        Sat, 02 Apr 2022 06:46:54 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l12-20020a056870d3cc00b000ddeb925982sm2101659oag.38.2022.04.02.06.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Apr 2022 06:46:53 -0700 (PDT)
-Received: (nullmailer pid 903502 invoked by uid 1000);
-        Sat, 02 Apr 2022 13:46:51 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-remoteproc@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-In-Reply-To: <20220401201035.189106-9-krzysztof.kozlowski@linaro.org>
-References: <20220401201035.189106-1-krzysztof.kozlowski@linaro.org> <20220401201035.189106-9-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 08/10] dt-bindings: soc: qcom,smd: convert to dtschema
-Date:   Sat, 02 Apr 2022 08:46:51 -0500
-Message-Id: <1648907211.831405.903501.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230426AbiDBNyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 09:54:01 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0207E5FF4;
+        Sat,  2 Apr 2022 06:52:09 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id A1AE15C0134;
+        Sat,  2 Apr 2022 09:52:07 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Sat, 02 Apr 2022 09:52:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; bh=36fwwX5mmUYNyjISmlYXoRKFgt3R6w
+        97RvAOP2q5fsk=; b=cUuNLTeleWise7MZASHJ6IlX3UrczALRQUBOL1BW44dcB2
+        L/hBCFQzjUgFkI9YqLYga/ly177jgVktTyqjtfhewMAiryhg65zq55hpeD+Pt/OH
+        JMFS3mC3zYsCY2upAgsfavDFVpj83O+E07vR7kBevcL/eSlE1kbQ4jtjVM2WAb2F
+        x2YV4Seny+grOxRam/rHgj5PVunayPjSg1J12QgAUNNKygxXUu2TQkD9J0T0nL2k
+        xNBEp5bC2Cr6DXEWjbVKZPAwDo+/S9ni2RVTgWxq/1flzVCbDWdsRvzsfDaE4Cxn
+        QnMRT4VSZyKmsK/QUScRKcw3inEl9YH0lrUhLPEA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=36fwwX5mmUYNyjISm
+        lYXoRKFgt3R6w97RvAOP2q5fsk=; b=GvG9PTvkcxsekkVWwznmRdAMG6kL6aZJt
+        gz7Oj6sR2KsFuYv9U5eZiCEBgdkT5vS5PIXm2UOWj2LLsdlSacHYX8Cf2zpExWy/
+        6GH6oqgh/2jUKfEF3kB1NMp94hDL9A+J7iXMUsrt75RamS7aNCwjxpZctiHb0LIB
+        kChPDXX7uEpXHLpe/x4MCYvhxL2FJjG98lmge2cmpwSyAa79nOETxLap4PhUnz3I
+        dAYo+Nro40Ho4tGTGJlLVHVJ2cJ+/XIpda6gF6a+uK+g6rXmkFmbj2sib5DYuwVn
+        LS22iLUAV8WsfGXocy0dxG7fepmHa7if98HmdNlEWaE+jpl5y6zSw==
+X-ME-Sender: <xms:B1VIYhbXhwgAwvuFM98GzEnfsKQ8dOS8fkOyDHTC7tHUnZy21Bgmfg>
+    <xme:B1VIYoZ0UlFGyHRWzEXrl7z_lkV3G5Dhhx9JhJqRggHwXMete47OPkpWmZkZhX7gB
+    1UbW2O-nazEwz_ANUc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeikedgjeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
+    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:B1VIYj9ZtEtZ8CJowLn1UGImgyOPA2vXPYCg6e1--eZh_ja1dxtDrw>
+    <xmx:B1VIYvoF8HAClmGI5-AakZMlbIiLdiuX64qGf6zqY7pBG0eGuoS94g>
+    <xmx:B1VIYsrrTEbnpKYofNmYthJAmnf4GKZH2mwBkNT1O7prrUAbRNuW4Q>
+    <xmx:B1VIYhSN9niLA87i-9d7f3ECFqVW5QH8kRaYbZ0X2B41PvY0MeQmeQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 0E83027402C7; Sat,  2 Apr 2022 09:52:07 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-382-g88b93171a9-fm-20220330.001-g88b93171
+Mime-Version: 1.0
+Message-Id: <35f5fdbf-faac-457b-a225-35d7141f6b2e@www.fastmail.com>
+In-Reply-To: <5eed58a1-ee56-8aee-e73b-76b162d59873@kernel.org>
+References: <20220321165049.35985-1-sven@svenpeter.dev>
+ <20220321165049.35985-6-sven@svenpeter.dev>
+ <5eed58a1-ee56-8aee-e73b-76b162d59873@kernel.org>
+Date:   Sat, 02 Apr 2022 15:51:46 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc:     "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Arnd Bergmann" <arnd@arndb.de>, "Keith Busch" <kbusch@kernel.org>,
+        "axboe@fb.com" <axboe@fb.com>, "hch@lst.de" <hch@lst.de>,
+        "sagi@grimberg.me" <sagi@grimberg.me>,
+        "Marc Zyngier" <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-nvme@lists.infradead.org
+Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Apr 2022 22:10:33 +0200, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm Shared Memory Driver bindings to DT Schema.
-> 
-> Changes against original bindings: enforce only specific names of child
-> nodes, instead of any names.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../regulator/qcom,smd-rpm-regulator.yaml     |   2 +-
->  .../bindings/remoteproc/qcom,q6v5.txt         |   2 +-
->  .../bindings/remoteproc/qcom,wcnss-pil.txt    |   2 +-
->  .../bindings/soc/qcom/qcom,smd-rpm.yaml       |   4 +-
->  .../devicetree/bindings/soc/qcom/qcom,smd.txt |  98 -------------
->  .../bindings/soc/qcom/qcom,smd.yaml           | 137 ++++++++++++++++++
->  6 files changed, 142 insertions(+), 103 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smd.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
-> 
+On Wed, Mar 23, 2022, at 12:19, Krzysztof Kozlowski wrote:
+> On 21/03/2022 17:50, Sven Peter wrote:
+>> Apple SoCs such as the M1 come with multiple embedded co-processors
+>> running proprietary firmware. Communication with those is established
+>> over a simple mailbox using the RTKit IPC protocol.
+>> 
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>>  drivers/soc/apple/Kconfig          |  13 +
+>>  drivers/soc/apple/Makefile         |   3 +
+>>  drivers/soc/apple/rtkit-crashlog.c | 147 +++++
+>>  drivers/soc/apple/rtkit-internal.h |  76 +++
+>>  drivers/soc/apple/rtkit.c          | 842 +++++++++++++++++++++++++++++
+>>  include/linux/soc/apple/rtkit.h    | 203 +++++++
+>>  6 files changed, 1284 insertions(+)
+>
+> Isn't this some implementation of a mailbox? If so, it should be in
+> drivers/mailbox. Please don't put all stuff in soc/apple, that's not how
+> Linux is organized. To drivers/soc usually we put drivers which do not
+> fit regular subsystems.
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I put this into soc/apple because I don't think it fits within the mailbox
+framework very well.
+(It actually uses the mailbox framework for the actual communication
+with the hardware with a driver that's already upstream.)
 
-yamllint warnings/errors:
+Essentially, the mailbox subsystem provides a common API to send and
+receive messages over indepedent hardware channels and devicetree bindings
+to describe the relationship between those channels and other drivers.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smd.example.dt.yaml: rpm-requests: 'clock-controller' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml
-Documentation/devicetree/bindings/soc/qcom/qcom,smd.example.dt.yaml:0:0: /example-0/shared-memory/rpm/rpm-requests/clock-controller: failed to match any schema with compatible: ['qcom,rpmcc-msm8974', 'qcom,rpmcc']
-Documentation/devicetree/bindings/soc/qcom/qcom,smd.example.dt.yaml:0:0: /example-0/shared-memory/rpm/rpm-requests/clock-controller: failed to match any schema with compatible: ['qcom,rpmcc-msm8974', 'qcom,rpmcc']
+One of the features that doesn't really fit is that we need to be able
+to start, shutdown and re-start these co-processors. The NVMe driver
+actually doesn't need to send/receive any messages except those required
+to setup the common syslog/crashlog/etc. interfaces.
+The mailbox framework would have to be extended to support these specific
+use cases.
 
-doc reference errors (make refcheckdocs):
+Another thing that doesn't fit is the memory management: These co-processors
+sometimes need shared memory buffers to e.g. send syslog messages.
+They always request these buffers with an IPC message but then there are
+different possibilities:
 
-See https://patchwork.ozlabs.org/patch/
+	- For some processor the DMA API can just be used and an IOVA must be
+	  sent back. For NVMe these buffers must additionally be allowed in this
+	  SART address filter.
+	- At least one other processor (SMC) does not request such buffers but
+	  instead just sends a pointer into MMIO space and the buffer must be
+	  accessed using readl/writel. This MMIO memory region is used for
+	  both the common buffers (syslog etc.) and for the actual shared buffers
+	  used for communication, such that the resource would have to be shared
+	  across drivers.
+	- And yet another coprocessor (for the display controller) requests some
+	  buffers with an already existing IOVA that than need to be mapped
+	  specifically inside the IOMMU.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Each of these co-processors also provides a single function and most
+of them don't even have different endpoints. And even those that do (DCP) will
+just become a single driver since all those endpoints are very much related.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+While it's not impossible to do all that by extending and forcing this into the
+mailbox framework at lest I think that it doesn't fit very well and would just
+create unneccesarry impedance.
 
-pip3 install dtschema --upgrade
 
-Please check and re-submit.
+Best,
 
+
+Sven
