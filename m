@@ -2,113 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 766A34F02D2
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 15:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E193E4F02D8
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 15:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245270AbiDBNpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 09:45:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
+        id S1353026AbiDBNsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 09:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232226AbiDBNpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 09:45:05 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47903CB01B;
-        Sat,  2 Apr 2022 06:43:14 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id p17so4665704plo.9;
-        Sat, 02 Apr 2022 06:43:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=N8etPJfuUrvLrKv9T6LO2m8SvHPCKKB3qu2VSt8v9nA=;
-        b=Qp3+sVxlu/4x2lmjo3UD6aZziSa9jal43jqrKm2zfWl/+omelI65Sp70InHvggNa1+
-         dGEAUUFAYSJWl4YNTFsF690kPBMgF0ljYslIfFYbuFzkUCtKqBZ13DVeSni8ev2KM45R
-         KBQ/QdEE/hnJvi+9Ecy2YihzUtvXtoLiIerIpsoA7MDGIEtjRwX9T7xa4Wh8ulgNKgwD
-         VstjGeu3kBWRLzOzoKKCX75uOS7Zlzl/Mz4Wv/Uijy5YP68V6ao1GXRsL9DTwA/meEP/
-         yo3kupGKARFrIoPAXsYystH/UCnUlHoguq8wqCBtV/V2GcALzMIxS5ihfP5cDKVjm61b
-         DHpA==
+        with ESMTP id S229818AbiDBNsr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 09:48:47 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A01B15D3B5;
+        Sat,  2 Apr 2022 06:46:53 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id n19-20020a9d7113000000b005cd9cff76c3so4042719otj.1;
+        Sat, 02 Apr 2022 06:46:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=N8etPJfuUrvLrKv9T6LO2m8SvHPCKKB3qu2VSt8v9nA=;
-        b=D2Yc/8pAR+qqjC2QAk0SmjMHs//KXhKoLrC/2966kZ8K3KyfMNMoa40b28PQp4lDQT
-         LfWhvVS25Cxe94U7+GR2Eaewx0NQZSZ6TxjIgsbDNJP2UUhGvETTqgmpeyPY7iFHwOdj
-         XVfmLfxj6M2K1WNFs3ktEbQT9Enm4rli0DVofgzhK4xzrk4+51JrSq55VVSHtCvQ1S/x
-         ZXmbw06RnaYacRUDvOkGNxWjUKpXYOWyyqu+hqH9GUX1RHXJm/IgIRVxAsryVs1AvZ2h
-         78Ey4INpcYwoZEvYOtHN37KCvuO8lr3ot0VdS9h1Ir8sH8B+CoSsZjSHWhn/eVxwkg9A
-         Dfrg==
-X-Gm-Message-State: AOAM530l55srcXsuJaCpqUZXXtM91/wr5lRot1KH4w0ZEVnB71JIKG8s
-        SBediYJ+UjaYEPJfRBRLoMk=
-X-Google-Smtp-Source: ABdhPJwvOBfL3ZRn/xSf/hbyHwVlboZe2IeZAwoTcZlIhaFsDkEQ/OYHNBO1xsJqjlDjHs0OZpXsNQ==
-X-Received: by 2002:a17:902:bd88:b0:14f:8ddf:e373 with SMTP id q8-20020a170902bd8800b0014f8ddfe373mr15196047pls.89.1648906993722;
-        Sat, 02 Apr 2022 06:43:13 -0700 (PDT)
-Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id j13-20020a056a00130d00b004f1025a4361sm6610999pfu.202.2022.04.02.06.43.11
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=HYiZb3WrZ7CUV91tcHRmrgto4b3G284hWI6pzO7rQDE=;
+        b=wQSB4J6OUa0VVRS/UNiHQI1bogfYEqF7BdWV7xQmZyKBA370B69Y7ZR6uMnyT4ldO7
+         86rkahdDU3mLat0W5O1Y8qRrkoXve2VDu1UU7uldtQPpBbIrrMDMkswj9NybimXcLxsI
+         eLUcgq9ROM0iVc2FvNDhkD5LYwE7R93PV8V/KMb5mxJDgFZHTrRzG/GXn0X+vJZqejpW
+         RWkmewmook18xdtM48btThwulFBx30kfGiUXigiMDi22Xu1+6IW6j7mu+Wn9vFL+pmUa
+         xD9cmsHhdT8PYLc+k8+86RdPFqiu9bNnGxZ7L2CA2onio4uvXXfEjQA8LcbE+jzfMsC7
+         E/ow==
+X-Gm-Message-State: AOAM533mhJEArCiddFU85LXXSBRwoI8wflxc8ZJTlAhpk/bIjrVKWP9U
+        2A0/WczgVhDyMOs2PtarbB87avHdfg==
+X-Google-Smtp-Source: ABdhPJyLrYk/9AnSO+95mMbuL74a0TK/kgxxJaJ3MXMZa/yl/BWUGYF5cAh3jDSgGq9lskMa8xPJ8w==
+X-Received: by 2002:a05:6830:2684:b0:5cd:bb2f:a5bf with SMTP id l4-20020a056830268400b005cdbb2fa5bfmr8837891otu.383.1648907212737;
+        Sat, 02 Apr 2022 06:46:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c12-20020a9d75cc000000b005b24b061940sm2357258otl.33.2022.04.02.06.46.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Apr 2022 06:43:12 -0700 (PDT)
-Date:   Sat, 2 Apr 2022 06:43:09 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "Allan W. Nielsen" <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, Divya.Koppera@microchip.com,
-        davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH net v2 0/3] net: phy: micrel: Remove latencies support
- lan8814
-Message-ID: <20220402134309.GA19675@hoboy.vegasvil.org>
-References: <20220401110522.3418258-1-horatiu.vultur@microchip.com>
- <Ykb2yoXHib6l9gkT@lunn.ch>
- <20220401141120.imsolvsl2xpnnf4q@lx-anielsen>
- <YkcOjlR++GwLWyT5@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YkcOjlR++GwLWyT5@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Sat, 02 Apr 2022 06:46:52 -0700 (PDT)
+Received: (nullmailer pid 903499 invoked by uid 1000);
+        Sat, 02 Apr 2022 13:46:51 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20220401171035.1096670-1-krzysztof.kozlowski@linaro.org>
+References: <20220401171035.1096670-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: soc: qcom,smp2p: convert to dtschema
+Date:   Sat, 02 Apr 2022 08:46:51 -0500
+Message-Id: <1648907211.818465.903498.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 01, 2022 at 04:39:10PM +0200, Andrew Lunn wrote:
+On Fri, 01 Apr 2022 19:10:35 +0200, Krzysztof Kozlowski wrote:
+> Convert the Qualcomm Shared Memory Point 2 Point bindings to DT Schema.
+> 
+> Changes against original bindings: enforce only specific names of child
+> nodes, instead of any names.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/soc/qcom/qcom,smp2p.txt          | 110 -------------
+>  .../bindings/soc/qcom/qcom,smp2p.yaml         | 145 ++++++++++++++++++
+>  2 files changed, 145 insertions(+), 110 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+> 
 
-> Are you also saying that ptp4l needs to read the values from the
-> driver, calculate the differ from the defaults, and then apply that
-> difference to the correction specified in the configuration file it
-> will apply in userspace?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Personally I wouldn't bother with that.  At the end of day, users who
-care about sub-microsecond performance will need to calibrate their
-particular setup.  The output of the calibration will be the system
-delay asymmetry correction.  That number will be applied in ONE place,
-namely the user space PTP stack.  Breaking it up into little bits is
-just extra work for no benefit.
+yamllint warnings/errors:
 
-That is why I'm against any of this driver nonsense.  The only purpose
-of putting values in to the driver is to unpleasantly surprise the end
-users after kernel upgrade.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipa.example.dt.yaml: smp2p-mpss: 'qcom,local-pid' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipa.example.dt.yaml: smp2p-mpss: 'qcom,remote-pid' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipa.example.dt.yaml: smp2p-mpss: 'qcom,smem' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipa.example.dt.yaml: smp2p-mpss: 'oneOf' conditional failed, one must be fixed:
+	'mboxes' is a required property
+	'qcom,ipc' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipa.example.dt.yaml: smp2p-mpss: 'oneOf' conditional failed, one must be fixed:
+	'interrupts' is a required property
+	'interrupts-extended' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/qcom-ipcc.example.dt.yaml: smp2p-modem: 'qcom,local-pid' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/qcom-ipcc.example.dt.yaml: smp2p-modem: 'qcom,remote-pid' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/qcom-ipcc.example.dt.yaml: smp2p-modem: 'qcom,smem' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
 
-If this driver defaults + run time query/setting stuff goes mainline,
-I'll never use it.
+doc reference errors (make refcheckdocs):
 
-> Does the PTP API enforce mutual exclusion for a device? Can there be
-> multiple applications running on an interface, some which assume the
-> hardware is configured to perform corrections and some which will
-> apply the correction in user space?
+See https://patchwork.ozlabs.org/patch/
 
-There is no mutual exclusion at the kernel API.  The main hindrance is
-the SIOCSHWTSTAMP ioctl which is at the device level.  The setting
-applies system wide and is a root caps operation.  There is the "Get"
-variant that allows co-operation but does not enforce it.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Thanks,
-Richard
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
