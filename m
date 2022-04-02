@@ -2,97 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7664EFF70
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 09:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 170CF4EFF7C
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 09:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238805AbiDBHrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 03:47:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46658 "EHLO
+        id S242327AbiDBHvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 03:51:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbiDBHre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 03:47:34 -0400
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E4245790
-        for <devicetree@vger.kernel.org>; Sat,  2 Apr 2022 00:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=kMYEMkvcj9Vyt+7KufIcHqWQC9bQg4Rzk4UiwpvTz20=; b=P4cSCH+xosJ35RlJbMUZrtc/8U
-        tALJslHa9RsrAsoEp3v69xbFIwnQRNMx8JLprmqM9U8bj8q05RlTomKxYJ01zBySEIT/1S37x2NGU
-        FdqjTEYV6wgZjKJG51AzUcb6EhoK1jCE+v5Mg0X/f9JmuCdAhyLwF0o6t9qaDaRYPjpcgXgjZ0pn5
-        NQiB0IqwEwDP29xzm3XiaWRl/GtdN7Pj5sBAHh0SgDRzjLuEp6BLD9JelIoGqYmiAy/iVg5UGSBri
-        hHP9R7fW/u94daPT0J2jCbldB3VzKd0PiBTw6nq47v86VW+Ics4sQNp97rjcTxvejOhB6dLMH2b/y
-        XKk1jBhw==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:61309 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1naYS4-00027Z-Bt; Sat, 02 Apr 2022 09:45:40 +0200
-Message-ID: <d16332a6-63cc-8fa6-91f2-59064ce333f1@tronnes.org>
-Date:   Sat, 2 Apr 2022 09:45:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC][PATCH 2/3] drm/modes: Make width-mm/height-mm mandatory in
- of_get_drm_panel_display_mode()
-To:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dmitry Osipenko <digetx@gmail.com>,
+        with ESMTP id S233833AbiDBHvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 03:51:19 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD74135851;
+        Sat,  2 Apr 2022 00:49:27 -0700 (PDT)
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Sat, 2 Apr 2022
+ 15:49:25 +0800
+From:   Liang Yang <liang.yang@amlogic.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     Liang Yang <liang.yang@amlogic.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-References: <20220401163755.302548-1-marex@denx.de>
- <20220401163755.302548-2-marex@denx.de>
- <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
- <efaa195a-bbdc-ca24-eccc-271995dfd27f@denx.de>
- <YkfAtkOtaWksnrlH@pendragon.ideasonboard.com>
- <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v4 0/2]  refine the NFC clock framework
+Date:   Sat, 2 Apr 2022 15:49:18 +0800
+Message-ID: <20220402074921.13316-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.21]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Background firstly, 
+Both EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
+defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
+bit6~7 is the mux for fix pll and xtal.
+Previously a common MMC sub clock framework is implemented and shared by EMMC and
+NAND, but that is coupling the EMMC and NAND, although EMMC and NAND is mutually
+exclusive. see the link:
+[https://lore.kernel.org/all/1jy23226sa.fsf@starbuckisacylon.baylibre.com/]
+Now we plan to abandon common mmc sub clock framework and recovery the series.
 
+Changes since v3 [4]
+ - use devm_platform_ioremap_resource_byname
+ - dt_binding_check for mtd/amlogic,meson-nand.yaml
 
-Den 02.04.2022 06.28, skrev Marek Vasut:
-> On 4/2/22 05:19, Laurent Pinchart wrote:
->> On Fri, Apr 01, 2022 at 10:36:24PM +0200, Marek Vasut wrote:
->>> On 4/1/22 20:46, Laurent Pinchart wrote:
->>>> On Fri, Apr 01, 2022 at 06:37:54PM +0200, Marek Vasut wrote:
->>>>> Make the width-mm/height-mm panel properties mandatory in
->>>>> of_get_drm_panel_display_mode(), print error message and
->>>>> return -ve in case these DT properties are not present.
->>>>> This is needed to correctly report panel dimensions.
->>>>
->>>> Can we guarantee this won't cause a regression ?
->>>
->>> For the upstream DTs, I think we can.
->>> For downstream DTs, we cannot know.
->>
->> Are there users of this function whose DT bindings don't require the
->> width-mm and height-mm properties ?
-> 
-> There is literally one user of this function upstream:
-> drivers/gpu/drm/tiny/panel-mipi-dbi.c
+Changes since v2 [3]
+ - use fw_name from dts, instead the wrong way using __clk_get_name
+ - reg resource size change to 0x800
+ - use reg-names
 
-Yes, the function was added for that driver since it was so generic in
-nature. What about adding an argument to of_get_drm_panel_display_mode()
-that tells if the properties are mandatory or not?
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
 
-Noralf.
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+    https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+[3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+
+Liang Yang (2):
+  mtd: rawnand: meson: discard the common MMC sub clock framework
+  dt-bindings: nand: meson: refine Amlogic NAND controller driver
+
+ .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 80 +++++++++++++++++
+ drivers/mtd/nand/raw/meson_nand.c             | 89 +++++++++----------
+ 3 files changed, 122 insertions(+), 107 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+
+-- 
+2.34.1
+
