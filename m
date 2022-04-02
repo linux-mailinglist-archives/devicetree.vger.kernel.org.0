@@ -2,340 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E504EFD2B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 01:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3BA4EFDBE
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 03:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352064AbiDAXok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Apr 2022 19:44:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55636 "EHLO
+        id S233253AbiDBB0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Apr 2022 21:26:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234238AbiDAXok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 19:44:40 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0761D1F160F
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 16:42:47 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id c23so3778155plo.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Apr 2022 16:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=c1wlQXQD7j8UDoQIloz64lt6ox2JA7LYHav5SuNwpO0=;
-        b=UJ6JPg0HgboOxHto5QxUkWcInf9E5qf0MLbfUhV7BLfoY52liL1QK7NllRJwdwk7rk
-         cPF6jn0LSkRLLmQeEz0diq0yo35YaRyKLOSFKIDqcgRu0pf9smWhs4TZmZrLcCHvrETc
-         E7Zw2NQ0HJRajG/FSDYtR+U7hEpgmQx7u3Yb+txujC0Eoa6Uo3XVAZ4LB9YkpXDYCguE
-         s7pjeSW8U00QKaivQ3Zo9Jif0i7i0zo6mXsoElZG0gzKf5vyyBWEen9vGAKXEmjEYho0
-         tbbVqQUQyKqvls1fcKXL2y9aobSlUje1uB7VG5lFfyiNKPy9kyJP9i2uoJVdOiY/XimS
-         Rxww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=c1wlQXQD7j8UDoQIloz64lt6ox2JA7LYHav5SuNwpO0=;
-        b=RT+MPEFQRnw6zmxHGAm7I5dJFQUxu/8YchDcg5c1EHURXjXMz2DQlaTWqmG7VLKJZm
-         iF0rkFzJIJuOe7w0kaxzj+mo6vqEPXZhGdOwhR2ekiLOseE7itEZSB39bCCYf3EGZcp3
-         gkBV7nwNEfUFComTUTKC6Aymdrgi5EzKXbUa1L4i92U8QuE4kuLyH89ZltDQrr7p8CGW
-         qO2oXedeU2ObmBcgN0AvVjVCFUTNhq5wn3tOe9YI9gnQQyTyIZ5n7lYiflsMUR5GLUu+
-         kSgFU+3gDo/SjuPGsR5QQPUgaORSx9ZxOMdtnKrisahiR/VVItz6krAxQQj10OedoNI8
-         rVag==
-X-Gm-Message-State: AOAM532lOoT7/qTkLjsrF8GeaefALXYAcHLZbwG2+Hx5gDD3E+SIn+YQ
-        7P5ko6vVSRmB9jZc/dTOXOTyI09bEIuXBQ==
-X-Google-Smtp-Source: ABdhPJzNfMCJlJiC2ukKUraZckvngUpv0BXMwuWY2kZKzwd6kopUR5V6JnUJIPKxk/jlVxyap1owZw==
-X-Received: by 2002:a17:902:ce02:b0:153:bd65:5c0e with SMTP id k2-20020a170902ce0200b00153bd655c0emr12426812plg.160.1648856567070;
-        Fri, 01 Apr 2022 16:42:47 -0700 (PDT)
-Received: from google.com (223.103.125.34.bc.googleusercontent.com. [34.125.103.223])
-        by smtp.gmail.com with ESMTPSA id g70-20020a636b49000000b003823dd39d41sm3259582pgc.64.2022.04.01.16.42.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Apr 2022 16:42:46 -0700 (PDT)
-Date:   Fri, 1 Apr 2022 23:42:41 +0000
-From:   Chun-Tse Shao <ctshao@google.com>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Nick Desaulniers <ndesaulniers@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Nicolas Schier <nicolas@fjasle.eu>,
+        with ESMTP id S229819AbiDBB03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Apr 2022 21:26:29 -0400
+X-Greylist: delayed 3087 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 01 Apr 2022 18:24:39 PDT
+Received: from baldur.buserror.net (baldur.buserror.net [165.227.176.147])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAC4144B4D;
+        Fri,  1 Apr 2022 18:24:39 -0700 (PDT)
+Received: from [2601:449:8480:af0::46ce]
+        by baldur.buserror.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <oss@buserror.net>)
+        id 1naRdE-005fFq-04; Fri, 01 Apr 2022 19:28:44 -0500
+Message-ID: <def6cb6b2ca84b007efea28df13075be25c70525.camel@buserror.net>
+From:   Scott Wood <oss@buserror.net>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        David Howells <dhowells@redhat.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        keyrings@vger.kernel.org, DTML <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4] config: Allow kernel installation packaging to
- override pkg-config
-Message-ID: <YkeN8cNea55dMXz7@google.com>
-References: <20220306223016.2239094-1-ctshao@google.com>
- <CAKwvOdnmtRYnSx3VvG=PEnzpzWa8f=0bn1xDymjER5EShS2tmw@mail.gmail.com>
- <YiaMJCHOOuujHwiK@google.com>
- <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
- <YjFQvhv7I6w8xjbK@google.com>
- <CAK7LNATmPXs6f-Oe4XmfcZSRPsCsuexSebA=4-jyNsMYHu9cag@mail.gmail.com>
- <CAKwvOd=D22k53yXFC=E=VkJotn6q-AYCu5QsaFPmH_v+fWGVwA@mail.gmail.com>
- <YjovutS5McV8A8z4@google.com>
- <CAJpZYjXxFBz-d5qCbHLcdbPsqMJ569_91NDcsuRZ02g9QpiQBw@mail.gmail.com>
- <CAK7LNASdXJNX1HAhsmOS5NCrgb71Sj_GNKeaZjhk0bmm1bHODg@mail.gmail.com>
+        Johannes Thumshirn <morbidrsa@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-edac@vger.kernel.org,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+Date:   Fri, 01 Apr 2022 19:28:42 -0500
+In-Reply-To: <82a8bc4450a4daee50ee5fada75621fecb3703ff.1648721299.git.christophe.leroy@csgroup.eu>
+References: <82a8bc4450a4daee50ee5fada75621fecb3703ff.1648721299.git.christophe.leroy@csgroup.eu>
+Organization: Red Hat
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK7LNASdXJNX1HAhsmOS5NCrgb71Sj_GNKeaZjhk0bmm1bHODg@mail.gmail.com>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2601:449:8480:af0::46ce
+X-SA-Exim-Rcpt-To: christophe.leroy@csgroup.eu, krzk@kernel.org, robh+dt@kernel.org, morbidrsa@gmail.com, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, linux-edac@vger.kernel.org, bp@alien8.de, mchehab@kernel.org, tony.luck@intel.com, james.morse@arm.com, rric@kernel.org, benh@kernel.crashing.org, paulus@samba.org, mpe@ellerman.id.au
+X-SA-Exim-Mail-From: oss@buserror.net
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: Re: [PATCH] powerpc/85xx: Remove fsl,85... bindings
+X-SA-Exim-Version: 4.2.1 (built Sat, 13 Feb 2021 17:57:42 +0000)
+X-SA-Exim-Scanned: Yes (on baldur.buserror.net)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 01, 2022 at 11:42:13PM +0900, Masahiro Yamada wrote:
-> On Fri, Apr 1, 2022 at 6:58 AM Chun-Tse Shao <ctshao@google.com> wrote:
-> >
-> > On Tue, Mar 22, 2022 at 1:21 PM Chun-Tse Shao <ctshao@google.com> wrote:
-> > >
-> > > On Tue, Mar 22, 2022 at 10:19:14AM -0700, Nick Desaulniers wrote:
-> > > > On Tue, Mar 22, 2022 at 12:44 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
-> > > > >
-> > > > > On Wed, Mar 16, 2022 at 11:51 AM Chun-Tse Shao <ctshao@google.com> wrote:
-> > > > > >
-> > > > > > Tue, Mar 08, 2022 at 01:01:45PM +0900, Masahiro Yamada wrote:
-> > > > > > > On Tue, Mar 8, 2022 at 7:50 AM Chun-Tse Shao <ctshao@google.com> wrote:
-> > > > > > > >
-> > > > > > > > On Mon, Mar 07, 2022 at 10:17:17AM -0800, Nick Desaulniers wrote:
-> > > > > > > > > On Sun, Mar 6, 2022 at 2:39 PM Chun-Tse Shao <ctshao@google.com> wrote:
-> > > > > > > > > >
-> > > > > > > > > > Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
-> > > > > > > > > > what pkg-config and parameters are used.
-> > > > > > > > >
-> > > > > > > > > Sorry, kind a late thought here for v4, but we don't seem to prefix
-> > > > > > > > > many other host side tools with HOST_, i.e. LEX, YACC, AWK, PERL,
-> > > > > > > > > PYTHON3, etc.  Maybe just having the variable identifier be simply
-> > > > > > > > > PKGCONFIG rather than HOSTPKG_CONFIG then put it at the end of the
-> > > > > > > > > list in the top level Makefile after ZSTD (i.e. the list of host
-> > > > > > > > > tools)?  There's HOST_ prefixes when there's more than one tool
-> > > > > > > > > involved (i.e. host compiler vs target compiler), but I suspect
-> > > > > > > > > there's no such distinction for the existing uses of pkg-config?
-> > > > > > > > >
-> > > > > > > > Thanks for your suggestion, Nick! Yes I think it makes sense with PKGCONFIG
-> > > > > > > > instead of HOSTPKG_CONFIG since there is only one tool involved. I will
-> > > > > > > > work on it and submit a new patch.
-> > > > > > > >
-> > > > > > >
-> > > > > > > Please hold on.
-> > > > > > >
-> > > > > > > I was also wondering what to do with the "HOST" prefix.
-> > > > > > >
-> > > > > > > Libraries are usually arch-dependent.
-> > > > > > > (in other words, pkg-config should return different library paths
-> > > > > > > for $(CC) and $(HOSTCC) )
-> > > > > > >
-> > > > > > > You already understood this, so you added "HOST" prefix.
-> > > > > > >
-> > > > > > >
-> > > > > > > Please let me take time for further discussion.
-> > > > > > > I will come back to this when I get some time.
-> > > > > > >
-> > > > > > >
-> > > > > >
-> > > > > > Hi Mashiro,
-> > > > > >
-> > > > > > I was wondering if you were able to look more into this.
-> > > > > >
-> > > > > > Thank you!
-> > > > > >
-> > > > > > -CT
-> > > > > >
-> > > > > > > In the meantime,
-> > > > > > >   a8a5cd8b472ca20e5b8fa649c43b3756867322f8
-> > > > > > > as reference info if you have not seen it.
-> > > > > > >
-> > > > > > >
-> > > > > > > How many distros support something like
-> > > > > > > "aarch64-linux-gnu-pkg-config"  ?
-> > > > > > >
-> > > > > > > Ubuntu 18.04 and 20.04 seem to support it.
-> > > > > > > I do not know for others.
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > > Sorry for the delay.
-> > > > > I am OK with the idea of allowing users to override the pkg-config command,
-> > > > > but I tend to take time before making a decision.
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > > Does anybody have any insight / thoughts about the following points?
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > > [Q1]   with/without "HOST" prefix
-> > > > >
-> > > > >
-> > > > > Apparently, "pkg-config" should return different libs/cflags
-> > > > > for $(CC) and $(HOSTCC).
-> > > > >
-> > > > > I think the non-prefixed macro name "PKG_CONFIG" should be
-> > > > > reserved for $(CC)  (building for the target system).
-> > > >
-> > > > Ok. I retract my comment on v4 about removing the HOST prefix then.
-> > > >
-> > > > >
-> > > > > "HOSTPKG_CONFIG" looks unbalanced
-> > > > > due to the underscore.
-> > > > >
-> > > > > Perhaps, "HOST_PKG_CONFIG" might be better?
-> > > >
-> > > > I'm fine with HOSTPKG_CONFIG (what's in v4); follows the style of
-> > > > HOSTCC and HOSTCXX.
-> > > >
-> > >
-> > > Agree, it should follow the style of HOSTCC/HOSTCXX.
-> > >
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > > [Q2]    "pkg-config" vs "pkgconf"
-> > > > >
-> > > > > The traditional pkg-config implementation [1] is not actively
-> > > > > maintained these days.
-> > > > > The last commit was more than one year ago.
-> > > > >
-> > > > > The alternative one 'pkgconf' [2] is more active.
-> > > > >
-> > > > > In fact, Fedora already switched to 'pkgconf' [3].
-> > > > > Now 'pkg-config' is just a wrapper of 'pkgconf'.
-> > > > > Many distributions already support pkgconf.
-> > > > >
-> > > > >
-> > > > > I considered the shorter macro name "HOSTPKGCONF" and
-> > > > >
-> > > > >    HOSTPKGCONF  = pkgconf
-> > > > >
-> > > > > but I am not sure if this is the right decision.
-> > > > > Maybe we should stick to "PKG_CONFIG" / "HOST_PKG_CONFIG"
-> > > > > for the macro names.
-> > > > >
-> > > > >
-> > > > >   [1]  https://gitlab.freedesktop.org/pkg-config/pkg-config.git
-> > > > >   [2]  https://github.com/pkgconf/pkgconf.git
-> > > > >   [3]  https://fedoraproject.org/wiki/Changes/pkgconf_as_system_pkg-config_implementation
-> > > >
-> > > > If the folks sending this are working on CrOS, better find what's in
-> > > > their build system. Chun-Tse?
-> > > >
-> > > > (I feel like I'm behind the times again, like when `apt-get install`
-> > > > became old news in favor of `apt install`...)
-> > > >
-> > >
-> > > In Cros we only support pkg-config, and that is the reason we would like
-> > > to make this change in upstream.
-> > >
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > >
-> > > > > [Q3] What is the trend of handling cross-compile by pkg-config (or pkgconf).
-> > > > >
-> > > > >
-> > > > > By default, pkg-config returns the libs/cflags for native builds.
-> > > > >
-> > > > > For cross builds, the search paths for the *.pc files must be changed
-> > > > > via the "PKG_CONFIG_LIBDIR" environment variable.
-> > > > >
-> > > > > To ease this, some distributions provide  <triplet>-pkg-config
-> > > > > (for example,   aarch64-linux-gnu-pkg-config).
-> > > > > This became the nationale for tools/build/feature/Makefile defining:
-> > > > >
-> > > > >    PKG_CONFIG ?= $(CROSS_COMPILE)pkg-config
-> > > > >
-> > > > > But, this wrapper shell script is not always available.
-> > > > > I do not know how to do it with the LLVM tool suite.
-> > > > > I am not quite sure if this is the global solution.
-> > > > >
-> > > > >
-> > > > > These days, pkgconf supports another way, .personality file [4]
-> > > > > to specify the .pc search paths for cross builds.
-> > > > >
-> > > > > Is it reasonable to use an option to distinguish native / cross builds
-> > > > > and use the same macro   "PKG_CONFIG = pkg-config" everywhere ?
-> > > > >
-> > > > >
-> > > > > [4] http://manpages.ubuntu.com/manpages/focal/en/man5/pkgconf-personality.5.html
-> > > >
-> > > > I'm not sure, but do we need to cross that bridge for this patch if
-> > > > it's just adding support for the HOST? No cross pkg-config necessary,
-> > > > yet. (Famous last words).
-> > >
-> > > Agree with Nick.
-> > >
-> > > Thanks,
-> > > CT
-> > > > --
-> > > > Thanks,
-> > > > ~Nick Desaulniers
-> >
-> > Hi Masahiro,
-> >
-> > I was wondering if you have any suggestions and thoughts.
-> >
-> > Thank you!
-> >
-> > -CT
->
->
-> Nobody was opposed to the macro name HOST_KG_CONFIG,
-> so I am fine.
->
->
->
-> I still see inconsistency in your patch, though.
->
->
-> For example, you did
->
->        echo >&2 "* 'make xconfig' requires '${HOSTPKG_CONFIG}'. Please
-> install it."
->
-> in scripts/kconfig/qconf-cfg.sh
->
->
-> but, you kept
->
->        echo >&2 "* 'make gconfig' requires 'pkg-config'. Please install it."
->
-> in scripts/kconfig/gconf-cfg.sh
->
->
->
->
-> Also, I prefer "kbuild:" to "config:"
-> for the patch subject.
->
->
-> --
-> Best Regards
-> Masahiro Yamada
+On Thu, 2022-03-31 at 12:13 +0200, Christophe Leroy wrote:
+> Since commit 8a4ab218ef70 ("powerpc/85xx: Change deprecated binding
+> for 85xx-based boards"), those bindings are not used anymore.
+> 
+> A comment in drivers/edac/mpc85xx_edac.c say they are to be removed
+> with kernel 2.6.30.
+> 
+> Remove them now.
+> 
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> ---
+>  .../bindings/memory-controllers/fsl/fsl,ddr.yaml   |  6 ------
+>  .../devicetree/bindings/powerpc/fsl/l2cache.txt    |  6 ------
+>  drivers/edac/mpc85xx_edac.c                        | 14 --------------
+>  3 files changed, 26 deletions(-)
 
-Hi Masahiro,
+Acked-by: Scott Wood <oss@buserror.net>
 
-Thanks for your review and suggestions! I sent a new patch for the fix:
-https://lore.kernel.org/all/20220401231801.1532486-1-ctshao@google.com/
-Just wondering if I should also do the same change for the pkg-config in
-comment in kconfig shell scripts?
+-Scott
 
-Thanks,
-CT
 
