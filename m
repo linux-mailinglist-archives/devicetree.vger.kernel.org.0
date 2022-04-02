@@ -2,89 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 948994EFE9C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 06:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C899A4EFECD
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 07:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233468AbiDBEax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 00:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33712 "EHLO
+        id S241738AbiDBFOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 01:14:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbiDBEax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 00:30:53 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2462115A1C
-        for <devicetree@vger.kernel.org>; Fri,  1 Apr 2022 21:29:02 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9CAAA83046;
-        Sat,  2 Apr 2022 06:28:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1648873734;
-        bh=+1ZGxWvCvr52EMdhiSKJMkzJoLDYkhudCoOdsvaCDqc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ufo7PK2EtkLwhy/57mKDIo4DZpfob1/2pcp1r0gxBgy6iDWfxGwqlierQ/CIlNM3W
-         QR+sjapzaOiqe90C1Tqa25wpXyHagQ2QHkX9GeSjmjY1BB98UxBXz5KgFDSHJ/KI8u
-         E2BzT8ICtvv4ieeAyNbgYP8bqfdoiapsPavgtAX3/zqR9igEzbOwd/1Kc2wjblZnAp
-         ykymGH1bohEU0KmlpvvwzRxsWzfMBtR+cmevvbdgatqAnGHVAZ3NVp/HJ+fR+O6eeO
-         p1XWU78MtKg0H8fls0NY+12IBH343s3eomDuqGeHHlEbCSlKbRKClrPbXJwLjIMUkx
-         +M0YfJ8hvbXlQ==
-Message-ID: <a8b45b0a-b458-f9dd-c983-6ef4ec175432@denx.de>
-Date:   Sat, 2 Apr 2022 06:28:53 +0200
+        with ESMTP id S229992AbiDBFOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 01:14:07 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC20218A3C6;
+        Fri,  1 Apr 2022 22:12:16 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id bc27so3888019pgb.4;
+        Fri, 01 Apr 2022 22:12:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=rl2KiTAWf0g00it/ZPSsvEky7u8HEu4NJtG420APAuk=;
+        b=pMLcOSgwPDpGjFg22gpvLL3HUaQ5GBhg+F+vhrNuJ7sn8njlR720CU45G9Mfh1YNra
+         81DNYbLj0VQ7MkSs307Cwg5KhcwJSiNCXj7fUXBX7ov4KwYsxd7B6EvtLfxeMvjbAuVj
+         yg3UGtlTxUacHQTuDuVlCH6ME02k4aw8HxUsGi8Tpx0fVVOyOfylHvOHiI2xoncw/OmX
+         t4JxNYGQpAOK+liQYY6o772FGGwabE2//AqPOWgAjSuX1mEWy8BrOlgeqmyL/LxLtKPu
+         WQdGHe+GiMQAYWbBSDcnioLHZEhyYcBIABb60KgZGfAtoApj4dwU30JM4bWfbmladk/0
+         4kBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=rl2KiTAWf0g00it/ZPSsvEky7u8HEu4NJtG420APAuk=;
+        b=ch7FmaEHDtj0HgTn4+AOVkXM7WDUsi/XjX0U/7Kpb/VfsJhNFoYF7AlydCUgy3hzlF
+         va2MVHhkejfjw/q0KE5c3M7onyhpFQQ1xq0F8G6Mp+vLE6yr5tTXGLeCgdTK+gb/zDTe
+         Rfb6occy+0RW5z+m+Gd+cW7ISp28uD3YMBigkBqwdhPdwLLt5kKVVkkc+jqCk0c/9CDO
+         oicQpTjH2lQL4BO9icccnslklkp4Rs+VVumG1aK0BNje3WbdGeiZLmZEJam9kx4+bFgi
+         XJ02yBhHXDFClwlc95rosWwMOVUW9WrxMk/n/n4CI9I7B84A9a7GcQhYQ01hNw0NqWoJ
+         TNgg==
+X-Gm-Message-State: AOAM533jIWmyjB5TEOK0kWgRVAT84KRn+wBMBLU+Mk4ADFM/p8XDJgCH
+        23XlQhXvtJ/ubLoVpMsILVOfLG4QFNo=
+X-Google-Smtp-Source: ABdhPJy2u7ia0T2Lfe/8PhBVofJtraBQrliS6X0IGjCuawW2YSexmh95QjVsvTVmV+xHf7q2mpVMdQ==
+X-Received: by 2002:a63:788f:0:b0:386:3116:818c with SMTP id t137-20020a63788f000000b003863116818cmr17329345pgc.414.1648876336318;
+        Fri, 01 Apr 2022 22:12:16 -0700 (PDT)
+Received: from localhost.localdomain ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id u10-20020a63b54a000000b00380ea901cd2sm3834721pgo.6.2022.04.01.22.12.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Apr 2022 22:12:16 -0700 (PDT)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/5] dt-bindings: i2c: Add Qualcomm Geni based QUP i2c bindings
+Date:   Sat,  2 Apr 2022 10:42:02 +0530
+Message-Id: <20220402051206.6115-2-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220402051206.6115-1-singh.kuldeep87k@gmail.com>
+References: <20220402051206.6115-1-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC][PATCH 2/3] drm/modes: Make width-mm/height-mm mandatory in
- of_get_drm_panel_display_mode()
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-References: <20220401163755.302548-1-marex@denx.de>
- <20220401163755.302548-2-marex@denx.de>
- <YkdImJRIRkaqeGDl@pendragon.ideasonboard.com>
- <efaa195a-bbdc-ca24-eccc-271995dfd27f@denx.de>
- <YkfAtkOtaWksnrlH@pendragon.ideasonboard.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <YkfAtkOtaWksnrlH@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/2/22 05:19, Laurent Pinchart wrote:
-> On Fri, Apr 01, 2022 at 10:36:24PM +0200, Marek Vasut wrote:
->> On 4/1/22 20:46, Laurent Pinchart wrote:
->>> On Fri, Apr 01, 2022 at 06:37:54PM +0200, Marek Vasut wrote:
->>>> Make the width-mm/height-mm panel properties mandatory in
->>>> of_get_drm_panel_display_mode(), print error message and
->>>> return -ve in case these DT properties are not present.
->>>> This is needed to correctly report panel dimensions.
->>>
->>> Can we guarantee this won't cause a regression ?
->>
->> For the upstream DTs, I think we can.
->> For downstream DTs, we cannot know.
-> 
-> Are there users of this function whose DT bindings don't require the
-> width-mm and height-mm properties ?
+GENI(generic interface) based Qualcomm Universal Peripheral controller
+can support multiple serial interfaces like spi,uart and i2c.
 
-There is literally one user of this function upstream:
-drivers/gpu/drm/tiny/panel-mipi-dbi.c
+Unlike other i2c controllers, QUP i2c bindings are present in parent
+schema. Move it out from parent to an individual binding and let parent
+refer to child schema later on.
+
+Please note, current schema isn't complete as it misses out few
+properties and thus, add these missing properties along the process.
+
+Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+---
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml      | 110 ++++++++++++++++++
+ 1 file changed, 110 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+
+diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+new file mode 100644
+index 000000000000..01a02e680ea3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+@@ -0,0 +1,110 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/i2c/qcom,i2c-geni-qcom.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Geni based QUP I2C Controller
++
++maintainers:
++  - Andy Gross <agross@kernel.org>
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - qcom,geni-i2c
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: se
++
++  clock-frequency:
++    description: Desired I2C bus clock frequency in Hz
++    default: 100000
++
++  interconnects:
++    maxItems: 3
++
++  interconnect-names:
++    items:
++      - const: qup-core
++      - const: qup-config
++      - const: qup-memory
++
++  interrupts:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  required-opps:
++    maxItems: 1
++
++  dmas:
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  pinctrl-0: true
++  pinctrl-1: true
++
++  pinctrl-names:
++    minItems: 1
++    items:
++      - const: default
++      - const: sleep
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++required:
++  - compatible
++  - interrupts
++  - clocks
++  - clock-names
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
++    #include <dt-bindings/interconnect/qcom,sc7180.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    i2c@88000 {
++        compatible = "qcom,geni-i2c";
++        reg = <0x00880000 0x4000>;
++        clock-names = "se";
++        clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&qup_i2c0_default>;
++        interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
++                        <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
++                        <&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
++        interconnect-names = "qup-core", "qup-config", "qup-memory";
++        power-domains = <&rpmhpd SC7180_CX>;
++        required-opps = <&rpmhpd_opp_low_svs>;
++    };
++...
+-- 
+2.25.1
+
