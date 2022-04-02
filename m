@@ -2,242 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 431284EFEEB
-	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 07:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 712D94EFEFA
+	for <lists+devicetree@lfdr.de>; Sat,  2 Apr 2022 07:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243919AbiDBFUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Apr 2022 01:20:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44298 "EHLO
+        id S238114AbiDBFZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Apr 2022 01:25:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233094AbiDBFUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 01:20:00 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6341AC738;
-        Fri,  1 Apr 2022 22:18:06 -0700 (PDT)
-X-UUID: 6b356b269a73439f8f02d88d62df5c0d-20220402
-X-UUID: 6b356b269a73439f8f02d88d62df5c0d-20220402
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1942133482; Sat, 02 Apr 2022 13:18:02 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 2 Apr 2022 13:18:01 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 2 Apr
- 2022 13:18:00 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 2 Apr 2022 13:17:59 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>
-CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: [v8 4/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Date:   Sat, 2 Apr 2022 13:17:54 +0800
-Message-ID: <20220402051754.17513-5-jiaxin.yu@mediatek.com>
+        with ESMTP id S235053AbiDBFZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Apr 2022 01:25:17 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2082.outbound.protection.outlook.com [40.107.21.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F8620F;
+        Fri,  1 Apr 2022 22:23:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B4K7Tc5Y10Ju2sCzkxlPa83tpC/8gQdkh0AtEve9dVTZWCGipqp2E9PSwhhsFZrqHGrVhm+kTqLSnVTdFUUS+scDTO2hR1OGd9/6PyUof40lhk1biVO/eWzT7LLByYHzT3JAGc1KhBuotFJXdtx4wpCF41S0MPzB2QcKkQnucZrAbBqY5XUM/WuiwjvU1Xv8IpOvKFD/dp7dDoJL317XNHS+AVpZzIvZ/CuxyBEPPmhp8XiktjducTbSl+zot50LjxUOnqd3T2TU0uFMEdKHm9G05ZEMpkLfDGg7EDvXFKRtIJoJtyyY178jOnuN+q+x6GxQhcHI9B3yUTL9gZULsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PKF3ZHbu2cRhYcusaOvTHu3Ufexvm4LzPwJQ3FVb0+I=;
+ b=ITzY3CbC4uH1ZDWGirHDrizjhcdurOM7ue42zATldoc/v3jeQZjQMuhNoIv65eH38YEB3DtGmKu5xKIFB1H4xZv8l6v4QUjYm+OPrdIeLSRFmD1SkMd4kZX/WewTHsVXy64cN6WmwxCc7qpqGACwuljk6Qx7CFG8I5KEjCTuc+a8HZ7k5vSeE7cTJMDcLnQl16jgcuBd09/JID4H3U+hNUDP7sI68bb2CNgdTRj8Lw3ZEzjwqSdac4Yh1qHNLn2h5ugGWMrVd/MHjGcyYIAorD+WST1TGTN2ToZYfZ3fRw1qFZeUwQLkxRfRcdBizDMAsUsyYMRVkn0hBBIk7Mxppg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PKF3ZHbu2cRhYcusaOvTHu3Ufexvm4LzPwJQ3FVb0+I=;
+ b=P3pb9bz9qKEPvOOY+GMdFiXk++G4KRNj96nUQWXmmEgv4EV+pKe1xXGQVsriCePDJLuj2BHOx1pVF1dtsIR3jv1OissxS9m/Q7wmMhxHEjaQ0s52XESKzRmUyWX0rgeB9XtS+bo+NUb8YwY4pymrAnNmmt4nnvL5qb9iIHG1GGw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PAXPR04MB8750.eurprd04.prod.outlook.com (2603:10a6:102:20c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.30; Sat, 2 Apr
+ 2022 05:23:17 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::b09c:8ffe:8e02:7387%9]) with mapi id 15.20.5123.030; Sat, 2 Apr 2022
+ 05:23:17 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, agx@sigxcpu.org,
+        robert.chiras@nxp.com, martin.kepplinger@puri.sm,
+        robert.foss@linaro.org
+Subject: [PATCH v6 0/5] phy: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode support
+Date:   Sat,  2 Apr 2022 13:24:46 +0800
+Message-Id: <20220402052451.2517469-1-victor.liu@nxp.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220402051754.17513-1-jiaxin.yu@mediatek.com>
-References: <20220402051754.17513-1-jiaxin.yu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2P153CA0008.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::19) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9ff52a59-af6c-4e5d-de66-08da1468e441
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8750:EE_
+X-Microsoft-Antispam-PRVS: <PAXPR04MB87500B4037FCC67EC551D0CB98E39@PAXPR04MB8750.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OpLFrsZgaqa/tS7knPuq9eTShSSgc+/gh32bTQFMYHbkXtwk2BOoXtnaNDymUtnJ404q+1R4uvG8EB8wCGKqa06ZSdVsRy4UnW1aV6ijLVZ9BDEljNJHDk84ELlK/Lbd67ZqkhtH6FHRrlVc4hC0GKnYzOdCTQZQrhx6WDTn7uOp15gEXohfgTcuNAb6jUpqP5kCi8A7CxaXPlK/kS7+f0+hVKBep9dRquwhS8xgztoUX31MuktoU3j+A/bD5b1Frpshgx3ldRwSOI4ezlskhCkyI7gpXJUswObh+4IwGDz+XcmSHUjjlc6O8nmSET8IZ2HZdnslVymWUkxiAowvHUZC52TV+1cYNnuqyMOy0gbP7wJwxHqT5Zch9g1hj1IngWRkStE9qYeHFao1CtBAjjW1DBypHYeuHnPCL+EY2Fr5ecJgD8Y2XP2onDN8kIpy8ul5u49qWfVBHt6t0bNOmxstLdfRAmprnGMo/LDphVsuwMb5VSCOXdzeT+uPGCZcmDmbKulfvKQQY9TElrV2/6NeiFzhnxpYQUySZtUigO0NP3hXcjx/A1wM9cKwAPv0BRRWMaFv6j84ijRHVNKOEbjwzoj5IVWFqvViNGua1uaJl6PL930rO+yLYNUzLhSi/z4SJ2bVL+JyNTIPJLpyjYWH/peHgbUONqXDmoY57lHXqgzZm/2Saj8StVyePAJ00f6nsvqOUqbV9L0yLK1m6Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(36756003)(6486002)(83380400001)(316002)(6512007)(52116002)(186003)(26005)(6666004)(6506007)(1076003)(2616005)(508600001)(7416002)(8936002)(86362001)(38100700002)(5660300002)(38350700002)(2906002)(66476007)(66946007)(4326008)(8676002)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z0hIWHFkWjhuRXQ0dzZkRnpjVDQxRlIzNWJXbEJnNmg2M05CT0t4My9GU3Fp?=
+ =?utf-8?B?TUFRZVBaZEpVVjZDRFc0bWN6dW9GdkVmVkdZempRTkVZVyt1bldSVkczLzBk?=
+ =?utf-8?B?eGdQQjZmNGt3MnB2aHhpT0Vsb2wwdUVGMThVVlVXeDFyWWtjR0R4c0NhTWNF?=
+ =?utf-8?B?M3hRZ1d0QjVWQ0xBNVluUGh4bW9YOGtwdWxiUENPVGJUSWhETEdRNTBFOG9C?=
+ =?utf-8?B?REFTc1paelhIaFVwVmx5bHhHM2RBQnRuNWdnQzZKWmYwOGJaNGtNVVMxdXpO?=
+ =?utf-8?B?Qm42Z2drME1sYnp1U3gyUjNIQVJvY2tLL294SitZTWZLekV1aU1qTXg1OEpr?=
+ =?utf-8?B?OGFUUDVHVFdHUGlmWGUrWnl6OXc0R0pTTUlBU2FLaVdSSkhKVHpBTGxac2lx?=
+ =?utf-8?B?ODRiN2lMc0pnS01aajh5cGVIY2V6RDhEZUtOYWFGdjBZWXYwd2NkRVE4VFAz?=
+ =?utf-8?B?b1IrVmdQakRrdVpJVS92WGwzdWdWZlpiRmlwL0tEMWl3VGZkYm43dVJHdUM0?=
+ =?utf-8?B?VGNEcXNPOStsNXdHUjdIUWo0M2ZpaG5nalpYRzBuc2NMRnIrV2lwYmZYaVRW?=
+ =?utf-8?B?NGxXbXQxOEFTNEltbW43c21za05PSVhaMDdxNExwU0Ntem5KSWVuWWdLQXFC?=
+ =?utf-8?B?dFRabzI1L0hNWTUrN1JPUHJnNmNRZCs5NFlGaGl4UmwvQnp0cHJqOHZiSklx?=
+ =?utf-8?B?YWtyTmN2V0lMeFZiWFVtaytIY1p4N1UwUHVCLzJsVlhFNjRJazZ1UEd3VlpF?=
+ =?utf-8?B?WTZDSy85VmF0THlFaXJ5N3hqUjF0cnhMQnQ1WUhsQUQwM2dXM01TSzNHeXBk?=
+ =?utf-8?B?WVBqRnUvOGcrM0NDZXVya3pycGtwNDlQbkdyZkxvajUrSXNYUEpZYk9Hd1Av?=
+ =?utf-8?B?NWQxcy8ya1ZZR0JwUlNCYmtRUTVLN1Nralk0dHU4K1FPdE92ck9VTEI4R0c0?=
+ =?utf-8?B?bno4UEl5SFhwOHR0cDU3c3ZNbjgzRGtPNldvUUVNRTJYYUltY0ZTckN0WW9v?=
+ =?utf-8?B?dERlOVhoTG11eUd1enVXc0F4ME4xa3lKYTVhbWwwVGdmYmd4akF4Y2pUS1No?=
+ =?utf-8?B?WUJoUWtId1RJOGphL0F0eW9tS1ZidGF2ekZUT3dmUVlNWVpCL05FMnBGNDNZ?=
+ =?utf-8?B?UkI3Q2xXckRTSVc2MHZ0M3BOY0RVcTdmdDJ3ZDlTRHJkQzNhMUxISTZIUXda?=
+ =?utf-8?B?SjFocE9ad3Z1K0RHcjlEOVNQZlQwcEJwbTFrWXZ5ZUF4MUYwdnVGc3NoZWdr?=
+ =?utf-8?B?bWhNeWQzRWxXdlNKTmU3OWwrWTlpSzc4WTRpam5mK0FZakw5YWcyUDdlQjBt?=
+ =?utf-8?B?UVZpUVQyaFN1M3VJS1hhLzViSWhTelp3L0Nkb2tGSGRjaFBDaGVpWThabHdF?=
+ =?utf-8?B?SkZ6NEk2ZHIyMjVqYkhsY3AvZ2tuVkFLa2VyNmJQc3FnbXRIYkEwZ3FkNVQw?=
+ =?utf-8?B?VnVNdm5hckdhSkpSeWxzVUUzYjdvejRCRXRuMXhHYThRQk9Cd05XbHQ4ZmJM?=
+ =?utf-8?B?T2EzNFM5WEtZcCs5ZTlFNVlrZ2YxKzZFeFFPWDl6TVlVT1lJK2VvUG5HQkRi?=
+ =?utf-8?B?MlFuWlYySkFuN3MyWHpaZEg4QTdHT1dsODVXYkRydWZ5aXlMQXJNVmV3MTcy?=
+ =?utf-8?B?T3VVekVnUC9VaEZ1ZEFXVk44NzZYYXJEUVJ6YTNlY1gzZ1dmK3lFMDhQK2tD?=
+ =?utf-8?B?K3RDMFlIVlFQYlJUYzFRYXJ2S2RrTkx3UUNFaWp3eWNVQXZGcFliekJ3Tmdj?=
+ =?utf-8?B?c2ZDb28rbVhzWXNyR21KVTVwSTkrbkNlQzRHZEpuRXNpeWd4czBRdGdVUGlZ?=
+ =?utf-8?B?Wjk1ZG9YODZoNjM3MWd5Rnl0c1pkdU0zSXRIMmtOV3QwWmQzOU95djR2YzdB?=
+ =?utf-8?B?ZnhCcWhaUy9PY3JtWENaOVIvazlxdUIyQ3hhNkJ3ZkVOK1FOaGFMdFVvU1c2?=
+ =?utf-8?B?MWwrbW1NazhkQlFvVzJYM0g5L2ZGbFdhZ0VVdFpOQnQwQitwWEV1aXA0TUs4?=
+ =?utf-8?B?ai96Q0JkRWJ3OW5XdFoxOHdpeHEzbGQ4UytPbGM4Z0pZVjRiTmFxODNoU3k4?=
+ =?utf-8?B?Um4yc1VaQUVFOHk1QTNmOFFoRUtkQ3V2b3l6MWxHSnlzWjN2VUhsbmtHZDg3?=
+ =?utf-8?B?ZmIrNEd3S3hnYVBUYm4rT0k1US9Qd0JhME94U3N3TzhxempPaE8vcHp2UkRY?=
+ =?utf-8?B?UCtoY29aWFpXZVpkd3N4WDZoTSt3TkNOaWJiTHlUSXltdUVnSDVrd0dhb2Zt?=
+ =?utf-8?B?aUFxNWwyck9wYVZ4eDhlL3dCQ21oMjdDV2h5ckhmZEhLREl4UTdPTXl2Z0k3?=
+ =?utf-8?B?OU8rMjF4ZnpidXZ5WTZ1ZnpxWUlSS2NNZjRueGtkQ2kxR2ZrcW4zZz09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ff52a59-af6c-4e5d-de66-08da1468e441
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2022 05:23:16.8303
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: r8FMC7dfl1s/71PZc7UxR8NSx33vg9mZgd28TnJom6abuDirfZlZmmFdQKO+M+2xUPD5FJ//s+gjnFGDHPiQJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8750
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To support machine that only choose one of the rt5682s and rt5682 as
-headset codec, adds new compatible string "mt8192_mt6359_rt1015p_rt5682s".
-Meanwhile, using macros to simplifies card name and compatible name.
+Hi,
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
----
- sound/soc/mediatek/Kconfig                    |  1 +
- .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 63 ++++++++++++-------
- 2 files changed, 41 insertions(+), 23 deletions(-)
+This is the v6 series to add i.MX8qxp LVDS PHY mode support for the Mixel
+PHY in the Freescale i.MX8qxp SoC.  Comparing to v5, this version only
+rebases the series upon v5.17-rc1.
 
-diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-index d515613a79da..cacfbab4262d 100644
---- a/sound/soc/mediatek/Kconfig
-+++ b/sound/soc/mediatek/Kconfig
-@@ -176,6 +176,7 @@ config SND_SOC_MT8192_MT6359_RT1015_RT5682
- 	select SND_SOC_RT1015
- 	select SND_SOC_RT1015P
- 	select SND_SOC_RT5682_I2C
-+	select SND_SOC_RT5682S
- 	select SND_SOC_DMIC
- 	help
- 	  This adds ASoC driver for Mediatek MT8192 boards
-diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-index fd140df0fd23..780ba7106d9f 100644
---- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-@@ -28,6 +28,14 @@
- #define RT1015_DEV0_NAME	"rt1015.1-0028"
- #define RT1015_DEV1_NAME	"rt1015.1-0029"
- 
-+#define RT1015_RT5682_CARD_NAME "mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_CARD_NAME "mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_CARD_NAME "mt8192_mt6359_rt1015p_rt5682s"
-+
-+#define RT1015_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682s"
-+
- struct mt8192_mt6359_priv {
- 	struct snd_soc_jack headset_jack;
- 	struct snd_soc_jack hdmi_jack;
-@@ -68,8 +76,8 @@ static int mt8192_rt1015_i2s_hw_params(struct snd_pcm_substream *substream,
- 	return snd_soc_dai_set_sysclk(cpu_dai, 0, mclk_fs, SND_SOC_CLOCK_OUT);
- }
- 
--static int mt8192_rt5682_i2s_hw_params(struct snd_pcm_substream *substream,
--				       struct snd_pcm_hw_params *params)
-+static int mt8192_rt5682x_i2s_hw_params(struct snd_pcm_substream *substream,
-+					struct snd_pcm_hw_params *params)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
- 	struct snd_soc_card *card = rtd->card;
-@@ -118,8 +126,8 @@ static const struct snd_soc_ops mt8192_rt1015_i2s_ops = {
- 	.hw_params = mt8192_rt1015_i2s_hw_params,
- };
- 
--static const struct snd_soc_ops mt8192_rt5682_i2s_ops = {
--	.hw_params = mt8192_rt5682_i2s_hw_params,
-+static const struct snd_soc_ops mt8192_rt5682x_i2s_ops = {
-+	.hw_params = mt8192_rt5682x_i2s_hw_params,
- };
- 
- static int mt8192_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
-@@ -950,7 +958,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.init = mt8192_rt5682_init,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s8),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "I2S9",
-@@ -959,7 +967,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s9),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "CONNSYS_I2S",
-@@ -1039,7 +1047,7 @@ static struct snd_soc_codec_conf rt1015_amp_conf[] = {
- };
- 
- static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015_rt5682",
-+	.name = RT1015_RT5682_CARD_NAME,
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
-@@ -1053,14 +1061,13 @@ static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
- 	.num_configs = ARRAY_SIZE(rt1015_amp_conf),
- };
- 
--static const struct snd_soc_dapm_widget
--mt8192_mt6359_rt1015p_rt5682_widgets[] = {
-+static const struct snd_soc_dapm_widget mt8192_mt6359_rt1015p_rt5682x_widgets[] = {
- 	SND_SOC_DAPM_SPK("Speakers", NULL),
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
--static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
-+static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682x_routes[] = {
- 	/* speaker */
- 	{ "Speakers", NULL, "Speaker" },
- 	/* headset */
-@@ -1069,23 +1076,22 @@ static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
- 	{ "IN1P", NULL, "Headset Mic" },
- };
- 
--static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682_controls[] = {
-+static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682x_controls[] = {
- 	SOC_DAPM_PIN_SWITCH("Speakers"),
- 	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
- 	SOC_DAPM_PIN_SWITCH("Headset Mic"),
- };
- 
--static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015p_rt5682",
-+static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682x_card = {
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
--	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
--	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
--	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
--	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
--	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
--	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
-+	.controls = mt8192_mt6359_rt1015p_rt5682x_controls,
-+	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_controls),
-+	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682x_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_widgets),
-+	.dapm_routes = mt8192_mt6359_rt1015p_rt5682x_routes,
-+	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_routes),
- };
- 
- static int mt8192_mt6359_card_set_be_link(struct snd_soc_card *card,
-@@ -1119,9 +1125,16 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	card->dev = &pdev->dev;
- 
-+	if (of_device_is_compatible(pdev->dev.of_node, RT1015P_RT5682_OF_NAME))
-+		card->name = RT1015P_RT5682_CARD_NAME;
-+	else if (of_device_is_compatible(pdev->dev.of_node, RT1015P_RT5682S_OF_NAME))
-+		card->name = RT1015P_RT5682S_CARD_NAME;
-+	else
-+		dev_dbg(&pdev->dev, "No need to set card name\n");
-+
- 	hdmi_codec = of_parse_phandle(pdev->dev.of_node, "mediatek,hdmi-codec", 0);
- 	if (!hdmi_codec)
--		dev_info(&pdev->dev, "The machine don't have hdmi-codec\n");
-+		dev_dbg(&pdev->dev, "The machine don't have hdmi-codec\n");
- 
- 	platform_node = of_parse_phandle(pdev->dev.of_node, "mediatek,platform", 0);
- 	if (!platform_node) {
-@@ -1209,12 +1222,16 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- #ifdef CONFIG_OF
- static const struct of_device_id mt8192_mt6359_dt_match[] = {
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015_rt5682",
-+		.compatible = RT1015_RT5682_OF_NAME,
- 		.data = &mt8192_mt6359_rt1015_rt5682_card,
- 	},
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682",
--		.data = &mt8192_mt6359_rt1015p_rt5682_card,
-+		.compatible = RT1015P_RT5682_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
-+	},
-+	{
-+		.compatible = RT1015P_RT5682S_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
- 	},
- 	{}
- };
+The Mixel PHY is MIPI DPHY + LVDS PHY combo, which can works in either
+MIPI DPHY mode or LVDS PHY mode.  The PHY mode is controlled by i.MX8qxp
+SCU firmware.  The PHY driver would call a SCU function to configure the
+mode.
+
+The PHY driver is already supporting the Mixel MIPI DPHY in i.MX8mq SoC,
+where it appears to be a single MIPI DPHY.
+
+
+Patch 1/5 sets PHY mode in the Northwest Logic MIPI DSI host controller
+bridge driver, since i.MX8qxp SoC embeds this controller IP to support
+MIPI DSI displays together with the Mixel PHY.
+
+Patch 2/5 allows LVDS PHYs to be configured through the generic PHY functions
+and through a custom structure added to the generic PHY configuration union.
+
+Patch 3/5 converts mixel,mipi-dsi-phy plain text dt binding to json-schema.
+
+Patch 4/5 adds dt binding support for the Mixel combo PHY in i.MX8qxp SoC.
+
+Patch 5/5 adds the i.MX8qxp LVDS PHY mode support in the Mixel PHY driver.
+
+
+Welcome comments, thanks.
+
+v5->v6:
+* Rebase the series upon v5.17-rc1.
+* Set PHY mode in ->mode_set() instead of ->pre_enable() in the nwl-dsi
+  bridge driver in patch 1/5 due to the rebase.
+* Drop Guido's R-b tag on patch 1/5 due to the rebase.
+* Resend with linux-phy ML Cc'ed and reviewer mail addresses updated for
+  patch 1/5.
+
+v4->v5:
+* Align kernel-doc style of include/linux/phy/phy-lvds.h to
+  include/linux/phy/phy.h for patch 2/5. (Vinod)
+* Trivial tweaks on patch 2/5.
+* Drop Robert's R-b tag on patch 2/5.
+
+v3->v4:
+* Add all R-b tags received from v3 on relevant patches and respin. (Robert)
+
+v2->v3:
+* Improve readability of mixel_dphy_set_mode() in the Mixel PHY driver. (Guido)
+* Improve the 'clock-names' property in the PHY dt binding.
+
+v1->v2:
+* Convert mixel,mipi-dsi-phy plain text dt binding to json-schema. (Guido)
+* Print invalid PHY mode in dmesg from the Mixel PHY driver. (Guido)
+* Add Guido's R-b tag on the patch for the nwl-dsi drm bridge driver.
+
+Liu Ying (5):
+  drm/bridge: nwl-dsi: Set PHY mode in nwl_dsi_mode_set()
+  phy: Add LVDS configuration options
+  dt-bindings: phy: Convert mixel,mipi-dsi-phy to json-schema
+  dt-bindings: phy: mixel: mipi-dsi-phy: Add Mixel combo PHY support for
+    i.MX8qxp
+  phy: freescale: phy-fsl-imx8-mipi-dphy: Add i.MX8qxp LVDS PHY mode
+    support
+
+ .../bindings/phy/mixel,mipi-dsi-phy.txt       |  29 --
+ .../bindings/phy/mixel,mipi-dsi-phy.yaml      | 107 +++++++
+ drivers/gpu/drm/bridge/nwl-dsi.c              |   6 +
+ .../phy/freescale/phy-fsl-imx8-mipi-dphy.c    | 269 +++++++++++++++++-
+ include/linux/phy/phy-lvds.h                  |  32 +++
+ include/linux/phy/phy.h                       |   4 +
+ 6 files changed, 407 insertions(+), 40 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/mixel,mipi-dsi-phy.yaml
+ create mode 100644 include/linux/phy/phy-lvds.h
+
 -- 
-2.18.0
+2.25.1
 
