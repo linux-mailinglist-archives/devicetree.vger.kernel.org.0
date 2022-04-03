@@ -2,155 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F12A24F0BA3
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 19:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDBD74F0C3E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 20:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359703AbiDCRsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 13:48:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34252 "EHLO
+        id S1352026AbiDCTAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 15:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359697AbiDCRsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 13:48:32 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9829525C53
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 10:46:37 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id c7so11328103wrd.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 10:46:37 -0700 (PDT)
+        with ESMTP id S234612AbiDCTAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 15:00:33 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B50B646F
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 11:58:36 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so6472538wmb.4
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 11:58:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2g9qaHCuEJMeVa5OH4CWlrCXm2yddjigX6r4a3uF+bk=;
-        b=rcwgiQ7fmqJ88I3Jf91Mfta3uYZ8QtARp8w3WvGxtOHFN5fZNFmW70GTLdCa+yulK6
-         G1TQqMyFTSv38tQlFw7YE3v+xWA2YnoFTqymhC/NHvco4y+S2tmJLG2xyurtaC0KgXOB
-         wiMYSwPMiKS8/ujZgjjoHtisF80DdrfbCkajBtwW0UA25BRv9V1+toF9PMrVsUgNP36V
-         UQmUbDPZQbb30nyTo09vqGSLii/75jeVxcpcVgFsL94njAAGr9cIAlbGmBuo8XAXAJXh
-         293NODuR0ay1dMB/pqalvnojX4AGMf2XKfHZ646Nu1f+COAWPXVQV9TZdqV8CpEBgLC8
-         Zh7Q==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=t/RpIWdhbQVBXdaJ9oI5/IoGk7GgpeKKoOGSNN4wvL4=;
+        b=iiuksQImYHQwFGIIvxhiUz1Kb7RqQfCkD9nr2/f9EKEev9O1Gerai4R+qVyYrIqgGx
+         nitAv//xgEQNlKcwzDj8hHfToG/ZXHGJO94o+PqurCzSX6zSrMqIx4NsIG2+61MIs3DM
+         H/2NklABJqKRd2J95fJCHDgnjQjfD8UsWsj6+sqOcPS1nVtPR+hGx5uzY+BQ0+a3ssnl
+         azRlg9npq9HlKarVHYEgprjkGiq4LTNfkQxuSwl+s+MPxn+9OBhy0YIceeO/cp+GiS/2
+         /665pzb6/czZxtTshSQc8c43PpTc5ymPNf1sOa6ERhZ6BTL0QNHJVWVukWfvUr2gLBHB
+         7J3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2g9qaHCuEJMeVa5OH4CWlrCXm2yddjigX6r4a3uF+bk=;
-        b=IoEMqR8vmgTXDb+Ku3vFjw9hAqe07LJH1/wA7LF8ESWYJ8YZLeJUZSw01Lqx4Z8+Pp
-         sC5a1NbTixxrS+cSbO/eqSEZ4QXkaawA11Q8OCXV4nUb9wjC6U1fqwx/Q3dWVlrr407h
-         NzKW2VGN9X7R7VBXKMh4+O5Vb6woUaPO9vtqVrGnJtYIfyKHMG66pHUNnSZ5fhJ/Wvv6
-         t9sq/TYXp1+f8+1Zb3ZLmIrK+Uvr52tJvCLfIBvMtH0OuevdxHvm9OFKDYKFNtN+D9Yk
-         bDokhGlEYbiRodsgN9PtocLx+FeVFgjTNZIh2K/PhsmKBu7BjbkhlgXhOWUKkaz5Xkwr
-         HFgQ==
-X-Gm-Message-State: AOAM531K89XATiNIX3dmsN4IPqcek26m9qHQ26UQ9uTJUBzxmNTbg/pR
-        +jpSpYI3FTGfEV2CKp5X6aejDQ==
-X-Google-Smtp-Source: ABdhPJy2DSeufMTTGlQGYb78V/qM1iOXosW2NM+9ShpV4un5yPctthuLTvns43Z+dwPourVAYXovxQ==
-X-Received: by 2002:a5d:4e8a:0:b0:206:d4f:86 with SMTP id e10-20020a5d4e8a000000b002060d4f0086mr2916038wru.301.1649007996129;
-        Sun, 03 Apr 2022 10:46:36 -0700 (PDT)
-Received: from [192.168.0.172] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id p18-20020a1c5452000000b0038e70261309sm1750080wmi.1.2022.04.03.10.46.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Apr 2022 10:46:35 -0700 (PDT)
-Message-ID: <30aa1bdc-8b77-1077-a0a5-258ea0d27f71@linaro.org>
-Date:   Sun, 3 Apr 2022 19:46:34 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=t/RpIWdhbQVBXdaJ9oI5/IoGk7GgpeKKoOGSNN4wvL4=;
+        b=nW8vOGrIM9Qu6znsdM5eJOHYB3nIcA9Oh0lP8X28EGNYSZNRjZH3Q+SxLIYPrGo89U
+         uKp2NoUgy0V6kjpEp0mWOYVM5rYsuGSWXGfSfRcnY2NkMbV6oR8caAKJWqRUDYP9C2aI
+         XjfShTs6qv4sBMHHe+xqcC7cUi4yNB8pRCQQcfofvb6fC4+/g3oPB2TTsCuOn900a2xo
+         aTQ06UdOm+COraU7udfhRW6xRIqq/l/3ZKRMp3AjeAtxXpieDyorHel/ryet2hbEmhXe
+         sUDNHn6e55y21+YjPv8+Y4H75DZP4tEXjihEUAGWxnH5AOUJfN1JZYJhCe9MHn6X8Gm/
+         LIUQ==
+X-Gm-Message-State: AOAM5330kBnI2rB5DSrLATW1SLDX5vkcssTGACjDRwaLQpO2QRRG75/7
+        msHWSX5Nl3fusOHSwNooYIDxrA==
+X-Google-Smtp-Source: ABdhPJzaazCPH6bFmU44UKKw6seoXSI3MBgT9c48Etfj1O+qSs+lrQUM2JPkuI1O1SQe4ZWjHVI07g==
+X-Received: by 2002:a05:600c:1c1e:b0:38c:b393:b357 with SMTP id j30-20020a05600c1c1e00b0038cb393b357mr16709948wms.66.1649012315105;
+        Sun, 03 Apr 2022 11:58:35 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id m7-20020adffe47000000b002060d09327fsm2505092wrs.16.2022.04.03.11.58.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Apr 2022 11:58:34 -0700 (PDT)
+Date:   Sun, 3 Apr 2022 20:58:32 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 28/33] dt-bindings: crypto: rockchip: convert to new
+ driver bindings
+Message-ID: <YknuWEOPq+I6jq9X@Red>
+References: <20220401201804.2867154-1-clabbe@baylibre.com>
+ <20220401201804.2867154-29-clabbe@baylibre.com>
+ <30305936-4b69-e1ce-44c2-0d1d113b460e@linaro.org>
+ <d092ede9-df92-9b34-d2d0-5da043e11679@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RFC PATCH 4/4] ufs: set power domain performance state when
- scaling gears
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Nitin Rawat <quic_nitirawa@quicinc.com>,
-        Asutosh Das <quic_asutoshd@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Bean Huo <beanhuo@micron.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-References: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
- <20220401145820.1003826-5-krzysztof.kozlowski@linaro.org>
- <YkdWvVVp4RloGjkC@ripper>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YkdWvVVp4RloGjkC@ripper>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d092ede9-df92-9b34-d2d0-5da043e11679@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 21:47, Bjorn Andersson wrote:
-> On Fri 01 Apr 07:58 PDT 2022, Krzysztof Kozlowski wrote:
+Le Sat, Apr 02, 2022 at 02:07:26PM +0200, Krzysztof Kozlowski a écrit :
+> On 02/04/2022 13:53, Krzysztof Kozlowski wrote:
+> > On 01/04/2022 22:17, Corentin Labbe wrote:
+> >> The latest addition to the rockchip crypto driver need to update the
+> >> driver bindings.
+> >>
+> >> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> >> ---
+> >>  .../crypto/rockchip,rk3288-crypto.yaml        | 68 +++++++++++++++++--
+> >>  1 file changed, 63 insertions(+), 5 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> >> index 66db671118c3..e6c00bc8bebf 100644
+> >> --- a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> >> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> >> @@ -11,8 +11,18 @@ maintainers:
+> >>  
+> >>  properties:
+> >>    compatible:
+> >> -    enum:
+> >> -      - rockchip,rk3288-crypto
+> >> +    oneOf:
+> >> +      - description: crypto IP present on RK3288 SoCs
+> >> +        items:
+> >> +          - const: rockchip,rk3288-crypto
+> >> +      - description: crypto IP present on RK3328 SoCs
+> > 
+> > These two comments are not helping, so this should be just enum.
+> > 
+> >> +        items:
+> >> +          - const: rockchip,rk3328-crypto
+> >> +      - description: crypto IPs present on RK3399. crypto0 is the first IP with
+> >> +                     RSA support, crypto1 is the second IP without RSA.
+> > 
+> > The second part of this comment is helpful, first not. You have chosen
+> > enum in your first patch, so just extend it with comments. Additionally
+> > indexing does not scale. What if next generation reverses it and crypto0
+> > does not have RSA and crypto1 has?
 > 
->> Scaling gears requires not only scaling clocks, but also voltage levels,
->> e.g. via performance states.
->>
->> USe the provided OPP table, to set proper OPP frequency which through
->> required-opps will trigger performance state change.
->>
+> Actually let me re-think this. Is programming model (registers?) same
+> between crypto0 and crypto1? If yes, this should be same compatible and
+> add a dedicated property "rockchip,rsa"?
 > 
-> This looks quite nice! Just two questions about the path looking forward.
+> I looked at your driver and you modeled it as main and sub devices. I
+> wonder why - are there some dependencies? It would be helpful to have
+> such information here in commit msg as well. Your commit #26 says that
+> only difference is the RSA.
 > 
-> If we where to extend the opp core to allow specifying the clock rate
-> for some N first clocks (similar to how e.g. regulators are handled) it
-> seems possible to extend this to replace the freq-table property as
-> well. Would you agree?
 
-Yes, although that might be trickier. The frequency is a key. I'll take
-a look whether it could be changed to multiple values like the voltage.
+Hello
 
-> 
-> 
-> The other missing required feature (in this area) from the upstream UFS
-> driver is the ability of voting for interconnect bandwidth. Based on
-> your path it would be trivial to specify different values for the votes
-> for each speed, but looking at downstream [1] (each row represents the
-> vote for the two paths in KB/s) indicates a more complex relationship
-> between gear and voted bandwidth.
-> 
-> This was the reason I suggested that perhaps we need to key the
-> opp-table based on the gear? But I don't think there would be any issue
-> detecting this in runtime...
-> 
-> [1] https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/waipio.dtsi#L1982
+There is no dependency, my only problem is that only one of 2 instance need to register crypto algos.
+The only perfect way is to have a list_head of devices, but I found this a bit complex/overkill.
+I understand my current way is not ideal, I will probably try this other way. In that case, yes problably the 2 node need to have the same compatible (and only a future rockchip,rsa will permit to distinct where RSA is).
 
-It should be doable with current bindings, assuming that gear is some
-imaginary frequency. We have two interconnects for UFS (the DDR and CPU)
-and OPP bindings allow to specify opp-peak-kBps and opp-avg-kBps for all
-of interconnects. IOW, the opp-peak-kBps will have two values and
-opp-avg-kBps as well.
-
-What would be still missing is scaling clocks.
-
-interconnects = <&ddr>, <&cpu>
-interconnect-names = "ufs-ddr", "cpu-ufs";
-opp-table {
-  // gear 1 or some core clock frequency?
-  opp-1 {
-    opp-hz = /bits/ 64 <75000000>, <0>, <0>, <75000000> ....;
-    opp-avg-kBps = <922 1000>;
-    opp-peak-kBps = <0 0>;
-    required-opps = <&rpmpd_opp_low_svs>;
-  }
-}
-
-arch/arm64/boot/dts/qcom/sdm630.dtsi already uses it.
-
-I think still the problem is scaling of multiple clocks, depending on
-the gear.
-
-Best regards,
-Krzysztof
+Regards
