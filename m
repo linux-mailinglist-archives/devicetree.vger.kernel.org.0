@@ -2,124 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1727A4F09CF
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 15:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDDB4F09E3
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 15:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358814AbiDCNSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 09:18:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44732 "EHLO
+        id S1358488AbiDCNUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 09:20:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358848AbiDCNRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 09:17:54 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF002655;
-        Sun,  3 Apr 2022 06:16:00 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id z128so6189365pgz.2;
-        Sun, 03 Apr 2022 06:16:00 -0700 (PDT)
+        with ESMTP id S233134AbiDCNUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 09:20:05 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DBDC654E;
+        Sun,  3 Apr 2022 06:18:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PfNnbuCnnrrI2HGCtTaPf9X8eo27J8q+BtzO2NSDh9k=;
-        b=W3nkE02niUtCrxE60qZnIXFqTLuGGvXDYFbmnRBXtm/ZI/VAaXcw5Xqus7HTQbkvdf
-         KcTVM2bCrQvDizRqNs1kkHCoCJPAFWRVua/OlPfzEv3KPcxO7/5QbM/9q7tzL4fgz1fU
-         QMhjc7VCxFA0/uoNb81LtTr1T7dEuey8rdOs2vRA8HrrwjpRyIDLFN7eSi1zhku9usof
-         YTqs4werHRBOJCiInOUh9+WTLSSKsDMLf6wqqwaSz4jFavLDz1CAX8FhNygGWLzjNVPL
-         4mUBwf4QV0foNL6m3R+QPVRfvtelSWp8AkxV+NiybpiRY7EULKXGctBBK4DhcaH+VY31
-         Aa3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PfNnbuCnnrrI2HGCtTaPf9X8eo27J8q+BtzO2NSDh9k=;
-        b=umBBUy+NviWWRpYUH/bCJLxiufXVhIlRoXHOEURuo7r9NDXQpGtTt3BwGviQUF9C8J
-         RyrmvAVN63qEIzjCdPn7hO+N8ymtt2YsgvKsGoNSBg4tGX5s1jBvphDJ6VPVAAde6bOu
-         e3fT9vQteHJTKyMN3PvIsgbRnixQf1JAsdFCaUYHAy3PG2cDg38hN+Jf7W5JcH/FpUz8
-         NOMikGuuk0AX0BFq8DyiNV0Uf+A/M3SPN9wpHPV0BEFbWWGlcx3eENNOoNn7zkdiHxsk
-         HYKTRrBwJc8HTOrJ4OFjt6FTH9n55NlT9FnH9Gqwx8dIb56zTU8hNsoEVZJzadT+439y
-         8rNw==
-X-Gm-Message-State: AOAM532ycXNjEfCxIU4vLpXBYpoocJI4OlYIH+buvxJGS/Yj8Aqm7J/r
-        mbbWnPrUXkNmTXpvrV3fYNYXzC6jR+ek0WPhdaU=
-X-Google-Smtp-Source: ABdhPJx/jqW9K6zA3FxhpAum6lnTJzCHjiUWOeOnYjnncDZjy24UF+xT1PnUpPoXV4vMBSuGDYAStw==
-X-Received: by 2002:a05:6a00:124f:b0:4fb:2608:78de with SMTP id u15-20020a056a00124f00b004fb260878demr19139111pfi.27.1648991760243;
-        Sun, 03 Apr 2022 06:16:00 -0700 (PDT)
-Received: from guoguo-omen.lan ([2001:250:3000:7000:7978:d40d:86ff:591d])
-        by smtp.gmail.com with ESMTPSA id w19-20020a056a0014d300b004fae5e3970csm9272416pfu.35.2022.04.03.06.15.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Apr 2022 06:16:00 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list),
-        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
-Subject: [PATCH resend 4/4] arm64: dts: mediatek: add dt node for MTK SNFI
-Date:   Sun,  3 Apr 2022 21:14:53 +0800
-Message-Id: <20220403131453.1269229-5-gch981213@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220403131453.1269229-1-gch981213@gmail.com>
-References: <20220403131453.1269229-1-gch981213@gmail.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1648991891; x=1680527891;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=x+JdWaJ97FFrpcglLaz6xn7zuWH0Ym2G8LL9FRXR2Qw=;
+  b=KSGtw60XAoXybh7QWIFRUCgTZ/ctqKkT8E7Ts5386zrq2Tr71mT78IC3
+   Ad6BGQhSzZCdDXX/wZO+24cHy8t3HT4SMGg6gIpkncg6D7jcLGAKpALsF
+   a2JnDwH1deK04wGzS1yoc8jPyzcaB1QDKBCpnhm92apnl+Q7QjDmfdP93
+   U=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 03 Apr 2022 06:18:10 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2022 06:18:09 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 3 Apr 2022 06:18:08 -0700
+Received: from jprakash-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 3 Apr 2022 06:18:04 -0700
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <mka@chromium.org>,
+        <dmitry.baryshkov@linaro.org>, <robh+dt@kernel.org>,
+        <linus.walleij@linaro.org>, <quic_aghayal@quicinc.com>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <quic_subbaram@quicinc.com>, <jic23@kernel.org>, <amitk@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>
+Subject: [RESEND PATCH V5 0/4] thermal: qcom: Add support for PMIC5 Gen2 ADC_TM
+Date:   Sun, 3 Apr 2022 18:47:45 +0530
+Message-ID: <1648991869-20899-1-git-send-email-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a device-tree node for the MTK SPI-NAND Flash Interface.
+Resending patch series to thermal tree.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- arch/arm64/boot/dts/mediatek/mt7622.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Changes in v5:
+Fixed some compilation errors in patch 4.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 6f8cb3ad1e84..40112fdca67e 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -545,6 +545,18 @@ nandc: nfi@1100d000 {
- 		status = "disabled";
- 	};
- 
-+	snfi: spi@1100d000 {
-+		compatible = "mediatek,mt7622-snand";
-+		reg = <0 0x1100d000 0 0x1000>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		clocks = <&pericfg CLK_PERI_NFI_PD>, <&pericfg CLK_PERI_SNFI_PD>;
-+		clock-names = "nfi_clk", "pad_clk";
-+		ecc-engine = <&bch>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	bch: ecc@1100e000 {
- 		compatible = "mediatek,mt7622-ecc";
- 		reg = <0 0x1100e000 0 0x1000>;
+Changes in v4:
+Addressed comments given by Jonathan (for using put_unaligned_le16)
+and by Dmitry (for using separate init function and correcting args_count)
+for qcom-spmi-adc-tm5.c in patch 4.
+Added init function in patch 3.
+
+Changes in v3:
+Addressed comments given by Jonathan for qcom-spmi-adc-tm5.yaml.
+Addressed comments given by Dmitry and Jonathan for qcom-spmi-adc-tm5.c.
+Split patch for qcom-spmi-adc-tm5.c into two parts, one to refactor
+code to support multiple device generations and the second to add
+actual Gen2 ADC_TM changes.
+
+Changes in v2:
+Split IIO file changes into separate patch.
+Addressed comments given by Dmitry for qcom-spmi-adc-tm5.c.
+
+Changes in v1:
+PMIC5 Gen2 ADC_TM is supported on PMIC7 chips and is a close
+counterpart of PMIC7 ADC. It has the same functionality as
+PMIC5 ADC_TM, to support generating interrupts on ADC value
+crossing upper or lower thresholds for monitored channels.
+
+Jishnu Prakash (4):
+  dt-bindings: thermal: qcom: add PMIC5 Gen2 ADC_TM bindings
+  iio: adc: qcom-vadc-common: add reverse scaling for PMIC5 Gen2 ADC_TM
+  thermal: qcom: Add support for multiple generations of devices
+  thermal: qcom: add support for PMIC5 Gen2 ADCTM
+
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml        | 110 ++++-
+ drivers/iio/adc/qcom-vadc-common.c                 |  11 +
+ drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 486 +++++++++++++++++++--
+ include/linux/iio/adc/qcom-vadc-common.h           |   2 +
+ 4 files changed, 569 insertions(+), 40 deletions(-)
+
 -- 
-2.35.1
+2.7.4
 
