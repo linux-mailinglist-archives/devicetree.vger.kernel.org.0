@@ -2,133 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A374F0869
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 10:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951BF4F08CC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 12:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233657AbiDCIUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 04:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56892 "EHLO
+        id S236643AbiDCKrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 06:47:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237382AbiDCIUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 04:20:49 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2475913F3F
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 01:18:55 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id w18so1356081edi.13
-        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 01:18:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zjIw75ZQdp7MJvbRG37XmPoOfYXyjdA6z7hzyGD4X7U=;
-        b=ePbICS4Nle9krQ+1Rw4HQyX79qmYd5Y221gZjaVTJvdlNHPktyvE5Gi4Mt8eA/NfPK
-         2MPL4t97PWBF1uhGusHLmw7YAgcT10uZwLbyqVS73Eyed2AB7t0JEXXDuEwG2Y2pfcum
-         pPZJ8sjztYp5rVW8Inf30lNYjFpfqerZdWnIMb3nofUj90nC+Q5Gbpj3Apsclfbgqs3S
-         RiV5zf8d4mNffHjjz4uZHNGCruemhNoEjqFItbmlrtYCrDASHsNIWcRhD9xEp3Tp98yV
-         AE5+OmVi1+3CDwmJGentyBNpHKMkLR7FXFFYIFs3ulQE26eCSObSecW7ynV9/A+FgMQZ
-         uUJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zjIw75ZQdp7MJvbRG37XmPoOfYXyjdA6z7hzyGD4X7U=;
-        b=4V/ogA+t2lg8B4ItL2hVlNyAflyKG54GfAbrOx1ExPhMdNZyljMFl0k9qWjmpy1u8H
-         2sEK3sgTjjepqsy6tNa6VlaILF3273pBxcCG+Q2k3vHBtsFCScGEPF2iyCsnmd7N5fwQ
-         FWEOa3WXsgBvtFLBnnEF/9axhV6ieGrj8lUfCY2v4R619oUr4BzXTWiQ3INyRkiI780m
-         m3f4Z7Pm1Im0dRapGSe+Yi2J+BCKZZdZnLZrcB99Cy9Gk1KEp1RK4grw83KexoprtaVS
-         wVLULMj5WD0sfRPuLO51Xin2tDiAmwU2iEyg0lZU1B5QAAV/CPMYPWDrWCWSxjlMd5Q7
-         kTfg==
-X-Gm-Message-State: AOAM530xLq8AvLK7fcFCdyv3kG3H5pH6SoCp8hsocdiCzxG/Q27w3OO1
-        o2hd5dmWOer7wvv5VUjdbJpevQ==
-X-Google-Smtp-Source: ABdhPJyUcj/hNd1jzIjhAS8rb3fkZUbOOSwJm17iYVjG9Wltzxe6juoL3P9jZSILUNIiF8zkB5tYuQ==
-X-Received: by 2002:a05:6402:3496:b0:419:82d5:f1d9 with SMTP id v22-20020a056402349600b0041982d5f1d9mr28246795edc.36.1648973933569;
-        Sun, 03 Apr 2022 01:18:53 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id h7-20020a1709066d8700b006d4b4d137fbsm2989105ejt.50.2022.04.03.01.18.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Apr 2022 01:18:53 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] docs: dt: writing-schema: mention coding style
-Date:   Sun,  3 Apr 2022 10:18:49 +0200
-Message-Id: <20220403081849.8051-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220403081849.8051-1-krzysztof.kozlowski@linaro.org>
-References: <20220403081849.8051-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235668AbiDCKrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 06:47:39 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CF527B3A;
+        Sun,  3 Apr 2022 03:45:45 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1D0B65C00D3;
+        Sun,  3 Apr 2022 06:45:43 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Sun, 03 Apr 2022 06:45:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; bh=6HZ8iNjIAgCAQB38qTd7x41iMNLuwq
+        OQ9SJlAr84yCw=; b=Re+wfepUSGd24kXAN+aOcQk46N3d8rSjQVtmfQsYrsJLcz
+        yvph+Je0dmODjAi/N0cAGJUomEZm1wx0E568bQrmI5bPxmdFWRCGBhlEPmU3xVwz
+        svtO8k7IzaC5OvMw7tUgzwm3nAg0DwXhppr0BJKykCF88b2l3zn/pbq6mF0slXfU
+        NH8F0X3srNr2qwkxqPwet8jw9D3Kq9jpF6cDAs5cJeIwxw87oZwRwXkGjiMrS7rK
+        EepDG1XQpKRsEQ4wbiG/VNMFZ1tJhtTD9BrRrfNiXQq4ILHFAPaPl9h8hJNy6sJF
+        36DxKL780Y0lTZTBx4DKO2ZHKvEd8nScnHZOolSw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=6HZ8iNjIAgCAQB38q
+        Td7x41iMNLuwqOQ9SJlAr84yCw=; b=Q/iNwYhgZr3xWp9c+SDxCqgCi5567v+2T
+        5Qw2wV9sfui/iIOCoKn0HYKhW+WYtQaggMfov9qN3+Hb0GhOFmkP7WH8R/Lli2tE
+        DyZlMUvc+qBryMUSiR5Xb46X1086KfW+1KPDWDvVgL/K/cwaZzQKNIs0OcGoj5dZ
+        xcQ5P6B+mM6soVFSGA763gayBAYrkNDY4W80xTExazYdvYkk1idLL/uqKHHkNvjV
+        rN9RmviJVC+oC2D8G4Z5zX9ZqFOvzxt7sNfPRsvUIW8KvEo31mt7WbTbZc3ac6QV
+        Q+jxzioQcB6RBpXAXOtnH2uC+IQucpsi3zuti/jGb5MZf/BjoQGLg==
+X-ME-Sender: <xms:1npJYjUunK47VUj6Dj-riL_eT76cKddHb65gdOQ9M51WvMsAV6V_OA>
+    <xme:1npJYrlm1YBg4Plq2VsXkwGdY8sYrbNAZ-36ulNMtoWBdHCdzUcS8cZ6Byg9hmDev
+    PEZA_ba1-CwQ4T7TWc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudejtddgfeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
+    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:1npJYvZKE60-WFGOdTMMM1V-V42hYv755AfmQIRRUyWvnD6F6MyBPw>
+    <xmx:1npJYuVaO7pGTxWR8Bc1oQ_qv23RE0Opk3nXc-PkLxyRA0VyvpIIeQ>
+    <xmx:1npJYtk1TzyriWRGtRjkuSBMJdJ5_XZLl-mmiT5AO9-Rvja0roaPlQ>
+    <xmx:13pJYmfwQkXlp9Nm6ckGY_dr8ms-WOJA-cGtoTga6_AVmeU5zYyoUQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 12E0B27402C7; Sun,  3 Apr 2022 06:45:41 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-382-g88b93171a9-fm-20220330.001-g88b93171
+Mime-Version: 1.0
+Message-Id: <877f8b56-8ad7-45ff-ac2f-06ce939578ee@www.fastmail.com>
+In-Reply-To: <CAK8P3a1=Q7JSBLOmxZxGArUx+3Ex8SjDx7Z5csms5k+_yES9zA@mail.gmail.com>
+References: <20220321165049.35985-1-sven@svenpeter.dev>
+ <20220321165049.35985-6-sven@svenpeter.dev>
+ <CAK8P3a2VgrWHerXTX4_wS8UU7fpN9-JZ5xESaWrr-WGYqGty=g@mail.gmail.com>
+ <3166b80d-d8a6-45d5-9e3b-2f9998aca0d3@www.fastmail.com>
+ <CAK8P3a1=Q7JSBLOmxZxGArUx+3Ex8SjDx7Z5csms5k+_yES9zA@mail.gmail.com>
+Date:   Sun, 03 Apr 2022 12:45:21 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Keith Busch" <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
+        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
+        "Marc Zyngier" <maz@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mention the usage of YAML coding style.  Describe explicitly that
-four-space indentation in DTS examples is preferred, because:
-1. The YAML's default two-space indentation for DTS code makes it
-   significantly less readable.
-2. Linux coding style tabs would introduce inconsistency (entire file is
-   indented with spaces).
-3. On the other hand, eight spaces would not align with example's
-   opening '  - |' part.  Four spaces makes the code nicely aligned with
-   it.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/example-schema.yaml        | 14 +++++++-------
- .../devicetree/bindings/writing-schema.rst         |  6 ++++++
- 2 files changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
-index 80a28781845d..8e1a8b19d429 100644
---- a/Documentation/devicetree/bindings/example-schema.yaml
-+++ b/Documentation/devicetree/bindings/example-schema.yaml
-@@ -249,13 +249,13 @@ examples:
-   # be overridden or an appropriate parent bus node should be shown (such as on
-   # i2c buses).
-   #
--  # Any includes used have to be explicitly included.
-+  # Any includes used have to be explicitly included. Use 4-space indentation.
-   - |
-     node@1000 {
--          compatible = "vendor,soc4-ip", "vendor,soc1-ip";
--          reg = <0x1000 0x80>,
--                <0x3000 0x80>;
--          reg-names = "core", "aux";
--          interrupts = <10>;
--          interrupt-controller;
-+        compatible = "vendor,soc4-ip", "vendor,soc1-ip";
-+        reg = <0x1000 0x80>,
-+              <0x3000 0x80>;
-+        reg-names = "core", "aux";
-+        interrupts = <10>;
-+        interrupt-controller;
-     };
-diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
-index 95ecf55559e5..2916edf829db 100644
---- a/Documentation/devicetree/bindings/writing-schema.rst
-+++ b/Documentation/devicetree/bindings/writing-schema.rst
-@@ -108,6 +108,12 @@ The YAML Devicetree format also makes all string values an array and scalar
- values a matrix (in order to define groupings) even when only a single value
- is present. Single entries in schemas are fixed up to match this encoding.
- 
-+Coding style
-+------------
-+
-+Use YAML coding style (two-space indentation). For DTS examples in the schema,
-+preferred is four-space indentation.
-+
- Testing
- -------
- 
--- 
-2.32.0
+On Sat, Apr 2, 2022, at 20:30, Arnd Bergmann wrote:
+> On Sat, Apr 2, 2022 at 2:56 PM Sven Peter <sven@svenpeter.dev> wrote:
+>> On Tue, Mar 22, 2022, at 14:13, Arnd Bergmann wrote:
+>> >> +static int apple_rtkit_worker(void *data)
+>> >> +{
+>> >> +       struct apple_rtkit *rtk = data;
+>> >> +       struct apple_rtkit_work work;
+>> >> +
+>> >> +       while (!kthread_should_stop()) {
+>> >> +               wait_event_interruptible(rtk->wq,
+>> >> +                                        kfifo_len(&rtk->work_fifo) > 0 ||
+>> >> +                                                kthread_should_stop());
+>> >> +
+>> >> +               if (kthread_should_stop())
+>> >> +                       break;
+>> >> +
+>> >> +               while (kfifo_out_spinlocked(&rtk->work_fifo, &work, 1,
+>> >> +                                           &rtk->work_lock) == 1) {
+>> >> +                       switch (work.type) {
+>> >> +                       case APPLE_RTKIT_WORK_MSG:
+>> >> +                               apple_rtkit_rx(rtk, &work.msg);
+>> >> +                               break;
+>> >> +                       case APPLE_RTKIT_WORK_REINIT:
+>> >> +                               apple_rtkit_do_reinit(rtk);
+>> >> +                               break;
+>> >> +                       }
+>> >> +               }
+>> >
+>> > It looks like you add quite a bit of complexity by using a custom
+>> > worker thread implementation. Can you explain what this is
+>> > needed for? Isn't this roughly the same thing that one would
+>> > get more easily with create_singlethread_workqueue()?
+>>
+>> I originally had just a workqueue here but I can only put
+>> one instance of e.g. APPLE_RTKIT_WORK_MSG onto these.
+>> There could however be a new incoming message while the previous
+>> one is still being handled and I couldn't figure out a way
+>> to handle that with workqueues without introducing a race.
+>
+> Are you trying to avoid dynamic allocation of the messages then
+> and have no other place that you can embed it in?
 
+Yeah, I didn't want to allocate anything because of the added
+complexity here like you mentioned.
+
+>
+> If you kmalloc() a messages that embeds a work_struct, you can
+> enqueue as many of those as you want, but the allocation adds
+> complexity through the need for error handling etc.
+>
+> I wonder if you can change the mailbox driver to use a threaded
+> irq handler, which I think should ensure that the callback here
+> is run in process context, avoiding the need to defer execution
+> within the rtkit driver.
+
+Hrm, I just realized that's already the case. mailbox_client.h documents
+rx_callback as "Atomic callback to provide client the data received"
+but since we know rtkit will only ever be combined with that specific
+Apple mailbox we could get away with just ignoring that.
+It's a small hack but it might be worth it since it would reduce
+the complexity inside rtkit.
+
+Sven
