@@ -2,69 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B754F0B1A
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 18:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F12A24F0BA3
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 19:46:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355373AbiDCQMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 12:12:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46770 "EHLO
+        id S1359703AbiDCRsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 13:48:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351647AbiDCQMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 12:12:05 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC2E26541
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 09:10:11 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id ot30so5395837ejb.12
-        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 09:10:11 -0700 (PDT)
+        with ESMTP id S1359697AbiDCRsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 13:48:32 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9829525C53
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 10:46:37 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id c7so11328103wrd.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 10:46:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TyZtZSd5cTSSlPOn3/pu61X0lFqS8ubq/VPK6S5b8ro=;
-        b=Et0x6Y7F1iuWFq4t2YgWOaDRcl9a4JJq2zpna5IXkXVoauGMD9BJDAwx7udZHy3jTk
-         nKToBLqvvTYc3moR/2eKmTGR4nOC+7hwO9l2KArDMRsxbCrElTxr2Jx86nJlPAJDphf7
-         41v41IyW9CujMfn5RvHp+YkOV6NlGN1RDupU4=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2g9qaHCuEJMeVa5OH4CWlrCXm2yddjigX6r4a3uF+bk=;
+        b=rcwgiQ7fmqJ88I3Jf91Mfta3uYZ8QtARp8w3WvGxtOHFN5fZNFmW70GTLdCa+yulK6
+         G1TQqMyFTSv38tQlFw7YE3v+xWA2YnoFTqymhC/NHvco4y+S2tmJLG2xyurtaC0KgXOB
+         wiMYSwPMiKS8/ujZgjjoHtisF80DdrfbCkajBtwW0UA25BRv9V1+toF9PMrVsUgNP36V
+         UQmUbDPZQbb30nyTo09vqGSLii/75jeVxcpcVgFsL94njAAGr9cIAlbGmBuo8XAXAJXh
+         293NODuR0ay1dMB/pqalvnojX4AGMf2XKfHZ646Nu1f+COAWPXVQV9TZdqV8CpEBgLC8
+         Zh7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TyZtZSd5cTSSlPOn3/pu61X0lFqS8ubq/VPK6S5b8ro=;
-        b=0/Anr+kxh/2L+DsdsWJR89+toMsEEnyWkAuVa8/9S6VP7PGvSLnnLAkQnLfyuSHBCK
-         shYtJHSnkIg8xmLrrZnG+4hdZPO0cO3h4FEk3MBPHgAVC90wW5IsPqJzCPAzQQVL0wnO
-         PyLOQaRW+C98etuAtIKNUD/rfvJQqc0WExaKN9WahQ0wZ2++GbqAkJxV4Ts1dr9iSKUE
-         47at7V9gl+fBCFMj13Msz9dyz7hT2OgX1gL14qUH5gFKtSh+0ovPWlmgMAoFB3gNlKma
-         35un1w2+dZTU6wYSgTPRG6Coul2yOgTd4dL/tsTfdt5tn3mr6gQaYPAkABiRMp5hf2dP
-         lHQg==
-X-Gm-Message-State: AOAM531f+EqSwE6W5mTGYg12WwQ2lAGDBE3Fl/qGihsGQOzKeQbL5DrH
-        tPow5K0l0K+lZZlRqqCjvzceww==
-X-Google-Smtp-Source: ABdhPJyboxIs/IjHPPN58voFRnczkg4LSb1oi1jBLbpUgVQlwQVc8XlauFHnkc65mMm4VVsMWKvW9w==
-X-Received: by 2002:a17:907:86a3:b0:6da:870c:af44 with SMTP id qa35-20020a17090786a300b006da870caf44mr7318818ejc.445.1649002210058;
-        Sun, 03 Apr 2022 09:10:10 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-87-0-15-73.retail.telecomitalia.it. [87.0.15.73])
-        by smtp.gmail.com with ESMTPSA id do8-20020a170906c10800b006dfe2af50d8sm3350119ejc.121.2022.04.03.09.10.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Apr 2022 09:10:09 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Rob Herring <robh@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: [PATCH v4 1/6] dt-bindings: input: touchscreen: edt-ft5x06: add report-rate-hz
-Date:   Sun,  3 Apr 2022 18:09:34 +0200
-Message-Id: <20220403160939.541621-2-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220403160939.541621-1-dario.binacchi@amarulasolutions.com>
-References: <20220403160939.541621-1-dario.binacchi@amarulasolutions.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2g9qaHCuEJMeVa5OH4CWlrCXm2yddjigX6r4a3uF+bk=;
+        b=IoEMqR8vmgTXDb+Ku3vFjw9hAqe07LJH1/wA7LF8ESWYJ8YZLeJUZSw01Lqx4Z8+Pp
+         sC5a1NbTixxrS+cSbO/eqSEZ4QXkaawA11Q8OCXV4nUb9wjC6U1fqwx/Q3dWVlrr407h
+         NzKW2VGN9X7R7VBXKMh4+O5Vb6woUaPO9vtqVrGnJtYIfyKHMG66pHUNnSZ5fhJ/Wvv6
+         t9sq/TYXp1+f8+1Zb3ZLmIrK+Uvr52tJvCLfIBvMtH0OuevdxHvm9OFKDYKFNtN+D9Yk
+         bDokhGlEYbiRodsgN9PtocLx+FeVFgjTNZIh2K/PhsmKBu7BjbkhlgXhOWUKkaz5Xkwr
+         HFgQ==
+X-Gm-Message-State: AOAM531K89XATiNIX3dmsN4IPqcek26m9qHQ26UQ9uTJUBzxmNTbg/pR
+        +jpSpYI3FTGfEV2CKp5X6aejDQ==
+X-Google-Smtp-Source: ABdhPJy2DSeufMTTGlQGYb78V/qM1iOXosW2NM+9ShpV4un5yPctthuLTvns43Z+dwPourVAYXovxQ==
+X-Received: by 2002:a5d:4e8a:0:b0:206:d4f:86 with SMTP id e10-20020a5d4e8a000000b002060d4f0086mr2916038wru.301.1649007996129;
+        Sun, 03 Apr 2022 10:46:36 -0700 (PDT)
+Received: from [192.168.0.172] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id p18-20020a1c5452000000b0038e70261309sm1750080wmi.1.2022.04.03.10.46.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Apr 2022 10:46:35 -0700 (PDT)
+Message-ID: <30aa1bdc-8b77-1077-a0a5-258ea0d27f71@linaro.org>
+Date:   Sun, 3 Apr 2022 19:46:34 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC PATCH 4/4] ufs: set power domain performance state when
+ scaling gears
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Nitin Rawat <quic_nitirawa@quicinc.com>,
+        Asutosh Das <quic_asutoshd@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Bean Huo <beanhuo@micron.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
+ <20220401145820.1003826-5-krzysztof.kozlowski@linaro.org>
+ <YkdWvVVp4RloGjkC@ripper>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YkdWvVVp4RloGjkC@ripper>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,44 +92,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It allows to change the M06/M12 default scan rate.
+On 01/04/2022 21:47, Bjorn Andersson wrote:
+> On Fri 01 Apr 07:58 PDT 2022, Krzysztof Kozlowski wrote:
+> 
+>> Scaling gears requires not only scaling clocks, but also voltage levels,
+>> e.g. via performance states.
+>>
+>> USe the provided OPP table, to set proper OPP frequency which through
+>> required-opps will trigger performance state change.
+>>
+> 
+> This looks quite nice! Just two questions about the path looking forward.
+> 
+> If we where to extend the opp core to allow specifying the clock rate
+> for some N first clocks (similar to how e.g. regulators are handled) it
+> seems possible to extend this to replace the freq-table property as
+> well. Would you agree?
 
-Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Yes, although that might be trickier. The frequency is a key. I'll take
+a look whether it could be changed to multiple values like the voltage.
 
----
+> 
+> 
+> The other missing required feature (in this area) from the upstream UFS
+> driver is the ability of voting for interconnect bandwidth. Based on
+> your path it would be trivial to specify different values for the votes
+> for each speed, but looking at downstream [1] (each row represents the
+> vote for the two paths in KB/s) indicates a more complex relationship
+> between gear and voted bandwidth.
+> 
+> This was the reason I suggested that perhaps we need to key the
+> opp-table based on the gear? But I don't think there would be any issue
+> detecting this in runtime...
+> 
+> [1] https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/waipio.dtsi#L1982
 
-Changes in v4:
-- Add Rob Herring 'Acked-by' tag.
+It should be doable with current bindings, assuming that gear is some
+imaginary frequency. We have two interconnects for UFS (the DDR and CPU)
+and OPP bindings allow to specify opp-peak-kBps and opp-avg-kBps for all
+of interconnects. IOW, the opp-peak-kBps will have two values and
+opp-avg-kBps as well.
 
-Changes in v3:
-- Add hz unit suffix.
-- Add '|' to description.
+What would be still missing is scaling clocks.
 
- .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+interconnects = <&ddr>, <&cpu>
+interconnect-names = "ufs-ddr", "cpu-ufs";
+opp-table {
+  // gear 1 or some core clock frequency?
+  opp-1 {
+    opp-hz = /bits/ 64 <75000000>, <0>, <0>, <75000000> ....;
+    opp-avg-kBps = <922 1000>;
+    opp-peak-kBps = <0 0>;
+    required-opps = <&rpmpd_opp_low_svs>;
+  }
+}
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-index 2e8da7470513..46bc8c028fe6 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-@@ -85,6 +85,14 @@ properties:
-     minimum: 0
-     maximum: 80
- 
-+  report-rate-hz:
-+    description: |
-+                 Allows setting the scan rate in Hertz.
-+                  M06 supports range from 30 to 140 Hz.
-+                  M12 supports range from 1 to 255 Hz.
-+    minimum: 1
-+    maximum: 255
-+
-   touchscreen-size-x: true
-   touchscreen-size-y: true
-   touchscreen-fuzz-x: true
--- 
-2.32.0
+arch/arm64/boot/dts/qcom/sdm630.dtsi already uses it.
 
+I think still the problem is scaling of multiple clocks, depending on
+the gear.
+
+Best regards,
+Krzysztof
