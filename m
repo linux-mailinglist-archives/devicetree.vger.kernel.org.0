@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7775E4F0C53
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 21:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE1E4F0C58
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 21:41:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376354AbiDCTmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 15:42:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
+        id S1376373AbiDCTnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 15:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376345AbiDCTmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 15:42:18 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FD427B1D
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 12:40:23 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 17so10386631ljw.8
-        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 12:40:23 -0700 (PDT)
+        with ESMTP id S1376367AbiDCTm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 15:42:58 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B2C39142
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 12:41:04 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bu29so13743157lfb.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 12:41:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HtO1Op4EULGuNh03X4DV2PvRHFpqexefkL4qM7EQ8hs=;
-        b=Vva63TToIflctX178TlzjoBSwvG9ymyH8fkUFzsJbWemLSthhs3fmUiyct2jJXfuul
-         cBWrmGUChH7mrrtvKlbT+UvTMA1kr4EGroRz89d9ZgRjBKqjhw8b6Pjx9Drm+2KP3ffr
-         qCaQcnpudkB1x6f/TsesEIgup+s8tupM0OkNckNeY94nH0LSyoG4CwZboW/Hdt25PAcJ
-         sQFqduKzh+wRrNkQBH2bKey2AY958WP2O9dI5/Wdtz/wZ0MDwOZqcOy8Lz7GFJgKEqMC
-         KQo46IBKc9PhJAb+EVBtnQVsPyqsfla9tpQgL26rsToQlejCjGBroM2zOCQ3JxObDDsq
-         /ggw==
+        bh=Dq9FqcaW4bnGUiA9j/82/g9draFpr45rWxqoYd/sYts=;
+        b=lVhYSCE2MDb8z4KAzynUmf9RWn1oLKfknZAzsOFXpO/ArTUAkPCm3kuNEoIk6VBSFj
+         0c6jwqnZwencjDku5qfuY0qa4uJL50k+uCRvKOc0QJjmyUlekcFEtjxcXapQHIZlfWZD
+         +WI66kMn4E1JVlV8cKGq3OM0f8Z67B710O9/LjzxeHNnC6C05fyO6bagP4cJZScihveV
+         xErn1cE8MuTDI9ZtnJm5p2oAm/d+oyhUPReDd0zSOdbThUvc4vuKoN6ZiPooGJWjh+Pp
+         FBvfHULG0H97IUDvFUL+O8I3RE5T0bsbqGVbkTntlHD90Zl15BlTxXZgO0EWSwcwhb7G
+         YYtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=HtO1Op4EULGuNh03X4DV2PvRHFpqexefkL4qM7EQ8hs=;
-        b=XOgr+bSW1O5DT0byRaS6ASakqF1R3zcprXJhWWINrKG44dqKufe0RgNzMA5Kv+h73x
-         7XcJBa/qOEuG+GguvD8r8T946klSBaqCvVtmUpnioUjRLLmIgO1snIPehiUGf00dwxtt
-         6i5+rZdGrjZII80YzdF0DYJHYXIfbxmVPfvT0XnVxYTE+PbbHv/cnGyP0B6jcL+ebUo0
-         86U/e7aCWgxvGkN/PALPwvTLX1T9EMOUWGz5gx5cOnpJeVGIUICpbM42ONukNX6I4aIE
-         mMrK4YFGrPQtFH9s9vdpkYnYnuzoa/zlNtXA8zcCf/BsCU8T5eP3il5JjCSiXFguvOI+
-         So8Q==
-X-Gm-Message-State: AOAM533Vqg8svqzrc1Vn1ERs0dyWNcnuMN+dzDen/Gf3aPvCbGMZHUNW
-        nwRrO+109s8w9OHAppekHypaKg==
-X-Google-Smtp-Source: ABdhPJw7jctSDj8NStIfPObweDUKTSouSVeuWxido0zNdu27djMaTmXtm8LsIEAvN6zkHp/iSjViQA==
-X-Received: by 2002:a2e:3615:0:b0:24a:fc28:f0b3 with SMTP id d21-20020a2e3615000000b0024afc28f0b3mr10332615lja.4.1649014821787;
-        Sun, 03 Apr 2022 12:40:21 -0700 (PDT)
+        bh=Dq9FqcaW4bnGUiA9j/82/g9draFpr45rWxqoYd/sYts=;
+        b=RgoVtbu8si8yPg/MCk2pzQMaodyPJhA5YoCDmtK4vx/l4iaOJhteRHcdnd2x3jdQEw
+         d++cSOdzMR4oI4RgdErqDltpPf8iRXeVoMMYrmu0nnLhemTmWO+xWRRG2uygpCFZMtAI
+         rVadPon5gQtKYaq5ObkGItB8HrOX61k/YPJsieqdlmXetOZ0p0Z5taFPRKOQg+Oc8wbP
+         Zq8TMTR9cqqP0BLzsqX54IDm0ayIQm+QcDr8h3jOQKbgYqLR8Lel3/IBlTJgMf3HGGR2
+         06zQfnRTX2eZi6+YHT97h3RPyhkF5HMGNs3ZU9MgmffX/MxZ29i8+VzyObEkm9rbf/VW
+         cu9g==
+X-Gm-Message-State: AOAM530JN47fn6xJiE4JhPfQnmIQ4gJT3bdM14iqOpjVecET6uYCPvsx
+        px0a3gPDWoOm8/bN1mQV8uDMOg==
+X-Google-Smtp-Source: ABdhPJxCjEskhGDKkzec7Qnt5xYihh3Cb7EltaO8SJKbXzSEn8n8+xIowvPOjKV6zw2zKKwxb5mDQg==
+X-Received: by 2002:a05:6512:3988:b0:44a:f02e:f28e with SMTP id j8-20020a056512398800b0044af02ef28emr4753853lfu.458.1649014862412;
+        Sun, 03 Apr 2022 12:41:02 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id z16-20020a2e9650000000b0024af767c536sm860592ljh.19.2022.04.03.12.40.20
+        by smtp.gmail.com with ESMTPSA id n2-20020a056512310200b0044a30030d33sm900758lfb.91.2022.04.03.12.41.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Apr 2022 12:40:21 -0700 (PDT)
-Message-ID: <19015645-86ce-5a7e-e2a7-d4af01417b74@linaro.org>
-Date:   Sun, 3 Apr 2022 22:40:20 +0300
+        Sun, 03 Apr 2022 12:41:02 -0700 (PDT)
+Message-ID: <2bc53a5e-4832-429a-d19c-534fec2d43cf@linaro.org>
+Date:   Sun, 3 Apr 2022 22:41:01 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/5] arm64: dts: qcom: msm8996: Revamp reserved memory
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: msm8996: Unify smp2p naming
 Content-Language: en-GB
 To:     Yassine Oudjana <y.oudjana@protonmail.com>,
         Andy Gross <agross@kernel.org>,
@@ -69,14 +69,14 @@ Cc:     AngeloGioacchino Del Regno
         devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20210926190555.278589-1-y.oudjana@protonmail.com>
- <20210926190555.278589-2-y.oudjana@protonmail.com>
+ <20210926190555.278589-4-y.oudjana@protonmail.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20210926190555.278589-2-y.oudjana@protonmail.com>
+In-Reply-To: <20210926190555.278589-4-y.oudjana@protonmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,12 +85,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/09/2021 22:06, Yassine Oudjana wrote:
-> Fix a total overlap between zap_shader_region and slpi_region, and rename
-> all regions to match the naming convention in other Qualcomm SoC device trees.
+> Rename smp2p-modem to smp2p-mpss, and make the subnode labels of smp2p_adsp
+> and smp2p_slpi follow the <name>_smp2p_<out/in> layout.
+> Also move smp2p_slpi_out above smp2p_slpi_in to make it match mpss and adsp
+> where master-kernel is the first subnode.
+> 
+> This patch brings no functional change.
 > 
 > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 
 Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> #db820c
+
 
 -- 
 With best wishes
