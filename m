@@ -2,89 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 951BF4F08CC
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 12:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A35144F08F6
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 13:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236643AbiDCKrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 06:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45602 "EHLO
+        id S1354858AbiDCLRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 07:17:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235668AbiDCKrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 06:47:39 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CF527B3A;
-        Sun,  3 Apr 2022 03:45:45 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 1D0B65C00D3;
-        Sun,  3 Apr 2022 06:45:43 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute2.internal (MEProxy); Sun, 03 Apr 2022 06:45:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; bh=6HZ8iNjIAgCAQB38qTd7x41iMNLuwq
-        OQ9SJlAr84yCw=; b=Re+wfepUSGd24kXAN+aOcQk46N3d8rSjQVtmfQsYrsJLcz
-        yvph+Je0dmODjAi/N0cAGJUomEZm1wx0E568bQrmI5bPxmdFWRCGBhlEPmU3xVwz
-        svtO8k7IzaC5OvMw7tUgzwm3nAg0DwXhppr0BJKykCF88b2l3zn/pbq6mF0slXfU
-        NH8F0X3srNr2qwkxqPwet8jw9D3Kq9jpF6cDAs5cJeIwxw87oZwRwXkGjiMrS7rK
-        EepDG1XQpKRsEQ4wbiG/VNMFZ1tJhtTD9BrRrfNiXQq4ILHFAPaPl9h8hJNy6sJF
-        36DxKL780Y0lTZTBx4DKO2ZHKvEd8nScnHZOolSw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=6HZ8iNjIAgCAQB38q
-        Td7x41iMNLuwqOQ9SJlAr84yCw=; b=Q/iNwYhgZr3xWp9c+SDxCqgCi5567v+2T
-        5Qw2wV9sfui/iIOCoKn0HYKhW+WYtQaggMfov9qN3+Hb0GhOFmkP7WH8R/Lli2tE
-        DyZlMUvc+qBryMUSiR5Xb46X1086KfW+1KPDWDvVgL/K/cwaZzQKNIs0OcGoj5dZ
-        xcQ5P6B+mM6soVFSGA763gayBAYrkNDY4W80xTExazYdvYkk1idLL/uqKHHkNvjV
-        rN9RmviJVC+oC2D8G4Z5zX9ZqFOvzxt7sNfPRsvUIW8KvEo31mt7WbTbZc3ac6QV
-        Q+jxzioQcB6RBpXAXOtnH2uC+IQucpsi3zuti/jGb5MZf/BjoQGLg==
-X-ME-Sender: <xms:1npJYjUunK47VUj6Dj-riL_eT76cKddHb65gdOQ9M51WvMsAV6V_OA>
-    <xme:1npJYrlm1YBg4Plq2VsXkwGdY8sYrbNAZ-36ulNMtoWBdHCdzUcS8cZ6Byg9hmDev
-    PEZA_ba1-CwQ4T7TWc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudejtddgfeefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
-    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:1npJYvZKE60-WFGOdTMMM1V-V42hYv755AfmQIRRUyWvnD6F6MyBPw>
-    <xmx:1npJYuVaO7pGTxWR8Bc1oQ_qv23RE0Opk3nXc-PkLxyRA0VyvpIIeQ>
-    <xmx:1npJYtk1TzyriWRGtRjkuSBMJdJ5_XZLl-mmiT5AO9-Rvja0roaPlQ>
-    <xmx:13pJYmfwQkXlp9Nm6ckGY_dr8ms-WOJA-cGtoTga6_AVmeU5zYyoUQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 12E0B27402C7; Sun,  3 Apr 2022 06:45:41 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-382-g88b93171a9-fm-20220330.001-g88b93171
-Mime-Version: 1.0
-Message-Id: <877f8b56-8ad7-45ff-ac2f-06ce939578ee@www.fastmail.com>
-In-Reply-To: <CAK8P3a1=Q7JSBLOmxZxGArUx+3Ex8SjDx7Z5csms5k+_yES9zA@mail.gmail.com>
-References: <20220321165049.35985-1-sven@svenpeter.dev>
- <20220321165049.35985-6-sven@svenpeter.dev>
- <CAK8P3a2VgrWHerXTX4_wS8UU7fpN9-JZ5xESaWrr-WGYqGty=g@mail.gmail.com>
- <3166b80d-d8a6-45d5-9e3b-2f9998aca0d3@www.fastmail.com>
- <CAK8P3a1=Q7JSBLOmxZxGArUx+3Ex8SjDx7Z5csms5k+_yES9zA@mail.gmail.com>
-Date:   Sun, 03 Apr 2022 12:45:21 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Arnd Bergmann" <arnd@arndb.de>
-Cc:     "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Keith Busch" <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
-        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
-        "Marc Zyngier" <maz@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1356871AbiDCLRD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 07:17:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72AA2ED76;
+        Sun,  3 Apr 2022 04:15:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5793E61035;
+        Sun,  3 Apr 2022 11:15:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD61C340F0;
+        Sun,  3 Apr 2022 11:15:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1648984508;
+        bh=u/JUR2HcE09owMn/zh6CuDg+VeXjsm74g9DSzWR3tjU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e5v/VM4rKaUHSK9Q0PnHjPfsKIiWTfpQuqRcbb30JanPPGnfROxHfjC9NwmV6Kw2X
+         Ny4/NSIZj5AXX/CqxkhBAMbyIYV+ScMTbELc/iTLCLIRg37fyUyffOKzvJLCDJXaHt
+         RQCf3wHCCyaCDzIx5Tvzja4LeR2KPxde8J6t4U7NpZJ8Us0fJYWOtsLdnniJZrwmH1
+         bDGSpVCvbrm0jHIfMBuP3Gd3TEO0NVQ+doxW27RCnkzPx0vsixlHy1xLTzrzmKYM3u
+         0yU5/+u6Q8hVD0g35vKABlTlauzuKET28ixVDQRu9lu4xXMlinD+vZZ+0KkX6wUZtK
+         bac557IDtmAFg==
+Date:   Sun, 3 Apr 2022 13:15:04 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, robh@kernel.org
+Subject: Re: [PATCH 1/2] iio: imu: st_lsm6dsx: add support to ASM330LHHX
+Message-ID: <YkmBuDOSrHzh3pFc@lore-desk>
+References: <cover.1648893892.git.lorenzo@kernel.org>
+ <05cd9e612bf7304542aa1adf12025ae396b87cf2.1648893892.git.lorenzo@kernel.org>
+ <20220402172240.2465e7f5@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="F5Fav6UVPwVhK7sH"
+Content-Disposition: inline
+In-Reply-To: <20220402172240.2465e7f5@jic23-huawei>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -92,67 +57,199 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--F5Fav6UVPwVhK7sH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Apr 2, 2022, at 20:30, Arnd Bergmann wrote:
-> On Sat, Apr 2, 2022 at 2:56 PM Sven Peter <sven@svenpeter.dev> wrote:
->> On Tue, Mar 22, 2022, at 14:13, Arnd Bergmann wrote:
->> >> +static int apple_rtkit_worker(void *data)
->> >> +{
->> >> +       struct apple_rtkit *rtk = data;
->> >> +       struct apple_rtkit_work work;
->> >> +
->> >> +       while (!kthread_should_stop()) {
->> >> +               wait_event_interruptible(rtk->wq,
->> >> +                                        kfifo_len(&rtk->work_fifo) > 0 ||
->> >> +                                                kthread_should_stop());
->> >> +
->> >> +               if (kthread_should_stop())
->> >> +                       break;
->> >> +
->> >> +               while (kfifo_out_spinlocked(&rtk->work_fifo, &work, 1,
->> >> +                                           &rtk->work_lock) == 1) {
->> >> +                       switch (work.type) {
->> >> +                       case APPLE_RTKIT_WORK_MSG:
->> >> +                               apple_rtkit_rx(rtk, &work.msg);
->> >> +                               break;
->> >> +                       case APPLE_RTKIT_WORK_REINIT:
->> >> +                               apple_rtkit_do_reinit(rtk);
->> >> +                               break;
->> >> +                       }
->> >> +               }
->> >
->> > It looks like you add quite a bit of complexity by using a custom
->> > worker thread implementation. Can you explain what this is
->> > needed for? Isn't this roughly the same thing that one would
->> > get more easily with create_singlethread_workqueue()?
->>
->> I originally had just a workqueue here but I can only put
->> one instance of e.g. APPLE_RTKIT_WORK_MSG onto these.
->> There could however be a new incoming message while the previous
->> one is still being handled and I couldn't figure out a way
->> to handle that with workqueues without introducing a race.
->
-> Are you trying to avoid dynamic allocation of the messages then
-> and have no other place that you can embed it in?
+> On Sat,  2 Apr 2022 12:09:29 +0200
+> Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+>=20
+> > Add support to STM  ASM330LHHX (acc + gyro) Mems sensor
+> > https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
+> Use a Datasheet tag as below.
+> Perhaps mention it's an automotive rated sensor and that
+> it's compatible otherwise with xxx existing part.
 
-Yeah, I didn't want to allocate anything because of the added
-complexity here like you mentioned.
+ack, will do
 
->
-> If you kmalloc() a messages that embeds a work_struct, you can
-> enqueue as many of those as you want, but the allocation adds
-> complexity through the need for error handling etc.
->
-> I wonder if you can change the mailbox driver to use a threaded
-> irq handler, which I think should ensure that the callback here
-> is run in process context, avoiding the need to defer execution
-> within the rtkit driver.
+>=20
+> Quick glance at the datasheet suggests this part has a sensor hub...
+> Should it be in a the block with parameters for that as you
+> currently have it in the one for no sensorhub I think.
+>=20
+> Or is it using an incompatible sensor hub interface?
 
-Hrm, I just realized that's already the case. mailbox_client.h documents
-rx_callback as "Atomic callback to provide client the data received"
-but since we know rtkit will only ever be combined with that specific
-Apple mailbox we could get away with just ignoring that.
-It's a small hack but it might be worth it since it would reduce
-the complexity inside rtkit.
+asm330lhhx supports sensor hub with the same configuration of LSM6DSR or
+LSM6DSO.
 
-Sven
+Regards,
+Lorenzo
+
+>=20
+> >=20
+> Datasheet: https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/iio/imu/st_lsm6dsx/Kconfig             | 6 +++---
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h        | 2 ++
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c | 3 ++-
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c   | 6 +++++-
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c    | 5 +++++
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c    | 5 +++++
+> >  6 files changed, 22 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/imu/st_lsm6dsx/Kconfig b/drivers/iio/imu/st_ls=
+m6dsx/Kconfig
+> > index 85860217aaf3..fefd0b939100 100644
+> > --- a/drivers/iio/imu/st_lsm6dsx/Kconfig
+> > +++ b/drivers/iio/imu/st_lsm6dsx/Kconfig
+> > @@ -11,9 +11,9 @@ config IIO_ST_LSM6DSX
+> >  	help
+> >  	  Say yes here to build support for STMicroelectronics LSM6DSx imu
+> >  	  sensor. Supported devices: lsm6ds3, lsm6ds3h, lsm6dsl, lsm6dsm,
+> > -	  ism330dlc, lsm6dso, lsm6dsox, asm330lhh, lsm6dsr, lsm6ds3tr-c,
+> > -	  ism330dhcx, lsm6dsrx, lsm6ds0, lsm6dsop, the accelerometer/gyroscope
+> > -	  of lsm9ds1 and lsm6dst.
+> > +	  ism330dlc, lsm6dso, lsm6dsox, asm330lhh, asm330lhhx, lsm6dsr,
+> > +	  lsm6ds3tr-c, ism330dhcx, lsm6dsrx, lsm6ds0, lsm6dsop,
+> > +	  the accelerometer/gyroscope of lsm9ds1 and lsm6dst.
+> > =20
+> >  	  To compile this driver as a module, choose M here: the module
+> >  	  will be called st_lsm6dsx.
+> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h b/drivers/iio/imu/=
+st_lsm6dsx/st_lsm6dsx.h
+> > index 6ac4eac36458..a86dd29a4738 100644
+> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
+> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
+> > @@ -31,6 +31,7 @@
+> >  #define ST_LSM6DSRX_DEV_NAME	"lsm6dsrx"
+> >  #define ST_LSM6DST_DEV_NAME	"lsm6dst"
+> >  #define ST_LSM6DSOP_DEV_NAME	"lsm6dsop"
+> > +#define ST_ASM330LHHX_DEV_NAME	"asm330lhhx"
+> > =20
+> >  enum st_lsm6dsx_hw_id {
+> >  	ST_LSM6DS3_ID,
+> > @@ -49,6 +50,7 @@ enum st_lsm6dsx_hw_id {
+> >  	ST_LSM6DSRX_ID,
+> >  	ST_LSM6DST_ID,
+> >  	ST_LSM6DSOP_ID,
+> > +	ST_ASM330LHHX_ID,
+> >  	ST_LSM6DSX_MAX_ID,
+> >  };
+> > =20
+> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c b/drivers/i=
+io/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
+> > index 16730a780964..38bb5f645ebd 100644
+> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
+> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
+> > @@ -14,7 +14,8 @@
+> >   * (e.g. Gx, Gy, Gz, Ax, Ay, Az), then data are repeated depending on =
+the
+> >   * value of the decimation factor and ODR set for each FIFO data set.
+> >   *
+> > - * LSM6DSO/LSM6DSOX/ASM330LHH/LSM6DSR/LSM6DSRX/ISM330DHCX/LSM6DST/LSM6=
+DSOP:
+> > + * LSM6DSO/LSM6DSOX/ASM330LHH/ASM330LHHX/LSM6DSR/LSM6DSRX/ISM330DHCX/
+> > + * LSM6DST/LSM6DSOP:
+> >   * The FIFO buffer can be configured to store data from gyroscope and
+> >   * accelerometer. Each sample is queued with a tag (1B) indicating data
+> >   * source (gyroscope, accelerometer, hw timer).
+> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c b/drivers/iio=
+/imu/st_lsm6dsx/st_lsm6dsx_core.c
+> > index b1d8d5a66f01..910397716833 100644
+> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
+> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
+> > @@ -26,7 +26,7 @@
+> >   *   - Gyroscope supported full-scale [dps]: +-125/+-245/+-500/+-1000/=
++-2000
+> >   *   - FIFO size: 4KB
+> >   *
+> > - * - LSM6DSO/LSM6DSOX/ASM330LHH/LSM6DSR/ISM330DHCX/LSM6DST/LSM6DSOP:
+> > + * - LSM6DSO/LSM6DSOX/ASM330LHH/ASM330LHHX/LSM6DSR/ISM330DHCX/LSM6DST/=
+LSM6DSOP:
+> >   *   - Accelerometer/Gyroscope supported ODR [Hz]: 12.5, 26, 52, 104, =
+208, 416,
+> >   *     833
+> >   *   - Accelerometer supported full-scale [g]: +-2/+-4/+-8/+-16
+> > @@ -786,6 +786,10 @@ static const struct st_lsm6dsx_settings st_lsm6dsx=
+_sensor_settings[] =3D {
+> >  				.hw_id =3D ST_LSM6DST_ID,
+> >  				.name =3D ST_LSM6DST_DEV_NAME,
+> >  				.wai =3D 0x6d,
+> > +			}, {
+> > +				.hw_id =3D ST_ASM330LHHX_ID,
+> > +				.name =3D ST_ASM330LHHX_DEV_NAME,
+> > +				.wai =3D 0x6b,
+>=20
+> Probably nicer to put it next to he other 0x6b entries.
+>=20
+> >  			},
+> >  		},
+> >  		.channels =3D {
+> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c b/drivers/iio/=
+imu/st_lsm6dsx/st_lsm6dsx_i2c.c
+> > index 8b4fc2c15622..715fbdc8190e 100644
+> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
+> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
+> > @@ -101,6 +101,10 @@ static const struct of_device_id st_lsm6dsx_i2c_of=
+_match[] =3D {
+> >  		.compatible =3D "st,lsm6dsop",
+> >  		.data =3D (void *)ST_LSM6DSOP_ID,
+> >  	},
+> > +	{
+> > +		.compatible =3D "st,asm330lhhx",
+> > +		.data =3D (void *)ST_ASM330LHHX_ID,
+> > +	},
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(of, st_lsm6dsx_i2c_of_match);
+> > @@ -122,6 +126,7 @@ static const struct i2c_device_id st_lsm6dsx_i2c_id=
+_table[] =3D {
+> >  	{ ST_LSM6DSRX_DEV_NAME, ST_LSM6DSRX_ID },
+> >  	{ ST_LSM6DST_DEV_NAME, ST_LSM6DST_ID },
+> >  	{ ST_LSM6DSOP_DEV_NAME, ST_LSM6DSOP_ID },
+> > +	{ ST_ASM330LHHX_DEV_NAME, ST_ASM330LHHX_ID },
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(i2c, st_lsm6dsx_i2c_id_table);
+> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c b/drivers/iio/=
+imu/st_lsm6dsx/st_lsm6dsx_spi.c
+> > index e80110b6b280..f5767cf76c1d 100644
+> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
+> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
+> > @@ -101,6 +101,10 @@ static const struct of_device_id st_lsm6dsx_spi_of=
+_match[] =3D {
+> >  		.compatible =3D "st,lsm6dsop",
+> >  		.data =3D (void *)ST_LSM6DSOP_ID,
+> >  	},
+> > +	{
+> > +		.compatible =3D "st,asm330lhhx",
+> > +		.data =3D (void *)ST_ASM330LHHX_ID,
+> > +	},
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(of, st_lsm6dsx_spi_of_match);
+> > @@ -122,6 +126,7 @@ static const struct spi_device_id st_lsm6dsx_spi_id=
+_table[] =3D {
+> >  	{ ST_LSM6DSRX_DEV_NAME, ST_LSM6DSRX_ID },
+> >  	{ ST_LSM6DST_DEV_NAME, ST_LSM6DST_ID },
+> >  	{ ST_LSM6DSOP_DEV_NAME, ST_LSM6DSOP_ID },
+> > +	{ ST_ASM330LHHX_DEV_NAME, ST_ASM330LHHX_ID },
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(spi, st_lsm6dsx_spi_id_table);
+>=20
+
+--F5Fav6UVPwVhK7sH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYkmBuAAKCRA6cBh0uS2t
+rNCLAPwOlL1TO/TLEa2oHtEiWmQXBf/FzpcQla7MJhAV0L/h6wEAmQ0i/b69G1Ut
+XutngZL+C0E6/4tFJT6f07eWp8k/AwQ=
+=RV1J
+-----END PGP SIGNATURE-----
+
+--F5Fav6UVPwVhK7sH--
