@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07B04F0A8B
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 17:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDDF84F0AA1
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 17:27:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359131AbiDCPNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 11:13:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45484 "EHLO
+        id S1359155AbiDCP26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 11:28:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238204AbiDCPNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 11:13:24 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9BB38BEF;
-        Sun,  3 Apr 2022 08:11:30 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-d39f741ba0so7879479fac.13;
-        Sun, 03 Apr 2022 08:11:30 -0700 (PDT)
+        with ESMTP id S1359156AbiDCP25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 11:28:57 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1D538BF7
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 08:27:03 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id l9-20020a05600c4f0900b0038ccd1b8642so5257917wmq.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 08:27:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PFOxZJSIkEuRH7+x+0E7FGzZMvu81a++E+04w4EdYOo=;
+        b=mLe1nqkQm/WYDjmgYHzH1IzfEKGbK1xN5PwsgbVBKMBp1HHksMKX75/H3nsXQvyf7P
+         kN0TerGSv75TtEEYvCTLz09V/2NoU90j/dKSesSkNNfZTVSTa6aVueIBe0yBwEJtmBJD
+         piKKhWpRPhw9PjRK6w+X/yINhjKBK0Pqymkp3FxLe1SKwsLFL7wWY0KTTc9KhQz1gJMe
+         Jp/vHm3A2DlN5EGLconoPDU8nzasfLDrSaazxcs1Y5+kHljBxuR80JuUCssK4bLXdebJ
+         sAGeD2wK/7qGaJ5kV1YyDVLk8ukOGSGuewKmAFG/iBCVMtvO9ibA/jtMnNBGunuwlQpw
+         VWkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=m1h55tSJf82mTXNy49E7xrgITJy4PuS1a1RbU7Daru8=;
-        b=W9VJ8j1UiTuefRU2U/VnyKbgyH8dep9EZHcjaXjxbwUMZ0SeXPBAz0HXGiWH8qs2d5
-         /9YObLo4ZzfmVfOZxBDZ0+p4hTzQZQ0xmD/sEJVkH4iKjLqc6fB+Ewopq84RRKs13I+b
-         HYtzh0p4hnCJ+to8J6SLXfiVY+Ki5NHmggudfadHEbAFEC3qLxrH3OFXR2M45eRhXt+O
-         ewJEd1hfYSAWIzR5GkSOHSPzG1Th6fzKDs3z85cO4Er0G1D5goMwvcUwNpn80DsJZVi/
-         xOmTBgIhaxnEplIbyEB3PpoCVw4EXruqbBQVN8Rd4hCyTtB4lcsA4pGsa9oNibrhKeWM
-         /w0A==
-X-Gm-Message-State: AOAM532M3VBzXDjJIYOOsmS1Uh8kFWyXy8JfRoYnhF+lRvtbkpYZMUqH
-        ZDa/h2u6vStrBuxhd+94040VXNI5YQ==
-X-Google-Smtp-Source: ABdhPJwy/B5nwR3a6fzxCQA31lcGBi42z4c18Q1IvNY5UEMaWJqDMwLoOib6qOHIsTAqaouBM1AkDw==
-X-Received: by 2002:a05:6870:c208:b0:dd:994e:3b98 with SMTP id z8-20020a056870c20800b000dd994e3b98mr8331704oae.259.1648998689749;
-        Sun, 03 Apr 2022 08:11:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r129-20020acac187000000b002ef358c6e0esm3239158oif.49.2022.04.03.08.11.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Apr 2022 08:11:29 -0700 (PDT)
-Received: (nullmailer pid 3096945 invoked by uid 1000);
-        Sun, 03 Apr 2022 15:11:28 -0000
-Date:   Sun, 3 Apr 2022 10:11:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: maxim,max8997: correct array
- of voltages
-Message-ID: <Ykm5IG2EUUSSotUF@robh.at.kernel.org>
-References: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PFOxZJSIkEuRH7+x+0E7FGzZMvu81a++E+04w4EdYOo=;
+        b=BmCPEw3txamGOMwHPkS0E8shMVBdU0oDF46Hf8VJTCHYR9OLr3SszQzbcRW7vC65V+
+         34I2bhCNU8X5LqaH7LT5JpjBw9Rs9rEWnXJdqYVYrV71wb2+u48FmZd9iyVhmiDbgvHV
+         DctPUgI07JB48lcfSYer84NO72w03XakbZ2ZB5KTo+34/K9cV8GmR78s5V8yfgN/aJr2
+         4NizN0YvLpqiPerpHtRluLPwSApxC0iOf0+/WjJJCL9sJoLXNtW5ETFCGiIon1m4lw1w
+         KTe5HMPDn/C40UaUweb+8L0v99O0XEM1Y1CS1gi93TAfiCTypc8RNsxdQqpcYTDrcQiJ
+         RZvA==
+X-Gm-Message-State: AOAM5325dTydSO7FypKvhtgYgPO67oAtykQfgvTF8J1+D3LS53zyAyHT
+        ZulIhDwyL2zpMfg3jR8BJFt5AA==
+X-Google-Smtp-Source: ABdhPJztd+cseoQHkVMvguQ0dw29taCQ0Lt/J3+7YmYNbllOxEZX5RY+QxuLkxBYOKT1w2v/60agvg==
+X-Received: by 2002:a05:600c:2304:b0:38e:4748:d902 with SMTP id 4-20020a05600c230400b0038e4748d902mr14136111wmo.177.1648999621575;
+        Sun, 03 Apr 2022 08:27:01 -0700 (PDT)
+Received: from [192.168.0.172] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id i15-20020a5d584f000000b00204171ba528sm6876940wrf.109.2022.04.03.08.27.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Apr 2022 08:27:01 -0700 (PDT)
+Message-ID: <5ef9de4c-59e0-5652-1755-6ec373c34fff@linaro.org>
+Date:   Sun, 3 Apr 2022 17:27:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220331211653.175200-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 7/9] dt-bindings: serial: qcom,msm-uartdm: convert to
+ dtschema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-spi@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220402184011.132465-1-krzysztof.kozlowski@linaro.org>
+ <20220402184011.132465-8-krzysztof.kozlowski@linaro.org>
+ <1648995636.595500.3013369.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1648995636.595500.3013369.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 11:16:52PM +0200, Krzysztof Kozlowski wrote:
-> uint32-array with voltages should be within one bracket pair <>, not
-> each number in its own <>.  Also the number of elements in the array
-> should be defined within "items:".
+On 03/04/2022 16:20, Rob Herring wrote:
+> On Sat, 02 Apr 2022 20:40:09 +0200, Krzysztof Kozlowski wrote:
+>> Convert the Qualcomm MSM Serial UARTDM bindings to DT Schema.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/serial/qcom,msm-uartdm.txt       |  81 -------------
+>>  .../bindings/serial/qcom,msm-uartdm.yaml      | 112 ++++++++++++++++++
+>>  2 files changed, 112 insertions(+), 81 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/serial/qcom,msm-uartdm.txt
+>>  create mode 100644 Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.example.dt.yaml: serial@f991e000: dma-names:0: 'tx' was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.example.dt.yaml: serial@f991e000: dma-names:1: 'rx' was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
 
-Which encoding an array uses has been a source of pain.
+My bad, I'll fix it.
 
 > 
-> This fixes DT schema warnings like:
-> 
->   maxim,max8997.example.dtb: pmic@66: max8997,pmic-buck1-dvs-voltage:
->     [[1350000, 1300000, 1250000, 1200000, 1150000, 1100000, 1000000, 950000]] is too short
+> doc reference errors (make refcheckdocs):
+> Warning: Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt references a file that doesn't exist: Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+> Warning: Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt references a file that doesn't exist: Documentation/devicetree/bindings/serial/qcom,msm-uartdm.txt
+> Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt: Documentation/devicetree/bindings/spi/qcom,spi-qup.txt
+> Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt: Documentation/devicetree/bindings/serial/qcom,msm-uartdm.txt
 
-These exist due to the move from validating yaml files to DTBs and I 
-haven't come up with how to fix the warning. The schema was correct as 
-it was. The change leaks the encoding (everything is a matrix) into the 
-schema which we don't want to do.
+These should be fixed in last patch in series where I convert the
+qcom,gsbi.txt to YAML.
 
-The issue is in the if/then schema, the tools don't know if the type is 
-an array or matrix. It gets it wrong (or different from the top-level) 
-and thus the warning. I think the fix will be using the extracted type 
-information to do the right transformation. The code for all this is 
-pretty horrible and I've lost count of how many times I've re-written 
-it. I think a lot of it can be removed when/if support for yaml encoded 
-DT is removed which I think can happen in a kernel cycle or 2.
-
-Perhaps in the short term the example can just be removed or commented 
-out though that doesn't help on dts files.
-
-Rob
+Best regards,
+Krzysztof
