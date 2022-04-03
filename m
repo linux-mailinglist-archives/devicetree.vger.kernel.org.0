@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6562D4F0A3E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 16:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A6A4F0A61
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 16:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357017AbiDCOoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 10:44:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37042 "EHLO
+        id S1359070AbiDCOxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 10:53:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358194AbiDCOoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 10:44:01 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7040396B2
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 07:42:07 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id l4-20020a17090a49c400b001c6840df4a3so6790680pjm.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 07:42:07 -0700 (PDT)
+        with ESMTP id S1352836AbiDCOxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 10:53:42 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BBAA39B85
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 07:51:48 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id l129so6302680pga.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 07:51:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p5umN/eT2yUlngm37Zc5I2AOTVEAYdcyPGsqi0WLgoI=;
-        b=Zx7R9Rp7/72eElz3mkRm7acwcHI7aWjNETem+EFTweD0U19lywnqYJWuuJnRSXV/eV
-         kz2t5mBpUW7d+u0q5QYs4VYKlrChrUGuAP5QdLGcLSug3Ywsi5gdOGaX9Brh0/ulpCn/
-         7gOHxhjAl4BYnxRm/QR6BN8glSQfz6I8tJTI/RSf5eIe1DLQqzttczmr4Msq/GHTN8gc
-         RoCkLFNAcMkxhGclXdJOFHC7gAGvC13nj64l30h8VrduEVJvURlNMZjvfySn/RIYgkEm
-         jh9Tx5vM3ajyT52cPSPRf52yZc9EQyfUgM4YB+KPEuE9jMBgyHVVk6T1v21nHwBInga5
-         w3lQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C3zoiG+f8JGVz1ginGh+WpIukd/W3+NQcd9twqB58ow=;
+        b=CIoCQkSS489lEotJcZBHd+04zDuXDDXDYKYJZuzwgbGIlhXOEODtPh/a5YBZK/EGEU
+         pT0RHCxnLecm1YAcuE1ghwkswn0645UV5E4LvwFgd7S5rwjzPU7GOo8eoa7RXtnJsHll
+         D7nrFocqA8phI8J3WmN5O2mfK53wigAavkYIxvmd9Ts7oDlUQK7lsPMob0ar3KypaOEx
+         QnOcNiE3YR2H5GwGYaXviBqLwxB1jjd+P6mqBFsrp8yeNL3DlM9txhwmbL9tdQBXPJ3N
+         iHG3TIOh9qd1VKyI+7wIv7N03vMXqUFIhVErOKqlg3iCXvdFYKQjPMrhSmYbJEQYUFkv
+         lNkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p5umN/eT2yUlngm37Zc5I2AOTVEAYdcyPGsqi0WLgoI=;
-        b=wBEQpPJFEKS0d5bCBlXxeQeuewlK6nztgFSFIg13HCaGtvIgf9vyDsXBIMo8iTOa9+
-         EWsiB8OHIP9OU91jDquDHpQ7mmVQ816BrBBiWo3LuC8/v2aiZvsxi8WQMJfmsm9WqrZB
-         NCFSYBihO4MfLhGtDlRBJysitrPtuMAdBt83piBU7h1iCFVncepJ1haNb60pfyeZKZkU
-         YeY7sj4UoJLSdlBux90BuQ0sYJTNE5yVriF6wp5djpKSTmFtTyb+IWN0LlHckBuSN/Rl
-         x2VdJEJoAiEwZt/zAtbcoXfcH/BB8A8NgxUxNVu3OgdEFLUh0iQxguhCdoPI6BHxtHsI
-         ppSA==
-X-Gm-Message-State: AOAM533FlqYbsSGmLa8Dg/jk56GLQMwzNCcoG/i7hXnw+oO+UOBVAgVN
-        QA77m+YA66+JXfTPdDAnOYZFAA==
-X-Google-Smtp-Source: ABdhPJxiK259Rsez5AEKNCgwwGWfLwLJqqjZFy2P7C56o2s85y+ZZXJ+QGvNqQVOLEeIfTFmZVG1lg==
-X-Received: by 2002:a17:902:f242:b0:156:8e7c:e21e with SMTP id j2-20020a170902f24200b001568e7ce21emr4568719plc.86.1648996927127;
-        Sun, 03 Apr 2022 07:42:07 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C3zoiG+f8JGVz1ginGh+WpIukd/W3+NQcd9twqB58ow=;
+        b=K54Bp2+TYnDxbJMWvZaQnZrfDgclAWCS+XhrgqOguNpa5i0GhRCtSgyGGBBOvmm9PP
+         HYllNtxFtKA9wTD/zCtD4XydqzxRBYRQRlagKQNAzk3aSvB2p8D1VfhmSpwIeQi3xwNv
+         yxyWkpYye+S7ilb9BGS5ZpbMaob80VRbsKBBhWMUu5ezUm5kLaXcl8uCZS8hm0qfshn/
+         eFWF1MLY4aeG1kKhWRbFj/oOCBpJ8wMLhEbitsrOWQy/KvMkK1yIogrA1RwyNiKLzb50
+         PaWo2HCksyzdAEZCOSfLhD6bP1doz2nCmpFn8b5p3/wA/c7VXM5421CFHzHHQJ2JK0Ka
+         qkZA==
+X-Gm-Message-State: AOAM530AZMBhZnqUD2fdKSuYi7qj1BWlqi2tJye6hy2Jgtp1nwyEh5A5
+        Wg5k1zP/COOTK8tjsk/INMnpjg==
+X-Google-Smtp-Source: ABdhPJxVDBJsPqv4DSqoOQ3FQHpF7gQd+oUwex0arHcl2zipNPRUICKpeUltEhkTAWQELAInNzV1Zw==
+X-Received: by 2002:a63:d257:0:b0:399:2df1:2fc with SMTP id t23-20020a63d257000000b003992df102fcmr252809pgi.268.1648997507541;
+        Sun, 03 Apr 2022 07:51:47 -0700 (PDT)
 Received: from localhost.localdomain ([223.233.64.251])
-        by smtp.gmail.com with ESMTPSA id 124-20020a621682000000b004f6a2e59a4dsm8815075pfw.121.2022.04.03.07.42.03
+        by smtp.gmail.com with ESMTPSA id q6-20020a056a00150600b004fb2d266f97sm9317866pfu.115.2022.04.03.07.51.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Apr 2022 07:42:06 -0700 (PDT)
+        Sun, 03 Apr 2022 07:51:47 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
+To:     linux-mmc@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sa8155p-adp: Add support for uSD card
-Date:   Sun,  3 Apr 2022 20:11:51 +0530
-Message-Id: <20220403144151.92572-3-bhupesh.sharma@linaro.org>
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/1] dt-bindings: mmc: sdhci-msm: Add compatible string for sm8150
+Date:   Sun,  3 Apr 2022 20:21:33 +0530
+Message-Id: <20220403145133.93583-1-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220403144151.92572-1-bhupesh.sharma@linaro.org>
-References: <20220403144151.92572-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,102 +72,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for uSD card on SA8155p-ADP board using the SDHC2
-interface.
+Add sm8150 SoC specific compatible strings for qcom-sdhci controller.
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
 Cc: Rob Herring <robh@kernel.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 68 ++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+ Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-index 8756c2b25c7e..b561a8139cb9 100644
---- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-@@ -317,6 +317,20 @@ &remoteproc_cdsp {
- 	firmware-name = "qcom/sa8155p/cdsp.mdt";
- };
- 
-+&sdhc_2 {
-+	status = "okay";
-+
-+	cd-gpios = <&tlmm 4 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_on>;
-+	pinctrl-1 = <&sdc2_off>;
-+	vqmmc-supply = <&vreg_l13c_2p96>; /* IO line power */
-+	vmmc-supply = <&vreg_l17a_2p96>;  /* Card power line */
-+	bus-width = <4>;
-+	no-sdio;
-+	no-emmc;
-+};
-+
- &uart2 {
- 	status = "okay";
- };
-@@ -390,6 +404,60 @@ &usb_2_qmpphy {
- &tlmm {
- 	gpio-reserved-ranges = <0 4>;
- 
-+	sdc2_on: sdc2_on {
-+		clk {
-+			pins = "sdc2_clk";
-+			bias-disable;		/* No pull */
-+			drive-strength = <16>;	/* 16 MA */
-+		};
-+
-+		cmd {
-+			pins = "sdc2_cmd";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <16>;	/* 16 MA */
-+		};
-+
-+		data {
-+			pins = "sdc2_data";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <16>;	/* 16 MA */
-+		};
-+
-+		sd-cd {
-+			pins = "gpio96";
-+			function = "gpio";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+	};
-+
-+	sdc2_off: sdc2_off {
-+		clk {
-+			pins = "sdc2_clk";
-+			bias-disable;		/* No pull */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+
-+		cmd {
-+			pins = "sdc2_cmd";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+
-+		data {
-+			pins = "sdc2_data";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+
-+		sd-cd {
-+			pins = "gpio96";
-+			function = "gpio";
-+			bias-pull-up;		/* pull up */
-+			drive-strength = <2>;	/* 2 MA */
-+		};
-+	};
-+
- 	usb2phy_ac_en1_default: usb2phy_ac_en1_default {
- 		mux {
- 			pins = "gpio113";
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+index 6216ed777343..35a7d78da213 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+@@ -25,6 +25,7 @@ Required properties:
+ 		"qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
+ 		"qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
+ 		"qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
++		"qcom,sm8150-sdhci", "qcom,sdhci-msm-v5"
+ 		"qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
+ 	NOTE that some old device tree files may be floating around that only
+ 	have the string "qcom,sdhci-msm-v4" without the SoC compatible string
 -- 
 2.35.1
 
