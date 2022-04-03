@@ -2,80 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A32594F085D
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 09:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B504F0867
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 10:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344938AbiDCH6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 03:58:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49728 "EHLO
+        id S234591AbiDCIUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 04:20:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234469AbiDCH6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 03:58:21 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F7C377FD
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 00:56:28 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id b15so7589030edn.4
-        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 00:56:28 -0700 (PDT)
+        with ESMTP id S235654AbiDCIUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 04:20:49 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 320BF13CE3
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 01:18:54 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id w18so1356070edi.13
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 01:18:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=i3fCaM44ai9Ho5+ESZukVkEPFkgIufFRH+KUn22jE48=;
-        b=hGVybtUrDow3w4+aXDW5Inw9yqWEf6RZfy+hUPBhIJrK1JG/Q36mg+PSv7xCQZQdeg
-         wx8VZmkvxwDay5fZA+lzSMxF4vQ/XaWCG/gkPbhwgBipIp/DzdXIN6zgOyp0k7kyrxi/
-         a5x2Mrm2SsszctCbUzoCja9+r1SlHgJTi5ILQ2ZzjZjs0rio79m9dTEbeWbXBX5ZjtO6
-         XbQNDac1U/rT3Oz+K9+gNJVq7yGmf8YCAUZ41TlQ/wueDBVbi+W+uGvCQXwdzHHlU+zP
-         EQbhb3Vz4kpGO1yapURSIJjViUOYLV1EbDgFftGDlkEVjuVekxs+K+WmBBrFolgugui3
-         pWVQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aVdE1T1dEZD7+sLQEHxxXp/voC607490GFsl2AtLabg=;
+        b=hyXhY6k329Nl/PViwduqVY57b9feTjjD+LB2X6SmITUPdg26R5F9OdUbcGDlH6ftqy
+         0pOO5mwt1BL9v55eXjX1YvuZGgi3HtoDXTA/+k9ZDE8GubQUSnxddd+v/YED5cvTASnS
+         cCa2BvPbrBx/jJuvjkggTRv6eySm2+YR/rmb+T22SkK5+//wBL5ZxNUsNvK51PulX6GF
+         /3HxZFdJ2c18i8MBtbBIysjN1J4x+3BUNibV/RNEU/JHAWvnZ8lQGI1mX4/Sss11vXEt
+         XalF65KxXJ6V6dHZFWLxdGxaNv+vvabrvHUjpU3JabDANDBmAke0WE2TwOU00FhEgO27
+         sSzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=i3fCaM44ai9Ho5+ESZukVkEPFkgIufFRH+KUn22jE48=;
-        b=bxXvz0nS/JC54FGOQVY+ws/opP8eUswDZVImRYKtmIR/O23G803cbdGEbD+hCbF2KX
-         HpI9UoKC7ql/PIYdqg9sek84oL9qKbOBsJW6tspxzMHZ0s402huBnuYLbphtajjEUX51
-         uNwIKwyUilgjmSqrace4rFxZ2RaAQh1WJGqcU7DgP8Lx7R3ZQoQ939T2AyquxCIcpmLV
-         dpfM29EDu91TQG2WlpLTp20lTAMN+FLa1qIPXtLh7p6aD2wSCE790qEIqwujDKbt6QoE
-         S42Ke8p9PMOq9AUlvJNYCYv++BGAVzjswEB2iinPqWPD0DfP2vXxDQXb0FxXVGIY1rTz
-         npzQ==
-X-Gm-Message-State: AOAM533YxGheJ6g2t6yARR/+aSaNwzeiJUMjH9VXd54si1mI/7cT/yPo
-        iR3nipfdeerNgRQ4VMkTYj80JA==
-X-Google-Smtp-Source: ABdhPJzdy2udwHmdRbAFbbuf2ZcLAXsrnUeRk+iiT/GIIQUynNBEVmYR7RI8WMzEv22v4hzj0TxChg==
-X-Received: by 2002:a50:fd94:0:b0:419:9ed:e870 with SMTP id o20-20020a50fd94000000b0041909ede870mr28389360edt.207.1648972586742;
-        Sun, 03 Apr 2022 00:56:26 -0700 (PDT)
-Received: from [192.168.0.171] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id ec10-20020a0564020d4a00b0041a68df1a71sm3432229edb.77.2022.04.03.00.56.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Apr 2022 00:56:26 -0700 (PDT)
-Message-ID: <798f0244-95dd-cf2d-7bc5-02c72c7fa327@linaro.org>
-Date:   Sun, 3 Apr 2022 09:56:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 6/6] dt-bindings: power: supply: qcom,smb2: add bindings
- for smb2 driver
-Content-Language: en-US
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-References: <20220401202643.877609-1-caleb.connolly@linaro.org>
- <20220401202643.877609-7-caleb.connolly@linaro.org>
- <20220403071426.GA49153@9a2d8922b8f1>
+        bh=aVdE1T1dEZD7+sLQEHxxXp/voC607490GFsl2AtLabg=;
+        b=RNuPDkH+PMhx70TVhTsFxYadob4YSlkM8wdqHW6EV1Rbfz7lopSe8xmi6Wzfpg4IF/
+         ZJ052VRjJpgRL2WFe02ksiL/w1jpbElLfivWLUOsRb7C3rBNdOLWCPx6NrLwTCQBcpPq
+         sxCgmROTIR27oo83DFaHinbRr42QC5HYvaqyJ411gnbOw4qQ06xzWePPmzkn/HQQzBoy
+         hGP4UXvrUIIvvz7qF/OcDYvJZVD8LLa+OZPe/RpwYlJZeOFZylyX8z83flJoBiVAwCSO
+         nc3ff+TIwnir793rLeaexZJV1rvgYIh08/SFF9LOZr2SOA+yGWuiTLJrvggfyvAMbqnF
+         Rv7w==
+X-Gm-Message-State: AOAM530H46OMLtqQ5X4pgTioxZTeys67GL9h6RyX8BDTkmxa5M3fvIhS
+        BflQRwneD2+TUtcuRSIKB53Qtg==
+X-Google-Smtp-Source: ABdhPJye6QN3inePdO3Kw+NS6rWVXTH8+gMeNFVDOkRAHbmCusD5nXKKJxrIPn+K1wNZ41qBAb/Vdg==
+X-Received: by 2002:a05:6402:42c6:b0:419:276a:dded with SMTP id i6-20020a05640242c600b00419276addedmr28242895edc.2.1648973932759;
+        Sun, 03 Apr 2022 01:18:52 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709066d8700b006d4b4d137fbsm2989105ejt.50.2022.04.03.01.18.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Apr 2022 01:18:52 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220403071426.GA49153@9a2d8922b8f1>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] docs: dt: writing-bindings: describe typical cases
+Date:   Sun,  3 Apr 2022 10:18:48 +0200
+Message-Id: <20220403081849.8051-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,45 +69,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2022 09:14, Kuldeep Singh wrote:
-> On Fri, Apr 01, 2022 at 09:26:43PM +0100, Caleb Connolly wrote:
->> Add devicetree bindings for the Qualcomm PMI8998/PM660 SMB2 charger
->> drivers.
->>
+Add a chapter for caveats or typical mistakes.  Source: Rob Herring's
+(Devicetree bindings maintainer) comments on LKML.
 
-(...)
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/writing-bindings.rst  | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-> 
->> +    pmic {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +      #interrupt-cells = <4>;
->> +
->> +      smb2@1000 {
->> +        compatible = "qcom,pmi8998-smb2";
->> +        reg = <0x1000>;
->> +
->> +        interrupts = <0x2 0x13 0x4 IRQ_TYPE_EDGE_BOTH>;
->> +        interrupt-names = "usb-plugin";
->> +
-> 
-> In-between new lines may not be required.
-> And DTs use tabs instead of 2 spaces, we can follow that here also.
+diff --git a/Documentation/devicetree/bindings/writing-bindings.rst b/Documentation/devicetree/bindings/writing-bindings.rst
+index 18d9e0689d49..5465eced2af1 100644
+--- a/Documentation/devicetree/bindings/writing-bindings.rst
++++ b/Documentation/devicetree/bindings/writing-bindings.rst
+@@ -58,6 +58,31 @@ Properties
+ - DO define properties in terms of constraints. How many entries? What are
+   possible values? What is the order?
+ 
++Typical cases and caveats
++=========================
++
++- Phandle entries, like clocks/dmas/interrupts/resets, should always be
++  explicitly ordered. Include the {clock,dma,interrupt,reset}-names if there is
++  more than one phandle. When used, both of these fields need the same
++  constraints (e.g.  list of items).
++
++- For names used in {clock,dma,interrupt,reset}-names, do not add any suffix,
++  e.g.: "tx" instead of "txirq" (for interrupt).
++
++- Properties without schema types (e.g. without standard suffix or not defined
++  by schema) need the type, even if this is an enum.
++
++- If schema includes other schema (e.g. /schemas/i2c/i2c-controller.yaml) use
++  "unevaluatedProperties:false". In other cases, usually use
++  "additionalProperties:false".
++
++- For sub-blocks/components of bigger device (e.g. SoC blocks) use rather
++  device-based compatible (e.g. SoC-based compatible), instead of custom
++  versioning of that component.
++  For example use "vendor,soc1234-i2c" instead of "vendor,i2c-v2".
++
++- "syscon" is not a generic property. Use vendor and type, e.g.
++  "vendor,power-manager-syscon".
+ 
+ Board/SoC .dts Files
+ ====================
+-- 
+2.32.0
 
-The DT examples in bindings use spaces. Either two (like YAML) or four
-(for easier reading).
-
-> 
->> +        io-channels = <&pmi8998_rradc 3>,
->> +                      <&pmi8998_rradc 4>;
->> +        io-channel-names = "usbin_i",
->> +                           "usbin_v";
-> 
-> Channel-names can be written in one line.
-
-They match the format of io-channels, so this is quite readable.
-
-
-
-Best regards,
-Krzysztof
