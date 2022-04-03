@@ -2,254 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A35144F08F6
-	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 13:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6FE64F09B3
+	for <lists+devicetree@lfdr.de>; Sun,  3 Apr 2022 15:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354858AbiDCLRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 07:17:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
+        id S1348787AbiDCNOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 09:14:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356871AbiDCLRD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 07:17:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72AA2ED76;
-        Sun,  3 Apr 2022 04:15:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5793E61035;
-        Sun,  3 Apr 2022 11:15:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD61C340F0;
-        Sun,  3 Apr 2022 11:15:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1648984508;
-        bh=u/JUR2HcE09owMn/zh6CuDg+VeXjsm74g9DSzWR3tjU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e5v/VM4rKaUHSK9Q0PnHjPfsKIiWTfpQuqRcbb30JanPPGnfROxHfjC9NwmV6Kw2X
-         Ny4/NSIZj5AXX/CqxkhBAMbyIYV+ScMTbELc/iTLCLIRg37fyUyffOKzvJLCDJXaHt
-         RQCf3wHCCyaCDzIx5Tvzja4LeR2KPxde8J6t4U7NpZJ8Us0fJYWOtsLdnniJZrwmH1
-         bDGSpVCvbrm0jHIfMBuP3Gd3TEO0NVQ+doxW27RCnkzPx0vsixlHy1xLTzrzmKYM3u
-         0yU5/+u6Q8hVD0g35vKABlTlauzuKET28ixVDQRu9lu4xXMlinD+vZZ+0KkX6wUZtK
-         bac557IDtmAFg==
-Date:   Sun, 3 Apr 2022 13:15:04 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh@kernel.org
-Subject: Re: [PATCH 1/2] iio: imu: st_lsm6dsx: add support to ASM330LHHX
-Message-ID: <YkmBuDOSrHzh3pFc@lore-desk>
-References: <cover.1648893892.git.lorenzo@kernel.org>
- <05cd9e612bf7304542aa1adf12025ae396b87cf2.1648893892.git.lorenzo@kernel.org>
- <20220402172240.2465e7f5@jic23-huawei>
+        with ESMTP id S239016AbiDCNOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 09:14:37 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111A0E45;
+        Sun,  3 Apr 2022 06:12:44 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id bx5so6309810pjb.3;
+        Sun, 03 Apr 2022 06:12:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jxz5zWvm2g9eSY2ODGL8ove3tyAWCdoJG2idJFSxyD8=;
+        b=XRJ6YJ9vdPpPa6TXlJFJxQGQeLPpk74MPpPWZ5pMZSuZfi2E0jGyTJ4wtvpnslPTi1
+         77FmR0bZ/iGqrzcoszYTMBg7Pn/hbh7hqU7ZaR0lU5E7Tmb0KUivvCzotlGf31cSINEN
+         zh2J89pAtJEMbCiYHSkSaIzv/Dtftx29GUl4hFhk++bjUVRlLJLH7xwbEBd6P8uh698g
+         zSsNZxN3NVGMMLV0M70MYuti2rc3fuTzlVsJVDMRbLq+1MxVxVh43MkAd9hzrMGXpl3c
+         BbTT1dosqQGjSjR1uUNatmE43fbNHOf968n3jK3OdSPjUp9vjG1e3zhcKVICGGso+395
+         +Qtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jxz5zWvm2g9eSY2ODGL8ove3tyAWCdoJG2idJFSxyD8=;
+        b=aKCiTb2rSEP0Vjz7Rxu4azA9U6jeWZyW6UQLWo+TubmUvsCgXZCXNL83XMXpSfg/xx
+         JZPTBdlUSdsxd/J2DbpFR1qIcnL+ajLNEoaaLSuUoA8bnr8oMO8cF/g/NMw5/MvFqIr4
+         8jckJis6COaby5AcC9EvJwhL01PQ9fbGoSkgrtfWvvkRUuGVly+pDYC21GYo+fuT4D9i
+         XCaK9QKiB98+UsLbVZIfvXJP7qCIDgVE7Pxujp3ZSgC3xOG56La9V4cQeDCisxsMzTNc
+         DOcCoUyEUXYXJ237NmvYNQS74v6xfi78Gal97GHJr5WS5QRP2f9gvCPx1r81Sy88wlUk
+         zBlQ==
+X-Gm-Message-State: AOAM5316770U8zzbuj9WJ5oIulUlpMuT0v3/+23Ur95ML2lM2Gq8voS1
+        5/z9H4FUxh9bj6BvNF7Ua2I=
+X-Google-Smtp-Source: ABdhPJz4ktVUPNppjfKX08ecvx5yuvB1psaY3bDDN0bXA48PEm7jKzKza3v5JFQBEkaWP/eZ2kgIJQ==
+X-Received: by 2002:a17:90b:3b91:b0:1ca:5f81:da1e with SMTP id pc17-20020a17090b3b9100b001ca5f81da1emr6897040pjb.182.1648991563494;
+        Sun, 03 Apr 2022 06:12:43 -0700 (PDT)
+Received: from guoguo-omen.lan ([222.201.153.219])
+        by smtp.gmail.com with ESMTPSA id x123-20020a623181000000b004fdf99d25f6sm1554857pfx.80.2022.04.03.06.12.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Apr 2022 06:12:42 -0700 (PDT)
+From:   Chuanhong Guo <gch981213@gmail.com>
+To:     linux-spi@lists.infradead.org
+Cc:     Chuanhong Guo <gch981213@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Colin Ian King <colin.king@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
+        linux-spi@vger.kernel.org (open list:SPI SUBSYSTEM),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support),
+        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support), linux-kernel@vger.kernel.org (open list),
+        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
+Subject: [PATCH 0/4] spi: add support for Mediatek SPI-NAND controller
+Date:   Sun,  3 Apr 2022 21:11:50 +0800
+Message-Id: <20220403131154.1267887-1-gch981213@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="F5Fav6UVPwVhK7sH"
-Content-Disposition: inline
-In-Reply-To: <20220402172240.2465e7f5@jic23-huawei>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Mediatek has an extended version of their NAND Flash Interface which
+has a SPI-NAND mode. In this mode, the controller can perform 1-bit
+spi-mem ops for up-to 0xa0 bytes and typical SPI-NAND single, dual
+and quad IO page cache ops with 2-byte address. Additionally, the
+page cache ops can be performed with ECC and auto data formatting
+using the ECC engine of the controller.
 
---F5Fav6UVPwVhK7sH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patchset implements support of this mode as a separated SPI-MEM
+driver with piplined ECC engine.
 
-> On Sat,  2 Apr 2022 12:09:29 +0200
-> Lorenzo Bianconi <lorenzo@kernel.org> wrote:
->=20
-> > Add support to STM  ASM330LHHX (acc + gyro) Mems sensor
-> > https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
-> Use a Datasheet tag as below.
-> Perhaps mention it's an automotive rated sensor and that
-> it's compatible otherwise with xxx existing part.
+Chuanhong Guo (4):
+  mtd: nand: make mtk_ecc.c a separated module
+  spi: add driver for MTK SPI NAND Flash Interface
+  dt-bindings: spi: add binding doc for spi-mtk-snfi
+  arm64: dts: mediatek: add dt node for MTK SNFI
 
-ack, will do
+ .../bindings/spi/mediatek,spi-mtk-snfi.yaml   |   87 ++
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   12 +
+ drivers/mtd/nand/Kconfig                      |    7 +
+ drivers/mtd/nand/Makefile                     |    1 +
+ drivers/mtd/nand/{raw/mtk_ecc.c => ecc-mtk.c} |    3 +-
+ drivers/mtd/nand/raw/Kconfig                  |    1 +
+ drivers/mtd/nand/raw/Makefile                 |    2 +-
+ drivers/mtd/nand/raw/mtk_nand.c               |    2 +-
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-mtk-snfi.c                    | 1356 +++++++++++++++++
+ .../linux/mtd/nand-ecc-mtk.h                  |    0
+ 12 files changed, 1478 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
+ rename drivers/mtd/nand/{raw/mtk_ecc.c => ecc-mtk.c} (99%)
+ create mode 100644 drivers/spi/spi-mtk-snfi.c
+ rename drivers/mtd/nand/raw/mtk_ecc.h => include/linux/mtd/nand-ecc-mtk.h (100%)
 
->=20
-> Quick glance at the datasheet suggests this part has a sensor hub...
-> Should it be in a the block with parameters for that as you
-> currently have it in the one for no sensorhub I think.
->=20
-> Or is it using an incompatible sensor hub interface?
+-- 
+2.35.1
 
-asm330lhhx supports sensor hub with the same configuration of LSM6DSR or
-LSM6DSO.
-
-Regards,
-Lorenzo
-
->=20
-> >=20
-> Datasheet: https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  drivers/iio/imu/st_lsm6dsx/Kconfig             | 6 +++---
-> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h        | 2 ++
-> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c | 3 ++-
-> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c   | 6 +++++-
-> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c    | 5 +++++
-> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c    | 5 +++++
-> >  6 files changed, 22 insertions(+), 5 deletions(-)
-> >=20
-> > diff --git a/drivers/iio/imu/st_lsm6dsx/Kconfig b/drivers/iio/imu/st_ls=
-m6dsx/Kconfig
-> > index 85860217aaf3..fefd0b939100 100644
-> > --- a/drivers/iio/imu/st_lsm6dsx/Kconfig
-> > +++ b/drivers/iio/imu/st_lsm6dsx/Kconfig
-> > @@ -11,9 +11,9 @@ config IIO_ST_LSM6DSX
-> >  	help
-> >  	  Say yes here to build support for STMicroelectronics LSM6DSx imu
-> >  	  sensor. Supported devices: lsm6ds3, lsm6ds3h, lsm6dsl, lsm6dsm,
-> > -	  ism330dlc, lsm6dso, lsm6dsox, asm330lhh, lsm6dsr, lsm6ds3tr-c,
-> > -	  ism330dhcx, lsm6dsrx, lsm6ds0, lsm6dsop, the accelerometer/gyroscope
-> > -	  of lsm9ds1 and lsm6dst.
-> > +	  ism330dlc, lsm6dso, lsm6dsox, asm330lhh, asm330lhhx, lsm6dsr,
-> > +	  lsm6ds3tr-c, ism330dhcx, lsm6dsrx, lsm6ds0, lsm6dsop,
-> > +	  the accelerometer/gyroscope of lsm9ds1 and lsm6dst.
-> > =20
-> >  	  To compile this driver as a module, choose M here: the module
-> >  	  will be called st_lsm6dsx.
-> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h b/drivers/iio/imu/=
-st_lsm6dsx/st_lsm6dsx.h
-> > index 6ac4eac36458..a86dd29a4738 100644
-> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> > @@ -31,6 +31,7 @@
-> >  #define ST_LSM6DSRX_DEV_NAME	"lsm6dsrx"
-> >  #define ST_LSM6DST_DEV_NAME	"lsm6dst"
-> >  #define ST_LSM6DSOP_DEV_NAME	"lsm6dsop"
-> > +#define ST_ASM330LHHX_DEV_NAME	"asm330lhhx"
-> > =20
-> >  enum st_lsm6dsx_hw_id {
-> >  	ST_LSM6DS3_ID,
-> > @@ -49,6 +50,7 @@ enum st_lsm6dsx_hw_id {
-> >  	ST_LSM6DSRX_ID,
-> >  	ST_LSM6DST_ID,
-> >  	ST_LSM6DSOP_ID,
-> > +	ST_ASM330LHHX_ID,
-> >  	ST_LSM6DSX_MAX_ID,
-> >  };
-> > =20
-> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c b/drivers/i=
-io/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
-> > index 16730a780964..38bb5f645ebd 100644
-> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
-> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c
-> > @@ -14,7 +14,8 @@
-> >   * (e.g. Gx, Gy, Gz, Ax, Ay, Az), then data are repeated depending on =
-the
-> >   * value of the decimation factor and ODR set for each FIFO data set.
-> >   *
-> > - * LSM6DSO/LSM6DSOX/ASM330LHH/LSM6DSR/LSM6DSRX/ISM330DHCX/LSM6DST/LSM6=
-DSOP:
-> > + * LSM6DSO/LSM6DSOX/ASM330LHH/ASM330LHHX/LSM6DSR/LSM6DSRX/ISM330DHCX/
-> > + * LSM6DST/LSM6DSOP:
-> >   * The FIFO buffer can be configured to store data from gyroscope and
-> >   * accelerometer. Each sample is queued with a tag (1B) indicating data
-> >   * source (gyroscope, accelerometer, hw timer).
-> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c b/drivers/iio=
-/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> > index b1d8d5a66f01..910397716833 100644
-> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> > @@ -26,7 +26,7 @@
-> >   *   - Gyroscope supported full-scale [dps]: +-125/+-245/+-500/+-1000/=
-+-2000
-> >   *   - FIFO size: 4KB
-> >   *
-> > - * - LSM6DSO/LSM6DSOX/ASM330LHH/LSM6DSR/ISM330DHCX/LSM6DST/LSM6DSOP:
-> > + * - LSM6DSO/LSM6DSOX/ASM330LHH/ASM330LHHX/LSM6DSR/ISM330DHCX/LSM6DST/=
-LSM6DSOP:
-> >   *   - Accelerometer/Gyroscope supported ODR [Hz]: 12.5, 26, 52, 104, =
-208, 416,
-> >   *     833
-> >   *   - Accelerometer supported full-scale [g]: +-2/+-4/+-8/+-16
-> > @@ -786,6 +786,10 @@ static const struct st_lsm6dsx_settings st_lsm6dsx=
-_sensor_settings[] =3D {
-> >  				.hw_id =3D ST_LSM6DST_ID,
-> >  				.name =3D ST_LSM6DST_DEV_NAME,
-> >  				.wai =3D 0x6d,
-> > +			}, {
-> > +				.hw_id =3D ST_ASM330LHHX_ID,
-> > +				.name =3D ST_ASM330LHHX_DEV_NAME,
-> > +				.wai =3D 0x6b,
->=20
-> Probably nicer to put it next to he other 0x6b entries.
->=20
-> >  			},
-> >  		},
-> >  		.channels =3D {
-> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c b/drivers/iio/=
-imu/st_lsm6dsx/st_lsm6dsx_i2c.c
-> > index 8b4fc2c15622..715fbdc8190e 100644
-> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
-> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c
-> > @@ -101,6 +101,10 @@ static const struct of_device_id st_lsm6dsx_i2c_of=
-_match[] =3D {
-> >  		.compatible =3D "st,lsm6dsop",
-> >  		.data =3D (void *)ST_LSM6DSOP_ID,
-> >  	},
-> > +	{
-> > +		.compatible =3D "st,asm330lhhx",
-> > +		.data =3D (void *)ST_ASM330LHHX_ID,
-> > +	},
-> >  	{},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, st_lsm6dsx_i2c_of_match);
-> > @@ -122,6 +126,7 @@ static const struct i2c_device_id st_lsm6dsx_i2c_id=
-_table[] =3D {
-> >  	{ ST_LSM6DSRX_DEV_NAME, ST_LSM6DSRX_ID },
-> >  	{ ST_LSM6DST_DEV_NAME, ST_LSM6DST_ID },
-> >  	{ ST_LSM6DSOP_DEV_NAME, ST_LSM6DSOP_ID },
-> > +	{ ST_ASM330LHHX_DEV_NAME, ST_ASM330LHHX_ID },
-> >  	{},
-> >  };
-> >  MODULE_DEVICE_TABLE(i2c, st_lsm6dsx_i2c_id_table);
-> > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c b/drivers/iio/=
-imu/st_lsm6dsx/st_lsm6dsx_spi.c
-> > index e80110b6b280..f5767cf76c1d 100644
-> > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
-> > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c
-> > @@ -101,6 +101,10 @@ static const struct of_device_id st_lsm6dsx_spi_of=
-_match[] =3D {
-> >  		.compatible =3D "st,lsm6dsop",
-> >  		.data =3D (void *)ST_LSM6DSOP_ID,
-> >  	},
-> > +	{
-> > +		.compatible =3D "st,asm330lhhx",
-> > +		.data =3D (void *)ST_ASM330LHHX_ID,
-> > +	},
-> >  	{},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, st_lsm6dsx_spi_of_match);
-> > @@ -122,6 +126,7 @@ static const struct spi_device_id st_lsm6dsx_spi_id=
-_table[] =3D {
-> >  	{ ST_LSM6DSRX_DEV_NAME, ST_LSM6DSRX_ID },
-> >  	{ ST_LSM6DST_DEV_NAME, ST_LSM6DST_ID },
-> >  	{ ST_LSM6DSOP_DEV_NAME, ST_LSM6DSOP_ID },
-> > +	{ ST_ASM330LHHX_DEV_NAME, ST_ASM330LHHX_ID },
-> >  	{},
-> >  };
-> >  MODULE_DEVICE_TABLE(spi, st_lsm6dsx_spi_id_table);
->=20
-
---F5Fav6UVPwVhK7sH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYkmBuAAKCRA6cBh0uS2t
-rNCLAPwOlL1TO/TLEa2oHtEiWmQXBf/FzpcQla7MJhAV0L/h6wEAmQ0i/b69G1Ut
-XutngZL+C0E6/4tFJT6f07eWp8k/AwQ=
-=RV1J
------END PGP SIGNATURE-----
-
---F5Fav6UVPwVhK7sH--
