@@ -2,320 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C384F1503
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 14:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DEB04F1517
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 14:43:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346854AbiDDMmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 08:42:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
+        id S1346620AbiDDMpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 08:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345904AbiDDMmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 08:42:08 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 757002CC99
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 05:40:11 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id c190-20020a1c35c7000000b0038e37907b5bso7672740wma.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 05:40:11 -0700 (PDT)
+        with ESMTP id S233970AbiDDMpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 08:45:17 -0400
+Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.140.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B305A2F3A5;
+        Mon,  4 Apr 2022 05:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=ZeotdEyuaTGdsdLJ4Jmy4Ks/jM3YHCk6KKZJjilIqN8=;
-        b=d2ACJ4FMKOj+ZM4t31aUYUvlo+gq5OXoKso3xQjGB0BTJw3j0494Vvff+SqZczkhmH
-         48/p0IUyMek7zMIvV0edVPA15DEb3kduZ0HwkUeKioDT9+GARrqJ35+uy+fMQEUrJlXu
-         21ELX9Sur5wPriXnF6/OdKMfYvFhmccQVe7WOKEjnf6Ad3os32/r2Zo2Z+cIOiCxxZl5
-         tH+1gy3y8tnbRN+10wgkIO5LcQESPxqcRCWbzI3Pt4pAWgbsp1LQwDLPL9l1iz85ttdr
-         XlQRuhDPoYmIafzzxonjT1E5KAwIdKOmHY2zbltzxk7qW/MfCA/I0ItDkpnFnGTtki3y
-         f5ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=ZeotdEyuaTGdsdLJ4Jmy4Ks/jM3YHCk6KKZJjilIqN8=;
-        b=gaAJHUv8hloTLV33A83FCLxauVJKWtf8D4Muxfuf00sMm+a/bP4mly9mWkKCDCkEHc
-         Mg27U01+NPYcZI09B/6X25VN4ZAY+6RATr3CU21Vk9OfawQdJs0Swakhdy4T7Y24hBGJ
-         SMH0FIB3U2Zc8m+knoDfufK4OOZAyPQjQILJdcTsmirXy/TvvHJOf3lIvX70vaiAJYt7
-         PRvmsBbHs5G4vzVuXuUIGPc1OqayFzD76Qkpv50ywwiuVfrdal5HxGPasrYdPJTAijEa
-         RN9DykQDi1pvlAXvq1HrU8F5pzb+azwTo+/CdDW41XyreS9P8K7Zqj1zqmfiMvS5gXkU
-         t+rw==
-X-Gm-Message-State: AOAM532dJMY1x7QckaFH351hcwO2uZMQ4lrPzMSVHu3QDHxBKLe48aFY
-        4+R/qnjSoxE177idlJBDGIDdyA==
-X-Google-Smtp-Source: ABdhPJzuy3b3TtMxOWHYxOYY54z4mIT4gXGcVATO1XYdj1uwDkn7Dkq4yjzBf0nohbQq8Q4aC57KwQ==
-X-Received: by 2002:a7b:c382:0:b0:388:2e76:49ed with SMTP id s2-20020a7bc382000000b003882e7649edmr19337941wmj.195.1649076009796;
-        Mon, 04 Apr 2022 05:40:09 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:1add:1b28:2457:eb46? ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
-        by smtp.gmail.com with ESMTPSA id l28-20020a05600c1d1c00b0038e72a95ec4sm2849603wms.13.2022.04.04.05.40.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Apr 2022 05:40:09 -0700 (PDT)
-Message-ID: <d30b32fe-e1d4-0684-a1fa-710c1da3faea@baylibre.com>
-Date:   Mon, 4 Apr 2022 14:40:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
+  t=1649076201; x=1649681001;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=zT2JJG4vYBZg4v0syQzXGiOX4T2IrKAdn+3qPJB7dzw=;
+  b=D3/ETc3nLeTvCH0QjdA6upAmTcqDzyfpJDUv1dpn0A8bk8ysJJLM3RY4
+   Ypko//ZtDO1pWCZdNnJNyrdfxN6ho+HwFEsLBBwqUyoKy6nMQLR6PPl98
+   mlQf8A1XRPjmSQ8IhLdtFP+wE7ytP5Iz/463ok1khTZ+McEFu4nLtpnvm
+   4=;
+Received: from mail-dm6nam11lp2174.outbound.protection.outlook.com (HELO NAM11-DM6-obe.outbound.protection.outlook.com) ([104.47.57.174])
+  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 12:43:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Dk/B+YcDnC5h/P1CtfLaf3rn5zkynNNx7qLPQM7tRyf+26y4FqC620xVXxvPDm+UZp4EnXOyYKZeePrxnbNCEChvEbhbwTlc5hTd7i4psUI+ewPsL1eVu3TL05A9wZXy+pkzlJnZd7hZZ6da+C69yWjS2g9wfW60m8JUDOt3NKSTiVYh2DO8v44gQZINbR7WVaIyZkc1EVV//zrAC4ov3Gb6P3+EyuYnSdj2AOGfcEFA8KRDGPn+uM/wVSQMInM6Q4G1b8ib8DmON5NsWNSxdXsBRqhK53WjvP2q+GVF2lzRZGEzx20rSAGymoVdYRdFYD+kDPYRhy+2bV879aXmug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zT2JJG4vYBZg4v0syQzXGiOX4T2IrKAdn+3qPJB7dzw=;
+ b=efyJkw6PsNoFqSOVm+q3ikj/ibaoPv0BBAg1isFdH+73RnUs5K+Wmjf2xxOC0XBKQANqgndgQjJtefSxHYSkrw6woycHwkC6uAnaAKGtSbclvXorMBqFsuKEdKFk1kR6fZXAeo7cNnIKMbgv4GWy9qsvjZwnzXYchMkXZ4CE9fumRtoJRPJ+zigE6bc1ag5S7fDk8g98y18EbvBHi3BdTsl2OxysBXqTVvRf0N6GgKQ7JbhLKMh1TSz384OYmJDXjAStW7oej2PdHR0WlzJwH5LRmM49G/NRCDLI+KbuVZ/DCND8r4GnwpXOy9JqjniRWISOwQeTusExLnSO47PJ+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from MW4PR02MB7186.namprd02.prod.outlook.com (2603:10b6:303:73::6)
+ by MWHPR0201MB3531.namprd02.prod.outlook.com (2603:10b6:301:7c::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.31; Mon, 4 Apr
+ 2022 12:43:16 +0000
+Received: from MW4PR02MB7186.namprd02.prod.outlook.com
+ ([fe80::9485:c59c:6877:f492]) by MW4PR02MB7186.namprd02.prod.outlook.com
+ ([fe80::9485:c59c:6877:f492%6]) with mapi id 15.20.5123.031; Mon, 4 Apr 2022
+ 12:43:16 +0000
+From:   "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+To:     Doug Anderson <dianders@chromium.org>,
+        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+CC:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+Subject: RE: [PATCH v6 2/8] drm/msm/dp: wait for hpd high before aux
+ transaction
+Thread-Topic: [PATCH v6 2/8] drm/msm/dp: wait for hpd high before aux
+ transaction
+Thread-Index: AQHYRE+4vbMdbQ6aBkS4lzhesUsPTqzaI7sAgAWWvXA=
+Date:   Mon, 4 Apr 2022 12:43:16 +0000
+Message-ID: <MW4PR02MB7186656298691D9F575BE7EBE1E59@MW4PR02MB7186.namprd02.prod.outlook.com>
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-3-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=UtnNTWmMPYPkSJ5qceWspXtZ+hL6UTgSn=rHzd39Y42g@mail.gmail.com>
+In-Reply-To: <CAD=FV=UtnNTWmMPYPkSJ5qceWspXtZ+hL6UTgSn=rHzd39Y42g@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220402074921.13316-1-liang.yang@amlogic.com>
- <20220402074921.13316-2-liang.yang@amlogic.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quicinc.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: effdbfdf-2234-43c9-cfaa-08da1638b0bd
+x-ms-traffictypediagnostic: MWHPR0201MB3531:EE_
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-microsoft-antispam-prvs: <MWHPR0201MB3531AABCFEF2498DDC0F2A299DE59@MWHPR0201MB3531.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rE38ahtpX+z8I50uBVMqe5H0s4wH0HxsKRJ/82zjInvejKqAoW80XFIs+f3ZvYMiTcp5atm/XfASSjiLP1fs7qkgwsqXbm6Lp7ezAzfwQhnosri6kR1JfrjQn67HaEd9qlzByhM9XMIGyktcmhbYXktdnHBKLO3Aha+xtOXiy/Xjy2SuwNRwXWFDIbouhI4ETUiL1IvV9wrHODWMysW2LrW44b2MKTCZ7A5O0kSa/QzHtfTwWihKKFtrvnnIs/NWXLKEAvl3Idsej8wAz8P1W6HwTduCiduNwIyKs+BUC75xlW3/+UNUNRW0P+5jjasY1o6fPuCxIuASjVRu7S+8EQxGLpQ91qZ7uTAyTtPmKwiRFJxjXSORvTuK+2mnBjMW7Rz+WaxkaMlg6b/ldcRlGQc8pbJU4d3MgOkxkFddnKTCui6Ydackn8bilntVOrEVXI6vcONhLUk5L9txMYg3uB3C5E/hXtxVlsPsWeMENEMSSQ6BlddV7loQUKFsS1m6YVhZuWKi1KHMwbVTClplPuy69Szn94u1JsfHUnxudQE9sAMmaSypc8k0l/0RDkNB+P5HwZtCkQVL8BjCao0g/1RD3N1RQH8dH4V0mI/4Xiir91VNllghk1S9jqoG+NK7+qaho4M7yEW4gsMNaElerJgx1pcI5RCoFwFOOvG5seNhfthlK10PIzugzd7ycHxh03nTCgKXGNPdGHnFx92lTw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR02MB7186.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8676002)(66946007)(64756008)(26005)(4326008)(186003)(76116006)(66476007)(83380400001)(86362001)(66556008)(66446008)(7416002)(38100700002)(5660300002)(2906002)(122000001)(107886003)(55016003)(52536014)(316002)(38070700005)(8936002)(508600001)(9686003)(6506007)(53546011)(7696005)(33656002)(71200400001)(110136005)(54906003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eEhPMXBINzlVSEQ4OEdSR3pwK05WV3BCSktNZ1I5VTUrTzh5YXdJYjFPYXRu?=
+ =?utf-8?B?RktTdW9DQzFRRGpzMXBEMjdRWTh4UWJJWFh1Zk1adjUzT2M3QTJmb1d6RE00?=
+ =?utf-8?B?TVpPb2RwQmVoSGpNT0pLRGtYSE85dmZHc2JOMW8yYkh0aUo2Z01ncGprbkQx?=
+ =?utf-8?B?SWlpVzJmZHQ2RVRSbXVmSmZBbHdDVlhsd1Y2enZ0OXlXVEJzM090bE5LckJQ?=
+ =?utf-8?B?QThza0NhZE5TTVpzUE96VVViUWwwbDdVemhxMExjZ3pyRjF2Rk5RWGpzVXc0?=
+ =?utf-8?B?WEs0M3o3Z0NUWXpUZ0ZQWjMzZ1cxUzhWV0dlU1VQa3ZSbUY4TUo5L0JxVzdH?=
+ =?utf-8?B?OGFSOUxYM09IYXFlVlBDeFY3eTdPZ2pIREZUbEtJbE5NL3JkWDlTc0kyZDlx?=
+ =?utf-8?B?czBGcnhPcjc3VTVnQUdBUTBXV2VOSFNBYnV2eFBSeHBKSnpDM2pSWXZuZlI1?=
+ =?utf-8?B?Qm1BN0RBL2Jqd0hUWHFaUU1EZTZ1U0VUTjhMM0dEbzFTbTA0bUMzL2xBYmJy?=
+ =?utf-8?B?dzVUak5TL1NDMzIvb0tsVVIzdEdza0VDVnNTYXdHSVdpN0lPaGJCRlhEdU1G?=
+ =?utf-8?B?Z3JGOE50Q2wvdE0zcUFEdmpmZ3N1dDh6UHhmRm1yL0FWUXQxcEhPYkhlY3Zj?=
+ =?utf-8?B?SlBOazd6d1B4VWFvdXEzNGNVRk9HdUVhUjVWaUJSWWRrSEJPZnR4UmNvM1FT?=
+ =?utf-8?B?Y0xOT295RDdES1ZlYWNaV05RMEswZ01sd3BqOXp2cGpVMTZEY25kTTN2dzI5?=
+ =?utf-8?B?dE9DSFcwWDYzNWhMREd6Rkk0WEFSSEdvSkRKbmFNUW1hc08wRHNDOEcyRGVw?=
+ =?utf-8?B?MC85NmthN3dVT0xjM3YyZ1BmVW5uS1dBZjNrZWtnb3FVV1ZDM1o4MUpyd1dz?=
+ =?utf-8?B?TUVWOGhyWjB1WldncGV6QUZHQmxGdDByMkpjZmIyOVMrNTA0KzlMcUZtNnhy?=
+ =?utf-8?B?K01OZit0R01ESENlRzBKTktYNW1lYy8wUXJRVlAyWitIQ1I2RFpCeDRKSUVM?=
+ =?utf-8?B?WXVKWDFXelhBMnUzN1VCOGowc0FDTFpodWFOdmRySnhqR2ZoalZQM1lpZERh?=
+ =?utf-8?B?cW5iZTNzUHZkb3NIMHZ1M1FzdFR5elRkS1haZkdrUXh0QVVzWTFtNmttNkpM?=
+ =?utf-8?B?WGpDOGZvOHUyZFMyWmJDQnA3dk5GSVJiQUlNNThmYXVsRlU0RDRzQUNNR2Jj?=
+ =?utf-8?B?Q3lRSExNcUN0OHZuK0I2cVB6THFxWFdyU2hIems0dlErTzRKbkdvQ1p5Z08z?=
+ =?utf-8?B?aHp5NWxqaFIyaHFqVEpGejJyYWo4TjBxQ0lnYlFmbTV0aWFFYmtTWDRIbFll?=
+ =?utf-8?B?Z1dhRm5kamRERVUzVWdqbFlXeE1tS0sxemNUcllFNkJ4eGFlNGx5YW1KbXh6?=
+ =?utf-8?B?ejNjL29pTzJsV1pRd0pod0t0U1J2clNDdzhIOXZkbmhTYTMvTitGMjZsekRL?=
+ =?utf-8?B?OWMvU3BoVXVmZ1E0YmJvR0RCZFlwV2dHN0tvR3pqUVFjYUNIMWhseEY5TUpD?=
+ =?utf-8?B?MEI4SGVqVExNdWtUb1hwaG9GOUVxZWR0QzU4bnZZQTBWcWhJdWJaSzBHc05u?=
+ =?utf-8?B?QzI3ak9YRVM2TjFsMWN1cWZuMWI3djdDTmgxMk9CaG4xb01HM0IxWEpjUHVB?=
+ =?utf-8?B?K0dGM0ZIaTNMZDgrU3lTZ3F3Mk9Weis4Tlh3WG9MTXlxblBSNUVIbVh2SEhy?=
+ =?utf-8?B?alpnZ3JBb0NWajdzalcwczRlNnovWTczTVJzV3VjWHdFVFhyWmtyK1JWeVJ2?=
+ =?utf-8?B?NndhdzN3cWNJa2o3VXNFRlpNb0FnRVVJSE9HM2lKTDdFRW9NRS85OE5JdkY2?=
+ =?utf-8?B?ek9IV3JvbnNiZlQwdXJCV1dVK3ZlemlPZ0YwV1RzQUZkc3JyUWVhTXRzSjdC?=
+ =?utf-8?B?OUxRek9zY1VBZ0pSS0NkZ0cwQjJsQVVwc0gyRDg5TzVCZkN0MXBaT05Gb2lr?=
+ =?utf-8?B?d2QxSSs2N3p2ZWZDMVhlbnVNem1OZk9kelBNNXhGWUxJVHRBWTA4SldYVktB?=
+ =?utf-8?B?dlliOWgrbW8rOHVaTTRaVjRrN3NDeXQzaFZUQUpHTk5rQTNibHV0TE5RS0Ns?=
+ =?utf-8?B?TXptaVpxZm5vL0hsK3JUTk9Ib3ZncndnbE83L3BKblloTHRBVmlzSTJmd1la?=
+ =?utf-8?B?cnNnam4xOEEzNW9wZWU2MFp4Q2ppYUx6ZW9IeldEL1B5NUdvVVlGZFFvZnNX?=
+ =?utf-8?B?TzZJZFEvUElkZTUyenlwV05ybGM3ODMrYTh1czZLTFoya3FZMU9MTk8va2g0?=
+ =?utf-8?B?L3dlbWo2M2ZDT0xvZmxxUDU4K2Y2c2VZdGQ3L2ZwSXdYNkFyQWdRREU1a1ZI?=
+ =?utf-8?B?b1dnWlJGbGZGWnllZXNZTTNWb3ZIN2Z2aXlhZTRoSXJnbE1BUEdSUT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR02MB7186.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: effdbfdf-2234-43c9-cfaa-08da1638b0bd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Apr 2022 12:43:16.3993
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Tsa4HLRBiYSU12YV1VcCGYUf5xlz3JIKmjo2hJnPCLQJDi/rWb/Cf+0j3koLzmSLwQOZiq6ipUCjcAVS8yqhQdeVF7Rwa1QdbhSMkk8oFpk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0201MB3531
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 02/04/2022 09:49, Liang Yang wrote:
-> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
-> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
-> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock has been
-> implemented and can be used by the eMMC and NAND controller (which are mutually
-> exclusive anyway). Let's use this new clock.
-> 
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->   drivers/mtd/nand/raw/meson_nand.c | 89 +++++++++++++++----------------
->   1 file changed, 42 insertions(+), 47 deletions(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index ac3be92872d0..1b1a9407fb2f 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -10,6 +10,7 @@
->   #include <linux/dma-mapping.h>
->   #include <linux/interrupt.h>
->   #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->   #include <linux/mtd/rawnand.h>
->   #include <linux/mtd/mtd.h>
->   #include <linux/mfd/syscon.h>
-> @@ -19,6 +20,7 @@
->   #include <linux/iopoll.h>
->   #include <linux/of.h>
->   #include <linux/of_device.h>
-> +#include <linux/of_address.h>
->   #include <linux/sched/task_stack.h>
->   
->   #define NFC_REG_CMD		0x00
-> @@ -104,6 +106,9 @@
->   
->   #define PER_INFO_BYTE		8
->   
-> +#define CLK_DIV_SHIFT		0
-> +#define CLK_DIV_WIDTH		6
-> +
->   struct meson_nfc_nand_chip {
->   	struct list_head node;
->   	struct nand_chip nand;
-> @@ -151,15 +156,15 @@ struct meson_nfc {
->   	struct nand_controller controller;
->   	struct clk *core_clk;
->   	struct clk *device_clk;
-> -	struct clk *phase_tx;
-> -	struct clk *phase_rx;
-> +	struct clk *nand_clk;
-> +	struct clk_divider nand_divider;
->   
->   	unsigned long clk_rate;
->   	u32 bus_timing;
->   
->   	struct device *dev;
->   	void __iomem *reg_base;
-> -	struct regmap *reg_clk;
-> +	void __iomem *sd_emmc_clock;
-
-The name could still be reg_clk, even if not a regmap anymore.
-
->   	struct completion completion;
->   	struct list_head chips;
->   	const struct meson_nfc_data *data;
-> @@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip *nand, int chip)
->   	nfc->timing.tbers_max = meson_chip->tbers_max;
->   
->   	if (nfc->clk_rate != meson_chip->clk_rate) {
-> -		ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
-> +		ret = clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
->   		if (ret) {
->   			dev_err(nfc->dev, "failed to set clock rate\n");
->   			return;
-> @@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
->   	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
->   		| nfc->param.chip_select | nfc->timing.tbers_max;
->   	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> -
->   	ret = wait_for_completion_timeout(&nfc->completion,
->   					  msecs_to_jiffies(timeout_ms));
->   	if (ret == 0)
-> @@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
->   	.free = meson_ooblayout_free,
->   };
->   
-> +struct clk_parent_data nfc_divider_parent_data[1];
-
-This should be in the meson_nfc_clk_init() function, not global
-
->   static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   {
->   	int ret;
-> +	struct clk_init_data init = {0};
->   
->   	/* request core clock */
->   	nfc->core_clk = devm_clk_get(nfc->dev, "core");
-> @@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   		return PTR_ERR(nfc->device_clk);
->   	}
->   
-> -	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
-> -	if (IS_ERR(nfc->phase_tx)) {
-> -		dev_err(nfc->dev, "failed to get TX clk\n");
-> -		return PTR_ERR(nfc->phase_tx);
-> -	}
-> -
-> -	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
-> -	if (IS_ERR(nfc->phase_rx)) {
-> -		dev_err(nfc->dev, "failed to get RX clk\n");
-> -		return PTR_ERR(nfc->phase_rx);
-> -	}
-> +	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
-
-name = devm_kasprintf(nfc->dev, GFP_KERNEL, "%s#div", dev_name(dev));
-
-would be better.
-
-> +	init.ops = &clk_divider_ops;
-> +	nfc_divider_parent_data[0].fw_name = "device";
-> +	init.parent_data = nfc_divider_parent_data;
-> +	init.num_parents = 1;
-> +	nfc->nand_divider.reg = nfc->sd_emmc_clock;
-> +	nfc->nand_divider.shift = CLK_DIV_SHIFT;
-> +	nfc->nand_divider.width = CLK_DIV_WIDTH;
-> +	nfc->nand_divider.hw.init = &init;
-> +	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
-> +				  CLK_DIVIDER_ROUND_CLOSEST |
-> +				  CLK_DIVIDER_ALLOW_ZERO;
-> +
-> +	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
-> +	if (IS_ERR(nfc->nand_clk))
-> +		return PTR_ERR(nfc->nand_clk);
->   
->   	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
-> -	regmap_update_bits(nfc->reg_clk,
-> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
-> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
-> +	       nfc->sd_emmc_clock);
->   
->   	ret = clk_prepare_enable(nfc->core_clk);
->   	if (ret) {
-> @@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   		goto err_device_clk;
->   	}
->   
-> -	ret = clk_prepare_enable(nfc->phase_tx);
-> +	ret = clk_prepare_enable(nfc->nand_clk);
->   	if (ret) {
-> -		dev_err(nfc->dev, "failed to enable TX clock\n");
-> -		goto err_phase_tx;
-> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
-> +		goto err_nand_clk;
->   	}
->   
-> -	ret = clk_prepare_enable(nfc->phase_rx);
-> -	if (ret) {
-> -		dev_err(nfc->dev, "failed to enable RX clock\n");
-> -		goto err_phase_rx;
-> -	}
-> -
-> -	ret = clk_set_rate(nfc->device_clk, 24000000);
-> +	ret = clk_set_rate(nfc->nand_clk, 24000000);
->   	if (ret)
-> -		goto err_disable_rx;
-> +		goto err_disable_clk;
->   
->   	return 0;
->   
-> -err_disable_rx:
-> -	clk_disable_unprepare(nfc->phase_rx);
-> -err_phase_rx:
-> -	clk_disable_unprepare(nfc->phase_tx);
-> -err_phase_tx:
-> +err_disable_clk:
-> +	clk_disable_unprepare(nfc->nand_clk);
-> +err_nand_clk:
->   	clk_disable_unprepare(nfc->device_clk);
->   err_device_clk:
->   	clk_disable_unprepare(nfc->core_clk);
-> @@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
->   
->   static void meson_nfc_disable_clk(struct meson_nfc *nfc)
->   {
-> -	clk_disable_unprepare(nfc->phase_rx);
-> -	clk_disable_unprepare(nfc->phase_tx);
-> +	clk_disable_unprepare(nfc->nand_clk);
->   	clk_disable_unprepare(nfc->device_clk);
->   	clk_disable_unprepare(nfc->core_clk);
->   }
-> @@ -1374,7 +1376,6 @@ static int meson_nfc_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct meson_nfc *nfc;
-> -	struct resource *res;
->   	int ret, irq;
->   
->   	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
-> @@ -1388,21 +1389,15 @@ static int meson_nfc_probe(struct platform_device *pdev)
->   	nand_controller_init(&nfc->controller);
->   	INIT_LIST_HEAD(&nfc->chips);
->   	init_completion(&nfc->completion);
-> -
->   	nfc->dev = dev;
->   
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	nfc->reg_base = devm_ioremap_resource(dev, res);
-> +	nfc->reg_base = devm_platform_ioremap_resource_byname(pdev, "nfc");
->   	if (IS_ERR(nfc->reg_base))
->   		return PTR_ERR(nfc->reg_base);
->   
-> -	nfc->reg_clk =
-> -		syscon_regmap_lookup_by_phandle(dev->of_node,
-> -						"amlogic,mmc-syscon");
-> -	if (IS_ERR(nfc->reg_clk)) {
-> -		dev_err(dev, "Failed to lookup clock base\n");
-> -		return PTR_ERR(nfc->reg_clk);
-> -	}
-> +	nfc->sd_emmc_clock = devm_platform_ioremap_resource_byname(pdev, "emmc");
-> +	if (IS_ERR(nfc->sd_emmc_clock))
-> +		return PTR_ERR(nfc->sd_emmc_clock);
->   
->   	irq = platform_get_irq(pdev, 0);
->   	if (irq < 0)
-
-Thanks,
-Neil
+SGkgRG91ZywNCg0KPiBPbiBXZWQsIE1hciAzMCwgMjAyMiBhdCA5OjAzIEFNIFNhbmtlZXJ0aCBC
+aWxsYWthbnRpDQo+IDxxdWljX3NiaWxsYWthQHF1aWNpbmMuY29tPiB3cm90ZToNCj4gPg0KPiA+
+IFRoZSBzb3VyY2UgZGV2aWNlIHNob3VsZCBlbnN1cmUgdGhlIHNpbmsgaXMgcmVhZHkgYmVmb3Jl
+IHByb2NlZWRpbmcgdG8NCj4gPiByZWFkIHRoZSBzaW5rIGNhcGFiaWxpdHkgb3IgcGVyZm9ybWlu
+ZyBhbnkgYXV4IHRyYW5zYWN0aW9ucy4gVGhlIHNpbmsNCj4gDQo+IHMvcGVyZm9ybWluZy9wZXJm
+b3JtDQo+IA0KPiA+IHdpbGwgaW5kaWNhdGUgaXRzIHJlYWRpbmVzcyBieSBhc3NlcnRpbmcgdGhl
+IEhQRCBsaW5lLiBUaGUgY29udHJvbGxlcg0KPiA+IGRyaXZlciBuZWVkcyB0byB3YWl0IGZvciB0
+aGUgaHBkIGxpbmUgdG8gYmUgYXNzZXJ0ZWQgYnkgdGhlIHNpbmsNCj4gPiBiZWZvcmUgcGVyZm9y
+bWluZyBhbnkgYXV4IHRyYW5zYWN0aW9ucy4NCj4gPg0KPiA+IFRoZSBlRFAgc2luayBpcyBhc3N1
+bWVkIHRvIGJlIGFsd2F5cyBjb25uZWN0ZWQuIEl0IG5lZWRzIHBvd2VyIGZyb20NCj4gPiB0aGUg
+c291cmNlIGFuZCBpdHMgSFBEIGxpbmUgd2lsbCBiZSBhc3NlcnRlZCBvbmx5IGFmdGVyIHRoZSBw
+YW5lbCBpcw0KPiA+IHBvd2VyZWQgb24uIFRoZSBwYW5lbCBwb3dlciB3aWxsIGJlIGVuYWJsZWQg
+ZnJvbSB0aGUgcGFuZWwtZWRwIGRyaXZlcg0KPiA+IGFuZCBvbmx5IGFmdGVyIHRoYXQsIHRoZSBo
+cGQgbGluZSB3aWxsIGJlIGFzc2VydGVkLg0KPiA+DQo+ID4gV2hlcmVhcyBmb3IgRFAsIHRoZSBz
+aW5rIGNhbiBiZSBob3RwbHVnZ2VkIGFuZCB1bnBsdWdnZWQgYW55dGltZS4gVGhlDQo+ID4gaHBk
+IGxpbmUgZ2V0cyBhc3NlcnRlZCB0byBpbmRpY2F0ZSB0aGUgc2luayBpcyBjb25uZWN0ZWQgYW5k
+IHJlYWR5Lg0KPiA+IEhlbmNlIHRoZXJlIGlzIG5vIG5lZWQgdG8gd2FpdCBmb3IgdGhlIGhwZCBs
+aW5lIHRvIGJlIGFzc2VydGVkIGZvciBhIERQIHNpbmsuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBTYW5rZWVydGggQmlsbGFrYW50aSA8cXVpY19zYmlsbGFrYUBxdWljaW5jLmNvbT4NCj4gPiAt
+LS0NCj4gPg0KPiA+IENoYW5nZXMgaW4gdjY6DQo+ID4gICAtIFdhaXQgZm9yIGhwZCBoaWdoIG9u
+bHkgZm9yIGVEUA0KPiA+ICAgLSBTcGxpdCBpbnRvIHNtYWxsZXIgcGF0Y2hlcw0KPiA+DQo+ID4g
+IGRyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfYXV4LmMgICAgIHwgMTMgKysrKysrKysrKysrLQ0K
+PiA+ICBkcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2F1eC5oICAgICB8ICAzICsrLQ0KPiA+ICBk
+cml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2NhdGFsb2cuYyB8IDEzICsrKysrKysrKysrKysNCj4g
+PiBkcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2NhdGFsb2cuaCB8ICAxICsNCj4gPiBkcml2ZXJz
+L2dwdS9kcm0vbXNtL2RwL2RwX2Rpc3BsYXkuYyB8ICAzICsrLQ0KPiA+ICA1IGZpbGVzIGNoYW5n
+ZWQsIDMwIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL21zbS9kcC9kcF9hdXguYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJt
+L21zbS9kcC9kcF9hdXguYyBpbmRleCA2ZDM2ZjYzLi5hMjE3YzgwIDEwMDY0NA0KPiA+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfYXV4LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbXNtL2RwL2RwX2F1eC5jDQo+ID4gQEAgLTM2LDYgKzM2LDcgQEAgc3RydWN0IGRwX2F1eF9w
+cml2YXRlIHsNCj4gPiAgICAgICAgIGJvb2wgaW5pdHRlZDsNCj4gPiAgICAgICAgIHUzMiBvZmZz
+ZXQ7DQo+ID4gICAgICAgICB1MzIgc2VnbWVudDsNCj4gPiArICAgICAgIGJvb2wgaXNfZWRwOw0K
+PiA+DQo+ID4gICAgICAgICBzdHJ1Y3QgZHJtX2RwX2F1eCBkcF9hdXg7DQo+ID4gIH07DQo+ID4g
+QEAgLTMzNyw2ICszMzgsMTQgQEAgc3RhdGljIHNzaXplX3QgZHBfYXV4X3RyYW5zZmVyKHN0cnVj
+dCBkcm1fZHBfYXV4DQo+ICpkcF9hdXgsDQo+ID4gICAgICAgICAgICAgICAgIGdvdG8gZXhpdDsN
+Cj4gPiAgICAgICAgIH0NCj4gPg0KPiA+ICsgICAgICAgaWYgKGF1eC0+aXNfZWRwKSB7DQo+IA0K
+PiBBZGRpbmcgYSBjb21tZW50IGFib3V0IF93aHlfIHlvdSdyZSBkb2luZyB0aGlzIGp1c3QgZm9y
+IGVEUCB3b3VsZA0KPiBwcm9iYWJseSBiZSBhIGdvb2QgaWRlYS4gTGlrZSBtYXliZToNCj4gDQo+
+IC8qDQo+ICAqIEZvciBlRFAgaXQncyBpbXBvcnRhbnQgdG8gZ2l2ZSBhIHJlYXNvbmFibHkgbG9u
+ZyB3YWl0IGhlcmUgZm9yIEhQRA0KPiAgKiB0byBiZSBhc3NlcnRlZC4gVGhpcyBpcyBiZWNhdXNl
+IHRoZSBwYW5lbCBkcml2ZXIgbWF5IGhhdmUgX2p1c3RfDQo+ICAqIHR1cm5lZCBvbiB0aGUgcGFu
+ZWwgYW5kIHRoZW4gdHJpZWQgdG8gZG8gYW4gQVVYIHRyYW5zZmVyLiBUaGUgcGFuZWwNCj4gICog
+ZHJpdmVyIGhhcyBubyB3YXkgb2Yga25vd2luZyB3aGVuIHRoZSBwYW5lbCBpcyByZWFkeSwgc28g
+aXQncyB1cA0KPiAgKiB0byB1cyB0byB3YWl0LiBGb3IgRFAgd2UgbmV2ZXIgZ2V0IGludG8gdGhp
+cyBzaXR1YXRpb24gc28gbGV0J3MNCj4gICogYXZvaWQgZXZlciBkb2luZyB0aGUgZXh0cmEgbG9u
+ZyB3YWl0IGZvciBEUC4NCj4gICovDQo+IA0KPiANCg0KT2theS4gV2lsbCBhZGQgaXQNCg0KPiA+
+IEBAIC00OTEsNyArNTAwLDggQEAgdm9pZCBkcF9hdXhfdW5yZWdpc3RlcihzdHJ1Y3QgZHJtX2Rw
+X2F1eA0KPiAqZHBfYXV4KQ0KPiA+ICAgICAgICAgZHJtX2RwX2F1eF91bnJlZ2lzdGVyKGRwX2F1
+eCk7ICB9DQo+ID4NCj4gPiAtc3RydWN0IGRybV9kcF9hdXggKmRwX2F1eF9nZXQoc3RydWN0IGRl
+dmljZSAqZGV2LCBzdHJ1Y3QgZHBfY2F0YWxvZw0KPiA+ICpjYXRhbG9nKQ0KPiA+ICtzdHJ1Y3Qg
+ZHJtX2RwX2F1eCAqZHBfYXV4X2dldChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkcF9jYXRh
+bG9nDQo+ICpjYXRhbG9nLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYm9v
+bCBpc19lZHApDQo+IA0KPiBuaXQ6IEkgdGhpbmsgeW91ciBpbmRlbnRhdGlvbiBvZiB0aGUgMm5k
+IGxpbmUgaXNuJ3QgcXVpdGUgcmlnaHQuDQo+IA0KPg0KDQpJIG1vdmVkIGJvb2wgaXNfZWRwIGlu
+dG8gdGhlIG5leHQgbGluZS4gSW4gdmltICwgaXQgd2FzIHNvd2luZyBmaW5lLiBJJ2xsIGNoZWNr
+DQogDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfYXV4LmgNCj4g
+PiBiL2RyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfYXV4LmggaW5kZXggODJhZmM4ZC4uYzk5YWVl
+YyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2F1eC5oDQo+ID4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL21zbS9kcC9kcF9hdXguaA0KPiA+IEBAIC0xNiw3ICsxNiw4
+IEBAIHZvaWQgZHBfYXV4X2luaXQoc3RydWN0IGRybV9kcF9hdXggKmRwX2F1eCk7ICB2b2lkDQo+
+ID4gZHBfYXV4X2RlaW5pdChzdHJ1Y3QgZHJtX2RwX2F1eCAqZHBfYXV4KTsgIHZvaWQgZHBfYXV4
+X3JlY29uZmlnKHN0cnVjdA0KPiA+IGRybV9kcF9hdXggKmRwX2F1eCk7DQo+ID4NCj4gPiAtc3Ry
+dWN0IGRybV9kcF9hdXggKmRwX2F1eF9nZXQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZHBf
+Y2F0YWxvZw0KPiA+ICpjYXRhbG9nKTsNCj4gPiArc3RydWN0IGRybV9kcF9hdXggKmRwX2F1eF9n
+ZXQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZHBfY2F0YWxvZw0KPiAqY2F0YWxvZywNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJvb2wgaXNfZWRwKTsNCj4gDQo+IG5p
+dDogSSB0aGluayB5b3VyIGluZGVudGF0aW9uIG9mIHRoZSAybmQgbGluZSBpc24ndCBxdWl0ZSBy
+aWdodC4NCj4gDQoNCkknbGwgY2hlY2sNCg0KPiANCj4gVGhpbmdzIGFyZSBwcmV0dHkgbXVjaCBu
+aXRzLCBzbyBGV0lXOg0KPiANCj4gUmV2aWV3ZWQtYnk6IERvdWdsYXMgQW5kZXJzb24gPGRpYW5k
+ZXJzQGNocm9taXVtLm9yZz4NCg0KVGhhbmsgeW91LA0KU2Fua2VlcnRoDQo=
