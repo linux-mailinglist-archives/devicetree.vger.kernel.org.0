@@ -2,51 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 026DF4F13ED
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 13:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 835BB4F13FC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 13:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357455AbiDDLlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 07:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33610 "EHLO
+        id S1376384AbiDDLrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 07:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357235AbiDDLlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 07:41:44 -0400
-Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC4E60F8;
-        Mon,  4 Apr 2022 04:39:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=metanate.com; s=stronger; h=In-Reply-To:Content-Type:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description; bh=mkeyhSxyusAHKnALY1uDS0yoYbKp/eWJvkf6lcIQ/ow=; b=Fm5GA
-        TBQNzVNjpeMf6PBUOAJ9pNHY3ubuipR2YgkdzmOpAhyPvBAigkYuaS6Bt0qztNTinj82y7cY5wrzk
-        8M49jVH8ViVvLkqvhIPegfDZSkhFhWx36ewZbiITh9OAsu/ycpVz5a+dHUtHxUCoYRX56bJiAK7Du
-        5/r0ZfI60FYkAuR0uw0E2vD0KLCxNiNvj0S/TFUIfUgPVBbwx1rf4dVqqyANjk28GnrUR1GqUamEM
-        1umr5Lxo//WXFEco/mu2E/pvtYSX3Ndk1cB0o5G+FHykx0xxC39HxCfCUddgMQnD4J8a0iDbj4wVh
-        IyGkZNPCSsaO8V3OeZwvbDozc22qg==;
-Received: from [81.174.171.191] (helo=donbot)
-        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <john@metanate.com>)
-        id 1nbL3h-00054c-2I; Mon, 04 Apr 2022 12:39:45 +0100
-Date:   Mon, 4 Apr 2022 12:39:43 +0100
-From:   John Keeping <john@metanate.com>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 18/33] crypto: rockchip: fix style issue
-Message-ID: <YkrY/9xE702mqKR/@donbot>
-References: <20220401201804.2867154-1-clabbe@baylibre.com>
- <20220401201804.2867154-19-clabbe@baylibre.com>
+        with ESMTP id S244573AbiDDLrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 07:47:48 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6823D1E6;
+        Mon,  4 Apr 2022 04:45:52 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id E5044221D4;
+        Mon,  4 Apr 2022 13:45:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1649072750;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=olPWV55vqiqcUXf75GJNHulGOLkPkqJnzu3GxeZEKiI=;
+        b=PNF1yQgRx0y1yrjIIX3Hxs+eOfZlzub69g8Nw9V2OM2QPYmqQ7Bn5pwXnML6z2JEgY3b9e
+        wx6XwTCwKoxVzCKYKsER9kjASDxGRpnC/NP9Iyi+irnP71UkfZRPbCGrtgcgb7+gNHpsX6
+        VIemPBOe55Y9etjOgGpW3iSY2fQt+tk=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220401201804.2867154-19-clabbe@baylibre.com>
-X-Authenticated: YES
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_NONE,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 04 Apr 2022 13:45:48 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] pinctrl: ocelot: convert to YAML format
+In-Reply-To: <20220319204628.1759635-1-michael@walle.cc>
+References: <20220319204628.1759635-1-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <41197a2523caf2a0b7b4835e9c911540@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,13 +67,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 01, 2022 at 08:17:49PM +0000, Corentin Labbe wrote:
-> This patch fixes some warning reported by checkpatch
+Am 2022-03-19 21:46, schrieb Michael Walle:
+> Convert the pinctrl ocelot binding to the new YAML format. Pin
+> configuration nodes should have a "-pins" postfix. But unfortunately,
+> there are many device trees which don't follow this. First rename
+> all these nodes and then convert the binding to the YAML format so
+> that the validation will pass.
 > 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  drivers/crypto/rockchip/rk3288_crypto_ahash.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> Because there were no maintainers before and there is none in
+> MAINTAINERS I added Alexandre Belloni and Lars Povlsen, juding by
+> the commits - to the binding as maintainers. Please tell me if you
+> disagree.
 
-There's also a badly indented comment in rk_hash_run() which could be
-fixed in this patch.
+Linus, can this go through your pinctrl tree because there is this
+series which depends on it:
+https://lore.kernel.org/linux-gpio/20220313154640.63813-1-michael@walle.cc/
+
+-michael
