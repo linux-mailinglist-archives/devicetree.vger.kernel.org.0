@@ -2,164 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0494F16C1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A24B44F16D0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343953AbiDDOIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 10:08:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
+        id S1376931AbiDDORb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 10:17:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241862AbiDDOIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:08:52 -0400
-Received: from gateway30.websitewelcome.com (gateway30.websitewelcome.com [192.185.180.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849CA3ED2F
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 07:06:56 -0700 (PDT)
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
-        by gateway30.websitewelcome.com (Postfix) with ESMTP id 01D1EAE15
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 09:06:56 -0500 (CDT)
-Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
-        by cmsmtp with SMTP
-        id bNKBnKYUqb6UBbNKBnHfOB; Mon, 04 Apr 2022 09:04:55 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=K/Iz8lz+bBMhFV3lQqHqSsiYiXnliRuQPADXVtgEoLk=; b=Az7iEK9SepQCmQLdh9PJHZ8qT2
-        ADqqtIX1aD1syu0+xbaRLyozn9T4zbgyk1jrkb+cShj2lJHzQPyHxiihrNbehEDCnvIhyrRqtnFxX
-        xWAtD6XQC62QRoPHd54xSDRU0766Y3ruH7hJcyYxl4fxggFbs1INF+kenRJkjCc+gx2w7HjH1Ss8A
-        l8L9G0mjD5CIsRPZ82rSuwmXOiuzqCpqOoJolR7/SFezTzDzgmR2yqcjKXwDfQAF70wlHYk0GMBXz
-        qDA8If4pNOEPBvSmbh8xPiZg70pdThsN4x+t/DnYkweRLOh9gYhYG09Tm7u/vhbZ4JqZPkKVwDecG
-        XYaBNAzg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:57852 helo=localhost)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@roeck-us.net>)
-        id 1nbNKA-000pyr-Mz; Mon, 04 Apr 2022 14:04:54 +0000
-Date:   Mon, 4 Apr 2022 07:04:53 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v2 02/12] dt-bindings: watchdog: sunxi: clarify clock
- support
-Message-ID: <20220404140453.GA3286578@roeck-us.net>
-References: <20220317162349.739636-1-andre.przywara@arm.com>
- <20220317162349.739636-3-andre.przywara@arm.com>
+        with ESMTP id S237149AbiDDORa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:17:30 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26F51FCDE;
+        Mon,  4 Apr 2022 07:15:34 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id z7so11419359iom.1;
+        Mon, 04 Apr 2022 07:15:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5E21fn+577TVIeU8kFomfMeng4iJST9d5OAfTwxTna4=;
+        b=WLjYGWfI8NieOzOaszwCD3go3mVW5B5I2+6Yg+OjcgoBVT7LMgFMz6W9axdgJItbWS
+         kcNOl5cStadfExLLKu1xE9sG/bZt6/C3t0E0rkMUhT97PYyBmtMH6qcC8UJoejnKPJSW
+         zUyrXFK85nzQBkDjkerQYx7AfBEO8Ed1TWxT4udvEf1T5G+3EPY4EACkL4d0Kp7UB+Ll
+         zKiPdNxmZwIOuItE+UUMShHUPUoGhjVPS21SyhceuXkqX0zhq2MCbu1hMm0b2oYm6sCC
+         Zi2FjqPaGKGlZSm3r6Ep1XtWCIDha1NmDS1Es3E2ck8hZA+Msy/JGHviUvTH1Awt+9QW
+         puDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5E21fn+577TVIeU8kFomfMeng4iJST9d5OAfTwxTna4=;
+        b=RtI3Hy3XQlmpXXnsM4b47SM2ZKmUi8zoYYufleBQCCOZGgy8/2MZsEz3xH3gz3G6am
+         DgsTEPPaiS3wSaa0taFzmSpg3gdYxa1fns4aEvPNt8VnfgBubb6x6A0HV/nNlJeMOcnl
+         ghKWKWaRNSdfmuxusIVPuvh4ig4OLXegfUOehBXKl9L/0A/ey30SSzD8VdCc/etv6vJ3
+         eahOEo2MY4RQczw5ODH2XlxPkmi+we4FjRfTq+hR8midiZTJiZzrtdxm2BTINKLh6EVM
+         szJ39qdiUKpPVeZVNrqX2Uhx79F8LkIWVGEpPArHtHrpBijWxhQ8fA0OLuCLhuEreUeG
+         lAwA==
+X-Gm-Message-State: AOAM531pPX66foVxdXEwq+Y4Nv4HmNoyn+AwZBXzgkQ/jPM/fkybdrLJ
+        RhkRvVqMC9EIBhSPA4opA6HovGBLaPmsGadpLa0=
+X-Google-Smtp-Source: ABdhPJxbrZxaxxa23c8KuLbVlw6fjbA5zoUQwfxTtjRwR9H1HCw24823wBw9jzwWM0Oe8D9H9Q79Z4l3QqfPkd0Fz5k=
+X-Received: by 2002:a6b:8e91:0:b0:645:c11f:e322 with SMTP id
+ q139-20020a6b8e91000000b00645c11fe322mr113988iod.162.1649081734248; Mon, 04
+ Apr 2022 07:15:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220317162349.739636-3-andre.przywara@arm.com>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1nbNKA-000pyr-Mz
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:57852
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 5
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220404131818.1817794-1-gch981213@gmail.com> <20220404131818.1817794-5-gch981213@gmail.com>
+ <14c921b5-4240-a026-252a-d5fb60836b34@linaro.org>
+In-Reply-To: <14c921b5-4240-a026-252a-d5fb60836b34@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Mon, 4 Apr 2022 22:15:23 +0800
+Message-ID: <CAJsYDVLY7HByymtd8kbdNGQ-oHMvpvU+CkWQgz+jOoANEwuKPQ@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] dt-bindings: spi: add binding doc for spi-mtk-snfi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Colin Ian King <colin.king@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 17, 2022 at 04:23:39PM +0000, Andre Przywara wrote:
-> Most Allwinner SoCs have just one input clock to drive the watchdog
-> peripheral. So far this is the 24 MHz "HOSC" oscillator, divided down
-> internally to 32 KHz.
-> The F1C100 series watchdog however uses the unchanged 32 KHz "LOSC" as
-> its only clock input, which has the same effect, but let's the binding
-> description mismatch.
-> 
-> Change the binding description to name the clocks more loosely, so both
-> the LOSC and divided HOSC match the description. As the fixed clock names
-> now make less sense, drop them from SoCs supporting just one clock
-> input, they were not used by any DT anyway.
-> 
-> For the newer SoCs, supporting a choice of two input clocks, we keep
-> both the description and clock-names requirement.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Samuel Holland <samuel@sholland.org>
+Hi!
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+On Mon, Apr 4, 2022 at 9:52 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> [...]
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - ecc-engine
+>
+> Slightly slow down resends (max 1 per day). You sent v3 without giving a
+> chance to review this.
 
-> ---
->  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 20 ++++++++-----------
->  1 file changed, 8 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> index 7a26cde0afdd..cbcf19f51411 100644
-> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> @@ -39,14 +39,8 @@ properties:
->    clocks:
->      minItems: 1
->      items:
-> -      - description: High-frequency oscillator input, divided internally
-> -      - description: Low-frequency oscillator input, only found on some variants
-> -
-> -  clock-names:
-> -    minItems: 1
-> -    items:
-> -      - const: hosc
-> -      - const: losc
-> +      - description: 32 KHz input clock
-> +      - description: secondary clock source
->  
->    interrupts:
->      maxItems: 1
-> @@ -71,9 +65,14 @@ then:
->    properties:
->      clocks:
->        minItems: 2
-> +      items:
-> +        - description: High-frequency oscillator input, divided internally
-> +        - description: Low-frequency oscillator input
->  
->      clock-names:
-> -      minItems: 2
-> +      items:
-> +        - const: hosc
-> +        - const: losc
->  
->    required:
->      - clock-names
-> @@ -83,9 +82,6 @@ else:
->      clocks:
->        maxItems: 1
->  
-> -    clock-names:
-> -      maxItems: 1
-> -
->  unevaluatedProperties: false
->  
->  examples:
+I made some big changes to the driver for other review comments so I
+decided to send v3 for a review of the new version. I'll wait a bit next
+time.
+
+> Wrong name here.
+
+Oops. I'll fix this in the next version.
+
+--
+Regards,
+Chuanhong Guo
