@@ -2,182 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8834F18E8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 17:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 236644F1906
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 17:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357418AbiDDPzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 11:55:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47800 "EHLO
+        id S234537AbiDDP7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 11:59:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347996AbiDDPzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:55:16 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A164842495;
-        Mon,  4 Apr 2022 08:53:19 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id qh7so10849021ejb.11;
-        Mon, 04 Apr 2022 08:53:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
-        bh=OmtvB1Xni4XcAR/AuctQxx0e+3Qbn5XIYUFCQaI+LJU=;
-        b=IErH6U0tNhUU8vEfXOEKllxvqP6wDQePPXjFRl5gQAFvyCiAE+c1BLD7aj7n1hlLnK
-         +dEDAUOSXj+tbMoP8aMJywR3DucL6MOnODJgN/4icDWumqxEFCX2hv91uDZiOBfRDkNp
-         OLQTZM/0mRPaQFObQvNz9CpM3jp3dv8HyhI3h21pGSRrrmELiHFxmZt7FXdcEeSI5SZb
-         GVdHAgv14c2mK7KEF6r1ss72VzUXIAN8O5+JhDr66lWa6MYGOknvFL3ZHqag3xGIETmA
-         SFjpSiMOOX4IJiZLDeLvkGPyFEUxXOi58wFEnfiGBSTsrmwBmhC4F2se1jXGIGxNBNm4
-         oKLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=OmtvB1Xni4XcAR/AuctQxx0e+3Qbn5XIYUFCQaI+LJU=;
-        b=ebx/dPIRjVzKB5jYuokWNQZt0GvUSFkbl4Yi/kYPY58QmXRq+R0t1t3JtoM0hTGkxF
-         NddB0DFhMYdRqmGp9tFq6de3oQXnwVC5dlsKGfm0VKegeqW+KiZ26ewb+m9NOZjX2xee
-         6XiLHehnpCIVCYvbcGa/Z75Vv1WVC4TKwOw6UYcOpZTy0fGQaK3wW1dX2sE7w6yNX4oK
-         i0UYWaNS40tu6V4XJSla5T39xEBL9nl2KXe5mBsrRC+nRTB5TUGc6HF7qu3wfPSJJm1l
-         2AOlmuHxXZohvE1zjhc9XkMuye84CNv3LEFX4SKQCHvuQo7Y31TuBGHQ9+6+p7bRlVWT
-         fYkA==
-X-Gm-Message-State: AOAM531PtynaMefMYAV2aSy00qHGitRxDVClC9KpPb4C2o9lfYm30X58
-        0l+Go3dFv359EVPqNq5v2sr2CjhJg9g=
-X-Google-Smtp-Source: ABdhPJzwJeGc1YsWyZ3XejtT7WJTyL7+GNgDVEBCrVG0A1kNQ2ykFToGbKHEcYTmznych0HjS5D5TA==
-X-Received: by 2002:a17:907:d13:b0:6e0:b799:8fcc with SMTP id gn19-20020a1709070d1300b006e0b7998fccmr769623ejc.11.1649087596477;
-        Mon, 04 Apr 2022 08:53:16 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP ([188.123.115.255])
-        by smtp.gmail.com with ESMTPSA id a5-20020aa7cf05000000b0041919e52a38sm5532723edy.46.2022.04.04.08.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 08:53:16 -0700 (PDT)
-Date:   Mon, 4 Apr 2022 17:53:14 +0200
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S229932AbiDDP7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:59:38 -0400
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2C33EF34;
+        Mon,  4 Apr 2022 08:57:41 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 09EA9419BC;
+        Mon,  4 Apr 2022 15:57:35 +0000 (UTC)
+Subject: Re: [PATCH 6/9] nvme-apple: Add initial Apple SoC NVMe driver
+To:     Christoph Hellwig <hch@lst.de>, Sven Peter <sven@svenpeter.dev>
+Cc:     Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@fb.com>,
+        Sagi Grimberg <sagi@grimberg.me>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-unisoc@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: timer: Convert rda,8810pl-timer to YAML
-Message-ID: <20220404155314.GA2944@standask-GA-A55M-S2HP>
+        linux-kernel@vger.kernel.org, linux-nvme@lists.infradead.org
+References: <20220321165049.35985-1-sven@svenpeter.dev>
+ <20220321165049.35985-7-sven@svenpeter.dev> <20220324061620.GA12330@lst.de>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <18f3a7e6-16d1-2037-90e7-1c0b1b2fbb1c@marcan.st>
+Date:   Tue, 5 Apr 2022 00:57:33 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220324061620.GA12330@lst.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert RDA Micro Timer bindings to DT schema format.
+On 24/03/2022 15.16, Christoph Hellwig wrote:
+>> +
+>> +//#define DEBUG
+> 
+> This should not leak into the driverṡ
+> 
+>> +#include <linux/blk-integrity.h>
+> 
+> As far as I can tell this driver does not support metadata or PI,
+> so why is this include needed?
+> 
+>> +/* NVM Express NVM Command Set Specification, Revision 1.0a, Figure 18 */
+>> +#define NVME_OPCODE_DATA_XFER_HOST_TO_CTRL BIT(0)
+>> +#define NVME_OPCODE_DATA_XFER_CTRL_TO_HOST BIT(1)
+> 
+> Please just use the nvme_is_write helper where you are using these.
+> 
+>> +static int apple_nvme_sart_dma_setup(void *cookie, struct apple_rtkit_shmem *bfr,
+> 
+> Please avoid > 80 character lines.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
-Changes in v2:
-  - Collect Krzysztof's and Manivannan's R-b's
-  
- .../bindings/timer/rda,8810pl-timer.txt       | 20 --------
- .../bindings/timer/rda,8810pl-timer.yaml      | 47 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 48 insertions(+), 21 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
+The kernel hard limit is 100-character lines, not 80-character lines.
+Maintainers for existing drivers are certainly free to stick to 80 chars
+if they like it that way, but I don't see why we should still be
+enforcing that for new code. See bdc48fa11e46.
 
-diff --git a/Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt b/Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-deleted file mode 100644
-index 4db542c9a0fd..000000000000
---- a/Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-+++ /dev/null
-@@ -1,20 +0,0 @@
--RDA Micro RDA8810PL Timer
--
--Required properties:
--- compatible      :  "rda,8810pl-timer"
--- reg             :  Offset and length of the register set for the device.
--- interrupts      :  Should contain two interrupts.
--- interrupt-names :  Should be "hwtimer", "ostimer".
--
--Example:
--
--		apb@20900000 {
--			compatible = "simple-bus";
--			...
--			timer@10000 {
--				compatible = "rda,8810pl-timer";
--				reg = <0x10000 0x1000>;
--				interrupts = <16 IRQ_TYPE_LEVEL_HIGH>,
--					     <17 IRQ_TYPE_LEVEL_HIGH>;
--				interrupt-names = "hwtimer", "ostimer";
--			};
-diff --git a/Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml b/Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
-new file mode 100644
-index 000000000000..f9043a4488d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/rda,8810pl-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RDA Micro RDA8810PL Timer
-+
-+maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: rda,8810pl-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 2
-+    maxItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: hwtimer
-+      - const: ostimer
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    timer@20910000 {
-+      compatible = "rda,8810pl-timer";
-+      reg = <0x20910000 0x1000>;
-+      interrupts = <16 IRQ_TYPE_LEVEL_HIGH>,
-+                   <17 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-names = "hwtimer", "ostimer";
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6d5c2c035f82..cbf91f0ecbfb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2563,7 +2563,7 @@ F:	Documentation/devicetree/bindings/arm/rda.yaml
- F:	Documentation/devicetree/bindings/gpio/gpio-rda.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/rda,8810pl-intc.txt
- F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
--F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-+F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
- F:	arch/arm/boot/dts/rda8810pl-*
- F:	drivers/clocksource/timer-rda.c
- F:	drivers/gpio/gpio-rda.c
+And also:
+https://lkml.iu.edu/hypermail/linux/kernel/2005.3/08168.html
+
+Quoth Torvalds, addressing you personally:
+
+"If you or Christoph have 80 character lines, you'll get possibly ugly
+wrapped output. Tough. That's _your_ choice. Your hardware limitations
+shouldn't be a pain for the rest of us."
+
 -- 
-2.25.1
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
