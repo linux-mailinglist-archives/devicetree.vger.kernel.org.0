@@ -2,114 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 897C84F1F58
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03BFB4F1FC5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 01:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236539AbiDDWvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 18:51:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39196 "EHLO
+        id S231851AbiDDXF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 19:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236500AbiDDWvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 18:51:11 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E368860AB3;
-        Mon,  4 Apr 2022 15:04:23 -0700 (PDT)
-Received: from mail-wr1-f52.google.com ([209.85.221.52]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MD5fd-1njz7M38Cn-009C2u; Tue, 05 Apr 2022 00:04:21 +0200
-Received: by mail-wr1-f52.google.com with SMTP id d3so5744377wrb.7;
-        Mon, 04 Apr 2022 15:04:21 -0700 (PDT)
-X-Gm-Message-State: AOAM533QYF+EyWTSfyR8ZiDNfwEG+BhLFmBlNEZSpZN6IHOzlOEcS2Xz
-        7UM4LdInLrK6AQeCHtIxWDqunivIu7cRtSViggE=
-X-Google-Smtp-Source: ABdhPJxdB4SXEExhGLOnNOou5PzL8CTbrHl2NxdVHZQrrPYcJQIoUaGDfpVns8hWsOV0sMm8eIe8VQFd/8q9TF2PhCI=
-X-Received: by 2002:adf:cd02:0:b0:206:ff2:236 with SMTP id w2-20020adfcd02000000b002060ff20236mr254545wrm.192.1649109861434;
- Mon, 04 Apr 2022 15:04:21 -0700 (PDT)
+        with ESMTP id S237119AbiDDXFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 19:05:00 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46127517D2;
+        Mon,  4 Apr 2022 15:27:06 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 1476F1F43EA0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649111224;
+        bh=3+nKW5iKfQmdcwOoDUp3zgRqQuK2Dx38gYYsYKrusng=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V6V+nZiR4O8ho6cRwitzFdlaJUXWzALDN6BldHWRYPi8x+GXwK5PvdbnSlm42eEUY
+         vyu9hxWy9UUw+8ExaSUCknsF1UVWf+dkJUqwsC2JP/5FKka2Kp9jWv0vZ0HQ0njrMz
+         8VFbWm8+yzfkeVlDjl6CJ0cPP5Y6qhXKPMPs1Gb/PlduJ7EJJgjJ/dr2p5hxwUHAcj
+         ew+Jm0MfC7z+O3CWVpM/tFtZ3n2iQKQZK8jp2brLRlW3OLZm+MJ9wqWAlcDjNZw1bz
+         9XAlbvT6OLsuDWFvKeFSCvqtt4BBk74hg9Xpp6Gl1ma34pw2taZOk1F7Aq0Ndufmrx
+         WWBl7iBZq2HLw==
+Date:   Mon, 4 Apr 2022 18:26:59 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        lee.jones@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        arnd@arndb.de, matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: syscon: Add support for regmap
+ fast-io
+Message-ID: <20220404222659.yn2wrda5xtbmvul7@notapiano>
+References: <20220401135048.23245-1-angelogioacchino.delregno@collabora.com>
+ <20220401135048.23245-3-angelogioacchino.delregno@collabora.com>
+ <8588a941-6d3e-9e14-cb21-d7af29b4b2bd@linaro.org>
+ <7775eb70-692f-3f1b-f226-f7e0fad47e37@collabora.com>
+ <26af9701-267d-5a23-8688-24608617d3f6@linaro.org>
+ <af2b304a-a407-3fc6-dfc6-edc85ce1caea@collabora.com>
 MIME-Version: 1.0
-References: <20220310195229.109477-1-nick.hawkins@hpe.com> <20220310195229.109477-9-nick.hawkins@hpe.com>
- <eb66cc83-2da9-8e19-db69-633e34fef946@canonical.com> <PH0PR84MB1718C31DB71AA2A67FEC5F6E88119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <b1cc2566-cd78-7cb4-f8a5-d6fc8065fe6e@canonical.com> <PH0PR84MB1718292B1C11F4FE83326A5388119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <fb4def96-4b20-604f-d15d-fef87eb2232d@canonical.com> <PH0PR84MB1718A2CFBFC90C9C0CAA5515881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a0fCE_NM=z68d1m9BTfuKixh1pKLw3gn+Sr7SxKb6UJAg@mail.gmail.com>
- <PH0PR84MB17181C316E55073EBC28C386881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <PH0PR84MB17185ADBA824F9CC9EB3E022881F9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a1080yz9jggOrwz2iQ1sAB2Xe2Emh22uCuqRok60BQSiA@mail.gmail.com>
- <PH0PR84MB17186189F5025374AA39584D88E19@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a2b+ESAAkc=_2hqx0kOxwYVS6mNjMGBKhhipaSj_5jV9g@mail.gmail.com>
- <PH0PR84MB17182115D57EF6032782659C88E09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
- <CAK8P3a1Cc+2oY9djdp11PuOW+TBQ0zf+p8QaDY3aerk1QqaG-g@mail.gmail.com> <PH0PR84MB1718925AA3C8FA998C486D7C88E59@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <PH0PR84MB1718925AA3C8FA998C486D7C88E59@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 5 Apr 2022 00:02:10 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3RSST6yvv8Oy13RFd6eZ6cS5yX9TOuK6wxXKUO-qdQ=Q@mail.gmail.com>
-Message-ID: <CAK8P3a3RSST6yvv8Oy13RFd6eZ6cS5yX9TOuK6wxXKUO-qdQ=Q@mail.gmail.com>
-Subject: Re: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device tree
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:5mTdGkH/49wqOo83wH+vgQVSb0gA/5UG3vD+/btypz62HoNOEGM
- kx3NCgQlGT5qR0EfyLQUU54zAdqX1dqWIY++F2lw4OXnYvIi3QZtLa3h7FNADk73m54HPr8
- gHsJBnEwWPfhIJj1gKUH9QoaLd5+k1cCDJOrgLwoyFPt8wfRx0GFcSE/iehSEKUxZNnR2uB
- qTat294ukRn9bFlKYWUFA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:k4SWwC7ut8s=:L1ttrIkbRe2fOl4oXOy+YD
- 9Jh4orANoVF+dc6ZUffgwzHoi1UoXHzAowT3QvYzu2T+l4YOZdpjcjVLxLYeXdlSmrj5rYZNj
- q6C5nTmFENHhJGZj47TUcTPPKZLlAq+fN581y8XdIxCLDF0RBBsw4PuUZM0PdRLtWPQrYpTTj
- pZyP6D9IZgCMkxAm0EWJryIyg9xX5L/TV0bqzlKviICl9k1CizcaA1tXlhs9Zj6lAKhgcvtoU
- bfQHSkswd2wyMM84EmLIq+ctAYnJ/B2xKMCUniSY3uF2HKj4Ggq7zUxxCX1VoPD4dMyoqh/C3
- 4i0XlibTzoko5PI8env/1uk3JVTAypSsa0rK9gtz+UhRyht1IT5AnjSxX0XP36ez9KVyTV08v
- +xIaGzNK9WoYMh/5iyzmcTVs02MKeWLgoZHeVYUghgOGlUbkxsnxppZaIVQxhmgIPcQS8ZpRN
- S3waWSJl9Ig3wM0yz51TVsdX6I6XUpkNY5N9JpsQ+pAqXl2iGiRqngyDk7EnQRDusphtJSRZw
- Vt/CCWxmwhZ1P4FQj6c9MO+Km2WCI8LEidVmTq+jev70JVSQcC0zdcRMr25Hiyb/a/sj27Y/i
- qYbYcrckJBtunXVseQQjpzP/pupsybjiZ/aOC2VabHQIiZoPWmFeaePIgKjOPW8bG4fWpT9K/
- ziumd4ohmDNMduGDYF6IyZB1UVnpxsLo9/stlcS1xPVH/O+o8u4Hx5v8t+Zws1u8L/gw=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <af2b304a-a407-3fc6-dfc6-edc85ce1caea@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 4, 2022 at 10:22 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
-> > > I would put it into drivers/clocksource/, I don't think drivers/mtd would be any better, but there is a chance that the clocksource maintainers don't want to have the watchdog code in their tree.
->
-> While trying to discover how to creating two devices in one driver I ran across an interesting .dtsi and I was wondering if this would be a valid approach for my situation as well. The pertinent files are:
-> 1) drivers/clocksource/timer-digicolor.c
-> 2) arch/arm/boot/dts/cx92755.dtsi
-> 3) drivers/watchdog/digicolor_wdt.c
->
-> Here they are just sharing the same register area:
->
-> timer@f0000fc0 {
->         compatible = "cnxt,cx92755-timer";
->         reg = <0xf0000fc0 0x40>;
->         interrupts = <19>, <31>, <34>, <35>, <52>, <53>, <54>, <55>;
->         clocks = <&main_clk>;
-> };
->
-> rtc@f0000c30 {
->         compatible = "cnxt,cx92755-rtc";
->         reg = <0xf0000c30 0x18>;
->         interrupts = <25>;
-> };
->
-> watchdog@f0000fc0 {
->         compatible = "cnxt,cx92755-wdt";
->         reg = <0xf0000fc0 0x8>;
->         clocks = <&main_clk>;
->         timeout-sec = <15>;
-> };
+On Mon, Apr 04, 2022 at 11:39:49AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 04/04/22 10:55, Krzysztof Kozlowski ha scritto:
+> > On 04/04/2022 10:40, AngeloGioacchino Del Regno wrote:
+> > > Il 02/04/22 13:38, Krzysztof Kozlowski ha scritto:
+> > > > On 01/04/2022 15:50, AngeloGioacchino Del Regno wrote:
+> > > > > The syscon driver now enables the .fast_io regmap configuration when
+> > > > > the 'fast-io' property is found in a syscon node.
+> > > > > 
+> > > > > Keeping in mind that, in regmap, fast_io is checked only if we are
+> > > > > not using hardware spinlocks, allow the fast-io property only if
+> > > > > there is no hwlocks reference (and vice-versa).
+> > > > 
+> > > > I have doubts you need a property for this. "fast" is subjective in
+> > > > terms of hardware, so this looks more like a software property, not
+> > > > hardware.
+> > > > 
+> > > > I think most of MMIOs inside a SoC are considered fast. Usually also the
+> > > > syscon/regmap consumer knows which regmap it gets, so knows that it is
+> > > > fast or not.
+> > > > 
+> > > 
+> > > Hello Krzysztof,
+> > > 
+> > > well yes, this property is changing how software behaves - specifically,
+> > > as you've correctly understood, what regmap does.
+> > > 
+> > > It's true that most of MMIOs inside a SoC are considered fast.. the word "most" is
+> > > the exact reason why I haven't proposed simply hardcoding '.fast_io = true' in
+> > > syscon, or in regmap-mmio...
+> > > There are too many different SoCs around, and I didn't want to end up breaking
+> > > anything (even if it should be unlikely, since MMIO is fast by principle).
 
-Right, it is possible to make this work, but it's not recommended, and you have
-to work around the sanity checks in the code that try to keep you from doing it
-wrong, as well as any tooling that tries to check for these in the DT.
+Hi Angelo,
 
-         Arnd
+I think I can see what Krzysztof means by saying this looks more like a software
+property.
+
+This property isn't simply saying whether the hardware is fast or not by itself,
+since that's relative. Rather, it means that this hardware is fast relative to
+the time overhead of using a mutex for locking in regmap. Since this is a
+software construct, the property as a whole is software-dependent. If for some
+reason the locking in regmap were to be changed and was now a lot faster or
+slower, the same hardware could now be considered "fast" or "slow". This seems
+to me a good reason to avoid making "fastness" part of the ABI for each
+hardware.
+
+> > 
+> > What I am proposing, is the regmap consumer knows whether access is fast
+> > or not, so it could call get_regmap() or
+> > syscon_regmap_lookup_by_phandle() with appropriate argument.
+> > 
+> > Even if we stay with a DT property, I am not sure if this is an
+> > attribute of syscon but rather of a bus.
+> > 
+> > Best regards,
+> > Krzysztof
+> 
+> I'm sorry for sending a v2 so fast - apparently, I initially didn't fully
+> understand your comment, but now it's clear.
+> 
+> Actually, since locking in regmap's configuration does not use DT at all
+> in any generic case, maybe bringing this change purely in code may be a
+> good one... and I have evaluated that before proposing this kind of change.
+> 
+> My concerns about that kind of approach are:
+> - First of all, there are * a lot * of drivers, in various subsystems, that
+>   are using syscon, so changing some function parameter in syscon.c would
+>   result in a commit that would be touching hundreds of them... and some of
+>   them would be incorrect, as the default would be no fast-io, while they
+>   should indeed enable that. Of course this would have to be changed later
+>   by the respective driver maintainer(s), potentially creating a lot of
+>   commit noise with lots of Fixes tags, which I am trying to avoid;
+> - Not all drivers are using the same syscon exported function to get a
+>   handle to regmap and we're looking at 6 of them; changing only one of
+>   the six would be rather confusing, and most probably logically incorrect
+>   as well...
+> 
+> Of course you know, but for the sake of making this easily understandable
+> for any casual developers reading this, functions are:
+> - device_node_to_regmap()
+> - syscon_node_to_regmap()
+> - syscon_regmap_lookup_by_compatible()
+> - syscon_regmap_lookup_by_phandle()
+> - syscon_regmap_lookup_by_phandle_args()
+> - syscon_regmap_lookup_by_phandle_optional().
+
+What if a separate function was added with the additional regmap configuration
+argument? That way setting the "fast_io" would be opt-in much like a DT property
+would. The other drivers wouldn't need to be changed.
+
+Thanks,
+Nícolas
