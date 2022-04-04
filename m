@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3914F1F3E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 897C84F1F58
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233358AbiDDWrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 18:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60256 "EHLO
+        id S236539AbiDDWvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 18:51:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345469AbiDDWq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 18:46:57 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5327E3AA71;
-        Mon,  4 Apr 2022 14:58:10 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id 12so11469995oix.12;
-        Mon, 04 Apr 2022 14:58:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=G8/ao70Lm7W7LQJ7XYuDco3ISGwUQ9Ikm03scRmzvCk=;
-        b=QzKxHUfbXFnJ0u75nM7iGWvmbp24E+K30nc4qIlK7BpuWtE13E9O9btBlxzPyKx5eB
-         xZi8uK0oi3i1UAYpZF/oo//B/iNz5bl6mXsptokTZi4+W5boVL0BRiVGU2ak6EXmZpq+
-         9mt7mUiSqZ4c69pUFmupJhsOZOlHeiSUV7LMe2Ean3773YnrgBpIOkboKUY9eExJIlt5
-         4WzehvMs20sJDpKGe8SyGCPHT/NV6XM2nMxFNC2Kom2TlRozTJTVDuy92eFmVuStCAld
-         i19WsGv1f70cUeT383GkTOGfaH3IQ8T0lEDSkJ6zn1S0KgRX4j/EDlDoujopjUI5fJOp
-         O+hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=G8/ao70Lm7W7LQJ7XYuDco3ISGwUQ9Ikm03scRmzvCk=;
-        b=O6DzXbHtWZchll1w3Lm0S1Rc6zwNK0qQ9HqOaedyT6XdRRd2v2JyucFmtvIuu4Iyy1
-         giMupJqO5g3UGc/UZxVZvoynwbnu2p3wpsux0pk/AP3Y0Bpk0qfjEX0Hfi5kOcvAV90G
-         VzDd56VcBOaGcPtToV7UZ5w92nRiCKJvSh0BuD/qPxvLhF9onXA7Zta+kDMNVvwHKqgd
-         1r+LzO8vhu+NaQAODrwzZkymXsaYPyd+vOiSloissygiYcvOE70pbomxmxjN4HpRrry1
-         Y3ZOddGcsvKyQ95654OyaWFNOMjl7moSdF/KyJyy6f3RgA8g3N8RAMOlv8fo7u/5BQj2
-         vvmw==
-X-Gm-Message-State: AOAM5335vih4E5Qww4lQLh1OmsCX00PyL6jlQlKkmxWOeLOjQHR17zCS
-        iJEnYLy+tGMJcgSsJgVnL3ug39rFWTg=
-X-Google-Smtp-Source: ABdhPJxanMGtgrGVKdFhPJHAnQqqAFkMAGoD8rY/iWqoDaLegSP2H0jSXeIxrTGPvXEcKMpGtDZx3A==
-X-Received: by 2002:a05:6808:1b28:b0:2da:51e0:d10a with SMTP id bx40-20020a0568081b2800b002da51e0d10amr173327oib.186.1649109489428;
-        Mon, 04 Apr 2022 14:58:09 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id r3-20020aca4403000000b002ecf4d70c83sm4646402oia.27.2022.04.04.14.58.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 14:58:08 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-pm@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        zhangqing@rock-chips.com, zyw@rock-chips.com,
-        jon.lin@rock-chips.com, maccraft123mc@gmail.com, sre@kernel.org,
-        heiko@sntech.de, krzk+dt@kernel.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 4/4 v5] arm64: dts: rockchip: add rk817 chg to Odroid Go Advance
-Date:   Mon,  4 Apr 2022 16:57:54 -0500
-Message-Id: <20220404215754.30126-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220404215754.30126-1-macroalpha82@gmail.com>
-References: <20220404215754.30126-1-macroalpha82@gmail.com>
+        with ESMTP id S236500AbiDDWvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 18:51:11 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E368860AB3;
+        Mon,  4 Apr 2022 15:04:23 -0700 (PDT)
+Received: from mail-wr1-f52.google.com ([209.85.221.52]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MD5fd-1njz7M38Cn-009C2u; Tue, 05 Apr 2022 00:04:21 +0200
+Received: by mail-wr1-f52.google.com with SMTP id d3so5744377wrb.7;
+        Mon, 04 Apr 2022 15:04:21 -0700 (PDT)
+X-Gm-Message-State: AOAM533QYF+EyWTSfyR8ZiDNfwEG+BhLFmBlNEZSpZN6IHOzlOEcS2Xz
+        7UM4LdInLrK6AQeCHtIxWDqunivIu7cRtSViggE=
+X-Google-Smtp-Source: ABdhPJxdB4SXEExhGLOnNOou5PzL8CTbrHl2NxdVHZQrrPYcJQIoUaGDfpVns8hWsOV0sMm8eIe8VQFd/8q9TF2PhCI=
+X-Received: by 2002:adf:cd02:0:b0:206:ff2:236 with SMTP id w2-20020adfcd02000000b002060ff20236mr254545wrm.192.1649109861434;
+ Mon, 04 Apr 2022 15:04:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+References: <20220310195229.109477-1-nick.hawkins@hpe.com> <20220310195229.109477-9-nick.hawkins@hpe.com>
+ <eb66cc83-2da9-8e19-db69-633e34fef946@canonical.com> <PH0PR84MB1718C31DB71AA2A67FEC5F6E88119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <b1cc2566-cd78-7cb4-f8a5-d6fc8065fe6e@canonical.com> <PH0PR84MB1718292B1C11F4FE83326A5388119@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <fb4def96-4b20-604f-d15d-fef87eb2232d@canonical.com> <PH0PR84MB1718A2CFBFC90C9C0CAA5515881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAK8P3a0fCE_NM=z68d1m9BTfuKixh1pKLw3gn+Sr7SxKb6UJAg@mail.gmail.com>
+ <PH0PR84MB17181C316E55073EBC28C386881E9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <PH0PR84MB17185ADBA824F9CC9EB3E022881F9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAK8P3a1080yz9jggOrwz2iQ1sAB2Xe2Emh22uCuqRok60BQSiA@mail.gmail.com>
+ <PH0PR84MB17186189F5025374AA39584D88E19@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAK8P3a2b+ESAAkc=_2hqx0kOxwYVS6mNjMGBKhhipaSj_5jV9g@mail.gmail.com>
+ <PH0PR84MB17182115D57EF6032782659C88E09@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+ <CAK8P3a1Cc+2oY9djdp11PuOW+TBQ0zf+p8QaDY3aerk1QqaG-g@mail.gmail.com> <PH0PR84MB1718925AA3C8FA998C486D7C88E59@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <PH0PR84MB1718925AA3C8FA998C486D7C88E59@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 5 Apr 2022 00:02:10 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3RSST6yvv8Oy13RFd6eZ6cS5yX9TOuK6wxXKUO-qdQ=Q@mail.gmail.com>
+Message-ID: <CAK8P3a3RSST6yvv8Oy13RFd6eZ6cS5yX9TOuK6wxXKUO-qdQ=Q@mail.gmail.com>
+Subject: Re: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device tree
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:5mTdGkH/49wqOo83wH+vgQVSb0gA/5UG3vD+/btypz62HoNOEGM
+ kx3NCgQlGT5qR0EfyLQUU54zAdqX1dqWIY++F2lw4OXnYvIi3QZtLa3h7FNADk73m54HPr8
+ gHsJBnEwWPfhIJj1gKUH9QoaLd5+k1cCDJOrgLwoyFPt8wfRx0GFcSE/iehSEKUxZNnR2uB
+ qTat294ukRn9bFlKYWUFA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:k4SWwC7ut8s=:L1ttrIkbRe2fOl4oXOy+YD
+ 9Jh4orANoVF+dc6ZUffgwzHoi1UoXHzAowT3QvYzu2T+l4YOZdpjcjVLxLYeXdlSmrj5rYZNj
+ q6C5nTmFENHhJGZj47TUcTPPKZLlAq+fN581y8XdIxCLDF0RBBsw4PuUZM0PdRLtWPQrYpTTj
+ pZyP6D9IZgCMkxAm0EWJryIyg9xX5L/TV0bqzlKviICl9k1CizcaA1tXlhs9Zj6lAKhgcvtoU
+ bfQHSkswd2wyMM84EmLIq+ctAYnJ/B2xKMCUniSY3uF2HKj4Ggq7zUxxCX1VoPD4dMyoqh/C3
+ 4i0XlibTzoko5PI8env/1uk3JVTAypSsa0rK9gtz+UhRyht1IT5AnjSxX0XP36ez9KVyTV08v
+ +xIaGzNK9WoYMh/5iyzmcTVs02MKeWLgoZHeVYUghgOGlUbkxsnxppZaIVQxhmgIPcQS8ZpRN
+ S3waWSJl9Ig3wM0yz51TVsdX6I6XUpkNY5N9JpsQ+pAqXl2iGiRqngyDk7EnQRDusphtJSRZw
+ Vt/CCWxmwhZ1P4FQj6c9MO+Km2WCI8LEidVmTq+jev70JVSQcC0zdcRMr25Hiyb/a/sj27Y/i
+ qYbYcrckJBtunXVseQQjpzP/pupsybjiZ/aOC2VabHQIiZoPWmFeaePIgKjOPW8bG4fWpT9K/
+ ziumd4ohmDNMduGDYF6IyZB1UVnpxsLo9/stlcS1xPVH/O+o8u4Hx5v8t+Zws1u8L/gw=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,63 +78,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Mon, Apr 4, 2022 at 10:22 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
+> > > I would put it into drivers/clocksource/, I don't think drivers/mtd would be any better, but there is a chance that the clocksource maintainers don't want to have the watchdog code in their tree.
+>
+> While trying to discover how to creating two devices in one driver I ran across an interesting .dtsi and I was wondering if this would be a valid approach for my situation as well. The pertinent files are:
+> 1) drivers/clocksource/timer-digicolor.c
+> 2) arch/arm/boot/dts/cx92755.dtsi
+> 3) drivers/watchdog/digicolor_wdt.c
+>
+> Here they are just sharing the same register area:
+>
+> timer@f0000fc0 {
+>         compatible = "cnxt,cx92755-timer";
+>         reg = <0xf0000fc0 0x40>;
+>         interrupts = <19>, <31>, <34>, <35>, <52>, <53>, <54>, <55>;
+>         clocks = <&main_clk>;
+> };
+>
+> rtc@f0000c30 {
+>         compatible = "cnxt,cx92755-rtc";
+>         reg = <0xf0000c30 0x18>;
+>         interrupts = <25>;
+> };
+>
+> watchdog@f0000fc0 {
+>         compatible = "cnxt,cx92755-wdt";
+>         reg = <0xf0000fc0 0x8>;
+>         clocks = <&main_clk>;
+>         timeout-sec = <15>;
+> };
 
-Add the new rk817 charger driver to the Odroid Go Advance. Create a
-monitored battery node as well for the charger to use. All values
-from monitored battery are gathered from the BSP kernel for the
-Odroid Go Advance provided by HardKernel.
+Right, it is possible to make this work, but it's not recommended, and you have
+to work around the sanity checks in the code that try to keep you from doing it
+wrong, as well as any tooling that tries to check for these in the DT.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index ea0695b51ecd..4ccdb6dffa88 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -52,6 +52,25 @@ backlight: backlight {
- 		pwms = <&pwm1 0 25000 0>;
- 	};
- 
-+	battery_cell: battery-cell {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3000000>;
-+		charge-term-current-microamp = <300000>;
-+		constant-charge-current-max-microamp = <2000000>;
-+		constant-charge-voltage-max-microvolt = <4200000>;
-+		factory-internal-resistance-micro-ohms = <180000>;
-+		voltage-max-design-microvolt = <4100000>;
-+		voltage-min-design-microvolt = <3500000>;
-+
-+		ocv-capacity-celsius = <20>;
-+		ocv-capacity-table-0 =	<4046950 100>, <4001920 95>, <3967900 90>, <3919950 85>,
-+					<3888450 80>, <3861850 75>, <3831540 70>, <3799130 65>,
-+					<3768190 60>, <3745650 55>, <3726610 50>, <3711630 45>,
-+					<3696720 40>, <3685660 35>, <3674950 30>, <3663050 25>,
-+					<3649470 20>, <3635260 15>, <3616920 10>, <3592440 5>,
-+					<3574170 0>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -472,6 +491,13 @@ usb_midu: BOOST {
- 			};
- 		};
- 
-+		rk817_battery: battery {
-+			monitored-battery = <&battery_cell>;
-+			rockchip,resistor-sense-micro-ohms = <10000>;
-+			rockchip,sleep-enter-current-microamp = <300000>;
-+			rockchip,sleep-filter-current-microamp = <100000>;
-+		};
-+
- 		rk817_codec: codec {
- 			rockchip,mic-in-differential;
- 		};
--- 
-2.25.1
-
+         Arnd
