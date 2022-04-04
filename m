@@ -2,165 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A7F4F1A6B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C66D64F1A7A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:16:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378929AbiDDVSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42470 "EHLO
+        id S1378940AbiDDVS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380319AbiDDTbb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:31:31 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF7620F41
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 12:29:34 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id j8so8952782pll.11
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 12:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QQK0u/1t7bvu65SH9gfd8Qr6GQ/JS9W+uuml8zfn2a8=;
-        b=IRWgirC5/1yGKC93yfne3OYdJ9pDqFar0lGl96/Rld12mFQXDom5GO2t3ivbkNXrhT
-         D2ssZXTI29QCSnDpT3Pk0vtss/PaHY9XNbsi+5Za9AftTNY5MYiexE5fwjeNKtBhMlrw
-         NQ/nd+Fo5EaGA64McZZ2M64G+/+J+4ViGHfCc=
+        with ESMTP id S1380321AbiDDTb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:31:59 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC8F20F41
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 12:30:02 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id k25-20020a056830151900b005b25d8588dbso7928628otp.4
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 12:30:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=QQK0u/1t7bvu65SH9gfd8Qr6GQ/JS9W+uuml8zfn2a8=;
-        b=jDIkkSD0Wdryx+HTF7gfyMcJdYJ06c1P7W7FOEAhWZgK3JZ25IMubkfTbc1hkUEN1W
-         gtBtTe7LTjjs6GHZYOZ2MSZaBlN6i9hZcewMTMpfLlq0xWHisLkmQq8/RisKX205Xq1g
-         xpOmWtrJJ1pzqYn+/NlP9+gG8IHzTR4hO8dm3RExJrzPpuo2hTQAp8U0881EAh12OvLH
-         IGyUpB/LVFNRLwPGhVJeveJnZwRCtMbsSxUMa62D0mRdADZS4TErTme01cd4EiLwEhsd
-         azHnlvuicmiUQOr8Dbo34cuJ2uwC5MONS3KgRuojGROmQarveewXwdrNjPnWiRpsQYbb
-         S01A==
-X-Gm-Message-State: AOAM533GeAjDN+iYErEEO7gL4MwOAMLWek4WU/g/SoJJj8DZMCqzn0z+
-        sUwvaCZmNJFYbx5WXPPnTEBDWw==
-X-Google-Smtp-Source: ABdhPJx69pSWNGeNxYAX4SX/Q4krTcMRZC4c2fenVI8+/TCxfsHtHPUxT4/uYSVl3XeN8u4J+LX0/g==
-X-Received: by 2002:a17:902:bf06:b0:156:af5b:e6c with SMTP id bi6-20020a170902bf0600b00156af5b0e6cmr1469346plb.147.1649100574399;
-        Mon, 04 Apr 2022 12:29:34 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:1ebc:cb71:2a38:38db])
-        by smtp.gmail.com with UTF8SMTPSA id k18-20020a056a00135200b004fb18fc6c78sm13294266pfu.31.2022.04.04.12.29.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Apr 2022 12:29:34 -0700 (PDT)
-Date:   Mon, 4 Apr 2022 12:29:32 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
-Message-ID: <YktHHOww7VkbIxfE@google.com>
-References: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
+        bh=Pw9/rx3OWyNgJmgrxMJHiM9XNdAuSk1x7PxfxleOVHo=;
+        b=kd5TS4xu5YF9MPjVlaOMdm+K5ZCTqXRP3rmX7sgEQFE1Iu5P+2mIGVq2Makm3VSR99
+         8F5BSTNN4ZSUPLAAjKZdkGTo4HfYqBPWIloUsUkRNdXYeiUBfwt9wOBPbfmTnxTT0IQD
+         cZ0KyKfP+XJ6+aoFda2nfiwmyNUEZ/CT9xV9GC0vm+jf2oooc/X81TPq/aMsRF73xRZW
+         rth6i12elDv7sB/CwUSxjQ31Ga/Zo9OuCl6hUGAVIaJ9Bmg9rwg/zAizQmHVFg5avfXi
+         fqn4aAyTtF9zA5DYzUfPZGRu5GGdVKIbxNr/35IP8VplhKU7O7xaJWGGS7RelnJp3ALd
+         hSFA==
+X-Gm-Message-State: AOAM5303dS7WE+iLRWzvS0nMAqRdmEd7jYWIofrEnNAM1tm+wV2xB5pV
+        gHJt4yTT+GFIHHkK7fsmkWXv0aFA0A==
+X-Google-Smtp-Source: ABdhPJwpJgxnagGtsX/4G1femKCs6URgtvhIa+HnkzdqIgagKjjdNd7aX3OMcDtkEZWJvTE80AJhKg==
+X-Received: by 2002:a05:6830:201a:b0:5e6:8de6:9922 with SMTP id e26-20020a056830201a00b005e68de69922mr417505otp.3.1649100601406;
+        Mon, 04 Apr 2022 12:30:01 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l9-20020a4a4349000000b00328fae52bcasm4210372ooj.16.2022.04.04.12.30.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 12:30:01 -0700 (PDT)
+Received: (nullmailer pid 1815025 invoked by uid 1000);
+        Mon, 04 Apr 2022 19:30:00 -0000
+Date:   Mon, 4 Apr 2022 14:30:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, l.stach@pengutronix.de,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: lt9211: Add Lontium
+ LT9211 bridge driver
+Message-ID: <YktHOBXZvMPWbrgk@robh.at.kernel.org>
+References: <20220330212231.90904-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220330212231.90904-1-marex@denx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 28, 2022 at 12:40:57PM +0530, Manikanta Pubbisetty wrote:
-> Add DTS node for WCN6750 WiFi chipset.
+On Wed, Mar 30, 2022 at 11:22:30PM +0200, Marek Vasut wrote:
+> Add bindings for Lontium LT9211 Single/Dual-Link DSI/LVDS or Single DPI to
+> Single-link/Dual-Link DSI/LVDS or Single DPI bridge. This chip is highly
+> capable at converting formats, but sadly it is also highly undocumented.
 > 
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Maxime Ripard <maxime@cerno.tech>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
 > ---
-> Depends on:
-> - https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/
-> - https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/
+>  .../display/bridge/lontium,lt9211.yaml        | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
 > 
-> Changes from V2:
-> - Changes based on DT binding concerns
-> - Rebased on ToT
-> 
-> Changes from V1:
-> - Corrected the case for hex values
-> 
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
->  2 files changed, 53 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 069ffbc37bc4..a82e9aa7bdc5 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -551,3 +551,10 @@ &remoteproc_wpss {
->  	status = "okay";
->  };
->  
-> +&wifi {
-> +	status = "okay";
-> +	wifi-firmware {
-> +		iommus = <&apps_smmu 0x1c02 0x1>;
-> +	};
-> +};
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+> new file mode 100644
+> index 000000000000..2faa855b3824
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9211.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/lontium,lt9211.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index b757e8ad1199..dfd9fa077903 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -85,6 +85,11 @@ reserved-memory {
->  		#size-cells = <2>;
->  		ranges;
->  
-> +		wlan_ce_mem: memory@4cd000 {
-> +			no-map;
-> +			reg = <0x0 0x4cd000 0x0 0x1000>;
-
-Pad the address to 8 digits here (not in the node name).
-
-> +		};
+> +title: Lontium LT9211 DSI/LVDS/DPI to DSI/LVDS/DPI bridge.
 > +
->  		hyp_mem: memory@80000000 {
->  			reg = <0x0 0x80000000 0x0 0x600000>;
->  			no-map;
-> @@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
->  			qcom,bcm-voters = <&apps_bcm_voter>;
->  		};
->  
-> +		wifi: wifi@17a10040 {
-> +			compatible = "qcom,wcn6750-wifi";
-> +			reg = <0 0x17a10040 0 0x0>;
-> +			iommus = <&apps_smmu 0x1c00 0x1>;
-> +			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
-> +			qcom,rproc = <&remoteproc_wpss>;
-> +			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description: |
+> +  The LT9211 are bridge devices which convert Single/Dual-Link DSI/LVDS
+> +  or Single DPI to Single/Dual-Link DSI/LVDS or Single DPI.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lontium,lt9211
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO connected to active high RESET pin.
+> +
+> +  vccio-supply:
+> +    description: Regulator for 1.8V IO power.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Primary MIPI DSI port-1 for MIPI input or
+> +          LVDS port-1 for LVDS input or DPI input.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Additional MIPI port-2 for MIPI input or LVDS port-2
+> +          for LVDS input. Used in combination with primary
+> +          port-1 to drive higher resolution displays
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Primary MIPI DSI port-1 for MIPI output or
+> +          LVDS port-1 for LVDS output or DPI output.
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Additional MIPI port-2 for MIPI output or LVDS port-2
+> +          for LVDS output. Used in combination with primary
+> +          port-1 to drive higher resolution displays.
+> +
+> +    required:
+> +      - port@0
+> +      - port@2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vccio-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c10 {
 
-Where is 'wlan_fw_mem' added?
+i2c {
+
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      hdmi-bridge@3b {
+> +        compatible = "lontium,lt9211";
+> +        reg = <0x3b>;
+> +
+> +        reset-gpios = <&tlmm 128 GPIO_ACTIVE_HIGH>;
+> +        interrupts-extended = <&tlmm 84 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +        vccio-supply = <&lt9211_1v8>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +
+> +            endpoint {
+> +              remote-endpoint = <&dsi0_out>;
+> +            };
+> +          };
+> +
+> +          port@2 {
+> +            reg = <2>;
+> +
+> +            endpoint {
+> +              remote-endpoint = <&panel_in_lvds>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
+> -- 
+> 2.35.1
+> 
+> 
