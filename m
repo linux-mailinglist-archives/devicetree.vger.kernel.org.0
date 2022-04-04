@@ -2,170 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0FE24F1372
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 12:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE804F13CC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 13:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358706AbiDDK43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 06:56:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
+        id S238668AbiDDL20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 07:28:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358571AbiDDK4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 06:56:24 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A27340F5;
-        Mon,  4 Apr 2022 03:54:29 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id 125so10680845iov.10;
-        Mon, 04 Apr 2022 03:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6rE17aokLscUeZldWdcl+4+hAX8YeB4QD9pUd4GrjIM=;
-        b=TtY+/cMcXBcL8IdYOINrQltPY2JNCPfd2Awm3ZptGepcymCrJ3HbII3+X/9Ys3fHuv
-         4iCZx4zOnwwrvLnGrZ3sSBV5UeUQRXeGFGiaYmn9YqpxCGlzhG1eRkzW0TxfS5Jm/hM4
-         zINrPwRZM7x3FcLUgaHacw3Oz4YJWellZsVpIAyIq8BUnJbGlyraFuEymXpU7UfYdD7r
-         +ZDMMIurR+tpkRsVxx2Vac/rQeWxgpYJJTomab6ShmerwgPvcH57JqOw+IjympgRYdgr
-         eUsU/pdzW9runBz+psuMNZO6RCjSu8ygZaeOOqn/wggHyW8mamGNKvJKczPXMDuKt85v
-         5+PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6rE17aokLscUeZldWdcl+4+hAX8YeB4QD9pUd4GrjIM=;
-        b=T+juA9+3w+B/+jy0r6FLVis5Ix5XPDD1XZMfH1EHRJ8j6JovhLZgflObaL4vRhplpj
-         72lVKLMaqfRNNOGyH1vRYwTBTOamoAMKBJE3yki89UHzTAF3v510tJ5Joh3KDE1R0nTG
-         QcvOom7m/DNjzv7OOynJw8FTV22bUwPTHfOKA8JCS4aoYyrRnB4JbR42287jxGkPDtOj
-         JyqBnb4FZe11S/mwtInGgPyBD+cwBJyGP8KPXbE9h2zeSKeWhesOMpyqXXOOdKY7DPWX
-         wmCNfJ5YOwvumomyTADnPgAyp6HfPyhN54giL2LfmulaZLXmraGeG63uS4+qofv/7GsN
-         tW+A==
-X-Gm-Message-State: AOAM530HjYKChTfOyvEA2qkxO878hy8ab6Kujs+5aacIByEyzl61mxdw
-        7F2DVvXd2Lhtkp1fAQIq//ga0fWaZWsvaXJCdm4=
-X-Google-Smtp-Source: ABdhPJy6dWkX7SvStDXsR6rYoheGmMRXvU/7VnD9jCFC5zDIQw6Mmc9tyZgib54eWMjb5UYf/h7INW0fl0bt4WedkxE=
-X-Received: by 2002:a05:6638:d16:b0:323:63cd:c144 with SMTP id
- q22-20020a0566380d1600b0032363cdc144mr11635735jaj.76.1649069668361; Mon, 04
- Apr 2022 03:54:28 -0700 (PDT)
+        with ESMTP id S235756AbiDDL2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 07:28:25 -0400
+Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B78286F4;
+        Mon,  4 Apr 2022 04:26:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=metanate.com; s=stronger; h=In-Reply-To:Content-Type:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description; bh=LnoUpy8pxIXgWxR6IblJWmslcB05NK68pxcDoWJlSfk=; b=DS0Ou
+        KQrIxO23qLzQ+DvY1bPnIzGjxCX+gnmtE3eBpqcpIXxFZjFSi0XgG2mnhdIc4Ik7fv8qpH+1Rgp+N
+        bQAnGfv54pnAWgdwYR1UMrCb9NdGt+QiiVIqgiNUo92tROAqdINZ3OmjptNRJAHgYZjzg5ApcVHgF
+        8qi5gA8zjgnPzlvpFLmA4qADwJOYI+N1gZVF1k9AmJVnnNoySJHIcnq0XUMJuDM7rDIdn+zyxYOyP
+        WRSJp0L+JBAhncHRrGKPhcBvUAs4WOLn31lJ2K4mOzr81hAXgB6yJ+DI8y9+qs/yI9COakF74xcid
+        XUYRM30D38syFfuDQtjFlGRJoQvXw==;
+Received: from [81.174.171.191] (helo=donbot)
+        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <john@metanate.com>)
+        id 1nbKqe-0004ue-SJ; Mon, 04 Apr 2022 12:26:16 +0100
+Date:   Mon, 4 Apr 2022 12:26:15 +0100
+From:   John Keeping <john@metanate.com>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, krzk+dt@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 06/33] crypto: rockchip: add fallback for cipher
+Message-ID: <YkrV1z5GPVXc+d/X@donbot>
+References: <20220401201804.2867154-1-clabbe@baylibre.com>
+ <20220401201804.2867154-7-clabbe@baylibre.com>
 MIME-Version: 1.0
-References: <20220404040153.1509966-1-gch981213@gmail.com> <20220404040153.1509966-3-gch981213@gmail.com>
- <20220404095937.20089db7@xps13> <CAJsYDVK6ya7FR90CtAjbpbF-_+c0GVnsKsN=1wYaoBFx=ysUtQ@mail.gmail.com>
- <20220404122824.63a1c857@xps13>
-In-Reply-To: <20220404122824.63a1c857@xps13>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Mon, 4 Apr 2022 18:54:17 +0800
-Message-ID: <CAJsYDVJXH0MUB2wPydzqFgF8Y82HsUY7FLu1duCOCyVO-oXZqw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] spi: add driver for MTK SPI NAND Flash Interface
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220401201804.2867154-7-clabbe@baylibre.com>
+X-Authenticated: YES
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_NONE,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On Fri, Apr 01, 2022 at 08:17:37PM +0000, Corentin Labbe wrote:
+> The hardware does not handle 0 size length request, let's add a
+> fallback.
+> Furthermore fallback will be used for all unaligned case the hardware
+> cannot handle.
+> 
+> Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+> diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> index bbd0bf52bf07..c6b601086c04 100644
+> --- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> +++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> @@ -13,6 +13,71 @@
+>  
+>  #define RK_CRYPTO_DEC			BIT(0)
+>  
+> +static int rk_cipher_need_fallback(struct skcipher_request *req)
+> +{
+> +	struct scatterlist *sgs, *sgd;
+> +	unsigned int todo, len;
+> +	unsigned int bs = crypto_skcipher_blocksize(tfm);
+> +
+> +	if (!req->cryptlen)
+> +		return true;
+> +
+> +	len = req->cryptlen;
+> +	sgs = req->src;
+> +	while (sgs) {
+> +		if (!IS_ALIGNED(sgs->offset, sizeof(u32))) {
+> +			return true;
+> +		}
+> +		todo = min(len, sgs->length);
+> +		if (todo % bs) {
+> +			return true;
+> +		}
+> +		len -= todo;
+> +		sgs = sg_next(sgs);
+> +	}
+> +	len = req->cryptlen;
+> +	sgd = req->dst;
+> +	while (sgd) {
+> +		if (!IS_ALIGNED(sgd->offset, sizeof(u32))) {
+> +			return true;
+> +		}
+> +		todo = min(len, sgd->length);
+> +		if (todo % bs) {
+> +			return true;
+> +		}
+> +		len -= todo;
+> +		sgd = sg_next(sgd);
+> +	}
+> +	sgs = req->src;
+> +	sgd = req->dst;
+> +	while (sgs && sgd) {
+> +		if (sgs->length != sgd->length)
 
-On Mon, Apr 4, 2022 at 6:28 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> [...]
-> > > > +
-> > > > +     // This driver ignores any ECC capability configured by user or
-> > > > +     // requested by the nand chip because the BootROM and MTK bootloader
-> > > > +     // expects the page format to be the exact one as calculated in
-> > > > +     // setup_pagefmt.
-> > >
-> > > I don't like this :)
-> > >
-> > > I understand that the boot partition might have specific constraints,
-> > > but other partitions (or if we don't use the NAND to boot?) should
-> > > probably be usable with other ECC schemes.
-> >
-> > In this controller, the ECC step size is fixed and it can only change
-> > ECC strength.
->
-> That's fine.
->
-> > The calculated ECC correction capability is the max
-> > possible one supported by the controller.
-> > I still want the default behavior to match the boot partition
-> > requirement,
->
-> That is okay, but that does not mean you can only support this one.
->
-> > because we can't just tell end-users to customize
-> > their dts by taking apart their device and figure out which flash
-> > is used.
->
-> They don't have to do so. In theory they should not request anything,
-> the core would take care of all of that. But they can request specific
-> values by using the DT and you must follow them in the driver.
->
-> On his side the core is responsible of telling you which strength
-> should be used otherwise and the driver is expected to use it.
+This check still seems to be triggering the fallback when it is not
+needed.
 
-The core provided ecc strength may be smaller than the
-calculated one. e.g. A nand chip may only have a requirement
-of 8/512bits ECC. But if it has a 2k+128 pagesize, this
-controller can do 12/512bits ECC and the bootrom expects the
-latter.
+I've done some testing with fscrypt and the series is working great, but
+the stats show the fallback triggering more than I'd expect.  With some
+extra logging here I see output like:
 
-> You should take the user requirements first. If there are no
-> user inputs, you should in theory look at the device's requirements.
+	sgs->length=32 sgd->length=255 req->cryptlen=16
 
-I'll take the user requirements if there is one. If there isn't, I'll
-follow the calculated strength instead of the device requirement
-so that user doesn't have to specify a custom strength in dt.
+In this case sgs and sgd are both the first (and only) entries in the
+list.  Should this take account of req->cryptlen as well?
 
-> [...]
-> > > > +static struct nand_ecc_engine_ops mtk_snfi_ecc_engine_ops = {
-> > > > +     .init_ctx = mtk_snand_ecc_init_ctx,
-> > > > +     .prepare_io_req = mtk_snand_ecc_prepare_io_req,
-> > > > +     .finish_io_req = mtk_snand_ecc_finish_io_req,
-> > >
-> > > I believe you need to take care of the bounce buffer in the exit path?
-> >
-> > No. The buffer should be left there for non-ecc spi-mem operations.
->
-> AFAIR you initialize the buffer in the ECC part, so if it must be used
-> without ECC you should probably allocate it for the SPI controller.
+In fact, can't this whole function be folded into one loop over src and
+dst at the same time, since all the checks must be the same?  Something
+like this (untested):
 
-I did. the setup_pagefmt is called once with the minimal page+oob size
-in probe.
+	while (sgs && sgd) {
+		if (!IS_ALIGNED(sgs->offset, sizeof(u32)) ||
+		    !IS_ALIGNED(sgd->offset, sizeof(u32)))
+			return true;
 
-> In
-> any way, you need to free that memory at some point (when removing the
-> driver).
+		todo = min(len, sgs->length);
+		if (todo % bs)
+			return true;
 
-I was using the devm api for this allocation so kernel should take
-care of that.
+		if (sgd->length < todo)
+			return true;
 
-I'll change the DMA to use streamed API in the next version to avoid
-an extra memory copy in reading, and the allocated buffer will be
-freed in remove().
+		len -= todo;
+		sgs = sg_next(sgs);
+		sgd = sg_next(sgd);
+	}
 
--- 
-Regards,
-Chuanhong Guo
+	if (len)
+		return true;
+
+> +			return true;
+> +		sgs = sg_next(sgs);
+> +		sgd = sg_next(sgd);
+> +	}
+> +	return false;
+> +}
