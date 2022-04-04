@@ -2,111 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C9004F17D6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 17:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B23E64F17ED
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 17:06:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352131AbiDDPE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 11:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48958 "EHLO
+        id S1378422AbiDDPIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 11:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbiDDPE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:04:27 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DB42F394;
-        Mon,  4 Apr 2022 08:02:31 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-de3ca1efbaso10949415fac.9;
-        Mon, 04 Apr 2022 08:02:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vtiMNVEoYZXoi1GNMLStyUsaBQPuI1mPKxVFdAdwSEw=;
-        b=Pslnr2ImvM3WVLnIlH47MEGJQwwh9NiO3rUvbwwq5gDTSH2LqKY3ju8kzN4fHH0SFU
-         fn+hkuuVC0ag9sAJhUKY8/iVcUBeT6B03aNwRUudfILoFUqvCe27TbtoaiI+42YFImtL
-         8rnE/26J/Fpj4bq3nvsQjm13kY/o9H+G0W8V86L20/lCS1YOt2X0V8pGKR13B5Z3Bbu0
-         1Agil9VVdyL0clKi9Sd2rrCcn0MGviWDFIyp4nftBFnJ7tfjLrSDkwdIw8nSqeIhOuzY
-         dLIDNhYkGsMVpROMae82yqpVzC3Bo8K+JLLr/GhWmOn/jSJ/efcZQoEGSlhh8izKkgD2
-         hKUg==
-X-Gm-Message-State: AOAM532m59xHdWqE29Z3DA9C9qbZYp5pre3YbyH+Aspd+g3Te4dKZsOz
-        DsjwOt+w2gdsn0t2FjCh8w==
-X-Google-Smtp-Source: ABdhPJxE84xSZeC7rzs41J9r830YaWpOHzkIguHr+Y1O8sOgXGMHMwvgtdOZDcMpMkcvMM7Alx9j8w==
-X-Received: by 2002:a05:6870:f109:b0:da:b3f:2b4c with SMTP id k9-20020a056870f10900b000da0b3f2b4cmr11024410oac.235.1649084550501;
-        Mon, 04 Apr 2022 08:02:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bm51-20020a0568081ab300b002da5c44e0bdsm4200166oib.28.2022.04.04.08.02.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 08:02:30 -0700 (PDT)
-Received: (nullmailer pid 1321618 invoked by uid 1000);
-        Mon, 04 Apr 2022 15:02:29 -0000
-Date:   Mon, 4 Apr 2022 10:02:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Arnd Bergmann <arnd@arndb.de>, Keith Busch <kbusch@kernel.org>,
-        "axboe@fb.com" <axboe@fb.com>, "hch@lst.de" <hch@lst.de>,
-        "sagi@grimberg.me" <sagi@grimberg.me>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 5/9] soc: apple: Add RTKit IPC library
-Message-ID: <YksIhWQIUHsoWEMi@robh.at.kernel.org>
-References: <20220321165049.35985-1-sven@svenpeter.dev>
- <20220321165049.35985-6-sven@svenpeter.dev>
- <5eed58a1-ee56-8aee-e73b-76b162d59873@kernel.org>
- <35f5fdbf-faac-457b-a225-35d7141f6b2e@www.fastmail.com>
+        with ESMTP id S1378427AbiDDPIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:08:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D7D3B3C2;
+        Mon,  4 Apr 2022 08:06:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2686E615BC;
+        Mon,  4 Apr 2022 15:06:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B663C34110;
+        Mon,  4 Apr 2022 15:06:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649084807;
+        bh=D5SqivvBcrkLIAlJEKoRxR7gXZmRxdwZIlV/L7hNxSE=;
+        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+        b=F7MMaRlNg6erqL7nmAoLc8zssL9GQmA3OR3XLnWqKXIlJi3nMtzPaciAVYc0vnYTV
+         ooAFaMiOLutbCl1TNMFQGAe+y7RD9bX2FYb7QC9pwEOb269Ftj61MtYs+NuNg2ndff
+         TcU3Nhr65sAmZIETGGBdtlpqX/div6ssRsmTDc/wprwT4ph5aW8p4ndBKVMvhZ0wFh
+         PCP+cq4S2XZQHQQjxRschY3RJvXVIknmKiE6fRB5eB4cwZ/t2fmkCy49lELIF7jrib
+         bW2X8Af8UdCeEUmJu8zkMMCjfAydcV0NAD+5/rKYMahkrqwZiDBmvHVHndz3uIPjk/
+         ONMNYZUAARHMA==
+Received: by mail-vs1-f48.google.com with SMTP id k15so9488633vsr.11;
+        Mon, 04 Apr 2022 08:06:47 -0700 (PDT)
+X-Gm-Message-State: AOAM531kgvf8P1/Rx9vSuQfMZ74FKAeh6ndrf32sqRoKzt2Qduo7KnU5
+        PIgqxbCTv34X/u40Zf0yewb3cOLVk/12A24hDJg=
+X-Google-Smtp-Source: ABdhPJwmU7gIASrjGhhrLCfmfAPZc/p/+8NdSNqqSQ5KLV2TpnqKxuegUxeFQJKUlzKa/LtOa2j5Pm6Ktk5vKczG3pA=
+X-Received: by 2002:a05:6102:3a52:b0:325:5520:d16c with SMTP id
+ c18-20020a0561023a5200b003255520d16cmr120679vsu.22.1649084806482; Mon, 04 Apr
+ 2022 08:06:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <35f5fdbf-faac-457b-a225-35d7141f6b2e@www.fastmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220330190846.13997-1-wens@kernel.org> <20220330190846.13997-3-wens@kernel.org>
+ <CABxcv==csvqsxM46ce2LecDh4E-UxxD2DG+3E-hCFoyrdtRv7A@mail.gmail.com>
+In-Reply-To: <CABxcv==csvqsxM46ce2LecDh4E-UxxD2DG+3E-hCFoyrdtRv7A@mail.gmail.com>
+Reply-To: wens@kernel.org
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Mon, 4 Apr 2022 23:06:36 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64VQPjan=EUkd8UhRZfV0g1GqBwPqhxQakS=7YhgvVDQA@mail.gmail.com>
+Message-ID: <CAGb2v64VQPjan=EUkd8UhRZfV0g1GqBwPqhxQakS=7YhgvVDQA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: display: ssd1307fb: Add entry for SINO
+ WEALTH SH1106
+To:     Javier Martinez Canillas <javier@dowhile0.org>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 02, 2022 at 03:51:46PM +0200, Sven Peter wrote:
-> On Wed, Mar 23, 2022, at 12:19, Krzysztof Kozlowski wrote:
-> > On 21/03/2022 17:50, Sven Peter wrote:
-> >> Apple SoCs such as the M1 come with multiple embedded co-processors
-> >> running proprietary firmware. Communication with those is established
-> >> over a simple mailbox using the RTKit IPC protocol.
-> >> 
-> >> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> >> ---
-> >>  drivers/soc/apple/Kconfig          |  13 +
-> >>  drivers/soc/apple/Makefile         |   3 +
-> >>  drivers/soc/apple/rtkit-crashlog.c | 147 +++++
-> >>  drivers/soc/apple/rtkit-internal.h |  76 +++
-> >>  drivers/soc/apple/rtkit.c          | 842 +++++++++++++++++++++++++++++
-> >>  include/linux/soc/apple/rtkit.h    | 203 +++++++
-> >>  6 files changed, 1284 insertions(+)
+On Fri, Apr 1, 2022 at 5:32 PM Javier Martinez Canillas
+<javier@dowhile0.org> wrote:
+>
+> Hello Chen-Yu,
+>
+> Thanks a lot for your patch.
+>
+> On Wed, Mar 30, 2022 at 9:09 PM Chen-Yu Tsai <wens@kernel.org> wrote:
 > >
-> > Isn't this some implementation of a mailbox? If so, it should be in
-> > drivers/mailbox. Please don't put all stuff in soc/apple, that's not how
-> > Linux is organized. To drivers/soc usually we put drivers which do not
-> > fit regular subsystems.
+> > From: Chen-Yu Tsai <wens@csie.org>
 > >
-> 
-> I put this into soc/apple because I don't think it fits within the mailbox
-> framework very well.
-> (It actually uses the mailbox framework for the actual communication
-> with the hardware with a driver that's already upstream.)
-> 
-> Essentially, the mailbox subsystem provides a common API to send and
-> receive messages over indepedent hardware channels and devicetree bindings
-> to describe the relationship between those channels and other drivers.
-> 
-> One of the features that doesn't really fit is that we need to be able
-> to start, shutdown and re-start these co-processors. The NVMe driver
+> > The SINO WEALTH SH1106 is an OLED display driver that is somewhat
+> > compatible with the SSD1306. It supports a slightly wider display,
+> > at 132 instead of 128 pixels. The basic commands are the same, but
+> > the SH1106 doesn't support the horizontal or vertical address modes.
+> >
+> > Add a compatible string for it.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > ---
+> >  Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> > index 9baafd0c42dd..1ac016a2d847 100644
+> > --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> > +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+> > @@ -13,6 +13,7 @@ maintainers:
+> >  properties:
+> >    compatible:
+> >      enum:
+> > +      - sinowealth,sh1106-i2c
+>
+> I like that you didn't include a "fb" suffix for this, the existing
+> ones are cargo culting from the previous fbdev driver to make existing
+> DTBs compatible with the DRM driver.
+>
+> I've been thinking if I should post a patch to compatible strings
+> without the "fb" and mark the current ones as deprecated...
+>
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
-remoteproc does that. Did you look at it? Most remoteproc drivers use 
-some combination of mailboxes and shared memory.
+I also thought about dropping the "-i2c" suffix, but then thought
+there might be a case where someone wanted to search the device
+tree specifically for an I2C connected node using said compatible
+string.
 
-Rob
+What do you think?
+
+
+ChenYu
