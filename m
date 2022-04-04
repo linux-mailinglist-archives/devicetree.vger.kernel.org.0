@@ -2,129 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 598CB4F15C0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 15:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6CB4F1600
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 15:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351763AbiDDNVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 09:21:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47054 "EHLO
+        id S1354029AbiDDNio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 09:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351320AbiDDNVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 09:21:16 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACEB721E34;
-        Mon,  4 Apr 2022 06:19:17 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id w21so8317575pgm.7;
-        Mon, 04 Apr 2022 06:19:17 -0700 (PDT)
+        with ESMTP id S233478AbiDDNin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 09:38:43 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DAF23B57F
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 06:36:47 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id r11so6881150ila.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 06:36:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tS+NAQ+2D7agIki50tkRPL+/ag2LxAizn5hQjD0npls=;
-        b=PET9hD0TOOlxzcMYMOfT1jjstVzlrGrI95uhZTqi8ziGnO+Kvzo8GzeLdfN9KuJXb5
-         dEsJUm8Ddlf7AwD3XMS/Xr8vEud0/HcAkCM0vpQqVUIo8JjWdELmuNe66OFwFOZYoQjD
-         7GozIrPEnrDgYaGmcuESoUq0X2y19O4CebzlfArPMfAixrP6qVfjH1ahPxV5u78/OZUQ
-         LXgDU3mxfbtjB0Rbo89eQDw/bsgR9ZE2pOXv96OiS5d2B8UFWtP156ujm7OwzrM5GT+b
-         w/fHjp/86V7nVlbqjbBrRuQvdbxRVNf3ERNvNnvZf1XyiKXXL0bQ29RgW/qP0Lbej6Uh
-         Oayg==
+        d=ieee.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=v7AXDrNkV0E+GuzQu0vkT521m8L2g3R8JZyBRpFSWSw=;
+        b=UGi9dsHRnoLPuvzo1S1EvzOOZUHvSHzXBsnw16StvvXGSTaLht7DkGhbmNgritgWoy
+         3S+vdPPYNI+CbTwzNjbbeE7Hw32snvtBgdJ3quDnbJxCb0KtnPvvUi8IKemKBU7+NTcn
+         YDKZMZsFTdUZ44CkNQLumu4g37ihuSwyQIWPc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tS+NAQ+2D7agIki50tkRPL+/ag2LxAizn5hQjD0npls=;
-        b=SVGp2PfG2N6+w7mirHr3rR8jbK4D+vhQi9IFRdYrspOOKZxZapvc4o+3CtfT/pj85+
-         9tOIRdgJwYERs2LVv3xiPCN6nOYxOQ554PUHq4YrDreWvVY/yyU8eh7EHOH3IstnO8up
-         bCPmWtpfvhbFTmaGyPEKljJNM4zIugCVVA+IFK/IyiwXoWNqSJycLHYAFuAUsFJAv9CM
-         MglK3hLsRKPcP6zSFPA8zDcV2oLGQyQTjojldKFrSbqcnhqExSQKofLLEvgpqWl1usaK
-         5eJP0zh7d0exyrPRL8gAU5jm9IDBXPq4gJUhqsBhbD2mXiZQMU79LDxDNDFBDN81XWLy
-         IQrg==
-X-Gm-Message-State: AOAM532kWMA7afOQOL+ijJc6pEVm9ODvPolCSzxlRcaUh2d1W67z2Wbz
-        taJlZbM7hgsfB06/FP8CrG87QIAk9Yu83YX27Dg=
-X-Google-Smtp-Source: ABdhPJzLAMviS73DnsYXW0jI9f5cwwNFWa83DUwdZUIbuOqsebhBjg6JkDgNrUtBEulaxOE4IIAkYw==
-X-Received: by 2002:a05:6a00:182a:b0:4fd:dee2:6371 with SMTP id y42-20020a056a00182a00b004fddee26371mr12945796pfa.8.1649078357014;
-        Mon, 04 Apr 2022 06:19:17 -0700 (PDT)
-Received: from guoguo-omen.lan ([2401:c080:1400:4da2:b701:47d5:9291:4cf9])
-        by smtp.gmail.com with ESMTPSA id q13-20020a056a00088d00b004e1bea9c582sm12475705pfj.43.2022.04.04.06.19.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 06:19:16 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=v7AXDrNkV0E+GuzQu0vkT521m8L2g3R8JZyBRpFSWSw=;
+        b=o/RtRY3gcBMfyaM7Tq38JWON2X0wh/hbRBpsTawJjz1cEqqJBCX86vxotvDvMqUnOb
+         7GXgLXuvvMzkC8cVbf1X4TsoYzivro5GKrNWHxeUUG0QKBOpB+0mXdTyqJJRKjpMGlOx
+         2cwC5Ug2sXu1Y9uA8/pMl0jeD6TEtOYKfeyoGLl8jiiIl5/mlgl6B4jrZ7gG0rO6ii7v
+         zda936ORq271+i8hVGFVNaWXZ+h1Qp14JsU8h85sGfIE6/bJ3r1SZcv0YScBB3pG9EX+
+         zXM6vQ+SDZCOqRROUJNfAy3qqMgo2B7zQ/rIIwJAqxC1DghZJPC6zhKHr0KiEjR+Nfer
+         UzMg==
+X-Gm-Message-State: AOAM533O2HWKGT9DxxC8jRKK+eY6FLFlj0OWfpg/VRXDlbZaWIfucg3Q
+        8uT181r3jRx3O6qfJpvqzEyvYA==
+X-Google-Smtp-Source: ABdhPJxKWPVlUvcgfx4SvYr7vos8yA4v2Mi7qUIHb9E64q6XZsCGDyBE3n+kdaQg4cAx6UmNyhWkjw==
+X-Received: by 2002:a05:6e02:178d:b0:2ca:1ad2:c471 with SMTP id y13-20020a056e02178d00b002ca1ad2c471mr5284025ilu.311.1649079406491;
+        Mon, 04 Apr 2022 06:36:46 -0700 (PDT)
+Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.googlemail.com with ESMTPSA id x8-20020a92d648000000b002ca2dc1a74esm3188537ilp.58.2022.04.04.06.36.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 06:36:46 -0700 (PDT)
+Message-ID: <10d4f538-249d-f78c-b90f-298c9727d58d@ieee.org>
+Date:   Mon, 4 Apr 2022 08:36:44 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] dt-bindings: net: qcom,ipa: finish the qcom,smp2p
+ example
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list),
-        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
-Subject: [PATCH v3 5/5] arm64: dts: mediatek: add mtk-snfi for mt7622
-Date:   Mon,  4 Apr 2022 21:18:18 +0800
-Message-Id: <20220404131818.1817794-6-gch981213@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220404131818.1817794-1-gch981213@gmail.com>
-References: <20220404131818.1817794-1-gch981213@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Alex Elder <elder@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20220402155551.16509-1-krzysztof.kozlowski@linaro.org>
+ <20220402155551.16509-2-krzysztof.kozlowski@linaro.org>
+From:   Alex Elder <elder@ieee.org>
+In-Reply-To: <20220402155551.16509-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a device-tree node for the MTK SPI-NAND Flash Interface
-for MT7622 device tree.
+On 4/2/22 10:55 AM, Krzysztof Kozlowski wrote:
+> The example using qcom,smp2p should have all necessary properties, to
+> avoid DT schema validation warnings.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
-Changes since v1:
-  1. use the newly introduced nand-ecc-engine instead
-  2. reword commit message
-Change since v2: None
- arch/arm64/boot/dts/mediatek/mt7622.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Looks good to me.  The particular values don't match any
+reality, but that doesn't matter for getting the syntactic
+parse to pass without error or warning.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 6f8cb3ad1e84..4b8f7dc1ec23 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -545,6 +545,18 @@ nandc: nfi@1100d000 {
- 		status = "disabled";
- 	};
- 
-+	snfi: spi@1100d000 {
-+		compatible = "mediatek,mt7622-snand";
-+		reg = <0 0x1100d000 0 0x1000>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		clocks = <&pericfg CLK_PERI_NFI_PD>, <&pericfg CLK_PERI_SNFI_PD>;
-+		clock-names = "nfi_clk", "pad_clk";
-+		nand-ecc-engine = <&bch>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	bch: ecc@1100e000 {
- 		compatible = "mediatek,mt7622-ecc";
- 		reg = <0 0x1100e000 0 0x1000>;
--- 
-2.35.1
+Thanks.
+
+Reviewed-by: Alex Elder <elder@linaro.org>
+
+> 
+> Reported-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   Documentation/devicetree/bindings/net/qcom,ipa.yaml | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> index 58ecc62adfaa..dd4bb2e74880 100644
+> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> @@ -182,6 +182,12 @@ examples:
+>   
+>           smp2p-mpss {
+>                   compatible = "qcom,smp2p";
+> +                interrupts = <GIC_SPI 576 IRQ_TYPE_EDGE_RISING>;
+> +                mboxes = <&apss_shared 6>;
+> +                qcom,smem = <94>, <432>;
+> +                qcom,local-pid = <0>;
+> +                qcom,remote-pid = <5>;
+> +
+>                   ipa_smp2p_out: ipa-ap-to-modem {
+>                           qcom,entry-name = "ipa";
+>                           #qcom,smem-state-cells = <1>;
+> @@ -193,6 +199,7 @@ examples:
+>                           #interrupt-cells = <2>;
+>                   };
+>           };
+> +
+>           ipa@1e40000 {
+>                   compatible = "qcom,sdm845-ipa";
+>   
 
