@@ -2,86 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC95C4F0CFF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 01:40:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9924F0D1B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 02:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235763AbiDCXmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 19:42:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
+        id S1376755AbiDDAET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Apr 2022 20:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbiDCXmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 19:42:04 -0400
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156E62C650;
-        Sun,  3 Apr 2022 16:40:08 -0700 (PDT)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4KWr433rm5z4xQt;
-        Mon,  4 Apr 2022 09:40:02 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1649029204;
-        bh=/LriDKMelIcxILEmiYYeCqxlA2ksNDFTy/6Du99U0M0=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=bNKCIoOS1dKV4A+yR8Lzn3bKxXn6Q4y+cSWZ+UySUcNOU2esHkogkuMnuQ8tUwGWG
-         E4+xVzwdq+CI6uYIDqGcJOVdVTA39Xi6+iwxC2N60edew1qa6BqS3YSwRrFkMNbLzb
-         UKWOB+rxa/o13GAqkB2bDrB9/UUg2bzgP0wgsXwb1fdIHMtDoM7V/6wvihGxsjaxl4
-         qqQnp9eRSiUARP3SBMHP/RZNBdqig4pvejApvunCHWNuGA4QcD9HYi7ztmQz2Z6xaD
-         UXVMb1PWO+RXsFDLle+1ILDGTQea7lgKOFmVN2i7pP2P+10eAmnpvI6pjbcVJ+xTx5
-         zia8dmxq/Nz6Q==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Borislav Petkov <bp@alien8.de>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Scott Wood <oss@buserror.net>,
-        Johannes Thumshirn <morbidrsa@gmail.com>,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-edac@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>
-Subject: Re: [PATCH] powerpc/85xx: Remove fsl,85... bindings
-In-Reply-To: <YkbOg4iLykg0gkKz@zn.tnic>
-References: <82a8bc4450a4daee50ee5fada75621fecb3703ff.1648721299.git.christophe.leroy@csgroup.eu>
- <YkbOg4iLykg0gkKz@zn.tnic>
-Date:   Mon, 04 Apr 2022 09:40:00 +1000
-Message-ID: <87bkxhg2i7.fsf@mpe.ellerman.id.au>
+        with ESMTP id S1376750AbiDDAES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 20:04:18 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FCB32EE8
+        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 17:02:22 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 17so10932267lji.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Apr 2022 17:02:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=5bWvZkBQTfXdI0SB8SrDEX7zVm6LPWgDXAasm42CGY4=;
+        b=mN4zhps0NYYwmzS+FQLFXsSlPjyZn4j7aifukivVkBYHBHCYVat5c393ANERlwS+7A
+         +83MnCatCAO/ik4twzmymo3YzTuoGyP12vZH+3V8jxmpEsyxce4Sk0+6b7MXsxn/SWCR
+         /W9m3DFc/k/ES0I/nlcU2OKweBRHd1+w6BFYBH+88mNzTpWAo+IU+/YNwIKngyPZmlWf
+         rNs/TbIpuF68TLMsbggVlOMYb1TqG/ieQhG3u4ltAXBkgsDOVpnZfy7fkUFyaBzghike
+         q452JJwoLzWM+wa6JJh73l72T208+rFuUniEw411oxQPWZkO8ZAgbYAZMA+QXo1OCX79
+         Htnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5bWvZkBQTfXdI0SB8SrDEX7zVm6LPWgDXAasm42CGY4=;
+        b=uuj76G5etZ7mf0eVHTyjjRsnT2dfKfyvmcIwIQhXEq3JCJoTjYz5W7vbaX7Tei//rw
+         Kf/f4ai4A9XzNOXBnuWu99iO2stZyL7RGBG4Cyj0w0c49NZGdGRg1+7QqBaQED2HAxHg
+         axb2rGI9/54UVdqZ8DCDdGt6SdjlaGfAyZfEvhIsagnrhWEUMyD5DVD3RSA/xGI4xPW7
+         RK3xoN+qu/k2DkY4g6qMxo4YOUWHRVsvE6DPF36SQlMEyt7I2dwpQa1+lQG/2+YpClf7
+         I/+56OB/Fpg8Tsbm9wLmbXkeUYx4b6xb12n+PzpD52gqAkCG94pNSzfe2MKaYno5k01E
+         Pixg==
+X-Gm-Message-State: AOAM530vLIuf/umO8HHBhccU7MB5FWJzQS5QfZpYujpZnAkfLqeoCSn2
+        UUCYrqrC5sEcNB0i+EwIl/73Ng==
+X-Google-Smtp-Source: ABdhPJwJWW8ulMLQITy0BpOLSJpg+fSPWC4n1v41PvGfawZsK+O5iwbPlB0c7173GPk7Gu/Amuskog==
+X-Received: by 2002:a2e:546:0:b0:24a:c194:ba34 with SMTP id 67-20020a2e0546000000b0024ac194ba34mr19549918ljf.146.1649030540783;
+        Sun, 03 Apr 2022 17:02:20 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id y12-20020a2e978c000000b0024b11369f20sm543441lji.126.2022.04.03.17.02.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Apr 2022 17:02:20 -0700 (PDT)
+Message-ID: <0da0b229-3493-967d-c14d-60d3246b07b2@linaro.org>
+Date:   Mon, 4 Apr 2022 03:02:18 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [RFC PATCH 3/4] arm64: dts: qcom: sdm845: control RPMHPD
+ performance states with UFS
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Bean Huo <beanhuo@micron.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+References: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
+ <20220401145820.1003826-4-krzysztof.kozlowski@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220401145820.1003826-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Borislav Petkov <bp@alien8.de> writes:
-> On Thu, Mar 31, 2022 at 12:13:10PM +0200, Christophe Leroy wrote:
->> Since commit 8a4ab218ef70 ("powerpc/85xx: Change deprecated binding
->> for 85xx-based boards"), those bindings are not used anymore.
->> 
->> A comment in drivers/edac/mpc85xx_edac.c say they are to be removed
->> with kernel 2.6.30.
->> 
->> Remove them now.
->> 
->> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
->> ---
->>  .../bindings/memory-controllers/fsl/fsl,ddr.yaml   |  6 ------
->>  .../devicetree/bindings/powerpc/fsl/l2cache.txt    |  6 ------
->>  drivers/edac/mpc85xx_edac.c                        | 14 --------------
->>  3 files changed, 26 deletions(-)
->
->
-> I'll take it through the EDAC tree of there are no objections.
+On 01/04/2022 17:58, Krzysztof Kozlowski wrote:
+> UFS, when scaling gears, should choose appropriate performance state of
+> RPMHPD power domain controller.  Since UFS belongs to UFS_PHY_GDSC power
+> domain, add necessary parent power domain to GCC.
 
-Fine by me, thanks.
+This will cause all gcc GDSCs to be rooted in the CX. Are we sure that 
+this is an expected (and correct) change?
 
-cheers
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 17 ++++++++++++++++-
+>   1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index b31bf62e8680..c999b41c2605 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -1078,6 +1078,7 @@ gcc: clock-controller@100000 {
+>   			#clock-cells = <1>;
+>   			#reset-cells = <1>;
+>   			#power-domain-cells = <1>;
+> +			power-domains = <&rpmhpd SDM845_CX>;
+>   		};
+>   
+>   		qfprom@784000 {
+> @@ -2336,8 +2337,22 @@ ufs_mem_hc: ufshc@1d84000 {
+>   				<0 0>,
+>   				<0 0>,
+>   				<0 300000000>;
+> -
+> +			operating-points-v2 = <&ufs_opp_table>;
+>   			status = "disabled";
+> +
+> +			ufs_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-50000000 {
+> +					opp-hz = /bits/ 64 <50000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +				};
+> +
+> +				opp-200000000 {
+> +					opp-hz = /bits/ 64 <200000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +				};
+> +			};
+>   		};
+>   
+>   		ufs_mem_phy: phy@1d87000 {
+
+
+-- 
+With best wishes
+Dmitry
