@@ -2,127 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89FDE4F135C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 12:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0FE24F1372
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 12:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358523AbiDDKzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 06:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57664 "EHLO
+        id S1358706AbiDDK43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 06:56:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358511AbiDDKzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 06:55:00 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 071273CFE0
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 03:52:58 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id ot30so9104582ejb.12
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 03:52:57 -0700 (PDT)
+        with ESMTP id S1358571AbiDDK4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 06:56:24 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A27340F5;
+        Mon,  4 Apr 2022 03:54:29 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id 125so10680845iov.10;
+        Mon, 04 Apr 2022 03:54:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=UU25dnRU14B6WimB3QqwV09JX+ckGmT5YECsCF3qKAA=;
-        b=ZHbTS027b+JkcCxCf+aPTD/DnJBJL8idlGYbvHFIydDwSCbz+4J0UGF4KtoVviMFIR
-         aMsPXouXrkXvRBCHGadwcnAUUrnKNILyJTLz2DnRgtdjW/myiqcjfzkF/4so514kO7oh
-         QTM8kK63JiDUv+I5zGxbKlpo+vMI+JWT/WWZNwVI4QgVEvwrdAf7OaScwJ5rQlAAlZG2
-         DGOtppnxMxWdpOE98q0sQgesPmespqcl2ZFcFNJG1pNN+6NnPnjqwoUAPDjm8vdw/+xe
-         PsZzKPT8um3ibadBnaLj7oWs/er3PenNwqZ5wwSbCvwlknLTeL6GypXQq5o1KhC4Jpif
-         KvCg==
+        bh=6rE17aokLscUeZldWdcl+4+hAX8YeB4QD9pUd4GrjIM=;
+        b=TtY+/cMcXBcL8IdYOINrQltPY2JNCPfd2Awm3ZptGepcymCrJ3HbII3+X/9Ys3fHuv
+         4iCZx4zOnwwrvLnGrZ3sSBV5UeUQRXeGFGiaYmn9YqpxCGlzhG1eRkzW0TxfS5Jm/hM4
+         zINrPwRZM7x3FcLUgaHacw3Oz4YJWellZsVpIAyIq8BUnJbGlyraFuEymXpU7UfYdD7r
+         +ZDMMIurR+tpkRsVxx2Vac/rQeWxgpYJJTomab6ShmerwgPvcH57JqOw+IjympgRYdgr
+         eUsU/pdzW9runBz+psuMNZO6RCjSu8ygZaeOOqn/wggHyW8mamGNKvJKczPXMDuKt85v
+         5+PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=UU25dnRU14B6WimB3QqwV09JX+ckGmT5YECsCF3qKAA=;
-        b=fsr5L5YAnE2as3WUJ6Fu3ey+jDHqFxHWJVJ+2c5Zrq7IvOYNqF9a9c2J7fpEcisXPu
-         nuxFjAqwIQkldrgfR9k1Bjbrh0PfGdjrTMrsdMlnhfkB4x1dm6UjAXT7ejvlAgfz5Ww+
-         48iqUDlWwRXWczLkgLsz28iqusvNVoPji0RCAwWd3M1NLo4PN6Z+tPAeiMzCQKp4uQbU
-         fg2711+zl/70MvGkD0sRq1CycO0TNwgQSEJwugY8EGfjr7rQDDJNQ/wXdXue0DhxLs+u
-         pHAIoXwbwxPtDe902GyZNsRk3YEwfD9Q/cP3G72KrxN650IRjqYQRkJaDgvrBDBMcCa5
-         ztng==
-X-Gm-Message-State: AOAM532bQgcsX+Ap/LKPsX43GmtFunHa3xsfBYcrQpAeB/siQGtxIBNE
-        5Ljn4cxn4BebgEiUFKxv0s1rhC0ndTPB8ybWRckA0A==
-X-Google-Smtp-Source: ABdhPJwX7lcdcK7gjr603btAwQzth7/SiHB6MZTl0D6kuiN2IjDBOiSWTV9ZJfAzRTs118XNaiG3dC/1cWH0nzRBV/I=
-X-Received: by 2002:a17:906:d554:b0:6df:a6f8:799a with SMTP id
- cr20-20020a170906d55400b006dfa6f8799amr10108411ejc.492.1649069576577; Mon, 04
- Apr 2022 03:52:56 -0700 (PDT)
+        bh=6rE17aokLscUeZldWdcl+4+hAX8YeB4QD9pUd4GrjIM=;
+        b=T+juA9+3w+B/+jy0r6FLVis5Ix5XPDD1XZMfH1EHRJ8j6JovhLZgflObaL4vRhplpj
+         72lVKLMaqfRNNOGyH1vRYwTBTOamoAMKBJE3yki89UHzTAF3v510tJ5Joh3KDE1R0nTG
+         QcvOom7m/DNjzv7OOynJw8FTV22bUwPTHfOKA8JCS4aoYyrRnB4JbR42287jxGkPDtOj
+         JyqBnb4FZe11S/mwtInGgPyBD+cwBJyGP8KPXbE9h2zeSKeWhesOMpyqXXOOdKY7DPWX
+         wmCNfJ5YOwvumomyTADnPgAyp6HfPyhN54giL2LfmulaZLXmraGeG63uS4+qofv/7GsN
+         tW+A==
+X-Gm-Message-State: AOAM530HjYKChTfOyvEA2qkxO878hy8ab6Kujs+5aacIByEyzl61mxdw
+        7F2DVvXd2Lhtkp1fAQIq//ga0fWaZWsvaXJCdm4=
+X-Google-Smtp-Source: ABdhPJy6dWkX7SvStDXsR6rYoheGmMRXvU/7VnD9jCFC5zDIQw6Mmc9tyZgib54eWMjb5UYf/h7INW0fl0bt4WedkxE=
+X-Received: by 2002:a05:6638:d16:b0:323:63cd:c144 with SMTP id
+ q22-20020a0566380d1600b0032363cdc144mr11635735jaj.76.1649069668361; Mon, 04
+ Apr 2022 03:54:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <1648617423-8739-1-git-send-email-hayashi.kunihiko@socionext.com>
-In-Reply-To: <1648617423-8739-1-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 4 Apr 2022 12:52:46 +0200
-Message-ID: <CAMRc=Mde0ShYiH8e24Y-qKHrhqAfLjDcLgAZ7-VmC5xGQVBwNg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: gpio: uniphier: Add hogs parsing
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+References: <20220404040153.1509966-1-gch981213@gmail.com> <20220404040153.1509966-3-gch981213@gmail.com>
+ <20220404095937.20089db7@xps13> <CAJsYDVK6ya7FR90CtAjbpbF-_+c0GVnsKsN=1wYaoBFx=ysUtQ@mail.gmail.com>
+ <20220404122824.63a1c857@xps13>
+In-Reply-To: <20220404122824.63a1c857@xps13>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Mon, 4 Apr 2022 18:54:17 +0800
+Message-ID: <CAJsYDVJXH0MUB2wPydzqFgF8Y82HsUY7FLu1duCOCyVO-oXZqw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] spi: add driver for MTK SPI NAND Flash Interface
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Colin Ian King <colin.king@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 30, 2022 at 7:17 AM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
->
-> Allow parsing GPIO controller children nodes with GPIO hogs to fix the
-> following warning:
->
->   uniphier-ld11-ref.dtb: gpio@55000000: 'xirq0-hog' does not match any of the regexes: 'pinctrl-[0-9]+'
->       From schema: Documentation/devicetree/bindings/gpio/socionext,uniphier-gpio.yaml
->
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->
-> Changes since v1:
-> - Remove outer brackets from a pattern string
-> - Add valid properties to patternProperties
-> - Add gpios to "required:"
->
->  .../bindings/gpio/socionext,uniphier-gpio.yaml  | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/socionext,uniphier-gpio.yaml b/Documentation/devicetree/bindings/gpio/socionext,uniphier-gpio.yaml
-> index bcafa494ed7a..228fa27ffdc3 100644
-> --- a/Documentation/devicetree/bindings/gpio/socionext,uniphier-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/socionext,uniphier-gpio.yaml
-> @@ -52,6 +52,23 @@ properties:
->        <child-interrupt-base parent-interrupt-base length> triplets.
->      $ref: /schemas/types.yaml#/definitions/uint32-matrix
->
-> +patternProperties:
-> +  "^.+-hog(-[0-9]+)?$":
-> +    type: object
-> +    properties:
-> +      gpio-hog: true
-> +      gpios: true
-> +      input: true
-> +      output-high: true
-> +      output-low: true
-> +      line-name: true
-> +
-> +    required:
-> +      - gpio-hog
-> +      - gpios
-> +
-> +    additionalProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> --
-> 2.25.1
->
+Hi!
 
-Applied, thanks!
+On Mon, Apr 4, 2022 at 6:28 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> [...]
+> > > > +
+> > > > +     // This driver ignores any ECC capability configured by user or
+> > > > +     // requested by the nand chip because the BootROM and MTK bootloader
+> > > > +     // expects the page format to be the exact one as calculated in
+> > > > +     // setup_pagefmt.
+> > >
+> > > I don't like this :)
+> > >
+> > > I understand that the boot partition might have specific constraints,
+> > > but other partitions (or if we don't use the NAND to boot?) should
+> > > probably be usable with other ECC schemes.
+> >
+> > In this controller, the ECC step size is fixed and it can only change
+> > ECC strength.
+>
+> That's fine.
+>
+> > The calculated ECC correction capability is the max
+> > possible one supported by the controller.
+> > I still want the default behavior to match the boot partition
+> > requirement,
+>
+> That is okay, but that does not mean you can only support this one.
+>
+> > because we can't just tell end-users to customize
+> > their dts by taking apart their device and figure out which flash
+> > is used.
+>
+> They don't have to do so. In theory they should not request anything,
+> the core would take care of all of that. But they can request specific
+> values by using the DT and you must follow them in the driver.
+>
+> On his side the core is responsible of telling you which strength
+> should be used otherwise and the driver is expected to use it.
 
-Bart
+The core provided ecc strength may be smaller than the
+calculated one. e.g. A nand chip may only have a requirement
+of 8/512bits ECC. But if it has a 2k+128 pagesize, this
+controller can do 12/512bits ECC and the bootrom expects the
+latter.
+
+> You should take the user requirements first. If there are no
+> user inputs, you should in theory look at the device's requirements.
+
+I'll take the user requirements if there is one. If there isn't, I'll
+follow the calculated strength instead of the device requirement
+so that user doesn't have to specify a custom strength in dt.
+
+> [...]
+> > > > +static struct nand_ecc_engine_ops mtk_snfi_ecc_engine_ops = {
+> > > > +     .init_ctx = mtk_snand_ecc_init_ctx,
+> > > > +     .prepare_io_req = mtk_snand_ecc_prepare_io_req,
+> > > > +     .finish_io_req = mtk_snand_ecc_finish_io_req,
+> > >
+> > > I believe you need to take care of the bounce buffer in the exit path?
+> >
+> > No. The buffer should be left there for non-ecc spi-mem operations.
+>
+> AFAIR you initialize the buffer in the ECC part, so if it must be used
+> without ECC you should probably allocate it for the SPI controller.
+
+I did. the setup_pagefmt is called once with the minimal page+oob size
+in probe.
+
+> In
+> any way, you need to free that memory at some point (when removing the
+> driver).
+
+I was using the devm api for this allocation so kernel should take
+care of that.
+
+I'll change the DMA to use streamed API in the next version to avoid
+an extra memory copy in reading, and the allocated buffer will be
+freed in remove().
+
+-- 
+Regards,
+Chuanhong Guo
