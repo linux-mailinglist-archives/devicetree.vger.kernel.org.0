@@ -2,101 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D79334F1010
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D004F104E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:51:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377703AbiDDHmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 03:42:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54270 "EHLO
+        id S1353849AbiDDHwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 03:52:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377704AbiDDHmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 03:42:31 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A78237C9
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 00:40:34 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2347Y1lW002566;
-        Mon, 4 Apr 2022 03:40:25 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3f6gb6ud19-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 04 Apr 2022 03:40:25 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 2347eNx6049220
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Apr 2022 03:40:23 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Mon, 4 Apr 2022 03:40:23 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Mon, 4 Apr 2022 03:40:22 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 4 Apr 2022 03:40:22 -0400
-Received: from nsa.ad.analog.com ([10.44.3.67])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2347eDC3024177;
-        Mon, 4 Apr 2022 03:40:16 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>
-Subject: [PATCH] of: overlay: do not break notify on NOTIFY_OK
-Date:   Mon, 4 Apr 2022 09:40:55 +0200
-Message-ID: <20220404074055.95618-1-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1377835AbiDDHwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 03:52:35 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5E73B03F
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 00:50:34 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id h4so13048972wrc.13
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 00:50:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=9KLUE1NHtEsDFtRjMM1zL7+bD86TSrQIC2LDIAuynOc=;
+        b=Fx7T7OoM6yT56hzAxLIOfsn5EYaVjPRxqC5cOUY+DxBFXzSO8N05P+jEOPJdEHuGvl
+         yD6zkibXVdGuk6wsZoPi4sU69B09ODb7VYQ+bEULD85UKQEiLVkDemiJh+YcwsGPx8zE
+         5PwNCgDhgOc8KqWGlCOJitKrta5XLL1TFhl24+NA26JGWBIxp5MaraKMrmAUUZYMO5Rz
+         KX8uoUYuDoqfpLL+L+0efnmxpxRPpr6O0wn8sbEt1gzKSeT9fZwRjwKjlQHLW3NQ2Ysi
+         WCC3EIW8tHdhTl2DcAFCf3BuR7pRYY/X8MjPU1Ra8kHXV/y0GIV7jLkEpYvL2096PrDe
+         5wIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=9KLUE1NHtEsDFtRjMM1zL7+bD86TSrQIC2LDIAuynOc=;
+        b=rUmRGhl6gUBF6Lbvtbp5f2s/SMyyOcq10/yCTaXAOIdb4ZTRK1Pwec6JKbkep5Udgu
+         9TylzwMOmqKUq4bWrSp+SVtaLZqRd9jN6EIQ8ONc7KdiqS+r2dBp/AwFZ4S8+ReemWNi
+         v50nhhkTC/YvJtG1418cOiQxmPxDvRR68oh9rJnNZuNgP2d/K8raCZQBNu56d94Uhvr+
+         MhPOCp6ieJ3n3/TVTQrzM1YiHFylYIxBfqlCew73MTG6B4b7jJZ8ZrKG7tWkAZMe+JdO
+         5Dbn03ETRXfC5b9ppuEKrI/Fya7lQ0eLHP7ePJjbQLHbUQ2FApfJhkYN53aJPl9GXquo
+         Qcfg==
+X-Gm-Message-State: AOAM532Q1WJ5cA+xZp+W7O9z5vsaFrMMuohuycoIqa4271dwo/Yh1WMr
+        G5XK2mhsGGOrePKz4QEB2J/R2g==
+X-Google-Smtp-Source: ABdhPJw7zPtSFEMQcbZ44jylQLyS8h2higOBBCEDhyCqGau9g39TY5y+sEjRqQ9F+Fwxv68AQcGaOw==
+X-Received: by 2002:adf:e2cc:0:b0:203:e8ba:c709 with SMTP id d12-20020adfe2cc000000b00203e8bac709mr16065391wrj.713.1649058632571;
+        Mon, 04 Apr 2022 00:50:32 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:1add:1b28:2457:eb46? ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
+        by smtp.gmail.com with ESMTPSA id b3-20020adfd1c3000000b00205820686dasm9781330wrd.5.2022.04.04.00.50.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 00:50:31 -0700 (PDT)
+Message-ID: <ddcc31b1-2123-2d7b-5334-b4545569e287@baylibre.com>
+Date:   Mon, 4 Apr 2022 09:50:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: LnauomJZ9d7Pq94VCQeq4VbL6k0PpUJB
-X-Proofpoint-ORIG-GUID: LnauomJZ9d7Pq94VCQeq4VbL6k0PpUJB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-04-04_02,2022-03-31_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=635
- suspectscore=0 phishscore=0 spamscore=0 clxscore=1011 bulkscore=0
- impostorscore=0 mlxscore=0 malwarescore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2204040043
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] arm64: dts: meson: remove CPU opps below 1GHz for
+ G12B boards
+Content-Language: en-US
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220210100638.19130-1-christianshewitt@gmail.com>
+ <20220210100638.19130-2-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220210100638.19130-2-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We should not break overlay notifications on NOTIFY_OK otherwise we might
-break on the first fragment. As NOTIFY_OK is not zero, we need to
-account for that when looking for errors.
+On 10/02/2022 11:06, Christian Hewitt wrote:
+> Amlogic G12B devices experience CPU stalls and random board wedges when
+> the system idles and CPU cores clock down to lower opp points. Recent
+> vendor kernels include a change to remove 100-250MHz and other distro
+> sources also remove the 500/667MHz points. Unless all 100-667Mhz opps
+> are removed or the CPU governor forced to performance stalls are still
+> observed, so let's remove them to improve stability and uptime.
+> 
+> Fixes: b96d4e92709b ("arm64: dts: meson-g12b: support a311d and s922x cpu operating points")
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>   .../boot/dts/amlogic/meson-g12b-a311d.dtsi    | 40 -------------------
+>   .../boot/dts/amlogic/meson-g12b-s922x.dtsi    | 40 -------------------
+>   2 files changed, 80 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+> index d61f43052a34..8e9ad1e51d66 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+> @@ -11,26 +11,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <761000>;
+> @@ -71,26 +51,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <731000>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> index 1e5d0ee5d541..44c23c984034 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> @@ -11,26 +11,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <731000>;
+> @@ -76,26 +56,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <771000>;
 
-Fixes: a1d19bd4cf1fe ("of: overlay: pr_err from return NOTIFY_OK to overlay apply/remove")
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- drivers/of/overlay.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index d80160cf34bb..0b2d47598cfb 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -170,9 +170,9 @@ static int overlay_notify(struct overlay_changeset *ovcs,
- 
- 		ret = blocking_notifier_call_chain(&overlay_notify_chain,
- 						   action, &nd);
--		if (ret == NOTIFY_OK || ret == NOTIFY_STOP)
-+		if (ret == NOTIFY_STOP)
- 			return 0;
--		if (ret) {
-+		if (ret && ret != NOTIFY_OK) {
- 			ret = notifier_to_errno(ret);
- 			pr_err("overlay changeset %s notifier error %d, target: %pOF\n",
- 			       of_overlay_action_name[action], ret, nd.target);
--- 
-2.35.1
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
