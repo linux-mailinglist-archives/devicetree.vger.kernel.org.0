@@ -2,79 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F37E84F1AAC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECFE64F1EB5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:25:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379125AbiDDVSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54952 "EHLO
+        id S244663AbiDDVxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:53:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380725AbiDDVPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:15:13 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB7B2FE42
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 14:13:15 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id a5so8546323qvx.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 14:13:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u+Jl9J4Gm7LRQGPX5xoLGqpAHPcvyGzQPr6d5j6QMTw=;
-        b=TSVbunOXvXaI2j2cflfId/dz86MOvQN6HmifvKQzyMoyxFrWDUVNTxEyuubl+ejr4R
-         zA9m49+KVYvUsOMAta6F+9tdVJZ/vKCkbS8xyhpV0n/uVXtOO/UsV4qYC3Kr/oOI7Xr5
-         3wfySfQxeOD/O4I7pReuqjLOKIvlS+Ml8h7zo8aYZA80gVZzBSUl5WyfC9CR7sCGpM6u
-         He2I+Fl9jeEQbU7mNZemR/K1VxoCzZUDn9O1zI27hzFdksqd1in94CCmiOnmrqNGd/8W
-         X9E9lNYcqdYSrMDM/PfEkmMqPgEkIYuusTAJ8Gl4KN3ZhvfYFhmQYNC7JqIDuVW3qbB1
-         XfSA==
+        with ESMTP id S1382403AbiDDV3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:29:34 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C1B12AAB;
+        Mon,  4 Apr 2022 14:14:11 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-e1e5e8d9faso6978535fac.4;
+        Mon, 04 Apr 2022 14:14:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u+Jl9J4Gm7LRQGPX5xoLGqpAHPcvyGzQPr6d5j6QMTw=;
-        b=x78ySNbWodIV9GJeI+9oUXVTnfQ9psh6QEYAcP+0UpKVxYR5MO+O9CWX9cV4vfkyU2
-         a1dKuLhPn1QaWpuSLM+HQbdTU/S38kdzrF8nBJiaNDDIzcw6qCceCdN3y6BXgAEGyc+z
-         /45Qty5DJxtf78i7n993buC8A+LlZY3guaH+2dlqQaTBsLepZb13g4NvCHCI66jJLyEQ
-         vKyGOV6MJIK4fEzCDX1CstQasUe5UWEtpU+3I1Gj6dVqUGfhEPO8cCgImk/6Gp3f6v4i
-         4LDoD4N/NppCxTTtXGvemfAsrP+4VgtngZMrwiMJLJSZRMqWNxu1albLzC1t+GcJjwJ0
-         TBHQ==
-X-Gm-Message-State: AOAM533PH37KA2uMUAvLoNXOJAR6iD6bP5dsE+2IeguZOw8jf19pykkU
-        cZsVz59a7YuF6GOWjEAbTNdINhf8VU11tFyqP3znGg==
-X-Google-Smtp-Source: ABdhPJwxrjD9HfPuwGXMP4Ljy/6xQzhveU0JXd34jHXZBeF11vt01nwh3cDZ3iNbPGbLP6JSVzGT4riqsvKmCJkH474=
-X-Received: by 2002:a05:6214:20e4:b0:441:7bed:5ccd with SMTP id
- 4-20020a05621420e400b004417bed5ccdmr1456463qvk.119.1649106794685; Mon, 04 Apr
- 2022 14:13:14 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wVuOXu4skO0KO0zRxHy/3ZvkuPFL8d4lBRDXGGDlSqM=;
+        b=1N/9jHG4OVse3UwStL16iBqNh+PTDxtKx1ThGsbLSxpIF/zlCFIQK11ypLb30AvLbi
+         uIBFjivmdF/xgfGIf7mfbAiBxJi0ADpEpuWzDuLpPlodAPdXc6A6Z5vZr2RSbBkSp+ZZ
+         w037bwWptpQXH7cX0S5IIKyDvkn/gASPcp4u5Oj0HH7M43ASQXYcRjs3S4/ZSQB4XccH
+         zjvNrt0MpC57M6PCEeAukKVr1eYZ0XObG0y8GZM3+VpKPTDWzjmhgf3Wu/1sA4/SLfXJ
+         kx0qPXCPombbF97LegaGW/DnTY0GD3NA11sjFHULIHona/yjt4digYVYnEOc7hFYhbww
+         pG9Q==
+X-Gm-Message-State: AOAM532w/KOdXKWsboqlgtKhT4ZJL8DhdRb7KoLnQdLCK1TGfecixCyP
+        5ASPoJE8Ss3xjK/HC0Ecrg==
+X-Google-Smtp-Source: ABdhPJwW06Gh52XovnnLG6nWBopSe+nYPMxX+MAIwfaTGUWYf0ht+tTGTZwWR4mHIt5utIJLPkL5MA==
+X-Received: by 2002:a05:6870:785:b0:da:ac31:3e04 with SMTP id en5-20020a056870078500b000daac313e04mr66117oab.270.1649106850602;
+        Mon, 04 Apr 2022 14:14:10 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p12-20020a4a95cc000000b003246cd15eaasm4324908ooi.2.2022.04.04.14.14.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 14:14:10 -0700 (PDT)
+Received: (nullmailer pid 1989352 invoked by uid 1000);
+        Mon, 04 Apr 2022 21:14:09 -0000
+Date:   Mon, 4 Apr 2022 16:14:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: white-space cleanups
+Message-ID: <Yktfof9/qSv4wGRw@robh.at.kernel.org>
+References: <20220402192819.154691-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
- <1648656179-10347-7-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=UX9Mg71EKvgNp_wNG5q7_ugBgVPbcFWFX5XBG+cQCi8Q@mail.gmail.com> <MW4PR02MB718631182DC72076DC794C1DE1E59@MW4PR02MB7186.namprd02.prod.outlook.com>
-In-Reply-To: <MW4PR02MB718631182DC72076DC794C1DE1E59@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 5 Apr 2022 00:13:03 +0300
-Message-ID: <CAA8EJpqOzn4xh1N9GhEbH6YY5uHPdeqhiDnSNMM+ZQ3GdaWFrA@mail.gmail.com>
-Subject: Re: [PATCH v6 6/8] drm/msm/dp: remove unnecessary delay during boot
-To:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220402192819.154691-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,39 +63,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 Apr 2022 at 16:53, Sankeerth Billakanti (QUIC)
-<quic_sbillaka@quicinc.com> wrote:
->
-> Hi Doug,
->
-> > On Wed, Mar 30, 2022 at 9:04 AM Sankeerth Billakanti
-> > <quic_sbillaka@quicinc.com> wrote:
-> > >
-> > > Remove the unnecessary delay in executing the EV_HPD_INIT_SETUP
-> > event.
-> >
-> > Tell me more and put it in the commit message! Why did it used to be
-> > necessary and why is it no longer necessary? Inquiring minds want to know.
-> >
->
-> Okay. I will add proper description. The DP phy is shared with usb and executing the
-> dp phy_init before the usb phy_init was causing usb devices to not function.
+On Sat, 02 Apr 2022 21:28:19 +0200, Krzysztof Kozlowski wrote:
+> Remove trailing white-spaces and trailing blank lines (yamllint when run
+> manually does not like them).
+> 
+> Suggested-by: Corentin Labbe <clabbe@baylibre.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/clock/samsung,exynos4412-isp-clock.yaml          | 1 -
+>  .../devicetree/bindings/crypto/allwinner,sun8i-ce.yaml        | 1 -
+>  .../devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml    | 1 -
+>  .../bindings/display/bridge/google,cros-ec-anx7688.yaml       | 1 -
+>  Documentation/devicetree/bindings/display/bridge/ps8640.yaml  | 1 -
+>  .../devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml      | 1 -
+>  .../devicetree/bindings/display/mediatek/mediatek,merge.yaml  | 1 -
+>  .../devicetree/bindings/display/panel/ilitek,ili9341.yaml     | 1 -
+>  .../devicetree/bindings/display/panel/orisetech,otm8009a.yaml | 1 -
+>  .../bindings/display/sprd/sprd,display-subsystem.yaml         | 1 -
+>  Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml  | 1 -
+>  Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml    | 1 -
+>  Documentation/devicetree/bindings/dma/st,stm32-mdma.yaml      | 1 -
+>  Documentation/devicetree/bindings/gpu/samsung-rotator.yaml    | 1 -
+>  Documentation/devicetree/bindings/hwmon/adt7475.yaml          | 1 -
+>  Documentation/devicetree/bindings/i2c/i2c-gate.yaml           | 1 -
+>  Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.yaml      | 1 -
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7291.yaml     | 1 -
+>  Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml   | 2 +-
+>  Documentation/devicetree/bindings/iommu/samsung,sysmmu.yaml   | 1 -
+>  .../devicetree/bindings/leds/backlight/qcom-wled.yaml         | 2 +-
+>  .../devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml   | 1 -
+>  Documentation/devicetree/bindings/media/microchip,xisc.yaml   | 1 -
+>  Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml   | 1 -
+>  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml         | 2 +-
+>  .../devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml     | 1 -
+>  .../devicetree/bindings/power/supply/cw2015_battery.yaml      | 1 -
+>  .../devicetree/bindings/power/supply/power-supply.yaml        | 1 -
+>  Documentation/devicetree/bindings/power/supply/ti,lp8727.yaml | 1 -
+>  .../devicetree/bindings/power/supply/tps65217-charger.yaml    | 2 +-
+>  .../bindings/regulator/socionext,uniphier-regulator.yaml      | 1 -
+>  .../devicetree/bindings/regulator/st,stm32-vrefbuf.yaml       | 1 -
+>  .../devicetree/bindings/reserved-memory/ramoops.yaml          | 1 -
+>  Documentation/devicetree/bindings/reset/microchip,rst.yaml    | 1 -
+>  Documentation/devicetree/bindings/rng/intel,ixp46x-rng.yaml   | 1 -
+>  Documentation/devicetree/bindings/serial/sprd-uart.yaml       | 2 +-
+>  .../devicetree/bindings/soc/amlogic/amlogic,canvas.yaml       | 1 -
+>  Documentation/devicetree/bindings/sound/adi,adau1372.yaml     | 1 -
+>  .../devicetree/bindings/sound/amlogic,gx-sound-card.yaml      | 1 -
+>  Documentation/devicetree/bindings/sound/maxim,max98520.yaml   | 1 -
+>  Documentation/devicetree/bindings/sound/mchp,spdifrx.yaml     | 2 +-
+>  Documentation/devicetree/bindings/sound/mchp,spdiftx.yaml     | 2 +-
+>  .../devicetree/bindings/sound/nvidia,tegra-audio-rt5640.yaml  | 1 -
+>  .../devicetree/bindings/sound/samsung,aries-wm8994.yaml       | 1 -
+>  Documentation/devicetree/bindings/sound/samsung,odroid.yaml   | 1 -
+>  Documentation/devicetree/bindings/sound/tas2562.yaml          | 1 -
+>  Documentation/devicetree/bindings/sound/tas2770.yaml          | 1 -
+>  .../devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml       | 1 -
+>  .../devicetree/bindings/spi/amlogic,meson6-spifc.yaml         | 1 -
+>  Documentation/devicetree/bindings/spi/renesas,hspi.yaml       | 1 -
+>  Documentation/devicetree/bindings/usb/dwc2.yaml               | 4 ++--
+>  Documentation/devicetree/bindings/usb/smsc,usb3503.yaml       | 2 +-
+>  52 files changed, 10 insertions(+), 53 deletions(-)
+> 
 
-I always wondered, how does this work for the 4-lane DP dongles, where
-there is no USB mode/lanes?
-
-> Earlier, enabling phy_init was done when the EV_HPD_INIT_SETUP event was executed.
-> So, we had scheduled it to execute after 10 second to let the usb driver complete the phy_init first.
->
-> Kuogee made the below change to move the DP phy_init to execute after the DP is connected
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/1642531648-8448-2-git-send-email-quic_khsieh@quicinc.com/
->
-> So, there is no need for the DP driver to wait 10 seconds for the phy initialization anymore.
->
-> eDP PHY is not shared with usb. So, it can be programmed anytime, hence not needing any delay.
-
-
-
--- 
-With best wishes
-Dmitry
+Applied, thanks!
