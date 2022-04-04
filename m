@@ -2,65 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4114F1000
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1FC4F1038
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377677AbiDDHc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 03:32:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
+        id S1377769AbiDDHq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 03:46:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358569AbiDDHc1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 03:32:27 -0400
-Received: from 6.mo552.mail-out.ovh.net (6.mo552.mail-out.ovh.net [188.165.49.222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9895377D7
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 00:30:30 -0700 (PDT)
-Received: from mxplan5.mail.ovh.net (unknown [10.109.146.192])
-        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 13CB5224F4;
-        Mon,  4 Apr 2022 07:30:27 +0000 (UTC)
-Received: from kaod.org (37.59.142.101) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 4 Apr
- 2022 09:30:26 +0200
-Authentication-Results: garm.ovh; auth=pass (GARM-101G0041c6325e6-010e-462f-a9ff-e43c6fe6fcff,
-                    193BEDB8EED17CFBFC1316EE01F9191BF107EB6B) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <8c88e726-0ddb-e2ba-35df-676cfc3d0475@kaod.org>
-Date:   Mon, 4 Apr 2022 09:30:25 +0200
+        with ESMTP id S1353150AbiDDHq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 03:46:27 -0400
+X-Greylist: delayed 587 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 04 Apr 2022 00:44:31 PDT
+Received: from mail.rubyinfo.pl (mail.rubyinfo.pl [5.249.159.30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2016D17ABF
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 00:44:30 -0700 (PDT)
+Received: by mail.rubyinfo.pl (Postfix, from userid 1001)
+        id 318C2A2D3F; Mon,  4 Apr 2022 08:32:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rubyinfo.pl; s=mail;
+        t=1649057684; bh=/9MpKlGUGEWWhiQdedVnMqaLo1WTRqCWHemvvbwCPnM=;
+        h=Date:From:To:Subject:From;
+        b=UMErcv0WTyQLCPR7InywpU6xu47cHcsHwz83nDxcHT2nUn728k0p+b7XSkG84OIs3
+         htKA+eDYRFZXSts+IcMaTltg6PfMY5LHfTK4/Txi5+v0V0VeegjYirqsiA40lOFtHD
+         sI6OA6ChbeUDACu4ovNN4MNL+bzR33P+hEIpH17xXuxvxQDR/TrxI/e1fXNzVU0MBQ
+         ew4iOS1q3T05xDBF+ccuM7i+RjgoVzumhYzRgtMaGn+XC9StiTWHebJPMEwUgYT37z
+         PMR9+D22qIXD40B+FNtKzwDuQvBE7lSvzUUv36VENLkvBnrQYuR1DPl+SgfuFIgRRd
+         xxWZ+5mcz5xKg==
+Received: by mail.rubyinfo.pl for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 07:30:52 GMT
+Message-ID: <20220404074502-0.1.4h.j6ja.0.5e633ijf7e@rubyinfo.pl>
+Date:   Mon,  4 Apr 2022 07:30:52 GMT
+From:   =?UTF-8?Q? "Miko=C5=82aj_Rudzik" ?= <mikolaj.rudzik@rubyinfo.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?Nap=C5=82yw_Klient=C3=B3w_ze_strony?=
+X-Mailer: mail.rubyinfo.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 08/11] spi: aspeed: Calibrate read timings
-Content-Language: en-US
-To:     Pratyush Yadav <p.yadav@ti.com>
-CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Tao Ren <rentao.bupt@gmail.com>
-References: <20220325100849.2019209-1-clg@kaod.org>
- <20220325100849.2019209-9-clg@kaod.org>
- <20220331164115.w5q3wxlmwcg3w4ns@ti.com>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <20220331164115.w5q3wxlmwcg3w4ns@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.101]
-X-ClientProxiedBy: DAG4EX1.mxp5.local (172.16.2.31) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 06f63634-85ae-4b96-a96f-c3ad2ae45158
-X-Ovh-Tracer-Id: 11426476679860161351
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrudejuddguddvvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgihesthekredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeeigedvffekgeeftedutddttdevudeihfegudffkeeitdekkeetkefhffelveelleenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddruddtudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehrvghnthgrohdrsghuphhtsehgmhgrihhlrdgtohhm
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,80 +45,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/31/22 18:41, Pratyush Yadav wrote:
-> Hi,
-> 
-> On 25/03/22 11:08AM, Cédric Le Goater wrote:
->> To accommodate the different response time of SPI transfers on different
->> boards and different SPI NOR devices, the Aspeed controllers provide a
->> set of Read Timing Compensation registers to tune the timing delays
->> depending on the frequency being used. The AST2600 SoC has one of these
->> registers per device. On the AST2500 and AST2400 SoCs, the timing
->> register is shared by all devices which is problematic to get good
->> results other than for one device.
->>
->> The algorithm first reads a golden buffer at low speed and then performs
->> reads with different clocks and delay cycle settings to find a breaking
->> point. This selects a default good frequency for the CEx control register.
->> The current settings are a bit optimistic as we pick the first delay giving
->> good results. A safer approach would be to determine an interval and
->> choose the middle value.
->>
->> Calibration is performed when the direct mapping for reads is created.
->> Since the underlying spi-nor object needs to be initialized to create
->> the spi_mem operation for direct mapping, we should be fine. Having a
->> specific API would clarify the requirements though.
->>
->> Cc: Pratyush Yadav <p.yadav@ti.com>
->> Reviewed-by: Joel Stanley <joel@jms.id.au>
->> Tested-by: Joel Stanley <joel@jms.id.au>
->> Tested-by: Tao Ren <rentao.bupt@gmail.com>
->> Signed-off-by: Cédric Le Goater <clg@kaod.org>
->> ---
->>   drivers/spi/spi-aspeed-smc.c | 281 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 281 insertions(+)
->>
-> [...]
->> @@ -517,6 +527,8 @@ static int aspeed_spi_chip_adjust_window(struct aspeed_spi_chip *chip,
->>   	return 0;
->>   }
->>   
->> +static int aspeed_spi_do_calibration(struct aspeed_spi_chip *chip);
->> +
->>   static int aspeed_spi_dirmap_create(struct spi_mem_dirmap_desc *desc)
->>   {
->>   	struct aspeed_spi *aspi = spi_controller_get_devdata(desc->mem->spi->master);
->> @@ -565,6 +577,8 @@ static int aspeed_spi_dirmap_create(struct spi_mem_dirmap_desc *desc)
->>   	chip->ctl_val[ASPEED_SPI_READ] = ctl_val;
->>   	writel(chip->ctl_val[ASPEED_SPI_READ], chip->ctl);
->>   
->> +	ret = aspeed_spi_do_calibration(chip);
->> +
-> 
-> I am still not convinced this is a good idea. The API does not say
-> anywhere what dirmap_create must be called after the flash is completely
-> initialized, though that is what is done currently in practice. 
+Dzie=C5=84 dobry,
 
-Yes because we wouldn't have a correct 'spi_mem_dirmap_info' if it wasn't
-the case. May be change the documentation ?
+chcia=C5=82bym poinformowa=C4=87 Pa=C5=84stwa o mo=C5=BCliwo=C5=9Bci pozy=
+skania nowych zlece=C5=84 ze strony www.
 
-> I think
-> an explicit API to mark flash as "ready for calibration" would be a
-> better idea.
+Widzimy zainteresowanie potencjalnych Klient=C3=B3w Pa=C5=84stwa firm=C4=85=
+, dlatego ch=C4=99tnie pomo=C5=BCemy Pa=C5=84stwu dotrze=C4=87 z ofert=C4=
+=85 do wi=C4=99kszego grona odbiorc=C3=B3w poprzez efektywne metody pozyc=
+jonowania strony w Google.
 
-OK. Since the above is a oneliner, it should not be a problem to move
-it under a new handler if needed.
-
-The dirmap_create() handler expects the spi-mem descriptor and the field
-'desc->info.op_tmpl' to be correctly initialized in order to compute the
-control register value, which is a requirement for dirmap_read(). The
-calibration sequence simply comes after.
-
-AFAICT, there is nothing incorrect today.
-
-> Tudor/Mark/Miquel, what do you think?
+Czy m=C3=B3g=C5=82bym liczy=C4=87 na kontakt zwrotny?
 
 
-Thanks,
-
-C.
+Pozdrawiam serdecznie,
+Miko=C5=82aj Rudzik
