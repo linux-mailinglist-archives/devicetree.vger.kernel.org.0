@@ -2,88 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 163C44F1AF0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E464F1ABA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379321AbiDDVTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:19:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33464 "EHLO
+        id S1378961AbiDDVSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380017AbiDDSk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 14:40:28 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1023CFE;
-        Mon,  4 Apr 2022 11:38:29 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id b13so9849861pfv.0;
-        Mon, 04 Apr 2022 11:38:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Nh9EyiWG8bH88pOKO/orB2F1BTvp8RdXpao3o9qIKVU=;
-        b=WBk4YURv2n8mR4BnXBU5Co6GREGNq67cVLsjtFkSEOSQuBtp7c01VP50uOrhbYLJPT
-         CqBeVN/1wSte8uHk32P8jXVsYJDeywIe9VkOv9ou4GlVC8eGl3s2vOZ6dPVd7to9PZ25
-         GLuLtWi1rwnq7eIDsZnL7Az8zcZ5GoTEOIM+bO20cjKMWl3Nqu1t2ygB/trM1CuVEfa4
-         64FbsfPid5Ruwn4bHoxZpxasH4CiFBp+dIpDSaYH9nAnLad99vgpaX8u6ZwYsmNPpptp
-         KCoY+/7fArKV0uZq+VitvyHLN3VRfulzY5FPASlKrIKbzC8lbWPKpe1CwIaem7Q3z1yb
-         JxVA==
+        with ESMTP id S1380049AbiDDSqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 14:46:15 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 413411C117;
+        Mon,  4 Apr 2022 11:44:18 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-df02f7e2c9so11733934fac.10;
+        Mon, 04 Apr 2022 11:44:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Nh9EyiWG8bH88pOKO/orB2F1BTvp8RdXpao3o9qIKVU=;
-        b=jmJIc982aPyUaP/zMxL2HSVke2YaJdblaEqdrPwcRFg/jQY7zVOYWaI5hwLI8UbPAI
-         F+jpbWSq6Ahf1iZk5DuvEi+26c8MkXFHeuHZwy8WuoWHxnC+7DMBhML6/UWll7abz39e
-         tiXlv3lkHZu4fsrUjzPigBlQzVO2obQEEHy6S4QhyKkSDkx42llgMnAr2zmn+npHvNIL
-         EnR6KwDuT7FSUpdKBvlod4AWRCbkNzXNfoDaljYeONqOU2vuYhghhDCRPRVN57jAQZ1b
-         73NxpTfwr3qZFJvv5Iumh4siciLhAAJ4Fupx82z+wvgGumrllwz/yhZAZLzguWN+wdEv
-         IoBA==
-X-Gm-Message-State: AOAM532BtKZqaCakuFiY7vW7IMpc/MACLM46xTyoJbGFdecWX4ofmYvM
-        4aSiMvJHe9nXyUEmKYxyEkw=
-X-Google-Smtp-Source: ABdhPJyNsk+WMwaHYVwRYd772qQ7duJlLvu0R5roVGPfesWBXzLoafNx4P3mRx7QfElxwmvfP88n9g==
-X-Received: by 2002:a05:6a00:c8e:b0:4fb:18a6:18f9 with SMTP id a14-20020a056a000c8e00b004fb18a618f9mr1042559pfv.47.1649097509345;
-        Mon, 04 Apr 2022 11:38:29 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 34-20020a17090a0fa500b001cabffcab2csm155161pjz.55.2022.04.04.11.38.27
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+DVZa9rgC7XCqVmwQpif8MjcfgqohlHJqzZVbT4NdPA=;
+        b=6JF+JH6wd0/7ywTfr5v3ryTISkOXdlpaCcfqq+v+gSqf6hBI+8vk8ngOOlYaDhAbb4
+         WAy3YTXsYLkb1vr+wbPrDfOsGJfX3f+9W9bHS9uLBVL5MZY00DQ9MZCrEU7Ls0vJ4m0z
+         72hpsvSSTG+VINgD/AfqXSudkPVbKrNNyb5Gmz8/SnMgmR7yyL6xzU3T8eZC1oqqavmB
+         ZPWoP/q3+pS1OtwM0s71ApPn5GFqc2Mbytkvjze2+3hPAhLDiGmSwm3ezOUseinYdxRR
+         hDE7GZh5u59AgOui+SX1NM9BhXol1Wx/eP0/kHfd6EZJg8sI3hyUfmNV7Lw6uqrXD+DP
+         1U2g==
+X-Gm-Message-State: AOAM530hZi/cwbYGnskuyb3YyqLikeh4mmXx3JWiXYwGQOiUrpvfSLnd
+        3xNLPVVPw3NXJbBciNqLfA==
+X-Google-Smtp-Source: ABdhPJxQfrcUZKKhBzVlnqfwkA2XRgYhsqJUmARYpgm43Nh3Hvc35k/tV+fKp7H5hXzW0gHNQ64G6g==
+X-Received: by 2002:a05:6870:c353:b0:de:d908:3e6d with SMTP id e19-20020a056870c35300b000ded9083e6dmr323176oak.190.1649097857541;
+        Mon, 04 Apr 2022 11:44:17 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t3-20020a05680800c300b002f935a7daa9sm4505802oic.19.2022.04.04.11.44.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 11:38:28 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-9?b?QXL9bucg3E5BTA==?= <arinc.unal@arinc9.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
+        Mon, 04 Apr 2022 11:44:17 -0700 (PDT)
+Received: (nullmailer pid 1703057 invoked by uid 1000);
+        Mon, 04 Apr 2022 18:44:16 -0000
+Date:   Mon, 4 Apr 2022 13:44:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <scott.branden@broadcom.com>,
-        Christian Lamparter <chunkeey@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] dt-bindings: arm: bcm: add bindings for Asus RT-AC88U
-Date:   Mon,  4 Apr 2022 11:38:26 -0700
-Message-Id: <20220404183826.2317943-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220402204622.3360-4-arinc.unal@arinc9.com>
-References: <20220402204622.3360-1-arinc.unal@arinc9.com> <20220402204622.3360-4-arinc.unal@arinc9.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: uniphier: Convert
+ uniphier-pcie.txt to json-schema
+Message-ID: <Yks8gNN0wp7xJDST@robh.at.kernel.org>
+References: <1648617814-9217-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1648617814-9217-2-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1648617814-9217-2-git-send-email-hayashi.kunihiko@socionext.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  2 Apr 2022 23:46:22 +0300, Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
-> Add Asus RT-AC88U under BCM47094 based boards.
+On Wed, 30 Mar 2022 14:23:33 +0900, Kunihiko Hayashi wrote:
+> Convert the file into a JSON description at the yaml format.
 > 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
+>  .../bindings/pci/socionext,uniphier-pcie.yaml | 96 +++++++++++++++++++
+>  .../devicetree/bindings/pci/uniphier-pcie.txt | 82 ----------------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 97 insertions(+), 83 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/uniphier-pcie.txt
+> 
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Applied, thanks!
