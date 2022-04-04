@@ -2,74 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E1954F1BE6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:25:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7ED4F1AF6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379025AbiDDVSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
+        id S1379328AbiDDVTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378948AbiDDQHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 12:07:16 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA75E13F42;
-        Mon,  4 Apr 2022 09:05:16 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 8A62D41F28;
-        Mon,  4 Apr 2022 16:05:11 +0000 (UTC)
-Subject: Re: [PATCH 6/9] nvme-apple: Add initial Apple SoC NVMe driver
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Sven Peter <sven@svenpeter.dev>, Keith Busch <kbusch@kernel.org>,
-        Jens Axboe <axboe@fb.com>, Sagi Grimberg <sagi@grimberg.me>,
+        with ESMTP id S1378954AbiDDQHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 12:07:36 -0400
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA3813F42;
+        Mon,  4 Apr 2022 09:05:40 -0700 (PDT)
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 9747568AFE; Mon,  4 Apr 2022 18:05:36 +0200 (CEST)
+Date:   Mon, 4 Apr 2022 18:05:36 +0200
+From:   "hch@lst.de" <hch@lst.de>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     "hch@lst.de" <hch@lst.de>, Hector Martin <marcan@marcan.st>,
+        Keith Busch <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
+        "sagi@grimberg.me" <sagi@grimberg.me>,
         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
         Arnd Bergmann <arnd@arndb.de>, Marc Zyngier <maz@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-nvme@lists.infradead.org
-References: <20220321165049.35985-1-sven@svenpeter.dev>
- <20220321165049.35985-7-sven@svenpeter.dev> <20220324061620.GA12330@lst.de>
- <18f3a7e6-16d1-2037-90e7-1c0b1b2fbb1c@marcan.st>
- <20220404155924.GA9764@lst.de>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <216d4bde-9463-a7c7-7d0a-57ea157aa280@marcan.st>
-Date:   Tue, 5 Apr 2022 01:05:09 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Subject: Re: [PATCH 6/9] nvme-apple: Add initial Apple SoC NVMe driver
+Message-ID: <20220404160536.GA9948@lst.de>
+References: <20220321165049.35985-1-sven@svenpeter.dev> <20220321165049.35985-7-sven@svenpeter.dev> <20220324061620.GA12330@lst.de> <18f3a7e6-16d1-2037-90e7-1c0b1b2fbb1c@marcan.st> <20220404155924.GA9764@lst.de> <cc74471b-8077-4c52-8607-eb7d2ecccd7a@www.fastmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20220404155924.GA9764@lst.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc74471b-8077-4c52-8607-eb7d2ecccd7a@www.fastmail.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2022 00.59, Christoph Hellwig wrote:
-> On Tue, Apr 05, 2022 at 12:57:33AM +0900, Hector Martin wrote:
->> The kernel hard limit is 100-character lines, not 80-character lines.
->> Maintainers for existing drivers are certainly free to stick to 80 chars
->> if they like it that way, but I don't see why we should still be
->> enforcing that for new code. See bdc48fa11e46.
-> 
-> Because 100 is completely utterly unreadable if is not for individual
-> lines like strings, and that is actually how Linus stated it in CodingStyle.
-> 
-> Your code as-is is completely unreadable and will not go into
-> drivers/nvme/ in that form.
+On Mon, Apr 04, 2022 at 06:03:28PM +0200, Sven Peter wrote:
+> fwiw, I wrote that code and I just forgot to check the line length
+> after some last minute changes again.
+> It's already been reduced to 80 chars in my local tree.
 
-That line is 81 characters. I'm sure Sven doesn't mind fixing it, but
-"your code as-is is completely unreadable" seems uncalled for here, and
-rather unreasonable.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Awesome!
