@@ -2,115 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A24B44F16D0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 189C74F16EF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376931AbiDDORb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 10:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53788 "EHLO
+        id S1377120AbiDDO2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 10:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237149AbiDDORa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:17:30 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26F51FCDE;
-        Mon,  4 Apr 2022 07:15:34 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id z7so11419359iom.1;
-        Mon, 04 Apr 2022 07:15:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5E21fn+577TVIeU8kFomfMeng4iJST9d5OAfTwxTna4=;
-        b=WLjYGWfI8NieOzOaszwCD3go3mVW5B5I2+6Yg+OjcgoBVT7LMgFMz6W9axdgJItbWS
-         kcNOl5cStadfExLLKu1xE9sG/bZt6/C3t0E0rkMUhT97PYyBmtMH6qcC8UJoejnKPJSW
-         zUyrXFK85nzQBkDjkerQYx7AfBEO8Ed1TWxT4udvEf1T5G+3EPY4EACkL4d0Kp7UB+Ll
-         zKiPdNxmZwIOuItE+UUMShHUPUoGhjVPS21SyhceuXkqX0zhq2MCbu1hMm0b2oYm6sCC
-         Zi2FjqPaGKGlZSm3r6Ep1XtWCIDha1NmDS1Es3E2ck8hZA+Msy/JGHviUvTH1Awt+9QW
-         puDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5E21fn+577TVIeU8kFomfMeng4iJST9d5OAfTwxTna4=;
-        b=RtI3Hy3XQlmpXXnsM4b47SM2ZKmUi8zoYYufleBQCCOZGgy8/2MZsEz3xH3gz3G6am
-         DgsTEPPaiS3wSaa0taFzmSpg3gdYxa1fns4aEvPNt8VnfgBubb6x6A0HV/nNlJeMOcnl
-         ghKWKWaRNSdfmuxusIVPuvh4ig4OLXegfUOehBXKl9L/0A/ey30SSzD8VdCc/etv6vJ3
-         eahOEo2MY4RQczw5ODH2XlxPkmi+we4FjRfTq+hR8midiZTJiZzrtdxm2BTINKLh6EVM
-         szJ39qdiUKpPVeZVNrqX2Uhx79F8LkIWVGEpPArHtHrpBijWxhQ8fA0OLuCLhuEreUeG
-         lAwA==
-X-Gm-Message-State: AOAM531pPX66foVxdXEwq+Y4Nv4HmNoyn+AwZBXzgkQ/jPM/fkybdrLJ
-        RhkRvVqMC9EIBhSPA4opA6HovGBLaPmsGadpLa0=
-X-Google-Smtp-Source: ABdhPJxbrZxaxxa23c8KuLbVlw6fjbA5zoUQwfxTtjRwR9H1HCw24823wBw9jzwWM0Oe8D9H9Q79Z4l3QqfPkd0Fz5k=
-X-Received: by 2002:a6b:8e91:0:b0:645:c11f:e322 with SMTP id
- q139-20020a6b8e91000000b00645c11fe322mr113988iod.162.1649081734248; Mon, 04
- Apr 2022 07:15:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220404131818.1817794-1-gch981213@gmail.com> <20220404131818.1817794-5-gch981213@gmail.com>
- <14c921b5-4240-a026-252a-d5fb60836b34@linaro.org>
-In-Reply-To: <14c921b5-4240-a026-252a-d5fb60836b34@linaro.org>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Mon, 4 Apr 2022 22:15:23 +0800
-Message-ID: <CAJsYDVLY7HByymtd8kbdNGQ-oHMvpvU+CkWQgz+jOoANEwuKPQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] dt-bindings: spi: add binding doc for spi-mtk-snfi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S1358330AbiDDO2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:28:24 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D039E3BFA3;
+        Mon,  4 Apr 2022 07:26:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649082387; x=1680618387;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YFMFyz8A4KQU+l3+HDFx/zBlfNq5vKwG+g4aU+dWt+M=;
+  b=SzvnfVhPArQxDV4mUfMyHyEmdf6+X0XSvL/96q0mkTZeucr+2hrrfrfC
+   zFfaFxIWwglNGRjoFULtbJMB9LVJO1VgI3jTuHCOPAlUvMwzqBa0+5pX5
+   hQITlDLT01Kboc0XIhNNHzrNgylhK7YZMpaUNDZ42RQjCd+02lJcoNq8d
+   xDtgO2pPiXzrlVlQVGHqtOULIsOMqUZMPOXVLHQ5Rbw+PYF4aLdlDivLN
+   mJElYBgeGrsF3aGS4JKXApTspZfCNbaGEY7ugCHfanrmKL+Cau7KFb4qW
+   JKJqDWMZj2iYV1CfJ9rEH6d+yyU/EVRNEzOWqPNcfOnXP0kPEOAcQRJ2I
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="323698513"
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; 
+   d="scan'208";a="323698513"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 07:26:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; 
+   d="scan'208";a="657518638"
+Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 04 Apr 2022 07:26:16 -0700
+Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nbNep-00027d-VP;
+        Mon, 04 Apr 2022 14:26:15 +0000
+Date:   Mon, 4 Apr 2022 22:26:08 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Liang Yang <liang.yang@amlogic.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-mtd@lists.infradead.org
+Cc:     kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Message-ID: <202204042238.eZq8bjau-lkp@intel.com>
+References: <20220402074921.13316-2-liang.yang@amlogic.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hi Liang,
 
-On Mon, Apr 4, 2022 at 9:52 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> [...]
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - ecc-engine
->
-> Slightly slow down resends (max 1 per day). You sent v3 without giving a
-> chance to review this.
+I love your patch! Yet something to improve:
 
-I made some big changes to the driver for other review comments so I
-decided to send v3 for a review of the new version. I'll wait a bit next
-time.
+[auto build test ERROR on mtd/nand/next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.18-rc1 next-20220404]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> Wrong name here.
+url:    https://github.com/intel-lab-lkp/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+config: s390-randconfig-r002-20220403 (https://download.01.org/0day-ci/archive/20220404/202204042238.eZq8bjau-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c34b64ab8005a978739f157a07ed342d247fecac
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
+        git checkout c34b64ab8005a978739f157a07ed342d247fecac
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
 
-Oops. I'll fix this in the next version.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
---
-Regards,
-Chuanhong Guo
+All errors (new ones prefixed by >>):
+
+   s390-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
+   meson_nand.c:(.text+0xd9e): undefined reference to `clk_divider_ops'
+>> s390-linux-ld: meson_nand.c:(.text+0xe34): undefined reference to `devm_clk_register'
+   s390-linux-ld: net/core/sock.o: in function `sk_destruct':
+   sock.c:(.text+0x373e): undefined reference to `__sk_defer_free_flush'
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
