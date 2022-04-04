@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71F054F12EF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 12:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 709574F1305
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 12:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354771AbiDDKTP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Apr 2022 06:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36986 "EHLO
+        id S1351111AbiDDKVw convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Apr 2022 06:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237324AbiDDKTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 06:19:13 -0400
+        with ESMTP id S1357250AbiDDKVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 06:21:51 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F40C3C4A9
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 03:17:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9926723BC6
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 03:19:55 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1nbJlj-000280-Vt; Mon, 04 Apr 2022 12:17:08 +0200
+        id 1nbJoG-0002KL-QS; Mon, 04 Apr 2022 12:19:44 +0200
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1nbJlk-0010WL-IW; Mon, 04 Apr 2022 12:17:07 +0200
+        id 1nbJoG-0010X0-NU; Mon, 04 Apr 2022 12:19:43 +0200
 Received: from pza by lupine with local (Exim 4.94.2)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1nbJli-0006gF-Ep; Mon, 04 Apr 2022 12:17:06 +0200
-Message-ID: <de4755da238b7333ea32785d0d5d47d7008a296d.camel@pengutronix.de>
-Subject: Re: [PATCH 0/3] reset: meson-s4: add reset driver
+        id 1nbJoE-0006nU-Hx; Mon, 04 Apr 2022 12:19:42 +0200
+Message-ID: <1787d3136a36e58e25a5906ac3807f14ed4f5e17.camel@pengutronix.de>
+Subject: Re: [PATCH v2] dt-bindings: reset: Add parent "resets" property as
+ optional
 From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Zelong Dong <zelong.dong@amlogic.com>, robh+dt@kernel.org,
-        khilman@baylibre.com, narmstrong@baylibre.com,
-        martin.blumenstingl@googlemail.com
-Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com,
-        devicetree@vger.kernel.org
-Date:   Mon, 04 Apr 2022 12:17:06 +0200
-In-Reply-To: <20220107023931.13251-1-zelong.dong@amlogic.com>
-References: <20220107023931.13251-1-zelong.dong@amlogic.com>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Mon, 04 Apr 2022 12:19:42 +0200
+In-Reply-To: <1648617078-8312-1-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1648617078-8312-1-git-send-email-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.38.3-1 
@@ -47,7 +47,7 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,29 +55,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fr, 2022-01-07 at 10:39 +0800, Zelong Dong wrote:
+On Mi, 2022-03-30 at 14:11 +0900, Kunihiko Hayashi wrote:
+> LD11 mio reset controller has a reset lines from system controller.
+> Add parent "resets" property to fix the following warning.
 > 
-> This patchset adds Reset controller driver support for Meson-S4 SoC.
-> Meson-S4 Reset Controller has 6 banks (the number of reset register)
-> and the level-reset register offset is 0x40.
+>   uniphier-ld11-global.dt.yaml: reset: 'resets' does not match any of
+> the regexes: 'pinctrl-[0-9]+'
+>       From schema:
+> Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml
 > 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
 > 
-> Zelong Dong (3):
->   dt-bindings: reset: Add compatible for Meson-S4 Reset Controller
->   dt-bindings: reset: add bindings for the Meson-S4 SoC Reset
-> Controller
->   reset: reset-meson: add support for the Meson-S4 SoC Reset
-> Controller
+> Changes since v1:
+> - Use maxItems for a single reset
 > 
->  .../bindings/reset/amlogic,meson-reset.yaml   |   1 +
->  drivers/reset/reset-meson.c                   |   6 +
->  .../reset/amlogic,meson-s4-reset.h            | 125
-> ++++++++++++++++++
->  3 files changed, 132 insertions(+)
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-s4-
-> reset.h
+>  .../devicetree/bindings/reset/socionext,uniphier-reset.yaml    | 3
+> +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/reset/socionext,uniphier-
+> reset.yaml
+> b/Documentation/devicetree/bindings/reset/socionext,uniphier-
+> reset.yaml
+> index 377a7d242323..6566804ec567 100644
+> --- a/Documentation/devicetree/bindings/reset/socionext,uniphier-
+> reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/socionext,uniphier-
+> reset.yaml
+> @@ -55,6 +55,9 @@ properties:
+>    "#reset-cells":
+>      const: 1
+>  
+> +  resets:
+> +    maxItems: 1
+> +
+>  additionalProperties: false
+>  
+>  required:
 
-Thank you, applied to reset/next.
+Thank you, applied to reset/fixes.
 
 regards
 Philipp
