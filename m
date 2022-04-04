@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 774804F1061
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 419834F106C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 10:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377851AbiDDIBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 04:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34474 "EHLO
+        id S1356351AbiDDIDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 04:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233822AbiDDIBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 04:01:42 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9853819C3D;
-        Mon,  4 Apr 2022 00:59:44 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E2BB160009;
-        Mon,  4 Apr 2022 07:59:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649059183;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mZ1ww5HXNp+ThWvmQooIAfZbNKI84/02Z72n3gCX/+A=;
-        b=Dj/UQRmOZnhQvTHHwuyEMqDAvvBLiIj26mq6i56UPsGBRJ10uUfBrWCuiAU3TzBjA7Otwi
-        d0ZG9aqqmjObGBHttscULCNuRdYc8DXjJ3GUWWOlVwZtTGbCQtZ0o2xZppNgvjbZMzLuzx
-        wpuVhL9ZSJ+m9oAPlUqAelMoyy3fs6yqtkgha95k6cguE9/sNh08/P3gljnXCmavvq9q3N
-        sHe6bRfqAkCA+03BrhLfqOxCBGycO+89Pq0ve5bU1AjMc7b1SNvx0dTQu23KF+f3hAPxM2
-        l0LaYxeUURkPh+xrbJB0tKEDeW0kfsbmRQ6odL8IEju2PejNQae8xM7+723XTA==
-Date:   Mon, 4 Apr 2022 09:59:37 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Chuanhong Guo <gch981213@gmail.com>
-Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list),
-        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
-Subject: Re: [PATCH v2 2/5] spi: add driver for MTK SPI NAND Flash Interface
-Message-ID: <20220404095937.20089db7@xps13>
-In-Reply-To: <20220404040153.1509966-3-gch981213@gmail.com>
-References: <20220404040153.1509966-1-gch981213@gmail.com>
-        <20220404040153.1509966-3-gch981213@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S233122AbiDDIDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 04:03:51 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E636C3B2AA
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 01:01:55 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id p189so5364367wmp.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 01:01:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=FMlxUg9R4XMvayD2D6tTORqQnMzt34ahkr+1IIPpZrk=;
+        b=xugZeTvVg5ASBCvLguGnDYkmRLxgPUfEhleySeiR9uFXVQxx+Hr8V1YFRV2BUDwXuI
+         msyLtkIgyC7A9wWhZKlYg1anDc7Iju+x8iRBqTwy1j04UnbSuIirNEPkFu/6wO3m9p+8
+         f9FNRYu3HOXNXKLbfoHYTVT8BjqQSPtatuRKgSDo1ThJlVmi2Cf6K0R+mHxPQDeVQiO1
+         5Q9uZ5ZqJIlBr+OZp1InjMQUi4L0ZN4pffk5D9B3CuQWx8vFmdgArsfM1r28PSbPAdSQ
+         0AZ8PH4SLfYjtyoicGP5lMaqZakfDhZxLmz8PVAO4yltGyK4EexIuhCNYPgYcRtX9540
+         XzYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=FMlxUg9R4XMvayD2D6tTORqQnMzt34ahkr+1IIPpZrk=;
+        b=CUcDT/216BzWxYO8pZhVMbsxKZCl09w19RqIAQz2OQG18XCGBztMoJRQ3Q67KndWrk
+         i3f3oq8nkNm7KIXd2auwEki2AQlAedBqaviKy0m0ZCpMNoOQAs2rv4hsp98vZfa8d9tB
+         DV1AKwlExqG81dLkOo2+BD18fjaQmRs/Q0hOBRJEcO6Frz08j6a7HhaFOBdAPZHch812
+         A5KST/rkvOGOVtzS3e/HfT8CzYcI8/dwuHwHTOtjsQn8CCXvF+2dI4qX7yWGMJSKKiWd
+         J2WlXr2GMd3BQO06TNNJcEumdQA72GnzC6bTd+5qr33fuGCIrRAcjldRZ2lgDhVuO2nB
+         zqIQ==
+X-Gm-Message-State: AOAM5333+GUduW9OIWSZ0vpyCrpgpTsHYBmpZ4bdv8ae9KhQ9gJ/93tQ
+        7QPv+gwvS829l9STOMcDDBSHAg==
+X-Google-Smtp-Source: ABdhPJwnvBXWc2QrklzwJsBhpREtyKwtTZ8QEHMMLvvJRy0/5hd+0G+oXty5theGkKG3n7Y3e+KiFw==
+X-Received: by 2002:a05:600c:1d8e:b0:389:d079:cc0 with SMTP id p14-20020a05600c1d8e00b00389d0790cc0mr18377684wms.98.1649059314426;
+        Mon, 04 Apr 2022 01:01:54 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
+        by smtp.gmail.com with ESMTPSA id q14-20020a1cf30e000000b0038986a18ec8sm8586159wmq.46.2022.04.04.01.01.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 01:01:53 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Vyacheslav Bocharov <adeep@lexina.in>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 0/4] arm64: meson: update dts for JetHub devices
+Date:   Mon,  4 Apr 2022 10:01:52 +0200
+Message-Id: <164905930207.1797085.9678466232916244683.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220326075110.1462301-1-adeep@lexina.in>
+References: <20220326075110.1462301-1-adeep@lexina.in>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,185 +71,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chuanhong,
+Hi,
 
-gch981213@gmail.com wrote on Mon,  4 Apr 2022 12:01:50 +0800:
+On Sat, 26 Mar 2022 10:51:06 +0300, Vyacheslav Bocharov wrote:
+> Update dts for JetHub H1:
+> - add bluetooth node for RTL8822CS uart port
+> 
+> Update dts for JetHub D1:
+> - add ZigBee serial alias (ttyAML2) for backward compatibility
+> - update voltage regulators and SDIO config to match board's reference design
+> - update max freq for WiFi SDIO
+> 
+> [...]
 
-> This driver implements support for the SPI-NAND mode of MTK NAND Flash
-> Interface as a SPI-MEM controller with piplined ECC capability.
->=20
-> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
-> ---
->=20
-> Change since v1:
->   fix CI warnings
->=20
->  drivers/spi/Kconfig        |   10 +
->  drivers/spi/Makefile       |    1 +
->  drivers/spi/spi-mtk-snfi.c | 1351 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 1362 insertions(+)
->  create mode 100644 drivers/spi/spi-mtk-snfi.c
->=20
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index d2815eb361c0..739eec7d0c15 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -590,6 +590,16 @@ config SPI_MTK_NOR
->  	  SPI interface as well as several SPI NOR specific instructions
->  	  via SPI MEM interface.
-> =20
-> +config SPI_MTK_SNFI
-> +	tristate "MediaTek SPI NAND Flash Interface"
-> +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> +	depends on MTD_NAND_ECC_MEDIATEK
-> +	help
-> +	  This enables support for SPI-NAND mode on the MediaTek NAND
-> +	  Flash Interface found on MediaTek ARM SoCs. This controller
-> +	  is implemented as a SPI-MEM controller with pipelined ECC
-> +	  capcability.
-> +
->  config SPI_NPCM_FIU
->  	tristate "Nuvoton NPCM FLASH Interface Unit"
->  	depends on ARCH_NPCM || COMPILE_TEST
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index 3aa28ed3f761..51541ff17e67 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -76,6 +76,7 @@ obj-$(CONFIG_SPI_MPC52xx)		+=3D spi-mpc52xx.o
->  obj-$(CONFIG_SPI_MT65XX)                +=3D spi-mt65xx.o
->  obj-$(CONFIG_SPI_MT7621)		+=3D spi-mt7621.o
->  obj-$(CONFIG_SPI_MTK_NOR)		+=3D spi-mtk-nor.o
-> +obj-$(CONFIG_SPI_MTK_SNFI)		+=3D spi-mtk-snfi.o
->  obj-$(CONFIG_SPI_MXIC)			+=3D spi-mxic.o
->  obj-$(CONFIG_SPI_MXS)			+=3D spi-mxs.o
->  obj-$(CONFIG_SPI_NPCM_FIU)		+=3D spi-npcm-fiu.o
-> diff --git a/drivers/spi/spi-mtk-snfi.c b/drivers/spi/spi-mtk-snfi.c
-> new file mode 100644
-> index 000000000000..e8f8f30bd7ee
-> --- /dev/null
-> +++ b/drivers/spi/spi-mtk-snfi.c
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
 
-[...]
+[1/4] arm64: meson: add dts bluetooth node for JetHub H1
+      https://git.kernel.org/amlogic/c/2bda08dfc501967a7a7bd6f77f04afef14dc7271
+[2/4] arm64: meson: dts: update serial alias in dts for JetHub D1
+      https://git.kernel.org/amlogic/c/cf94e26508ad411c2a618b00dfaae515affd0ca7
+[3/4] arm64: meson: update SDIO voltage in dts for JetHub D1
+      https://git.kernel.org/amlogic/c/81bbd2bd24a9ebac3871b293060df50445458c79
+[4/4] arm64: meson: update WiFi SDIO in dts for JetHub D1
+      https://git.kernel.org/amlogic/c/87a87657249316616138c103c2bdb7525c34d987
 
-> +static struct mtk_snand *nand_to_mtk_snand(struct nand_device *nand)
-> +{
-> +	struct nand_ecc_engine *eng =3D nand->ecc.engine;
-> +
-> +	return container_of(eng, struct mtk_snand, ecc_eng);
-> +}
-> +
-> +static inline int snand_prepare_bouncebuf(struct mtk_snand *snf, size_t =
-size)
-> +{
-> +	if (snf->buf_len >=3D size)
-> +		return 0;
-> +	if (snf->buf)
-> +		dmam_free_coherent(snf->dev, snf->buf_len, snf->buf,
-> +				   snf->buf_dma);
-
-Can't we use a single coherent buffer once for all?
-
-> +	snf->buf =3D
-> +		dmam_alloc_coherent(snf->dev, size, &snf->buf_dma, GFP_KERNEL);
-> +	if (!snf->buf)
-> +		return -ENOMEM;
-> +	snf->buf_len =3D size;
-> +	memset(snf->buf, 0xff, snf->buf_len);
-> +	return 0;
-> +}
-> +
-
-[...]
-
-> +static int mtk_snand_ecc_init_ctx(struct nand_device *nand)
-> +{
-> +	struct mtk_snand *snf =3D nand_to_mtk_snand(nand);
-> +	struct nand_ecc_props *conf =3D &nand->ecc.ctx.conf;
-> +	struct mtd_info *mtd =3D nanddev_to_mtd(nand);
-> +	int ret;
-> +
-> +	ret =3D mtk_snand_setup_pagefmt(snf, nand->memorg.pagesize,
-> +				      nand->memorg.oobsize);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mtd_set_ooblayout(mtd, &mtk_snand_ooblayout);
-> +
-> +	// This driver ignores any ECC capability configured by user or
-> +	// requested by the nand chip because the BootROM and MTK bootloader
-> +	// expects the page format to be the exact one as calculated in
-> +	// setup_pagefmt.
-
-I don't like this :)
-
-I understand that the boot partition might have specific constraints,
-but other partitions (or if we don't use the NAND to boot?) should
-probably be usable with other ECC schemes.
-
-> +	conf->step_size =3D snf->caps->sector_size;
-> +	conf->strength =3D snf->ecc_cfg.strength;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_snand_ecc_prepare_io_req(struct nand_device *nand,
-> +					struct nand_page_io_req *req)
-> +{
-> +	struct mtk_snand *snf =3D nand_to_mtk_snand(nand);
-> +	int ret;
-> +
-> +	ret =3D mtk_snand_setup_pagefmt(snf, nand->memorg.pagesize,
-> +				      nand->memorg.oobsize);
-> +	if (ret)
-> +		return ret;
-> +	snf->autofmt =3D true;
-> +	return 0;
-> +}
-> +
-> +static int mtk_snand_ecc_finish_io_req(struct nand_device *nand,
-> +				       struct nand_page_io_req *req)
-> +{
-> +	struct mtk_snand *snf =3D nand_to_mtk_snand(nand);
-> +	struct mtd_info *mtd =3D nanddev_to_mtd(nand);
-> +
-> +	snf->autofmt =3D false;
-> +	if ((req->mode =3D=3D MTD_OPS_RAW) || (req->type !=3D NAND_PAGE_READ))
-> +		return 0;
-> +
-> +	if (snf->ecc_stats.failed)
-> +		mtd->ecc_stats.failed +=3D snf->ecc_stats.failed;
-> +	mtd->ecc_stats.corrected +=3D snf->ecc_stats.corrected;
-> +	return snf->ecc_stats.failed ? -EBADMSG : snf->ecc_stats.bitflips;
-
-Did you verify that nandbiterrs -i succeeds?
-
-> +}
-> +
-> +static struct nand_ecc_engine_ops mtk_snfi_ecc_engine_ops =3D {
-> +	.init_ctx =3D mtk_snand_ecc_init_ctx,
-> +	.prepare_io_req =3D mtk_snand_ecc_prepare_io_req,
-> +	.finish_io_req =3D mtk_snand_ecc_finish_io_req,
-
-I believe you need to take care of the bounce buffer in the exit path?
-
-> +};
-> +
-> +static void mtk_snand_read_fdm(struct mtk_snand *snf, uint8_t *buf)
-> +{
-> +	uint32_t vall, valm;
-> +	uint8_t *oobptr =3D buf;
-> +	int i, j;
-> +
-> +	for (i =3D 0; i < snf->nfi_cfg.nsectors; i++) {
-> +		vall =3D nfi_read32(snf, NFI_FDML(i));
-> +		valm =3D nfi_read32(snf, NFI_FDMM(i));
-> +
-> +		for (j =3D 0; j < snf->caps->fdm_size; j++)
-> +			oobptr[j] =3D (j >=3D 4 ? valm : vall) >> ((j % 4) * 8);
-> +
-> +		oobptr +=3D snf->caps->fdm_size;
-> +	}
-> +}
-
-Thanks,
-Miqu=C3=A8l
+-- 
+Neil
