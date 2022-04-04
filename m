@@ -2,83 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07DE44F11D9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 11:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 267B04F11E3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 11:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241352AbiDDJUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 05:20:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
+        id S1353399AbiDDJZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 05:25:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231165AbiDDJUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 05:20:06 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40163B3D4;
-        Mon,  4 Apr 2022 02:18:10 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id k25so10437532iok.8;
-        Mon, 04 Apr 2022 02:18:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UnaFhwCYQRKWSH+CeXac4WqG9Xl8JMA4f5GGyBthARA=;
-        b=OM0XkGIma7ffY2S1PmsiiXE0UWKkPQn0DhxmwB2NRmkgKaS2XttPCAefGJvp2SBMHr
-         YCoCGmQ8DUMxaZqFE1R/3bjLIokY0sgVIPjAlx2bi3ZUqZNzsi3mVRPqlsza78d6zowO
-         s3YiXPP0cTu/ZbVFgnF/vuEuVyOx35G46rmKOKqA7aHYaEg7rdgJKD+yDCukc6UYNn6m
-         8P6fmXonD5Wb1bP/RZ42tvytZiRetlCfu1275s0rzuB3FQvzMyyG10aFgCvi0O5/p4zh
-         R22LXf8qpGTNzR8i3lOD9+y9eCuE9g3vITwNNePGgInZ3yeda+62vtd9paQl9sOxltAM
-         vmmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UnaFhwCYQRKWSH+CeXac4WqG9Xl8JMA4f5GGyBthARA=;
-        b=esjHaJf9s+4EYUc22TSO7xd1cUwDpYGf0VKmxOf250dSjcp8UhsbIWZYFvvFO+0Ryx
-         v2a180WTr7xLpQlqSrN/fDxxmbNIuzsMbtpcmTtwoD3gCvq66TChiDSyRbwEwS7C9SOo
-         GocHmd+nsL66ASWBgfkxzSz1+M6z88PL53JoZJHBJL+LFrrfO3/WrXjqjrBn8r36RFwA
-         aqF02GOYvAuHElTgdEsO/sxjONmdXAZkkIyFFkqkLPa4xijy+BvO3cpP+6ODOSx4/KFX
-         +QUpC67hGbTyWo+hs0Cg07M4GDfCXFCuazFObeWxjnsJeCBGMVCTvnM1WFmoN5Hcr01j
-         8Quw==
-X-Gm-Message-State: AOAM5317cowa+nybl5hkNZ8MImP0Xpcl4gEM6/gMMbyIxORh+mg7ULAX
-        S5gmUVmTlATrxShknflmMMoklH6k9rj+uXDxqGV4XANrNAKlt9blDNoUUQ==
-X-Google-Smtp-Source: ABdhPJwk1obp4MUEJ6Ns1yJyfhGQSi+qsYFyZKkkGsHXlVIW1zk9zcdQAeQYY7sPN3ShTR1WQ3jghmwju5nGv2ueg5g=
-X-Received: by 2002:a05:6638:438e:b0:323:8ec2:e177 with SMTP id
- bo14-20020a056638438e00b003238ec2e177mr11404567jab.164.1649063890353; Mon, 04
- Apr 2022 02:18:10 -0700 (PDT)
+        with ESMTP id S236317AbiDDJZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 05:25:01 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC592E9CD;
+        Mon,  4 Apr 2022 02:23:05 -0700 (PDT)
+Received: from fraeml702-chm.china.huawei.com (unknown [172.18.147.207])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4KX4yn61fQz67nYN;
+        Mon,  4 Apr 2022 17:21:21 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml702-chm.china.huawei.com (10.206.15.51) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2375.24; Mon, 4 Apr 2022 11:23:02 +0200
+Received: from localhost (10.47.78.92) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 4 Apr
+ 2022 10:23:02 +0100
+Date:   Mon, 4 Apr 2022 10:22:58 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <lorenzo.bianconi@redhat.com>,
+        <robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhx
+ device bindings
+Message-ID: <20220404102258.00005128@Huawei.com>
+In-Reply-To: <Ykm1s+8lCslxc80e@lore-desk>
+References: <cover.1648893892.git.lorenzo@kernel.org>
+        <ce943fd9d99da9fcd942592a2b83590a8b06a2af.1648893892.git.lorenzo@kernel.org>
+        <20220402171753.638e71d5@jic23-huawei>
+        <Ykm1s+8lCslxc80e@lore-desk>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <20220404040153.1509966-1-gch981213@gmail.com> <20220404040153.1509966-3-gch981213@gmail.com>
- <20220404095937.20089db7@xps13> <CAJsYDVK6ya7FR90CtAjbpbF-_+c0GVnsKsN=1wYaoBFx=ysUtQ@mail.gmail.com>
-In-Reply-To: <CAJsYDVK6ya7FR90CtAjbpbF-_+c0GVnsKsN=1wYaoBFx=ysUtQ@mail.gmail.com>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Mon, 4 Apr 2022 17:17:59 +0800
-Message-ID: <CAJsYDVLaaGhD6wRvoQokPUQYBvSpN2kZ1kMMw4Z0fCZnHOVYWw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] spi: add driver for MTK SPI NAND Flash Interface
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.78.92]
+X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,19 +57,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On Sun, 3 Apr 2022 16:56:51 +0200
+Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-On Mon, Apr 4, 2022 at 5:13 PM Chuanhong Guo <gch981213@gmail.com> wrote:
-> [...]
-> I can implement the following:
-> 1. select the minimum capability exceeding ecc.user_conf
-> 2. If that doesn't exist, use the calculated one and warn
->    if it doesn't meet ecc.requirements
+> > On Sat,  2 Apr 2022 12:09:30 +0200
+> > Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+> >   
+> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>  
+> > Hi Lorenzo,
+> > 
+> > This runs in to the same feedback that was recently had for
+> > https://lore.kernel.org/all/?q=Add+support+for+ICM-20608-D
+> > but in a more extreme sense as this one presents the same whoami value
+> > as for other sensors already supported.  Things are made more
+> > fun by the fact that sensors with the same WAI seem to have different
+> > features (presence or not of a sensor hub - is there any documented
+> > way to detect that?).   
+> 
+> Hi Jonathan,
+> 
+> if we consider only the features implemented in st_lsm6dsx, asm330lhhx
+> will be 1:1 compatible with lsm6dsr or lsm6dso, so we can just use one
+> of bindings in this section to support it (the only side effect is it
+> will be listed as "lsm6dsr" or "lsm6dso", but I guess it is ok). Agree?
 
-I mean If there is no ecc.user_conf in the 2nd case :)
+If the part has more features than the base compatible (or a different WAI)
+then we can definitely have a backup compatible for it (hence making that
+subset of features work on an old kernel).  We still want to introduce
+the new compatible so that we get the name right etc going forwards and
+are in a good position to add the extra features if we ever get around to it.
 
-> Is this OK?
 
--- 
-Regards,
-Chuanhong Guo
+> 
+> The only difference between asm330lhhx and asm330lhh is the former supports
+> sensor-hub while the latter does not declare it (even if the use the same
+> whoami).
+> AFAIK there is no way to autodetect if the sensor supports sensor-hub and
+> we can just try to discover slave devices connected. This can have some
+> downside as described in the commit:
+
+Ah thanks. I'd forgotten this.
+
+> 
+> commit 35619155d044830357f06f1d2c8188c4530b4d7a
+> Author: Lorenzo Bianconi <lorenzo@kernel.org>
+> Date:   Sat Nov 13 16:23:14 2021 +0100
+> 
+> iio: imu: st_lsm6dsx: add dts property to disable sensor-hub
+> 
+> I would like to merge the sections in st_lsm6dsx_settings struct for
+> lsm6dsr, lsm6dso.. and lsm6dsop, asm330lhh since the only difference is
+> sensor-hub support. I guess we can have 2 option here to avoid any
+> sensor-hub corner cases:
+> - provide the "st,disable-sensor-hub" in dts to disable sensor-hub for
+>   asm330lhh, lsm6dsop (need user changes)
+> - add a bool variable st_lsm6dsx_settings[].id[] in order to specify if the
+>   chip supports sensor-hub.
+> 
+> Which one do you prefer?
+> 
+> Regards,
+> Lorenzo
+> 
+> > 
+> > As such, we should really be listing this as compatible with one 
+> > of the parts that is already supported such as the
+> > LSM6DSR.
+> > 
+> > For that we'll need a slightly more complex binding and it would
+> > have the side effect that if the match was on that compatible we
+> > would list the name as whatever that part is.
+> > 
+> > I'm not sure that really matters a great deal, but it could in theory
+> > create a userspace ABI change if we later needed to add explicit support
+> > for the part due to some real differences not indicated by the WAI value.
+> > 
+> > An extension is whether we should relax the need to match on WAI if
+> > the part is considered compatible.  I guess that depends on just how
+> > compatible we think they are.
+> > 
+> > So I see several steps to this process.
+> > 
+> > 1) Add fallback compatibles for existing entries to first one with same WAI and
+> >    same feature set.
+> > 2) Add fallback compatibles beyond that to first part introduced with particular
+> >    characteristics.  For this we'd also want to have the driver relax its
+> >    handling to just warn if the WAI isn't listed for any of the parts that
+> >    share a particular set of characteristic (so you'll have to loop over the local
+> >    array again to check):
+> > https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c#L1197
+> > Same argument applies as for the mpu6050 that, whilst we should modify that code to
+> > cope, it's not a prerequisit for adding the compatible fallback to the binding.
+> > Personally I'd like it to be the first patch in the series that modifies the
+> > binding though.  Note it'll be easy to add the fallbacks for this new part as
+> > no mainline trees presumably use it.  To 'fix' the rest we'll have to find
+> > and update any DTs in mainline.
+> > 
+> > Note this won't stop us needing to add compatibles to newer kernels (at very
+> > least to the dt-binding, but probably also the driver), but it should help a newer
+> > DT 'work' with an old kernel.
+> > 
+> > Jonathan
+> > 
+> >   
+> > > ---
+> > >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > > index 0750f700a143..23637c420d20 100644
+> > > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > > @@ -31,6 +31,7 @@ properties:
+> > >        - st,lsm6dsrx
+> > >        - st,lsm6dst
+> > >        - st,lsm6dsop
+> > > +      - st,asm330lhhx
+> > >  
+> > >    reg:
+> > >      maxItems: 1  
+> >   
+> 
+
