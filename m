@@ -2,55 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BF034F1212
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 11:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5C74F122F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 11:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353999AbiDDJg0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Apr 2022 05:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35120 "EHLO
+        id S1354459AbiDDJlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 05:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237909AbiDDJgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 05:36:25 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E9525C72
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 02:34:29 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nbJ6D-000624-TH; Mon, 04 Apr 2022 11:34:13 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nbJ6D-00101n-4r; Mon, 04 Apr 2022 11:34:11 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nbJ6B-0004fp-0u; Mon, 04 Apr 2022 11:34:11 +0200
-Message-ID: <c967e6bdb586c273c187e4892b03aa82064af4ab.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/7] reset: imx7: Add the iMX8MP PCIe PHY PERST
- support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, vkoul@kernel.org,
-        alexander.stein@ew.tq-group.com
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Date:   Mon, 04 Apr 2022 11:34:10 +0200
-In-Reply-To: <1646644054-24421-2-git-send-email-hongxing.zhu@nxp.com>
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
-         <1646644054-24421-2-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S242551AbiDDJll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 05:41:41 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1E222BE9
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 02:39:45 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id p15so18604526ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 02:39:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zYzeb2fJ8p/eCP3NXepXxEemb9cW6kn/EXiOBzgXQVQ=;
+        b=H8xgB+BJ5DMDOo+xvvuAoWF2Sj0v/bgo7aoZ6bmGwIzSHN60ntXjscgQF/YDIrHjKK
+         RtwS7kHeOI++OBryAEuN86dZI/oRTBI2sy88JZiOG+L8hhJBtKFDBG/gP1eg21Byy5G2
+         7S2K/o2eBj+Liva6Vt6d3s4LivDZc8Ly5MhmzLLcPy5vHlynNc3urTliJLvoB6xbQMGu
+         sPqOPOAIWIjzH8EMdnLyEYKSwcATH6yt7uJ58UOwomCF9RgQhGnoSE1Z2MVGQ5xkTJwQ
+         Oo7rVPq2clTQXJ9ZzFzf1C5kZxwa5SGGZhaPMlkdVCqgvDHAgOAb9aNbw/tGo5QL24wP
+         5Hgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zYzeb2fJ8p/eCP3NXepXxEemb9cW6kn/EXiOBzgXQVQ=;
+        b=dHAjEs4EGM0Vkku9DSf88aTx7p5IFHHbbgh/wrVTL4yllYdlCbz3c69f5QapMYoc6h
+         9okJx9LE5uNjc272QpvDpCauU8Rv06xxU9oOnkkOUCSDyMfxSdREUQD1d/LietkUGXw1
+         rWnfqr27SXg+ajAYXXUiBuBElCd1RvJdDEQbPfZDIzWDetOZUPEQn9QUTEmTRFtC08yt
+         mMPkT1Dm7t+MP5xQT9qVxHslexjhWliQLYVaJ0KdC5XEUropxNdDAs3xzy9FPBhWcNej
+         dgEA+wSxfh/UnPNLsSwmWVB47kvqjseWQycLOAkkt2mLuCgD+DXOD286xbc3ANJV62eM
+         2PWw==
+X-Gm-Message-State: AOAM5331mAiuYUYIOWGcgE680WTL3VnQyyvOkdOXnYOhnaGBE7YCYiWp
+        dNovigMUsGioeQzIz86NOquR9Q==
+X-Google-Smtp-Source: ABdhPJz0vxNya0f/EBPQIcDsfNm21sKQMPYumYWR9o99ZXh4kdxqUrZi3/2gLt1IjWwGNgi45LSBxQ==
+X-Received: by 2002:a17:907:3d93:b0:6e7:4d22:75c8 with SMTP id he19-20020a1709073d9300b006e74d2275c8mr6462088ejc.330.1649065183902;
+        Mon, 04 Apr 2022 02:39:43 -0700 (PDT)
+Received: from [192.168.0.173] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id sb15-20020a1709076d8f00b006dfe4cda58fsm4092580ejc.95.2022.04.04.02.39.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 02:39:43 -0700 (PDT)
+Message-ID: <30df2887-27d9-c207-4c69-9d5fe3b04777@linaro.org>
+Date:   Mon, 4 Apr 2022 11:39:42 +0200
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Add pmx65
+ support
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1649048650-14059-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1649048650-14059-2-git-send-email-quic_rohiagar@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1649048650-14059-2-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,38 +77,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Richard,
-
-On Mo, 2022-03-07 at 17:07 +0800, Richard Zhu wrote:
-> Add the i.MX8MP PCIe PHY PERST support.
+On 04/04/2022 07:04, Rohit Agarwal wrote:
+> Add support for the PMX65 GPIO support to the Qualcomm PMIC GPIO
+> binding.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
->  drivers/reset/reset-imx7.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/reset/reset-imx7.c b/drivers/reset/reset-imx7.c
-> index 185a333df66c..d2408725eb2c 100644
-> --- a/drivers/reset/reset-imx7.c
-> +++ b/drivers/reset/reset-imx7.c
-> @@ -329,6 +329,7 @@ static int imx8mp_reset_set(struct
-> reset_controller_dev *rcdev,
->                 break;
->  
->         case IMX8MP_RESET_PCIE_CTRL_APPS_EN:
-> +       case IMX8MP_RESET_PCIEPHY_PERST:
->                 value = assert ? 0 : bit;
->                 break;
->         }
+>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-This doesn't do what the commit description says.
 
-The PCIEPHY_PERST bit is already supported by the driver (albeit
-incorrectly?) - this patch just inverts the bit.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Since this bit is not inverted on the other platforms, and the i.MX8MP
-reference manual says nothing about this, please explicitly state why
-this needs to be inverted and call it a fix in the commit description.
 
-regards
-Philipp
+Best regards,
+Krzysztof
