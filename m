@@ -2,111 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 715614F1B53
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F37E84F1AAC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379365AbiDDVUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:20:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34354 "EHLO
+        id S1379125AbiDDVSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380694AbiDDVER (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:04:17 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F8D138A3
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 14:02:19 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id x4so12872258iop.7
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 14:02:19 -0700 (PDT)
+        with ESMTP id S1380725AbiDDVPN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:15:13 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB7B2FE42
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 14:13:15 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id a5so8546323qvx.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 14:13:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=374IPF+4LyCDjXvGR49/koQz84WXIinTEp+pYghmo/4=;
-        b=e9avgMgcDErOdnTtOilPDqFVWD5sTxAjO32blIfJaOI6U+f5VS92mka/oZhmtjrLk9
-         4XDma84JcPgCMoWtdBdGdo/xkgKCjvI02Yz+IcLw8bqMcZOiOo8YZZ94k/spsiYg49Xj
-         PtaYml90ZK4ztuzgv+9NQdU0sfeeZXt+ppuOLEkLXeKfMYSgBcNtkE0OACjdHWP2zQEf
-         hMcRrQDawRNhPM7LL5cvnYvXCsess1O2+EITrskrZrov5tNoQSvElpq2QJGP43Qw6EZJ
-         fJlvgmllsuRimg6DkguWkf/HsBTS5i/OZD7Q8Q5bs+QpbckRsOBmseplJ5ulNGD1Xyj7
-         QHxA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=u+Jl9J4Gm7LRQGPX5xoLGqpAHPcvyGzQPr6d5j6QMTw=;
+        b=TSVbunOXvXaI2j2cflfId/dz86MOvQN6HmifvKQzyMoyxFrWDUVNTxEyuubl+ejr4R
+         zA9m49+KVYvUsOMAta6F+9tdVJZ/vKCkbS8xyhpV0n/uVXtOO/UsV4qYC3Kr/oOI7Xr5
+         3wfySfQxeOD/O4I7pReuqjLOKIvlS+Ml8h7zo8aYZA80gVZzBSUl5WyfC9CR7sCGpM6u
+         He2I+Fl9jeEQbU7mNZemR/K1VxoCzZUDn9O1zI27hzFdksqd1in94CCmiOnmrqNGd/8W
+         X9E9lNYcqdYSrMDM/PfEkmMqPgEkIYuusTAJ8Gl4KN3ZhvfYFhmQYNC7JqIDuVW3qbB1
+         XfSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=374IPF+4LyCDjXvGR49/koQz84WXIinTEp+pYghmo/4=;
-        b=eV1PETQaIBXe/WiULAvB5Re57pVPO43LS5aCkcQJNFbCjMLSeTB+zve8ssorLi7qUU
-         y5BMBqfe0WmIM5GvtYClu6HEvQjZHIGp1VKUkPd+tlJRqh8IVbEaMz6y/xJDF02C60Io
-         LQ70wn09Y8CQ4LEgw730ZqSe9Klz0xf51+jYlOVKcyFfLFaNqxWcxriYArwpcaCQTemo
-         293WlkKjZ8mA8Wac3Kn8iVLYOcdXqaWfqzdzkASjlq4M4dZ6mQqBVfYQqrLk1h6UGTTZ
-         a3Cuc458ecKHuHGEHTmSDyTXVF/r3LGIjNTwIPZ3VWeumb3V3SU/X88TY7kPXIUs6OJR
-         r3vg==
-X-Gm-Message-State: AOAM532fuKrrm4D/5Zg0/oBJGOmWYWZ5vrStBs0ZZ2bAb21IaLigmpro
-        OhVzHBJ1wGo2Z5/DQ7f30C8=
-X-Google-Smtp-Source: ABdhPJzGXls4hE7sw19S7b2xqcxUdRrlIDJUjtELChxIIS214qanYwFf0GRZBz/hpLOOi73mUFj3mw==
-X-Received: by 2002:a05:6638:2105:b0:323:68db:2e4e with SMTP id n5-20020a056638210500b0032368db2e4emr143203jaj.234.1649106139012;
-        Mon, 04 Apr 2022 14:02:19 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:d520:1e7b:35fa:114b? ([2600:1700:2442:6db0:d520:1e7b:35fa:114b])
-        by smtp.gmail.com with ESMTPSA id z18-20020a05660229d200b0064c719946a8sm7518621ioq.34.2022.04.04.14.02.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Apr 2022 14:02:18 -0700 (PDT)
-Message-ID: <4375072d-abb4-6ff6-d1a0-4c2fca54cf39@gmail.com>
-Date:   Mon, 4 Apr 2022 16:02:16 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=u+Jl9J4Gm7LRQGPX5xoLGqpAHPcvyGzQPr6d5j6QMTw=;
+        b=x78ySNbWodIV9GJeI+9oUXVTnfQ9psh6QEYAcP+0UpKVxYR5MO+O9CWX9cV4vfkyU2
+         a1dKuLhPn1QaWpuSLM+HQbdTU/S38kdzrF8nBJiaNDDIzcw6qCceCdN3y6BXgAEGyc+z
+         /45Qty5DJxtf78i7n993buC8A+LlZY3guaH+2dlqQaTBsLepZb13g4NvCHCI66jJLyEQ
+         vKyGOV6MJIK4fEzCDX1CstQasUe5UWEtpU+3I1Gj6dVqUGfhEPO8cCgImk/6Gp3f6v4i
+         4LDoD4N/NppCxTTtXGvemfAsrP+4VgtngZMrwiMJLJSZRMqWNxu1albLzC1t+GcJjwJ0
+         TBHQ==
+X-Gm-Message-State: AOAM533PH37KA2uMUAvLoNXOJAR6iD6bP5dsE+2IeguZOw8jf19pykkU
+        cZsVz59a7YuF6GOWjEAbTNdINhf8VU11tFyqP3znGg==
+X-Google-Smtp-Source: ABdhPJwxrjD9HfPuwGXMP4Ljy/6xQzhveU0JXd34jHXZBeF11vt01nwh3cDZ3iNbPGbLP6JSVzGT4riqsvKmCJkH474=
+X-Received: by 2002:a05:6214:20e4:b0:441:7bed:5ccd with SMTP id
+ 4-20020a05621420e400b004417bed5ccdmr1456463qvk.119.1649106794685; Mon, 04 Apr
+ 2022 14:13:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] of: overlay: set 'overlay_tree' and 'fdt' fields only on
- success
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Slawomir Stepien <sst@poczta.fm>
-Cc:     pantelis.antoniou@konsulko.com, devicetree@vger.kernel.org,
-        krzysztof.adamski@nokia.com, tomasz.medrek@nokia.com,
-        alexander.sverdlin@nokia.com
-References: <YkV60TQ+d3sltkNU@t480s.localdomain>
- <YktXKR0kI+Aq5sW/@robh.at.kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <YktXKR0kI+Aq5sW/@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-7-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=UX9Mg71EKvgNp_wNG5q7_ugBgVPbcFWFX5XBG+cQCi8Q@mail.gmail.com> <MW4PR02MB718631182DC72076DC794C1DE1E59@MW4PR02MB7186.namprd02.prod.outlook.com>
+In-Reply-To: <MW4PR02MB718631182DC72076DC794C1DE1E59@MW4PR02MB7186.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 5 Apr 2022 00:13:03 +0300
+Message-ID: <CAA8EJpqOzn4xh1N9GhEbH6YY5uHPdeqhiDnSNMM+ZQ3GdaWFrA@mail.gmail.com>
+Subject: Re: [PATCH v6 6/8] drm/msm/dp: remove unnecessary delay during boot
+To:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/4/22 15:38, Rob Herring wrote:
-> On Thu, Mar 31, 2022 at 11:56:33AM +0200, Slawomir Stepien wrote:
->> From: Slawomir Stepien <slawomir.stepien@nokia.com>
->>
->> Before this change, the memory pointed by fields 'overlay_tree' and
->> 'fdt' will be double freed by a call to free_overlay_changeset() from
->> of_overlay_apply(), when the init_overlay_changeset() fails.
->>
->> The first free will happen under 'err_free_tree' label and for the
->> second time under 'err_free_overlay_changeset' label, where we call
->> free_overlay_changeset().
->>
->> This could happen for example, when you are applying an overlay to a
->> target path that does not exists.
->>
->> By setting the pointers only when we are sure that
->> init_overlay_changeset() will not fail, will prevent this double free.
-> 
-> It looks to me like the free should just be moved from 
-> init_overlay_changeset() to of_overlay_fdt_apply() where the allocation 
-> is done. Frank?
+On Mon, 4 Apr 2022 at 16:53, Sankeerth Billakanti (QUIC)
+<quic_sbillaka@quicinc.com> wrote:
+>
+> Hi Doug,
+>
+> > On Wed, Mar 30, 2022 at 9:04 AM Sankeerth Billakanti
+> > <quic_sbillaka@quicinc.com> wrote:
+> > >
+> > > Remove the unnecessary delay in executing the EV_HPD_INIT_SETUP
+> > event.
+> >
+> > Tell me more and put it in the commit message! Why did it used to be
+> > necessary and why is it no longer necessary? Inquiring minds want to know.
+> >
+>
+> Okay. I will add proper description. The DP phy is shared with usb and executing the
+> dp phy_init before the usb phy_init was causing usb devices to not function.
 
-This patch is next on my list to look over.
+I always wondered, how does this work for the 4-lane DP dongles, where
+there is no USB mode/lanes?
 
--Frank
+> Earlier, enabling phy_init was done when the EV_HPD_INIT_SETUP event was executed.
+> So, we had scheduled it to execute after 10 second to let the usb driver complete the phy_init first.
+>
+> Kuogee made the below change to move the DP phy_init to execute after the DP is connected
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/1642531648-8448-2-git-send-email-quic_khsieh@quicinc.com/
+>
+> So, there is no need for the DP driver to wait 10 seconds for the phy initialization anymore.
+>
+> eDP PHY is not shared with usb. So, it can be programmed anytime, hence not needing any delay.
 
-> 
-> Also, I believe there's a bug that of_overlay_apply() should be passed 
-> new_fdt_align rather than new_fdt. It's only a bug if we expect 
-> overlay_changeset.fdt to point to a valid fdt rather than the memory 
-> allocation.
-> 
-> Rob
 
+
+-- 
+With best wishes
+Dmitry
