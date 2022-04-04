@@ -2,145 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C04404F1B29
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:18:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDDD44F1B51
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:19:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358726AbiDDVTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:19:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
+        id S1379606AbiDDVUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:20:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379039AbiDDQXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 12:23:03 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A24BC0B;
-        Mon,  4 Apr 2022 09:21:07 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id w20-20020a4ae9f4000000b003243aa2c71aso1843365ooc.0;
-        Mon, 04 Apr 2022 09:21:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=r0w3/IM/DK8MLze3NA1pY1MLeIm5PKANbh8od1nv6a8=;
-        b=4mP9vbh5nbMmPCqmNPaZBRonRx5Tdx0wBIN7/kONuYAz/Rx+88VFPo2hetx5WeSgOU
-         4bIYZbuRojDGY8fmx1Yc70rvFMRAwGRm3tVqL8whcmg9s25d1tyi0z6//zziu3kxJ6w6
-         tyLnx7a+SWCTRIdxOqC+8jPLNhyHtpbGQ8kyC4STCOV7P8vzZSyMye5wIFKmD4g7KGNO
-         jlX6B5WS9TsHskznIb654GTrwOrEI6HfkftOJ80IkizHM7wqeATh7bD46mgrwqJBwcgT
-         qEWdduRKw6DlKuMY3hfYIAq7GBPvxzR54dyBqokQyNPvomMuuyw17S1fU1mKj/BTj1Pi
-         Nr7A==
-X-Gm-Message-State: AOAM531YQLzA25DRSP3RyT3wJGgHBKYgOet7KmkCt4sSKhXRYAcLYcol
-        YknM9M1wt2yfHDCfIhEmUg==
-X-Google-Smtp-Source: ABdhPJxZ2lRegJdMFkA7tUuOd3c5O6j+eHuUYGOmr3EKlhr7AoxqAk3be7/vjFqAeCZEN/co7BV85A==
-X-Received: by 2002:a4a:3e02:0:b0:320:fdab:dcfd with SMTP id t2-20020a4a3e02000000b00320fdabdcfdmr149477oot.16.1649089266803;
-        Mon, 04 Apr 2022 09:21:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q203-20020acad9d4000000b002f8ee3f69e2sm4391548oig.52.2022.04.04.09.21.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 09:21:06 -0700 (PDT)
-Received: (nullmailer pid 1458009 invoked by uid 1000);
-        Mon, 04 Apr 2022 16:21:05 -0000
-Date:   Mon, 4 Apr 2022 11:21:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     rafael@kernel.org, viresh.kumar@linaro.org, krzk+dt@kernel.org,
-        treding@nvidia.com, jonathanh@nvidia.com, linux-pm@vger.kernel.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ksitaraman@nvidia.com,
-        sanjayc@nvidia.com, bbasu@nvidia.com
-Subject: Re: [Patch v3 1/4] dt-bindings: Document Tegra CCPLEX Cluster
-Message-ID: <Yksa8cvCvB2Zn7tn@robh.at.kernel.org>
-References: <20220404121713.22461-1-sumitg@nvidia.com>
- <20220404121713.22461-2-sumitg@nvidia.com>
+        with ESMTP id S1379162AbiDDQhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 12:37:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EDE205E4;
+        Mon,  4 Apr 2022 09:35:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CBB52B8185A;
+        Mon,  4 Apr 2022 16:35:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FE85C34113;
+        Mon,  4 Apr 2022 16:35:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649090156;
+        bh=fslE+bfMzXZmNqVRUnqwIZ3RkklMdihxp3zMSxU6z0I=;
+        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+        b=tr+x/YygrnYsb2LWxQJiZNToAq1q4prwXauJcbinUsS+406bkOHw7jOFv2gz8atZH
+         dEpwPDgBlXPKoevWPBxYKN1UzF5OwOA/3Z/HtPwyhnajyQccjFWwpK98epFkjoHrhN
+         0RyLh/Auc+BIqGDzHHQvIPie+RWRV1zq2SPTadhHpHDKUYPMs7NQOrNJtFzczJHW4W
+         swVjR9+aQq26cFufsnTCiaGR9gH7EtlKPKOCggynZUPoI6JOD+lcGWyKP0IXiwm0OJ
+         PsxO0yWpovWcotXNqgkOUBn3hYVzP3Thy6agGDvh+9Tezz2K0p1kk5v4/CbN03h+aX
+         Afbr8OT2fdLGA==
+Received: by mail-vs1-f53.google.com with SMTP id i186so9788513vsc.9;
+        Mon, 04 Apr 2022 09:35:56 -0700 (PDT)
+X-Gm-Message-State: AOAM531r6jKbIZUKHDZ2Mb3BabcWAA4/fHmzewKYkFwLbCRJV1Kuu1uB
+        YFEH4Dusur1fEhJmUVnEy2UZrkD06Th+HBPUbxk=
+X-Google-Smtp-Source: ABdhPJyGDIDlaUpId0PQ0DUCRmbqlA3kvbWrDcX2Sdu8iqF2EW/GtKuxF6yNUyp90p1RHeqPpBRip7a/5T56K1Xl5/I=
+X-Received: by 2002:a05:6102:3bd2:b0:325:44ac:69c3 with SMTP id
+ a18-20020a0561023bd200b0032544ac69c3mr291093vsv.63.1649090155446; Mon, 04 Apr
+ 2022 09:35:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220404121713.22461-2-sumitg@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220330190846.13997-1-wens@kernel.org> <20220330190846.13997-5-wens@kernel.org>
+ <CABxcv=nLQdz9bVrfqw1MaKREh0uRBvc4wX14AORETaDJAin-Fw@mail.gmail.com>
+In-Reply-To: <CABxcv=nLQdz9bVrfqw1MaKREh0uRBvc4wX14AORETaDJAin-Fw@mail.gmail.com>
+Reply-To: wens@kernel.org
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Tue, 5 Apr 2022 00:35:45 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66P+5Tj7BgUJCayWjB6UZhQ5wSFdX=RcwRqX4bYw3UOBg@mail.gmail.com>
+Message-ID: <CAGb2v66P+5Tj7BgUJCayWjB6UZhQ5wSFdX=RcwRqX4bYw3UOBg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] drm: ssd130x: Add support for SINO WEALTH SH1106
+To:     Javier Martinez Canillas <javier@dowhile0.org>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 04, 2022 at 05:47:10PM +0530, Sumit Gupta wrote:
-> The Tegra CPU COMPLEX CLUSTER area contains memory-mapped
-> registers that initiate CPU frequency/voltage transitions.
-> 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> ---
+On Fri, Apr 1, 2022 at 6:10 PM Javier Martinez Canillas
+<javier@dowhile0.org> wrote:
+>
+> On Wed, Mar 30, 2022 at 9:09 PM Chen-Yu Tsai <wens@kernel.org> wrote:
+> >
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > The SINO WEALTH SH1106 is an OLED display driver that is somewhat
+> > compatible with the SSD1306. It supports a slightly wider display,
+> > at 132 instead of 128 pixels. The basic commands are the same, but
+> > the SH1106 doesn't support the horizontal or vertical address modes.
+> >
+> > Add support for this display driver. The default values for some of
+> > the hardware settings are taken from the datasheet.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > ---
+> >  drivers/gpu/drm/solomon/ssd130x-i2c.c | 11 +++++++++++
+>
+> Thanks a lot for this patch. It's very nice to see that another
+> variant of the OLED controller is being supported!
+>
+> I wonder if we should also list SH1106 in the
+> drivers/gpu/drm/solomon/Kconfig file so people can find it ?
 
-Changes from v2? None perhaps because you ignored my comments there.
+I can add it to the help text if that helps?
 
->  .../tegra/nvidia,tegra-ccplex-cluster.yaml    | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-> new file mode 100644
-> index 000000000000..d89457e0bd7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/tegra/nvidia,tegra-ccplex-cluster.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NVIDIA Tegra CPU COMPLEX CLUSTER area device tree bindings
-> +
-> +maintainers:
-> +  - Sumit Gupta <sumitg@nvidia.com>
-> +  - Mikko Perttunen <mperttunen@nvidia.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +
-> +description: |+
-> +  The Tegra CPU COMPLEX CLUSTER area contains memory-mapped
-> +  registers that initiate CPU frequency/voltage transitions.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "ccplex@([0-9a-f]+)$"
-> +
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra186-ccplex-cluster
-> +      - nvidia,tegra234-ccplex-cluster
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  nvidia,bpmp:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> +    description: |
-> +      Specifies the BPMP node that needs to be queried to get
-> +      operating point data for all CPUs.
-> +
-> +additionalProperties: true
+Recently someone mentioned that users are more likely to find drivers
+via compatible strings though. And I believe there's also a tool in-tree
+that finds all drivers given a device tree.
 
-Additionally, true is only allowed for incomplete, common bindings which 
-this is not.
+> ah, one comment I forgot in 3/4 but that also applies to this patch, I
+> believe the convention in DRM is for the subject line to be
+> "drm/ssd130x:" instead of "drm: ssd130x:"
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - nvidia,bpmp
-> +  - status
-> +
-> +examples:
-> +  - |
-> +    ccplex@e000000 {
-> +      compatible = "nvidia,tegra234-ccplex-cluster";
-> +      reg = <0x0 0x0e000000 0x0 0x5ffff>;
-> +      nvidia,bpmp = <&bpmp>;
-> +      status = "okay";
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+Ack.
+
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+
+
+Thanks
+ChenYu
