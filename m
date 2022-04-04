@@ -2,99 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E16CA4F10EB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 10:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 964154F1101
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 10:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237647AbiDDIcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 04:32:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45610 "EHLO
+        id S230041AbiDDIc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 04:32:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237445AbiDDIcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 04:32:00 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E8B17074;
-        Mon,  4 Apr 2022 01:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649061005; x=1680597005;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=+6nfPvqmO8X54BLq371zwzoCjgOCeVVDag0cH5KXjvY=;
-  b=jIJ0BVnftt9DTPbXTwdqpsso2+JDs/GKSQNqFjFIm5b1h9857x5qrnpP
-   ivKbFz4GFkPlDEBj/8sSLlSR5OrZP+kywy6QDgf0/ljFhIziJxWw7qnE6
-   OM8WX6qN0kxI8O1O/v2T6R8wLviVkh4DJl3G/KWAkN1yd7Y4TK/6x1sCa
-   /d5Z0HW49ZpxT8zQQ2j5n7UjTH28gce7Qpof9varqOKPN7gX5wXovGs0f
-   Qj7T4lHyqxBjIYe5vHLXj+qeJAamsFTNsSqQxBZZGyMGJ3uC+s0NFeg2B
-   Vgi42BYIM6TWR/8gvKEzGgvsZxEPMmXgWHiXDZm8mtqsE2Q4l7F8ZYtxi
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10306"; a="258046448"
-X-IronPort-AV: E=Sophos;i="5.90,233,1643702400"; 
-   d="scan'208";a="258046448"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 01:30:04 -0700
-X-IronPort-AV: E=Sophos;i="5.90,233,1643702400"; 
-   d="scan'208";a="569293413"
-Received: from rhamza-mobl.ger.corp.intel.com (HELO ijarvine-MOBL2.ger.corp.intel.com) ([10.251.211.126])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 01:30:00 -0700
-From:   =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     linux-serial@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Lukas Wunner <lukas@wunner.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Johan Hovold <johan@kernel.org>, heiko@sntech.de,
-        giulio.benetti@micronovasrl.com,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 05/12] dt_bindings: rs485: Add receiver enable polarity
-Date:   Mon,  4 Apr 2022 11:29:05 +0300
-Message-Id: <20220404082912.6885-6-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220404082912.6885-1-ilpo.jarvinen@linux.intel.com>
-References: <20220404082912.6885-1-ilpo.jarvinen@linux.intel.com>
+        with ESMTP id S238183AbiDDIci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 04:32:38 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D1F3584C;
+        Mon,  4 Apr 2022 01:30:40 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id A5B9D2000D;
+        Mon,  4 Apr 2022 08:30:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649061038;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=c0zr7u2ZGW8b7dHqUeFZDVs8y9pfDOaTguMgL52CwSQ=;
+        b=mNvAz6VXb3UrSawFLoHLhwcW5kR0Ctm1Y4waL3DSwT6opGruoUUiAuaqXA6kibzEb1O9Ah
+        ZYAd/WILTHfI41H4Cy4QCswuL5xBcLurwaeDRWrqp/QXKd+jcsD9e0XzI7R87MAfgV3VIR
+        y1BrI/WIhto3s06zapyK0ngt2z7U1XXyle05/VL1Sgqm34jjFxf4HL/Wsti3YvV+V6Lwgq
+        Vlqf/3D99xE6KrMFxFGcThuJFqssnri/hlMcGIR3fVp5dL4vBBZ7eiHgbtzWNS7SxSWTPo
+        phdpK/cQT7YprV1vf4oi3sXNN4Dn3detD3qkvxH9S6Ft/y/RwCUGbCxEv6NcXg==
+Date:   Mon, 4 Apr 2022 10:30:34 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Liang Yang <liang.yang@amlogic.com>
+Cc:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Message-ID: <20220404103034.48ec16b1@xps13>
+In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
+References: <20220402074921.13316-1-liang.yang@amlogic.com>
+        <20220402074921.13316-2-liang.yang@amlogic.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add polarity property for receiver enable. Some UARTs have
-separate enable pins for tx (RTS or DE) and rx (RE). As most
-RS485 transceivers have !RE pin, the default is active low in
-contrast to rs485-rts-active-low that defaults to active high.
+Hi Liang,
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+liang.yang@amlogic.com wrote on Sat, 2 Apr 2022 15:49:19 +0800:
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index 0c9fa694f85c..f2c9c9fe6aa7 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -33,6 +33,11 @@ properties:
-     description: drive RTS low when sending (default is high).
-     $ref: /schemas/types.yaml#/definitions/flag
- 
-+  rs485-rx-active-high:
-+    description: Polarity of receiver enable signal (when separate from RTS).
-+      True indicates active high (default is low).
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-   linux,rs485-enabled-at-boot-time:
-     description: enables the rs485 feature at boot time. It can be disabled
-       later with proper ioctl.
--- 
-2.30.2
+> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' =
+which is
+> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider=
+ and
+> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock ha=
+s been
+> implemented and can be used by the eMMC and NAND controller (which are mu=
+tually
+> exclusive anyway). Let's use this new clock.
+>=20
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> ---
+>  drivers/mtd/nand/raw/meson_nand.c | 89 +++++++++++++++----------------
+>  1 file changed, 42 insertions(+), 47 deletions(-)
+>=20
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/mes=
+on_nand.c
+> index ac3be92872d0..1b1a9407fb2f 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/dma-mapping.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+>  #include <linux/mtd/rawnand.h>
+>  #include <linux/mtd/mtd.h>
+>  #include <linux/mfd/syscon.h>
+> @@ -19,6 +20,7 @@
+>  #include <linux/iopoll.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_address.h>
+>  #include <linux/sched/task_stack.h>
+> =20
+>  #define NFC_REG_CMD		0x00
+> @@ -104,6 +106,9 @@
+> =20
+>  #define PER_INFO_BYTE		8
+> =20
+> +#define CLK_DIV_SHIFT		0
+> +#define CLK_DIV_WIDTH		6
+> +
+>  struct meson_nfc_nand_chip {
+>  	struct list_head node;
+>  	struct nand_chip nand;
+> @@ -151,15 +156,15 @@ struct meson_nfc {
+>  	struct nand_controller controller;
+>  	struct clk *core_clk;
+>  	struct clk *device_clk;
+> -	struct clk *phase_tx;
+> -	struct clk *phase_rx;
+> +	struct clk *nand_clk;
+> +	struct clk_divider nand_divider;
+> =20
+>  	unsigned long clk_rate;
+>  	u32 bus_timing;
+> =20
+>  	struct device *dev;
+>  	void __iomem *reg_base;
+> -	struct regmap *reg_clk;
+> +	void __iomem *sd_emmc_clock;
+>  	struct completion completion;
+>  	struct list_head chips;
+>  	const struct meson_nfc_data *data;
+> @@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip *n=
+and, int chip)
+>  	nfc->timing.tbers_max =3D meson_chip->tbers_max;
+> =20
+>  	if (nfc->clk_rate !=3D meson_chip->clk_rate) {
+> -		ret =3D clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
+> +		ret =3D clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
+>  		if (ret) {
+>  			dev_err(nfc->dev, "failed to set clock rate\n");
+>  			return;
+> @@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, =
+int timeout_ms)
+>  	cmd =3D NFC_CMD_RB | NFC_CMD_RB_INT
+>  		| nfc->param.chip_select | nfc->timing.tbers_max;
+>  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+> -
 
+Please avoid these spacing changes in the middle of a commit.
+
+>  	ret =3D wait_for_completion_timeout(&nfc->completion,
+>  					  msecs_to_jiffies(timeout_ms));
+>  	if (ret =3D=3D 0)
+> @@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops meson_ooblayou=
+t_ops =3D {
+>  	.free =3D meson_ooblayout_free,
+>  };
+> =20
+> +struct clk_parent_data nfc_divider_parent_data[1];
+>  static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>  {
+>  	int ret;
+> +	struct clk_init_data init =3D {0};
+> =20
+>  	/* request core clock */
+>  	nfc->core_clk =3D devm_clk_get(nfc->dev, "core");
+> @@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc *n=
+fc)
+>  		return PTR_ERR(nfc->device_clk);
+>  	}
+> =20
+> -	nfc->phase_tx =3D devm_clk_get(nfc->dev, "tx");
+> -	if (IS_ERR(nfc->phase_tx)) {
+> -		dev_err(nfc->dev, "failed to get TX clk\n");
+> -		return PTR_ERR(nfc->phase_tx);
+> -	}
+> -
+> -	nfc->phase_rx =3D devm_clk_get(nfc->dev, "rx");
+> -	if (IS_ERR(nfc->phase_rx)) {
+> -		dev_err(nfc->dev, "failed to get RX clk\n");
+> -		return PTR_ERR(nfc->phase_rx);
+> -	}
+> +	init.name =3D devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
+> +	init.ops =3D &clk_divider_ops;
+> +	nfc_divider_parent_data[0].fw_name =3D "device";
+> +	init.parent_data =3D nfc_divider_parent_data;
+> +	init.num_parents =3D 1;
+> +	nfc->nand_divider.reg =3D nfc->sd_emmc_clock;
+> +	nfc->nand_divider.shift =3D CLK_DIV_SHIFT;
+> +	nfc->nand_divider.width =3D CLK_DIV_WIDTH;
+> +	nfc->nand_divider.hw.init =3D &init;
+> +	nfc->nand_divider.flags =3D CLK_DIVIDER_ONE_BASED |
+> +				  CLK_DIVIDER_ROUND_CLOSEST |
+> +				  CLK_DIVIDER_ALLOW_ZERO;
+> +
+> +	nfc->nand_clk =3D devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
+> +	if (IS_ERR(nfc->nand_clk))
+> +		return PTR_ERR(nfc->nand_clk);
+> =20
+>  	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+> -	regmap_update_bits(nfc->reg_clk,
+> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
+> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
+> +	       nfc->sd_emmc_clock);
+> =20
+>  	ret =3D clk_prepare_enable(nfc->core_clk);
+>  	if (ret) {
+> @@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc *n=
+fc)
+>  		goto err_device_clk;
+>  	}
+> =20
+> -	ret =3D clk_prepare_enable(nfc->phase_tx);
+> +	ret =3D clk_prepare_enable(nfc->nand_clk);
+>  	if (ret) {
+> -		dev_err(nfc->dev, "failed to enable TX clock\n");
+> -		goto err_phase_tx;
+> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
+> +		goto err_nand_clk;
+>  	}
+> =20
+> -	ret =3D clk_prepare_enable(nfc->phase_rx);
+> -	if (ret) {
+> -		dev_err(nfc->dev, "failed to enable RX clock\n");
+> -		goto err_phase_rx;
+> -	}
+> -
+> -	ret =3D clk_set_rate(nfc->device_clk, 24000000);
+> +	ret =3D clk_set_rate(nfc->nand_clk, 24000000);
+
+Is this rename really useful?
+
+>  	if (ret)
+> -		goto err_disable_rx;
+> +		goto err_disable_clk;
+> =20
+>  	return 0;
+> =20
+> -err_disable_rx:
+> -	clk_disable_unprepare(nfc->phase_rx);
+> -err_phase_rx:
+> -	clk_disable_unprepare(nfc->phase_tx);
+> -err_phase_tx:
+> +err_disable_clk:
+> +	clk_disable_unprepare(nfc->nand_clk);
+> +err_nand_clk:
+>  	clk_disable_unprepare(nfc->device_clk);
+>  err_device_clk:
+>  	clk_disable_unprepare(nfc->core_clk);
+> @@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+> =20
+>  static void meson_nfc_disable_clk(struct meson_nfc *nfc)
+>  {
+> -	clk_disable_unprepare(nfc->phase_rx);
+> -	clk_disable_unprepare(nfc->phase_tx);
+> +	clk_disable_unprepare(nfc->nand_clk);
+>  	clk_disable_unprepare(nfc->device_clk);
+>  	clk_disable_unprepare(nfc->core_clk);
+>  }
+> @@ -1374,7 +1376,6 @@ static int meson_nfc_probe(struct platform_device *=
+pdev)
+>  {
+>  	struct device *dev =3D &pdev->dev;
+>  	struct meson_nfc *nfc;
+> -	struct resource *res;
+>  	int ret, irq;
+> =20
+>  	nfc =3D devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
+> @@ -1388,21 +1389,15 @@ static int meson_nfc_probe(struct platform_device=
+ *pdev)
+>  	nand_controller_init(&nfc->controller);
+>  	INIT_LIST_HEAD(&nfc->chips);
+>  	init_completion(&nfc->completion);
+> -
+
+Please don't modify spacing in this commit.
+
+>  	nfc->dev =3D dev;
+> =20
+> -	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	nfc->reg_base =3D devm_ioremap_resource(dev, res);
+> +	nfc->reg_base =3D devm_platform_ioremap_resource_byname(pdev, "nfc");
+
+This change seems unrelated.
+
+>  	if (IS_ERR(nfc->reg_base))
+>  		return PTR_ERR(nfc->reg_base);
+> =20
+> -	nfc->reg_clk =3D
+> -		syscon_regmap_lookup_by_phandle(dev->of_node,
+> -						"amlogic,mmc-syscon");
+> -	if (IS_ERR(nfc->reg_clk)) {
+> -		dev_err(dev, "Failed to lookup clock base\n");
+> -		return PTR_ERR(nfc->reg_clk);
+> -	}
+> +	nfc->sd_emmc_clock =3D devm_platform_ioremap_resource_byname(pdev, "emm=
+c");
+> +	if (IS_ERR(nfc->sd_emmc_clock))
+> +		return PTR_ERR(nfc->sd_emmc_clock);
+
+While I agree this is much better than the previous solution, we cannot
+break DT compatibility, so you need to try getting the emmc clock, but
+if it fails you should fallback to the regmap lookup.
+
+> =20
+>  	irq =3D platform_get_irq(pdev, 0);
+>  	if (irq < 0)
+
+
+Thanks,
+Miqu=C3=A8l
