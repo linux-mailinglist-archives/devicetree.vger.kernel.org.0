@@ -2,93 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 711ED4F1E97
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CAA24F1F42
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:46:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244006AbiDDWKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 18:10:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39216 "EHLO
+        id S234200AbiDDWri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 18:47:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356340AbiDDWFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 18:05:39 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC864A3C9
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 14:43:02 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-2eb543fe73eso56205807b3.5
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 14:43:02 -0700 (PDT)
+        with ESMTP id S1345396AbiDDWq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 18:46:56 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376AB381B2;
+        Mon,  4 Apr 2022 14:58:05 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id i11-20020a9d4a8b000000b005cda3b9754aso8127321otf.12;
+        Mon, 04 Apr 2022 14:58:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Mr13sTe9S5P+5Fhg+wh22VL3ia9fpyUX966OBWfTLkc=;
-        b=oYZ8dVpTOFeU7D+TM02AN6Wr769JI0IIjpYWeqQ+Z3SGqPZywVpsTsHx6BmT4To0GA
-         MTCmL6WOm3FUQxWUYlYYJDouiyVvKjXb+uSAzWriVCAm8BvxKmxLEJ0BjsL+NDYgjynE
-         DDBjsZU1pQ1KUiUzEsLXM6gUhXdVrLYiXRxq7RkCasuovcw4YlKqDB2AIUlABGaZ4hzo
-         HtEqyCLYYhunnCWZ/1JMpRiOOL4VsmDInF+XNSjxH8iZjCttPCdrl/zvHUP3qJ+K68Z5
-         7RIIAyLsx38vl2myRcoO6cZKIdiSBTJ67WaHGesIPR+39IkAhf0/JuhEDYhC50lYpQMN
-         QEDQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+425n+823c6MPZV7nk0SKDFGg4SE61xIiVxspYwInXE=;
+        b=oGKcuZA32wussQCmvJJTxirZwwAwPMk1TWARCef+uIw0puFG4UC8BHrHIX2OCuLjrt
+         4ZyJdoqn5d8GYSxvViac/z+6EgoBDInT2sBfEy37UXMXTXAhH4PE3MMe/FUXas3V3cZY
+         6qPvKtvYta42co/ZFgKTyfbhZakOhWOR8FLtumw4O96k/E5C4ZLBUYzOtakw6vPpCzHU
+         FXexdd21cZEN0SwDUAQFuIX0mMlvm2dH76T/oFKWegybg+DoHWkOsp1lG64yNmc8Yn0P
+         YGidriX6cKmL7y9+drLq39S250Csge6e4UVLY51O/3QRXWPQYxWolNEmOOxkqPmCAcHR
+         d+Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Mr13sTe9S5P+5Fhg+wh22VL3ia9fpyUX966OBWfTLkc=;
-        b=RXFe8PaMI2tKgzc1uunZx9CorKwhTVlheJAhvW5rAImDTzjqnrNq8rUhio6rUAEVrf
-         l2Sk4fWXK5swtiFCzoaZdPF94lkcO2OUeLLZzRRXgtuW5OlrMhO8o/OjEMDokDDKSb1x
-         Raex4mRZsI2Xd2oOyMHFZVF3ppn4P+ix35AuBrKds4dtJegLFeIYFB2lDzRc/1O5RgzR
-         GM+Mzu26hjVnxNV8ogqIpm3JK2CyS0hhBmWkeWe2BTkEFoUBp8rtnyYky03v8JIVjUIn
-         wS1nNQ00cIoUhxQ6QgBAnD/gasmmoofqXtQXeRFoYQY0U9PrZmAG1cX1vaMPDCYaHUd6
-         +QmA==
-X-Gm-Message-State: AOAM5331ujOmrKu7KWDVZTPtWCK8ymvkSLyVYgnSno8sD5doUuudFye5
-        fzqeZU9QpAtqRDdHNwni4VdqLPaKmAar+l9MbKxtFw==
-X-Google-Smtp-Source: ABdhPJzt85GxkABljpdoViylC1cpfWRSKb9qPQ1y+8bvWSMoJfBDA7k01Qotg3Ej9T1lzLK5pHJX09a0DIOLJBz0yD8=
-X-Received: by 2002:a0d:e616:0:b0:2eb:450c:940b with SMTP id
- p22-20020a0de616000000b002eb450c940bmr133822ywe.114.1649108580856; Mon, 04
- Apr 2022 14:43:00 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+425n+823c6MPZV7nk0SKDFGg4SE61xIiVxspYwInXE=;
+        b=ZTlSPxWYGaGIitrGyS58Dp/VC/IcUh870y6BAJ+qt5hrKoNaJ3VR0ZWyg4PON7/bfo
+         uuS7w4Wk+WA4dkgs+TYqd6BlNWk/p2+iICP98OGCMC5iUfv+17puozKI2cTmbEtEJWTF
+         NpZYZfURk3uPdVc1qZPTWLpnzdZ9YmXUIVMemmSiFjOr4Wj0UDwWpGAdy0uAgSVAvlfU
+         nRIZtstx+XVkjC2NfoZWoPNb501D6hB46tqAIatF8S3UvcaWyvGx8Sm46/qIuOcXDPI+
+         w6HFo5qtnFv3yVCOtUGIE23SL39l0c5sJO5Sa0B2yIacjc8ruvhBOi41VwuODSXilNPi
+         +ALg==
+X-Gm-Message-State: AOAM533z6bEKfS6aVR0CKVH4f94/HuGqbFF0iVg6yFMi6oSze+a0zZpM
+        Hq40jjr+LcE5jzpl6JtGBekpByG/ZaA=
+X-Google-Smtp-Source: ABdhPJwumvcXkxofJekXw/aZRO2NgDQHAf4uX5R/O6ZrJAsHIOpc9jrXlcuPcVPVwf+upE/bI+Crog==
+X-Received: by 2002:a05:6830:1681:b0:5cd:b61f:aff3 with SMTP id k1-20020a056830168100b005cdb61faff3mr140035otr.228.1649109484168;
+        Mon, 04 Apr 2022 14:58:04 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id r3-20020aca4403000000b002ecf4d70c83sm4646402oia.27.2022.04.04.14.58.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 14:58:03 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-pm@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        zhangqing@rock-chips.com, zyw@rock-chips.com,
+        jon.lin@rock-chips.com, maccraft123mc@gmail.com, sre@kernel.org,
+        heiko@sntech.de, krzk+dt@kernel.org, robh+dt@kernel.org,
+        lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/4 v5] power: supply: Add Support for RK817 Charger
+Date:   Mon,  4 Apr 2022 16:57:50 -0500
+Message-Id: <20220404215754.30126-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220228172528.3489-1-srinivas.kandagatla@linaro.org> <Yh+QeWEufbp2JLo+@matsya>
-In-Reply-To: <Yh+QeWEufbp2JLo+@matsya>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Tue, 5 Apr 2022 03:12:23 +0530
-Message-ID: <CAMi1Hd0ZCM8nVXTyWYkZgk9LMXcKZGBVAJ9LxEj1LR1px+bmFA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] soundwire: qcom: add pm runtime support
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        robh+dt@kernel.org, yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        quic_srivasam@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Mar 2022 at 21:13, Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 28-02-22, 17:25, Srinivas Kandagatla wrote:
-> > This patchset adds pm runtime support to Qualcomm SounWire Controller using
-> > SoundWire Clock Stop and Wake up using Headset events on supported instances and
-> > instances like WSA which do not support clock stop a soft reset of controller
-> > along with full rest of slaves is done to resume from a low power state.
-> >
-> > Tested it on SM8250 MTP and Dragon Board DB845c
->
-> Applied, thanks
->
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Hi, this patch series broke audio on SDM845 running AOSP. I can
-reproduce it on both DB845c and PocoF1
-https://www.toptal.com/developers/hastebin/raw/rodazupayu. It is not
-100% reproducible but can be triggered on every alternate reboot or
-so.
+This series is to add support for the Rockchip rk817 battery charger
+which is present in all Rockchip RK817 PMICs. The driver was written
+as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
+myself Chris Morgan <macromorgan@hotmail.com>.
 
-Regards,
-Amit Pundir
+The driver requires some basic parameters be described about the
+battery in the devicetree such as the maximum capacity, the minimum
+and maximum voltage for the battery, the maximum charge current, the
+maximum charge voltage, and the value of sample resistors and sleep
+currents.
 
-> --
-> ~Vinod
+The hardware itself contains an ADC capable of measuring the voltage,
+current, and temperature of the battery (though my implementation of an
+Odroid Go Advance lacks a thermistor for temperature). It also contains
+a columb counter, registers for tracking the measured voltage and
+current at boot, and a few bytes of nvram for storing data.
+
+Changes from V4:
+ - Massively redesigned the battery driver to improve measurement
+   accuracy and reliability. Driver now checks values every 8
+   seconds (mimicking BSP driver behavior), or whenever a plug event
+   is detected.
+ - Removed OCV, boot voltage, and boot current as values were found
+   to be unreliable.
+ - Updated first-boot behavior to perform a "best guess" at capacity.
+ - Added ability to calibrate columb counter to full state of charge
+   when charger reports full, and added ability calibrate full charge
+   capacity when battery discharges from full charge to minimum
+   voltage.
+ - Expose state of charge as capacity (in percents).
+ - Updated storing of values to nvram to preserve compatibility with
+   BSP kernel.
+
+Changes from V3:
+
+ - Corrected issues in device tree documentation.
+ - Added additional logic to battery to correct for columb counter
+   drift when the device stays plugged in at a full charge state.
+
+Changes from V2:
+
+ - Updated devicetree bindings to use common property units.
+ - Removed unneeded includes.
+ - Updated rk817_chg_cur_to_reg to make more legible.
+ - Simplified formula for displaying calibrated voltage.
+ - Updated power supply type to POWER_SUPPLY_TYPE_USB.
+ - Implemented get/put_unaligned macros for bulk reads and writes.
+ - Changed numerous dev_err() to dev_err_probe().
+ - Call power_supply_put_battery_info() at end of probe function.
+ - Removed unneeded whitespace.
+
+Changes from V1:
+
+ - Fixed a CLANG warning regarding an uninitalized variable.
+ - Fixed a CLANG warning regarding a pointer as a bool value always
+   returning as true.
+ - Added Maya Matuszczyk to the Signed-off-by.
+
+Chris Morgan (4):
+  dt-bindings: Add Rockchip rk817 battery charger support
+  mfd: Add Rockchip rk817 battery charger support
+  power: supply: Add charger driver for Rockchip RK817
+  arm64: dts: rockchip: add rk817 chg to Odroid Go Advance
+
+ .../bindings/mfd/rockchip,rk817.yaml          |   48 +
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |   26 +
+ drivers/mfd/rk808.c                           |   16 +-
+ drivers/power/supply/Kconfig                  |    6 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/rk817_charger.c          | 1157 +++++++++++++++++
+ include/linux/mfd/rk808.h                     |   91 ++
+ 7 files changed, 1344 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/power/supply/rk817_charger.c
+
+-- 
+2.25.1
+
