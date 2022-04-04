@@ -2,98 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7491F4F1866
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 17:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B9F74F187F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 17:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378569AbiDDPby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 11:31:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
+        id S1356678AbiDDPfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 11:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349937AbiDDPbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:31:52 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E2C2252A4
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 08:29:54 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6d4d:d9ec:3c70:7c2c])
-        by xavier.telenet-ops.be with bizsmtp
-        id EfVs2700G40M8zK01fVs8G; Mon, 04 Apr 2022 17:29:52 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nbOeO-008Mgy-08; Mon, 04 Apr 2022 17:29:52 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nbOeM-00CdT3-Ty; Mon, 04 Apr 2022 17:29:50 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 2/2] gpio: rcar: Add R-Car Gen4 support
-Date:   Mon,  4 Apr 2022 17:29:49 +0200
-Message-Id: <9ee064071b7d9b06df471e981cc6123ff19fead9.1649085875.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1649085875.git.geert+renesas@glider.be>
-References: <cover.1649085875.git.geert+renesas@glider.be>
+        with ESMTP id S1357519AbiDDPfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:35:45 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD61C1EAC8
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 08:33:48 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id a30so13340969ljq.13
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 08:33:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0BaM8mE0ADfMYlXtw7vleG40fbepoqGgL/4MX4webNM=;
+        b=ksDgHMx2Bwif416kkxyTK83wbuEWqRC/SQPlHJuG9GB8hDgBz44MZMx/1HGX678eDC
+         2wnh9ws+cUzeMzUdTaIyPQtYnoElHOckaTUs5tcDi/avbQ1x6JIoh4RvUzQOcbefBFYP
+         POlWTz3c4d6YS1O0FNwvfPTZvfop8awZKXrfXMrZX16BNQ0qSZfcr86eDyI6BKWogCZ3
+         DmyA08M1g8ZGRvb+ZjxFdcrjs7y9CNRW1GUgHQ5pk94DWguaGetZDh3W5V1yB6beKXIi
+         u8vgw/L+145ltC71pdu+f2k4braelrsCFxwLBBG0l4ADlpwbtqqXFl4MDxcnX79WDnYY
+         0xxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0BaM8mE0ADfMYlXtw7vleG40fbepoqGgL/4MX4webNM=;
+        b=S7MMyuJxhT1343JZ0+DKN3a0TDwNVPTIvu05KDdWBgGUidtUS25GzdTVgmb9R98Ycb
+         tDHJVqBxq8ZbFgeGFpg0QtS8N9BZ8XFLVu723yeiqPj06IrCxwhMdmsML1ET2x8s7/wZ
+         UysrhMasCOJ4WdTL4FriE4Ajh4NIJMI4HqMl1IzqgoqiAYqqqSvYhPfxrJVFGoW933tj
+         GTfseLKa7acVphHsgMfwPdS9ZL5WLJwYAgBHLBwvWFxJ/pJ/O8eCTsLve6x6XV142Ty6
+         sHmVAhQLkt2Rgwca98ATTbKsOXTbJasHvZiUbcEm+Krr/LabX9z0wIWkn/6lIIe6ja6t
+         kR4Q==
+X-Gm-Message-State: AOAM531FiV5TymkzmStbYktfAn98urK68P4PQXJ/FH7WW/wC3tsGEMLa
+        yDqSEkYfMbyIs51njEWVT88ESlcYlzgW9Rm/+P+WDg==
+X-Google-Smtp-Source: ABdhPJyJFY5IsdzIsRzag1xsA1I+Oi7D6rt+gN+XZTY4yAeNA4Wv9+v4zOmYqngowRK8wWY2VLqvd6/DtzNfEQUcpQo=
+X-Received: by 2002:a2e:a268:0:b0:24b:1296:a1ab with SMTP id
+ k8-20020a2ea268000000b0024b1296a1abmr89360ljm.169.1649086427030; Mon, 04 Apr
+ 2022 08:33:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220324134106.103588-1-krzk@kernel.org> <YkZFgGNRPUqJIY6x@robh.at.kernel.org>
+In-Reply-To: <YkZFgGNRPUqJIY6x@robh.at.kernel.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 4 Apr 2022 18:33:35 +0300
+Message-ID: <CAPLW+4k4RwOcUiKZU05nb7tcpM2MTxdJ_m=8byyGvHdJbHRbRw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: samsung: usi: refer to dtschema for SPI
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R-Car V3U (R8A779A0) was the first member of the R-Car Gen4 family.
-Generalize the support for R-Car V3U to other SoCs in the R-Car Gen4
-family by adding a family-specific compatible value.
+On Fri, 1 Apr 2022 at 03:21, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, 24 Mar 2022 14:41:06 +0100, Krzysztof Kozlowski wrote:
+> > After adding DT schema for Samsung SPI controller, the Samsung USI
+> > bindings can reference it directly for proper schema validation.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - No changes.
----
- drivers/gpio/gpio-rcar.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-diff --git a/drivers/gpio/gpio-rcar.c b/drivers/gpio/gpio-rcar.c
-index bd2e16d6e21c40cf..5fc52341b98263c6 100644
---- a/drivers/gpio/gpio-rcar.c
-+++ b/drivers/gpio/gpio-rcar.c
-@@ -411,7 +411,7 @@ static const struct gpio_rcar_info gpio_rcar_info_gen3 = {
- 	.has_inen = false,
- };
- 
--static const struct gpio_rcar_info gpio_rcar_info_v3u = {
-+static const struct gpio_rcar_info gpio_rcar_info_gen4 = {
- 	.has_outdtsel = true,
- 	.has_both_edge_trigger = true,
- 	.has_always_in = true,
-@@ -421,7 +421,7 @@ static const struct gpio_rcar_info gpio_rcar_info_v3u = {
- static const struct of_device_id gpio_rcar_of_table[] = {
- 	{
- 		.compatible = "renesas,gpio-r8a779a0",
--		.data = &gpio_rcar_info_v3u,
-+		.data = &gpio_rcar_info_gen4,
- 	}, {
- 		.compatible = "renesas,rcar-gen1-gpio",
- 		.data = &gpio_rcar_info_gen1,
-@@ -431,6 +431,9 @@ static const struct of_device_id gpio_rcar_of_table[] = {
- 	}, {
- 		.compatible = "renesas,rcar-gen3-gpio",
- 		.data = &gpio_rcar_info_gen3,
-+	}, {
-+		.compatible = "renesas,rcar-gen4-gpio",
-+		.data = &gpio_rcar_info_gen4,
- 	}, {
- 		.compatible = "renesas,gpio-rcar",
- 		.data = &gpio_rcar_info_gen1,
--- 
-2.25.1
-
+> >  Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+>
+> Acked-by: Rob Herring <robh@kernel.org>
