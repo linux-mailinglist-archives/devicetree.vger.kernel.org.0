@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E1784F1E1C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7831B4F1E34
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350741AbiDDVx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45388 "EHLO
+        id S1354951AbiDDVx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:53:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380507AbiDDVVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:21:45 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E1A31357;
-        Mon,  4 Apr 2022 14:19:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1DB6AB819DB;
-        Mon,  4 Apr 2022 21:18:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7EF6C34111;
-        Mon,  4 Apr 2022 21:18:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649107110;
-        bh=2MFBSXfZ3tqekRBgiYDJufp0daex8Cm6j3gRGmigYc8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aA/qpq3/DjEcJdSppyeto3ZRmFM0a8WjC9n9jVNNvBw15zoxpXgzFqQR39jcQASC6
-         ePU2vamYPT/j39J/05ZpBOBZuIfasCs7j6Q4R1UMqVTE6P3329sdW9i5PR6QAujIHH
-         HDlBaOostsy/CJKKirYrFBxbyn0x3WdUPkW3f0M5L0XtTnnLSgyISsEVdB3mqI0MZp
-         KLZsjjMF/SRDmoNDystXRXJKOIIM4wDelwoNAQQXW0Sjnw8xH7NbLQfM/MBDAaSXgL
-         +K0N/f7OC3Ji8E/sihBt4x0Bl7waUHV8M0Z8ZPP+fiERNkqCSJ/H4LoeiIE3ZgD0sk
-         RW9JiI+8yvQbw==
-Received: by mail-io1-f46.google.com with SMTP id z7so12966029iom.1;
-        Mon, 04 Apr 2022 14:18:30 -0700 (PDT)
-X-Gm-Message-State: AOAM533tHn3V9zonrRtuYyXFB+SkmRJcxmhocjXrwZS9pXdxELMHcuqK
-        kRpzxgWuXeKeZEk4MiTBRkL1HM+OaCdSBezujg==
-X-Google-Smtp-Source: ABdhPJwATjUBuVkxonnV8pK5+2/qD+WTsPj3L7mqbhvekuXa465j73EULKK5S8ov3InZONGcDfsngm0ogv9Ext2ciys=
-X-Received: by 2002:a05:6638:1301:b0:323:3b47:8b3f with SMTP id
- r1-20020a056638130100b003233b478b3fmr150659jad.291.1649107109921; Mon, 04 Apr
- 2022 14:18:29 -0700 (PDT)
+        with ESMTP id S1384643AbiDDVgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:36:16 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AC331220;
+        Mon,  4 Apr 2022 14:26:42 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id q129so11429860oif.4;
+        Mon, 04 Apr 2022 14:26:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jAP1OWdT/qDUoPVv9G7nl7G1PXDxStBen+UYZx6kZGo=;
+        b=iSW2wiO9Qn9cCOceFIYj+ng9O7b+rTvJ7wTz2DN1xXNm23xTzmS87qpR1msg6cNU3N
+         lFRn9bLEKtjwD/GxhfEjPbkbxilXHftcUFmTdvNnUHFOjfs8FV7AJKId03DhSfntHMXO
+         3nWCR0IbM421ld/IenO3AnoEuHhyltwHlvjWo3IgJA+I804co+hxVoVbycCc6YCyvpbK
+         JdOtRYD4zh2UeoZLrAtYGoh92vv3k2uf6JeYS4YX/hgmygnxiqFULXKlddqpqwgE4ulE
+         hhNL0HmAQy1DLVEEm/tWXcPTER9icIkg/ysZuAwKd06Ce7T2czNtsW9AI3+uVmNohMTF
+         kbSw==
+X-Gm-Message-State: AOAM533r5O8HrrbovJEiMJS+WEEYtvHGpp5osJ+k/A/Z1YxSe/QhWHCv
+        QcAG52uYuuJcPiskwUqWXA==
+X-Google-Smtp-Source: ABdhPJxW2wscvKlm8gcJbXbRc0IWjFTIyDNUVIdjjAxIIjjxENxn2/s77BAwtbGe6+K90UrYW/lvlw==
+X-Received: by 2002:a05:6808:1a9b:b0:2ec:9c38:185 with SMTP id bm27-20020a0568081a9b00b002ec9c380185mr105502oib.165.1649107562121;
+        Mon, 04 Apr 2022 14:26:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n66-20020acabd45000000b002ef6c6992e8sm4569111oif.42.2022.04.04.14.26.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 14:26:01 -0700 (PDT)
+Received: (nullmailer pid 2010240 invoked by uid 1000);
+        Mon, 04 Apr 2022 21:26:00 -0000
+Date:   Mon, 4 Apr 2022 16:26:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Paul Mackerras <paulus@samba.org>, Scott Wood <oss@buserror.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH] powerpc/85xx: Remove FSL_85XX_CACHE_SRAM
+Message-ID: <YktiaO4n62O7BqXZ@robh.at.kernel.org>
+References: <9949813a6b758903b7bee910f798ba2ca82ff8ee.1648720908.git.christophe.leroy@csgroup.eu>
 MIME-Version: 1.0
-References: <20220402192819.154691-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220402192819.154691-1-krzysztof.kozlowski@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 4 Apr 2022 16:18:19 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKuFAY4QENRb3dKETKcaJm-fcguoCFOgUnzf0Pwmf1Ezg@mail.gmail.com>
-Message-ID: <CAL_JsqKuFAY4QENRb3dKETKcaJm-fcguoCFOgUnzf0Pwmf1Ezg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: white-space cleanups
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        Corentin Labbe <clabbe@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9949813a6b758903b7bee910f798ba2ca82ff8ee.1648720908.git.christophe.leroy@csgroup.eu>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,14 +64,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 2, 2022 at 2:28 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Remove trailing white-spaces and trailing blank lines (yamllint when run
-> manually does not like them).
+On Thu, 31 Mar 2022 12:03:06 +0200, Christophe Leroy wrote:
+> CONFIG_FSL_85XX_CACHE_SRAM is an option that is not
+> user selectable and which is not selected by any driver
+> nor any defconfig.
+> 
+> Remove it and all associated code.
+> 
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> ---
+>  .../bindings/powerpc/fsl/cache_sram.txt       |  20 --
+>  .../powerpc/include/asm/fsl_85xx_cache_sram.h |  35 ---
+>  arch/powerpc/platforms/85xx/Kconfig           |   9 -
+>  arch/powerpc/sysdev/Makefile                  |   1 -
+>  arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h     |  88 -------
+>  arch/powerpc/sysdev/fsl_85xx_cache_sram.c     | 147 ------------
+>  arch/powerpc/sysdev/fsl_85xx_l2ctlr.c         | 216 ------------------
+>  7 files changed, 516 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/cache_sram.txt
+>  delete mode 100644 arch/powerpc/include/asm/fsl_85xx_cache_sram.h
+>  delete mode 100644 arch/powerpc/sysdev/fsl_85xx_cache_ctlr.h
+>  delete mode 100644 arch/powerpc/sysdev/fsl_85xx_cache_sram.c
+>  delete mode 100644 arch/powerpc/sysdev/fsl_85xx_l2ctlr.c
+> 
 
-I assume you mean run without our configuration file. I probably
-disabled the check because I didn't want to go fix everywhere. If we
-are going to fix, then we should enable the check to not get more.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
