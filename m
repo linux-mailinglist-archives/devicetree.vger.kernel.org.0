@@ -2,79 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 189C74F16EF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D25844F17B6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377120AbiDDO2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 10:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
+        id S1344838AbiDDPAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 11:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358330AbiDDO2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:28:24 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D039E3BFA3;
-        Mon,  4 Apr 2022 07:26:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649082387; x=1680618387;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YFMFyz8A4KQU+l3+HDFx/zBlfNq5vKwG+g4aU+dWt+M=;
-  b=SzvnfVhPArQxDV4mUfMyHyEmdf6+X0XSvL/96q0mkTZeucr+2hrrfrfC
-   zFfaFxIWwglNGRjoFULtbJMB9LVJO1VgI3jTuHCOPAlUvMwzqBa0+5pX5
-   hQITlDLT01Kboc0XIhNNHzrNgylhK7YZMpaUNDZ42RQjCd+02lJcoNq8d
-   xDtgO2pPiXzrlVlQVGHqtOULIsOMqUZMPOXVLHQ5Rbw+PYF4aLdlDivLN
-   mJElYBgeGrsF3aGS4JKXApTspZfCNbaGEY7ugCHfanrmKL+Cau7KFb4qW
-   JKJqDWMZj2iYV1CfJ9rEH6d+yyU/EVRNEzOWqPNcfOnXP0kPEOAcQRJ2I
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10307"; a="323698513"
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; 
-   d="scan'208";a="323698513"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 07:26:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,234,1643702400"; 
-   d="scan'208";a="657518638"
-Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 04 Apr 2022 07:26:16 -0700
-Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nbNep-00027d-VP;
-        Mon, 04 Apr 2022 14:26:15 +0000
-Date:   Mon, 4 Apr 2022 22:26:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org
-Cc:     kbuild-all@lists.01.org, Liang Yang <liang.yang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <202204042238.eZq8bjau-lkp@intel.com>
-References: <20220402074921.13316-2-liang.yang@amlogic.com>
+        with ESMTP id S237914AbiDDPAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 11:00:40 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEEF27643;
+        Mon,  4 Apr 2022 07:58:43 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id z8so10337059oix.3;
+        Mon, 04 Apr 2022 07:58:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CJuWYKltsebJlR+iYJcx+89VT3YSFELwZ66eJZ0td+A=;
+        b=j8Kbnj3qezRYYx7QeiOxqOtlO8yxYreSIyFo1K2KDdtvEm01FpZuVzrEEeDxQSmDNu
+         o47jDBvVc1Fqo6WYlW+dUZZFRo5IsJPaxcMkkN6HWtONKbOFgx7TrtCvXU3pKfUBqhD2
+         FBCL5odOxiyyghW/398cgP9V8fiIGBT/7XvXXUDb8j+pxQYtJNAaawT+8eP5wGIeVJ6J
+         PZ3qrW2O3xk1G4aJeCjltI+cfoimkON6nsI+awwK6m9FRNogSlSnlJC3yeztfPSBRMSY
+         OM/7euEUh5DqiZkUAwKaTt/1T/pNZWCBRNmvix9vhLEPdmBxkjnag4L5lT5qMC7qiVCV
+         B5zw==
+X-Gm-Message-State: AOAM531OdE0g7l9ibaglgnLIwYpzAXbtLJ3DxzRzS1npjBuAuuZssPRG
+        fUJcrrECOXi45l8BKHrUow==
+X-Google-Smtp-Source: ABdhPJy+knYz0FpBD+B/XqYTFDDly0IFKpeHzcuI/2tbLzaMUlojyFct1PO94CJWC8ERoCh+9DpPUQ==
+X-Received: by 2002:a05:6808:2024:b0:2f9:6119:d6ec with SMTP id q36-20020a056808202400b002f96119d6ecmr97312oiw.203.1649084323010;
+        Mon, 04 Apr 2022 07:58:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q83-20020aca5c56000000b002f94910a053sm4260942oib.56.2022.04.04.07.58.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 07:58:42 -0700 (PDT)
+Received: (nullmailer pid 1315218 invoked by uid 1000);
+        Mon, 04 Apr 2022 14:58:41 -0000
+Date:   Mon, 4 Apr 2022 09:58:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Sven Peter <sven@svenpeter.dev>, Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Keith Busch <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
+        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
+        Marc Zyngier <maz@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-nvme@lists.infradead.org
+Subject: Re: [PATCH 4/9] soc: apple: Add SART driver
+Message-ID: <YksHoQvDqXOK70EX@robh.at.kernel.org>
+References: <20220321165049.35985-1-sven@svenpeter.dev>
+ <20220321165049.35985-5-sven@svenpeter.dev>
+ <CAK8P3a19F8K0MvZV_R6HrmmR+WBsDge+u6U3iEVEjZ74i6+nEg@mail.gmail.com>
+ <f06576c8-76c6-41ae-874d-81ea0b5b5603@www.fastmail.com>
+ <CAK8P3a3xioqJDb7hQ3dvxQyHPg2hgJbeJywEP+N4cDzpo=8VhQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <CAK8P3a3xioqJDb7hQ3dvxQyHPg2hgJbeJywEP+N4cDzpo=8VhQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,42 +72,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
+On Sat, Apr 02, 2022 at 09:07:17PM +0200, Arnd Bergmann wrote:
+> On Sat, Apr 2, 2022 at 2:38 PM Sven Peter <sven@svenpeter.dev> wrote:
+> > On Mon, Mar 21, 2022, at 18:07, Arnd Bergmann wrote:
+> > > On Mon, Mar 21, 2022 at 5:50 PM Sven Peter <sven@svenpeter.dev> wrote:
+> > >> The NVMe co-processor on the Apple M1 uses a DMA address filter called
+> > >> SART for some DMA transactions. This adds a simple driver used to
+> > >> configure the memory regions from which DMA transactions are allowed.
+> > >>
+> > >> Co-developed-by: Hector Martin <marcan@marcan.st>
+> > >> Signed-off-by: Hector Martin <marcan@marcan.st>
+> > >> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> > >
+> > > Can you add some explanation about why this uses a custom interface
+> > > instead of hooking into the dma_map_ops?
+> >
+> > Sure.
+> > In a perfect world this would just be an IOMMU implementation but since
+> > SART can't create any real IOVA space using pagetables it doesn't fit
+> > inside that subsytem.
+> >
+> > In a slightly less perfect world I could just implement dma_map_ops here
+> > but that won't work either because not all DMA buffers of the NVMe
+> > device have to go through SART and those allocations happen
+> > inside the same device and would use the same dma_map_ops.
+> >
+> > The NVMe controller has two separate DMA filters:
+> >
+> >    - NVMMU, which must be set up for any command that uses PRPs and
+> >      ensures that the DMA transactions only touch the pages listed
+> >      inside the PRP structure. NVMMU itself is tightly coupled
+> >      to the NVMe controller: The list of allowed pages is configured
+> >      based on command's tag id and even commands that require no DMA
+> >      transactions must be listed inside NVMMU before they are started.
+> >    - SART, which must be set up for some shared memory buffers (e.g.
+> >      log messages from the NVMe firmware) and for some NVMe debug
+> >      commands that don't use PRPs.
+> >      SART is only loosely coupled to the NVMe controller and could
+> >      also be used together with other devices. It's also the only
+> >      thing that changed between M1 and M1 Pro/Max/Ultra and that's
+> >      why I decided to separate it from the NVMe driver.
+> >
+> > I'll add this explanation to the commit message.
+> 
+> Ok, thanks.
+> 
+> > >> +static void sart2_get_entry(struct apple_sart *sart, int index, u8 *flags,
+> > >> +                           phys_addr_t *paddr, size_t *size)
+> > >> +{
+> > >> +       u32 cfg = readl_relaxed(sart->regs + APPLE_SART2_CONFIG(index));
+> > >> +       u32 paddr_ = readl_relaxed(sart->regs + APPLE_SART2_PADDR(index));
+> > >
+> > > Why do you use the _relaxed() accessors here and elsewhere in the driver?
+> >
+> > This device itself doesn't do any DMA transactions so it needs no memory
+> > synchronization barriers. Only the consumer (i.e. rtkit and nvme) read/write
+> > from/to these buffers (multiple times) and they have the required barriers
+> > in place whenever they are used.
+> >
+> > These buffers so far are only allocated at probe time though so even using
+> > the normal writel/readl here won't hurt performance at all. I can just use
+> > those if you prefer or alternatively add a comment why _relaxed is fine here.
+> >
+> > This is a bit similar to the discussion for the pinctrl series last year [1].
+> 
+> I think it's better to only use the _relaxed version where it actually helps,
+> with a comment about it, and use the normal version elsewhere, in
+> particular in functions that you have copied from the normal nvme driver.
+> I had tried to compare some of your code with the other version and
+> was rather confused by that.
 
-I love your patch! Yet something to improve:
+Oh good, I tell folks the opposite (and others do too). We don't accept 
+random explicit barriers without explanation, but implicit ones are 
+okay? The resulting code on arm32 is also pretty horrible with the L2x0 
+and OMAP sync hooks not that that matters here.
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.18-rc1 next-20220404]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+I don't really care too much which way we go, but we should document one 
+rule and follow that.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-config: s390-randconfig-r002-20220403 (https://download.01.org/0day-ci/archive/20220404/202204042238.eZq8bjau-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c34b64ab8005a978739f157a07ed342d247fecac
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220402-155036
-        git checkout c34b64ab8005a978739f157a07ed342d247fecac
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   s390-linux-ld: drivers/mtd/nand/raw/meson_nand.o: in function `meson_nfc_probe':
-   meson_nand.c:(.text+0xd9e): undefined reference to `clk_divider_ops'
->> s390-linux-ld: meson_nand.c:(.text+0xe34): undefined reference to `devm_clk_register'
-   s390-linux-ld: net/core/sock.o: in function `sk_destruct':
-   sock.c:(.text+0x373e): undefined reference to `__sk_defer_free_flush'
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Rob
