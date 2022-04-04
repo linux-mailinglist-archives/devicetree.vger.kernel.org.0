@@ -2,37 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F4F54F1185
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 11:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32FDB4F118D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 11:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245564AbiDDJCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 05:02:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50168 "EHLO
+        id S1344354AbiDDJCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 05:02:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245160AbiDDJCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 05:02:04 -0400
+        with ESMTP id S1344938AbiDDJCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 05:02:12 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3542229C91;
-        Mon,  4 Apr 2022 02:00:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9892B185;
+        Mon,  4 Apr 2022 02:00:16 -0700 (PDT)
 Received: from wf0416.dip.tu-dresden.de ([141.76.181.160] helo=phil.dip.tu-dresden.de)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1nbIZA-0008Ew-8w; Mon, 04 Apr 2022 11:00:04 +0200
+        id 1nbIZB-0008Ew-2i; Mon, 04 Apr 2022 11:00:05 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, robh+dt@kernel.org,
-        linux-rockchip@lists.infradead.org, vkoul@kernel.org,
-        linux-arm-kernel@lists.infradead.org, yifeng.zhao@rock-chips.com,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kishon@ti.com
-Subject: Re: [PATCH v9] dt-bindings: soc: grf: add naneng combo phy register compatible
-Date:   Mon,  4 Apr 2022 10:59:56 +0200
-Message-Id: <164906273050.1398682.6515580602409136621.b4-ty@sntech.de>
+To:     Anand Moon <linux.amoon@gmail.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Vivek Unune <npcomplete13@gmail.com>,
+        Alexis Ballier <aballier@gentoo.org>,
+        Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v2 1/2] ARM: dts: rk3188: correct interrupt flags
+Date:   Mon,  4 Apr 2022 10:59:58 +0200
+Message-Id: <164906273049.1398682.13221310139844668938.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220324120122.1339-1-jbx6244@gmail.com>
-References: <20220324120122.1339-1-jbx6244@gmail.com>
+In-Reply-To: <20200917185211.5483-1-krzk@kernel.org>
+References: <20200917185211.5483-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -45,13 +50,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Mar 2022 13:01:22 +0100, Johan Jonker wrote:
-> Add Naneng combo phy register compatible.
+On Thu, 17 Sep 2020 20:52:10 +0200, Krzysztof Kozlowski wrote:
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> 
+> Correct the interrupt flags without affecting the code:
+>   ACTIVE_HIGH => IRQ_TYPE_NONE
 
 Applied, thanks!
 
-[1/1] dt-bindings: soc: grf: add naneng combo phy register compatible
-      commit: a66f6482f8f1669209812cd6fa991c3774ce1d02
+[1/2] ARM: dts: rk3188: correct interrupt flags
+      commit: 7e5a7e39d767b60d8631792bd3d7820a6f4a43f8
+[2/2] arm64: dts: rk3399: correct interrupt flags
+      commit: 57f3b0bf5c346f73a848c3d74270b21ed110e530
 
 Best regards,
 -- 
