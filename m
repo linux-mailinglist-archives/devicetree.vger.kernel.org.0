@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A43B4F1AC0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366DF4F1AAA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379211AbiDDVS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36612 "EHLO
+        id S1379119AbiDDVSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379392AbiDDREY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:04:24 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09FC040A22
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 10:02:28 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id g20so11882425edw.6
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 10:02:27 -0700 (PDT)
+        with ESMTP id S1379396AbiDDREZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:04:25 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D1B40A25
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 10:02:29 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id p15so21279270ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 10:02:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/p+WLNXUI5URczlcIPz1GEY0wJAQj0mnV+4JMB7lqlo=;
-        b=BmdxHiK7k94C6Aa24uQsBO1PPJFFU5ov8NdL0rGqw0M5yeUxzrwb6IaZ+rE9b385Bf
-         JQosvScc4VRXQe5Lr/uLZkYmOZQlKXPTmVZhFiWsiOZ2nbhmEAg9O3+3S8Di0Yk4acOR
-         IZzNQz3PxZ3LpBaNoDDAw8u/1+uTVBVLKWhZkKdXT9RVCxU51RGFZ5nUgahZ1ECPrNA5
-         SmkccAmDuEIF+5ibk+/zYy3sGMg/wyFlEqz2EQBKz0mv6/qBFpQl8SVs8sObsCmwbXtN
-         VorJKnSgo9b/cFfjLNyIh3X3AV6qM729p5t141sHICz68ssz9RPIFX/cT8w211EvrlGe
-         BB4g==
+        bh=AZy7e16Ig1JG7qj3MBTWcZiECGvCR3TfCcY9SM2k7uA=;
+        b=TkwLryzG8xq8ZJgUcCjQo23owBZZxVZFlkUrfEjVt10WatBuovqiDNcaYbAr25omCj
+         d/kdNNsblDqCmWG5ynrU8fhTXwQ/8Ch/9Es+pyux5G6XK9KlilWd6omMRts4Qr5EVCOD
+         vT85iI2i9IE/qPYUVU9NmGMmM53GkB4/i/SaTw9UAzzF0fYfcXY5EVrC8qm7/w4jB6DI
+         iI0q2d55LAvT0MvFWh0m8iwFkBjqZ4+uErSypFFgzJUqqdQ3WSZwOkiq1AaAApg8LADP
+         LOsfRO1HtVp7I2biiAyX3xEtqSmtatDXPSIpc592+g14AaVuhm+poLEgUDxFYxX8L/xy
+         9UqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/p+WLNXUI5URczlcIPz1GEY0wJAQj0mnV+4JMB7lqlo=;
-        b=4tQ4T3e836IdKiWf+PyO/CbMuJ7/OJcuTuKV4bN9CdexBna8gNzKaaTKE4qc8ddlaV
-         +FNqfsdG0Wo1kEwVzEZ7ftmVZp6+Zz9Fzu/pUB+TkqO/ti+wiahEH0FiR9Pg9mIY75r3
-         jgwHff/RQkWF1SOfN9oXUPiwsPCWtoIkmaOxg5kSMY7DpsgeLZTPneXaX5mthFzsGVGC
-         hfrlY3j37Jf3U7DZGQEO0waQq9hO/8SErap5sqUc+ZjlEW5MR/pEBsRS6b3VsfDOqOf9
-         ojls/Xed5rb88D7qzuFARNxb5Wy06Drp2V8/NuqU0O9g1jvT8tOKTIfzWQNsT4869CKS
-         WVyg==
-X-Gm-Message-State: AOAM530s34WB3JDgM8YP20t2ViVm62FESMnhAQfW1ch6gjIr5fAtwQKj
-        DHK477V5DmFIFigd0hwH+C2ZEToy1SMWzb8T
-X-Google-Smtp-Source: ABdhPJxD2eBoIbkXILLZ9KRSfUZ3rClQVNQQ/eUgdwSQJWKc8yH4C442dv0oSfAnGSVVUqE22Ht25w==
-X-Received: by 2002:aa7:d553:0:b0:416:4dfc:126d with SMTP id u19-20020aa7d553000000b004164dfc126dmr1140735edr.213.1649091746662;
-        Mon, 04 Apr 2022 10:02:26 -0700 (PDT)
+        bh=AZy7e16Ig1JG7qj3MBTWcZiECGvCR3TfCcY9SM2k7uA=;
+        b=6EGAaoZ4RmSRVRHvs8UpFtAsIfJyctOHYKqu+4Q4vCjFyGNaHyT1iVJH9DpAl/SOLd
+         ++7sFJoteXgHZEwXfqUJYCQ9UZWNnIs2I8jx7qwwRZsKdOXnBzbIe5hoyaG8zazDtkHV
+         MTYLG+wSDfjzHMgLAeOB0hqHkoDB9khY+Tbz16PdFMmAr0Q/Ip3TV4oQzJxObNI9479N
+         LaS2ehiYhq6AXrzu3hz5aAmwXlWOUmF9VZJrYe/MawtaWK5nRNsG7YcNqsfB7WMjeULO
+         6AuN2Y0tflE1bRFlFA8BheOSVQikUteHIQxts1jI/HXs2dd7SnZLQvljdPNygfc1Niyp
+         geTA==
+X-Gm-Message-State: AOAM531Ul/Fs+88T41bGvGkk25lWWLP9o2AIeID5uEXFuUQHKhiwEyav
+        eL3vmd8rUJVxjJqJaHV6As2F8Q==
+X-Google-Smtp-Source: ABdhPJw30fbKCfQKHVKnmx6muF5fQbHs2yESn5RWTv0aghy4f7F4Sy0XYE4R1cIxrr0pe2nLy7vXTQ==
+X-Received: by 2002:a17:907:7205:b0:6e7:ee50:ea94 with SMTP id dr5-20020a170907720500b006e7ee50ea94mr1050231ejc.351.1649091747789;
+        Mon, 04 Apr 2022 10:02:27 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id hs12-20020a1709073e8c00b006dfdfdac005sm4588927ejc.174.2022.04.04.10.02.25
+        by smtp.gmail.com with ESMTPSA id hs12-20020a1709073e8c00b006dfdfdac005sm4588927ejc.174.2022.04.04.10.02.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 10:02:26 -0700 (PDT)
+        Mon, 04 Apr 2022 10:02:27 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-samsung-soc@vger.kernel.org,
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
         Alim Akhtar <alim.akhtar@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lukasz Luba <lukasz.luba@arm.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: exynos: move aliases to board in Exynos850
-Date:   Mon,  4 Apr 2022 19:02:23 +0200
-Message-Id: <164909174137.1688710.12339580855506130725.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH v3 8/8] ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
+Date:   Mon,  4 Apr 2022 19:02:24 +0200
+Message-Id: <164909174137.1688710.5639682730055944531.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220221075219.10827-1-krzysztof.kozlowski@canonical.com>
-References: <20220221075219.10827-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
+References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com> <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -74,21 +76,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022 08:52:19 +0100, Krzysztof Kozlowski wrote:
-> The aliases for typical blocks which are disabled by default in DTSI
-> (like I2C, UART and MMC) should be defined in the board DTS.  The board
-> should add aliases only for enabled blocks according to its specific
-> order.
+On Sun, 6 Feb 2022 14:59:18 +0100, Krzysztof Kozlowski wrote:
+> Passing maximum frequency of LPDDR3 memory timings as unit address was
+> deprecated in favor of 'max-freq' property.
 > 
-> On Exynos850, move aliases of enabled blocks to E850-96 board and remove
-> unused ones.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: exynos: move aliases to board in Exynos850
-      commit: f4324583cd4d4979ff2e885a44b8335eb4c4bfa3
+[8/8] ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
+      commit: c3d3727c8531ba78fc725995ce34cf948ebf1dae
 
 Best regards,
 -- 
