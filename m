@@ -2,126 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB314F1051
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1364F1055
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 09:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238825AbiDDHxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 03:53:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
+        id S1351650AbiDDHzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 03:55:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377844AbiDDHwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 03:52:47 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B5B13B290
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 00:50:39 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id j12so5502209wrb.5
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 00:50:39 -0700 (PDT)
+        with ESMTP id S1345133AbiDDHze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 03:55:34 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E35AE60F4
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 00:53:38 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id r13so13084714wrr.9
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 00:53:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=CVOw/LnzR+FU3Wl5ZYv0rtjB0R73JkKUrPjFPYHJa+k=;
-        b=C3LFox7eE6dCp7eKT1/ySVqfeBAwlHmOr0wnCj4BjQtUusIomrrRsNuWhRlewdgW6g
-         T7i0eyLqpTwupDf295JlqdxJqkVPEW/uixETapJQwfHB6ocEXYbA9CY6noSPlJihQfQV
-         9WL1K+IGfG2/hc4IhNdLzqf7DLtz8r7Qfq5Gi0P+iaUcpmq/kHX4BwaDrIte4p3iQ3I3
-         pdV2QqdEqmwrNR1bnJxN4et1gWG29konh4QssyGchU+l3/PXaDeAZ4SRsSsdk0wtWxuX
-         au3dEGTNaTXQfoqNI6czKs6ZNwvhTE98j2NhLgHAPuD3BbFx7bhR1MLqC/o4VUa9PfYp
-         /DOQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Va1uiLP023t5MihYO/Flcr7OZNL1vNKKp5c2ZjT5AYw=;
+        b=VNyJRcdNveWkpMXVdciF4KakpZiiW50ocgP5YSME8fh3xUgRcRBcJU/rD+Wnfdxx7A
+         Y7ikB5gYpemDjSLgjNyMpJ2cUbHrIADnCRs7A4HChUxwDg4Pi7+7Jfo6PVhYLmpQYnVC
+         BOT9OCrzMtsF8hBQlkAjpG7/k5lQj0+JRYDfjIqkiwquBvj18clVBVISCvycxJchL9o5
+         aqk4YZPSZXPIfDGcudm87F4kqJClWQ2dfU9noSroszqA1FARCGGehMpA+Hi8RVolfeX+
+         OxU/jOSla+tZI4ohJ6j/bPmNuBGO3c8WsNOU2T1J0Fhg+v6cjONZW7rMVSpJYyXaIL1u
+         k3Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=CVOw/LnzR+FU3Wl5ZYv0rtjB0R73JkKUrPjFPYHJa+k=;
-        b=AWWD4/2WLErnfgLVcOEGfb4avjxvfUTX17EJasqt81HLCaOuJopBhjm9XIbhAHhlTG
-         oJH4xYmg9ys0A8NBRMy67vZ7Mw0DM7PW4+a5FF4Q2xCyYx0O8eO2DgiCG5f/oo0XV9HK
-         cM+4y+ELEJtpM0QnXKNHHcdcoogjxwOk57tsIMry8Ptpd9Zrtwv1qZMo4PlKVjLgCnAG
-         digdJv81s/e+m06TLBApp4HUhjRrnmEU+Vn54GLfVIHiu94UXXIFhN6zlLDGp2gwZgtp
-         lWVOPQYmbXnPGOMPpJmmv5Z5bpvqjxBgdea1WbL1RtHKL+5k9BNLVkkul5JE4T0+zMUv
-         M1RQ==
-X-Gm-Message-State: AOAM5319Gj9U9mJaMKs0iM5enynr/GXIICzh7nN3TFp06vkwfaDdqsZk
-        z3wuGKr04b7MyXjpPG/NDq4F8Q==
-X-Google-Smtp-Source: ABdhPJw6n7rlU6gSwNroZmpobyR6C2fXEEog4wsvWJs4pRqrcPYltbz1802lWVLzbcF/oLhax9QTow==
-X-Received: by 2002:adf:e2cb:0:b0:203:7564:1076 with SMTP id d11-20020adfe2cb000000b0020375641076mr16279951wrj.199.1649058638174;
-        Mon, 04 Apr 2022 00:50:38 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:1add:1b28:2457:eb46? ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
-        by smtp.gmail.com with ESMTPSA id u7-20020a5d6da7000000b00203d9d1875bsm9526826wrs.73.2022.04.04.00.50.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Apr 2022 00:50:37 -0700 (PDT)
-Message-ID: <ccc45d36-0c87-742c-4105-56820b058040@baylibre.com>
-Date:   Mon, 4 Apr 2022 09:50:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: meson: remove CPU opps below 1GHz for
- SM1 boards
-Content-Language: en-US
-To:     Christian Hewitt <christianshewitt@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Va1uiLP023t5MihYO/Flcr7OZNL1vNKKp5c2ZjT5AYw=;
+        b=n1zffSmbTtKTzPU/mXZ9HJL+HOb8P6N5qxkI4kPBvLwyCqmyb5rUqeD9PTlwtOAuA6
+         sQ7MTY6Zx8Y2HZcwKoS8RmMcT/7/I/9/LbQy3LkEDwd5o4EEB7lrGG/2R9TpwB03kc3e
+         OUbMTrVAkVmuEh0OI1QsRXJabvbpOYkCLCOoud5J0Di/quqaN2ItQiUDSSyYIaeh7s0O
+         jVMESodtaqwvMuHgNPnNh0MvoQClM3Cvme00KbDWYGou5zFx1HMQJicUW/zV4AK8Gpuy
+         v6Fj4R7LqETG/V3XIa4l0rvNeS5u/UbOC7X454K4cFfs8iAyadxYCKZtK4yAO8vHA1Di
+         3hFA==
+X-Gm-Message-State: AOAM530tXjYk5iNyXg5mRT3uBjHaY6om35xmOErCY/DF+Vd7phff7PBN
+        gxQvPw6pb/Oa7m0f6/LcO1kK1Q==
+X-Google-Smtp-Source: ABdhPJzs9+un4qKZIQaAzrww2f9CT3skrXSwzLMlgxxyZ9AMGMUBwhl0FAI8l0Ot7SRoZMVhtPZDyw==
+X-Received: by 2002:adf:cd11:0:b0:206:1108:ebc1 with SMTP id w17-20020adfcd11000000b002061108ebc1mr2878589wrm.33.1649058817433;
+        Mon, 04 Apr 2022 00:53:37 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:1add:1b28:2457:eb46])
+        by smtp.gmail.com with ESMTPSA id a1-20020a056000188100b002041a652dfdsm8510186wri.25.2022.04.04.00.53.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 00:53:36 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+        Christian Hewitt <christianshewitt@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 0/2] arm64: dts: meson: remove CPU opps below 1GHz for G12B/SM1
+Date:   Mon,  4 Apr 2022 09:53:35 +0200
+Message-Id: <164905879796.1795914.1262665444857869291.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220210100638.19130-1-christianshewitt@gmail.com>
 References: <20220210100638.19130-1-christianshewitt@gmail.com>
- <20220210100638.19130-3-christianshewitt@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220210100638.19130-3-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2022 11:06, Christian Hewitt wrote:
-> Amlogic SM1 devices experience CPU stalls and random board wedges when
-> the system idles and CPU cores clock down to lower opp points. Recent
-> vendor kernels include a change to remove 100-250MHz and other distro
-> sources also remove the 500/667MHz points. Unless all 100-667Mhz opps
-> are removed or the CPU governor forced to performance stalls are still
-> observed, so let's remove them to improve stability and uptime.
-> 
-> Fixes: 3d9e76483049 ("arm64: dts: meson-sm1-sei610: enable DVFS")
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 20 --------------------
->   1 file changed, 20 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 3c07a89bfd27..80737731af3f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -95,26 +95,6 @@
->   		compatible = "operating-points-v2";
->   		opp-shared;
->   
-> -		opp-100000000 {
-> -			opp-hz = /bits/ 64 <100000000>;
-> -			opp-microvolt = <730000>;
-> -		};
-> -
-> -		opp-250000000 {
-> -			opp-hz = /bits/ 64 <250000000>;
-> -			opp-microvolt = <730000>;
-> -		};
-> -
-> -		opp-500000000 {
-> -			opp-hz = /bits/ 64 <500000000>;
-> -			opp-microvolt = <730000>;
-> -		};
-> -
-> -		opp-667000000 {
-> -			opp-hz = /bits/ 64 <666666666>;
-> -			opp-microvolt = <750000>;
-> -		};
-> -
->   		opp-1000000000 {
->   			opp-hz = /bits/ 64 <1000000000>;
->   			opp-microvolt = <770000>;
+Hi,
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Thu, 10 Feb 2022 10:06:36 +0000, Christian Hewitt wrote:
+> Amlogic G12B and SM1 devices experience CPU stalls and random board
+> wedges when the system idles and CPU cores clock down to lower opp
+> points. Recent vendor kernels include a change to remove 100-250MHz
+> (with no explanation) [0] but other downstream sources also remove
+> the 500/667MHz points (also with no explanation). Unless 100-667Mhz
+> opps are removed or the CPU governor forced to performance, stalls
+> are observed, so let's remove them an improve stability/uptime.
+> 
+> [...]
+
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/fixes)
+
+[1/2] arm64: dts: meson: remove CPU opps below 1GHz for G12B boards
+      https://git.kernel.org/amlogic/c/6c4d636bc00dc17c63ffb2a73a0da850240e26e3
+[2/2] arm64: dts: meson: remove CPU opps below 1GHz for SM1 boards
+      https://git.kernel.org/amlogic/c/fd86d85401c2049f652293877c0f7e6e5afc3bbc
+
+-- 
+Neil
