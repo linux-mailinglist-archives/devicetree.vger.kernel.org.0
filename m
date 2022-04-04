@@ -2,49 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 412D44F1AE1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA0B4F1A94
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379294AbiDDVTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45642 "EHLO
+        id S1357789AbiDDVSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380322AbiDDTdC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:33:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BEAD20F41
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 12:31:06 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nbSPn-0004qD-18; Mon, 04 Apr 2022 21:31:03 +0200
-Received: from pengutronix.de (2a03-f580-87bc-d400-3524-91ca-8473-ba45.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:3524:91ca:8473:ba45])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 42D935A452;
-        Mon,  4 Apr 2022 19:31:02 +0000 (UTC)
-Date:   Mon, 4 Apr 2022 21:31:01 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-can@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Document r8a77961
- support
-Message-ID: <20220404193101.nqe2s4rin3bzp6vx@pengutronix.de>
-References: <20220401153743.77871-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S1380400AbiDDUCS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 16:02:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD0EF30576;
+        Mon,  4 Apr 2022 13:00:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 84BDBB819DC;
+        Mon,  4 Apr 2022 20:00:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48557C340F3;
+        Mon,  4 Apr 2022 20:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649102418;
+        bh=UnyFj8CQeTLpyLgUK0Q+kXJzH9zPVxCwJuLgHavoWvE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=A1oDYnj2Q3HEO8kAOG2E7zNw8Zqiex/H6fwLixIdABdPaOMBMB6YZY9aRLMdkR1VP
+         jDhECmzqeQECXvVpjM/MqTrZVE6k+hXqNXGg8Jtlw/rt91YrevQaFRBLzoNFA1+4gA
+         qp9k9cU/ne9vMy5koCF5m3fO2nQbmetPcJS+WOf4ViZ7cwenI9rYgKbkBH/yg626QN
+         0pLMDJp835CfxwqDRe+R5FJjOsz/E40/1pfp7s64ZbcfyK01baX/rVvEXMBY9WdKbX
+         MYZaB/lYiSJdXiylUIgvQhItnBpP6x4cCakUC6InD5hnlYGL5iSCBg1BIj7Y8wvswL
+         0yxcwmN+nWevA==
+Received: by mail-il1-f182.google.com with SMTP id y16so7691170ilq.6;
+        Mon, 04 Apr 2022 13:00:18 -0700 (PDT)
+X-Gm-Message-State: AOAM532ApUfzpSkt68elZ3JU+1Mwcy3AiDD4NRHxboJzCWDG3wsK9kvN
+        nzI1T77TxwI09ya1DlfKG5rHxt1EVJhKQvRv5A==
+X-Google-Smtp-Source: ABdhPJy2I+THynd3YKwgtuqP1Z+qNUJvNfI+KxmiDjCSv83RkgMVAwjROABfaejv1c+IbVRz1hHVNh3x5d/12zN6G3A=
+X-Received: by 2002:a05:6e02:1685:b0:2c9:a9e9:846 with SMTP id
+ f5-20020a056e02168500b002c9a9e90846mr696618ila.273.1649102417418; Mon, 04 Apr
+ 2022 13:00:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fugieqbaghi4eddp"
-Content-Disposition: inline
-In-Reply-To: <20220401153743.77871-1-wsa+renesas@sang-engineering.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20220401153743.77871-1-wsa+renesas@sang-engineering.com> <20220404193101.nqe2s4rin3bzp6vx@pengutronix.de>
+In-Reply-To: <20220404193101.nqe2s4rin3bzp6vx@pengutronix.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 4 Apr 2022 15:00:06 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJCZKFrucY_JJOZ-px0js82Dkgmbz7KmvDnwhU9UFyS5g@mail.gmail.com>
+Message-ID: <CAL_JsqJCZKFrucY_JJOZ-px0js82Dkgmbz7KmvDnwhU9UFyS5g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Document r8a77961 support
+To:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-can@vger.kernel.org,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -53,57 +63,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Apr 4, 2022 at 2:31 PM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
+>
+> Cc += Rob, devicetree
 
---fugieqbaghi4eddp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That's a roll of the dice whether I see it, but for compatible string
+additions I don't really need to.
 
-Cc +=3D Rob, devicetree
+In any case, the only way automated checks run is if the patch goes to
+the DT list. IOW, use get_maintainers.pl.
 
-On 01.04.2022 17:37:43, Wolfram Sang wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml          | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd=
-=2Eyaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> index f98c53dc1894..648740270731 100644
-> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> @@ -23,6 +23,7 @@ properties:
->                - renesas,r8a774e1-canfd     # RZ/G2H
->                - renesas,r8a7795-canfd      # R-Car H3
->                - renesas,r8a7796-canfd      # R-Car M3-W
-> +              - renesas,r8a77961-canfd     # R-Car M3-W+
->                - renesas,r8a77965-canfd     # R-Car M3-N
->                - renesas,r8a77970-canfd     # R-Car V3M
->                - renesas,r8a77980-canfd     # R-Car V3H
-> --=20
-> 2.30.2
->=20
->=20
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---fugieqbaghi4eddp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmJLR3MACgkQrX5LkNig
-011X+AgAiCJkEoJcNFDfdclM7aFsnahPjO0F6AZyf9JxWe6wwRhyLxCQOcI56foc
-sK4h7uU2EmkFQQRSHXgkZvbAZwooe1kT+lqh6MQy8Lbu1L++oLF7rYjkfhDh4sOr
-lmK2hS/Gmz+SSQQ9o4Re2FI0soVPL8td1nQV+EtXP/qkeWyl7p3jKKoV36CfcGXU
-C0R6Aw+PLzRY+5PxARcYh+2fEtf44t/be/OziTKQX60cZVVSvHA8FKfqrj9uyX2R
-sQUMtkIyyZndFGCCvgxl9GWh/oIgQab3wV5DewePPjEaQ5R1CSSOAqX9J8TP+v3V
-CPiJdjrtYSIjJOZNPdLoxLfBb2B3rA==
-=8ytH
------END PGP SIGNATURE-----
-
---fugieqbaghi4eddp--
+Rob
