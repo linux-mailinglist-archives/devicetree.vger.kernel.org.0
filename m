@@ -2,91 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 366DF4F1AAA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AD154F1ACD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379119AbiDDVSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
+        id S1345420AbiDDVTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379396AbiDDREZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:04:25 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D1B40A25
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 10:02:29 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id p15so21279270ejc.7
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 10:02:29 -0700 (PDT)
+        with ESMTP id S1379402AbiDDRFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:05:54 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FCAF12086;
+        Mon,  4 Apr 2022 10:03:57 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id bu29so18600074lfb.0;
+        Mon, 04 Apr 2022 10:03:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AZy7e16Ig1JG7qj3MBTWcZiECGvCR3TfCcY9SM2k7uA=;
-        b=TkwLryzG8xq8ZJgUcCjQo23owBZZxVZFlkUrfEjVt10WatBuovqiDNcaYbAr25omCj
-         d/kdNNsblDqCmWG5ynrU8fhTXwQ/8Ch/9Es+pyux5G6XK9KlilWd6omMRts4Qr5EVCOD
-         vT85iI2i9IE/qPYUVU9NmGMmM53GkB4/i/SaTw9UAzzF0fYfcXY5EVrC8qm7/w4jB6DI
-         iI0q2d55LAvT0MvFWh0m8iwFkBjqZ4+uErSypFFgzJUqqdQ3WSZwOkiq1AaAApg8LADP
-         LOsfRO1HtVp7I2biiAyX3xEtqSmtatDXPSIpc592+g14AaVuhm+poLEgUDxFYxX8L/xy
-         9UqQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JweidwxrjFhAI/2v7P1YrxPew3638Ty2dzeJpVrQWYE=;
+        b=I8pC/miIU61OHd5dqRJenQe4iwqEMNWcbRRJquHcwqrA41pIdbn+rDkftP4Wgy8De6
+         l2P/kMX+m1AlHndTCFw3I9e8C2PbWnptwDkLhCKGENUjppP00s+oaSpn30odJADOWz80
+         gZ8aVgizdoRJMD3T6AeNpo8DIwPDr87SzDVdFiM8OdSG4AmvAn65FA0Q/pYGDN1oIlao
+         +YKcox4/vRA3RiBKPCUROakAioTHX5ZKNwEvMn7A4BVVjmQPgHDz09Xezqhs7kUtDDfY
+         rUW3RKJYgdzLAkmjcApGuwZWiQMC6aAEsIC1HT66RK9v0vxmMklonMMLr9nzl3HGoQcI
+         8TDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AZy7e16Ig1JG7qj3MBTWcZiECGvCR3TfCcY9SM2k7uA=;
-        b=6EGAaoZ4RmSRVRHvs8UpFtAsIfJyctOHYKqu+4Q4vCjFyGNaHyT1iVJH9DpAl/SOLd
-         ++7sFJoteXgHZEwXfqUJYCQ9UZWNnIs2I8jx7qwwRZsKdOXnBzbIe5hoyaG8zazDtkHV
-         MTYLG+wSDfjzHMgLAeOB0hqHkoDB9khY+Tbz16PdFMmAr0Q/Ip3TV4oQzJxObNI9479N
-         LaS2ehiYhq6AXrzu3hz5aAmwXlWOUmF9VZJrYe/MawtaWK5nRNsG7YcNqsfB7WMjeULO
-         6AuN2Y0tflE1bRFlFA8BheOSVQikUteHIQxts1jI/HXs2dd7SnZLQvljdPNygfc1Niyp
-         geTA==
-X-Gm-Message-State: AOAM531Ul/Fs+88T41bGvGkk25lWWLP9o2AIeID5uEXFuUQHKhiwEyav
-        eL3vmd8rUJVxjJqJaHV6As2F8Q==
-X-Google-Smtp-Source: ABdhPJw30fbKCfQKHVKnmx6muF5fQbHs2yESn5RWTv0aghy4f7F4Sy0XYE4R1cIxrr0pe2nLy7vXTQ==
-X-Received: by 2002:a17:907:7205:b0:6e7:ee50:ea94 with SMTP id dr5-20020a170907720500b006e7ee50ea94mr1050231ejc.351.1649091747789;
-        Mon, 04 Apr 2022 10:02:27 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id hs12-20020a1709073e8c00b006dfdfdac005sm4588927ejc.174.2022.04.04.10.02.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 10:02:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v3 8/8] ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
-Date:   Mon,  4 Apr 2022 19:02:24 +0200
-Message-Id: <164909174137.1688710.5639682730055944531.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
-References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com> <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JweidwxrjFhAI/2v7P1YrxPew3638Ty2dzeJpVrQWYE=;
+        b=nWUf9C3SEGVmGBxXGgqgOjKzTw5U8BMB1Ivzx6o7pKMu0Rv2z6cTt1h77mlrzvNYAm
+         2sg0tVAYvE5dTv+Rn9I9o1IwcT7k5/9CpbNYE0MFDq6Bo3dgz8gj0CBUd9l7pqHNMzbH
+         qZjCwV+PiiemdMDpIQzn+8Nt1mp15MtAvFkIEkX59Xm81fqARBQaSAcKgNiKUDBCnIA9
+         MIGr3RQXfyGJUfF7Pn3ifinQ3EaYkL4/Drh6g3JXt3jiwpI5mmV9E4QD6Eu3GcviZyYR
+         fwsSi9OspxO/y7ldlyC9hXvXzqFAPUPjpEFX/GMbIqCq1nfhRXn84j496BHrJ2AZ5x3L
+         WbkA==
+X-Gm-Message-State: AOAM5334RbHfa900H78JbYhacd6y6ejmGa2uu8LQCfFpsEQn/CCixLU+
+        6Ek5G9edFNbYcADMYqF4uCVLIYqyTueH/ZS+kzbGOaYq1A==
+X-Google-Smtp-Source: ABdhPJyWHkLML0CW+orqZVMU399DWfiqN//krw23FbqOQO+YZ/LLJNNX0j1rbJvWijFJbBpeNZJnAR2Kqa0Pofh74F8=
+X-Received: by 2002:ac2:4203:0:b0:448:8053:d402 with SMTP id
+ y3-20020ac24203000000b004488053d402mr252549lfh.687.1649091835467; Mon, 04 Apr
+ 2022 10:03:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220303083141.8742-1-warp5tw@gmail.com> <20220303083141.8742-10-warp5tw@gmail.com>
+ <YiCaSSbbszm3qYIQ@smile.fi.intel.com> <CAHb3i=sStqdSpLKtF_UGmTsOssR_swssTd3pv6c2-z_kiUPTTA@mail.gmail.com>
+ <YiDNDsPWKyaIUlQR@smile.fi.intel.com>
+In-Reply-To: <YiDNDsPWKyaIUlQR@smile.fi.intel.com>
+From:   Avi Fishman <avifishman70@gmail.com>
+Date:   Mon, 4 Apr 2022 20:03:44 +0300
+Message-ID: <CAKKbWA5FyCKTjEUw8rqtkoL7aw6f7Fa_QzcAkgaRnnUMTe0SKg@mail.gmail.com>
+Subject: Re: [PATCH v3 09/11] i2c: npcm: Handle spurious interrupts
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Tali Perry <tali.perry1@gmail.com>,
+        Tyrone Ting <warp5tw@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
+        Wolfram Sang <wsa@kernel.org>, jie.deng@intel.com,
+        sven@svenpeter.dev, bence98@sch.bme.hu,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, olof@lixom.net,
+        Tali Perry <tali.perry@nuvoton.com>,
+        Avi Fishman <Avi.Fishman@nuvoton.com>,
+        Tomer Maimon <tomer.maimon@nuvoton.com>, KWLIU@nuvoton.com,
+        JJLIU0@nuvoton.com, kfting@nuvoton.com,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 6 Feb 2022 14:59:18 +0100, Krzysztof Kozlowski wrote:
-> Passing maximum frequency of LPDDR3 memory timings as unit address was
-> deprecated in favor of 'max-freq' property.
-> 
-> 
+On Thu, Mar 3, 2022 at 4:14 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Mar 03, 2022 at 02:48:20PM +0200, Tali Perry wrote:
+> > > On Thu, Mar 3, 2022 at 12:37 PM Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > > >
+> > > > On Thu, Mar 03, 2022 at 04:31:39PM +0800, Tyrone Ting wrote:
+> > > > > From: Tali Perry <tali.perry1@gmail.com>
+> > > > >
+> > > > > In order to better handle spurious interrupts:
+> > > > > 1. Disable incoming interrupts in master only mode.
+> > > > > 2. Clear end of busy (EOB) after every interrupt.
+> > > > > 3. Return correct status during interrupt.
+> > > >
+> > > > This is bad commit message, it doesn't explain "why" you are doing these.
+>
+> ...
+>
+> > BMC users connect a huge tree of i2c devices and muxes.
+> > This tree suffers from spikes, noise and double clocks.
+> > All these may cause spurious interrupts to the BMC.
+> >
+> > If the driver gets an IRQ which was not expected and was not handled
+> > by the IRQ handler,
+> > there is nothing left to do but to clear the interrupt and move on.
+>
+> Yes, the problem is what "move on" means in your case.
+> If you get a spurious interrupts there are possibilities what's wrong:
+> 1) HW bug(s)
+> 2) FW bug(s)
+> 3) Missed IRQ mask in the driver
+> 4) Improper IRQ mask in the driver
+>
+> The below approach seems incorrect to me.
+>
 
-Applied, thanks!
+Andy, What about this explanation:
+On rare cases the i2c gets a spurious interrupt which means that we
+enter an interrupt but in
+the interrupt handler we don't find any status bit that points to the
+reason we got this interrupt.
+This may be a rare case of HW issue that is still under investigation.
+In order to overcome this we are doing the following:
+1. Disable incoming interrupts in master mode only when slave mode is
+not enabled.
+2. Clear end of busy (EOB) after every interrupt.
+3. Clear other status bits (just in case since we found them cleared)
+4. Return correct status during the interrupt that will finish the transaction.
+On next xmit transaction if the bus is still busy the master will
+issue a recovery process before issuing the new transaction.
+> > If the transaction failed, driver has a recovery function.
+> > After that, user may retry to send the message.
+> >
+> > Indeed the commit message doesn't explain all this.
+> > We will fix and add to the next patchset.
+> >
+> > > > > +     /*
+> > > > > +      * if irq is not one of the above, make sure EOB is disabled and all
+> > > > > +      * status bits are cleared.
+> > > >
+> > > > This does not explain why you hide the spurious interrupt.
+> > > >
+> > > > > +      */
+> > > > > +     if (ret == IRQ_NONE) {
+> > > > > +             npcm_i2c_eob_int(bus, false);
+> > > > > +             npcm_i2c_clear_master_status(bus);
+> > > > > +     }
+> > > > > +
+> > > > > +     return IRQ_HANDLED;
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
-[8/8] ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
-      commit: c3d3727c8531ba78fc725995ce34cf948ebf1dae
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Regards,
+Avi
