@@ -2,172 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4737F4F1AB1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 247434F1B25
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376423AbiDDVSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40232 "EHLO
+        id S1379420AbiDDVTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:19:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379520AbiDDRW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:22:29 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386F72BB2D
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 10:20:32 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id z128so8890278pgz.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 10:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hJ8bbjWFJKjLu66jwXccFuALP/4fGo0kGnkSd+Oc2dM=;
-        b=gT7JmKKPtC5bb7aW02zGlFlbOq2qYMtLpTeaNDwP8oJxKlpEq6HHzVJJb8Ql9VeSrg
-         nBTknQJpidDl7HSvy3jFJTstwMh/K1G+H+5IAAxNrYKncecQcR7mhYsBGKmLQcBPzvw0
-         xA+UkJlbohJaWxUMAVilVLqv8mmygao6QeCKEC+GjqOu+jda5o/ROaTRns5aFHUUmbe1
-         AvWl8OogjmIdpAtND4C72NXmUjS2qYm1JxO0fZrS728772lAZk9OSbTko/hRgRKVeUKf
-         LjXmMG8QvfKVkN9/UWbOALY80lxTKFUlu55b8N5fqD5JA6dCTS58g+MYUeRER+FkQJ1l
-         9/uA==
+        with ESMTP id S1379592AbiDDRng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:43:36 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29ADE31DE7;
+        Mon,  4 Apr 2022 10:41:39 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id 12so10784259oix.12;
+        Mon, 04 Apr 2022 10:41:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hJ8bbjWFJKjLu66jwXccFuALP/4fGo0kGnkSd+Oc2dM=;
-        b=Y+bsH1YYiadKWaoIn3tVRzA6QeWZ3XMpPuD5avQNsiPeELcVBoSpJU+NLS+8CoISIg
-         TsQ+XBAAufwTWXTDthqeCpuJyqGXsY4iHKv/PZJpNOqQBUJSb19hlpo4DkxnJ8ZzbPao
-         RhN8RFq19qVL0M/Cp07oVO9wY6FwBdpe88g/CtDSLaGOaiEMmj6B5HpqLkkR03Qf/Kba
-         Ob7hSrIGZSrezqpytxBR+7jtokpH9rgwm4zL3CiIrQFDKT0Uj5hMWfIAYeCvRQQKTokZ
-         9XbM7fYY9yvzEUUVWuzV9G6jj2KQ/qX7nQcMmnt8UsTWjo768N6PX6KCw8WekP26Fn6J
-         01yQ==
-X-Gm-Message-State: AOAM533ZDz47fxapKZ0v731HXMFtU3QIsnARTSUMFgd2FUrSzCWlz5fz
-        kOmLyk4Eyl3NBvg6UlytUq9kqA==
-X-Google-Smtp-Source: ABdhPJy0T1LDIICCzyUvPFRaeCnlxx6MSrx04MSkZMmC5V1lnbZfDroyBvKkf2nhxU1uxIFeQ8tbuA==
-X-Received: by 2002:a63:451b:0:b0:380:b9f8:13f4 with SMTP id s27-20020a63451b000000b00380b9f813f4mr753130pga.367.1649092831283;
-        Mon, 04 Apr 2022 10:20:31 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:737a:249f:720b:a0a2])
-        by smtp.gmail.com with ESMTPSA id j8-20020a17090a060800b001c7936791d1sm74019pjj.7.2022.04.04.10.20.28
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Gm8Q9IkyRhAeqdPU+N8JCDzIc1jnZK1MiElDRAVrowg=;
+        b=IUBHRZUR1CP3Z09zzwDN8OLdIU3U07bDFgwfp9DzAfLqHZSjUyvTkYVKDifPWhJDEY
+         HgqG9FLdyQi2fqiXqgbicwQbZMmFUM11LmAPO+n2SXPgHr9O0D6HSBmpoCMoVhyBIZDn
+         9Sk/WyQ9G4n2IGYP5rlMdVnx/1qlvpb293G/i8NtkNHMXb8KdLkxdaSJo6IUeLf3tmuX
+         W+qOksGIRnDK41UUGBq8Y1YP+Uw1AGiHGySiPenYLMiCZr5mthIBFSUOAKJS7CO2oFe3
+         enx5ldHm+i9K15O0+x0RXLqcupcO+9KdXHTvYIMcm+F4ueuvTVb3F5ifLAlJJTqOvAe9
+         RBvQ==
+X-Gm-Message-State: AOAM531zyOtAi5B5SKJweFoAFCSTnnHGT4vx/JXULeGC/nShkQWZ+4Ns
+        A8ISAZey8ULra68Ig6B0Mw==
+X-Google-Smtp-Source: ABdhPJzSZ9WfFV7feWqE4tE2BP8FLwzfupkBO4Pv3m1nUPLK+RrkI1IoCe9ioNTKSDmYmbnfBAqL3Q==
+X-Received: by 2002:a05:6808:b0f:b0:2ec:f51d:ae0b with SMTP id s15-20020a0568080b0f00b002ecf51dae0bmr131491oij.67.1649094098466;
+        Mon, 04 Apr 2022 10:41:38 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r37-20020a05687108a500b000e20bfd86casm901587oaq.11.2022.04.04.10.41.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 10:20:30 -0700 (PDT)
-Date:   Mon, 4 Apr 2022 10:20:23 -0700
-From:   Benson Leung <bleung@google.com>
-To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        patchwork-bot+chrome-platform@kernel.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, bleung@chromium.org, groeck@chromium.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        matthias.bgg@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, pmalani@chromium.org
-Subject: Re: [PATCH 0/4] mfd/pwm: dt-bindings: google,cros-ec: include
- generic pwm schema
-Message-ID: <Ykso11bQLqJS1+jU@google.com>
-References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com>
- <164909246180.14329.3397709419938843373.git-patchwork-notify@kernel.org>
- <2259298.ElGaqSPkdT@diego>
+        Mon, 04 Apr 2022 10:41:37 -0700 (PDT)
+Received: (nullmailer pid 1597042 invoked by uid 1000);
+        Mon, 04 Apr 2022 17:41:37 -0000
+Date:   Mon, 4 Apr 2022 12:41:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
+Message-ID: <Ykst0Vb4fk+iALzc@robh.at.kernel.org>
+References: <20220324141237.297207-1-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="I++PcjqoBe2chj7C"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <2259298.ElGaqSPkdT@diego>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220324141237.297207-1-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 24, 2022 at 03:12:34PM +0100, Clément Léger wrote:
+> This series is part of a larger series which aims at adding fwnode
+> support in multiple subsystems [1]. The goal of this series was to
+> add support for software node in various subsystem but in a first
+> time only the fwnode support had gained consensus and will be added
+> to multiple subsystems.
 
---I++PcjqoBe2chj7C
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The goal is describing a solution. What is the problem?
 
-Hi Heiko,
+What's the scenario where you have a reset provider not described by 
+firmware providing resets to devices (consumers) also not described by 
+firmware.
 
-On Mon, Apr 04, 2022 at 07:16:03PM +0200, Heiko St=FCbner wrote:
-> Am Montag, 4. April 2022, 19:14:21 CEST schrieb patchwork-bot+chrome-plat=
-form@kernel.org:
-> > Hello:
-> >=20
-> > This series was applied to chrome-platform/linux.git (for-next)
-> > by Heiko Stuebner <heiko@sntech.de>:
->=20
-> does someone know what goes on here?
->=20
-> I did apply only patch4 back in feburary and I definitly don't have any
-> access to a chrome-platform tree ;-)
->=20
+> For the moment ACPI node support is excluded from the fwnode support
+> to avoid creating an unspecified ACPI reset device description. With
+> these modifications, both driver that uses the fwnode_ API or the of_
+> API to register the reset controller will be usable by consumer
+> whatever the type of node that is used.
 
-Sorry for the extra noise. It looks like patchwork-bot did this once I upda=
-ted
-chrome-platform's for-next branch to the newly created v5.18-rc1, which
-contains this series now.
+Good, because controlling reset lines directly isn't how the ACPI device 
+model works AFAIK.
 
-I'll look into quieting this in the future.
+> One question raised by this series is that I'm not sure if all reset
+> drivers should be modified to use the new fwnode support or keep the
+> existing device-tree support. Maintainer advice on that particular
+> question will be welcome.
 
-Benson
+That would be pointless churn IMO. Why do we need to convert drivers 
+which the vast majority will never use anything but DT?
 
->=20
-> Heiko
->=20
-> > On Mon, 14 Feb 2022 09:19:12 +0100 you wrote:
-> > > Hi,
-> > >=20
-> > > DTS patches are independent. Not tested, but I really hope no downstr=
-eam kernel
-> > > depends on pwm node naming... If it does, please change it to compati=
-ble. :)
-> > >=20
-> > > Best regards,
-> > > Krzysztof
-> > >=20
-> > > [...]
-> >=20
-> > Here is the summary with links:
-> >   - [1/4] dt-bindings: pwm: google,cros-ec: include generic pwm schema
-> >     https://git.kernel.org/chrome-platform/c/6b94ee669e8a
-> >   - [2/4] arm64: dts: mt8183: align Google CROS EC PWM node name with d=
-tschema
-> >     (no matching commit)
-> >   - [3/4] arm64: dts: qcom: align Google CROS EC PWM node name with dts=
-chema
-> >     https://git.kernel.org/chrome-platform/c/1e49defb8636
-> >   - [4/4] arm64: dts: rk3399: align Google CROS EC PWM node name with d=
-tschema
-> >     https://git.kernel.org/chrome-platform/c/a0024f55eb5b
-> >=20
-> > You are awesome, thank you!
-> >=20
->=20
->=20
->=20
->=20
-
---=20
-Benson Leung
-Staff Software Engineer
-Chrome OS Kernel
-Google Inc.
-bleung@google.com
-Chromium OS Project
-bleung@chromium.org
-
---I++PcjqoBe2chj7C
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCYkso1wAKCRBzbaomhzOw
-wqOHAPoDrc7kOcLWzZJ2QaFbD5e9sHTDrFveD2rboH94WtDKdAEAwCFF72Jc2NWP
-VqsIhq74lcj3+0HrIDsVeRyNJ3A5twM=
-=TGfb
------END PGP SIGNATURE-----
-
---I++PcjqoBe2chj7C--
+Rob
