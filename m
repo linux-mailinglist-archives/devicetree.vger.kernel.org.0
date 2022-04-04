@@ -2,139 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C2434F0D86
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 04:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0FC4F0DD8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 06:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376903AbiDDCa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Apr 2022 22:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57466 "EHLO
+        id S232078AbiDDEEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 00:04:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357192AbiDDCa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Apr 2022 22:30:58 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC9B3A5E2
-        for <devicetree@vger.kernel.org>; Sun,  3 Apr 2022 19:29:02 -0700 (PDT)
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220404022900epoutp023bf3705a65f26ae6892046f9a3ed6081~ikIryzI0l3128031280epoutp02Z
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 02:29:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220404022900epoutp023bf3705a65f26ae6892046f9a3ed6081~ikIryzI0l3128031280epoutp02Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1649039340;
-        bh=DO7cgGgTHvQMHO2GGJ8drJXd4TGsXZIl9hBqmml2nKE=;
-        h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=MYqdWOhx8hbOZ73orzX9YurUI567HMmbgIGfv4GB5QtPdvcqe4s4uPTJ4n4N+PWfY
-         QBvvhmw8sRadPTupaUx6BzX3O6d4S1+RGnuYO0cd10A2bebW2GSDW56M5vT7XS7eeO
-         jrs3TT9GEXfh9c4GlWDALtK9I7VILPZHs32oF8bA=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20220404022859epcas1p2534f9bb1d4f81265dd56e830c0bcaff5~ikIrRX2wq1815818158epcas1p23;
-        Mon,  4 Apr 2022 02:28:59 +0000 (GMT)
-Received: from epsmges1p4.samsung.com (unknown [182.195.36.70]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4KWvpy10X0z4x9Q7; Mon,  4 Apr
-        2022 02:28:58 +0000 (GMT)
-X-AuditID: b6c32a38-93fff700000255ac-c8-624a57e90621
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        DB.BC.21932.9E75A426; Mon,  4 Apr 2022 11:28:58 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH] dt-bindings: net: snps: remove duplicate name
-Reply-To: dj76.yang@samsung.com
-Sender: Dongjin Yang <dj76.yang@samsung.com>
-From:   Dongjin Yang <dj76.yang@samsung.com>
-To:     "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c@epcms1p6>
-Date:   Mon, 04 Apr 2022 11:28:57 +0900
-X-CMS-MailID: 20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 101P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprHJsWRmVeSWpSXmKPExsWy7bCmge6rcK8kg3tLmC1eHtK0mHO+hcVi
-        /pFzrBa7Zyxnsng56x6bxd7XW9ktLmzrY7W4vGsOm8W5xZkWxxaIWXw7/YbRonXvEXYHHo8t
-        K28yeWxa1cnmcefaHjaP9/uusnn0bVnF6PF5k1wAW1S2TUZqYkpqkUJqXnJ+SmZeuq2Sd3C8
-        c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7QhUoKZYk5pUChgMTiYiV9O5ui/NKSVIWM/OIS
-        W6XUgpScAvMCveLE3OLSvHS9vNQSK0MDAyNToMKE7Iz9Z/sZC+ZxVUybtoepgfEeexcjJ4eE
-        gInE92+L2UBsIYEdjBLLG1S7GDk4eAUEJf7uEAYJCwvYSTz4+ZsNJCwkIC/xeWIlRFhHouPt
-        UxaQMJuAlsTs/sQuRi4OEYFDzBKzp/xiAqlhFgiQWLrzJxPEJl6JGe0g9SC2tMT25VsZIWwN
-        iR/LepkhbFGJm6vfssPY74/Nh6oRkWi9dxaqRhDonN1QcSmJR80HoOxqiXPtvewgR0gINDBK
-        HPy8EexmCQF9iR3XjUFqeAV8JaY1/mcFsVkEVCVOPl/ECtHrIjH/3UIWiJvlJba/ncMM0sos
-        oCmxfpc+xBRliSO3WGA+adj4mx2dzSzAJ/Huaw8rTHzHvCdQnytLfG5+DdUrKbF48kzmCYxK
-        sxDBPAvJ3lkIexcwMq9iFEstKM5NTy02LDCBR2xyfu4mRnBC1bLYwTj37Qe9Q4xMHIyHGCU4
-        mJVEeHOCPJOEeFMSK6tSi/Lji0pzUosPMZoCfTyRWUo0OR+Y0vNK4g1NLA1MzIxMTQ0NLEyU
-        xHl7p55OFBJITyxJzU5NLUgtgulj4uCUamCqV/6jk/7vv9evVN6DcZ5FD5x+ir6ui6tcqB78
-        7NS/6FdJq7b9/n63P1LnEqsxi5VHdf4mkyBZqc1pqr8lw18y3DFyrzy9dK/vLS2hb2kV60sf
-        LhbJ+8XyvnS2RtlWu2o+kzX1Gy69De8rX/n/+XXtPzdmy/w9N2+mR8G6AOUFZ26ePXawXLs5
-        8M5jnZ8sMfV1z66LTlD9b6T/d4dkK8P2zNtsOydV3zC32nk4XTspfXda/q8dJcqhu1vO5uXK
-        Mf/bXMh8U/exfMXuw1LSU3bEaM/6dWZNtcrv90ufbYzZr6VvXZuf8Pzo7eglPgvvnXJRVlnA
-        t9fmXkCW5vx+7Vttjx7dT7n/6qv2ks3nNZzclViKMxINtZiLihMBFMumYjEEAAA=
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c
-References: <CGME20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c@epcms1p6>
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231343AbiDDEEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 00:04:06 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDEAA393FC;
+        Sun,  3 Apr 2022 21:02:08 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id s8so7763394pfk.12;
+        Sun, 03 Apr 2022 21:02:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gApwyK6UJMIHFi8j3HHI6lVYvVDscNhbn/b45ZD8vYw=;
+        b=PpAMX76Z/yH5s5E86XWDfdb0tshq5E8aUG6vKlOuwz+RxiadMZC6gwVk8hp/IvSKdy
+         pWDbVcIvhaAzCuy6MyDBJG2dxgKFmd2PUF157wQmlFwd1dygPQr7kpgfjuJPSZpZeV8W
+         KJ8XB6IA9wYH8pFUDUrggUJW7xHL4Z3Jfto/zT/xPYv3oFpJgBXB6AOYoiNplFnNBxhi
+         QjnpR9G8KK2BCcUi5zT0OooJ64wrDp1LHF79wrS/9T9wiMGZ5Lrpbk8fcfgAtt+rvBGB
+         f/JIRwKjXsgZbcHHbbAEl/MMqr5KGQN35kxhWJzqNfO2wjz9Wqyu3wTfB+BG6AbwBbg9
+         CU7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gApwyK6UJMIHFi8j3HHI6lVYvVDscNhbn/b45ZD8vYw=;
+        b=YtwCYkmCJjnhBamtZ+HjiXz6yVUc3JrjGDJ6kSRaH4zBKfH70a4NgOYbkhC+uUltMW
+         wAYsFRmGCGfEFSi26dgmIcFNU5Cjybf2b3MSkJAc2+QcWuqVA8t69Z4YJ9sF7viD2s4c
+         0UFogWRbhMvYCdYpbMS8WvLXMz1WaXXoW5EJwSmG2nmZlD0gsE38D5v49tXpM0dGkQOh
+         86DjsKJhsj3bfNmVSrFBGwGdtk/M+2te8dZ++CsxDNO0QobHWJSToh7ClWGVtCytGzJX
+         YDNafHx9iyc9NWMkQdgK+AXchJDF/TwgNuAe0ZGRoBia4yiefoxFlviyF0262WcznLEU
+         ilqA==
+X-Gm-Message-State: AOAM530/4kzd+gh/+4M5wjfg4gDmNBqzqvjZVk96zvwMT21dKE65Bed7
+        FT9IQNGfJkNwc9JmzEvRfbKwryZ7SjtVrmUfpZLhIw==
+X-Google-Smtp-Source: ABdhPJzYjDiKmixeywLrVGsyvmxU0FRdWO7nMbcfY2jZXT0DudGOSkM6UFaGrSEgSvmTt6mXFmBOzQ==
+X-Received: by 2002:aa7:88c2:0:b0:4fa:ba98:4f6f with SMTP id k2-20020aa788c2000000b004faba984f6fmr22013214pff.41.1649044928130;
+        Sun, 03 Apr 2022 21:02:08 -0700 (PDT)
+Received: from guoguo-omen.lan ([2401:c080:1400:4da2:b701:47d5:9291:4cf9])
+        by smtp.gmail.com with ESMTPSA id j70-20020a638b49000000b003985b5ddaa1sm8756191pge.49.2022.04.03.21.02.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Apr 2022 21:02:07 -0700 (PDT)
+From:   Chuanhong Guo <gch981213@gmail.com>
+To:     linux-spi@vger.kernel.org
+Cc:     Chuanhong Guo <gch981213@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Colin Ian King <colin.king@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support),
+        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
+        support), linux-kernel@vger.kernel.org (open list),
+        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
+Subject: [PATCH v2 0/5] spi: add support for Mediatek SPI-NAND controller
+Date:   Mon,  4 Apr 2022 12:01:48 +0800
+Message-Id: <20220404040153.1509966-1-gch981213@gmail.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-snps,dwmac has duplicated name for loongson,ls2k-dwmac and
-loongson,ls7a-dwmac.
+Mediatek has an extended version of their NAND Flash Interface which
+has a SPI-NAND mode. In this mode, the controller can perform 1-bit
+spi-mem ops for up-to 0xa0 bytes and typical SPI-NAND single, dual
+and quad IO page cache ops with 2-byte address. Additionally, the
+page cache ops can be performed with ECC and auto data formatting
+using the ECC engine of the controller.
 
-Signed-off-by: Dongjin Yang <dj76.yang@samsung.com>
----
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+This patchset implements support of this mode as a separated SPI-MEM
+driver with piplined ECC engine.
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 2d5248f..36c85eb 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -53,20 +53,18 @@ properties:
-         - allwinner,sun8i-r40-gmac
-         - allwinner,sun8i-v3s-emac
-         - allwinner,sun50i-a64-emac
--        - loongson,ls2k-dwmac
--        - loongson,ls7a-dwmac
-         - amlogic,meson6-dwmac
-         - amlogic,meson8b-dwmac
-         - amlogic,meson8m2-dwmac
-         - amlogic,meson-gxbb-dwmac
-         - amlogic,meson-axg-dwmac
--        - loongson,ls2k-dwmac
--        - loongson,ls7a-dwmac
-         - ingenic,jz4775-mac
-         - ingenic,x1000-mac
-         - ingenic,x1600-mac
-         - ingenic,x1830-mac
-         - ingenic,x2000-mac
-+        - loongson,ls2k-dwmac
-+        - loongson,ls7a-dwmac
-         - rockchip,px30-gmac
-         - rockchip,rk3128-gmac
-         - rockchip,rk3228-gmac
+Changes since v1:
+ add a blank line between properties in dt binding doc
+ rename ecc-engine to nand-ecc-engine for the generic properties
+ fix warnings/errors from the CI
+
+Chuanhong Guo (5):
+  mtd: nand: make mtk_ecc.c a separated module
+  spi: add driver for MTK SPI NAND Flash Interface
+  mtd: nand: mtk-ecc: also parse nand-ecc-engine if available
+  dt-bindings: spi: add binding doc for spi-mtk-snfi
+  arm64: dts: mediatek: add mtk-snfi for mt7622
+
+ .../bindings/spi/mediatek,spi-mtk-snfi.yaml   |   88 ++
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   12 +
+ drivers/mtd/nand/Kconfig                      |    7 +
+ drivers/mtd/nand/Makefile                     |    1 +
+ drivers/mtd/nand/{raw/mtk_ecc.c => ecc-mtk.c} |    8 +-
+ drivers/mtd/nand/raw/Kconfig                  |    1 +
+ drivers/mtd/nand/raw/Makefile                 |    2 +-
+ drivers/mtd/nand/raw/mtk_nand.c               |    2 +-
+ drivers/spi/Kconfig                           |   10 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-mtk-snfi.c                    | 1351 +++++++++++++++++
+ .../linux/mtd/nand-ecc-mtk.h                  |    0
+ 12 files changed, 1478 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
+ rename drivers/mtd/nand/{raw/mtk_ecc.c => ecc-mtk.c} (98%)
+ create mode 100644 drivers/spi/spi-mtk-snfi.c
+ rename drivers/mtd/nand/raw/mtk_ecc.h => include/linux/mtd/nand-ecc-mtk.h (100%)
+
 -- 
-2.9.5
+2.35.1
+
