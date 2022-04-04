@@ -2,108 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07F8C4F1B0B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9180F4F1B35
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:19:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379410AbiDDVTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:19:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58154 "EHLO
+        id S1379520AbiDDVTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379188AbiDDQmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 12:42:51 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9E335865
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 09:40:55 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id w18so5559509edi.13
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 09:40:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Qq86fHdQFBYDGBq4SciqKEleN++5Ao+l5cvatAfZpnA=;
-        b=MXcyu0hReAsgYMSnOPJYIwUQWZ+3yaoTlqnh+LuV6Fi1mAfTSP42uaWZF28tQVEAlU
-         GSa6/hkTgO3rM1JWDk6g+ZlIdIkGZpg7Kpho90bDt11+csYhNfKCR+vo39ykmdiA6PoQ
-         HV8TcpEEkS86UgNzgEXZ+dbwt5FIshl2ChSa94xcqmUv9jtMEc0qMLDpWhUXV19zUdq5
-         gD2gf6XTGYn5kuItDPRm13k498YiGMwk7g0459TO4MXsT6qsDBiVakN6H0n/dj23jOfY
-         C9rr2hOkGPARNCvviaH9FVLETToBl6hrsCTj7Q3hkzr9It/69X4hUnC2IpB69sR6N/hk
-         P1+w==
+        with ESMTP id S1379206AbiDDQnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 12:43:53 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1313935851
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 09:41:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1649090516;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3+kz6I7pZcPAimiB8rQ2Jr3SdDzFgYoJ+V2mHrMniJg=;
+        b=cUbIbb3wh7PUXx0ZIVbt4/DFyDwj7GUi2wtHemutmQOA28bdQB/hIdbuzga8gPb3zbBkCi
+        HZd69l9tT2i4gWiaSNV9wl+u5low98XydD2emUhC5DY7F09xc/t8DYqklsC5vooJNFFUBl
+        MY0IrTXVkiITLacMzbKNFIGPnQ6eSjc=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-599-v8lnFiCQP1uIA9Jc2P_94Q-1; Mon, 04 Apr 2022 12:41:55 -0400
+X-MC-Unique: v8lnFiCQP1uIA9Jc2P_94Q-1
+Received: by mail-wr1-f71.google.com with SMTP id j18-20020adfa552000000b002060a011303so1065626wrb.14
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 09:41:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Qq86fHdQFBYDGBq4SciqKEleN++5Ao+l5cvatAfZpnA=;
-        b=AgnsCICmdiyX+gICDocSrS8r4KILFmPT2i5zqRlwkKL7H+HhYATM9OOHnj944mgr3Q
-         XEwHGfwvsQpkTcIFTXkr7gnAQl8EaJgFHRM4uxmF8IxqMIag27zfWw6yc5YQ1RNB3sAb
-         htpSZw2eNmcqlhSoukjYngKtIGLQGdhSOndh6hVZ9uhoZoCiyUTKNNwtMeniG4agJGFF
-         LjKd8mFO+RTk3nd1VSOgtx8e7QSqnQ3VNRzy24Pm0+youdeQx9dNhDg8A0gxFj7KAdAK
-         0qcrKHGl5/z5yxcrMIYWVJW4y3iRovVWpLMR1T+XohSwf6sp+2s+AA4P8KIV1JRBrs4w
-         V9Mg==
-X-Gm-Message-State: AOAM530vjgnho3/su2gicHkEPV0g/zDQa3Tk1MCsHD+Y88r3TqxBAsk4
-        cWLxjUNPtsr2jEgsC7lGZHMtUw==
-X-Google-Smtp-Source: ABdhPJxHomFt3udU8S52vNGunIJyDLh/iYqz7kTEBI2R9HydWYKbYF9COBXDA3ZXdy99PRqnekRhYQ==
-X-Received: by 2002:a05:6402:438b:b0:41b:5212:1de1 with SMTP id o11-20020a056402438b00b0041b52121de1mr1080487edc.384.1649090453480;
-        Mon, 04 Apr 2022 09:40:53 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id pk9-20020a170906d7a900b006e05b7ce40csm4548231ejb.221.2022.04.04.09.40.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 09:40:52 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v5 6/9] ARM: dts: exynos: fix compatible strings for Ethernet USB devices
-Date:   Mon,  4 Apr 2022 18:40:48 +0200
-Message-Id: <164909044624.1097466.6376427362225722252.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220216074927.3619425-7-o.rempel@pengutronix.de>
-References: <20220216074927.3619425-1-o.rempel@pengutronix.de> <20220216074927.3619425-7-o.rempel@pengutronix.de>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3+kz6I7pZcPAimiB8rQ2Jr3SdDzFgYoJ+V2mHrMniJg=;
+        b=vKcqJK37F9uw+WBTizMO4q2XxvTHIdp+VyadJJNKLcvqDiogB1EFK0yOXZrO1iovTr
+         j2oizL+yKKK9W7FpXrvv3sUJnH5SGMRa2xJNpDdkjGhd+9fwYK+cJmZtsaJRDJA3/gJa
+         1R1DtVOD5SrUfhSk9vzFpepXkS3eflxKihMupPcgqPciMOqGbuN3iQ/oZFN/PIgzrAmw
+         n4lis0w8R0o6vUebjdRhlVuxeqwN8/okBaV+ZhsHHmeAvYcUFtXHJ0CKhnGHMtl90teF
+         lMI/ToDPfG+5817FqOCQdhjHm6p+90rwpMBrTEv2XoFWdPdoDQGorf+JvV751rHNfi2G
+         aXvA==
+X-Gm-Message-State: AOAM533jbcgrT+wOncF6oxzVIkBSrsPMvguMhux5U/GoT/ol4JJb0Or9
+        GajwWtDec9T4w0Ke2tToNLYfzpnBlSoF8PXj5q5j39JJgEPpzvH661PLCqFWHTSf663uLXYKnjz
+        t/dm/3HoGHUb+2EA05yDssw==
+X-Received: by 2002:a05:6000:1862:b0:204:e417:9cf8 with SMTP id d2-20020a056000186200b00204e4179cf8mr440305wri.593.1649090513078;
+        Mon, 04 Apr 2022 09:41:53 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzXgci/ibeaKSvR6+nnoR/49t/2UDaGcl0TznmfMjMts0usoK/oXTo+u2Q1uulF0rg7yFs3hA==
+X-Received: by 2002:a05:6000:1862:b0:204:e417:9cf8 with SMTP id d2-20020a056000186200b00204e4179cf8mr440289wri.593.1649090512856;
+        Mon, 04 Apr 2022 09:41:52 -0700 (PDT)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id e13-20020a05600c4e4d00b0038e44e316c1sm32402wmq.6.2022.04.04.09.41.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 09:41:52 -0700 (PDT)
+Message-ID: <4e53008a-c758-90dd-251e-f1668c52b10b@redhat.com>
+Date:   Mon, 4 Apr 2022 18:41:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH 4/4] drm: ssd130x: Add support for SINO WEALTH SH1106
+Content-Language: en-US
+To:     wens@kernel.org, Javier Martinez Canillas <javier@dowhile0.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+References: <20220330190846.13997-1-wens@kernel.org>
+ <20220330190846.13997-5-wens@kernel.org>
+ <CABxcv=nLQdz9bVrfqw1MaKREh0uRBvc4wX14AORETaDJAin-Fw@mail.gmail.com>
+ <CAGb2v66P+5Tj7BgUJCayWjB6UZhQ5wSFdX=RcwRqX4bYw3UOBg@mail.gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <CAGb2v66P+5Tj7BgUJCayWjB6UZhQ5wSFdX=RcwRqX4bYw3UOBg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Feb 2022 08:49:24 +0100, Oleksij Rempel wrote:
-> Fix compatible string for Ethernet USB device as required by USB device schema:
->  Documentation/devicetree/bindings/usb/usb-device.yaml
->   The textual representation of VID and PID shall be in lower case hexadecimal
->   with leading zeroes suppressed.
+On 4/4/22 18:35, Chen-Yu Tsai wrote:
+> On Fri, Apr 1, 2022 at 6:10 PM Javier Martinez Canillas
+> <javier@dowhile0.org> wrote:
+
+[snip]
+
+>>
+>> I wonder if we should also list SH1106 in the
+>> drivers/gpu/drm/solomon/Kconfig file so people can find it ?
 > 
-> Since there are no kernel driver matching against this compatibles, I
-> expect no regressions with this patch. At the same time, without this fix, we
-> are not be able to validate this device nodes with newly provided DT
-> schema.
+> I can add it to the help text if that helps?
+>
+
+No strong opinion really, it was an honest question.
+ 
+> Recently someone mentioned that users are more likely to find drivers
+> via compatible strings though. And I believe there's also a tool in-tree
+> that finds all drivers given a device tree.
 > 
-> [...]
 
-Applied, thanks!
+Yeah I guess so. Looking at existing DTS and drivers' device tables is
+certainly what I personally do when searching it a device is supported.
 
-[6/9] ARM: dts: exynos: fix compatible strings for Ethernet USB devices
-      commit: 2e33a7b5fdb3930a9b1051bc792dbdc6a7490aae
-
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Best regards,
+
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
