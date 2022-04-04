@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9DA14F1A5E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:16:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4D234F1AB0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378907AbiDDVSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35072 "EHLO
+        id S1379147AbiDDVSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380270AbiDDT0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:26:22 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3809E26AD7;
-        Mon,  4 Apr 2022 12:24:26 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-df0940c4eeso11897121fac.8;
-        Mon, 04 Apr 2022 12:24:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ifeIhYfjlW0ULRJDooo6QxPNwMkL7upjn0RvWlwhS08=;
-        b=WqsXxI2+zw4X5A7N1ZjMVVq3wctAKjqFr+x1x7MaPX35yIP7EJstPfQnSzmMRIEVKh
-         dIlnQM3v8fQ92NvHqMsjWVH538RUMQZ8kBBnQbwbBhrbc/E5X88md4hJmOVwQDMRqsZL
-         mdMjucjlBEO3kbr6KThywQJ15p4HgkK8wyLrHlmrXN+4ivJpr5sejlXNt6BHYhkIb1a4
-         i3vT/M/DF3bQj+S51BxxzTcApFjBk+USdnbaKlhAHOu+c80HIbxPfWmWIlGc6D4wBOkW
-         r5L/POA317J++yn5VVTdXuz/2vlQvuguoeFR9x2kPwZafxt5z5b/aB1hkj3dfuOeKygb
-         pzbA==
-X-Gm-Message-State: AOAM531KPJ+9dfICD0g6Rk/wXk8BZX/8upLCQLOPtfwXTb1VdGd9khUI
-        VWcMgyZREKQGUbCuYFfXAAO5nHA0mw==
-X-Google-Smtp-Source: ABdhPJyyEsDRAlCfD0eED8AW8ndC/mu5ruwNAUWUYcjpoI113iNC4TpuLXvJcoJ4qCgfLjhvko8CnA==
-X-Received: by 2002:a05:6870:b6a6:b0:dd:999f:6596 with SMTP id cy38-20020a056870b6a600b000dd999f6596mr418543oab.106.1649100265424;
-        Mon, 04 Apr 2022 12:24:25 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d1-20020a056830138100b005cf2f29d89csm4535284otq.77.2022.04.04.12.24.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 12:24:24 -0700 (PDT)
-Received: (nullmailer pid 1805190 invoked by uid 1000);
-        Mon, 04 Apr 2022 19:24:24 -0000
-Date:   Mon, 4 Apr 2022 14:24:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-renesas-soc@vger.kernel.org, linux-serial@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2 02/13] dt-bindings: serial: renesas,em-uart: Document
- r9a09g011 bindings
-Message-ID: <YktF6LTG9+cM7axp@robh.at.kernel.org>
-References: <20220330154024.112270-1-phil.edworthy@renesas.com>
- <20220330154024.112270-3-phil.edworthy@renesas.com>
+        with ESMTP id S1380272AbiDDT0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:26:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8136826AD7;
+        Mon,  4 Apr 2022 12:24:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B2F660DBB;
+        Mon,  4 Apr 2022 19:24:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32AD5C2BBE4;
+        Mon,  4 Apr 2022 19:24:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649100291;
+        bh=Udh0YThCObvpATKVHs+ovlwAEy4V2McaWjSLWOakQlU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NI5H9f00xsOksDyexOsO9ycqHIKjE+93cbiJlxCcHrWzW5rxwt1Gz34BkejP9+f8K
+         Ac5JeGgvkO1wkb4DLzqZZpH1/18jFaR/kVd2lLuIvjoXQcrRQJPCXO8a9XjEo4scah
+         kBTx/flBKZQZfbbCwEyvdE5WWsyBklYe7Vj89F8zjy5cNUctCyacp4yxJ5WefbtbWo
+         ltUKz3+0qyRuc76ci6vGpP0rNoLTRzeWPqnyiE9XqvyWevjQ1FXC6o9YRdsvPPwYt9
+         CN3IvcxwTLPWoAhVPiFrFuLe6+S/NjfJZkLzuI/czbhRg5pu7PGzW/KFKrFPhkFsvK
+         OObnWxSrNSgUA==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        lorenzo.bianconi@redhat.com, robh@kernel.org
+Subject: [PATCH v2 0/2] add support for ASM330LHHX
+Date:   Mon,  4 Apr 2022 21:24:42 +0200
+Message-Id: <cover.1649100168.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220330154024.112270-3-phil.edworthy@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Mar 2022 16:40:13 +0100, Phil Edworthy wrote:
-> The Renesas RZ/V2M (r9a09g011) SoC uses a uart that is compatible with the
-> EMMA Mobile SoC.
-> 
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2: Fix dtbs_check by adding missing alternative binding
-> ---
->  .../devicetree/bindings/serial/renesas,em-uart.yaml      | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
+Add support for ASM330LHHX IMU automotive mems sensor
+https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+- use lsm6dsr as fallback device for asm330lhhx
+
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add support to ASM330LHHX
+  dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhx device bindings
+
+ .../bindings/iio/imu/st,lsm6dsx.yaml          | 38 ++++++++++---------
+ drivers/iio/imu/st_lsm6dsx/Kconfig            |  6 +--
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h       |  2 +
+ .../iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c    |  3 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c  |  6 ++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c   |  5 +++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c   |  5 +++
+ 7 files changed, 43 insertions(+), 22 deletions(-)
+
+-- 
+2.35.1
+
