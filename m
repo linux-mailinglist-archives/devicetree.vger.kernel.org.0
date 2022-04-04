@@ -2,75 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC57A4F16BB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0494F16C1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 16:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376891AbiDDOGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 10:06:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55186 "EHLO
+        id S1343953AbiDDOIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 10:08:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357098AbiDDOGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:06:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7BF11D306;
-        Mon,  4 Apr 2022 07:04:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 78C1E613EF;
-        Mon,  4 Apr 2022 14:04:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F5C3C340EE;
-        Mon,  4 Apr 2022 14:04:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649081072;
-        bh=+YodnbKNfkD+6Cay2I53zzP9Fet7F7fDGOH+q3ST2WA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XgkScUB9MqKjZwqfpE1regXlQ5YzXGwZsjnqo4dN0muVS235eUAjnw+BKIJMC3P4m
-         z3OHgXZpTOB/WHZYJA9jUwZzTmJMOfGhlDEdCeTQBFZwBNyKINzUgpQKS7N9cgTE2t
-         2G5Sbbdk0eOTP5DXRKBy9PSppWpPGWb8xPvzHh65q1nQ5gGnS+LN3ubFpTGJ+HcY5Q
-         Wo6wNLTqeOCXaF+xSe11nzC86MLLXuMbYh0aSPF7hzFPIazdaUw5VM4TDyTXCcL+lT
-         fNKMei4vhBaiGivTLUqzE0n4UGyL6/BR7ZN3io5o+HtGVmolDL8eSoEDVPFMRnH1Rn
-         EprzCWdbSK/tQ==
-Date:   Mon, 4 Apr 2022 15:04:25 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Chuanhong Guo <gch981213@gmail.com>, linux-spi@vger.kernel.org,
+        with ESMTP id S241862AbiDDOIw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 10:08:52 -0400
+Received: from gateway30.websitewelcome.com (gateway30.websitewelcome.com [192.185.180.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849CA3ED2F
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 07:06:56 -0700 (PDT)
+Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
+        by gateway30.websitewelcome.com (Postfix) with ESMTP id 01D1EAE15
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 09:06:56 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id bNKBnKYUqb6UBbNKBnHfOB; Mon, 04 Apr 2022 09:04:55 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=K/Iz8lz+bBMhFV3lQqHqSsiYiXnliRuQPADXVtgEoLk=; b=Az7iEK9SepQCmQLdh9PJHZ8qT2
+        ADqqtIX1aD1syu0+xbaRLyozn9T4zbgyk1jrkb+cShj2lJHzQPyHxiihrNbehEDCnvIhyrRqtnFxX
+        xWAtD6XQC62QRoPHd54xSDRU0766Y3ruH7hJcyYxl4fxggFbs1INF+kenRJkjCc+gx2w7HjH1Ss8A
+        l8L9G0mjD5CIsRPZ82rSuwmXOiuzqCpqOoJolR7/SFezTzDzgmR2yqcjKXwDfQAF70wlHYk0GMBXz
+        qDA8If4pNOEPBvSmbh8xPiZg70pdThsN4x+t/DnYkweRLOh9gYhYG09Tm7u/vhbZ4JqZPkKVwDecG
+        XYaBNAzg==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:57852 helo=localhost)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nbNKA-000pyr-Mz; Mon, 04 Apr 2022 14:04:54 +0000
+Date:   Mon, 4 Apr 2022 07:04:53 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:NAND FLASH SUBSYSTEM" <linux-mtd@lists.infradead.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: spi: add binding doc for spi-mtk-snfi
-Message-ID: <Ykr66c+KEaO8vltj@sirena.org.uk>
-References: <20220404131818.1817794-1-gch981213@gmail.com>
- <20220404131818.1817794-5-gch981213@gmail.com>
- <14c921b5-4240-a026-252a-d5fb60836b34@linaro.org>
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2 02/12] dt-bindings: watchdog: sunxi: clarify clock
+ support
+Message-ID: <20220404140453.GA3286578@roeck-us.net>
+References: <20220317162349.739636-1-andre.przywara@arm.com>
+ <20220317162349.739636-3-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/iF9jkJodygiQRcM"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <14c921b5-4240-a026-252a-d5fb60836b34@linaro.org>
-X-Cookie: Did I say I was a sardine?  Or a bus???
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220317162349.739636-3-andre.przywara@arm.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nbNKA-000pyr-Mz
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:57852
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 5
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,45 +90,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 17, 2022 at 04:23:39PM +0000, Andre Przywara wrote:
+> Most Allwinner SoCs have just one input clock to drive the watchdog
+> peripheral. So far this is the 24 MHz "HOSC" oscillator, divided down
+> internally to 32 KHz.
+> The F1C100 series watchdog however uses the unchanged 32 KHz "LOSC" as
+> its only clock input, which has the same effect, but let's the binding
+> description mismatch.
+> 
+> Change the binding description to name the clocks more loosely, so both
+> the LOSC and divided HOSC match the description. As the fixed clock names
+> now make less sense, drop them from SoCs supporting just one clock
+> input, they were not used by any DT anyway.
+> 
+> For the newer SoCs, supporting a choice of two input clocks, we keep
+> both the description and clock-names requirement.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Samuel Holland <samuel@sholland.org>
 
---/iF9jkJodygiQRcM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-On Mon, Apr 04, 2022 at 03:52:19PM +0200, Krzysztof Kozlowski wrote:
-> On 04/04/2022 15:18, Chuanhong Guo wrote:
-
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - ecc-engine
-
-> Slightly slow down resends (max 1 per day). You sent v3 without giving a
-> chance to review this.
-
-> Wrong name here.
-
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
-
---/iF9jkJodygiQRcM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJK+ugACgkQJNaLcl1U
-h9DovAf9FvUfyz38jWX01k0PPwcjlxGKC4qUprMZogZ5XZdSB9lbzlD1miFEYdQz
-UmBtAiLNTO9ZfPHJnyV5Wl2Xkdfoc8+InivnS9xjXylc98GlA5FHzjTEiSiJz8ZU
-k0lp3kaJX6E0Q76hUKDEt66W3Su90IfnKfOal2MuUzS2JGIeR0zE8bQneXElLoAw
-cXKz/Xz6py2LiOtIoJ86NRLOV9h0lGFgRmKgG0CAIV7a+xPpkfBpxrX2dFKtZKYw
-/sBjRC5tpXdt1TFrzhgkKPH2srhbxZXmIZmtgjId78zdrF2vX5GJJiYs19dc/7jq
-tOAfJXMJ8GTUrroa2H6zauEsIlxtJA==
-=yGjl
------END PGP SIGNATURE-----
-
---/iF9jkJodygiQRcM--
+> ---
+>  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 20 ++++++++-----------
+>  1 file changed, 8 insertions(+), 12 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index 7a26cde0afdd..cbcf19f51411 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -39,14 +39,8 @@ properties:
+>    clocks:
+>      minItems: 1
+>      items:
+> -      - description: High-frequency oscillator input, divided internally
+> -      - description: Low-frequency oscillator input, only found on some variants
+> -
+> -  clock-names:
+> -    minItems: 1
+> -    items:
+> -      - const: hosc
+> -      - const: losc
+> +      - description: 32 KHz input clock
+> +      - description: secondary clock source
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -71,9 +65,14 @@ then:
+>    properties:
+>      clocks:
+>        minItems: 2
+> +      items:
+> +        - description: High-frequency oscillator input, divided internally
+> +        - description: Low-frequency oscillator input
+>  
+>      clock-names:
+> -      minItems: 2
+> +      items:
+> +        - const: hosc
+> +        - const: losc
+>  
+>    required:
+>      - clock-names
+> @@ -83,9 +82,6 @@ else:
+>      clocks:
+>        maxItems: 1
+>  
+> -    clock-names:
+> -      maxItems: 1
+> -
+>  unevaluatedProperties: false
+>  
+>  examples:
