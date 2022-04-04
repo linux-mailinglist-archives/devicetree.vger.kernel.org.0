@@ -2,68 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D45134F1EE3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 572D94F1E82
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:25:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243718AbiDDWDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 18:03:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34768 "EHLO
+        id S230034AbiDDWDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 18:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348659AbiDDV4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:56:19 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F4BE377C1;
-        Mon,  4 Apr 2022 14:39:45 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id q129so11463583oif.4;
-        Mon, 04 Apr 2022 14:39:45 -0700 (PDT)
+        with ESMTP id S1381751AbiDDWBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 18:01:06 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BB5B48E58;
+        Mon,  4 Apr 2022 14:42:20 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id 12so11433450oix.12;
+        Mon, 04 Apr 2022 14:42:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7tFfq7b9VmjLYZDsJ/VEXlvRsUPqYtmmK37aE7ANU+M=;
-        b=ZNvi1tVMGDV6rReUc4VOfbVNyYwnvadh06x83N6H46vkptRqW8JtjeFQZZPA2Jdugt
-         wNecGghp6O1SPrcSRhkZLN4klmjUqmdHKsQskJEePAls4Gkxa/iN+mnnJyeZB/Dw1mlv
-         9eslbOqjPc2AU8DYy3P/oIA+qeRFlxqMWEIrx+jeahG8efQhXG9xnTw6Y1jVIc7HKnN1
-         1KaIUP1CIc2o13jyK5yctw2JaFLCWyJLpyXrrnXDglHZthdFxcpAYix+wpSuoawSIRBK
-         AkfqXT561YI3U4nk0Lq9l3NaOsWj6ysVbh5sWpTTFqqgibRYZHpT5phNkrVGS2c4fKsX
-         JHLA==
-X-Gm-Message-State: AOAM530S3y6gNK69EmrMr+q1Tt/ndUqn1OukE3aiu+8xItEDTTR4sJdZ
-        SviWyCVEtkY7L0yS0GNSJw==
-X-Google-Smtp-Source: ABdhPJwkBPHU37YXSW5i6D/bqu8AoWhmIEwdQoN/DKhZoQsz4VSfS5CXi9L73ed5EDEGtbUx9amVxA==
-X-Received: by 2002:a05:6808:8c4:b0:2da:575e:3402 with SMTP id k4-20020a05680808c400b002da575e3402mr143772oij.8.1649108384382;
-        Mon, 04 Apr 2022 14:39:44 -0700 (PDT)
+        bh=uc3yH/jG3sBllzxTBICCkefelRQR1XgnPj3KbXvbVCQ=;
+        b=7rWW5ZQnTnCtCjPYmwiy8lvKFYcRW7epgyJ6rzfQdAknMwSZxcVFiL28/balsSCuGh
+         ye2PyaMppGzhfKRBLyh0C2hhI+aHq3IM0VShaxk90WJSLADlDL/Z4yXDmo/JS6q/fLJa
+         J77ZwXCi/hJPa3CMNp/eCtu6Z2CWYdLvBuESXhQs9/kLf03RjT7EDD7d/IamMSNHiN31
+         sCLf5LiqP8nGxXiT/5dsl99wXf6YelpKoD61EOgg/CWxvFdrX9XujdOZbEjDxbqiC1ou
+         rvDueI/PzwMVM2ZUhBx9d5zkSC/YmA77JnsIhp/4HZyDWI6jzUwYLDyPFe7ep1BJqzsT
+         fjUw==
+X-Gm-Message-State: AOAM532fhwOnRxJCqDCBGqRBn/JvoaIeDzmKNHLJS+3ZNSxLP09rcw2v
+        FNleivYkrs4YRR9X6c/MIWwWl8xTlQ==
+X-Google-Smtp-Source: ABdhPJxHw7bHJudtfLTQCO8oKlv8FHP+ZChE+ETXaBzSBI9Iphp6FXy94+GdG1dh6KtJdDrJQdpgVQ==
+X-Received: by 2002:a05:6808:179a:b0:2ef:8a55:b947 with SMTP id bg26-20020a056808179a00b002ef8a55b947mr141706oib.95.1649108539523;
+        Mon, 04 Apr 2022 14:42:19 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id el17-20020a056870f69100b000de9672ac3csm4644917oab.52.2022.04.04.14.39.43
+        by smtp.gmail.com with ESMTPSA id e9-20020a056820060900b003216277bfdasm4461315oow.19.2022.04.04.14.42.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 14:39:44 -0700 (PDT)
-Received: (nullmailer pid 2033895 invoked by uid 1000);
-        Mon, 04 Apr 2022 21:39:43 -0000
-Date:   Mon, 4 Apr 2022 16:39:43 -0500
+        Mon, 04 Apr 2022 14:42:18 -0700 (PDT)
+Received: (nullmailer pid 2038274 invoked by uid 1000);
+        Mon, 04 Apr 2022 21:42:18 -0000
+Date:   Mon, 4 Apr 2022 16:42:18 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bean Huo <beanhuo@micron.com>, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Andy Gross <agross@kernel.org>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Avri Altman <avri.altman@wdc.com>, linux-scsi@vger.kernel.org,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Taniya Das <tdas@codeaurora.org>, linux-clk@vger.kernel.org,
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>
-Subject: Re: [RFC PATCH 2/4] dt-bindings: ufs: common: allow OPP table
-Message-ID: <Yktln5RQN34SDruG@robh.at.kernel.org>
-References: <20220401145820.1003826-1-krzysztof.kozlowski@linaro.org>
- <20220401145820.1003826-3-krzysztof.kozlowski@linaro.org>
+        Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [RFT PATCH 1/2] regulator: dt-bindings: richtek,rt4801: use
+ existing ena_gpiod feature
+Message-ID: <YktmOhXnZ0Amxcov@robh.at.kernel.org>
+References: <20220401154237.1061331-1-krzysztof.kozlowski@linaro.org>
+ <20220401154237.1061331-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220401145820.1003826-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220401154237.1061331-2-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -75,16 +66,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Apr 2022 16:58:18 +0200, Krzysztof Kozlowski wrote:
-> Except scaling UFS and bus clocks, it's necessary to scale also the
-> voltages of regulators or power domain performance state levels.  Adding
-> Operating Performance Points table allows to adjust power domain
-> performance state, depending on the UFS clock speed.
+On Fri, 01 Apr 2022 17:42:36 +0200, Krzysztof Kozlowski wrote:
+> The binding and driver duplicated regulator core feature of controlling
+> regulators with GPIOs (of_parse_cb + ena_gpiod) and created its own
+> enable-gpios property with multiple GPIOs.
+> 
+> This is a less preferred way, because enable-gpios should enable only one
+> element, not multiple. It also duplicates existing solution.
+> 
+> Deprecate the original 'enable-gpios' and add per-regulator property.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/ufs/ufs-common.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../regulator/richtek,rt4801-regulator.yaml        | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
