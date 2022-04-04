@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9B114F1B63
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 552A24F1B31
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232254AbiDDVUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60902 "EHLO
+        id S1379507AbiDDVTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:19:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380003AbiDDShz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 14:37:55 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C32031376
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 11:35:59 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id m12-20020a17090b068c00b001cabe30a98dso114628pjz.4
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 11:35:59 -0700 (PDT)
+        with ESMTP id S1380004AbiDDSiL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 14:38:11 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3041A31376
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 11:36:15 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id 125so730504pgc.11
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 11:36:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=O5NXzUKi7lG8omjehF6ll46xVRrxTpsNVjup9N0vjBM=;
-        b=CAC/5Pvw6HToCTD8lI891l/GljiVlyrDdZLqhr5wWUnt4tiSGWHUDcTeDYfoxoPIQQ
-         ys1v0mc27goZLiyvMztP2Hen/fPobbLp8kzBYrgXcFFmD5/59Qux89NMaIFunJG/hK8V
-         aARHACXixcREsrN7UY7sufnRolcP2NI5Rut7Vpk85hNmlRDis5uo+IpQVl5cGHNSP0jm
-         PpPc6SxHffN6KQscvlCirPC6t75sJZTmyM5gfJQEf9nSLnTUJ5bvnhEBy53jT8Uk+fqO
-         F0ZN2a5i9SCc8a3y0b8eFqjk6Vi/pp8DxnPdsEQ9Tva5sr41mnf5AD5F5GW1grPbKN8Q
-         OpCw==
+        bh=qJsHZoTP2Sj7OsbZwNymXj+dVe3rS9SP0Yyr2r47gYg=;
+        b=Q5CvbrPqoFfhjb6eJnN75Xbb5tDJFT5y0knksaPv04uRIVg7ljVSquvAew0+2W08kE
+         DtqMiEKAMCWsJm9MGS9NgLv2AZAClnharU319dJj6Pl82sw9K0bXor6oZojTVTnSlGx2
+         5+LH5SywpSzmj9KObdIgJXVMN1+EXsRs/JK8rbbIxk8je2Det/b53QwgXO6RhEiR2SaH
+         5BMiiq67DvVeyUex0tMFMwmjpvUv9bCHCPafzIyBRsaB0n3uA6fibNLjfiB6cEu4rHSG
+         ibkFeTNnnyC7YjvSRiiR8Br3q6611vOMnxBG/GPcpv+KMbP4LRRZyMQ8hkzsF+iRlCgx
+         EVAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=O5NXzUKi7lG8omjehF6ll46xVRrxTpsNVjup9N0vjBM=;
-        b=nBv6ePAkg5TGmG3IiLKW/nbgdRUfVAs+gPgOPNjyppaO4bfFPSvWRSI+g7tbh5GPl9
-         0C2alnQrmWlBY3WJ0Iq42RZqwwo743uABkHoYeBzyQctROW61YwH9RIUfW7OoLewWDsq
-         slSqgtiEjDDB8+NC4ZYCwr/8O0kmELUAE6ps6pjQ3lsQGsN+ZGS67Anro5rvHmrlKmpB
-         Xgt97HM6qQXu/gnBhiOBJUyv+PW/jMdyRCcA00ojLFlkm234KoybVf2L0R+Kd5U/9DUx
-         vNg+X2ioeNruTUQ7TLJ/tLIRM/Q5VdTb9wvdZ4QOdGekoLY9cmTgZJahKoSO5rVpuW9s
-         E18w==
-X-Gm-Message-State: AOAM532/JSjPueGbbWqhnafbHfbVN9NMKbVKY80xyc6zWMfJsbnKvEPP
-        FycmqAPdGrY+0LqcBGC16I4=
-X-Google-Smtp-Source: ABdhPJxheQw5VcYhM3jgKB9d1fbPcl0XXEtvMq1vrTua6IWGdMbsIhtcbU0Sh5KHvIZB+Ocr7lDmvg==
-X-Received: by 2002:a17:902:e94f:b0:14f:1636:c8a8 with SMTP id b15-20020a170902e94f00b0014f1636c8a8mr993878pll.130.1649097358859;
-        Mon, 04 Apr 2022 11:35:58 -0700 (PDT)
+        bh=qJsHZoTP2Sj7OsbZwNymXj+dVe3rS9SP0Yyr2r47gYg=;
+        b=gRfE4EX1SVT3ubHyKerObdtrMA5WxHCCLlb7N50D8LN9FwL4sEB7YaGmgQUnOI5ktl
+         gu/ev6nmWe4C59A6CEMRtntg1GeOiPJtiBS2BJt5t5eFdIHfQQHuBKw/rkwOvQcWnH13
+         03LqXHlR95q7wc3HIxvl8oIfND8hN/RVYfe4lsuZmhKNa3jI59zOdU4TAgd2SHCXACPu
+         ZPRVWXsEKsCCV2jNpLTqGVyLk5Zw/vDTK8uvLzidBPc/sC3UKPMP5UvPEqnYXjIK7iiL
+         XlguHC69M4srTv9+jVYOfylU6CBw8vVq3koE8WmMelwnjZh85hYO2EheIQGZu3qEEeG0
+         N/fw==
+X-Gm-Message-State: AOAM532Z8Mwshvh/3ZSs6BQTEFQ2GcAZrcCOINVzx5Zv+YcjUL8UESQh
+        bHbEHWep8btlyqAsD/vGz9zloHwNR5g=
+X-Google-Smtp-Source: ABdhPJz1SsD+TzERp5WoSKTwq5gQLmfK7dogpKDSM7+mmNlWjJxUJGBCRUKvYcTah7jN4JbnRSYHjA==
+X-Received: by 2002:a63:6c02:0:b0:398:833b:f739 with SMTP id h2-20020a636c02000000b00398833bf739mr1047198pgc.524.1649097374656;
+        Mon, 04 Apr 2022 11:36:14 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id g12-20020a056a001a0c00b004e1307b249csm13245796pfv.69.2022.04.04.11.35.56
+        by smtp.gmail.com with ESMTPSA id i7-20020a628707000000b004fa6eb33b02sm12801939pfe.49.2022.04.04.11.36.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 11:35:58 -0700 (PDT)
+        Mon, 04 Apr 2022 11:36:13 -0700 (PDT)
 From:   Florian Fainelli <f.fainelli@gmail.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         =?iso-8859-9?b?QXL9bucg3E5BTA==?= <arinc.unal@arinc9.com>
@@ -54,12 +54,12 @@ Cc:     =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
         Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/5] ARM: dts: BCM5301X: Remove cell properties from srab ports on Asus RT-AC88U
-Date:   Mon,  4 Apr 2022 11:35:56 -0700
-Message-Id: <20220404183556.2316795-1-f.fainelli@gmail.com>
+Subject: Re: [PATCH 3/5] ARM: dts: BCM5301X: Add rgmii to port@5 of Broadcom switch on Asus RT-AC88U
+Date:   Mon,  4 Apr 2022 11:36:12 -0700
+Message-Id: <20220404183612.2316906-1-f.fainelli@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220401102002.15765-2-arinc.unal@arinc9.com>
-References: <20220401102002.15765-1-arinc.unal@arinc9.com> <20220401102002.15765-2-arinc.unal@arinc9.com>
+In-Reply-To: <20220401102002.15765-3-arinc.unal@arinc9.com>
+References: <20220401102002.15765-1-arinc.unal@arinc9.com> <20220401102002.15765-3-arinc.unal@arinc9.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -73,10 +73,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  1 Apr 2022 13:19:59 +0300, Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
-> Remove #address-cells and #size-cells properties from the ports node of
-> &srab. They are already defined on bcm5301x.dtsi, there's no need to define
-> them again.
+On Fri,  1 Apr 2022 13:20:00 +0300, Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
+> Define phy-mode of the Broadcom switch's port@5 as rgmii. This doesn't seem
+> to matter but let's explicitly define it since phy-mode as rgmii is defined
+> on the other side which is port@6 of the Realtek switch.
 > 
 > Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
