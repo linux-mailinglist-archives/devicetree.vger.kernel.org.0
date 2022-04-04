@@ -2,318 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 964154F1101
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 10:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4053B4F1119
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 10:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbiDDIc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 04:32:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48442 "EHLO
+        id S234463AbiDDImf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 04:42:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238183AbiDDIci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 04:32:38 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D1F3584C;
-        Mon,  4 Apr 2022 01:30:40 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A5B9D2000D;
-        Mon,  4 Apr 2022 08:30:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649061038;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=c0zr7u2ZGW8b7dHqUeFZDVs8y9pfDOaTguMgL52CwSQ=;
-        b=mNvAz6VXb3UrSawFLoHLhwcW5kR0Ctm1Y4waL3DSwT6opGruoUUiAuaqXA6kibzEb1O9Ah
-        ZYAd/WILTHfI41H4Cy4QCswuL5xBcLurwaeDRWrqp/QXKd+jcsD9e0XzI7R87MAfgV3VIR
-        y1BrI/WIhto3s06zapyK0ngt2z7U1XXyle05/VL1Sgqm34jjFxf4HL/Wsti3YvV+V6Lwgq
-        Vlqf/3D99xE6KrMFxFGcThuJFqssnri/hlMcGIR3fVp5dL4vBBZ7eiHgbtzWNS7SxSWTPo
-        phdpK/cQT7YprV1vf4oi3sXNN4Dn3detD3qkvxH9S6Ft/y/RwCUGbCxEv6NcXg==
-Date:   Mon, 4 Apr 2022 10:30:34 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Liang Yang <liang.yang@amlogic.com>
-Cc:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <20220404103034.48ec16b1@xps13>
-In-Reply-To: <20220402074921.13316-2-liang.yang@amlogic.com>
-References: <20220402074921.13316-1-liang.yang@amlogic.com>
-        <20220402074921.13316-2-liang.yang@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S232894AbiDDIme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 04:42:34 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7907C3AA52;
+        Mon,  4 Apr 2022 01:40:38 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 78AFE1F45934
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649061637;
+        bh=cyY2WRTj47ZWJuah+bRJ1PD2Fc40hBw+zYOhIhaJPuc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WqS3FMiZNnwkL8MZxuq/MhThpgxdfwDs9pYEIBv5FN3ri911cZtLdCTcJVlJzxuzy
+         iRqq4fZsV0V8rXFv2HFLar3p4+l/83ofGVGKyT7cNLAEl/dh14TygAFNTF+zDONvxE
+         k1vN+MTKfWJPlcBoHSleLh7cB+bp0I16OncVTp/n9o9zdRa2UWxNMAKPe+O9QFyQp7
+         IYCqq0eFrC2mBy2W7jEKN+kRfaIs5gduNuC86JSGUyDKtPgGKSVUkGFlOp9BgsGIqO
+         TcDxXLq9BJPCHYGxAOnKY7WimvWh6Cwa2SzfDg6Mzq3poZRWMSjS9lNXSNKCwwfp6L
+         lr7HVyV3odKpw==
+Message-ID: <7775eb70-692f-3f1b-f226-f7e0fad47e37@collabora.com>
+Date:   Mon, 4 Apr 2022 10:40:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: syscon: Add support for regmap
+ fast-io
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        lee.jones@linaro.org
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, arnd@arndb.de,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, nfraprado@collabora.com,
+        kernel@collabora.com
+References: <20220401135048.23245-1-angelogioacchino.delregno@collabora.com>
+ <20220401135048.23245-3-angelogioacchino.delregno@collabora.com>
+ <8588a941-6d3e-9e14-cb21-d7af29b4b2bd@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <8588a941-6d3e-9e14-cb21-d7af29b4b2bd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
+Il 02/04/22 13:38, Krzysztof Kozlowski ha scritto:
+> On 01/04/2022 15:50, AngeloGioacchino Del Regno wrote:
+>> The syscon driver now enables the .fast_io regmap configuration when
+>> the 'fast-io' property is found in a syscon node.
+>>
+>> Keeping in mind that, in regmap, fast_io is checked only if we are
+>> not using hardware spinlocks, allow the fast-io property only if
+>> there is no hwlocks reference (and vice-versa).
+> 
+> I have doubts you need a property for this. "fast" is subjective in
+> terms of hardware, so this looks more like a software property, not
+> hardware.
+> 
+> I think most of MMIOs inside a SoC are considered fast. Usually also the
+> syscon/regmap consumer knows which regmap it gets, so knows that it is
+> fast or not.
+> 
 
-liang.yang@amlogic.com wrote on Sat, 2 Apr 2022 15:49:19 +0800:
+Hello Krzysztof,
 
-> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' =
-which is
-> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider=
- and
-> bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock ha=
-s been
-> implemented and can be used by the eMMC and NAND controller (which are mu=
-tually
-> exclusive anyway). Let's use this new clock.
->=20
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 89 +++++++++++++++----------------
->  1 file changed, 42 insertions(+), 47 deletions(-)
->=20
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/mes=
-on_nand.c
-> index ac3be92872d0..1b1a9407fb2f 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -10,6 +10,7 @@
->  #include <linux/dma-mapping.h>
->  #include <linux/interrupt.h>
->  #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/mtd/rawnand.h>
->  #include <linux/mtd/mtd.h>
->  #include <linux/mfd/syscon.h>
-> @@ -19,6 +20,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/of_address.h>
->  #include <linux/sched/task_stack.h>
-> =20
->  #define NFC_REG_CMD		0x00
-> @@ -104,6 +106,9 @@
-> =20
->  #define PER_INFO_BYTE		8
-> =20
-> +#define CLK_DIV_SHIFT		0
-> +#define CLK_DIV_WIDTH		6
-> +
->  struct meson_nfc_nand_chip {
->  	struct list_head node;
->  	struct nand_chip nand;
-> @@ -151,15 +156,15 @@ struct meson_nfc {
->  	struct nand_controller controller;
->  	struct clk *core_clk;
->  	struct clk *device_clk;
-> -	struct clk *phase_tx;
-> -	struct clk *phase_rx;
-> +	struct clk *nand_clk;
-> +	struct clk_divider nand_divider;
-> =20
->  	unsigned long clk_rate;
->  	u32 bus_timing;
-> =20
->  	struct device *dev;
->  	void __iomem *reg_base;
-> -	struct regmap *reg_clk;
-> +	void __iomem *sd_emmc_clock;
->  	struct completion completion;
->  	struct list_head chips;
->  	const struct meson_nfc_data *data;
-> @@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip *n=
-and, int chip)
->  	nfc->timing.tbers_max =3D meson_chip->tbers_max;
-> =20
->  	if (nfc->clk_rate !=3D meson_chip->clk_rate) {
-> -		ret =3D clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
-> +		ret =3D clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
->  		if (ret) {
->  			dev_err(nfc->dev, "failed to set clock rate\n");
->  			return;
-> @@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, =
-int timeout_ms)
->  	cmd =3D NFC_CMD_RB | NFC_CMD_RB_INT
->  		| nfc->param.chip_select | nfc->timing.tbers_max;
->  	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> -
+well yes, this property is changing how software behaves - specifically,
+as you've correctly understood, what regmap does.
 
-Please avoid these spacing changes in the middle of a commit.
-
->  	ret =3D wait_for_completion_timeout(&nfc->completion,
->  					  msecs_to_jiffies(timeout_ms));
->  	if (ret =3D=3D 0)
-> @@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops meson_ooblayou=
-t_ops =3D {
->  	.free =3D meson_ooblayout_free,
->  };
-> =20
-> +struct clk_parent_data nfc_divider_parent_data[1];
->  static int meson_nfc_clk_init(struct meson_nfc *nfc)
->  {
->  	int ret;
-> +	struct clk_init_data init =3D {0};
-> =20
->  	/* request core clock */
->  	nfc->core_clk =3D devm_clk_get(nfc->dev, "core");
-> @@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc *n=
-fc)
->  		return PTR_ERR(nfc->device_clk);
->  	}
-> =20
-> -	nfc->phase_tx =3D devm_clk_get(nfc->dev, "tx");
-> -	if (IS_ERR(nfc->phase_tx)) {
-> -		dev_err(nfc->dev, "failed to get TX clk\n");
-> -		return PTR_ERR(nfc->phase_tx);
-> -	}
-> -
-> -	nfc->phase_rx =3D devm_clk_get(nfc->dev, "rx");
-> -	if (IS_ERR(nfc->phase_rx)) {
-> -		dev_err(nfc->dev, "failed to get RX clk\n");
-> -		return PTR_ERR(nfc->phase_rx);
-> -	}
-> +	init.name =3D devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
-> +	init.ops =3D &clk_divider_ops;
-> +	nfc_divider_parent_data[0].fw_name =3D "device";
-> +	init.parent_data =3D nfc_divider_parent_data;
-> +	init.num_parents =3D 1;
-> +	nfc->nand_divider.reg =3D nfc->sd_emmc_clock;
-> +	nfc->nand_divider.shift =3D CLK_DIV_SHIFT;
-> +	nfc->nand_divider.width =3D CLK_DIV_WIDTH;
-> +	nfc->nand_divider.hw.init =3D &init;
-> +	nfc->nand_divider.flags =3D CLK_DIVIDER_ONE_BASED |
-> +				  CLK_DIVIDER_ROUND_CLOSEST |
-> +				  CLK_DIVIDER_ALLOW_ZERO;
-> +
-> +	nfc->nand_clk =3D devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
-> +	if (IS_ERR(nfc->nand_clk))
-> +		return PTR_ERR(nfc->nand_clk);
-> =20
->  	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
-> -	regmap_update_bits(nfc->reg_clk,
-> -			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
-> +	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
-> +	       nfc->sd_emmc_clock);
-> =20
->  	ret =3D clk_prepare_enable(nfc->core_clk);
->  	if (ret) {
-> @@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc *n=
-fc)
->  		goto err_device_clk;
->  	}
-> =20
-> -	ret =3D clk_prepare_enable(nfc->phase_tx);
-> +	ret =3D clk_prepare_enable(nfc->nand_clk);
->  	if (ret) {
-> -		dev_err(nfc->dev, "failed to enable TX clock\n");
-> -		goto err_phase_tx;
-> +		dev_err(nfc->dev, "pre enable NFC divider fail\n");
-> +		goto err_nand_clk;
->  	}
-> =20
-> -	ret =3D clk_prepare_enable(nfc->phase_rx);
-> -	if (ret) {
-> -		dev_err(nfc->dev, "failed to enable RX clock\n");
-> -		goto err_phase_rx;
-> -	}
-> -
-> -	ret =3D clk_set_rate(nfc->device_clk, 24000000);
-> +	ret =3D clk_set_rate(nfc->nand_clk, 24000000);
-
-Is this rename really useful?
-
->  	if (ret)
-> -		goto err_disable_rx;
-> +		goto err_disable_clk;
-> =20
->  	return 0;
-> =20
-> -err_disable_rx:
-> -	clk_disable_unprepare(nfc->phase_rx);
-> -err_phase_rx:
-> -	clk_disable_unprepare(nfc->phase_tx);
-> -err_phase_tx:
-> +err_disable_clk:
-> +	clk_disable_unprepare(nfc->nand_clk);
-> +err_nand_clk:
->  	clk_disable_unprepare(nfc->device_clk);
->  err_device_clk:
->  	clk_disable_unprepare(nfc->core_clk);
-> @@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
-> =20
->  static void meson_nfc_disable_clk(struct meson_nfc *nfc)
->  {
-> -	clk_disable_unprepare(nfc->phase_rx);
-> -	clk_disable_unprepare(nfc->phase_tx);
-> +	clk_disable_unprepare(nfc->nand_clk);
->  	clk_disable_unprepare(nfc->device_clk);
->  	clk_disable_unprepare(nfc->core_clk);
->  }
-> @@ -1374,7 +1376,6 @@ static int meson_nfc_probe(struct platform_device *=
-pdev)
->  {
->  	struct device *dev =3D &pdev->dev;
->  	struct meson_nfc *nfc;
-> -	struct resource *res;
->  	int ret, irq;
-> =20
->  	nfc =3D devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
-> @@ -1388,21 +1389,15 @@ static int meson_nfc_probe(struct platform_device=
- *pdev)
->  	nand_controller_init(&nfc->controller);
->  	INIT_LIST_HEAD(&nfc->chips);
->  	init_completion(&nfc->completion);
-> -
-
-Please don't modify spacing in this commit.
-
->  	nfc->dev =3D dev;
-> =20
-> -	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	nfc->reg_base =3D devm_ioremap_resource(dev, res);
-> +	nfc->reg_base =3D devm_platform_ioremap_resource_byname(pdev, "nfc");
-
-This change seems unrelated.
-
->  	if (IS_ERR(nfc->reg_base))
->  		return PTR_ERR(nfc->reg_base);
-> =20
-> -	nfc->reg_clk =3D
-> -		syscon_regmap_lookup_by_phandle(dev->of_node,
-> -						"amlogic,mmc-syscon");
-> -	if (IS_ERR(nfc->reg_clk)) {
-> -		dev_err(dev, "Failed to lookup clock base\n");
-> -		return PTR_ERR(nfc->reg_clk);
-> -	}
-> +	nfc->sd_emmc_clock =3D devm_platform_ioremap_resource_byname(pdev, "emm=
-c");
-> +	if (IS_ERR(nfc->sd_emmc_clock))
-> +		return PTR_ERR(nfc->sd_emmc_clock);
-
-While I agree this is much better than the previous solution, we cannot
-break DT compatibility, so you need to try getting the emmc clock, but
-if it fails you should fallback to the regmap lookup.
-
-> =20
->  	irq =3D platform_get_irq(pdev, 0);
->  	if (irq < 0)
+It's true that most of MMIOs inside a SoC are considered fast.. the word "most" is
+the exact reason why I haven't proposed simply hardcoding '.fast_io = true' in
+syscon, or in regmap-mmio...
+There are too many different SoCs around, and I didn't want to end up breaking
+anything (even if it should be unlikely, since MMIO is fast by principle).
 
 
-Thanks,
-Miqu=C3=A8l
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   Documentation/devicetree/bindings/mfd/syscon.yaml | 15 +++++++++++++++
+>>   1 file changed, 15 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> index 13baa452cc9d..85a2e83b5861 100644
+>> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> @@ -83,11 +83,26 @@ properties:
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>       enum: [1, 2, 4, 8]
+>>   
+>> +  fast-io:
+>> +    description:
+>> +      Indicates that this bus has a very fast IO, for which
+>> +      acquiring a mutex would be significant overhead.
+>> +      When present, regmap will use a spinlock instead.
+> 
+> Regmap is current implementation behind this, but it's not related to
+> hardware, so how about removing it from the description? Something like:
+> "..., for which different locking methods should be used to reduce
+> overhead (e.g. spinlock instead of mutex)."
+> 
+
+That's a very good point. I didn't think about any future in which the
+implementation would be changed from regmap to *new-name-here*... but
+anyway it makes a lot more sense to "speak generic".
+
+I'll change the description to match your proposal, thank you!
+
+Regards,
+Angelo
