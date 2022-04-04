@@ -2,82 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7D64F1AA3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A7F4F1A6B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379105AbiDDVSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:18:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
+        id S1378929AbiDDVSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380271AbiDDT0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:26:43 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DDA26AD7;
-        Mon,  4 Apr 2022 12:24:46 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so11875132fac.11;
-        Mon, 04 Apr 2022 12:24:46 -0700 (PDT)
+        with ESMTP id S1380319AbiDDTbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 15:31:31 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF7620F41
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 12:29:34 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id j8so8952782pll.11
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 12:29:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QQK0u/1t7bvu65SH9gfd8Qr6GQ/JS9W+uuml8zfn2a8=;
+        b=IRWgirC5/1yGKC93yfne3OYdJ9pDqFar0lGl96/Rld12mFQXDom5GO2t3ivbkNXrhT
+         D2ssZXTI29QCSnDpT3Pk0vtss/PaHY9XNbsi+5Za9AftTNY5MYiexE5fwjeNKtBhMlrw
+         NQ/nd+Fo5EaGA64McZZ2M64G+/+J+4ViGHfCc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=W7BmPjDsiJqSdp1KQNF4ZYLKk49e0AnrVNuDfyEyNeA=;
-        b=hV1Iym5ezIj3nt0TDYyCBPOf3kUwk83kxlpWIqxQmoDv/udzoZhDOagsdD3cBYOIU1
-         fOWkYvddroGMEVRwbhVftHiEwoGICDE8fP2cKrFr1SBNKJs2GAINXQv6Psi9bv0a9ER/
-         ox/f+CD0lDE+Aoi833oQ50aFFhGKqD4MvQAM7kHkqKZMDsstkgtiSBcVYHH4mWLX61z0
-         0fFgh14z5TV/z+O/FavO0f7CpZmCjKhDp4XknyPue9Sk1L+Hw49r6NU1ayaOhFFmeTK/
-         sXQSrWedt1CWDaXf+DXtoMPact4uhohmFd3+XsW5FkgJoxu6JDqExQvO2CdQ2udstTYr
-         xQIg==
-X-Gm-Message-State: AOAM531B/TkKPl3OE3G1ac7oJeE3z+GTHdpbVQRbci+RqfCZsijHbioq
-        N/QiCmg7XCRxRS+g/XxIww==
-X-Google-Smtp-Source: ABdhPJzl8vZURA8mEdnrAQgV3r1N/Hltsq8z2L/EsYmRGyJYHH8jjMFJnN9tDdxbDaqV7KSSj9srfw==
-X-Received: by 2002:a05:6870:5884:b0:dd:af00:a8c7 with SMTP id be4-20020a056870588400b000ddaf00a8c7mr383169oab.209.1649100286185;
-        Mon, 04 Apr 2022 12:24:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 1-20020a05687011c100b000de98359b43sm4672349oav.1.2022.04.04.12.24.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 12:24:45 -0700 (PDT)
-Received: (nullmailer pid 1805933 invoked by uid 1000);
-        Mon, 04 Apr 2022 19:24:45 -0000
-Date:   Mon, 4 Apr 2022 14:24:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 03/13] dt-bindings: clock: Add r9a09g011 CPG Clock
- Definitions
-Message-ID: <YktF/YDoB4nIXXfm@robh.at.kernel.org>
-References: <20220330154024.112270-1-phil.edworthy@renesas.com>
- <20220330154024.112270-4-phil.edworthy@renesas.com>
+        bh=QQK0u/1t7bvu65SH9gfd8Qr6GQ/JS9W+uuml8zfn2a8=;
+        b=jDIkkSD0Wdryx+HTF7gfyMcJdYJ06c1P7W7FOEAhWZgK3JZ25IMubkfTbc1hkUEN1W
+         gtBtTe7LTjjs6GHZYOZ2MSZaBlN6i9hZcewMTMpfLlq0xWHisLkmQq8/RisKX205Xq1g
+         xpOmWtrJJ1pzqYn+/NlP9+gG8IHzTR4hO8dm3RExJrzPpuo2hTQAp8U0881EAh12OvLH
+         IGyUpB/LVFNRLwPGhVJeveJnZwRCtMbsSxUMa62D0mRdADZS4TErTme01cd4EiLwEhsd
+         azHnlvuicmiUQOr8Dbo34cuJ2uwC5MONS3KgRuojGROmQarveewXwdrNjPnWiRpsQYbb
+         S01A==
+X-Gm-Message-State: AOAM533GeAjDN+iYErEEO7gL4MwOAMLWek4WU/g/SoJJj8DZMCqzn0z+
+        sUwvaCZmNJFYbx5WXPPnTEBDWw==
+X-Google-Smtp-Source: ABdhPJx69pSWNGeNxYAX4SX/Q4krTcMRZC4c2fenVI8+/TCxfsHtHPUxT4/uYSVl3XeN8u4J+LX0/g==
+X-Received: by 2002:a17:902:bf06:b0:156:af5b:e6c with SMTP id bi6-20020a170902bf0600b00156af5b0e6cmr1469346plb.147.1649100574399;
+        Mon, 04 Apr 2022 12:29:34 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:1ebc:cb71:2a38:38db])
+        by smtp.gmail.com with UTF8SMTPSA id k18-20020a056a00135200b004fb18fc6c78sm13294266pfu.31.2022.04.04.12.29.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 12:29:34 -0700 (PDT)
+Date:   Mon, 4 Apr 2022 12:29:32 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
+Message-ID: <YktHHOww7VkbIxfE@google.com>
+References: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220330154024.112270-4-phil.edworthy@renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Mar 2022 16:40:14 +0100, Phil Edworthy wrote:
-> Define RZ/V2M (R9A09G011) Clock Pulse Generator core clocks, module clock
-> outputs (CPG_CLK_ON* registers), and reset definitions (CPG_RST_*
-> registers) in Section 48.5 ("Register Description") of the RZ/V2M Hardware
-> User's Manual (Rev. 1.10, Sep. 2021).
+On Mon, Mar 28, 2022 at 12:40:57PM +0530, Manikanta Pubbisetty wrote:
+> Add DTS node for WCN6750 WiFi chipset.
 > 
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > ---
->  include/dt-bindings/clock/r9a09g011-cpg.h | 337 ++++++++++++++++++++++
->  1 file changed, 337 insertions(+)
->  create mode 100644 include/dt-bindings/clock/r9a09g011-cpg.h
+> Depends on:
+> - https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/
+> - https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/
 > 
+> Changes from V2:
+> - Changes based on DT binding concerns
+> - Rebased on ToT
+> 
+> Changes from V1:
+> - Corrected the case for hex values
+> 
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
+>  2 files changed, 53 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 069ffbc37bc4..a82e9aa7bdc5 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -551,3 +551,10 @@ &remoteproc_wpss {
+>  	status = "okay";
+>  };
+>  
+> +&wifi {
+> +	status = "okay";
+> +	wifi-firmware {
+> +		iommus = <&apps_smmu 0x1c02 0x1>;
+> +	};
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index b757e8ad1199..dfd9fa077903 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -85,6 +85,11 @@ reserved-memory {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> +		wlan_ce_mem: memory@4cd000 {
+> +			no-map;
+> +			reg = <0x0 0x4cd000 0x0 0x1000>;
 
-Acked-by: Rob Herring <robh@kernel.org>
+Pad the address to 8 digits here (not in the node name).
+
+> +		};
+> +
+>  		hyp_mem: memory@80000000 {
+>  			reg = <0x0 0x80000000 0x0 0x600000>;
+>  			no-map;
+> @@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		wifi: wifi@17a10040 {
+> +			compatible = "qcom,wcn6750-wifi";
+> +			reg = <0 0x17a10040 0 0x0>;
+> +			iommus = <&apps_smmu 0x1c00 0x1>;
+> +			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
+> +			qcom,rproc = <&remoteproc_wpss>;
+> +			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
+
+Where is 'wlan_fw_mem' added?
