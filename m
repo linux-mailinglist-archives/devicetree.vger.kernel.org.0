@@ -2,167 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD154F1ACD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18ED74F1ADA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Apr 2022 23:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345420AbiDDVTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38730 "EHLO
+        id S240540AbiDDVTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:19:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379402AbiDDRFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:05:54 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FCAF12086;
-        Mon,  4 Apr 2022 10:03:57 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bu29so18600074lfb.0;
-        Mon, 04 Apr 2022 10:03:57 -0700 (PDT)
+        with ESMTP id S1379424AbiDDRKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 13:10:22 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB1A140A22
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 10:08:25 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a6so10417880ejk.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 10:08:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JweidwxrjFhAI/2v7P1YrxPew3638Ty2dzeJpVrQWYE=;
-        b=I8pC/miIU61OHd5dqRJenQe4iwqEMNWcbRRJquHcwqrA41pIdbn+rDkftP4Wgy8De6
-         l2P/kMX+m1AlHndTCFw3I9e8C2PbWnptwDkLhCKGENUjppP00s+oaSpn30odJADOWz80
-         gZ8aVgizdoRJMD3T6AeNpo8DIwPDr87SzDVdFiM8OdSG4AmvAn65FA0Q/pYGDN1oIlao
-         +YKcox4/vRA3RiBKPCUROakAioTHX5ZKNwEvMn7A4BVVjmQPgHDz09Xezqhs7kUtDDfY
-         rUW3RKJYgdzLAkmjcApGuwZWiQMC6aAEsIC1HT66RK9v0vxmMklonMMLr9nzl3HGoQcI
-         8TDg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gE+w/j83z+j5pFEpkVfRt65zDyjwfQWBfmU3yi7pNz4=;
+        b=Z5ajhx0rAWO0B+WgSD8sPn72nbeudyCmwS5vob1s31OX28awvdfYeRSUPWxQ83CYqN
+         hypRsAR6KiJfB/q/j8/zF3XgpOot7kIuVUpOVaos4vDb3/Hj0NKYvIxsexoTTbAnn0NP
+         n5dFL7RqPfSwOOzeLar2e31X+N6WjT2x+Jb+pEYdCSwLxFNQAS/qhYlgfy8wFsRMnVR7
+         YOEcS69a37c86FD4YIPkA8JVYdhNMcrU8OhTtspKIRAJy05kRQeWe8wPYMXb9+GxLOuY
+         J4DRavI2x8ieDtRP6MOIdyyB3+GBSVET6KMXhaJZw9fAxWPz82aJlC8OGaD6VK8+DYpX
+         onhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JweidwxrjFhAI/2v7P1YrxPew3638Ty2dzeJpVrQWYE=;
-        b=nWUf9C3SEGVmGBxXGgqgOjKzTw5U8BMB1Ivzx6o7pKMu0Rv2z6cTt1h77mlrzvNYAm
-         2sg0tVAYvE5dTv+Rn9I9o1IwcT7k5/9CpbNYE0MFDq6Bo3dgz8gj0CBUd9l7pqHNMzbH
-         qZjCwV+PiiemdMDpIQzn+8Nt1mp15MtAvFkIEkX59Xm81fqARBQaSAcKgNiKUDBCnIA9
-         MIGr3RQXfyGJUfF7Pn3ifinQ3EaYkL4/Drh6g3JXt3jiwpI5mmV9E4QD6Eu3GcviZyYR
-         fwsSi9OspxO/y7ldlyC9hXvXzqFAPUPjpEFX/GMbIqCq1nfhRXn84j496BHrJ2AZ5x3L
-         WbkA==
-X-Gm-Message-State: AOAM5334RbHfa900H78JbYhacd6y6ejmGa2uu8LQCfFpsEQn/CCixLU+
-        6Ek5G9edFNbYcADMYqF4uCVLIYqyTueH/ZS+kzbGOaYq1A==
-X-Google-Smtp-Source: ABdhPJyWHkLML0CW+orqZVMU399DWfiqN//krw23FbqOQO+YZ/LLJNNX0j1rbJvWijFJbBpeNZJnAR2Kqa0Pofh74F8=
-X-Received: by 2002:ac2:4203:0:b0:448:8053:d402 with SMTP id
- y3-20020ac24203000000b004488053d402mr252549lfh.687.1649091835467; Mon, 04 Apr
- 2022 10:03:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gE+w/j83z+j5pFEpkVfRt65zDyjwfQWBfmU3yi7pNz4=;
+        b=PAzo1Jl/0t6wgnuGWPRDZz7a8MfTrAN9cjJ35SuhUGZJ2ty/AHl5if/Z79Ld1W/ELQ
+         s+FqEENwtP3PhLDZ1aVR1NuSDl0eNjWl5ly9EbskZZqzMP7xvS+e7EJTgyJjl8u7wYbZ
+         8hwJYLqyqWpDBDjJ/rOhUtJwqnhAhUcA7IyA8aqlD7RsBS9NG9tJJbJBVfS8tOO3yDFA
+         S4sDsldSeLZMHlhrI14YOL0NxVOWk67d/Nv9E2XMDv+CycXeo9o0+uEKZV22g+xX6Vgz
+         GJb/06qNqyWAkl2t9Sbgw+zFhCv4l587sbSpbMjiFp66ns6l7OZzcl4DB/MmUu35PB+V
+         RcmQ==
+X-Gm-Message-State: AOAM532qTvlQ7pHO9kDlEprpE0QNiQJb88hDRm+7iWgoYlI+ARhUMc05
+        8/LhhFULrqFMIKfyWPPbegFkew==
+X-Google-Smtp-Source: ABdhPJyIutBGaqFTl0dav6T/02/aRGrIX5ffFX87pkIS7/d7sWASJJUMEmE2oijmlP3Ba3tWeflKPA==
+X-Received: by 2002:a17:906:c111:b0:6db:cf0e:3146 with SMTP id do17-20020a170906c11100b006dbcf0e3146mr1108050ejc.280.1649092104286;
+        Mon, 04 Apr 2022 10:08:24 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id u25-20020a170906b11900b006e08588afedsm4565827ejy.132.2022.04.04.10.08.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Apr 2022 10:08:23 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     dinguyen@kernel.org, s.hauer@pengutronix.de,
+        Sherry Sun <sherry.sun@nxp.com>, michal.simek@xilinx.com,
+        shawnguo@kernel.org, bp@suse.de, robh+dt@kernel.org,
+        manish.narani@xilinx.com, krzk+dt@kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH V2 1/2] dt-bindings: memory: snps,ddrc-3.80a compatible also need interrupts
+Date:   Mon,  4 Apr 2022 19:08:17 +0200
+Message-Id: <164909209237.1690243.4980500786689807223.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220321075131.17811-2-sherry.sun@nxp.com>
+References: <20220321075131.17811-1-sherry.sun@nxp.com> <20220321075131.17811-2-sherry.sun@nxp.com>
 MIME-Version: 1.0
-References: <20220303083141.8742-1-warp5tw@gmail.com> <20220303083141.8742-10-warp5tw@gmail.com>
- <YiCaSSbbszm3qYIQ@smile.fi.intel.com> <CAHb3i=sStqdSpLKtF_UGmTsOssR_swssTd3pv6c2-z_kiUPTTA@mail.gmail.com>
- <YiDNDsPWKyaIUlQR@smile.fi.intel.com>
-In-Reply-To: <YiDNDsPWKyaIUlQR@smile.fi.intel.com>
-From:   Avi Fishman <avifishman70@gmail.com>
-Date:   Mon, 4 Apr 2022 20:03:44 +0300
-Message-ID: <CAKKbWA5FyCKTjEUw8rqtkoL7aw6f7Fa_QzcAkgaRnnUMTe0SKg@mail.gmail.com>
-Subject: Re: [PATCH v3 09/11] i2c: npcm: Handle spurious interrupts
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Tali Perry <tali.perry1@gmail.com>,
-        Tyrone Ting <warp5tw@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
-        Wolfram Sang <wsa@kernel.org>, jie.deng@intel.com,
-        sven@svenpeter.dev, bence98@sch.bme.hu,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, olof@lixom.net,
-        Tali Perry <tali.perry@nuvoton.com>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        Tomer Maimon <tomer.maimon@nuvoton.com>, KWLIU@nuvoton.com,
-        JJLIU0@nuvoton.com, kfting@nuvoton.com,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 3, 2022 at 4:14 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Mar 03, 2022 at 02:48:20PM +0200, Tali Perry wrote:
-> > > On Thu, Mar 3, 2022 at 12:37 PM Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > > >
-> > > > On Thu, Mar 03, 2022 at 04:31:39PM +0800, Tyrone Ting wrote:
-> > > > > From: Tali Perry <tali.perry1@gmail.com>
-> > > > >
-> > > > > In order to better handle spurious interrupts:
-> > > > > 1. Disable incoming interrupts in master only mode.
-> > > > > 2. Clear end of busy (EOB) after every interrupt.
-> > > > > 3. Return correct status during interrupt.
-> > > >
-> > > > This is bad commit message, it doesn't explain "why" you are doing these.
->
-> ...
->
-> > BMC users connect a huge tree of i2c devices and muxes.
-> > This tree suffers from spikes, noise and double clocks.
-> > All these may cause spurious interrupts to the BMC.
-> >
-> > If the driver gets an IRQ which was not expected and was not handled
-> > by the IRQ handler,
-> > there is nothing left to do but to clear the interrupt and move on.
->
-> Yes, the problem is what "move on" means in your case.
-> If you get a spurious interrupts there are possibilities what's wrong:
-> 1) HW bug(s)
-> 2) FW bug(s)
-> 3) Missed IRQ mask in the driver
-> 4) Improper IRQ mask in the driver
->
-> The below approach seems incorrect to me.
->
+On Mon, 21 Mar 2022 15:51:30 +0800, Sherry Sun wrote:
+> For the snps,ddrc-3.80a compatible, the interrupts property is also
+> required, also order the compatibles by name (s goes before x).
+> 
+> 
 
-Andy, What about this explanation:
-On rare cases the i2c gets a spurious interrupt which means that we
-enter an interrupt but in
-the interrupt handler we don't find any status bit that points to the
-reason we got this interrupt.
-This may be a rare case of HW issue that is still under investigation.
-In order to overcome this we are doing the following:
-1. Disable incoming interrupts in master mode only when slave mode is
-not enabled.
-2. Clear end of busy (EOB) after every interrupt.
-3. Clear other status bits (just in case since we found them cleared)
-4. Return correct status during the interrupt that will finish the transaction.
-On next xmit transaction if the bus is still busy the master will
-issue a recovery process before issuing the new transaction.
-> > If the transaction failed, driver has a recovery function.
-> > After that, user may retry to send the message.
-> >
-> > Indeed the commit message doesn't explain all this.
-> > We will fix and add to the next patchset.
-> >
-> > > > > +     /*
-> > > > > +      * if irq is not one of the above, make sure EOB is disabled and all
-> > > > > +      * status bits are cleared.
-> > > >
-> > > > This does not explain why you hide the spurious interrupt.
-> > > >
-> > > > > +      */
-> > > > > +     if (ret == IRQ_NONE) {
-> > > > > +             npcm_i2c_eob_int(bus, false);
-> > > > > +             npcm_i2c_clear_master_status(bus);
-> > > > > +     }
-> > > > > +
-> > > > > +     return IRQ_HANDLED;
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Applied, thanks!
 
+[1/2] dt-bindings: memory: snps,ddrc-3.80a compatible also need interrupts
+      commit: 4f9f45d0eb0e7d449bc9294459df79b9c66edfac
 
+Best regards,
 -- 
-Regards,
-Avi
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
