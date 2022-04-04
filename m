@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F103E4F1E24
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABBD34F1E9B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 00:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232535AbiDDVxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Apr 2022 17:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45310 "EHLO
+        id S1352536AbiDDVxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Apr 2022 17:53:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376926AbiDDVkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:40:53 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C01D33886;
-        Mon,  4 Apr 2022 14:32:02 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id e25-20020a0568301e5900b005b236d5d74fso8169889otj.0;
-        Mon, 04 Apr 2022 14:32:02 -0700 (PDT)
+        with ESMTP id S1387299AbiDDVnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Apr 2022 17:43:01 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28DDE3C;
+        Mon,  4 Apr 2022 14:36:38 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id v75so11471603oie.1;
+        Mon, 04 Apr 2022 14:36:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+07kO28dFRNl++frOuuEHcQWMhh8FAnFdVPRkyeq1vs=;
-        b=3/Ez9KBC7T+eyR0ADXVgUuzliRSjO1cyFVVarj4MgMvlM8NYVXd8y7Ag/IpdlZo275
-         8R9c6WBWjlbTJU0NaAXYOS4C3vYcpPf53F6WsqAqdtOw2V8dY3cKq1RCdTwgsL88ZG7J
-         0XFQ5vJW2YzK2d5DGamES81niw1I6jN91asfI0bDgCur1ucfLOOOUXSpxKtPA1sIG5eF
-         gvyrtB7RbpkLx2GIQyRd6x/hnwbc/MGgGtDStIgO7Lwm+8KwXdctuqwg8t/zBXA4IXOH
-         xY3HxKyWQC1MnDWQTxntYAHounTrjQVDN2HUurlxOB5XHPwCPfvY5+n0c2YPLMe1xeaV
-         Q5IA==
-X-Gm-Message-State: AOAM533vQff4dwapPbV667q/vhOP506WHP1B2xNsxJoC2HUZ9aJOTgSX
-        x/+/cxaGLipGHmCALSl2oA==
-X-Google-Smtp-Source: ABdhPJx9wTS78TofuET7EaiRXYKntvxJfzeG77NmKVU/w2+gt1bmiW+xL+XcPdGwkEdoiiJmw5k/wA==
-X-Received: by 2002:a9d:6b18:0:b0:5e6:926c:7412 with SMTP id g24-20020a9d6b18000000b005e6926c7412mr105198otp.43.1649107887357;
-        Mon, 04 Apr 2022 14:31:27 -0700 (PDT)
+        bh=frSzmln4u9VqIvYnkcnuMEse8X080wHxUqx+SfDQZfk=;
+        b=KLZ6QvWQgUZZF6dlpLVSgOjCYBQgASwLEV21LzIcr1SyaHmxA2sPlDWwACyL/LRmRf
+         rZQf3INUpVhs/0FUsfkAkooXFmS3DHeCrgfwArbybGKg9QC8yZs/IAG+40jEWfsf8FEN
+         Fb4Hv4iUdlXVdsUAnoYIdUE4YeTQpBePyvt5s35ZI1mdzlwyH9BRhXr7O4ZlOf0WclTu
+         iDIEc6OKt8w+o01GKGOGGXDVBz5ayRCkkDb/T37EFmJ5NlseGDdAQAE0uNxxOBGVfapp
+         B/YsUs5/zdNwXGQRPbZoPLQRaJcaFvBgPPO97O56dAPS0fPquPVV9pLysadPhugbFPfu
+         sGEw==
+X-Gm-Message-State: AOAM533zdD0NnpPf6cdqyvGGkQYLTaV1wXnx8tmVQIFOaCCfHxoDQD+A
+        r+KQF0lzZYlcUk5u9ZJ6XXA+xRo3KQ==
+X-Google-Smtp-Source: ABdhPJyh2mm62UbATxLFlvIzKT5/fWFiqw7k2slBLagLuTd8NtJs9y8Y1Ml6A43/DoZL3MmQc7tIhQ==
+X-Received: by 2002:a05:6808:13c9:b0:2f9:2cf0:932a with SMTP id d9-20020a05680813c900b002f92cf0932amr101361oiw.39.1649108198241;
+        Mon, 04 Apr 2022 14:36:38 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k124-20020aca3d82000000b002ef4c5bb9dbsm4639052oia.0.2022.04.04.14.31.26
+        by smtp.gmail.com with ESMTPSA id hg14-20020a056870790e00b000e1c070a73asm4049890oab.55.2022.04.04.14.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 14:31:27 -0700 (PDT)
-Received: (nullmailer pid 2019995 invoked by uid 1000);
-        Mon, 04 Apr 2022 21:31:26 -0000
-Date:   Mon, 4 Apr 2022 16:31:26 -0500
+        Mon, 04 Apr 2022 14:36:37 -0700 (PDT)
+Received: (nullmailer pid 2028738 invoked by uid 1000);
+        Mon, 04 Apr 2022 21:36:37 -0000
+Date:   Mon, 4 Apr 2022 16:36:37 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-i2c@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 9/9] dt-bindings: qcom: qcom,gsbi: convert to dtschema
-Message-ID: <YktjrqMjPb3jNF8L@robh.at.kernel.org>
-References: <20220402184011.132465-1-krzysztof.kozlowski@linaro.org>
- <20220402184011.132465-10-krzysztof.kozlowski@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2] regulator: dt-bindings: richtek,rt4801: minor
+ comments adjustments
+Message-ID: <Yktk5TcDPqUeRPgj@robh.at.kernel.org>
+References: <20220401153711.1057853-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220402184011.132465-10-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220401153711.1057853-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 02 Apr 2022 20:40:11 +0200, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm General Serial Bus Interface (GSBI) to DT
-> Schema.
+On Fri, 01 Apr 2022 17:37:11 +0200, Krzysztof Kozlowski wrote:
+> Correct grammar in 'enable-gpios' description and remove useless comment
+> about regulator nodes, because these are obvious from patternProperties.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  .../bindings/soc/qcom/qcom,gsbi.txt           |  87 ------------
->  .../bindings/soc/qcom/qcom,gsbi.yaml          | 133 ++++++++++++++++++
->  2 files changed, 133 insertions(+), 87 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,gsbi.yaml
+> 
+> Changes since v1:
+> 1. Correct also "spefied"
+> ---
+>  .../bindings/regulator/richtek,rt4801-regulator.yaml       | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
