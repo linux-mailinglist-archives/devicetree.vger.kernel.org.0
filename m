@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C63674F4AF9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84F904F4A8F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573774AbiDEWxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52796 "EHLO
+        id S243880AbiDEWtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:49:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1443105AbiDEPi5 (ORCPT
+        with ESMTP id S1443104AbiDEPi5 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:38:57 -0400
 Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80DA4BC857;
-        Tue,  5 Apr 2022 06:54:39 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1A81456F4;
+        Tue,  5 Apr 2022 06:54:40 -0700 (PDT)
 Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2356jiGC029879;
+        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 235BpSUC025148;
         Tue, 5 Apr 2022 08:54:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=PODMain02222019;
- bh=D7H9GzgzNTUv2SxZBu6ky5Mhjq+9FrGLu3EkwWXFSIo=;
- b=g2jQs73Qjk38eI+fMIuqbIBkeVF1/x//BzW1DoRLUX5JKXvc1TCbFH5dpjQt+gYWNDZk
- FaJgSd4VvUCtFWgHk0DaLA47+Liqhj5ThoQ7VPA/KteyHZtY7wWYN2Be4QEwXjA5LXvB
- yLGM/hdATnIsWHrGXd/XF8TITzLS/k0Gwh1y4dJ1P2CI8RaSgB0i4dfTROnDjao0SLkO
- hkyVn0i85Nn+Ef4PLpUFaXBH7Y5h/wXOXHkv8bwZ/MDcoZbD039JKg1vguafOmJeZCIV
- lreIJZhiNE4ex1PsvTswd2iTMMLi74qVeCD86CX1GTmtMe6RQwLE+WGuERHK9tnJpTNu 2g== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3f6kw2brws-1
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=PODMain02222019;
+ bh=sKPCxZ+xTBcQoblGnSzkvv6udMhhqbVepx2ZD2fI5i0=;
+ b=ATDDzgl9AUjcR8Pw6A0mgx4kf0fSH/e85cwNTm/yhKInblbRe6Sp0a3tqHDado5wJO1+
+ uLpck0Wyx6piRQG9PHKHj34HO6+mGu1vHveI94nwEOr6q9y+8vhRu84aOaDHt5Uj4taO
+ vmIhpKdntkF8BiPWrAaVfErMrp9mzAWR7RlySY/mSLG0GUVzaFbx8DYCIs6sR063FTeK
+ 5xDC2tiyTZnh0eoTi4layLJtiRMlbOog07SVfAHCo6pnA8mS0uNK4hPJWi4VEfzf/dPm
+ D5kMPEE+t5XzzFX1jc/kz+St7r+jwHPaOs/vq0Ub9VfmmHI838qTK3AFNCSzvTutIo/3 xQ== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3f6kw2brwt-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
         Tue, 05 Apr 2022 08:54:25 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 5 Apr
  2022 14:54:23 +0100
 Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
  (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via Frontend
  Transport; Tue, 5 Apr 2022 14:54:23 +0100
 Received: from AUSNPC0LSNW1-debian.cirrus.com (AUSNPC0LSNW1.ad.cirrus.com [198.61.65.88])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id C644E458;
-        Tue,  5 Apr 2022 13:54:22 +0000 (UTC)
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 378B8B1A;
+        Tue,  5 Apr 2022 13:54:23 +0000 (UTC)
 From:   Richard Fitzgerald <rf@opensource.cirrus.com>
 To:     <broonie@kernel.org>
 CC:     <robh+dt@kernel.org>, <alsa-devel@alsa-project.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <patches@opensource.cirrus.com>,
         Richard Fitzgerald <rf@opensource.cirrus.com>
-Subject: [PATCH v2 0/5] ASoC: Add a driver for the Cirrus Logic CS35L45 Smart Amplifier
-Date:   Tue, 5 Apr 2022 14:54:14 +0100
-Message-ID: <20220405135419.1230088-1-rf@opensource.cirrus.com>
+Subject: [PATCH v2 1/5] ASoC: soc.h: Add SOC_SINGLE_S_TLV() macro
+Date:   Tue, 5 Apr 2022 14:54:15 +0100
+Message-ID: <20220405135419.1230088-2-rf@opensource.cirrus.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220405135419.1230088-1-rf@opensource.cirrus.com>
+References: <20220405135419.1230088-1-rf@opensource.cirrus.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: cJo1vpfXBTPYhRk3hu6TOOHFtAt-ZQXd
-X-Proofpoint-GUID: cJo1vpfXBTPYhRk3hu6TOOHFtAt-ZQXd
+X-Proofpoint-ORIG-GUID: yuf6CHlyAXEpejNsxbiA-4FDRbynNDev
+X-Proofpoint-GUID: yuf6CHlyAXEpejNsxbiA-4FDRbynNDev
 X-Proofpoint-Spam-Reason: safe
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -65,51 +67,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds basic audio support for the Cirrus Logic CS35L45 amplifier.
+Add a convenience macro for defining a single (mono) TLV control
+with a signed value. This can already be done by using
+SOC_DOUBLE_R_S_TLV() with the same address for left and right
+registers, but a dedicated macro is more readable.
 
-The first two patches add two generic helpers to ASoC, and patch 3 is
-a kunit test for patch 2.
+Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+---
+ include/sound/soc.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-CHANGES SINCE V1:
-Patch #5:
- - spi .remove callback now has void return
- - use new I2C .probe_new callback
- - force boost-bypass mode as default
-
-James Schulman (1):
-  ASoC: cs35l45: Add driver for Cirrus Logic CS35L45 Smart Amp
-
-Richard Fitzgerald (4):
-  ASoC: soc.h: Add SOC_SINGLE_S_TLV() macro
-  ASoC: soc-utils: Add helper to calculate BCLK from TDM info
-  ASoC: soc-utils: Add kunit test for snd_soc_tdm_params_to_bclk()
-  ASoC: dt-bindings: cs35l45: Cirrus Logic CS35L45 Smart Amp
-
- .../bindings/sound/cirrus,cs35l45.yaml        |  75 ++
- MAINTAINERS                                   |   2 +
- include/dt-bindings/sound/cs35l45.h           |  20 +
- include/sound/soc.h                           |   4 +
- sound/soc/Kconfig                             |   9 +-
- sound/soc/Makefile                            |   5 +
- sound/soc/codecs/Kconfig                      |  30 +
- sound/soc/codecs/Makefile                     |   8 +
- sound/soc/codecs/cs35l45-i2c.c                |  72 ++
- sound/soc/codecs/cs35l45-spi.c                |  72 ++
- sound/soc/codecs/cs35l45-tables.c             | 202 +++++
- sound/soc/codecs/cs35l45.c                    | 693 ++++++++++++++++++
- sound/soc/codecs/cs35l45.h                    | 217 ++++++
- sound/soc/soc-utils-test.c                    | 186 +++++
- sound/soc/soc-utils.c                         |  45 ++
- 15 files changed, 1639 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml
- create mode 100644 include/dt-bindings/sound/cs35l45.h
- create mode 100644 sound/soc/codecs/cs35l45-i2c.c
- create mode 100644 sound/soc/codecs/cs35l45-spi.c
- create mode 100644 sound/soc/codecs/cs35l45-tables.c
- create mode 100644 sound/soc/codecs/cs35l45.c
- create mode 100644 sound/soc/codecs/cs35l45.h
- create mode 100644 sound/soc/soc-utils-test.c
-
+diff --git a/include/sound/soc.h b/include/sound/soc.h
+index d3d3a26e8867..55fb6a6d7d25 100644
+--- a/include/sound/soc.h
++++ b/include/sound/soc.h
+@@ -176,6 +176,8 @@
+ 	.get = snd_soc_get_volsw, .put = snd_soc_put_volsw, \
+ 	.private_value = SOC_DOUBLE_R_S_VALUE(reg_left, reg_right, xshift, \
+ 					    xmin, xmax, xsign_bit, xinvert) }
++#define SOC_SINGLE_S_TLV(xname, xreg, xshift, xmin, xmax, xsign_bit, xinvert, tlv_array) \
++	SOC_DOUBLE_R_S_TLV(xname, xreg, xreg, xshift, xmin, xmax, xsign_bit, xinvert, tlv_array)
+ #define SOC_SINGLE_S8_TLV(xname, xreg, xmin, xmax, tlv_array) \
+ {	.iface  = SNDRV_CTL_ELEM_IFACE_MIXER, .name = (xname), \
+ 	.access = SNDRV_CTL_ELEM_ACCESS_TLV_READ | \
 -- 
 2.30.2
 
