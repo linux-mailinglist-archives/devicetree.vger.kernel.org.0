@@ -2,247 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEFDD4F4AED
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B9C4F4B12
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573736AbiDEWw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54250 "EHLO
+        id S1573850AbiDEWxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1573259AbiDESgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 14:36:35 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2183E1704C
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 11:34:36 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id z128so140466pgz.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 11:34:36 -0700 (PDT)
+        with ESMTP id S1573266AbiDESjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 14:39:20 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD85167E3;
+        Tue,  5 Apr 2022 11:37:21 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 88-20020a9d0ee1000000b005d0ae4e126fso130087otj.5;
+        Tue, 05 Apr 2022 11:37:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=CcBRvO3glCTW0WLbKxNzGURMrlkb9J3NaXvMMMJyrmc=;
-        b=aFSoyA8dd03rcj3YyGwfpMaDjmQNGBX29pWyWAZta+HXAr/Y8yo08gTYhR0xzCaruu
-         1p7wTR7etOE2cqA0e7ioKWger2ZJF8owh06oCGfvkv6T1hlncNTWK7qJ+lSKoDX2Sgq3
-         HR3buweA2jraaSEEeqMrie6e8FbGKZDSz4uoU=
+        bh=+KbWd7V0K71eJ7YcPU2pSOmsRiOHZCWb39tTThHrGDU=;
+        b=Ek7jB5nSnvX8nkKurboNskrrBPBblu+4jqRUXkbMh3ca8FuApH6Rb6FgVhfqE9grkW
+         NjJ5Md7xQ7RlZDLu9Gze+AeK09cSBJ664PdQCRLHC6gF+t9qW9aOLSX78FegGO3k7jVk
+         rFUZQ7MqGeybfSVIZNDENxpzlYmk5eIBf9Dr1b8ZAP7tLQJWyyxhgJQ5qj5aQFl6oPXr
+         xDA1zcBqdJd/2Me1mtUAtEAO87UryhKJkjIbIjtLhHLbDmJdeL4BbAp6qVf5StQ/XioJ
+         NLPoNwaRwM0O2LZWv+WuuTdFIK9+HwlEYAIiosdi0Ei0P23jrhVrqHwM7+UINS9faAdR
+         mRNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CcBRvO3glCTW0WLbKxNzGURMrlkb9J3NaXvMMMJyrmc=;
-        b=M+OQ4Q+WOc/dD3Djy/IziDQr01i1dSusBWMFbcwPsQPrJgngib0KAEm1RCj7O5GSNS
-         dKRzfKM1M+l2CAF7wGfF8Gj+jxqQ7QgPXDmVyaCDGKQD6RDzbXHwTDFV+oBaIVkdeWFx
-         y5u8Rr5dPXXPGmdsM45s+nrn4shcvJtQVZrZlpRPG9vkwtSqTjqNUWZL88Xw+JNgUzS2
-         ZlhemsmbsxEx1enk4YZ71hCbb9a958DvIt9bIf+w1J4BR+wazghnLdEOD+bgrGriuAR9
-         4YylnfL2hEwSfwH8IsxmOsQ71yF7KYHOEfVC7QHiia3dTkBw4YSY60WZ6jC6aRc6LewH
-         i6Ew==
-X-Gm-Message-State: AOAM532K8DlDW2qY3tr/loH7k3839tUScZD9GTLWa7SEwt6XKvXWcUTi
-        AGnSbfIN85VUU60Iiuyc6qiGlg==
-X-Google-Smtp-Source: ABdhPJygXazaknynH0bc3LR80rQXYuGGM5q446njdOVQa6+040MuPBH2Q/LAZxB3GheL2fLuUhTmmg==
-X-Received: by 2002:a63:8f59:0:b0:399:1f0e:5653 with SMTP id r25-20020a638f59000000b003991f0e5653mr3902367pgn.288.1649183675435;
-        Tue, 05 Apr 2022 11:34:35 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:6b63:d403:e31b:da39])
-        by smtp.gmail.com with UTF8SMTPSA id o14-20020a056a0015ce00b004fab49cd65csm16258953pfu.205.2022.04.05.11.34.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 11:34:34 -0700 (PDT)
-Date:   Tue, 5 Apr 2022 11:34:33 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohitkr@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: sc7280: Add pinmux for I2S
- speaker and Headset
-Message-ID: <YkyLuemETXD97Jv1@google.com>
-References: <1649157167-29106-1-git-send-email-quic_srivasam@quicinc.com>
- <1649157167-29106-2-git-send-email-quic_srivasam@quicinc.com>
+        bh=+KbWd7V0K71eJ7YcPU2pSOmsRiOHZCWb39tTThHrGDU=;
+        b=a6Wkpytl/4MFrIgOiZcv0hafFPp1IBmePlR4zrnGbeEXCRw6fvO6d/I3PLTy6VOKYL
+         I0NQNg/4aR15lozQ71D9oGRqNgu8J00Ib6u2ybKNmvFVJJ+M716rS1iLxNGSw5iErPIL
+         ndfEKIbNM9c8+8aFjMyv5QngOCjP9oSI7ujotbP+Jec1OZ3YQqPdEF7SxGV5IW7IPJVW
+         kON/TxJ3hIqF8BbUF2itx98OuA3i3SzUA/vuNqEGGB7auzVRf/LgqjccJaVKyVENj5n5
+         se0Thd2+d2jW09ym+0py4nz1kgCZS5TbqtZDCb7IkFDIW7IGs4d+ge0ZrJpjjuhAbpjV
+         XLWw==
+X-Gm-Message-State: AOAM531foGtwQz983yZ/PC14QDxzq48wVaVr/Sf8lnJalKwGj585GuH1
+        /N1LY1/zJg0+AjBcud7nWsk=
+X-Google-Smtp-Source: ABdhPJwzgIOB0kzAyeyofI6976mKnX78Ud7ePRgE6hN60K0Iq7zqsIgAXR9NtfXTu0KgHLJfGGpn4g==
+X-Received: by 2002:a9d:6047:0:b0:5b2:4003:cfcb with SMTP id v7-20020a9d6047000000b005b24003cfcbmr1723411otj.59.1649183840894;
+        Tue, 05 Apr 2022 11:37:20 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id n35-20020a05687055a300b000e1e2ab91e4sm3780056oao.39.2022.04.05.11.37.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Apr 2022 11:37:20 -0700 (PDT)
+Date:   Tue, 5 Apr 2022 13:37:18 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
+        zyw@rock-chips.com, jon.lin@rock-chips.com,
+        maccraft123mc@gmail.com, sre@kernel.org, heiko@sntech.de,
+        krzk+dt@kernel.org, lee.jones@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/4 v5] dt-bindings: Add Rockchip rk817 battery charger
+ support
+Message-ID: <20220405183718.GA5929@wintermute.localdomain>
+References: <20220404215754.30126-1-macroalpha82@gmail.com>
+ <20220404215754.30126-2-macroalpha82@gmail.com>
+ <YkyJPKuG1s5pLR+t@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1649157167-29106-2-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YkyJPKuG1s5pLR+t@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 04:42:46PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add AMP enable node and pinmux for primary and secondary I2S
-> for SC7280 based platforms.
+On Tue, Apr 05, 2022 at 01:23:56PM -0500, Rob Herring wrote:
+> On Mon, Apr 04, 2022 at 04:57:51PM -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Create dt-binding documentation to document rk817 battery and charger
+> > usage. New device-tree properties have been added.
+> > 
+> > - rockchip,resistor-sense-micro-ohms: The value in microohms of the
+> >                                       sample resistor.
+> > - rockchip,sleep-enter-current-microamp: The value in microamps of the
+> >                                          sleep enter current.
+> > - rockchip,sleep-filter-current: The value in microamps of the sleep
+> >                                  filter current.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> > ---
+> >  .../bindings/mfd/rockchip,rk817.yaml          | 48 +++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 34 +++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 20 +++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi           | 41 ++++++++++++++++++++++++++
->  3 files changed, 95 insertions(+)
+> Doesn't apply for me. What tree is this based on?
+
+Sorry, it relies on the following being applied (all the prerequisites
+are now in master, but this one is still absent):
+
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220303203958.4904-5-macroalpha82@gmail.com/
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> index dc17f20..de646d9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> @@ -530,6 +530,26 @@ ap_ec_spi: &spi10 {
->  	drive-strength = <2>;
->  };
->  
-> +&pri_mi2s_data0 {
-> +	drive-strength = <6>;
-
-Isn't this pin used as an input (HP_DIN)? Is specifying the drive strength
-really needed?
-
-> +};
-> +
-> +&pri_mi2s_data1 {
-> +	drive-strength = <6>;
-> +};
-> +
-> +&pri_mi2s_mclk {
-> +	drive-strength = <6>;
-> +};
-> +
-> +&pri_mi2s_sclk {
-> +	drive-strength = <6>;
-> +};
-> +
-> +&pri_mi2s_ws {
-> +	drive-strength = <6>;
-> +};
-> +
->  &qspi_cs0 {
->  	bias-disable;
->  	drive-strength = <8>;
-> @@ -610,6 +630,20 @@ ap_ec_spi: &spi10 {
->  	drive-strength = <10>;
->  };
->  
-> +&sec_mi2s_data0 {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&sec_mi2s_sclk {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&sec_mi2s_ws {
-> +	drive-strength = <6>;
-> +};
-
-Actually there are several sound configs for herobrine boards. For now I
-think it's ok to specify the config for herobrine -rev1 (as this patch
-does) and we can sort out later how to best support the different configs.
-
->  /* PINCTRL - board-specific pinctrl */
->  
->  &pm7325_gpios {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index ecbf2b8..2afbbe3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -462,7 +462,27 @@
->  	drive-strength = <10>;
->  };
->  
-> +&sec_mi2s_data0 {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&sec_mi2s_sclk {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&sec_mi2s_ws {
-> +	drive-strength = <6>;
-> +};
-> +
->  &tlmm {
-> +	amp_en: amp-en {
-> +		pins = "gpio63";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-
-nit: all the other pins are i2s related, it might make sense to add amp_en
-in a separate patch.
-
-> +
->  	bt_en: bt-en {
->  		pins = "gpio85";
->  		function = "gpio";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index f0b64be..8d8cec5 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3527,6 +3527,31 @@
->  				function = "pcie1_clkreqn";
->  			};
->  
-> +			pri_mi2s_data0: pri-mi2s-data0 {
-> +				pins = "gpio98";
-> +				function = "mi2s0_data0";
-> +			};
-> +
-> +			pri_mi2s_data1: pri-mi2s-data1 {
-> +				pins = "gpio99";
-> +				function = "mi2s0_data1";
-> +			};
-> +
-> +			pri_mi2s_mclk: pri-mi2s-mclk {
-> +				pins = "gpio96";
-> +				function = "pri_mi2s";
-> +			};
-> +
-> +			pri_mi2s_sclk: pri-mi2s-sclk {
-> +				pins = "gpio97";
-> +				function = "mi2s0_sck";
-> +			};
-> +
-> +			pri_mi2s_ws: pri-mi2s-ws {
-> +				pins = "gpio100";
-> +				function = "mi2s0_ws";
-> +			};
-> +
->  			qspi_clk: qspi-clk {
->  				pins = "gpio14";
->  				function = "qspi_clk";
-> @@ -4261,6 +4286,22 @@
->  				drive-strength = <2>;
->  				bias-bus-hold;
->  			};
-> +
-> +			sec_mi2s_data0: sec-mi2s-data0 {
-> +				pins = "gpio107";
-> +				function = "mi2s1_data0";
-> +			};
-> +
-> +			sec_mi2s_sclk: sec-mi2s-sclk {
-> +				pins = "gpio106";
-> +				function = "mi2s1_sck";
-> +			};
-> +
-> +			sec_mi2s_ws: sec-mi2s-ws {
-> +				pins = "gpio108";
-> +				function = "mi2s1_ws";
-> +			};
-
-Is there a particular reason for the pri/sec nomenclature? The datasheet and
-schematics call the pin mi2sN_xyz, it seems it would be clearer to follow
-that naming. Primary/secondary seems to imply a 'master/slave' topology, but
-these are independent controllers IIUC. The datasheet refers to pin 96 as
-PRI_MI2S_MCLK and pin 105 SEC_MI2S_MCLK, I guess the naming was derived from
-that.
-
-My suggestion would be to follow the naming in the datasheet/schematic, i.e.
-mi2sN_data0, mi2sN_data1, pri/sec_mi2s_mclk, mi2sN_sck, mi2sN_ws.
+> Rob
