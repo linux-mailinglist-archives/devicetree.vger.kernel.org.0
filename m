@@ -2,284 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCAE4F4AEA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 124674F4AD3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573727AbiDEWwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:52:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54744 "EHLO
+        id S1453788AbiDEWwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1457570AbiDEQKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 12:10:53 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F3AFD1B;
-        Tue,  5 Apr 2022 09:08:53 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 31CE422260;
-        Tue,  5 Apr 2022 18:08:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1649174931;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=2p3sjpS/Bg3o28UgK7piCHL/zRE/gDoVsSlTwfbWAqQ=;
-        b=hMCfN8z+XOdJahCnW0raIQnxmiUTsWCzvdBExcEKDAWdGV9SsNa0GQ6pXixZKAW/h3fW5d
-        kj1MS2BRgUJGDEZW4WOmVLXQGm9txK+i09wtdOT6D4zgrw77uGgppPHxW+9rXXWKPhD8Vn
-        GUoS/bPfLvQfqyeLsvp7zUkgSBz/oNM=
-From:   Michael Walle <michael@walle.cc>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Tudor.Ambarus@microchip.com, Michael Walle <michael@walle.cc>
-Subject: [PATCH v3 7/7] ARM: dts: lan966x: add basic Kontron KSwitch D10 support
-Date:   Tue,  5 Apr 2022 18:08:37 +0200
-Message-Id: <20220405160837.4093563-8-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220405160837.4093563-1-michael@walle.cc>
-References: <20220405160837.4093563-1-michael@walle.cc>
+        with ESMTP id S1458161AbiDERLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 13:11:50 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FBB12614
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 10:09:51 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id b15so15694716edn.4
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 10:09:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W9jjXhkkwggvTX4fvJBrk+j1Dfql0KOELV0oxfWMhuc=;
+        b=Da196R/xzbnxuTIH3vscQpCMovYwydT/AzCJSlQj8Eqi4CvIwtAd/mUQm9MmrSBpfo
+         C+EBgKeBCuBKVRkDsHPA8cOoIX8OcoIl86zyYotKiHUopfezjcGIoi0dE+KUYYdh8QMp
+         KVzZw8avVxGZB0tQNm3+yFeorwp26KB33gYBo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W9jjXhkkwggvTX4fvJBrk+j1Dfql0KOELV0oxfWMhuc=;
+        b=i5Vit42szGXzOkfVcuykZGhvERbugKp/NbdD22AI6fx1qOdrNFt4f45I6M4xxP5UJs
+         7MJEi9EPSzvesbvn5y/kcg80aHY4/pU6Ytiy9TSYWptyJg8WUAbWSCvW9SeW8ejddhlC
+         T1nELBhqW4jeLB5Mx8rAtxKoIrkx9zf+VDPJU5u6Gf9ReCXAWkGj0nIHW8fsUjc+u0n+
+         iaRBqYQTwiZ7AuOinfSbPOTdpMxdMwCaNEl32rdyCLNwnshmLdugTs50Jw21C/wdz+5+
+         IKchGX9L1uI05Ym7322H/SDEh/udxR+1r4HLfN4QvmpcobVUW8S0Wz289fJLT6HHdthQ
+         HzqA==
+X-Gm-Message-State: AOAM532mYBcThLZFMmrDMQBZGsuhxWl3F/HkPpqkETSja0zgg88rOcR1
+        snzABcscXeCaLGGp+pIcr6ew2neCfWk3/DOq
+X-Google-Smtp-Source: ABdhPJyhC4UAMJoSmQy/d1YNsK4j91wakDwwerJJ+6CdVEjwN3GoovRFYAvKPWxia1//ka5h8EaTzQ==
+X-Received: by 2002:aa7:dd88:0:b0:41c:c008:d8e2 with SMTP id g8-20020aa7dd88000000b0041cc008d8e2mr4726360edv.309.1649178589643;
+        Tue, 05 Apr 2022 10:09:49 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com. [209.85.128.50])
+        by smtp.gmail.com with ESMTPSA id f2-20020a170906390200b006e7f5fedbe7sm2201019eje.3.2022.04.05.10.09.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Apr 2022 10:09:49 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id h16so8449393wmd.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 10:09:49 -0700 (PDT)
+X-Received: by 2002:a05:600c:4f10:b0:38c:ae36:d305 with SMTP id
+ l16-20020a05600c4f1000b0038cae36d305mr3996092wmq.34.1649178175654; Tue, 05
+ Apr 2022 10:02:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
+ <392b933f-760c-3c81-1040-c514045df3da@linaro.org> <CAD=FV=W4PYK-t607yjRbfjDjjEZX0KdgHDRukw_vSH8E8EDH6w@mail.gmail.com>
+ <CAA8EJppt9XONbgtKfmHmN+==QNqiVJeb8GKJFdZm=yyY-tgmHQ@mail.gmail.com>
+ <CAD=FV=U5-sTDLYdkeJWLAOG-0wgxR49VxtwUyUO7z2PuibLGsg@mail.gmail.com> <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
+In-Reply-To: <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 5 Apr 2022 10:02:42 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
+Message-ID: <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for the Kontron KSwitch D10 MMT. It comes in two
-variants: "6G-2GS" which features 6 Gigabit copper ports and two SFP
-cages and "8G" which features 6 Gigbabit copper ports (where two are
-2.5G capable).
+Hi,
 
-For now the following is supported and working:
- - Kernel console
- - SFP cages I2C bus and mux
- - SPI
- - SGPIO
- - Watchdog
+On Tue, Apr 5, 2022 at 5:54 AM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+> > 3. For DP and eDP HPD means something a little different. Essentially
+> > there are two concepts: a) is a display physically connected and b) is
+> > the display powered up and ready. For DP, the two are really tied
+> > together. From the kernel's point of view you never "power down" a DP
+> > display and you can't detect that it's physically connected until it's
+> > ready. Said another way, on you tie "is a display there" to the HPD
+> > line and the moment a display is there it's ready for you to do AUX
+> > transfers. For eDP, in the lowest power state of a display it _won't_
+> > assert its "HPD" signal. However, it's still physically present. For
+> > eDP you simply have to _assume_ it's present without any actual proof
+> > since you can't get proof until you power it up. Thus for eDP, you
+> > report that the display is there as soon as we're asked. We can't
+> > _talk_ to the display yet, though. So in get_modes() we need to be
+> > able to power the display on enough to talk over the AUX channel to
+> > it. As part of this, we wait for the signal named "HPD" which really
+> > means "panel finished powering on" in this context.
+> >
+> > NOTE: for aux transfer, we don't have the _display_ pipe and clocks
+> > running. We only have enough stuff running to do the AUX transfer.
+> > We're not clocking out pixels. We haven't fully powered on the
+> > display. The AUX transfer is designed to be something that can be done
+> > early _before_ you turn on the display.
+> >
+> >
+> > OK, so basically that was a longwinded way of saying: yes, we could
+> > avoid the AUX transfer in probe, but we can't wait all the way to
+> > enable. We have to be able to transfer in get_modes(). If you think
+> > that's helpful I think it'd be a pretty easy patch to write even if it
+> > would look a tad bit awkward IMO. Let me know if you want me to post
+> > it up.
+>
+> I think it would be a good idea. At least it will allow us to judge,
+> which is the more correct way.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm/boot/dts/Makefile                    |  4 +-
- ...lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts | 77 +++++++++++++++++++
- .../lan966x-kontron-kswitch-d10-mmt-8g.dts    | 13 ++++
- .../dts/lan966x-kontron-kswitch-d10-mmt.dtsi  | 75 ++++++++++++++++++
- 4 files changed, 168 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts
- create mode 100644 arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dts
- create mode 100644 arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt.dtsi
+I'm still happy to prototype this, but the more I think about it the
+more it feels like a workaround for the Qualcomm driver. The eDP panel
+driver is actually given a pointer to the AUX bus at probe time. It's
+really weird to say that we can't do a transfer on it yet... As you
+said, this is a little sideband bus. It should be able to be used
+without all the full blown infra of the rest of the driver.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b738..54beef7c1810 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -742,7 +742,9 @@ dtb-$(CONFIG_SOC_IMX7ULP) += \
- 	imx7ulp-com.dtb \
- 	imx7ulp-evk.dtb
- dtb-$(CONFIG_SOC_LAN966) += \
--	lan966x-pcb8291.dtb
-+	lan966x-pcb8291.dtb \
-+	lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb \
-+	lan966x-kontron-kswitch-d10-mmt-8g.dtb
- dtb-$(CONFIG_SOC_LS1021A) += \
- 	ls1021a-moxa-uc-8410a.dtb \
- 	ls1021a-qds.dtb \
-diff --git a/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts b/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts
-new file mode 100644
-index 000000000000..9cf0b791a355
---- /dev/null
-+++ b/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-6g-2gs.dts
-@@ -0,0 +1,77 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree file for the Kontron KSwitch D10 MMT 6G-2GS
-+ */
-+
-+/dts-v1/;
-+#include "lan966x-kontron-kswitch-d10-mmt.dtsi"
-+
-+/ {
-+	model = "Kontron KSwitch D10 MMT 6G-2GS";
-+	compatible = "kontron,kswitch-d10-mmt-6g-2gs", "kontron,s1921",
-+		     "microchip,lan9668", "microchip,lan966";
-+
-+	i2cmux {
-+		compatible = "i2c-mux-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		mux-gpios = <&sgpio_out 3 2 GPIO_ACTIVE_HIGH>,
-+			    <&sgpio_out 3 3 GPIO_ACTIVE_HIGH>;
-+		i2c-parent = <&i2c4>;
-+
-+		i2c4_0: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c4_1: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	sfp0: sfp0 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c4_0>;
-+		los-gpios = <&sgpio_in 1 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in 1 1 GPIO_ACTIVE_LOW>;
-+		maximum-power-milliwatt = <2500>;
-+		tx-disable-gpios = <&sgpio_out 3 0 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in 0 2 GPIO_ACTIVE_HIGH>;
-+		rate-select0-gpios = <&sgpio_out 2 0 GPIO_ACTIVE_HIGH>;
-+		rate-select1-gpios = <&sgpio_out 2 1 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp1: sfp1 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c4_1>;
-+		los-gpios = <&sgpio_in 1 2 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in 1 3 GPIO_ACTIVE_LOW>;
-+		maximum-power-milliwatt = <2500>;
-+		tx-disable-gpios = <&sgpio_out 3 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in 0 3 GPIO_ACTIVE_HIGH>;
-+		rate-select0-gpios = <&sgpio_out 2 2 GPIO_ACTIVE_HIGH>;
-+		rate-select1-gpios = <&sgpio_out 2 3 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&flx4 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+
-+	i2c4: i2c@600 {
-+		pinctrl-0 = <&fc4_b_pins>;
-+		pinctrl-names = "default";
-+		status = "okay";
-+	};
-+};
-+
-+&gpio {
-+	fc4_b_pins: fc4-b-i2c-pins {
-+		/* SCL, SDA */
-+		pins = "GPIO_57", "GPIO_58";
-+		function = "fc4_b";
-+	};
-+};
-diff --git a/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dts b/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dts
-new file mode 100644
-index 000000000000..4b35f6c46e7f
---- /dev/null
-+++ b/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt-8g.dts
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree file for the Kontron KSwitch D10 MMT 8G
-+ */
-+
-+/dts-v1/;
-+#include "lan966x-kontron-kswitch-d10-mmt.dtsi"
-+
-+/ {
-+	model = "Kontron KSwitch D10 MMT 8G";
-+	compatible = "kontron,kswitch-d10-mmt-8g", "kontron,s1921",
-+		     "microchip,lan9668", "microchip,lan966";
-+};
-diff --git a/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt.dtsi b/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt.dtsi
-new file mode 100644
-index 000000000000..4178fb0bd9c5
---- /dev/null
-+++ b/arch/arm/boot/dts/lan966x-kontron-kswitch-d10-mmt.dtsi
-@@ -0,0 +1,75 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Common part of the device tree for the Kontron KSwitch D10 MMT
-+ */
-+
-+/dts-v1/;
-+#include "lan966x.dtsi"
-+
-+/ {
-+	aliases {
-+		serial0 = &usart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-restart {
-+		compatible = "gpio-restart";
-+		gpios = <&gpio 56 GPIO_ACTIVE_LOW>;
-+		priority = <200>;
-+	};
-+};
-+
-+&flx0 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-+	status = "okay";
-+
-+	usart0: serial@200 {
-+		pinctrl-0 = <&usart0_pins>;
-+		pinctrl-names = "default";
-+		status = "okay";
-+	};
-+};
-+
-+&gpio {
-+	usart0_pins: usart0-pins {
-+		/* RXD, TXD */
-+		pins = "GPIO_25", "GPIO_26";
-+		function = "fc0_b";
-+	};
-+
-+	sgpio_a_pins: sgpio-a-pins {
-+		/* SCK, D0, D1 */
-+		pins = "GPIO_32", "GPIO_33", "GPIO_34";
-+		function = "sgpio_a";
-+	};
-+
-+	sgpio_b_pins: sgpio-b-pins {
-+		/* LD */
-+		pins = "GPIO_64";
-+		function = "sgpio_b";
-+	};
-+};
-+
-+&sgpio {
-+	pinctrl-0 = <&sgpio_a_pins>, <&sgpio_b_pins>;
-+	pinctrl-names = "default";
-+	bus-frequency = <8000000>;
-+	/* arbitrary range because all GPIOs are in software mode */
-+	microchip,sgpio-port-ranges = <0 11>;
-+	status = "okay";
-+
-+	sgpio_in: gpio@0 {
-+		ngpios = <128>;
-+	};
-+
-+	sgpio_out: gpio@1 {
-+		ngpios = <128>;
-+	};
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
--- 
-2.30.2
 
+> And I also think it might help the ti,sn65dsi86 driver, as it won't
+> have to ensure that gpio is available during the AUX bus probe.
+
+The ti,sn65dsi86 GPIO issue has been solved for a while, though so not
+sure why we need to do something there? I'm also unclear how it would
+have helped. In this discussion, we've agreed that the panel driver
+would still acquire resources during its probe time and the only thing
+that would be delayed would be the first AUX transfer. The GPIO is a
+resource here and it's ideal to acquire it at probe time so we could
+EPROBE_DEFER if needed.
+
+
+> BTW, another random idea, before you start coding.
+>
+> We have the bridge's hpd_notify call. Currently it is called only by
+> the means of drm_bridge_connector's HPD mechanism, tied to the bridge
+> registering as DRM_BRIDGE_OP_HPD.
+> It looks to me like it might be a perfect fit for the first aux-bus
+> related reads.
+>
+> We'd need to trigger it manually once and tie it to the new
+> drm_panel_funcs callback, which in turn would probe the aux bus,
+> create backlight, etc.
+>
+> Regarding the Sankeerth's patch. I have been comparing it with the
+> hpd_event_thread()'s calls.
+> It looks to me like we should reuse dp_display_config_hpd()
+> /EV_HPD_INIT_SETUP and maybe others.
+>
+> What I'm trying to say is that if we split AUX probing and first AUX
+> transfers, it would be possible to reuse a significant part of MSM DP
+> HPD machine rather than hacking around it and replicating it manually.
+
+I'm not sure I completely understand, but I'm pretty wary here. It's
+my assertion that all of the current "HPD" infrastructure in DRM all
+relates to the physical presence of the panel. If you start
+implementing these functions for eDP I think you're going to confuse
+the heck out of everything. The kernel will think that this is a
+display that's sometimes not there. Whenever the display is powered
+off then HPD will be low and it will look like there's no display.
+Nothing will ever try to power it on because it looks like there's no
+display.
+
+I think your idea is to "trigger once" at bootup and then it all
+magically works, right? ...but what about after bootup? If you turn
+the display off for whatever reason (modeset or you simply close the
+lid of your laptop because you're using an external display) and then
+you want to use the eDP display again, how do you kickstart the
+process another time? You can't reboot, and when the display is off
+the HPD line is low.
+
+I can't say it enough times, HPD on eDP _does not mean hot plug
+detect_. The panel is always there. HPD is really a "panel ready /
+panel notify" signal for eDP. That's fully what its function is.
+
+-Doug
