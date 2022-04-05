@@ -2,147 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E95B24F231E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C0204F2325
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbiDEGbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 02:31:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34248 "EHLO
+        id S230209AbiDEGcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 02:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbiDEGbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 02:31:50 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5959B34672
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 23:29:50 -0700 (PDT)
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220405062947epoutp015a2ea93b8f14015243635476df918c59~i7ENyQBPL1786617866epoutp01J
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 06:29:47 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220405062947epoutp015a2ea93b8f14015243635476df918c59~i7ENyQBPL1786617866epoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1649140188;
-        bh=3pRWzO6Xf/+EFDKbp+zs9H1SH94tZcH7lVI+Kk4Rq+8=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=sa2grhab8uvJpE8IjG7L4LWs9y+B4fXOYyhxErhiBGj10ijHPaRKFUc4VenqTbutd
-         ydIe1xvGTHLrZe2G8qjjHxYzjWPMnq8Vse9Qr0KlmpRT0/l0vulZRXPEjpAKSv8KGi
-         HCDRHftlkQ2iNXXiNseAZqDOtC7fTDjJHC3XkWpI=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20220405062947epcas1p384012a5de7c0335626086cc06940c3d1~i7ENTk0Jl2146721467epcas1p3L;
-        Tue,  5 Apr 2022 06:29:47 +0000 (GMT)
-Received: from epsmges1p3.samsung.com (unknown [182.195.36.69]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4KXd6K4P8Cz4x9Q2; Tue,  5 Apr
-        2022 06:29:45 +0000 (GMT)
-X-AuditID: b6c32a37-2a5ff70000002578-b0-624be1d9c358
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        71.7E.09592.9D1EB426; Tue,  5 Apr 2022 15:29:45 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH v2] dt-bindings: net: snps: remove duplicate name
-Reply-To: dj76.yang@samsung.com
-Sender: Dongjin Yang <dj76.yang@samsung.com>
-From:   Dongjin Yang <dj76.yang@samsung.com>
-To:     "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Moon-Ki Jun <moonki.jun@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20220405061922.27343-1-dj76.yang@samsung.com>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220405062945epcms1p7f9fad7f6bf10597e79c3948ba663c817@epcms1p7>
-Date:   Tue, 05 Apr 2022 15:29:45 +0900
-X-CMS-MailID: 20220405062945epcms1p7f9fad7f6bf10597e79c3948ba663c817
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 101P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCJsWRmVeSWpSXmKPExsWy7bCmru7Nh95JBovvyFm8PKRpMed8C4vF
-        /CPnWC12z1jOZDFz6hlmi5ez7rFZ7H29ld3iwrY+VovLu+awWZxbnGlxbIGYxbfTbxgtWvce
-        YXfg9diy8iaTx6ZVnWwed67tYfN4v+8qm0ffllWMHp83yQWwRWXbZKQmpqQWKaTmJeenZOal
-        2yp5B8c7x5uaGRjqGlpamCsp5CXmptoqufgE6Lpl5gCdqaRQlphTChQKSCwuVtK3synKLy1J
-        VcjILy6xVUotSMkpMC/QK07MLS7NS9fLSy2xMjQwMDIFKkzIzlj7qLRgvURF14NDLA2Md8W7
-        GDk5JARMJN6e7WbpYuTiEBLYwSjxo287axcjBwevgKDE3x3CIDXCAo4Sl591soOEhQTkJT5P
-        rIQI60h0vH3KAhJmE9CSmN2fCDJFRKCfSeLs29tsIA6zwGomicavW9ghdvFKzGgHaQCxpSW2
-        L9/KCGJzClhL3Ow6xwwR15D4sawXyhaVuLn6LTuM/f7YfEYIW0Si9d5ZqBpBiQc/d0PFpSQe
-        NR+AsqslzrX3soMcISHQwChx8PNGNpBLJQT0JXZcNwap4RXwlTja+RasnkVAVWL/3l9Qu1wk
-        Tq69DzafWUBbYtnC18wgrcwCmhLrd+lDTFGWOHKLBearho2/2dHZzAJ8Eu++9rDCxHfMe8IE
-        YStLfG5+zTKBUXkWIpxnIdk1C2HXAkbmVYxiqQXFuempxYYFxvCYTc7P3cQITq5a5jsYp739
-        oHeIkYmD8RCjBAezkghvTpBnkhBvSmJlVWpRfnxRaU5q8SFGU6AvJzJLiSbnA9N7Xkm8oYml
-        gYmZkampoYGFiZI476pppxOFBNITS1KzU1MLUotg+pg4OKUamNL1o25vnmza8/6oif207i9n
-        S5dyrXPS/W9zJa1f1+H1Ea9ff3OZih18brAsZF4+K53/c9PWpJMLg3I8U27PvPk1wU8jaOdb
-        kztzrP7W6k77dF8pt8erMzDF7VxxzY+Uey26H9UeRUp+U/w9/8//aL9ZUrbJvacq3/k9lzun
-        /co/yI1nnsCU8OnGDjl3FAX+/F+35np62sXbTyyqw+1VQi89l67RelFk5Xhn6UuWM4umXZl3
-        USLl9InJZUt6Oe9fVFtt+PL6IsVzgdJ3Y3/vKUu/x3jZQJnNdJ3/fRNJZVYp1nmOr37UcE1d
-        /euCyMmg2TL5PG/WnlmQcL/oiK2ZSN2jO5FeK1z9j81m3xKblaXEUpyRaKjFXFScCAA3czBw
-        NwQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220405061903epcas2p345f2b2e656b3b1cbe5832e24dd4a67f3
-References: <20220405061922.27343-1-dj76.yang@samsung.com>
-        <CGME20220405061903epcas2p345f2b2e656b3b1cbe5832e24dd4a67f3@epcms1p7>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229952AbiDEGcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 02:32:22 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386798E193;
+        Mon,  4 Apr 2022 23:30:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649140219; x=1680676219;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=KEL2Yv3B6oTBc+P8ACLTVyamtRKvNdJMIqI262BfDMQ=;
+  b=SwTdz5sLr3N1edsor62/LZbtBvMeHNKaD9AhQUyEHPKn8nz7COcgbtZL
+   LmpdlkCoFSC/YCytYvYmuuwBo/7AxIzl0W12joJWePmrn0q8b534anyCb
+   lmHWBKwIrO1O4lVprAlfDl/IL3oBVkrnzqZhShrRAxlFSqipLHJssIe8S
+   A=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 04 Apr 2022 23:30:19 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 23:30:18 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 4 Apr 2022 23:30:18 -0700
+Received: from [10.50.5.168] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 4 Apr 2022
+ 23:30:15 -0700
+Message-ID: <12f69c15-8cff-6e15-45a6-06fc3bc9112b@quicinc.com>
+Date:   Tue, 5 Apr 2022 12:00:11 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
+Content-Language: en-US
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
+ <YktHHOww7VkbIxfE@google.com>
+ <abd0c3eb-38d3-6673-9e1a-6bf04755e5f2@quicinc.com>
+In-Reply-To: <abd0c3eb-38d3-6673-9e1a-6bf04755e5f2@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-snps,dwmac=C2=A0has=C2=A0duplicated=C2=A0name=C2=A0for=C2=A0loongson,ls2k-d=
-wmac=C2=A0and=0D=0Aloongson,ls7a-dwmac.=0D=0A=C2=A0=0D=0AFixes:=C2=A0682777=
-49a013=C2=A0(=22dt-bindings:=C2=A0dwmac:=C2=A0Add=C2=A0bindings=C2=A0for=C2=
-=A0new=C2=A0Loongson=C2=A0SoC=C2=A0and=C2=A0bridge=C2=A0chip=22)=0D=0ASigne=
-d-off-by:=C2=A0Dongjin=C2=A0Yang=C2=A0<dj76.yang=40samsung.com>=0D=0A---=0D=
-=0ANotes:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0v2:=C2=A0Update=C2=A0Fix=C2=A0tag=C2=
-=A0and=C2=A0change=C2=A0history.=C2=A0=0D=0A=C2=A0=0D=0A=C2=A0Documentation=
-/devicetree/bindings/net/snps,dwmac.yaml=C2=A0=7C=C2=A06=C2=A0++----=0D=0A=
-=C2=A01=C2=A0file=C2=A0changed,=C2=A02=C2=A0insertions(+),=C2=A04=C2=A0dele=
-tions(-)=0D=0A=C2=A0=0D=0Adiff=C2=A0--git=C2=A0a/Documentation/devicetree/b=
-indings/net/snps,dwmac.yaml=C2=A0b/Documentation/devicetree/bindings/net/sn=
-ps,dwmac.yaml=0D=0Aindex=C2=A02d5248f..36c85eb=C2=A0100644=0D=0A---=C2=A0a/=
-Documentation/devicetree/bindings/net/snps,dwmac.yaml=0D=0A+++=C2=A0b/Docum=
-entation/devicetree/bindings/net/snps,dwmac.yaml=0D=0A=40=40=C2=A0-53,20=C2=
-=A0+53,18=C2=A0=40=40=C2=A0properties:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0allwinner,sun8i-r40-gmac=0D=0A=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0allwinner,sun8i-v3s-emac=
-=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0allwinne=
-r,sun50i-a64-emac=0D=0A-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
-=C2=A0loongson,ls2k-dwmac=0D=0A-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0-=C2=A0loongson,ls7a-dwmac=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0-=C2=A0amlogic,meson6-dwmac=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0amlogic,meson8b-dwmac=0D=0A=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0amlogic,meson8m2-dwmac=
-=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0amlogic,=
-meson-gxbb-dwmac=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0-=C2=A0amlogic,meson-axg-dwmac=0D=0A-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0-=C2=A0loongson,ls2k-dwmac=0D=0A-=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0-=C2=A0loongson,ls7a-dwmac=0D=0A=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0ingenic,jz4775-mac=0D=0A=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0ingenic,x1000-mac=0D=0A=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0ingenic,x1600-=
-mac=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0ingen=
-ic,x1830-mac=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=
-=C2=A0ingenic,x2000-mac=0D=0A+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0-=C2=A0loongson,ls2k-dwmac=0D=0A+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0-=C2=A0loongson,ls7a-dwmac=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0-=C2=A0rockchip,px30-gmac=0D=0A=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0rockchip,rk3128-gmac=0D=0A=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0-=C2=A0rockchip,rk3228-gmac=0D=
-=0A--=C2=A0=0D=0A2.9.5
+On 4/5/2022 11:56 AM, Manikanta Pubbisetty wrote:
+> 
+> 
+> On 4/5/2022 12:59 AM, Matthias Kaehlcke wrote:
+>> On Mon, Mar 28, 2022 at 12:40:57PM +0530, Manikanta Pubbisetty wrote:
+>>> Add DTS node for WCN6750 WiFi chipset.
+>>>
+>>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+>>> ---
+>>> Depends on:
+>>> - 
+>>> https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/ 
+>>>
+>>> - 
+>>> https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/ 
+>>>
+>>>
+>>> Changes from V2:
+>>> - Changes based on DT binding concerns
+>>> - Rebased on ToT
+>>>
+>>> Changes from V1:
+>>> - Corrected the case for hex values
+>>>
+>>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
+>>>   arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
+>>>   2 files changed, 53 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>> index 069ffbc37bc4..a82e9aa7bdc5 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>>> @@ -551,3 +551,10 @@ &remoteproc_wpss {
+>>>       status = "okay";
+>>>   };
+>>> +&wifi {
+>>> +    status = "okay";
+>>> +    wifi-firmware {
+>>> +        iommus = <&apps_smmu 0x1c02 0x1>;
+>>> +    };
+>>> +};
+>>> +
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> index b757e8ad1199..dfd9fa077903 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> @@ -85,6 +85,11 @@ reserved-memory {
+>>>           #size-cells = <2>;
+>>>           ranges;
+>>> +        wlan_ce_mem: memory@4cd000 {
+>>> +            no-map;
+>>> +            reg = <0x0 0x4cd000 0x0 0x1000>;
+>>
+>> Pad the address to 8 digits here (not in the node name).
+> 
+> Sure
+> 
+>>
+>>> +        };
+>>> +
+>>>           hyp_mem: memory@80000000 {
+>>>               reg = <0x0 0x80000000 0x0 0x600000>;
+>>>               no-map;
+>>> @@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
+>>>               qcom,bcm-voters = <&apps_bcm_voter>;
+>>>           };
+>>> +        wifi: wifi@17a10040 {
+>>> +            compatible = "qcom,wcn6750-wifi";
+>>> +            reg = <0 0x17a10040 0 0x0>;
+>>> +            iommus = <&apps_smmu 0x1c00 0x1>;
+>>> +            interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
+>>> +                     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
+>>> +            qcom,rproc = <&remoteproc_wpss>;
+>>> +            memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
+>>
+>> Where is 'wlan_fw_mem' added?
+> 
+> Sorry, did not understand your concern here.
+> 
+
+Well, I got your point. wlan_fw_mem is already present in SC7280.dtsi.
+
+
+Thanks,
+Manikanta
