@@ -2,112 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DAB64F410B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 183324F3F21
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 22:57:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242865AbiDEN7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:59:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46150 "EHLO
+        id S240448AbiDEN5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380317AbiDENOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:14:01 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54880123BE5;
-        Tue,  5 Apr 2022 05:16:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1649161001;
-  x=1680697001;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=x4YcHLziIrEggw9HG5I5fbaW8iCdF7u9wJBMUjziEm8=;
-  b=meQxV9f1p1HxnA3LmMRvs8ovRZ0drYp0I+KKJAUcs7eP7q68kAO9jRvG
-   5xgBBynyHeSrU7SC+XYDy/gOfaOKCoOMUwNmTum1YmqLNFA/tDU1wNG0Z
-   fKawQ0pdr4asecovTbrHWQE7JdFkJUI8dpn60dfWZXB5pY789qCwPJxbZ
-   ctjRS89ABOnJilYZeMhLr4HxnA1XPBXRDCJS+lZF6iyuCH6nP8Cn+qkBD
-   ONmlhg8GdVyC8ip3m1a5cQfJf+j7yBDSyKxykIETTWeFKKkXiOaXC98cF
-   BWAO6Sr1S1y0r2wLxBnfjegIeqJXA4gA+j6MctVnwViaHh7A0LoFMPJU4
-   w==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <wsa@kernel.org>
-CC:     <kernel@axis.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <krzk+dt@kernel.org>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] i2c: core: support no-detect property
-Date:   Tue, 5 Apr 2022 14:16:27 +0200
-Message-ID: <20220405121627.1560949-3-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
-References: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
+        with ESMTP id S1381716AbiDENOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:14:43 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C6BC127590;
+        Tue,  5 Apr 2022 05:18:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=g8HbdxageWMZjW4MNTzRzqXFH334Zm1UWoKjrVxSyuc=; b=C9gZOFUXwcrudSR2zBQ8Y7EV4j
+        mdO5X1aR4sYmlOOyRhrKyjQjHIiRN781rYJxt/Zi9492igAQu3H1pPWP4bEhxlNazgb2rwRuxqoTH
+        9Dh252ZB286S5EDLtH6pJFVl5tjvmoj7In16nSBW0uNgV8UYYNRfa8RAgSTNuUDbz4v4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nbi8J-00EFNn-Uo; Tue, 05 Apr 2022 14:18:03 +0200
+Date:   Tue, 5 Apr 2022 14:18:03 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andy Chiu <andy.chiu@sifive.com>
+Cc:     davem@davemloft.net, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v8 net-next 3/4] dt-bindings: net: add pcs-handle
+ attribute
+Message-ID: <Ykwze3+VW4LtBb7j@lunn.ch>
+References: <20220405091929.670951-1-andy.chiu@sifive.com>
+ <20220405091929.670951-4-andy.chiu@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220405091929.670951-4-andy.chiu@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the devicetree specifies the no-detect property, we can avoid calling
-drivers' detect callback and wasting time probing for devices which do
-not exist.
+On Tue, Apr 05, 2022 at 05:19:28PM +0800, Andy Chiu wrote:
+> Document the new pcs-handle attribute to support connecting to an
+> external PHY. For Xilinx's AXI Ethernet, this is used when the core
+> operates in SGMII or 1000Base-X modes and links through the internal
+> PCS/PMA PHY.
+> 
+> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- drivers/i2c/i2c-core-base.c | 8 +++++++-
- include/linux/i2c.h         | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
-index d43db2c3876e..d43025b84546 100644
---- a/drivers/i2c/i2c-core-base.c
-+++ b/drivers/i2c/i2c-core-base.c
-@@ -1341,7 +1341,8 @@ static int i2c_do_add_adapter(struct i2c_driver *driver,
- 			      struct i2c_adapter *adap)
- {
- 	/* Detect supported devices on that bus, and instantiate them */
--	i2c_detect(adap, driver);
-+	if (adap->detect)
-+		i2c_detect(adap, driver);
- 
- 	return 0;
- }
-@@ -1432,6 +1433,7 @@ EXPORT_SYMBOL_GPL(i2c_handle_smbus_host_notify);
- 
- static int i2c_register_adapter(struct i2c_adapter *adap)
- {
-+	struct device_node *np = adap->dev.of_node;
- 	int res = -EINVAL;
- 
- 	/* Can't register until after driver model init */
-@@ -1502,6 +1504,10 @@ static int i2c_register_adapter(struct i2c_adapter *adap)
- 			 "Failed to create compatibility class link\n");
- #endif
- 
-+	adap->detect = true;
-+	if (np && of_property_read_bool(np, "no-detect"))
-+		adap->detect = false;
-+
- 	/* create pre-declared device nodes */
- 	of_i2c_register_devices(adap);
- 	i2c_acpi_install_space_handler(adap);
-diff --git a/include/linux/i2c.h b/include/linux/i2c.h
-index fbda5ada2afc..8fad5fe85685 100644
---- a/include/linux/i2c.h
-+++ b/include/linux/i2c.h
-@@ -728,6 +728,7 @@ struct i2c_adapter {
- 	struct rt_mutex bus_lock;
- 	struct rt_mutex mux_lock;
- 
-+	bool detect;
- 	int timeout;			/* in jiffies */
- 	int retries;
- 	struct device dev;		/* the adapter device */
--- 
-2.34.1
-
+    Andrew
