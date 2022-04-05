@@ -2,105 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6EC84F4612
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 01:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA2354F464F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 01:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236596AbiDEPYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 11:24:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44784 "EHLO
+        id S239002AbiDEPZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 11:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385599AbiDEPPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:15:13 -0400
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAD93EF34;
-        Tue,  5 Apr 2022 06:31:52 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2eb3db5b172so89808657b3.6;
-        Tue, 05 Apr 2022 06:31:52 -0700 (PDT)
+        with ESMTP id S1388891AbiDEPUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:20:42 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ABAC4E32
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 06:35:07 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id g20so14911936edw.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 06:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5dwM+wZpTO3dJm2C/zTXFC7RztJX3MC1/t/cmygFHpM=;
+        b=U0esJs4rP0x+B/7le3KzQk0G9D9jf8luw+Lhb+RWPQ520F2Pkjzs3DVjaaHodh5Ejw
+         K7bJwFQphX/lsr8r79a9uqQIcQUtCWuYFPYkehbagjXAt4reilNZRI6JcOroNXL3HSm1
+         c1Dirae4HlQOeBoqs/mTgxhlSJw8YJjTlR92APx6zOXG6vyTCaqbTuliyVuR0CayEq60
+         NXSZzvAYgfZSRp66eov4utbzned9N9+RHLZFEfRHkCARQSBTK5GeS4KDiIh3xIUtJ8h+
+         vWME8qOzqa/NzEVS4/LMjrZG6mz8ojmpH5XjH38KhClsdBMdQuAdpllbk6spsPl8Fp6f
+         IAeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f8uchKorU3SK+3Nl3Y4nxuHq3uTyBcBu9WjlgN34Je8=;
-        b=Vc4fCdlLeKnULx7WeU05PFX041SVGBWUjEsA6GNKZcLoVqWbhN1K7iaoYsGqFKbl49
-         UmI01NKNlhDWxAgayyP5g3UJFRTZCSrUlkOG3nMPXoNHW0wu59FDBZEDr0rmebp+IOb3
-         wCQ06ai98n46YWMs41qk6JBS8CoIzAOg2XHC/FC8JPhu1QsqYGnBOre8lYzZbdtUJAgi
-         6gyohvyqjO8CAaQPi6qFrHKZBbx2TbSxE0ApqjF+3ODZ7cCIpJccTtooH95Cc/Uklbh0
-         Kq95wVKRvDTAx6EvFvGHH/yYE+H8FWhc90OchrBtiOtKl1Jbx2QDKIi+JrgVNducTGnS
-         hfJg==
-X-Gm-Message-State: AOAM530kqsBwUcl5iEArHNFC/NRXP7UHNl+ZpVzz9AsyPVkJmAqJ41+t
-        tJrwT2tVsdtxFoD2kFCxUAYirWBbULAFvezj0uc=
-X-Google-Smtp-Source: ABdhPJwKbTBR54H9kDI5qJHJEMWNzG2lGwa/5kmlpVhNg7z61lDEeQed+3lON8Ka1lR4OTZjQqfCFdVwe8mIHVUXNm8=
-X-Received: by 2002:a81:1257:0:b0:2eb:97cf:a4a2 with SMTP id
- 84-20020a811257000000b002eb97cfa4a2mr2676401yws.149.1649165511695; Tue, 05
- Apr 2022 06:31:51 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5dwM+wZpTO3dJm2C/zTXFC7RztJX3MC1/t/cmygFHpM=;
+        b=6Mf0f4ezX/hwdjXb9osqD6vNf8/4sakv56tz2O12CTwzIDiXbzcXXZNpIVs+ose9sv
+         JdwqbECC3NIOJwWY1F5Cs/J19erPtzYJ3bORGzdJKuDbsA6ja+4vZGXUJRPuVXUqZxB7
+         RDOHKXKFbSxFOjOQtuZUqTRjjkn7/bHtGo/snOCBQ1ykmYsHOy8GrhPH+1MsOPSJZ7Be
+         8pU6Dn2XLRE0JiWCAacsG9F/Pl5C4O+oqjqsyOHUiHae8aero3j5KMOzuUwItYVJRSSh
+         YqfEfiYFyvlfLEMOOp2yGiL/RqVpo+hauRwIEnyeNS1/Jr1wrxhUMiMO7gBKeg5XNtla
+         0ABA==
+X-Gm-Message-State: AOAM5338NncWwAelW2BZS71/kFdXGHw2H3ApuOClFB7g7auE3kGSnwbp
+        qDC5CLWaoL3n8oyjXO+Ao6zIUA==
+X-Google-Smtp-Source: ABdhPJyMdghdEM2XuZgbpwldmrRTm3as2pia+nLSDQYWpSbi7EJHANLmyvBkobO5HTtK6Wvy1FRIPg==
+X-Received: by 2002:a05:6402:3553:b0:419:6552:11b7 with SMTP id f19-20020a056402355300b00419655211b7mr3644088edd.286.1649165706043;
+        Tue, 05 Apr 2022 06:35:06 -0700 (PDT)
+Received: from [192.168.0.182] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id e3-20020a170906374300b006e7f060bf6asm2501343ejc.207.2022.04.05.06.35.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Apr 2022 06:35:05 -0700 (PDT)
+Message-ID: <ac2b29c2-b3ec-eb03-595f-b0328e40015c@linaro.org>
+Date:   Tue, 5 Apr 2022 15:35:04 +0200
 MIME-Version: 1.0
-References: <20220331125450.218045-1-sakari.ailus@linux.intel.com> <YkcFSgL+j1IvSsby@kuha.fi.intel.com>
-In-Reply-To: <YkcFSgL+j1IvSsby@kuha.fi.intel.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Tue, 5 Apr 2022 15:31:41 +0200
-Message-ID: <CAJZ5v0iA9q+gAoOKSHYSUt-wEL8ogM-hN0_F6dcCKc1ZhwOngg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Shovel firmware specific code to appropriate locations
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Rafael J.Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/4 v5] dt-bindings: Add Rockchip rk817 battery charger
+ support
+Content-Language: en-US
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
+        zyw@rock-chips.com, jon.lin@rock-chips.com,
+        maccraft123mc@gmail.com, sre@kernel.org, heiko@sntech.de,
+        krzk+dt@kernel.org, robh+dt@kernel.org, lee.jones@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220404215754.30126-1-macroalpha82@gmail.com>
+ <20220404215754.30126-2-macroalpha82@gmail.com>
+ <74f445c2-3194-80a6-6d52-21368eb6172a@linaro.org>
+ <20220405131228.GA20@wintermute.localdomain>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220405131228.GA20@wintermute.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 1, 2022 at 3:59 PM Heikki Krogerus
-<heikki.krogerus@linux.intel.com> wrote:
->
-> On Thu, Mar 31, 2022 at 03:54:46PM +0300, Sakari Ailus wrote:
-> > Hi folks,
-> >
-> > This set moves the implementation of recently added device property API
-> > functions to OF and ACPI frameworks, where the rest of such functionality
-> > resides.
-> >
-> > Compile tested.
-> >
-> > The dependencies can be found in Rafael's devprop branch now.
-> >
-> > since v2:
-> >
-> > - Add pre-processor check for CONFIG_OF_ADDRESS in of_fwnode_iomap() (3rd
-> >   patch).
-> >
-> > changes since v1:
-> >
-> > - Drop wrongly placed Depends-on: tag from the first patch.
-> >
-> > - Drop IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode) check (3rd
-> >   patch).
-> >
-> > Sakari Ailus (4):
-> >   device property: Convert device_{dma_supported,get_dma_attr} to fwnode
-> >   ACPI: property: Move acpi_fwnode_device_get_match_data() up
-> >   device property: Add iomap to fwnode operations
-> >   device property: Add irq_get to fwnode operation
-> >
-> >  drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
-> >  drivers/base/property.c | 42 ++++++-----------------------------------
-> >  drivers/of/property.c   | 34 +++++++++++++++++++++++++++++++++
-> >  include/linux/fwnode.h  |  5 +++++
-> >  4 files changed, 77 insertions(+), 40 deletions(-)
->
-> These look good to me. FWIW:
->
-> Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+On 05/04/2022 15:12, Chris Morgan wrote:
+> On Tue, Apr 05, 2022 at 01:16:55PM +0200, Krzysztof Kozlowski wrote:
+>> On 04/04/2022 23:57, Chris Morgan wrote:
+>>> From: Chris Morgan <macromorgan@hotmail.com>
+>>>
+>>> Create dt-binding documentation to document rk817 battery and charger
+>>> usage. New device-tree properties have been added.
+>>>
+>>> - rockchip,resistor-sense-micro-ohms: The value in microohms of the
+>>>                                       sample resistor.
+>>> - rockchip,sleep-enter-current-microamp: The value in microamps of the
+>>>                                          sleep enter current.
+>>> - rockchip,sleep-filter-current: The value in microamps of the sleep
+>>>                                  filter current.
+>>>
+>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>> ---
+>>>  .../bindings/mfd/rockchip,rk817.yaml          | 48 +++++++++++++++++++
+>>>  1 file changed, 48 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+>>> index bfc1720adc43..b949d406a487 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+>>> @@ -117,6 +117,47 @@ properties:
+>>>          description:
+>>>            Describes if the microphone uses differential mode.
+>>>  
+>>> +  battery:
+>>
+>> I wonder why do you call it a batter while it is a charger, isn't it?
+> 
+> It is a driver for both the battery and charger. I'd argue about 95% of
+> it is battery functions and the other 5% is managing the IRQs for plug
+> removal/insertion and capturing the incoming voltage and current. In
+> the BSP kernel these were two seperate drivers, but there was so little
+> that needed to be done for the charger (and users probably don't need
+> plug IRQs if they aren't using a battery anyway since the system will
+> shut off on a plug out event due to no power...).
 
-All patches in the series applied as 5.19 material, thanks!
+What do you mean by driver for "battery"? Like some smart-battery
+system? with embedded battery (RK817 comes with embedded battery) Or a
+fuel gauge? Judging by power supply properties it looks like fuel gauge.
+
+"Battery" should rather be used for the node referenced by
+"monitored-battery"...
+
+Best regards,
+Krzysztof
