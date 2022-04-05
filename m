@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 993354F4AE7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC13E4F4A5B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573696AbiDEWwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51754 "EHLO
+        id S229576AbiDEWlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1572993AbiDERmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 13:42:35 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049E3B91A9
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 10:40:37 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id n6-20020a17090a670600b001caa71a9c4aso154059pjj.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 10:40:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=bmdZR+jb7U9hOHhffMWtGTEUc07VUkF9UAiv6MrZTR0=;
-        b=hdLDj6MHZR788Hh/YADN8CarIVT+/LULSlHEAQnhRsZu6ECl3DWAe/7VBEB0NUP4Q9
-         I2tUx1NM8N1DxpVJcW5YNOP4BdlQhL+YqGEPqwY25dTW1XdZTgrpeidt0xR/lmeSAK/8
-         mXq0nMfY1SI7jt8tDexuSasvLLmqr0zZeV9Gk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=bmdZR+jb7U9hOHhffMWtGTEUc07VUkF9UAiv6MrZTR0=;
-        b=1TKwpDTUocv7YdPVjx1YWSuvEBg6WNksjIDcTKCH6Od7oxC5bQx/np+A0+S009wUZ3
-         6x0GoBztQzFbb3gjl+ffaR/BO95VSwZbXvUjvlcHeRtUl7NyLA39uaHkJVSA5g/o/7cU
-         MKA2Vx2QELZ8dMJVolSkXlwjzambp0wizDIDc/nvXTnKMhkWh2uMxhxFeUrHIlbFTqxT
-         W9r/p1hsnnPPJDv27xPk/7aNpJeLcEHf9P2/4tTsH9+s+TnOoD3tTRThkNYEZohI2hcR
-         r85LaEGVx0KCWUQ4hNimV8imONb0gX3SY+fzCBlw/5tnWAGjG/1FOC178d1RUtt3syTC
-         C9jQ==
-X-Gm-Message-State: AOAM533qTjqUyxdGhc5U4NyoAgcRhubBLUoznxL7QzUcO6HTjsWUUlpv
-        dksEx3YKIva+sbfEcEPz8HSVgw==
-X-Google-Smtp-Source: ABdhPJzecQhLVvt+Di0OuJSMrftbsU81/OCL9+jLim1kqYCG7+LORAfpHejgugGm1IcGOu2t4577JQ==
-X-Received: by 2002:a17:902:c2d8:b0:154:2946:4ff with SMTP id c24-20020a170902c2d800b00154294604ffmr4598001pla.99.1649180436498;
-        Tue, 05 Apr 2022 10:40:36 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:6b63:d403:e31b:da39])
-        by smtp.gmail.com with UTF8SMTPSA id f19-20020a056a00229300b004fb157f136asm16947948pfe.153.2022.04.05.10.40.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 10:40:35 -0700 (PDT)
-Date:   Tue, 5 Apr 2022 10:40:34 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
-Message-ID: <Ykx/EgOmNP/8M6b2@google.com>
-References: <20220328071057.2454-1-quic_mpubbise@quicinc.com>
- <YktHHOww7VkbIxfE@google.com>
- <abd0c3eb-38d3-6673-9e1a-6bf04755e5f2@quicinc.com>
- <12f69c15-8cff-6e15-45a6-06fc3bc9112b@quicinc.com>
+        with ESMTP id S1573185AbiDESNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 14:13:31 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBA786E36;
+        Tue,  5 Apr 2022 11:11:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649182291; x=1680718291;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oxPQbPe4XPubEIZ9VBAYgBlsoGlrAVDbxPfSfEgWaik=;
+  b=LfSxmPxROu31CFUZmczCwD6nc/o1ArszMxKtTv5n84YIScGgf3yaeOeX
+   v1oEOTqOW7Y7r04slza/bMD2zaHzTth7mRw2QpvXeJHC81rJngLeBKgzo
+   dfdJJD7a6+TeFgg33lG5YZiOGrCDdO6TiK/O8QLY3VFX1vxNFBM6wDpzZ
+   +pJn8De0iKr4nxC/3yJKpppo8KdvBvg34/0jQI4Yen+s5ntnYIjTEFW4U
+   8hrwIQ6gaaArZ7RMgxJe9RPBuxQUjQqylwz/o8hYaYYWvHmrFHIEWIMr2
+   DaH7LJ/QJO9HkZqqO7dC8gwNvEr2dfa+0XGPg1aLubYSZH+rcG7mt1h0w
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="241415947"
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; 
+   d="scan'208";a="241415947"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 11:11:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; 
+   d="scan'208";a="658050302"
+Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 05 Apr 2022 11:11:25 -0700
+Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nbneG-0003eR-Qg;
+        Tue, 05 Apr 2022 18:11:24 +0000
+Date:   Wed, 6 Apr 2022 02:11:06 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, pabeni@redhat.com, krzk+dt@kernel.org,
+        roopa@nvidia.com, andrew@lunn.ch, edumazet@google.com
+Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: Re: [PATCH net-next v6 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Message-ID: <202204060205.cewHqDER-lkp@intel.com>
+References: <1649016459-23989-3-git-send-email-wellslutw@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <12f69c15-8cff-6e15-45a6-06fc3bc9112b@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <1649016459-23989-3-git-send-email-wellslutw@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,118 +69,278 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 12:00:11PM +0530, Manikanta Pubbisetty wrote:
-> On 4/5/2022 11:56 AM, Manikanta Pubbisetty wrote:
-> > 
-> > 
-> > On 4/5/2022 12:59 AM, Matthias Kaehlcke wrote:
-> > > On Mon, Mar 28, 2022 at 12:40:57PM +0530, Manikanta Pubbisetty wrote:
-> > > > Add DTS node for WCN6750 WiFi chipset.
-> > > > 
-> > > > Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> > > > ---
-> > > > Depends on:
-> > > > - https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/
-> > > > 
-> > > > - https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/
-> > > > 
-> > > > 
-> > > > Changes from V2:
-> > > > - Changes based on DT binding concerns
-> > > > - Rebased on ToT
-> > > > 
-> > > > Changes from V1:
-> > > > - Corrected the case for hex values
-> > > > 
-> > > >   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
-> > > >   arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
-> > > >   2 files changed, 53 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > > b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > > index 069ffbc37bc4..a82e9aa7bdc5 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> > > > @@ -551,3 +551,10 @@ &remoteproc_wpss {
-> > > >       status = "okay";
-> > > >   };
-> > > > +&wifi {
-> > > > +    status = "okay";
-> > > > +    wifi-firmware {
-> > > > +        iommus = <&apps_smmu 0x1c02 0x1>;
-> > > > +    };
-> > > > +};
-> > > > +
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > index b757e8ad1199..dfd9fa077903 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > @@ -85,6 +85,11 @@ reserved-memory {
-> > > >           #size-cells = <2>;
-> > > >           ranges;
-> > > > +        wlan_ce_mem: memory@4cd000 {
-> > > > +            no-map;
-> > > > +            reg = <0x0 0x4cd000 0x0 0x1000>;
-> > > 
-> > > Pad the address to 8 digits here (not in the node name).
-> > 
-> > Sure
-> > 
-> > > 
-> > > > +        };
-> > > > +
-> > > >           hyp_mem: memory@80000000 {
-> > > >               reg = <0x0 0x80000000 0x0 0x600000>;
-> > > >               no-map;
-> > > > @@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
-> > > >               qcom,bcm-voters = <&apps_bcm_voter>;
-> > > >           };
-> > > > +        wifi: wifi@17a10040 {
-> > > > +            compatible = "qcom,wcn6750-wifi";
-> > > > +            reg = <0 0x17a10040 0 0x0>;
-> > > > +            iommus = <&apps_smmu 0x1c00 0x1>;
-> > > > +            interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
-> > > > +                     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
-> > > > +            qcom,rproc = <&remoteproc_wpss>;
-> > > > +            memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
-> > > 
-> > > Where is 'wlan_fw_mem' added?
-> > 
-> > Sorry, did not understand your concern here.
-> > 
-> 
-> Well, I got your point. wlan_fw_mem is already present in SC7280.dtsi.
+Hi Wells,
 
-Sorry, I thought I had grepped for it and didn't find it, but now I see
-it's there.
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on net/master]
+[also build test WARNING on robh/for-next linus/master v5.18-rc1 next-20220405]
+[cannot apply to net-next/master]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Wells-Lu/This-is-a-patch-series-for-Ethernet-driver-of-Sunplus-SP7021-SoC/20220404-040949
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git 692930cc435099580a4b9e32fa781b0688c18439
+config: alpha-randconfig-c004-20220405 (https://download.01.org/0day-ci/archive/20220406/202204060205.cewHqDER-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d8d2085594ea52869669a553bb6d60e0b3a1f412
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Wells-Lu/This-is-a-patch-series-for-Ethernet-driver-of-Sunplus-SP7021-SoC/20220404-040949
+        git checkout d8d2085594ea52869669a553bb6d60e0b3a1f412
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash drivers/net/ethernet/sunplus/ drivers/pinctrl/sunplus/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/net/ethernet/sunplus/spl2sw_driver.c: In function 'spl2sw_get_eth_child_node':
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:328:9: error: implicit declaration of function 'for_each_child_of_node'; did you mean 'for_each_online_node'? [-Werror=implicit-function-declaration]
+     328 |         for_each_child_of_node(ether_np, port_np) {
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+         |         for_each_online_node
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:328:50: error: expected ';' before '{' token
+     328 |         for_each_child_of_node(ether_np, port_np) {
+         |                                                  ^~
+         |                                                  ;
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:326:13: warning: unused variable 'port_id' [-Wunused-variable]
+     326 |         int port_id;
+         |             ^~~~~~~
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:342:1: error: no return statement in function returning non-void [-Werror=return-type]
+     342 | }
+         | ^
+   drivers/net/ethernet/sunplus/spl2sw_driver.c: In function 'spl2sw_probe':
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:407:24: error: implicit declaration of function 'of_get_child_by_name' [-Werror=implicit-function-declaration]
+     407 |         eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+         |                        ^~~~~~~~~~~~~~~~~~~~
+>> drivers/net/ethernet/sunplus/spl2sw_driver.c:407:22: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     407 |         eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+         |                      ^
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:428:26: error: implicit declaration of function 'of_parse_phandle' [-Werror=implicit-function-declaration]
+     428 |                 phy_np = of_parse_phandle(port_np, "phy-handle", 0);
+         |                          ^~~~~~~~~~~~~~~~
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:428:24: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     428 |                 phy_np = of_parse_phandle(port_np, "phy-handle", 0);
+         |                        ^
+   cc1: some warnings being treated as errors
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for PINCTRL_SPPCTL
+   Depends on PINCTRL && SOC_SP7021 && OF && HAS_IOMEM
+   Selected by
+   - SP7021_EMAC && NETDEVICES && ETHERNET && NET_VENDOR_SUNPLUS && (SOC_SP7021 || COMPILE_TEST
+
+
+vim +407 drivers/net/ethernet/sunplus/spl2sw_driver.c
+
+   343	
+   344	static int spl2sw_probe(struct platform_device *pdev)
+   345	{
+   346		struct device_node *eth_ports_np;
+   347		struct device_node *port_np;
+   348		struct spl2sw_common *comm;
+   349		struct device_node *phy_np;
+   350		phy_interface_t phy_mode;
+   351		struct net_device *ndev;
+   352		u8 mac_addr[ETH_ALEN];
+   353		struct spl2sw_mac *mac;
+   354		int irq, i;
+   355		int ret;
+   356	
+   357		if (platform_get_drvdata(pdev))
+   358			return -ENODEV;
+   359	
+   360		/* Allocate memory for 'spl2sw_common' area. */
+   361		comm = devm_kzalloc(&pdev->dev, sizeof(*comm), GFP_KERNEL);
+   362		if (!comm)
+   363			return -ENOMEM;
+   364		comm->pdev = pdev;
+   365	
+   366		spin_lock_init(&comm->rx_lock);
+   367		spin_lock_init(&comm->tx_lock);
+   368		spin_lock_init(&comm->mdio_lock);
+   369	
+   370		/* Get memory resource 0 from dts. */
+   371		comm->l2sw_reg_base = devm_platform_ioremap_resource(pdev, 0);
+   372		if (IS_ERR(comm->l2sw_reg_base))
+   373			return PTR_ERR(comm->l2sw_reg_base);
+   374	
+   375		/* Get irq resource from dts. */
+   376		ret = platform_get_irq(pdev, 0);
+   377		if (ret < 0)
+   378			return ret;
+   379		irq = ret;
+   380	
+   381		/* Get clock controller. */
+   382		comm->clk = devm_clk_get(&pdev->dev, NULL);
+   383		if (IS_ERR(comm->clk)) {
+   384			dev_err_probe(&pdev->dev, PTR_ERR(comm->clk),
+   385				      "Failed to retrieve clock controller!\n");
+   386			return PTR_ERR(comm->clk);
+   387		}
+   388	
+   389		/* Get reset controller. */
+   390		comm->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+   391		if (IS_ERR(comm->rstc)) {
+   392			dev_err_probe(&pdev->dev, PTR_ERR(comm->rstc),
+   393				      "Failed to retrieve reset controller!\n");
+   394			return PTR_ERR(comm->rstc);
+   395		}
+   396	
+   397		/* Enable clock. */
+   398		clk_prepare_enable(comm->clk);
+   399		udelay(1);
+   400	
+   401		reset_control_assert(comm->rstc);
+   402		udelay(1);
+   403		reset_control_deassert(comm->rstc);
+   404		udelay(1);
+   405	
+   406		/* Get child node ethernet-ports. */
+ > 407		eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+   408		if (!eth_ports_np) {
+   409			dev_err(&pdev->dev, "No ethernet-ports child node found!\n");
+   410			ret = -ENODEV;
+   411			goto out_clk_disable;
+   412		}
+   413	
+   414		for (i = 0; i < MAX_NETDEV_NUM; i++) {
+   415			/* Get port@i of node ethernet-ports. */
+   416			port_np = spl2sw_get_eth_child_node(eth_ports_np, i);
+   417			if (!port_np)
+   418				continue;
+   419	
+   420			/* Get phy-mode. */
+   421			if (of_get_phy_mode(port_np, &phy_mode)) {
+   422				dev_err(&pdev->dev, "Failed to get phy-mode property of port@%d!\n",
+   423					i);
+   424				continue;
+   425			}
+   426	
+   427			/* Get phy-handle. */
+   428			phy_np = of_parse_phandle(port_np, "phy-handle", 0);
+   429			if (!phy_np) {
+   430				dev_err(&pdev->dev, "Failed to get phy-handle property of port@%d!\n",
+   431					i);
+   432				continue;
+   433			}
+   434	
+   435			/* Get mac-address from nvmem. */
+   436			ret = spl2sw_nvmem_get_mac_address(&pdev->dev, port_np, mac_addr);
+   437			if (ret) {
+   438				dev_info(&pdev->dev, "Generate a random mac address!\n");
+   439	
+   440				/* Generate a mac address using OUI of Sunplus Technology
+   441				 * and random controller number.
+   442				 */
+   443				mac_addr[0] = 0xfc; /* OUI of Sunplus: fc:4b:bc */
+   444				mac_addr[1] = 0x4b;
+   445				mac_addr[2] = 0xbc;
+   446				mac_addr[3] = get_random_int() % 256;
+   447				mac_addr[4] = get_random_int() % 256;
+   448				mac_addr[5] = get_random_int() % 256;
+   449			}
+   450	
+   451			/* Initialize the net device. */
+   452			ret = spl2sw_init_netdev(pdev, mac_addr, &ndev);
+   453			if (ret)
+   454				goto out_unregister_dev;
+   455	
+   456			ndev->irq = irq;
+   457			comm->ndev[i] = ndev;
+   458			mac = netdev_priv(ndev);
+   459			mac->phy_node = phy_np;
+   460			mac->phy_mode = phy_mode;
+   461			mac->comm = comm;
+   462	
+   463			mac->lan_port = 0x1 << i;	/* forward to port i */
+   464			mac->to_vlan = 0x1 << i;	/* vlan group: i     */
+   465			mac->vlan_id = i;		/* vlan group: i     */
+   466	
+   467			/* Set MAC address */
+   468			ret = spl2sw_mac_addr_add(mac);
+   469			if (ret)
+   470				goto out_unregister_dev;
+   471	
+   472			spl2sw_mac_rx_mode_set(mac);
+   473		}
+   474	
+   475		/* Find first valid net device. */
+   476		for (i = 0; i < MAX_NETDEV_NUM; i++) {
+   477			if (comm->ndev[i])
+   478				break;
+   479		}
+   480		if (i >= MAX_NETDEV_NUM) {
+   481			dev_err(&pdev->dev, "No valid ethernet port!\n");
+   482			ret = -ENODEV;
+   483			goto out_clk_disable;
+   484		}
+   485	
+   486		/* Save first valid net device */
+   487		ndev = comm->ndev[i];
+   488		platform_set_drvdata(pdev, ndev);
+   489	
+   490		/* Request irq. */
+   491		ret = devm_request_irq(&pdev->dev, irq, spl2sw_ethernet_interrupt,
+   492				       0, ndev->name, ndev);
+   493		if (ret) {
+   494			netdev_err(ndev, "Failed to request irq #%d for \"%s\"!\n",
+   495				   irq, ndev->name);
+   496			goto out_unregister_dev;
+   497		}
+   498	
+   499		/* Initialize mdio bus */
+   500		ret = spl2sw_mdio_init(comm);
+   501		if (ret) {
+   502			netdev_err(ndev, "Failed to initialize mdio bus!\n");
+   503			goto out_unregister_dev;
+   504		}
+   505	
+   506		ret = spl2sw_mac_addr_del_all(comm);
+   507		if (ret)
+   508			goto out_free_mdio;
+   509	
+   510		ret = spl2sw_descs_init(comm);
+   511		if (ret) {
+   512			dev_err(&comm->pdev->dev, "Fail to initialize mac descriptors!\n");
+   513			spl2sw_descs_free(comm);
+   514			goto out_free_mdio;
+   515		}
+   516	
+   517		spl2sw_mac_init(comm);
+   518	
+   519		ret = spl2sw_phy_connect(comm);
+   520		if (ret) {
+   521			netdev_err(ndev, "Failed to connect phy!\n");
+   522			goto out_free_mdio;
+   523		}
+   524	
+   525		netif_napi_add(ndev, &comm->rx_napi, spl2sw_rx_poll, SPL2SW_RX_NAPI_WEIGHT);
+   526		napi_enable(&comm->rx_napi);
+   527		netif_napi_add(ndev, &comm->tx_napi, spl2sw_tx_poll, SPL2SW_TX_NAPI_WEIGHT);
+   528		napi_enable(&comm->tx_napi);
+   529		return 0;
+   530	
+   531	out_free_mdio:
+   532		spl2sw_mdio_remove(comm);
+   533	
+   534	out_unregister_dev:
+   535		for (i = 0; i < MAX_NETDEV_NUM; i++)
+   536			if (comm->ndev[i])
+   537				unregister_netdev(comm->ndev[i]);
+   538	
+   539	out_clk_disable:
+   540		clk_disable_unprepare(comm->clk);
+   541		return ret;
+   542	}
+   543	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
