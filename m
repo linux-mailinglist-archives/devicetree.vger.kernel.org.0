@@ -2,192 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22F814F4AAD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:50:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B5B24F4B42
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 03:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380077AbiDEWuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:50:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36170 "EHLO
+        id S1574009AbiDEWyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392147AbiDEPfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:35:46 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF9F710DB;
-        Tue,  5 Apr 2022 06:46:39 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8D535D;
-        Tue,  5 Apr 2022 15:46:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1649166397;
-        bh=NozpGi0NsTMG/sB7xLGYVBuLZzmbJ7B3Gwh+tj4+cQI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=G8zkeM3lID2r8WMzYcbEXGAKX30vNSczc4ScWlOdPdazVH/RfNFQL0KJdhysWOadF
-         UCQQNWpNkGeaaTSgDAiZVcb+ZdCBuPEJQszJlD+quolRO/UOwM3K1+BDhoqKaHBHyj
-         YDypJs7DW5COOEgATFL/Z3vHTMi97p9eqOQGL8UM=
-Date:   Tue, 5 Apr 2022 16:46:34 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [v7 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Message-ID: <YkxIOgTl876orHbf@pendragon.ideasonboard.com>
-References: <20220405120552.433415-1-patrick.rudolph@9elements.com>
- <20220405120552.433415-2-patrick.rudolph@9elements.com>
+        with ESMTP id S1392189AbiDEPft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:35:49 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 518DA12D;
+        Tue,  5 Apr 2022 06:48:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1649166488;
+  x=1680702488;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=79rrKpJvSV/IyMMLjk1fyhAdjuzODykc4KbTAF2mUFs=;
+  b=FiOVSqtEplqlpGbV24QKDAr+i8WFGbW038mF84zzzjMGLHloCAF5NPgY
+   spNiGw/JW64vBk2PDKMYeRrzNnvvX9UHBY/B/HepKgx6Ad8lZokZPYdBy
+   7OpaZ9BsvHs1aZCwW+kuNlJhW2Z2+5tJgZDQoPpNYBx3HZTZqRoW8yTb2
+   L/kbhgJPZ67FRSZN5VimMCXaFg5e7MBpW2w5kOfvVuD4jRmwgAUY0TEzv
+   O9FAaZn51Fi/MSdDTB4FNunqqBA9Ty8O7mk1/2xsvz1tde3N99GsfhgrV
+   4GYLxtosbMlYV/YxgZvfwIh/MPM7kvdpyaf1CLkQR25ioPVRlRFcC7BrW
+   w==;
+Date:   Tue, 5 Apr 2022 15:48:05 +0200
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
+        "shuah@kernel.org" <shuah@kernel.org>,
+        "brendanhiggins@google.com" <brendanhiggins@google.com>,
+        "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Subject: Re: [RFC v1 08/10] iio: light: vcnl4000: add roadtest
+Message-ID: <20220405134805.GA28574@axis.com>
+References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
+ <20220311162445.346685-9-vincent.whitchurch@axis.com>
+ <20220320170253.5b946c84@jic23-huawei>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220405120552.433415-2-patrick.rudolph@9elements.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220320170253.5b946c84@jic23-huawei>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick,
+On Sun, Mar 20, 2022 at 06:02:53PM +0100, Jonathan Cameron wrote:
+> Very interesting bit of work. My current approach for similar testing
+> is to write a qemu model for the hardware, but that currently
+> requires carefully crafted tests. Most of the time I'm only doing
+> that to verify refactoring of existing drivers. 
 
-Thank you for the patch.
+Thank you for taking a look!
 
-On Tue, Apr 05, 2022 at 02:05:49PM +0200, Patrick Rudolph wrote:
-> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> chips. The functionality will be provided by the exisintg pca954x driver.
+> One thing that makes me nervous here is the python element though
+> as I've not written significant python in about 20 years.
+> That is going to be a burden for kernel developers and maintainers...
+> Nothing quite like badly written tests to make for a mess in the long run
+> and I suspect my python for example would be very very badly written :)
+
+There's a bunch of static checkers to ensure that the code follows some
+basic guidelines, and CI can check that the tests work consistently, and
+also calculate metrics such as test execution time and code coverage, so
+even non-idiomatic Python in the tests wouldn't be entirely broken.
+
+And unlike driver code, if the tests for a particular driver later do
+turn out to be bad (in what way?), we could just throw those particular
+tests out without breaking anybody's system.
+
+> Cut and paste will of course get us a long way...
+
+Isn't some amount of copy/paste followed by modification to be expected
+even if the framework is written in say C (just as there's already
+copy/paste + modification involved when writing drivers)?
+
+As for the core logic of individual driver tests excluding the framework
+bits, I have a hard time imagining what Python syntax looks like to
+someone with no knowledge of Python, so yes, I guess it's going to be
+harder to review.
+
+> I dream of a world where every driver is testable by people with out hardware
+> but I fear it may be a while yet.  Hopefully this will get us a little
+> closer!
 > 
-> While on it make the interrupts support conditionally as not all of the
-> existing chips have interrupts.
+> I more or less follow what is going on here (good docs btw in the earlier
+> patch definitely helped).
 > 
-> For chips that are powered off by default add an optional regulator
-> called vdd-supply.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 44 ++++++++++++++-----
->  1 file changed, 34 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> index 9f1726d0356b..132c3e54e7ab 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> @@ -4,21 +4,48 @@
->  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: NXP PCA954x I2C bus switch
-> +title: NXP PCA954x I2C and compatible bus switches
->  
->  maintainers:
->    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->  
->  description:
-> -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> +  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-> +  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
->  
->  allOf:
->    - $ref: /schemas/i2c/i2c-mux.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - maxim,max7367
-> +              - maxim,max7369
-> +              - nxp,pca9542
-> +              - nxp,pca9543
-> +              - nxp,pca9544
-> +              - nxp,pca9545
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
-> +        "#interrupt-cells":
-> +          const: 2
-> +
-> +        interrupt-controller: true
+> So far I'm thoroughly in favour of road test subject to actually being
+> able to review the tests or getting sufficient support to do so.
+> It's a 'how to scale it' question really...
 
-It feels a bit out of place to have those properties listed before the
-main "properties" property, but we can only have a sincel allOf. I
-wonder if the i2c-mux schema could be selected automatically based on
-node name, but that's out of scope for this patch.
-
-I thought it was more customary to define properties in the main
-"properties" property, and then have
-
-if:
-  not:
-    properties:
-      compatible:
-        contains:
-          enum:
-            - maxim,max7367
-            - maxim,max7369
-            - nxp,pca9542
-            - nxp,pca9543
-            - nxp,pca9544
-            - nxp,pca9545
-  then:
-    properties:
-      interrupts: false
-      "#interrupt-cells": false
-      interrupt-controller: false
-
-I don't mind much either way though, but if one option is preferred over
-the other, we may want to be consistent.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
->  properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - maxim,max7356
-> +          - maxim,max7357
-> +          - maxim,max7358
-> +          - maxim,max7367
-> +          - maxim,max7368
-> +          - maxim,max7369
->            - nxp,pca9540
->            - nxp,pca9542
->            - nxp,pca9543
-> @@ -38,14 +65,6 @@ properties:
->    reg:
->      maxItems: 1
->  
-> -  interrupts:
-> -    maxItems: 1
-> -
-> -  "#interrupt-cells":
-> -    const: 2
-> -
-> -  interrupt-controller: true
-> -
->    reset-gpios:
->      maxItems: 1
->  
-> @@ -59,6 +78,9 @@ properties:
->      description: if present, overrides i2c-mux-idle-disconnect
->      $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
->  
-> +  vdd-supply:
-> +    description: A voltage regulator supplying power to the chip.
-> +
->  required:
->    - compatible
->    - reg
-> @@ -79,6 +101,8 @@ examples:
->              #size-cells = <0>;
->              reg = <0x74>;
->  
-> +            vdd-supply = <&p3v3>;
-> +
->              interrupt-parent = <&ipic>;
->              interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
->              interrupt-controller;
-
--- 
-Regards,
-
-Laurent Pinchart
+Would rewriting the framework in C and forcing tests to be written in
+that language mean that maintainers would be able to review tests
+without external support?
