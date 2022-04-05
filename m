@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E2BF4F2281
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 07:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57C554F22E8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbiDEFRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 01:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33462 "EHLO
+        id S230095AbiDEGPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 02:15:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbiDEFQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 01:16:49 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDFFD63ED;
-        Mon,  4 Apr 2022 22:14:43 -0700 (PDT)
+        with ESMTP id S230085AbiDEGPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 02:15:02 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EEC6A010
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 23:13:03 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id k23so21003032ejd.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 23:13:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649135683; x=1680671683;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=m2Juybz+7NJAfGc0rzJA3sylhlwpR0QLf56QMjyPRBU=;
-  b=TyaZ/tjNjWPclkgE2XR+2ZFmvVYr7nPIxTc3k8a2wJWagaU+hWFvCF04
-   P/fuNbOwp632GjqbIz/7KM6vrcKeayWGof3h/xUlOLIxO4qUwKL/MFJtZ
-   cEmv/gkFtRRhJ0tCuA6YeHeYJMyC+85c88BSTs7TIJoYPSL7PUUyHiYbI
-   0=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 04 Apr 2022 22:14:43 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 22:14:43 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 4 Apr 2022 22:14:43 -0700
-Received: from [10.216.10.223] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 4 Apr 2022
- 22:14:39 -0700
-Message-ID: <0860a936-9570-43e2-d9e0-afe71ad1914a@quicinc.com>
-Date:   Tue, 5 Apr 2022 10:44:36 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=rZeprPWOtqKRGMgfqMRvv0PvLM+lTF/w3B6BQ9TTNXg=;
+        b=Ng5jt/B96yk3lkXFR+3TAdD6coPaC5Hx76Pu8opMabaJwCQN7vIv975l6acHKa66cP
+         mukI7V/b36aEA3niPOEAvU83i4RROk+mfgoJtY6nrHiFzgyUry0PuX1oxclM9TU1bkjl
+         6wEQi9waenyT9WCNeHYBHg8klOAinEYbMIB6iSaVd4MKIQ6Qsrfv0ebOOhTzHYwWYelE
+         LdOtc584ihPlzczA45nWxtdd/RCDDhTf73SKi3kYGAtwXn31Fd2zg/1c+G9Wrlh3sX3i
+         +I7V6PRRT2wXRz8yv3LzP+bES6codvmVGrNdte6zmsFLNr+I9FxbIiRfQYn7AFL22Jip
+         P2sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=rZeprPWOtqKRGMgfqMRvv0PvLM+lTF/w3B6BQ9TTNXg=;
+        b=2FUG1Wpu5dcFNENpDsAfhnaPlcECOV7pVv1Y0YDp6j3HBeQdJygsncp/cikYgcJKN7
+         vuQN5DV2dke0OD7v92r9BTHNE0CCwv81A+O8Ei3bwCmeexqaDKu3Ck2P88TZilM5XdfH
+         BqZkyWYMLqiFWuQ9Bd8G5DC9TCY9XDigw9EY/0j54o7HYs02foeLs7YmIr5JTjcX5U0h
+         Wwyf42QOEdM2gjEJyvAIOLrocpRrL98RuZj5txpNZI0Ij6UehsVacLkqUP/NywPVsLue
+         qs1KZoGmkmDxavPs4IzaqLXsEMnI3SqkWBTeMkta7ujELEvOLQkmCmBrXPf3GqJwjaiL
+         AGaQ==
+X-Gm-Message-State: AOAM532oIw47BU+J/Y3p+lej+2dL1kmWLcwJSpNydx40WH9L8dJCMRtG
+        5BytkMVsW/mcfY0IVDd2hnfYIQ==
+X-Google-Smtp-Source: ABdhPJzhiqjVHwaMmE2HIwa9wbO5hpaWli1dKwQoRSQSdZPVfVvMH4WtmdyYT/m5YYLIABIsNv0ZtQ==
+X-Received: by 2002:a17:907:3e1c:b0:6e4:e1b3:5384 with SMTP id hp28-20020a1709073e1c00b006e4e1b35384mr1892893ejc.700.1649139182083;
+        Mon, 04 Apr 2022 23:13:02 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id p13-20020a50d88d000000b0041cd1a083f7sm2655884edj.1.2022.04.04.23.13.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 23:13:01 -0700 (PDT)
+Message-ID: <a50638db-d131-2083-d64e-a8164d377759@linaro.org>
+Date:   Tue, 5 Apr 2022 08:13:00 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add pinmux for I2S
- speaker and Headset
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Hardkernel ODROID-M1 board
 Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
-        <dianders@chromium.org>, <judyhsiao@chromium.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <srinivas.kandagatla@linaro.org>
-CC:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1647863959-3289-1-git-send-email-quic_srivasam@quicinc.com>
- <1647863959-3289-3-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n5131FQaejVVHKwW9ZnoGM+uy6+jjJZMkh5Pa82=r5ojuQ@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <CAE-0n5131FQaejVVHKwW9ZnoGM+uy6+jjJZMkh5Pa82=r5ojuQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Dongjin Kim <tobetter@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220329094446.415219-1-tobetter@gmail.com>
+ <20220329094446.415219-2-tobetter@gmail.com>
+ <2a5f002f-8a61-e5b0-a574-ee99591c4c12@kernel.org> <YkuqTBAi8d48NAOR@anyang>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YkuqTBAi8d48NAOR@anyang>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,46 +76,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 3/22/2022 2:00 AM, Stephen Boyd wrote:
-Thanks for your time Stephen!!!
-> Quoting Srinivasa Rao Mandadapu (2022-03-21 04:59:18)
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index 688fa95..4a7b18a 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -462,7 +462,28 @@
->>          drive-strength = <10>;
->>   };
+On 05/04/2022 04:32, Dongjin Kim wrote:
+> On Tue, Mar 29, 2022 at 07:12:16PM +0200, Krzysztof Kozlowski wrote:
+>> On 29/03/2022 11:44, Dongjin Kim wrote:
+>>> This patch is to add a device tree for new board Hardkernel ODROID-M1
+>>> based on Rockchip RK3568, includes basic peripherals -
+>>> uart/eMMC/uSD/i2c and on-board ethernet.
 >>
->> +&sec_mi2s_data0 {
->> +       drive-strength = <6>;
->> +       bias-disable;
->> +};
->> +
->> +&sec_mi2s_sclk {
->> +       drive-strength = <6>;
->> +       bias-disable;
->> +};
->> +
->> +&sec_mi2s_ws {
->> +       drive-strength = <6>;
->> +};
->> +
->>   &tlmm {
->> +       amp_en: amp-en {
->> +               pins = "gpio63";
->> +               function = "gpio";
-> I'm pretty sure 'function = "gpio"' isn't needed. When a gpio is
-> requested with gpio functions it gets muxed to gpio function
-> automatically. See commit 1de7ddb3a15c ("pinctrl: msm: Mux out gpio
-> function with gpio_request()").
-Okay. Will remove it.
->
->> +               bias-pull-down;
->> +               drive-strength = <2>;
->> +       };
->> +
->>          bt_en: bt-en {
->>                  pins = "gpio85";
->>                  function = "gpio";
+>> I think the email got corrupted (incorrect To addresses).
+>>
+> Thank you for reviewing and sorry for late reply.
+>>>
+>>> Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+>>> ---
+>>>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>>  .../boot/dts/rockchip/rk3568-odroid-m1.dts    | 406 ++++++++++++++++++
+>>>  2 files changed, 407 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>>> index 4ae9f35434b8..81d160221227 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>>> @@ -61,3 +61,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
+>>>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
+>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+>>> new file mode 100644
+>>> index 000000000000..d1a5d43127e9
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+>>> @@ -0,0 +1,406 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2022 Hardkernel Co., Ltd.
+>>> + *
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/leds/common.h>
+>>> +#include <dt-bindings/pinctrl/rockchip.h>
+>>> +#include "rk3568.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Hardkernel ODROID-M1";
+>>> +	compatible = "rockchip,rk3568-odroid-m1", "rockchip,rk3568";
+>>> +
+>>> +	aliases {
+>>> +		ethernet0 = &gmac0;
+>>> +		i2c0 = &i2c3;
+>>> +		i2c3 = &i2c0;
+>>> +		mmc0 = &sdhci;
+>>> +		mmc1 = &sdmmc0;
+>>> +		serial0 = &uart1;
+>>> +		serial1 = &uart0;
+>>> +	};
+>>> +
+>>> +	chosen: chosen {
+>>
+>> No need for label.
+>>
+> Ok. Will fix it.
+>>> +		stdout-path = "serial2:1500000n8";
+>>> +	};
+>>> +
+>>> +	dc_12v: dc-12v {
+>>
+>> Generic node name, so "regulator" or "regulator-0"
+>>
+> I've followed the node names as already merged device tree files
+> for other boards and thought this would be acceptable. Same for other
+> node names 'vcc3v3-sys' and node names with underscore below.
+
+Poor code once it gets in, it's difficult to get it out... Don't use it
+as an example. :)
+
+
+Best regards,
+Krzysztof
