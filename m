@@ -2,33 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4B24F4154
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:28:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2271C4F3EBD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 22:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240796AbiDEN6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:58:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43020 "EHLO
+        id S241696AbiDEN60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:58:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354632AbiDENH2 (ORCPT
+        with ESMTP id S1354551AbiDENH2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:07:28 -0400
 Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4A4222B2;
-        Tue,  5 Apr 2022 05:09:57 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B858022B20;
+        Tue,  5 Apr 2022 05:09:58 -0700 (PDT)
 Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 8DC8022247;
+        by ssl.serverraum.org (Postfix) with ESMTPSA id E0ED922248;
         Tue,  5 Apr 2022 14:09:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1649160595;
+        t=1649160596;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=N3QegVmrV1duTmro584pVd3S+Weu0aeOJNo5pVDKL/g=;
-        b=b6AzGRPwXUkUocumc/PNKiR8cbZZ5gdSpF5XNLOzJ6dkBWvgO3nBiip2cWD9JVhff1tyah
-        IvofnNScb4uzbrOmQE+9ZJfHSmkyEdgTKMrT4GmcpyqfbN8REAWC5qR4g/cdXc/++hn1Wq
-        34bMgfY+8B7cuY0DoEk0GBnuP6bkIAg=
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fCggV6bqzjUPTh2UWexsbRy4IO96rl40cUnwkAVnT5I=;
+        b=o9rAEG5dNTu/qS3ZOBvruaB/fIHLjhKxrVXoek8KJ1TykK8P3RzBI/WsitXw4LUyQ9LLKm
+        D7g1rsSD0/r5bZvfsajnZKBHMqBqTsSP2/LDVzqpwLnnPaiymXtkDn49hzSwbFOfjQFH5T
+        xKp26b33xygscWr1W+LI+oxzn5Ko+54=
 From:   Michael Walle <michael@walle.cc>
 To:     "David S . Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
@@ -40,11 +41,14 @@ To:     "David S . Miller" <davem@davemloft.net>,
         Russell King <linux@armlinux.org.uk>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>
 Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH net-next v3 0/3] net: phy: mscc-miim: add MDIO bus frequency support
-Date:   Tue,  5 Apr 2022 14:09:48 +0200
-Message-Id: <20220405120951.4044875-1-michael@walle.cc>
+        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH net-next v3 1/3] dt-bindings: net: convert mscc-miim to YAML format
+Date:   Tue,  5 Apr 2022 14:09:49 +0200
+Message-Id: <20220405120951.4044875-2-michael@walle.cc>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220405120951.4044875-1-michael@walle.cc>
+References: <20220405120951.4044875-1-michael@walle.cc>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -57,30 +61,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce MDIO bus frequency support. This way the board can have a
-faster (or maybe slower) bus frequency than the hardware default.
+Convert the mscc-miim device tree binding to the new YAML format.
 
-changes since v2:
- - resend, no RFC anymore, because net-next is open again
+The original binding don't mention if the interrupt property is optional
+or not. But on the SparX-5 SoC, for example, the interrupt property isn't
+used, thus in the new binding that property is optional. FWIW the driver
+doesn't use interrupts at all.
 
-changes since v1:
- - fail probe if clock-frequency is set, but not clock is given
- - rename clk_freq to bus_freq
- - add maxItems to interrupts property
- - put compatible and reg first in the example
-
-Michael Walle (3):
-  dt-bindings: net: convert mscc-miim to YAML format
-  dt-bindings: net: mscc-miim: add clock and clock-frequency
-  net: phy: mscc-miim: add support to set MDIO bus frequency
-
- .../devicetree/bindings/net/mscc,miim.yaml    | 61 +++++++++++++++++++
- .../devicetree/bindings/net/mscc-miim.txt     | 26 --------
- drivers/net/mdio/mdio-mscc-miim.c             | 58 +++++++++++++++++-
- 3 files changed, 117 insertions(+), 28 deletions(-)
+Signed-off-by: Michael Walle <michael@walle.cc>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/net/mscc,miim.yaml    | 56 +++++++++++++++++++
+ .../devicetree/bindings/net/mscc-miim.txt     | 26 ---------
+ 2 files changed, 56 insertions(+), 26 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/net/mscc,miim.yaml
  delete mode 100644 Documentation/devicetree/bindings/net/mscc-miim.txt
 
+diff --git a/Documentation/devicetree/bindings/net/mscc,miim.yaml b/Documentation/devicetree/bindings/net/mscc,miim.yaml
+new file mode 100644
+index 000000000000..cdc39aa20683
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/mscc,miim.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mscc,miim.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microsemi MII Management Controller (MIIM)
++
++maintainers:
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++
++allOf:
++  - $ref: "mdio.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - mscc,ocelot-miim
++      - microchip,lan966x-miim
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  reg:
++    items:
++      - description: base address
++      - description: associated reset register for internal PHYs
++    minItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    mdio@107009c {
++      compatible = "mscc,ocelot-miim";
++      reg = <0x107009c 0x36>, <0x10700f0 0x8>;
++      interrupts = <14>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      phy0: ethernet-phy@0 {
++        reg = <0>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/net/mscc-miim.txt b/Documentation/devicetree/bindings/net/mscc-miim.txt
+deleted file mode 100644
+index 70e0cb1ee485..000000000000
+--- a/Documentation/devicetree/bindings/net/mscc-miim.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Microsemi MII Management Controller (MIIM) / MDIO
+-=================================================
+-
+-Properties:
+-- compatible: must be "mscc,ocelot-miim" or "microchip,lan966x-miim"
+-- reg: The base address of the MDIO bus controller register bank. Optionally, a
+-  second register bank can be defined if there is an associated reset register
+-  for internal PHYs
+-- #address-cells: Must be <1>.
+-- #size-cells: Must be <0>.  MDIO addresses have no size component.
+-- interrupts: interrupt specifier (refer to the interrupt binding)
+-
+-Typically an MDIO bus might have several children.
+-
+-Example:
+-	mdio@107009c {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		compatible = "mscc,ocelot-miim";
+-		reg = <0x107009c 0x36>, <0x10700f0 0x8>;
+-		interrupts = <14>;
+-
+-		phy0: ethernet-phy@0 {
+-			reg = <0>;
+-		};
+-	};
 -- 
 2.30.2
 
