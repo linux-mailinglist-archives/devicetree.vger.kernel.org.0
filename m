@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D094F434D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A2F4F432D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240318AbiDEN5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
+        id S242808AbiDEN7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343886AbiDEM47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 08:56:59 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 460996BDF3
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 04:59:40 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id bq8so26142082ejb.10
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 04:59:40 -0700 (PDT)
+        with ESMTP id S1344067AbiDENFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:05:03 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7134511F796
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 05:06:27 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id w4so18927003wrg.12
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 05:06:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=oKfl96ffJzP0jk2BGX9X8+oVaB0Jilri5i9RHEz+bkk=;
-        b=bVV5ndjxBJSAES/HgU+ux2AI7Bty9KrqQwHtYKeW9eSIQv4Po2YJsQHgLPohipx8IP
-         PxRvdXLmsyIPVjT9j4Tc5Yhxic4T/Eja6UcPn/nQcTeR2sqwT2wwtKPdYinJD9KpPznu
-         zCTrlPZc0fsA263zJHGypILi1/yZ5y0WzBYeTNtNggQ3nEkCAPcxxCxVv5u6a9a58Rkn
-         pzDpJHUhJ6nirgZljWXvZYVvZD3eBtaK2lihlc9+NR4rKdxtDH1QAXNBC9VEKEKYrdSQ
-         8/RMef6ffPxTX3CBb9hBjgZkYMuXNHdWx640l+5/ar95azlmk9Puv8QtSjUjoYWo4mB8
-         hDVQ==
+        d=9elements.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=z46lGhLfI6ugeu1P3zjJF0oXFB21fasaHhYIlRjoeMU=;
+        b=c/SA4frMQAMHJXuDb0VyOfv2BeFzsflHSheqcsZper5NrOSCQcDkjHGkxYhD4uNF1C
+         I+Xyo11kF6QE1iNzQI+lBBNtJBJlEw/7qjhL9zW8sCmr6cjvigCUy4IPjhJCB5vSpU94
+         9dfv3K/TYdm865KWJVTxotArxbpGIJW+TdPaCTIMUmJW1PQAD6LS4ywWbwzBHQ7eeKu+
+         +jmxW9ZK/GZp36hKFxCgGgwc1Qsp6IIjZTNUulESiraVoRjdGe8BJ2ZPyEN0UqrFAEND
+         G/xGtqqj7CdZj9tqiScMA7VXvzoLTSrcZ3FGc/BH8vD8+90EyfHcd31cemhdem4NlzJt
+         Grug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=oKfl96ffJzP0jk2BGX9X8+oVaB0Jilri5i9RHEz+bkk=;
-        b=ta7Q3cIcEEhH2hRbCerPpYMyz/ESwspVJAwhRTUNlhEpVgCD0qnN9phKA7RGBLZmaV
-         2tskgJNTjb0nxyIryAMKgAa44LJ9K0gOitNI2Z1GKIjh9wzvjsKtL0Wiq1jeL2LOPGxp
-         KsXF6u7HiKPQ5/e8ig0MYrks6psdHZNxKmYy3Vug3gfQ9/cfyQwB3i2QytQ7m1ADslAH
-         SlJ8c24dWLpVObl7R4yK7V/gqYNDkGIETFQzx86GcAcIHfo42iA2ZkfQnEWyF+keYUbP
-         q8K90XvwmLvN6J4Xbs2kvMRdOm9+Zdp1tuVcfVUWlor/yDnRNRklw8VOPRqraGeOmiWG
-         uyaA==
-X-Gm-Message-State: AOAM5324qYSxL3v6rqc0yTP1g1x3P4NrHNG5jxBVUOpLUM3EAbRdZOnf
-        s1Zc1hGSilJuMNnPvezbthz6hg==
-X-Google-Smtp-Source: ABdhPJzMcNUjaa3bb1bVgn7DmGJkg+zPMPP6CGc9NuQO6JPcTcmni3gRSsg5r+DqqBrN5dw/F5Rurg==
-X-Received: by 2002:a17:907:6d9b:b0:6db:8eab:94e0 with SMTP id sb27-20020a1709076d9b00b006db8eab94e0mr3116827ejc.687.1649159978936;
-        Tue, 05 Apr 2022 04:59:38 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id f1-20020a056402194100b00416b174987asm6660211edz.35.2022.04.05.04.59.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 04:59:38 -0700 (PDT)
-Message-ID: <14ce8189-6ea7-75d8-1b03-56dcb8eda2ac@linaro.org>
-Date:   Tue, 5 Apr 2022 13:59:37 +0200
+        bh=z46lGhLfI6ugeu1P3zjJF0oXFB21fasaHhYIlRjoeMU=;
+        b=eWV1qANn1NQiz76f8z9AuO0hqGyJKD3lo40UKqgjwGohzD3SGB9VHm3bcbBO9k63Qk
+         op8VjgU4+TYHWdsyaHnN8iucPPxl5jgi8YdAHKkXA9s7+3k9Z8afoofxjfYzRMwMqaoX
+         fdfJBsEFDkSRFOui3+7XmqG2kabbTUxSwReuvhrx4glI591hA3zdxY+YE0h1/U2QwtiU
+         m+88Dk32xp23Csn3A2gwtNTrYajs5JLziEnnsoX69BMNUq13jIPAtlGPgJ1p4QEaXnHU
+         8OTCt4ZhS4FzCY01ZDMepPQLD9rTfDTUcRWzit9pEj6VwPqsZQKJ7RjnzHdRi2aa2sFH
+         0F+Q==
+X-Gm-Message-State: AOAM531euHs+CaBe/R6D4K4k/PMdMokxyZejgzx/BRi4Q9wiS8R/OOxI
+        AevPiEg9OnP5etaZ13B+W9gZpw+4mFfH0Q==
+X-Google-Smtp-Source: ABdhPJyqTOFEOFeAFt/2YcX1+9+RtfO1i6wtivOXlQ7O002sz/pWInKXqVkJNxQ9hZqMYs1r9BBdQQ==
+X-Received: by 2002:adf:8066:0:b0:206:1563:8b2b with SMTP id 93-20020adf8066000000b0020615638b2bmr2518784wrk.582.1649160385937;
+        Tue, 05 Apr 2022 05:06:25 -0700 (PDT)
+Received: from fedora.lab.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id r16-20020a7bc090000000b0038e73023334sm1994323wmh.2.2022.04.05.05.06.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Apr 2022 05:06:25 -0700 (PDT)
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-i2c@vger.kernel.org
+Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [v7 0/3] Add support for Maxim MAX735x/MAX736x variants
+Date:   Tue,  5 Apr 2022 14:05:48 +0200
+Message-Id: <20220405120552.433415-1-patrick.rudolph@9elements.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH RFC net-next v2 1/3] dt-bindings: net: convert mscc-miim
- to YAML format
-Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220401215834.3757692-1-michael@walle.cc>
- <20220401215834.3757692-2-michael@walle.cc>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220401215834.3757692-2-michael@walle.cc>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,26 +68,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/04/2022 23:58, Michael Walle wrote:
-> Convert the mscc-miim device tree binding to the new YAML format.
-> 
-> The original binding don't mention if the interrupt property is optional
-> or not. But on the SparX-5 SoC, for example, the interrupt property isn't
-> used, thus in the new binding that property is optional. FWIW the driver
-> doesn't use interrupts at all.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  .../devicetree/bindings/net/mscc,miim.yaml    | 56 +++++++++++++++++++
->  .../devicetree/bindings/net/mscc-miim.txt     | 26 ---------
->  2 files changed, 56 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/mscc,miim.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/mscc-miim.txt
-> 
+v7:
+- Reworked the commit message, comments and renamed a struct
+  field. No functional change.
 
+v6:
+- Fix typo in dt-bindings
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+v5:
+- Remove optional and make vdd-supply mandatory
 
+v4:
+- Add missing maxitems dt-bindings property
 
-Best regards,
-Krzysztof
+v3:
+- Merge dt-bindings into i2c-mux-pca954x.yaml
+
+v2:
+- Move dt-bindings to separate file
+- Added support for MAX736x as they are very similar
+- Fixed an issue found by kernel test robot
+- Dropped max735x property and custom IRQ check
+- Added MAX7357 config register defines instead of magic values
+- Renamed vcc-supply to vdd-supply
+
+Patrick Rudolph (3):
+  dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+  i2c: muxes: pca954x: Add MAX735x/MAX736x support
+  i2c: muxes: pca954x: Add regulator support
+
+ .../bindings/i2c/i2c-mux-pca954x.yaml         |  44 ++++--
+ drivers/i2c/muxes/Kconfig                     |   4 +-
+ drivers/i2c/muxes/i2c-mux-pca954x.c           | 126 ++++++++++++++++--
+ 3 files changed, 153 insertions(+), 21 deletions(-)
+
+-- 
+2.34.1
+
