@@ -2,309 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F9694F3F06
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 22:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951F24F4133
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237978AbiDEN4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58666 "EHLO
+        id S241064AbiDEN6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355868AbiDELz0 (ORCPT
+        with ESMTP id S1355782AbiDELz0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 07:55:26 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD12EDF25;
-        Tue,  5 Apr 2022 04:13:23 -0700 (PDT)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF86BFE2
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 04:13:07 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id p15so25929124ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 04:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649157203; x=1680693203;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=vHMukNzZ0vGwzv5HpHfAgBPnVXGeYIp4RttOVHI381w=;
-  b=UevOKzN95Th49d55Bkmo/7VRY1JdrfCZq3GSVOGIaFJqiiPBKbFwGWbi
-   R3SFq47uW44HDRhsdan96m3JZSm7+UPbLicZl+cFvABUOzPktnpPMSLf+
-   DU3rojwyjgMxeMMssFwzVW7cc6LwQ9O9BRGcVAx6OV63v9lkmWLiGX3N1
-   0=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 Apr 2022 04:13:23 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 04:13:13 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 5 Apr 2022 04:13:13 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 5 Apr 2022 04:13:09 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohitkr@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v6 2/2] arm64: dts: qcom: sc7280: add lpass lpi pin controller node
-Date:   Tue, 5 Apr 2022 16:42:47 +0530
-Message-ID: <1649157167-29106-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649157167-29106-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1649157167-29106-1-git-send-email-quic_srivasam@quicinc.com>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xXIhb/k84YUPugErMI4w+XHiSb+7tM5DtyIUg35QKOc=;
+        b=SOPe4Fz/Gd0TUXDXKPCA9VoNLaiWukRADEe+B53JR11QrjxpXX4bD5JteQJNyeAAOH
+         7Au36PBclje86I2cu21Niy3oUS+GkRm704J0owWn0QAx5TRdjzRNZ5gFJ7u820ACv5JK
+         Xwmcn6pK/x3/XOAKU3T3YubJpVAHynGMPw7I6zaQwGXz4jIo5fZ+fdrSnzw+vWtm0Ie3
+         S6tds5TD7gJA4XDWha9NpRUZFDjcUHYsEyAsK6Yu9PteZcZrqZ4cL09OoPMIsz+yyWW4
+         ZbDH9q104w1NxHqClHj/TA3OwMZNaq4ELH/TQQajLAKM/1DspmKkvByFILxwlsmMrY1C
+         VpFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xXIhb/k84YUPugErMI4w+XHiSb+7tM5DtyIUg35QKOc=;
+        b=Br33InNhibXyVTaYNV2qdaJ/2zhkFdpTZxKRK3iJfc7oMn+5tzKfGHHe0zBLuTEjA3
+         8MioX0WTWFR03ltoZ1E//RkKZjBrMHWzvgPioIJhhnogl/PTcGr1rNYFXbk6ZE9j4JY1
+         UwDIAKAlNgT7SFXMIYxy2A4XdBIgo0TstuAPXAPjmYJ7lQo2JCvSyn3PbzxLnMbJQDcI
+         +n5ulKZs6fM/2t9O8HVZp8xfVT6f9v1NW2BkDkgBtIn9dWpOB2nzzMPMMKn47/iOpaz4
+         WLSTMoeJ2Q4p9fubrK5BdRQPbOJtlm+/EKXGRWW8ZxqUPsZHJCTJOZ5Gae4trMKwKbuv
+         5OFQ==
+X-Gm-Message-State: AOAM531+HQrbdFFPtuw4X5tzzfayUlLZKaclwiob3X2wkdU1tBvRBELx
+        uLGUm8CxVhPjPo+36dYL31/lop3Ha2DT94QI
+X-Google-Smtp-Source: ABdhPJw9WvUhJrFGkEik3lLZvdk/MbisSziS8oeO/5WpSrdz1zCrQ+9wuri02UKa/reqvm1xDDaKZw==
+X-Received: by 2002:a17:907:d16:b0:6d6:e3b6:9cd8 with SMTP id gn22-20020a1709070d1600b006d6e3b69cd8mr2972056ejc.94.1649157186513;
+        Tue, 05 Apr 2022 04:13:06 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id hr38-20020a1709073fa600b006e0280f3bbdsm5435580ejc.110.2022.04.05.04.13.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Apr 2022 04:13:06 -0700 (PDT)
+Message-ID: <f7617857-b438-b527-315f-7543b9654a66@linaro.org>
+Date:   Tue, 5 Apr 2022 13:13:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: I2C: Add Qualcomm Geni based QUP I2C
+ bindings
+Content-Language: en-US
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20220404182938.29492-1-singh.kuldeep87k@gmail.com>
+ <20220404182938.29492-2-singh.kuldeep87k@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220404182938.29492-2-singh.kuldeep87k@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LPASS LPI pinctrl node required for Audio functionality on sc7280
-based platforms.
+On 04/04/2022 20:29, Kuldeep Singh wrote:
+> GENI(generic interface) based Qualcomm Universal Peripheral controller
+> can support multiple serial interfaces like SPI,UART and I2C.
+> 
+> Unlike other I2C controllers, QUP I2C bindings are present in parent
+> schema. Move it out from parent to an individual binding and let parent
+> refer to child schema later on.
+> 
+> Please note, current schema isn't complete as it misses out few
+> properties and thus, add these missing properties along the process.
+> 
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> ---
+> v2:
+> - Change compatible from enum to const
+> - Drop clock-frequency description
+> - Sort nodes
+> ---
+>  .../bindings/i2c/qcom,i2c-geni-qcom.yaml      | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> 
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  98 ++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 107 +++++++++++++++++++++++++++++++
- 2 files changed, 205 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 2afbbe3..f912a89 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -238,6 +238,104 @@
- 	modem-init;
- };
- 
-+&lpass_tlmm {
-+	dmic01_active: dmic01-active {
-+		clk {
-+			drive-strength = <8>;
-+		};
-+
-+		data {
-+			drive-strength = <8>;
-+		};
-+	};
-+
-+	dmic01_sleep: dmic01-sleep {
-+		clk {
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		data {
-+			drive-strength = <2>;
-+			pull-down;
-+		};
-+	};
-+
-+	dmic23_active: dmic02-active {
-+		clk {
-+			drive-strength = <8>;
-+		};
-+
-+		data {
-+			drive-strength = <8>;
-+		};
-+	};
-+
-+	dmic23_sleep: dmic02-sleep {
-+		clk {
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+
-+		data {
-+			drive-strength = <2>;
-+			pull-down;
-+		};
-+	};
-+
-+	rx_swr_active: rx-swr-active {
-+		clk {
-+			drive-strength = <2>;
-+			slew-rate = <1>;
-+			bias-disable;
-+		};
-+
-+		data {
-+			drive-strength = <2>;
-+			slew-rate = <1>;
-+			bias-bus-hold;
-+		};
-+	};
-+
-+	rx_swr_sleep: rx-swr-sleep {
-+		clk {
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		data {
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+	};
-+
-+	tx_swr_active: tx-swr-active {
-+		clk {
-+			drive-strength = <2>;
-+			slew-rate = <1>;
-+			bias-disable;
-+		};
-+
-+		data {
-+			drive-strength = <2>;
-+			slew-rate = <1>;
-+			bias-bus-hold;
-+		};
-+	};
-+
-+	tx_swr_sleep: tx-swr-sleep {
-+		clk {
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		data {
-+			drive-strength = <2>;
-+			bias-bus-hold;
-+		};
-+	};
-+};
-+
- &pcie1 {
- 	status = "okay";
- 	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 8d8cec5..db74fc3 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1987,6 +1987,113 @@
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		lpass_tlmm: pinctrl@33c0000 {
-+			compatible = "qcom,sc7280-lpass-lpi-pinctrl";
-+			reg = <0 0x33c0000 0x0 0x20000>,
-+				<0 0x3550000 0x0 0x10000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&lpass_tlmm 0 0 15>;
-+
-+			#clock-cells = <1>;
-+
-+			dmic01_active: dmic01-active {
-+				clk {
-+					pins = "gpio6";
-+					function = "dmic1_clk";
-+				};
-+
-+				data {
-+					pins = "gpio7";
-+					function = "dmic1_data";
-+				};
-+			};
-+
-+			dmic01_sleep: dmic01-sleep {
-+				clk {
-+					pins = "gpio6";
-+					function = "dmic1_clk";
-+				};
-+
-+				data {
-+					pins = "gpio7";
-+					function = "dmic1_data";
-+				};
-+			};
-+
-+			dmic23_active: dmic02-active {
-+				clk {
-+					pins = "gpio8";
-+					function = "dmic2_clk";
-+				};
-+
-+				data {
-+					pins = "gpio9";
-+					function = "dmic2_data";
-+				};
-+			};
-+
-+			dmic23_sleep: dmic02-sleep {
-+				clk {
-+					pins = "gpio8";
-+					function = "dmic2_clk";
-+				};
-+
-+				data {
-+					pins = "gpio9";
-+					function = "dmic2_data";
-+				};
-+			};
-+
-+			rx_swr_active: rx-swr-active {
-+				clk {
-+					pins = "gpio3";
-+					function = "swr_rx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio4", "gpio5";
-+					function = "swr_rx_data";
-+				};
-+			};
-+
-+			rx_swr_sleep: rx-swr-sleep {
-+				clk {
-+					pins = "gpio3";
-+					function = "swr_rx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio4", "gpio5";
-+					function = "swr_rx_data";
-+				};
-+			};
-+
-+			tx_swr_active: tx-swr-active {
-+				clk {
-+					pins = "gpio0";
-+					function = "swr_tx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio1", "gpio2", "gpio14";
-+					function = "swr_tx_data";
-+				};
-+			};
-+
-+			tx_swr_sleep: tx-swr-sleep {
-+				clk {
-+					pins = "gpio0";
-+					function = "swr_tx_clk";
-+				};
-+
-+				data {
-+					pins = "gpio1", "gpio2", "gpio14";
-+					function = "swr_tx_data";
-+				};
-+			};
-+		};
-+
- 		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-635.0", "qcom,adreno";
- 			reg = <0 0x03d00000 0 0x40000>,
--- 
-2.7.4
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
