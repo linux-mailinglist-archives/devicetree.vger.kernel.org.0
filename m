@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998CB4F54D0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 07:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 235094F5494
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 07:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349966AbiDFFKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 01:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
+        id S239651AbiDFFJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 01:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1449693AbiDFBsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 21:48:47 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8308A93990
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 16:25:03 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id o5-20020a17090ad20500b001ca8a1dc47aso4132285pju.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 16:25:03 -0700 (PDT)
+        with ESMTP id S1851310AbiDFDC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 23:02:56 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFC56261
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 16:59:13 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id p10so1167332lfa.12
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 16:59:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0LYEJd2GcAImXdy5Qzf13hezwUog634yjubbnjvy8iQ=;
-        b=nViJsTS49LeK8CtJKE4/dStxLrc0nI8fxTJcmGcHleboeoOxmuC2IUhzkt1uo2Qn+5
-         RjEYseHYejqXNadnXSibnx77DkSgQdeH0QAqzxOgy4Gp70n6bUARPQ/13HvQZkvocdfk
-         Agpdc8fQW9kiEXGQGb8Z6/2BTUqrzMfZd24fU=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QOt6DJcLelTgkTPVmldTvMlvDQEbrpbWK917oZbjN0w=;
+        b=tHjIQHSXPYXo6cTSKoL3JHG0UImC5yIJ+e/f9YaJDb9ZqDD9TNBB7U8EczTEXMmnk/
+         xQaoJCCgTk2t9KgbcdXuBiFwZEPteCYG8ZHHEaDiFBbRi4zlsxu7uLRG9dVuqkkOUEoX
+         QOLJ0fDNLZu6f0nPHj38DekLjDHPTO+fggRVpYFkd/SStJZ7a4rNENEj9weqtJPskiYl
+         6DdNIaNhdMvn29IP9L1Z2170us9SEFyUui8pHoDVAlYIH5nrcwd4v4MhPkhnGjCi3jkS
+         IIZHRXdtThjM/gRZ3nnzaTta7ukxzt5JiONJmn96GuH998VuWSgSY6upUxUv3U6dMLBS
+         yW/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0LYEJd2GcAImXdy5Qzf13hezwUog634yjubbnjvy8iQ=;
-        b=BcXPOTrqzgThlzIz3TCIAUgscfgt2YCzlDG2L1qyIw0nXUxVKbGvKujoTAtBg9yoqO
-         rQM9FRsKiOcW/I1rBv/AORTimhEmiV2qkPQ+iQgLcyQPnFms0qWMiH5zcLGlYcxaWxcX
-         Be7oJuM72u4sVgvIWfRKFSQPfYx3RSzZuqUUNWYOLRmE++84Nkp1SpwtLyMSvTwbEfqg
-         ITTmnG+i3VOOFcwATRyZCYJQoArjgU9jjRxjzTKurbSafbaPEFwhfkWT1j+JL9X6lcMx
-         SCifZeb7tS0PXcU6+GImFt/pDuO4mY50IqiWvWwQCiDVp1s6uyLzVyLEZAuc76NBxaGM
-         gBUw==
-X-Gm-Message-State: AOAM533aPwX20fxIUVPh3lOQrvZo/FFrap5CZRep5NQ1omxEIf0RmLPF
-        djTX2CjJWoflyUV8Xsm7mH/R0g==
-X-Google-Smtp-Source: ABdhPJzhSw2ai28dsBs+iFYDTqHdriOs8oBBTEugVnQdu3hZkzLZNWHaNBv89hnyyEur/XoPXvNbRA==
-X-Received: by 2002:a17:902:e545:b0:154:4d5b:2006 with SMTP id n5-20020a170902e54500b001544d5b2006mr5853057plf.94.1649201102818;
-        Tue, 05 Apr 2022 16:25:02 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:6b63:d403:e31b:da39])
-        by smtp.gmail.com with UTF8SMTPSA id b7-20020a17090ae38700b001ca8947e73csm3271574pjz.0.2022.04.05.16.25.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 16:25:02 -0700 (PDT)
-Date:   Tue, 5 Apr 2022 16:25:00 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohitkr@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v6 2/3] arm64: dts: qcom: sc7280: Add lpass cpu node
-Message-ID: <YkzPzP7kYgaYKwcQ@google.com>
-References: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
- <1649157220-29304-3-git-send-email-quic_srivasam@quicinc.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QOt6DJcLelTgkTPVmldTvMlvDQEbrpbWK917oZbjN0w=;
+        b=NKlCh1TG8yvYKOlhPxAzbGpv+bbmjIS8se99eYZAnylqzIAmv6LfPjBqHhBb+kBu65
+         cS14Bs8+YAnV3qQoN7GC8o3s/Wr6vOjifQtMKUWTd+O4OHBXuJURwNrGJK3gidxYg+kG
+         1igm+vvNCa6v4pTMiO4CvwOrw3dQo4P0G2+Lakdm51VB0du0e6cMxLrGNp3BL1X0f0iU
+         w/FbVSBQc223dYxCulrXK8GM/3cfq2qUVOucn/J1paAjPSV7pH9rEMJ/yTdZjdeX5Fhs
+         In20BuGmxWKrXSfoPWJJY06KJb+jk/q2oMQJZ4/JtEtpA41wKr5Y70gvmnEuQ6pEsGHO
+         02dQ==
+X-Gm-Message-State: AOAM531+uFARyK/fqXdILTCs66wr/DUBfSYv9Nn7jNzzt0RgNb+NsV2b
+        cm0dBA0ZZwIq8P1bUp9UrDO1IA==
+X-Google-Smtp-Source: ABdhPJyRrLV6ZhWNcC+LtcC93NA/42wRqTNcug5mNhrZb9Xd+1lGj4wfRvbf/sgIYJiwvkye/aavpg==
+X-Received: by 2002:a05:6512:16a7:b0:445:862e:a1ba with SMTP id bu39-20020a05651216a700b00445862ea1bamr4085065lfb.85.1649203151822;
+        Tue, 05 Apr 2022 16:59:11 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id w14-20020a0565120b0e00b0044a9b61d2b3sm1646471lfu.221.2022.04.05.16.59.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Apr 2022 16:59:11 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [PATCH 0/4] arm: qcom: qcom-apq8064: add separate device node for tsens
+Date:   Wed,  6 Apr 2022 02:59:06 +0300
+Message-Id: <20220405235910.373107-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1649157220-29304-3-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,151 +74,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 04:43:39PM +0530, Srinivasa Rao Mandadapu wrote:
-> Add lpass cpu node for audio on sc7280 based platforms.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 28 ++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 63 ++++++++++++++++++++++++++++++++
->  2 files changed, 91 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 83c76b2..e3d8cbf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -273,6 +273,34 @@
->  	modem-init;
->  };
->  
-> +&lpass_cpu {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sec_mi2s_data0>, <&sec_mi2s_sclk>, <&sec_mi2s_ws>;
-> +
-> +	mi2s-secondary@1 {
+Currently gcc-msm8960 driver manually creates tsens device. Instantiate
+the device using DT node instead. This follow the IPQ8064 device tree
+schema.
 
-in line with an earlier comment, the primary/secondary terminology seem to
-reflect how things are called in the datasheet (which only talks about a
-primary/secondary master clock, otherwise about mi2sN). How about calling
-these nodes 'dai-link@N' as in the binding (and a bunch of other
-boards/SoCs)?
+Compatibility with the previous devices trees is kept intact.
 
-> +		reg = <MI2S_SECONDARY>;
-> +		qcom,playback-sd-lines = <0>;
-> +	};
-> +
-> +	hdmi-primary@5 {
-> +		reg = <LPASS_DP_RX>;
-> +	};
-> +
-> +	wcd-rx@6 {
-> +		reg = <LPASS_CDC_DMA_RX0>;
-> +	};
-> +
-> +	wcd-tx@19 {
-> +		reg = <LPASS_CDC_DMA_TX3>;
-> +	};
-> +
-> +	va-tx@25 {
-> +		reg = <LPASS_CDC_DMA_VA_TX0>;
-> +	};
-> +};
-> +
->  &lpass_tlmm {
->  	dmic01_active: dmic01-active {
->  		clk {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 78ec84c..e808d53 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -19,6 +19,7 @@
->  #include <dt-bindings/reset/qcom,sdm845-aoss.h>
->  #include <dt-bindings/reset/qcom,sdm845-pdc.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/sound/qcom,lpass.h>
->  #include <dt-bindings/thermal/thermal.h>
->  
->  / {
-> @@ -2101,6 +2102,68 @@
->  			#clock-cells = <1>;
->  		};
->  
-> +		lpass_cpu: audio@3987000 {
-> +			compatible = "qcom,sc7280-lpass-cpu";
-> +
-> +			reg = <0 0x03987000 0 0x68000>,
-> +			      <0 0x03b00000 0 0x29000>,
-> +			      <0 0x03260000 0 0xc000>,
-> +			      <0 0x03280000 0 0x29000>,
-> +			      <0 0x03340000 0 0x29000>,
-> +			      <0 0x0336c000 0 0x3000>;
-> +
+Dmitry Baryshkov (4):
+  dt-bindings: thermal: qcom-tsens.yaml: add msm8960 compat string
+  thermal/drivers/tsens: add compat string for the qcom,msm8960
+  clk: qcom: gcc-msm8960: create tsens device if there are no child
+    nodes
+  arm: dts: qcom-apq8064: create tsens device node
 
-Drop empty line, 'reg' and 'reg-names' belong together'.
+ .../bindings/thermal/qcom-tsens.yaml          |  4 +++-
+ arch/arm/boot/dts/qcom-apq8064.dtsi           | 23 +++++++++++++------
+ drivers/clk/qcom/gcc-msm8960.c                | 18 +++++++++------
+ drivers/thermal/qcom/tsens.c                  |  3 +++
+ 4 files changed, 33 insertions(+), 15 deletions(-)
 
-> +			reg-names = "lpass-hdmiif",
-> +				    "lpass-lpaif",
-> +				    "lpass-rxtx-cdc-dma-lpm",
-> +				    "lpass-rxtx-lpaif",
-> +				    "lpass-va-lpaif",
-> +				    "lpass-va-cdc-dma-lpm";
-> +
-> +			iommus = <&apps_smmu 0x1820 0>,
-> +				 <&apps_smmu 0x1821 0>,
-> +				 <&apps_smmu 0x1832 0>;
-> +			status = "disabled";
+-- 
+2.35.1
 
-Detter put this at the end as many other nodes do, rather than
-'hiding' it inmidst of the hardware description.
-
-> +
-> +			power-domains =	<&rpmhpd SC7280_LCX>;
-> +			power-domain-names = "lcx";
-> +			required-opps = <&rpmhpd_opp_nom>;
-> +
-> +			clocks = <&lpass_aon LPASS_AON_CC_AUDIO_HM_H_CLK>,
-> +				 <&lpass_audiocc LPASS_AUDIO_CC_EXT_MCLK0_CLK>,
-> +				 <&lpasscore LPASS_CORE_CC_SYSNOC_MPORT_CORE_CLK>,
-> +				 <&lpasscore LPASS_CORE_CC_EXT_IF0_IBIT_CLK>,
-> +				 <&lpasscore LPASS_CORE_CC_EXT_IF1_IBIT_CLK>,
-> +				 <&lpass_audiocc LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-> +				 <&lpass_audiocc LPASS_AUDIO_CC_CODEC_MEM0_CLK>,
-> +				 <&lpass_audiocc LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-> +				 <&lpass_audiocc LPASS_AUDIO_CC_CODEC_MEM2_CLK>,
-> +				 <&lpass_aon LPASS_AON_CC_VA_MEM0_CLK>;
-> +			clock-names = "aon_cc_audio_hm_h",
-> +				      "audio_cc_ext_mclk0",
-> +				      "core_cc_sysnoc_mport_core",
-> +				      "core_cc_ext_if0_ibit",
-> +				      "core_cc_ext_if1_ibit",
-> +				      "audio_cc_codec_mem",
-> +				      "audio_cc_codec_mem0",
-> +				      "audio_cc_codec_mem1",
-> +				      "audio_cc_codec_mem2",
-> +				      "aon_cc_va_mem0";
-> +
-> +			#sound-dai-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>;
-> +
-
-drop empty line, 'interrupts' and 'interrupt-names' belong together.
-
-> +			interrupt-names = "lpass-irq-lpaif",
-> +					  "lpass-irq-hdmi",
-> +					  "lpass-irq-vaif",
-> +					  "lpass-irq-rxtxif";
-> +		};
-> +
->  		lpass_ag_noc: interconnect@3c40000 {
->  			reg = <0 0x03c40000 0 0xf080>;
->  			compatible = "qcom,sc7280-lpass-ag-noc";
