@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 540544F403B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DAB64F410B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241800AbiDEN6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:58:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54258 "EHLO
+        id S242865AbiDEN7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380313AbiDENOB (ORCPT
+        with ESMTP id S1380317AbiDENOB (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:14:01 -0400
 Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0895E123BE0;
-        Tue,  5 Apr 2022 05:16:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54880123BE5;
+        Tue,  5 Apr 2022 05:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1649160999;
-  x=1680696999;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=WGpnRbO3Pa93kFXTsPdsfO2hw74rogk5OdNNNdqKnyo=;
-  b=qBNyGDzTr2KIP+FVoBPdK+IqSRK2y+sHO88HSPrcQTJTpYPYrRlKZA3A
-   4i7oPzidll0KBp2wGYQb+Tv1dM80IqygUG0/WaRADq4JzvPENKFKoZ4f2
-   XN4D+tU6A2MmuaJX3tTPh9o4Nkv7zxa4Wo+VHW35zfjsGqbQEph+QwLJB
-   7PFdbZKiT/8BgSe58LXHBENUnis4zXxsV872CbSEaEFqkKO1Sv7WBiV3N
-   Car90Lx0JUmT0tISW6w2mRWKbK1U6diWhVx4UuoVXwv5Fcuxk+mbQ+rDZ
-   ukD48Fn8NRIDZjHCxjfk43o/2BtMh4QkAKtX/8foY/BAWHUu4m/xqIxqv
-   A==;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1649161001;
+  x=1680697001;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=x4YcHLziIrEggw9HG5I5fbaW8iCdF7u9wJBMUjziEm8=;
+  b=meQxV9f1p1HxnA3LmMRvs8ovRZ0drYp0I+KKJAUcs7eP7q68kAO9jRvG
+   5xgBBynyHeSrU7SC+XYDy/gOfaOKCoOMUwNmTum1YmqLNFA/tDU1wNG0Z
+   fKawQ0pdr4asecovTbrHWQE7JdFkJUI8dpn60dfWZXB5pY789qCwPJxbZ
+   ctjRS89ABOnJilYZeMhLr4HxnA1XPBXRDCJS+lZF6iyuCH6nP8Cn+qkBD
+   ONmlhg8GdVyC8ip3m1a5cQfJf+j7yBDSyKxykIETTWeFKKkXiOaXC98cF
+   BWAO6Sr1S1y0r2wLxBnfjegIeqJXA4gA+j6MctVnwViaHh7A0LoFMPJU4
+   w==;
 From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
 To:     <wsa@kernel.org>
 CC:     <kernel@axis.com>,
@@ -34,10 +34,12 @@ CC:     <kernel@axis.com>,
         <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <krzk+dt@kernel.org>, <robh+dt@kernel.org>,
         <linux-kernel@vger.kernel.org>
-Subject: [PATCH 0/2] i2c: Allow disabling auto detection via devicetree
-Date:   Tue, 5 Apr 2022 14:16:25 +0200
-Message-ID: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
+Subject: [PATCH 2/2] i2c: core: support no-detect property
+Date:   Tue, 5 Apr 2022 14:16:27 +0200
+Message-ID: <20220405121627.1560949-3-vincent.whitchurch@axis.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
+References: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -51,39 +53,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When a driver with a ->detect callback (such as lm75) is loaded, the i2c core
-performs I2C transactions on the bus to all the addresses listed in that
-driver's address_list.  This kind of probing wastes time and as
-Documentation/i2c/instantiating-devices.rst says, this method is not
-recommended and it is instead advised to list all devices in the devicetree.
+If the devicetree specifies the no-detect property, we can avoid calling
+drivers' detect callback and wasting time probing for devices which do
+not exist.
 
-However, even if all the devices are listed in the devicetree, there is
-currently no way to prevent the core from attempting auto detection short of
-patching controller drivers to not pass the I2C_CLASS* bits in adap->class.
-The latter is not always possible since generic drivers like i2c-gpio set these
-bits.
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+---
+ drivers/i2c/i2c-core-base.c | 8 +++++++-
+ include/linux/i2c.h         | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-To avoid this unnecessary probing and reduce boot time, this series adds a
-property to the devicetree and support in the I2C core to allow this feature to
-be disabled.
-
-Cc: linux-i2c@vger.kernel.org
-
-Cc: devicetree@vger.kernel.org
-Cc: krzk+dt@kernel.org
-Cc: robh+dt@kernel.org
-
-Cc: linux-kernel@vger.kernel.org
-
-Vincent Whitchurch (2):
-  i2c: add binding to prevent device detection
-  i2c: core: support no-detect property
-
- Documentation/devicetree/bindings/i2c/i2c.txt | 4 ++++
- drivers/i2c/i2c-core-base.c                   | 8 +++++++-
- include/linux/i2c.h                           | 1 +
- 3 files changed, 12 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
+index d43db2c3876e..d43025b84546 100644
+--- a/drivers/i2c/i2c-core-base.c
++++ b/drivers/i2c/i2c-core-base.c
+@@ -1341,7 +1341,8 @@ static int i2c_do_add_adapter(struct i2c_driver *driver,
+ 			      struct i2c_adapter *adap)
+ {
+ 	/* Detect supported devices on that bus, and instantiate them */
+-	i2c_detect(adap, driver);
++	if (adap->detect)
++		i2c_detect(adap, driver);
+ 
+ 	return 0;
+ }
+@@ -1432,6 +1433,7 @@ EXPORT_SYMBOL_GPL(i2c_handle_smbus_host_notify);
+ 
+ static int i2c_register_adapter(struct i2c_adapter *adap)
+ {
++	struct device_node *np = adap->dev.of_node;
+ 	int res = -EINVAL;
+ 
+ 	/* Can't register until after driver model init */
+@@ -1502,6 +1504,10 @@ static int i2c_register_adapter(struct i2c_adapter *adap)
+ 			 "Failed to create compatibility class link\n");
+ #endif
+ 
++	adap->detect = true;
++	if (np && of_property_read_bool(np, "no-detect"))
++		adap->detect = false;
++
+ 	/* create pre-declared device nodes */
+ 	of_i2c_register_devices(adap);
+ 	i2c_acpi_install_space_handler(adap);
+diff --git a/include/linux/i2c.h b/include/linux/i2c.h
+index fbda5ada2afc..8fad5fe85685 100644
+--- a/include/linux/i2c.h
++++ b/include/linux/i2c.h
+@@ -728,6 +728,7 @@ struct i2c_adapter {
+ 	struct rt_mutex bus_lock;
+ 	struct rt_mutex mux_lock;
+ 
++	bool detect;
+ 	int timeout;			/* in jiffies */
+ 	int retries;
+ 	struct device dev;		/* the adapter device */
 -- 
 2.34.1
 
