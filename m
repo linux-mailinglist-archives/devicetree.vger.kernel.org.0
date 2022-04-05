@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B3224F3223
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 14:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 548C94F3212
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 14:54:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239622AbiDEJyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 05:54:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53096 "EHLO
+        id S239435AbiDEJxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 05:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346788AbiDEJp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:45:29 -0400
+        with ESMTP id S1347073AbiDEJp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:45:57 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973B0DBD05;
-        Tue,  5 Apr 2022 02:31:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F33FADCE25;
+        Tue,  5 Apr 2022 02:32:18 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4C8F1B81CBE;
-        Tue,  5 Apr 2022 09:31:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7C1AC385A4;
-        Tue,  5 Apr 2022 09:31:47 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AA6F6B81CB5;
+        Tue,  5 Apr 2022 09:32:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 117A1C385A9;
+        Tue,  5 Apr 2022 09:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649151110;
-        bh=akJwXD5N3s4UPZe2aQccirJblgU77qRMdXJ8Vx02u74=;
+        s=k20201202; t=1649151136;
+        bh=Ep4IX5zQgCVW0s4Bsx2dOmJ9bxMmB3cMCg3WQ6oFitA=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=QY5Z55casbm5lR6qsgeuDF3G8adn/VXiErF+RjsEtRsfg4GpaCYaLtvuCO7PosAxH
-         kkHB4iFMUltTTxoOVUAWWxvmuuENoZDt3kuzHs39r1ZJlxfJo0FdygNGNwcPqzn05n
-         alNWru1jDELUfjINuCrFeKn+QHu7c7guZdOzI3Ydp+JBlBhvMWG3hlkDXFuvqSvHwJ
-         U7Q/Eb5Lx3JOF0FPj5sUmQgVwgZuTweYoqr0Xm5Xuss8HGf8VTC/aTBs55mnupUSb6
-         0Gns2AVqDzFaYzE8FSOdZR42prBZ4S4Y3h/Je4fBzLhPxmb93jke+bOB178wwnQJwf
-         mSfQ0BvfzW62w==
+        b=DKZLbHrqwXMwQzuR+wNT6n+G+9rXglYwug01mCcWWbXmoIQfO/Vpe70kT0YFazhyK
+         HpOqieISwH+oDXSYGB0qR6MK7w44XVnjMRZxG4zq+FfU+Kc11T9nMNyNbLuzdr+uoE
+         AzuomW8eVIVETeykPaZ/8CHMDyIjMSoNCbYs43EN+sL2GzIRO3QtfI2rF2Xf6RbCHJ
+         oJXDMRIWYXUgwy4POFFvax9loMOSMD3MAgqtqVW3lY5SWBMTsRKqoeTzqqlexxj65r
+         PZzqgRvA9WUKcV4lthROWr0zndnyyXA3K6MzFB4OmMuaT3M/kWHlWtZa6CvyTuJxi4
+         4IA3mMAdxEtnA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Rob Herring <robh+dt@kernel.org>, povik+lin@cutebit.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, kettenis@openbsd.org,
-        marcan@marcan.st, alsa-devel@alsa-project.org, sven@svenpeter.dev,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220331000449.41062-1-povik+lin@cutebit.org>
-References: <20220331000449.41062-1-povik+lin@cutebit.org>
-Subject: Re: (subset) [RFC PATCH 0/5] Apple Macs machine-level ASoC driver
-Message-Id: <164915110754.276574.17127953624002951420.b4-ty@kernel.org>
-Date:   Tue, 05 Apr 2022 10:31:47 +0100
+To:     robh+dt@kernel.org, johnson.wang@mediatek.com
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20220401080212.27383-1-johnson.wang@mediatek.com>
+References: <20220401080212.27383-1-johnson.wang@mediatek.com>
+Subject: Re: [RESEND v2 0/2] Add support for MediaTek PMIC MT6366
+Message-Id: <164915113479.276837.8566634203471784091.b4-ty@kernel.org>
+Date:   Tue, 05 Apr 2022 10:32:14 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,31 +55,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Mar 2022 02:04:44 +0200, Martin Povišer wrote:
-> I put together a machine-level ASoC driver for recent Apple Macs (the
-> ones with ARM64 SoCs) and want to gauge opinions.
+On Fri, 1 Apr 2022 16:02:10 +0800, Johnson Wang wrote:
+> This patchset adds support for MediaTek PMIC MT6366.
+> MT6366 is the primary PMIC for MT8186 and probably other SOCs.
 > 
-> Commit 1 is the binding. It is some subset of simple-audio-card with
-> the extra distinction of allowing multiple CPU/CODEC DAIs per a DAI
-> link. I want to draw special attention to the issue of describing
-> speaker topologies. The way it now works is that the driver expects
-> the speakers to be declared in a fixed order in the sound-dai= list.
-> This populates a topology the driver expects on a particular machine
-> model. Mark (in CC) has made the suggestion of keeping the topology
-> descriptions with the codec nodes themselves in some generic manner,
-> akin to how sound-name-prefix= already helps identify codecs to the
-> user.
+> Resend v2:
+> - rebase on Linux 5.17
+> 
+> Changes in v2:
+> - rebase on Linux 5.17-rc8
+> - change subject line
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[4/5] ASoC: Introduce snd_soc_of_get_dai_link_cpus
-      commit: 900dedd7e47cc3f8d93dfa0ae6ac6cf49eda0c97
+[1/2] regulator: mt6366: Add support for MT6366 regulator
+      commit: d077002c9d07dc6f64d07a362202a1e1081b2f6c
+[2/2] dt-bindings: regulator: Add BUCK and LDO document for MT6358 and MT6366
+      (no commit info)
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
