@@ -2,116 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 147FF4F24B1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 09:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D684F2756
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 10:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbiDEH2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 03:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57494 "EHLO
+        id S232588AbiDEIDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 04:03:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiDEH2E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 03:28:04 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB0726AC0;
-        Tue,  5 Apr 2022 00:26:04 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5D0781BF205;
-        Tue,  5 Apr 2022 07:26:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649143563;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3aYdJv1c3x76qPIILK7iOMtk/QOsfJfFzAQtz6UrxU0=;
-        b=o5zJTgpxUzuajIIHNLVIqd6D7PNI0cy1ZbmZHCpqUbDDUd/4HAaRA+CL7ocwWZnYTCY3mk
-        b+u90n1nEzLFtu0XgK6KGlU6Sw0X53CVSIJalp9wXnql73H8GvSiBUdiKd//qydDndQmzV
-        UeZ/36HfWY7ezAqGsKNaMJTU3SHdmP7ta4BkhrSQ9oHjjfNIKbd6VJgr95khwIC/QlCBbm
-        gP/Ab8rTn0nnL2JgIc0BFJxB6o52G3+f7Ueq/LtUawEQtbUUuY8wQVEs/4/lFIBZACmIWF
-        oJNNhlQTjgS9peeGM+0RexBOUrbiKxKYHwr8zeg0hQ3RIQEgsZwYgPj5aMbVDw==
-Date:   Tue, 5 Apr 2022 09:24:34 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
-Message-ID: <20220405092434.6e424ed4@fixe.home>
-In-Reply-To: <Ykst0Vb4fk+iALzc@robh.at.kernel.org>
-References: <20220324141237.297207-1-clement.leger@bootlin.com>
-        <Ykst0Vb4fk+iALzc@robh.at.kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S235332AbiDEH7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 03:59:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8C657165;
+        Tue,  5 Apr 2022 00:54:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3CFC5B81B18;
+        Tue,  5 Apr 2022 07:54:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 820EEC340EE;
+        Tue,  5 Apr 2022 07:54:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1649145241;
+        bh=EbOZ/oVGLOsnnwYomOpaf9hYYjlbnYBhs4SnLCj8OQc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=AFc63gOa4PiorzYNA/0oVo2IxVoWDcKDHN7/x+VdEkfOUrGc0TA8jCGW/i04fW3Ys
+         a3yzDJB52IlhJH9P2VDK8FwxGIMZf7fgRSw+1LwUN0ahkdmjZLV8GMFqbNG3EGYq70
+         Z2vgpe17R1lPO0DmDsA8U0ub5eMpK2k34jcIKV5E=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org, devicetree@vger.kernel.org,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.17 0335/1126] arm64: dts: qcom: sm8150: Correct TCS configuration for apps rsc
+Date:   Tue,  5 Apr 2022 09:18:02 +0200
+Message-Id: <20220405070417.449490661@linuxfoundation.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220405070407.513532867@linuxfoundation.org>
+References: <20220405070407.513532867@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Mon, 4 Apr 2022 12:41:37 -0500,
-Rob Herring <robh@kernel.org> a =C3=A9crit :
+From: Maulik Shah <quic_mkshah@quicinc.com>
 
-> On Thu, Mar 24, 2022 at 03:12:34PM +0100, Cl=C3=A9ment L=C3=A9ger wrote:
-> > This series is part of a larger series which aims at adding fwnode
-> > support in multiple subsystems [1]. The goal of this series was to
-> > add support for software node in various subsystem but in a first
-> > time only the fwnode support had gained consensus and will be added
-> > to multiple subsystems. =20
->=20
-> The goal is describing a solution. What is the problem?
->=20
-> What's the scenario where you have a reset provider not described by=20
-> firmware providing resets to devices (consumers) also not described by=20
-> firmware.
+[ Upstream commit 17ac8af678b6da6a8f1df7da8ebf2c5198741827 ]
 
-Hi Rob, there was a link attached to this series since there was a
-previous one that was sent which described the problem. Here is a link
-to the same thread but to a specific message which clarifies the
-problem and the solutions that were mentionned by other maintainers
-(ACPI overlays, DT overlays, software nodes and so on):
+Correct the TCS config by updating the number of TCSes for each type.
 
-https://lore.kernel.org/netdev/20220224154040.2633a4e4@fixe.home/
+Cc: devicetree@vger.kernel.org
+Fixes: d8cf9372b654 ("arm64: dts: qcom: sm8150: Add apps shared nodes")
+Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/1641749107-31979-2-git-send-email-quic_mkshah@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
->=20
-> > For the moment ACPI node support is excluded from the fwnode support
-> > to avoid creating an unspecified ACPI reset device description. With
-> > these modifications, both driver that uses the fwnode_ API or the of_
-> > API to register the reset controller will be usable by consumer
-> > whatever the type of node that is used. =20
->=20
-> Good, because controlling reset lines directly isn't how the ACPI device=
-=20
-> model works AFAIK.
-
-This was based on Mark Brown feedback.
-
->=20
-> > One question raised by this series is that I'm not sure if all reset
-> > drivers should be modified to use the new fwnode support or keep the
-> > existing device-tree support. Maintainer advice on that particular
-> > question will be welcome. =20
->=20
-> That would be pointless churn IMO. Why do we need to convert drivers=20
-> which the vast majority will never use anything but DT?
-
-To have a single interface to maintain and to remove duplicated fields
-(of_node, fwnode, fwnode_xlate, of_xlate) from reset controller struct.
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 6012322a5984..78265646feff 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3556,9 +3556,9 @@
+ 			qcom,tcs-offset = <0xd00>;
+ 			qcom,drv-id = <2>;
+ 			qcom,tcs-config = <ACTIVE_TCS  2>,
+-					  <SLEEP_TCS   1>,
+-					  <WAKE_TCS    1>,
+-					  <CONTROL_TCS 0>;
++					  <SLEEP_TCS   3>,
++					  <WAKE_TCS    3>,
++					  <CONTROL_TCS 1>;
+ 
+ 			rpmhcc: clock-controller {
+ 				compatible = "qcom,sm8150-rpmh-clk";
+-- 
+2.34.1
 
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+
