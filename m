@@ -2,89 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 124674F4AD3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54A0E4F4B4C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 03:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1453788AbiDEWwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:52:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
+        id S1574051AbiDEWyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:54:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1458161AbiDERLu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 13:11:50 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FBB12614
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 10:09:51 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id b15so15694716edn.4
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 10:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W9jjXhkkwggvTX4fvJBrk+j1Dfql0KOELV0oxfWMhuc=;
-        b=Da196R/xzbnxuTIH3vscQpCMovYwydT/AzCJSlQj8Eqi4CvIwtAd/mUQm9MmrSBpfo
-         C+EBgKeBCuBKVRkDsHPA8cOoIX8OcoIl86zyYotKiHUopfezjcGIoi0dE+KUYYdh8QMp
-         KVzZw8avVxGZB0tQNm3+yFeorwp26KB33gYBo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W9jjXhkkwggvTX4fvJBrk+j1Dfql0KOELV0oxfWMhuc=;
-        b=i5Vit42szGXzOkfVcuykZGhvERbugKp/NbdD22AI6fx1qOdrNFt4f45I6M4xxP5UJs
-         7MJEi9EPSzvesbvn5y/kcg80aHY4/pU6Ytiy9TSYWptyJg8WUAbWSCvW9SeW8ejddhlC
-         T1nELBhqW4jeLB5Mx8rAtxKoIrkx9zf+VDPJU5u6Gf9ReCXAWkGj0nIHW8fsUjc+u0n+
-         iaRBqYQTwiZ7AuOinfSbPOTdpMxdMwCaNEl32rdyCLNwnshmLdugTs50Jw21C/wdz+5+
-         IKchGX9L1uI05Ym7322H/SDEh/udxR+1r4HLfN4QvmpcobVUW8S0Wz289fJLT6HHdthQ
-         HzqA==
-X-Gm-Message-State: AOAM532mYBcThLZFMmrDMQBZGsuhxWl3F/HkPpqkETSja0zgg88rOcR1
-        snzABcscXeCaLGGp+pIcr6ew2neCfWk3/DOq
-X-Google-Smtp-Source: ABdhPJyhC4UAMJoSmQy/d1YNsK4j91wakDwwerJJ+6CdVEjwN3GoovRFYAvKPWxia1//ka5h8EaTzQ==
-X-Received: by 2002:aa7:dd88:0:b0:41c:c008:d8e2 with SMTP id g8-20020aa7dd88000000b0041cc008d8e2mr4726360edv.309.1649178589643;
-        Tue, 05 Apr 2022 10:09:49 -0700 (PDT)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com. [209.85.128.50])
-        by smtp.gmail.com with ESMTPSA id f2-20020a170906390200b006e7f5fedbe7sm2201019eje.3.2022.04.05.10.09.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 10:09:49 -0700 (PDT)
-Received: by mail-wm1-f50.google.com with SMTP id h16so8449393wmd.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 10:09:49 -0700 (PDT)
-X-Received: by 2002:a05:600c:4f10:b0:38c:ae36:d305 with SMTP id
- l16-20020a05600c4f1000b0038cae36d305mr3996092wmq.34.1649178175654; Tue, 05
- Apr 2022 10:02:55 -0700 (PDT)
+        with ESMTP id S1572882AbiDEROI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 13:14:08 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C557432989;
+        Tue,  5 Apr 2022 10:12:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3A058B81EAB;
+        Tue,  5 Apr 2022 17:12:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EED14C385A7;
+        Tue,  5 Apr 2022 17:12:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649178724;
+        bh=Fi3gwLDlrpbGZghmXGrutA6z7lh/k2OJOgwNvI5pN+Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QECIHsTKsZKpjJwm2fChAOn/xZblKZ47DiND23UTeH1kZwIEfs0AISCNutuLXmEUt
+         spY6MNUiDxH+7Jcjl0DyV/WH4vX+RoTUT5M/xG5h8jLXUcYiJEjHFdYyoVXu+xz5Jj
+         C7n9HhvreAD3nttOs2pTfYROaob1D1WiD4P/kOfju831Mrly+A57Q6Z9J31Gz4/QXP
+         lXZUY5b1DUed/BQv88mwXHkIKt0mUi79IQ1TA+/woTxjRCqYMhl5yqUu/a/yVxK2rw
+         v3hC3XBivbRl1wtMl04X3YpDdvw9xQm0daOWJDMjbi3z41QzbN5nWJyuNTzGhqo7Hy
+         rnJmeWyFt1ePQ==
+Received: by mail-il1-f177.google.com with SMTP id 14so9674333ily.11;
+        Tue, 05 Apr 2022 10:12:03 -0700 (PDT)
+X-Gm-Message-State: AOAM530LyastRDvLwiPNe1pKqAgWhscbwPs40oGqsjLJ7mHV0K6WcsaQ
+        4Yc2Iw/Pt2CqKGgaSCVsafm6Mn1MenPDL0AIag==
+X-Google-Smtp-Source: ABdhPJzYBf9pAgvDdaUWa11guFTFnhz96eXEdIaoWioaIc+fB/HqJmh3/mx15Wmj2ADzE6sE5NZK5wukNbYOLBSNuJE=
+X-Received: by 2002:a92:dd86:0:b0:2bc:805c:23c7 with SMTP id
+ g6-20020a92dd86000000b002bc805c23c7mr2154392iln.279.1649178722976; Tue, 05
+ Apr 2022 10:12:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
- <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
- <392b933f-760c-3c81-1040-c514045df3da@linaro.org> <CAD=FV=W4PYK-t607yjRbfjDjjEZX0KdgHDRukw_vSH8E8EDH6w@mail.gmail.com>
- <CAA8EJppt9XONbgtKfmHmN+==QNqiVJeb8GKJFdZm=yyY-tgmHQ@mail.gmail.com>
- <CAD=FV=U5-sTDLYdkeJWLAOG-0wgxR49VxtwUyUO7z2PuibLGsg@mail.gmail.com> <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
-In-Reply-To: <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 5 Apr 2022 10:02:42 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
-Message-ID: <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
-Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+References: <20220324141237.297207-1-clement.leger@bootlin.com>
+ <Ykst0Vb4fk+iALzc@robh.at.kernel.org> <20220405092434.6e424ed4@fixe.home>
+ <YkxWeMNw9Ba0KjHM@robh.at.kernel.org> <20220405175120.23fc6b2a@fixe.home>
+In-Reply-To: <20220405175120.23fc6b2a@fixe.home>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 5 Apr 2022 12:11:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLdBcAw1KPnrATHqEngRWkx6moxDODH1xV67EKAufc6_w@mail.gmail.com>
+Message-ID: <CAL_JsqLdBcAw1KPnrATHqEngRWkx6moxDODH1xV67EKAufc6_w@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Lizhi Hou <lizhi.hou@xilinx.com>,
+        Sonal Santan <sonal.santan@xilinx.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,105 +76,216 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Apr 5, 2022 at 5:54 AM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
-> > 3. For DP and eDP HPD means something a little different. Essentially
-> > there are two concepts: a) is a display physically connected and b) is
-> > the display powered up and ready. For DP, the two are really tied
-> > together. From the kernel's point of view you never "power down" a DP
-> > display and you can't detect that it's physically connected until it's
-> > ready. Said another way, on you tie "is a display there" to the HPD
-> > line and the moment a display is there it's ready for you to do AUX
-> > transfers. For eDP, in the lowest power state of a display it _won't_
-> > assert its "HPD" signal. However, it's still physically present. For
-> > eDP you simply have to _assume_ it's present without any actual proof
-> > since you can't get proof until you power it up. Thus for eDP, you
-> > report that the display is there as soon as we're asked. We can't
-> > _talk_ to the display yet, though. So in get_modes() we need to be
-> > able to power the display on enough to talk over the AUX channel to
-> > it. As part of this, we wait for the signal named "HPD" which really
-> > means "panel finished powering on" in this context.
+On Tue, Apr 5, 2022 at 10:52 AM Cl=C3=A9ment L=C3=A9ger <clement.leger@boot=
+lin.com> wrote:
+>
+> Le Tue, 5 Apr 2022 09:47:20 -0500,
+> Rob Herring <robh@kernel.org> a =C3=A9crit :
+>
+> > + some Xilinx folks
 > >
-> > NOTE: for aux transfer, we don't have the _display_ pipe and clocks
-> > running. We only have enough stuff running to do the AUX transfer.
-> > We're not clocking out pixels. We haven't fully powered on the
-> > display. The AUX transfer is designed to be something that can be done
-> > early _before_ you turn on the display.
+> > On Tue, Apr 05, 2022 at 09:24:34AM +0200, Cl=C3=A9ment L=C3=A9ger wrote=
+:
+> > > Le Mon, 4 Apr 2022 12:41:37 -0500,
+> > > Rob Herring <robh@kernel.org> a =C3=A9crit :
+> > >
+> > > > On Thu, Mar 24, 2022 at 03:12:34PM +0100, Cl=C3=A9ment L=C3=A9ger w=
+rote:
+> > > > > This series is part of a larger series which aims at adding fwnod=
+e
+> > > > > support in multiple subsystems [1]. The goal of this series was t=
+o
+> > > > > add support for software node in various subsystem but in a first
+> > > > > time only the fwnode support had gained consensus and will be add=
+ed
+> > > > > to multiple subsystems.
+> > > >
+> > > > The goal is describing a solution. What is the problem?
+> > > >
+> > > > What's the scenario where you have a reset provider not described b=
+y
+> > > > firmware providing resets to devices (consumers) also not described=
+ by
+> > > > firmware.
+> > >
+> > > Hi Rob, there was a link attached to this series since there was a
+> > > previous one that was sent which described the problem. Here is a lin=
+k
+> > > to the same thread but to a specific message which clarifies the
+> > > problem and the solutions that were mentionned by other maintainers
+> > > (ACPI overlays, DT overlays, software nodes and so on):
+> > >
+> > > https://lore.kernel.org/netdev/20220224154040.2633a4e4@fixe.home/
 > >
+> > Thanks, but your commit message should explain the problem. The problem
+> > is not subsystems don't support fwnode.
 > >
-> > OK, so basically that was a longwinded way of saying: yes, we could
-> > avoid the AUX transfer in probe, but we can't wait all the way to
-> > enable. We have to be able to transfer in get_modes(). If you think
-> > that's helpful I think it'd be a pretty easy patch to write even if it
-> > would look a tad bit awkward IMO. Let me know if you want me to post
-> > it up.
+> > This is the exact same problem the Xilinx folks are trying to solve wit=
+h
+> > their PCIe FPGA cards[1] (and that is not really a v1). They need to
+> > describe h/w downstream from a 'discoverable' device. Their case is
+> > further complicated with the dynamic nature of FPGAs. It's also not jus=
+t
+> > PCIe. Another usecase is describing downstream devices on USB FTDI
+> > serial chips which can have GPIO, I2C, SPI downstream. And then you wan=
+t
+> > to plug in 10 of those.
 >
-> I think it would be a good idea. At least it will allow us to judge,
-> which is the more correct way.
+> I also tried loading an overlay from a driver on an ACPI based system.
+> Their patch is (I guess) targeting the specific problem that there is
+> no base DT when using ACPI. However, Mark Brown feedback was not to
+> mix OF and ACPI:
 
-I'm still happy to prototype this, but the more I think about it the
-more it feels like a workaround for the Qualcomm driver. The eDP panel
-driver is actually given a pointer to the AUX bus at probe time. It's
-really weird to say that we can't do a transfer on it yet... As you
-said, this is a little sideband bus. It should be able to be used
-without all the full blown infra of the rest of the driver.
+I agree there. I don't think we should use DT bindings in ACPI tables
+which is already happening. In this case, I think what's described by
+ACPI and DT must be completely disjoint. I think that's the case here
+as everything is downstream of the PCIe device.
 
-
-> And I also think it might help the ti,sn65dsi86 driver, as it won't
-> have to ensure that gpio is available during the AUX bus probe.
-
-The ti,sn65dsi86 GPIO issue has been solved for a while, though so not
-sure why we need to do something there? I'm also unclear how it would
-have helped. In this discussion, we've agreed that the panel driver
-would still acquire resources during its probe time and the only thing
-that would be delayed would be the first AUX transfer. The GPIO is a
-resource here and it's ideal to acquire it at probe time so we could
-EPROBE_DEFER if needed.
-
-
-> BTW, another random idea, before you start coding.
+> "That seems like it's opening a can of worms that might be best left
+> closed."
 >
-> We have the bridge's hpd_notify call. Currently it is called only by
-> the means of drm_bridge_connector's HPD mechanism, tied to the bridge
-> registering as DRM_BRIDGE_OP_HPD.
-> It looks to me like it might be a perfect fit for the first aux-bus
-> related reads.
+> But I would be interested to know how the Xilinx guys are doing that
+> on x86/ACPI based system.
+
+They aren't, yet...
+
+
+> > I don't think swnodes are going to scale for these usecases. We moved
+> > h/w description out of the kernel for a reason. Why are we adding that
+> > back in a new form? The complexity for what folks want to describe is
+> > only going to increase.
+> >
+> > I think DT overlays is the right (or only) solution here. Of course the
+> > DT maintainer would say that. Actually, I would be happier to not have
+> > to support overlays in the kernel.
 >
-> We'd need to trigger it manually once and tie it to the new
-> drm_panel_funcs callback, which in turn would probe the aux bus,
-> create backlight, etc.
+> DT overlay might work on DT based system. If I'm going to plug the card
+> on an ACPI based platform (x86), I also want that card to work
+> seamlessly without requiring the user to create an ACPI overlay.
+
+I agree, it should work the same way for the user.
+
+> If you proposal was to use DT overlays on an ACPI based system, doing
+> so would also require to "plug" the PCI subystem when described with
+> ACPI to "probe" DT overlays describing PCI devices, not sure this is
+> something trivial and it would be PCI centric.
+
+Yes, this is the 2nd part I describe. I don't think there's any way to
+avoid this being bus specific because bus specific nodes have to be
+created.
+
+
+> > I've told the Xilinx folks the same thing, but I would separate this
+> > into 2 parts. First is just h/w work in a DT based system. Second is
+> > creating a base tree an overlay can be applied to. The first part shoul=
+d
+> > be pretty straightforward. We already have PCI bus bindings. The only
+> > tricky part is getting address translation working from leaf device thr=
+u
+> > the PCI bus to host bus, but support for that should all be in place
+> > (given we support ISA buses off of PCI bus). The second part will
+> > require generating PCI DT nodes at runtime. That may be needed for both
+> > DT and ACPI systems as we don't always describe all the PCI hierarchy
+> > in DT.
 >
-> Regarding the Sankeerth's patch. I have been comparing it with the
-> hpd_event_thread()'s calls.
-> It looks to me like we should reuse dp_display_config_hpd()
-> /EV_HPD_INIT_SETUP and maybe others.
+> But then, if the driver generate the nodes, it will most probably
+> have to describe the nodes by hardcoding them right ?
+
+No, the kernel already maintains its own tree of devices. You just
+need to use that to generate the tree. That's really not much more
+than nodes with a 'reg' property encoding the device and function
+numbers.
+
+We already support matching a PCI device to a DT node. The PCI
+subsystem checks if there is a corresponding DT node for each PCI
+device created and sets the of_node pointer if there is. For
+OpenFirmware systems (PPC), there always is a node. For FDT, we
+generally don't have a node unless there are additional
+non-discoverable properties. Hikey960 is an example with PCI device
+nodes in the DT as it has a soldered down PCIe switch with downstream
+devices and non-discoverable properties (e.g. reset GPIO for each
+port).
+
+> Or probably load
+> some dtbo from the FS. If so, I would then have to describe the card
+> for both ACPI and DT. How is that better than using a single software
+> node description for both ACPI/OF based systems ? Or maybe I missed
+> something, but the device description won't come out of thin air I
+> guess.
+
+What you would have to load is a DT overlay describing all your
+downstream devices.
+
+We support DTBs (including DTBOs) built into the kernel already, so
+whether it's built into the kernel or in the FS is up to you really.
+
+> Also, when saying "That may be needed for both DT and ACPI systems", do
+> you actually meant that ACPI overlay should be described for ACPI based
+> systems and DT overlays for DT based ones ?
+
+No, as I said: "I think DT overlays is the right (or only) solution
+here." ACPI overlays doesn't seem like a workable solution because it
+can't describe your downstream devices.
+
+The reason generating nodes may be needed on DT systems as well is
+that all PCI devices are not described in DT systems either.
+
+> If so, some subsystems do
+> not even support ACPI (reset for instance which is need for my
+> PCI card but that is not the only one). So how to accomodate both ? This
+> would result in having 2 separate descriptions for ACPI and OF and
+> potentially non working with ACPI description.
 >
-> What I'm trying to say is that if we split AUX probing and first AUX
-> transfers, it would be possible to reuse a significant part of MSM DP
-> HPD machine rather than hacking around it and replicating it manually.
+> Software nodes have the advantage of being independent from the
+> description systems used (ACPI/OF). If switching susbsystems to use
+> fwnode, this would also allows to accomodate easily for all nodes types
+> and potentially factorize some code.
 
-I'm not sure I completely understand, but I'm pretty wary here. It's
-my assertion that all of the current "HPD" infrastructure in DRM all
-relates to the physical presence of the panel. If you start
-implementing these functions for eDP I think you're going to confuse
-the heck out of everything. The kernel will think that this is a
-display that's sometimes not there. Whenever the display is powered
-off then HPD will be low and it will look like there's no display.
-Nothing will ever try to power it on because it looks like there's no
-display.
+It's not independent. You are effectively creating the DT nodes with C
+code. Are these not DT bindings:
 
-I think your idea is to "trigger once" at bootup and then it all
-magically works, right? ...but what about after bootup? If you turn
-the display off for whatever reason (modeset or you simply close the
-lid of your laptop because you're using an external display) and then
-you want to use the eDP display again, how do you kickstart the
-process another time? You can't reboot, and when the display is off
-the HPD line is low.
+> static const struct property_entry ddr_clk_props[] =3D {
+>         PROPERTY_ENTRY_U32("clock-frequency", 30000000),
+>         PROPERTY_ENTRY_U32("#clock-cells", 0),
+>         {}
+> };
 
-I can't say it enough times, HPD on eDP _does not mean hot plug
-detect_. The panel is always there. HPD is really a "panel ready /
-panel notify" signal for eDP. That's fully what its function is.
+Sure looks like DT bindings to me. I don't think moving them into the
+kernel as sw nodes avoids any of the potential pitfalls of mixing ACPI
+and DT. For example, what happens when you have a downstream sw node
+device that wants to do DMA allocations and transfers? I suspect that
+sw nodes can't really handle more than trivial cases.
 
--Doug
+
+> > That could work either by the PCI subsystem creating nodes as it
+> > populates devices or your driver could make a request to populate nodes
+> > for its hierarchy. That's not a hard problem to solve. That's what
+> > OpenFirmware implementations do already.
+>
+> This would also require to get address translation working with ACPI
+> based systems since the PCI bus isn't described with DT on such
+> systems. I'm not sure how trivial it is. Or it would require to add PCI
+> root complex entries into the device-tree to allow adress translation
+> to work using the existing system probably.
+
+It would require all that most likely. Maybe there's some shortcuts we
+can take. All the necessary information is maintained by the kernel
+already. Normally it's populated from the firmware into the kernel
+structures. But here we need the opposite direction.
+
+
+> > https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.c=
+om/
+>
+> Looking at the feedback of the previous series that I mentionned,
+> absolutely nobody agreed on the solution to be adopted. I asked for a
+> consensus but I only got an answer from Hans de Goede which was ok
+> with the fwnode way. I would be really glad to have some consensus on
+> that in order to implement a final solution (and if the OF overlays is
+> the one to be used, I'll use it).
+
+Yes, that's a challenge, but buried in some patch series is not going
+to get you there. I am trying to widen the discussion because it is a
+problem that's been on my radar for some time.
+
+Rob
