@@ -2,205 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB6D4F45DE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE47D4F4652
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 01:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237181AbiDEN4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45648 "EHLO
+        id S240661AbiDEN56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:57:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355881AbiDELz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 07:55:27 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59CABE08A;
-        Tue,  5 Apr 2022 04:14:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649157265; x=1680693265;
+        with ESMTP id S1382383AbiDEMPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 08:15:04 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C39A4ADD50;
+        Tue,  5 Apr 2022 04:25:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1649157928; x=1680693928;
   h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=vbrpyNUOeVKo9n9VcNXQY9SyN/h9/k3hyA5CjPbxRTQ=;
-  b=iPjIgMI8aIC8QoRhDQPkesD5K3RpKzlgrY8Ft/Z6a+8ltXE6Onvxgpld
-   4ibFeUa5w9u2+ADNdSl6yIW3AL7LbQwr9w6COBA2HcV6zBxXE3ZCv3LiT
-   117HzTO03Zd8r5wIJskJKUZPNbVYcu+T1ggjB16G4PtMGZfd6A/ZZGSi7
-   E=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 Apr 2022 04:14:25 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 04:14:09 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 5 Apr 2022 04:14:09 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 5 Apr 2022 04:14:04 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+   references:mime-version:content-transfer-encoding;
+  bh=tOaUSriU1H57ESN51UJOQjh5HKEr6uJn/O7752Nx9Qo=;
+  b=M6SmSHtyOvJgVcen46RLQwrN2+7RxhgBkdWmj3EJcbyuT8srFPD2jpNx
+   epJoOP0mZp+MThRbEtcuuq0lpOvM15z9EYqrOZkk98QWg3hioj5E0n+G4
+   LcSMnViZkDXRAAIj8eeoo1vvRhcuufVSKJ0JPt2ehz0EGAojtbfJ6woU2
+   HI38I6H2Re4alqgW3e0QfFnpjgnDYFYTQyDYZBpIbuy1tjsdD/PzYzqqL
+   uALj/3rd7NS6Km/Cai6tZ67AOGeEBFZgBZsDYXb+5NmeEEAqWSUXYeTFx
+   Ne6JvjxUxTDq2W8wkPLClgX3JzHSS1QuutjQdLaaTIa9sDags8bq/D/N/
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,236,1643698800"; 
+   d="scan'208";a="168400151"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Apr 2022 04:25:27 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 5 Apr 2022 04:25:27 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 5 Apr 2022 04:25:25 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <p.zabel@pengutronix.de>,
+        <sre@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohitkr@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v6 3/3] arm64: dts: qcom: sc7280: Add dt nodes for sound card
-Date:   Tue, 5 Apr 2022 16:43:40 +0530
-Message-ID: <1649157220-29304-4-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
+        <linux-pm@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 2/8] dt-bindings: reset: convert Atmel/Microchip reset controller to YAML
+Date:   Tue, 5 Apr 2022 14:27:18 +0300
+Message-ID: <20220405112724.2760905-3-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
+References: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt nodes for sound card support, which is using WCD938x headset
-playback, capture, I2S speaker playback and DMICs via VA macro.
+Convert Atmel/Microchip reset controller to YAML.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280-crd.dts  |  8 +++
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 93 ++++++++++++++++++++++++++++++++
- 2 files changed, 101 insertions(+)
+ .../devicetree/bindings/arm/atmel-sysregs.txt | 15 ------
+ .../reset/atmel,at91sam9260-reset.yaml        | 49 +++++++++++++++++++
+ 2 files changed, 49 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-index 224a82d..b1b968a 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-@@ -90,6 +90,14 @@ ap_ts_pen_1v8: &i2c13 {
- 	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
- };
+diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+index 16eef600d599..ab1b352344ae 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
++++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+@@ -25,21 +25,6 @@ System Timer (ST) required properties:
+ Its subnodes can be:
+ - watchdog: compatible should be "atmel,at91rm9200-wdt"
  
-+&sound {
-+	audio-routing =
-+		"VA DMIC0", "MIC BIAS1",
-+		"VA DMIC1", "MIC BIAS1",
-+		"VA DMIC2", "MIC BIAS3",
-+		"VA DMIC3", "MIC BIAS3";
-+};
+-RSTC Reset Controller required properties:
+-- compatible: Should be "atmel,<chip>-rstc".
+-  <chip> can be "at91sam9260", "at91sam9g45", "sama5d3" or "samx7"
+-  it also can be "microchip,sam9x60-rstc"
+-- reg: Should contain registers location and length
+-- clocks: phandle to input clock.
+-
+-Example:
+-
+-	rstc@fffffd00 {
+-		compatible = "atmel,at91sam9260-rstc";
+-		reg = <0xfffffd00 0x10>;
+-		clocks = <&clk32k>;
+-	};
+-
+ RAMC SDRAM/DDR Controller required properties:
+ - compatible: Should be "atmel,at91rm9200-sdramc", "syscon"
+ 			"atmel,at91sam9260-sdramc",
+diff --git a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
+new file mode 100644
+index 000000000000..92936c987c9a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/atmel,at91sam9260-reset.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- &tlmm {
- 	tp_int_odl: tp-int-odl {
- 		pins = "gpio7";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index e3d8cbf..45e1d82 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -84,6 +84,99 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nvme_pwren>;
- 	};
++title: Atmel/Microchip System Reset Controller
 +
-+	sound: sound {
-+		compatible = "google,sc7280-herobrine";
-+		model = "sc7280-wcd938x-max98360a-1mic";
++maintainers:
++  - Claudiu Beznea <claudiu.beznea@gmail.com>
 +
-+		audio-routing =
-+				"IN1_HPHL", "HPHL_OUT",
-+				"IN2_HPHR", "HPHR_OUT",
-+				"AMIC1", "MIC BIAS1",
-+				"AMIC2", "MIC BIAS2",
-+				"VA DMIC0", "MIC BIAS3",
-+				"VA DMIC1", "MIC BIAS3",
-+				"VA DMIC2", "MIC BIAS1",
-+				"VA DMIC3", "MIC BIAS1",
-+				"TX SWR_ADC0", "ADC1_OUTPUT",
-+				"TX SWR_ADC1", "ADC2_OUTPUT",
-+				"TX SWR_ADC2", "ADC3_OUTPUT",
-+				"TX SWR_DMIC0", "DMIC1_OUTPUT",
-+				"TX SWR_DMIC1", "DMIC2_OUTPUT",
-+				"TX SWR_DMIC2", "DMIC3_OUTPUT",
-+				"TX SWR_DMIC3", "DMIC4_OUTPUT",
-+				"TX SWR_DMIC4", "DMIC5_OUTPUT",
-+				"TX SWR_DMIC5", "DMIC6_OUTPUT",
-+				"TX SWR_DMIC6", "DMIC7_OUTPUT",
-+				"TX SWR_DMIC7", "DMIC8_OUTPUT";
++description: |
++  The system reset controller can be used to reset the CPU.
 +
-+		qcom,msm-mbhc-hphl-swh = <1>;
-+		qcom,msm-mbhc-gnd-swh = <1>;
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - atmel,at91sam9260-rstc
++              - atmel,at91sam9g45-rstc
++              - atmel,sama5d3-rstc
++              - microchip,sam9x60-rstc
++      - items:
++          - const: atmel,sama5d3-rstc
++          - const: atmel,at91sam9g45-rstc
 +
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		#sound-dai-cells = <0>;
++  reg:
++    maxItems: 1
 +
-+		dai-link@1 {
-+			link-name = "Secondary MI2S Playback";
-+			reg = <MI2S_SECONDARY>;
-+			cpu {
-+				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-+			};
++  clocks:
++    maxItems: 1
 +
-+			codec {
-+				sound-dai = <&max98360a>;
-+			};
-+		};
++required:
++  - compatible
++  - reg
++  - clocks
 +
-+		dai-link@5 {
-+			link-name = "DP Playback";
-+			reg = <LPASS_DP_RX>;
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_DP_RX>;
-+			};
++additionalProperties: false
 +
-+			codec {
-+				sound-dai = <&mdss_dp>;
-+			};
-+		};
++examples:
++  - |
++    #include <dt-bindings/clock/at91.h>
 +
-+		dai-link@6 {
-+			link-name = "WCD Playback";
-+			reg = <LPASS_CDC_DMA_RX0>;
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_RX0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd938x 0>, <&swr0 0>, <&rxmacro 0>;
-+			};
-+		};
-+
-+		dai-link@19 {
-+			link-name = "WCD Capture";
-+			reg = <LPASS_CDC_DMA_TX3>;
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_TX3>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd938x 1>, <&swr1 0>, <&txmacro 0>;
-+			};
-+		};
-+
-+		dai-link@25 {
-+			link-name = "DMIC Capture";
-+			reg = <LPASS_CDC_DMA_VA_TX0>;
-+			cpu {
-+				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&vamacro 0>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
++    reset-controller@fffffd00 {
++        compatible = "atmel,at91sam9260-rstc";
++        reg = <0xfffffd00 0x10>;
++        clocks = <&pmc PMC_TYPE_CORE PMC_SLOW>;
++    };
 -- 
-2.7.4
+2.32.0
 
