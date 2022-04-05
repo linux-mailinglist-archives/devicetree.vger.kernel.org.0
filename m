@@ -2,66 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC13E4F4A5B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:42:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 426FA4F4B16
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbiDEWlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:41:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
+        id S1573871AbiDEWxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1573185AbiDESNb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 14:13:31 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABBA786E36;
-        Tue,  5 Apr 2022 11:11:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649182291; x=1680718291;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=oxPQbPe4XPubEIZ9VBAYgBlsoGlrAVDbxPfSfEgWaik=;
-  b=LfSxmPxROu31CFUZmczCwD6nc/o1ArszMxKtTv5n84YIScGgf3yaeOeX
-   v1oEOTqOW7Y7r04slza/bMD2zaHzTth7mRw2QpvXeJHC81rJngLeBKgzo
-   dfdJJD7a6+TeFgg33lG5YZiOGrCDdO6TiK/O8QLY3VFX1vxNFBM6wDpzZ
-   +pJn8De0iKr4nxC/3yJKpppo8KdvBvg34/0jQI4Yen+s5ntnYIjTEFW4U
-   8hrwIQ6gaaArZ7RMgxJe9RPBuxQUjQqylwz/o8hYaYYWvHmrFHIEWIMr2
-   DaH7LJ/QJO9HkZqqO7dC8gwNvEr2dfa+0XGPg1aLubYSZH+rcG7mt1h0w
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="241415947"
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; 
-   d="scan'208";a="241415947"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 11:11:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,236,1643702400"; 
-   d="scan'208";a="658050302"
-Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 05 Apr 2022 11:11:25 -0700
-Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nbneG-0003eR-Qg;
-        Tue, 05 Apr 2022 18:11:24 +0000
-Date:   Wed, 6 Apr 2022 02:11:06 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, pabeni@redhat.com, krzk+dt@kernel.org,
-        roopa@nvidia.com, andrew@lunn.ch, edumazet@google.com
-Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
-        Wells Lu <wellslutw@gmail.com>
-Subject: Re: [PATCH net-next v6 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Message-ID: <202204060205.cewHqDER-lkp@intel.com>
-References: <1649016459-23989-3-git-send-email-wellslutw@gmail.com>
+        with ESMTP id S1573186AbiDESN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 14:13:58 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C61FD86E36
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 11:11:57 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id k23so24951040ejd.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 11:11:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=660LH2+GxfU/Tt425A6dqO9O0qLu2gGwDombZrfKpU8=;
+        b=gwNC/cNNASSPrm/edmwXPk0X7RaQdKKSivzCUoyBbji7ak6C8kchHEP5egX8PkIP4C
+         sazrZ+UZmtaVXMpC4qrc5t0H+eIPolaDcFXOFq2kJoDEq0rKnwf93q0H04FDyVTlple4
+         HndygiAgVBA2rSkB38vxENQIHCisJHKkZm1Uk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=660LH2+GxfU/Tt425A6dqO9O0qLu2gGwDombZrfKpU8=;
+        b=L/ogUFU+HqWDlWbfAyl6Px6kGCuRdTKRFGXedgaxM1FUqb3bCVS5q7wbmpw8l7ZsGz
+         3igGvO6k5PTmCUJmMl90eDRkokEwadNQotauvrxiR1fjZbgIXiISqMn+LaLRxb8jmQ1Y
+         fFXdqraSdX3uFhDrbO2fpvLjI6Gj353QaA3fqP78zHzRjpwx1HO37nKfh3CuzVjCNQVq
+         aZ6XxKuJ2KTFCxUBpBzLNzUUUwhuaQsZBmnZW0BR6yLrrP1Usa4jzH/BCyHWrJBhHsUX
+         oYDn94SzJnO0EB53DgF4tJfG0Wc8yjPrKzlRWjuETHb37PUV7GDgVnfx0tJo/3v4iJKy
+         vTAQ==
+X-Gm-Message-State: AOAM530fT+K6rJsJJ2cUoPsfwsaO6oQboRC22B8LaHZtwIlRUpq3WtQk
+        MzDjh/ouiED2+larMfs4vxKYLewb+yWTvK8o
+X-Google-Smtp-Source: ABdhPJwngkFVQ8d1MVIL3UwE+hcihlsMNP1G1TPQBcNfD3hBE/THjNI5em9tQIlnYZa70mwMxqVO0Q==
+X-Received: by 2002:a17:907:7ea8:b0:6df:d4a4:8156 with SMTP id qb40-20020a1709077ea800b006dfd4a48156mr4884534ejc.226.1649182315955;
+        Tue, 05 Apr 2022 11:11:55 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com. [209.85.221.50])
+        by smtp.gmail.com with ESMTPSA id d4-20020a056402000400b00412d60fee38sm6852238edu.11.2022.04.05.11.11.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Apr 2022 11:11:54 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id z1so8272285wrg.4
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 11:11:53 -0700 (PDT)
+X-Received: by 2002:adf:9123:0:b0:205:f439:cbdf with SMTP id
+ j32-20020adf9123000000b00205f439cbdfmr3560336wrj.513.1649182313067; Tue, 05
+ Apr 2022 11:11:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1649016459-23989-3-git-send-email-wellslutw@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
+ <392b933f-760c-3c81-1040-c514045df3da@linaro.org> <CAD=FV=W4PYK-t607yjRbfjDjjEZX0KdgHDRukw_vSH8E8EDH6w@mail.gmail.com>
+ <CAA8EJppt9XONbgtKfmHmN+==QNqiVJeb8GKJFdZm=yyY-tgmHQ@mail.gmail.com>
+ <CAD=FV=U5-sTDLYdkeJWLAOG-0wgxR49VxtwUyUO7z2PuibLGsg@mail.gmail.com>
+ <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
+ <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com> <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org>
+In-Reply-To: <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 5 Apr 2022 11:11:40 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
+Message-ID: <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
+Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,278 +94,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wells,
+Hi,
 
-I love your patch! Perhaps something to improve:
+On Tue, Apr 5, 2022 at 10:36 AM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 05/04/2022 20:02, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Tue, Apr 5, 2022 at 5:54 AM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> >>> 3. For DP and eDP HPD means something a little different. Essentially
+> >>> there are two concepts: a) is a display physically connected and b) is
+> >>> the display powered up and ready. For DP, the two are really tied
+> >>> together. From the kernel's point of view you never "power down" a DP
+> >>> display and you can't detect that it's physically connected until it's
+> >>> ready. Said another way, on you tie "is a display there" to the HPD
+> >>> line and the moment a display is there it's ready for you to do AUX
+> >>> transfers. For eDP, in the lowest power state of a display it _won't_
+> >>> assert its "HPD" signal. However, it's still physically present. For
+> >>> eDP you simply have to _assume_ it's present without any actual proof
+> >>> since you can't get proof until you power it up. Thus for eDP, you
+> >>> report that the display is there as soon as we're asked. We can't
+> >>> _talk_ to the display yet, though. So in get_modes() we need to be
+> >>> able to power the display on enough to talk over the AUX channel to
+> >>> it. As part of this, we wait for the signal named "HPD" which really
+> >>> means "panel finished powering on" in this context.
+> >>>
+> >>> NOTE: for aux transfer, we don't have the _display_ pipe and clocks
+> >>> running. We only have enough stuff running to do the AUX transfer.
+> >>> We're not clocking out pixels. We haven't fully powered on the
+> >>> display. The AUX transfer is designed to be something that can be done
+> >>> early _before_ you turn on the display.
+> >>>
+> >>>
+> >>> OK, so basically that was a longwinded way of saying: yes, we could
+> >>> avoid the AUX transfer in probe, but we can't wait all the way to
+> >>> enable. We have to be able to transfer in get_modes(). If you think
+> >>> that's helpful I think it'd be a pretty easy patch to write even if it
+> >>> would look a tad bit awkward IMO. Let me know if you want me to post
+> >>> it up.
+> >>
+> >> I think it would be a good idea. At least it will allow us to judge,
+> >> which is the more correct way.
+> >
+> > I'm still happy to prototype this, but the more I think about it the
+> > more it feels like a workaround for the Qualcomm driver. The eDP panel
+> > driver is actually given a pointer to the AUX bus at probe time. It's
+> > really weird to say that we can't do a transfer on it yet... As you
+> > said, this is a little sideband bus. It should be able to be used
+> > without all the full blown infra of the rest of the driver.
+>
+> Yes, I have that feeling too. However I also have a feeling that just
+> powering up the PHY before the bus probe is ... a hack. There are no
+> obvious stopgaps for the driver not to power it down later.
 
-[auto build test WARNING on net/master]
-[also build test WARNING on robh/for-next linus/master v5.18-rc1 next-20220405]
-[cannot apply to net-next/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This is why I think we need to move to Runtime PM to manage this. Basically:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Wells-Lu/This-is-a-patch-series-for-Ethernet-driver-of-Sunplus-SP7021-SoC/20220404-040949
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git 692930cc435099580a4b9e32fa781b0688c18439
-config: alpha-randconfig-c004-20220405 (https://download.01.org/0day-ci/archive/20220406/202204060205.cewHqDER-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d8d2085594ea52869669a553bb6d60e0b3a1f412
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Wells-Lu/This-is-a-patch-series-for-Ethernet-driver-of-Sunplus-SP7021-SoC/20220404-040949
-        git checkout d8d2085594ea52869669a553bb6d60e0b3a1f412
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash drivers/net/ethernet/sunplus/ drivers/pinctrl/sunplus/
+1. When an AUX transfer happens, you grab a PM runtime reference that
+_that_ powers up the PHY.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+2. At the end of the AUX transfer function, you do a "put_autosuspend".
 
-All warnings (new ones prefixed by >>):
-
-   drivers/net/ethernet/sunplus/spl2sw_driver.c: In function 'spl2sw_get_eth_child_node':
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:328:9: error: implicit declaration of function 'for_each_child_of_node'; did you mean 'for_each_online_node'? [-Werror=implicit-function-declaration]
-     328 |         for_each_child_of_node(ether_np, port_np) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~
-         |         for_each_online_node
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:328:50: error: expected ';' before '{' token
-     328 |         for_each_child_of_node(ether_np, port_np) {
-         |                                                  ^~
-         |                                                  ;
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:326:13: warning: unused variable 'port_id' [-Wunused-variable]
-     326 |         int port_id;
-         |             ^~~~~~~
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:342:1: error: no return statement in function returning non-void [-Werror=return-type]
-     342 | }
-         | ^
-   drivers/net/ethernet/sunplus/spl2sw_driver.c: In function 'spl2sw_probe':
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:407:24: error: implicit declaration of function 'of_get_child_by_name' [-Werror=implicit-function-declaration]
-     407 |         eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
-         |                        ^~~~~~~~~~~~~~~~~~~~
->> drivers/net/ethernet/sunplus/spl2sw_driver.c:407:22: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     407 |         eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
-         |                      ^
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:428:26: error: implicit declaration of function 'of_parse_phandle' [-Werror=implicit-function-declaration]
-     428 |                 phy_np = of_parse_phandle(port_np, "phy-handle", 0);
-         |                          ^~~~~~~~~~~~~~~~
-   drivers/net/ethernet/sunplus/spl2sw_driver.c:428:24: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     428 |                 phy_np = of_parse_phandle(port_np, "phy-handle", 0);
-         |                        ^
-   cc1: some warnings being treated as errors
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for PINCTRL_SPPCTL
-   Depends on PINCTRL && SOC_SP7021 && OF && HAS_IOMEM
-   Selected by
-   - SP7021_EMAC && NETDEVICES && ETHERNET && NET_VENDOR_SUNPLUS && (SOC_SP7021 || COMPILE_TEST
+Then it becomes not a hack, right?
 
 
-vim +407 drivers/net/ethernet/sunplus/spl2sw_driver.c
+> A cleaner design might be to split all hotplug event handling from the
+> dp_display, provide a lightweight state machine for the eDP and select
+> which state machine to use depending on the hardware connector type. The
+> dp_display_bind/unbind would probably also be duplicated and receive
+> correct code flows for calling dp_parser_get_next_bridge, etc.
+> Basically that means that depending on the device data we'd use either
+> dp_display_comp_ops or (new) edp_comp_ops.
+>
+> WDYT?
 
-   343	
-   344	static int spl2sw_probe(struct platform_device *pdev)
-   345	{
-   346		struct device_node *eth_ports_np;
-   347		struct device_node *port_np;
-   348		struct spl2sw_common *comm;
-   349		struct device_node *phy_np;
-   350		phy_interface_t phy_mode;
-   351		struct net_device *ndev;
-   352		u8 mac_addr[ETH_ALEN];
-   353		struct spl2sw_mac *mac;
-   354		int irq, i;
-   355		int ret;
-   356	
-   357		if (platform_get_drvdata(pdev))
-   358			return -ENODEV;
-   359	
-   360		/* Allocate memory for 'spl2sw_common' area. */
-   361		comm = devm_kzalloc(&pdev->dev, sizeof(*comm), GFP_KERNEL);
-   362		if (!comm)
-   363			return -ENOMEM;
-   364		comm->pdev = pdev;
-   365	
-   366		spin_lock_init(&comm->rx_lock);
-   367		spin_lock_init(&comm->tx_lock);
-   368		spin_lock_init(&comm->mdio_lock);
-   369	
-   370		/* Get memory resource 0 from dts. */
-   371		comm->l2sw_reg_base = devm_platform_ioremap_resource(pdev, 0);
-   372		if (IS_ERR(comm->l2sw_reg_base))
-   373			return PTR_ERR(comm->l2sw_reg_base);
-   374	
-   375		/* Get irq resource from dts. */
-   376		ret = platform_get_irq(pdev, 0);
-   377		if (ret < 0)
-   378			return ret;
-   379		irq = ret;
-   380	
-   381		/* Get clock controller. */
-   382		comm->clk = devm_clk_get(&pdev->dev, NULL);
-   383		if (IS_ERR(comm->clk)) {
-   384			dev_err_probe(&pdev->dev, PTR_ERR(comm->clk),
-   385				      "Failed to retrieve clock controller!\n");
-   386			return PTR_ERR(comm->clk);
-   387		}
-   388	
-   389		/* Get reset controller. */
-   390		comm->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
-   391		if (IS_ERR(comm->rstc)) {
-   392			dev_err_probe(&pdev->dev, PTR_ERR(comm->rstc),
-   393				      "Failed to retrieve reset controller!\n");
-   394			return PTR_ERR(comm->rstc);
-   395		}
-   396	
-   397		/* Enable clock. */
-   398		clk_prepare_enable(comm->clk);
-   399		udelay(1);
-   400	
-   401		reset_control_assert(comm->rstc);
-   402		udelay(1);
-   403		reset_control_deassert(comm->rstc);
-   404		udelay(1);
-   405	
-   406		/* Get child node ethernet-ports. */
- > 407		eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
-   408		if (!eth_ports_np) {
-   409			dev_err(&pdev->dev, "No ethernet-ports child node found!\n");
-   410			ret = -ENODEV;
-   411			goto out_clk_disable;
-   412		}
-   413	
-   414		for (i = 0; i < MAX_NETDEV_NUM; i++) {
-   415			/* Get port@i of node ethernet-ports. */
-   416			port_np = spl2sw_get_eth_child_node(eth_ports_np, i);
-   417			if (!port_np)
-   418				continue;
-   419	
-   420			/* Get phy-mode. */
-   421			if (of_get_phy_mode(port_np, &phy_mode)) {
-   422				dev_err(&pdev->dev, "Failed to get phy-mode property of port@%d!\n",
-   423					i);
-   424				continue;
-   425			}
-   426	
-   427			/* Get phy-handle. */
-   428			phy_np = of_parse_phandle(port_np, "phy-handle", 0);
-   429			if (!phy_np) {
-   430				dev_err(&pdev->dev, "Failed to get phy-handle property of port@%d!\n",
-   431					i);
-   432				continue;
-   433			}
-   434	
-   435			/* Get mac-address from nvmem. */
-   436			ret = spl2sw_nvmem_get_mac_address(&pdev->dev, port_np, mac_addr);
-   437			if (ret) {
-   438				dev_info(&pdev->dev, "Generate a random mac address!\n");
-   439	
-   440				/* Generate a mac address using OUI of Sunplus Technology
-   441				 * and random controller number.
-   442				 */
-   443				mac_addr[0] = 0xfc; /* OUI of Sunplus: fc:4b:bc */
-   444				mac_addr[1] = 0x4b;
-   445				mac_addr[2] = 0xbc;
-   446				mac_addr[3] = get_random_int() % 256;
-   447				mac_addr[4] = get_random_int() % 256;
-   448				mac_addr[5] = get_random_int() % 256;
-   449			}
-   450	
-   451			/* Initialize the net device. */
-   452			ret = spl2sw_init_netdev(pdev, mac_addr, &ndev);
-   453			if (ret)
-   454				goto out_unregister_dev;
-   455	
-   456			ndev->irq = irq;
-   457			comm->ndev[i] = ndev;
-   458			mac = netdev_priv(ndev);
-   459			mac->phy_node = phy_np;
-   460			mac->phy_mode = phy_mode;
-   461			mac->comm = comm;
-   462	
-   463			mac->lan_port = 0x1 << i;	/* forward to port i */
-   464			mac->to_vlan = 0x1 << i;	/* vlan group: i     */
-   465			mac->vlan_id = i;		/* vlan group: i     */
-   466	
-   467			/* Set MAC address */
-   468			ret = spl2sw_mac_addr_add(mac);
-   469			if (ret)
-   470				goto out_unregister_dev;
-   471	
-   472			spl2sw_mac_rx_mode_set(mac);
-   473		}
-   474	
-   475		/* Find first valid net device. */
-   476		for (i = 0; i < MAX_NETDEV_NUM; i++) {
-   477			if (comm->ndev[i])
-   478				break;
-   479		}
-   480		if (i >= MAX_NETDEV_NUM) {
-   481			dev_err(&pdev->dev, "No valid ethernet port!\n");
-   482			ret = -ENODEV;
-   483			goto out_clk_disable;
-   484		}
-   485	
-   486		/* Save first valid net device */
-   487		ndev = comm->ndev[i];
-   488		platform_set_drvdata(pdev, ndev);
-   489	
-   490		/* Request irq. */
-   491		ret = devm_request_irq(&pdev->dev, irq, spl2sw_ethernet_interrupt,
-   492				       0, ndev->name, ndev);
-   493		if (ret) {
-   494			netdev_err(ndev, "Failed to request irq #%d for \"%s\"!\n",
-   495				   irq, ndev->name);
-   496			goto out_unregister_dev;
-   497		}
-   498	
-   499		/* Initialize mdio bus */
-   500		ret = spl2sw_mdio_init(comm);
-   501		if (ret) {
-   502			netdev_err(ndev, "Failed to initialize mdio bus!\n");
-   503			goto out_unregister_dev;
-   504		}
-   505	
-   506		ret = spl2sw_mac_addr_del_all(comm);
-   507		if (ret)
-   508			goto out_free_mdio;
-   509	
-   510		ret = spl2sw_descs_init(comm);
-   511		if (ret) {
-   512			dev_err(&comm->pdev->dev, "Fail to initialize mac descriptors!\n");
-   513			spl2sw_descs_free(comm);
-   514			goto out_free_mdio;
-   515		}
-   516	
-   517		spl2sw_mac_init(comm);
-   518	
-   519		ret = spl2sw_phy_connect(comm);
-   520		if (ret) {
-   521			netdev_err(ndev, "Failed to connect phy!\n");
-   522			goto out_free_mdio;
-   523		}
-   524	
-   525		netif_napi_add(ndev, &comm->rx_napi, spl2sw_rx_poll, SPL2SW_RX_NAPI_WEIGHT);
-   526		napi_enable(&comm->rx_napi);
-   527		netif_napi_add(ndev, &comm->tx_napi, spl2sw_tx_poll, SPL2SW_TX_NAPI_WEIGHT);
-   528		napi_enable(&comm->tx_napi);
-   529		return 0;
-   530	
-   531	out_free_mdio:
-   532		spl2sw_mdio_remove(comm);
-   533	
-   534	out_unregister_dev:
-   535		for (i = 0; i < MAX_NETDEV_NUM; i++)
-   536			if (comm->ndev[i])
-   537				unregister_netdev(comm->ndev[i]);
-   538	
-   539	out_clk_disable:
-   540		clk_disable_unprepare(comm->clk);
-   541		return ret;
-   542	}
-   543	
+I don't think I know the structure of the MSM DP code to make a
+definitive answer here. I think I'd have to see a patch. However I'd
+agree in general terms that we need some different flows for the two.
+;-) We definitely want to limit the differences but some of them will
+be unavoidable...
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+
+-Doug
