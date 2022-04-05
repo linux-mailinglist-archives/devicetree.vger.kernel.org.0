@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4934F4165
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D0224F4175
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 23:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240048AbiDEN5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
+        id S240552AbiDEN5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382370AbiDEMPE (ORCPT
+        with ESMTP id S1382392AbiDEMPE (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 08:15:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DF1A8886;
-        Tue,  5 Apr 2022 04:25:26 -0700 (PDT)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2324BB0A6F;
+        Tue,  5 Apr 2022 04:25:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649157927; x=1680693927;
+  t=1649157932; x=1680693932;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=VyOpHSV5HKkBdPnmNq5O+pK+4MQGLYr78YNp/R3g7B4=;
-  b=t8iYuilbKLzNj1kcbqzJxUoEE58Rlx7Ip3NzCvTF9uLNPWiW0uWrVv8f
-   zy3iptPUApl6Ne7Cj0kG/01usEagfPhi/9j9/0+mCv+/hwxUFtIClEWBh
-   3EqjB2N/aHixxbwHbAYmwZAiu2PGuj64HgTQvl5Vj3towhDrXBhd/jip3
-   wWyU6UaBQtSvVxXTYAjEKtgxPQjarOq+o6ej6wG0FKFaeqcUrzVfAtT5c
-   ZAVS4yIkeWxFlOw0lDTNg92PDOR7KpLP2r3oSXVPrT+qBH9ISKrlA2MR8
-   LtA7hKS02hAwAOO4MoWkjQ4vmKSqFe+W0PX3CqQzsIQiyM9AZNvKXSt5r
+  bh=8n2YxQNWVhdkwtjAv52Li27hbMlbmN6l6OeLTPUnnGY=;
+  b=rQy1fe6rIbmakySXGVive3IJs0OraO33Hp+VDkVqRTe7O7zKN9QGTdfh
+   c3pEAuIiZJqMw9t/5Zo5M6AKDaMByHN9qJMi93gWkccB2OJS0D0Tpur0d
+   nHnsdD2uuWFHabcH8iLEN0Fp074O6oVo1ndSOzCOaqYTZhsE3WnBSSNC1
+   k4vEMqznnLRUIXWOm/1+AcgN0oIpMOU4kmAeTPhnPJW5aUAf1hDsuJkUG
+   aNcorcFza29cbcgIIsxmqHZkc6pZtVjv1v/gUXLTjFNhdIT1vr0RH3U9a
+   1H4U1qZSXGQ2rms8UnvHH9VGgqHR7pQlXx54cC1lxE1E7yWGDPRFUdues
    g==;
 X-IronPort-AV: E=Sophos;i="5.90,236,1643698800"; 
-   d="scan'208";a="158916307"
+   d="scan'208";a="151544594"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Apr 2022 04:25:26 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Apr 2022 04:25:31 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 5 Apr 2022 04:25:24 -0700
+ 15.1.2375.17; Tue, 5 Apr 2022 04:25:29 -0700
 Received: from localhost.localdomain (10.10.115.15) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 5 Apr 2022 04:25:22 -0700
+ 15.1.2375.17 via Frontend Transport; Tue, 5 Apr 2022 04:25:27 -0700
 From:   Claudiu Beznea <claudiu.beznea@microchip.com>
 To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
         <alexandre.belloni@bootlin.com>, <p.zabel@pengutronix.de>,
@@ -46,9 +46,9 @@ CC:     <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-pm@vger.kernel.org>,
         Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 1/8] ARM: dts: at91: use generic name for reset controller
-Date:   Tue, 5 Apr 2022 14:27:17 +0300
-Message-ID: <20220405112724.2760905-2-claudiu.beznea@microchip.com>
+Subject: [PATCH 3/8] dt-bindings: reset: atmel,at91sam9260-reset: add sama7g5 bindings
+Date:   Tue, 5 Apr 2022 14:27:19 +0300
+Message-ID: <20220405112724.2760905-4-claudiu.beznea@microchip.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
 References: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
@@ -65,167 +65,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use generic name for reset controller of AT91 devices to comply with
-DT specifications.
+Add documentation for SAMA7G5 reset controller. Compared with previous
+versions of reset controllers this one contains support for resetting
+in SoC devices (e.g. USB PHYs).
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- arch/arm/boot/dts/at91sam9260.dtsi | 2 +-
- arch/arm/boot/dts/at91sam9261.dtsi | 2 +-
- arch/arm/boot/dts/at91sam9263.dtsi | 2 +-
- arch/arm/boot/dts/at91sam9g45.dtsi | 2 +-
- arch/arm/boot/dts/at91sam9n12.dtsi | 2 +-
- arch/arm/boot/dts/at91sam9rl.dtsi  | 2 +-
- arch/arm/boot/dts/at91sam9x5.dtsi  | 2 +-
- arch/arm/boot/dts/sam9x60.dtsi     | 2 +-
- arch/arm/boot/dts/sama5d2.dtsi     | 2 +-
- arch/arm/boot/dts/sama5d3.dtsi     | 2 +-
- arch/arm/boot/dts/sama5d4.dtsi     | 2 +-
- 11 files changed, 11 insertions(+), 11 deletions(-)
+ .../reset/atmel,at91sam9260-reset.yaml        | 23 +++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/at91sam9260.dtsi b/arch/arm/boot/dts/at91sam9260.dtsi
-index 7368347c9357..9d9820db9482 100644
---- a/arch/arm/boot/dts/at91sam9260.dtsi
-+++ b/arch/arm/boot/dts/at91sam9260.dtsi
-@@ -123,7 +123,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "slow_xtal", "main_xtal";
- 			};
+diff --git a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
+index 92936c987c9a..a165c10ae474 100644
+--- a/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
+@@ -10,7 +10,8 @@ maintainers:
+   - Claudiu Beznea <claudiu.beznea@gmail.com>
  
--			rstc@fffffd00 {
-+			reset-controller@fffffd00 {
- 				compatible = "atmel,at91sam9260-rstc";
- 				reg = <0xfffffd00 0x10>;
- 				clocks = <&pmc PMC_TYPE_CORE PMC_SLOW>;
-diff --git a/arch/arm/boot/dts/at91sam9261.dtsi b/arch/arm/boot/dts/at91sam9261.dtsi
-index 7adc36ca8a46..259aca565305 100644
---- a/arch/arm/boot/dts/at91sam9261.dtsi
-+++ b/arch/arm/boot/dts/at91sam9261.dtsi
-@@ -603,7 +603,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "slow_xtal", "main_xtal";
- 			};
+ description: |
+-  The system reset controller can be used to reset the CPU.
++  The system reset controller can be used to reset the CPU. In case of
++  SAMA7G5 it can also reset some devices (e.g. USB PHYs).
  
--			rstc@fffffd00 {
-+			reset-controller@fffffd00 {
- 				compatible = "atmel,at91sam9260-rstc";
- 				reg = <0xfffffd00 0x10>;
- 				clocks = <&slow_xtal>;
-diff --git a/arch/arm/boot/dts/at91sam9263.dtsi b/arch/arm/boot/dts/at91sam9263.dtsi
-index fe45d96239c9..c080df8c2312 100644
---- a/arch/arm/boot/dts/at91sam9263.dtsi
-+++ b/arch/arm/boot/dts/at91sam9263.dtsi
-@@ -151,7 +151,7 @@ tcb0: timer@fff7c000 {
- 				clock-names = "t0_clk", "slow_clk";
- 			};
+ properties:
+   compatible:
+@@ -21,21 +22,39 @@ properties:
+               - atmel,at91sam9g45-rstc
+               - atmel,sama5d3-rstc
+               - microchip,sam9x60-rstc
++              - microchip,sama7g5-rstc
+       - items:
+           - const: atmel,sama5d3-rstc
+           - const: atmel,at91sam9g45-rstc
  
--			rstc@fffffd00 {
-+			reset-controller@fffffd00 {
- 				compatible = "atmel,at91sam9260-rstc";
- 				reg = <0xfffffd00 0x10>;
- 				clocks = <&slow_xtal>;
-diff --git a/arch/arm/boot/dts/at91sam9g45.dtsi b/arch/arm/boot/dts/at91sam9g45.dtsi
-index 2ab730fd6472..09794561c7ce 100644
---- a/arch/arm/boot/dts/at91sam9g45.dtsi
-+++ b/arch/arm/boot/dts/at91sam9g45.dtsi
-@@ -137,7 +137,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "slow_clk", "main_xtal";
- 			};
+   reg:
+-    maxItems: 1
++    minItems: 1
++    items:
++      - description: base registers for system reset control
++      - description: registers for device specific reset control
  
--			rstc@fffffd00 {
-+			reset-controller@fffffd00 {
- 				compatible = "atmel,at91sam9g45-rstc";
- 				reg = <0xfffffd00 0x10>;
- 				clocks = <&clk32k>;
-diff --git a/arch/arm/boot/dts/at91sam9n12.dtsi b/arch/arm/boot/dts/at91sam9n12.dtsi
-index 0785389f5507..556f35ce49e3 100644
---- a/arch/arm/boot/dts/at91sam9n12.dtsi
-+++ b/arch/arm/boot/dts/at91sam9n12.dtsi
-@@ -126,7 +126,7 @@ pmc: pmc@fffffc00 {
- 				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
- 			};
+   clocks:
+     maxItems: 1
  
--			rstc@fffffe00 {
-+			reset-controller@fffffe00 {
- 				compatible = "atmel,at91sam9g45-rstc";
- 				reg = <0xfffffe00 0x10>;
- 				clocks = <&clk32k>;
-diff --git a/arch/arm/boot/dts/at91sam9rl.dtsi b/arch/arm/boot/dts/at91sam9rl.dtsi
-index 730d1182c73e..12c634811820 100644
---- a/arch/arm/boot/dts/at91sam9rl.dtsi
-+++ b/arch/arm/boot/dts/at91sam9rl.dtsi
-@@ -766,7 +766,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "slow_clk", "main_xtal";
- 			};
++  "#reset-cells":
++    const: 1
++
+ required:
+   - compatible
+   - reg
+   - clocks
  
--			rstc@fffffd00 {
-+			reset-controller@fffffd00 {
- 				compatible = "atmel,at91sam9260-rstc";
- 				reg = <0xfffffd00 0x10>;
- 				clocks = <&clk32k>;
-diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
-index 395e883644cd..ea3b11336c79 100644
---- a/arch/arm/boot/dts/at91sam9x5.dtsi
-+++ b/arch/arm/boot/dts/at91sam9x5.dtsi
-@@ -134,7 +134,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "slow_clk", "main_xtal";
- 			};
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - microchip,sama7g5-rstc
++    then:
++      required:
++        - "#reset-cells"
++
+ additionalProperties: false
  
--			reset_controller: rstc@fffffe00 {
-+			reset_controller: reset-controller@fffffe00 {
- 				compatible = "atmel,at91sam9g45-rstc";
- 				reg = <0xfffffe00 0x10>;
- 				clocks = <&clk32k>;
-diff --git a/arch/arm/boot/dts/sam9x60.dtsi b/arch/arm/boot/dts/sam9x60.dtsi
-index ec45ced3cde6..211e743e2597 100644
---- a/arch/arm/boot/dts/sam9x60.dtsi
-+++ b/arch/arm/boot/dts/sam9x60.dtsi
-@@ -671,7 +671,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "td_slck", "md_slck", "main_xtal";
- 			};
- 
--			reset_controller: rstc@fffffe00 {
-+			reset_controller: reset-controller@fffffe00 {
- 				compatible = "microchip,sam9x60-rstc";
- 				reg = <0xfffffe00 0x10>;
- 				clocks = <&clk32k 0>;
-diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
-index 09c741e8ecb8..769befc06b57 100644
---- a/arch/arm/boot/dts/sama5d2.dtsi
-+++ b/arch/arm/boot/dts/sama5d2.dtsi
-@@ -662,7 +662,7 @@ securam: sram@f8044000 {
- 				ranges = <0 0xf8044000 0x1420>;
- 			};
- 
--			reset_controller: rstc@f8048000 {
-+			reset_controller: reset-controller@f8048000 {
- 				compatible = "atmel,sama5d3-rstc";
- 				reg = <0xf8048000 0x10>;
- 				clocks = <&clk32k>;
-diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
-index d1841bffe3c5..ab124c09f70e 100644
---- a/arch/arm/boot/dts/sama5d3.dtsi
-+++ b/arch/arm/boot/dts/sama5d3.dtsi
-@@ -1003,7 +1003,7 @@ pmc: pmc@fffffc00 {
- 				clock-names = "slow_clk", "main_xtal";
- 			};
- 
--			reset_controller: rstc@fffffe00 {
-+			reset_controller: reset-controller@fffffe00 {
- 				compatible = "atmel,sama5d3-rstc", "atmel,at91sam9g45-rstc";
- 				reg = <0xfffffe00 0x10>;
- 				clocks = <&clk32k>;
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index f6e3e6f57252..bc41d302dbf3 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -729,7 +729,7 @@ pmecc: ecc-engine@ffffc070 {
- 				};
- 			};
- 
--			reset_controller: rstc@fc068600 {
-+			reset_controller: reset-controller@fc068600 {
- 				compatible = "atmel,sama5d3-rstc", "atmel,at91sam9g45-rstc";
- 				reg = <0xfc068600 0x10>;
- 				clocks = <&clk32k>;
+ examples:
 -- 
 2.32.0
 
