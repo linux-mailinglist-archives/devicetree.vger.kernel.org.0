@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6856B4F2699
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 10:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2084F26C9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 10:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232654AbiDEIDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 04:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44080 "EHLO
+        id S232761AbiDEIDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 04:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235529AbiDEH7u (ORCPT
+        with ESMTP id S235536AbiDEH7u (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 03:59:50 -0400
 Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5025138D9C;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 506E93A5D6;
         Tue,  5 Apr 2022 00:55:07 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 05 Apr 2022 16:55:06 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 60A392058443;
-        Tue,  5 Apr 2022 16:55:06 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 5 Apr 2022 16:55:06 +0900
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 05 Apr 2022 16:55:07 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 422A02058B50;
+        Tue,  5 Apr 2022 16:55:07 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 5 Apr 2022 16:55:07 +0900
 Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 05922B6389;
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id B2787B6389;
         Tue,  5 Apr 2022 16:55:06 +0900 (JST)
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -31,9 +31,9 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
 Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH 1/2] dt-bindings: regulator: uniphier: Clean up clocks, resets, and their names using compatible string
-Date:   Tue,  5 Apr 2022 16:55:02 +0900
-Message-Id: <1649145303-30221-2-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: [PATCH 2/2] dt-bindings: regulator: uniphier: Use unevaluatedProperties
+Date:   Tue,  5 Apr 2022 16:55:03 +0900
+Message-Id: <1649145303-30221-3-git-send-email-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1649145303-30221-1-git-send-email-hayashi.kunihiko@socionext.com>
 References: <1649145303-30221-1-git-send-email-hayashi.kunihiko@socionext.com>
@@ -46,94 +46,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of "oneOf:" choices, use "allOf:" and "if:" to define clocks,
-resets, and their names that can be taken by the compatible string.
-
-The order of clock-names and reset-names doesn't change here.
+This refers common bindings, so this is preferred for
+unevaluatedProperties instead of additionalProperties.
 
 Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- .../socionext,uniphier-regulator.yaml         | 55 +++++++++++++------
- 1 file changed, 38 insertions(+), 17 deletions(-)
+ .../bindings/regulator/socionext,uniphier-regulator.yaml        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/regulator/socionext,uniphier-regulator.yaml b/Documentation/devicetree/bindings/regulator/socionext,uniphier-regulator.yaml
-index 1218f21ba320..cc40cf72a149 100644
+index cc40cf72a149..75087c6e001c 100644
 --- a/Documentation/devicetree/bindings/regulator/socionext,uniphier-regulator.yaml
 +++ b/Documentation/devicetree/bindings/regulator/socionext,uniphier-regulator.yaml
-@@ -14,9 +14,6 @@ description: |
- maintainers:
-   - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+@@ -77,7 +77,7 @@ allOf:
+         reset-names:
+           const: link
  
--allOf:
--  - $ref: "regulator.yaml#"
--
- # USB3 Controller
+-additionalProperties: false
++unevaluatedProperties: false
  
- properties:
-@@ -36,25 +33,49 @@ properties:
-     minItems: 1
-     maxItems: 2
- 
--  clock-names:
--    oneOf:
--      - items:          # for Pro4, Pro5
--          - const: gio
--          - const: link
--      - items:          # for others
--          - const: link
-+  clock-names: true
- 
-   resets:
-     minItems: 1
-     maxItems: 2
- 
--  reset-names:
--    oneOf:
--      - items:          # for Pro4, Pro5
--          - const: gio
--          - const: link
--      - items:
--          - const: link
-+  reset-names: true
-+
-+allOf:
-+  - $ref: "regulator.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - socionext,uniphier-pro4-usb3-regulator
-+              - socionext,uniphier-pro5-usb3-regulator
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+          maxItems: 2
-+        clock-names:
-+          items:
-+            - const: gio
-+            - const: link
-+        resets:
-+          minItems: 2
-+          maxItems: 2
-+        reset-names:
-+          items:
-+            - const: gio
-+            - const: link
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names:
-+          const: link
-+        resets:
-+          maxItems: 1
-+        reset-names:
-+          const: link
- 
- additionalProperties: false
- 
+ required:
+   - compatible
 -- 
 2.25.1
 
