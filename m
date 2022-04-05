@@ -2,69 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C074F2374
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64A074F2399
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:48:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbiDEGjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 02:39:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50294 "EHLO
+        id S230491AbiDEGuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 02:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbiDEGji (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 02:39:38 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DE901DA5C
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 23:37:29 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id g22so13720391edz.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 23:37:28 -0700 (PDT)
+        with ESMTP id S230373AbiDEGuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 02:50:35 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB5B2CE0F
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 23:48:34 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id k2so6495777edj.9
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 23:48:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LkNq85qPOI7aSExG2f6bqi9CbTw2Z98UufMNFS7y9hQ=;
-        b=DSWdCY9WQrJFA8E1FXKajVjnMTNqcnYl+Lm1lhCIRO14Mzfny7zw8kkter4IyxwbBl
-         m1DyDlEjPxcS9Yk8Zg633uV0t2BczWdgEdMo04414GmZoYjkdzjq8FJriMqkwbWnT9Dn
-         4xiai8JDrieEzl06R/RpxDPHDdBJYbqVSmKLNab0+3nKzuV++kr898f5Qy27NUDjdfZJ
-         7qm01gjW0cMM4nNdprpTTJwlJnyIP3NqJv9GAhD16x21Hl9F5feTTFsYClRpPwTzcmmr
-         iv4tCea8pbQ4MwyNdFBWToLkE0xWFPFnBYoyGD6ph/W15qFoKwplG49lnQ1SV98YlvJ5
-         ydFg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=YIG+/UngSJhhTn55tz4dtQqmyPpgvUtXWMrPNZZWXxc=;
+        b=KQ7/PZv7p7HmszGimDU4P1S/pP6CcO/nKxgzYEQJ7PIWE8IENA29hqed3E4BramaaG
+         VpwzbBsLE/iWOjlBJLrc7mafpV80Mdi8HljUds0bG7Emq6C9RcfXphze5DCSwhLMHbik
+         VSPmGPlEtLAB9o2FzzXpnqewTNrKKSsojG+c2RQoFyn++d+/KZmWG2Q7WLAFM93T5rHy
+         oO0hhS3hAzrtS4bO/3kBg4kmCHwTEb04U/+EIiMzjnfPHAaQMEGOEp5EWR/tmFy+VqTI
+         +xcmasxPCMxHInt/xrpY+Cq8a1JHMQhYnWiFuYiAQWcEVY2B9pxPJK45QTM6Bduop2pj
+         SGxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LkNq85qPOI7aSExG2f6bqi9CbTw2Z98UufMNFS7y9hQ=;
-        b=Ilxd1CNLt7FHlf9bzhIgOfCZTmJgwPphLWy48iMe3Ln7ISEz6oyBX1AsX2gsnwIAZi
-         umbCuGiAX+klhDb+OcWrnRjZqILpRXWxQzmxJ04DHQMpFU855DY5+OEO+/jm3mXKSPeq
-         bV3Vxd3aYD0acZMUeB1GIadDV82ewm8+TDEf3P72BNs2Q/O3oVxwYMaePqGnRifOhzWI
-         U4/GbMu9Cnb7E1ZU549YFW5gV1gGk1PXOcjpa+QRpjv4rUtsnS8ab3sb02+yAeNK5EOZ
-         gZxfL4OqjgwFhUVv0QNPnrlUX0cd2qsJS+4X2GWLBTo0IKKcwTySgJsSyea8OQ8Dsubg
-         FjCw==
-X-Gm-Message-State: AOAM5329qhxVevsXnwSkZmTI9fJO+PqM1HB7opMbCoHjtodwxSJ6q5o1
-        k8hfbhzd1VOI/NaQNJtrnZvRlQ==
-X-Google-Smtp-Source: ABdhPJzg9caIzkwfLCmOHZ8f+qoNrlOeLzfVzAAQWR6C3qQe07kHQ6+GOH+nK92JINWvSt21UAXc/A==
-X-Received: by 2002:a05:6402:1c87:b0:41c:dd9c:2e94 with SMTP id cy7-20020a0564021c8700b0041cdd9c2e94mr2023264edb.2.1649140647593;
-        Mon, 04 Apr 2022 23:37:27 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id h7-20020a1709066d8700b006d4b4d137fbsm5225366ejt.50.2022.04.04.23.37.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 23:37:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: qcom: update maintainers (drop Akash and Mukesh)
-Date:   Tue,  5 Apr 2022 08:37:24 +0200
-Message-Id: <20220405063724.12850-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        bh=YIG+/UngSJhhTn55tz4dtQqmyPpgvUtXWMrPNZZWXxc=;
+        b=xDltCFB5UGoxxbEQ0ZYdqFY2cwZQqtkDkxNJRTpMb1PdDuxics5VCUutOr8AzjRmpW
+         F4kMyT8/niWtO3GPisAjJ7pVDZcEAcsscdCcVFyG69X/uUjKNXaUsWKkVw0R0VmyJTPg
+         Lj1gSU3HUp0H7sUD2dahmetW7E7BRXffAjaNLUdxDuU617ZxWl7yttT7ghxeLuzLoyoM
+         BAxACEOE8r/K0CrIU9u5+P+fYshgd9mWiyb1dTBYCgRPpwZ+YVS8fWPsmkXQJVLuCHul
+         gezt8BqnoH3XoCsnC9IzHPukhAPXGUIlGO2pBvJRC3xQPb/iUztwnbmnvniZh70W4e6y
+         PHiw==
+X-Gm-Message-State: AOAM530US5Zz03A3APUEtwcbGVcECpA4I80zadsZRHv+m4CCpEUsEBT+
+        zO/Eu7Jq7KnT/OkM/hAq9hU4DA==
+X-Google-Smtp-Source: ABdhPJyUgD65+k0l3SLm8SGlDx1mgZx1RRhCF6A319xJHVUqx7IPUwwP7ZrzLZBz9MkPn31j1ilDlQ==
+X-Received: by 2002:aa7:c04e:0:b0:400:4daf:bab1 with SMTP id k14-20020aa7c04e000000b004004dafbab1mr1995189edo.101.1649141313496;
+        Mon, 04 Apr 2022 23:48:33 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id k19-20020a1709062a5300b006c75a94c587sm5214344eje.65.2022.04.04.23.48.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 23:48:32 -0700 (PDT)
+Message-ID: <df2fc253-b16a-3d93-7682-513abdf967d5@linaro.org>
+Date:   Tue, 5 Apr 2022 08:48:32 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: syscon: Add support for regmap
+ fast-io
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        arnd@arndb.de, matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20220401135048.23245-1-angelogioacchino.delregno@collabora.com>
+ <20220401135048.23245-3-angelogioacchino.delregno@collabora.com>
+ <8588a941-6d3e-9e14-cb21-d7af29b4b2bd@linaro.org>
+ <7775eb70-692f-3f1b-f226-f7e0fad47e37@collabora.com>
+ <26af9701-267d-5a23-8688-24608617d3f6@linaro.org>
+ <af2b304a-a407-3fc6-dfc6-edc85ce1caea@collabora.com>
+ <20220404222659.yn2wrda5xtbmvul7@notapiano>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220404222659.yn2wrda5xtbmvul7@notapiano>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,50 +84,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to Akash Asthana and Mukesh Savaliya bounce (550: Recipient
-address rejected: User unknown in virtual alias table), so switch
-maintainer to Bjorn (as active Qualcomm platform maintainer).
+On 05/04/2022 00:26, Nícolas F. R. A. Prado wrote:
+> On Mon, Apr 04, 2022 at 11:39:49AM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 04/04/22 10:55, Krzysztof Kozlowski ha scritto:
+>>> On 04/04/2022 10:40, AngeloGioacchino Del Regno wrote:
+>>>> Il 02/04/22 13:38, Krzysztof Kozlowski ha scritto:
+>>>>> On 01/04/2022 15:50, AngeloGioacchino Del Regno wrote:
+>>>>>> The syscon driver now enables the .fast_io regmap configuration when
+>>>>>> the 'fast-io' property is found in a syscon node.
+>>>>>>
+>>>>>> Keeping in mind that, in regmap, fast_io is checked only if we are
+>>>>>> not using hardware spinlocks, allow the fast-io property only if
+>>>>>> there is no hwlocks reference (and vice-versa).
+>>>>>
+>>>>> I have doubts you need a property for this. "fast" is subjective in
+>>>>> terms of hardware, so this looks more like a software property, not
+>>>>> hardware.
+>>>>>
+>>>>> I think most of MMIOs inside a SoC are considered fast. Usually also the
+>>>>> syscon/regmap consumer knows which regmap it gets, so knows that it is
+>>>>> fast or not.
+>>>>>
+>>>>
+>>>> Hello Krzysztof,
+>>>>
+>>>> well yes, this property is changing how software behaves - specifically,
+>>>> as you've correctly understood, what regmap does.
+>>>>
+>>>> It's true that most of MMIOs inside a SoC are considered fast.. the word "most" is
+>>>> the exact reason why I haven't proposed simply hardcoding '.fast_io = true' in
+>>>> syscon, or in regmap-mmio...
+>>>> There are too many different SoCs around, and I didn't want to end up breaking
+>>>> anything (even if it should be unlikely, since MMIO is fast by principle).
+> 
+> Hi Angelo,
+> 
+> I think I can see what Krzysztof means by saying this looks more like a software
+> property.
+> 
+> This property isn't simply saying whether the hardware is fast or not by itself,
+> since that's relative. Rather, it means that this hardware is fast relative to
+> the time overhead of using a mutex for locking in regmap. Since this is a
+> software construct, the property as a whole is software-dependent. If for some
+> reason the locking in regmap were to be changed and was now a lot faster or
+> slower, the same hardware could now be considered "fast" or "slow". This seems
+> to me a good reason to avoid making "fastness" part of the ABI for each
+> hardware.
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks, that very good explanation!
 
----
+> 
+>>>
+>>> What I am proposing, is the regmap consumer knows whether access is fast
+>>> or not, so it could call get_regmap() or
+>>> syscon_regmap_lookup_by_phandle() with appropriate argument.
+>>>
+>>> Even if we stay with a DT property, I am not sure if this is an
+>>> attribute of syscon but rather of a bus.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>
+>> I'm sorry for sending a v2 so fast - apparently, I initially didn't fully
+>> understand your comment, but now it's clear.
+>>
+>> Actually, since locking in regmap's configuration does not use DT at all
+>> in any generic case, maybe bringing this change purely in code may be a
+>> good one... and I have evaluated that before proposing this kind of change.
+>>
+>> My concerns about that kind of approach are:
+>> - First of all, there are * a lot * of drivers, in various subsystems, that
+>>   are using syscon, so changing some function parameter in syscon.c would
+>>   result in a commit that would be touching hundreds of them... and some of
+>>   them would be incorrect, as the default would be no fast-io, while they
+>>   should indeed enable that. Of course this would have to be changed later
+>>   by the respective driver maintainer(s), potentially creating a lot of
+>>   commit noise with lots of Fixes tags, which I am trying to avoid;
+>> - Not all drivers are using the same syscon exported function to get a
+>>   handle to regmap and we're looking at 6 of them; changing only one of
+>>   the six would be rather confusing, and most probably logically incorrect
+>>   as well...
+>>
+>> Of course you know, but for the sake of making this easily understandable
+>> for any casual developers reading this, functions are:
+>> - device_node_to_regmap()
+>> - syscon_node_to_regmap()
+>> - syscon_regmap_lookup_by_compatible()
+>> - syscon_regmap_lookup_by_phandle()
+>> - syscon_regmap_lookup_by_phandle_args()
+>> - syscon_regmap_lookup_by_phandle_optional().
+> 
+> What if a separate function was added with the additional regmap configuration
+> argument? That way setting the "fast_io" would be opt-in much like a DT property
+> would. The other drivers wouldn't need to be changed.
 
-Changes since v1:
-1. Add only Bjorn.
----
- Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml  | 3 +--
- Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 3 +--
- 2 files changed, 2 insertions(+), 4 deletions(-)
+Exactly, there is no need to change all callers now.
+1. You just add rename existing code and add argument:
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-index 1ca081b1664e..e64038e75fbc 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml
-@@ -7,8 +7,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: GENI Serial Engine QUP Wrapper Controller
- 
- maintainers:
--  - Mukesh Savaliya <msavaliy@codeaurora.org>
--  - Akash Asthana <akashast@codeaurora.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
- 
- description: |
-  Generic Interface (GENI) based Qualcomm Universal Peripheral (QUP) wrapper
-diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-index 5a60fba14bba..b175099c3360 100644
---- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-@@ -8,8 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Qualcomm Quad Serial Peripheral Interface (QSPI)
- 
- maintainers:
--  - Mukesh Savaliya <msavaliy@codeaurora.org>
--  - Akash Asthana <akashast@codeaurora.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
- 
- description: The QSPI controller allows SPI protocol communication in single,
-   dual, or quad wire transmission modes for read/write access to slaves such
--- 
-2.32.0
+  syscon_regmap_lookup_by_compatible_mmio(...., unsigned long flags);
 
+2. Add a wrappers (with old names):
+syscon_regmap_lookup_by_compatible() {
+  syscon_regmap_lookup_by_compatible_mmio(..., SYSCON_IO_DEFAULT);
+}
+
+3. and finally slowly convert the users where it is relevant.
+
+Just one more thing. I was rather thinking out loud, instead of
+proposing a proper solution about clients defining speed. I am still not
+sure if this is correct approach, because actually the regmap provider
+knows the best whether it is slow or fast. Clients within SoC should
+know it, but what if one client asks for fast regmap, other for slow? Or
+not every client is updated to new API?
+
+Another solution would be to add such property to the bus on which the
+syscon device is sitting. Although this is also not complete. Imagine:
+
+syscon <--ahb-fast-bus--> some bus bridge <--apb-slow-bus--> syscon consumer
+
+Although your original case also would not be accurate here.
+
+Best regards,
+Krzysztof
