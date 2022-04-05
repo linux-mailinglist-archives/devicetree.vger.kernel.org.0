@@ -2,122 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C58E4F4AC2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D774F4A8D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1450790AbiDEWvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:51:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59748 "EHLO
+        id S241680AbiDEWtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:49:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1573657AbiDETha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 15:37:30 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42DF6245BD;
-        Tue,  5 Apr 2022 12:35:29 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1nboxN-00CFHs-0R; Tue, 05 Apr 2022 19:35:13 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S1573695AbiDETla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 15:41:30 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C046208;
+        Tue,  5 Apr 2022 12:39:30 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id 1EB511F4370D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649187569;
+        bh=/s6fZDVbpiIQW0S5UO2G1RWfpbsAjuqB16uALNiR7fA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=du7y76Mrgs9fzjL6kCL5pOm6CipJjs1QamPYv1VvPMSWG91LVSDu1RxdfWBh6lZPg
+         +JGG/hCKtjAEKHkndXb3mOeTS33Xm53CSSlkRW355R9tGA7mUS7EQqKjc7cAaj5Kea
+         HSxDfF4SMeP3vJ6Bt/9Ap2xsNhDHtmayvmHu7wnzVfu9vcLM6gPvdnVbY3JTkkcZzZ
+         yS2ib2WEBNIRVpbXFfho7OvHdDDTTacxJLJ3byL5utZtnzqhYboqXajagIfyD/MWTu
+         08J2P3HZ36pAqXCQvIeD/UYFPHTEOdagRPIY/mnP5S1pU+e4h13Fsnu0n2z5b1sCCH
+         OdOslyJaw4/6g==
+Message-ID: <9887dc0c-c2e0-868c-55e3-32083f820e09@collabora.com>
+Date:   Tue, 5 Apr 2022 16:39:16 -0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v4] arm64: dts: imx8mn-bsh-smm-s2pro: Add tlv320aic31xx
+ audio card node
+Content-Language: en-US
+To:     Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Tim Harvey <tharvey@gateworks.com>, stable@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: imx8mm-venice-gw{71xx,72xx,73xx}: fix OTG controller OC mode
-Date:   Tue,  5 Apr 2022 12:35:09 -0700
-Message-Id: <20220405193509.8231-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+References: <20220323135601.42435-1-ariel.dalessandro@collabora.com>
+ <CAOMZO5D4_WboF4S0dgSLD1m15a13c2irK2yjDV4C77_Wb15=2w@mail.gmail.com>
+ <d9f14221-b0ad-9853-e9c8-a35d9111549b@collabora.com>
+ <3e3b223f-7d05-f439-625a-a15afb44b95f@collabora.com>
+ <CAOMZO5D8UHkkyJE9uJ4yBmf+ajjbzJOrLM57OHpyAiATvMNXcw@mail.gmail.com>
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+In-Reply-To: <CAOMZO5D8UHkkyJE9uJ4yBmf+ajjbzJOrLM57OHpyAiATvMNXcw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GW71xx, GW72xx and GW73xx boards have USB1 routed to a USB OTG
-connectors and USB2 routed to a USB hub.
+Hi Shawn,
 
-The OTG connector has a over-currently protection with an active-low
-pin and the USB1 to HUB connection has no over-current protection (as
-the HUB itself implements this for its downstream ports).
+Gentle ping :-)
 
-Add proper dt nodes to specify the over-current pin polarity for USB1
-and disable over-current protection for USB2.
-
-Fixes: 6f30b27c5ef5 ("arm64: dts: imx8mm: Add Gateworks i.MX 8M Mini Development Kits")
-Cc: stable@vger.kernel.org
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2: add gw71xx as well
----
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi | 2 ++
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi | 2 ++
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi | 2 ++
- 3 files changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-index 73addc0b8e57..6671b99177e5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-@@ -146,12 +146,14 @@
- 
- &usbotg1 {
- 	dr_mode = "otg";
-+	over-current-active-low;
- 	vbus-supply = <&reg_usb_otg1_vbus>;
- 	status = "okay";
- };
- 
- &usbotg2 {
- 	dr_mode = "host";
-+	disable-over-current;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-index 1e7badb2a82e..b6b3578a0f89 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-@@ -211,12 +211,14 @@
- 
- &usbotg1 {
- 	dr_mode = "otg";
-+	over-current-active-low;
- 	vbus-supply = <&reg_usb_otg1_vbus>;
- 	status = "okay";
- };
- 
- &usbotg2 {
- 	dr_mode = "host";
-+	disable-over-current;
- 	vbus-supply = <&reg_usb_otg2_vbus>;
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 7a5d45e80982..89fc2c595056 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -239,12 +239,14 @@
- 
- &usbotg1 {
- 	dr_mode = "otg";
-+	over-current-active-low;
- 	vbus-supply = <&reg_usb_otg1_vbus>;
- 	status = "okay";
- };
- 
- &usbotg2 {
- 	dr_mode = "host";
-+	disable-over-current;
- 	vbus-supply = <&reg_usb_otg2_vbus>;
- 	status = "okay";
- };
--- 
-2.17.1
-
+On 3/31/22 10:48, Fabio Estevam wrote:
+> Hi Ariel,
+> 
+> On Thu, Mar 31, 2022 at 10:35 AM Ariel D'Alessandro
+> <ariel.dalessandro@collabora.com> wrote:
+>>
+>> Hi Fabio, Shawn,
+>>
+>> Can we merge this please?
+> 
+> Shawn will probably start picking the patches for the next cycle after
+> 5.18-rc1 is released.
