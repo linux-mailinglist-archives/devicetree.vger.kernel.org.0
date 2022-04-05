@@ -2,335 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8BA64F4AFB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7E04F4AFC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573778AbiDEWxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48176 "EHLO
+        id S1573783AbiDEWxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:53:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1447365AbiDEPqV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:46:21 -0400
-Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82764985B1
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 07:21:16 -0700 (PDT)
-Received: by mail-wm1-x349.google.com with SMTP id c125-20020a1c3583000000b0038e3f6e871aso4079266wma.8
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 07:21:16 -0700 (PDT)
+        with ESMTP id S1450182AbiDEPvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:51:19 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607491BA46F;
+        Tue,  5 Apr 2022 07:39:40 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id 8so9358288ilq.4;
+        Tue, 05 Apr 2022 07:39:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Hszu94VumpRyr0badDtcfvajy1SNOqO2jgDbf5Z0Nps=;
-        b=qY0N8pmWaAFou+ddSatPmLwRkgrEK8HfEjjNY9XwuXpbTrYXjHbBKu4R4yRmUmBXRm
-         iEP9ODp0DEXN5VfZiCQOXvgkE2NkUBBQzTaSLWBcc5/u6Jw+JQ3ljnwcet/XJTW2xw2z
-         2iQnrtyxQaDF08KV8U42xehWTIXuLFn1p3LOroreAxq89OlfsUbRiT8xi/bmBh/b6hkc
-         WjM9buKc1uEAGnlXsbNj8BtvgMWqnfpId0YpPeEGpl+tHSEXXlD7ZdOD78KkKNNbYsD0
-         5BR5mVpn0Xf3flXizQKT0kycGyAWpumWsd2Mzg0T4UVtHZYzHVP6vP6qFp2QlFQ1pj1B
-         aO4w==
+        bh=u/cO9n221kA+5ADZGdYnf+fYVWdb03GaAd0bxZEtbWk=;
+        b=MzQwaTornZRnR7GuZfl0GZwph6GH8tWgEbCituXvQX40VL/XmXvrRmKIQY6iKlsfSa
+         0Dv9GxL9KDMnR0Tot7B+e8OibqFGRTemBt5ikaubRHbq3SG4nIFZwSiXe9i93yqv1tYS
+         j8Cdxq/NQ4CM47pBPl8gxNP9vigDbtE6S9Sf3GkxlUO+7SDmtzt1dGtJPAGjs/9NyIJh
+         GzD6CqSrVRfr0Hx9po1gGBbuQLtPvpAAGbH9uwGR3hMO5aIBmlwrfHtccEi60hUKZ4ak
+         p82hT8o9SsUDJh+bfE6Pg08evMuzcL3YrAxRem7+SCLg5D2RPDdot+Nn3iAzkJC31ZZl
+         Bhqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=Hszu94VumpRyr0badDtcfvajy1SNOqO2jgDbf5Z0Nps=;
-        b=YCbaxXOPHe3dnybOuWTohDLJosbYNuzfcgpQiRNEsuOlskYM/6zLsk9MoM+Oa2MN/c
-         Lzdbf/yN/i3zAe9KnXR3dsvbrhjoB3mjt+quA3ev3gkWC3UWK8kLUIdnD6r/GErx4q0z
-         s3bqS3uZdhl0qtdqPqVgHA6cDVBrVSMNrA9nb+Xa3QthDKWYiSjE4gJHVG6/91zqKvpg
-         gXoJnAITW4y0bl3D4lB42E85fnJwiqiG4g7T7eXYSIXcrmdEPZzkrjalEwlqAF0pbplo
-         z+DbeXe2+KKJm5oQbRj2rqCgPrp/Z/Gu5eUeWZgj68ovhD96LZHRk0BG6uJg9EJFGl3R
-         NCvw==
-X-Gm-Message-State: AOAM532moAWWiuyE3bhGNOnCwyR8aDKaArCfhki1quCgpaNJ1AGODX4l
-        RkcrdQP/9ncelPbMorFayOqfz+X5yQZ2mf6nU54=
-X-Google-Smtp-Source: ABdhPJwRBdDJvU4AC+1Sku8Povz+T97wxBKdUdU/7yJd6akYPxtZjUzFK5tch5XSP182VdIbxVKZJvPCXzLBBmxmQ7I=
-X-Received: from sene.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:27c4])
- (user=sebastianene job=sendgmr) by 2002:a7b:c5d0:0:b0:355:482a:6f44 with SMTP
- id n16-20020a7bc5d0000000b00355482a6f44mr3294190wmk.58.1649168474859; Tue, 05
- Apr 2022 07:21:14 -0700 (PDT)
-Date:   Tue,  5 Apr 2022 14:19:55 +0000
-In-Reply-To: <20220405141954.1489782-1-sebastianene@google.com>
-Message-Id: <20220405141954.1489782-3-sebastianene@google.com>
-Mime-Version: 1.0
-References: <20220405141954.1489782-1-sebastianene@google.com>
-X-Mailer: git-send-email 2.35.1.1094.g7c7d902a7c-goog
-Subject: [PATCH 2/2] watchdog: Add a mechanism to detect stalls on guest vCPUs
-From:   Sebastian Ene <sebastianene@google.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, will@kernel.org,
-        qperret@google.com, maz@kernel.org,
-        Sebastian Ene <sebastianene@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=u/cO9n221kA+5ADZGdYnf+fYVWdb03GaAd0bxZEtbWk=;
+        b=sb79zo1q+vhylwK6Z8mg+74qTVaRH7oe7UTyH/8atWTlNWRPtnyA15rl2PoSuitebv
+         cv7qLJ2ydTJ1BN+Osq+4T+k+QWRnaIeSiYj9TQLbgUiEwpoWvu6S0eVupGHxJBebRHRh
+         D9lgvBnsSL6lLwOO7oSTu2gHYFWxowu4zvAjTPwpw69jQUIS3u3HZ5UCrHu5Y4pDsziq
+         bdmEWbQlbHmE42AN/VTKN9V95NbKExJfhrdJ5mLKbTCUW9M012ca2VA8d7O7wgo69dKg
+         6zomPs1p2WXtxoGKeI9a82REnX2FuAOfaPdxgKMeyW7PTyYzl94VVYaXARYsoyVEv7iI
+         r0vQ==
+X-Gm-Message-State: AOAM5337T0DfG8d4FVKFsYsSgpe/bKztMY1JGkpowVKw5hJa2bZb+e1W
+        UDTzLRVeGZ7KPAGbyF6lFnHC3x4DCjTzQ0QVJY0=
+X-Google-Smtp-Source: ABdhPJyLSwS3gzvbWUvgnsZHY5oFlCEmIY5mpJYVzgiyLEFiDb2hEM9naW3CpjZf8nK9nUhDxM162/gpsl29HLJzf30=
+X-Received: by 2002:a92:3405:0:b0:2c8:70ad:fa86 with SMTP id
+ b5-20020a923405000000b002c870adfa86mr1949268ila.268.1649169579699; Tue, 05
+ Apr 2022 07:39:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220404131818.1817794-1-gch981213@gmail.com> <20220404131818.1817794-5-gch981213@gmail.com>
+ <1649088538.050456.1436949.nullmailer@robh.at.kernel.org> <CAJsYDVLaXAoL=TcPun6rckcA_cdUS-zFy_7M6uCpfzX+jbQEag@mail.gmail.com>
+ <20220405092024.25d97c33@xps13>
+In-Reply-To: <20220405092024.25d97c33@xps13>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Tue, 5 Apr 2022 22:39:28 +0800
+Message-ID: <CAJsYDVKVaZtrUr5C_BCr+oVECJ1xJwfh5TOMpo-w3xgkYCBYSQ@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] dt-bindings: spi: add binding doc for spi-mtk-snfi
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-spi@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Roger Quadros <rogerq@kernel.org>,
+        Yu Kuai <yukuai3@huawei.com>,
+        linux-mediatek@lists.infradead.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-kernel@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Colin Ian King <colin.king@intel.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-mtd@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for a virtual watchdog which relies on the
-per-cpu hrtimers to pet at regular intervals.
+Hi!
 
-Signed-off-by: Sebastian Ene <sebastianene@google.com>
----
- drivers/watchdog/Kconfig  |   8 ++
- drivers/watchdog/Makefile |   1 +
- drivers/watchdog/vm-wdt.c | 215 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 224 insertions(+)
- create mode 100644 drivers/watchdog/vm-wdt.c
+On Tue, Apr 5, 2022 at 3:20 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> You can try including spi-nand.yaml (like you do with
+> spi-controller.yaml). You should no longer need to define
+> nand-ecc-engine then as it is already described there?
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 01ce3f41cc21..3304d128484e 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -351,6 +351,14 @@ config SL28CPLD_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called sl28cpld_wdt.
- 
-+config VM_WATCHDOG
-+	tristate "Virtual Machine Watchdog"
-+	select LOCKUP_DETECTOR
-+	help
-+	  Detect CPU locks on the virtual machine.
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called vm-wdt.
-+
- # ALPHA Architecture
- 
- # ARM Architecture
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 071a2e50be98..73206cbc3835 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -227,3 +227,4 @@ obj-$(CONFIG_MENZ069_WATCHDOG) += menz69_wdt.o
- obj-$(CONFIG_RAVE_SP_WATCHDOG) += rave-sp-wdt.o
- obj-$(CONFIG_STPMIC1_WATCHDOG) += stpmic1_wdt.o
- obj-$(CONFIG_SL28CPLD_WATCHDOG) += sl28cpld_wdt.o
-+obj-$(CONFIG_VM_WATCHDOG) += vm-wdt.o
-diff --git a/drivers/watchdog/vm-wdt.c b/drivers/watchdog/vm-wdt.c
-new file mode 100644
-index 000000000000..ea4351754645
---- /dev/null
-+++ b/drivers/watchdog/vm-wdt.c
-@@ -0,0 +1,215 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+//
-+// Virtual watchdog driver.
-+//  Copyright (C) Google, 2022
-+
-+#define pr_fmt(fmt) "vm-watchdog: " fmt
-+
-+#include <linux/cpu.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+
-+#include <linux/device.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/nmi.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/param.h>
-+#include <linux/percpu.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#define DRV_NAME			"vm_wdt"
-+#define DRV_VERSION			"1.0"
-+
-+#define VMWDT_REG_STATUS		(0x00)
-+#define VMWDT_REG_LOAD_CNT		(0x04)
-+#define VMWDT_REG_CURRENT_CNT		(0x08)
-+#define VMWDT_REG_CLOCK_FREQ_HZ		(0x0C)
-+#define VMWDT_REG_LEN			(0x10)
-+
-+#define VMWDT_DEFAULT_CLOCK_HZ		(10)
-+#define VMWDT_DEFAULT_TIMEOT_SEC	(8)
-+
-+struct vm_wdt_s {
-+	void __iomem *membase;
-+	u32 clock_freq;
-+	u32 expiration_sec;
-+	u32 ping_timeout_ms;
-+	struct hrtimer per_cpu_hrtimer;
-+	struct platform_device *dev;
-+};
-+
-+#define vmwdt_reg_write(wdt, reg, value)	\
-+	iowrite32((value), (wdt)->membase + (reg))
-+#define vmwdt_reg_read(wdt, reg)		\
-+	io32read((wdt)->membase + (reg))
-+
-+static struct platform_device *virt_dev;
-+
-+static enum hrtimer_restart vmwdt_timer_fn(struct hrtimer *hrtimer)
-+{
-+	struct vm_wdt_s *cpu_wdt;
-+	u32 ticks;
-+
-+	cpu_wdt = container_of(hrtimer, struct vm_wdt_s, per_cpu_hrtimer);
-+	ticks = cpu_wdt->clock_freq * cpu_wdt->expiration_sec;
-+	vmwdt_reg_write(cpu_wdt, VMWDT_REG_LOAD_CNT, ticks);
-+	hrtimer_forward_now(hrtimer, ms_to_ktime(cpu_wdt->ping_timeout_ms));
-+
-+	return HRTIMER_RESTART;
-+}
-+
-+static void vmwdt_start(void *arg)
-+{
-+	u32 ticks;
-+	int cpu = smp_processor_id();
-+	struct vm_wdt_s *cpu_wdt = arg;
-+	struct hrtimer *hrtimer = &cpu_wdt->per_cpu_hrtimer;
-+
-+	pr_info("cpu %u vmwdt start\n", cpu);
-+	vmwdt_reg_write(cpu_wdt, VMWDT_REG_CLOCK_FREQ_HZ,
-+			cpu_wdt->clock_freq);
-+
-+	/* Compute the number of ticks required for the watchdog counter
-+	 * register based on the internal clock frequency and the watchdog
-+	 * timeout given from the device tree.
-+	 */
-+	ticks = cpu_wdt->clock_freq * cpu_wdt->expiration_sec;
-+	vmwdt_reg_write(cpu_wdt, VMWDT_REG_LOAD_CNT, ticks);
-+
-+	/* Enable the internal clock and start the watchdog */
-+	vmwdt_reg_write(cpu_wdt, VMWDT_REG_STATUS, 1);
-+
-+	hrtimer_init(hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	hrtimer->function = vmwdt_timer_fn;
-+	hrtimer_start(hrtimer, ms_to_ktime(cpu_wdt->ping_timeout_ms),
-+		      HRTIMER_MODE_REL_PINNED);
-+}
-+
-+static void vmwdt_stop(void *arg)
-+{
-+	int cpu = smp_processor_id();
-+	struct vm_wdt_s *cpu_wdt = arg;
-+	struct hrtimer *hrtimer = &cpu_wdt->per_cpu_hrtimer;
-+
-+	hrtimer_cancel(hrtimer);
-+
-+	/* Disable the watchdog */
-+	vmwdt_reg_write(cpu_wdt, VMWDT_REG_STATUS, 0);
-+	pr_info("cpu %d vmwdt stop\n", cpu);
-+}
-+
-+static int start_watchdog_on_cpu(unsigned int cpu)
-+{
-+	struct vm_wdt_s *vm_wdt = platform_get_drvdata(virt_dev);
-+
-+	vmwdt_start(this_cpu_ptr(vm_wdt));
-+	return 0;
-+}
-+
-+static int stop_watchdog_on_cpu(unsigned int cpu)
-+{
-+	struct vm_wdt_s *vm_wdt = platform_get_drvdata(virt_dev);
-+
-+	vmwdt_stop(this_cpu_ptr(vm_wdt));
-+	return 0;
-+}
-+
-+static int vmwdt_probe(struct platform_device *dev)
-+{
-+	int cpu, ret, err;
-+	void __iomem *membase;
-+	struct resource *r;
-+	struct vm_wdt_s *vm_wdt;
-+	u32 wdt_clock, wdt_timeout_sec = 0;
-+
-+	r = platform_get_resource(dev, IORESOURCE_MEM, 0);
-+	if (r == NULL)
-+		return -ENOENT;
-+
-+	vm_wdt = alloc_percpu(typeof(struct vm_wdt_s));
-+	if (!vm_wdt)
-+		return -ENOMEM;
-+
-+	membase = ioremap(r->start, resource_size(r));
-+	if (!membase) {
-+		ret = -ENXIO;
-+		goto err_withmem;
-+	}
-+
-+	virt_dev = dev;
-+	platform_set_drvdata(dev, vm_wdt);
-+	if (of_property_read_u32(dev->dev.of_node, "clock", &wdt_clock))
-+		wdt_clock = VMWDT_DEFAULT_CLOCK_HZ;
-+
-+	if (of_property_read_u32(dev->dev.of_node, "timeout-sec",
-+				 &wdt_timeout_sec))
-+		wdt_timeout_sec = VMWDT_DEFAULT_TIMEOT_SEC;
-+
-+	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
-+		struct vm_wdt_s *cpu_wdt = per_cpu_ptr(vm_wdt, cpu);
-+
-+		cpu_wdt->membase = membase + cpu * VMWDT_REG_LEN;
-+		cpu_wdt->clock_freq = wdt_clock;
-+		cpu_wdt->expiration_sec = wdt_timeout_sec;
-+		cpu_wdt->ping_timeout_ms = wdt_timeout_sec * MSEC_PER_SEC / 2;
-+		smp_call_function_single(cpu, vmwdt_start, cpu_wdt, true);
-+	}
-+
-+	err = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
-+					"virt/watchdog:online",
-+					start_watchdog_on_cpu,
-+					stop_watchdog_on_cpu);
-+	if (err < 0) {
-+		pr_warn("could not be initialized");
-+		ret = err;
-+		goto err_withmem;
-+	}
-+
-+	return 0;
-+
-+err_withmem:
-+	free_percpu(vm_wdt);
-+	return ret;
-+}
-+
-+static int vmwdt_remove(struct platform_device *dev)
-+{
-+	int cpu;
-+	struct vm_wdt_s *vm_wdt = platform_get_drvdata(dev);
-+
-+	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
-+		struct vm_wdt_s *cpu_wdt = per_cpu_ptr(vm_wdt, cpu);
-+
-+		smp_call_function_single(cpu, vmwdt_stop, cpu_wdt, true);
-+	}
-+
-+	free_percpu(vm_wdt);
-+	return 0;
-+}
-+
-+static const struct of_device_id vmwdt_of_match[] = {
-+	{ .compatible = "qemu,vm-watchdog", },
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, vm_watchdog_of_match);
-+
-+static struct platform_driver vmwdt_driver = {
-+	.probe  = vmwdt_probe,
-+	.remove = vmwdt_remove,
-+	.driver = {
-+		.name           = DRV_NAME,
-+		.of_match_table = vmwdt_of_match,
-+	},
-+};
-+
-+module_platform_driver(vmwdt_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Sebastian Ene <sebastianene@google.com>");
-+MODULE_DESCRIPTION("Virtual watchdog driver");
-+MODULE_VERSION(DRV_VERSION);
+This doesn't work. I added
+- $ref: /schemas/mtd/spi-nand.yaml#
+to the allOf property and dt_binding_check complains the following:
+
+Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.example.dtb:
+spi@1100d000: compatible:0: 'spi-nand' was expected
+From schema: /home/user/src/kernels/linux/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
+
+BTW I still can't get dt_binding_check to complain anything about
+spi-nand. Here's the command I used:
+
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- DT_CHECKER_FLAGS=-m
+dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/mediatek,spi-mtk-snfi.yaml
+
 -- 
-2.35.1.1094.g7c7d902a7c-goog
-
+Regards,
+Chuanhong Guo
