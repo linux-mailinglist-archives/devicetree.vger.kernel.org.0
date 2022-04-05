@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17B3F4F33C4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 15:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED4A4F345C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 15:32:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233367AbiDEJAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 05:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
+        id S233670AbiDEJAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 05:00:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237435AbiDEImT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 04:42:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B296DFD8;
-        Tue,  5 Apr 2022 01:34:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05FB7B81C69;
-        Tue,  5 Apr 2022 08:34:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF981C385A2;
-        Tue,  5 Apr 2022 08:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649147688;
-        bh=4XsjaIc65o36nenn0M0g05jKOtk3s8zw5Dx3i80XzDo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nIMkJh4F1Ru2uHOWTdk3Ub7ZnC8ciPaZrykmVJ1I2q2sP0X3j9CXFus3/DK0ps8os
-         XAZxRHDV+f6AJF64ebXoyE+zjeT2GRp4y1XwpohWsUCkwryWwUG4Okv+RKQOrzQhwT
-         V0rA/NVSwMhYlnZpb7u8/DxImyVTJuNwvWOleJFuySCn7OiZcxKpLIN24EQWoReB5A
-         INzwg/wDG7ZIP8de6D4V1oht/N4bofoYtIbc424bu83hDPOM9n4Mpdwoo/W13/Kt3l
-         SI+opvrXRPgTXGyEDyLybZBV9ZlF9Z9VfXikE4dDNBb2NM4C2gQ8izOWd6Esl5VgOR
-         g9J1xHFBWt3UA==
-Date:   Tue, 5 Apr 2022 09:34:42 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 6/9] spi: dt-bindings: qcom,spi-qup: convert to
- dtschema
-Message-ID: <Ykv/Ij0vfa522U1F@sirena.org.uk>
-References: <20220405063451.12011-1-krzysztof.kozlowski@linaro.org>
- <20220405063451.12011-7-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S237584AbiDEImt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 04:42:49 -0400
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A96D140F4
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 01:35:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=EptHcbXgf4+/YVBV8Lp2UUrmmYj3GkmvAVgxNi5tz5w=; b=CtnmsDt4kkyQausn2HunhXYd/E
+        OHt2BuKrDTyuWuS76ABlx0PmVXPqO5iH4DTn7dJQEO9cnhd9IXrCZZvxjv7YcdTp5J5bz9Fcs4LAq
+        Jd76QT4JadI0H+/Jm2GA9Ek66qZ2C8ATG7PXycEy7JgPiCF+xHWy3eOJ3E9OcWk/no8ipK2miwE7M
+        5yfb+U01BxB/wJngdy3zFPQTH6fv4wwBFypJgATPV4NrJaEtS9avdhp/f40Ejz9C6N10JQQSe0I9G
+        TYQHzV4SySpRFDkBt4krl+YrSjHkDB2tqnvN3RGzQTcpwCOIiXPp2JIgjnWnK2XWHZ3GEvXea+ZGk
+        zBZ7FJqw==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=60315)
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1nbeel-0000bS-1G; Tue, 05 Apr 2022 10:35:19 +0200
+Message-ID: <9b268804-8f2d-9de6-cc90-89f3df1838cc@tronnes.org>
+Date:   Tue, 5 Apr 2022 10:35:14 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="31zrrUV1FaGH1h1x"
-Content-Disposition: inline
-In-Reply-To: <20220405063451.12011-7-krzysztof.kozlowski@linaro.org>
-X-Cookie: diplomacy, n:
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] dt-bindings: display: panel: mipi-dbi-spi: Make
+ width-mm/height-mm mandatory
+To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220404192105.12547-1-marex@denx.de>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220404192105.12547-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,29 +64,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---31zrrUV1FaGH1h1x
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Tue, Apr 05, 2022 at 08:34:48AM +0200, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm Universal Peripheral (QUP) Serial Peripheral
-> Interface (SPI) bindings to DT Schema.
+Den 04.04.2022 21.21, skrev Marek Vasut:
+> Make the width-mm/height-mm panel properties mandatory
+> to correctly report the panel dimensions to the OS.
+> 
+> Fixes: 2f3468b82db97 ("dt-bindings: display: add bindings for MIPI DBI compatible SPI panels")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Dmitry Osipenko <digetx@gmail.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Noralf Trønnes <noralf@tronnes.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Acked-by: Noralf Trønnes <noralf@tronnes.org>
 
---31zrrUV1FaGH1h1x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJL/yEACgkQJNaLcl1U
-h9A/MQf/dR244fROGWKBmRdYoln9hA1KEb35uCYhV3HjDJrtwjBsM66RevDfdbvW
-6uTpWmRQCr0pbF4p6p2f+aMGqITTilSymfiEqaKEX5aqdM0ZBKdbEUYBW/mem7h5
-b/U0H2fHPKtn0nsUvT/BrRM6UFwryGxhncAbPROve+vMJSK61FcgqsnNXpFvvIAj
-BA+gDo0v8fhh3aehenqkcu0Utwnb0cgxejKtpzQI3sR8WfQVBMHiVVMBzkFt1wsl
-lipVXiYscO5DA3iVJ1J5rIJVqRR4Ht/9NwmP51OO61l7UODTzOlqt57jhrNZEdxk
-+DqWMnawtWvfQdhAUgw/RolGENMqfA==
-=T9IF
------END PGP SIGNATURE-----
-
---31zrrUV1FaGH1h1x--
+>  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> index f29789994b180..c2df8d28aaf5f 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> @@ -83,6 +83,8 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - width-mm
+> +  - height-mm
+>    - panel-timing
+>  
+>  unevaluatedProperties: false
