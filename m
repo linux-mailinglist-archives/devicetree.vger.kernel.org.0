@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 399244F4B45
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 03:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF454F4A98
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1574025AbiDEWyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44838 "EHLO
+        id S241834AbiDEWtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:49:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1573398AbiDETGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 15:06:48 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CCEDDFD7C
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 12:04:49 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id e189so66143oia.8
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 12:04:49 -0700 (PDT)
+        with ESMTP id S1573402AbiDETHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 15:07:10 -0400
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2779DFD76
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 12:05:11 -0700 (PDT)
+Received: by mail-oo1-xc2e.google.com with SMTP id p34-20020a4a95e5000000b003248d73d460so2436268ooi.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 12:05:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=GcT/Qp5BSis/zPJ+f5Dmt0URaQO6bvL9wtwFht8dT2I=;
-        b=N1IWSIlIkbDLe6ZqcffdHg7hOStPnaPFx1/YR11naDSdTrmY80n8Nd/Pmn+/xk0MEi
-         SQIRG6WxR8kpzmCqifIOWobkr+bpD+l/DFRLnOzHw1QdGQzpv02jC1NLiQtBXYUQpUoC
-         ycAE/2sNgOwQCH6VhB5PuJwbvit8U0nMNQqAw=
+        bh=k/P4HTCZVEzfUWOOxOtQU6Kr5BhLM038HkP4cKbJxBw=;
+        b=frQ8ZzBqSNym5klc+oZd3SLmKdd94Rs1jUZAtmY77iuFQm9Duihv7tj8Yah8hnsPDp
+         n/VPsrAwxGWC1DFtvBBPAX4ZmuHQOHBWefUYwQ6CXziGqHWTaTDPWSykVDoKEI8jkZUF
+         h54p3zRsPEsb9bERVG92imQjR75fFRdYw+R3o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=GcT/Qp5BSis/zPJ+f5Dmt0URaQO6bvL9wtwFht8dT2I=;
-        b=lQwA4tIB1SAsg09x30rPeMOPZc9L2rmZFeGpy+XWow4Dp0SMTRLP92HJhZB2tWE0+k
-         umU+gdXPNVrF8zx1VoypyN0Wt4+Gywu4xGK8PZ4W0Ta5G56kX4usO6esySdxUW3GJcd6
-         ZQ2kJJ378YOxR8rNDssQHFUopuflZAWpvc3OqhKdiPupDGYlQHzF+X7HPBZcmU5pVCAD
-         +MmJNXFcr1/rqp3eeyUUy129sqrec2/1+5hsf07BJlVF725AtOL7sMZqnXXTfzGCsZ2E
-         69DKl4GwpOdV9ILKPQE6IRCrJ6IIlrg4nKVjM84L54NXY1dtdLYH0zrrGLSt4VEooRKO
-         AxkQ==
-X-Gm-Message-State: AOAM533sNVu52rjL0inqv0286vCggXK59kSGhi3y078eBAGRgGf51oM3
-        fcucDXo3WuIITXHv+PGcykoRtsMpocLQcy1g/t1DJw==
-X-Google-Smtp-Source: ABdhPJzopvZ8fX9C7aKOnjzWjlUsWkpdzVov43aMeOQD81tRqepWzevuGpqtMjraEe+cC8Zw8S1beZ+R+MUDupc/Q+g=
-X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
- n62-20020acabd41000000b002ecff42814fmr2074558oif.63.1649185488696; Tue, 05
- Apr 2022 12:04:48 -0700 (PDT)
+        bh=k/P4HTCZVEzfUWOOxOtQU6Kr5BhLM038HkP4cKbJxBw=;
+        b=cRXNq9GIOB/XPpcAEy1xPsOEqPPwtW8Bno/FwqW3ZIh5nBMXx1X4g9u70786YYVrl1
+         MRp8R6nU/B8ipkWknztf0xlH6PFxdSAb3xXYbTjKSmImWqTWpTimt91/oqpN+Hjy8otC
+         s1cZ5TNm/xm5XGrscxuytZEfJc6bQ5Ir5yroLp38OScAvjYt1TsWe2L3dDxNXlMFRBCR
+         z/9G5iGXk8HSz3Vs8f4wBp8QfGv+YWnwV1YlWYD13XnQqOB8pMlWPdzm9+MVcaKpTeHF
+         +pz13xN23q/pS0YJQ5DkGhNiQh66XUEvRDSouTQcHXPFUX6TU7S67Xxi1Stoe4ALO4cX
+         3Reg==
+X-Gm-Message-State: AOAM531fEmGwbBhs6HS1e9IZ/NBiZAqc8MKz4Q8cw0S+JStTsMVHkpn/
+        QIElmTsdbk3mlNVOOcN1ITS+mZonUvoHzdIlG1OtzG7q+t8=
+X-Google-Smtp-Source: ABdhPJweVtFg8E7N4djphN6bnwEALoFejs04NWhd4NdeHUBFdheJOkh0Eux+TUqAElSv5mcAiLpL4g8x+gFIwrbllYw=
+X-Received: by 2002:a4a:650c:0:b0:324:b0a0:2d23 with SMTP id
+ y12-20020a4a650c000000b00324b0a02d23mr1581619ooc.25.1649185511251; Tue, 05
+ Apr 2022 12:05:11 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 5 Apr 2022 14:04:48 -0500
+ HTTPREST; Tue, 5 Apr 2022 14:05:10 -0500
 MIME-Version: 1.0
-In-Reply-To: <1649166633-25872-2-git-send-email-quic_c_skakit@quicinc.com>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com> <1649166633-25872-2-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1649166633-25872-3-git-send-email-quic_c_skakit@quicinc.com>
+References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com> <1649166633-25872-3-git-send-email-quic_c_skakit@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Tue, 5 Apr 2022 14:04:48 -0500
-Message-ID: <CAE-0n50h5XOgEN-Jf1p5bF4GQVUUz76hLACG0rbXxTVn73R24w@mail.gmail.com>
-Subject: Re: [PATCH V9 1/6] dt-bindings: mfd: pm8008: Add reset-gpios
+Date:   Tue, 5 Apr 2022 14:05:10 -0500
+Message-ID: <CAE-0n51S5nB=rgJbEX+rbMCQVyKcb7wpOEc3+R64t_Yr0cXTOQ@mail.gmail.com>
+Subject: Re: [PATCH V9 2/6] dt-bindings: mfd: pm8008: Add pm8008 regulator bindings
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Satya Priya <quic_c_skakit@quicinc.com>
@@ -71,8 +71,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2022-04-05 06:50:28)
-> Add reset-gpios property for pm8008.
+Quoting Satya Priya (2022-04-05 06:50:29)
+> Add bindings for pm8008 regulators device.
 >
 > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
 > ---
