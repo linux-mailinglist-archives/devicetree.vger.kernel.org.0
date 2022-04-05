@@ -2,56 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 762F24F45E3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B106F4F4437
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240499AbiDEN5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:57:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43022 "EHLO
+        id S242722AbiDEN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:59:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354841AbiDENH2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:07:28 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DA724F14;
-        Tue,  5 Apr 2022 05:09:59 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id ADE092224D;
-        Tue,  5 Apr 2022 14:09:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1649160597;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7WaKtmsAct4eFrA+KGGxilxHVP2Bwhzu8dzCAWhFx8o=;
-        b=oYg7yuaMfIQM3IfqfMlSOS+FFRinbYbWLjZ2z7mOaGm5ij6LMGR5XRgD/0FcrunnyZil/+
-        hjc/DVsyPEGkck2J2e1qhmXosWa43vLuvFJLU+R07V1WCoM0g/3pQCgK+anUImsp3yY1KM
-        nlimXoK2aKyugaERn+/nRB9Tf9iP2Mw=
-From:   Michael Walle <michael@walle.cc>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH net-next v3 3/3] net: phy: mscc-miim: add support to set MDIO bus frequency
-Date:   Tue,  5 Apr 2022 14:09:51 +0200
-Message-Id: <20220405120951.4044875-4-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220405120951.4044875-1-michael@walle.cc>
-References: <20220405120951.4044875-1-michael@walle.cc>
+        with ESMTP id S1380267AbiDENOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:14:00 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307D312343F;
+        Tue,  5 Apr 2022 05:16:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1649160997;
+  x=1680696997;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=IQbFdsIycaKMPC2WtqAU6bZcJ0n+YEHMU/Uu+zlGT7I=;
+  b=ae7dSkD7GoCDc2NTaNCq3XgDrTcm4p7/80S49gpON3AX+mYkUIK84gnr
+   jnK5D2akK5XnMwxmSBJSt231FFA755yUKQmY1aQUTnPi9SeTtJHyHSeH6
+   oGk/xBHyVyz1j12hQ7Xp41SzTa4gGfwUDk4nfaHC+xxEfhzwM2A7ypP6T
+   6wdpGzTOU+WO5QoCummNdb2bJR8dtJBVNjeRYBNMFuJ6VEpDF8P/yP8We
+   qLCVY+WiFMpZq2DdG73QIP4oDnbwP9A56lVtoP0WpqP3jcnKcndsP7d01
+   R4wu1f2NXr88o+GsfnvzlQRc6npEroX8psnY3nyn8gyebdVTuznsxNq+T
+   Q==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     <wsa@kernel.org>
+CC:     <kernel@axis.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <krzk+dt@kernel.org>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] i2c: add binding to prevent device detection
+Date:   Tue, 5 Apr 2022 14:16:26 +0200
+Message-ID: <20220405121627.1560949-2-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
+References: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,129 +53,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Until now, the MDIO bus will have the hardware default bus frequency.
-Read the desired frequency of the bus from the device tree and configure
-it.
+When drivers with ->detect callbacks are loaded, the I2C core does a
+bunch of transactions to try to probe for these devices, regardless of
+whether they are specified in the devicetree or not.  (This only happens
+on I2C controllers whose drivers enable the I2C_CLASS* flags, but this
+is the case for generic drivers like i2c-gpio.)
 
-Signed-off-by: Michael Walle <michael@walle.cc>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+These kinds of transactions are unnecessary on systems where the
+devicetree specifies all the devices on the I2C bus, so add a property
+to allow them to be disabled.
+
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 ---
- drivers/net/mdio/mdio-mscc-miim.c | 58 +++++++++++++++++++++++++++++--
- 1 file changed, 56 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/i2c/i2c.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/net/mdio/mdio-mscc-miim.c b/drivers/net/mdio/mdio-mscc-miim.c
-index c9efcfa2a1ce..7fd979f68dc0 100644
---- a/drivers/net/mdio/mdio-mscc-miim.c
-+++ b/drivers/net/mdio/mdio-mscc-miim.c
-@@ -7,6 +7,7 @@
-  */
+diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+index fc3dd7ec0445..5f7bdf4851e8 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+@@ -72,6 +72,10 @@ wants to support one of the below features, it should adapt these bindings.
+ 	this information to adapt power management to keep the arbitration awake
+ 	all the time, for example. Can not be combined with 'single-master'.
  
- #include <linux/bitops.h>
-+#include <linux/clk.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
-@@ -30,6 +31,8 @@
- #define		MSCC_MIIM_CMD_VLD		BIT(31)
- #define MSCC_MIIM_REG_DATA		0xC
- #define		MSCC_MIIM_DATA_ERROR		(BIT(16) | BIT(17))
-+#define MSCC_MIIM_REG_CFG		0x10
-+#define		MSCC_MIIM_CFG_PRESCALE_MASK	GENMASK(7, 0)
- 
- #define MSCC_PHY_REG_PHY_CFG	0x0
- #define		PHY_CFG_PHY_ENA		(BIT(0) | BIT(1) | BIT(2) | BIT(3))
-@@ -50,6 +53,8 @@ struct mscc_miim_dev {
- 	int mii_status_offset;
- 	struct regmap *phy_regs;
- 	const struct mscc_miim_info *info;
-+	struct clk *clk;
-+	u32 bus_freq;
- };
- 
- /* When high resolution timers aren't built-in: we can't use usleep_range() as
-@@ -242,9 +247,32 @@ int mscc_miim_setup(struct device *dev, struct mii_bus **pbus, const char *name,
- }
- EXPORT_SYMBOL(mscc_miim_setup);
- 
-+static int mscc_miim_clk_set(struct mii_bus *bus)
-+{
-+	struct mscc_miim_dev *miim = bus->priv;
-+	unsigned long rate;
-+	u32 div;
++- no-detect
++	states that the system should not attempt to automatically detect
++	devices which are not explicitly specified as child nodes.
 +
-+	/* Keep the current settings */
-+	if (!miim->bus_freq)
-+		return 0;
-+
-+	rate = clk_get_rate(miim->clk);
-+
-+	div = DIV_ROUND_UP(rate, 2 * miim->bus_freq) - 1;
-+	if (div == 0 || div & ~MSCC_MIIM_CFG_PRESCALE_MASK) {
-+		dev_err(&bus->dev, "Incorrect MDIO clock frequency\n");
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(miim->regs, MSCC_MIIM_REG_CFG,
-+				  MSCC_MIIM_CFG_PRESCALE_MASK, div);
-+}
-+
- static int mscc_miim_probe(struct platform_device *pdev)
- {
- 	struct regmap *mii_regmap, *phy_regmap = NULL;
-+	struct device_node *np = pdev->dev.of_node;
- 	void __iomem *regs, *phy_regs;
- 	struct mscc_miim_dev *miim;
- 	struct resource *res;
-@@ -295,21 +323,47 @@ static int mscc_miim_probe(struct platform_device *pdev)
- 	if (!miim->info)
- 		return -EINVAL;
- 
--	ret = of_mdiobus_register(bus, pdev->dev.of_node);
-+	miim->clk = devm_clk_get_optional(&pdev->dev, NULL);
-+	if (IS_ERR(miim->clk))
-+		return PTR_ERR(miim->clk);
-+
-+	of_property_read_u32(np, "clock-frequency", &miim->bus_freq);
-+
-+	if (miim->bus_freq && !miim->clk) {
-+		dev_err(&pdev->dev,
-+			"cannot use clock-frequency without a clock\n");
-+		return -EINVAL;
-+	}
-+
-+	ret = clk_prepare_enable(miim->clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = mscc_miim_clk_set(bus);
-+	if (ret)
-+		goto out_disable_clk;
-+
-+	ret = of_mdiobus_register(bus, np);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Cannot register MDIO bus (%d)\n", ret);
--		return ret;
-+		goto out_disable_clk;
- 	}
- 
- 	platform_set_drvdata(pdev, bus);
- 
- 	return 0;
-+
-+out_disable_clk:
-+	clk_disable_unprepare(miim->clk);
-+	return ret;
- }
- 
- static int mscc_miim_remove(struct platform_device *pdev)
- {
- 	struct mii_bus *bus = platform_get_drvdata(pdev);
-+	struct mscc_miim_dev *miim = bus->priv;
- 
-+	clk_disable_unprepare(miim->clk);
- 	mdiobus_unregister(bus);
- 
- 	return 0;
+ - pinctrl
+ 	add extra pinctrl to configure SCL/SDA pins to GPIO function for bus
+ 	recovery, call it "gpio" or "recovery" (deprecated) state
 -- 
-2.30.2
+2.34.1
 
