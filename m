@@ -2,87 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6FD4F4B2D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 109574F4B0F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573962AbiDEWxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34502 "EHLO
+        id S1573845AbiDEWxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:53:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1391010AbiDEPdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:33:38 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55844B1F6;
-        Tue,  5 Apr 2022 06:39:58 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 0F47F1F4343B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649165997;
-        bh=gQ3Pg9KvJsy1nFjnsiFdGRFbG2pjxVLA/rIpxmBYnwQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bCaiTvvM0EjvxPHg+Cq7O5T0+4hFiZUiI5RpINvgXIufUIWOgU+JCWbOLVPG4UdzK
-         vl5GkV8ZyYkDoDat6rI53qT2r39VItbOp2S9bVyr7ze61LtNTD6ql1dbDHp1eYSytk
-         Bk98QgZiyNDZ2omvmhhIYaq1PgqlZXI/SYHQLr+G0kHbhrMu80gamnya1o9f3R8YpT
-         Im9GzEyXmk5wA7PHXkesFA9m76uC3vjsu0FW1KIAX5HqrSml/R12UNuqDrjvuk4jJk
-         pe+LYZhlL84lF3r5Ouk4u2IJlRSzVwgTA9q/KiaooZQyL7co0i1bW8x9BNoHG8rtlc
-         kCeCgITqZw9eg==
-Message-ID: <0762b013-6c13-ef57-5796-902c9899ee95@collabora.com>
-Date:   Tue, 5 Apr 2022 15:39:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2] media: mediatek: vcodec: Fix v4l2 compliance decoder
- cmd test fail
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220401081302.9475-1-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220401081302.9475-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1391267AbiDEPeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:34:13 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5404FC4D;
+        Tue,  5 Apr 2022 06:41:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649166109; x=1680702109;
+  h=from:to:cc:subject:date:message-id;
+  bh=n/LaXP9MDFd1wNqtjihKRMVq+Y8jFqhWp4guYXGha6E=;
+  b=iZxEug3AHTeWe1TkuVuON+D+vg/wfImcPOrEmzUUdZbX3ZVmMBu4dXr+
+   tKkERh0VtZmEg8fi7tR1XcfjTB+ubLsZZGNbfJVNP99nnYKmRaqpzcZw9
+   74GFQ0wQqWCTfNjh/I6RopioX42ugZOsmNwD4iu4IPvDEYgzjRXn2nvL0
+   s=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 05 Apr 2022 06:41:49 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 05 Apr 2022 06:41:48 -0700
+X-QCInternal: smtphost
+Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 05 Apr 2022 19:11:34 +0530
+Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
+        id 94F25551E; Tue,  5 Apr 2022 19:11:33 +0530 (IST)
+From:   Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dmitry.baryshkov@linaro.org, dianders@chromium.org,
+        quic_kalyant@quicinc.com
+Subject: [PATCH v7 0/2] Add inline rotation support for sc7280
+Date:   Tue,  5 Apr 2022 19:11:29 +0530
+Message-Id: <1649166091-18032-1-git-send-email-quic_vpolimer@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/04/22 10:13, Yunfei Dong ha scritto:
-> Will return -EINVAL using standard framework api when test stateless
-> decoder with cmd VIDIOC_(TRY)DECODER_CMD.
-> 
-> Using another return value to adjust v4l2 compliance test for user
-> driver(GStreamer/Chrome) won't use decoder cmd.
-> 
-> Fixes: 8cdc3794b2e3 ("media: mtk-vcodec: vdec: support stateless API")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+Changes in RFC:
+- Rebase changes to the latest code base.
+- Append rotation config variables with v2 and
+remove unused variables.(Dmitry)
+- Move pixel_ext setup separately from scaler3 config.(Dmitry)
+- Add 270 degree rotation to supported rotation list.(Dmitry)
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Changes in V2:
+- Remove unused macros and fix indentation.
+- Add check if 90 rotation is supported and
+add supported rotations to rot_cfg.
+
+Changes in V3:
+- Fix indentation.
+- Move rot_supported to sspp capabilities. (Dmitry)
+- Config pixel_ext based on src_h/src_w directly. (Dmitry)
+- Misc changes.
+
+Changes in V4:
+- Pass boolean value to sspp blk based on supported rotations for each hw.
+
+Changes in V5:
+- Update boolean value to true/false and add it for qcm2290.
+
+Changes in V6:
+- Add changes that are missed as part of v5.
+- Add dpu_find_format inline function to find valid format. (Dmitry)
+
+Changes in V7:
+- Move dpu_find_format inline function to separate commit. (Dmitry)
+- Remove rot_cfg from SSPP_BLK and use DPU_SSPP_INLINE_ROTATION caps
+to append supported rotations. (Dmitry)
+- Misc Changes.
+
+Co-developed-by: Kalyan Thota <quic_kalyant@quicinc.com>
+Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+
+Vinod Polimera (2):
+  drm/msm/disp/dpu1: add inline function to validate format support
+  drm/msm/disp/dpu1: add inline rotation support for sc7280
+
+ drivers/gpu/drm/msm/disp/dpu1/dpu_formats.h    |  22 ++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 173 +++++++++++++++----------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  16 +++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c      | 139 +++++++++++++++-----
+ drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h      |   2 +
+ 5 files changed, 251 insertions(+), 101 deletions(-)
+
+-- 
+2.7.4
 
