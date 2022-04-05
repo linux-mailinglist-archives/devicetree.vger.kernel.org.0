@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE54E4F2349
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD25C4F233E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 08:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbiDEGh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 02:37:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48672 "EHLO
+        id S230251AbiDEGhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 02:37:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230283AbiDEGhN (ORCPT
+        with ESMTP id S230285AbiDEGhN (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 02:37:13 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F0D619283
-        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 23:35:13 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id bq8so24499547ejb.10
-        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 23:35:13 -0700 (PDT)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2496192AD
+        for <devicetree@vger.kernel.org>; Mon,  4 Apr 2022 23:35:14 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id r13so24537412ejd.5
+        for <devicetree@vger.kernel.org>; Mon, 04 Apr 2022 23:35:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ijNe1gxoWsdrm+oek0ryQTviG9eFIwp156wwm7qwtvc=;
-        b=XoQd7eXmayRtgXenCj/0DqYnAREZxy5QhvyHa07LX2TmVGqPuvMWhiGZsWuEJzAaOv
-         b3uh+52P1EfWWtIYWmaRsqBEPIADtdA8P830tUbhD6kfhvJKBU9Xe0TYR5f/bPddweyV
-         KyJW6rl2x17jbiYl8YzD8bMHPgG9IiBwtCI+T5AO87H9n5+xefKCk/19M/q6/qEbP99j
-         efPrZL1aj7Bx29kxIYC6nYLHYdRIOGuyX0TsUsErtCcoQVweIE7q1WqnUabqg3QC9yII
-         d8IuI8IBnbfbJvo77L2RsrlNKbC1mJC/Wx8DCxSY+31l/jYdTLy/7ksP9yP1nmP+B9oV
-         9mMw==
+        bh=oehOK4VAqzTxqC5buHxSssXxgO+RDZMIgj7zOteyqjI=;
+        b=Hy193/1AngSh5NoyrzCWhMqh1HfWhAFXyMQFGQnXsKByL+K7x9NaO8EtKKgIPFZglX
+         dr61Z9qLcEB9Q9xrGub+cXEbob9EjuotHEUZgPHmsbmWYHnRuk5zWfJ/tXUCeLJnEE3d
+         At4VHp02QmmXe+Ajv6QWNbk8feLGu+QNQyHrHD24/tf0lTmMcxCiKKHdeUlxPMxI0viG
+         sZ4i+B2DYEL0j1rt+8DDvJMYmyC+HW1YiZf00tBwYeb8c2rVaFCVxlkcvRoAVMmk+CKE
+         5anCalLk0GLFFoJwR6XEXh+D/uzrv3Oe+MovpcVCuvTOHgf9LaTwsPe//IkEYVZwIIBt
+         rvtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ijNe1gxoWsdrm+oek0ryQTviG9eFIwp156wwm7qwtvc=;
-        b=BsvDTZLWbd4xY2d9Rx5EoAuCGdAxqZsZYmPV/VKWRzowz8MXvpAdVPfKN4DVuzLQcF
-         vadV/o/9W6fUv/z78r+/HY9gmHrW8cGm2MtO4BQelNMYFF1tIwpOlniCaF327Hbozpjd
-         SXrCDQEcPTqzzXno1pIHGweBSjLJAWhDfGLR3YhP+FjNnTDmcOXlgS82Y+AP5ewb05QP
-         kN82P3TpK8z2XrUi2D4nHU2wiZ8NVOvXkAW1pKB2JNEYOU+/s/AmHPcgcHSkbnuXk4HM
-         ZV+wf2jJXui+drtpSlxb3VQDedFZOr0ytPCuHwpn0+vAnNLePuHuNI35U7wnpiuzMh1A
-         cLLg==
-X-Gm-Message-State: AOAM533dTtiLQXyf9KWkxstkIvToUv7euy1u+3Vhok7a42vzzQILKqv4
-        ZoLosGYM20Mf946fvRJBPimYqQ==
-X-Google-Smtp-Source: ABdhPJwg5JBDqrawA1o2xD7WCotpEUIzxo1lhvopQDFfw4uK7iSYPG7EQxrBTXwe/ersvfz+2ikRVg==
-X-Received: by 2002:a17:907:6e10:b0:6e7:f672:f39b with SMTP id sd16-20020a1709076e1000b006e7f672f39bmr1966930ejc.451.1649140512065;
-        Mon, 04 Apr 2022 23:35:12 -0700 (PDT)
+        bh=oehOK4VAqzTxqC5buHxSssXxgO+RDZMIgj7zOteyqjI=;
+        b=YZmMfUkS9+0Jve0iV3nE3SGQWADOlMYEJaiOKoYrJ+UGdethgp/SX/4+U3Kpv2BHCP
+         XkZGnT5djWnTsZkUrB/fpkrORUa8KbtqP2ogm4HMP5vG0cMPfkFAAf8ghKBAuLkeQzLX
+         M58SwH0OJRljX6mARrmtlJDzkh6G7gOcpjtA0894k/pbG7uPWn0q9KNtpyC4XQKDO3gG
+         TrP0dSsc2DcD/8ileE/oBdGzbznQG3yVXUT3uAG1fUiGVQz61gXp5SyDgTbmcUiklU5k
+         GeIeDaLAYrhSHZ94Gzhhpc6igezhLpWUeoOrOPdHOVcdLVl3J3voJ+capetboZohwLGu
+         75oA==
+X-Gm-Message-State: AOAM533uORYFvZWliDxqrqC/RISLSyKmLEA8t8CSKuyLRjZohOd9K3zn
+        ez8Teum8ShmdUo/Vqto7d53+Kw==
+X-Google-Smtp-Source: ABdhPJx5QUnjVh8yXIsk3kKBa6+qdhCQDojbFltvtAoIpuG1MWrKxZhMXJ9aa7AJHvkiY2e8/vcWVQ==
+X-Received: by 2002:a17:906:9c82:b0:6df:c5f0:d456 with SMTP id fj2-20020a1709069c8200b006dfc5f0d456mr1929200ejc.287.1649140513236;
+        Mon, 04 Apr 2022 23:35:13 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bs7-20020a056402304700b004197e5d2350sm6086543edb.54.2022.04.04.23.35.11
+        by smtp.gmail.com with ESMTPSA id bs7-20020a056402304700b004197e5d2350sm6086543edb.54.2022.04.04.23.35.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Apr 2022 23:35:11 -0700 (PDT)
+        Mon, 04 Apr 2022 23:35:12 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-spi@vger.kernel.org
 Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/9] ARM: dts: qcom: ipq4019: align dmas in SPI/UART with DT schema
-Date:   Tue,  5 Apr 2022 08:34:45 +0200
-Message-Id: <20220405063451.12011-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 4/9] ARM: dts: qcom: ipq4019: align clocks in I2C with DT schema
+Date:   Tue,  5 Apr 2022 08:34:46 +0200
+Message-Id: <20220405063451.12011-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220405063451.12011-1-krzysztof.kozlowski@linaro.org>
 References: <20220405063451.12011-1-krzysztof.kozlowski@linaro.org>
@@ -69,7 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,88 +77,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT schema expects dma channels in tx-rx order.  No functional
-change.
+The DT schema expects clocks core-iface order.  No functional change.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
-
-Dropped Kuldeep's ack because of changes - more properties changed.
----
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index a9d0566a3190..1f6c4ab7f37e 100644
+index 1f6c4ab7f37e..897442157f5f 100644
 --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
 +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -253,8 +253,8 @@ blsp1_spi1: spi@78b5000 { /* BLSP1 QUP1 */
- 			clock-names = "core", "iface";
+@@ -276,9 +276,9 @@ blsp1_i2c3: i2c@78b7000 { /* BLSP1 QUP3 */
+ 			compatible = "qcom,i2c-qup-v2.2.1";
+ 			reg = <0x78b7000 0x600>;
+ 			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
+-				 <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>;
+-			clock-names = "iface", "core";
++			clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
  			#address-cells = <1>;
  			#size-cells = <0>;
--			dmas = <&blsp_dma 5>, <&blsp_dma 4>;
--			dma-names = "rx", "tx";
-+			dmas = <&blsp_dma 4>, <&blsp_dma 5>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -267,8 +267,8 @@ blsp1_spi2: spi@78b6000 { /* BLSP1 QUP2 */
- 			clock-names = "core", "iface";
+ 			dmas = <&blsp_dma 8>, <&blsp_dma 9>;
+@@ -290,9 +290,9 @@ blsp1_i2c4: i2c@78b8000 { /* BLSP1 QUP4 */
+ 			compatible = "qcom,i2c-qup-v2.2.1";
+ 			reg = <0x78b8000 0x600>;
+ 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
+-				 <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>;
+-			clock-names = "iface", "core";
++			clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
  			#address-cells = <1>;
  			#size-cells = <0>;
--			dmas = <&blsp_dma 7>, <&blsp_dma 6>;
--			dma-names = "rx", "tx";
-+			dmas = <&blsp_dma 6>, <&blsp_dma 7>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -281,8 +281,8 @@ blsp1_i2c3: i2c@78b7000 { /* BLSP1 QUP3 */
- 			clock-names = "iface", "core";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			dmas = <&blsp_dma 9>, <&blsp_dma 8>;
--			dma-names = "rx", "tx";
-+			dmas = <&blsp_dma 8>, <&blsp_dma 9>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -295,8 +295,8 @@ blsp1_i2c4: i2c@78b8000 { /* BLSP1 QUP4 */
- 			clock-names = "iface", "core";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			dmas = <&blsp_dma 11>, <&blsp_dma 10>;
--			dma-names = "rx", "tx";
-+			dmas = <&blsp_dma 10>, <&blsp_dma 11>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -382,8 +382,8 @@ blsp1_uart1: serial@78af000 {
- 			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>,
- 				<&gcc GCC_BLSP1_AHB_CLK>;
- 			clock-names = "core", "iface";
--			dmas = <&blsp_dma 1>, <&blsp_dma 0>;
--			dma-names = "rx", "tx";
-+			dmas = <&blsp_dma 0>, <&blsp_dma 1>;
-+			dma-names = "tx", "rx";
- 		};
- 
- 		blsp1_uart2: serial@78b0000 {
-@@ -394,8 +394,8 @@ blsp1_uart2: serial@78b0000 {
- 			clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
- 				<&gcc GCC_BLSP1_AHB_CLK>;
- 			clock-names = "core", "iface";
--			dmas = <&blsp_dma 3>, <&blsp_dma 2>;
--			dma-names = "rx", "tx";
-+			dmas = <&blsp_dma 2>, <&blsp_dma 3>;
-+			dma-names = "tx", "rx";
- 		};
- 
- 		watchdog: watchdog@b017000 {
+ 			dmas = <&blsp_dma 10>, <&blsp_dma 11>;
 -- 
 2.32.0
 
