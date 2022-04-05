@@ -2,110 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF354F43BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF5D4F45DA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237594AbiDEPZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 11:25:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
+        id S1348517AbiDEPZ3 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 5 Apr 2022 11:25:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355238AbiDEOmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 10:42:12 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A1F72250E
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 06:19:55 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id bh17so26661487ejb.8
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 06:19:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DX7l2sM9QqiFOKXhsLfPsQIRCmsC3YYcfigAqtbzngw=;
-        b=MIIuNLWwZ8KZnliB5S7EokleWD/rLB9gDpC+rSIhM934CcyyANhIJZVpIts8INYuek
-         43DojUsQl8/+1hmzew/jJYwNv8GRFitnp9+IE0TFrNQi4fHz3+SNNGBYRZFbuhM38tT4
-         +sEeCg+J4oLLfaLMQkcSiF4bGHcFq//+pDz+lx1omRM4p0/lP+xCgOyzBqUvMguk2Al7
-         SB2Savh02L/DSVDCdV1o5z0vgKttGVjH5G6g7bJQgZNH9xfrdeNU8914hipmWyEvqoDN
-         87GaAGwit9a/glHMnbyJTwSw+pY+vsu8JlHJqcZKU+T97MidDgCvsfn2RRFbTXobbBDt
-         OgtQ==
+        with ESMTP id S1357841AbiDEO5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 10:57:03 -0400
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC343169B0C;
+        Tue,  5 Apr 2022 06:23:02 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2eafabbc80aso135119877b3.11;
+        Tue, 05 Apr 2022 06:23:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DX7l2sM9QqiFOKXhsLfPsQIRCmsC3YYcfigAqtbzngw=;
-        b=6m7cX1nlpYwEu2PtNPWcWVMR8yasGCyVI/HeGA2lHk3+iI3AaKWOV12RNXrVji3A6p
-         C49wMFikr8PiHBTZtk4gLGi7KjO0nRf7dYC42pKrpTBWV530xtO0ypPtNbUVGTHvMUqX
-         w3tKzfrWrnhXGhoOwN+XhDJgoDosTJePBK37Y9FDd0kCbG0BigzRSIBK3yrAb4ZA89kj
-         oecZLH1DVPY/pVOpRUwAEoz3FdJ+qSzuE+m8zJMoyExkz3foDlskzmIhWb6OudBzJ+uj
-         JG5f62s3wM6O/9mvBimk/SzWBWHgEO2Rkb4PwHSe3cp0VnkmdYBksNEi7XwY6IsYGT8x
-         gpkQ==
-X-Gm-Message-State: AOAM530HBozYMm7V5NldOrst32Focthd3lE9i33bhObD1VrIILPGXiPX
-        sBiOOU23X2bw7dBiOZKqswmM3uGMCA60LfwrjSzuIA==
-X-Google-Smtp-Source: ABdhPJxdkpcqywi0Dnnv3TZA7cMfATjjPrQEcps7eS+U2c2eZK6FJLlYj9QgffOiSwol2BYhsCWYsZ1FW7SXEGnJj+g=
-X-Received: by 2002:a17:907:968e:b0:6db:aed5:43c8 with SMTP id
- hd14-20020a170907968e00b006dbaed543c8mr3580349ejc.636.1649164793827; Tue, 05
- Apr 2022 06:19:53 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7A4P9kn8lX4sQ7Htb6dVWHUymvJRsd1UwLVgcXfrzcY=;
+        b=1JeLcq/jxTDd964pW6ogdHlJxVr8MMS8irQgftGCWQtbPADDPFzk1Z/QbLuVHlihbk
+         ov066ahR8eT3FdyBQkof0Y53tBUrVRp/p7tYyrxW7uYz+YaTJ9hlPzrHdKYf6R2rF8V+
+         bS+2QrKOKwwu9ND7KOu5jxVMk+UvdRoKrnNG6JceRWXPTPGST+PyquTZPKBz6i5r4iIV
+         BieZpy7L97IPcd9fi+s8ba/M2iARklmDVYgSg6zlZsGyUbrkVUCqoCID2J/4pxec+clr
+         lCPF8CRghx21zTKzzrK94warG0/3MEFep0Tp07sRq2/Fv+ssX9q/ugFdSkakDqSixCTP
+         9zEA==
+X-Gm-Message-State: AOAM531TtsjghQFB6YL53glCVsv7OgjrTJcKMcPscZb1VFkKyQ0/bBsF
+        nWKHxxRy7bJO6a/EATko2KqghU9yoRg3CHOMdV0=
+X-Google-Smtp-Source: ABdhPJycfqaQNd811FMhkXgQfDqevZ83CiXYssxwULKvsQGRHFOOAMwuLYDGOU9KcjHSXp7vTAqGzq/4etcE7UXaUuo=
+X-Received: by 2002:a81:36cf:0:b0:2e5:2597:a026 with SMTP id
+ d198-20020a8136cf000000b002e52597a026mr2616210ywa.301.1649164981760; Tue, 05
+ Apr 2022 06:23:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1649085875.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1649085875.git.geert+renesas@glider.be>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 5 Apr 2022 15:19:43 +0200
-Message-ID: <CAMRc=MdapT5rWfijUDQYj-GDvJ8ZrrpnZ6dwScev0WirCsuAyQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] gpio: rcar: Add-R-Car S4-8 GPIO support
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+References: <20220325113148.588163-1-clement.leger@bootlin.com>
+ <20220325113148.588163-4-clement.leger@bootlin.com> <Yj3SFYdUQ4r7GXqs@smile.fi.intel.com>
+ <20220328162812.16deac92@fixe.home>
+In-Reply-To: <20220328162812.16deac92@fixe.home>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Tue, 5 Apr 2022 15:22:51 +0200
+Message-ID: <CAJZ5v0hOjaOCUxbFzKG90Db0bgfdb3q988oAvLB4kmD3-HS8sQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/9] device property: add index argument to
+ property_read_string_array() callback
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 4, 2022 at 5:29 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+On Mon, Mar 28, 2022 at 4:29 PM Clément Léger <clement.leger@bootlin.com> wrote:
 >
->         Hi Linus, Bartosz,
+> Le Fri, 25 Mar 2022 16:30:45 +0200,
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> a écrit :
 >
-> This patch series adds support for the Renesas R-Car S4-8 Soc to the
-> R-Car GPIO DT bindings and driver.  It has been tested with i2c-gpio,
-> by reading the contents from the I2C EEPROMs on the Spider development
-> board.
+> > >     pointer = property_entry_find(props, propname, length);
+> > >     if (IS_ERR(pointer))
+> > >             return PTR_ERR(pointer);
+> >
+> > > +   if (index >= array_len)
+> > > +           return -ENODATA;
+> >
+> > I was about to ask if we can check this before the
+> > property_entry_find() call, but realized that in such case it will
+> > shadow possible errors due to wrong or absent property.
 >
-> Changes compared to v1:
->   - Drop RFC,
->   - Split series in DT bindings+driver and DTS series.
+> I think you are actually right, the check can be done after
+> property_entry_count_elems_of_size() since it already checks for the
+> property to be present. I'll move that check.
 >
-> Thanks!
+> >
+> > ...
+> >
+> > > -           of_property_read_string_array(node, propname, val,
+> > > nval) :
+> > > +           of_property_read_string_array_index(node,
+> > > propname, val, nval,
+> > > +                                               index) :
+> >
+> > Dunno about the style there, but I think it can be one line.
 >
-> Geert Uytterhoeven (2):
->   dt-bindings: gpio: renesas,rcar-gpio: Add r8a779f0 support
->   gpio: rcar: Add R-Car Gen4 support
->
->  .../devicetree/bindings/gpio/renesas,rcar-gpio.yaml        | 5 +++++
->  drivers/gpio/gpio-rcar.c                                   | 7 +++++--
->  2 files changed, 10 insertions(+), 2 deletions(-)
->
-> --
-> 2.25.1
->
-> Gr{oetje,eeting}s,
->
->                                                 Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                                             -- Linus Torvalds
+> Seems like the complete file is strictly applying the 80 columns rules
+> so I thought it was better to keep it like this. However, I think the
+> ternary oeprator is not really readable with such split.
 
-Applied, thanks!
+So FWIW I would entirely change it to
 
-Bart
+if (!val)
+        return of_property_count_strings(node, propname);
+
+return of_property_read_string_array_index(node, propname, val,
+
+nval, index);
+
+which IMO would be way easier to read.
