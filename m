@@ -2,183 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D07964F4AB0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56D474F4A97
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1443613AbiDEWup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40810 "EHLO
+        id S231958AbiDEWto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:49:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1457347AbiDEQDH (ORCPT
+        with ESMTP id S1457353AbiDEQDH (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 12:03:07 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C5825E9E;
-        Tue,  5 Apr 2022 08:37:27 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 4F6E23201464;
-        Tue,  5 Apr 2022 11:37:25 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute2.internal (MEProxy); Tue, 05 Apr 2022 11:37:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; bh=f7SyYZI4nz+qs5qaMDg1riUJfz1XkX
-        CuG6WXTU/lNCQ=; b=abLQr7Ocox7EC2QOocUVper/aOyFWncLbJ1SWNpn1FgdoE
-        oFjH6XS6gAddBS5s3IaBrxIUWW+yGYgKFJiYiEb0PK8Fd8bZ62aLn+EoMPkvkHFG
-        ZFNXxQWyE4j94LuxavQmpSANyzqQoQw+c/ZRF094grUvUCzHhDgJEmGW5N/C54Nr
-        ZZX9/J+C8pc8b22K9aCU44ziKFWg8Aw1DoRnXI86Mxa+lSmPuorMtDjvJv5CCuR7
-        VWlU1dP0LXpSdrWH/EgO/Q6Yt/n2GSdGRGiK63mExuRceE8IF901tSfv/R5k8VJR
-        +7S5uBKQJHhihPJ+FK9pLvK6dQsZSM5M4iIfNwmw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=f7SyYZI4nz+qs5qaM
-        Dg1riUJfz1XkXCuG6WXTU/lNCQ=; b=UeVodiwW8PmkEP9EPOHfnWy0CCe0guLPF
-        DliOMGO4FfQEz5RrQA9EawpvoUPmY2N4p1Y7hJAhXalO7KNhhjB9hrJzTKQryP13
-        BRhjKbc0Uhhae7wmBkB/+Fo7rz7Ekz5+cWeXOJ2KBQmidkgdtNAzXIEa6cnKj6gi
-        1EN0qK4VrO/0tTJM7IeFT5mRwIXqQwwJkuHJmIas+yyVgxcHUzTSCTmXCcaRx7xy
-        knHKVCSSxf1IVkwBMTOVVhwIstsUlpUzQYMKKD+SXnSMXkbA1MutFKYiEFW1SG3r
-        df+ISBqWong8Pjrx9tT1G5Yr/ia7zrmk+U01T4XEeMRJI4FDcDf9Q==
-X-ME-Sender: <xms:NGJMYuWXQtktSsSAuTYUMvwDdFEcA4yhQ5MCW9aLDi_bY1KklAMTYw>
-    <xme:NGJMYqmG5DoOWovS2HoBGsG8au43ep38U8M7cgPQyXj_NmRISXaRrhDPFjZDxNxP6
-    K3qcSG8OEmA2TXnJjU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudejgedgkeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
-    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:NGJMYiaEdQ36azdMNu80CJVWjwDac80cJld0O7o-VJOtCoxYhEXbmg>
-    <xmx:NGJMYlXUrltHCyl4_r8omNuAFmQQCjGgnOEUbp-oRMi_Dtg2ztDlvQ>
-    <xmx:NGJMYomK1MwE0auNSM1PEA2y1xulMXcEXFvzKgQvi9xnwS18Q8u7NQ>
-    <xmx:NGJMYhfRhmFqCvgyg5ojCGq54Zi4dy_aoLsD-vlMZVtN_tKRMHVfEg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 1381327407F6; Tue,  5 Apr 2022 11:37:24 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-385-g3a17909f9e-fm-20220404.001-g3a17909f
-Mime-Version: 1.0
-Message-Id: <c5c0db06-2d82-4e5a-b9e4-89e0b7c9230c@www.fastmail.com>
-In-Reply-To: <YksHoQvDqXOK70EX@robh.at.kernel.org>
-References: <20220321165049.35985-1-sven@svenpeter.dev>
- <20220321165049.35985-5-sven@svenpeter.dev>
- <CAK8P3a19F8K0MvZV_R6HrmmR+WBsDge+u6U3iEVEjZ74i6+nEg@mail.gmail.com>
- <f06576c8-76c6-41ae-874d-81ea0b5b5603@www.fastmail.com>
- <CAK8P3a3xioqJDb7hQ3dvxQyHPg2hgJbeJywEP+N4cDzpo=8VhQ@mail.gmail.com>
- <YksHoQvDqXOK70EX@robh.at.kernel.org>
-Date:   Tue, 05 Apr 2022 17:37:03 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Rob Herring" <robh@kernel.org>, "Arnd Bergmann" <arnd@arndb.de>
-Cc:     "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Keith Busch" <kbusch@kernel.org>, "axboe@fb.com" <axboe@fb.com>,
-        "hch@lst.de" <hch@lst.de>, "sagi@grimberg.me" <sagi@grimberg.me>,
-        "Marc Zyngier" <maz@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        linux-nvme@lists.infradead.org
-Subject: Re: [PATCH 4/9] soc: apple: Add SART driver
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B7BEA3
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 08:38:32 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id bn33so17636756ljb.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 08:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PBLQk8hXfjmXS76rmeqn/RipwnPJvYH2YMxW0PEqxC4=;
+        b=TeHDurG6UaxsNVfmwW17uakggl5LxYM2U0uvT6hKwWN/uNYuzryYQPqjmOxwZglEGX
+         KFiA6HvBQfnYx+J6OyZX6zC7gKUln6wiL2hbBLC3VHILdBCtNY+rrnR0EzaLDyYmxx5k
+         gGF6dehhjllPbMNA8LuRMHL7+bnz8trsaBHD3JeBMqecWHeeKkD2l0MNZeYYpakBD2ns
+         GOvqK26IXMOXl31m/oDTzPCe/C5Hivmle5xBALzc/JQDqBxsdtUFKFD/PUkF4HpTrli+
+         3e3tcxWkG94C6TcQxn3Y+MY/zZRefd1UfCTTCz7bNMGByMr6Yfojr1I1Xn2I1X/mIGJu
+         rNeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PBLQk8hXfjmXS76rmeqn/RipwnPJvYH2YMxW0PEqxC4=;
+        b=NwUdJXvGtegAMbpJi+zQwnIampA2ZHdxff4bOKnFiWcHX7aKh4Xepn/i1L4RhaP0hz
+         4VAyXmYMZJwrfOIzCQEfnt/XfOsZyFKBSYLaQ3lhnXMggPmZMgGebe8IGmECh7OhNm0n
+         CZKVsi3BITrdFHlFcRdoDX0jPX69l1uiEmn+99Nivl3/7d/PUloJcOtSXS5q+HkCGezT
+         zLtfEKEbzmNlFaDTyVPMQjAlxvufZkOOFrj6VAzeeyctpGEnu7yVZ+h74CnFdLp7+CLR
+         ukAUvnrRC5WF5iN9P/ztT5LCwsYsE3T9kjOY06UX+iFlPO51OlA5AXgaI91j0tBZbkem
+         jmlQ==
+X-Gm-Message-State: AOAM530giQPKqxA1DjsQNepLtdOa0/lNo4sYW3+rTwYNRbVSZEzpAPxY
+        gOgts0oo+727ANgTbx2Q7g9NOA==
+X-Google-Smtp-Source: ABdhPJz5K8NFf3iPn5H2T3ZVcCqTbSxBRJrRMFzr+tNg5bVe2r3tzlZQPt7ms9y8TGMBs3rj2d558Q==
+X-Received: by 2002:a05:651c:552:b0:24b:d9f:cef8 with SMTP id q18-20020a05651c055200b0024b0d9fcef8mr2672140ljp.117.1649173111074;
+        Tue, 05 Apr 2022 08:38:31 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id o19-20020a2e9b53000000b0024b15034f50sm794458ljj.3.2022.04.05.08.38.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Apr 2022 08:38:30 -0700 (PDT)
+Message-ID: <dbe6d9c5-f717-785f-e65d-baa1328cea2b@linaro.org>
+Date:   Tue, 5 Apr 2022 18:38:29 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of
+ UFS node
+Content-Language: en-GB
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Apr 4, 2022, at 16:58, Rob Herring wrote:
-> On Sat, Apr 02, 2022 at 09:07:17PM +0200, Arnd Bergmann wrote:
->> On Sat, Apr 2, 2022 at 2:38 PM Sven Peter <sven@svenpeter.dev> wrote:
->> > On Mon, Mar 21, 2022, at 18:07, Arnd Bergmann wrote:
->> > > On Mon, Mar 21, 2022 at 5:50 PM Sven Peter <sven@svenpeter.dev> wrote:
->> > >> The NVMe co-processor on the Apple M1 uses a DMA address filter called
->> > >> SART for some DMA transactions. This adds a simple driver used to
->> > >> configure the memory regions from which DMA transactions are allowed.
->> > >>
->> > >> Co-developed-by: Hector Martin <marcan@marcan.st>
->> > >> Signed-off-by: Hector Martin <marcan@marcan.st>
->> > >> Signed-off-by: Sven Peter <sven@svenpeter.dev>
->> > >
->> > > Can you add some explanation about why this uses a custom interface
->> > > instead of hooking into the dma_map_ops?
->> >
->> > Sure.
->> > In a perfect world this would just be an IOMMU implementation but since
->> > SART can't create any real IOVA space using pagetables it doesn't fit
->> > inside that subsytem.
->> >
->> > In a slightly less perfect world I could just implement dma_map_ops here
->> > but that won't work either because not all DMA buffers of the NVMe
->> > device have to go through SART and those allocations happen
->> > inside the same device and would use the same dma_map_ops.
->> >
->> > The NVMe controller has two separate DMA filters:
->> >
->> >    - NVMMU, which must be set up for any command that uses PRPs and
->> >      ensures that the DMA transactions only touch the pages listed
->> >      inside the PRP structure. NVMMU itself is tightly coupled
->> >      to the NVMe controller: The list of allowed pages is configured
->> >      based on command's tag id and even commands that require no DMA
->> >      transactions must be listed inside NVMMU before they are started.
->> >    - SART, which must be set up for some shared memory buffers (e.g.
->> >      log messages from the NVMe firmware) and for some NVMe debug
->> >      commands that don't use PRPs.
->> >      SART is only loosely coupled to the NVMe controller and could
->> >      also be used together with other devices. It's also the only
->> >      thing that changed between M1 and M1 Pro/Max/Ultra and that's
->> >      why I decided to separate it from the NVMe driver.
->> >
->> > I'll add this explanation to the commit message.
->> 
->> Ok, thanks.
->> 
->> > >> +static void sart2_get_entry(struct apple_sart *sart, int index, u8 *flags,
->> > >> +                           phys_addr_t *paddr, size_t *size)
->> > >> +{
->> > >> +       u32 cfg = readl_relaxed(sart->regs + APPLE_SART2_CONFIG(index));
->> > >> +       u32 paddr_ = readl_relaxed(sart->regs + APPLE_SART2_PADDR(index));
->> > >
->> > > Why do you use the _relaxed() accessors here and elsewhere in the driver?
->> >
->> > This device itself doesn't do any DMA transactions so it needs no memory
->> > synchronization barriers. Only the consumer (i.e. rtkit and nvme) read/write
->> > from/to these buffers (multiple times) and they have the required barriers
->> > in place whenever they are used.
->> >
->> > These buffers so far are only allocated at probe time though so even using
->> > the normal writel/readl here won't hurt performance at all. I can just use
->> > those if you prefer or alternatively add a comment why _relaxed is fine here.
->> >
->> > This is a bit similar to the discussion for the pinctrl series last year [1].
->> 
->> I think it's better to only use the _relaxed version where it actually helps,
->> with a comment about it, and use the normal version elsewhere, in
->> particular in functions that you have copied from the normal nvme driver.
->> I had tried to compare some of your code with the other version and
->> was rather confused by that.
->
-> Oh good, I tell folks the opposite (and others do too). We don't accept 
-> random explicit barriers without explanation, but implicit ones are 
-> okay? The resulting code on arm32 is also pretty horrible with the L2x0 
-> and OMAP sync hooks not that that matters here.
->
-> I don't really care too much which way we go, but we should document one 
-> rule and follow that.
+On 11/03/2022 01:19, Vladimir Zapolskiy wrote:
+> All interconnect device tree nodes on sm8450 are 2-cells, however in
+> UFS node they are handled as 1-cells, fix it.
+> 
+> Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-I don't have a strong opinion either. Arnd's approach is currently documented
-in Documentation/driver-api/device-io.rst fwiw:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-  On architectures that require an expensive barrier for serializing against
-  DMA, these "relaxed" versions of the MMIO accessors only serialize against
-  each other, but contain a less expensive barrier operation. A device driver
-  might use these in a particularly performance sensitive fast path, with a
-  comment that explains why the usage in a specific location is safe without
-  the extra barriers.
+Bjorn, could you please this pick for the -rc kernel?
+
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 0cd5af8c03bd..bbd38b55e976 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1376,8 +1376,8 @@ ufs_mem_hc: ufshc@1d84000 {
+>   
+>   			iommus = <&apps_smmu 0xe0 0x0>;
+>   
+> -			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+> -					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+>   			interconnect-names = "ufs-ddr", "cpu-ufs";
+>   			clock-names =
+>   				"core_clk",
 
 
-Sven
+-- 
+With best wishes
+Dmitry
