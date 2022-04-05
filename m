@@ -2,52 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 621AD4F4AE8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE81B4F4B27
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:53:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573704AbiDEWwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49144 "EHLO
+        id S1573937AbiDEWxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1447319AbiDEPqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:46:18 -0400
-Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06BF91572
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 07:21:08 -0700 (PDT)
-Received: by mail-wm1-x349.google.com with SMTP id r6-20020a05600c35c600b0038e6db5da9cso1881584wmq.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 07:21:08 -0700 (PDT)
+        with ESMTP id S1447347AbiDEPqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:46:20 -0400
+Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com [IPv6:2a00:1450:4864:20::34a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF6190FF4
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 07:21:14 -0700 (PDT)
+Received: by mail-wm1-x34a.google.com with SMTP id a16-20020a05600c349000b0038e6392a346so1318728wmq.4
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 07:21:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=m3vxItKXnUJTINlJEdj+JcIaXhSRzpBzJXMN0Ho5eps=;
-        b=U/rCu1Z2QfNGh7871ZpZdN4wY/+Lh1Wn/I5Ha6phoPhUI3yRDteIeF+TZGPPbHc3Ai
-         BBQSP1z5sD9b+wklr0ZXpHQDx20253jpVlFYCml1fsblFB2Q243A1smZeVhSbDbYut0u
-         z7IHIiryy2SGXsp58k8lugrnBQWpAfe4UaUoIoiLNUWU6VPrmVSPjgLFVRjjlsnuviJh
-         g2vIiFzGHXI6KSMbAEIY16WttCiHeVwLMIUVeWsgv9R9tws08lP2EReN2yTioJTEcmxr
-         8dTXpSzd/4Gkzv5UDngHARkRMF8rXO+CxVkuFg6Z/c+C3T3Db9QNzs4r4LR3an7j0BQQ
-         bBuw==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=AxU4sa8Q3Vc8i3PPINAb0+zKHHjXN87FdHl8DAkuO3A=;
+        b=FXRzPVIxVwymFA22cVrY4G9XF+i6IJeIFm36Ivz6IzidBy8nhsDs4LElaYBJvgYczS
+         /ZfALuvngPVtoxp2uhnjlCoH8sKQjUd4Y8Z3B74wQ59EnEgYtTtNyvG06VsuftNQpRUM
+         pEEKyJfDF8doBr5LBf/SevUG8rHPEVEselas1nPySjiL3BcYOXg4Dx5/19wwJ+abhGdH
+         yv4MtmZCBEosOU6BkcIM4TKOQOOKuXZzI7m+9w9HXJ9jI6EbpHYvDnSiqkCx+Yn0ObTJ
+         pZEi3NUbwvwcSXvC1wmVQcxJetdUVz59WAgxYVg2CM51mpTtQw+OLRQpBPsi/EVI2ij0
+         QH+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=m3vxItKXnUJTINlJEdj+JcIaXhSRzpBzJXMN0Ho5eps=;
-        b=Lxen0uVHflG0TrzJS6YzV2YDfB/OEZfRXXMd5og8tmHtrDGrYDgvdzhLpo8OUVv4WL
-         8n711gZCmuvovIulzSTpLFpI1pAKcSv+9AofBpRLvOqKTiRxxF50ldJHuAz9LbeYDGSZ
-         FXqiVi4B5WlS+gBI+WdZ35lI9zfmfT01iecgwCtQNozO4xHgxBrpXEm+Vlb9ubxBCXwZ
-         tk8bxgvkQ1hLIIZMqnz58HcXVBi79uG4rm7wARAFUTQ4ZeKt//MQZKrM1X2Dz2nzANBt
-         8y84joR75/CpogqhQPHzfk2UySw+2VUk5sYHU5ZC6k5BIw+BMbVk+3h6pOt3NcfQM32M
-         YTZg==
-X-Gm-Message-State: AOAM532ehpZMBooyIPPMtr+qfVj+QJ+y2j1Uy5qjXOUeRLiM9J6v32vb
-        tT9dt36ketTIw5FC9gH1nz390+5C5P2WyyxbexM=
-X-Google-Smtp-Source: ABdhPJwN5QFMBNAx6z4lJuIDDPZMY0wbemxu/vZ7lASsb58ZkL62PcBPIS8ol+sPOaL6RzriqT4z3Z6RSNAw7S3JJqU=
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=AxU4sa8Q3Vc8i3PPINAb0+zKHHjXN87FdHl8DAkuO3A=;
+        b=HzT6DUiNVE++7tSK/Mdn8U06aVbpeOG8d9PDV7HmKXUpIK4oIv3vT4p14asWqyajCM
+         mn+EZeH4CS622yXQP8QLbRwCKsLIJ0yigKYxOP79iUY7MFG3pGvT91LAXz6xKLyOcWNi
+         x1Kda+IgblfrhObUPLBRtQ59ZHy05I4ktQDfYJ8eFWpan/1ovrq6zwkrYBXOseHTbCZf
+         jp/tdjurYbagx147i1U/sHSucw7WsnHHKPrXT9iCStmhnDUxQFF21yYVkPl9yQyvdOpU
+         /qCgw3R3jdw9gUynPBGMp8KCd0irKqTuc/wk9o/kAT2SGgB13FW+GAEVWxbc+7jSJ/r1
+         7NDg==
+X-Gm-Message-State: AOAM531pP0plyKF8YS+00p2CR+pCKtbfFql5FHwPRtjOQC6gCp3KIHft
+        uBUEcPuaNzkjx/81RcgU6ahG6auEWUvxvE1MlRE=
+X-Google-Smtp-Source: ABdhPJy8yRbBfp7JJ9vsoLLwfEai6IIn9u2k9X2YUED5leE66rVPOiM8Nomw1qVKZQ5XYCsabUFPzbI21h5FTwSwa0U=
 X-Received: from sene.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:27c4])
- (user=sebastianene job=sendgmr) by 2002:a05:600c:4f87:b0:38c:adde:1d99 with
- SMTP id n7-20020a05600c4f8700b0038cadde1d99mr3320464wmq.16.1649168466877;
- Tue, 05 Apr 2022 07:21:06 -0700 (PDT)
-Date:   Tue,  5 Apr 2022 14:19:53 +0000
-Message-Id: <20220405141954.1489782-1-sebastianene@google.com>
+ (user=sebastianene job=sendgmr) by 2002:a05:600c:1c11:b0:38b:4924:9a77 with
+ SMTP id j17-20020a05600c1c1100b0038b49249a77mr383558wms.0.1649168472631; Tue,
+ 05 Apr 2022 07:21:12 -0700 (PDT)
+Date:   Tue,  5 Apr 2022 14:19:54 +0000
+In-Reply-To: <20220405141954.1489782-1-sebastianene@google.com>
+Message-Id: <20220405141954.1489782-2-sebastianene@google.com>
 Mime-Version: 1.0
+References: <20220405141954.1489782-1-sebastianene@google.com>
 X-Mailer: git-send-email 2.35.1.1094.g7c7d902a7c-goog
-Subject: [PATCH 0/2] Detect stalls on guest vCPUS
+Subject: [PATCH 1/2] dt-bindings: watchdog: Add qemu,vm-watchdog compatible
 From:   Sebastian Ene <sebastianene@google.com>
 To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
         Guenter Roeck <linux@roeck-us.net>,
@@ -67,33 +71,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a mechanism to detect stalls on the guest vCPUS by creating a
-per CPU hrtimer which periodically 'pets' the host backend driver.
+This watchdog can be used to detect stalls on vCPUs.
 
-This device driver acts as a soft lockup detector by relying on the host
-backend driver to measure the elapesed time between subsequent 'pet' events.
-If the elapsed time doesn't match an expected value, the backend driver
-decides that the guest vCPU is locked and resets the guest. The host
-backend driver takes into account the time that the guest is not
-running. The communication with the backend driver is done through MMIO
-and the register layout of the virtual watchdog is described as part of
-the backend driver changes.
-
-The host backend driver is implemented as part of:
-https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
-
-Sebastian Ene (2):
-  dt-bindings: watchdog: Add qemu,vm-watchdog compatible
-  watchdog: Add a mechanism to detect stalls on guest vCPUs
-
- .../devicetree/bindings/watchdog/vm-wdt.yaml  |  44 ++++
- drivers/watchdog/Kconfig                      |   8 +
- drivers/watchdog/Makefile                     |   1 +
- drivers/watchdog/vm-wdt.c                     | 215 ++++++++++++++++++
- 4 files changed, 268 insertions(+)
+Signed-off-by: Sebastian Ene <sebastianene@google.com>
+---
+ .../devicetree/bindings/watchdog/vm-wdt.yaml  | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/watchdog/vm-wdt.yaml
- create mode 100644 drivers/watchdog/vm-wdt.c
 
+diff --git a/Documentation/devicetree/bindings/watchdog/vm-wdt.yaml b/Documentation/devicetree/bindings/watchdog/vm-wdt.yaml
+new file mode 100644
+index 000000000000..5365c963a7f6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/vm-wdt.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/vm-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: VM watchdog
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++maintainers:
++  - Sebastian Ene <sebastianene@google.com>
++
++properties:
++  compatible:
++    enum:
++      - qemu,vm-watchdog
++  clock:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      The watchdog internal clock measure in Hz used to decrement the
++      watchdog counter register on each tick.
++      Defaults to 10 if unset.
++  timeout-sec:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      The watchdog expiration timeout measured in seconds.
++      Defaults to 8 if unset.
++
++required:
++  - compatible
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog {
++      compatible = "qemu,vm-watchdog";
++      clock = <10>;
++      timeout-sec = <8>;
++    };
++
++...
 -- 
 2.35.1.1094.g7c7d902a7c-goog
 
