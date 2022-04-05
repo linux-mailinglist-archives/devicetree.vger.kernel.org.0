@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E6A4F2CF7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 13:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 928894F2B49
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 13:09:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239575AbiDEJyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 05:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34668 "EHLO
+        id S1350110AbiDEJys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 05:54:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344210AbiDEJSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:18:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B48709E9E5
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 02:05:26 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nbf7h-0003mS-6S; Tue, 05 Apr 2022 11:05:13 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nbf7d-0003gt-2b; Tue, 05 Apr 2022 11:05:09 +0200
-Date:   Tue, 5 Apr 2022 11:05:09 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <Kever.yang@rock-chips.com>
-Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
-Message-ID: <20220405090509.GP4012@pengutronix.de>
-References: <20220328151116.2034635-21-s.hauer@pengutronix.de>
- <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
- <20220330063913.GW12181@pengutronix.de>
- <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
- <20220331070614.GD4012@pengutronix.de>
- <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
- <20220331081815.GF4012@pengutronix.de>
- <8aa9da47-d7ed-41bf-384c-103757c19fe2@rock-chips.com>
- <20220401125527.GM4012@pengutronix.de>
- <7b2630d8-0575-5d65-dd81-3ef336ad5ba7@rock-chips.com>
+        with ESMTP id S244534AbiDEJl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:41:28 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059BABBE03
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 02:26:57 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id s21so2908732pgs.4
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 02:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KAIC36RoAaF0zMvy5en9w7Q3tRhDi5KYODVjE0XiqsM=;
+        b=R/H2aztL1jGJL8oyCL6x+4jrviOl2E2lcnooHGunHkrmkuTg/y0RURtD6fu6NQDhuC
+         dkIBQm1mljqruYdFp3hSnrZA9aJuwS5PjptBG/aixt2fJaMUpoLnYofOI0x1tIhuIxn7
+         Q8kh5SZSIPgNVxWAl34QDS7E+8njX9feMw3Vt1D0eHSWzJ/6opMhoHyQahGOA+wrME58
+         EkGP7o84+nouYtXGJbTlQUYH8FsOLJj1nQlt3dub+gH+V3CFK4W0kzBJYEOD9jnHeuJq
+         rhMs5u3VWDOoRnvYkvMuc7Szf3oANvO9fGSEhoGISDdgA3FC+1NvPK/TvVNz9Hf6rkar
+         zNMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KAIC36RoAaF0zMvy5en9w7Q3tRhDi5KYODVjE0XiqsM=;
+        b=aIEQoRcTydnjlKxN/pOd1qcWbw9rxFHXCplnIfiltHhfYFnEA9cjIfIY2rCzmWCqVI
+         i6/6VAQ9qNijBMqhLCCNv7zOs0gTfZFUrKuZ4Mz1nOcuVFhkCTi6VftJSEg24fJVpnHe
+         sz5+qa2zqQQx0pSXt9m4JEKs2H3OcG14stvQdUYL5VmVFHz2lnHePybaWFKiHDRWjEnk
+         +lCNBsRjlvQJWQ2jtSp97aYkoiPBndok92scq+wqj0jOK0N7dFnwgD2d53zad+FgqMqL
+         WCUauMidHfKWteOF8LETvsR10P2LbWpRYRoADp3Dhh46WYlmrzw1aXPZSofQVg+0SfaP
+         myPw==
+X-Gm-Message-State: AOAM531hmuYN863PdNAg7qKUq7woFliwg2NLgBF4t+ZzZxSj4YQy6ttI
+        ABSTKBHosLw0L5UlGTxhZ0A6OA==
+X-Google-Smtp-Source: ABdhPJyK5yJU1KSceQDQyjByfs3eQ5OW0HgoipKSPHrNybszdA6k8ufcPCd75t/IzkEAfuEH+hJ3nw==
+X-Received: by 2002:a05:6a00:21c6:b0:4fa:914c:2c2b with SMTP id t6-20020a056a0021c600b004fa914c2c2bmr2750101pfj.56.1649150815761;
+        Tue, 05 Apr 2022 02:26:55 -0700 (PDT)
+Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id b4-20020aa78704000000b004fe0ce6d6e1sm5824291pfo.32.2022.04.05.02.26.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Apr 2022 02:26:55 -0700 (PDT)
+From:   Andy Chiu <andy.chiu@sifive.com>
+To:     davem@davemloft.net, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com
+Cc:     andrew@lunn.ch, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Chiu <andy.chiu@sifive.com>
+Subject: [PATCH v8 net-next 0/4] Fix broken link on Xilinx's AXI Ethernet in SGMII mode
+Date:   Tue,  5 Apr 2022 17:19:25 +0800
+Message-Id: <20220405091929.670951-1-andy.chiu@sifive.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7b2630d8-0575-5d65-dd81-3ef336ad5ba7@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:18:17 up 5 days, 20:47, 58 users,  load average: 0.42, 0.29, 0.24
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,154 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 02, 2022 at 09:25:33AM +0800, Andy Yan wrote:
-> Hi Sascha:
-> 
-> On 4/1/22 20:55, Sascha Hauer wrote:
-> > On Thu, Mar 31, 2022 at 07:00:34PM +0800, Andy Yan wrote:
-> > > Hi:
-> > > 
-> > > On 3/31/22 16:18, Sascha Hauer wrote:
-> > > > On Thu, Mar 31, 2022 at 03:20:37PM +0800, Andy Yan wrote:
-> > > > > Hi Sascha:
-> > > > > 
-> > > > > On 3/31/22 15:06, Sascha Hauer wrote:
-> > > > > > On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
-> > > > > > > Hi Sascha:
-> > > > > > > 
-> > > > > > > On 3/30/22 14:39, Sascha Hauer wrote:
-> > > > > > > > Hi Andy,
-> > > > > > > > 
-> > > > > > > > On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
-> > > > > > > > > Hi Sascha:
-> > > > > > > > > 
-> > > > > > > > > On 3/28/22 23:11, Sascha Hauer wrote:
-> > > > > > > > > > With upcoming VOP2 support VOP won't be the only choice anymore, so make
-> > > > > > > > > > the VOP driver optional.
-> > > > > > > > > > 
-> > > > > > > > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > > > > > > > > ---
-> > > > > > > > > >       drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
-> > > > > > > > > >       drivers/gpu/drm/rockchip/Makefile           | 3 ++-
-> > > > > > > > > >       drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
-> > > > > > > > > >       3 files changed, 11 insertions(+), 2 deletions(-)
-> > > > > > > > > > 
-> > > > > > > > > > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> > > > > > > > > > index fa5cfda4e90e3..7d22e2997a571 100644
-> > > > > > > > > > --- a/drivers/gpu/drm/rockchip/Kconfig
-> > > > > > > > > > +++ b/drivers/gpu/drm/rockchip/Kconfig
-> > > > > > > > > > @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
-> > > > > > > > > >       if DRM_ROCKCHIP
-> > > > > > > > > > +config ROCKCHIP_VOP
-> > > > > > > > > > +	bool "Rockchip VOP driver"
-> > > > > > > > > > +	default y
-> > > > > > > > > > +	help
-> > > > > > > > > > +	  This selects support for the VOP driver. You should enable it
-> > > > > > > > > > +	  on all older SoCs up to RK3399.
-> > > > > > > > That reminds me that I wanted to rephrase this. Will change in next
-> > > > > > > > round.
-> > > > > > > > 
-> > > > > > > > > > +
-> > > > > > > > > >       config ROCKCHIP_ANALOGIX_DP
-> > > > > > > > > >       	bool "Rockchip specific extensions for Analogix DP driver"
-> > > > > > > > > > +	depends on ROCKCHIP_VOP
-> > > > > > > > > Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
-> > > > > > BTW I just looked at the downstream driver. Here we have the same
-> > > > > > situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
-> > > > > > which is implemented in the VOP driver, so when the analogix dp driver
-> > > > > > is actually used on a VOP2 SoC then it is either used in a way that
-> > > > > > rockchip_drm_wait_vact_end() will never be called or it explodes in all
-> > > > > > colours.
-> > > > > > 
-> > > > > > > > I added the dependency because analogix_dp-rockchip.c calls
-> > > > > > > > rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
-> > > > > > > > so this driver currenty can't work with the VOP2 driver and can't
-> > > > > > > > be linked without the VOP driver being present.
-> > > > > > > > I'll add a few words to the commit message.
-> > > > > > > Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
-> > > > > > > driver to rockchip_drm_drv.c
-> > > > > > I am not sure if that's really worth it. Yes, the direction might be the
-> > > > > > right one, but I would really prefer when somebody does the change who
-> > > > > > can test and confirm that the analogix dp really works with VOP2 in the
-> > > > > > end.
-> > > > > If follow this point, the current DW_MIPI also has not been tested for
-> > > > > confirm that it
-> > > > > 
-> > > > > can really work with VOP2, so you should also make it depends on
-> > > > > ROCKCHIP_VOP.
+The Ethernet driver use phy-handle to reference the PCS/PMA PHY. This
+could be a problem if one wants to configure an external PHY via phylink,
+since it use the same phandle to get the PHY. To fix this, introduce a
+dedicated pcs-handle to point to the PCS/PMA PHY and deprecate the use
+of pointing it with phy-handle. A similar use case of pcs-handle can be
+seen on dpaa2 as well.
 
-Here you are suggesting to add even more Kconfig dependencies.
+--- patch v5 ---
+ - Re-apply the v4 patch on the net tree.
+ - Describe the pcs-handle DT binding at ethernet-controller level.
+--- patch v6 ---
+ - Remove "preferrably" to clearify usage of pcs_handle.
+--- patch v7 ---
+ - Rebase the patch on latest net/master
+--- patch v8 ---
+ - Rebase the patch on net-next/master
+ - Add "reviewed-by" tag in PATCH 3/4: dt-bindings: net: add pcs-handle
+   attribute
+ - Remove "fix" tag in last commit message since this is not a critical
+   bug and will not be back ported to stable.
 
-> > > > Well at least I have patches here which make DW_MIPI work with VOP2 ;)
-> > > 
-> > > But you DW_MIPI patches for rk356x didn't come. So this is not keep
-> > > consistency with this point.
-> > > 
-> > > > What about the others, like LVDS and RGB?
-> > > 
-> > > Yes, we also have other interface , RK356X has LVDS/RGB/BT1120/BT656, RK3588
-> > > has BT1120/BT656, no LVDS or RGB.
-> > > 
-> > > > > I think the current solution is just a workaround to make your patch pass
-> > > > > the kernel compile
-> > > > Indeed.
-> > > > 
-> > > > I agree that it would be good to add a note somewhere which outputs
-> > > > work with the VOP2 driver (currently only HDMI), but I wonder if Kconfig
-> > > > dependencies is the right place for it, because only people who deliberately
-> > > > disable VOP support will see this information.
-> > > > Maybe we should rather add it to the Kconfig help text?
-> > > 
-> > > If a device is supported for this soc, we will add dt node at the dtsi file.
-> > > 
-> > > A Kconfig dependencies don't seems a good idea.
+Andy Chiu (4):
+  net: axienet: setup mdio unconditionally
+  net: axienet: factor out phy_node in struct axienet_local
+  dt-bindings: net: add pcs-handle attribute
+  net: axiemac: use a phandle to reference pcs_phy
 
-Here you say Kconfig dependencies are no good idea.
-
-> > Ok, this means we can keep my current approach with just letting
-> > ROCKCHIP_ANALOGIX_DP depend on ROCKCHIP_VOP to avoid having a non
-> 
-> Excuse me? How do you get this conclusion ?
-
-Given that you say that you want to have both more and less Kconfig
-dependencies I came to the conclusion that I only add one where it's
-necessary to compile the driver.
-
-> 
-> I said before,  vop and vop2 based platforms both have ROCKCHIP_ANALOGIX_DP.
-
-Maybe, but vop2 with ROCKCHIP_ANALOGIX_DP doesn't even work in the
-Rockchip downstream kernel, so I wonder how relevant this usecase really
-is.
-
-> 
-> If this patch will cause the compile error, please do a real fix, not a
-
-I can't, because I don't have any hardware to test the Analogix DP on a
-VOP hardware, and given that Analogix DP in conjunction with VOP2 hardware is
-not even supported in the downstream Kernel I am not sure if it's really
-worth doing that.
-
-Moving rockchip_drm_wait_vact_end() to rockchip_drm_drv.c doesn't work
-with mainline currently, we first would have to add a struct crtc_funcs
-to struct rockchip_drm_private. Yes, that could be done.
-
-> 
-> workaround that may deliver misleading information.
-
-The Kconfig dependency quite clearly says that the Analogix DP currently
-doesn't work with the VOP2. Anyone who wants to change that can use that
-information as a starting point and implement whatever is necessary and
-likely has the hardware to verify the work. I don't want to solve
-problems that *might* arise in the future, and in this case it's not a
-direction decision that we might regret in the future.
-
-Sascha
-
-
+ .../bindings/net/ethernet-controller.yaml     |  6 ++++
+ .../bindings/net/xilinx_axienet.txt           |  8 ++++-
+ drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 --
+ .../net/ethernet/xilinx/xilinx_axienet_main.c | 33 ++++++++++---------
+ 4 files changed, 31 insertions(+), 18 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.34.1
+
