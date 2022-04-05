@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D01D4F4ACA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B15A84F4A8C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1452132AbiDEWvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:51:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52796 "EHLO
+        id S237500AbiDEWs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:48:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1443623AbiDEPkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:40:00 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D0D17DC8A
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 06:57:19 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id yy13so26943498ejb.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 06:57:19 -0700 (PDT)
+        with ESMTP id S1443824AbiDEPkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:40:20 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D5D5A5B2
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 07:00:12 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id f18so9955307edc.5
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 07:00:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IVfxiW6zKe0dHxT2NnEjml4pjCNh93EsN7m5exyESZw=;
-        b=UXRyAeEeXf2x76rRsTVT85Yu3qMDdIO8T76/plyF2HR/xrK6SSH+NaRviJpVZh7Qwg
-         sDlhRAI83MwCI3gbOLnBxOCANE1IcKQwEfrAwCIyDHAAtFq710fD+ZRlVWZv/xEqZlP2
-         2xaaXUL1FQTdhZiuvu+h3FVmKJ21wi4tSIvUxoAwP1nhl6vffFEzbfhRI4nAsZi2EVnd
-         pMeyjuSEWFMQCRF/nJ7z/vfgUOwNgvH2iTxe8G1ZXH7d9W9pBEqLvYhucm/tg3XSPyUf
-         uvwFMkqw+KsPAZDRjdA3KHBjqlNYwp3fE3vsEHxRyU2l/m40UVa6h2Ljee9euWBm9D1t
-         GkIw==
+        bh=yssQkD7Do9xm8UR+YlTAdHUKXFIsMM4DyfogZGeGdwI=;
+        b=ZkxMexE503Eff9aL8DCM5qBZDdllnLfsgdU8bEgtKsMA0FNvX8+exKDt8wSqv7O0cP
+         qeWqstaDcKx9wgdTMOAtcq7iCVGOSXuDbSasBuerncoIzc6tbJ1Gyd8vmiRuURoqmPWz
+         hROPZJYXqWEEblhiinEuLB0D0uGaZgdsuy88r1t/j7MEMBsMGYPNuCgrLozjilFWQ9gT
+         wk1iv+EW18vEyz+Os1sxl3Qsnl8RIy61YU/zd3dUlQ7UxHwOtNxlywQE1T4TV5FMMdKt
+         4SHQKSHmgPeG/b6l2oC+7WDAlzIHC0FNdlOgsa7JCUNVxz0s6uWX3CLd/FuT/wfTh/aC
+         4IAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=IVfxiW6zKe0dHxT2NnEjml4pjCNh93EsN7m5exyESZw=;
-        b=PH/ojEKqM1o2pGtln0CyRodS+NYRqzSlcsivZ3S4TjDqMhZLVS9UEhM0wGmCbGco72
-         G3Ur65D6y0yGAhWnZDh63+kRYSZsWa7sCq2p7Hoh8v2O03TFISN4GY5kmPPe1qjSsAUg
-         WPLxjSXwgbyNj22BIMAbaePqfhotP7DlUvfeA0jud2hfYPB2/Gfqh6Fk7MI+Anv7R1Ye
-         rMPm++PQ7nzo2LVPdVWpchsNE/sEnIm7QBhWhldut9Rn+6DXGtiKLIYmFqVmmW9w0s3m
-         n1O+6A8QtgPQPbf86Csz4dHK8fuRclbEnAtJI2Gl1PYJFRUYhZR665dz9RIfxoMH8pC1
-         vTJw==
-X-Gm-Message-State: AOAM531Oa/zlZiF9347/AANtTBMj6v9B7yWc9z7enzWsyEm5dWWPDo7s
-        dFmmB9YWn8SaNaISLrwP2qnGUQ==
-X-Google-Smtp-Source: ABdhPJzrbED2j3hKopCA4gDE01wRh9WEQTM3OOohAmICtp6UQWRL7za5ii7DlT49Qvcs5o0Kwd6rww==
-X-Received: by 2002:a17:906:3ad3:b0:6cd:382b:86e5 with SMTP id z19-20020a1709063ad300b006cd382b86e5mr3579318ejd.145.1649167038173;
-        Tue, 05 Apr 2022 06:57:18 -0700 (PDT)
+        bh=yssQkD7Do9xm8UR+YlTAdHUKXFIsMM4DyfogZGeGdwI=;
+        b=bHm7p5mdfXshGn/BPw59dKmgfuZw893E6PvpkDCmZhhAqZFe81GpSptbwEkeynp48E
+         8XM6q4q7jjzqYSV3XtcXFGcrNGW1QzYyXwC5NrYu27oED1E1dkPENDPyG46RL0vl1kWP
+         hk9U6sXkHChJlGrWmkW75vFmg2iq5O+IJHVDVWntyzQ1NtlcqLVXWDmox+u0pFM6FOBI
+         GFUN23dD4/WS1MXQrriftmMvLZIkiLlJm+ynrY0ZQvtZbg6j28miSJEixhfxPU3b+1SV
+         8JcnXdGyZDfQW/FK9jMDYynmZ1aJX0pa361LxAiwR/y6dXcnSQZZrwPTE0gXnL/WOccz
+         cB0w==
+X-Gm-Message-State: AOAM531jqomxS7nlvY0wV4OwaYW6NaX9o1pGVg7aU3VPGhq4UD4ekEcu
+        KoI3W2RjqeJdXWu1F0xJFXYV7w==
+X-Google-Smtp-Source: ABdhPJz1bWR2hBZu8gqH0382mWzhtYAnndbapb86xJpCSXunZFL73rVdqd6pzmIP0a/dTleS03+msQ==
+X-Received: by 2002:a05:6402:5243:b0:419:4ce2:cb5c with SMTP id t3-20020a056402524300b004194ce2cb5cmr3773653edd.151.1649167211320;
+        Tue, 05 Apr 2022 07:00:11 -0700 (PDT)
 Received: from [192.168.0.182] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id v20-20020a056402349400b00419651e513asm6776474edc.45.2022.04.05.06.57.17
+        by smtp.gmail.com with ESMTPSA id n5-20020a1709065e0500b006e4dae9b1besm5150568eju.145.2022.04.05.07.00.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 06:57:17 -0700 (PDT)
-Message-ID: <e3247f0f-5d3d-d981-699e-7dcedb30f881@linaro.org>
-Date:   Tue, 5 Apr 2022 15:57:16 +0200
+        Tue, 05 Apr 2022 07:00:10 -0700 (PDT)
+Message-ID: <b269be83-3e45-fb36-75ab-e1c20ad6906f@linaro.org>
+Date:   Tue, 5 Apr 2022 16:00:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] i2c: add binding to prevent device detection
+Subject: Re: [PATCH 1/4 v5] dt-bindings: Add Rockchip rk817 battery charger
+ support
 Content-Language: en-US
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>, wsa@kernel.org
-Cc:     kernel@axis.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
- <20220405121627.1560949-2-vincent.whitchurch@axis.com>
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
+        zyw@rock-chips.com, jon.lin@rock-chips.com,
+        maccraft123mc@gmail.com, sre@kernel.org, heiko@sntech.de,
+        krzk+dt@kernel.org, robh+dt@kernel.org, lee.jones@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220404215754.30126-1-macroalpha82@gmail.com>
+ <20220404215754.30126-2-macroalpha82@gmail.com>
+ <74f445c2-3194-80a6-6d52-21368eb6172a@linaro.org>
+ <20220405131228.GA20@wintermute.localdomain>
+ <ac2b29c2-b3ec-eb03-595f-b0328e40015c@linaro.org>
+ <20220405135424.GA20@wintermute.localdomain>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220405121627.1560949-2-vincent.whitchurch@axis.com>
+In-Reply-To: <20220405135424.GA20@wintermute.localdomain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,44 +84,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2022 14:16, Vincent Whitchurch wrote:
-> When drivers with ->detect callbacks are loaded, the I2C core does a
-> bunch of transactions to try to probe for these devices, regardless of
-> whether they are specified in the devicetree or not.  (This only happens
-> on I2C controllers whose drivers enable the I2C_CLASS* flags, but this
-> is the case for generic drivers like i2c-gpio.)
+On 05/04/2022 15:54, Chris Morgan wrote:
+> On Tue, Apr 05, 2022 at 03:35:04PM +0200, Krzysztof Kozlowski wrote:
+>> On 05/04/2022 15:12, Chris Morgan wrote:
+>>> On Tue, Apr 05, 2022 at 01:16:55PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 04/04/2022 23:57, Chris Morgan wrote:
+>>>>> From: Chris Morgan <macromorgan@hotmail.com>
+>>>>>
+>>>>> Create dt-binding documentation to document rk817 battery and charger
+>>>>> usage. New device-tree properties have been added.
+>>>>>
+>>>>> - rockchip,resistor-sense-micro-ohms: The value in microohms of the
+>>>>>                                       sample resistor.
+>>>>> - rockchip,sleep-enter-current-microamp: The value in microamps of the
+>>>>>                                          sleep enter current.
+>>>>> - rockchip,sleep-filter-current: The value in microamps of the sleep
+>>>>>                                  filter current.
+>>>>>
+>>>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>>>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>>>> ---
+>>>>>  .../bindings/mfd/rockchip,rk817.yaml          | 48 +++++++++++++++++++
+>>>>>  1 file changed, 48 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+>>>>> index bfc1720adc43..b949d406a487 100644
+>>>>> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+>>>>> @@ -117,6 +117,47 @@ properties:
+>>>>>          description:
+>>>>>            Describes if the microphone uses differential mode.
+>>>>>  
+>>>>> +  battery:
+>>>>
+>>>> I wonder why do you call it a batter while it is a charger, isn't it?
+>>>
+>>> It is a driver for both the battery and charger. I'd argue about 95% of
+>>> it is battery functions and the other 5% is managing the IRQs for plug
+>>> removal/insertion and capturing the incoming voltage and current. In
+>>> the BSP kernel these were two seperate drivers, but there was so little
+>>> that needed to be done for the charger (and users probably don't need
+>>> plug IRQs if they aren't using a battery anyway since the system will
+>>> shut off on a plug out event due to no power...).
+>>
+>> What do you mean by driver for "battery"? Like some smart-battery
+>> system? with embedded battery (RK817 comes with embedded battery) Or a
+>> fuel gauge? Judging by power supply properties it looks like fuel gauge.
 > 
+> It's basically just additional registers in the rk817 PMIC. The PMIC is
+> controlled via I2C and contains multiple regulators, an audio codec,
+> an RTC, some GPIO, some nvram, a columb counter for the battery, and an
+> ADC for measuring input current/voltage/temperature (for battery or
+> charger). 
 
-Thank you for your patch. There is something to discuss/improve.
+Actually you mentioned it in the cover letter - it's a PMIC, not a
+battery. I doubt that it's embedded with a battery. :)
 
-> These kinds of transactions are unnecessary on systems where the
-> devicetree specifies all the devices on the I2C bus, so add a property
-> to allow them to be disabled.
+> This driver deals with the columb counter, the ADC, and a few
+> bits of nvram for storing battery values to retain backwards
+> compatibility with the BSP kernel and bootloader, and handling IRQs
+> related to inserting or removing the charger (curiously my
+> implementation ALSO has a charger sense GPIO in addition to the PMIC
+> being able to sense that).
 > 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c.txt | 4 ++++
+> The driver itself is named rk817_charger. If you think I should change
+> this from battery to "fuel gauge" or "charger" let me know and I can
+> resubmit. Whatever makes it clearer for everyone.
 
-Use the subject matching the subsystem (git log --oneline -- .......).
-
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-> index fc3dd7ec0445..5f7bdf4851e8 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c.txt
-> +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-> @@ -72,6 +72,10 @@ wants to support one of the below features, it should adapt these bindings.
->  	this information to adapt power management to keep the arbitration awake
->  	all the time, for example. Can not be combined with 'single-master'.
->  
-> +- no-detect
-> +	states that the system should not attempt to automatically detect
-> +	devices which are not explicitly specified as child nodes.
-
-Focus on the hardware, not on system and behavior. The hardware property
-is that bus is completely described in Devicetree or detection does not
-work correctly. I guess the property name could stay like this, but the
-description could be rephrased.
+Yeah, the property name and bindings should describe the hardware, so in
+such case the hardware is rather a "charger" or "fuel-gauge". Your
+"battery-cell" from DTS is probably just a "battery" (unless you expect
+multiple cells?).
 
 Best regards,
 Krzysztof
