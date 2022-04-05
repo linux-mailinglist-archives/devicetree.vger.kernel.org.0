@@ -2,52 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66FB4F3ABB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 17:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 372834F3AB7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 17:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242052AbiDELrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 07:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
+        id S237622AbiDELq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 07:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357315AbiDEK0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 06:26:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E32436B4A;
-        Tue,  5 Apr 2022 03:09:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7D611B81C8A;
-        Tue,  5 Apr 2022 10:09:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8A98C385A1;
-        Tue,  5 Apr 2022 10:09:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1649153397;
-        bh=nsMVqSRmbTxbVvk5/HlwdAtS8BXE3eHLwo+t3A5U5NU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Mx3wquoogz9Ewj0P2CLiutDkq1Oto/U3+ejxvX9AYMY+4ljseW41UaZ4UoFq6ZuYb
-         XFRbATKQgetodSRa50W0MY9BlxIVgd4uaeOEewSWu3tl7r/UyBLh8Sm58aHicuy6TP
-         a8kgZeNQ4KefIDfji+vt5+TPf1B0PHBelGwm070Y=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, devicetree@vger.kernel.org,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.10 209/599] arm64: dts: qcom: sm8150: Correct TCS configuration for apps rsc
-Date:   Tue,  5 Apr 2022 09:28:23 +0200
-Message-Id: <20220405070305.060056814@linuxfoundation.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220405070258.802373272@linuxfoundation.org>
-References: <20220405070258.802373272@linuxfoundation.org>
-User-Agent: quilt/0.66
+        with ESMTP id S1377826AbiDELap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 07:30:45 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576C3104A70;
+        Tue,  5 Apr 2022 03:53:12 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id C6CB91F447BD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1649155990;
+        bh=vbpJujH4YJwR8KBxqqHpYpR3xjSW2I3+dKENzMhmXpo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=bQgisYcudgfxXVLV96zJHCYHmmfrOLvV61ygGV9/Id5oj1HIMKiMolrGD7QiXlr2I
+         1JbjfvjB7eFW0kt2Zz3zuF08/KywQlzbF56SqgyfmuwVaA+UAJ4tCbzzyR2uSUsaKv
+         pv+2iDrUpBwgxBo1xxrmf5ZkRjRiEWaD2VQiAhH6EMEI6s6SJHMyKLXoL8SZl9P+W3
+         BPbwDERjNXU2OjAVBoraV3ETk8Elk4b2oUz3x32Bcr6i6ynrdKtlklxAw+8w6qZPkC
+         H4vMOt585NWWGN5hqp7q7XZI4h0PzKBxYwggt5UDYVHGLvutWdHDrU+CWygNlRydB7
+         HvpY8alUliJiw==
+Message-ID: <c67bd1e5-19c9-55b3-5b79-e2e6ca0257f5@collabora.com>
+Date:   Tue, 5 Apr 2022 12:53:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 2/3] thermal: mediatek: Add LVTS drivers for SoC
+ theraml zones
+Content-Language: en-US
+To:     Ben Tseng <ben.tseng@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Michael Kao <michael.kao@mediatek.com>,
+        Yu-Chia Chang <ethan.chang@mediatek.com>
+References: <20210617114707.10618-1-ben.tseng@mediatek.com>
+ <20210617114707.10618-3-ben.tseng@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20210617114707.10618-3-ben.tseng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,41 +67,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maulik Shah <quic_mkshah@quicinc.com>
+Il 17/06/21 13:47, Ben Tseng ha scritto:
+> From: Michael Kao <michael.kao@mediatek.com>
+> 
+> Add a LVTS (Low voltage thermal sensor) driver to report junction
+> temperatures in Mediatek SoC and register the maximum temperature
+> of sensors and each sensor as a thermal zone.
+> 
+> Signed-off-by: Yu-Chia Chang <ethan.chang@mediatek.com>
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
 
-[ Upstream commit 17ac8af678b6da6a8f1df7da8ebf2c5198741827 ]
+Hello Ben,
 
-Correct the TCS config by updating the number of TCSes for each type.
+are you still interested in upstreaming this driver?
 
-Cc: devicetree@vger.kernel.org
-Fixes: d8cf9372b654 ("arm64: dts: qcom: sm8150: Add apps shared nodes")
-Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/1641749107-31979-2-git-send-email-quic_mkshah@quicinc.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Having thermal sensors is pretty much important to avoid damaging
+the hardware, and MT8195 is being actively upstreamed right now.
+Reading thermals is a must.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 1aec54590a11..a8a47378ba68 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -1114,9 +1114,9 @@
- 			qcom,tcs-offset = <0xd00>;
- 			qcom,drv-id = <2>;
- 			qcom,tcs-config = <ACTIVE_TCS  2>,
--					  <SLEEP_TCS   1>,
--					  <WAKE_TCS    1>,
--					  <CONTROL_TCS 0>;
-+					  <SLEEP_TCS   3>,
-+					  <WAKE_TCS    3>,
-+					  <CONTROL_TCS 1>;
- 
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sm8150-rpmh-clk";
--- 
-2.34.1
-
-
-
+Regards,
+Angelo
