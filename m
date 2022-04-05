@@ -2,87 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B106F4F4437
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93C7F4F4532
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 00:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242722AbiDEN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 09:59:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53350 "EHLO
+        id S240593AbiDEN5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 09:57:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380267AbiDENOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:14:00 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307D312343F;
-        Tue,  5 Apr 2022 05:16:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1649160997;
-  x=1680696997;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IQbFdsIycaKMPC2WtqAU6bZcJ0n+YEHMU/Uu+zlGT7I=;
-  b=ae7dSkD7GoCDc2NTaNCq3XgDrTcm4p7/80S49gpON3AX+mYkUIK84gnr
-   jnK5D2akK5XnMwxmSBJSt231FFA755yUKQmY1aQUTnPi9SeTtJHyHSeH6
-   oGk/xBHyVyz1j12hQ7Xp41SzTa4gGfwUDk4nfaHC+xxEfhzwM2A7ypP6T
-   6wdpGzTOU+WO5QoCummNdb2bJR8dtJBVNjeRYBNMFuJ6VEpDF8P/yP8We
-   qLCVY+WiFMpZq2DdG73QIP4oDnbwP9A56lVtoP0WpqP3jcnKcndsP7d01
-   R4wu1f2NXr88o+GsfnvzlQRc6npEroX8psnY3nyn8gyebdVTuznsxNq+T
-   Q==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <wsa@kernel.org>
-CC:     <kernel@axis.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <krzk+dt@kernel.org>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/2] i2c: add binding to prevent device detection
-Date:   Tue, 5 Apr 2022 14:16:26 +0200
-Message-ID: <20220405121627.1560949-2-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
-References: <20220405121627.1560949-1-vincent.whitchurch@axis.com>
+        with ESMTP id S1380608AbiDENOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 09:14:06 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C702124C39;
+        Tue,  5 Apr 2022 05:17:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=TirUZa2jtJKxHIJLfrDdujcbpWXA+2UOaacwLbMHXu4=; b=HcqpA4hY9ri79fso0f339rrMcs
+        wCZmTFSHG5Z4XYSQx1NT4zatymh5toRG4XsyM+hmnBPwUA/ssg0FePcwNGIE9y1MK1pIDF1RbBd3u
+        qNkbgw1mAGxIDeegLAA6z4cJugPe8Nd8aaaOAzCUZHnivd0uVrXhc9oVxZwqR5Qo3Pm8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nbi7F-00EFMA-MV; Tue, 05 Apr 2022 14:16:57 +0200
+Date:   Tue, 5 Apr 2022 14:16:57 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andy Chiu <andy.chiu@sifive.com>
+Cc:     davem@davemloft.net, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Robert Hancock <robert.hancock@calian.com>
+Subject: Re: [PATCH v8 net-next 1/4] net: axienet: setup mdio unconditionally
+Message-ID: <YkwzOSR1yzspdCq3@lunn.ch>
+References: <20220405091929.670951-1-andy.chiu@sifive.com>
+ <20220405091929.670951-2-andy.chiu@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220405091929.670951-2-andy.chiu@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When drivers with ->detect callbacks are loaded, the I2C core does a
-bunch of transactions to try to probe for these devices, regardless of
-whether they are specified in the devicetree or not.  (This only happens
-on I2C controllers whose drivers enable the I2C_CLASS* flags, but this
-is the case for generic drivers like i2c-gpio.)
+On Tue, Apr 05, 2022 at 05:19:26PM +0800, Andy Chiu wrote:
+> The call to axienet_mdio_setup should not depend on whether "phy-node"
+> pressents on the DT. Besides, since `lp->phy_node` is used if PHY is in
+> SGMII or 100Base-X modes, move it into the if statement. And the next patch
+> will remove `lp->phy_node` from driver's private structure and do an
+> of_node_put on it right away after use since it is not used elsewhere.
+> 
+> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
+> Reviewed-by: Robert Hancock <robert.hancock@calian.com>
 
-These kinds of transactions are unnecessary on systems where the
-devicetree specifies all the devices on the I2C bus, so add a property
-to allow them to be disabled.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- Documentation/devicetree/bindings/i2c/i2c.txt | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-index fc3dd7ec0445..5f7bdf4851e8 100644
---- a/Documentation/devicetree/bindings/i2c/i2c.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-@@ -72,6 +72,10 @@ wants to support one of the below features, it should adapt these bindings.
- 	this information to adapt power management to keep the arbitration awake
- 	all the time, for example. Can not be combined with 'single-master'.
- 
-+- no-detect
-+	states that the system should not attempt to automatically detect
-+	devices which are not explicitly specified as child nodes.
-+
- - pinctrl
- 	add extra pinctrl to configure SCL/SDA pins to GPIO function for bus
- 	recovery, call it "gpio" or "recovery" (deprecated) state
--- 
-2.34.1
-
+    Andrew
