@@ -2,57 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2EB64F2226
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 06:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 892714F2242
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 06:50:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230394AbiDEET2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 00:19:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57386 "EHLO
+        id S229646AbiDEEwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 00:52:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231124AbiDEETQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 00:19:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F108C7665E;
-        Mon,  4 Apr 2022 21:16:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 40D386136F;
-        Tue,  5 Apr 2022 04:16:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDA07C340F0;
-        Tue,  5 Apr 2022 04:16:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649132179;
-        bh=WTPtM2b2ZKDKexhibsDpSmeAHFn61p8jAZEY8Se0LHk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UsaCAE7ioMMRJAtVrCYEXXg9XLk1bT7czgRscGZ0P9wH3xsyMBnVmzOeMz49Khzh3
-         cBsaNVSJ1w5crxDdMY9000khoqP/fhJVZ2oeOFQkCMH1comYraDYXJDlslDPzqmPnl
-         0QNWKs8fCKM/XV1VRpPKSy9/Hibz2DBR/AkXh+DAMn73myhC2R9kDD4iDfcNkmqKJh
-         vA4sjricMGXWi28oIOQ+BQk1jsVAkwTn8zvY8ct357InwSV38tdRUYHmeSw3I9B2ge
-         NZ8kIGuPWPjsKQr2xcqnvoNLc5XFkerUlQ8vl9Hi8tUYe77/cgSb7L9dYDcTyWj9Ev
-         4ofOfLe45g2Pw==
-Date:   Tue, 5 Apr 2022 09:46:15 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com
-Subject: Re: [RESEND v7 0/2] Add support for SoundWire1.6 audio cgcr register
- control
-Message-ID: <YkvCj7LCZfhd92wB@matsya>
-References: <1646317851-14414-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S229650AbiDEEw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 00:52:27 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B8613E1F;
+        Mon,  4 Apr 2022 21:49:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649134191; x=1680670191;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=dgzovPjWLMeA38zv3QKSxbGukw3E5edGBH7ydLwnKv8=;
+  b=prt5Nu1+FpVn6sUuBjknGG5vEhNDd7HQv4SdNUWz5hzHwAMoIQeqhU9d
+   vWPBWXl3rL8kOaf/lziwq4F4MqJfXxBs+OctnOcjE3nIHOYw0bR7L3k0K
+   UJMWvBFm7GrzFqx9xozid1W63SmxTin7HaZ0wYoR0LD0y2RtxJNez0kma
+   o=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 04 Apr 2022 21:49:51 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Apr 2022 21:49:50 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 4 Apr 2022 21:49:49 -0700
+Received: from [10.216.10.223] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 4 Apr 2022
+ 21:49:45 -0700
+Message-ID: <4d4969eb-59b2-63fc-02fb-169cff070047@quicinc.com>
+Date:   Tue, 5 Apr 2022 10:19:42 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1646317851-14414-1-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add lpass cpu node
+Content-Language: en-US
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
+        <dianders@chromium.org>, <judyhsiao@chromium.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <rohitkr@codeaurora.org>,
+        <srinivas.kandagatla@linaro.org>
+CC:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1647865696-19192-1-git-send-email-quic_srivasam@quicinc.com>
+ <1647865696-19192-3-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n51iMpwMXayMEbPrqO2b=wX-Lz8DYiZMNnzRNGY1BNSKYg@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <CAE-0n51iMpwMXayMEbPrqO2b=wX-Lz8DYiZMNnzRNGY1BNSKYg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,11 +72,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03-03-22, 20:00, Srinivasa Rao Mandadapu wrote:
-> This patch series is to add v1.6.0 compatible name for qcom soundwire
-> driver and corresponding dt bindings.
 
-Applied, thanks
-
--- 
-~Vinod
+On 3/22/2022 1:22 AM, Stephen Boyd wrote:
+Thanks for your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-03-21 05:28:15)
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 499299a..e6ec334 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -19,6 +19,7 @@
+>>   #include <dt-bindings/reset/qcom,sdm845-aoss.h>
+>>   #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+>>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>> +#include <dt-bindings/sound/qcom,lpass.h>
+>>   #include <dt-bindings/thermal/thermal.h>
+>>
+>>   / {
+>> @@ -1980,6 +1981,68 @@
+>>                          #clock-cells = <1>;
+>>                  };
+>>
+>> +               lpass_cpu: audio-subsystem@3260000 {
+> The unit address should match the first reg address. This should be
+> 3987000. By the way, 'subsystem' looks redundant. Maybe just
+> 'audio@3987000' or 'subsystem@3987000'?
+Okay. Will change accordingly.
