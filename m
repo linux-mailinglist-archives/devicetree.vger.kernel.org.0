@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A8314F2D91
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 13:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A414F3315
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 15:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240513AbiDEJyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 05:54:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59708 "EHLO
+        id S233946AbiDEJAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 05:00:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347201AbiDEJqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:46:08 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF21DD96E;
-        Tue,  5 Apr 2022 02:32:36 -0700 (PDT)
+        with ESMTP id S244885AbiDEIwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 04:52:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7645B240A0;
+        Tue,  5 Apr 2022 01:45:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5A60CB81CB3;
-        Tue,  5 Apr 2022 09:32:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 735BBC385A3;
-        Tue,  5 Apr 2022 09:32:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649151154;
-        bh=cg99cbuB8hB++j+fhgEa4ZdrqC7Cu38pehUZLH1w4KY=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=IIgjUBS99lYPqvwHgyFLa1h4B+7F7O2C9jIzDXHtBh4yXjL/VM5gyaqNRq/qVMVce
-         i6tJBXscdBWey2Qx0IHyiShR+AkNqxnxyrUSfgVC/JL69cuW1Er4dd+IP/QV2TAFJB
-         5N6HGtShxQqUbmLMshbvgbmhA8NnZK6O+W3oz+XRPr++uL07hQoTwk53wTXuEkQP4R
-         MkssquhUvVngM0wKXwsdAx0jQmvbuojxswkDIgZhOh46AkmfHITAb6TLu8SzVA9M8v
-         5/NLbwjd8FdUqQaDNY7uOhbyytzZJLBA/+DhcN7rYRzuC27tdUnGKwRlxRQ+frUPcM
-         kWO7h/NlW9i4Q==
-From:   Mark Brown <broonie@kernel.org>
-To:     leilk.liu@mediatek.com
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        matthias.bgg@gmail.com
-In-Reply-To: <20220401071616.8874-1-leilk.liu@mediatek.com>
-References: <20220401071616.8874-1-leilk.liu@mediatek.com>
-Subject: Re: [PATCH V7 0/3] spi: mediatek: add single/quad mode support
-Message-Id: <164915115220.276894.6481675196400953567.b4-ty@kernel.org>
-Date:   Tue, 05 Apr 2022 10:32:32 +0100
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F230F6117A;
+        Tue,  5 Apr 2022 08:45:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09E2FC385A0;
+        Tue,  5 Apr 2022 08:45:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1649148331;
+        bh=NQFMtH+kWndgmA+yhsg5RrKKwi97HfRpOI2EkHxbDk0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=EYHrzwwYZnxjqcH1aHHqeaaULRSHpyJNF3nxfvjQKQ+MTfR4Z85S9PKKGToiSH4aa
+         eJwJto9i+OUZ1f9o00C7eXV7KUDzojZv8xucHDF3hXvwbUKOdAoM3Sb8RmnEONN0KF
+         Ug6GWFtSeHf2VMzUNdF4gxt8c8yweTGtWxn/H+mo=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org, devicetree@vger.kernel.org,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.16 0319/1017] arm64: dts: qcom: sm8150: Correct TCS configuration for apps rsc
+Date:   Tue,  5 Apr 2022 09:20:32 +0200
+Message-Id: <20220405070403.747282298@linuxfoundation.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220405070354.155796697@linuxfoundation.org>
+References: <20220405070354.155796697@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -55,46 +55,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Apr 2022 15:16:13 +0800, Leilk Liu wrote:
-> This series of patches are based on spi for-next, and provide 3 patches to support MT7986.
-> 
-> V7:
-> 1. add Reviewed-by: Rob Herring
-> 
-> V6:
->  1. remove SPI_CFG3_IPM_PIN_MODE_OFFSET.
->  2. add Reviewed-by: AngeloGioacchino Del Regno
-> 
-> [...]
+From: Maulik Shah <quic_mkshah@quicinc.com>
 
-Applied to
+[ Upstream commit 17ac8af678b6da6a8f1df7da8ebf2c5198741827 ]
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Correct the TCS config by updating the number of TCSes for each type.
 
-Thanks!
+Cc: devicetree@vger.kernel.org
+Fixes: d8cf9372b654 ("arm64: dts: qcom: sm8150: Add apps shared nodes")
+Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/1641749107-31979-2-git-send-email-quic_mkshah@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-[1/3] spi: mediatek: add spi memory support for ipm design
-      commit: 9f763fd20da7d892ffaedac0c58d821922f8a674
-[2/3] dt-bindings: spi: support hclk
-      (no commit info)
-[3/3] spi: mediatek: support hclk
-      commit: a740f4e684c020ea57a8a198a9322d739f7ab6d5
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 81b4ff2cc4cd..37f758cc4cc7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3557,9 +3557,9 @@
+ 			qcom,tcs-offset = <0xd00>;
+ 			qcom,drv-id = <2>;
+ 			qcom,tcs-config = <ACTIVE_TCS  2>,
+-					  <SLEEP_TCS   1>,
+-					  <WAKE_TCS    1>,
+-					  <CONTROL_TCS 0>;
++					  <SLEEP_TCS   3>,
++					  <WAKE_TCS    3>,
++					  <CONTROL_TCS 1>;
+ 
+ 			rpmhcc: clock-controller {
+ 				compatible = "qcom,sm8150-rpmh-clk";
+-- 
+2.34.1
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
