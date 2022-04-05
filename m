@@ -2,103 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08D964F4B3D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 621AD4F4AE8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1573994AbiDEWyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:54:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
+        id S1573704AbiDEWwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:52:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1446545AbiDEPos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:44:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B6A220E6;
-        Tue,  5 Apr 2022 07:17:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D3A6860B0E;
-        Tue,  5 Apr 2022 14:17:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B25BEC385A6;
-        Tue,  5 Apr 2022 14:17:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649168267;
-        bh=MGKEOKuzG/zvLfWYpwbNWne2VYHu0gGNwDsvDh8cPyw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jPqroh2EK0MDuPgb5WnacCf6ssZHd95lDMSvChNGm9ZJ2nxe9+1xVISwVR1W77n7L
-         cdrLs31WHH+F0ZSAp8+eDIIhyK1D+5oOwGGfYe5TuF4MbSv5lJZF2/1ezRv3TWRAal
-         Qi4GZhfZai8uFU71eo9PKZPO7K5gkNmv931k48ZSHn5zD6Wci2PXCZNL4EUGuiSVHw
-         Y+JugbJ6g7lkPZAVu+8LZDe50CFE/R/Cfk5jUFN0GT27J5J1pHGsm1ILDxjWhUk956
-         52g791GTXf7nJry3EMVA/2dO28tDf2u6kjCfWNsjhPvsg0XsRDquQFbXWpy3k46Iw6
-         NRVwdMSGty9/A==
-Date:   Tue, 5 Apr 2022 15:17:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_jprakash@quicinc.com
-Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008
- PMIC
-Message-ID: <YkxPhcgBU3/5zu/P@sirena.org.uk>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
- <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8dPCbrnld0sz6d93"
-Content-Disposition: inline
-In-Reply-To: <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
-X-Cookie: diplomacy, n:
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1447319AbiDEPqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:46:18 -0400
+Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06BF91572
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 07:21:08 -0700 (PDT)
+Received: by mail-wm1-x349.google.com with SMTP id r6-20020a05600c35c600b0038e6db5da9cso1881584wmq.9
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 07:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=m3vxItKXnUJTINlJEdj+JcIaXhSRzpBzJXMN0Ho5eps=;
+        b=U/rCu1Z2QfNGh7871ZpZdN4wY/+Lh1Wn/I5Ha6phoPhUI3yRDteIeF+TZGPPbHc3Ai
+         BBQSP1z5sD9b+wklr0ZXpHQDx20253jpVlFYCml1fsblFB2Q243A1smZeVhSbDbYut0u
+         z7IHIiryy2SGXsp58k8lugrnBQWpAfe4UaUoIoiLNUWU6VPrmVSPjgLFVRjjlsnuviJh
+         g2vIiFzGHXI6KSMbAEIY16WttCiHeVwLMIUVeWsgv9R9tws08lP2EReN2yTioJTEcmxr
+         8dTXpSzd/4Gkzv5UDngHARkRMF8rXO+CxVkuFg6Z/c+C3T3Db9QNzs4r4LR3an7j0BQQ
+         bBuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=m3vxItKXnUJTINlJEdj+JcIaXhSRzpBzJXMN0Ho5eps=;
+        b=Lxen0uVHflG0TrzJS6YzV2YDfB/OEZfRXXMd5og8tmHtrDGrYDgvdzhLpo8OUVv4WL
+         8n711gZCmuvovIulzSTpLFpI1pAKcSv+9AofBpRLvOqKTiRxxF50ldJHuAz9LbeYDGSZ
+         FXqiVi4B5WlS+gBI+WdZ35lI9zfmfT01iecgwCtQNozO4xHgxBrpXEm+Vlb9ubxBCXwZ
+         tk8bxgvkQ1hLIIZMqnz58HcXVBi79uG4rm7wARAFUTQ4ZeKt//MQZKrM1X2Dz2nzANBt
+         8y84joR75/CpogqhQPHzfk2UySw+2VUk5sYHU5ZC6k5BIw+BMbVk+3h6pOt3NcfQM32M
+         YTZg==
+X-Gm-Message-State: AOAM532ehpZMBooyIPPMtr+qfVj+QJ+y2j1Uy5qjXOUeRLiM9J6v32vb
+        tT9dt36ketTIw5FC9gH1nz390+5C5P2WyyxbexM=
+X-Google-Smtp-Source: ABdhPJwN5QFMBNAx6z4lJuIDDPZMY0wbemxu/vZ7lASsb58ZkL62PcBPIS8ol+sPOaL6RzriqT4z3Z6RSNAw7S3JJqU=
+X-Received: from sene.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:27c4])
+ (user=sebastianene job=sendgmr) by 2002:a05:600c:4f87:b0:38c:adde:1d99 with
+ SMTP id n7-20020a05600c4f8700b0038cadde1d99mr3320464wmq.16.1649168466877;
+ Tue, 05 Apr 2022 07:21:06 -0700 (PDT)
+Date:   Tue,  5 Apr 2022 14:19:53 +0000
+Message-Id: <20220405141954.1489782-1-sebastianene@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.35.1.1094.g7c7d902a7c-goog
+Subject: [PATCH 0/2] Detect stalls on guest vCPUS
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, will@kernel.org,
+        qperret@google.com, maz@kernel.org,
+        Sebastian Ene <sebastianene@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds a mechanism to detect stalls on the guest vCPUS by creating a
+per CPU hrtimer which periodically 'pets' the host backend driver.
 
---8dPCbrnld0sz6d93
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This device driver acts as a soft lockup detector by relying on the host
+backend driver to measure the elapesed time between subsequent 'pet' events.
+If the elapsed time doesn't match an expected value, the backend driver
+decides that the guest vCPU is locked and resets the guest. The host
+backend driver takes into account the time that the guest is not
+running. The communication with the backend driver is done through MMIO
+and the register layout of the virtual watchdog is described as part of
+the backend driver changes.
 
-On Tue, Apr 05, 2022 at 07:20:31PM +0530, Satya Priya wrote:
+The host backend driver is implemented as part of:
+https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
 
-> +#include <linux/regulator/driver.h>
-> +#include <linux/regulator/machine.h>
+Sebastian Ene (2):
+  dt-bindings: watchdog: Add qemu,vm-watchdog compatible
+  watchdog: Add a mechanism to detect stalls on guest vCPUs
 
-Why does the driver need machine.h?  That's usually a bug, though I
-didn't spot anywhere where it's used so it's probably just an extra
-header.
+ .../devicetree/bindings/watchdog/vm-wdt.yaml  |  44 ++++
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/vm-wdt.c                     | 215 ++++++++++++++++++
+ 4 files changed, 268 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/vm-wdt.yaml
+ create mode 100644 drivers/watchdog/vm-wdt.c
 
-> +	.set_voltage_sel	= pm8008_regulator_set_voltage,
-> +	.get_voltage		= pm8008_regulator_get_voltage,
+-- 
+2.35.1.1094.g7c7d902a7c-goog
 
-You shouldn't mix and match the selector and non-selector operations,
-since the device just takes a voltage you may as well just use the
-non-selector version for both.
-
-Otherwise this all looks good, just those two minor points.
-
---8dPCbrnld0sz6d93
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJMT4QACgkQJNaLcl1U
-h9Bdqwf/cnfMmHDYBGxtxH531FkOi4AeNT824yzuUtVFoHINPdPqnSCCwvXipYpl
-L30uSZNKRSR2QOZ/M9jBxvKc5z+IsAYrkke05aYIWQM/oM/EdOFLvxNR/tVufCML
-wdZteUHPdYrx2NbuwHFEUvdFM/RoC3DKMvkn8FJgeSHi2831V6ubErKw7fp71AkV
-12zOtGw0i0fTApbzzhdOAXQPgWuPlnxuFCcr5dnWy0TcY0v8Gf1991tsyv9hSfVj
-mcHHSqNc3UjqDCNMdWRfOoJXjImyTfQ0oKi5abrw4F+A5FY3JpnOU07qJHm5QgKM
-8naBiSlmOAkzS3JIMaAPDvk9tcTYbQ==
-=hFPV
------END PGP SIGNATURE-----
-
---8dPCbrnld0sz6d93--
