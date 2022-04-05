@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E6D4F33E9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 15:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF274F32B0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Apr 2022 14:59:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347103AbiDEJyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 05:54:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60068 "EHLO
+        id S238411AbiDEJyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 05:54:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346822AbiDEJpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:45:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB3BF4C;
-        Tue,  5 Apr 2022 02:32:01 -0700 (PDT)
+        with ESMTP id S1346880AbiDEJpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 05:45:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2040C63CA;
+        Tue,  5 Apr 2022 02:32:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0832B6165C;
-        Tue,  5 Apr 2022 09:32:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19431C385A0;
-        Tue,  5 Apr 2022 09:31:59 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B0FC5B81CB5;
+        Tue,  5 Apr 2022 09:32:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E33D3C385A3;
+        Tue,  5 Apr 2022 09:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1649151120;
-        bh=DPE4lEaN7AW07NoT9T/QpdXfL1/FEnZ7YeZrORldwro=;
+        s=korg; t=1649151123;
+        bh=Ea5ndGWXz9K8ljtr3OiwEJECD2uDT/KjukYvFs0JZnY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=y+w+unzM28hgEDXyoMqw78eei5EhsnciwxX5YXJBS4c30wtvE90GYmWu7UPJhnPu7
-         Tyul9dYNRN4XLUU5HX8Zme4GErkSFWVZwppBQmfiSzDncrWA3o6h8YopA/LKqn2e3y
-         6AD9sp60kvLAPouNto72kNDyrlkjFGTKiJA0an7Y=
+        b=pMWI75GI8mL2GxchqzVIbZjRql9L4aZ44iueRPKZOFVKGk4spg97Rwt1B6g5zLkVa
+         rOpiacMm9ii+kl7Pl/ihCM3pPMX3No6HYeYkK52DAnV7sa9JGBk/6iYeuOUSEaLeLx
+         St3i4bXonLjvs2lew4kcywMrg6tZzjhpbEs+CeAo=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -35,9 +35,9 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Maulik Shah <quic_mkshah@quicinc.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.15 302/913] arm64: dts: qcom: sm8150: Correct TCS configuration for apps rsc
-Date:   Tue,  5 Apr 2022 09:22:44 +0200
-Message-Id: <20220405070348.908681564@linuxfoundation.org>
+Subject: [PATCH 5.15 303/913] arm64: dts: qcom: sm8350: Correct TCS configuration for apps rsc
+Date:   Tue,  5 Apr 2022 09:22:45 +0200
+Message-Id: <20220405070348.939161671@linuxfoundation.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220405070339.801210740@linuxfoundation.org>
 References: <20220405070339.801210740@linuxfoundation.org>
@@ -57,37 +57,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Maulik Shah <quic_mkshah@quicinc.com>
 
-[ Upstream commit 17ac8af678b6da6a8f1df7da8ebf2c5198741827 ]
+[ Upstream commit a131255e4ad1ef8d4873ecba21561ba272b2547a ]
 
 Correct the TCS config by updating the number of TCSes for each type.
 
 Cc: devicetree@vger.kernel.org
-Fixes: d8cf9372b654 ("arm64: dts: qcom: sm8150: Add apps shared nodes")
+Fixes: b7e8f433a673 ("arm64: dts: qcom: Add basic devicetree support for SM8350 SoC")
 Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/1641749107-31979-2-git-send-email-quic_mkshah@quicinc.com
+Link: https://lore.kernel.org/r/1641749107-31979-4-git-send-email-quic_mkshah@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index ef0232c2cf45..f347f752d536 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3434,9 +3434,9 @@
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index a8886adaaf37..3d32d5581816 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -979,7 +979,7 @@
  			qcom,tcs-offset = <0xd00>;
  			qcom,drv-id = <2>;
- 			qcom,tcs-config = <ACTIVE_TCS  2>,
--					  <SLEEP_TCS   1>,
--					  <WAKE_TCS    1>,
--					  <CONTROL_TCS 0>;
-+					  <SLEEP_TCS   3>,
-+					  <WAKE_TCS    3>,
-+					  <CONTROL_TCS 1>;
+ 			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
+-					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
++					  <WAKE_TCS    3>, <CONTROL_TCS 0>;
  
  			rpmhcc: clock-controller {
- 				compatible = "qcom,sm8150-rpmh-clk";
+ 				compatible = "qcom,sm8350-rpmh-clk";
 -- 
 2.34.1
 
