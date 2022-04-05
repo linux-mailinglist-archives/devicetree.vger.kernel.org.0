@@ -2,69 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79EB14F5483
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 07:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11B34F54C8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 07:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbiDFFJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 01:09:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
+        id S245178AbiDFFKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 01:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1573666AbiDEWwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 18:52:42 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F37A21E2A
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 14:35:34 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id n18so262421plg.5
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 14:35:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3T1DLNs454DRQUzm0Ou8rT4NITlZJwcCtRIhth0zBLg=;
-        b=dZmHadTOGH2sWttG/8o6yry7YYYDnFAlF3s85cSg04QUfWBiZwEu+ZFKK7bHAq2Nzw
-         0h401ttv6zohsw5jB+Tc2UGfvz6jvfT3KGOZAD5FEm4TMsV6B4icl5lM+1ruDwJY5mqK
-         rJIa8Bc8z5PKxidv6RtFMbTaAU6b5gKanaV/4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3T1DLNs454DRQUzm0Ou8rT4NITlZJwcCtRIhth0zBLg=;
-        b=pzjxFKCOsys24BkmL4NBka37sIdy8e+KB9BaPgXdNzXbKqAG1m0IuVAhInfWq11FAu
-         QBlA6BQOvEVdGnqIW/A9k2X83Tgz0TPf0NxVVJ5+I1nukzmG8pp+VYcKewcI0kh6v3Hc
-         R1waodFFFDObiizyMVKwDIC8lE9u1q80+H68zMH/gKtpcfcsddnvy+T8Rep+PZYCLYjg
-         4lE1RlUjnqbd57UM2TsGfP8mlRpQOdaiQgZ4JRUrBWwQwScEtyfEZbkg49pdxueJcxva
-         kOoJXjebfjCJTnPlLbdkDM0c7rZ8nPkC+ZHDPRMQLNv8FnQhFc4+H7AKlPyIuudvw7XE
-         xTjA==
-X-Gm-Message-State: AOAM530SCN1w9HJ5ThFYiJYpR9tePvw5fIQSHHW4q8jrjvqtxlcsVsGO
-        OA/TCQIOJtbAlv4xh+9Q+9gE7Q==
-X-Google-Smtp-Source: ABdhPJwvvmi6H06TfLDbKyMUjMOm74H9NrRlFsP8UZHH4zfLrtGFK8t0xDeYGGV6tyKLic3OjN+08w==
-X-Received: by 2002:a17:90b:4c44:b0:1c7:109c:b419 with SMTP id np4-20020a17090b4c4400b001c7109cb419mr6324577pjb.113.1649194534059;
-        Tue, 05 Apr 2022 14:35:34 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:6b63:d403:e31b:da39])
-        by smtp.gmail.com with UTF8SMTPSA id g12-20020a056a001a0c00b004e1307b249csm16964755pfv.69.2022.04.05.14.35.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Apr 2022 14:35:33 -0700 (PDT)
-Date:   Tue, 5 Apr 2022 14:35:31 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_rohitkr@quicinc.com,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v6 1/3] arm64: dts: qcom: sc7280: Add nodes for va tx and
- rx macros and external codecs
-Message-ID: <Yky2Iwt+tvxvu4/S@google.com>
-References: <1649157220-29304-1-git-send-email-quic_srivasam@quicinc.com>
- <1649157220-29304-2-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1446578AbiDFBQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 21:16:17 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7756C245B3;
+        Tue,  5 Apr 2022 16:08:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649200127; x=1680736127;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Xp43dfjNB+BJfz5gN1k7pk22qVpg2ISIf8p6jr207ZY=;
+  b=oDwzrA2tihl3CX3LTZQ3gFuiE0t6kn8EKP4Viai4HBQQL+qKwH2+PF1M
+   Z00Fyg0pplXwpa+lhAY4pRUHx0sWw7uWZBVNBGlFChtgYh4cyfItjDtXG
+   MSajakf4nao2uatLYlB4J9MBm9WzHXNO2TTwJi4UYdnC6iq4/k5DcDbUG
+   F3JiuCjKIgDLqKnl3mMbD5UTB3t6nKH+/DJZ4JneIwMqrDQlXqJ5rRPKc
+   5IBWj5j7Wst38oGZIbT+TaKZUAcuWy57eUIdW4UsCxMjuHUljaQ8HRMGo
+   DA/qvyEhftjQ1146rfrbGmU+83Sywjv5FAYqIK+PRGNXNMekqrRWp+ogT
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10308"; a="261060064"
+X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; 
+   d="scan'208";a="261060064"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 16:08:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,238,1643702400"; 
+   d="scan'208";a="658149390"
+Received: from lkp-server02.sh.intel.com (HELO a44fdfb70b94) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 05 Apr 2022 16:08:38 -0700
+Received: from kbuild by a44fdfb70b94 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nbsHu-0003qj-3i;
+        Tue, 05 Apr 2022 23:08:38 +0000
+Date:   Wed, 6 Apr 2022 07:07:52 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, pabeni@redhat.com, krzk+dt@kernel.org,
+        roopa@nvidia.com, andrew@lunn.ch, edumazet@google.com
+Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: Re: [PATCH net-next v6 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Message-ID: <202204060616.kl1yKwP5-lkp@intel.com>
+References: <1649016459-23989-3-git-send-email-wellslutw@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1649157220-29304-2-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <1649016459-23989-3-git-send-email-wellslutw@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,350 +69,304 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 04:43:38PM +0530, Srinivasa Rao Mandadapu wrote:
-> SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
-> codecs like WCD938x, max98360a using soundwire masters and i2s bus.
-> Add these nodes for sc7280 based platforms audio use case.
-> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
+Hi Wells,
 
-A change log would be helpful for reviewers
+I love your patch! Yet something to improve:
 
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts        |   6 ++
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi |   8 ++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       |  88 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi           | 121 +++++++++++++++++++++++++
->  4 files changed, 223 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> index e2efbdd..224a82d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+[auto build test ERROR on net/master]
+[also build test ERROR on robh/for-next linus/master v5.18-rc1 next-20220405]
+[cannot apply to net-next/master]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-You might want to consider splitting this patch into one that
-adds the SoC specific bits and one for each board. It's cleaner
-and might allow to land the SoC specific bits even when the board
-specific part is still under discussion. It also might make the
-life easier for folks who want to pick the SoC specific parts,
-but aren't interested in the board bits (e.g. because they want
-to support a different board). Just a thought, the split is not
-strictly necessary.
+url:    https://github.com/intel-lab-lkp/linux/commits/Wells-Lu/This-is-a-patch-series-for-Ethernet-driver-of-Sunplus-SP7021-SoC/20220404-040949
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net.git 692930cc435099580a4b9e32fa781b0688c18439
+config: alpha-randconfig-c004-20220405 (https://download.01.org/0day-ci/archive/20220406/202204060616.kl1yKwP5-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d8d2085594ea52869669a553bb6d60e0b3a1f412
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Wells-Lu/This-is-a-patch-series-for-Ethernet-driver-of-Sunplus-SP7021-SoC/20220404-040949
+        git checkout d8d2085594ea52869669a553bb6d60e0b3a1f412
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash
 
-> @@ -84,6 +84,12 @@ ap_ts_pen_1v8: &i2c13 {
->  	pins = "gpio51";
->  };
->  
-> +&wcd938x {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&us_euro_select>;
-> +	us-euro-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
-> +};
-> +
->  &tlmm {
->  	tp_int_odl: tp-int-odl {
->  		pins = "gpio7";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> index de646d9..c6a04c3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> @@ -20,6 +20,14 @@
->  #include "sc7280-chrome-common.dtsi"
->  
->  / {
-> +	max98360a: audio-codec-0 {
-> +		compatible = "maxim,max98360a";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&amp_en>;
-> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
-> +		#sound-dai-cells = <0>;
-> +	};
-> +
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-This node shouldn't be at top but with the other device nodes, in
-alphabetical order, i.e. before 'pwmleds'.
+All errors (new ones prefixed by >>):
 
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index f912a89..83c76b2 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -20,6 +20,41 @@
->  		serial1 = &uart7;
->  	};
->  
-> +	max98360a: audio-codec-0 {
-> +		compatible = "maxim,max98360a";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&amp_en>;
-> +		sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
-> +		#sound-dai-cells = <0>;
-> +	};
-> +
-> +	wcd938x: audio-codec-1 {
-> +		compatible = "qcom,wcd9380-codec";
-> +		#sound-dai-cells = <1>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wcd938x_reset_active>, <&wcd938x_reset_sleep>;
-> +		reset-gpios = <&tlmm 83 GPIO_ACTIVE_HIGH>;
-> +
-> +		qcom,rx-device = <&wcd_rx>;
-> +		qcom,tx-device = <&wcd_tx>;
-> +
-> +		vdd-rxtx-supply = <&vreg_l18b_1p8>;
-> +		vdd-io-supply = <&vreg_l18b_1p8>;
-> +		vdd-buck-supply = <&vreg_l17b_1p8>;
-> +		vdd-mic-bias-supply = <&vreg_bob>;
-> +
-> +		qcom,micbias1-microvolt = <1800000>;
-> +		qcom,micbias2-microvolt = <1800000>;
-> +		qcom,micbias3-microvolt = <1800000>;
-> +		qcom,micbias4-microvolt = <1800000>;
-> +
-> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000
-> +							  500000 500000 500000>;
-> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-> +	};
-> +
->  	gpio-keys {
->  		compatible = "gpio-keys";
->  		label = "gpio-keys";
-> @@ -373,6 +408,19 @@
->  	status = "okay";
->  };
->  
-> +&rxmacro {
-> +	status = "okay";
-> +};
-> +
-> +&txmacro {
-> +	status = "okay";
-> +};
-> +
-> +&vamacro {
-> +	status = "okay";
-> +	vdd-micb-supply = <&vreg_bob>;
-> +};
-> +
->  &sdhc_1 {
->  	status = "okay";
->  
-> @@ -574,6 +622,24 @@
->  	drive-strength = <6>;
->  };
->  
-> +&swr0 {
-> +	wcd_rx: codec@0,4 {
-> +		compatible = "sdw20217010d00";
-> +		reg = <0 4>;
-> +		#sound-dai-cells = <1>;
-> +		qcom,rx-port-mapping = <1 2 3 4 5>;
-> +	};
-> +};
-> +
-> +&swr1 {
-> +	wcd_tx: codec@0,3 {
-> +		compatible = "sdw20217010d00";
-> +		reg = <0 3>;
-> +		#sound-dai-cells = <1>;
-> +		qcom,tx-port-mapping = <1 2 3 4>;
-> +	};
-> +};
-> +
->  &tlmm {
->  	amp_en: amp-en {
->  		pins = "gpio63";
-> @@ -663,5 +729,27 @@
->  		function = "gpio";
->  		bias-pull-down;
->  	};
-> +
-> +	us_euro_select: us-euro-select {
+   drivers/pinctrl/sunplus/sppctl.c: In function 'sppctl_gpio_new':
+>> drivers/pinctrl/sunplus/sppctl.c:559:14: error: 'struct gpio_chip' has no member named 'of_gpio_n_cells'
+     559 |         gchip->of_gpio_n_cells  = 2;
+         |              ^~
+--
+   drivers/net/ethernet/sunplus/spl2sw_driver.c: In function 'spl2sw_get_eth_child_node':
+>> drivers/net/ethernet/sunplus/spl2sw_driver.c:328:9: error: implicit declaration of function 'for_each_child_of_node'; did you mean 'for_each_online_node'? [-Werror=implicit-function-declaration]
+     328 |         for_each_child_of_node(ether_np, port_np) {
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+         |         for_each_online_node
+>> drivers/net/ethernet/sunplus/spl2sw_driver.c:328:50: error: expected ';' before '{' token
+     328 |         for_each_child_of_node(ether_np, port_np) {
+         |                                                  ^~
+         |                                                  ;
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:326:13: warning: unused variable 'port_id' [-Wunused-variable]
+     326 |         int port_id;
+         |             ^~~~~~~
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:342:1: error: no return statement in function returning non-void [-Werror=return-type]
+     342 | }
+         | ^
+   drivers/net/ethernet/sunplus/spl2sw_driver.c: In function 'spl2sw_probe':
+>> drivers/net/ethernet/sunplus/spl2sw_driver.c:407:24: error: implicit declaration of function 'of_get_child_by_name' [-Werror=implicit-function-declaration]
+     407 |         eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+         |                        ^~~~~~~~~~~~~~~~~~~~
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:407:22: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     407 |         eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+         |                      ^
+>> drivers/net/ethernet/sunplus/spl2sw_driver.c:428:26: error: implicit declaration of function 'of_parse_phandle' [-Werror=implicit-function-declaration]
+     428 |                 phy_np = of_parse_phandle(port_np, "phy-handle", 0);
+         |                          ^~~~~~~~~~~~~~~~
+   drivers/net/ethernet/sunplus/spl2sw_driver.c:428:24: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     428 |                 phy_np = of_parse_phandle(port_np, "phy-handle", 0);
+         |                        ^
+   cc1: some warnings being treated as errors
 
-nit: in the schematic this is called 'us_euro_hs_sel'. IMO it's preferable
-to use the name from the schematic rather than inventing a new one, unless
-there's a good reason for it.
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for PINCTRL_SPPCTL
+   Depends on PINCTRL && SOC_SP7021 && OF && HAS_IOMEM
+   Selected by
+   - SP7021_EMAC && NETDEVICES && ETHERNET && NET_VENDOR_SUNPLUS && (SOC_SP7021 || COMPILE_TEST
 
-> +		pins = "gpio81";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +		drive-strength = <2>;
-> +	};
-> +
-> +	wcd938x_reset_active: wcd938x-reset-active {
 
-same as above: the schematic calls this pin 'wcd_reset_n'
+vim +328 drivers/net/ethernet/sunplus/spl2sw_driver.c
 
-drop the -active suffix
+   322	
+   323	static struct device_node *spl2sw_get_eth_child_node(struct device_node *ether_np, int id)
+   324	{
+   325		struct device_node *port_np;
+   326		int port_id;
+   327	
+ > 328		for_each_child_of_node(ether_np, port_np) {
+   329			/* It is not a 'port' node, continue. */
+   330			if (strcmp(port_np->name, "port"))
+   331				continue;
+   332	
+   333			if (of_property_read_u32(port_np, "reg", &port_id) < 0)
+   334				continue;
+   335	
+   336			if (port_id == id)
+   337				return port_np;
+   338		}
+   339	
+   340		/* Not found! */
+   341		return NULL;
+   342	}
+   343	
+   344	static int spl2sw_probe(struct platform_device *pdev)
+   345	{
+   346		struct device_node *eth_ports_np;
+   347		struct device_node *port_np;
+   348		struct spl2sw_common *comm;
+   349		struct device_node *phy_np;
+   350		phy_interface_t phy_mode;
+   351		struct net_device *ndev;
+   352		u8 mac_addr[ETH_ALEN];
+   353		struct spl2sw_mac *mac;
+   354		int irq, i;
+   355		int ret;
+   356	
+   357		if (platform_get_drvdata(pdev))
+   358			return -ENODEV;
+   359	
+   360		/* Allocate memory for 'spl2sw_common' area. */
+   361		comm = devm_kzalloc(&pdev->dev, sizeof(*comm), GFP_KERNEL);
+   362		if (!comm)
+   363			return -ENOMEM;
+   364		comm->pdev = pdev;
+   365	
+   366		spin_lock_init(&comm->rx_lock);
+   367		spin_lock_init(&comm->tx_lock);
+   368		spin_lock_init(&comm->mdio_lock);
+   369	
+   370		/* Get memory resource 0 from dts. */
+   371		comm->l2sw_reg_base = devm_platform_ioremap_resource(pdev, 0);
+   372		if (IS_ERR(comm->l2sw_reg_base))
+   373			return PTR_ERR(comm->l2sw_reg_base);
+   374	
+   375		/* Get irq resource from dts. */
+   376		ret = platform_get_irq(pdev, 0);
+   377		if (ret < 0)
+   378			return ret;
+   379		irq = ret;
+   380	
+   381		/* Get clock controller. */
+   382		comm->clk = devm_clk_get(&pdev->dev, NULL);
+   383		if (IS_ERR(comm->clk)) {
+   384			dev_err_probe(&pdev->dev, PTR_ERR(comm->clk),
+   385				      "Failed to retrieve clock controller!\n");
+   386			return PTR_ERR(comm->clk);
+   387		}
+   388	
+   389		/* Get reset controller. */
+   390		comm->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+   391		if (IS_ERR(comm->rstc)) {
+   392			dev_err_probe(&pdev->dev, PTR_ERR(comm->rstc),
+   393				      "Failed to retrieve reset controller!\n");
+   394			return PTR_ERR(comm->rstc);
+   395		}
+   396	
+   397		/* Enable clock. */
+   398		clk_prepare_enable(comm->clk);
+   399		udelay(1);
+   400	
+   401		reset_control_assert(comm->rstc);
+   402		udelay(1);
+   403		reset_control_deassert(comm->rstc);
+   404		udelay(1);
+   405	
+   406		/* Get child node ethernet-ports. */
+ > 407		eth_ports_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
+   408		if (!eth_ports_np) {
+   409			dev_err(&pdev->dev, "No ethernet-ports child node found!\n");
+   410			ret = -ENODEV;
+   411			goto out_clk_disable;
+   412		}
+   413	
+   414		for (i = 0; i < MAX_NETDEV_NUM; i++) {
+   415			/* Get port@i of node ethernet-ports. */
+   416			port_np = spl2sw_get_eth_child_node(eth_ports_np, i);
+   417			if (!port_np)
+   418				continue;
+   419	
+   420			/* Get phy-mode. */
+   421			if (of_get_phy_mode(port_np, &phy_mode)) {
+   422				dev_err(&pdev->dev, "Failed to get phy-mode property of port@%d!\n",
+   423					i);
+   424				continue;
+   425			}
+   426	
+   427			/* Get phy-handle. */
+ > 428			phy_np = of_parse_phandle(port_np, "phy-handle", 0);
+   429			if (!phy_np) {
+   430				dev_err(&pdev->dev, "Failed to get phy-handle property of port@%d!\n",
+   431					i);
+   432				continue;
+   433			}
+   434	
+   435			/* Get mac-address from nvmem. */
+   436			ret = spl2sw_nvmem_get_mac_address(&pdev->dev, port_np, mac_addr);
+   437			if (ret) {
+   438				dev_info(&pdev->dev, "Generate a random mac address!\n");
+   439	
+   440				/* Generate a mac address using OUI of Sunplus Technology
+   441				 * and random controller number.
+   442				 */
+   443				mac_addr[0] = 0xfc; /* OUI of Sunplus: fc:4b:bc */
+   444				mac_addr[1] = 0x4b;
+   445				mac_addr[2] = 0xbc;
+   446				mac_addr[3] = get_random_int() % 256;
+   447				mac_addr[4] = get_random_int() % 256;
+   448				mac_addr[5] = get_random_int() % 256;
+   449			}
+   450	
+   451			/* Initialize the net device. */
+   452			ret = spl2sw_init_netdev(pdev, mac_addr, &ndev);
+   453			if (ret)
+   454				goto out_unregister_dev;
+   455	
+   456			ndev->irq = irq;
+   457			comm->ndev[i] = ndev;
+   458			mac = netdev_priv(ndev);
+   459			mac->phy_node = phy_np;
+   460			mac->phy_mode = phy_mode;
+   461			mac->comm = comm;
+   462	
+   463			mac->lan_port = 0x1 << i;	/* forward to port i */
+   464			mac->to_vlan = 0x1 << i;	/* vlan group: i     */
+   465			mac->vlan_id = i;		/* vlan group: i     */
+   466	
+   467			/* Set MAC address */
+   468			ret = spl2sw_mac_addr_add(mac);
+   469			if (ret)
+   470				goto out_unregister_dev;
+   471	
+   472			spl2sw_mac_rx_mode_set(mac);
+   473		}
+   474	
+   475		/* Find first valid net device. */
+   476		for (i = 0; i < MAX_NETDEV_NUM; i++) {
+   477			if (comm->ndev[i])
+   478				break;
+   479		}
+   480		if (i >= MAX_NETDEV_NUM) {
+   481			dev_err(&pdev->dev, "No valid ethernet port!\n");
+   482			ret = -ENODEV;
+   483			goto out_clk_disable;
+   484		}
+   485	
+   486		/* Save first valid net device */
+   487		ndev = comm->ndev[i];
+   488		platform_set_drvdata(pdev, ndev);
+   489	
+   490		/* Request irq. */
+   491		ret = devm_request_irq(&pdev->dev, irq, spl2sw_ethernet_interrupt,
+   492				       0, ndev->name, ndev);
+   493		if (ret) {
+   494			netdev_err(ndev, "Failed to request irq #%d for \"%s\"!\n",
+   495				   irq, ndev->name);
+   496			goto out_unregister_dev;
+   497		}
+   498	
+   499		/* Initialize mdio bus */
+   500		ret = spl2sw_mdio_init(comm);
+   501		if (ret) {
+   502			netdev_err(ndev, "Failed to initialize mdio bus!\n");
+   503			goto out_unregister_dev;
+   504		}
+   505	
+   506		ret = spl2sw_mac_addr_del_all(comm);
+   507		if (ret)
+   508			goto out_free_mdio;
+   509	
+   510		ret = spl2sw_descs_init(comm);
+   511		if (ret) {
+   512			dev_err(&comm->pdev->dev, "Fail to initialize mac descriptors!\n");
+   513			spl2sw_descs_free(comm);
+   514			goto out_free_mdio;
+   515		}
+   516	
+   517		spl2sw_mac_init(comm);
+   518	
+   519		ret = spl2sw_phy_connect(comm);
+   520		if (ret) {
+   521			netdev_err(ndev, "Failed to connect phy!\n");
+   522			goto out_free_mdio;
+   523		}
+   524	
+   525		netif_napi_add(ndev, &comm->rx_napi, spl2sw_rx_poll, SPL2SW_RX_NAPI_WEIGHT);
+   526		napi_enable(&comm->rx_napi);
+   527		netif_napi_add(ndev, &comm->tx_napi, spl2sw_tx_poll, SPL2SW_TX_NAPI_WEIGHT);
+   528		napi_enable(&comm->tx_napi);
+   529		return 0;
+   530	
+   531	out_free_mdio:
+   532		spl2sw_mdio_remove(comm);
+   533	
+   534	out_unregister_dev:
+   535		for (i = 0; i < MAX_NETDEV_NUM; i++)
+   536			if (comm->ndev[i])
+   537				unregister_netdev(comm->ndev[i]);
+   538	
+   539	out_clk_disable:
+   540		clk_disable_unprepare(comm->clk);
+   541		return ret;
+   542	}
+   543	
 
-> +		pins = "gpio83";
-> +		function = "gpio";
-> +		drive-strength = <16>;
-
-A value of 16 seems pretty high. Is it really needed?
-
-> +		output-high;
-> +	};
-> +
-> +	wcd938x_reset_sleep: wcd938x-reset-sleep {
-> +		pins = "gpio83";
-> +		function = "gpio";
-> +		drive-strength = <16>;
-
-see above
-
-> +		bias-disable;
-> +		output-low;
-> +	};
->  };
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index db74fc3..78ec84c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -822,6 +822,127 @@
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		rxmacro: codec@3200000 {
-
-These node are not at the correct position. They should be sorted by
-address and hence be inserted between 'lpasscc@3000000' and
-'interconnect@3c40000'.
-
-> +			compatible = "qcom,sc7280-lpass-rx-macro";
-> +			reg = <0 0x03200000 0 0x1000>;
-> +
-> +			status = "disabled";
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&rx_swr_active>;
-> +
-> +			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
-> +				 <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
-> +				 <&vamacro>;
-> +			clock-names = "mclk", "npl", "fsgen";
-> +
-> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
-> +					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-> +			power-domain-names ="macro", "dcodec";
-> +
-> +			#clock-cells = <0>;
-> +			#sound-dai-cells = <1>;
-> +		};
-> +
-> +		txmacro: codec@3220000 {
-> +			compatible = "qcom,sc7280-lpass-tx-macro";
-> +			reg = <0 0x03220000 0 0x1000>;
-> +
-> +			status = "disabled";
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&tx_swr_active>;
-> +
-> +			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
-> +				 <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
-> +				 <&vamacro>;
-> +			clock-names = "mclk", "npl", "fsgen";
-> +
-> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
-> +					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-> +			power-domain-names ="macro", "dcodec";
-> +
-> +			#clock-cells = <0>;
-> +			#sound-dai-cells = <1>;
-> +		};
-> +
-> +		vamacro: codec@3370000 {
-> +			compatible = "qcom,sc7280-lpass-va-macro";
-> +			reg = <0 0x03370000 0 0x1000>;
-> +
-> +			status = "disabled";
-> +			pinctrl-0 = <&dmic01_active>;
-> +			pinctrl-names = "default";
-> +
-> +			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>;
-> +			clock-names = "mclk";
-> +
-> +			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
-> +					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-> +			power-domain-names ="macro", "dcodec";
-> +
-> +			#clock-cells = <0>;
-> +			#sound-dai-cells = <1>;
-> +		};
-> +
-> +		swr0: soundwire@3210000 {
-> +			compatible = "qcom,soundwire-v1.6.0";
-> +			reg = <0 0x03210000 0 0x2000>;
-> +
-> +			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&rxmacro>;
-> +			clock-names = "iface";
-> +
-> +			qcom,din-ports = <0>;
-> +			qcom,dout-ports = <5>;
-> +
-> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
-> +			reset-names = "swr_audio_cgcr";
-> +
-> +			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff>;
-> +			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x3f 0x1f 0x03 0x03>;
-> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x01>;
-> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00>;
-> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
-> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff>;
-> +			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff>;
-> +			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff>;
-> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00>;
-> +
-> +			#sound-dai-cells = <1>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		swr1: soundwire@3230000 {
-> +			compatible = "qcom,soundwire-v1.6.0";
-> +			reg = <0 0x03230000 0 0x2000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 130 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "swr_master_irq", "swr_wake_irq";
-> +			clocks = <&txmacro>;
-> +			clock-names = "iface";
-> +
-> +			qcom,din-ports = <3>;
-> +			qcom,dout-ports = <0>;
-> +
-> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_TX_CGCR>;
-> +			reset-names = "swr_audio_cgcr";
-> +
-> +			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x03 0x03>;
-> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02>;
-> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00>;
-> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff>;
-> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff>;
-> +			qcom,ports-word-length =	/bits/ 8 <0xff 0x0 0xff>;
-
-s/0x0/0x00/
-
-> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff>;
-> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff>;
-> +			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00>;
-> +			qcom,port-offset = <1>;
-> +
-> +			#sound-dai-cells = <1>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +		};
-
-add empty line
-
->  		ipcc: mailbox@408000 {
->  			compatible = "qcom,sc7280-ipcc", "qcom,ipcc";
->  			reg = <0 0x00408000 0 0x1000>;
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
