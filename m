@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2BDC4F4ABE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 418274F4ACB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 02:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1449387AbiDEWvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Apr 2022 18:51:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39156 "EHLO
+        id S1452950AbiDEWvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Apr 2022 18:51:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442422AbiDEPhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:37:40 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EB2111DD8;
-        Tue,  5 Apr 2022 06:51:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649166713; x=1680702713;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=5+nWAPFQHv6Q16Bxq/GwQj6VzCNcFVPIYMa5uQiSOBU=;
-  b=ZNQLPuExRktDuO3QUPcaEEaJhceRk2h+SvKRHCwuU0S2g+0Yty7WBYBW
-   f78U9xlsFPUap+/29LTjspm8aSHEHFVlaRHUYlBh+Xhdt3PCFlgKDdMOO
-   9g6QYtkcVaXYQztJWcj8c3jGPRB5U4KCk8u0We7HLxvuiDpCporPcgpUi
-   Y=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 05 Apr 2022 06:51:52 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Apr 2022 06:51:37 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 5 Apr 2022 06:51:36 -0700
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 5 Apr 2022 06:51:32 -0700
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V9 6/6] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-Date:   Tue, 5 Apr 2022 19:20:33 +0530
-Message-ID: <1649166633-25872-7-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
+        with ESMTP id S1442575AbiDEPhw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Apr 2022 11:37:52 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0113514D020;
+        Tue,  5 Apr 2022 06:52:16 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2356WHiA029192;
+        Tue, 5 Apr 2022 08:52:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : from : to :
+ cc : references : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=qdlWSFWox8pqXhYTtt1fv3TfdyVH568avS9AMQTckt4=;
+ b=PKbbBxLzsWnf3sZ3Gb91O1NnBu3X2FULdZyghJt+k/ySFZWpnEJbBhbq3OGlAckgvwzj
+ GSY32edVAbCt+8WDbEuthhPwyhh2VLkwRz7eC7+wj9z0mXrj0Nqit67eYGvis5eK9qtD
+ xmXrhvWrLiUnjygcvGcULUAX++Jv6U5i5hjIx3B6mUT4z9RzQao796w8nGlH0Wv+9A0e
+ VQSVnANh6o6STWuVZEYWgUNYi8EWGYSyHqamITND2wrQENPTL3CWb9s2DlX6vkN92/An
+ QcsFqq5zfOSs9WlKVqrekcZaRQ/0XCP28EhXuIcEADfYJanV/5toBpTefgsqZJjh+Wph EA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3f6jwnujw8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 05 Apr 2022 08:51:59 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 5 Apr
+ 2022 14:51:49 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.24 via Frontend
+ Transport; Tue, 5 Apr 2022 14:51:49 +0100
+Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.65.88])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id EFB40458;
+        Tue,  5 Apr 2022 13:51:48 +0000 (UTC)
+Subject: Re: [PATCH 5/5] ASoC: cs35l45: Add driver for Cirrus Logic CS35L45
+ Smart Amp
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <patches@opensource.cirrus.com>
+References: <20220318162943.1578102-1-rf@opensource.cirrus.com>
+ <20220318162943.1578102-6-rf@opensource.cirrus.com>
+Message-ID: <b9059240-fe6b-6549-d22d-de4bc2ab0c85@opensource.cirrus.com>
+Date:   Tue, 5 Apr 2022 14:51:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+In-Reply-To: <20220318162943.1578102-6-rf@opensource.cirrus.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 1Q4LWg2XrZQXUi0dgcuoSCeoh3Ub3r62
+X-Proofpoint-GUID: 1Q4LWg2XrZQXUi0dgcuoSCeoh3Ub3r62
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,112 +70,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm8008 infra and regulators support for sc7280 idp.
+On 18/03/2022 16:29, Richard Fitzgerald wrote:
 
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
----
-Changes in V6:
- - No changes.
+> +static int cs35l45_i2c_probe(struct i2c_client *client,
+> +			     const struct i2c_device_id *id)
+> +{
 
-Changes in V7:
- - No Changes.
+Use the new .probe_new callback
 
-Changes in V8:
- - Add an extra phandle "pm8008_bus" and then include pm8008 dtsi files inside it.
- - Remove output-high from pm8008_active node.
+> +static int cs35l45_spi_remove(struct spi_device *spi)
+> +{
 
-Changes in V9:
- - Added interrupts properties.
-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 68 ++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b8..6f39c05 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -263,6 +263,65 @@
- 	};
- };
- 
-+pm8008_bus: &i2c1 {
-+	status = "okay";
-+};
-+
-+#include "pm8008.dtsi"
-+
-+&pm8008 {
-+	interrupt-parent = <&tlmm>;
-+	interrupts = <24 IRQ_TYPE_EDGE_RISING>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pm8008_active>;
-+
-+	reset-gpios = <&pm8350c_gpios 4 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&pm8008_regulators {
-+	vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+	vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+	vdd_l5-supply = <&vreg_bob>;
-+	vdd_l6-supply = <&vreg_bob>;
-+	vdd_l7-supply = <&vreg_bob>;
-+};
-+
-+&pm8008_l1 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1300000>;
-+};
-+
-+&pm8008_l2 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1250000>;
-+};
-+
-+&pm8008_l3 {
-+	regulator-min-microvolt = <1650000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l4 {
-+	regulator-min-microvolt = <1504000>;
-+	regulator-max-microvolt = <1600000>;
-+};
-+
-+&pm8008_l5 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l6 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l7 {
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3544000>;
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -375,6 +434,15 @@
- 	drive-strength = <2>;
- };
- 
-+&pm8350c_gpios {
-+	pm8008_active: pm8008-active {
-+		pins = "gpio4";
-+		function = "normal";
-+		bias-disable;
-+		power-source = <0>;
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
--- 
-2.7.4
-
+This is now a void return
