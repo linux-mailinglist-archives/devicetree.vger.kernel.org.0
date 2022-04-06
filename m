@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998FC4F6311
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 17:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E1E4F628B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 17:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235721AbiDFPK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 11:10:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
+        id S235502AbiDFPHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 11:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235790AbiDFPKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 11:10:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA57728CA93;
-        Wed,  6 Apr 2022 05:08:17 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 318E01F454CE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649245528;
-        bh=Fewgg+W6G1clWAEhEVkkn/lbkFWCF9MXpHqn8lun8+U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=W0PyamTsuvA78l+/qDMNGB6+50vsfBr9RtR3NmgbT0TpB0CLcmKhN3U7kOED1i6j5
-         4+luSQam5SOsryOX1O7J4La7JDlAFG0pBGud0XvHsMv6oaLx4ZOBHwj9YTmpfpjY7k
-         t2OWz3k2yeyD2DPbW/THzfBJ6dKVKPCHFDfOVyL55k5fBwgB+mCtCmsW6oxi3ZSCb0
-         E2xnpJh2X1rqd4mYjf+kP1TFxVs0WxfPxionk63hhXfPvYetGY4acG5czvaTsgJpBb
-         /cZL7/mTkLhfHPFTUQOPWijqhkXc2FF/YNXd2TdT8gRcM/9QU9jvCxKkyqNV8kh+NH
-         lYINv/Sd3khPQ==
-Message-ID: <a263e572-35ec-9671-50e3-dbc71b55b6cd@collabora.com>
-Date:   Wed, 6 Apr 2022 13:45:25 +0200
+        with ESMTP id S235559AbiDFPHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 11:07:06 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48655535403
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 05:00:54 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nc4Gd-0000QF-Of; Wed, 06 Apr 2022 13:56:07 +0200
+Message-ID: <4fc33f18fcde29d421a014c22f6ea92a41a39da9.camel@pengutronix.de>
+Subject: Re: [PATCH 0/5] imx: support noc settings with power domain
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "djakov@kernel.org" <djakov@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Cc:     "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Wed, 06 Apr 2022 13:56:06 +0200
+In-Reply-To: <DU0PR04MB9417E35732AD4B823726D84D88E79@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20220406082330.2681591-1-peng.fan@oss.nxp.com>
+         <6a77a71069d771d408f716d05cafc6b3a1e13cda.camel@pengutronix.de>
+         <DU0PR04MB9417E35732AD4B823726D84D88E79@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8173: Add gce-client-reg handle
- to disp-mutex
-Content-Language: en-US
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski@canonical.com, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20220228110329.245366-1-angelogioacchino.delregno@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220228110329.245366-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,31 +62,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/02/22 12:03, AngeloGioacchino Del Regno ha scritto:
-> Add a gce client reg handle to the disp mutex to enable MT8173
-> platforms to use MediaTek's CMDQ for extra performance.
+Am Mittwoch, dem 06.04.2022 um 10:55 +0000 schrieb Peng Fan:
+> > Subject: Re: [PATCH 0/5] imx: support noc settings with power domain
+> > 
+> > Hi Peng,
+> > 
+> > Am Mittwoch, dem 06.04.2022 um 16:23 +0800 schrieb Peng Fan (OSS):
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > > 
+> > > i.MX8MP has a design that NoC(Not main NoC) is distributed in multiple
+> > > blocks, such as vpumix, hsiomix and etc. The access to NoC requires
+> > > power domain on and blk ctrl settings configured.
+> > > 
+> > > So the design here is for mixes that not have blk-ctrl, configure the
+> > > NoC in gpcv2 driver, for mixes that have blk-ctrl, configure the NoC
+> > > in blk-ctrl drivers.
+> > > 
+> > > This v1 patchset not apply on Shawn's tree, I picked up Lucas's HSIO
+> > > and Laurent's mediablk patches, then worked out this patchset:
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgith
+> > > 
+> > ub.com%2FMrVan%2Flinux%2Ftree%2Fnoc-imx8mp&amp;data=04%7C01%7
+> > Cpeng.fan
+> > > %40nxp.com%7C3bd1d020ad8f4a68efc808da17b28ac8%7C686ea1d3bc2b
+> > 4c6fa92cd9
+> > > 
+> > 9c5c301635%7C0%7C0%7C637848352908363591%7CUnknown%7CTWFpbG
+> > Zsb3d8eyJWIj
+> > > 
+> > oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3
+> > 000&am
+> > > 
+> > p;sdata=ZVeHFy%2FEaWPhAj%2BURGIDXoWYdX5eeQoEIeZYZoxPPNo%3D&a
+> > mp;reserve
+> > > d=0
+> > > 
+> > > Note: This interconnect related functions not added. This patchset is
+> > > only to replace the function did in NXP downstream:
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fsour
+> > > 
+> > ce.codeaurora.org%2Fexternal%2Fimx%2Fimx-atf%2Ftree%2Fplat%2Fimx%2
+> > Fimx
+> > > 
+> > 8m%2Fimx8mp%2Fgpc.c%3Fh%3Dlf_v2.4%23n157&amp;data=04%7C01%7C
+> > peng.fan%4
+> > > 
+> > 0nxp.com%7C3bd1d020ad8f4a68efc808da17b28ac8%7C686ea1d3bc2b4c6fa
+> > 92cd99c
+> > > 
+> > 5c301635%7C0%7C0%7C637848352908363591%7CUnknown%7CTWFpbGZs
+> > b3d8eyJWIjoi
+> > > 
+> > MC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C30
+> > 00&amp;
+> > > 
+> > sdata=eLawc3SJQBRmVwcOA2%2B6u6d2ZaYxqcO4Gm%2FqEJpqxFE%3D&a
+> > mp;reserved=
+> > > 0
+> > 
+> > As a general comment I think this is implemented the wrong way around.
+> > 
+> > Neither GPC, nor the blk-ctrl should poke into the NoC registers directly. The
+> > NoC driver should attach itself to the power domain via a notifier (same as
+> > the blk-ctrl does with the GPC domains) and should do the necessary NoC
+> > configuration when the power domain is powered up.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index 291db4fcbb25..9eaea1156e25 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -1278,6 +1278,7 @@ mutex: mutex@14020000 {
->   			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
->   			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
->   			clocks = <&mmsys CLK_MM_MUTEX_32K>;
-> +			mediatek,gce-client-reg = <&gce SUBSYS_1402XXXX 0 0x1000>;
->   			mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
->                                                 <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
->   		};
+> If separate NoC in a standalone driver, NoC may be configured not as early as
+> power domain up. Saying lcdif is running, NoC driver probe starts w/o defer
+> probe.
 
-Hello, this is a friendly ping to avoid forgetting about this patch.
+The right way to solve this would be to actually implement the
+interconnect bits, so that consumers like the LCDIF that have specific
+NOC bandwidth/latency requirements could request them from the NoC
+driver. Proper probe deferral would come naturally with this.
 
-As a note, this was successfully tested on MT8173 Acer Chromebook R13 (Elm).
+The static NoC configuration per domain is quite a cludge IHMO, maybe
+due to the decision to not open up any information about this part of
+the SoC. Spreading support for this hack into multiple drivers doesn't
+sound like a direction we want to take for upstream. At minimum we
+could try to define the interconnect DT bits, so that the LCDIF driver,
+etc. could attach to the NoC driver, giving us proper probe defer
+behavior, even if the actual configuration is still static.
 
-Cheers,
-Angelo
+Regards,
+Lucas
+
