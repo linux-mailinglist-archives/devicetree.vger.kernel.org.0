@@ -2,112 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4777F4F69F9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B379B4F6B11
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231820AbiDFTdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:33:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52650 "EHLO
+        id S234199AbiDFUQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 16:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232038AbiDFTct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:32:49 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AD43441B2;
-        Wed,  6 Apr 2022 11:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=YGjX529UM3G1Sm5ZEV/Cp3ZmPunyP2OAVWthxaOm0TE=; b=tFJFatXB6xPNnIMbja6SvXD6Cu
-        bXU3vUUO2xXCQztEU1jTleEdty4GRLL6fyovwu4ho7/XnxRC1YoSxvItgGIztyc6J2Yjr4HUEetQZ
-        rNCnT4wt2/HAhtlf+zClghovZH7e4bhX8oK2ntrborSlj/r0U+pQu3ADTxv2fYmtBfz0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ncAXN-00EVLu-E7; Wed, 06 Apr 2022 20:37:49 +0200
-Date:   Wed, 6 Apr 2022 20:37:49 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
-        kuba@kernel.org, netdev@vger.kernel.org, vigneshr@ti.com,
-        kishon@ti.com
-Subject: Re: [RFC 13/13] net: ti: icssg-prueth: Add ICSSG ethernet driver
-Message-ID: <Yk3d/cC36fhNmfY2@lunn.ch>
-References: <20220406094358.7895-1-p-mohan@ti.com>
- <20220406094358.7895-14-p-mohan@ti.com>
+        with ESMTP id S234193AbiDFUOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:14:52 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20F576281
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 10:21:02 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-e1e5e8d9faso3651209fac.4
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 10:21:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=RUU1F0wpujC7WhqVwBC+2pTO1HYEQ6X5S3p8UJ+PTMc=;
+        b=iE0ztCXOiYH9yto1ZKUgnifI908erHLqfQyguoCUhqSjQjwBN3nHvyPzvdgfKblAaC
+         txVXePDctGgXJNraMQvZ1ugNcw3UiGH/2MPqUDn0HFb+eDuEfcQNXfzBHDL837S8x2df
+         tSfN2hzVdetG7C75UtpGguKAqnkdia10CyhDQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=RUU1F0wpujC7WhqVwBC+2pTO1HYEQ6X5S3p8UJ+PTMc=;
+        b=Blnzu+wGunXQazx7KCy/6nPVHmgNVJkrDziWTGf1TRRNQ8UJJWQGcD7zhszmq50JUW
+         WzOyZmJiqm9QxsCWo39or3IAjUojGeIkT9AjwuwcZpTlVHnCjdwMUp/j6+gvAsg3z69Z
+         kAUlVhFPcqraQgxC8oFaDhjd1lfGKUL/LRP/C03mzFyFLcfuq+Vo9yfIl8BgCXIlIjeV
+         WKFvVLqtWLp/4A4T5OMccPQzHO/Evd+eEGQ+gVcgEI13s4BX4DxTX5ux+gJ8EfjlreBw
+         v53DZmnJm/1t4JqkmGpYjDf8XGEwacsGJPLm6Q1k+VsWtAvtQWl2FiCCBaj1G28Emsba
+         FmbA==
+X-Gm-Message-State: AOAM533TbdgkTgM5jwZuR3BDpjC9zav8tsdHOuYp8/UzNck/182oceS4
+        zNYBt+PzRcX99pl1N+MzQGHgeX6WnFyOYfnsUAB18Q==
+X-Google-Smtp-Source: ABdhPJyZQyu/K5x1uJUUL3GjBmaiHMZMMBfeE1A4A4cNNBRKCil6XVdMRFMtXJn+fZcA2z3NkLK8jXc2zoN5xcSGrbU=
+X-Received: by 2002:a05:6870:e314:b0:e1:e5f0:d777 with SMTP id
+ z20-20020a056870e31400b000e1e5f0d777mr4254311oad.193.1649265661935; Wed, 06
+ Apr 2022 10:21:01 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 6 Apr 2022 10:21:01 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220406094358.7895-14-p-mohan@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Yk3Bfnxe/meBYokp@sirena.org.uk>
+References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com>
+ <Yk1B4f51WMGIV9WB@sirena.org.uk> <CAE-0n53Cv_bR92M64dhdnDge_=_jeOs4VZzDhUkksN90Y7rgog@mail.gmail.com>
+ <Yk21pdu16lyR8jXm@sirena.org.uk> <CAE-0n50C8khP2x4sgNP5xnfLVMRQj2=LChyWWx1BWL+Xgecgyw@mail.gmail.com>
+ <Yk3Bfnxe/meBYokp@sirena.org.uk>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 6 Apr 2022 10:21:01 -0700
+Message-ID: <CAE-0n53O23=N0zkZpg87Q3EyKquLe3WLNJT8qnZz4WEor6QK7A@mail.gmail.com>
+Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008 PMIC
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int emac_phy_connect(struct prueth_emac *emac)
-> +{
-> +	struct prueth *prueth = emac->prueth;
-> +
-> +	/* connect PHY */
-> +	emac->phydev = of_phy_connect(emac->ndev, emac->phy_node,
-> +				      &emac_adjust_link, 0, emac->phy_if);
-
-> +static int prueth_config_rgmiidelay(struct prueth *prueth,
-> +				    struct device_node *eth_np,
-> +				    phy_interface_t phy_if)
-> +{
-> +	struct device *dev = prueth->dev;
-> +	struct regmap *ctrl_mmr;
-> +	u32 rgmii_tx_id = 0;
-> +	u32 icssgctrl_reg;
-> +
-> +	if (!phy_interface_mode_is_rgmii(phy_if))
-> +		return 0;
-> +
-> +	ctrl_mmr = syscon_regmap_lookup_by_phandle(eth_np, "ti,syscon-rgmii-delay");
-> +	if (IS_ERR(ctrl_mmr)) {
-> +		dev_err(dev, "couldn't get ti,syscon-rgmii-delay\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (of_property_read_u32_index(eth_np, "ti,syscon-rgmii-delay", 1,
-> +				       &icssgctrl_reg)) {
-> +		dev_err(dev, "couldn't get ti,rgmii-delay reg. offset\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
-> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
-> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
-> +
-> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
-> +
-> +	return 0;
-> +}
+Quoting Mark Brown (2022-04-06 09:36:14)
+> On Wed, Apr 06, 2022 at 08:51:48AM -0700, Stephen Boyd wrote:
+> > Quoting Mark Brown (2022-04-06 08:45:41)
 >
+> > > There's a MFD parent for it, and if it's for an I2C device for a pm8008
+> > > why would it have a -regulators in the name?
+>
+> > There are two i2c devices. One is pm8008 at i2c address 0x8 and one is
+> > pm8008-regulators at i2c address 0x9. Earlier revisions of this patch
+> > series were making it very confusing by redoing the pm8008 binding and
+> > adding the pm8008-regulator i2c address device to the same binding and
+> > driver.
+>
+> > My guess is that this is one IC that responds to multiple i2c addresses.
+> > The "main" qcom,pm8008 address is 0x8 and that supports things like
+> > interrupts. Then there's an address for regulators at 0x9 which controls
+> > the handful of LDOs on the PMIC.
+>
+> So it's like the TI TWL4030 and Palmas - in which case it should
+> probably be handled similarly?
 
-O.K, so this does not do what i initially thought it was doing. I was
-thinking it was to fine tune the delay, ti,syscon-rgmii-delay would be
-a small pico second value to allow the 2ns delay to be tuned to the
-board.
+How did those work out? I wasn't involved and I don't know what you
+mean. Do they have multiple i2c addresses they respond to?
 
-But now i think this is actually inserting the full 2ns delay?
+> Note that the original sumbission was
+> *also* a MFD subfunction, but using a DT compatible to match the
+> platform device - this is the first I've heard of this being a separate
+> I2C function.
 
-The problem is, you also pass phy_if to of_phy_connect() so the PHY
-will also insert the delay if requested. So you end up with double
-delays for rgmii_id and rgmii_txid.
-
-The general recommendation is that the PHY inserts the delay, based on
-phy-mode. The MAC does not add a delay, so i suggest you always write
-0 here, just to ensure the system is in a deterministic state, and the
-bootloader and not being messing around with things.
-
-	   Andrew
+I'm mainly looking at the dts file now. It clearly has two i2c devices
+at 0x8 and 0x9. Maybe the regulator driver followed the mfd design
+because the first driver for this device is an mfd.
