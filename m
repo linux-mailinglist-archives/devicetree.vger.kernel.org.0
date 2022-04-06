@@ -2,89 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B424F67B4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E714F6725
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238964AbiDFRYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
+        id S239023AbiDFR0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238931AbiDFRYd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:24:33 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BCF4B4BB0
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:23:12 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-d39f741ba0so3212373fac.13
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 08:23:12 -0700 (PDT)
+        with ESMTP id S239064AbiDFR01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:26:27 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF933205BDF;
+        Wed,  6 Apr 2022 08:25:24 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id p10so4646090lfa.12;
+        Wed, 06 Apr 2022 08:25:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=hiSfOStXccjbf1AYzjiGRDT1g1SFjOKXyv+eLAAqR4I=;
-        b=S8QZvZFAQKRsGAYTUOeGLbGgTqU9p6NgODt08xv+GJQH6OOxo3vbZVmfWMHv4CQsrv
-         sreWgOA4uSXOeHZ5H4VFNs55oW3/EjipqQkJxdYnWoYkoxWoERMNuYKEBMxwI2KmYcWG
-         PGRDKJx7La2RUWEju8pyKfnGl4dktn6Ha0V5M=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=buklFgMo3io8o1oTm+e0Xy6mGquidMcjQ+rAVmjF0R0=;
+        b=IpUBnNb1wMpq3Z33rLXUmoesOPAyubbH73r3NT6CG2VFE7ISsrjIUEOS4mq1gMPJ0/
+         y/P3ojZkkt5w1AXkNY2BYWBVLXwhiaiDchr3olLAUF1lLuK/mxEVqh5ainO6buKOAQcW
+         cUQazL0acLThFgQpSb6DFLnF60L9LGJUgO4uNUxz397btFBQeiciuYcoqB1UwvkYTjgM
+         +GYm8SLvp98Oka8FJutNz86JOqwL1MFh3KNAjkKuYRl8NwT6VNsNLWKpihRnTNa/pYmg
+         vT3st63NFAB33DNhWFfKe4Gm/CQd4KYl+hY5lpXmcLaexYpP63+/ZlNXrr/DUxmdlVw5
+         rGgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=hiSfOStXccjbf1AYzjiGRDT1g1SFjOKXyv+eLAAqR4I=;
-        b=Ud2Vi+pJTILV/XCsXlDotsBzvCSW2Em9oVVR2FU0pUIu4JbVIOHGwf26AGhs8WsEro
-         1yahsIiFwyoUh024gWioTASA8/ilaWCeHtjr6KE2D+y9SLUUURLH0Sukr3bYIKfyQ7He
-         ogHXnNbO1plPn7Mlzdmg5UWgC5OQnfZl2RTw2XHNM0vM9GHMGwxQSoFtUl1vIuaWGblr
-         z9WZFZG5ZFKMACfR8kc1CkbOwj/qF25qdRPRSTRvgVW58xl/gPurDaani0llFh9pwms1
-         FRQBaj2up+ji8NRNJWxvc5UrXhlRo9ODiNRslKc9kh4Et9X3UIln2D/5f1YrR98m4XZa
-         Zm+g==
-X-Gm-Message-State: AOAM532odHS6yYueT+LEdV4q+qoIcuXbm42GYWXwKP5gL4zbUYP8/Rad
-        ahSvCzNjD+H73EW6OgHsQZEVPUSwduzrKQVE3STqYQ==
-X-Google-Smtp-Source: ABdhPJyAXhv6StedGOtJuWf7fO5MgYIPzySA3+7UPCtieqRLefs7juSZxzHlMkcvHchGKDyCITgazKVuobCc5PuwwYA=
-X-Received: by 2002:a05:6870:e314:b0:e1:e5f0:d777 with SMTP id
- z20-20020a056870e31400b000e1e5f0d777mr3969864oad.193.1649258591945; Wed, 06
- Apr 2022 08:23:11 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 6 Apr 2022 08:23:11 -0700
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=buklFgMo3io8o1oTm+e0Xy6mGquidMcjQ+rAVmjF0R0=;
+        b=aMertZ/mQXLyIblB4e74SqA18SJZWGbjak87x6yz1Bfbicq0v+a/Dqn39uCyEXx+yc
+         8wZ+uHmXEA6Uhrs1BYb51/2FEiICW6jUlRuw3rlpY1f88oVpAucMtE7r1ZdPNnLTBA7S
+         DzOoKvw9IOvLy47QsAWDzph+1ofIUeEHv2qtSIz7EoBL+LntTOVjRV1SdO7A8KBHOJR3
+         VSqTnzFA8JSMrhrjANqQk7wMSDwJLVyvMJLl2+dxp288H2RPBvAW+JIC+ihXtAElWUkM
+         69XY79T3faOMz/7cKCI/VU3Vi3Irqh4KSHEyCsji3MnlR8H+N8Cwf7T4V/kWfX4Jyd1G
+         gJhA==
+X-Gm-Message-State: AOAM531xNrDOgn1cNe86d/Fm4MxQfGBUTYrCi5xBZDYgCfCpd/XlG+SA
+        5a0sq3ZO/CQjz/v/MZfTIlA=
+X-Google-Smtp-Source: ABdhPJw+wxyyrmHkxuNDGzpTAjtnLv+6MCubb/xVpbVgTR8NNXWidB7jX7O3yhmXgjH6l8xw/z/JWg==
+X-Received: by 2002:a05:6512:3dab:b0:44a:247:2d8 with SMTP id k43-20020a0565123dab00b0044a024702d8mr6374447lfv.628.1649258723148;
+        Wed, 06 Apr 2022 08:25:23 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id y5-20020a2e3205000000b0024b045e3b18sm1557359ljy.66.2022.04.06.08.25.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Apr 2022 08:25:22 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Tom Rini <trini@konsulko.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        u-boot@lists.denx.de, bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: nvmem: u-boot,env: add Broadcom's variant binding
+Date:   Wed,  6 Apr 2022 17:25:15 +0200
+Message-Id: <20220406152515.31316-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <Yk1B4f51WMGIV9WB@sirena.org.uk>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
- <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com> <Yk1B4f51WMGIV9WB@sirena.org.uk>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 6 Apr 2022 08:23:11 -0700
-Message-ID: <CAE-0n53Cv_bR92M64dhdnDge_=_jeOs4VZzDhUkksN90Y7rgog@mail.gmail.com>
-Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008 PMIC
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Mark Brown (2022-04-06 00:31:45)
-> On Tue, Apr 05, 2022 at 02:09:06PM -0500, Stephen Boyd wrote:
-> > Quoting Satya Priya (2022-04-05 06:50:31)
->
-> > > +static struct platform_driver pm8008_regulator_driver = {
->
-> > Why isn't this an i2c driver?
->
-> It's a MFD function driver isn't it?
+From: Rafał Miłecki <rafal@milecki.pl>
 
-The DT binding shows a single i2c node at i2c address 0x9. The
-compatible for it is "qcom,pm8008-regulators". It looks like an i2c
-device that is dedicated to providing regulators. I'd only expect to see
-an MFD if the device responding at i2c address 0x9 supported more than
-just regulators.
+Broadcom uses U-Boot for some of their recent platforms like BCM4908.
+They decided to use modified environment variables variables format
+though. Their header includes 2 extra 32 b fields at the beginning.
+
+The first field meaning is unknown, the second one stores length of env
+data block. Example (length 0x4000):
+$ hexdump -n 32 -C -s 0x40000 /dev/mtdblock0
+00040000  76 6e 45 75 00 40 00 00  34 89 7a 82 49 4d 41 47  |vnEu.@..4.z.IMAG|
+00040010  45 3d 4e 41 4e 44 3a 31  4d 2c 31 30 32 34 4d 00  |E=NAND:1M,1024M.|
+
+Add a custom "compatible" value to allow describing Broadcom devices
+properly.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/nvmem/u-boot,env.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+index e70b2a60cb9a..6a6b223be4a0 100644
+--- a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+@@ -36,6 +36,8 @@ properties:
+         const: u-boot,env-redundant-bool
+       - description: Two redundant blocks with active having higher counter
+         const: u-boot,env-redundant-count
++      - description: Broadcom's variant with custom header
++        const: brcm,env
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
+
