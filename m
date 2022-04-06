@@ -2,172 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99BF54F606B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D5A4F6166
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233599AbiDFNsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 09:48:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
+        id S234574AbiDFOPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233615AbiDFNso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:48:44 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C249B53A47F;
-        Wed,  6 Apr 2022 04:11:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649243481; x=1680779481;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=mxkshQ7DDAtNUIY1aajFWQJrYfPpGlQ9uDSHZOGjqiI=;
-  b=EsWPwr5CSgYMV4Waf7GpJ64j+Cw3w6pnEpnohcyvK/Xj9esptbl1E8e8
-   3fjbh2x5/+BSG5Q67eIWjJ7Tmu3EtB0bzUf30GzEoRtGCcYUwwF+3Ey1M
-   Yszan+Tt79P+k7JGZw4Ew/OGudZTLL6mFx0P8lO42vF+LfQWSYRKupnFT
-   c=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Apr 2022 04:11:20 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 04:11:19 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 04:11:19 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 04:11:15 -0700
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <swboyd@chromium.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_sibis@quicinc.com>,
-        <kuabhs@chromium.org>, <quic_pillair@quicinc.com>,
-        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Subject: [PATCH v11] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Date:   Wed, 6 Apr 2022 16:41:01 +0530
-Message-ID: <20220406111101.27412-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S234582AbiDFOOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:14:51 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E730E5FB7;
+        Tue,  5 Apr 2022 18:21:04 -0700 (PDT)
+X-UUID: ccf0173b3f3744f3bd37e8cb6f1ad1a9-20220406
+X-UUID: ccf0173b3f3744f3bd37e8cb6f1ad1a9-20220406
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 206969711; Wed, 06 Apr 2022 09:20:54 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 6 Apr 2022 09:20:53 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 6 Apr
+ 2022 09:20:52 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 6 Apr 2022 09:20:49 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH] media: mediatek: vcodec: Fix v4l2 compliance decoder cmd test fail
+Date:   Wed, 6 Apr 2022 09:20:48 +0800
+Message-ID: <20220406012048.5970-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rakesh Pillai <quic_pillair@quicinc.com>
+Will return -EINVAL using standard framework api when test stateless
+decoder with cmd VIDIOC_(TRY)DECODER_CMD.
 
-Add the WPSS remoteproc node in dts for
-PIL loading.
+Using another return value to adjust v4l2 compliance test for user
+driver(GStreamer/Chrome) won't use decoder cmd.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Signed-off-by: Rakesh Pillai <quic_pillair@quicinc.com>
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Fixes: 8cdc3794b2e3 ("media: mtk-vcodec: vdec: support stateless API")
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-Changes from v10:
-- Rebased on ToT
+changes compared with v2:
+- add reviewed-by tag
+changes compared with v1:
+- add Fixes: tag
+---
+ drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Changes from v9:
-- Rebased on ToT
-
-Changes from v8:
-- Enable remoteproc_wpss from sc7280-idp.dtsi as the change is common for IDP and IDP2
-
-Changes from v7:
-- Remove wpss_mem from reserved memory. Its part of board dtsi.
-
-Changes from v6:
-- Swap the oder of two properties in wpss_mem reserved memory
-
-Changes from v5:
-- Update the clock names
-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  3 ++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 51 ++++++++++++++++++++++++
- 2 files changed, 54 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b89d896..f61a3e15fa8b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -547,3 +547,6 @@ sw_ctrl: sw-ctrl {
- 	};
- };
+diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+index 3859e4c651c6..69b0e797d342 100644
+--- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
++++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+@@ -51,8 +51,7 @@ static int vidioc_try_decoder_cmd(struct file *file, void *priv,
  
-+&remoteproc_wpss {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index f0b64be63c21..b757e8ad1199 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2842,6 +2842,57 @@ qspi: spi@88dc000 {
- 			status = "disabled";
- 		};
- 
-+		remoteproc_wpss: remoteproc@8a00000 {
-+			compatible = "qcom,sc7280-wpss-pil";
-+			reg = <0 0x08a00000 0 0x10000>;
-+
-+			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog", "fatal", "ready", "handover",
-+					  "stop-ack", "shutdown-ack";
-+
-+			clocks = <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
-+				 <&gcc GCC_WPSS_AHB_CLK>,
-+				 <&gcc GCC_WPSS_RSCP_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "ahb_bdg", "ahb",
-+				      "rscp", "xo";
-+
-+			power-domains = <&rpmhpd SC7280_CX>,
-+					<&rpmhpd SC7280_MX>;
-+			power-domain-names = "cx", "mx";
-+
-+			memory-region = <&wpss_mem>;
-+
-+			qcom,qmp = <&aoss_qmp>;
-+
-+			qcom,smem-states = <&wpss_smp2p_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>,
-+				 <&pdc_reset PDC_WPSS_SYNC_RESET>;
-+			reset-names = "restart", "pdc_sync";
-+
-+			qcom,halt-regs = <&tcsr_mutex 0x37000>;
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-+							     IPCC_MPROC_SIGNAL_GLINK_QMP
-+							     IRQ_TYPE_EDGE_RISING>;
-+				mboxes = <&ipcc IPCC_CLIENT_WPSS
-+						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-+
-+				label = "wpss";
-+				qcom,remote-pid = <13>;
-+			};
-+		};
-+
- 		dc_noc: interconnect@90e0000 {
- 			reg = <0 0x090e0000 0 0x5080>;
- 			compatible = "qcom,sc7280-dc-noc";
+ 	/* Use M2M stateless helper if relevant */
+ 	if (ctx->dev->vdec_pdata->uses_stateless_api)
+-		return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv,
+-								cmd);
++		return -ENOTTY;
+ 	else
+ 		return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
+ }
 -- 
-2.35.1
+2.18.0
 
