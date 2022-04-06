@@ -2,74 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D53244F6886
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 715324F6888
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239825AbiDFSAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 14:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
+        id S240028AbiDFSAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 14:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239829AbiDFSAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:00:09 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20D2247C01
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 09:10:49 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id n6-20020a17090a670600b001caa71a9c4aso3202131pjj.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 09:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=95RDoGyZtbEcoHnBFQepKxpMoAUWFwyWGwDHuUzcbMY=;
-        b=zTEdfItkEUK2LGYDh68HRGrbmaItaQKULw+9lTwbEZaNWQ05CQRkXWASt2A7Qmhj8K
-         YGMn50PZLtb7ypgA3b1nPiDm0qf0Mv3ndZBmL7rAsU/WuANTcI6C8A08/xkYCuGhWLKS
-         PItQG6iDdRcofzI+yRZ3GcCEqpnnkET4k4bzz5g+2T2owMotAIBXShuBP2qJnHIyhZWp
-         JCjqJ0UKzYCWKcRzlgzg3hI2Hp+zS69zcd8L4LMVuD4I9iJvsWoN1cLmAFk4OA5SGfrd
-         SRU58ASegW/3oxsQ7FfT09ANtu+UI8wvdVAghhGIgJdowFKp0DMI+a9BBAlS1Qy3vrlF
-         7gIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=95RDoGyZtbEcoHnBFQepKxpMoAUWFwyWGwDHuUzcbMY=;
-        b=7R05WTmucrDlOiPO7RRX8hl0nnpXirsEKEW/79q2go0Ghb34KRJbMRQ0EAfl8sXt2r
-         fcm3hU9BcayEKoz5W1jHfQm6uFq2CctNFagWeiBuQMG3IO3UtjMDW1G1jyqpBIyz6grJ
-         UoEDA1LTW2CkUclnbjHZcMeZUmww///5y4K83mzx5IpJihFeYN1bdHeFEVilq7LSl8E/
-         J9VCGK392D+H0ZDpMSUpW7hGLCPMRDQAVxGDN+1cKtKT13U13iIRpPDNxyp1nRubb0Ri
-         AZSFDXo/iOtJ/NJRI97B6JISUaCmN9nscHDyVSbS1aLgyJkuVT4Xo+al+R6R60CnL7wn
-         OMnw==
-X-Gm-Message-State: AOAM531Vmqe0YxlKBchZ39iBVsg5lrjtG+tV8C82kDBBS+ger6zyEx3t
-        T9ecoHnZDntXT9JBlLwBpGqmbUbEsQnsJOyt9PuihA==
-X-Google-Smtp-Source: ABdhPJzlZiYbA1h7PZOpTXhFDSXJLbry3YFGlV7/j3Lx1oTWVTvgRcbYK3zPbBRS+2NsM3aFsrF3c9D6iK8fVBDPttI=
-X-Received: by 2002:a17:903:206:b0:153:ebab:a52f with SMTP id
- r6-20020a170903020600b00153ebaba52fmr9290143plh.118.1649261449125; Wed, 06
- Apr 2022 09:10:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220406160123.1272911-1-l.stach@pengutronix.de>
-In-Reply-To: <20220406160123.1272911-1-l.stach@pengutronix.de>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Wed, 6 Apr 2022 09:10:38 -0700
-Message-ID: <CAJ+vNU3pxSiAX5_fmLy9ztUZ4-dvm5GHdUnucWZwWcQ539dT4w@mail.gmail.com>
-Subject: Re: [PATCH v0 00/10] i.MX8MP HDMI support
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        with ESMTP id S239738AbiDFSAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:00:16 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5040403DF;
+        Wed,  6 Apr 2022 09:16:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bnWhRbbfEv7DjBxDQIMiYWq49DrS2pBivRTQvakFg7TnIdaU3zLSc17/kBKEsELFSodt3/UdzJFN1Yi0s0kkavYk/Qzew8K0rb97GyLSg7AThx8joB8nn4Q+bx5Yrdq7qZNWPYNfP1qCFeDqqC0v8CTkPbTr4GcE49sBuooxUYE7rgSsjLZfqXUaEUkCJBNwOn0w19d3F4QGsRzSNuQGu99c9HjH94a9J2HL+CtZkTB7kj67NKe1kStEZt28DfDPlqiNoJ/1S+odTUq/cAvzZ5Y3swzRmb6+S5XHYLBA7IKlz8MlS/I83phwq9nwpaiib+55ZUKC99D6LEQJo1/QvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rkt0gO2L/C5Y2YKTU1aH/k3mxdgQmSaSyf9P6VhUQyI=;
+ b=XDFGCv0heH9J56xkosAjOh+2DGpjkWNwd1VBEFH54gkPkY2uJ6ALDNDYlzWueKeVlKn63T/dfDvuJC7VwUer0gFHImlkMXr7y1FQlTkszmEOAbgD1wT59F97R/wCPiKoQzmoqOEhzNjAGaxP9bOyWX5gYOoTF+7LbAyR2ZDogVSxP2xr3Hw2vVAZUMb3IGjlfkPEg6lS6eKKHCPBM+/OZ065gOL4VTTRcP0yMIhsJz+rUME1ao/eKp0dtsGqgO8arWedYqjzuTM36Fa59aecGMjIb0z02OFkiot9NFbDfnTnNqOPGULaU65RQU1ijI3LAIGxN8/Q0DE0QL4Gh/QzZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rkt0gO2L/C5Y2YKTU1aH/k3mxdgQmSaSyf9P6VhUQyI=;
+ b=bZXNTdijkiJ4gV3EnTOys1xQJjGNOyoGyGAB3VJogUK88fvXXY77zb/3OwSNEbBvdBss5yjYFDUq9FYdie9WNR+HYgpvCh46ap13M47b3s1gfRCyNKAqz9OO2YhkU7usfmwSJAzPuwoWF7Bra6aGAB6/rzBvBpcWSSpCxtwtrzqJU4bqlrvJy9MCSzIBAdDFK2wcuFrg2D9IVqilVO2B3v5a7swYr9p/60RscJ/coSu7/XO0nNuTuz3MTas4qLiREfeuGIl1OW1EImUrxIGqbGg4EICYpDkccbc1j0QQG5B/mH/uFy+iofMfSgSD5mBbKBb78n1SQlnASxc51t+H+A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ MN2PR12MB4335.namprd12.prod.outlook.com (2603:10b6:208:1d4::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.21; Wed, 6 Apr
+ 2022 16:16:16 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::10ef:dc56:bb21:76f6]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::10ef:dc56:bb21:76f6%4]) with mapi id 15.20.5123.031; Wed, 6 Apr 2022
+ 16:16:16 +0000
+Message-ID: <279acd03-b2fd-3bbb-8c74-e7255f4df352@nvidia.com>
+Date:   Wed, 6 Apr 2022 17:16:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: tegra: Update PWM fan node name
+Content-Language: en-US
+To:     Thierry Reding <treding@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+References: <20220406152655.264074-1-jonathanh@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20220406152655.264074-1-jonathanh@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO2P265CA0497.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:13a::22) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 552c017c-be46-4172-8191-08da17e8c6da
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4335:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB43353A0607F7356D749250A4D9E79@MN2PR12MB4335.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ldz2eFkwRc0MrciqZ2SXnsFFvUgczoMsdCLzJ5JyU60Yw0q/BAXeS8W7CTOvdJ36d8G1n0nAUJ4nFBML8cj8Ix+MlmTtlpp0t+CS573B/n+T9lrKIegcfAXncLvCOmwhPZ4mh/2ccllsbqhQSC7E/5Hqzj51+Le76M7dvqfximN3g2lxGOGV8W9vaeqqimfZgVFqyf8y627bxtiIrkvsxuhymBmC4Gkw2jwbMhpyu6zXUyMZWE3+Zv5zgniMutpW7mryO8N/BkwAopPrld97rZQFqmpDFr+H3o4tSOx+0kZ+2uiyhn10/YXV+D0/28tEKNBRY6pvWX1iF3Kq/QG+cE1Ye3kFll+CVXw0C1KgRK4AK+DIIxmbkfIccefe0kmPt3OE+0UheukiexLTWsGysdmECG+nIKYDQGzrWAG3N9+5ZuuPHx6LX5CYosSwi4Jyz7Dnl4GRe9nAq3MamVhC3TNthQxZdVWqUJTFO1T5ytPr0/mnS25O7lnaIG/4+0DqeyDbEL7yqfJcnvqjNh89Y6q/lwzDz6XTozcOS8nmrQvLzVPu+F6a0yP0s9AeVxQVv0mPHiW9+n5tw25SX1+HSpbu8LXzSFMnFJk+fuahCgJ8ouRqxTb55e8rSvQd8JJmpsWy1hToZ86RKmgE8IesmxHLdQOncGibmNn37qYy3QjdPmX0MpuUbZkwV49eKPiQ3ba6xSGiCkaeb6pppmA92ABm/cZPJ+KVmMd9i0sluEw4ie4IfSgiTz5w7xmva+u9
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(110136005)(316002)(66476007)(66556008)(86362001)(4326008)(31696002)(66946007)(6666004)(8676002)(186003)(6512007)(6506007)(55236004)(53546011)(2616005)(26005)(508600001)(83380400001)(6486002)(38100700002)(8936002)(5660300002)(15650500001)(2906002)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Nk1WVFBSNHZIOUJmc2tNcDdmUDBIM2pnb29EWkpvRzRtbVk0RlAxQ1FMdDd2?=
+ =?utf-8?B?R01yOE9lbFdxRWk5UWRoUUx3aFN5R3ZQeE1vQU1hK2xPc0ZadkNST1JLZ2JU?=
+ =?utf-8?B?d3FoMFRUUlhHZ2ZIN2FSS2U5VHhtQUVXelNBeFNTTkdZZjVkeFZEM293dkds?=
+ =?utf-8?B?WVBKTUxXS092UHU1cFF1d1FDc2FLdU9GWmdYbWkxUURBNUxzWHRjYWw2M1hh?=
+ =?utf-8?B?UkVhUkF3MkZhZnE2azg5bUpZamhEWXVlaTJJQnU4dXB3WFJhWFlYNXhqM3cr?=
+ =?utf-8?B?MGZxQjZTOXAzUnMyWTczWkNaUTJyUzRURHdJTmhMcFVJQ2RLTVdyZDNob3lE?=
+ =?utf-8?B?Wk9sTExhOFFHclJXdkl6Q3ZBSFdybVZWWUZvRXorN0pDSzlSSWVKZnBhZjA4?=
+ =?utf-8?B?cGVzalJWSHRidFBvYjlOcUN0YzdvK0I1OE93L0gvVGdKN0NmOTNWVVArWDFO?=
+ =?utf-8?B?dFRiQnJjK01kUzJzNzd4SXBnbE9BZlFWK1BLMGxDWW1ENTg2OG0rcjN6d3U5?=
+ =?utf-8?B?VVZPZkpIVnd4M0NRZkZBT3hic2NnVUN6blVsNnNzUHJSUUpJYXMwUEtZaVBT?=
+ =?utf-8?B?Sm43T3FwbE4zcGNIVEJ4NEZ2dGttOTZFeDlDUnk0QjliaWsvUk9CelFFVGhW?=
+ =?utf-8?B?b1QxcmRBSzltenlQcmpnWFZaeWlXazRwQ2RUOUo5OENHQlVpazQ3RGFLTjlY?=
+ =?utf-8?B?RW1BMVBNYjVRVjI0RXBycGgvWVhpVXRaY05iUXRJK01qSnRhSWdyU0N4ak5O?=
+ =?utf-8?B?WUJIemhyNUVEV3N3L2VxT3doMVBobEFDc1YyS2wyS3dtckRtblBHYVA5RHJS?=
+ =?utf-8?B?NkR6enV2WS9QejZzVUNTTys3b3ArbzdHRlM2S2ZQcGNtUUtzUVdxOEQ5M2JV?=
+ =?utf-8?B?NHFMWi84ei9jblMwU3UwbGlrRkZRSU5HNkRJaWpiVmdoYkp6SXJvVkhFWndM?=
+ =?utf-8?B?NVhybjZtY1FTejl5T0l6MG5xTXFUNGlGMkVPcmFHQjlmZFZmZENMcUVnM0hG?=
+ =?utf-8?B?My9zNWRqdXV3Nk5FdHYvRXRLMzVZM2lYZndaL1RUQlEwaTJlVDFGOGhpWjA0?=
+ =?utf-8?B?aThXdUZpMGZ1MUdGa1hzZTVUZzFDbEZpMlZpdkR1NmFVdXVsY0NwZm5aNXdr?=
+ =?utf-8?B?a1luakZBMFdIakJlMEFNSll1UXBEZHMwWlVWL0l1MmZWVnBBakZxYjdOYisr?=
+ =?utf-8?B?RkRwb3VoQXRjL0VzeUV6bDFJcCswazRtZlRJajJzclJzcE1IdW0xYTZvWHJu?=
+ =?utf-8?B?QmNzMHVQS2RSaEVJaW04ekxRSUg4TGJSb0p0RmpnMnFjNEx2NU52bjJITExr?=
+ =?utf-8?B?ZWY3MldCeHJjMUJYaHZIbUhFMnJ1cGs5NWJTVzd2djNwNHpqSFhock8yRFBq?=
+ =?utf-8?B?VGVhYThid0dabHlwSnV5MzI4bEVUWG52V1lBNUdqRHpaSmx4OWtucWZud1BP?=
+ =?utf-8?B?RDZSdVd2cTJFODBPUzRhRFRkMlc5RGRtblFkZHpnV0QxRVJ2My9tZjZ5Tkdl?=
+ =?utf-8?B?QktqVWo0YWVQdHRMRm5kREdHNVcweHEydDErakoxUTdkUllqclJ6OUtoaWZ6?=
+ =?utf-8?B?M2FwOW5MajBLenJTa2dGWUhHLzY1SGVpRndYdlFBcU0xOFNkaUd5Y3RPTDlT?=
+ =?utf-8?B?K29Ed0Ryakthd0s1NmRxazJEaGZlZ2c0QlNTUEdIVGxRSWcxZmRpMmRnc2Ev?=
+ =?utf-8?B?RURtd3EwRDBYUWVWWGR2aEZCNzdIMmd5VjE0L3VCc0JDYnc3dkJhYkkreDk2?=
+ =?utf-8?B?M2dDeklLb2JyM3ZxWm5DMTV3dFlnTUhqWTIxRlF6NStiWi9oNTFVYjFUYTk0?=
+ =?utf-8?B?bldGWmp4ZE5iY255Z04rSUxqSnpCREh0MXZ0WGtSa2tRblNhNFNiVUNMVGlJ?=
+ =?utf-8?B?Zy9LZjlYMDVYQWhuUFN6blcxRHBlZnc4QjBTRXJPQ1ozMC9DRlNRZEtXdWpU?=
+ =?utf-8?B?b3ZZaW1rVlA2YW91S1hzSzZuVVBaeCtrSHhrUjZXRVB5VEdzNjhUUXlGNEpF?=
+ =?utf-8?B?M1JjTmZlU0RISWt6SU85SHdCZUFSV3ptNUpkVmpJTTZwaXU0OEtXcUNkTE5C?=
+ =?utf-8?B?MU1QUDg2YjVBUEdBV0htVXNOOVhmRXlrdUdBTDN5ZEFxR1FhSkIvTHR5RTE3?=
+ =?utf-8?B?UGlNU2M3Um1qNis4SEo4a3dQd0huVXpKcWI5dXZrNWtFQTI2US8rYmZacGpC?=
+ =?utf-8?B?eFpHKyswcHVZYUk0MUt1c3RXQXlDRG5oSVZzMmZ6SWE4bDJjQWwrVFo1Ry96?=
+ =?utf-8?B?ZVVGTFFNeU5XVy9tWlQ0bWhsQVVzaW9pTmoyOGhQZjJOemZxUHI0SzVyMFpS?=
+ =?utf-8?B?RHdRbDJ1bzJoUFJBeDJHMzB1aTg0SEt6QURIVVdmRVFNTUZXMmhpVHAyTWRN?=
+ =?utf-8?Q?9yWrAmmbfZ+XqtwY=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 552c017c-be46-4172-8191-08da17e8c6da
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2022 16:16:16.4906
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: go7VjyNjhLdvFQE8cXMpZgAR41BeBo0yGcURdRZOfPBoaFyGG9AbVHPwyiTrGd1yiUVk8ClzR02yQ8DRFQLizQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4335
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,83 +131,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 6, 2022 at 9:01 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Hi all,
->
-> this adds support for the HDMI output pipeline on the i.MX8MP.
-> It currently depends on the i.MX8MP HDMI power domain series [1]
-> and support for the new LCDIF [2] in the i.MX8MP. I guess the
-> implementation presented here also still has some warts that
-> require fixing and the individual patches most likely need to go
-> through different maintainer trees, so I don't expect this series
-> to be applied right away.
->
-> However this complete series should allow people to test it more
-> easily and provide feedback on the implementation with the full
-> picture available.
->
-> Compared to downstream this implementation actually allows to
-> power down the separate HDMI PHY power domain when the display
-> is inactive or no HDMI cable is connected.
->
-> Regards,
-> Lucas
->
-> [1] https://lore.kernel.org/all/20220406153402.1265474-1-l.stach@pengutronix.de/
-> [2] https://lore.kernel.org/all/20220322142853.125880-1-marex@denx.de/
->
-> Lucas Stach (10):
->   drm/bridge: dw-hdmi: add low-active PHY reset
->   dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
->   drm/imx: add bridge wrapper driver for i.MX8MP DWC HDMI
->   dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
->   drm/imx: add driver for HDMI TX Parallel Video Interface
->   dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
->   phy: freescale: add Samsung HDMI PHY
->   arm64: dts: imx8mp: add HDMI irqsteer
->   arm64: dts: imx8mp: add HDMI display pipeline
->   arm64: dts: imx8mp-evk: enable HDMI
->
->  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      |   83 ++
->  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml |   72 ++
->  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     |   62 +
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |   19 +
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |   93 ++
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |    7 +
->  drivers/gpu/drm/imx/Kconfig                   |    1 +
->  drivers/gpu/drm/imx/Makefile                  |    2 +
->  drivers/gpu/drm/imx/bridge/Kconfig            |   18 +
->  drivers/gpu/drm/imx/bridge/Makefile           |    4 +
->  drivers/gpu/drm/imx/bridge/imx-hdmi-pvi.c     |  209 +++
->  drivers/gpu/drm/imx/bridge/imx-hdmi.c         |  128 ++
->  drivers/phy/freescale/Kconfig                 |    7 +
->  drivers/phy/freescale/Makefile                |    1 +
->  drivers/phy/freescale/phy-fsl-samsung-hdmi.c  | 1145 +++++++++++++++++
->  include/drm/bridge/dw_hdmi.h                  |    1 +
->  16 files changed, 1852 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
->  create mode 100644 drivers/gpu/drm/imx/bridge/Kconfig
->  create mode 100644 drivers/gpu/drm/imx/bridge/Makefile
->  create mode 100644 drivers/gpu/drm/imx/bridge/imx-hdmi-pvi.c
->  create mode 100644 drivers/gpu/drm/imx/bridge/imx-hdmi.c
->  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
->
-> --
-> 2.30.2
->
+Adding linux-tegra ...
 
-Lucas,
+On 06/04/2022 16:26, Jon Hunter wrote:
+> According to the device-tree binding document for PWM fans [0], the
+> PWM fan node name should be 'pwm-fan'. Update the PWM fan node name to
+> align with this.
+> 
+> [0] Documentation/devicetree/bindings/hwmon/pwm-fan.txt
+> 
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>   arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts | 2 +-
+>   arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts            | 2 +-
+>   arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi           | 2 +-
+>   arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts            | 2 +-
+>   4 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+> index 4631504c3c7a..7e9aad9ff177 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+> @@ -349,7 +349,7 @@ gpu@17000000 {
+>   		status = "okay";
+>   	};
+>   
+> -	fan: fan {
+> +	fan: pwm-fan {
+>   		compatible = "pwm-fan";
+>   		pwms = <&pwm4 0 45334>;
+>   
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
+> index 2478ece9e67c..27d28626bf5b 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
+> @@ -1989,7 +1989,7 @@ pcie-ep@141a0000 {
+>   			    "p2u-5", "p2u-6", "p2u-7";
+>   	};
+>   
+> -	fan: fan {
+> +	fan: pwm-fan {
+>   		compatible = "pwm-fan";
+>   		pwms = <&pwm4 0 45334>;
+>   
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+> index 32ce7904f44f..8033be098f34 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+> @@ -1993,7 +1993,7 @@ pcie-ep@141a0000 {
+>   			    "p2u-5", "p2u-6", "p2u-7";
+>   	};
+>   
+> -	fan: fan {
+> +	fan: pwm-fan {
+>   		compatible = "pwm-fan";
+>   		pwms = <&pwm6 0 45334>;
+>   
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> index 72c2dc3c14ea..746bd52ea3f7 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> @@ -1657,7 +1657,7 @@ cpu-sleep {
+>   		};
+>   	};
+>   
+> -	fan: fan {
+> +	fan: pwm-fan {
+>   		compatible = "pwm-fan";
+>   		pwms = <&pwm 3 45334>;
+>   
 
-Thanks for consolidating this - It's been difficult to try to merge
-these for testing.
-
-I still have not been able to apply these to origin/master or
-imx/master - what are you basing off of here?
-
-Best Regards,
-
-Tim
-I
+-- 
+nvpublic
