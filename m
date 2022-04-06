@@ -2,49 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D7A34F6785
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6644F672D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238763AbiDFR22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45040 "EHLO
+        id S239168AbiDFRa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:30:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239679AbiDFR2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:28:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C95CC90D9;
-        Wed,  6 Apr 2022 08:29:45 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 85B8A1F4136D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649258984;
-        bh=1NhAchyfhmSmpQJUfImxIt/WQmIDi6gHQsa7Fft+Rks=;
-        h=From:To:Cc:Subject:Date:From;
-        b=OQDpeJ1CvB/HRIMKBLggLHHm4RAqWhHYwby3rUsfvR/bfVO5vAKJnmfn+oetuspeA
-         440NJiHS1nRDY07b8iuW/cgnQ86eDw/Ep1UI7RrYdICUUUbnsUbD5O9bf2+fmI+q5u
-         1MeOw3e4oce3zdG5Q8JpghmoV2KJ52Mmn7EzvBeNK6kGFB2lfDVqG8wyP+ny1F+qXv
-         fTi264g+xqUm+bT+LBUSkuGpshloy4JN3SfdmWV2yJKNYPDiTZDMDpctL5WU1/OVc4
-         nJEerUftYKTv3EKDQBivUgtjHy3JS1J6Q9r0/WcAWVX9KK2EJteMRcYhLSHSttOQV3
-         Qp6xHefrUW6aw==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     krzk+dt@kernel.org, matthias.bgg@gmail.com, qii.wang@mediatek.com,
-        wsa@kernel.org, kewei.xu@mediatek.com,
-        angelogioacchino.delregno@collabora.com, hsinyi@chromium.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: i2c: convert i2c-mt65xx to json-schema
-Date:   Wed,  6 Apr 2022 17:29:40 +0200
-Message-Id: <20220406152940.140224-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S238949AbiDFRal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:30:41 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E00A4CD43
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:34:11 -0700 (PDT)
+Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nc7fX-0005jN-HE; Wed, 06 Apr 2022 17:34:03 +0200
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 00/11] consolidated i.MX8MP HSIO/MEDIA/HDMI blk-ctrl series
+Date:   Wed,  6 Apr 2022 17:33:51 +0200
+Message-Id: <20220406153402.1265474-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,213 +47,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert I2C binding for MediaTek SoCs to Devicetree schema.
+Hi all,
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../devicetree/bindings/i2c/i2c-mt65xx.txt    |  53 --------
- .../devicetree/bindings/i2c/i2c-mt65xx.yaml   | 118 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 119 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+this series adds a bunch more power domains that integrate with the blk-ctrls
+to the i.MX8MP. It depends on the i.MX8MP GPCv2 support series posted in [1].
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
-deleted file mode 100644
-index 026985b8f61a..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--* MediaTek's I2C controller
--
--The MediaTek's I2C controller is used to interface with I2C devices.
--
--Required properties:
--  - compatible: value should be either of the following.
--      "mediatek,mt2701-i2c", "mediatek,mt6577-i2c": for MediaTek MT2701
--      "mediatek,mt2712-i2c": for MediaTek MT2712
--      "mediatek,mt6577-i2c": for MediaTek MT6577
--      "mediatek,mt6589-i2c": for MediaTek MT6589
--      "mediatek,mt6797-i2c", "mediatek,mt6577-i2c": for MediaTek MT6797
--      "mediatek,mt7622-i2c": for MediaTek MT7622
--      "mediatek,mt7623-i2c", "mediatek,mt6577-i2c": for MediaTek MT7623
--      "mediatek,mt7629-i2c", "mediatek,mt2712-i2c": for MediaTek MT7629
--      "mediatek,mt8168-i2c": for MediaTek MT8168
--      "mediatek,mt8173-i2c": for MediaTek MT8173
--      "mediatek,mt8183-i2c": for MediaTek MT8183
--      "mediatek,mt8186-i2c": for MediaTek MT8186
--      "mediatek,mt8192-i2c": for MediaTek MT8192
--      "mediatek,mt8195-i2c", "mediatek,mt8192-i2c": for MediaTek MT8195
--      "mediatek,mt8516-i2c", "mediatek,mt2712-i2c": for MediaTek MT8516
--  - reg: physical base address of the controller and dma base, length of memory
--    mapped region.
--  - interrupts: interrupt number to the cpu.
--  - clock-div: the fixed value for frequency divider of clock source in i2c
--    module. Each IC may be different.
--  - clocks: clock name from clock manager
--  - clock-names: Must include "main" and "dma", "arb" is for multi-master that
--    one bus has more than two i2c controllers, if enable have-pmic need include
--    "pmic" extra.
--
--Optional properties:
--  - clock-frequency: Frequency in Hz of the bus when transfer, the default value
--    is 100000.
--  - mediatek,have-pmic: platform can control i2c form special pmic side.
--    Only mt6589 and mt8135 support this feature.
--  - mediatek,use-push-pull: IO config use push-pull mode.
--  - vbus-supply: phandle to the regulator that provides power to SCL/SDA.
--
--Example:
--
--	i2c0: i2c@1100d000 {
--			compatible = "mediatek,mt6577-i2c";
--			reg = <0x1100d000 0x70>,
--			      <0x11000300 0x80>;
--			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
--			clock-frequency = <400000>;
--			mediatek,have-pmic;
--			clock-div = <16>;
--			clocks = <&i2c0_ck>, <&ap_dma_ck>;
--			clock-names = "main", "dma";
--	};
--
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-new file mode 100644
-index 000000000000..889064f24a8c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-mt65xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek I2C controller
-+
-+description:
-+  This driver interfaces with the native I2C controller present in
-+  various MediaTek SoCs.
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+maintainers:
-+  - Qii Wang <qii.wang@mediatek.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: mediatek,mt2712-i2c
-+      - const: mediatek,mt6577-i2c
-+      - const: mediatek,mt6589-i2c
-+      - const: mediatek,mt7622-i2c
-+      - const: mediatek,mt8168-i2c
-+      - const: mediatek,mt8173-i2c
-+      - const: mediatek,mt8183-i2c
-+      - const: mediatek,mt8186-i2c
-+      - const: mediatek,mt8192-i2c
-+      - items:
-+          - enum:
-+              - mediatek,mt7629-i2c
-+              - mediatek,mt8516-i2c
-+          - const: mediatek,mt2712-i2c
-+      - items:
-+          - enum:
-+              - mediatek,mt2701-i2c
-+              - mediatek,mt6797-i2c
-+              - mediatek,mt7623-i2c
-+          - const: mediatek,mt6577-i2c
-+      - items:
-+          - enum:
-+              - mediatek,mt8195-i2c
-+          - const: mediatek,mt8192-i2c
-+
-+  reg:
-+    items:
-+      - description: Physical base address
-+      - description: DMA base address
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: Main clock for I2C bus
-+      - description: Clock for I2C via DMA
-+      - description: Bus arbitrator clock
-+      - description: Clock for I2C from PMIC
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: main
-+      - const: dma
-+      - const: arb
-+      - const: pmic
-+
-+  clock-div:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Frequency divider of clock source in I2C module
-+
-+  clock-frequency:
-+    default: 100000
-+    description:
-+      SCL frequency to use (in Hz). If omitted, 100kHz is used.
-+
-+  mediatek,have-pmic:
-+    description: Platform controls I2C from PMIC side
-+    type: boolean
-+
-+  mediatek,use-push-pull:
-+    description: Use push-pull mode I/O config
-+    type: boolean
-+
-+  vbus-supply:
-+    description: Phandle to the regulator providing power to SCL/SDA
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - clock-div
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c0: i2c@1100d000 {
-+      compatible = "mediatek,mt6577-i2c";
-+      reg = <0x1100d000 0x70>, <0x11000300 0x80>;
-+      interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
-+      clocks = <&i2c0_ck>, <&ap_dma_ck>;
-+      clock-names = "main", "dma";
-+      clock-div = <16>;
-+      clock-frequency = <400000>;
-+      mediatek,have-pmic;
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ee0b5a70aff1..28a17d4c8d12 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12361,7 +12361,7 @@ MEDIATEK I2C CONTROLLER DRIVER
- M:	Qii Wang <qii.wang@mediatek.com>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
-+F:	Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
- F:	drivers/i2c/busses/i2c-mt65xx.c
- 
- MEDIATEK IOMMU DRIVER
+The HSIO blk-ctrl bindings are already applied upstream, so they are not part
+of this series anymore. The DT description hasn't changed, but the
+implementation of the HSIO blk-ctrl driver is reworked quite a bit from the
+last round of patches, so I've dropped the review/tested-by tags.
+
+I've also picked up the pretty thoroughly reviewed and tested MEDIA blk-ctrl
+patches from Paul and Laurent into this series, as they would conflict with
+other patches from this series when applied separately. This should hopefully
+make it easier for Shawn to pick things up.
+
+Finally this now also adds the HDMI blk-ctrl, not part of any previous series.
+This one is pretty complex and the documentation in the reference manual
+appears to be inaccurate. I found at least the following issues:
+
+1. GLOBAL_XTAL24M_CLK_EN does not actually gate the 24MHz reference clock,
+the PHY PLL happily locks and provides correct clocks without this clock being
+ungated. It seems to gate some clock input of the HDMI TX controller instead,
+register access to this controller fails without this clock.
+
+2. HDMI_RTX_RESET_CTL0 bits 6 and 7 are marked as "reserved" in the manual,
+but they are actually required to be configured. Bit 6 seems to keep something
+in the display pixel clock path in inactive state and Bit 7 seems to reset
+the HDMI TX i2c controller.
+
+The HDMI blk-ctrl part is tested quite extensively with a PoC HDMI support
+patchset, which I will send out in a bit, so I'm pretty sure that the
+support as implemented is working. I've put the patches last in the series
+in case that this turns out to be controversial, so the other patches can
+be applied independent from the HDMI support.
+
+Regards,
+Lucas
+
+[1] https://lore.kernel.org/all/20220330104620.3600159-1-l.stach@pengutronix.de/
+
+
+Laurent Pinchart (1):
+  arm64: dts: imx8mp: Add MEDIAMIX power domains
+
+Lucas Stach (7):
+  soc: imx: imx8m-blk-ctrl: set power device name
+  soc: imx: add i.MX8MP HSIO blk-ctrl
+  dt-bindings: power: imx8mp: add defines for HDMI blk-ctrl domains
+  dt-bindings: soc: add binding for i.MX8MP HDMI blk-ctrl
+  soc: imx: add i.MX8MP HDMI blk-ctrl
+  arm64: dts: imx8mp: add HSIO power-domains
+  arm64: dts: imx8mp: add HDMI power-domains
+
+Paul Elder (3):
+  dt-bindings: soc: Add i.MX8MP media block control DT bindings
+  soc: imx: imx8m-blk-ctrl: Add i.MX8MP media blk-ctrl
+  arm64: dts: imx8mp: Add MEDIA_BLK_CTRL
+
+ .../soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml     |  84 +++
+ .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 104 +++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 153 +++-
+ drivers/soc/imx/Makefile                      |   1 +
+ drivers/soc/imx/imx8m-blk-ctrl.c              | 124 +++-
+ drivers/soc/imx/imx8mp-blk-ctrl.c             | 696 ++++++++++++++++++
+ include/dt-bindings/power/imx8mp-power.h      |  18 +
+ 7 files changed, 1172 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hdmi-blk-ctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+ create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
+
 -- 
-2.35.1
+2.30.2
 
