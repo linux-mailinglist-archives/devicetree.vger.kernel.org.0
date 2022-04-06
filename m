@@ -2,78 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF5DF4F6185
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 783154F61D6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbiDFOT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 10:19:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34758 "EHLO
+        id S234663AbiDFOYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235022AbiDFOSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:18:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEAFF194AA4;
-        Tue,  5 Apr 2022 19:15:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AB1CBB81FB2;
-        Wed,  6 Apr 2022 02:15:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A4C4C385A1;
-        Wed,  6 Apr 2022 02:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649211331;
-        bh=aiGeeVTGnN8zGL5U5c5Yc8F67GA9MLx7+zRzZUbqfWw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TZ1Sh5SobwI1WfmoEINwRldz9HBH8Zzrs1hWiTrmg/h2kja/2rPhecWSLUhwD0Pry
-         zPCNv+TOGm9OjGUxWd8bORtuqDc00NybEboBvQgHTa/5OqqYSQMJ+tPhPdawrLK9hl
-         WEFQzduKC8o7JV+opAyYA3DUnHpCQMzKMQJ7/EUN+KlY/ViVKmZCej9DtXM++i0kYi
-         vZjMy9VPx1XFKBVfeZzhqEH/r9lWL/jZ+KnGui0arUFAp+Jk6g89j0Ff7j26GwDvZ1
-         z241MhZZfj7IfDLYoY3kPSX/0F44T7tKv94ZMSnvGNUQcKQ0vLPHBy9oiV+CNX6roc
-         M53qoh0wN6w+w==
-Date:   Wed, 6 Apr 2022 10:15:24 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Robin van der Gracht <robin@protonic.nl>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v1 4/8] ARM: dts: imx6qdl-vicut1: update gpio-line-names
- for some GPIOs
-Message-ID: <20220406021524.GJ129381@dragon>
-References: <20220221095312.3692669-1-o.rempel@pengutronix.de>
- <20220221095312.3692669-4-o.rempel@pengutronix.de>
+        with ESMTP id S234784AbiDFOYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:24:04 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC59FF55F6
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 20:22:36 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 9B1932C099C;
+        Wed,  6 Apr 2022 03:22:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1649215353;
+        bh=seiZ/zSp40ediZ6FUmAYZUa2TlaIBma6k+oU9iypC9Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=p7kUNgincIv8zKjRb34f5nPBGVG90YYSEtTUwz7W9x48PS6ccq4ecNp+Iwbx3x9P2
+         iSotw5k7jId6xOeiJM5AiDSrbX7qE/5eBzW+T7oeNci5iTsuV0TnEod1jOBIKCemta
+         eK+CtEizFevPRQpzW6QYI1ILysq/M2nlh5Lw7V4q0cbYONrZfNRGjuqXOfrvxsfl49
+         f5aWQEt09mqqiXHDru3j5uQgoLNz8CRAGBR5y35vddijh3/UIlj/otEjJOFl3XES+s
+         gIkbiKh4p6nY6A5+Ys9JXZ5YpnhAy00wjAFg+9L0HGeMgRXmE0h1/ftIwxOXYkuDaX
+         Nq8gV5gYWEXlQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B624d07790000>; Wed, 06 Apr 2022 15:22:33 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 3D98013EE37;
+        Wed,  6 Apr 2022 15:22:33 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id A97D62A2679; Wed,  6 Apr 2022 15:22:28 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v3 0/4] arm64: mvebu: Support for Marvell 98DX2530 (and variants)
+Date:   Wed,  6 Apr 2022 15:21:54 +1200
+Message-Id: <20220406032158.1449049-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220221095312.3692669-4-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=JcrCUnCV c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=z0gMJWrwH1QA:10 a=jGREw9QuPlHGdXEqdN8A:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 10:53:08AM +0100, Oleksij Rempel wrote:
-> From: David Jander <david@protonic.nl>
-> 
-> countedX lines have different board names (YACO_x). And REV_ and BOARD_ pins
-> have multiple functions. So, use names exposed to the OS.
-> 
-> Signed-off-by: David Jander <david@protonic.nl>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+This series adds support for the Marvell 98DX2530 SoC which is the Contro=
+l and
+Management CPU integrated into the AlleyCat5/AlleyCat5X series of Marvell
+switches.
 
-Applied, thanks!
+The CPU core is an ARM Cortex-A55 with neon, simd and crypto extensions.
+
+This is fairly similar to the Armada-3700 SoC so most of the required
+peripherals are already supported. This series adds a devicetree and pinc=
+trl
+driver for the SoC and the RD-AC5X-32G16HVG6HLG reference board.
+
+In the v3 series I've dropped out a few patches. The MMC stuff is more
+complicated than just adding a compatible string. The mvneta changes have=
+ gone
+in via net-next.
+
+Chris Packham (4):
+  dt-bindings: pinctrl: mvebu: Document bindings for AC5
+  pinctrl: mvebu: pinctrl driver for 98DX2530 SoC
+  arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+  arm64: marvell: enable the 98DX2530 pinctrl driver
+
+ .../bindings/pinctrl/marvell,ac5-pinctrl.yaml |  72 +++++
+ arch/arm64/Kconfig.platforms                  |   2 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-98dx2530.dtsi     | 302 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  74 +++++
+ drivers/pinctrl/mvebu/Kconfig                 |   4 +
+ drivers/pinctrl/mvebu/Makefile                |   1 +
+ drivers/pinctrl/mvebu/pinctrl-ac5.c           | 261 +++++++++++++++
+ 8 files changed, 717 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5=
+-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/rd-ac5x.dts
+ create mode 100644 drivers/pinctrl/mvebu/pinctrl-ac5.c
+
+--=20
+2.35.1
+
