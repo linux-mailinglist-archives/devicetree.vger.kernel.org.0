@@ -2,101 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEDC94F6851
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D53244F6886
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239490AbiDFR5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59578 "EHLO
+        id S239825AbiDFSAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 14:00:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239716AbiDFR45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:56:57 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469903BE55C
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 09:07:35 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id i27so5239292ejd.9
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 09:07:35 -0700 (PDT)
+        with ESMTP id S239829AbiDFSAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:00:09 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20D2247C01
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 09:10:49 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id n6-20020a17090a670600b001caa71a9c4aso3202131pjj.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 09:10:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=q5SnuaC22PldZRl1d3Eesck9g+lJ9ywG2BO0iv4qtAA=;
-        b=mGeKs2QuURmKkxOKfwU7nymtX1Z4tONudklyyl8lXb6C7L+tbbrRLnIboUqmAEuSaD
-         Xmm7fNbVrmcLMuiXw7ANrqGt/jxkiaaZmK7sYjE66WgBurnW5w8HXYnHzHfdME9bVvaI
-         raxaj9z3Qxul/sAOy6YCTHtEIWLZtV++HOPw7kIU/RbLW354/u+1ngukB8fntfn8heUG
-         HXpyDuPaE5HCg9FeEkHwriJYNBo2lndx65zlX79DBmQq6pDc33aBTrKtJ6D55JfcR0qC
-         WOUGXvQNqHXKdsoK7XLaRyyk8x75+2C1AoGrlmn8wWtF2JRU05e5WFtrp4gOsoVR5+xG
-         PCaA==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=95RDoGyZtbEcoHnBFQepKxpMoAUWFwyWGwDHuUzcbMY=;
+        b=zTEdfItkEUK2LGYDh68HRGrbmaItaQKULw+9lTwbEZaNWQ05CQRkXWASt2A7Qmhj8K
+         YGMn50PZLtb7ypgA3b1nPiDm0qf0Mv3ndZBmL7rAsU/WuANTcI6C8A08/xkYCuGhWLKS
+         PItQG6iDdRcofzI+yRZ3GcCEqpnnkET4k4bzz5g+2T2owMotAIBXShuBP2qJnHIyhZWp
+         JCjqJ0UKzYCWKcRzlgzg3hI2Hp+zS69zcd8L4LMVuD4I9iJvsWoN1cLmAFk4OA5SGfrd
+         SRU58ASegW/3oxsQ7FfT09ANtu+UI8wvdVAghhGIgJdowFKp0DMI+a9BBAlS1Qy3vrlF
+         7gIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=q5SnuaC22PldZRl1d3Eesck9g+lJ9ywG2BO0iv4qtAA=;
-        b=uJW+zQw4put2B0ihRk8VkNPS6CRlwiiLNfU4DespVpWyqUH2ptk0AOLahhLdnUIeCI
-         xuP6ln00gcA4nt+RuRnG5JF1GKn7evXrGyHrOr3br6XuTpA1O4BhMU4MditYz6ipMJJM
-         omTQsmetzVDdc3Ocvl3JgcR1R3sSe67pvsq66oB4JuxuULxwGnIcI4i9ALqi445tnl5i
-         lBx/F9cDDdXf8BbYgKWhx2MdkvrgRn9T4qgO11Iofg21g/pk1BTUJ83JqCPt/FpeGCET
-         8txuoOCBV0EjEnOcKtFFd4VUrh7K9VCS2RBadfygLTvkqlaYDoGV7jV3P/DdssxUROsS
-         sGfQ==
-X-Gm-Message-State: AOAM530Vy7sLy0GOpSkcaoX8BFjqB31WqxiTz+KPGVWBiYz+pyxTFwi+
-        hd7Xyl7k6FopUjFKG7lx/tY5rA==
-X-Google-Smtp-Source: ABdhPJyNn39Uw60jASVPnLd8b+rNxkCM7+kvFHVOPHbddwf86sq0l+rzrRi8lRWBlgeWUZ/dN8N72g==
-X-Received: by 2002:a17:906:1603:b0:6ce:362:c938 with SMTP id m3-20020a170906160300b006ce0362c938mr9100103ejd.253.1649261254169;
-        Wed, 06 Apr 2022 09:07:34 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id lb4-20020a170907784400b006e0d13f65e5sm6680044ejc.167.2022.04.06.09.07.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 09:07:33 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: vendor-prefixes: add Enclustra
-Date:   Wed,  6 Apr 2022 18:07:28 +0200
-Message-Id: <20220406160728.720902-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=95RDoGyZtbEcoHnBFQepKxpMoAUWFwyWGwDHuUzcbMY=;
+        b=7R05WTmucrDlOiPO7RRX8hl0nnpXirsEKEW/79q2go0Ghb34KRJbMRQ0EAfl8sXt2r
+         fcm3hU9BcayEKoz5W1jHfQm6uFq2CctNFagWeiBuQMG3IO3UtjMDW1G1jyqpBIyz6grJ
+         UoEDA1LTW2CkUclnbjHZcMeZUmww///5y4K83mzx5IpJihFeYN1bdHeFEVilq7LSl8E/
+         J9VCGK392D+H0ZDpMSUpW7hGLCPMRDQAVxGDN+1cKtKT13U13iIRpPDNxyp1nRubb0Ri
+         AZSFDXo/iOtJ/NJRI97B6JISUaCmN9nscHDyVSbS1aLgyJkuVT4Xo+al+R6R60CnL7wn
+         OMnw==
+X-Gm-Message-State: AOAM531Vmqe0YxlKBchZ39iBVsg5lrjtG+tV8C82kDBBS+ger6zyEx3t
+        T9ecoHnZDntXT9JBlLwBpGqmbUbEsQnsJOyt9PuihA==
+X-Google-Smtp-Source: ABdhPJzlZiYbA1h7PZOpTXhFDSXJLbry3YFGlV7/j3Lx1oTWVTvgRcbYK3zPbBRS+2NsM3aFsrF3c9D6iK8fVBDPttI=
+X-Received: by 2002:a17:903:206:b0:153:ebab:a52f with SMTP id
+ r6-20020a170903020600b00153ebaba52fmr9290143plh.118.1649261449125; Wed, 06
+ Apr 2022 09:10:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+In-Reply-To: <20220406160123.1272911-1-l.stach@pengutronix.de>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Wed, 6 Apr 2022 09:10:38 -0700
+Message-ID: <CAJ+vNU3pxSiAX5_fmLy9ztUZ4-dvm5GHdUnucWZwWcQ539dT4w@mail.gmail.com>
+Subject: Re: [PATCH v0 00/10] i.MX8MP HDMI support
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vendor prefix for Enclustra GmbH (https://www.enclustra.com).
+On Wed, Apr 6, 2022 at 9:01 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Hi all,
+>
+> this adds support for the HDMI output pipeline on the i.MX8MP.
+> It currently depends on the i.MX8MP HDMI power domain series [1]
+> and support for the new LCDIF [2] in the i.MX8MP. I guess the
+> implementation presented here also still has some warts that
+> require fixing and the individual patches most likely need to go
+> through different maintainer trees, so I don't expect this series
+> to be applied right away.
+>
+> However this complete series should allow people to test it more
+> easily and provide feedback on the implementation with the full
+> picture available.
+>
+> Compared to downstream this implementation actually allows to
+> power down the separate HDMI PHY power domain when the display
+> is inactive or no HDMI cable is connected.
+>
+> Regards,
+> Lucas
+>
+> [1] https://lore.kernel.org/all/20220406153402.1265474-1-l.stach@pengutronix.de/
+> [2] https://lore.kernel.org/all/20220322142853.125880-1-marex@denx.de/
+>
+> Lucas Stach (10):
+>   drm/bridge: dw-hdmi: add low-active PHY reset
+>   dt-bindings: display: imx: add binding for i.MX8MP HDMI TX
+>   drm/imx: add bridge wrapper driver for i.MX8MP DWC HDMI
+>   dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+>   drm/imx: add driver for HDMI TX Parallel Video Interface
+>   dt-bindings: phy: add binding for the i.MX8MP HDMI PHY
+>   phy: freescale: add Samsung HDMI PHY
+>   arm64: dts: imx8mp: add HDMI irqsteer
+>   arm64: dts: imx8mp: add HDMI display pipeline
+>   arm64: dts: imx8mp-evk: enable HDMI
+>
+>  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      |   83 ++
+>  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml |   72 ++
+>  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     |   62 +
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |   19 +
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |   93 ++
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |    7 +
+>  drivers/gpu/drm/imx/Kconfig                   |    1 +
+>  drivers/gpu/drm/imx/Makefile                  |    2 +
+>  drivers/gpu/drm/imx/bridge/Kconfig            |   18 +
+>  drivers/gpu/drm/imx/bridge/Makefile           |    4 +
+>  drivers/gpu/drm/imx/bridge/imx-hdmi-pvi.c     |  209 +++
+>  drivers/gpu/drm/imx/bridge/imx-hdmi.c         |  128 ++
+>  drivers/phy/freescale/Kconfig                 |    7 +
+>  drivers/phy/freescale/Makefile                |    1 +
+>  drivers/phy/freescale/phy-fsl-samsung-hdmi.c  | 1145 +++++++++++++++++
+>  include/drm/bridge/dw_hdmi.h                  |    1 +
+>  16 files changed, 1852 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+>  create mode 100644 drivers/gpu/drm/imx/bridge/Kconfig
+>  create mode 100644 drivers/gpu/drm/imx/bridge/Makefile
+>  create mode 100644 drivers/gpu/drm/imx/bridge/imx-hdmi-pvi.c
+>  create mode 100644 drivers/gpu/drm/imx/bridge/imx-hdmi.c
+>  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+>
+> --
+> 2.30.2
+>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Lucas,
 
----
+Thanks for consolidating this - It's been difficult to try to merge
+these for testing.
 
-Hi Rob,
+I still have not been able to apply these to origin/master or
+imx/master - what are you basing off of here?
 
-Could you pick it up directly?
+Best Regards,
 
-This was missed from old patchset:
-https://lore.kernel.org/linux-devicetree/20211227133131.134369-1-krzysztof.kozlowski@canonical.com/
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 01430973ecec..113ff50eb46e 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -383,6 +383,8 @@ patternProperties:
-     description: Empire Electronix
-   "^emtrion,.*":
-     description: emtrion GmbH
-+  "^enclustra,.*":
-+    description: Enclustra GmbH
-   "^endless,.*":
-     description: Endless Mobile, Inc.
-   "^ene,.*":
--- 
-2.32.0
-
+Tim
+I
