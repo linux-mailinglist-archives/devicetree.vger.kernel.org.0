@@ -2,46 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3394F616F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 716324F61B7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234309AbiDFOJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 10:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56328 "EHLO
+        id S234559AbiDFO0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:26:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234717AbiDFOID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:08:03 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD53BA30C
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 02:48:10 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nc2Ga-00078y-C5; Wed, 06 Apr 2022 11:47:56 +0200
-Message-ID: <6a77a71069d771d408f716d05cafc6b3a1e13cda.camel@pengutronix.de>
-Subject: Re: [PATCH 0/5] imx: support noc settings with power domain
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de
-Cc:     festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Date:   Wed, 06 Apr 2022 11:47:54 +0200
-In-Reply-To: <20220406082330.2681591-1-peng.fan@oss.nxp.com>
-References: <20220406082330.2681591-1-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S234696AbiDFOZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:25:55 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0493534201C;
+        Wed,  6 Apr 2022 03:35:53 -0700 (PDT)
+X-UUID: e083e76070ff486d94d015fd75f891d4-20220406
+X-UUID: e083e76070ff486d94d015fd75f891d4-20220406
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 487573804; Wed, 06 Apr 2022 18:05:18 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 6 Apr 2022 18:05:16 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 6 Apr 2022 18:05:16 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nfraprado@collabora.com>, <tzungbi@google.com>
+CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [v9 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Date:   Wed, 6 Apr 2022 18:05:10 +0800
+Message-ID: <20220406100514.11269-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,50 +56,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+The series reuses mt8192-mt6359-rt1015-rt5682.c for supporting machine
+driver with rt1015p speaker amplifier and rt5682s headset codec.
 
-Am Mittwoch, dem 06.04.2022 um 16:23 +0800 schrieb Peng Fan (OSS):
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX8MP has a design that NoC(Not main NoC) is distributed in multiple
-> blocks, such as vpumix, hsiomix and etc. The access to NoC requires
-> power domain on and blk ctrl settings configured.
-> 
-> So the design here is for mixes that not have blk-ctrl, configure
-> the NoC in gpcv2 driver, for mixes that have blk-ctrl, configure
-> the NoC in blk-ctrl drivers.
-> 
-> This v1 patchset not apply on Shawn's tree, I picked up Lucas's HSIO
-> and Laurent's mediablk patches, then worked out this patchset:
-> https://github.com/MrVan/linux/tree/noc-imx8mp
-> 
-> Note: This interconnect related functions not added. This patchset
-> is only to replace the function did in NXP downstream:
-> https://source.codeaurora.org/external/imx/imx-atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf_v2.4#n157
+Changes from v8:
+  - fix typos.
 
-As a general comment I think this is implemented the wrong way around.
+Changes from v7:
+  - "mediatek,hdmi-codec" is an optional property, the code and the
+    binding document should match.
 
-Neither GPC, nor the blk-ctrl should poke into the NoC registers
-directly. The NoC driver should attach itself to the power domain via a
-notifier (same as the blk-ctrl does with the GPC domains) and should do
-the necessary NoC configuration when the power domain is powered up.
+Changes from v6:
+  - "speaker-codec" changes to "speaker-codecs" due to there may be two
+    speaker codec.
 
-Regards,
-Lucas
-> 
-> Peng Fan (5):
->   dt-bindings: interconnect: imx8m: Add bindings for imx8mp noc
->   arm64: dts: imx8mp: add noc node
->   soc: imx: gpcv2: support i.MX8MP NoC settings
->   soc: imx: imx8m-blk-ctrl: support i.MX8MP media blk ctrl noc settings
->   soc: imx: imx8mp-blk-ctrl: introduce HSIO blk ctrl noc settings
-> 
->  .../bindings/interconnect/fsl,imx8m-noc.yaml  |   6 +
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi     |   7 ++
->  drivers/soc/imx/gpcv2.c                       |  56 ++++++++-
->  drivers/soc/imx/imx8m-blk-ctrl.c              | 109 ++++++++++++++++++
->  drivers/soc/imx/imx8mp-blk-ctrl.c             |  74 ++++++++++++
->  5 files changed, 251 insertions(+), 1 deletion(-)
-> 
+Changes from v5:
+  - "mediatek,headset-codec" and "mediatek,speaker-codec" drop prefix
+    and move to properties from patternProperties.
 
+Changes form v4:
+  - split a large patch into three small patches for easy reviewing
+  - correct coding style
+
+Changes from v3:
+  - fix build error: too many arguments for format
+    [-Werror-format-extra-args]
+
+Changes from v2:
+  - fix build warnings such as "data argument not used by format string"
+
+Changes from v1:
+  - uses the snd_soc_of_get_dai_link_codecs to complete the
+  configuration of dai_link's codecs
+  - uses definitions to simplifies card name and compatible name
+
+Jiaxin Yu (4):
+  ASoC: dt-bindings: mt8192-mt6359: add new compatible and new
+    properties
+  ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
+  ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
+  ASoC: mediatek: mt8192: support rt1015p_rt5682s
+
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    |  32 +++
+ sound/soc/mediatek/Kconfig                    |   1 +
+ .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 199 +++++++++++-------
+ 3 files changed, 153 insertions(+), 79 deletions(-)
+
+-- 
+2.25.1
 
