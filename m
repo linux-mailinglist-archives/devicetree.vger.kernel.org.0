@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED3524F6769
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E394F67A6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239071AbiDFRbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S239083AbiDFRbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 6 Apr 2022 13:31:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239100AbiDFRax (ORCPT
+        with ESMTP id S239087AbiDFRax (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:30:53 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A078022EBDB
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA12228AB5
         for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:34:16 -0700 (PDT)
 Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1nc7fc-0005jN-M9; Wed, 06 Apr 2022 17:34:08 +0200
+        id 1nc7fd-0005jN-8N; Wed, 06 Apr 2022 17:34:09 +0200
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
@@ -28,9 +28,9 @@ Cc:     Fabio Estevam <festevam@gmail.com>,
         Paul Elder <paul.elder@ideasonboard.com>,
         Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 09/11] arm64: dts: imx8mp: Add MEDIAMIX power domains
-Date:   Wed,  6 Apr 2022 17:34:00 +0200
-Message-Id: <20220406153402.1265474-10-l.stach@pengutronix.de>
+Subject: [PATCH v4 10/11] arm64: dts: imx8mp: Add MEDIA_BLK_CTRL
+Date:   Wed,  6 Apr 2022 17:34:01 +0200
+Message-Id: <20220406153402.1265474-11-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220406153402.1265474-1-l.stach@pengutronix.de>
 References: <20220406153402.1265474-1-l.stach@pengutronix.de>
@@ -49,65 +49,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+From: Paul Elder <paul.elder@ideasonboard.com>
 
-Add the power domains related to the MEDIAMIX to the GPC.
+Add a DT node for the MEDIA_BLK_CTRL, which provides power domains for
+the camera and display devices.
 
+Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Reviewed-by: Marek Vasut <marex@denx.de>
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 38 +++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index edf2d8f5e22e..e94c88a2fda8 100644
+index e94c88a2fda8..627846434901 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -488,6 +488,11 @@ pgc {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
+@@ -988,6 +988,44 @@ aips4: bus@32c00000 {
+ 			#size-cells = <1>;
+ 			ranges;
  
-+					pgc_mipi_phy1: power-domain@0 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_MIPI_PHY1>;
-+					};
++			media_blk_ctrl: blk-ctrl@32ec0000 {
++				compatible = "fsl,imx8mp-media-blk-ctrl",
++					     "syscon";
++				reg = <0x32ec0000 0x10000>;
++				power-domains = <&pgc_mediamix>,
++						<&pgc_mipi_phy1>,
++						<&pgc_mipi_phy1>,
++						<&pgc_mediamix>,
++						<&pgc_mediamix>,
++						<&pgc_mipi_phy2>,
++						<&pgc_mediamix>,
++						<&pgc_ispdwp>,
++						<&pgc_ispdwp>,
++						<&pgc_mipi_phy2>;
++				power-domain-names = "bus", "mipi-dsi1", "mipi-csi1",
++						     "lcdif1", "isi", "mipi-csi2",
++						     "lcdif2", "isp", "dwe",
++						     "mipi-dsi2";
++				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_DISP1_PIX_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_DISP2_PIX_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>;
++				clock-names = "apb", "axi", "cam1", "cam2",
++					      "disp1", "disp2", "isp", "phy";
 +
- 					pgc_pcie_phy: power-domain@1 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_PCIE_PHY>;
-@@ -530,6 +535,18 @@ pgc_gpu3d: power-domain@9 {
- 						power-domains = <&pgc_gpumix>;
- 					};
- 
-+					pgc_mediamix: power-domain@10 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_MEDIAMIX>;
-+						clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+							 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+					};
++				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_AXI>,
++						  <&clk IMX8MP_CLK_MEDIA_APB>;
++				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
++							 <&clk IMX8MP_SYS_PLL1_800M>;
++				assigned-clock-rates = <500000000>, <200000000>;
 +
-+					pgc_mipi_phy2: power-domain@16 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_MIPI_PHY2>;
-+					};
++				#power-domain-cells = <1>;
++			};
 +
- 					pgc_hsiomix: power-domains@17 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_HSIOMIX>;
-@@ -539,6 +556,12 @@ pgc_hsiomix: power-domains@17 {
- 						assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
- 						assigned-clock-rates = <500000000>;
- 					};
-+
-+					pgc_ispdwp: power-domain@18 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP>;
-+						clocks = <&clk IMX8MP_CLK_MEDIA_ISP_DIV>;
-+					};
- 				};
- 			};
- 		};
+ 			hsio_blk_ctrl: blk-ctrl@32f10000 {
+ 				compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
+ 				reg = <0x32f10000 0x24>;
 -- 
 2.30.2
 
