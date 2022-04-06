@@ -2,68 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D3BB4F6D91
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 23:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 916804F6E72
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 01:18:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236594AbiDFV6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 17:58:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44558 "EHLO
+        id S229778AbiDFXUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 19:20:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237479AbiDFV5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 17:57:39 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0AA53E0D
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 14:55:11 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id s184so585814qke.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 14:55:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=18K4Koo+gSDcc2mYQoqx/5md7n9d+vojvdjDwRnfQkQ=;
-        b=Kvts+vyOdgj5qb/yrmcCtgFddEpMAYJ6Vtt+e7K/TdG5zlgevkxRZJ7mT6fCAextWP
-         CkBNmJNYEme2Prp18S+VCdHLmsbnxtU2/GL7oLXhZyLH1ZbhmnD+NEIAXbAYNfNwDH0P
-         xne4EbAvbRql8bNt00hQfBSFq9neL63asMKnw0R8vSI+6e1KKIwyBEfnMLIWLMnwxMY2
-         UymboPIBOVUTC8THIxgFIWNXTLThaSoUhLGzr/yflxFTA9qQ/j4XZtytj7c/YrpAuTU3
-         U1JW4JHshQKqmHCC3SAvRIuphMsmKxiP3pyGPi+vtdE/Ad4rYIqpWQTm/V3S581T+70y
-         qWpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=18K4Koo+gSDcc2mYQoqx/5md7n9d+vojvdjDwRnfQkQ=;
-        b=dtZpzYSxl75q0FJFv6ZTDqnUWOVmsjb+unlVYI4JRrNcnszFHQuZgxMQJwThKiitbX
-         XEil+wAA7hGa/PV0vOd4WmfxGU5ygTn57c194mTS9GUUMBpAmhQRE4wBf2l/C271Y+GP
-         CSxJacmN0FSpM7bG9go71084LUPZbJDNGwojsGYqtymySExaZprWMMZ2vzTrNmaJ2n69
-         JFUEf1ckmwYSJxqFxJEe+5Ri9ASLNhcVXApRL5BVIB4Neyo4eCUb9pcVBUC6HLaaI1Ok
-         ckA/AY5DYf9MYjIGnTD+lqzAfrmTBzIMITTxk+ojurFAr2a2O053o9kUE7s9GQm4F4sq
-         tN3A==
-X-Gm-Message-State: AOAM532LqR38fTAoc2TY3R87PIqKHt80OXLGYJfLIBl56xm2dcOKgaA/
-        P+5oNdEdm0tnaTuo2jFzJVvvIS6kNFcliMiTa90ZdA==
-X-Google-Smtp-Source: ABdhPJzrSfiA86e2SS1hOhDbnO4gW9TDF++9F+ETBBY4qKTwTrC34JSvWVKrwHQPm+7n0fPZ0ApGvCzsI+S+PYVc3To=
-X-Received: by 2002:a05:620a:892:b0:67e:60a9:83c2 with SMTP id
- b18-20020a05620a089200b0067e60a983c2mr7245120qka.670.1649282110221; Wed, 06
- Apr 2022 14:55:10 -0700 (PDT)
+        with ESMTP id S229586AbiDFXUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 19:20:18 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632CF237C2;
+        Wed,  6 Apr 2022 16:18:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=a3YkcaLn8YtsboLw8Y8zRXa/RfeGgngH/9o02YrSnUE=; b=jdF+6TeNI8HiNHB0DtS+S8a3DN
+        G/rLtRbscwCC0VDriMPDWLgtMb5azpzc9ErNvw4Od3/YeTYAPJAPF6L82qiQ8lfD1BHxj3cg501vG
+        H+bL0rctxCwYXI+5kUIwwBxpwWj78t8avSPCvjIoc40RI07pTF9zS4GdN1CBfcVssQPo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ncEuV-00EX0w-2B; Thu, 07 Apr 2022 01:17:59 +0200
+Date:   Thu, 7 Apr 2022 01:17:59 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 2/4] pinctrl: mvebu: pinctrl driver for 98DX2530 SoC
+Message-ID: <Yk4fpxGdhqsORmFs@lunn.ch>
+References: <20220406032158.1449049-1-chris.packham@alliedtelesis.co.nz>
+ <20220406032158.1449049-3-chris.packham@alliedtelesis.co.nz>
+ <Yk2JTo91sZHunEpN@lunn.ch>
+ <5033e1ed-a4bc-687a-40f5-767e89317ce3@alliedtelesis.co.nz>
 MIME-Version: 1.0
-References: <20220406172956.3953-1-wens@kernel.org>
-In-Reply-To: <20220406172956.3953-1-wens@kernel.org>
-From:   Javier Martinez Canillas <javier@dowhile0.org>
-Date:   Wed, 6 Apr 2022 23:54:59 +0200
-Message-ID: <CABxcv=k=dRPg3S5LrY+bcrEJ91CxoLdsRjVx+sLM7GYEKdv8Gw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] drm/ssd130x: Add support for SINO WEALTH SH1106
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Javier Martinez Canillas <javierm@redhat.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5033e1ed-a4bc-687a-40f5-767e89317ce3@alliedtelesis.co.nz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,25 +60,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Chen-Yu,
+> The pinctrl registers that are used are all continguous (0x80020100 -- 
+> 0x8002011c) .
 
-On Wed, Apr 6, 2022 at 7:30 PM Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> From: Chen-Yu Tsai <wens@csie.org>
->
-> Hi everyone,
->
-> This series adds support for SH1106 to the ssd130x OLED display
-> driver.
->
+Great. So long at the DT only has that register range, what you have
+should be good.
 
-Thanks for re-spinning your series. I believe that gave you my
-Acked-by for most of the patches in v1 already? But it seems you
-didn't pick them up.
-
-You addressed the comments I had in v1 so those stand, for all patches:
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
-Best regards,
-Javier
+       Andrew
