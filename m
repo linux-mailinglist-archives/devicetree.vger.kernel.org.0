@@ -2,1974 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0117F4F5D37
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 14:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3EA4F5D6C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 14:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbiDFMIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 08:08:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56124 "EHLO
+        id S231513AbiDFMIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 08:08:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231483AbiDFMHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:07:00 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E9423178B
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 00:47:16 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id j8so1249970pll.11
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 00:47:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vtnVxUpqeOy+lDviWPyd0Y91LwDvZPA2Xr1Ta4Yt0XM=;
-        b=G6UEiIb917wTQrqy4GK/NzeTWsUGfKMBmxk5H2D56yBzHsj5jpismwqT8gbZ3UsAtV
-         TdJ5vuoWZDeaYeLX9Qx2zkrPTcGvPtIY9wT6g/NaJ5+n7h7e4KyJGKOUFgc0RzwsXZeo
-         nxHiOKLraq1I0wc3p2D0k2/GiZ9BgUQvkPGRZ246HUXC+bybVr+1CPvoiq6NRsg5lcPa
-         fXuqOXg/5KkR6E7QJwwjSiuXMPE+CZ7j1VBAtC+gL92dEdlu3TrQgXG9hweKwYn1yVs7
-         cRd26Dd3ZsJBdrZfa240qRvMezlg79j2t3QUwPC6uC+BDW38TI6T+s+fY/Nf0+BcbWHU
-         xrHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vtnVxUpqeOy+lDviWPyd0Y91LwDvZPA2Xr1Ta4Yt0XM=;
-        b=tROY2NcXxr1fgZWQx7802jEU/LiErNuzcCmcvnbw8xDOxkz1/Ht697PtrM63Ak7Qcl
-         dJ/3uOpO/AEt8+g3jy/U2KZHLIZr12uAHUx71Ta9srbNIm0nlZ6g8qmkQvAx/gCsmjhc
-         /vK9JhRcA66mIJOA+vZXAdE0tNREODzu3zAbnG8/3iKsYtbbQ83mKEZn1wO3oWUUZXua
-         TZ6lzzv88ZzvmljYHfPRoj7oNKG4c1Hew63z5gREF0r+IahAzH68aGOCBQRNt2kt1Bjp
-         Ng5SJ5BfzPT3ccyYy15AoQrNDJyWBsc/kc2iAxD174wssazGN0sLKXPJB2cW57pypfK+
-         ++sg==
-X-Gm-Message-State: AOAM530FScv0GEAGB5cljBSnDRzIF+BLHV3H4SXzCKoLc8HSXA47asMs
-        wdaPe7mV74sj8AOfCWZ4R8SDpA==
-X-Google-Smtp-Source: ABdhPJy3ts2Sqh6aFkRrp4oRF9UQbBECxfK8bIzYo/wn8BcyPJb/1BrVtqesrEDFjI3ypBzdWXFT8w==
-X-Received: by 2002:a17:902:f702:b0:156:aaa8:7479 with SMTP id h2-20020a170902f70200b00156aaa87479mr7480899plo.161.1649231235938;
-        Wed, 06 Apr 2022 00:47:15 -0700 (PDT)
-Received: from localhost.localdomain (2001-b400-e253-32eb-59c9-0bfe-d2c0-64d7.emome-ip6.hinet.net. [2001:b400:e253:32eb:59c9:bfe:d2c0:64d7])
-        by smtp.gmail.com with ESMTPSA id a17-20020a62e211000000b004faa5233213sm16911902pfi.101.2022.04.06.00.47.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 00:47:15 -0700 (PDT)
-From:   Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
-Cc:     agross@kernel.org,
-        Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: Add sc7180-gelarshie
-Date:   Wed,  6 Apr 2022 15:47:06 +0800
-Message-Id: <20220406074707.2393-1-chenxiangrui@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232655AbiDFMHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:07:43 -0400
+Received: from mail-m17637.qiye.163.com (mail-m17637.qiye.163.com [59.111.176.37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3AF72A8680
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 00:47:26 -0700 (PDT)
+Received: from [192.168.60.102] (unknown [103.29.142.67])
+        by mail-m17637.qiye.163.com (Hmail) with ESMTPA id 0C199980555;
+        Wed,  6 Apr 2022 15:47:21 +0800 (CST)
+Message-ID: <52d602e9-088a-4c82-ab08-9f0a127d0e5f@rock-chips.com>
+Date:   Wed, 6 Apr 2022 15:47:18 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <Kever.yang@rock-chips.com>
+References: <20220330063913.GW12181@pengutronix.de>
+ <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
+ <20220331070614.GD4012@pengutronix.de>
+ <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
+ <20220331081815.GF4012@pengutronix.de>
+ <8aa9da47-d7ed-41bf-384c-103757c19fe2@rock-chips.com>
+ <20220401125527.GM4012@pengutronix.de>
+ <7b2630d8-0575-5d65-dd81-3ef336ad5ba7@rock-chips.com>
+ <20220405090509.GP4012@pengutronix.de>
+ <93001a4c-b009-202f-7b04-34e1a9e617ec@rock-chips.com>
+ <20220406070403.GS4012@pengutronix.de>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20220406070403.GS4012@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUNOHhpWSkMeGh1LSEtMGE
+        JMVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkxVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NU06OCo6AT4MGUoCSQMjMyoT
+        AS4aC0lVSlVKTU9CSUhKSU9PSUxPVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZSktIVUlCVUpPSVVNTFlXWQgBWUFKSkhNQzcG
+X-HM-Tid: 0a7ffdd7a9d4d992kuws0c199980555
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree for Gelarshie, a trogdor variant
+Hi:
 
-Signed-off-by: Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |    1 +
- arch/arm64/boot/dts/qcom/sc7180-camera.dtsi   | 1136 +++++++++++++++++
- .../dts/qcom/sc7180-trogdor-gelarshie-r0.dts  |   15 +
- .../dts/qcom/sc7180-trogdor-gelarshie.dtsi    |  281 ++++
- .../dts/qcom/sc7180-trogdor-mipi-camera.dtsi  |  416 ++++++
- 5 files changed, 1849 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-camera.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mipi-camera.dtsi
+On 4/6/22 15:04, Sascha Hauer wrote:
+> On Wed, Apr 06, 2022 at 09:43:49AM +0800, Andy Yan wrote:
+>> Hi Sacha:
+>>
+>> On 4/5/22 17:05, Sascha Hauer wrote:
+>>> On Sat, Apr 02, 2022 at 09:25:33AM +0800, Andy Yan wrote:
+>>>> Hi Sascha:
+>>>>
+>>>> On 4/1/22 20:55, Sascha Hauer wrote:
+>>>>> On Thu, Mar 31, 2022 at 07:00:34PM +0800, Andy Yan wrote:
+>>>>>> Hi:
+>>>>>>
+>>>>>> On 3/31/22 16:18, Sascha Hauer wrote:
+>>>>>>> On Thu, Mar 31, 2022 at 03:20:37PM +0800, Andy Yan wrote:
+>>>>>>>> Hi Sascha:
+>>>>>>>>
+>>>>>>>> On 3/31/22 15:06, Sascha Hauer wrote:
+>>>>>>>>> On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
+>>>>>>>>>> Hi Sascha:
+>>>>>>>>>>
+>>>>>>>>>> On 3/30/22 14:39, Sascha Hauer wrote:
+>>>>>>>>>>> Hi Andy,
+>>>>>>>>>>>
+>>>>>>>>>>> On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
+>>>>>>>>>>>> Hi Sascha:
+>>>>>>>>>>>>
+>>>>>>>>>>>> On 3/28/22 23:11, Sascha Hauer wrote:
+>>>>>>>>>>>>> With upcoming VOP2 support VOP won't be the only choice anymore, so make
+>>>>>>>>>>>>> the VOP driver optional.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>         drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
+>>>>>>>>>>>>>         drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+>>>>>>>>>>>>>         drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+>>>>>>>>>>>>>         3 files changed, 11 insertions(+), 2 deletions(-)
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+>>>>>>>>>>>>> index fa5cfda4e90e3..7d22e2997a571 100644
+>>>>>>>>>>>>> --- a/drivers/gpu/drm/rockchip/Kconfig
+>>>>>>>>>>>>> +++ b/drivers/gpu/drm/rockchip/Kconfig
+>>>>>>>>>>>>> @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
+>>>>>>>>>>>>>         if DRM_ROCKCHIP
+>>>>>>>>>>>>> +config ROCKCHIP_VOP
+>>>>>>>>>>>>> +	bool "Rockchip VOP driver"
+>>>>>>>>>>>>> +	default y
+>>>>>>>>>>>>> +	help
+>>>>>>>>>>>>> +	  This selects support for the VOP driver. You should enable it
+>>>>>>>>>>>>> +	  on all older SoCs up to RK3399.
+>>>>>>>>>>> That reminds me that I wanted to rephrase this. Will change in next
+>>>>>>>>>>> round.
+>>>>>>>>>>>
+>>>>>>>>>>>>> +
+>>>>>>>>>>>>>         config ROCKCHIP_ANALOGIX_DP
+>>>>>>>>>>>>>         	bool "Rockchip specific extensions for Analogix DP driver"
+>>>>>>>>>>>>> +	depends on ROCKCHIP_VOP
+>>>>>>>>>>>> Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
+>>>>>>>>> BTW I just looked at the downstream driver. Here we have the same
+>>>>>>>>> situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
+>>>>>>>>> which is implemented in the VOP driver, so when the analogix dp driver
+>>>>>>>>> is actually used on a VOP2 SoC then it is either used in a way that
+>>>>>>>>> rockchip_drm_wait_vact_end() will never be called or it explodes in all
+>>>>>>>>> colours.
+>>>>>>>>>
+>>>>>>>>>>> I added the dependency because analogix_dp-rockchip.c calls
+>>>>>>>>>>> rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
+>>>>>>>>>>> so this driver currenty can't work with the VOP2 driver and can't
+>>>>>>>>>>> be linked without the VOP driver being present.
+>>>>>>>>>>> I'll add a few words to the commit message.
+>>>>>>>>>> Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
+>>>>>>>>>> driver to rockchip_drm_drv.c
+>>>>>>>>> I am not sure if that's really worth it. Yes, the direction might be the
+>>>>>>>>> right one, but I would really prefer when somebody does the change who
+>>>>>>>>> can test and confirm that the analogix dp really works with VOP2 in the
+>>>>>>>>> end.
+>>>>>>>> If follow this point, the current DW_MIPI also has not been tested for
+>>>>>>>> confirm that it
+>>>>>>>>
+>>>>>>>> can really work with VOP2, so you should also make it depends on
+>>>>>>>> ROCKCHIP_VOP.
+>>> Here you are suggesting to add even more Kconfig dependencies.
+>>>
+>>>>>>> Well at least I have patches here which make DW_MIPI work with VOP2 ;)
+>>>>>> But you DW_MIPI patches for rk356x didn't come. So this is not keep
+>>>>>> consistency with this point.
+>>>>>>
+>>>>>>> What about the others, like LVDS and RGB?
+>>>>>> Yes, we also have other interface , RK356X has LVDS/RGB/BT1120/BT656, RK3588
+>>>>>> has BT1120/BT656, no LVDS or RGB.
+>>>>>>
+>>>>>>>> I think the current solution is just a workaround to make your patch pass
+>>>>>>>> the kernel compile
+>>>>>>> Indeed.
+>>>>>>>
+>>>>>>> I agree that it would be good to add a note somewhere which outputs
+>>>>>>> work with the VOP2 driver (currently only HDMI), but I wonder if Kconfig
+>>>>>>> dependencies is the right place for it, because only people who deliberately
+>>>>>>> disable VOP support will see this information.
+>>>>>>> Maybe we should rather add it to the Kconfig help text?
+>>>>>> If a device is supported for this soc, we will add dt node at the dtsi file.
+>>>>>>
+>>>>>> A Kconfig dependencies don't seems a good idea.
+>>> Here you say Kconfig dependencies are no good idea.
+>>
+>> Yes. It's not a good idea. So I don't want to see you use a Kcofig
+>> dependence
+>>
+>> to disable a module to avoid compile which introduced by your patch.
+>>
+>>>>> Ok, this means we can keep my current approach with just letting
+>>>>> ROCKCHIP_ANALOGIX_DP depend on ROCKCHIP_VOP to avoid having a non
+>>>> Excuse me? How do you get this conclusion ?
+>>> Given that you say that you want to have both more and less Kconfig
+>>> dependencies I came to the conclusion that I only add one where it's
+>>> necessary to compile the driver.
+>>>
+>>>> I said before,  vop and vop2 based platforms both have ROCKCHIP_ANALOGIX_DP.
+>>> Maybe, but vop2 with ROCKCHIP_ANALOGIX_DP doesn't even work in the
+>>> Rockchip downstream kernel, so I wonder how relevant this usecase really
+>>> is.
+>>
+>> No, this is not the truth. Rockchip_ANALOGIX_DP of course work with the
+>> vendor kernel. We have many rk356x based products shipped with edp.
+>> Even the VGA output interface on RK3568_EVB1 is drived by
+>> ROCKCHIP_ANALOGIX_DP with a RTD2166 eDP to VGA convert
+>> chip.
+>>
+>>
+>> So how do you get conclusion that ROCKCHIP_ANALOGIX_DP can't work with
+>> the Rockchip downstream kernel? Is it because you can't make the DP work on
+>> your board? If it is, please contact the supplier who gave you the board.
+> In the downstream kernel I have available (which is a 5.10.66)
+> analogix_dp-rockchip.c calls rockchip_drm_wait_vact_end() which is
+> implemented in rockchip_drm_vop.c and assumes that the passed struct
+> drm_crtc * can be converted to a struct vop *. Basically it's the same
+> situation we have right now with the mainline kernel, just that the
+> linker issues won't show up because the VOP driver can't be disabled
+> in the downstream kernel.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f9e6343acd03..cf8f88b065c3 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-gelarshie-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-camera.dtsi b/arch/arm64/boot/dts/qcom/sc7180-camera.dtsi
-new file mode 100644
-index 000000000000..9f7a585d813c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-camera.dtsi
-@@ -0,0 +1,1136 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 and
-+ * only version 2 as published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ */
-+
-+#include <dt-bindings/clock/qcom,camcc-sc7180.h>
-+
-+&soc {
-+	sync: qcom,sync {
-+		compatible = "qcom,cam-sync";
-+	};
-+
-+	crm: qcom,cam-req-mgr {
-+		compatible = "qcom,cam-req-mgr";
-+		sync_intf = <&sync>;
-+		smmu_intf = <&smmu>;
-+	};
-+
-+	smmu: cam_smmu {
-+		compatible = "qcom,msm-cam-smmu";
-+
-+		msm_cam_smmu_ife {
-+			compatible = "qcom,msm-cam-smmu-cb";
-+			iommus = <&apps_smmu 0x820 0x0>,
-+				<&apps_smmu 0x840 0x0>,
-+				<&apps_smmu 0x860 0x0>;
-+			label = "ife";
-+			ife_iova_mem_map: iova-mem-map {
-+				/* IO region is approximately 3.4 GB */
-+				iova-mem-region-io {
-+					iova-region-name = "io";
-+					iova-region-start = <0x7400000>;
-+					iova-region-len = <0xd8c00000>;
-+					iova-region-id = <0x3>;
-+				};
-+			};
-+		};
-+
-+		msm_cam_smmu_lrme {
-+			compatible = "qcom,msm-cam-smmu-cb";
-+			iommus = <&apps_smmu 0x0cc0 0x0>,
-+				<&apps_smmu 0x0d40 0x0>;
-+			label = "lrme";
-+			lrme_iova_mem_map: iova-mem-map {
-+				iova-mem-region-shared {
-+					/* Shared region is 100MB long */
-+					iova-region-name = "shared";
-+					iova-region-start = <0x7400000>;
-+					iova-region-len = <0x6400000>;
-+					iova-region-id = <0x1>;
-+				};
-+				/* IO region is approximately 3.3 GB */
-+				iova-mem-region-io {
-+					iova-region-name = "io";
-+					iova-region-start = <0xd800000>;
-+					iova-region-len = <0xd2800000>;
-+					iova-region-id = <0x3>;
-+				};
-+			};
-+		};
-+
-+		msm_cam_smmu_jpeg {
-+			compatible = "qcom,msm-cam-smmu-cb";
-+			iommus = <&apps_smmu 0xd80 0x20>,
-+				<&apps_smmu  0xda0 0x20>;
-+			label = "jpeg";
-+			jpeg_iova_mem_map: iova-mem-map {
-+				/* IO region is approximately 3.4 GB */
-+				iova-mem-region-io {
-+					iova-region-name = "io";
-+					iova-region-start = <0x7400000>;
-+					iova-region-len = <0xd8c00000>;
-+					iova-region-id = <0x3>;
-+				};
-+			};
-+		};
-+
-+		msm_cam_icp_fw {
-+			compatible = "qcom,msm-cam-smmu-fw-dev";
-+			label="icp";
-+		};
-+
-+		msm_cam_smmu_icp {
-+			compatible = "qcom,msm-cam-smmu-cb";
-+			iommus = <&apps_smmu 0x0ce2 0x0>,
-+				<&apps_smmu 0x0c80 0x0>,
-+				<&apps_smmu 0x0ca0 0x0>,
-+				<&apps_smmu 0x0d00 0x0>,
-+				<&apps_smmu 0x0d20 0x0>;
-+			label = "icp";
-+			icp_iova_mem_map: iova-mem-map {
-+				iova-mem-region-firmware {
-+					/* Firmware region is 5MB */
-+					iova-region-name = "firmware";
-+					iova-region-start = <0x0>;
-+					iova-region-len = <0x500000>;
-+					iova-region-id = <0x0>;
-+				};
-+
-+				iova-mem-region-shared {
-+					/* Shared region is 150MB long */
-+					iova-region-name = "shared";
-+					iova-region-start = <0x7400000>;
-+					iova-region-len = <0x9600000>;
-+					iova-region-id = <0x1>;
-+					iova-granularity = <0x15>;
-+				};
-+
-+				iova-mem-region-secondary-heap {
-+					/* Secondary heap region is 1MB long */
-+					iova-region-name = "secheap";
-+					iova-region-start = <0x10A00000>;
-+					iova-region-len = <0x100000>;
-+					iova-region-id = <0x4>;
-+				};
-+
-+				iova-mem-region-io {
-+					/* IO region is approximately 3.3 GB */
-+					iova-region-name = "io";
-+					iova-region-start = <0x10C00000>;
-+					iova-region-len = <0xCF300000>;
-+					iova-region-id = <0x3>;
-+				};
-+
-+				iova-mem-qdss-region {
-+					/* qdss region is approximately 1MB */
-+					iova-region-name = "qdss";
-+					iova-region-start = <0x10B00000>;
-+					iova-region-len = <0x100000>;
-+					iova-region-id = <0x5>;
-+					qdss-phy-addr = <0x16790000>;
-+				};
-+			};
-+		};
-+
-+		msm_cam_smmu_cpas_cdm {
-+			compatible = "qcom,msm-cam-smmu-cb";
-+			iommus = <&apps_smmu 0x0d60 0x0>,
-+				<&apps_smmu 0x0d61 0x0>;
-+			label = "cpas-cdm0";
-+			cpas_cdm_iova_mem_map: iova-mem-map {
-+				iova-mem-region-io {
-+					/* IO region is approximately 3.4 GB */
-+					iova-region-name = "io";
-+					iova-region-start = <0x7400000>;
-+					iova-region-len = <0xd8c00000>;
-+					iova-region-id = <0x3>;
-+				};
-+			};
-+		};
-+	};
-+
-+	qcom,cam-cpas@ac40000 {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		crm_intf = <&crm>;
-+		cell-index = <0>;
-+		compatible = "qcom,cam-cpas";
-+		label = "cpas";
-+		arch-compat = "cpas_top";
-+		reg-names = "cam_cpas_top", "cam_camnoc";
-+		reg = <0 0xac40000 0 0x1000>,
-+			<0 0xac42000 0 0x5000>;
-+		reg-cam-base = <0x40000 0x42000>;
-+		interrupt-names = "cam-cpas";
-+		interrupts = <GIC_SPI 459 IRQ_TYPE_EDGE_RISING>;
-+		qcom,cpas-hw-ver = <0x150110>; /* Titan v150 v1.1.0 */
-+		camnoc-axi-min-ib-bw = <3000000000>;
-+		power-domains = <&camcc TITAN_TOP_GDSC>;
-+		clock-names = "gcc_ahb_clk",
-+			"gcc_axi_clk",
-+			"soc_ahb_clk",
-+			"slow_ahb_clk_src",
-+			"cpas_ahb_clk",
-+			"camnoc_axi_clk";
-+		clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+			<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+			<&camcc CAM_CC_SOC_AHB_CLK>,
-+			<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+			<&camcc CAM_CC_CPAS_AHB_CLK>,
-+			<&camcc CAM_CC_CAMNOC_AXI_CLK>;
-+		src-clock-name = "slow_ahb_clk_src";
-+		clock-rates = <0 0 0 0 0 0>,
-+			<0 0 0 80000000 0 0>,
-+			<0 0 0 80000000 0 0>,
-+			<0 0 0 80000000 0 0>,
-+			<0 0 0 80000000 0 0>,
-+			<0 0 0 80000000 0 0>;
-+		clock-cntl-level = "suspend", "lowsvs", "svs",
-+			"svs_l1", "nominal", "turbo";
-+
-+		interconnects = <&gem_noc MASTER_APPSS_PROC 0
-+					&config_noc SLAVE_CAMERA_CFG 0>,
-+				<&mmss_noc MASTER_CAMNOC_HF0 0
-+					&mc_virt SLAVE_EBI1 0>,
-+				<&camnoc_virt MASTER_CAMNOC_HF0_UNCOMP 0
-+					&camnoc_virt SLAVE_CAMNOC_UNCOMP 0>,
-+				<&mmss_noc MASTER_CAMNOC_HF1 0
-+					&mc_virt SLAVE_EBI1 0>,
-+				<&camnoc_virt MASTER_CAMNOC_HF1_UNCOMP 0
-+					&camnoc_virt SLAVE_CAMNOC_UNCOMP 0>,
-+				<&mmss_noc MASTER_CAMNOC_SF 0
-+					&mc_virt SLAVE_EBI1 0>,
-+				<&camnoc_virt MASTER_CAMNOC_SF_UNCOMP 0
-+					&camnoc_virt SLAVE_CAMNOC_UNCOMP 0>;
-+		interconnect-names = "cam_ahb",
-+				"cam_hf_1_mnoc",
-+				"cam_hf_1_camnoc",
-+				"cam_hf_2_mnoc",
-+				"cam_hf_2_camnoc",
-+				"cam_sf_1_mnoc",
-+				"cam_sf_1_camnoc";
-+
-+		client-id-based;
-+		client-names =
-+			"csiphy0", "csiphy1", "csiphy2", "csiphy3",
-+			"csid0", "csid1", "csid2", "cci0", "cci1",
-+			"ife0", "ife1", "ife2", "ipe0",
-+			"ipe1", "cam-cdm-intf0", "cpas-cdm0", "bps0",
-+			"icp0", "jpeg-dma0", "jpeg-enc0", "lrmecpas0";
-+		client-axi-port-names =
-+			"cam_hf_1", "cam_hf_1", "cam_hf_1", "cam_hf_1",
-+			"cam_hf_1", "cam_hf_2", "cam_hf_2", "cam_sf_1",
-+			"cam_sf_1", "cam_hf_1", "cam_hf_2", "cam_hf_2",
-+			"cam_sf_1", "cam_sf_1", "cam_sf_1", "cam_sf_1",
-+			"cam_sf_1", "cam_sf_1", "cam_sf_1", "cam_sf_1",
-+			"cam_sf_1";
-+		client-bus-camnoc-based;
-+		qcom,axi-port-list {
-+			qcom,axi-port1 {
-+				qcom,axi-port-name = "cam_hf_1";
-+				qcom,axi-port-mnoc {
-+					qcom,msm-bus,name = "cam_hf_1_mnoc";
-+					qcom,msm-bus-vector-dyn-vote;
-+				};
-+				qcom,axi-port-camnoc {
-+					qcom,msm-bus,name = "cam_hf_1_camnoc";
-+					qcom,msm-bus-vector-dyn-vote;
-+				};
-+			};
-+			qcom,axi-port2 {
-+				qcom,axi-port-name = "cam_hf_2";
-+				qcom,axi-port-mnoc {
-+					qcom,msm-bus,name = "cam_hf_2_mnoc";
-+					qcom,msm-bus-vector-dyn-vote;
-+				};
-+				qcom,axi-port-camnoc {
-+					qcom,msm-bus,name = "cam_hf_2_camnoc";
-+					qcom,msm-bus-vector-dyn-vote;
-+				};
-+			};
-+			qcom,axi-port3 {
-+				qcom,axi-port-name = "cam_sf_1";
-+					qcom,axi-port-mnoc {
-+					qcom,msm-bus,name = "cam_sf_1_mnoc";
-+					qcom,msm-bus-vector-dyn-vote;
-+				};
-+				qcom,axi-port-camnoc {
-+					qcom,msm-bus,name = "cam_sf_1_camnoc";
-+					qcom,msm-bus-vector-dyn-vote;
-+				};
-+			};
-+		};
-+
-+		cpas: qcom,cam-cdm-intf {
-+			compatible = "qcom,cam-cdm-intf";
-+			cell-index = <0>;
-+			label = "cam-cdm-intf";
-+			num-hw-cdm = <1>;
-+			cdm-client-names = "vfe",
-+				"jpegdma",
-+				"jpegenc",
-+				"lrmecdm";
-+		};
-+
-+		qcom,cpas-cdm0@ac48000 {
-+			cell-index = <0>;
-+			compatible = "qcom,cam170-cpas-cdm0";
-+			label = "cpas-cdm";
-+			reg = <0 0xac48000 0 0x1000>;
-+			reg-names = "cpas-cdm";
-+			reg-cam-base = <0x48000>;
-+			interrupts = <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "cpas-cdm0";
-+			clock-names = "gcc_camera_ahb",
-+				"gcc_camera_axi",
-+				"cam_cc_soc_ahb_clk",
-+				"cam_cc_cpas_ahb_clk",
-+				"cam_cc_camnoc_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>;
-+			clock-rates = <0 0 0 0 0>;
-+			clock-cntl-level = "svs";
-+			cdm-client-names = "ife";
-+		};
-+	};
-+
-+	qcom,cam-isp {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-isp";
-+		arch-compat = "ife";
-+
-+		cam_csiphy0: qcom,csiphy@ac65000 {
-+			cell-index = <0>;
-+			compatible = "qcom,csiphy-v1.2.2", "qcom,csiphy";
-+			cpas_intf = <&cpas>;
-+			reg = <0 0x0ac65000 0 0x1000>;
-+			reg-names = "csiphy";
-+			reg-cam-base = <0x65000>;
-+			interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "cam-csiphy0";
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_CSIPHY0_CLK>,
-+				<&camcc CAM_CC_CSI0PHYTIMER_CLK_SRC>,
-+				<&camcc CAM_CC_CSI0PHYTIMER_CLK>;
-+			clock-names = "camnoc_axi_clk",
-+				"soc_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"cpas_ahb_clk",
-+				"cphy_rx_clk_src",
-+				"csiphy0_clk",
-+				"csi0phytimer_clk_src",
-+				"csi0phytimer_clk";
-+			src-clock-name = "csi0phytimer_clk_src";
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			clock-rates =
-+				<0 0 0 0 270000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>;
-+		};
-+
-+		cam_csiphy1: qcom,csiphy@ac66000{
-+			cell-index = <1>;
-+			compatible = "qcom,csiphy-v1.2.2", "qcom,csiphy";
-+			cpas_intf = <&cpas>;
-+			reg = <0 0xac66000 0 0x1000>;
-+			reg-names = "csiphy";
-+			reg-cam-base = <0x66000>;
-+			interrupts = <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "cam-csiphy1";
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_CSIPHY1_CLK>,
-+				<&camcc CAM_CC_CSI1PHYTIMER_CLK_SRC>,
-+				<&camcc CAM_CC_CSI1PHYTIMER_CLK>;
-+			clock-names = "camnoc_axi_clk",
-+				"soc_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"cpas_ahb_clk",
-+				"cphy_rx_clk_src",
-+				"csiphy1_clk",
-+				"csi1phytimer_clk_src",
-+				"csi1phytimer_clk";
-+			src-clock-name = "csi1phytimer_clk_src";
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			clock-rates =
-+				<0 0 0 0 270000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>;
-+		};
-+
-+		cam_csiphy2: qcom,csiphy@ac67000 {
-+			cell-index = <2>;
-+			compatible = "qcom,csiphy-v1.2.2", "qcom,csiphy";
-+			cpas_intf = <&cpas>;
-+			reg = <0 0xac67000 0 0x1000>;
-+			reg-names = "csiphy";
-+			reg-cam-base = <0x67000>;
-+			interrupts = <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "cam-csiphy2";
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_CSIPHY2_CLK>,
-+				<&camcc CAM_CC_CSI2PHYTIMER_CLK_SRC>,
-+				<&camcc CAM_CC_CSI2PHYTIMER_CLK>;
-+			clock-names = "camnoc_axi_clk",
-+				"soc_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"cpas_ahb_clk",
-+				"cphy_rx_clk_src",
-+				"csiphy2_clk",
-+				"csi2phytimer_clk_src",
-+				"csi2phytimer_clk";
-+			src-clock-name = "csi2phytimer_clk_src";
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			clock-rates =
-+				<0 0 0 0 270000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>;
-+		};
-+
-+		cam_csiphy3: qcom,csiphy@ac68000 {
-+			cell-index = <3>;
-+			cpas_intf = <&cpas>;
-+			compatible = "qcom,csiphy-v1.2.2", "qcom,csiphy";
-+			reg = <0 0xac68000 0 0x1000>;
-+			reg-names = "csiphy";
-+			reg-cam-base = <0x68000>;
-+			interrupts = <GIC_SPI 461 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "cam-csiphy3";
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_CSIPHY3_CLK>,
-+				<&camcc CAM_CC_CSI3PHYTIMER_CLK_SRC>,
-+				<&camcc CAM_CC_CSI3PHYTIMER_CLK>;
-+			clock-names = "camnoc_axi_clk",
-+				"soc_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"cpas_ahb_clk",
-+				"cphy_rx_clk_src",
-+				"csiphy3_clk",
-+				"csi3phytimer_clk_src",
-+				"csi3phytimer_clk";
-+			src-clock-name = "csi3phytimer_clk_src";
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			clock-rates =
-+				<0 0 0 0 270000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>,
-+				<0 0 0 0 360000000 0 300000000 0>;
-+		};
-+
-+		cam_ppi0: qcom,ppi0@ace0000 {
-+			cell-index = <0>;
-+			compatible = "qcom,ppi170";
-+			reg-names = "ppi";
-+			reg = <0 0xace0000 0 0x200>;
-+			reg-cam-base = <0xe0000>;
-+			interrupt-names = "ppi";
-+			interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&camcc CAM_CC_CSIPHY0_CLK>;
-+			clock-names = "csiphy0_clk";
-+			clock-cntl-level = "svs";
-+			clock-rates = <0>;
-+		};
-+
-+		cam_ppi1: qcom,ppi0@ace0200 {
-+			cell-index = <1>;
-+			compatible = "qcom,ppi170";
-+			reg-names = "ppi";
-+			reg = <0 0xace0200 0 0x200>;
-+			reg-cam-base = <0xe0200>;
-+			interrupt-names = "ppi";
-+			interrupts = <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&camcc CAM_CC_CSIPHY1_CLK>;
-+			clock-names = "csiphy1_clk";
-+			clock-cntl-level = "svs";
-+			clock-rates = <0>;
-+		};
-+
-+		cam_ppi2: qcom,ppi0@ace0400 {
-+			cell-index = <2>;
-+			compatible = "qcom,ppi170";
-+			reg-names = "ppi";
-+			reg = <0 0xace0400 0 0x200>;
-+			reg-cam-base = <0xe0400>;
-+			interrupt-names = "ppi";
-+			interrupts = <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&camcc CAM_CC_CSIPHY2_CLK>;
-+			clock-names = "csiphy2_clk";
-+			clock-cntl-level = "svs";
-+			clock-rates = <0>;
-+		};
-+
-+		cam_ppi3: qcom,ppi0@ace0600 {
-+			cell-index = <3>;
-+			compatible = "qcom,ppi170";
-+			reg-names = "ppi";
-+			reg = <0 0xace0600 0 0x200>;
-+			reg-cam-base = <0xe00600>;
-+			interrupt-names = "ppi";
-+			interrupts = <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&camcc CAM_CC_CSIPHY3_CLK>;
-+			clock-names = "csiphy3_clk";
-+			clock-cntl-level = "svs";
-+			clock-rates = <0>;
-+		};
-+
-+		cam_csid0: qcom,csid0@acb3000 {
-+			cell-index = <0>;
-+			compatible = "qcom,csid170";
-+			reg-names = "csid";
-+			reg = <0 0xacb3000 0 0x1000>;
-+			reg-cam-base = <0xb3000>;
-+			interrupt-names = "cam-csid0";
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc IFE_0_GDSC>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"ife_csid_clk",
-+				"ife_csid_clk_src",
-+				"ife_cphy_rx_clk",
-+				"cphy_rx_clk_src",
-+				"ife_clk",
-+				"ife_clk_src",
-+				"camnoc_axi_clk",
-+				"ife_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_0_CSID_CLK>,
-+				<&camcc CAM_CC_IFE_0_CSID_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_0_CLK>,
-+				<&camcc CAM_CC_IFE_0_CLK_SRC>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_IFE_0_AXI_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 0 270000000 0 0 0 360000000 0 0>,
-+				<0 0 0 0 0 0 360000000 0 0 0 432000000 0 0>,
-+				<0 0 0 0 0 0 480000000 0 0 0 600000000 0 0>;
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			src-clock-name = "ife_csid_clk_src";
-+			ppi-enable;
-+		};
-+
-+		cam_csid1: qcom,csid1@acba000 {
-+			cell-index = <1>;
-+			compatible = "qcom,csid170";
-+			reg-names = "csid";
-+			reg = <0 0xacba000 0 0x1000>;
-+			reg-cam-base = <0xba000>;
-+			interrupt-names = "cam-csid1";
-+			interrupts = <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc IFE_1_GDSC>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"ife_csid_clk",
-+				"ife_csid_clk_src",
-+				"ife_cphy_rx_clk",
-+				"cphy_rx_clk_src",
-+				"ife_clk",
-+				"ife_clk_src",
-+				"camnoc_axi_clk",
-+				"ife_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_1_CSID_CLK>,
-+				<&camcc CAM_CC_IFE_1_CSID_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_1_CLK>,
-+				<&camcc CAM_CC_IFE_1_CLK_SRC>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_IFE_1_AXI_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 0 270000000 0 0 0 360000000 0 0>,
-+				<0 0 0 0 0 0 360000000 0 0 0 432000000 0 0>,
-+				<0 0 0 0 0 0 480000000 0 0 0 600000000 0 0>;
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			src-clock-name = "ife_csid_clk_src";
-+			ppi-enable;
-+		};
-+
-+		cam_csid_lite: qcom,csid-lite@acc8000 {
-+			cell-index = <2>;
-+			compatible = "qcom,csid-lite170";
-+			reg-names = "csid-lite";
-+			reg = <0 0xacc8000 0 0x1000>;
-+			reg-cam-base = <0xc8000>;
-+			interrupt-names = "cam-csid-lite";
-+			interrupts = <GIC_SPI 473 IRQ_TYPE_EDGE_RISING>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"ife_csid_clk",
-+				"ife_csid_clk_src",
-+				"ife_cphy_rx_clk",
-+				"cphy_rx_clk_src",
-+				"ife_clk",
-+				"ife_clk_src",
-+				"camnoc_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-+				<&camcc CAM_CC_IFE_LITE_CSID_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+				<&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_LITE_CLK>,
-+				<&camcc CAM_CC_IFE_LITE_CLK_SRC>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 0 270000000 0 0 0 360000000 0>,
-+				<0 0 0 0 0 0 360000000 0 0 0 432000000 0>,
-+				<0 0 0 0 0 0 480000000 0 0 0 600000000 0>;
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			src-clock-name = "ife_csid_clk_src";
-+			ppi-enable;
-+		};
-+
-+		cam_vfe0: qcom,vfe0@acaf000 {
-+			cell-index = <0>;
-+			compatible = "qcom,vfe170";
-+			reg-names = "ife", "cam_camnoc";
-+			reg = <0 0xacaf000 0 0x4000>,
-+				<0 0xac42000 0 0x5000>;
-+			reg-cam-base = <0xaf000 0 0x42000>;
-+			interrupt-names = "cam-vfe0";
-+			interrupts = <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc IFE_0_GDSC>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"ife_clk",
-+				"ife_clk_src",
-+				"camnoc_axi_clk",
-+				"ife_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_0_CLK>,
-+				<&camcc CAM_CC_IFE_0_CLK_SRC>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_IFE_0_AXI_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 0 360000000 0 0>,
-+				<0 0 0 0 0 0 432000000 0 0>,
-+				<0 0 0 0 0 0 600000000 0 0>;
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			src-clock-name = "ife_clk_src";
-+			clock-names-option =  "ife_dsp_clk";
-+			clocks-option = <&camcc CAM_CC_IFE_0_DSP_CLK>;
-+			clock-rates-option = <600000000>;
-+		};
-+
-+		cam_vfe1: qcom,vfe1@acb6000 {
-+			cell-index = <1>;
-+			compatible = "qcom,vfe170";
-+			reg-names = "ife", "cam_camnoc";
-+			reg = <0 0xacb6000 0 0x4000>,
-+				<0 0xac42000 0 0x5000>;
-+			reg-cam-base = <0xb6000 0x42000>;
-+			interrupt-names = "cam-vfe1";
-+			interrupts = <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc IFE_1_GDSC>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"ife_clk",
-+				"ife_clk_src",
-+				"camnoc_axi_clk",
-+				"ife_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_1_CLK>,
-+				<&camcc CAM_CC_IFE_1_CLK_SRC>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_IFE_1_AXI_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 0 360000000 0 0>,
-+				<0 0 0 0 0 0 432000000 0 0>,
-+				<0 0 0 0 0 0 600000000 0 0>;
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			src-clock-name = "ife_clk_src";
-+			clock-names-option =  "ife_dsp_clk";
-+			clocks-option = <&camcc CAM_CC_IFE_1_DSP_CLK>;
-+			clock-rates-option = <600000000>;
-+		};
-+
-+		cam_vfe_lite: qcom,vfe-lite@acc4000 {
-+			cell-index = <2>;
-+			compatible = "qcom,vfe-lite170";
-+			reg-names = "ife-lite";
-+			reg = <0 0xacc4000 0 0x4000>;
-+			reg-cam-base = <0xc4000>;
-+			interrupt-names = "cam-vfe-lite";
-+			interrupts = <GIC_SPI 472 IRQ_TYPE_EDGE_RISING>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"slow_ahb_clk_src",
-+				"ife_clk",
-+				"ife_clk_src",
-+				"camnoc_axi_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				<&camcc CAM_CC_IFE_LITE_CLK>,
-+				<&camcc CAM_CC_IFE_LITE_CLK_SRC>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 0 360000000 0>,
-+				<0 0 0 0 0 0 432000000 0>,
-+				<0 0 0 0 0 0 600000000 0>;
-+			clock-cntl-level = "svs", "svs_l1", "turbo";
-+			src-clock-name = "ife_clk_src";
-+		};
-+	};
-+
-+	qcom,cam-icp {
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-icp";
-+		compat-hw-name = "qcom,a5",
-+			"qcom,ipe0",
-+			"qcom,bps";
-+		num-a5 = <1>;
-+		num-ipe = <1>;
-+		num-bps = <1>;
-+		icp_pc_en;
-+	};
-+
-+	cam_a5: qcom,a5@ac00000 {
-+		cell-index = <0>;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-a5";
-+		reg = <0 0xac00000 0 0x6000>,
-+			<0 0xac10000 0 0x8000>,
-+			<0 0xac18000 0 0x3000>;
-+		reg-names = "a5_qgic", "a5_sierra", "a5_csr";
-+		reg-cam-base = <0x00000 0x10000 0x18000>;
-+		interrupts = <GIC_SPI 463 IRQ_TYPE_EDGE_RISING>;
-+		interrupt-names = "a5";
-+		clock-names = "gcc_cam_ahb_clk",
-+			"gcc_cam_axi_clk",
-+			"soc_fast_ahb",
-+			"soc_ahb_clk",
-+			"cpas_ahb_clk",
-+			"camnoc_axi_clk",
-+			"icp_clk",
-+			"icp_clk_src";
-+		clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+			<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+			<&camcc CAM_CC_FAST_AHB_CLK_SRC>,
-+			<&camcc CAM_CC_SOC_AHB_CLK>,
-+			<&camcc CAM_CC_CPAS_AHB_CLK>,
-+			<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+			<&camcc CAM_CC_ICP_CLK>,
-+			<&camcc CAM_CC_ICP_CLK_SRC>;
-+		clock-rates =
-+			<0 0 200000000 0 0 0 0 360000000>,
-+			<0 0 200000000 0 0 0 0 600000000>;
-+		clock-cntl-level = "svs", "turbo";
-+		fw_name = "CAMERA_ICP.elf";
-+		ubwc-cfg = <0x73 0x1CF>;
-+	};
-+
-+	cam_bps: qcom,bps {
-+		cell-index = <0>;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-bps";
-+		reg = <0 0xac6f000 0 0x3000>;
-+		reg-names = "bps_top";
-+		reg-cam-base = <0x6f000>;
-+		power-domains = <&camcc BPS_GDSC>;
-+		clock-names = "bps_ahb_clk",
-+			"bps_areg_clk",
-+			"bps_axi_clk",
-+			"bps_clk",
-+			"bps_clk_src";
-+		src-clock-name = "bps_clk_src";
-+		clocks = <&camcc CAM_CC_BPS_AHB_CLK>,
-+			<&camcc CAM_CC_BPS_AREG_CLK>,
-+			<&camcc CAM_CC_BPS_AXI_CLK>,
-+			<&camcc CAM_CC_BPS_CLK>,
-+			<&camcc CAM_CC_BPS_CLK_SRC>;
-+
-+		clock-rates =
-+			<0 0 0 0 360000000>,
-+			<0 0 0 0 432000000>,
-+			<0 0 0 0 480000000>,
-+			<0 0 0 0 600000000>;
-+		clock-cntl-level = "svs",
-+			"svs_l1", "nominal", "turbo";
-+	};
-+
-+	cam_ipe0: qcom,ipe0 {
-+		cell-index = <0>;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-ipe";
-+		reg = <0 0xac87000 0 0x3000>;
-+		reg-names = "ipe0_top";
-+		reg-cam-base = <0x87000>;
-+		power-domains = <&camcc IPE_0_GDSC>;
-+		clock-names = "ipe_0_ahb_clk",
-+			"ipe_0_areg_clk",
-+			"ipe_0_axi_clk",
-+			"ipe_0_clk",
-+			"ipe_0_clk_src";
-+		src-clock-name = "ipe_0_clk_src";
-+		clocks = <&camcc CAM_CC_IPE_0_AHB_CLK>,
-+			<&camcc CAM_CC_IPE_0_AREG_CLK>,
-+			<&camcc CAM_CC_IPE_0_AXI_CLK>,
-+			<&camcc CAM_CC_IPE_0_CLK>,
-+			<&camcc CAM_CC_IPE_0_CLK_SRC>;
-+
-+		clock-rates =
-+			<0 0 0 0 360000000>,
-+			<0 0 0 0 432000000>,
-+			<0 0 0 0 540000000>,
-+			<0 0 0 0 600000000>;
-+		clock-cntl-level = "svs",
-+			"svs_l1", "nominal", "turbo";
-+	};
-+
-+	cam_jpeg_mgr: qcom,cam-jpeg {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-jpeg";
-+		compat-hw-name = "qcom,jpegenc",
-+			"qcom,jpegdma";
-+		num-jpeg-enc = <1>;
-+		num-jpeg-dma = <1>;
-+
-+		cam_jpeg_enc: qcom,jpegenc@ac4e000 {
-+			cell-index = <0>;
-+			compatible = "qcom,cam_jpeg_enc";
-+			reg-names = "jpege_hw";
-+			reg = <0 0xac4e000 0 0x4000>;
-+			reg-cam-base = <0x4e000>;
-+			interrupt-names = "cam-jpeg-enc";
-+			interrupts = <GIC_SPI 474 IRQ_TYPE_EDGE_RISING>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"camnoc_axi_clk",
-+				"jpegenc_clk_src",
-+				"jpegenc_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_JPEG_CLK_SRC>,
-+				<&camcc CAM_CC_JPEG_CLK>;
-+
-+			clock-rates = <0 0 0 0 0 600000000 0>;
-+			src-clock-name = "jpegenc_clk_src";
-+			clock-cntl-level = "turbo";
-+		};
-+
-+		cam_jpeg_dma: qcom,jpegdma@ac52000 {
-+			cell-index = <0>;
-+			compatible = "qcom,cam_jpeg_dma";
-+			reg-names = "jpegdma_hw";
-+			reg = <0 0xac52000 0 0x4000>;
-+			reg-cam-base = <0x52000>;
-+			interrupt-names = "cam-jpeg-dma";
-+			interrupts = <GIC_SPI 475 IRQ_TYPE_EDGE_RISING>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"camnoc_axi_clk",
-+				"jpegdma_clk_src",
-+				"jpegdma_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_JPEG_CLK_SRC>,
-+				<&camcc CAM_CC_JPEG_CLK>;
-+
-+			clock-rates = <0 0 0 0 0 600000000 0>;
-+			src-clock-name = "jpegdma_clk_src";
-+			clock-cntl-level = "turbo";
-+		};
-+	};
-+
-+	cam_lrme_mgr: qcom,cam-lrme {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cam-lrme";
-+		arch-compat = "lrme";
-+
-+		cam_lrme: qcom,lrme@ac6b000 {
-+			cell-index = <0>;
-+			compatible = "qcom,lrme";
-+			reg-names = "lrme";
-+			reg = <0 0xac6b000 0 0x1000>;
-+			reg-cam-base = <0x6b000>;
-+			interrupt-names = "lrme";
-+			interrupts = <GIC_SPI 476 IRQ_TYPE_EDGE_RISING>;
-+			clock-names = "camera_ahb",
-+				"camera_axi",
-+				"soc_ahb_clk",
-+				"cpas_ahb_clk",
-+				"camnoc_axi_clk",
-+				"lrme_clk_src",
-+				"lrme_clk";
-+			clocks = <&camcc GCC_CAMERA_AHB_CLK>,
-+				<&camcc GCC_CAMERA_HF_AXI_CLK>,
-+				<&camcc CAM_CC_SOC_AHB_CLK>,
-+				<&camcc CAM_CC_CPAS_AHB_CLK>,
-+				<&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				<&camcc CAM_CC_LRME_CLK_SRC>,
-+				<&camcc CAM_CC_LRME_CLK>;
-+			clock-rates =
-+				<0 0 0 0 0 200000000 200000000>,
-+				<0 0 0 0 0 216000000 216000000>,
-+				<0 0 0 0 0 300000000 300000000>,
-+				<0 0 0 0 0 404000000 404000000>,
-+				<0 0 0 0 0 404000000 404000000>,
-+				<0 0 0 0 0 404000000 404000000>;
-+			clock-cntl-level = "lowsvs", "svs", "svs_l1", "nominal",
-+					"nominal_l1", "turbo";
-+			src-clock-name = "lrme_clk_src";
-+		};
-+	};
-+
-+	cam_cci0: qcom,cci@ac4a000 {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		cell-index = <0>;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cci";
-+		reg = <0 0xac4a000 0 0x1000>;
-+		reg-names = "cci";
-+		reg-cam-base = <0 0x4a000>;
-+		interrupt-names = "cam-cci0";
-+		interrupts = <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>;
-+		clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+			<&camcc CAM_CC_SOC_AHB_CLK>,
-+			<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+			<&camcc CAM_CC_CPAS_AHB_CLK>,
-+			<&camcc CAM_CC_CCI_0_CLK>,
-+			<&camcc CAM_CC_CCI_0_CLK_SRC>;
-+		clock-names = "camnoc_axi_clk",
-+			"soc_ahb_clk",
-+			"slow_ahb_src_clk",
-+			"cpas_ahb_clk",
-+			"cci_clk",
-+			"cci_clk_src";
-+		src-clock-name = "cci_clk_src";
-+		clock-cntl-level = "lowsvs";
-+		clock-rates = <0 0 0 0 0 37500000>;
-+
-+		i2c_freq_100Khz: qcom,i2c_standard_mode {
-+			hw-thigh = <201>;
-+			hw-tlow = <174>;
-+			hw-tsu-sto = <204>;
-+			hw-tsu-sta = <231>;
-+			hw-thd-dat = <22>;
-+			hw-thd-sta = <162>;
-+			hw-tbuf = <227>;
-+			hw-scl-stretch-en = <0>;
-+			hw-trdhld = <6>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+
-+		i2c_freq_400Khz: qcom,i2c_fast_mode {
-+			hw-thigh = <38>;
-+			hw-tlow = <56>;
-+			hw-tsu-sto = <40>;
-+			hw-tsu-sta = <40>;
-+			hw-thd-dat = <22>;
-+			hw-thd-sta = <35>;
-+			hw-tbuf = <62>;
-+			hw-scl-stretch-en = <0>;
-+			hw-trdhld = <6>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+
-+		i2c_freq_custom: qcom,i2c_custom_mode {
-+			hw-thigh = <38>;
-+			hw-tlow = <56>;
-+			hw-tsu-sto = <40>;
-+			hw-tsu-sta = <40>;
-+			hw-thd-dat = <22>;
-+			hw-thd-sta = <35>;
-+			hw-tbuf = <62>;
-+			hw-scl-stretch-en = <1>;
-+			hw-trdhld = <6>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+
-+		i2c_freq_1Mhz: qcom,i2c_fast_plus_mode {
-+			hw-thigh = <16>;
-+			hw-tlow = <22>;
-+			hw-tsu-sto = <17>;
-+			hw-tsu-sta = <18>;
-+			hw-thd-dat = <16>;
-+			hw-thd-sta = <15>;
-+			hw-tbuf = <24>;
-+			hw-scl-stretch-en = <0>;
-+			hw-trdhld = <3>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+	};
-+
-+	cam_cci1: qcom,cci@ac4b000 {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		cell-index = <1>;
-+		cpas_intf = <&cpas>;
-+		compatible = "qcom,cci";
-+		reg = <0 0xac4b000 0 0x1000>;
-+		reg-names = "cci";
-+		reg-cam-base = <0 0x4b000>;
-+		interrupt-names = "cam-cci1";
-+		interrupts = <GIC_SPI 462 IRQ_TYPE_EDGE_RISING>;
-+		clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+			<&camcc CAM_CC_SOC_AHB_CLK>,
-+			<&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+			<&camcc CAM_CC_CPAS_AHB_CLK>,
-+			<&camcc CAM_CC_CCI_1_CLK>,
-+			<&camcc CAM_CC_CCI_1_CLK_SRC>;
-+		clock-names = "camnoc_axi_clk",
-+			"soc_ahb_clk",
-+			"slow_ahb_src_clk",
-+			"cpas_ahb_clk",
-+			"cci_clk",
-+			"cci_clk_src";
-+		src-clock-name = "cci_clk_src";
-+		clock-cntl-level = "lowsvs";
-+		clock-rates = <0 0 0 0 0 37500000>;
-+
-+		i2c_freq_100Khz_cci1: qcom,i2c_standard_mode {
-+			hw-thigh = <201>;
-+			hw-tlow = <174>;
-+			hw-tsu-sto = <204>;
-+			hw-tsu-sta = <231>;
-+			hw-thd-dat = <22>;
-+			hw-thd-sta = <162>;
-+			hw-tbuf = <227>;
-+			hw-scl-stretch-en = <0>;
-+			hw-trdhld = <6>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+
-+		i2c_freq_400Khz_cci1: qcom,i2c_fast_mode {
-+			hw-thigh = <38>;
-+			hw-tlow = <56>;
-+			hw-tsu-sto = <40>;
-+			hw-tsu-sta = <40>;
-+			hw-thd-dat = <22>;
-+			hw-thd-sta = <35>;
-+			hw-tbuf = <62>;
-+			hw-scl-stretch-en = <0>;
-+			hw-trdhld = <6>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+
-+		i2c_freq_custom_cci1: qcom,i2c_custom_mode {
-+			hw-thigh = <38>;
-+			hw-tlow = <56>;
-+			hw-tsu-sto = <40>;
-+			hw-tsu-sta = <40>;
-+			hw-thd-dat = <22>;
-+			hw-thd-sta = <35>;
-+			hw-tbuf = <62>;
-+			hw-scl-stretch-en = <1>;
-+			hw-trdhld = <6>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+
-+		i2c_freq_1Mhz_cci1: qcom,i2c_fast_plus_mode {
-+			hw-thigh = <16>;
-+			hw-tlow = <22>;
-+			hw-tsu-sto = <17>;
-+			hw-tsu-sta = <18>;
-+			hw-thd-dat = <16>;
-+			hw-thd-sta = <15>;
-+			hw-tbuf = <24>;
-+			hw-scl-stretch-en = <0>;
-+			hw-trdhld = <3>;
-+			hw-tsp = <3>;
-+			cci-clk-src = <37500000>;
-+		};
-+	};
-+
-+	qcom,cam-res-mgr {
-+		compatible = "qcom,cam-res-mgr";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
-new file mode 100644
-index 000000000000..027d6d563a5f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Gelarshie board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180-trogdor-gelarshie.dtsi"
-+
-+/ {
-+	model = "Google Gelarshie (rev0+)";
-+	compatible = "google,gelarshie", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
-new file mode 100644
-index 000000000000..502aa70fe1f3
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
-@@ -0,0 +1,281 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Gelarshie board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-mipi-camera.dtsi"
-+
-+ap_ec_spi: &spi6 {};
-+ap_h1_spi: &spi0 {};
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-+
-+/* Deleted nodes from trogdor.dtsi */
-+
-+/delete-node/ &alc5682;
-+/delete-node/ &pp3300_codec;
-+
-+/ {
-+	/* BOARD-SPECIFIC TOP LEVEL NODES */
-+
-+	adau7002: audio-codec-1 {
-+		compatible = "adi,adau7002";
-+		IOVDD-supply = <&pp1800_l15a>;
-+		wakeup-delay-ms = <80>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&backlight {
-+	pwms = <&cros_ec_pwm 0>;
-+};
-+
-+&camcc {
-+	status = "okay";
-+};
-+
-+&cros_ec {
-+	cros_ec_proximity: proximity {
-+		compatible = "google,cros-ec-mkbp-proximity";
-+		label = "proximity-wifi";
-+	};
-+};
-+
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@5d {
-+		compatible = "goodix,gt7375p";
-+		reg = <0x5d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+
-+		vdd-supply = <&pp3300_ts>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "disabled";
-+};
-+
-+&i2c9 {
-+	status = "disabled";
-+};
-+
-+&panel {
-+	compatible = "edp-panel";
-+};
-+
-+&pp1800_uf_cam {
-+	status = "okay";
-+};
-+
-+&pp1800_wf_cam {
-+	status = "okay";
-+};
-+
-+&pp2800_uf_cam {
-+	status = "okay";
-+};
-+
-+&pp2800_wf_cam {
-+	status = "okay";
-+};
-+
-+&pp3300_dx_edp {
-+	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+};
-+
-+&sn65dsi86_out {
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-gelarshie";
-+	model = "sc7180-adau7002-max98357a";
-+	audio-routing = "PDM_DAT", "DMIC";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dmic_clk_en>;
-+};
-+
-+&sound_multimedia0_codec {
-+	sound-dai = <&adau7002>;
-+};
-+
-+/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-+
-+&en_pp3300_dx_edp {
-+	pinmux  {
-+		pins = "gpio67";
-+	};
-+
-+	pinconf {
-+		pins = "gpio67";
-+	};
-+};
-+
-+&ts_reset_l {
-+	pinconf {
-+		/*
-+		 * We want reset state by default and it will be up to the
-+		 * driver to disable this when it's ready.
-+		 */
-+		output-low;
-+	};
-+};
-+
-+/* PINCTRL - board-specific pinctrl */
-+
-+&tlmm {
-+	gpio-line-names = "HUB_RST_L",
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "WF_CAM_EN2",
-+			  "AP_RAM_ID2",
-+			  "UF_CAM_EN",
-+			  "WF_CAM_EN",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "",
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "UF_CAM_MCLK",
-+			  "WF_CAM_MCLK",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "UF_CAM_SDA",
-+			  "UF_CAM_SCL",
-+			  "WF_CAM_SDA",
-+			  "WF_CAM_SCL",
-+			  "",
-+			  "",
-+			  "AMP_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "WF_CAM_RST_L",
-+			  "UF_CAM_RST_L",
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "BT_UART_CTS",
-+			  "BT_UART_RTS",
-+			  "BT_UART_TXD",
-+			  "BT_UART_RXD",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "",
-+			  "",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",
-+			  "AMP_DIN",
-+			  "",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "",
-+			  "",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "EN_PP3300_DX_EDP",
-+			  "AP_SPI_CS0_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "WLAN_SW_CTRL",
-+			  "BOOT_CONFIG_0",
-+			  "REPORT_SWITCH",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "DMIC_CLK_EN",
-+			  "HUB_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_SKU_ID1",
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "BOOT_CONFIG_1",
-+			  "",
-+			  "",
-+			  "BOOT_CONFIG_4",
-+			  "BOOT_CONFIG_2",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "BOOT_CONFIG_3",
-+			  "WCI2_LTE_COEX_TXD",
-+			  "WCI2_LTE_COEX_RXD",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "FORCED_USB_BOOT_POL",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+
-+	dmic_clk_en: dmic_clk_en {
-+		pinmux {
-+			pins = "gpio83";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio83";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-mipi-camera.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mipi-camera.dtsi
-new file mode 100644
-index 000000000000..df8da987ecf3
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-mipi-camera.dtsi
-@@ -0,0 +1,416 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 and
-+ * only version 2 as published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ */
-+
-+#include "sc7180-camera.dtsi"
-+
-+&tlmm {
-+	cci0_active: cci0_active {
-+		mux {
-+			/* DATA, CLK */
-+			pins = "gpio17", "gpio18";
-+			function = "cci_i2c";
-+		};
-+		config {
-+			pins = "gpio17", "gpio18";
-+			bias-pull-up; /* PULL UP */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cci0_suspend: cci0_suspend {
-+		mux {
-+			/* DATA, CLK */
-+			pins = "gpio17", "gpio18";
-+			function = "cci_i2c";
-+		};
-+		config {
-+			pins = "gpio17", "gpio18";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cci1_active: cci1_active {
-+		mux {
-+			/* DATA, CLK */
-+			pins = "gpio19", "gpio20";
-+			function = "cci_i2c";
-+		};
-+		config {
-+			pins = "gpio19", "gpio20";
-+			bias-pull-up; /* PULL UP */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cci1_suspend: cci1_suspend {
-+		mux {
-+			/* DATA, CLK */
-+			pins = "gpio19", "gpio20";
-+			function = "cci_i2c";
-+		};
-+		config {
-+			pins = "gpio19", "gpio20";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_mclk0_active: cam_sensor_mclk0_active {
-+		/* MCLK0 */
-+		mux {
-+			pins = "gpio13";
-+			function = "cam_mclk";
-+		};
-+		config {
-+			pins = "gpio13";
-+			bias-disable; /* No PULL */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_mclk0_suspend: cam_sensor_mclk0_suspend {
-+		/* MCLK0 */
-+		mux {
-+			pins = "gpio13";
-+			function = "cam_mclk";
-+		};
-+		config {
-+			pins = "gpio13";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_rear_active: cam_sensor_rear_active {
-+		/* RESET */
-+		mux {
-+			pins = "gpio29";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio29";
-+			bias-disable; /* No PULL */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_rear_suspend: cam_sensor_rear_suspend {
-+		/* RESET */
-+		mux {
-+			pins = "gpio29";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio29";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+			output-low;
-+		};
-+	};
-+
-+	cam_sensor_front_active: cam_sensor_front_active {
-+		/* RESET  */
-+		mux {
-+			pins = "gpio30";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio30";
-+			bias-disable; /* No PULL */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_front_suspend: cam_sensor_front_suspend {
-+		/* RESET */
-+		mux {
-+			pins = "gpio30";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio30";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+			output-low;
-+		};
-+	};
-+
-+	cam_sensor_mclk1_active: cam_sensor_mclk1_active {
-+		/* MCLK1 */
-+		mux {
-+			pins = "gpio14";
-+			function = "cam_mclk";
-+		};
-+		config {
-+			pins = "gpio14";
-+			bias-disable; /* No PULL */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_mclk1_suspend: cam_sensor_mclk1_suspend {
-+		/* MCLK1 */
-+		mux {
-+			pins = "gpio14";
-+			function = "cam_mclk";
-+		};
-+		config {
-+			pins = "gpio14";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_standby0_active: cam_sensor_standby0_active {
-+		/* STANDBY0 */
-+		mux {
-+			pins = "gpio6";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio6";
-+			bias-disable; /* No PULL */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_standby0_suspend: cam_sensor_standby0_suspend {
-+		/* STANDBY0 */
-+		mux {
-+			pins = "gpio6";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio6";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+			output-low;
-+		};
-+	};
-+
-+	cam_sensor_standby1_active: cam_sensor_standby1_active {
-+		/* STANDBY1 */
-+		mux {
-+			pins = "gpio7";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio7";
-+			bias-disable; /* No PULL */
-+			drive-strength = <2>; /* 2 MA */
-+		};
-+	};
-+
-+	cam_sensor_standby1_suspend: cam_sensor_standby1_suspend {
-+		/* STANDBY1 */
-+		mux {
-+			pins = "gpio7";
-+			function = "gpio";
-+		};
-+		config {
-+			pins = "gpio7";
-+			bias-pull-down; /* PULL DOWN */
-+			drive-strength = <2>; /* 2 MA */
-+			output-low;
-+		};
-+	};
-+};
-+
-+&cam_cci0 {
-+
-+	pinctrl-names = "cam_default", "cam_suspend";
-+	pinctrl-0 = <&cci0_active &cci1_active>;
-+	pinctrl-1 = <&cci0_suspend &cci1_suspend>;
-+	gpios = <&tlmm 17 0>,
-+		<&tlmm 18 0>,
-+		<&tlmm 19 0>,
-+		<&tlmm 20 0>;
-+	gpio-req-tbl-num = <0 1 2 3>;
-+	gpio-req-tbl-flags = <1 1 1 1>;
-+	gpio-req-tbl-label = "CCI_I2C_DATA0",
-+		"CCI_I2C_CLK0",
-+		"CCI_I2C_DATA1",
-+		"CCI_I2C_CLK1";
-+
-+	actuator_rear: qcom,actuator@0 {
-+		cell-index = <1>;
-+		compatible = "qcom,actuator";
-+		cam_vaf-supply = <&pp2800_vcm_wf_cam>;
-+		regulator-names = "cam_vaf";
-+		rgltr-cntrl-support;
-+		rgltr-min-voltage = <2850000>;
-+		rgltr-max-voltage = <2850000>;
-+		rgltr-load-current = <0>;
-+		cci-device = <0>;
-+		cci-master = <1>;
-+	};
-+
-+	eeprom_rear: qcom,eeprom@0 {
-+		cell-index = <1>;
-+		compatible = "qcom,eeprom";
-+		cam_vio-supply = <&pp1800_wf_cam>;
-+		regulator-names = "cam_vio";
-+		rgltr-cntrl-support;
-+		rgltr-min-voltage = <1800000>;
-+		rgltr-max-voltage = <1800000>;
-+		rgltr-load-current = <0>;
-+		gpio-no-mux = <0>;
-+		pinctrl-names = "cam_default", "cam_suspend";
-+		pinctrl-0 = <&cam_sensor_rear_active
-+			&cam_sensor_mclk1_active>;
-+		pinctrl-1 = <&cam_sensor_rear_suspend
-+			&cam_sensor_mclk1_suspend>;
-+		gpios = <&tlmm 29 0>,
-+			<&tlmm 14 0>;
-+		gpio-reset = <0>;
-+		gpio-req-tbl-num = <0 1>;
-+		gpio-req-tbl-flags = <0 1>;
-+		gpio-req-tbl-label = "CAM_RESET1",
-+					"CAMIF_MCLK1";
-+		sensor-mode = <0>;
-+		cci-device = <0>;
-+		cci-master = <1>;
-+		status = "ok";
-+		clocks = <&camcc CAM_CC_MCLK1_CLK>;
-+		clock-names = "cam_clk";
-+		clock-cntl-level = "turbo";
-+		clock-rates = <24000000>;
-+
-+		i2c-address = <0x58>;
-+		memory-bytes = <10240>;
-+		address-bits = <16>;
-+	};
-+
-+	eeprom_front: qcom,eeprom@1 {
-+		cell-index = <0>;
-+		compatible = "qcom,eeprom";
-+		cam_vio-supply = <&pp1800_uf_cam>;
-+		regulator-names = "cam_vio";
-+		rgltr-cntrl-support;
-+		rgltr-min-voltage = <1800000>;
-+		rgltr-max-voltage = <1800000>;
-+		rgltr-load-current = <0>;
-+		gpio-no-mux = <0>;
-+		pinctrl-names = "cam_default", "cam_suspend";
-+		pinctrl-0 = <&cam_sensor_front_active
-+			&cam_sensor_mclk0_active>;
-+		pinctrl-1 = <&cam_sensor_front_suspend
-+			&cam_sensor_mclk0_suspend>;
-+		gpios = <&tlmm 30 0>,
-+			<&tlmm 13 0>;
-+		gpio-reset = <0>;
-+		gpio-req-tbl-num = <0 1>;
-+		gpio-req-tbl-flags = <0 1>;
-+		gpio-req-tbl-label = "CAM_RESET0",
-+					"CAMIF_MCLK0";
-+		sensor-mode = <0>;
-+		cci-device = <0>;
-+		cci-master = <0>;
-+		status = "ok";
-+		clocks = <&camcc CAM_CC_MCLK0_CLK>;
-+		clock-names = "cam_clk";
-+		clock-cntl-level = "turbo";
-+		clock-rates = <24000000>;
-+
-+		i2c-address = <0x50>;
-+		memory-bytes = <8192>;
-+		address-bits = <16>;
-+	};
-+
-+	qcom,cam-sensor@0 {
-+		cell-index = <1>;
-+		compatible = "qcom,cam-sensor";
-+		csiphy-sd-index = <1>;
-+		sensor-position-roll = <90>;
-+		sensor-position-pitch = <0>;
-+		sensor-position-yaw = <180>;
-+		eeprom-src = <&eeprom_rear>;
-+		actuator-src = <&actuator_rear>;
-+		power-domains = <&camcc TITAN_TOP_GDSC>;
-+		cam_vio-supply = <&pp1800_wf_cam>;
-+		regulator-names = "cam_vio";
-+		rgltr-cntrl-support;
-+		rgltr-min-voltage = <1800000>;
-+		rgltr-max-voltage = <1800000>;
-+		rgltr-load-current = <0>;
-+		gpio-no-mux = <0>;
-+		pinctrl-names = "cam_default", "cam_suspend";
-+		pinctrl-0 = <&cam_sensor_rear_active
-+			&cam_sensor_mclk1_active>;
-+		pinctrl-1 = <&cam_sensor_rear_suspend
-+			&cam_sensor_mclk1_suspend>;
-+		gpios = <&tlmm 29 0>,
-+			<&tlmm 14 0>;
-+		gpio-reset = <0>;
-+		gpio-req-tbl-num = <0 1>;
-+		gpio-req-tbl-flags = <0 1>;
-+		gpio-req-tbl-label = "CAM_RESET1",
-+					"CAMIF_MCLK1";
-+		sensor-mode = <0>;
-+		cci-device = <0>;
-+		cci-master = <1>;
-+		clocks = <&camcc CAM_CC_MCLK1_CLK>;
-+		clock-names = "cam_clk";
-+		clock-cntl-level = "turbo";
-+		clock-rates = <24000000>;
-+	};
-+
-+	qcom,cam-sensor@1 {
-+		cell-index = <0>;
-+		compatible = "qcom,cam-sensor";
-+		csiphy-sd-index = <0>;
-+		sensor-position-roll = <90>;
-+		sensor-position-pitch = <0>;
-+		sensor-position-yaw = <180>;
-+		eeprom-src = <&eeprom_front>;
-+		power-domains = <&camcc TITAN_TOP_GDSC>;
-+		cam_vio-supply = <&pp1800_uf_cam>;
-+		regulator-names = "cam_vio";
-+		rgltr-cntrl-support;
-+		rgltr-min-voltage = <1800000>;
-+		rgltr-max-voltage = <1800000>;
-+		rgltr-load-current = <0>;
-+		gpio-no-mux = <0>;
-+		pinctrl-names = "cam_default", "cam_suspend";
-+		pinctrl-0 = <&cam_sensor_front_active
-+			&cam_sensor_mclk0_active>;
-+		pinctrl-1 = <&cam_sensor_front_suspend
-+			&cam_sensor_mclk0_suspend>;
-+		gpios = <&tlmm 30 0>,
-+			<&tlmm 13 0>;
-+		gpio-reset = <0>;
-+		gpio-req-tbl-num = <0 1>;
-+		gpio-req-tbl-flags = <0 1>;
-+		gpio-req-tbl-label = "CAM_RESET0",
-+					"CAMIF_MCLK0";
-+		sensor-mode = <0>;
-+		cci-device = <0>;
-+		cci-master = <0>;
-+		clocks = <&camcc CAM_CC_MCLK0_CLK>;
-+		clock-names = "cam_clk";
-+		clock-cntl-level = "turbo";
-+		clock-rates = <24000000>;
-+	};
-+};
-+
-+&cam_cci1 {
-+	pinctrl-names = "cam_default", "cam_suspend";
-+	gpios = <&tlmm 27 0>,
-+		<&tlmm 28 0>;
-+	gpio-req-tbl-num = <0 1>;
-+	gpio-req-tbl-flags = <1 1>;
-+	gpio-req-tbl-label = "CCI_I2C_DATA2",
-+				"CCI_I2C_CLK2";
-+};
--- 
-2.31.0
 
+So you judge ROCKCHIP_ANALOGIX_DP can't work by this(as vop2 doesn't has 
+rockchip_drm_wait_vact_end interface)?
+
+No, you may not know clearly about this function, this function is used 
+for eDP PSR, which is a
+
+optional function, that means not every eDP panel has PSR function(this 
+function usually parsed from edid).
+
+This really not means than ROCKCHIP_ANALOGIX_DP can't work.
+
+
+And your 5.10 downstream kernel seems out of dated. We have already move 
+this function out from rockchip_drm_vop to rockchip_drm_drv.
+
+
+>>
+>> Do you have a RK3568_EVB1 that has a VGA output interface on board?
+>>
+>> If you have it, I can offer you image to verify the DP.
+>>
+>>
+>>>> If this patch will cause the compile error, please do a real fix, not a
+>>> I can't, because I don't have any hardware to test the Analogix DP on a
+>>> VOP hardware, and given that Analogix DP in conjunction with VOP2 hardware is
+>>> not even supported in the downstream Kernel I am not sure if it's really
+>>> worth doing that.
+>>
+>> Again, this is not the truth, see above.
+>> I am not ask you support the ROCKCHIP_ANALOGIX_DP on upstream, I just
+>> want you can give a better solution when you patch cause the compile error.
+>> Disable a module when it conflict with your patch is too rough.
+> It does not conflict with my patch. The dependency only means that you can't
+> enable the Analogix DP driver when the VOP driver is disabled. That
+> doesn't hurt, because currently you can't do anything with the Analogix
+> DP driver without the VOP driver. With the added dependency the Analogix DP
+> driver can still be used with the VOP driver, even when the VOP2 driver
+> is enabled. I really can't see a problem with that.
+>
+> Sascha
+>
