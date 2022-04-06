@@ -2,143 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AFC94F6490
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D114F65B8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237000AbiDFQGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 12:06:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59270 "EHLO
+        id S237410AbiDFQdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 12:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237137AbiDFQGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:06:09 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4789028E39;
-        Wed,  6 Apr 2022 06:37:41 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4D151C0004;
-        Wed,  6 Apr 2022 13:37:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649252260;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FH99r01rSjiYpZmMc6KUEx7cbU28Glohzh6YuFZpwCg=;
-        b=NMHjp3eIjygCXnXkmuit45vnyOKfQ69n3ArPh+HZIYyf7wEkfxP6qFPO7d8lwG+Dz6WayV
-        5BSPZaRuofzCmRczDKVvudfGJV+YX9ubne8LLbhfr6OKTOxNtJuLSblojB4QRBko4p0aAO
-        7AaZE/foEmAu9yKlbMVMtzr2mgmOCc8kGr+8lxzhlQQJ6lrEMoumgC9lMFdu5u6CgW3cY8
-        87C/f6fzh7UY12KAyxYbCbXEDG7qUTNCjtPg2bmR9T5zdpTFedNX0fgsTiT7TDQmNdYtof
-        KB2jopL2Vo/AqjOcP3q/VFsQDiRdheZEgJVuvu37XEYrsNH83SFwqIgpdrAuZg==
-Date:   Wed, 6 Apr 2022 15:36:10 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Rob Herring <robh@kernel.org>, Lizhi Hou <lizhi.hou@xilinx.com>,
-        Sonal Santan <sonal.santan@xilinx.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
-Message-ID: <20220406153610.1d479a05@fixe.home>
-In-Reply-To: <Yk2WulTcdtwlMGrj@mail.local>
-References: <20220324141237.297207-1-clement.leger@bootlin.com>
-        <Ykst0Vb4fk+iALzc@robh.at.kernel.org>
-        <20220405092434.6e424ed4@fixe.home>
-        <YkxWeMNw9Ba0KjHM@robh.at.kernel.org>
-        <20220405175120.23fc6b2a@fixe.home>
-        <CAL_JsqLdBcAw1KPnrATHqEngRWkx6moxDODH1xV67EKAufc6_w@mail.gmail.com>
-        <20220406094019.670a2956@fixe.home>
-        <Yk2TVAfPVh9a1tUR@robh.at.kernel.org>
-        <Yk2WulTcdtwlMGrj@mail.local>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S238249AbiDFQcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:32:53 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B603119481D;
+        Wed,  6 Apr 2022 06:52:25 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 236DqJL0112009;
+        Wed, 6 Apr 2022 08:52:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649253139;
+        bh=AQtmCU8nSw+pQUsM07priatShylKCYZ0upOcmmY/1FU=;
+        h=From:To:CC:Subject:Date;
+        b=BqUeqp/+TzacMy9jQdjsNvRJiB2MJW4gyzBCjAM5Zb2wiMY30Kzu1HQR750uVaXvv
+         cKRwXviWs8eXflbgweaBlWQ/krr+SgJNeLGKfP4c1QLyoHDR2THNJi+UTinNxA61Us
+         JPLeAc0sCR7JnmQ3CTXegxcOAGfIX1nsDXFhy9vQ=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 236DqJmB089706
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Apr 2022 08:52:19 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Apr 2022 08:52:19 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Apr 2022 08:52:19 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 236DqFsn079424;
+        Wed, 6 Apr 2022 08:52:16 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] AM62: Add support for AM62 USB wrapper driver
+Date:   Wed, 6 Apr 2022 19:22:09 +0530
+Message-ID: <20220406135214.6989-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, 6 Apr 2022 15:33:46 +0200,
-Alexandre Belloni <alexandre.belloni@bootlin.com> a =C3=A9crit :
+The following series of patches add support for AM62 USB wrapper driver
+and its corresponding bindings.
 
-> On 06/04/2022 08:19:16-0500, Rob Herring wrote:
-> > > > > > I've told the Xilinx folks the same thing, but I would separate=
- this
-> > > > > > into 2 parts. First is just h/w work in a DT based system. Seco=
-nd is
-> > > > > > creating a base tree an overlay can be applied to. The first pa=
-rt should
-> > > > > > be pretty straightforward. We already have PCI bus bindings. Th=
-e only
-> > > > > > tricky part is getting address translation working from leaf de=
-vice thru
-> > > > > > the PCI bus to host bus, but support for that should all be in =
-place
-> > > > > > (given we support ISA buses off of PCI bus). The second part wi=
-ll
-> > > > > > require generating PCI DT nodes at runtime. That may be needed =
-for both
-> > > > > > DT and ACPI systems as we don't always describe all the PCI hie=
-rarchy
-> > > > > > in DT.   =20
-> > > > >
-> > > > > But then, if the driver generate the nodes, it will most probably
-> > > > > have to describe the nodes by hardcoding them right ?   =20
-> > > >=20
-> > > > No, the kernel already maintains its own tree of devices. You just
-> > > > need to use that to generate the tree. That's really not much more
-> > > > than nodes with a 'reg' property encoding the device and function
-> > > > numbers. =20
-> > >=20
-> > > Just to clarified a point, my PCI device exposes multiple peripherals
-> > > behind one single PCI function. =20
-> >=20
-> > Right. I would expect your PCI device DT node to have a 'simple-bus'=20
-> > child node with all those peripherals. And maybe there's other nodes=20
-> > like fixed-clocks, etc.
-> >  =20
-> > > To be sure I understood what you are suggesting, you propose to create
-> > > a DT node from the PCI driver that has been probed dynamically
-> > > matching this same PCI device with a 'reg' property. I also think
-> > > this would requires to generate some 'pci-ranges' to remap the
-> > > downstream devices that are described in the DTBO, finally, load the
-> > > overlay to be apply under this newly created node. Is that right ? =20
-> >=20
-> > Right. You'll need to take the BAR address(es) for the device and stick=
-=20
-> > those into 'ranges' to translate offsets to BAR+offset.
-> >  =20
->=20
-> Last time I tried that, this was not working well because it means that
-> the ranges property of the device depends on the host machine...
->=20
+changes since v2:
+- Removed the implementation of detecting the role from the wrapper
+  driver and moved the implementation to using linux,extcon-usb-gpio
+  driver for role detection.
+- Updated the binding documentation and example to reflect the same.
 
-Yes, but we can actually resolve that dynamically. The ranges property
-that is inserted is inserted in the top node (the PCI device one).
-Since this node will be created by "us" (the kernel/driver), we can
-insert whatever we want. And most probably, we'll insert a specific BAR
-remapping. The underlying nodes will then be loaded from the overlay
-and merged in the top PCI device node (At least I guess ;)). These
-nodes don't need any "machine dependent" addresses, only realtive
-addresses from the top node.
+changes since v1:
+- Fixed the error with dev_pm_ops uninitialization, in patch 2.
+  This was reported by kernel test bot
+- In patch 1, made correction in grammer of clocks property description
+  and added maxItems in the interrupts property based on comments
+  received from Roger
+- In patch 1, corrected the title, fixed the description of
+  ti,syscon-phy-pll-refclk, added pattern properties and child node
+  in the example based on the comments from Krzysztof. 
 
+Aswath Govindraju (2):
+  dt-bindings: usb: Add documentation for AM62 USB Wrapper module
+  drivers: usb: dwc3: Add AM62 USB wrapper driver
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+ .../devicetree/bindings/usb/ti,am62-usb.yaml  | 115 +++++
+ drivers/usb/dwc3/Kconfig                      |   9 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-am62.c                  | 446 ++++++++++++++++++
+ 4 files changed, 571 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+ create mode 100644 drivers/usb/dwc3/dwc3-am62.c
+
+-- 
+2.17.1
