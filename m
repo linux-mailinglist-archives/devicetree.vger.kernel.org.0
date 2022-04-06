@@ -2,73 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D304F54DF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 07:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE3D4F57A5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 10:16:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242355AbiDFFJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 01:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32990 "EHLO
+        id S231487AbiDFG4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 02:56:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1580616AbiDFEQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 00:16:38 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65F02B5184
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 17:26:55 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id b21so1112929ljf.11
-        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 17:26:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TglhxcqR03STbzjibn+QFjr2IBk8TX9fGS7Is5dPqiA=;
-        b=VSOqfRZSyi2bDhEqMpwfhmUTxSpO93QuNf1r2r1kA8vmU1PFcwGo+5dcE1XmU8vDZr
-         0VXJjErh2A4aB/N5wyqkJOD29EU0WIzLOdkfb0O4Z7679woH7vS1h7jwQkEWQpAbUV9W
-         pKl/SseGLKhfsi+jq8P7CF94l/eRFT++tmbWGyN44JfaENT3ab80aYN51LlueeQq1Ptm
-         +V6sqXG5ZU0nFjyHJY1r6VxaFXr9CaqPuOBMjiTr4GYiFv5GAjjDjmETbpThnaQyZkTs
-         +T4TyUR21XW+d/8XJD63icnUkayvjQwtvs5OwHVaFNHgPdnd22De5Usm1JBN1nOBcXPE
-         YgbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TglhxcqR03STbzjibn+QFjr2IBk8TX9fGS7Is5dPqiA=;
-        b=P7WVBh/LyyucpMf+Q/efwQkBPygu3nS8tof3sHZKTzKJfMphd0+zuU9K7w3iQJ6TYe
-         OlIczuZ3DBbZcR0RlSz5npS1NkNM5QyUupTxKudCHfpVdymqDrs36pR8vYk7HEvE19qU
-         CsjcCuS+fH5jgA3/+I5CNQouj1+vkyO4+dC0+tX+jf0pHok7cPpJYwrzok0+b+PEmuTq
-         bNTKlLaTWQx3AOal96IT5Ki9etXOrBtDzUZde+kvdWJlYZDOHW61UaUy62oaeU08IEZ/
-         ToZAWZKcVoB7DWvuH1KNPHwPSJsHDkNmYvEIFBDm44cvYAsLnoxyM684xiNNfkzdEPio
-         NJOg==
-X-Gm-Message-State: AOAM531F0J8WJAZpjbt5hFpFR3AzaE0pVdoNVpsWjjYJ5dUBKiOxcmZj
-        Z2cm+9mIdiRQnh5WOxbVyW8LAg==
-X-Google-Smtp-Source: ABdhPJzI/P+YX2UHUE6J2gC82zaz6t4+duksND2A3MAe65Wf5eLzAtmgNvF6Z1tG2I0qNw9uEzOSwQ==
-X-Received: by 2002:a2e:82c5:0:b0:247:e81f:8b02 with SMTP id n5-20020a2e82c5000000b00247e81f8b02mr3684529ljh.90.1649204814030;
-        Tue, 05 Apr 2022 17:26:54 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c21-20020a056512239500b0044aa21dadeasm1660270lfv.60.2022.04.05.17.26.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Apr 2022 17:26:53 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [PATCH v2 4/4] arm: dts: qcom-apq8064: create tsens device node
-Date:   Wed,  6 Apr 2022 03:26:48 +0300
-Message-Id: <20220406002648.393486-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220406002648.393486-1-dmitry.baryshkov@linaro.org>
-References: <20220406002648.393486-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S1585596AbiDFFfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 01:35:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1909734DDD8;
+        Tue,  5 Apr 2022 18:04:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A97F60AD0;
+        Wed,  6 Apr 2022 01:04:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DEA8C385A1;
+        Wed,  6 Apr 2022 01:04:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649207089;
+        bh=ZRlRd3gKnPMwhHGABcPERiIMz82HdvfvZFULEH0uKeU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=m3QUpTq3qLgqgS+okjKB46lmEkQN5K2jrohyioql6n3wK0PaAYfURRz90lv2Jigui
+         It7xoI18022b6ndfbDYzk3sOmWLLbwPnvCOrk3P+4YXj48666dLILFHnX9lb49kdJl
+         35fnsDWO/AeR69LIyWTIHrgucqpestGuJO3h9H2om6d87AWd+dgjIJ9I8WU9c7k5va
+         SO8PGrnXZLwKjEzpQ4g1Pb5+tW6c6CZstX3EbBqXgmD6Io6ZQqEOKnEybcSc1qn3pg
+         18y8D2iICLlsqx9F3lFwwiqflmVWdxQcBGXHYqx3DZd+NUszTfOKZa2WwAphykzAQr
+         84rTT0ERDFImw==
+Date:   Wed, 6 Apr 2022 09:04:42 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        broonie@kernel.org, festevam@gmail.com,
+        krzysztof.kozlowski@canonical.com, lgirdwood@gmail.com,
+        michael@amarulasolutions.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de
+Subject: Re: [PATCH v4] arm64: dts: imx8mn-bsh-smm-s2pro: Add tlv320aic31xx
+ audio card node
+Message-ID: <20220406010442.GB129381@dragon>
+References: <20220323135601.42435-1-ariel.dalessandro@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220323135601.42435-1-ariel.dalessandro@collabora.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,82 +59,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create separate device node for thermal sensors on apq8064 platform.
-Move related properties to the newly created device tree node.
+On Wed, Mar 23, 2022 at 10:56:01AM -0300, Ariel D'Alessandro wrote:
+> BSH SystemMaster (SMM) S2 PRO board comes with an audio card based on
+> tlv320aic31xx family codec.
+> 
+> The audio card exposes two playback devices, one of them using the EASRC
+> (Enhanced Asynchronous Sample Rate Converter) module. Note that this
+> would require SDMA and EASRC firmware in order to work.
+> 
+> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom-apq8064.dtsi | 25 +++++++++++++++++--------
- 1 file changed, 17 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index b9e9a9f9d3e2..40c65c921f96 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -105,7 +105,7 @@ cpu0-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 7>;
-+			thermal-sensors = <&tsens 7>;
- 			coefficients = <1199 0>;
- 
- 			trips {
-@@ -126,7 +126,7 @@ cpu1-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 8>;
-+			thermal-sensors = <&tsens 8>;
- 			coefficients = <1132 0>;
- 
- 			trips {
-@@ -147,7 +147,7 @@ cpu2-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 9>;
-+			thermal-sensors = <&tsens 9>;
- 			coefficients = <1199 0>;
- 
- 			trips {
-@@ -168,7 +168,7 @@ cpu3-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 10>;
-+			thermal-sensors = <&tsens 10>;
- 			coefficients = <1132 0>;
- 
- 			trips {
-@@ -810,14 +810,23 @@ tsens_backup: backup_calib {
- 		};
- 
- 		gcc: clock-controller@900000 {
--			compatible = "qcom,gcc-apq8064";
-+			compatible = "qcom,gcc-apq8064", "syscon";
- 			reg = <0x00900000 0x4000>;
--			nvmem-cells = <&tsens_calib>, <&tsens_backup>;
--			nvmem-cell-names = "calib", "calib_backup";
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
- 			#reset-cells = <1>;
--			#thermal-sensor-cells = <1>;
-+
-+			tsens: thermal-sensor@900000 {
-+				compatible = "qcom,msm8960-tsens";
-+
-+				nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-+				nvmem-cell-names = "calib", "calib_backup";
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "uplow";
-+
-+				#qcom,sensors = <11>;
-+				#thermal-sensor-cells = <1>;
-+			};
- 		};
- 
- 		lcc: clock-controller@28000000 {
--- 
-2.35.1
-
+Applied, thanks!
