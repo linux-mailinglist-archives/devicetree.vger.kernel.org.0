@@ -2,78 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B029D4F6A10
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 929E34F6A9E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbiDFTii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
+        id S231924AbiDFT5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231801AbiDFTg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:36:58 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8E32E3116;
-        Wed,  6 Apr 2022 11:00:03 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-e2442907a1so3396461fac.8;
-        Wed, 06 Apr 2022 11:00:03 -0700 (PDT)
+        with ESMTP id S233168AbiDFT4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:56:55 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7253120;
+        Wed,  6 Apr 2022 11:04:15 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id b17-20020a0568301df100b005ce0456a9efso2235185otj.9;
+        Wed, 06 Apr 2022 11:04:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=vKxX5q1qGmU3P3uhPEFcWpItrjUZwEJRK1JP6o3PXj8=;
-        b=2RU4/hB8117g+ctP9AxScr+DdX1hBgjU0bkPfncj13PLXjCwGI9k10FSGjc+3bN//u
-         A658YA/YpQNrfJsLzUYfOsyJPOzXtK70mFsfDWRRWlmH6WLPrgUAdbkTWHwoqQOWshog
-         Pgmfam6wHa1qZ6OUJo867zEuygvqbNxB3rPltk536JiynxuTeVlP1u+2Fqg3THmLjVxm
-         7ScR407e/KuHR8iYw6LAVnQe+mQUGTpgzKcpMdU+0Ck/VDqm+ZoZKV8Hn5iwwDrKpUbV
-         7gpwhApzGCgKlkO6JNiedNBOBOSN1OMVgWQvpoEnfnZpwWiBiLPU5lol1SATlQO4/kuF
-         vSzg==
-X-Gm-Message-State: AOAM530jCFaMsJmTu3rhb5hkBd+71JIUnUNbfecog57KFIcKidL2sgi6
-        8p+jLJ++oGWbA5RsjvqQxkSGT2pD4Q==
-X-Google-Smtp-Source: ABdhPJzbGb0jEgLE6cPbcrflcGousST6q9L6Y5xIwWyPzhUiOZaOLI50QFHynOdWi2ZbaUhkOKpegQ==
-X-Received: by 2002:a05:6870:311d:b0:de:9b6c:362b with SMTP id v29-20020a056870311d00b000de9b6c362bmr4268335oaa.200.1649268002731;
-        Wed, 06 Apr 2022 11:00:02 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=tFqNaCkKApeiYksTrleFPMTtEkbWW1D2qkuPxZr5fUU=;
+        b=p6Kep7PdDJIXqjRSdgPPiAf6oylXPI8nJidFvIvDqmuGsJ+Ezy7i/VMCwyzUitV4zU
+         WFBegedwpLH2Scye4SDLQsqcU6VAcwID/8Zssl9Ojp2nmaFkSAg1w5rMfmLF/w5hUOl0
+         BFsXg5TK8IFQMA93vECO7hVHDWHTUX+iyFuJc1pZ1YkAY05l1IB2bxX7AQ5fnHtWfAtF
+         y5lgkwYTkEnF4DW/legt1/uIvmwUWwE5wxxXL1NaBWelySJUayQHK1D79WxEpb8D3Tzw
+         Ww+QW1ViDtA+tOJMK+hDLayQtdL0mz1mk1Id2RglJhbxg8PfUzlmXA9rxkr3S6czdZPb
+         oJuA==
+X-Gm-Message-State: AOAM533nsWyMHhCPiqVb/b7+/iB8AiOvh6haQmBW8WcmnK5nDHB6oYi9
+        xc9r0Dp7OKm0jy+SU1mUUg==
+X-Google-Smtp-Source: ABdhPJxJrK5rkRuJA8giQLl7I8TM/bAyKlXb/0qJLn0Q5cg/Dw6LDk4xNjJcq5oJVm/nbTKPAJWRrA==
+X-Received: by 2002:a9d:65d4:0:b0:5b2:67f2:244 with SMTP id z20-20020a9d65d4000000b005b267f20244mr3404940oth.307.1649268255051;
+        Wed, 06 Apr 2022 11:04:15 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m13-20020a056820050d00b003297b35bc63sm2794457ooj.40.2022.04.06.11.00.02
+        by smtp.gmail.com with ESMTPSA id j145-20020acaeb97000000b002d9f37166c1sm6631489oih.17.2022.04.06.11.04.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:00:02 -0700 (PDT)
-Received: (nullmailer pid 2502470 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:00:01 -0000
-Date:   Wed, 6 Apr 2022 13:00:01 -0500
+        Wed, 06 Apr 2022 11:04:14 -0700 (PDT)
+Received: (nullmailer pid 2508522 invoked by uid 1000);
+        Wed, 06 Apr 2022 18:04:13 -0000
+Date:   Wed, 6 Apr 2022 13:04:13 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: change ad3552r maintainer
-Message-ID: <Yk3VIR764LGZvXkB@robh.at.kernel.org>
-References: <20220404085000.249423-1-nuno.sa@analog.com>
- <20220404085000.249423-2-nuno.sa@analog.com>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v5 8/8] dt-bindings: net: dwmac-imx: Document clk_csr
+ property
+Message-ID: <Yk3WHSr+OGRxYCg0@robh.at.kernel.org>
+References: <20220404134609.2676793-1-abel.vesa@nxp.com>
+ <20220404134609.2676793-9-abel.vesa@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220404085000.249423-2-nuno.sa@analog.com>
+In-Reply-To: <20220404134609.2676793-9-abel.vesa@nxp.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Apr 2022 10:49:59 +0200, Nuno Sá wrote:
-> As the maintainer email no longer exists, change it to myself.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+On Mon, Apr 04, 2022 at 04:46:09PM +0300, Abel Vesa wrote:
+> The clk_csr property is used for CSR clock range selection.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Why?
+
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+> index 011363166789..1556d95943f6 100644
+> --- a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+> +++ b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
+> @@ -32,6 +32,10 @@ properties:
+>                - nxp,imx8dxl-dwmac-eqos
+>            - const: snps,dwmac-5.10a
+>  
+> +  clk_csr:
+
+s/_/-/
+
+vendor prefix needed. 
+
+And a type is needed.
+
+> +    description: |
+> +      Fixed CSR Clock Range selection
+
+What? Explain all this to someone that doesn't know your h/w.
+
+> +
+>    clocks:
+>      minItems: 3
+>      items:
+> -- 
+> 2.34.1
+> 
+> 
