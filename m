@@ -2,156 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F7454F60EB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 141B74F61D8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234178AbiDFOLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 10:11:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53976 "EHLO
+        id S235113AbiDFOhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:37:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234359AbiDFOLP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:11:15 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8626C12EB;
-        Wed,  6 Apr 2022 03:06:10 -0700 (PDT)
-X-UUID: 7e015190cef7459c948e91df0f1c38a7-20220406
-X-UUID: 7e015190cef7459c948e91df0f1c38a7-20220406
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 487011296; Wed, 06 Apr 2022 18:05:21 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 6 Apr 2022 18:05:20 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 6 Apr 2022 18:05:19 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <nfraprado@collabora.com>, <tzungbi@google.com>
-CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: [v9 3/4] ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
-Date:   Wed, 6 Apr 2022 18:05:13 +0800
-Message-ID: <20220406100514.11269-4-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220406100514.11269-1-jiaxin.yu@mediatek.com>
-References: <20220406100514.11269-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S234924AbiDFOg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:36:56 -0400
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3EB4557F2;
+        Wed,  6 Apr 2022 04:01:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:Subject:
+        From:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
+        :List-Post:List-Owner:List-Archive;
+        bh=dcCn6+XhT4ZAObTnqeDa3+6jzJY/nPJWbAVScaaz0bE=; b=kQqBANK8BkSsr7+yPmY+Z09efb
+        0NOveqsRX9wrNdCFVXF3J7Kr26T56o2BgYYrrD0jeoekQZkIe0TDN+4d99hR04yYGpj7/adwmWZcy
+        dYUrxYIc73Kk/I1LEnAkxfk4ldascCUl2i3HfC4tKXcdMyWi9snsBXDlpl06K6FF4cJ4=;
+Received: from p200300daa70ef200456864e8b8d10029.dip0.t-ipconnect.de ([2003:da:a70e:f200:4568:64e8:b8d1:29] helo=nf.local)
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <nbd@nbd.name>)
+        id 1nc3PP-0001v5-AM; Wed, 06 Apr 2022 13:01:07 +0200
+Message-ID: <318163cb-c771-c7eb-73ba-35c66f7d0e68@nbd.name>
+Date:   Wed, 6 Apr 2022 13:01:06 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.7.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220405195755.10817-1-nbd@nbd.name>
+ <20220405195755.10817-6-nbd@nbd.name>
+ <4bafe244-6a3d-d0ec-59d3-3f3f00e71caf@linaro.org>
+From:   Felix Fietkau <nbd@nbd.name>
+Subject: Re: [PATCH v2 05/14] dt-bindings: arm: mediatek: document the pcie
+ mirror node on MT7622
+In-Reply-To: <4bafe244-6a3d-d0ec-59d3-3f3f00e71caf@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT8192 platform use rt5682 codec, so through the snd_soc_of_get_dai_link_codecs()
-to complete the configuration of I2S8/I2S9 dai_link's codecs.
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
----
- .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 34 ++++++++++++++-----
- 1 file changed, 26 insertions(+), 8 deletions(-)
+On 06.04.22 10:20, Krzysztof Kozlowski wrote:
+> On 05/04/2022 21:57, Felix Fietkau wrote:
+>> From: Lorenzo Bianconi <lorenzo@kernel.org>
+>> 
+>> This patch adds the pcie mirror document bindings for MT7622 SoC.
+>> The feature is used for intercepting PCIe MMIO access for the WED core
+>> Add related info in mediatek-net bindings.
+>> 
+>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+>> ---
+>>  .../mediatek/mediatek,mt7622-pcie-mirror.yaml | 42 +++++++++++++++++++
+> 
+> Eh, I wanted to ask to not put it inside arm/, but judging by your usage
+> - you did not create drivers for both of these (WED and PCIe mirror).
+> 
+> You only need them to expose address spaces via syscon.
+> 
+> This actually looks hacky. Either WED and PCIe mirror are part of
+> network driver, then add the address spaces via "reg". If they are not,
+> but instead they are separate blocks, why you don't have drivers for them?
+The code that uses the WED block is built into the Ethernet driver, but 
+not all SoCs that use this ethernet core have it. Also, there are two 
+WED blocks, and I'm not sure if future SoCs might have a different 
+number of them at some point.
+The WED code also needs to access registers of the ethernet MAC.
+One reason for having a separate device is this:
+As long as WED is not in use, ethernet supports coherent DMA for 
+increased performance. When the first wireless device attaches to WED, 
+IO coherency gets disabled and the ethernet DMA rings are cleaned up and 
+allocated again, this time with the struct device of WED (which doesn't 
+have the dma-coherent property).
 
-diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-index 15711448d259..4a11f687d416 100644
---- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-@@ -28,9 +28,6 @@
- #define RT1015_DEV0_NAME	"rt1015.1-0028"
- #define RT1015_DEV1_NAME	"rt1015.1-0029"
- 
--#define RT5682_CODEC_DAI	"rt5682-aif1"
--#define RT5682_DEV0_NAME	"rt5682.1-001a"
--
- struct mt8192_mt6359_priv {
- 	struct snd_soc_jack headset_jack;
- 	struct snd_soc_jack hdmi_jack;
-@@ -626,14 +623,12 @@ SND_SOC_DAILINK_DEFS(i2s7,
- 
- SND_SOC_DAILINK_DEFS(i2s8,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S8")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT5682_DEV0_NAME,
--						   RT5682_CODEC_DAI)),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(i2s9,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S9")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT5682_DEV0_NAME,
--						   RT5682_CODEC_DAI)),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(connsys_i2s,
-@@ -1114,7 +1109,7 @@ static int mt8192_mt6359_card_set_be_link(struct snd_soc_card *card,
- static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card;
--	struct device_node *platform_node, *hdmi_codec, *speaker_codec;
-+	struct device_node *platform_node, *hdmi_codec, *headset_codec, *speaker_codec;
- 	int ret, i;
- 	struct snd_soc_dai_link *dai_link;
- 	struct mt8192_mt6359_priv *priv;
-@@ -1142,6 +1137,13 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 		goto err_speaker_codec;
- 	}
- 
-+	headset_codec = of_get_child_by_name(pdev->dev.of_node, "headset-codec");
-+	if (!headset_codec) {
-+		ret = -EINVAL;
-+		dev_err_probe(&pdev->dev, ret, "Property 'headset-codec' missing or invalid\n");
-+		goto err_headset_codec;
-+	}
-+
- 	for_each_card_prelinks(card, i, dai_link) {
- 		ret = mt8192_mt6359_card_set_be_link(card, dai_link, speaker_codec, "I2S3");
- 		if (ret) {
-@@ -1150,6 +1152,20 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 			goto err_probe;
- 		}
- 
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, headset_codec, "I2S8");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set headset_codec fail\n",
-+				      dai_link->name);
-+			goto err_probe;
-+		}
-+
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, headset_codec, "I2S9");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set headset_codec fail\n",
-+				      dai_link->name);
-+			goto err_probe;
-+		}
-+
- 		if (hdmi_codec && strcmp(dai_link->name, "TDM") == 0) {
- 			dai_link->codecs->of_node = hdmi_codec;
- 			dai_link->ignore = 0;
-@@ -1180,6 +1196,8 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 		dev_err_probe(&pdev->dev, ret, "%s snd_soc_register_card fail\n", __func__);
- 
- err_probe:
-+	of_node_put(headset_codec);
-+err_headset_codec:
- 	of_node_put(speaker_codec);
- err_speaker_codec:
- 	of_node_put(platform_node);
--- 
-2.25.1
-
+- Felix
