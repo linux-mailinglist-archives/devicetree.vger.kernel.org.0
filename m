@@ -2,61 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB9B94F658F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1574F655F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237780AbiDFQa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 12:30:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43792 "EHLO
+        id S237637AbiDFQ32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 12:29:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237718AbiDFQaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:30:39 -0400
+        with ESMTP id S237748AbiDFQ2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:28:49 -0400
 Received: from mail-m17637.qiye.163.com (mail-m17637.qiye.163.com [59.111.176.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0972DF663
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 18:43:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215B82016B7
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 19:03:02 -0700 (PDT)
 Received: from [172.16.12.141] (unknown [58.22.7.114])
-        by mail-m17637.qiye.163.com (Hmail) with ESMTPA id 881C3980594;
-        Wed,  6 Apr 2022 09:43:50 +0800 (CST)
-Message-ID: <93001a4c-b009-202f-7b04-34e1a9e617ec@rock-chips.com>
-Date:   Wed, 6 Apr 2022 09:43:49 +0800
+        by mail-m17637.qiye.163.com (Hmail) with ESMTPA id F0DA798048A;
+        Wed,  6 Apr 2022 10:02:59 +0800 (CST)
+Message-ID: <12a8c0ef-90ee-cf7e-50a0-e00add8af147@rock-chips.com>
+Date:   Wed, 6 Apr 2022 10:02:59 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v9 20/23] drm/rockchip: Make VOP driver optional
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
 Content-Language: en-US
 To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         kernel@pengutronix.de,
         Benjamin Gaignard <benjamin.gaignard@collabora.com>,
         Michael Riesch <michael.riesch@wolfvision.net>,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <Kever.yang@rock-chips.com>
-References: <20220328151116.2034635-21-s.hauer@pengutronix.de>
- <274a12a9-61f1-7d6a-e89c-52237621930b@rock-chips.com>
- <20220330063913.GW12181@pengutronix.de>
- <9619ce71-db59-d6cd-c254-2b67122fa245@rock-chips.com>
- <20220331070614.GD4012@pengutronix.de>
- <eebd2731-f18b-af1c-b0b9-09df669f5a3c@rock-chips.com>
- <20220331081815.GF4012@pengutronix.de>
- <8aa9da47-d7ed-41bf-384c-103757c19fe2@rock-chips.com>
- <20220401125527.GM4012@pengutronix.de>
- <7b2630d8-0575-5d65-dd81-3ef336ad5ba7@rock-chips.com>
- <20220405090509.GP4012@pengutronix.de>
+        Peter Geis <pgwipeout@gmail.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <1c0fbf4f-2e17-29f9-5c69-c80b53ff3d2f@rock-chips.com>
+ <20220405093700.GQ4012@pengutronix.de>
 From:   Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20220405090509.GP4012@pengutronix.de>
+In-Reply-To: <20220405093700.GQ4012@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWUNPH0xWSk1OHR0eSU
-        8ZTR1JVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MVE6Cgw*Hj5OHUsKMRYvCFYu
-        MClPFBpVSlVKTU9CSUtCT0hKSkJJVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSktJTEw3Bg++
-X-HM-Tid: 0a7ffc8ad35ad992kuws881c3980594
+        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWRlIGEtWGE1LSkpOGB
+        oYSkhIVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MRA6GCo5Aj4MHUsIMBYxFThK
+        NDYwCjNVSlVKTU9CSUpLTkNLTUxIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBTklNSjcG
+X-HM-Tid: 0a7ffc9c5db9d992kuwsf0da798048a
 X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
         RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -67,180 +63,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sacha:
+Hi:
 
-On 4/5/22 17:05, Sascha Hauer wrote:
-> On Sat, Apr 02, 2022 at 09:25:33AM +0800, Andy Yan wrote:
->> Hi Sascha:
+On 4/5/22 17:37, Sascha Hauer wrote:
+> On Sat, Apr 02, 2022 at 09:37:17AM +0800, Andy Yan wrote:
+>> Hi Sacha:
 >>
->> On 4/1/22 20:55, Sascha Hauer wrote:
->>> On Thu, Mar 31, 2022 at 07:00:34PM +0800, Andy Yan wrote:
->>>> Hi:
->>>>
->>>> On 3/31/22 16:18, Sascha Hauer wrote:
->>>>> On Thu, Mar 31, 2022 at 03:20:37PM +0800, Andy Yan wrote:
->>>>>> Hi Sascha:
->>>>>>
->>>>>> On 3/31/22 15:06, Sascha Hauer wrote:
->>>>>>> On Wed, Mar 30, 2022 at 08:50:09PM +0800, Andy Yan wrote:
->>>>>>>> Hi Sascha:
->>>>>>>>
->>>>>>>> On 3/30/22 14:39, Sascha Hauer wrote:
->>>>>>>>> Hi Andy,
->>>>>>>>>
->>>>>>>>> On Tue, Mar 29, 2022 at 07:56:27PM +0800, Andy Yan wrote:
->>>>>>>>>> Hi Sascha:
->>>>>>>>>>
->>>>>>>>>> On 3/28/22 23:11, Sascha Hauer wrote:
->>>>>>>>>>> With upcoming VOP2 support VOP won't be the only choice anymore, so make
->>>>>>>>>>> the VOP driver optional.
->>>>>>>>>>>
->>>>>>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
->>>>>>>>>>> ---
->>>>>>>>>>>        drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
->>>>>>>>>>>        drivers/gpu/drm/rockchip/Makefile           | 3 ++-
->>>>>>>>>>>        drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
->>>>>>>>>>>        3 files changed, 11 insertions(+), 2 deletions(-)
->>>>>>>>>>>
->>>>>>>>>>> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
->>>>>>>>>>> index fa5cfda4e90e3..7d22e2997a571 100644
->>>>>>>>>>> --- a/drivers/gpu/drm/rockchip/Kconfig
->>>>>>>>>>> +++ b/drivers/gpu/drm/rockchip/Kconfig
->>>>>>>>>>> @@ -23,8 +23,16 @@ config DRM_ROCKCHIP
->>>>>>>>>>>        if DRM_ROCKCHIP
->>>>>>>>>>> +config ROCKCHIP_VOP
->>>>>>>>>>> +	bool "Rockchip VOP driver"
->>>>>>>>>>> +	default y
->>>>>>>>>>> +	help
->>>>>>>>>>> +	  This selects support for the VOP driver. You should enable it
->>>>>>>>>>> +	  on all older SoCs up to RK3399.
->>>>>>>>> That reminds me that I wanted to rephrase this. Will change in next
->>>>>>>>> round.
->>>>>>>>>
->>>>>>>>>>> +
->>>>>>>>>>>        config ROCKCHIP_ANALOGIX_DP
->>>>>>>>>>>        	bool "Rockchip specific extensions for Analogix DP driver"
->>>>>>>>>>> +	depends on ROCKCHIP_VOP
->>>>>>>>>> Aanlogix dp is also on vop2 base soc such as  rk356x and rk3588.
->>>>>>> BTW I just looked at the downstream driver. Here we have the same
->>>>>>> situation that the analogix dp driver calls rockchip_drm_wait_vact_end()
->>>>>>> which is implemented in the VOP driver, so when the analogix dp driver
->>>>>>> is actually used on a VOP2 SoC then it is either used in a way that
->>>>>>> rockchip_drm_wait_vact_end() will never be called or it explodes in all
->>>>>>> colours.
->>>>>>>
->>>>>>>>> I added the dependency because analogix_dp-rockchip.c calls
->>>>>>>>> rockchip_drm_wait_vact_end() which is implemented in the VOP driver,
->>>>>>>>> so this driver currenty can't work with the VOP2 driver and can't
->>>>>>>>> be linked without the VOP driver being present.
->>>>>>>>> I'll add a few words to the commit message.
->>>>>>>> Maybe a better direction is move rockchip_drm_wait_vact_end from the VOP
->>>>>>>> driver to rockchip_drm_drv.c
->>>>>>> I am not sure if that's really worth it. Yes, the direction might be the
->>>>>>> right one, but I would really prefer when somebody does the change who
->>>>>>> can test and confirm that the analogix dp really works with VOP2 in the
->>>>>>> end.
->>>>>> If follow this point, the current DW_MIPI also has not been tested for
->>>>>> confirm that it
->>>>>>
->>>>>> can really work with VOP2, so you should also make it depends on
->>>>>> ROCKCHIP_VOP.
-> Here you are suggesting to add even more Kconfig dependencies.
+>> On 4/1/22 20:52, Sascha Hauer wrote:
+>>> -- 
+>>> >From cbc03073623a7180243331ac24c3afaf9dec7522 Mon Sep 17 00:00:00 2001
+>>> From: Sascha Hauer<s.hauer@pengutronix.de>
+>>> Date: Fri, 1 Apr 2022 14:48:49 +0200
+>>> Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
+>>>
+>>> ---
+>>>    drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 ++++++++++++++
+>>>    1 file changed, 14 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>> index 7dba7b9b63dc6..1421bf2f133f1 100644
+>>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>> @@ -2287,6 +2287,20 @@ static int vop2_create_crtc(struct vop2 *vop2)
+>>>    			}
+>>>    		}
+>>> +		if (vop2->data->soc_id == 3566) {
+>>> +			/*
+>>> +			 * On RK3566 these windows don't have an independent
+>>> +			 * framebuffer. They share the framebuffer with smart0,
+>>> +			 * esmart0 and cluster0 respectively.
+>>> +			 */
+>>> +			switch (win->data->phys_id) {
+>>> +			case ROCKCHIP_VOP2_SMART1:
+>>> +			case ROCKCHIP_VOP2_ESMART1:
+>>> +			case ROCKCHIP_VOP2_CLUSTER1:
+>>> +				continue;
+>>> +			}
+>>
+>> Think about this , there maybe other upcoming vop2 base soc, they may only
+>> have
+>>
+>> mirror window Smart1 Esmart1, or Smart1, Esmart1, Esmart2, Cluster1.
+>>
+>> I think this should add WIN_FEATURE at the platform description file
+>> rockchip_vop2_reg.c, then
+>>
+>> check the FEATURE to decide whether the driver should give this window a
+>> special treatment.
+>>
+>> this can make one code run for different soc with different platform
+>> description. or we should add
+>>
+>> the same code logic for different soc again and again.
+> You mean like done in the downstream Kernel? Here indeed we have a
+> WIN_FEATURE_MIRROR flag added to the platform description. This is then
+> evaluated with:
 >
->>>>> Well at least I have patches here which make DW_MIPI work with VOP2 ;)
->>>> But you DW_MIPI patches for rk356x didn't come. So this is not keep
->>>> consistency with this point.
->>>>
->>>>> What about the others, like LVDS and RGB?
->>>> Yes, we also have other interface , RK356X has LVDS/RGB/BT1120/BT656, RK3588
->>>> has BT1120/BT656, no LVDS or RGB.
->>>>
->>>>>> I think the current solution is just a workaround to make your patch pass
->>>>>> the kernel compile
->>>>> Indeed.
->>>>>
->>>>> I agree that it would be good to add a note somewhere which outputs
->>>>> work with the VOP2 driver (currently only HDMI), but I wonder if Kconfig
->>>>> dependencies is the right place for it, because only people who deliberately
->>>>> disable VOP support will see this information.
->>>>> Maybe we should rather add it to the Kconfig help text?
->>>> If a device is supported for this soc, we will add dt node at the dtsi file.
->>>>
->>>> A Kconfig dependencies don't seems a good idea.
-> Here you say Kconfig dependencies are no good idea.
-
-
-Yes. It's not a good idea. So I don't want to see you use a Kcofig 
-dependence
-
-to disable a module to avoid compile which introduced by your patch.
-
+> static bool vop2_is_mirror_win(struct vop2_win *win)
+> {
+>          return soc_is_rk3566() && (win->feature & WIN_FEATURE_MIRROR);
+> }
 >
->>> Ok, this means we can keep my current approach with just letting
->>> ROCKCHIP_ANALOGIX_DP depend on ROCKCHIP_VOP to avoid having a non
->> Excuse me? How do you get this conclusion ?
-> Given that you say that you want to have both more and less Kconfig
-> dependencies I came to the conclusion that I only add one where it's
-> necessary to compile the driver.
+> So a flag is added and afterwards its evaluation is SoC specific. That
+> doesn't help at all and only obfuscates things.
 >
->> I said before,  vop and vop2 based platforms both have ROCKCHIP_ANALOGIX_DP.
-> Maybe, but vop2 with ROCKCHIP_ANALOGIX_DP doesn't even work in the
-> Rockchip downstream kernel, so I wonder how relevant this usecase really
-> is.
+> Besides, experience shows that you can't predict a good abstraction for
 
+This is not a  predict,  this is an IP feature, so it will appeared on 
+upcoming SOC.
 
-No, this is not the truth. Rockchip_ANALOGIX_DP of course work with the
+We have rk3588 with 8 windows(4 Cluster + 4 Esmart, no Smart window), and
 
-vendor kernel. We have many rk356x based products shipped with edp.
+also have a entry level soc which only have 4 windows, they both have 
+this feature.
 
-Even the VGA output interface on RK3568_EVB1 is drived by
-
-ROCKCHIP_ANALOGIX_DP with a RTD2166 eDP to VGA convert
-
-chip.
-
-
-So how do you get conclusion that ROCKCHIP_ANALOGIX_DP can't work with
-
-the Rockchip downstream kernel? Is it because you can't make the DP work on
-
-your board? If it is, please contact the supplier who gave you the board.
-
-
-Do you have a RK3568_EVB1 that has a VGA output interface on board?
-
-If you have it, I can offer you image to verify the DP.
-
-
->> If this patch will cause the compile error, please do a real fix, not a
-> I can't, because I don't have any hardware to test the Analogix DP on a
-> VOP hardware, and given that Analogix DP in conjunction with VOP2 hardware is
-> not even supported in the downstream Kernel I am not sure if it's really
-> worth doing that.
-
-
-Again, this is not the truth, see above.
-
-I am not ask you support the ROCKCHIP_ANALOGIX_DP on upstream, I just
-
-want you can give a better solution when you patch cause the compile error.
-
-Disable a module when it conflict with your patch is too rough.
-
->
-> Moving rockchip_drm_wait_vact_end() to rockchip_drm_drv.c doesn't work
-> with mainline currently, we first would have to add a struct crtc_funcs
-> to struct rockchip_drm_private. Yes, that could be done.
->
->> workaround that may deliver misleading information.
-> The Kconfig dependency quite clearly says that the Analogix DP currently
-> doesn't work with the VOP2. Anyone who wants to change that can use that
-> information as a starting point and implement whatever is necessary and
-> likely has the hardware to verify the work. I don't want to solve
-> problems that *might* arise in the future, and in this case it's not a
-> direction decision that we might regret in the future.
+> future hardware revisions, the hardware guys are just too creative in
+> creating hardware that breaks existing abstractions.
 >
 > Sascha
->
->
 >
