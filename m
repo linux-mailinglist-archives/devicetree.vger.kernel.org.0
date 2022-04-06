@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CAB64F6713
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 347AD4F67A8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239332AbiDFRfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:35:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42436 "EHLO
+        id S239298AbiDFRfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:35:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239155AbiDFRev (ORCPT
+        with ESMTP id S239295AbiDFRev (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:34:51 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D81C2364CB
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:41:43 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id bh17so5094030ejb.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 08:41:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IVumMDZqt2rwjHo8Qk+yTSY8rtnOM1vqzCoA3ao9aAM=;
-        b=zVB8o3Zgd/cpfJfL0Am7OUu8eY30qJZHoXMN4YADODANvu03uA3vq/LsPdIMNa/cvj
-         79Xn5J/zT/yzIdDCay7AJdtG6EbZutctsan0TUjqCkHikSW7F52S0iKdx4w/02av41kC
-         C4gcQ/Fgh1bkBZQ6qh33ERwqW6zDcHhVFdso9gKd5oKVrjWiywDbxGSSSEGzGREdn0rP
-         XjNwcv6B8qd5UnsvcNNgD04AYyeUw90W0QPIgXJaY5JSJ/cyE2bJGtdKSwOvW9tGtEqA
-         h0HUtmo83SzZLEgBjOqw7TT0xqlli4KUKMepZjsNRzH3PPc83PeU5gq+YBrU/bUXF3SZ
-         vV7Q==
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFA0220335;
+        Wed,  6 Apr 2022 08:41:47 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id r8so2787809oib.5;
+        Wed, 06 Apr 2022 08:41:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IVumMDZqt2rwjHo8Qk+yTSY8rtnOM1vqzCoA3ao9aAM=;
-        b=0RaH3oI5ijCqVihlT1o+3lvFIQZnmED911PoewLMm3pCAH+IyvnrrnW2kIJURPymcw
-         mZCx7UNfoyR9kETyDjg0YJtOg2smQyoX51B1Dj6IJVHOBalzw+/sjqVf2QCxD0DLV2Bu
-         xdOiiqfk3wXLVmlIaLWYFanI4JAjrZXeagABK3qfw8GX2SksL7Hi8OmpcB4dmUD9CXEP
-         fmEhdnhBSX0Gh+lSs2g2LVwTFgT53b+Mz3yLwHJuPwZDMsP4UXOCYF2U7AqYWjtrSvcN
-         J4b6lmXxthj2V3c5DXIkvX2Co7QENKQcD8MMVhKmoBYfZluEnk3+86knGk4VtpV8YiQW
-         yoGQ==
-X-Gm-Message-State: AOAM533enawVoi4Aa5J62K3gQVb3WvT+Thd7XEY4wpshaBiwVVSVeyiV
-        94N1t3KDYNXvsDQnkNYWZKou3g==
-X-Google-Smtp-Source: ABdhPJxrUbKHbP58C1B/fd6ArkIlovyAlC3CUwhuPi3IERJe3tFXIzQsIIQmlOGhmyi2L62wj78X5w==
-X-Received: by 2002:a17:906:5d0e:b0:6e0:2cd5:a87c with SMTP id g14-20020a1709065d0e00b006e02cd5a87cmr8930160ejt.708.1649259701557;
-        Wed, 06 Apr 2022 08:41:41 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id q16-20020a170906145000b006bdaf981589sm6666260ejc.81.2022.04.06.08.41.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CSjXS3liiZsQ5y+dsNvQXrAg4KGiXpv7ZiLu0UE4ATo=;
+        b=NAo5q6itzjUS+NlX/U7TVFtpy9+vbMKonuPYTvwqsOdxPQlvP4xZBA4CwSDcuG3mV9
+         Sq5K83XSawg3teRzpodaTEHPdTSRur0fDOteh/wl0qaNnB4bKFj24sL5sHeiHSzb9mv2
+         TLeFCrueCH2jxme00JV1Z1ksZHa8tJLugdxc48QCUlb0hwjAbvoIe0GlV8spIXHY28WC
+         8nRcMp6TvVfudCnCn8eGtZs0dlwmvhjSZl/2kt7fiDmPnuH5u8bjQi2idNHPmbLVRyxK
+         Vuelsw1gfK/jgu+XAf6F+AIlxvu/RKqVtBb+0hsKNLa/nmCIe3rDGRdLuu+/MRXcJi2j
+         D1gA==
+X-Gm-Message-State: AOAM531pgLibVwT1Uch02RVDU8JiJogG7Jr3EhkeZ+U9B1iDf9jO41xd
+        jkP7sKPg00PcQmAQ75foag==
+X-Google-Smtp-Source: ABdhPJxbIZn0sFuEhJ20HhaeEdyTBrFvADnchwCiV0ko8mITBghdswBGY+ASd5Yd9f7doax3tDWvbg==
+X-Received: by 2002:a05:6808:144a:b0:2ef:9fa2:ba7f with SMTP id x10-20020a056808144a00b002ef9fa2ba7fmr3693043oiv.88.1649259706857;
+        Wed, 06 Apr 2022 08:41:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v13-20020a4ae6cd000000b00328882a2388sm6181366oot.14.2022.04.06.08.41.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 08:41:40 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: soc: samsung: usi: refer to dtschema for SPI
-Date:   Wed,  6 Apr 2022 17:41:38 +0200
-Message-Id: <164925969518.491593.2533491999537917360.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220324134106.103588-1-krzk@kernel.org>
-References: <20220324134106.103588-1-krzk@kernel.org>
+        Wed, 06 Apr 2022 08:41:46 -0700 (PDT)
+Received: (nullmailer pid 2298416 invoked by uid 1000);
+        Wed, 06 Apr 2022 15:41:45 -0000
+Date:   Wed, 6 Apr 2022 10:41:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Fabio Baltieri <fabiobaltieri@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: update google,cros-ec-pwm
+ documentation
+Message-ID: <Yk20uTE/Vdm2c6jI@robh.at.kernel.org>
+References: <20220331125818.3776912-1-fabiobaltieri@chromium.org>
+ <20220331125818.3776912-4-fabiobaltieri@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220331125818.3776912-4-fabiobaltieri@chromium.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,17 +68,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Mar 2022 14:41:06 +0100, Krzysztof Kozlowski wrote:
-> After adding DT schema for Samsung SPI controller, the Samsung USI
-> bindings can reference it directly for proper schema validation.
+On Thu, Mar 31, 2022 at 12:58:17PM +0000, Fabio Baltieri wrote:
+> Update google,cros-ec-pwm node documentation to mention the
+> google,use_pwm_type property.
 > 
+> Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+> ---
+>  .../devicetree/bindings/pwm/google,cros-ec-pwm.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> index 4cfbffd8414a..9c895c990ed8 100644
+> --- a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> @@ -19,6 +19,12 @@ description: |
+>  properties:
+>    compatible:
+>      const: google,cros-ec-pwm
+> +
+> +  google,use-pwm-type:
+> +    description:
+> +      Use PWM types (CROS_EC_PWM_DT_<...>) instead of generic channels.
+> +    type: boolean
 
-Applied, thanks!
+Either do a new compatible string if the cell interpretation is mutually 
+exclusive (channel number vs. type) or split the number space for the 
+1st cell between type and channel number. IOW, set a bit (31?) to 
+signify the number is a type, not a channel.
 
-[1/1] dt-bindings: soc: samsung: usi: refer to dtschema for SPI
-      commit: db85474594609fc6f6a37fe5d5001fa9341971ed
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Rob
