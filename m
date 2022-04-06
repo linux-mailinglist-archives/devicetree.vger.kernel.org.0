@@ -2,251 +2,407 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F78D4F5DFE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 14:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2434F5EB9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbiDFMlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 08:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
+        id S229716AbiDFMt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 08:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232299AbiDFMkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:40:52 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38CF224F501;
-        Wed,  6 Apr 2022 01:42:24 -0700 (PDT)
-X-UUID: e397f6d152cc4f0c955b648740969813-20220406
-X-UUID: e397f6d152cc4f0c955b648740969813-20220406
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 459747624; Wed, 06 Apr 2022 16:42:18 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 6 Apr 2022 16:42:18 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 6 Apr 2022 16:42:18 +0800
-Message-ID: <d44ab059acdb92dc3e6b84f2ffb27964ecd97c84.camel@mediatek.com>
-Subject: Re: [PATCH 1/4] dt-bindings: cpufreq: mediatek: transform
- cpufreq-mediatek into yaml
-From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <fan.chen@mediatek.com>,
-        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
-        <Allen-yy.Lin@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>,
-        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
-Date:   Wed, 6 Apr 2022 16:42:17 +0800
-In-Reply-To: <56c5870e-bc41-39be-6b53-785396d8812b@linaro.org>
-References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
-         <20220307122151.11666-2-jia-wei.chang@mediatek.com>
-         <ee98d248-b2cd-e975-84df-448917a79287@canonical.com>
-         <2cf526d400c011b5172ba4fc2c3f03b4a4f371dc.camel@mediatek.com>
-         <96a823a2-f3b6-9fb7-c9d6-f1315f6056fd@kernel.org>
-         <de1751bb13fb14b591fbe046ff274530ad62162e.camel@mediatek.com>
-         <56c5870e-bc41-39be-6b53-785396d8812b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231415AbiDFMth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:49:37 -0400
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2813B4C5ED3;
+        Wed,  6 Apr 2022 02:00:33 -0700 (PDT)
+Received: from relay3-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::223])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id A55DDC7AC4;
+        Wed,  6 Apr 2022 08:50:45 +0000 (UTC)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 6E84660006;
+        Wed,  6 Apr 2022 08:50:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649235041;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=tErT+ZwaDPcqAIB1XKn6SPEZzapnWsR8UyXa+0xPdd4=;
+        b=Qcl6ijV+qnHcnFFJ1I2gNXCj3KZwIJ45rxx4CDq8Wv4iHBRL+gTGL6xz67PLyXmRv5MiiD
+        x/+dif+qRkTl9xw39teAu3rnPHUs3bq/g6Xc+hNgziVbAfUJIzU1LfvCqlIKsTDsj5fUus
+        5IcP7L8GLpCDXocxbSWReMPfkG61JvYLIWkBep9dh7zKCAHQ21lnYu23RUobCeVQGkES7Z
+        bT7bFZs3RsgFgNDarNMyrnzvKAlNBoGT9ZUPUbPi/CerhkCE2ZnvJqjwpwNnqO+fSoiyb2
+        DnUBqjFoTIwi89VILbD+IjOsM8R89xF1tvDL6bZEtgsg3YckpiVaq6hrBis4rw==
+Date:   Wed, 6 Apr 2022 10:50:38 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        linux-rtc@vger.kernel.org,
+        Michel Pollet <michel.pollet@bp.renesas.com>
+Subject: Re: [PATCH 3/7] rtc: rzn1: Add new RTC driver
+Message-ID: <Yk1UXjTk32Vc9+/k@mail.local>
+References: <20220405184716.1578385-1-miquel.raynal@bootlin.com>
+ <20220405184716.1578385-4-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220405184716.1578385-4-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-04-01 at 18:32 +0200, Krzysztof Kozlowski wrote:
-> On 01/04/2022 15:26, Jia-Wei Chang wrote:
-> > On Thu, 2022-03-24 at 11:33 +0100, Krzysztof Kozlowski wrote:
-> > > On 24/03/2022 10:38, Jia-Wei Chang wrote:
-> > > > > 
-> > > > > > 
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/cpufreq/cpufreq-
-> > > > > > mediatek.yaml
-> > > > > > b/Documentation/devicetree/bindings/cpufreq/cpufreq-
-> > > > > > mediatek.yaml
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..584946eb3790
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
-> > > > > > mediatek.yaml
-> > > > > > @@ -0,0 +1,131 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: 
-> > > > > > 
-> > 
-> > 
-https://urldefense.com/v3/__http://devicetree.org/schemas/cpufreq/cpufreq-mediatek.yaml*__;Iw!!CTRNKA9wMg0ARbw!xbKG4TgD0MRpMLyGJVBZEGpZFrNOclrcxOCx_APKo5Nmg8nF2x5PcBdE0unvL2NdpChkMA$
-> > > > > >  
-> > > > > > +$schema: 
-> > > > > > 
-> > 
-> > 
-https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xbKG4TgD0MRpMLyGJVBZEGpZFrNOclrcxOCx_APKo5Nmg8nF2x5PcBdE0unvL2O8T_oxCQ$
-> > > > > >  
-> > > > > > +
-> > > > > > +title: Mediatek CPUFREQ driver Device Tree Bindings
-> > > > > 
-> > > > > Please remove "driver Device Tree Bindings" because the title
-> > > > > should
-> > > > > describe the hardware. Therefore it could be something like
-> > > > > "Mediatek
-> > > > > SoC CPU frequency and voltage scaling".
-> > > > 
-> > > > Thanks for your suggestion of title.
-> > > > Or should I use the origin title "Binding for MediaTek's
-> > > > CPUFreq
-> > > > driver"?
-> > > 
-> > > Mediatek CPUFREQ
-> > > or
-> > > Mediatek CPU frequency scaling
-> > 
-> > Ok, I will choose one of it.
-> > 
-> > > 
-> > > > 
-> > > > > 
-> > > > > How is it related to cpufreq-mediatek-hw.yaml? The
-> > > > > names/title
-> > > > > look
-> > > > > unfortunately too similar.
-> > > > 
-> > > > No, mediatek-cpufreq is performing in kernel driver rather than
-> > > > on
-> > > > hardware.
-> > > > On the other hand, mediatek-cpufreq-hw is performing on
-> > > > hardware.
-> > > > That's why "hw" is present in its name.
-> > > 
-> > > Unfortunately, I do not get it. The bindings are only about
-> > > hardware,
-> > > so
-> > > how bindings could be about CPU frequency scaling not in
-> > > hardware?
-> > 
-> > Sorry, let me correct my statements.
-> > 
-> > For mediatek-cpufreq here, the required hardware are clock and
-> > regulator which have to be under control of mediatek-cpufreq.
-> > That's
-> > the reason why it needs bindings.
-> > 
-> > mediatek-cpufreq scales up and down voltage and frequency via
-> > kernel
-> > framework of clock and regulator, however, mediatek-cpufreq-hw
-> > delegate
-> > the voltage and frequency control to a hardware agent instead.
+On 05/04/2022 20:47:12+0200, Miquel Raynal wrote:
+> From: Michel Pollet <michel.pollet@bp.renesas.com>
 > 
-> OK, that makes sense, thanks for explanation.
+> Add a basic RTC driver for the RZ/N1.
 > 
-> > 
-> > > 
-> > > > 
-> > > > > 
-> > > > > In general this does not look like proper bindings (see also
-> > > > > below
-> > > > > lack
-> > > > > of compatible). Bindings describe the hardware, so what is
-> > > > > exactly
-> > > > > the
-> > > > > hardware here?
-> > > > 
-> > > > Except for SoC, there's no requirement of hardware binding for
-> > > > mediatek-cpufreq.
-> > > > mediatek-cpufreq recognizes the compatible of Mediatek SoC
-> > > > while
-> > > > probing.
-> > > 
-> > > What is the hardware here? If there is no requirement for
-> > > bindings
-> > > for
-> > > mediate-cpufreq, why do we have this patch here?
-> > 
-> > Sorry, that's my mistake.
-> > Clock and regulator are required hardware for mediatek-cpufreq.
-> > 
-> > > 
-> > > > 
-> > > > > 
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> > > > > > +
-> > > > > > +description: |
-> > > > > > +  CPUFREQ is used for scaling clock frequency of CPUs.
-> > > > > > +  The module cooperates with CCI DEVFREQ to manage
-> > > > > > frequency
-> > > > > > for
-> > > > > > some Mediatek
-> > > > > > +  SoCs.
-> > > > > > +
-> > > > > > +properties:
-> > > > > 
-> > > > > How is this schema going to be applied? I don't see here
-> > > > > select
-> > > > > neither
-> > > > > compatible.
-> > > > 
-> > > > As mentioned above, only compatible of SoC is required for
-> > > > mediatek-
-> > > > cpufreq.
-> > > 
-> > > It does not answer my questions. How the schema is going to be
-> > > applied?
-> > 
-> > Currently, we do use compatible of SoC to probe mediatek-cpufreq.
+> Signed-off-by: Michel Pollet <michel.pollet@bp.renesas.com>
+> Co-developed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  drivers/rtc/Kconfig    |   7 ++
+>  drivers/rtc/Makefile   |   1 +
+>  drivers/rtc/rtc-rzn1.c | 255 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 263 insertions(+)
+>  create mode 100644 drivers/rtc/rtc-rzn1.c
 > 
-> Probing and binding to compatible is correct, but there is no
-> compatible
-> here, so the schema is a no-op. Does nothing.
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index 41c65b4d2baf..f4d72c5b99ea 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -1548,6 +1548,13 @@ config RTC_DRV_RS5C313
+>  	help
+>  	  If you say yes here you get support for the Ricoh RS5C313 RTC chips.
+>  
+> +config RTC_DRV_RZN1
+> +	tristate "Renesas RZN1 RTC"
+> +	depends on ARCH_RZN1 || COMPILE_TEST
+> +	depends on OF && HAS_IOMEM
+> +	help
+> +	  If you say yes here you get support for the Renesas RZ/N1 RTC.
+> +
+>  config RTC_DRV_GENERIC
+>  	tristate "Generic RTC support"
+>  	# Please consider writing a new RTC driver instead of using the generic
+> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+> index 2d827d8261d5..fb04467b652d 100644
+> --- a/drivers/rtc/Makefile
+> +++ b/drivers/rtc/Makefile
+> @@ -151,6 +151,7 @@ obj-$(CONFIG_RTC_DRV_RX6110)	+= rtc-rx6110.o
+>  obj-$(CONFIG_RTC_DRV_RX8010)	+= rtc-rx8010.o
+>  obj-$(CONFIG_RTC_DRV_RX8025)	+= rtc-rx8025.o
+>  obj-$(CONFIG_RTC_DRV_RX8581)	+= rtc-rx8581.o
+> +obj-$(CONFIG_RTC_DRV_RZN1)	+= rtc-rzn1.o
+>  obj-$(CONFIG_RTC_DRV_S35390A)	+= rtc-s35390a.o
+>  obj-$(CONFIG_RTC_DRV_S3C)	+= rtc-s3c.o
+>  obj-$(CONFIG_RTC_DRV_S5M)	+= rtc-s5m.o
+> diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
+> new file mode 100644
+> index 000000000000..15c533333930
+> --- /dev/null
+> +++ b/drivers/rtc/rtc-rzn1.c
+> @@ -0,0 +1,255 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Renesas RZN1 Real Time Clock interface for Linux
+> + *
+> + * Copyright:
+> + * - 2014 Renesas Electronics Europe Limited
+> + * - 2022 Schneider Electric
+> + *
+> + * Authors:
+> + * - Michel Pollet <michel.pollet@bp.renesas.com>, <buserror@gmail.com>
+> + * - Miquel Raynal <miquel.raynal@bootlin.com>
+> + */
+> +
+> +#include <linux/bcd.h>
+> +#include <linux/clk.h>
+> +#include <linux/init.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/rtc.h>
+> +#include <linux/soc/renesas/r9a06g032-sysctrl.h>
+> +
+> +#define RZN1_RTC_CTL0 0x00
+> +#define   RZN1_RTC_CTL0_SLSB_SUBU 0
+> +#define   RZN1_RTC_CTL0_SLSB_SCMP BIT(4)
+> +#define   RZN1_RTC_CTL0_AMPM BIT(5)
+> +#define   RZN1_RTC_CTL0_CE BIT(7)
+> +
+> +#define RZN1_RTC_CTL1 0x04
+> +#define   RZN1_RTC_CTL1_ALME BIT(4)
+> +
+> +#define RZN1_RTC_CTL2 0x08
+> +#define   RZN1_RTC_CTL2_WAIT BIT(0)
+> +#define   RZN1_RTC_CTL2_WST BIT(1)
+> +#define   RZN1_RTC_CTL2_WUST BIT(5)
+> +
+> +#define RZN1_RTC_SEC 0x14
+> +#define RZN1_RTC_MIN 0x18
+> +#define RZN1_RTC_HOUR 0x1c
+> +#define RZN1_RTC_WEEK 0x20
+> +#define RZN1_RTC_DAY 0x24
+> +#define RZN1_RTC_MONTH 0x28
+> +#define RZN1_RTC_YEAR 0x2c
+> +
+> +#define RZN1_RTC_SUBU 0x38
+> +#define   RZN1_RTC_SUBU_DEV BIT(7)
+> +#define   RZN1_RTC_SUBU_DECR BIT(6)
+> +
+> +#define RZN1_RTC_ALM 0x40
+> +#define RZN1_RTC_ALH 0x44
+> +#define RZN1_RTC_ALW 0x48
+> +
+> +#define RZN1_RTC_SECC 0x4c
+> +#define RZN1_RTC_MINC 0x50
+> +#define RZN1_RTC_HOURC 0x54
+> +#define RZN1_RTC_WEEKC 0x58
+> +#define RZN1_RTC_DAYC 0x5c
+> +#define RZN1_RTC_MONTHC 0x60
+> +#define RZN1_RTC_YEARC 0x64
+> +
+> +struct rzn1_rtc {
+> +	struct rtc_device *rtcdev;
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +};
+> +
+> +static void rzn1_rtc_get_time_snapshot(struct rzn1_rtc *rtc, struct rtc_time *tm)
+> +{
+> +	tm->tm_sec = readl(rtc->base + RZN1_RTC_SECC);
+> +	tm->tm_min = readl(rtc->base + RZN1_RTC_MINC);
+> +	tm->tm_hour = readl(rtc->base + RZN1_RTC_HOURC);
+> +	tm->tm_wday = readl(rtc->base + RZN1_RTC_WEEKC);
+> +	tm->tm_mday = readl(rtc->base + RZN1_RTC_DAYC);
+> +	tm->tm_mon = readl(rtc->base + RZN1_RTC_MONTHC);
+> +	tm->tm_year = readl(rtc->base + RZN1_RTC_YEARC);
+> +}
+> +
+> +static unsigned int rzn1_rtc_tm_to_wday(struct rtc_time *tm)
+> +{
+> +	time64_t time;
+> +	unsigned int days;
+> +	u32 secs;
+> +
+> +	time = rtc_tm_to_time64(tm);
+> +	days = div_s64_rem(time, 86400, &secs);
+> +
+> +	/* day of the week, 1970-01-01 was a Thursday */
+> +	return (days + 4) % 7;
+> +}
+> +
+> +static int rzn1_rtc_read_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct rzn1_rtc *rtc = dev_get_drvdata(dev);
+> +	u32 secs;
+> +
+> +	rzn1_rtc_get_time_snapshot(rtc, tm);
+> +	secs = readl(rtc->base + RZN1_RTC_SECC);
+> +	if (tm->tm_sec != secs)
+> +		rzn1_rtc_get_time_snapshot(rtc, tm);
+> +
+> +	tm->tm_sec = bcd2bin(tm->tm_sec);
+> +	tm->tm_min = bcd2bin(tm->tm_min);
+> +	tm->tm_hour = bcd2bin(tm->tm_hour);
+> +	tm->tm_wday = bcd2bin(tm->tm_wday);
+> +	tm->tm_mday = bcd2bin(tm->tm_mday);
+> +	tm->tm_mon = bcd2bin(tm->tm_mon);
+> +	tm->tm_year = bcd2bin(tm->tm_year);
+> +
+> +	dev_dbg(dev, "%d-%d-%d(%d)T%d:%d:%d\n",
+> +		tm->tm_year, tm->tm_mon, tm->tm_mday, tm->tm_wday,
+> +		tm->tm_hour, tm->tm_min, tm->tm_sec);
+> +
 
-Correct. I will update it in the next version.
+This is not really useful because we have tracepoints in the core.
+Anyway, please use %ptR.
 
+> +	return 0;
+> +}
+> +
+> +static int rzn1_rtc_set_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct rzn1_rtc *rtc = dev_get_drvdata(dev);
+> +	u32 val;
+> +	int ret;
+> +
+> +	tm->tm_sec = bin2bcd(tm->tm_sec);
+> +	tm->tm_min = bin2bcd(tm->tm_min);
+> +	tm->tm_hour = bin2bcd(tm->tm_hour);
+> +	tm->tm_wday = bin2bcd(rzn1_rtc_tm_to_wday(tm));
+> +	tm->tm_mday = bin2bcd(tm->tm_mday);
+> +	tm->tm_mon = bin2bcd(tm->tm_mon);
+> +	tm->tm_year = bin2bcd(tm->tm_year);
+> +
+> +	/* Hold the counter */
+> +	val = readl(rtc->base + RZN1_RTC_CTL2);
+> +	val |= RZN1_RTC_CTL2_WAIT;
+> +	writel(val, rtc->base + RZN1_RTC_CTL2);
+> +
+> +	/* Wait for the counter to stop: two 32k clock cycles */
+> +	usleep_range(61, 100);
+> +	ret = readl_poll_timeout(rtc->base + RZN1_RTC_CTL2, val,
+> +				 val & RZN1_RTC_CTL2_WST, 0, 100);
+> +	if (!ret) {
+> +		writel(tm->tm_sec, rtc->base + RZN1_RTC_SEC);
+> +		writel(tm->tm_min, rtc->base + RZN1_RTC_MIN);
+> +		writel(tm->tm_hour, rtc->base + RZN1_RTC_HOUR);
+> +		writel(tm->tm_wday, rtc->base + RZN1_RTC_WEEK);
+> +		writel(tm->tm_mday, rtc->base + RZN1_RTC_DAY);
+> +		writel(tm->tm_mon, rtc->base + RZN1_RTC_MONTH);
+> +		writel(tm->tm_year, rtc->base + RZN1_RTC_YEAR);
+> +	}
+> +
+> +	/* Release the counter back */
+> +	val &= ~RZN1_RTC_CTL2_WAIT;
+> +	writel(val, rtc->base + RZN1_RTC_CTL2);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct rtc_class_ops rzn1_rtc_ops = {
+> +	.read_time = rzn1_rtc_read_time,
+> +	.set_time = rzn1_rtc_set_time,
+> +};
+> +
+> +static int rzn1_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct rzn1_rtc *rtc;
+> +	int ret;
+> +
+> +	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
+> +	if (!rtc)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, rtc);
+> +
+> +	rtc->clk = devm_clk_get(&pdev->dev, "hclk");
+> +	if (IS_ERR(rtc->clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk), "Missing hclk\n");
+> +
+> +	rtc->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(rtc->base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->base), "Missing reg\n");
+> +
+> +	rtc->rtcdev = devm_rtc_allocate_device(&pdev->dev);
+> +	if (IS_ERR(rtc->rtcdev))
+> +		return PTR_ERR(rtc);
+> +
+> +	rtc->rtcdev->range_max = 3178591199UL; /* 100 years */
+
+I'm not sure how you came to this value, this is 2070-09-22T05:59:59.
+I'm pretty sure the RTC will not fail at that time. Also, the comment
+seems fishy.
+
+
+> +	rtc->rtcdev->ops = &rzn1_rtc_ops;
+> +
+> +	ret = r9a06g032_sysctrl_enable_rtc(true);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_prepare_enable(rtc->clk);
+> +	if (ret)
+> +		goto disable_rtc;
+> +
+> +	/*
+> +	 * Ensure the clock counter is enabled.
+> +	 * Set 24-hour mode and possible oscillator offset compensation in SUBU mode.
+> +	 */
+> +	writel(RZN1_RTC_CTL0_CE | RZN1_RTC_CTL0_AMPM | RZN1_RTC_CTL0_SLSB_SUBU,
+> +	       rtc->base + RZN1_RTC_CTL0);
+> +
+> +	/* Disable all interrupts */
+> +	writel(0, rtc->base + RZN1_RTC_CTL1);
+> +
+> +	/* Enable counter operation */
+> +	writel(0, rtc->base + RZN1_RTC_CTL2);
+> +
+
+I don't think you should do that unconditionally. The RTC is either
+not already started (and doesn't carry the proper time/date) or already
+started. It would be better to start it in .set_time. Maybe you can even
+use that to detect whether it has already been set once.
+
+> +	ret = devm_rtc_register_device(rtc->rtcdev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Failed to register RTC\n");
+
+No error message is needed here.
+
+> +		goto disable_clk;
+> +	}
+> +
+> +	return 0;
+> +
+> +disable_clk:
+> +	clk_disable_unprepare(rtc->clk);
+> +disable_rtc:
+> +	r9a06g032_sysctrl_enable_rtc(false);
+> +
+> +	return ret;
+> +}
+> +
+> +static int rzn1_rtc_remove(struct platform_device *pdev)
+> +{
+> +	struct rzn1_rtc *rtc = platform_get_drvdata(pdev);
+> +
+> +	clk_disable_unprepare(rtc->clk);
+> +	r9a06g032_sysctrl_enable_rtc(false);
+
+Does this stop the RTC or just the register interface?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id rzn1_rtc_of_match[] = {
+> +	{ .compatible	= "renesas,rzn1-rtc" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, rzn1_rtc_of_match);
+> +
+> +static struct platform_driver rzn1_rtc_driver = {
+> +	.probe = rzn1_rtc_probe,
+> +	.remove = rzn1_rtc_remove,
+> +	.driver = {
+> +		.name	= "rzn1-rtc",
+> +		.owner	= THIS_MODULE,
+> +		.of_match_table = rzn1_rtc_of_match,
+> +	},
+> +};
+> +module_platform_driver(rzn1_rtc_driver);
+> +
+> +MODULE_AUTHOR("Michel Pollet <Michel.Pollet@bp.renesas.com");
+> +MODULE_AUTHOR("Miquel Raynal <miquel.raynal@bootlin.com");
+> +MODULE_DESCRIPTION("RZ/N1 RTC driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.27.0
 > 
-> > If the better way is using clock and regulator opp, do you have a
-> > suggestion to approach that?
-> > I mean I can't find a good example from other vendors trying to do
-> > that
-> > way. Or maybe I miss something?
-> 
-> One other way (proper) is to use cpufreq-dt and existing bindings. I
-> understand that maybe you need some specific bindings here, but I
-> fail
-> to see how they would work. IOW, you don't have the compatible, no
-> select, so nothing can use these bindings. Also bindings do not refer
-> to
-> any specific hardware, like SoC model.
-> 
-> It's good that you try to convert existing bindings to DT schema, but
-> with that they should be probably fixed/updated to match proper
-> bindings.
 
-I got it. I will add compatible information to property of bindings and
-dts example here as well.
-
-Should I split the overall change of yaml into two patches? One for
-conversion of bindings and the other for the rest of change.
-
-> 
-> Best regards,
-> Krzysztof
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
