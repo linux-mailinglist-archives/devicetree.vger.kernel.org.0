@@ -2,98 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD91B4F6654
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8574F669D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237947AbiDFRFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
+        id S238601AbiDFRLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:11:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238414AbiDFRF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:05:28 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC094961EF;
-        Wed,  6 Apr 2022 07:28:24 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id x131so4288564ybe.11;
-        Wed, 06 Apr 2022 07:28:24 -0700 (PDT)
+        with ESMTP id S238585AbiDFRKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:10:55 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8912B4929E6;
+        Wed,  6 Apr 2022 07:32:35 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id by7so3549825ljb.0;
+        Wed, 06 Apr 2022 07:32:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uWGBhe0y17ZGKEMMFNK4TgCxFrYuz+yYjVH0ivmesbU=;
-        b=Wewxm6kuaQIIestTyYJsbvHlcSb+EuQogSkWQmGy6MRpVAa8WEkbwxjWnr6qT+UHZv
-         Cux7NeoLhdkGwELAm2mXZhTmlpMHioecxgBnEt3jVaqN5f8PQr6mi/p2Rqks5oyqZYEw
-         hTw18/z9rjRRvDEpNKSIpHmRTUDjfW0YYgb7UxQkwvmbwQzbl+IGapyTKNTqhKzpG6Vg
-         /QanJOfjpviprgYMTt3U7d0myoKf2Xoch6711oe4KvipoeNONnBssYAa7LD6LtgrB2Il
-         caYnpRDfJl5t/j4LS7cQZfU6alCZp8tR4nZFjQ14wzHuSq2eLelHzJogFkKTBt5G00jc
-         1j6A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ua3fT8F2HjRCi9HSGNUFXUuRGoKDbKCgfZ5rZHjpyG0=;
+        b=SQPNXmNiW4rebr/QZg8/x5gtfvrgJQwi5YSckBhzcsA/q6ij9L10+3V6bYO0oKcSWn
+         aTl+Fipv6314CwOeTNLPN1Ahw8+BbB+dF50viZA/mueApGxw5UJLAU2VkT7k+o7NpZ5R
+         gFhNS1UeW3tSQaOThQB7mcdx0Gnmf7uvLMphjBKBGJe4imShimFp/K/y16Z2c76Jb6K7
+         EqKwrVND/culdATDDuHsi4ocl0VyJtd5YzydEyeRM+UcVNoOnLEn/hEjyBIIdlkMKI58
+         9fIncOk22Bat/fwnxRSOJttm1x2rivvj614Yh7GYRYxWuxjCaGEv4VqBCPrhzRdIGgC0
+         yvzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uWGBhe0y17ZGKEMMFNK4TgCxFrYuz+yYjVH0ivmesbU=;
-        b=2x5OWmTtKe3v5YKQr95s69+Xt7kiVfu4j6UUZmw2ELmZz7lSHTvzGs/FemMLBnYlKt
-         3pRVAMFSd3kgFWBl9TLJzG+gn6FHN2EBYUw2tCQBIexSpV88dwrOuiv5IrRQvOUXqGB0
-         AhmWREuJF+WI1dhR2FNwk74GdF87vjgrvIw2V3b5kqwU89TXmGoUVUmtLjMkyM0ePdAP
-         LLSRsErWCe8wIn6+N/HCSDZpDXc8JYxOlr/HEH+Tk3QoCmPjMYiAbhCFk04k5qIRU6f+
-         /z15X0/iY7r5+SFrOurAkicSjw6aT40Jlb3S4QlNhUAnrJ6B5w50PVTeS/Y4MMYRkv//
-         VvVg==
-X-Gm-Message-State: AOAM531hmah1OhgScHJIvp/qTn7d2UkE7AxtW0sRJHhUbTZWz/DgwS7Y
-        zF2Pp+BG9in6Uj9HLuOKdSSJ+TFBlEdQvcsByik=
-X-Google-Smtp-Source: ABdhPJyWQNHD73IT3aENCY5tKAld09c6yDrZ28pv5REeDfxmLHeRzcyKqxmfC++2g6okN8GwbFf5rlsa4iY1JMxiroo=
-X-Received: by 2002:a25:374d:0:b0:63d:84a2:237d with SMTP id
- e74-20020a25374d000000b0063d84a2237dmr6699654yba.417.1649255303691; Wed, 06
- Apr 2022 07:28:23 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ua3fT8F2HjRCi9HSGNUFXUuRGoKDbKCgfZ5rZHjpyG0=;
+        b=mQrukOgZJYpNUE3KVZZm4kC5fzUf1eNR7hkeeUy36GtPmYg4fmgamdgCJLLzDhDbHT
+         HR/C4RS8E4LfqgWHoWKu6UJ9Is0oQgD7U6Jvw3ALdDXRRFAGVBbmAjwq+avJMD+eWELY
+         vd+aLvhjO47A3y1j7nmSYgfz7PUSkbBe0qiw3vRiqodM2EH8rpFn4O7i4HWYGjK2NPK/
+         PGQVIFKGCvLWbAUm1MVklToYdeuObBAjSJW/9FXx7ok3gTlGbm0x+mrQQ6YVkIr/9xs4
+         8X0Q2i+ZoJUn3lE+tkaVn0nWnJFmUBATYEMEztFnfyXG0d9c+R6A3vn2LqBND+RzPMkn
+         4KDw==
+X-Gm-Message-State: AOAM532H6RBDRkgqDrtsrrKd9D6vAryuelJns+4AwA7uvU1fk1G7QqbB
+        lCT/So9NZCwUgmKDNOby6V0=
+X-Google-Smtp-Source: ABdhPJwtAaDgzqgeqxymEWZuhij4m770G+5LX+N8/5brJHxkfnLHz1BnJ76uIcXGJs0etWJRH5e16A==
+X-Received: by 2002:a2e:bc19:0:b0:249:b29c:7f5e with SMTP id b25-20020a2ebc19000000b00249b29c7f5emr5677249ljf.312.1649255552987;
+        Wed, 06 Apr 2022 07:32:32 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id s2-20020a197702000000b0044a693649b9sm1843857lfc.131.2022.04.06.07.32.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Apr 2022 07:32:32 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] mtd: call of_platform_populate() for MTD partitions
+Date:   Wed,  6 Apr 2022 16:32:24 +0200
+Message-Id: <20220406143225.28107-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <Yk2cTwmYqAZf4sCz@robh.at.kernel.org>
-In-Reply-To: <Yk2cTwmYqAZf4sCz@robh.at.kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 6 Apr 2022 15:27:57 +0100
-Message-ID: <CA+V-a8sVSsO8MArj6gcBhktB-Bi=oFUOoBVk86TZKjn357V02g@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
- DT core
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 6, 2022 at 2:57 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Mar 16, 2022 at 08:06:33PM +0000, Lad Prabhakar wrote:
-> > Now that all the DT drivers have switched to platform_get_irq() we can now
-> > safely drop the static setup of IRQ resource from DT core code.
-> >
-> > With the above change hierarchical setup of irq domains is no longer
-> > bypassed and thus allowing hierarchical interrupt domains to describe
-> > interrupts using "interrupts" DT property.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > Hi All,
-> >
-> > Sending this as RFC as couple of more drivers need to hit -rc yet with
-> > the platform_get_irq() change while that is in progress I wanted to get
-> > some feedback on this patch.
->
-> I've applied this now and it is in today's linux-next. Keep an eye out
-> for any regression reports. There's one for i.MX8 in kernel-ci, but I
-> don't think it is related.
->
-Thanks for the heads up, sure I will keep an eye on it.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Cheers,
-Prabhakar
+Until this change MTD subsystem supported handling partitions only with
+MTD partitions parsers. That's a specific / limited API designed around
+partitions.
+
+Some MTD partitions may however require different handling. They may
+contain specific data that needs to be parsed and somehow extracted. For
+that purpose MTD subsystem should allow binding of standard platform
+drivers.
+
+An example can be U-Boot (sub)partition with environment variables.
+There exist a "u-boot,env" DT binding for MTD (sub)partition that
+requires an NVMEM driver.
+
+Ref: 5db1c2dbc04c ("dt-bindings: nvmem: add U-Boot environment variables binding")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ drivers/mtd/mtdpart.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
+index 357661b62c94..9fce946fa69c 100644
+--- a/drivers/mtd/mtdpart.c
++++ b/drivers/mtd/mtdpart.c
+@@ -17,6 +17,7 @@
+ #include <linux/mtd/partitions.h>
+ #include <linux/err.h>
+ #include <linux/of.h>
++#include <linux/of_platform.h>
+ 
+ #include "mtdcore.h"
+ 
+@@ -593,6 +594,7 @@ static int mtd_part_of_parse(struct mtd_info *master,
+ 			continue;
+ 		ret = mtd_part_do_parse(parser, master, pparts, NULL);
+ 		if (ret > 0) {
++			of_platform_populate(np, NULL, NULL, &master->dev);
+ 			of_node_put(np);
+ 			return ret;
+ 		}
+@@ -600,6 +602,7 @@ static int mtd_part_of_parse(struct mtd_info *master,
+ 		if (ret < 0 && !err)
+ 			err = ret;
+ 	}
++	of_platform_populate(np, NULL, NULL, &master->dev);
+ 	of_node_put(np);
+ 
+ 	/*
+-- 
+2.34.1
+
