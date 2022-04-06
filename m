@@ -2,61 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6288D4F57DA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 10:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D55D44F5A00
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 11:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242228AbiDFIa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 04:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49538 "EHLO
+        id S1344399AbiDFJba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 05:31:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351777AbiDFI3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 04:29:25 -0400
+        with ESMTP id S1580512AbiDFJU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 05:20:59 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BFD1B2C6C;
-        Tue,  5 Apr 2022 19:16:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755332816AF;
+        Tue,  5 Apr 2022 19:30:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1024EB81FB5;
-        Wed,  6 Apr 2022 02:16:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61FB7C385A0;
-        Wed,  6 Apr 2022 02:16:02 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1C4EAB81FB5;
+        Wed,  6 Apr 2022 02:30:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77F4FC385A0;
+        Wed,  6 Apr 2022 02:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649211365;
-        bh=HFUmutMpPclH6W3Ib5k9z/9xgPTS1ozGO4CtoNe7cLo=;
+        s=k20201202; t=1649212204;
+        bh=xmoV1wDYDm25L/wEd+wgpbgIUhjzDoq0K9phYwvAZFY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z3mmC5uozNJPRjpYnuEFfuRNyy23hI/lveEyZjC1kvZF9KHfnbBGd+SoUiWwwtYEo
-         JvKGzib7NZHV1b6EH8GZNevmkByOKV2M2doW5nf8404TTxnqUQiIUiOe7CnS50i2Ux
-         f9aQh7K3AD78LS7dq1EGK0Ypm2SMEh5XbbT4KLKJedN+nrPQ1Uxbz16Uo4EvqmApTR
-         vcOw7IFuNmyIildCP2i7fpMFi9+id+OCfeyeWVlaDyBBYHUuR2mbYtSLgqA1rINNgy
-         Z7l6D2Z7mApuxq62QeoPhaxm4Br481B6Oi2J1c2pQNnq72DjCCa7F5LN3EAIWrWzzK
-         +CnaZAQs9kfSA==
-Date:   Wed, 6 Apr 2022 10:15:57 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Robin van der Gracht <robin@protonic.nl>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v1 6/8] ARM: dts: imx6dl-victgo: Add interrupt-counter
- nodes
-Message-ID: <20220406021557.GK129381@dragon>
-References: <20220221095312.3692669-1-o.rempel@pengutronix.de>
- <20220221095312.3692669-6-o.rempel@pengutronix.de>
+        b=Pmkqz/0noFRk7vacJLi7o3vg9unVDqrCyTAAmO94kuNLcZpRGMnELojxzt4z7WhJZ
+         MQ3qDz1FiqDLxIYJRTjAk/M2pFxqYYRTQpr0Y0O4tL9+KgYbHjW6ayRs/K2ptMZvEz
+         cVAANQyp3Ln6sbQO15qdCyNHeO0mFkgWRd5ASXpkkXbHXZC8mPQNGEhFa5PliOaizn
+         MfIndUw2XCE0Bkvjc7W+0DeHOGuAeJOWnFaKxKnvQ7E8M75ru8vz9y8kLhvlLuBg3Z
+         GPemXN5w4EG5VauaqfsPEk+rcXHHZZJUP4iyzD8sgcV+bf8lwW3RxwojcilIGweC0s
+         Q8huiUdIzv4gQ==
+Date:   Wed, 6 Apr 2022 02:30:00 +0000
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@collabora.com, aaronyu@google.com,
+        matthias.bgg@gmail.com, trevor.wu@mediatek.com, linmq006@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [v8 2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of
+ speaker
+Message-ID: <Ykz7KB221jyfwKzQ@google.com>
+References: <20220402051754.17513-1-jiaxin.yu@mediatek.com>
+ <20220402051754.17513-3-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220221095312.3692669-6-o.rempel@pengutronix.de>
+In-Reply-To: <20220402051754.17513-3-jiaxin.yu@mediatek.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,12 +60,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 10:53:10AM +0100, Oleksij Rempel wrote:
-> From: Robin van der Gracht <robin@protonic.nl>
-> 
-> Interrupt counter is mainlined, now we can add missing counter nodes.
-> 
-> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+On Sat, Apr 02, 2022 at 01:17:52PM +0800, Jiaxin Yu wrote:
+> MT8192 platform will use rt1015 or rt105p codec, so through the
 
-Applied, thanks!
+s/rt105p/rt1015p/.
+
+>  static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
+[...]
+> +	hdmi_codec = of_parse_phandle(pdev->dev.of_node, "mediatek,hdmi-codec", 0);
+> +	if (!hdmi_codec)
+> +		dev_info(&pdev->dev, "The machine don't have hdmi-codec\n");
+
+s/don't have/has no/.
