@@ -2,179 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D394F6C64
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 23:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 506BF4F6C70
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 23:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235744AbiDFVR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 17:17:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53486 "EHLO
+        id S234652AbiDFVTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 17:19:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235756AbiDFVRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 17:17:12 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3B725DA89;
-        Wed,  6 Apr 2022 13:03:37 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t25so5977640lfg.7;
-        Wed, 06 Apr 2022 13:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=s4+OJAkAhIpYr4dUURX+n/miMXTZ5adYcNvlJUTxiMo=;
-        b=XJLCoJ64S+YLqT+cFVwyP9lTa15JBXlVaonaDiPi35phnY7VMspLBdw0avp9unkdd4
-         oD6emCucTEQtHoTi5bq3pyiAOr0Yh+N3bJNnXeXDX9OTN5Lzrgp27ydF2l2RfdHx/8if
-         aJHLmmuqqWpbq4LMyKnzzQbEObZ3I4U0OeAvin16spGN0QwxVjq98sndBG0i8DdnWFDf
-         cjoBqHVHO+ybGsWlKTqiA9VxT79sgsHGuWYcaPh9D2c7sT0M6PFprx+Xl181rVl5Ncgx
-         ZThx5wk6mGsr3hlU7MdPH8zfUiAGkMHc6OgRDaDfZP/yYvVcCWDAR9O2QQ1juB/tff2A
-         aXbA==
+        with ESMTP id S234873AbiDFVSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 17:18:50 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777A626C549
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 13:08:26 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id i23-20020a9d6117000000b005cb58c354e6so2447804otj.10
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 13:08:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=s4+OJAkAhIpYr4dUURX+n/miMXTZ5adYcNvlJUTxiMo=;
-        b=PM0Q+FwBTgCMDT9Y0PynQHGsM/1NMn6QW7KKVnPAVfzWR5ArmHpRhEF405DAN038qS
-         bwaJ1UH4NOqnva9nkT+mfm1fSQylrGd3iQQAj07efRUa7J2s+7M2N1s4UhY72UIIegcj
-         CzyycrKExFu2RwSPRrkDOR/Ebz+5hMkqDhsuRMjE1PGX534c3gyVHTRpD3QKQbODV5jT
-         tkWu+lMvE4KboONAgc7ITsRvMG0dla1GUw0ItPdfi7LmnfE6BLXCyYQU7VUwoLRAuxzP
-         L3D2fPgK3wCTYCk3MLzEL4QFj23vBn8H6ZRONfuC9cq8NMlneBcKkyLJhdQUWmrdAuud
-         X5+A==
-X-Gm-Message-State: AOAM530C60rkYv9x3W9cGP7qQ/dJqnW5qQGfHehX0Upj37jYCvfzQt1H
-        1UoVHt8UNsutDBkQYDrNVvk=
-X-Google-Smtp-Source: ABdhPJzT0+wr0kHlkE/R+eu4k+VxrRsnXJJcITDlDKbnW4Px0dtwSxcd+S6OsxvKy9LuPTe6WhbHTw==
-X-Received: by 2002:a05:6512:33d0:b0:44a:72b2:cd36 with SMTP id d16-20020a05651233d000b0044a72b2cd36mr7166337lfg.113.1649275415897;
-        Wed, 06 Apr 2022 13:03:35 -0700 (PDT)
-Received: from mobilestation ([95.79.134.149])
-        by smtp.gmail.com with ESMTPSA id m14-20020a2eb6ce000000b0024afbbbb0c3sm1760089ljo.70.2022.04.06.13.03.35
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Jba1vSeRP1HF/2xdMVwK3zKEPMIqomVyRzHfIeKZsuY=;
+        b=p4T+yYTYWmhyrqiDAnJRf5mV0+4F8mo0SpII6vYqkLoiWlYDO1FtSzW6ZVuBwlV2sO
+         kjN8YG5ej1JKRQ5XC1NamU22T/m5fmSYQr3Atit/1ggQh7nvvnEwCWz30gUm6H7WPAWI
+         3aZCnGsUnyrAoNUWVlCC0Tvm+dJ9VdmtqED9jQk/PCpdQX4SqUtOn/vJJ6b2Sno/AaYt
+         oZVp/DjbkBoUq3f9OIukw8yXdwkW4XeNp9PARsaru1T0fU45PbonwTna4uXZqwIv7oWd
+         K1IUy7pq2dsiApYOHCS9l6d9oINOOIGDl0tBNQk+uW2QIIy5/5SC9+eI8djExsRTDyp6
+         sRXA==
+X-Gm-Message-State: AOAM533qlKp/lIajXXC6upCEPJ/CCcV5d5HiyUjHW5Gnh/crP5qUUFBI
+        hhRSUkUDl15GNOIN+v7eZg==
+X-Google-Smtp-Source: ABdhPJymdB2qRyAE4P6pRY0v0g5bx14Pp9fxc/u5M6zMOtOt95SXs96EoRWJvD2Hj1G1XlilxiDxKg==
+X-Received: by 2002:a05:6830:1498:b0:5cd:a787:e8c1 with SMTP id s24-20020a056830149800b005cda787e8c1mr3759352otq.11.1649275705675;
+        Wed, 06 Apr 2022 13:08:25 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s22-20020a056830149600b005b24a96174asm7200413otq.8.2022.04.06.13.08.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 13:03:35 -0700 (PDT)
-Date:   Wed, 6 Apr 2022 23:03:33 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 03/21] ata: libahci_platform: Explicitly set rc on
- devres_alloc failure
-Message-ID: <20220406200333.3olw47az7eqjqnyq@mobilestation>
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-4-Sergey.Semin@baikalelectronics.ru>
- <9128f850-fcc1-811e-b781-b7fbcb2403ba@opensource.wdc.com>
- <20220324213758.vihvh5z2pg3skr6i@mobilestation>
- <f163f982-852f-027f-8d24-e624e45fbbf1@opensource.wdc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f163f982-852f-027f-8d24-e624e45fbbf1@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Wed, 06 Apr 2022 13:08:24 -0700 (PDT)
+Received: (nullmailer pid 2682168 invoked by uid 1000);
+        Wed, 06 Apr 2022 20:08:22 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-phy@lists.infradead.org
+In-Reply-To: <20220406160123.1272911-5-l.stach@pengutronix.de>
+References: <20220406160123.1272911-1-l.stach@pengutronix.de> <20220406160123.1272911-5-l.stach@pengutronix.de>
+Subject: Re: [PATCH v0 04/10] dt-bindings: display: imx: add binding for i.MX8MP HDMI PVI
+Date:   Wed, 06 Apr 2022 15:08:22 -0500
+Message-Id: <1649275702.760311.2682167.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 25, 2022 at 10:56:29AM +0900, Damien Le Moal wrote:
-> On 2022/03/25 6:37, Serge Semin wrote:
-> > Hello Damien
-> > 
-> > On Thu, Mar 24, 2022 at 09:58:34AM +0900, Damien Le Moal wrote:
-> >> On 3/24/22 09:16, Serge Semin wrote:
-> >>> It's better for readability and maintainability to explicitly assign an
-> >>> error number to the variable used then as a return value from the method
-> >>> on the cleanup-on-error path. So adding new code in the method we won't
-> >>
-> > 
-> >> No it is not. On-stack variable initialization is not free. So if
-> >> initializing the variable is not needed, do not do it.
-> > 
-> > This patch isn't about on-stack initialization, but about bringing an
-> > order to the error-handling procedure of the
-> > ahci_platform_get_resources() method. Explicitly setting the rc variable
-> > with an error value closer to the place caused the error much easier
-> > to perceive than keeping in mind that the variable has been set with
-> > some default value. That turns to be even more justified seeing the
-> > rest of the method does it that way.
+On Wed, 06 Apr 2022 18:01:17 +0200, Lucas Stach wrote:
+> Add binding for the i.MX8MP HDMI parallel video interface block.
 > 
-> I agree with that change. Setting "rc = -ENOMEM" under the "if" checking for
-> error is fine.
-> 
-> > 
-> > See my next comment regarding the initialization.
-> > 
-> >>
-> >>> have to think whether the overridden rc-variable is set afterward in case
-> >>> of an error. Saving one line of code doesn't worth it especially seeing
-> >>> the rest of the ahci_platform_get_resources() function errors handling
-> >>> blocks do explicitly write errno to rc.
-> >>>
-> >>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> >>> ---
-> >>>  drivers/ata/libahci_platform.c | 6 ++++--
-> >>>  1 file changed, 4 insertions(+), 2 deletions(-)
-> >>>
-> >>> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> >>> index 18296443ccba..1bd2f1686239 100644
-> >>> --- a/drivers/ata/libahci_platform.c
-> >>> +++ b/drivers/ata/libahci_platform.c
-> >>> @@ -389,7 +389,7 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >>>  	struct ahci_host_priv *hpriv;
-> >>>  	struct clk *clk;
-> >>>  	struct device_node *child;
-> >>> -	int i, enabled_ports = 0, rc = -ENOMEM, child_nodes;
-> >>> +	int i, enabled_ports = 0, rc = 0, child_nodes;
-> >>>  	u32 mask_port_map = 0;
-> >>>  
-> >>>  	if (!devres_open_group(dev, NULL, GFP_KERNEL))
-> >>> @@ -397,8 +397,10 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >>>  
-> >>>  	hpriv = devres_alloc(ahci_platform_put_resources, sizeof(*hpriv),
-> >>>  			     GFP_KERNEL);
-> >>> -	if (!hpriv)
-> >>> +	if (!hpriv) {
-> >>> +		rc = -ENOMEM;
-> >>>  		goto err_out;
-> >>> +	}
-> >>
-> > 
-> >> If you set rc to -ENOMEM here, then the 0 initialization of rc is not needed.
-> > 
-> > Normally you are right. But the case of the rc/ret/etc variables is
-> > special. I'd stick with having it defaulted to 0 here. Here is why.
-> > 
-> > When it comes to using the rc/ret/etc variables the maintainability
-> > gets to be more important than some small optimization (especially
-> > here seeing the ahci_platform_get_resources() is called once per
-> > device life-time) because in case of the method alteration these
-> > variables very often get to be involved in one way or another. If due
-> > to a mistake the rc/ret/etc variable isn't updated in case of an
-> > erroneous situation but the method is terminated with the goto-pattern
-> > and rc/ret/etc isn't initialized with any default value then we will
-> > end up with having a garbage pointer returned. We'd be lucky if it was
-> > a null pointer, but in general it can be a reference to some random
-> > memory region. In the later case the kernel may experience random
-> > crashes with hard-to-find cause of the problem. In the former case the
-> > problem would have been tracked right away on the testing stage by
-> > getting the system invalid-pointer de-reference crash. That's why
-> > defaulting the variable to zero here is still useful.
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
 > 
 
-> No it is not. We have code reviews and testing to catch mistakes. If we start
-> thinking along these lines, any useless local variable initialization can be
-> justified. So let's not go there please.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Ok. That's up to the maintainer to decide after all. I'll just drop the
-initialization as you say then.
+yamllint warnings/errors:
 
--Sergey
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.example.dts:26.45-46 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
 
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
