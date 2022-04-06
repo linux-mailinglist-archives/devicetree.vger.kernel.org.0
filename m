@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 048A24F671E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11B424F67B4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238668AbiDFR0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:26:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
+        id S238964AbiDFRYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239055AbiDFR0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:26:40 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E31B24FFA2
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:26:16 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id bq8so4987795ejb.10
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 08:26:16 -0700 (PDT)
+        with ESMTP id S238931AbiDFRYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:24:33 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9BCF4B4BB0
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:23:12 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-d39f741ba0so3212373fac.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 08:23:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nKwkK10Z219eaNtTvbaclsEiamXSVs+FNo2ty5mHsKo=;
-        b=S1op2j+cyW9lQWw00SOcofbFHdT3E57y5jJKpzzhgK6+y+jrtuTVbjmUjwbeu6IkUN
-         78P1TjwAAvLxVD0Ju8UifXumvgVrNqiVvEIVfizpxQryRR07d2Qkk+VBe+3x9DcvNQhl
-         Lox9myyWXfC5I2yQ9jS5VmipsXUMdqstiVlkA=
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=hiSfOStXccjbf1AYzjiGRDT1g1SFjOKXyv+eLAAqR4I=;
+        b=S8QZvZFAQKRsGAYTUOeGLbGgTqU9p6NgODt08xv+GJQH6OOxo3vbZVmfWMHv4CQsrv
+         sreWgOA4uSXOeHZ5H4VFNs55oW3/EjipqQkJxdYnWoYkoxWoERMNuYKEBMxwI2KmYcWG
+         PGRDKJx7La2RUWEju8pyKfnGl4dktn6Ha0V5M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nKwkK10Z219eaNtTvbaclsEiamXSVs+FNo2ty5mHsKo=;
-        b=h+depmjcYnF0uc3xtSLCIwZll4m8eJGOzqwARkLNjiwOTv0I3ruqjlY+Nxj7fxtTTM
-         G4KwAK2JuOqdkjsjKDoAmRqoui94Ov+RReAOfLCoefBZyJ9R5vaq3lXtZwFjO5EpVMMA
-         vVVaOkPHROg0/K2lb6aVcWhqqZh1huOHJlJ/X2O81bi5j7/p3ncgB3HQBSDmA/ffZKyi
-         toIrWVkn6b1Kx8BjW/rQr6gpHOQNlIaBTl9BJBUvOjcDH5Rs+rXxA4LDWQeyudpyEb46
-         /mv0lOU30/2uZTQRPpNTZq08OZIDjMXOTw2os+fsq6t5+FAeHV/ADmQeDC1KOMYqnEOm
-         MRpQ==
-X-Gm-Message-State: AOAM531k37k/bTaavGJqxlVlh69Pb+3wkiWe9vTIV128sVb30s2NRKLt
-        Tnql/9BTIulavGCkXE5Mm5+6grtHez4RO/LAjSA=
-X-Google-Smtp-Source: ABdhPJy4ZFR351CTJPygFkSFzmkKLhixCBUVf045sLO4FW1iHX/yQM+V8uCVKKJzgdC4eniYdCw+nA==
-X-Received: by 2002:a17:907:3f0a:b0:6e0:7189:cd6 with SMTP id hq10-20020a1709073f0a00b006e071890cd6mr8674280ejc.740.1649258774447;
-        Wed, 06 Apr 2022 08:26:14 -0700 (PDT)
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com. [209.85.208.41])
-        by smtp.gmail.com with ESMTPSA id b17-20020aa7dc11000000b00412ae7fda95sm7926638edu.44.2022.04.06.08.26.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Apr 2022 08:26:13 -0700 (PDT)
-Received: by mail-ed1-f41.google.com with SMTP id g22so3084465edz.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 08:26:13 -0700 (PDT)
-X-Received: by 2002:a5d:5551:0:b0:203:f916:e319 with SMTP id
- g17-20020a5d5551000000b00203f916e319mr7123258wrw.422.1649258305814; Wed, 06
- Apr 2022 08:18:25 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=hiSfOStXccjbf1AYzjiGRDT1g1SFjOKXyv+eLAAqR4I=;
+        b=Ud2Vi+pJTILV/XCsXlDotsBzvCSW2Em9oVVR2FU0pUIu4JbVIOHGwf26AGhs8WsEro
+         1yahsIiFwyoUh024gWioTASA8/ilaWCeHtjr6KE2D+y9SLUUURLH0Sukr3bYIKfyQ7He
+         ogHXnNbO1plPn7Mlzdmg5UWgC5OQnfZl2RTw2XHNM0vM9GHMGwxQSoFtUl1vIuaWGblr
+         z9WZFZG5ZFKMACfR8kc1CkbOwj/qF25qdRPRSTRvgVW58xl/gPurDaani0llFh9pwms1
+         FRQBaj2up+ji8NRNJWxvc5UrXhlRo9ODiNRslKc9kh4Et9X3UIln2D/5f1YrR98m4XZa
+         Zm+g==
+X-Gm-Message-State: AOAM532odHS6yYueT+LEdV4q+qoIcuXbm42GYWXwKP5gL4zbUYP8/Rad
+        ahSvCzNjD+H73EW6OgHsQZEVPUSwduzrKQVE3STqYQ==
+X-Google-Smtp-Source: ABdhPJyAXhv6StedGOtJuWf7fO5MgYIPzySA3+7UPCtieqRLefs7juSZxzHlMkcvHchGKDyCITgazKVuobCc5PuwwYA=
+X-Received: by 2002:a05:6870:e314:b0:e1:e5f0:d777 with SMTP id
+ z20-20020a056870e31400b000e1e5f0d777mr3969864oad.193.1649258591945; Wed, 06
+ Apr 2022 08:23:11 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 6 Apr 2022 08:23:11 -0700
 MIME-Version: 1.0
-References: <20220303214300.59468-1-bjorn.andersson@linaro.org>
- <20220303214300.59468-2-bjorn.andersson@linaro.org> <CAD=FV=WkgcJA6-niUh0L5_jLNSS=Hv0xrR5QZghPmNriekH7XA@mail.gmail.com>
-In-Reply-To: <CAD=FV=WkgcJA6-niUh0L5_jLNSS=Hv0xrR5QZghPmNriekH7XA@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 6 Apr 2022 08:18:13 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xa4wW2AH1RzwQRiTZt__Eptr2+Li5SmfZyUjTvNTkOcA@mail.gmail.com>
-Message-ID: <CAD=FV=Xa4wW2AH1RzwQRiTZt__Eptr2+Li5SmfZyUjTvNTkOcA@mail.gmail.com>
-Subject: Re: [PATCH v14 2/2] leds: Add driver for Qualcomm LPG
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-pwm <linux-pwm@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
+In-Reply-To: <Yk1B4f51WMGIV9WB@sirena.org.uk>
+References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com> <Yk1B4f51WMGIV9WB@sirena.org.uk>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 6 Apr 2022 08:23:11 -0700
+Message-ID: <CAE-0n53Cv_bR92M64dhdnDge_=_jeOs4VZzDhUkksN90Y7rgog@mail.gmail.com>
+Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008 PMIC
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,102 +73,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
-
-On Thu, Mar 3, 2022 at 2:10 PM Doug Anderson <dianders@chromium.org> wrote:
+Quoting Mark Brown (2022-04-06 00:31:45)
+> On Tue, Apr 05, 2022 at 02:09:06PM -0500, Stephen Boyd wrote:
+> > Quoting Satya Priya (2022-04-05 06:50:31)
 >
-> Hi,
+> > > +static struct platform_driver pm8008_regulator_driver = {
 >
-> On Thu, Mar 3, 2022 at 1:41 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
-> > with their output being routed to various other components, such as
-> > current sinks or GPIOs.
-> >
-> > Each LPG instance can operate on fixed parameters or based on a shared
-> > lookup-table, altering the duty cycle over time. This provides the means
-> > for hardware assisted transitions of LED brightness.
-> >
-> > A typical use case for the fixed parameter mode is to drive a PWM
-> > backlight control signal, the driver therefor allows each LPG instance
-> > to be exposed to the kernel either through the LED framework or the PWM
-> > framework.
-> >
-> > A typical use case for the LED configuration is to drive RGB LEDs in
-> > smartphones etc, for which the driver supports multiple channels to be
-> > ganged up to a MULTICOLOR LED. In this configuration the pattern
-> > generators will be synchronized, to allow for multi-color patterns.
-> >
-> > The idea of modelling this as a LED driver ontop of a PWM driver was
-> > considered, but setting the properties related to patterns does not fit
-> > in the PWM API. Similarly the idea of just duplicating the lower bits in
-> > a PWM and LED driver separately was considered, but this would not allow
-> > the PWM channels and LEDs to be configured on a per-board basis. The
-> > driver implements the more complex LED interface, and provides a PWM
-> > interface on the side of that, in the same driver.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >
-> > Changes since v13:
-> > - Fixed mixed space/tab indentation in documentation
-> > - Added 0 as to lpg_clk_rates[] to match the hardware state, to avoid + 1 in
-> >   lpg_apply_freq() and - 1 in lpg_pwm_get_state()
-> > - Don't divide with 0 if current clock is 0 in lpg_pwm_get_state(), just return
-> >   period = duty = 0 in this case
-> > - Renamed "clk" in struct lpg_channel to clk_sel
-> > - Renamed "pre_div" in struct lpg_channel to pre_div_sel
-> >
-> > Changes since v12:
-> > - Initialize ret in lpg_pwm_apply()
-> >
-> > Changes since v11:
-> > - Extended commit message to cover decision to put pwm_chip in the LED driver
-> > - Added Documentation, in particular for the hw_pattern format
-> > - Added a lock to synchronize requests from LED and PWM frameworks
-> > - Turned out that the 9bit selector differs per channel in some PMICs, so
-> >   replaced bitmask in lpg_data with lookup based on QPNP SUBTYPE
-> > - Fixed kerneldoc for the struct device pointer in struct lpg
-> > - Rewrote conditional in lut_free() to make it easier to read
-> > - Corrected and deduplicated max_period expression in lpg_calc_freq()
-> > - Extended nom/dom to numerator/denominator in lpg_calc_freq()
-> > - Replaced 1 << 9 with LPG_RESOLUTION in one more place in lpg_calc_freq()
-> > - Use FIELD_PREP() in lpg_apply_freq() as masks was introduced for reading the
-> >   same in get_state()
-> > - Cleaned up the pattern format, to allow specifying both low and high pause
-> >   with and without pingpong mode.
-> > - Only update frequency and pwm_value if PWM channel is enabled in lpg_pwm_apply
-> > - Make lpg_pwm_get_state() read the hardware state, in order to pick up e.g.
-> >   bootloader backlight configuration
-> > - Use devm_bitmap_zalloc() to allocate the lut_bitmap
-> > - Use dev_err_probe() in lpg_probe()
-> > - Extended Kconfig help text to mention module name and satisfy checkpatch
-> >
-> >  Documentation/leds/leds-qcom-lpg.rst |   76 ++
-> >  drivers/leds/Kconfig                 |    3 +
-> >  drivers/leds/Makefile                |    3 +
-> >  drivers/leds/rgb/Kconfig             |   18 +
-> >  drivers/leds/rgb/Makefile            |    3 +
-> >  drivers/leds/rgb/leds-qcom-lpg.c     | 1405 ++++++++++++++++++++++++++
-> >  6 files changed, 1508 insertions(+)
+> > Why isn't this an i2c driver?
 >
-> Gets rid of the KASAN error and PWM still works for me, so happy to add back:
->
-> Tested-by: Douglas Anderson <dianders@chromium.org>
->
-> I haven't done a full review of the driver but I did a once-over of
-> the changes between v12 and v13 and they look good to me.
+> It's a MFD function driver isn't it?
 
-With v5.18-rc1 released, this seems like it would be an ideal time to
-land this driver and its bindings in a for-next branch for the leds
-subsystem. Is there anything blocking it? Are you the right person to
-land them? Ideally the bindings / driver (patch #1 and #2) from
-Satya's series [1] could land right atop it since it's ready too?
-
-[1] https://lore.kernel.org/r/1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com/
-
-Thanks!
-
--Doug
+The DT binding shows a single i2c node at i2c address 0x9. The
+compatible for it is "qcom,pm8008-regulators". It looks like an i2c
+device that is dedicated to providing regulators. I'd only expect to see
+an MFD if the device responding at i2c address 0x9 supported more than
+just regulators.
