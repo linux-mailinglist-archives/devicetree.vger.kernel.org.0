@@ -2,54 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1CA34F5C9A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 13:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 762044F5CBB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 13:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiDFLne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 07:43:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60174 "EHLO
+        id S229517AbiDFLnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 07:43:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbiDFLmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 07:42:44 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 131CF563545
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 01:28:38 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (unknown [81.247.145.117])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AFD7F482;
-        Wed,  6 Apr 2022 10:28:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1649233715;
-        bh=oo3rZajejBQ5uNUw8ZrO1kGNfcbD8VARt+Gdd6/e0ZU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pAsQL6b7aLX5kP6HlBJQlcd8bwxxPexExsLDg629faoAa59K9p2et88xM7XNIiwiJ
-         0cL9izEgmYpACH0arPQODwytNwnEDZLF5BSDWc9JPH/Q3f4ul4UF7s9ImFBKrx+Fcl
-         B0Ol9M14czlG3C+ZlIOsxBVPwE3F3n3vPf6p3LNE=
-Date:   Wed, 6 Apr 2022 11:28:23 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
-Subject: Re: [PATCH v4 0/5] i.MX8MP GPC
-Message-ID: <Yk1PJ0lxiRUPTRts@pendragon.ideasonboard.com>
-References: <20220330104620.3600159-1-l.stach@pengutronix.de>
- <DU0PR04MB9417835E6D343983FF67372988E19@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <DU0PR04MB9417F61F5A0E32E21892391188E79@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <e0a738e1779b9a0efa43cca6fcbe5f19da89f187.camel@pengutronix.de>
+        with ESMTP id S231648AbiDFLnT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 07:43:19 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83135826C2;
+        Wed,  6 Apr 2022 01:29:36 -0700 (PDT)
+Received: from mail-wr1-f42.google.com ([209.85.221.42]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MUGmJ-1nTSAf49gp-00RGcd; Wed, 06 Apr 2022 10:29:35 +0200
+Received: by mail-wr1-f42.google.com with SMTP id z1so2052634wrg.4;
+        Wed, 06 Apr 2022 01:29:34 -0700 (PDT)
+X-Gm-Message-State: AOAM531OqtwpTUOg/EVfV2+UmJYA0dXu/AnjpJjfw+EM4q16jICsyIML
+        tf37VFHTca6RTkr9lTjXbOaswI6c/kFG7cPnJtk=
+X-Google-Smtp-Source: ABdhPJzqKjimJ4xZnU9IPYt6fad20KHtM3TIsGz7LIfUNSAEh1Re0WD0ken3T+oCqWElZNVdr0ug0qBt3+5Wlumu5QE=
+X-Received: by 2002:a05:6000:178c:b0:204:648:b4c4 with SMTP id
+ e12-20020a056000178c00b002040648b4c4mr5517385wrg.219.1649233774585; Wed, 06
+ Apr 2022 01:29:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e0a738e1779b9a0efa43cca6fcbe5f19da89f187.camel@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+References: <20220405195755.10817-1-nbd@nbd.name> <20220405195755.10817-5-nbd@nbd.name>
+ <d0bffa9a-0ea6-0f59-06b2-7eef3c746de1@linaro.org> <e3ea7381-87e3-99e1-2277-80835ec42f15@nbd.name>
+In-Reply-To: <e3ea7381-87e3-99e1-2277-80835ec42f15@nbd.name>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 6 Apr 2022 10:29:18 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1A6QYajv_HTw79HjiJ8CN6YPeKXc_X3ZFD83pdOqVTkQ@mail.gmail.com>
+Message-ID: <CAK8P3a1A6QYajv_HTw79HjiJ8CN6YPeKXc_X3ZFD83pdOqVTkQ@mail.gmail.com>
+Subject: Re: [PATCH v2 04/14] dt-bindings: arm: mediatek: document WED binding
+ for MT7622
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Networking <netdev@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:LqaHr6zQfU63/KWC6IeHSigHnsL9BIJjTNGAo+pOtFMNqkYgWK+
+ qUDoplE/Sw83CfpzQULwxHJ1W39zwgAd79ykAa/+fe0ExWXw7ftfen8XLjT7gYwvaNy4BPA
+ 3KuKZG3aMpEW6CuAyECDaQAnlIA+VuavkpT64DltnENZgd+kr2pa6LnNklCAdqE7hudEIjS
+ A9GRnXOMY6UbCs4JsAz6A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:BzheXsG6FwM=:lg/g4Wyl4/RF5LqxEvpfvk
+ KKYJWvaS+wvWRZtVArZ/ClXOWia8PVjNVm9si85mcWYixRVc/aRdfzIMpy+tUiYinSaKfjG4+
+ hdrDYGeExr9bn1ct26akXZ+DDFtFII4AFZ4m0njrWitiNEwUTV33lDXAaR2FjqOhJnUCbHL2g
+ E4E1g/pIi7dF2QUrpUCUUM5Zgco7yTrqoC1Y7NNIWrZjNfRuvR/5zM8mBfRxd+rn+8z9FxDxj
+ M934Rd0egAkdXZjNk0EyjvFvgsYVVPG0k1zDuvJ5eXxpWsGUX6uF2abfyRswd161OkVCEXCZA
+ QSSEuW/5VAdAOQbyyFkCWQ3oZAzUnerlmSjukdDCbnxQjkOd7ZisOS1ocdvQKMnExWZ+D0rmk
+ xdHggtD8TWKFmZDo5UE9hN+slc8mM+2IxIhDdRzsLZjRxSdF11zRfMvoeSuumj9Gpp/il2q3U
+ xD/XngG83S1iCDLrV8LkcUt/YQA8OR4CckWCQ13gR3cP5EapDHPKIFmZAdUh1MeGG727aK0iC
+ x0Nbwh/avUzfvZFDgI+JQfJ1vWMBCHx686wpb9h7Hms9hUmmf0vEXm2eyt84f5t1q4ftX2P+P
+ YGs8tilrlLW2N0ibBxnYY2If4knWoFDohzhE7BG7K2yWgKQ/o7p7HyJ0ZEN8hIGfvnHmF/1CZ
+ KK+Dzkf6eBd8zqCK7cpXK4f6iFHU6gaVPL6DBGp7TMXhnZMBCPbP4CprSftVytQ/xvKSFFtQI
+ +OVn74Rm2A+faAFh6VQPFV9bFKFak2GydaBuQmSJCCsI0PiW9QxWZcL5XQf86yMLxRFRxEgpt
+ cAZ47H5qjCXwXhea4f5I4x5ux1RwZ25ZVpwMz+HbsdsDiEHVG4=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,53 +77,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+On Wed, Apr 6, 2022 at 10:18 AM Felix Fietkau <nbd@nbd.name> wrote:
+> On 06.04.22 10:09, Krzysztof Kozlowski wrote:
+> > On 05/04/2022 21:57, Felix Fietkau wrote:
+> >> From: Lorenzo Bianconi <lorenzo@kernel.org>
+> >>
+> >> Document the binding for the Wireless Ethernet Dispatch core on the MT7622
+> >> SoC, which is used for Ethernet->WLAN offloading
+> >> Add related info in mediatek-net bindings.
+> >>
+> >> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> >> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+> >
+> > Thank you for your patch. There is something to discuss/improve.
+> >
+> >> ---
+> >>  .../arm/mediatek/mediatek,mt7622-wed.yaml     | 50 +++++++++++++++++++
+> >>  .../devicetree/bindings/net/mediatek-net.txt  |  2 +
+> >>  2 files changed, 52 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.yaml
+> >
+> > Don't store drivers in arm directory. See:
+> > https://lore.kernel.org/linux-devicetree/YkJa1oLSEP8R4U6y@robh.at.kernel.org/
+> >
+> > Isn't this a network offload engine? If yes, then probably it should be
+> > in "net/".
+> It's not a network offload engine by itself. It's a SoC component that
+> connects to the offload engine and controls a MTK PCIe WLAN device,
+> intercepting interrupts and DMA rings in order to be able to inject
+> packets coming in from the offload engine.
+> Do you think it still belongs in net, or maybe in soc instead?
 
-On Wed, Apr 06, 2022 at 09:47:28AM +0200, Lucas Stach wrote:
-> Am Mittwoch, dem 06.04.2022 um 07:10 +0000 schrieb Peng Fan:
-> > > Subject: RE: [PATCH v4 0/5] i.MX8MP GPC
-> > > 
-> > > > Subject: [PATCH v4 0/5] i.MX8MP GPC
-> > > > 
-> > > > Hi Shawn,
-> > > > 
-> > > > This is mostly a resend with all the reviews, acks and testing tags
-> > > > applied. I dropped the HSIO blk-ctrl part from this series, as I
-> > > > noticed that this needs some rework to better fit the upcoming HDMI
-> > > > blk-ctrl. The GPC part is still complete, so the MEDIA blk-ctrl series
-> > > > from Laurent can be applied on top of this v4.
-> > > > 
-> > > > Regards,
-> > > > Lucas
-> > > 
-> > > Tested-by: Peng Fan <peng.fan@nxp.com>
-> > > 
-> > > > Lucas Stach (5):
-> > > >   soc: imx: gpcv2: add PGC control register indirection
-> > > >   dt-bindings: power: add defines for i.MX8MP power domain
-> > > >   soc: imx: gpcv2: add support for i.MX8MP power domains
-> > > >   arm64: dts: imx8mp: add GPC node with GPU power domains
-> > > >   arm64: dts: imx8mp: add GPU nodes
-> > 
-> > Patch 2 is already in tree, but others still not.
-> > 
-> > BTW: Do you have plan to resend the HSIO BLK CTRL from your V3 patchset?
->
-> Yes, I finally worked through all the issues in the HDMI subsystem and
-> I'm ready to send out new HSIO + HDMI blk-ctrl patches today.
-> 
-> > Laurent's V4 patchset also not apply now:) 
-> 
-> Right, I noticed this too. By dropping the HSIO DT patch from the
-> series, the MEDIA series doesn't apply anymore.
-> 
-> @Laurent: If you agree, I'll pick up your MEDIA blk-ctrl patches into
-> my series, to make it easier for Shawn to apply the whole bunch.
+I think it belongs into drivers/net/. Presumably this has some kind of
+user interface to configure which packets are forwarded? I would not
+want to maintain that in a SoC driver as this clearly needs to communicate
+with both of the normal network devices in some form.
 
-Whatever makes it more likely that the patches get merged in v5.19 is
-fine with me. Please do :-)
-
--- 
-Regards,
-
-Laurent Pinchart
+         Arnd
