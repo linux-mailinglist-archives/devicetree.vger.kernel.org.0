@@ -2,70 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E01914F5F70
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:29:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 775284F5F10
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbiDFNS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 09:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59056 "EHLO
+        id S233218AbiDFNZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 09:25:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234026AbiDFNS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:18:29 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21285487836;
-        Wed,  6 Apr 2022 02:57:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649239022; x=1680775022;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ERPgTnXmQsu31W+J+z1B28Xpq+U2xik3DY6Aw2uFZUs=;
-  b=uUq9cEFsJSkRVYq49Dflp/x9OfatQeEeHi2FB1cOFrF8MAmcxPAKXkOg
-   f3+EuDyDNCO+vDGnLYMVJUhQajMLMElMhAMkxCMg2qhHZyKDknnA4Pf8n
-   hbZrlYCGErUp//iko6jm3w7nPrIH3duQxh469mw1KbAj1WpDQNd4gKxXP
-   Q=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Apr 2022 02:57:01 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 02:57:01 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 02:57:00 -0700
-Received: from [10.216.35.29] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 6 Apr 2022
- 02:56:52 -0700
-Message-ID: <278b3ab9-a790-76f2-df6d-97b37d5e5e23@quicinc.com>
-Date:   Wed, 6 Apr 2022 15:26:47 +0530
+        with ESMTP id S233303AbiDFNYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:24:54 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29776658DFA;
+        Wed,  6 Apr 2022 03:20:59 -0700 (PDT)
+X-UUID: d8bf1bdb4e264a849f69ad5925330207-20220406
+X-UUID: d8bf1bdb4e264a849f69ad5925330207-20220406
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 74661343; Wed, 06 Apr 2022 18:05:19 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 6 Apr 2022 18:05:18 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 6 Apr 2022 18:05:17 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <nfraprado@collabora.com>, <tzungbi@google.com>
+CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [v9 1/4] ASoC: dt-bindings: mt8192-mt6359: add new compatible and new properties
+Date:   Wed, 6 Apr 2022 18:05:11 +0800
+Message-ID: <20220406100514.11269-2-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220406100514.11269-1-jiaxin.yu@mediatek.com>
+References: <20220406100514.11269-1-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH V3 2/2] arm64: dts: qcom: sc7280: Add reset entries for
- SDCC controllers
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <robh+dt@kernel.org>, <ulf.hansson@linaro.org>
-CC:     <quic_rampraka@quicinc.com>, <quic_pragalla@quicinc.com>,
-        <quic_sartgarg@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        <quic_sayalil@quicinc.com>
-References: <1647532165-6302-1-git-send-email-quic_c_sbhanu@quicinc.com>
- <1647532165-6302-3-git-send-email-quic_c_sbhanu@quicinc.com>
- <CAE-0n53BBzgU6AJ70JNUBBkDZ1c9ZmpX8ZXLcxLxmmg1=UnSLw@mail.gmail.com>
-From:   "Sajida Bhanu (Temp)" <quic_c_sbhanu@quicinc.com>
-In-Reply-To: <CAE-0n53BBzgU6AJ70JNUBBkDZ1c9ZmpX8ZXLcxLxmmg1=UnSLw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,54 +59,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+1. Adds new compatible string "mt8192_mt6359_rt1015p_rt5682s" for machines
+with rt1015p and rt5682s.
+2. Adds new property "headset-codec" for getting headset codec.
+3. Adds new property "speaker-codecs" for getting speaker codecs.
 
-Thanks for the review.
+Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-Please find the inline comments.
+diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+index 5a5b765b859a..4fa179909c62 100644
+--- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
++++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+@@ -18,6 +18,7 @@ properties:
+     enum:
+       - mediatek,mt8192_mt6359_rt1015_rt5682
+       - mediatek,mt8192_mt6359_rt1015p_rt5682
++      - mediatek,mt8192_mt6359_rt1015p_rt5682s
+ 
+   mediatek,platform:
+     $ref: "/schemas/types.yaml#/definitions/phandle"
+@@ -27,11 +28,33 @@ properties:
+     $ref: "/schemas/types.yaml#/definitions/phandle"
+     description: The phandle of HDMI codec.
+ 
++  headset-codec:
++    type: object
++    properties:
++      sound-dai:
++        $ref: /schemas/types.yaml#/definitions/phandle
++    required:
++      - sound-dai
++
++  speaker-codecs:
++    type: object
++    properties:
++      sound-dai:
++        minItems: 1
++        maxItems: 2
++        items:
++          maxItems: 1
++        $ref: /schemas/types.yaml#/definitions/phandle-array
++    required:
++      - sound-dai
++
+ additionalProperties: false
+ 
+ required:
+   - compatible
+   - mediatek,platform
++  - headset-codec
++  - speaker-codecs
+ 
+ examples:
+   - |
+@@ -44,6 +67,15 @@ examples:
+                         "aud_clk_mosi_on";
+         pinctrl-0 = <&aud_clk_mosi_off>;
+         pinctrl-1 = <&aud_clk_mosi_on>;
++
++        headset-codec {
++            sound-dai = <&rt5682>;
++        };
++
++        speaker-codecs {
++            sound-dai = <&rt1015_l>,
++                        <&rt1015_r>;
++        };
+     };
+ 
+ ...
+-- 
+2.25.1
 
-Thanks,
-Sajida
-
-On 4/2/2022 3:39 AM, Stephen Boyd wrote:
-> Quoting Shaik Sajida Bhanu (2022-03-17 08:49:25)
->> Add gcc hardware reset entries for eMMC and SD card.
->>
->> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index c07765d..cd50ea3 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -881,6 +881,10 @@
->>                          mmc-hs400-1_8v;
->>                          mmc-hs400-enhanced-strobe;
->>
->> +                       /* gcc hardware reset entry for eMMC */
-> Please don't add this worthless comment.
->
->> +                       resets = <&gcc GCC_SDCC1_BCR>;
->> +                       reset-names = "core_reset";
-> A "_reset" postfix is redundant. In fact, reset-names shouldn't even be
-> required.
-Ok
->> +
->>                          sdhc1_opp_table: opp-table {
->>                                  compatible = "operating-points-v2";
->>
->> @@ -2686,6 +2690,10 @@
->>
->>                          qcom,dll-config = <0x0007642c>;
->>
->> +                       /* gcc hardware reset entry for SD card */
-> Please don't add this worthless comment.
-Sure will remove the comment.
->> +                       resets = <&gcc GCC_SDCC2_BCR>;
->> +                       reset-names = "core_reset";
->> +
->>                          sdhc2_opp_table: opp-table {
->>                                  compatible = "operating-points-v2";
->>
