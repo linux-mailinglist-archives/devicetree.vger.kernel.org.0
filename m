@@ -2,64 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 255354F6940
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 20:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201674F68CB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 20:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239682AbiDFSE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 14:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33930 "EHLO
+        id S240052AbiDFSNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 14:13:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239882AbiDFSCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:02:06 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A93C31E6;
-        Wed,  6 Apr 2022 09:36:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B4E37B824CF;
-        Wed,  6 Apr 2022 16:36:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA4BC385A3;
-        Wed,  6 Apr 2022 16:36:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649262980;
-        bh=uJJ15QEl4i49cXnHED3Xlrdez3bx0yxVBu7hrexjFrw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=svGCsTGl4ZOWZWYdxBdXG16//JiVZTVUhyC9Rbu5MA+xqd0NPtm9D069dTSNJm5O7
-         B2ycWdCA7BIj2Xaru2871adyIKAt9oZ0NR8gtUCOU/iCoMHOPkHWgOnL2AHv+UZrOT
-         FYNIZIXr3NePa18g/xhpZxXuFX0jwUPbfdt2hAQABMXzDmcgpYQNOnSc8w9vdBJnud
-         DHv9+gLSzazk8yugn5ik7hKDQhVXBayE8Ivsz8qgBpswp325gt4xwyHNhu7W9Hjm+J
-         +2Fqm9vzX0oOmAkdA+keRE9fux4sxrtcho/Lt/GXHFYemtowx4hw1p9NZMnNV1jT6s
-         DUyL473heWm5w==
-Date:   Wed, 6 Apr 2022 17:36:14 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008
- PMIC
-Message-ID: <Yk3Bfnxe/meBYokp@sirena.org.uk>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
- <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com>
- <Yk1B4f51WMGIV9WB@sirena.org.uk>
- <CAE-0n53Cv_bR92M64dhdnDge_=_jeOs4VZzDhUkksN90Y7rgog@mail.gmail.com>
- <Yk21pdu16lyR8jXm@sirena.org.uk>
- <CAE-0n50C8khP2x4sgNP5xnfLVMRQj2=LChyWWx1BWL+Xgecgyw@mail.gmail.com>
+        with ESMTP id S240163AbiDFSNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:13:10 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159D412985B
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 09:50:29 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id h19so3001887pfv.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 09:50:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ElIDyEfWm0NLb325CUldpOG/323/DcoKYpxnTGj9mDg=;
+        b=DEFU0XCJJrDs1lpYQRMwMGHIlnlCltDlhl3XinTZomSnJMaldQqEubd+hRUW2+3wBB
+         IiRFx5+LmXw9yer02zZBmXZx86VWpf31r/b4V40bAWnEdwia+DXAL727nrnhLwO4wKa0
+         W/MxrmRV9VK0W3sncI6gbuo60vgTrTg/tpf6I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ElIDyEfWm0NLb325CUldpOG/323/DcoKYpxnTGj9mDg=;
+        b=XOAWoW81mKi9jh98tB1Rj6vajYdeRZ8MgM1Lr2rgjRx1rjFY7uVq1xCWyuiiMQuYZV
+         zwSk+FStQGchmhx9e68oRw3x0U2q+j1ulKbC61jJOe8iUbkB1wuXnUMxIB9CWGqpLoEp
+         dfV6BjLQ3VK11iFjkey/VceXh4q+U3YrJk1d4M/BEe1hnfKBr2hdSjPPiH1gcoLaR/Re
+         pdlQ4gFM/eV+Tfk1k/4TQxPhCMZFpJfZGSekFkqzYW0ZDfhPw/Or+Kr3feoB1iBNH9Qh
+         nv7dqGnoxP52XGhlxDPlMs+Od2e0rig9TbqJYUzTued90n0hAGnJR8a3zBhA3cuTtupC
+         XcjQ==
+X-Gm-Message-State: AOAM533Iiv4MeRlwT14xLIKvuGXCu4fmj/XA2QdzQU7vu/YUJs+387+p
+        oeZC8BQMxBvjJzQgE9R+Jxiqog==
+X-Google-Smtp-Source: ABdhPJxZFbRGDK/wziWpEehlgBfHtsEl3sLXu9a2TNNouZl/yalMWJb8Ujf3sKYCSCrlTpWoLsxeVQ==
+X-Received: by 2002:a05:6a00:1828:b0:4fd:e0e5:6115 with SMTP id y40-20020a056a00182800b004fde0e56115mr9845652pfa.52.1649263829402;
+        Wed, 06 Apr 2022 09:50:29 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:c9d3:469f:91e4:c022])
+        by smtp.gmail.com with UTF8SMTPSA id x6-20020a17090aa38600b001ca2f87d271sm6286474pjp.15.2022.04.06.09.50.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Apr 2022 09:50:28 -0700 (PDT)
+From:   Gwendal Grignou <gwendal@chromium.org>
+To:     jic23@kernel.org, robh+dt@kernel.org, swboyd@chromium.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Gwendal Grignou <gwendal@chromium.org>
+Subject: [PATCH v4 0/8] Add settings for precharge and internal resistor
+Date:   Wed,  6 Apr 2022 09:50:03 -0700
+Message-Id: <20220406165011.10202-1-gwendal@chromium.org>
+X-Mailer: git-send-email 2.35.1.1094.g7c7d902a7c-goog
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="IjoZWWSRSsGvnQ0d"
-Content-Disposition: inline
-In-Reply-To: <CAE-0n50C8khP2x4sgNP5xnfLVMRQj2=LChyWWx1BWL+Xgecgyw@mail.gmail.com>
-X-Cookie: Look ere ye leap.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,47 +64,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+For Semtech sensors SX9324 and SX9360, allow confugration of the
+pre-charge resistor (9324/9360) and internal resistor (9324).
 
---IjoZWWSRSsGvnQ0d
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fix register name spelling mistakes first and set default value properly
+for sx9324 internal resistor register.
 
-On Wed, Apr 06, 2022 at 08:51:48AM -0700, Stephen Boyd wrote:
-> Quoting Mark Brown (2022-04-06 08:45:41)
+The 9360 changes are independent from the 9324 changes, but they are
+very similar.
 
-> > There's a MFD parent for it, and if it's for an I2C device for a pm8008
-> > why would it have a -regulators in the name?
+Changes since v3:
+- Rename reserved field as _RESERVED_
+- Fix invalid string matching with match_string()
+- Fix cut and paste error in device tree bindings.
 
-> There are two i2c devices. One is pm8008 at i2c address 0x8 and one is
-> pm8008-regulators at i2c address 0x9. Earlier revisions of this patch
-> series were making it very confusing by redoing the pm8008 binding and
-> adding the pm8008-regulator i2c address device to the same binding and
-> driver.
+Changes since v2:
+- use -ohms instead of -kohms, as ohms is a defined unit in
+  dt-schema.git dtschema/schemas/property-units.yaml
 
-> My guess is that this is one IC that responds to multiple i2c addresses.
-> The "main" qcom,pm8008 address is 0x8 and that supports things like
-> interrupts. Then there's an address for regulators at 0x9 which controls
-> the handful of LDOs on the PMIC.
+Changes sinve v1:
+- Add kOhm Unit, add a new patch to fix invalid register setting.
 
-So it's like the TI TWL4030 and Palmas - in which case it should
-probably be handled similarly?  Note that the original sumbission was
-*also* a MFD subfunction, but using a DT compatible to match the
-platform device - this is the first I've heard of this being a separate
-I2C function.
+Gwendal Grignou (8):
+  iio: sx9324: Fix default precharge internal resistance register
+  iio: sx9324: Fix register field spelling
+  dt-bindings: iio: sx9324: Add precharge resistor setting
+  iio: sx9324: Add precharge internal resistance setting
+  dt-bindings: iio: sx9324: Add internal compensation resistor setting
+  iio: sx9324: Add Setting for internal compensation resistor
+  dt-bindings: iio: sx9360: Add precharge resistor setting
+  iio: sx9360: Add pre-charge resistor setting
 
---IjoZWWSRSsGvnQ0d
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../iio/proximity/semtech,sx9324.yaml         | 19 +++++++++
+ .../iio/proximity/semtech,sx9360.yaml         |  9 ++++
+ drivers/iio/proximity/sx9324.c                | 41 ++++++++++++++++---
+ drivers/iio/proximity/sx9360.c                | 12 +++++-
+ 4 files changed, 75 insertions(+), 6 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.35.1.1094.g7c7d902a7c-goog
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJNwX0ACgkQJNaLcl1U
-h9B29gf/VNgcnxgPqnUBjXYUmRjlkLvLPAHqv6zftYimYYvb2SoWRXx6AZoeWlTR
-9khubNBnoLGcF4VrnvA1wKuBSmRZjeegoJ+OqHO4CT1zgiYj42A9hYIGOlN9UMGC
-lkaZZE7FqXDdx63L017WeSbqZujG/iOA4WwZxiHR579W3hTyDOurZIZNgLoCIopk
-T/1ne3aQJ9VxfxderMqNG1zAYTEcv5AHjsZC2D/gwU/3vatGn1DfPZElf5WJBzxf
-MTpfbnChepAPkqV0GangV6eShTuD3XleqnEynWlYnaLRhvShLmsjjFjzB+eP88tm
-GyDNGroU0qaFb/keMRy3z4S34Loxeg==
-=utPk
------END PGP SIGNATURE-----
-
---IjoZWWSRSsGvnQ0d--
