@@ -2,55 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D634F5861
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 11:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD3E4F59FF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 11:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232072AbiDFJBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 05:01:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37656 "EHLO
+        id S242982AbiDFJb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 05:31:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1451246AbiDFI6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 04:58:11 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B694F4D;
-        Tue,  5 Apr 2022 20:01:18 -0700 (PDT)
-X-UUID: 86ce2accd19941c19653cafc602097aa-20220406
-X-UUID: 86ce2accd19941c19653cafc602097aa-20220406
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 48669215; Wed, 06 Apr 2022 11:00:58 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 6 Apr 2022 11:00:12 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 6 Apr
- 2022 11:00:11 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 6 Apr 2022 11:00:11 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <jassisinghbrar@gmail.com>,
-        <fparent@baylibre.com>, <yongqiang.niu@mediatek.com>,
-        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v10 0/4] add display support for MediaTek SoC MT8186
-Date:   Wed, 6 Apr 2022 11:00:05 +0800
-Message-ID: <20220406030009.2357-1-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S1582881AbiDFJWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 05:22:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7186A3A1423;
+        Tue,  5 Apr 2022 20:07:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CAEA7B8200E;
+        Wed,  6 Apr 2022 03:07:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3483C385A0;
+        Wed,  6 Apr 2022 03:07:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649214467;
+        bh=eIlEQwsG6t17hOwXn8NqVS/jaWXyCYIUFSVCEzvWWTE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SOXe812cr3deZum/nx2E3cPdah6SKXLSX202QJbEA0BFO0C0dM7kZUCV9iZzGu5G+
+         Z4ApptDbZKcbz8T33brz3W9nG8hQzYIUby9aTTYnz94ENwVrhzOqjwfBY5D4Y0SyIW
+         7yUtF8b3ubaYN+5mA5jsvFU7TarTIRdRAotSSTL0cy7vUVn7pYEsUexvA0dpfHjSiU
+         TWT7AnpkI6ZsZHqFaUeNvNsWqcVHvzX+aZeFurWMxQtzvkqj1oiIBO2c5Y2jksyejQ
+         xfxM1fsMs8FOZ6iZ9ip/ZssmeNzIPvYkvfyPwZJ7gJaNOS353H6GwkGCl98jXsv9a9
+         IzRgad6jFe11w==
+Date:   Wed, 6 Apr 2022 03:07:43 +0000
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Fabio Baltieri <fabiobaltieri@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] drivers: pwm: pwm-cros-ec: add channel type
+ support
+Message-ID: <Yk0D/4vzOfR8H+YD@google.com>
+References: <20220331125818.3776912-1-fabiobaltieri@chromium.org>
+ <20220331125818.3776912-3-fabiobaltieri@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220331125818.3776912-3-fabiobaltieri@chromium.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,70 +61,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v10:
-1. Rebase to 5.18-rc1
-2. Drop "dt-bindings: display: mediatek: add aal binding for MT8183".
-   I will move it to another series.
+On Thu, Mar 31, 2022 at 12:58:16PM +0000, Fabio Baltieri wrote:
+> Add support for EC_PWM_TYPE_DISPLAY_LIGHT and EC_PWM_TYPE_KB_LIGHT pwm
+> types to the PWM cros_ec_pwm driver. This allows specifying one of these
+> PWM channel by functionality, and let the EC firmware pick the correct
+> channel, thus abstracting the hardware implementation from the kernel
+> driver.
+> 
+> Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
 
-v9:
-1. Revise [1/5] dt-bindings: display: mediatek: add aal binding for MT8183.
+Taking `git log --oneline drivers/pwm/pwm-cros-ec.c` as examples, suggest to
+remove "drivers: " prefix from the commit title.
 
-v8:
-1. Revise [1/5] dt-bindings: display: mediatek: add aal binding for MT8183.
-
-v7:
-1. Rebase to chunkuang.hu/linux.git mediatek-drm-fixes
-
-v6:
-1. Remove mmsys patches which are accepted.
-2. Fix error of dt-binding.
-
-v5:
-1. Add binding patch of aal for MT8183.
-2. Revise enum to const.
-3. Change to use enum for mutex.
-4. Remove patches which are accepted by maintainers. (mmsys and mutex)
-
-v4:
-1. Remove binding of dsi and dpi.
-2. Revise aal binding.
-3. Fix indention in [4/5].
-
-v3:
-1. Modify display binding based on mtk display binding patch. ([1])
-2. Remove patch: drm/mediatek: separate postmask component from mtk_disp_drv.c
-3. Remove compatible of 8186 ovl because we can re-use compatible of 8192 for 8186.
-4. Fix issue of space before tab on mutex patch.
-
-[1]: repo: chunkuang.hu/linux.git, branch: mediatek-drm-next, id: 4ed545e7d10049b5492afc184e61a67e478a2cfd
-
-v2:
-1. Add binding documentation for mmsys, mutex and mtk_display.
-2. Remove duplicated definition of postmask registers on mtk_drm_drv.
-3. Add disp_ovl support for MT8186.
-4. Add detailed commit messages.
-
-Rex-BC Chen (3):
-  dt-bindings: display: mediatek: revise enum to const
-  dt-bindings: display: mediatek: change to use enum for mutex
-  dt-bindings: display: mediatek: add MT8186 SoC binding
-
-Yongqiang Niu (1):
-  drm/mediatek: add display support for MT8186
-
- .../display/mediatek/mediatek,aal.yaml        |  5 ++-
- .../display/mediatek/mediatek,ccorr.yaml      |  5 ++-
- .../display/mediatek/mediatek,color.yaml      |  7 ++--
- .../display/mediatek/mediatek,dither.yaml     |  4 +--
- .../display/mediatek/mediatek,gamma.yaml      |  4 +--
- .../display/mediatek/mediatek,mutex.yaml      | 25 ++++++--------
- .../display/mediatek/mediatek,ovl-2l.yaml     |  4 +++
- .../display/mediatek/mediatek,ovl.yaml        |  8 +++--
- .../display/mediatek/mediatek,postmask.yaml   |  4 +++
- .../display/mediatek/mediatek,rdma.yaml       |  7 ++--
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 33 +++++++++++++++++++
- 11 files changed, 74 insertions(+), 32 deletions(-)
-
--- 
-2.18.0
-
+Otherwise,
+Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
