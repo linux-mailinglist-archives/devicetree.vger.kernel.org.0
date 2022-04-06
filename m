@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 141B74F61D8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7DE04F620B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235113AbiDFOhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 10:37:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35834 "EHLO
+        id S234999AbiDFOpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234924AbiDFOg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:36:56 -0400
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3EB4557F2;
-        Wed,  6 Apr 2022 04:01:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:Subject:
-        From:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
-        :List-Post:List-Owner:List-Archive;
-        bh=dcCn6+XhT4ZAObTnqeDa3+6jzJY/nPJWbAVScaaz0bE=; b=kQqBANK8BkSsr7+yPmY+Z09efb
-        0NOveqsRX9wrNdCFVXF3J7Kr26T56o2BgYYrrD0jeoekQZkIe0TDN+4d99hR04yYGpj7/adwmWZcy
-        dYUrxYIc73Kk/I1LEnAkxfk4ldascCUl2i3HfC4tKXcdMyWi9snsBXDlpl06K6FF4cJ4=;
-Received: from p200300daa70ef200456864e8b8d10029.dip0.t-ipconnect.de ([2003:da:a70e:f200:4568:64e8:b8d1:29] helo=nf.local)
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <nbd@nbd.name>)
-        id 1nc3PP-0001v5-AM; Wed, 06 Apr 2022 13:01:07 +0200
-Message-ID: <318163cb-c771-c7eb-73ba-35c66f7d0e68@nbd.name>
-Date:   Wed, 6 Apr 2022 13:01:06 +0200
+        with ESMTP id S235139AbiDFOpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:45:11 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42B34DF167;
+        Wed,  6 Apr 2022 04:13:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649243602; x=1680779602;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2PAsFYfRWWJDutvD3FhIa3IQXNXAlmetZzLJmG6mtNU=;
+  b=ueZqMoc1b1QN03yuCI6zq11YNOaA2u2n/z2V5yGgCPCLIMn/AhKfB1tG
+   +xivm50/W16GBRdpNtMJ6x/vJ1ySKsAHENhOP/oStJRewDqsxe1mbYc6I
+   ganqIxtw6sTRi3n/NkeZsN5Yb/OPqRV262LQfDurIF2zEVJd5CjzVQ0cq
+   A=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Apr 2022 04:13:21 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 04:13:21 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 6 Apr 2022 04:13:20 -0700
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 6 Apr 2022 04:13:18 -0700
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <mka@chromium.org>,
+        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH v4] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
+Date:   Wed, 6 Apr 2022 16:43:03 +0530
+Message-ID: <20220406111303.27670-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.7.0
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220405195755.10817-1-nbd@nbd.name>
- <20220405195755.10817-6-nbd@nbd.name>
- <4bafe244-6a3d-d0ec-59d3-3f3f00e71caf@linaro.org>
-From:   Felix Fietkau <nbd@nbd.name>
-Subject: Re: [PATCH v2 05/14] dt-bindings: arm: mediatek: document the pcie
- mirror node on MT7622
-In-Reply-To: <4bafe244-6a3d-d0ec-59d3-3f3f00e71caf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,38 +63,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DTS node for WCN6750 WiFi chipset.
 
-On 06.04.22 10:20, Krzysztof Kozlowski wrote:
-> On 05/04/2022 21:57, Felix Fietkau wrote:
->> From: Lorenzo Bianconi <lorenzo@kernel.org>
->> 
->> This patch adds the pcie mirror document bindings for MT7622 SoC.
->> The feature is used for intercepting PCIe MMIO access for the WED core
->> Add related info in mediatek-net bindings.
->> 
->> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->> Signed-off-by: Felix Fietkau <nbd@nbd.name>
->> ---
->>  .../mediatek/mediatek,mt7622-pcie-mirror.yaml | 42 +++++++++++++++++++
-> 
-> Eh, I wanted to ask to not put it inside arm/, but judging by your usage
-> - you did not create drivers for both of these (WED and PCIe mirror).
-> 
-> You only need them to expose address spaces via syscon.
-> 
-> This actually looks hacky. Either WED and PCIe mirror are part of
-> network driver, then add the address spaces via "reg". If they are not,
-> but instead they are separate blocks, why you don't have drivers for them?
-The code that uses the WED block is built into the Ethernet driver, but 
-not all SoCs that use this ethernet core have it. Also, there are two 
-WED blocks, and I'm not sure if future SoCs might have a different 
-number of them at some point.
-The WED code also needs to access registers of the ethernet MAC.
-One reason for having a separate device is this:
-As long as WED is not in use, ethernet supports coherent DMA for 
-increased performance. When the first wireless device attaches to WED, 
-IO coherency gets disabled and the ethernet DMA rings are cleaned up and 
-allocated again, this time with the struct device of WED (which doesn't 
-have the dma-coherent property).
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+Depends on:
+- https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/
+- https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/
 
-- Felix
+Changes from V3:
+- Rebased on ToT
+- Minor changes regarding '0' padding
+
+Changes from V2:
+- Changes based on DT binding concerns
+- Rebased on ToT
+
+Changes from V1:
+- Corrected the case for hex values
+
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index f61a3e15fa8b..015a3474d401 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -550,3 +550,10 @@ sw_ctrl: sw-ctrl {
+ &remoteproc_wpss {
+ 	status = "okay";
+ };
++
++&wifi {
++	status = "okay";
++	wifi-firmware {
++		iommus = <&apps_smmu 0x1c02 0x1>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index b757e8ad1199..26f66f46a950 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -85,6 +85,11 @@ reserved-memory {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		wlan_ce_mem: memory@4cd000 {
++			no-map;
++			reg = <0x0 0x004cd000 0x0 0x1000>;
++		};
++
+ 		hyp_mem: memory@80000000 {
+ 			reg = <0x0 0x80000000 0x0 0x600000>;
+ 			no-map;
+@@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
++		wifi: wifi@17a10040 {
++			compatible = "qcom,wcn6750-wifi";
++			reg = <0 0x17a10040 0 0x0>;
++			iommus = <&apps_smmu 0x1c00 0x1>;
++			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
++			qcom,rproc = <&remoteproc_wpss>;
++			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
++			status = "disabled";
++		};
++
+ 		pcie1: pci@1c08000 {
+ 			compatible = "qcom,pcie-sc7280";
+ 			reg = <0 0x01c08000 0 0x3000>,
+-- 
+2.35.1
+
