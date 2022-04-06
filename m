@@ -2,140 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0705A4F6B47
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB8184F6B68
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:28:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233955AbiDFUYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 16:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
+        id S234652AbiDFU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 16:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236725AbiDFUYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:24:12 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDC2E349538;
-        Wed,  6 Apr 2022 11:43:20 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-e1dcc0a327so3925332fac.1;
-        Wed, 06 Apr 2022 11:43:20 -0700 (PDT)
+        with ESMTP id S234732AbiDFU3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:29:49 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A47D35917D;
+        Wed,  6 Apr 2022 11:51:39 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id q129so3369668oif.4;
+        Wed, 06 Apr 2022 11:51:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pe8sju6wPvJSrNfF1Eq2d0NpTEsa+xATy6yZpivcyyo=;
-        b=kOivRFEJHI+w2eouwoiLEYmGL0JgO6ICU+xkf93gZTD45eeepp2HBg9Yis+a0JDDS4
-         r2YrhPcMOu+edjcuJANfFRrlNqpv7K2tsBmb+KK1d8i3OayzdAFGeiLvfg4y4XFfG7Cn
-         jHyChCHMl9e57crE+l6k1YWVTMg4fKkvWAETAbsAWsEbeOGBgxHzDnjf9DZRwmD2Luxd
-         gc+bhBZx7lroSBiZqU4+FRu71qVqv76eKl+LSczEEvEkkkQ4LZz8VJ/pxEXdh5vbMoS/
-         iFKSvGnIKaLn/bxm9p8Ih90PDsviOaJssFsyBU4kfLh73QtNOFmDMs4Eu3bLzLB/Hasw
-         2kWw==
-X-Gm-Message-State: AOAM5321d6EQZJDptj4e8qZS2Bcx6JF0iUYKUhVkxaC/NBN5FVUF1gkp
-        bU/ZSHNlLLElKBtif/EXnTmKAOegKg==
-X-Google-Smtp-Source: ABdhPJybK5lLCphfL1x0DdD+DcfV1Sz7fJ99SXLEoZA420LGZz9AqrPtiqQNcfxb94eXkneiXCVC3g==
-X-Received: by 2002:a05:6870:e30e:b0:de:ecf4:df7e with SMTP id z14-20020a056870e30e00b000deecf4df7emr4782781oad.114.1649270599990;
-        Wed, 06 Apr 2022 11:43:19 -0700 (PDT)
+        bh=Gozy76Oz1wSXA73FeGE7SmqQLAsoVOY+2sTGF1aa6Zw=;
+        b=fE7TexvMuLOaLXKK6EJNxA2vmmayp5QSrYZI/MnurdJ55hJ+Py0CVtE6dZvcUps7rV
+         fzk0Cd/zGQrRsqlA+F+vsiTIoK6GcYCm9BTVEzC4htL7PNQU9ji+WW0AGV1w6VyOEyxm
+         1eoNmFFgbAA1Yorn38Mq1jvnBWAML+UlRTJy9F8WikrFOF91Hm2M+hYjkZ9k9yndWG8c
+         Rf75OiifImh0lYOP4vQljoTpJsDxJeMayool18TBqC9qiBtc6g+Ez1WGflos+FftI19y
+         hmtpJw9GLvO0AhU0W3b5KHKwoTiKxE3roc5qFDRrWOt76/c8lw/YanvANIrw57O/VpHR
+         j0pQ==
+X-Gm-Message-State: AOAM530pEjf1hXo46Tm7rJqxtE+xFCP2BrYotBmtTP+g1lCbzAebCOc0
+        NPkL1N4pE91RpqlU60MKJw==
+X-Google-Smtp-Source: ABdhPJx7UbafJNQyyivVdWkXjR46A1bh1Oaa+gC8ZwvqpNeu9q5dFGeK8oeuLmNIra2NA7b2IOOAYA==
+X-Received: by 2002:a05:6808:2386:b0:2f9:a7fb:54f5 with SMTP id bp6-20020a056808238600b002f9a7fb54f5mr396861oib.33.1649271098704;
+        Wed, 06 Apr 2022 11:51:38 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v17-20020a9d69d1000000b005b2319a08c4sm7048316oto.18.2022.04.06.11.43.19
+        by smtp.gmail.com with ESMTPSA id p11-20020acabf0b000000b002ef93581a46sm6655340oif.2.2022.04.06.11.51.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:43:19 -0700 (PDT)
-Received: (nullmailer pid 2564513 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:43:19 -0000
-Date:   Wed, 6 Apr 2022 13:43:19 -0500
+        Wed, 06 Apr 2022 11:51:38 -0700 (PDT)
+Received: (nullmailer pid 2576022 invoked by uid 1000);
+        Wed, 06 Apr 2022 18:51:37 -0000
+Date:   Wed, 6 Apr 2022 13:51:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Peter Rosin <peda@axentia.se>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [v7 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Message-ID: <Yk3fR2CaeiJBEPKk@robh.at.kernel.org>
-References: <20220405120552.433415-1-patrick.rudolph@9elements.com>
- <20220405120552.433415-2-patrick.rudolph@9elements.com>
- <YkxIOgTl876orHbf@pendragon.ideasonboard.com>
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     sanjayc@nvidia.com, bbasu@nvidia.com, linux-tegra@vger.kernel.org,
+        ksitaraman@nvidia.com, treding@nvidia.com, jonathanh@nvidia.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, viresh.kumar@linaro.org, krzk+dt@kernel.org
+Subject: Re: [Patch v4 1/4] dt-bindings: Document Tegra CCPLEX Cluster
+Message-ID: <Yk3hOafGDk/W1qPA@robh.at.kernel.org>
+References: <20220405130119.4697-1-sumitg@nvidia.com>
+ <20220405130119.4697-2-sumitg@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YkxIOgTl876orHbf@pendragon.ideasonboard.com>
+In-Reply-To: <20220405130119.4697-2-sumitg@nvidia.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 04:46:34PM +0300, Laurent Pinchart wrote:
-> Hi Patrick,
+On Tue, 05 Apr 2022 18:31:16 +0530, Sumit Gupta wrote:
+> The Tegra CPU COMPLEX CLUSTER area contains memory-mapped
+> registers that initiate CPU frequency/voltage transitions.
 > 
-> Thank you for the patch.
+> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> ---
+>  .../tegra/nvidia,tegra-ccplex-cluster.yaml    | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
 > 
-> On Tue, Apr 05, 2022 at 02:05:49PM +0200, Patrick Rudolph wrote:
-> > Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> > chips. The functionality will be provided by the exisintg pca954x driver.
-> > 
-> > While on it make the interrupts support conditionally as not all of the
-> > existing chips have interrupts.
-> > 
-> > For chips that are powered off by default add an optional regulator
-> > called vdd-supply.
-> > 
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > ---
-> >  .../bindings/i2c/i2c-mux-pca954x.yaml         | 44 ++++++++++++++-----
-> >  1 file changed, 34 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > index 9f1726d0356b..132c3e54e7ab 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > @@ -4,21 +4,48 @@
-> >  $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: NXP PCA954x I2C bus switch
-> > +title: NXP PCA954x I2C and compatible bus switches
-> >  
-> >  maintainers:
-> >    - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >  
-> >  description:
-> > -  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> > +  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-> > +  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
-> >  
-> >  allOf:
-> >    - $ref: /schemas/i2c/i2c-mux.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - maxim,max7367
-> > +              - maxim,max7369
-> > +              - nxp,pca9542
-> > +              - nxp,pca9543
-> > +              - nxp,pca9544
-> > +              - nxp,pca9545
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          maxItems: 1
-> > +
-> > +        "#interrupt-cells":
-> > +          const: 2
-> > +
-> > +        interrupt-controller: true
-> 
-> It feels a bit out of place to have those properties listed before the
-> main "properties" property, but we can only have a sincel allOf. I
-> wonder if the i2c-mux schema could be selected automatically based on
-> node name, but that's out of scope for this patch.
 
-Yes, just move the allOf below 'properties'
- 
-> I thought it was more customary to define properties in the main
-> "properties" property, and then have
-
-Yes, please do.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
