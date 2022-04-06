@@ -2,166 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8291C4F6139
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B71E4F60E9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234329AbiDFOJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 10:09:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55764 "EHLO
+        id S234280AbiDFOJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:09:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234548AbiDFOHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:07:54 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2087.outbound.protection.outlook.com [40.107.22.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62FE9100A54;
-        Wed,  6 Apr 2022 02:47:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dN28yrhfYmxPO8ceskRwUbBATUzxTq+y8FgwPaaHACWSK/Tvz7tNBg/a1KTtcMJUtnwjwvOFhVL1HiAMl2GnkiV/br5c2I+HaZq9ykW8AxLOJcjD5m2VmOFBM88djBNm2uFTljyZP0HNMO6SghKwnzuUsqvGbASrGo2ccIuBAcDNfX4KYGiUnpGDmOdNX0mvoYtkzvdP/sGAmD4rmGslwMUnylbPABOF02dhclxck42UmvMcUDQIJihy2X0LTfQCXMNLAjYj9e76vytRnRT0C4h4g1caKp64fay9WvFjCSbECvlqz8zI1+Dkbh/hfeBQLtlVht+QhCzPGt+h8GuE3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kwHaDwvxASzJBr290ZaXFVJ0bE0g4TjzIARAOn7abk8=;
- b=RrOCRm5FXnokP4EMyJJEOBRhr5RIApSI1T/zAa22pmay4nHvb6BIneTYtTvRsFCwPltGvTveoaZzh7COHFtAn9l4CSzvtRswAcvwkR8eszaONh+gt4K/bV+nvw4JpBTCWH/A1I49v/cYjLtM/61WMzg2eCV8A3J9/diAJfUJeuembcnCTYj7E2Kt/xEV2HOlF82XX7T24zZdK2azYuNQB3kpVYr+rkKQRg3y599nqsO2eIEE81izpfiTq+A3zLEI8wTFSos680jZ4g6IjeFx5XtZ7GJhZGrDDXWu7l3gNxUMuD5KdE+GNaLQL7MLAWr+I/LwckGDdr65G5go3x4d4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kwHaDwvxASzJBr290ZaXFVJ0bE0g4TjzIARAOn7abk8=;
- b=IvIx0ySO5oE8pV17Gn1DQNpSx41O2F7hAy3RXdYfhEcbpsBoAOhKhe2m9xDFjvB+ZuQPQ1h1qNGw73PMr/v4S2AvkTlQWduGQEtbp+x1TSilTWNE6kQ77nj+zuwRSGsH8GOmz+/ROuaXZef+KpIKBAwz3gR6EXsg5jLLScspTC4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by DU0PR04MB9443.eurprd04.prod.outlook.com (2603:10a6:10:35b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.31; Wed, 6 Apr
- 2022 09:47:23 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::6881:df46:ac23:1bc3]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::6881:df46:ac23:1bc3%7]) with mapi id 15.20.5123.031; Wed, 6 Apr 2022
- 09:47:22 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        mirela.rabulea@oss.nxp.com
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] media: imx-jpeg: Add pm-sleep support for imx-jpeg
-Date:   Wed,  6 Apr 2022 17:47:03 +0800
-Message-Id: <20220406094703.8229-1-ming.qian@nxp.com>
-X-Mailer: git-send-email 2.33.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG3P274CA0017.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::29)
- To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 06296e3d-92a3-4974-de65-08da17b272ed
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9443:EE_
-X-Microsoft-Antispam-PRVS: <DU0PR04MB94433CA2A77FF82AAB11C182E7E79@DU0PR04MB9443.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3940ob3mLrPxN/48Fkbbx+Egct9DlTUXCXxXxOEuIhaPD3RYkcrQl1R7bdcat0QySBuRDXNNjVUu2XgHP06sztWCtwBe5mSSU1+Zu1QqW5uvbycIK+YobhqfC689CPfG9frAdj7lUYIGt6d0k326VxYAYT+u9qSkrq5c9MQE/cQqMfHUDXDPphtvhMahjYSSlC0p3Yh2KHm8850GY1H948IaT/WWqHfbgxTdxCnkrkO1oislQE0Z5S6oktHDpWyDYrZQheuzecv9OAaxcAPgZvjkSwSZQIHDL8QLUB3ImEE9qlyuL5aoaHT8zDZweCpF3XsmufMdDbamctQOAiqmCN9a9ewpwMW6+4yWGbapMCLADZYEiX0m2ggfryizTQdFmbEPr5eCZyRvZqvrOTsCHSJ8KLfU1yAIWcpj0jnPE/g2SHeW89pcpI9I52WhofAlTYRN+7SYg7r4LtbDquKKMA8LIOOqeTkDYEHqxGag+WjYYcgxqAi+OPrRyof92a9xqf4v+JROaSzSkJP/Bq2AKf197gps/26Ilhbp1GvZqtIMl8fAEbncTtzm7Zqq5O4L7kV6crpw/9Hzi0GQdq84MsNaxkyUUS9y7hbuNkBzpii5SKX10yU8hvobeDms0AE3w+E3OhVUk3sszN7VJqKlwNlC2YzXFOPpY3ErwF+Cwvx4gny4+dYRFqBgDLfGRgZSh3jSU/TGoeC0GnnwsIaVrw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66476007)(8676002)(6486002)(6512007)(52116002)(316002)(6666004)(4326008)(6506007)(508600001)(5660300002)(186003)(83380400001)(26005)(66556008)(1076003)(36756003)(66946007)(44832011)(38100700002)(2616005)(38350700002)(86362001)(2906002)(8936002)(7416002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W8Qo9gHea7JOG2v3lPYyljEX7cOo+lXaqrb+hjjn3+RK/6IZAozzYyDBiz2K?=
- =?us-ascii?Q?4U7Q0HN+FjIPTCxfnuG+YDrhM80Cy73atRkhVAPHU9Y5QOWufjbPnaYREL2l?=
- =?us-ascii?Q?vkWso55K9gj8gm/v1KlSO3nFKdQZHe0eGwD6qqt99lPaWkDCrmaBMbapDye7?=
- =?us-ascii?Q?D3HFeuer2wY4iXnYJTx91TsiPTSAkYSwJRKc1gK7lDHyL+YNpYdTx31h+H8L?=
- =?us-ascii?Q?SFiDz3i0Q2ovp9E2GFaYcI70udLLuYXaODQdKmhoAzUO/fO+mQiE5KV85sYu?=
- =?us-ascii?Q?eO+s3t/PDEqnVK04hx8zTG8J5fBZmsu1lSFqEUfz/sv8T+3+E5/uBxH2CwP0?=
- =?us-ascii?Q?ixNq9V6o2RPsP40t5tNPWPqO9lZ29XW0hK84CA6UdvQGzl71sVytaUEntCHP?=
- =?us-ascii?Q?HACl4GaQXKkArVq5UetbvT3X6HNfC7OcI1KYg/uRAPXVOp/UAYssxlOT3pET?=
- =?us-ascii?Q?z/Ru3Q7seDZjVXD3UwS1l9OCsVdYCICoOph3KBUyNHsiyBIDYtPzOGmnI0qw?=
- =?us-ascii?Q?WJ6gvkXFIIw5UUkcTbN9pWpoN4GJBxIn9BUCZfpmNXEcvO/e3NgNYeBnULd0?=
- =?us-ascii?Q?qF0DPL/fkPEH4MrFzpzb6KRZsJdRh8SBoU6OCddzodx3XKmtJ4sXyHpDxKhg?=
- =?us-ascii?Q?HUPpjqU0EF11qgx0W4xrnw2lgbO4VSqYcdxn/oqhWMXsrGETLCcMhofTR+j7?=
- =?us-ascii?Q?QCI7P4MBBve1wpt/56fAuSGoU9vib4tscTEU538UxCkHzhufW0Tq0yU258bZ?=
- =?us-ascii?Q?nAFLTadBg+YtiugED7yULDEYh4jFCDZQAQf+PpcG47eXl6UuNIRexOfE2/b5?=
- =?us-ascii?Q?Uh57PPEVWfEKzh9MFxx9kdEVV3xsVTIrIrIkW+hNJgPo01i9i+T4ICrCf29R?=
- =?us-ascii?Q?39aAWjOUfzbUoCeLhn+KBSOF+NVukz+p2ZM4C23yC+WrJjk7EdfCxhvvNjc5?=
- =?us-ascii?Q?uDF0d2MudKmKIMYW6N97SBvoxFfY985nZ4A985KziiY49z6ncmLdcWRRFDS1?=
- =?us-ascii?Q?7ddVlq9RRCUuY8r1LYTdBqh/2v10DTVzJ0nWnVJXqDifUPMhxhaXjliR9RMI?=
- =?us-ascii?Q?kSiA1Lp2HUr0HaTeM/pAu+PwFp35GC0Ai7c/JCQOXhzyjmFqcDUtYy1ZM0mE?=
- =?us-ascii?Q?3oYMzL8oh3t5QDtFCQbNTEYfmiij/1672sWOz1qkKj6/N/Fe8nptrqRQUMqe?=
- =?us-ascii?Q?glkbOOVU3s5LuvKhy0GVW10Nz222JMkdCl59OeioGBA0hz1+cKJzQXc39l1k?=
- =?us-ascii?Q?im7LIch3gKe2+EW0tUDr5vCLOcgB3AqZ8cjiTRKddYWjWN4plcCO2pMZf252?=
- =?us-ascii?Q?dsQ73dgX1oZpGfrjM5Z9zNlFkcvjHHWkwMPdZ9txTnkXylWvhxkC4haxcFhX?=
- =?us-ascii?Q?YO6st0PgRxoNmvLu54u5Kg5H5/4n6fS9pK9UgxFo+DUACRmPkgsUPqNzOLhU?=
- =?us-ascii?Q?iRntDsnHCooaHveDzcr7cQAJOekpO8AkNNPe3j0StoOqtTOr60m3lTkJNYm+?=
- =?us-ascii?Q?tXg40vGOT/i5DEqscLfJPIuBW/l31fZuYctkOJWViNIJnrkmm/PhOL7sz6xU?=
- =?us-ascii?Q?muDRFdLnVpizEOqHJ0JHbWYFfxPyZYDV21xMsxc4r3DD3/0G3Nz/FNsPVyMT?=
- =?us-ascii?Q?GvDdgv+VynWKsoj1ctTkzi58R0QXmp0g5xol81hxJHp7prEBcBECWGJlnVSY?=
- =?us-ascii?Q?YI5OXj11MZ0eo6PoDmMUpwFLJK+5L1FLV7DOQACgXwe6lyXtEWTKteuDizA5?=
- =?us-ascii?Q?0vsyC51org=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06296e3d-92a3-4974-de65-08da17b272ed
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2022 09:47:22.8811
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9JgrrJbAodady0r5QzYlK7iin7dR3bWQtWzbCQTnGMXEirLxcU/n9XJHfGBNyiqxgx1bdGdyWkOeGzMcXQg6Jw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9443
+        with ESMTP id S234570AbiDFOHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:07:55 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4396C10FD8
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 02:47:33 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id t25so3113372lfg.7
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 02:47:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=E42yxEwN9hE1F4mWuGhw6zVEQZFBfw5J79gP+8Gl7J0=;
+        b=iIjUtMWiW9sFTZs6ixgTkqoKUp9KooOrSiS9xGSuEy6/zJouQvGjaePtj3kWP5pzMD
+         yTfKsp1ezsj9aZv6DkThlDhU+1QlwGrdUokDb493Jnpju0dK8/uGZQx4wEK6F9fft2nt
+         AARzVJuVqUYQrdbf7wgRZJ4AKMuGQxj3qG3ReyNmigbaCWBjH2FLVLWZfrUq8Iub9RVu
+         99npCDtAWWcjaLY9mHUhvWh08uqmN0OQ2Q8at89tr49Kog5UE8NGCROwS3flh7go1/NK
+         MgKdW5OsYySzV9uK+gWIleRdTjgIjGBgSYyUzyIhwq+tNmr10Tw5hTtYr6EI4WwzqgOT
+         iM6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=E42yxEwN9hE1F4mWuGhw6zVEQZFBfw5J79gP+8Gl7J0=;
+        b=eWVcjOzxXA9LJSdCpNRtxzMQibNjAcsPrl4a1dpoQk3VFeOhQuBuNvYfc67A7KMpY0
+         EAX/vTfOf2IStagNnRCt2O2Q/8aNXntpMzzE6fF9kEIhwQpC2qHx+y8GELRng8BzO7dM
+         Gm/LCSvzFRz5+fNLY/qsMlD0p3PZa4aMMaIEVb5x3utcPvWgHHXjsOtipWSL3eTPjT63
+         Bpspg5kkYCJOWnIJ8gGqNz7KHIvi3vkOAx7OW5dZqXHgvAi6oyG/8K/fvHyD2llmRaAt
+         R7AuXYRsVFN1YkE5prjMSCrIB8Oz/3no5uY40iR7+AbFrLofWjET0fgub1F1Qb8IDpLp
+         2+OQ==
+X-Gm-Message-State: AOAM532SX+rn1G/kQmEI70MG82vFM1H3BhYMw8DePWLOFBMFIiaMGORQ
+        blM2Cj7Qbc6hLlE2MAXVWnQ=
+X-Google-Smtp-Source: ABdhPJwC+eyrRKTQfRnsJir5jLb4gCz3POVqq+LV1mkriib2J7vxsIWGH9wtcC3p7KlK7L+G3REqyA==
+X-Received: by 2002:a05:6512:3341:b0:44a:eb29:c59c with SMTP id y1-20020a056512334100b0044aeb29c59cmr5331160lfd.596.1649238451239;
+        Wed, 06 Apr 2022 02:47:31 -0700 (PDT)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id m22-20020a0565120a9600b0044a93d21093sm1776972lfu.279.2022.04.06.02.47.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 06 Apr 2022 02:47:30 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
+Date:   Wed, 6 Apr 2022 11:47:22 +0200
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wait finishing jpeg job before system sleep,
-otherwise the encoding/decoding can't be resumed after suspend.
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
----
- .../media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
 
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-index ccc26372e178..3df51d866011 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-@@ -2356,9 +2356,33 @@ static int mxc_jpeg_runtime_suspend(struct device *dev)
- }
- #endif
- 
-+#ifdef CONFIG_PM_SLEEP
-+static int mxc_jpeg_suspend(struct device *dev)
-+{
-+	struct mxc_jpeg_dev *jpeg = dev_get_drvdata(dev);
-+
-+	v4l2_m2m_suspend(jpeg->m2m_dev);
-+	return pm_runtime_force_suspend(dev);
-+}
-+
-+static int mxc_jpeg_resume(struct device *dev)
-+{
-+	struct mxc_jpeg_dev *jpeg = dev_get_drvdata(dev);
-+	int ret;
-+
-+	ret = pm_runtime_force_resume(dev);
-+	if (ret < 0)
-+		return ret;
-+
-+	v4l2_m2m_resume(jpeg->m2m_dev);
-+	return ret;
-+}
-+#endif
-+
- static const struct dev_pm_ops	mxc_jpeg_pm_ops = {
- 	SET_RUNTIME_PM_OPS(mxc_jpeg_runtime_suspend,
- 			   mxc_jpeg_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(mxc_jpeg_suspend, mxc_jpeg_resume)
- };
- 
- static int mxc_jpeg_remove(struct platform_device *pdev)
--- 
-2.33.0
+> Wiadomo=C5=9B=C4=87 napisana przez Piotr Oniszczuk =
+<piotr.oniszczuk@gmail.com> w dniu 01.04.2022, o godz. 15:05:
+>=20
+>=20
+>=20
+>> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
+<s.hauer@pengutronix.de> w dniu 01.04.2022, o godz. 14:52:
+>>=20
+>> Based on the discussion with Andy please try the following patch, it
+>> should fix your green screen issue. Note that with this patch the
+>> CRTC and plane ids will change, so the modetest commands need to be
+>> adjusted accordingly.
+>>=20
+>> Sascha
+>>=20
+>> -------------------------8<---------------------------
+>>=20
+>> --=20
+>> =46rom cbc03073623a7180243331ac24c3afaf9dec7522 Mon Sep 17 00:00:00 =
+2001
+>> From: Sascha Hauer <s.hauer@pengutronix.de>
+>> Date: Fri, 1 Apr 2022 14:48:49 +0200
+>> Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
+>>=20
+>> ---
+>> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 ++++++++++++++
+>> 1 file changed, 14 insertions(+)
+>>=20
+>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c =
+b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> index 7dba7b9b63dc6..1421bf2f133f1 100644
+>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>> @@ -2287,6 +2287,20 @@ static int vop2_create_crtc(struct vop2 *vop2)
+>> 			}
+>> 		}
+>>=20
+>> +		if (vop2->data->soc_id =3D=3D 3566) {
+>> +			/*
+>> +			 * On RK3566 these windows don't have an =
+independent
+>> +			 * framebuffer. They share the framebuffer with =
+smart0,
+>> +			 * esmart0 and cluster0 respectively.
+>> +			 */
+>> +			switch (win->data->phys_id) {
+>> +			case ROCKCHIP_VOP2_SMART1:
+>> +			case ROCKCHIP_VOP2_ESMART1:
+>> +			case ROCKCHIP_VOP2_CLUSTER1:
+>> +				continue;
+>> +			}
+>> +		}
+>> +
+>> 		if (win->type =3D=3D DRM_PLANE_TYPE_OVERLAY)
+>> 			possible_crtcs =3D (1 << nvps) - 1;
+>>=20
+>> --=20
+>> 2.30.2
+>>=20
+>> Pengutronix e.K.                           |                          =
+   |
+>> Steuerwalder Str. 21                       | =
+http://www.pengutronix.de/  |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0 =
+   |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   =
++49-5121-206917-5555 |
+>=20
+> Sascha
+>=20
+> Now works perfectly!
+> (hd playback with 3.5...5.5% cpu while rendering to drm plane)
+>=20
+> Fantastic work of You!
+
+Sascha,
+
+Having vop2 finally working with drm planes rendering i discovered =
+another issue: overlay osd is invisible at playback.=20
+
+context: player draws video on plane #X and osd on overlay plane #Y
+When user do i.e. seek at playback - app uses overlay OSD plane to =
+display OSD to user. This approach is used by majority of players (KODI, =
+etc.)
+
+This works well on all platforms i have  - except rk3566=20
+
+For me it looks like z-order vop2 issue or alpha blending issue.
+As this is only on rk3566 and only on drm-planes mode - issue is vop2 =
+related imho.
+
+what you think?
+
 
