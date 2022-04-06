@@ -2,79 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31ACF4F6A12
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367FB4F69DF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231955AbiDFTik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59228 "EHLO
+        id S231213AbiDFTb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:31:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232549AbiDFThj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:37:39 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7638DEF793;
-        Wed,  6 Apr 2022 11:18:02 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id e189so3243939oia.8;
-        Wed, 06 Apr 2022 11:18:02 -0700 (PDT)
+        with ESMTP id S231210AbiDFTam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:30:42 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EFE68989;
+        Wed,  6 Apr 2022 11:23:29 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id w17-20020a056830111100b005b22c584b93so2264228otq.11;
+        Wed, 06 Apr 2022 11:23:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2yVQ2J4c2VWHwJ0B/X8jXLgF6GbJE3tf471KObA5vHk=;
-        b=NzvOZtbR4boKOvMVeF3JPwcJHPU+XnXVU5sB3kfU2Si7BTFWwd6UngeYHxtd/jAhl6
-         Xt++q75rJJEJdlIWCRp2iwZmXoX0Tkx47e+yhW0JOco0e6nDFo4zz4skQxaH9VZwZnKx
-         ifvuMq+KSNivwqHAqUv1FG4VN8FSZ4yt/LDcgwba1jvx2we5wKqROWhtxYYFZJJcUyQD
-         PfpI3EtwC13Ukb5B7885GxjhbHRB9MN0Rkf8mKdmbIxe69I8nupb+ITOPXOD4YUximiX
-         xb8YocVNeaH/2tz9cnWzBqDMdDc3QQeHegdnBd5d0Ir5XyeZ8yZDNYLJbaSv/ggcg0Kv
-         heQA==
-X-Gm-Message-State: AOAM530oanjGdL7sqDEKSRRpDmlFNybb//8wdHqrrX2C2eq05Cyi2vSo
-        URE5yENM+T8obP8bmPyFiw==
-X-Google-Smtp-Source: ABdhPJyCcrX550X5kHn4yyhHay12s23rJTOjmXniu90yHWq2OuGi3MAmBp+k3YVN0ThvPyumKI1Tvg==
-X-Received: by 2002:a05:6808:2008:b0:2da:5b12:83ff with SMTP id q8-20020a056808200800b002da5b1283ffmr4036695oiw.216.1649269081713;
-        Wed, 06 Apr 2022 11:18:01 -0700 (PDT)
+        bh=tWsk24R9WrkUYNjf3D7RLbL4lCjrTiP3ymYMdxnXVDQ=;
+        b=UK2XZPVbo7Kw2UqKzoFKYFqgoAvKT3c9ihl+5zavwwL0X1rCS/3mtWVRlgQ3h36o1W
+         A/CzgxzDvQBG/7BtnoiGN2DKGx1RWe1L7wUadwqPu2SL1X+/ZV5lYUxStZfR8l0j+9LW
+         YBavZKNmQIwF8+32lRzFju+Cbz/vcROunKNnk3z2oQHxdI+6rSAD+pILe6wjsI802ETj
+         z0/P92ODQl8OqrMYXiW7hNQJckT8eLsZ4wtSSixxXEZ36N2WrbBQ0J0DABLgwB9uM8lV
+         OaN0Ycz1DNe0tMXBCRLkJS4Rymkx7Cz1vUVE7KpsQl4ftxvCqDXj1UBacsGYtIGRbiW3
+         B09A==
+X-Gm-Message-State: AOAM531pm2Nz7MxCv5E5SLyCG8rPzmfegaW60snAk1ojqiMoDDbFSBjA
+        W1z4Fh5jp+BrUA7pPWQpJua5RMna3w==
+X-Google-Smtp-Source: ABdhPJy9M1zOkqd3RzsV06ddwdvy4gKJmDyI2VGRvx/GwLNK9Cu4loHT5QwLjSZWYqqHEny4n1Ob6g==
+X-Received: by 2002:a9d:12c1:0:b0:5b2:6181:a20f with SMTP id g59-20020a9d12c1000000b005b26181a20fmr3663470otg.242.1649269408891;
+        Wed, 06 Apr 2022 11:23:28 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t3-20020a05680800c300b002f935a7daa9sm6676425oic.19.2022.04.06.11.18.00
+        by smtp.gmail.com with ESMTPSA id e12-20020a4aa60c000000b00324bb45d7ecsm6196484oom.48.2022.04.06.11.23.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:18:01 -0700 (PDT)
-Received: (nullmailer pid 2529145 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:18:00 -0000
-Date:   Wed, 6 Apr 2022 13:18:00 -0500
+        Wed, 06 Apr 2022 11:23:28 -0700 (PDT)
+Received: (nullmailer pid 2536610 invoked by uid 1000);
+        Wed, 06 Apr 2022 18:23:27 -0000
+Date:   Wed, 6 Apr 2022 13:23:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Masami Hiramatsu <mhiramat@kernel.org>
-Subject: Re: [PATCH] dt-bindings: reset: uniphier-glue: Clean up clocks,
- resets, and their names using compatible string
-Message-ID: <Yk3ZWK3kazy2MD1E@robh.at.kernel.org>
-References: <1649145378-30358-1-git-send-email-hayashi.kunihiko@socionext.com>
+To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Cc:     Mark Brown <broonie@kernel.org>, Pratyush Yadav <p.yadav@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
+        git@xilinx.com, saikrishna12468@gmail.com, sgoud@xilinx.com
+Subject: Re: [PATCH 1/2] dt-bindings: spi: cadence-quadspi: Add reset-gpios
+ for Xilinx Versal OSPI
+Message-ID: <Yk3an4F0s2p0vxKi@robh.at.kernel.org>
+References: <1649156437-15609-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1649156437-15609-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1649145378-30358-1-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1649156437-15609-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Apr 2022 16:56:18 +0900, Kunihiko Hayashi wrote:
-> Instead of "oneOf:" choices, use "allOf:" and "if:" to define clocks,
-> resets, and their names that can be taken by the compatible string.
+On Tue, Apr 05, 2022 at 04:30:36PM +0530, Sai Krishna Potthuri wrote:
+> Add reset-gpios property to the properties list and marked as required
+> for Xilinx Versal OSPI compatible. This is used to perform the HW reset
+> for OSPI flash device.
 > 
-> The order of clock-names and reset-names doesn't change here.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
 > ---
->  .../reset/socionext,uniphier-glue-reset.yaml  | 52 ++++++++++++++-----
->  1 file changed, 38 insertions(+), 14 deletions(-)
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index 0a537fa3a641..56001eaf6365 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -19,6 +19,7 @@ allOf:
+>      then:
+>        required:
+>          - power-domains
+> +        - reset-gpios
+>  
+>  properties:
+>    compatible:
+> @@ -78,6 +79,12 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  reset-gpios:
+> +    description:
+> +      Contains a phandle and GPIO specifier for reset with the default active
+> +      state.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Other than 'for reset' that's every GPIO property. Just drop unless you 
+have something specific to cdns,qspi-nor to say.
+
+However, a reset for the flash device belongs in the flash device node, 
+not the controller node.
+
+Rob
