@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A284F6621
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD91B4F6654
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:07:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238311AbiDFQ7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 12:59:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60272 "EHLO
+        id S237947AbiDFRFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238352AbiDFQ7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:59:16 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5D4E7F45
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 07:22:40 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-de3eda6b5dso3106381fac.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 07:22:40 -0700 (PDT)
+        with ESMTP id S238414AbiDFRF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:05:28 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC094961EF;
+        Wed,  6 Apr 2022 07:28:24 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id x131so4288564ybe.11;
+        Wed, 06 Apr 2022 07:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uWGBhe0y17ZGKEMMFNK4TgCxFrYuz+yYjVH0ivmesbU=;
+        b=Wewxm6kuaQIIestTyYJsbvHlcSb+EuQogSkWQmGy6MRpVAa8WEkbwxjWnr6qT+UHZv
+         Cux7NeoLhdkGwELAm2mXZhTmlpMHioecxgBnEt3jVaqN5f8PQr6mi/p2Rqks5oyqZYEw
+         hTw18/z9rjRRvDEpNKSIpHmRTUDjfW0YYgb7UxQkwvmbwQzbl+IGapyTKNTqhKzpG6Vg
+         /QanJOfjpviprgYMTt3U7d0myoKf2Xoch6711oe4KvipoeNONnBssYAa7LD6LtgrB2Il
+         caYnpRDfJl5t/j4LS7cQZfU6alCZp8tR4nZFjQ14wzHuSq2eLelHzJogFkKTBt5G00jc
+         1j6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=upTPlbVTcoTdM5tQWTg7uD8+/IP0VcvCWUQLr9HKbxM=;
-        b=Ph1vBUXRYtRsvC2oKxNmpvI2sL8M4LHuuL4fFCoO9XqBpUrgi16cUWX4XgweiiwcIx
-         IIU01F5uIxj+AxBl1Ek7dtTGPd6zq4JJDwHIk21eJ2tv02y09CSGCpepySJf+Yu0pYOB
-         1G0Ef0LgBwQP66thaXvLocRpNl2WSb/YGEqR3X98KxsiTXvhCNx5we+01Qhhr/jmpvMm
-         +/+ahFZ+BW2SaNSJivoN4R1yBz996Vf1bAt/3GOAUEvl5khHzzjB4u8xTeTzb7bkWHh4
-         h4cDgQ64WkZtP9yYCi/ZoS0PPl2g375ouQdY+9uTm5CzhxVlOBOvtGtY9/5pluIcZ4pD
-         ZxlQ==
-X-Gm-Message-State: AOAM532sBpv/USyhtTFXb1kXBFCg1VYaeV2rp5CxGoidjz0+BHreHVKm
-        w2l1TMO5Wrzs9pu20eH+wg==
-X-Google-Smtp-Source: ABdhPJz801q89hxI79GF6DWkpTX3UDIx7GJZaV661AWppiUek8v/hqfiKWFiWpj87fhVQ/EWRwRVqg==
-X-Received: by 2002:a05:6871:793:b0:db:360c:7f5e with SMTP id o19-20020a056871079300b000db360c7f5emr3985800oap.218.1649254960113;
-        Wed, 06 Apr 2022 07:22:40 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g18-20020a9d6c52000000b005af7c7cb702sm6734042otq.34.2022.04.06.07.22.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 07:22:39 -0700 (PDT)
-Received: (nullmailer pid 2191905 invoked by uid 1000);
-        Wed, 06 Apr 2022 14:22:38 -0000
-Date:   Wed, 6 Apr 2022 09:22:38 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rui Miguel Silva <rui.silva@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: arm: add corstone1000 device tree
-Message-ID: <Yk2iLpsccuxFb5E1@robh.at.kernel.org>
-References: <20220330131053.1122502-1-rui.silva@linaro.org>
- <20220330131053.1122502-4-rui.silva@linaro.org>
- <20220331104854.sffey43mlxlg343o@bogus>
- <20220331112414.cediztrnxaoihdgq@arch-thunder>
- <20220401105322.k7ob3w2t5stuhhay@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uWGBhe0y17ZGKEMMFNK4TgCxFrYuz+yYjVH0ivmesbU=;
+        b=2x5OWmTtKe3v5YKQr95s69+Xt7kiVfu4j6UUZmw2ELmZz7lSHTvzGs/FemMLBnYlKt
+         3pRVAMFSd3kgFWBl9TLJzG+gn6FHN2EBYUw2tCQBIexSpV88dwrOuiv5IrRQvOUXqGB0
+         AhmWREuJF+WI1dhR2FNwk74GdF87vjgrvIw2V3b5kqwU89TXmGoUVUmtLjMkyM0ePdAP
+         LLSRsErWCe8wIn6+N/HCSDZpDXc8JYxOlr/HEH+Tk3QoCmPjMYiAbhCFk04k5qIRU6f+
+         /z15X0/iY7r5+SFrOurAkicSjw6aT40Jlb3S4QlNhUAnrJ6B5w50PVTeS/Y4MMYRkv//
+         VvVg==
+X-Gm-Message-State: AOAM531hmah1OhgScHJIvp/qTn7d2UkE7AxtW0sRJHhUbTZWz/DgwS7Y
+        zF2Pp+BG9in6Uj9HLuOKdSSJ+TFBlEdQvcsByik=
+X-Google-Smtp-Source: ABdhPJyWQNHD73IT3aENCY5tKAld09c6yDrZ28pv5REeDfxmLHeRzcyKqxmfC++2g6okN8GwbFf5rlsa4iY1JMxiroo=
+X-Received: by 2002:a25:374d:0:b0:63d:84a2:237d with SMTP id
+ e74-20020a25374d000000b0063d84a2237dmr6699654yba.417.1649255303691; Wed, 06
+ Apr 2022 07:28:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220401105322.k7ob3w2t5stuhhay@bogus>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <Yk2cTwmYqAZf4sCz@robh.at.kernel.org>
+In-Reply-To: <Yk2cTwmYqAZf4sCz@robh.at.kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 6 Apr 2022 15:27:57 +0100
+Message-ID: <CA+V-a8sVSsO8MArj6gcBhktB-Bi=oFUOoBVk86TZKjn357V02g@mail.gmail.com>
+Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
+ DT core
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 01, 2022 at 11:53:22AM +0100, Sudeep Holla wrote:
-> On Thu, Mar 31, 2022 at 12:24:14PM +0100, Rui Miguel Silva wrote:
-> > On Thu, Mar 31, 2022 at 11:48:54AM +0100, Sudeep Holla wrote:
-> > > On Wed, Mar 30, 2022 at 02:10:53PM +0100, Rui Miguel Silva wrote:
-> > > > +
-> > > > +		mhu_hse1: mailbox@1b820000 {
-> > > > +			compatible = "arm,mhuv2-tx", "arm,primecell";
-> > > > +			reg = <0x1b820000 0x1000>;
-> > > > +			clocks = <&refclk100mhz>;
-> > > > +			clock-names = "apb_pclk";
-> > > > +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			#mbox-cells = <2>;
-> > > > +			arm,mhuv2-protocols = <0 0>;
-> > > > +			secure-status = "okay";     /* secure-world-only */
-> > > 
-> > > Please drop the above. Though I see it is in the binding, no one uses
-> > > it in the kernel and I prefer not to have this.
-> > 
-> > the secure partitions in secure world use this mailbox to
-> > doorbell the secure enclave so, after talking with Rob he suggested to
-> > use this bindings to make this clear. So, I will keep this ones.
-> > 
-> Hi Rob,
-> 
-> Since this is first user of this binding(which is there for a while, but
-> no users in the kernel code base), are you fine with this ? 
+On Wed, Apr 6, 2022 at 2:57 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Mar 16, 2022 at 08:06:33PM +0000, Lad Prabhakar wrote:
+> > Now that all the DT drivers have switched to platform_get_irq() we can now
+> > safely drop the static setup of IRQ resource from DT core code.
+> >
+> > With the above change hierarchical setup of irq domains is no longer
+> > bypassed and thus allowing hierarchical interrupt domains to describe
+> > interrupts using "interrupts" DT property.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > Hi All,
+> >
+> > Sending this as RFC as couple of more drivers need to hit -rc yet with
+> > the platform_get_irq() change while that is in progress I wanted to get
+> > some feedback on this patch.
+>
+> I've applied this now and it is in today's linux-next. Keep an eye out
+> for any regression reports. There's one for i.MX8 in kernel-ci, but I
+> don't think it is related.
+>
+Thanks for the heads up, sure I will keep an eye on it.
 
-The general rule is 'don't put status in examples'. I think the same 
-should apply here as that is outside the scope of the binding.
-
-Rob
+Cheers,
+Prabhakar
