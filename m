@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECB5D4F5B5A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 12:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854424F5B63
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 12:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238589AbiDFKVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 06:21:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
+        id S242110AbiDFKKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 06:10:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378803AbiDFKUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 06:20:01 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CE59281816;
-        Tue,  5 Apr 2022 21:15:53 -0700 (PDT)
-Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
-        by maillog.nuvoton.com (Postfix) with ESMTP id B56A41C8112A;
-        Wed,  6 Apr 2022 12:15:52 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 6 Apr
- 2022 12:15:52 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Wed, 6 Apr 2022
- 12:15:52 +0800
-Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS01.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
- Transport; Wed, 6 Apr 2022 12:15:52 +0800
-Message-ID: <6cf25693-38dd-3b3d-8f38-649fc208ac90@nuvoton.com>
-Date:   Wed, 6 Apr 2022 12:15:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/3] dt-bindings: clock: Document MA35D1 clock controller
- bindings
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S1352973AbiDFKJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 06:09:12 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6ADA22FD8C;
+        Tue,  5 Apr 2022 23:38:48 -0700 (PDT)
+X-UUID: d4e1b5a7c4674690ba3742875695fc36-20220406
+X-UUID: d4e1b5a7c4674690ba3742875695fc36-20220406
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 322571076; Wed, 06 Apr 2022 14:38:42 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 6 Apr 2022 14:38:41 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 6 Apr
+ 2022 14:38:40 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 6 Apr 2022 14:38:40 +0800
+Message-ID: <4940e2e4ecb5f9f6857dc960ea5dbe43c551df77.camel@mediatek.com>
+Subject: Re: [PATCH v2,1/2] dt-bindings: display: mediatek: dpi: Add
+ compatible for MediaTek MT8186
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, <xinlei.lee@mediatek.com>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>, MS10 CFLi0 <CFLi0@nuvoton.com>
-References: <20220331024256.14762-1-ychuang3@nuvoton.com>
- <20220331024256.14762-3-ychuang3@nuvoton.com>
- <YkYRGNr1o087/6MM@robh.at.kernel.org>
-From:   Jacky Huang <ychuang3@nuvoton.com>
-In-Reply-To: <YkYRGNr1o087/6MM@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <jitao.shi@mediatek.com>
+Date:   Wed, 6 Apr 2022 14:38:40 +0800
+In-Reply-To: <e0d5a344c8ec1f92357bd9d5b8782dded862c549.camel@mediatek.com>
+References: <1648727917-3099-1-git-send-email-xinlei.lee@mediatek.com>
+         <1648727917-3099-2-git-send-email-xinlei.lee@mediatek.com>
+         <e0d5a344c8ec1f92357bd9d5b8782dded862c549.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,117 +62,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On Fri, 2022-04-01 at 09:38 +0800, Rex-BC Chen wrote:
+> On Thu, 2022-03-31 at 19:58 +0800, xinlei.lee@mediatek.com wrote:
+> > From: Xinlei Lee <xinlei.lee@mediatek.com>
+> > 
+> > Add dt-binding documentation of dpi for MediaTek MT8186 SoC.
+> > 
+> > Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml       |
+> > 1
+> > +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > index dd2896a40ff0..a73044c50b5f 100644
+> > ---
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > @@ -22,6 +22,7 @@ properties:
+> >        - mediatek,mt7623-dpi
+> >        - mediatek,mt8173-dpi
+> >        - mediatek,mt8183-dpi
+> > +      - mediatek,mt8186-dpi
+> >        - mediatek,mt8192-dpi
+> >  
+> >    reg:
+> 
+> Hello Xinlei,
+> 
+> From the dts we use, the dpi node needs other properties for MT8186.
+> Please send another patch and add these properties to binding.
+> 
+> assigned-clocks = <&topckgen CLK_TOP_DPI>;
+> assigned-clock-parents = <&topckgen CLK_TOP_TVDPLL_D2>;
 
-On 2022/4/1 上午 04:37, Rob Herring wrote:
-> On Thu, Mar 31, 2022 at 10:42:55AM +0800, Jacky Huang wrote:
->> Add documentation to describe Nuvoton MA35D1 clock driver bindings.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> ---
->>   .../bindings/clock/nuvoton,ma35d1-clk.yaml    | 59 +++++++++++++++++++
->>   1 file changed, 59 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
->> new file mode 100644
->> index 000000000000..bf5474b10420
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/nuvoton,ma35d1-clk.yaml
->> @@ -0,0 +1,59 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: https://apc01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fclock%2Fnuvoton%2Cma35d1-clk.yaml%23&amp;data=04%7C01%7Cychuang3%40nuvoton.com%7C2af0b5b253d14b24de4e08da1356520e%7Ca3f24931d4034b4a94f17d83ac638e07%7C0%7C0%7C637843795866047143%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=imev20A0MjoKYaL8o%2FXx3b%2FeCbSnXxVEjs9XqCLQZo0%3D&amp;reserved=0
->> +$schema: https://apc01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cychuang3%40nuvoton.com%7C2af0b5b253d14b24de4e08da1356520e%7Ca3f24931d4034b4a94f17d83ac638e07%7C0%7C0%7C637843795866047143%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=zYcNQdhT2KPxQeVzPJ8Tm5gzRxk6Z0j7O6Cy01LWDRU%3D&amp;reserved=0
->> +
->> +title: Nuvoton MA35D1 Clock Control Module Binding
->> +
->> +maintainers:
->> +  - Chi-Fang Li <cfli0@nuvoton.com>
->> +  - Jacky Huang <ychuang3@nuvoton.com>
->> +
->> +description: |
->> +  The MA35D1 clock controller generates clocks for the whole chip,
->> +  including system clocks and all peripheral clocks.
->> +
->> +  See also:
->> +    dt-bindings/clock/ma35d1-clk.h
->> +
->> +properties:
->> +  compatible:
->> +    const: nuvoton,ma35d1-clk
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#clock-cells":
->> +    const: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  assigned-clocks:
->> +    maxItems: 4
-> These aren't usually in the clock controller...
+According to [1], the assigned-clocks is initial value. Without this
+initial value, I think driver would set this clock again, wouldn't it?
 
-"clocks" is actually not used. I will remove it.
+[1] 
+https://www.kernel.org/doc/Documentation/devicetree/bindings/clock/clock-bindings.txt
 
-Does the "aren't usually" include "assigned-clocks"?
-I saw it in other vendors.
-For example rk3399.dtsi
-It presents in cru: clock-controller@ff760000 node.
+Regards,
+CK
 
-We use "assigned-clocks" to declare the four output PLLs of the clock 
-controller.
-
->
->> +
->> +  assigned-clock-rates:
->> +    maxItems: 4
->> +
->> +  clock-pll-mode:
->> +    maxItems: 4
-> What's this? Not a standard property. Needs a type, description, and
-> vendor prefix.
-
-clock-pll-mode is a vendor specific property.
-I would modify it as the following:
-
-   nuvoton,clk-pll-mode:
-     A list of PLL operation mode corresponding to DDRPLL, APLL, EPLL, 
-and VPLL
-     in sequential.
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     minItems: 4
-     maxItems: 4
-     items:
-       enum: [ 0, 1, 2 ]
-
-Is it OK?
-
-
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#clock-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  # clock control module node:
->> +  - |
->> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
->> +
->> +    clk: clock-controller@40460200 {
->> +        compatible = "nuvoton,ma35d1-clk";
->> +        reg = <0x40460200 0x100>;
->> +        #clock-cells = <1>;
->> +    };
->> +...
->> -- 
->> 2.30.2
->>
->>
+> 
+> Thanks
+> 
+> BRs,
+> Rex
+> 
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> 
+https://urldefense.com/v3/__http://lists.infradead.org/mailman/listinfo/linux-mediatek__;!!CTRNKA9wMg0ARbw!wtF15QZZTCzWfRpxNLjZ1VQQ54i40D8STuOo0h18dtz3es-ksLfYQGTEFlb7lg$
+>  
 
