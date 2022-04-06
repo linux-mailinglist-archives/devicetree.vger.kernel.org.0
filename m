@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17ECC4F6715
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCA3E4F6735
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239386AbiDFRdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36566 "EHLO
+        id S239236AbiDFReq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:34:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239209AbiDFRda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:33:30 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB852AC2;
-        Wed,  6 Apr 2022 08:38:50 -0700 (PDT)
+        with ESMTP id S239228AbiDFReZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:34:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE2712BF8A;
+        Wed,  6 Apr 2022 08:40:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CA4E4B824B4;
-        Wed,  6 Apr 2022 15:38:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50BD0C385A1;
-        Wed,  6 Apr 2022 15:38:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD2A261CAC;
+        Wed,  6 Apr 2022 15:40:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC897C385A3;
+        Wed,  6 Apr 2022 15:40:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649259527;
-        bh=j/cHGt1Adp/5ckJatmOAtFz8YwOh1uG9kyL0/rqOdAI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZxMGCv64eYBNc1avTLYsfD8OTSDZAzQlny1jcKpgW7cpaNUn7n2lzRAB8KA+0J+lc
-         blAso325sUH2hSDdGMBvrLnlq7sBAn7rt+3e0nMPFHgiaqm3WW7oDk8r6r0EjD/33C
-         3zJFZhJkYKMkbll+HRI/2m9zRNN7EtPN7AGtPU93fqfe75x7mw7W9LpfxSs0yNy968
-         c3gGMTbxAhAO8iPe+QiMSfuQiT/dcs7TPgHbp29GUwEK7hdb12Zraumk5vV7L3JElu
-         /kqCfIhCb3N2mHJnynG8r5EIciy+D8KcqFnwwcCTHtxXDyo3TtxOG/OZ8g9SvONgYu
-         KHxSDu2GKbKkg==
-Received: by mail-pg1-f172.google.com with SMTP id 32so401846pgl.4;
-        Wed, 06 Apr 2022 08:38:47 -0700 (PDT)
-X-Gm-Message-State: AOAM5337yWeQjhOnkwDS/9Yjpru+wrCkCn8NxLoNwYn9VxRJskoZjcQu
-        SqA58Rt2YUuKdS3yQDGfQFReG/vMCsVLdW/MfLU=
-X-Google-Smtp-Source: ABdhPJx6nrBYoOc7Poen+QC3GhpAJV8qLRa+XzbVgFrkIodhg2moVi8VEmGesevH2qrojOojIBiXA0F7l3qLHy9jsCo=
-X-Received: by 2002:a05:6a00:1501:b0:4fb:2d19:b6a8 with SMTP id
- q1-20020a056a00150100b004fb2d19b6a8mr9579739pfu.21.1649259526810; Wed, 06 Apr
- 2022 08:38:46 -0700 (PDT)
+        s=k20201202; t=1649259629;
+        bh=AsJzQIyOYpQ2FTcuHuYsP5bu2bnGDIoQFVq00vRBVJo=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=QiP0NBNsT0e7u8WWWUV58zjTQkFRYNf/eTQT4aDO+469VWIt1teTvGx8H+izvCJ0Y
+         x4LSQmUeWml8Wlbq/B1HGs7ONgm4adwUnSqBQg0EJPqGl2cwulD2KDeN7qSIhnsuKl
+         Gznh8lYldsP5J1C57UXPiQeY5eG+TTbiOl7VArtF0F12T706+CKXoGFHUnqGoiR1I7
+         IWgjG1/EXbDgji9YQEs8zFiJ4zQxMj16XUtutmhYjtqHdlk12ZbFCju//6xVcF5oMX
+         hFmOMq9JVwAjtBhpOW81B7XkVY4iPtUANIVZaemS/liTGUsaf8qRL1Bcux2p0cK8Zw
+         fbcO+Qpaty35w==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20220326022728.2969-1-jianjun.wang@mediatek.com> <06c9f2f8236f8dab6b27da9db0332b4ca45a1039.camel@mediatek.com>
-In-Reply-To: <06c9f2f8236f8dab6b27da9db0332b4ca45a1039.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 6 Apr 2022 17:38:35 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfWH-XSogkWVy0Q5LcHSk9SXinR7AA_Odo-oTc32y1Ykg@mail.gmail.com>
-Message-ID: <CAJKOXPfWH-XSogkWVy0Q5LcHSk9SXinR7AA_Odo-oTc32y1Ykg@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] phy: mediatek: Add PCIe PHY driver
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220406002648.393486-1-dmitry.baryshkov@linaro.org>
+References: <20220406002648.393486-1-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 0/4] arm: qcom: qcom-apq8064: add separate device node for tsens
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+To:     Amit Kucheria <amitk@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Wei-Shun Chang <weishunc@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
-        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
-        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        Thara Gopinath <thara.gopinath@gmail.com>
+Date:   Wed, 06 Apr 2022 08:40:27 -0700
+User-Agent: alot/0.10
+Message-Id: <20220406154028.EC897C385A3@smtp.kernel.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -75,15 +60,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Apr 2022 at 07:47, Jianjun Wang <jianjun.wang@mediatek.com> wrote:
->
-> Hello Maintainers,
->
-> Is there anything I can do to get these patches merged?
+Quoting Dmitry Baryshkov (2022-04-05 17:26:44)
+> Currently gcc-msm8960 driver manually creates tsens device. Instantiate
+> the device using DT node instead. This follow the IPQ8064 device tree
+> schema.
 
-Patience. :) You posted a patch during the merge window which finished
-three days ago, so basically one can assume you ping folks after three
-days. Three days is too fast for pinging. :(
-
-Best regards,
-Krzysztof
+Why can't the schema be changed?
