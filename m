@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7551F4F68BB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 20:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 392744F691F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 20:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240194AbiDFSNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 14:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54564 "EHLO
+        id S240300AbiDFSNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 14:13:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240344AbiDFSNL (ORCPT
+        with ESMTP id S240346AbiDFSNL (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:13:11 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236AB15F55F
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 09:50:39 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id 32so560768pgl.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 09:50:39 -0700 (PDT)
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 961E6C4E04
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 09:50:40 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id kw18so3080839pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 09:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ILuDkANZMc0VPh49kP2rw7U3VdF/Cux1eFEmm5f7NZo=;
-        b=RTymHclKzIwHxBbRZ3wjjyu/OJ9qr7wvbTGDhnbypS8SWUZvJJFvNTGyGiNvOhN0nM
-         rZVPhXodK2X4vptC/yYH34d8o98cQULNBssFx7FTG8JnABkGwvme9EtG3sLURxTA8rjP
-         mRFvLUnck7JUPOwO1NoGXduZzQKFSPpjIlmAI=
+        bh=NwTLIXG6NYLkv6EJfl+8yB7+FdoszwL8ecou1g8gaKU=;
+        b=gAYgnpBhrJuU2f4NBc/dm8OQkvdpbiPCRd7pRfz+XFIZnhlznJD/juizzx8B5zyBlA
+         ai4qdK80/jW4ayldRym39ExLDEqAYXKAXFS7ipgobYAWHq9YZiHR6WJ7LcMNv32Dy+DJ
+         UsRC+zlmb+1b7T8EmVf1IUrl33WHC1qzOEK98=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ILuDkANZMc0VPh49kP2rw7U3VdF/Cux1eFEmm5f7NZo=;
-        b=mW6si/byESECkMSXEVyxHKZX4zUH8l5XM7fEzAKG/l4q/yL663g6FO0ZdvFOUz5Os2
-         57jLqS5F+IU/gurpHxN6uMEMR7oNEFHs/4ri6TGdScc4laM1mB4CvC0vTPEWTCUoG5qi
-         +F6lEhSRAgwAZ0tP6NCVzsc17VEZ/zs4NEtu1w5jPmgzfwFaEKaHCMuzHmxy5FR+SS4x
-         1Q4Gt11BJodP9lWzqQD28kBsO97xjj9fVB7/d3RE42U6hYHc+fsSTlnVCnHBEy9rlaA6
-         VMt4Hum/ZMpqcrX/WRF5+U6U7pCc+kQy6jBy10iPvygG2HsF/335r7HddBQrGw1iKsbN
-         uXXw==
-X-Gm-Message-State: AOAM530JdR3P37VcWxc+PCFp9KZNiWaRaWSVmn3Fsbb0ZM4P5XM2bq31
-        UOIv9oAMfamyj4kKn8/524onrQ==
-X-Google-Smtp-Source: ABdhPJwMZXpSA5PcA7qhIlkx+9PQeQZdwuNPyEa5GqVR1r+P0B4s01HoM9Lc5sqHEizqRt3kP0pj1w==
-X-Received: by 2002:a05:6a00:1a12:b0:4fd:a5b4:b4c0 with SMTP id g18-20020a056a001a1200b004fda5b4b4c0mr9663702pfv.16.1649263838627;
-        Wed, 06 Apr 2022 09:50:38 -0700 (PDT)
+        bh=NwTLIXG6NYLkv6EJfl+8yB7+FdoszwL8ecou1g8gaKU=;
+        b=GzfkckrzLtw+nIvy/M/CmE3zKqFWA6jByYO5M6XDXu+0Z/kQ9scY0k6Pz5Q3sc02TY
+         T7tdtdO06H4iufaac9iVbFwYwoySLvW69iD+jkJBfRt5DsYXiGmcRvhHQTX7M0GpN2Vx
+         xos4ZCapj/DoY5IJ8Qh6nvMUFWyjOxzicpvWEXi7VmqN4qm2b0cDtUkBa2FHrtNVNoI8
+         ayg0uZvvfNjVqvITZ8TwhRzi172BWp8Loz5XgC8lUiJdA9K8spgusbOLJywSXQE1fcMA
+         SpwMlctM/tLleXAXw2TlFMGOUAjNIOC/ONIk3qRfZiH65IXFCB3i7Zumq4gPEihB8fyD
+         y3Zw==
+X-Gm-Message-State: AOAM532jvej3vEKZqTztKhMokptKs1bTaIC8V2auRT/UCxbRDQtI4sep
+        DiwNSNEaeC0bSP7rOitUpN0Juw==
+X-Google-Smtp-Source: ABdhPJxVKSQyEeWuWPRgm4Cp+DK1+VnKA2WARnQ3Ieg/UkHByCHKs3ljooT3+ArhQdIgP1+adZaSXw==
+X-Received: by 2002:a17:90b:2246:b0:1c6:5781:7193 with SMTP id hk6-20020a17090b224600b001c657817193mr11201226pjb.48.1649263840123;
+        Wed, 06 Apr 2022 09:50:40 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:c9d3:469f:91e4:c022])
-        by smtp.gmail.com with UTF8SMTPSA id h13-20020a056a00230d00b004f427ffd485sm22025915pfh.143.2022.04.06.09.50.37
+        by smtp.gmail.com with UTF8SMTPSA id 68-20020a621647000000b004fa763ef1easm19547512pfw.125.2022.04.06.09.50.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Apr 2022 09:50:38 -0700 (PDT)
+        Wed, 06 Apr 2022 09:50:39 -0700 (PDT)
 From:   Gwendal Grignou <gwendal@chromium.org>
 To:     jic23@kernel.org, robh+dt@kernel.org, swboyd@chromium.org
 Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v4 6/8] iio: sx9324: Add Setting for internal compensation resistor
-Date:   Wed,  6 Apr 2022 09:50:09 -0700
-Message-Id: <20220406165011.10202-7-gwendal@chromium.org>
+Subject: [PATCH v4 7/8] dt-bindings: iio: sx9360: Add precharge resistor setting
+Date:   Wed,  6 Apr 2022 09:50:10 -0700
+Message-Id: <20220406165011.10202-8-gwendal@chromium.org>
 X-Mailer: git-send-email 2.35.1.1094.g7c7d902a7c-goog
 In-Reply-To: <20220406165011.10202-1-gwendal@chromium.org>
 References: <20220406165011.10202-1-gwendal@chromium.org>
@@ -66,82 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on device tree setting, set the internal compensation resistor.
+Allow configure the resistance used during precharge.
 
 Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 ---
 Changes since v3:
-- Use match_string() to prevent incorrect matching.
+- Fix maximum field. Check make dt_binding_check passes.
 
 Changes since v2:
-- No changes.
+- Change kOhms into ohms.
 
 Changes since v1:
-- No changes.
+- Suffix property with kOhms.
 
- drivers/iio/proximity/sx9324.c | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ .../bindings/iio/proximity/semtech,sx9360.yaml           | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
-index 691700de0b9d4..2dcfac09644bd 100644
---- a/drivers/iio/proximity/sx9324.c
-+++ b/drivers/iio/proximity/sx9324.c
-@@ -52,6 +52,11 @@
- #define SX9324_REG_CLK_SPRD		0x15
+diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
+index 63e1a1fd00d4c..20c2759ced436 100644
+--- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
++++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
+@@ -61,6 +61,14 @@ properties:
+       UINT_MAX (4294967295) represents infinite. Other values
+       represent 1-1/N.
  
- #define SX9324_REG_AFE_CTRL0		0x20
-+#define SX9324_REG_AFE_CTRL0_RINT_SHIFT		6
-+#define SX9324_REG_AFE_CTRL0_RINT_MASK \
-+	GENMASK(SX9324_REG_AFE_CTRL0_RINT_SHIFT + 1, \
-+		SX9324_REG_AFE_CTRL0_RINT_SHIFT)
-+#define SX9324_REG_AFE_CTRL0_RINT_LOWEST	0x00
- #define SX9324_REG_AFE_CTRL1		0x21
- #define SX9324_REG_AFE_CTRL2		0x22
- #define SX9324_REG_AFE_CTRL3		0x23
-@@ -769,7 +774,7 @@ static const struct sx_common_reg_default sx9324_default_regs[] = {
- 	 */
- 	{ SX9324_REG_GNRL_CTRL1, SX9324_REG_GNRL_CTRL1_PAUSECTRL },
- 
--	{ SX9324_REG_AFE_CTRL0, 0x00 },
-+	{ SX9324_REG_AFE_CTRL0, SX9324_REG_AFE_CTRL0_RINT_LOWEST },
- 	{ SX9324_REG_AFE_CTRL3, 0x00 },
- 	{ SX9324_REG_AFE_CTRL4, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
- 		SX9324_REG_AFE_CTRL4_RES_100 },
-@@ -848,6 +853,8 @@ static const struct sx_common_reg_default *
- sx9324_get_default_reg(struct device *dev, int idx,
- 		       struct sx_common_reg_default *reg_def)
- {
-+	static const char * const sx9324_rints[] = { "lowest", "low", "high",
-+		"highest" };
- #define SX9324_PIN_DEF "semtech,ph0-pin"
- #define SX9324_RESOLUTION_DEF "semtech,ph01-resolution"
- #define SX9324_PROXRAW_DEF "semtech,ph01-proxraw-strength"
-@@ -855,6 +862,7 @@ sx9324_get_default_reg(struct device *dev, int idx,
- 	char prop[] = SX9324_PROXRAW_DEF;
- 	u32 start = 0, raw = 0, pos = 0;
- 	int ret, count, ph, pin;
-+	const char *res;
- 
- 	memcpy(reg_def, &sx9324_default_regs[idx], sizeof(*reg_def));
- 	switch (reg_def->reg) {
-@@ -875,6 +883,17 @@ sx9324_get_default_reg(struct device *dev, int idx,
- 			       SX9324_REG_AFE_PH0_PIN_MASK(pin);
- 		reg_def->def = raw;
- 		break;
-+	case SX9324_REG_AFE_CTRL0:
-+		ret = device_property_read_string(dev,
-+				"semtech,int-comp-resistor", &res);
-+		if (ret)
-+			break;
-+		ret = match_string(sx9324_rints, ARRAY_SIZE(sx9324_rints), res);
-+		if (ret < 0)
-+			break;
-+		reg_def->def &= ~SX9324_REG_AFE_CTRL0_RINT_MASK;
-+		reg_def->def |= ret << SX9324_REG_AFE_CTRL0_RINT_SHIFT;
-+		break;
- 	case SX9324_REG_AFE_CTRL4:
- 	case SX9324_REG_AFE_CTRL7:
- 		if (reg_def->reg == SX9324_REG_AFE_CTRL4)
++  semtech,input-precharge-resistor-ohms:
++    default: 0
++    description:
++      Pre-charge input resistance in Ohm.
++      Rounded down to a 2000 Ohm multiple.
++    minimum: 0
++    maximum: 30000
++
+ required:
+   - compatible
+   - reg
+@@ -85,5 +93,6 @@ examples:
+         semtech,resolution = <256>;
+         semtech,proxraw-strength = <2>;
+         semtech,avg-pos-strength = <64>;
++        semtech,input-precharge-resistor-ohms = <4000>;
+       };
+     };
 -- 
 2.35.1.1094.g7c7d902a7c-goog
 
