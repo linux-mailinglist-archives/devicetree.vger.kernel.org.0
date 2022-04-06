@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7105A4F6B3A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42E434F6B43
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231945AbiDFUWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 16:22:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
+        id S230188AbiDFUYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 16:24:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233836AbiDFUVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:21:18 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED535329CAC;
-        Wed,  6 Apr 2022 11:33:47 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id t21so3275940oie.11;
-        Wed, 06 Apr 2022 11:33:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sIlgTwiNbfwFFAy/yXeyQZoSzXEnPFRyql/iL5iCCtE=;
-        b=EavmNT81m2zPk7pJS6EZPpHNfJlHPQ0kUzliAamOJ/6oVjU2AT9jnyz2im4jfY5447
-         B6kp6qB/sWmRE42U/V0UTTWmYcqG2OueC+vYYLYvK/qYJpFjl4rd+dXemTjBuBVXpdIC
-         N+3uMpQOxtjnYnkz68BEc5IOLUIn+4gnzxj1UVZ1zUk8Ii8OCQsMe9Ix3AMLXYxphlcu
-         KeY5Izmx9OsaV/n19OSxUuuNIIgAFqwrLVo3vT5oSb/Sgb1qk1vQ9t9PmTDxwVV7E+VL
-         8TjNtPJ6mO3NFaIMb8p9ZWm927juWoorK0XDxJL8hV/HQMrOzd3Hq9ES0AdY7iQlg6G3
-         2qQA==
-X-Gm-Message-State: AOAM533sAKnXSCTUPR/QEFMzR2HSMfdze9JPyCqVCY72nYDFHsDsvSTY
-        Bn8/arOIhQ7NU80QentuGw==
-X-Google-Smtp-Source: ABdhPJzoDiAm1Di4r6ZLELhVjZd9pldCOh/h5QYfD8dFKDaipx5siYm49mB3Emx2ZZfS+3iBhWYjsA==
-X-Received: by 2002:aca:36c1:0:b0:2ec:cf67:b8ef with SMTP id d184-20020aca36c1000000b002eccf67b8efmr4103516oia.115.1649270027272;
-        Wed, 06 Apr 2022 11:33:47 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b21-20020a9d7555000000b005b24c85da2csm6980665otl.51.2022.04.06.11.33.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:33:46 -0700 (PDT)
-Received: (nullmailer pid 2551211 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:33:46 -0000
-Date:   Wed, 6 Apr 2022 13:33:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     nicolas.ferre@microchip.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        sre@kernel.org, p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com
-Subject: Re: [PATCH 2/8] dt-bindings: reset: convert Atmel/Microchip reset
- controller to YAML
-Message-ID: <Yk3dCu8ef9Scbklp@robh.at.kernel.org>
-References: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
- <20220405112724.2760905-3-claudiu.beznea@microchip.com>
+        with ESMTP id S236453AbiDFUYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:24:06 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FCD23FF30;
+        Wed,  6 Apr 2022 11:42:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=PYVHqwQP9zUY5QYwTSBSr5XJSO70ZDvgRQzi+eB230o=; b=Uf7ow8gdHmT8OrN4RZLA/xb9C9
+        ykoP89LtoLUuyFpyNKNZur3AX6xAIEjEjlKnSI0NGaFcdUjD0vLnf3MvpM3PwrrUOXZdya4sTI60K
+        1VRfjYQD7+A+zhXiXBOdpgCohsP+Wpx1JA+FKAxe1NNz5fm6Q4TsnJo0/ZFUNju2V3FM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ncAc3-00EVPB-8c; Wed, 06 Apr 2022 20:42:39 +0200
+Date:   Wed, 6 Apr 2022 20:42:39 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Puranjay Mohan <p-mohan@ti.com>
+Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org, vigneshr@ti.com,
+        kishon@ti.com
+Subject: Re: [RFC 13/13] net: ti: icssg-prueth: Add ICSSG ethernet driver
+Message-ID: <Yk3fHzDsl1iNl9ah@lunn.ch>
+References: <20220406094358.7895-1-p-mohan@ti.com>
+ <20220406094358.7895-14-p-mohan@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220405112724.2760905-3-claudiu.beznea@microchip.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220406094358.7895-14-p-mohan@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Apr 2022 14:27:18 +0300, Claudiu Beznea wrote:
-> Convert Atmel/Microchip reset controller to YAML.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../devicetree/bindings/arm/atmel-sysregs.txt | 15 ------
->  .../reset/atmel,at91sam9260-reset.yaml        | 49 +++++++++++++++++++
->  2 files changed, 49 insertions(+), 15 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
-> 
+> +config TI_ICSSG_PRUETH
+> +	tristate "TI Gigabit PRU Ethernet driver"
+> +	select TI_DAVINCI_MDIO
+> +
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I don't see a dependency on TI_DAVINCI_MDIO in the code. All you need
+is an MDIO bus so that your phy-handle has somewhere to point. But that
+could be a GPIO bit banger.
+
+What i do think is missing here is a dependency on PHYLIB.
+
+If possible, it would be good to also have it compile when
+COMPILE_TEST is set.
+
+     Andrew
