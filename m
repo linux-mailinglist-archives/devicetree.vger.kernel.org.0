@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73B204F696C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 20:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13EF34F6A85
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiDFSvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 14:51:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52952 "EHLO
+        id S233016AbiDFTyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:54:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230413AbiDFStC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 14:49:02 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909CEE09BD;
-        Wed,  6 Apr 2022 11:06:51 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id e4so3234690oif.2;
-        Wed, 06 Apr 2022 11:06:51 -0700 (PDT)
+        with ESMTP id S236809AbiDFTyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:54:01 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF7E525FD67;
+        Wed,  6 Apr 2022 11:09:21 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id 12so3199905oix.12;
+        Wed, 06 Apr 2022 11:09:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NV0lW1tSHUTbd+4Z35O+30iOwvDlNCjNcqdse63qw4c=;
-        b=tyvk0NnWxSwbf8RsVozVF+Mu1fAs25XU0snXP/qjIEYSV8iT/g/Gl4oGnpsvMszAmG
-         M8Gae1HcX8sXmPfAjqOYQHaydcMBSWwiZEKAn0WVj8Vr5HeQpLzOkaU3dNtFs97VBdut
-         mCdM1kpmAtwS3fAtHbQACZuRoRCri8LnGq0EVWIWKcWJpxQPxlypXkJVGqcW3WBENB6Z
-         NVYbSqmIuaaIlQIIvuxukNJSqNz2I8QZivLY8FN3oyfB7F9+4t2rKgPSGLwZ8RFgAfsN
-         1M3DU8OokYphE3H50DA0ZsvtMvrIjLcbhpe9ZvfJU9agddtSR/HY8Dcl6OGd4CYKF1x1
-         g+jA==
-X-Gm-Message-State: AOAM53002WW/CKWlCLf2TTZndAma9WHyLLLBWhMhIhPFiZ+abWk1thdu
-        uUTFdBcKX7yW2Py7uNbW3g==
-X-Google-Smtp-Source: ABdhPJzNOlkk/pDqP+Kii3ZVVph5q9A1ktnfpQ3Hz1+9rtv+SrXNyeX4ngNYHtiW+gjcFE0OqFDRCw==
-X-Received: by 2002:aca:1811:0:b0:2ef:3c0f:f169 with SMTP id h17-20020aca1811000000b002ef3c0ff169mr4206453oih.61.1649268410748;
-        Wed, 06 Apr 2022 11:06:50 -0700 (PDT)
+        bh=ZCv5Z3on9AQtD9yYpps2anAChZwta6wJ94nkSs1cqXY=;
+        b=6tNtHGh0XXL8x91EXpnuaSzYGH9VGigyzFELNLpty8TqaiFTb/tHiCrFovm9SOOx0K
+         lf/DjaHJj53h8NPHPmgIPg1LXFzn3K/XseX2+THdsgGCYz/nV1RPe6kkNKp56p4Qat6B
+         7RjnAV1vveiMf8X/tFq19ecLk+jQkBAIibvMhjY/BSZWHhEY7oYShGORWTA9x8gkg3fI
+         VfxuRqOSv3Fg96Zd5AInCi9rZ/VKVYQmV5HPp1bQV35I8e3j8V6Dl/n0AnjJpaEXmsIb
+         5XRThCMu6Ebf2VcaO9Y/Dkh324u4Txfu05Is/rD6WjltXeXtkbPlqh8teGBaE2dchaVr
+         8CKQ==
+X-Gm-Message-State: AOAM530RRf13ASe9KLMLnr4NysFOXFkjV+FuyBTh2aWTwG7I8FGT3xFs
+        SAw0JbD3LaDcoqKwkV1NKA==
+X-Google-Smtp-Source: ABdhPJx5Gu4gGUEd9ZN30X4nIljJqIliTezdh62bKAP3TJPDFaPvtdOjU2y3V053IinzgSoWLXyQDg==
+X-Received: by 2002:a05:6808:4d4:b0:2ec:f4e0:2b84 with SMTP id a20-20020a05680804d400b002ecf4e02b84mr4008798oie.153.1649268560875;
+        Wed, 06 Apr 2022 11:09:20 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q6-20020acaf206000000b002ef960f65b3sm6644127oih.25.2022.04.06.11.06.50
+        by smtp.gmail.com with ESMTPSA id o19-20020a4a9593000000b0032176119e65sm6454944ooi.34.2022.04.06.11.09.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:06:50 -0700 (PDT)
-Received: (nullmailer pid 2512546 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:06:49 -0000
-Date:   Wed, 6 Apr 2022 13:06:49 -0500
+        Wed, 06 Apr 2022 11:09:20 -0700 (PDT)
+Received: (nullmailer pid 2516021 invoked by uid 1000);
+        Wed, 06 Apr 2022 18:09:19 -0000
+Date:   Wed, 6 Apr 2022 13:09:19 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2] dt-bindings: can: renesas,rcar-canfd: Document
- r8a77961 support
-Message-ID: <Yk3WuULOeazcprrr@robh.at.kernel.org>
-References: <20220404200930.1249612-1-mkl@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-serial@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH v4 7/9] dt-bindings: serial: qcom,msm-uartdm: convert to
+ dtschema
+Message-ID: <Yk3XT0n2l75Is4dq@robh.at.kernel.org>
+References: <20220405063451.12011-1-krzysztof.kozlowski@linaro.org>
+ <20220405063451.12011-8-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220404200930.1249612-1-mkl@pengutronix.de>
+In-Reply-To: <20220405063451.12011-8-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,24 +72,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Apr 2022 22:09:30 +0200, Marc Kleine-Budde wrote:
-> From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Tue, 05 Apr 2022 08:34:49 +0200, Krzysztof Kozlowski wrote:
+> Convert the Qualcomm MSM Serial UARTDM bindings to DT Schema.
 > 
-> This patch adds documentation for the r8a77961 to the
-> renesas,rcar-canfd binding.
-> 
-> Link: https://lore.kernel.org/all/20220401153743.77871-1-wsa+renesas@sang-engineering.com
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Changes since v1:
-> - added patch description
-> - added devicetree on Cc
-> 
->  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml          | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/serial/qcom,msm-uartdm.txt       |  81 -------------
+>  .../bindings/serial/qcom,msm-uartdm.yaml      | 112 ++++++++++++++++++
+>  2 files changed, 112 insertions(+), 81 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/qcom,msm-uartdm.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/qcom,msm-uartdm.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
