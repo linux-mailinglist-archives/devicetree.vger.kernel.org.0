@@ -2,53 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77D3C4F645E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:08:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D6F4F6455
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:08:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236729AbiDFP46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 11:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43076 "EHLO
+        id S236888AbiDFP6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 11:58:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236667AbiDFP4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 11:56:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1A0147513;
-        Wed,  6 Apr 2022 06:21:03 -0700 (PDT)
+        with ESMTP id S237199AbiDFP57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 11:57:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1763878E4;
+        Wed,  6 Apr 2022 06:24:20 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8CF886142F;
-        Wed,  6 Apr 2022 13:21:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4E26C385A3;
-        Wed,  6 Apr 2022 13:21:00 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C2610B823C7;
+        Wed,  6 Apr 2022 13:24:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0213AC385A1;
+        Wed,  6 Apr 2022 13:24:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649251263;
-        bh=ViYRsF890RbISR0gDdLtC5jAvfvnM2EN5LeAZe+XYW4=;
+        s=k20201202; t=1649251457;
+        bh=9iYA/HOkMsWd89xBB9FdVueeuaKg1IVIScRynNGasXk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JGbW0mAy7/Fe/+/3EP9kURYuQpgSYTJd7TIw+HTx6WN82Wz3s+/U9ElV+3iO4j7dB
-         iW06PKf0HHRelYYrfmcwfWZb9cMp755kbYv/m6DglZ+0UV/onFn+wpgf8qA7mRjKYX
-         Ck4LXsLEUnp9JVTsJfrma2QwUfR6farHS1A2wBQrjbJ5MubYy5hgWdv4y/ax9/M33i
-         goAk/2bV+PhqZFyNfLpRcDHLW59mmceDIbr6GNFw0JpwccoO0ZjcLWwzU6AqhzCTyc
-         FsFuykkIzX9hUGRZjjxyJ+hSrjJMWGMGYoZrG6e+aXPRIfd3auTVJ8yGi+Jxs34Alk
-         W4l/BgI78ooKQ==
-Date:   Wed, 6 Apr 2022 21:20:56 +0800
+        b=Wpaqx5OrP/4ZKQO7wVVNRivuU9PduzghP7WZFdbFV1oWuzboEOjXWlHlw1i+uF4Ls
+         /j61ifCOE8Rjo5NM/5Z17bQ7EmY+v+/L+r92Bw11OGpb8oojwLOf4q1I/HClI8uOG+
+         Yp6I/Nnv2fg/oC7WlSpYYDnHoNN37hmMpek58gTzEADadSK/dP9Xd7DICdBofEJG7B
+         790vgg5v93oORrpnbzuSsTLW0cQ7KOKCzxhXLe8g+j9t7rW1GvdsixESie1v2xpuZL
+         7i/vo78aL3JUrSlTRzeV5hj4aevp2HDHLkv/dlTbec3/WjnBaBp5T3tU4j+sjKU++J
+         hlxVKMxLo9wPg==
+Date:   Wed, 6 Apr 2022 21:24:10 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>, heiko.thiery@gmail.com,
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     sboyd@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        abel.vesa@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mn-evk: use proper names for PMIC
- outputs
-Message-ID: <20220406132056.GR129381@dragon>
-References: <20220224103030.2040048-1-michael@walle.cc>
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mq: add hdmi phy 27m clock
+Message-ID: <20220406132410.GS129381@dragon>
+References: <20220225090002.2497057-1-peng.fan@oss.nxp.com>
+ <20220225090002.2497057-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220224103030.2040048-1-michael@walle.cc>
+In-Reply-To: <20220225090002.2497057-2-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -59,10 +57,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 24, 2022 at 11:30:29AM +0100, Michael Walle wrote:
-> Use the power signal names as given in the schematics of the reference
-> board.
+On Fri, Feb 25, 2022 at 05:00:01PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> The i.MX8MQ PLL support hdmi phy 27m as pll reference clock,
+> so add a fixed clock for it.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Applied both, thanks!
+Applied, thanks!
