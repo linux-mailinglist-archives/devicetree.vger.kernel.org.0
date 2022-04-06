@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 433564F59FD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 11:29:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6288D4F57DA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 10:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235170AbiDFJbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 05:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57900 "EHLO
+        id S242228AbiDFIa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 04:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1579852AbiDFJUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 05:20:42 -0400
+        with ESMTP id S1351777AbiDFI3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 04:29:25 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EED31B2C46;
-        Tue,  5 Apr 2022 19:14:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BFD1B2C6C;
+        Tue,  5 Apr 2022 19:16:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7BFAFB81FB5;
-        Wed,  6 Apr 2022 02:14:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 478D5C385A0;
-        Wed,  6 Apr 2022 02:14:41 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1024EB81FB5;
+        Wed,  6 Apr 2022 02:16:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61FB7C385A0;
+        Wed,  6 Apr 2022 02:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649211284;
-        bh=7oxtU6dReocTjrAPtmbWJeUxLA98brvJonekBTXb0r8=;
+        s=k20201202; t=1649211365;
+        bh=HFUmutMpPclH6W3Ib5k9z/9xgPTS1ozGO4CtoNe7cLo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pglIEobHodK+J/xTI/lixv4yCnW3MqVBTFnJgba4A4VhII6Y06FqiyubCK0sOnIOH
-         McKjnnN9eT9TDs2PFrrqJVuGdMjZiMwkYwU4rSX6pRy2N0VasXk4BkhB+408IWIzRR
-         EFsu/3EMzxbXtwIkxGPyhYqBwEQNKk0OEP/EhG3Qkedsn7V/q8kjMeaKjGdHEQE+6w
-         49qrJ9N3TR6OKitMwIP7aYT/FHaDpHp4ogIy6kc1MPd2aqPhzDPb1h7bIfkgTOTYeK
-         +9hdF4FwdtTZUdAIOs6v+pWuCGWYpE6RkLeMaULPbcalB6lEFAvwQRVIy9MfhLv08V
-         SDagjTCxDyt+g==
-Date:   Wed, 6 Apr 2022 10:14:37 +0800
+        b=Z3mmC5uozNJPRjpYnuEFfuRNyy23hI/lveEyZjC1kvZF9KHfnbBGd+SoUiWwwtYEo
+         JvKGzib7NZHV1b6EH8GZNevmkByOKV2M2doW5nf8404TTxnqUQiIUiOe7CnS50i2Ux
+         f9aQh7K3AD78LS7dq1EGK0Ypm2SMEh5XbbT4KLKJedN+nrPQ1Uxbz16Uo4EvqmApTR
+         vcOw7IFuNmyIildCP2i7fpMFi9+id+OCfeyeWVlaDyBBYHUuR2mbYtSLgqA1rINNgy
+         Z7l6D2Z7mApuxq62QeoPhaxm4Br481B6Oi2J1c2pQNnq72DjCCa7F5LN3EAIWrWzzK
+         +CnaZAQs9kfSA==
+Date:   Wed, 6 Apr 2022 10:15:57 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Oleksij Rempel <o.rempel@pengutronix.de>
 Cc:     Mark Rutland <mark.rutland@arm.com>,
@@ -41,22 +41,22 @@ Cc:     Mark Rutland <mark.rutland@arm.com>,
         Sam Ravnborg <sam@ravnborg.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        David Jander <david@protonic.nl>,
         Robin van der Gracht <robin@protonic.nl>,
         devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
         dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v1 2/8] ARM: dts: imx6qdl-vicut1/vicutgo: Rename
- backlight to backlight_lcd
-Message-ID: <20220406021437.GH129381@dragon>
+Subject: Re: [PATCH v1 6/8] ARM: dts: imx6dl-victgo: Add interrupt-counter
+ nodes
+Message-ID: <20220406021557.GK129381@dragon>
 References: <20220221095312.3692669-1-o.rempel@pengutronix.de>
- <20220221095312.3692669-2-o.rempel@pengutronix.de>
+ <20220221095312.3692669-6-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220221095312.3692669-2-o.rempel@pengutronix.de>
+In-Reply-To: <20220221095312.3692669-6-o.rempel@pengutronix.de>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,13 +67,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 10:53:06AM +0100, Oleksij Rempel wrote:
-> From: David Jander <david@protonic.nl>
+On Mon, Feb 21, 2022 at 10:53:10AM +0100, Oleksij Rempel wrote:
+> From: Robin van der Gracht <robin@protonic.nl>
 > 
-> We have two backlight sources on this boards. Use more specific name for
-> the LCD backlight to see the difference.
+> Interrupt counter is mainlined, now we can add missing counter nodes.
 > 
-> Signed-off-by: David Jander <david@protonic.nl>
 > Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
