@@ -2,117 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 663EB4F6262
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AB304F6180
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:17:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235222AbiDFOyZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Apr 2022 10:54:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56106 "EHLO
+        id S234079AbiDFOTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:19:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235126AbiDFOwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:52:19 -0400
-X-Greylist: delayed 2339 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 06 Apr 2022 04:27:52 PDT
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B074C4E5D4C;
-        Wed,  6 Apr 2022 04:27:52 -0700 (PDT)
-Received: from mail-wm1-f41.google.com ([209.85.128.41]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MuDoR-1nq8pN1sfF-00ua7I; Wed, 06 Apr 2022 11:41:00 +0200
-Received: by mail-wm1-f41.google.com with SMTP id l62-20020a1c2541000000b0038e4570af2fso1232266wml.5;
-        Wed, 06 Apr 2022 02:41:00 -0700 (PDT)
-X-Gm-Message-State: AOAM532nots+nSUALq2sX+8t4yFa83Z0hnqRN2+LPukycXzuCmW5OmVI
-        zgohL12wKb90MaWG5IcnjzZDov4cWCjAw8++KEk=
-X-Google-Smtp-Source: ABdhPJzxUZX+E7XCtlp8CuL3coz4kajfPoqdCKk/EJtWFQ5dur8RDTboYWVRRTfTH1oiwHkEqf8zaBfFzz/1pPZluso=
-X-Received: by 2002:a05:600c:4ecc:b0:38e:354d:909 with SMTP id
- g12-20020a05600c4ecc00b0038e354d0909mr6846810wmq.33.1649238060031; Wed, 06
- Apr 2022 02:41:00 -0700 (PDT)
+        with ESMTP id S234850AbiDFORh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:17:37 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187874AE2C;
+        Wed,  6 Apr 2022 03:21:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649240477; x=1680776477;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yxkJQ+xpKNZwscjI29k+dfTvsCbgs3FwKWMIeqijIEY=;
+  b=wsRBgaJUgq2IkDg9pDWbgvyl5+1nIQeji34K8+5F/6Zxik6Gh4OD9q5t
+   PIbCOI6Yp7ZKpn+e+lcHkmMMEM26f3ELLD62QM6C6ZEZgfcWwgNBYUdBZ
+   UilRY1Z2ncpENXonaEFGQ1NPmZn5rs3rTs8JWi0WQ5DMSlBo+jGtdnSrq
+   M=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 06 Apr 2022 02:41:42 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 02:41:41 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 6 Apr 2022 02:41:41 -0700
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 6 Apr 2022 02:41:39 -0700
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <ath11k@lists.infradead.org>
+CC:     <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <mka@chromium.org>,
+        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH v4 06/12] ath11k: Add QMI changes for WCN6750
+Date:   Wed, 6 Apr 2022 15:11:00 +0530
+Message-ID: <20220406094107.17878-7-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220406094107.17878-1-quic_mpubbise@quicinc.com>
+References: <20220406094107.17878-1-quic_mpubbise@quicinc.com>
 MIME-Version: 1.0
-References: <20220307091923.9909-1-ychuang3@nuvoton.com> <20220307091923.9909-4-ychuang3@nuvoton.com>
- <2669852c-5bb6-1edf-bf58-ea815f54d50f@kernel.org> <ef8efda1-e985-0684-470f-7acf9b8a5e93@nuvoton.com>
- <bba99b9d-6960-f6e8-0ee4-0b5fe8a5601d@linaro.org> <ab89589f-6dd7-d4ff-635d-ff8dbd2d3e02@nuvoton.com>
-In-Reply-To: <ab89589f-6dd7-d4ff-635d-ff8dbd2d3e02@nuvoton.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 6 Apr 2022 11:40:44 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a034bvYcD81h-jo92PbQwDDapa8JvS140fsBhaP7qrFXw@mail.gmail.com>
-Message-ID: <CAK8P3a034bvYcD81h-jo92PbQwDDapa8JvS140fsBhaP7qrFXw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
-To:     Jacky Huang <ychuang3@nuvoton.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "soc@kernel.org" <soc@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Provags-ID: V03:K1:ym5E5RCTMbe3WDe7e5tAv7Ns5tg0qVR7XTBsncM0V4ygUGzYLkX
- wVNMZVF4lA38S+Ax9xlUCP7lUFgv6Mo3+vKhVqN0weEC2oXc2EeHOxVIAPOcTcZktUvRYMM
- kqD/0uGLlOHjulxDn6dg4oh6Kwz3U5fDRYmeavTrJg/tjjmv5nd0bam+u3zhRNNEJ0iD0vA
- vIPUj1TkMFdLgXxHFz/Aw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:0FJFHUnyfrw=:M1ZZfWhg0NqGqONOnDrmqt
- YjskGH/X47PoWikYHCufKyZa4tD+iAvY8z0u9qhNkZrGLVdMlpcWo+y2nh3rukQIJ2WFm2UM1
- rnsJQ9WjRfU4xuyqx2mgevuwzv0FnFd6E/PUtNLMGCyWhSU2tLGHf6/itW/btxeSR3sEtuusY
- l2KsvKcpPk0zhwADNd6ekB9MEG87cVrHR8K+lasn5rKf50PUvyts/egDzKXk1y+3miL147uDx
- DHSN5phmvW5NzQ7HoF/FUl8c7FrNsHW7Wz93tJtZOo/b9XVE9gyHVzaTGfhwyLAgf9B1VZm8u
- NN0YnfLEBEl1Si6a6hcoXi1uGSaugNJcPV/mOlOfQatte+oDOSNpyHKrxpPTO2fVt+nOn6hoM
- JHwAVNxdyM0N99MkYiMK1Cw4lqSYSMEfPBR1e5svbEmrMgI+u6GnUORA5PO4mhtn1s5Raa4mW
- LPec6BwxC8LdxXj8eNsRQCEUGsI8fS87BsYxN5XgbzvzH54xSdcSzu5xXeqNfqIV8XR5Ax+nr
- gLXOk3wjIin8XGpWjcGwlWv8OAV/DxKh2/l3DFKz0iXjcCXhuE+gv9hLid0NhoKYHpdj4VHFk
- 6kd2L1vhKPoibYC0l2vOQxit7nxU30ITOwtaMqBOy7/58JlXXV+PlkOtRy45ELUdIMx/95Iew
- lWcaw9ddPKiwq7gnktuagoRAv2yIdF242WA0db42RM9vKKQV8vFEfnmzALlOw1eulTQMK72Ae
- mZycrRY7LFQTPGwUtP9SjELIzfR99TIsC+zEGwQzFNAZh121MUWmMa94B88SHQKeEpe3ReYHc
- 0HdrfQdExzmvhEZb/i2wolaxA0K2z1N4UFJGOB6Yh6BS8usfac=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 6, 2022 at 11:25 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
-> On 2022/4/6 下午 03:14, Krzysztof Kozlowski wrote:
-> > On 06/04/2022 04:58, Jacky Huang wrote:
-> >> config ARCH_MA35D1
-> >>       bool "Nuvoton MA35D1 SOC Family"
-> > We do not add options for specific SoCs, but for entire families, so
-> > ARCH_NUVOTON is correct.
->
-> Yes, I would like to modify it as the following:
->
-> config ARCH_NUVOTON
->      bool "Nuvoton SoC Family"
->      select PINCTRL
->      select PINCTRL_MA35D1
->      select PM
->      select GPIOLIB
->      select SOC_BUS
->      help
->        This enables support for Nuvoton MA35D1 ARMv8 SoC.
->
-> (Currently, we have MA35D1 only in the support list for arm64 SoC.).
+In the case of WCN6750, FW doesn't request for DDR memory
+via QMI, instead it uses a fixed 12MB reserved Memory region
+in the DDR which is called as MSA region. As a result, QMI
+message sequence is not same as other ath11k supported devices.
 
-You could reword this to "This enables support for Nuvoton ARMv8 SoCs
-such as the MA35D1", to prevent this from getting stale, or repeatedly
-updated when future SoCs are added.
+Also, M3 firmware will be bundled into the FW and will be
+downloaded to the target as part of Q6 boot.
 
-Another change you can consider is to remove the 'select PINCTRL_MA35D1'
-here and instead change the pinctrl Kconfig entry to
+This is the QMI flow in the case of WCN6750,
 
-config PINCTRL_MA35D1
-           bool "..."
-           depends on ARCH_NUVOTON || COMPILE_TEST
-           default ARCH_NUVOTON
+1) QMI firmware indication REQ/RESP
+2) QMI host capability REQ/RESP
+3) QMI target capability REQ/RESP
+4) QMI device info REQ/RESP
+5) QMI BDF download
+6) QMI FW ready
 
-That way you get it default-enabled when ARCH_NUVOTON is
-turned on, or disabled in configurations without ARCH_NUVOTON,
-but can make a more fine-grained selection for a particular SoC
-if you get more than one such driver in the future.
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
 
-        Arnd
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c |  7 +++
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ drivers/net/wireless/ath/ath11k/qmi.c  | 76 ++++++++++++++++----------
+ 3 files changed, 56 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 8695f999acb2..8602be029606 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -101,6 +101,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = false,
+ 		.dbr_debug_support = true,
+ 		.global_reset = false,
++		.fixed_fw_mem = false,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -167,6 +168,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = false,
+ 		.dbr_debug_support = true,
+ 		.global_reset = false,
++		.fixed_fw_mem = false,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -232,6 +234,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = true,
+ 		.dbr_debug_support = false,
+ 		.global_reset = true,
++		.fixed_fw_mem = false,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -297,6 +300,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = false,
+ 		.dbr_debug_support = true,
+ 		.global_reset = false,
++		.fixed_fw_mem = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -362,6 +366,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = true,
+ 		.dbr_debug_support = false,
+ 		.global_reset = true,
++		.fixed_fw_mem = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -426,6 +431,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = true,
+ 		.dbr_debug_support = false,
+ 		.global_reset = true,
++		.fixed_fw_mem = false,
+ 	},
+ 	{
+ 		.name = "wcn6750 hw1.0",
+@@ -487,6 +493,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.current_cc_support = true,
+ 		.dbr_debug_support = false,
+ 		.global_reset = false,
++		.fixed_fw_mem = true,
+ 	},
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 08f958c03ec4..5fdb6894209e 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -195,6 +195,7 @@ struct ath11k_hw_params {
+ 	bool current_cc_support;
+ 	bool dbr_debug_support;
+ 	bool global_reset;
++	bool fixed_fw_mem;
+ };
+ 
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index df49f8b68556..57804c152692 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1799,10 +1799,6 @@ static int ath11k_qmi_fw_ind_register_send(struct ath11k_base *ab)
+ 	req->client_id = QMI_WLANFW_CLIENT_ID;
+ 	req->fw_ready_enable_valid = 1;
+ 	req->fw_ready_enable = 1;
+-	req->request_mem_enable_valid = 1;
+-	req->request_mem_enable = 1;
+-	req->fw_mem_ready_enable_valid = 1;
+-	req->fw_mem_ready_enable = 1;
+ 	req->cal_done_enable_valid = 1;
+ 	req->cal_done_enable = 1;
+ 	req->fw_init_done_enable_valid = 1;
+@@ -1811,6 +1807,17 @@ static int ath11k_qmi_fw_ind_register_send(struct ath11k_base *ab)
+ 	req->pin_connect_result_enable_valid = 0;
+ 	req->pin_connect_result_enable = 0;
+ 
++	/* WCN6750 doesn't request for DDR memory via QMI,
++	 * instead it uses a fixed 12MB reserved memory
++	 * region in DDR.
++	 */
++	if (!ab->hw_params.fixed_fw_mem) {
++		req->request_mem_enable_valid = 1;
++		req->request_mem_enable = 1;
++		req->fw_mem_ready_enable_valid = 1;
++		req->fw_mem_ready_enable = 1;
++	}
++
+ 	ret = qmi_txn_init(handle, &txn,
+ 			   qmi_wlanfw_ind_register_resp_msg_v01_ei, resp);
+ 	if (ret < 0)
+@@ -2839,27 +2846,6 @@ ath11k_qmi_driver_event_post(struct ath11k_qmi *qmi,
+ 	return 0;
+ }
+ 
+-static int ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
+-{
+-	struct ath11k_base *ab = qmi->ab;
+-	int ret;
+-
+-	ret = ath11k_qmi_fw_ind_register_send(ab);
+-	if (ret < 0) {
+-		ath11k_warn(ab, "failed to send qmi firmware indication: %d\n",
+-			    ret);
+-		return ret;
+-	}
+-
+-	ret = ath11k_qmi_host_cap_send(ab);
+-	if (ret < 0) {
+-		ath11k_warn(ab, "failed to send qmi host cap: %d\n", ret);
+-		return ret;
+-	}
+-
+-	return ret;
+-}
+-
+ static int ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+@@ -2901,9 +2887,33 @@ static int ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ 		return ret;
+ 	}
+ 
+-	ret = ath11k_qmi_wlanfw_m3_info_send(ab);
++	return 0;
++}
++
++static int ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
++{
++	struct ath11k_base *ab = qmi->ab;
++	int ret;
++
++	ret = ath11k_qmi_fw_ind_register_send(ab);
++	if (ret < 0) {
++		ath11k_warn(ab, "failed to send qmi firmware indication: %d\n",
++			    ret);
++		return ret;
++	}
++
++	ret = ath11k_qmi_host_cap_send(ab);
+ 	if (ret < 0) {
+-		ath11k_warn(ab, "failed to send qmi m3 info req: %d\n", ret);
++		ath11k_warn(ab, "failed to send qmi host cap: %d\n", ret);
++		return ret;
++	}
++
++	if (!ab->hw_params.fixed_fw_mem)
++		return ret;
++
++	ret = ath11k_qmi_event_load_bdf(qmi);
++	if (ret < 0) {
++		ath11k_warn(ab, "qmi failed to download BDF:%d\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -3103,8 +3113,18 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_MEM_READY:
+ 			ret = ath11k_qmi_event_load_bdf(qmi);
+-			if (ret < 0)
++			if (ret < 0) {
+ 				set_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
++				break;
++			}
++
++			ret = ath11k_qmi_wlanfw_m3_info_send(ab);
++			if (ret < 0) {
++				ath11k_warn(ab,
++					    "failed to send qmi m3 info req: %d\n", ret);
++				set_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
++			}
++
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_READY:
+ 			clear_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+-- 
+2.35.1
+
