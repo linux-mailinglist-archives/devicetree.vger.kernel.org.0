@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A9214F5E7B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4364C4F5FE2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbiDFNDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 09:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41016 "EHLO
+        id S232946AbiDFNNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 09:13:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232456AbiDFNDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:03:01 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5DD5CCC92;
-        Wed,  6 Apr 2022 02:30:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649237449; x=1680773449;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=SFtc5Cx+6Nw5kBcMc7124XPPOGKJlKRghgQoJVTH32U=;
-  b=qQZdlqzBL4KzIAEwj1Qq+TFHVB8V6MozN6gKjS/caMY1LveIGpoi4iP+
-   5KOAGeWKQe3a9yhWouxmj1HMAPYa8x9YmixZ7/RUHqYNqi8Z2u40wr0r8
-   yMVgq3v40Bdn14hgu68sGyy9Uk+HxyChY2ZcX7PIkH7OBJeA0Pxt1Katw
-   0=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Apr 2022 02:28:09 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 02:28:08 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 02:28:07 -0700
-Received: from [10.216.50.162] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 6 Apr 2022
- 02:28:02 -0700
-Subject: Re: [PATCH V9 5/6] arm64: dts: qcom: pm8008: Add base dts file
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
-        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
-References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
- <1649166633-25872-6-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n51rLRcWE+h3zaWNy-nJYK4tQoivjdbfgYrwTJbjYYxWFw@mail.gmail.com>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Message-ID: <8c8bf971-b6d3-9669-4da4-e81701d9c79e@quicinc.com>
-Date:   Wed, 6 Apr 2022 14:57:59 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S233595AbiDFNMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:12:49 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085B14E1D1E;
+        Wed,  6 Apr 2022 02:49:44 -0700 (PDT)
+X-UUID: 61da098c1a8f4141b6812e69d4ab8532-20220406
+X-UUID: 61da098c1a8f4141b6812e69d4ab8532-20220406
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1250012946; Wed, 06 Apr 2022 17:38:39 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 6 Apr 2022 17:38:38 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 6 Apr 2022 17:38:37 +0800
+Message-ID: <d7c0b9573e32d68c25444e48e6df1bba0eb64262.camel@mediatek.com>
+Subject: Re: [PATCH v9 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
+ pinctrls properties
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "Yoshihiro Shimoda" <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 6 Apr 2022 17:38:37 +0800
+In-Reply-To: <Ykc53EmCaA7TadRK@robh.at.kernel.org>
+References: <20220329032913.8750-1-axe.yang@mediatek.com>
+         <20220329032913.8750-2-axe.yang@mediatek.com>
+         <CAPDyKFqoTN1pF-L6qCHxpdMCmPtHP0aHHaDURN2QJsN3v+wZBw@mail.gmail.com>
+         <Ykc53EmCaA7TadRK@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n51rLRcWE+h3zaWNy-nJYK4tQoivjdbfgYrwTJbjYYxWFw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,38 +70,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2022-04-01 at 12:43 -0500, Rob Herring wrote:
+> On Fri, Apr 01, 2022 at 11:22:13AM +0200, Ulf Hansson wrote:
+> > On Tue, 29 Mar 2022 at 05:29, Axe Yang <axe.yang@mediatek.com>
+> > wrote:
+> > > 
+> > > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
+> > > This feature allow SDIO devices alarm asynchronous interrupt to
+> > > host
+> > > even when host stop providing clock to SDIO card. An extra wakeup
+> > > interrupt and pinctrl states for SDIO DAT1 pin state switching
+> > > are
+> > > required in this scenario.
+> > > 
+> > > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > > ---
+> > >  .../devicetree/bindings/mmc/mtk-sd.yaml         | 17
+> > > ++++++++++++++++-
+> > >  1 file changed, 16 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > index 297ada03e3de..3872a6ce2867 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > > @@ -69,12 +69,22 @@ properties:
+> > >        - const: ahb_cg
+> > > 
+> > >    interrupts:
+> > > -    maxItems: 1
+> > > +    description:
+> > > +      Should at least contain MSDC GIC interrupt. To support
+> > > SDIO in-band wakeup, an extended
+> > > +      interrupt is required and be configured as wakeup source
+> > > irq.
+> > 
+> > If I understand correctly, the extended interrupt (a GPIO irq) may
+> > not
+> > necessarily share the same interrupt parent as the primary device
+> > interrupt.
+> > 
+> > Perhaps it's then better to extend this with "interrupts-extended"
+> > instead. See Documentation/devicetree/bindings/interrupt-
+> > controller/interrupts.txt.
+> 
+> 'interrupts-extended' is interchangeable with 'interrupts'. For
+> schemas, 
+> use 'interrupts' and the tools take care of supporting both forms.
+> 
 
-On 4/6/2022 12:41 AM, Stephen Boyd wrote:
-> Quoting Satya Priya (2022-04-05 06:50:32)
->> diff --git a/arch/arm64/boot/dts/qcom/pm8008.dtsi b/arch/arm64/boot/dts/qcom/pm8008.dtsi
->> new file mode 100644
->> index 0000000..24bd832
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/pm8008.dtsi
->> @@ -0,0 +1,47 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +// Copyright (c) 2022, The Linux Foundation. All rights reserved.
->> +
->> +&pm8008_bus {
->> +       pm8008: pm8008@8 {
-> pmic@8
+hello Ulf, you are right, the wakeup interrupt(parent is &pio) do not
+share same parent as primary interrupt(parent is &gic). And as you
+said, I am using "interrupts-extended" to declare the wakeup irq, see
+commit message in patch 3/3:
+         &mmcX {
+                 ...
+                 interrupts-extended = <...>,
+                                       <&pio xxx IRQ_TYPE_LEVEL_LOW>;
+                 ...
+                 pinctrl-names = "default", "state_uhs", "state_eint";
+                 ...
+                 pinctrl-2 = <&mmc2_pins_eint>;
+                 ...
+                 cap-sdio-irq;
+                 keep-power-in-suspend;
+                 wakeup-source;
+                 ...
+         };
+
+But the wakup interrupt is for SDIO only, in most instances, MSDC is
+been used as eMMC/SD card host, they do not need this interrupt. So as
+Rob suggested, I think we'd better keep using 'interrupts'. And I will
+update the description for 'interrupts', suggest to use 'interrupts-
+extended' to declare SDIO wakeup interrupt.
+
+And 'interrupt-names' is a good idea, I will add this property to
+document too. Thank you for the advice.
+
+Regards,
+Axe
 
 
-Sorry I missed this change. I'll change it in next post.
-
-
->> +               compatible = "qcom,pm8008";
->> +               reg = <0x8>;
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +               #interrupt-cells = <2>;
->> +       };
->> +
->> +       pm8008_regulators: pm8008@9 {
-> pmic@9
->
->> +               compatible = "qcom,pm8008-regulators";
->> +               reg = <0x9>;
->> +               #address-cells = <0>;
->> +               #size-cells = <0>;
->> +
