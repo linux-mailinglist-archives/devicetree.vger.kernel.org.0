@@ -2,66 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D5C4F6A35
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B029D4F6A10
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232333AbiDFTpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:45:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53680 "EHLO
+        id S230248AbiDFTii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:38:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbiDFTpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:45:41 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFEA179433;
-        Wed,  6 Apr 2022 10:54:54 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id v75so3204576oie.1;
-        Wed, 06 Apr 2022 10:54:54 -0700 (PDT)
+        with ESMTP id S231801AbiDFTg6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:36:58 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8E32E3116;
+        Wed,  6 Apr 2022 11:00:03 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-e2442907a1so3396461fac.8;
+        Wed, 06 Apr 2022 11:00:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=wC447ObMJsFX2n8f7dJ0Uuo8JZfPvybMvM0nYJqQlsE=;
-        b=Z/HFmr5nIjxMmAcznEgpP4C8cRnq7O9gex0FM4FMoHoIC7Kwk7I4p7QJdaT0I4wHVm
-         sB1wqoHL0u8EXrH6VGXg9yP/th/RAb2Moo46m5JjNyds9Qdf8mZk3X7UvLFAAC0juj2X
-         FfslbDe/hHDoE3M5PuWaGcTo+Opkd5y+YvoJfwrNFO88JEDMj8qCXjcf2MUM6IMXSTLH
-         5jX7NjJc6Qa3TeRd6QpEzG1DxJQKO4gs150pjDRLUvwfOXItxBUnx+xn+HP+j4ufKeTn
-         q1JEoE7jo9iHTs2RTEzD4kjknU2e5xIS31ZJOjLVX7jAVg5jXD2QOV4PzVyzdlAEY89e
-         Eu1w==
-X-Gm-Message-State: AOAM530CrYEkWIStCNH5wOatLoem1Uqu+2vdqHvziQzmTQMHpsjx46Cw
-        GtJxZRpU4FNY641CkEKzsg==
-X-Google-Smtp-Source: ABdhPJx3MZjf9koEO8rLPvTH8e9/qTugSHX7pwejvjKTqCgni/3MEZuYVXy7E8AoUG8jLjBqjZnuSQ==
-X-Received: by 2002:aca:61c1:0:b0:2ec:d091:ff53 with SMTP id v184-20020aca61c1000000b002ecd091ff53mr4238583oib.235.1649267693846;
-        Wed, 06 Apr 2022 10:54:53 -0700 (PDT)
+        bh=vKxX5q1qGmU3P3uhPEFcWpItrjUZwEJRK1JP6o3PXj8=;
+        b=2RU4/hB8117g+ctP9AxScr+DdX1hBgjU0bkPfncj13PLXjCwGI9k10FSGjc+3bN//u
+         A658YA/YpQNrfJsLzUYfOsyJPOzXtK70mFsfDWRRWlmH6WLPrgUAdbkTWHwoqQOWshog
+         Pgmfam6wHa1qZ6OUJo867zEuygvqbNxB3rPltk536JiynxuTeVlP1u+2Fqg3THmLjVxm
+         7ScR407e/KuHR8iYw6LAVnQe+mQUGTpgzKcpMdU+0Ck/VDqm+ZoZKV8Hn5iwwDrKpUbV
+         7gpwhApzGCgKlkO6JNiedNBOBOSN1OMVgWQvpoEnfnZpwWiBiLPU5lol1SATlQO4/kuF
+         vSzg==
+X-Gm-Message-State: AOAM530jCFaMsJmTu3rhb5hkBd+71JIUnUNbfecog57KFIcKidL2sgi6
+        8p+jLJ++oGWbA5RsjvqQxkSGT2pD4Q==
+X-Google-Smtp-Source: ABdhPJzbGb0jEgLE6cPbcrflcGousST6q9L6Y5xIwWyPzhUiOZaOLI50QFHynOdWi2ZbaUhkOKpegQ==
+X-Received: by 2002:a05:6870:311d:b0:de:9b6c:362b with SMTP id v29-20020a056870311d00b000de9b6c362bmr4268335oaa.200.1649268002731;
+        Wed, 06 Apr 2022 11:00:02 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f21-20020a056830205500b005cdb59d5d34sm6974033otp.81.2022.04.06.10.54.53
+        by smtp.gmail.com with ESMTPSA id m13-20020a056820050d00b003297b35bc63sm2794457ooj.40.2022.04.06.11.00.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 10:54:53 -0700 (PDT)
-Received: (nullmailer pid 2495173 invoked by uid 1000);
-        Wed, 06 Apr 2022 17:54:52 -0000
-Date:   Wed, 6 Apr 2022 12:54:52 -0500
+        Wed, 06 Apr 2022 11:00:02 -0700 (PDT)
+Received: (nullmailer pid 2502470 invoked by uid 1000);
+        Wed, 06 Apr 2022 18:00:01 -0000
+Date:   Wed, 6 Apr 2022 13:00:01 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>, heiko@sntech.de,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        Lukas Wunner <lukas@wunner.de>,
-        giulio.benetti@micronovasrl.com,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v2 05/12] dt_bindings: rs485: Add receiver enable polarity
-Message-ID: <Yk3T7CBSi72Ce6j0@robh.at.kernel.org>
-References: <20220404082912.6885-1-ilpo.jarvinen@linux.intel.com>
- <20220404082912.6885-6-ilpo.jarvinen@linux.intel.com>
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: change ad3552r maintainer
+Message-ID: <Yk3VIR764LGZvXkB@robh.at.kernel.org>
+References: <20220404085000.249423-1-nuno.sa@analog.com>
+ <20220404085000.249423-2-nuno.sa@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220404082912.6885-6-ilpo.jarvinen@linux.intel.com>
+In-Reply-To: <20220404085000.249423-2-nuno.sa@analog.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -73,18 +67,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Apr 2022 11:29:05 +0300, Ilpo Järvinen wrote:
-> Add polarity property for receiver enable. Some UARTs have
-> separate enable pins for tx (RTS or DE) and rx (RE). As most
-> RS485 transceivers have !RE pin, the default is active low in
-> contrast to rs485-rts-active-low that defaults to active high.
+On Mon, 04 Apr 2022 10:49:59 +0200, Nuno Sá wrote:
+> As the maintainer email no longer exists, change it to myself.
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
->  Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
