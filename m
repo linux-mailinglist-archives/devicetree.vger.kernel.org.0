@@ -2,97 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B5BD4F6A17
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4777F4F69F9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232038AbiDFTjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57330 "EHLO
+        id S231820AbiDFTdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232117AbiDFTip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:38:45 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC3E16C0A6;
-        Wed,  6 Apr 2022 11:35:28 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-dacc470e03so3871579fac.5;
-        Wed, 06 Apr 2022 11:35:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lD3vW2QdGSWkKUsKxJuFURV13Koj8siq3oYJ/ytEFRo=;
-        b=ib4XIvJ+nySd+s1q1nM26YobQgdS55ZLej6sFMq8/dKMRwUVQHxW7XIkLOIiO7tZCU
-         7Ga4sA6ML4xzoqMj4PJLg2cjyy2ekhZ4x5fAjNemKCC28bZIQM8vFYk+Gu6jKffkz3ar
-         o++xg7vFsk8h/osGPqZolGqTaIDP/UfVTiyYWakspmpRJ9WqNW6/h6LjbGoTTQl4QlDn
-         GdsZTv4pmCILao7tGgl/Ylma7hosEy3McEJ6O/48L2ufuNxrMVAO5Ll86nVcwYdFyje1
-         4Jub54THZkKMgnI8jpQmugFeZbAGaLUbFwmu86N5VY7wAe0kBXbjscpsi+hnuCRKFhKb
-         Pwzg==
-X-Gm-Message-State: AOAM531PpnqtWhIxmmcFLt0KhqbVIesFjR+MH6JptpdnoC2k0H+fyUqr
-        sZnkjo4vecSwhMA+QZot4A==
-X-Google-Smtp-Source: ABdhPJxZfNHQbZVonm6pbv+IB1gXixb8G0bFeIOVvzzRZDh2xSgW5e7ma6OONn0J94OxYNFNfV++cA==
-X-Received: by 2002:a05:6870:c109:b0:d9:e74e:d09a with SMTP id f9-20020a056870c10900b000d9e74ed09amr4482067oad.142.1649270127937;
-        Wed, 06 Apr 2022 11:35:27 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p14-20020a9d744e000000b005b235f5cf92sm7159488otk.65.2022.04.06.11.35.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:35:27 -0700 (PDT)
-Received: (nullmailer pid 2553861 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:35:26 -0000
-Date:   Wed, 6 Apr 2022 13:35:26 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        p.zabel@pengutronix.de, sre@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 4/8] dt-bindings: reset: add sama7g5 definitions
-Message-ID: <Yk3dbop92OBvwrCt@robh.at.kernel.org>
-References: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
- <20220405112724.2760905-5-claudiu.beznea@microchip.com>
+        with ESMTP id S232038AbiDFTct (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:32:49 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AD43441B2;
+        Wed,  6 Apr 2022 11:37:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=YGjX529UM3G1Sm5ZEV/Cp3ZmPunyP2OAVWthxaOm0TE=; b=tFJFatXB6xPNnIMbja6SvXD6Cu
+        bXU3vUUO2xXCQztEU1jTleEdty4GRLL6fyovwu4ho7/XnxRC1YoSxvItgGIztyc6J2Yjr4HUEetQZ
+        rNCnT4wt2/HAhtlf+zClghovZH7e4bhX8oK2ntrborSlj/r0U+pQu3ADTxv2fYmtBfz0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ncAXN-00EVLu-E7; Wed, 06 Apr 2022 20:37:49 +0200
+Date:   Wed, 6 Apr 2022 20:37:49 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Puranjay Mohan <p-mohan@ti.com>
+Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org, vigneshr@ti.com,
+        kishon@ti.com
+Subject: Re: [RFC 13/13] net: ti: icssg-prueth: Add ICSSG ethernet driver
+Message-ID: <Yk3d/cC36fhNmfY2@lunn.ch>
+References: <20220406094358.7895-1-p-mohan@ti.com>
+ <20220406094358.7895-14-p-mohan@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220405112724.2760905-5-claudiu.beznea@microchip.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220406094358.7895-14-p-mohan@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 02:27:20PM +0300, Claudiu Beznea wrote:
-> Add reset bindings for SAMA7G5. At the moment only USB PHYs are
-> included.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  include/dt-bindings/reset/sama7g5-reset.h | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->  create mode 100644 include/dt-bindings/reset/sama7g5-reset.h
-> 
-> diff --git a/include/dt-bindings/reset/sama7g5-reset.h b/include/dt-bindings/reset/sama7g5-reset.h
-> new file mode 100644
-> index 000000000000..670d8075f463
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/sama7g5-reset.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +static int emac_phy_connect(struct prueth_emac *emac)
+> +{
+> +	struct prueth *prueth = emac->prueth;
+> +
+> +	/* connect PHY */
+> +	emac->phydev = of_phy_connect(emac->ndev, emac->phy_node,
+> +				      &emac_adjust_link, 0, emac->phy_if);
 
-Dual license and GPL-2.0-only is preferred.
+> +static int prueth_config_rgmiidelay(struct prueth *prueth,
+> +				    struct device_node *eth_np,
+> +				    phy_interface_t phy_if)
+> +{
+> +	struct device *dev = prueth->dev;
+> +	struct regmap *ctrl_mmr;
+> +	u32 rgmii_tx_id = 0;
+> +	u32 icssgctrl_reg;
+> +
+> +	if (!phy_interface_mode_is_rgmii(phy_if))
+> +		return 0;
+> +
+> +	ctrl_mmr = syscon_regmap_lookup_by_phandle(eth_np, "ti,syscon-rgmii-delay");
+> +	if (IS_ERR(ctrl_mmr)) {
+> +		dev_err(dev, "couldn't get ti,syscon-rgmii-delay\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (of_property_read_u32_index(eth_np, "ti,syscon-rgmii-delay", 1,
+> +				       &icssgctrl_reg)) {
+> +		dev_err(dev, "couldn't get ti,rgmii-delay reg. offset\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (phy_if == PHY_INTERFACE_MODE_RGMII_ID ||
+> +	    phy_if == PHY_INTERFACE_MODE_RGMII_TXID)
+> +		rgmii_tx_id |= ICSSG_CTRL_RGMII_ID_MODE;
+> +
+> +	regmap_update_bits(ctrl_mmr, icssgctrl_reg, ICSSG_CTRL_RGMII_ID_MODE, rgmii_tx_id);
+> +
+> +	return 0;
+> +}
+>
 
-> +
-> +#ifndef __DT_BINDINGS_RESET_SAMA7G5_H
-> +#define __DT_BINDINGS_RESET_SAMA7G5_H
-> +
-> +#define RESET_USB_PHY1		4
-> +#define RESET_USB_PHY2		5
-> +#define RESET_USB_PHY3		6
-> +
-> +#endif /* __DT_BINDINGS_RESET_SAMA7G5_H */
-> -- 
-> 2.32.0
-> 
-> 
+O.K, so this does not do what i initially thought it was doing. I was
+thinking it was to fine tune the delay, ti,syscon-rgmii-delay would be
+a small pico second value to allow the 2ns delay to be tuned to the
+board.
+
+But now i think this is actually inserting the full 2ns delay?
+
+The problem is, you also pass phy_if to of_phy_connect() so the PHY
+will also insert the delay if requested. So you end up with double
+delays for rgmii_id and rgmii_txid.
+
+The general recommendation is that the PHY inserts the delay, based on
+phy-mode. The MAC does not add a delay, so i suggest you always write
+0 here, just to ensure the system is in a deterministic state, and the
+bootloader and not being messing around with things.
+
+	   Andrew
