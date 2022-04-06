@@ -2,60 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A86B4F5FDD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:30:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4242E4F5E95
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233259AbiDFN3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 09:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
+        id S230289AbiDFNDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 09:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233646AbiDFN2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:28:01 -0400
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 578D01BE117;
-        Wed,  6 Apr 2022 03:25:47 -0700 (PDT)
-Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
-        by maillog.nuvoton.com (Postfix) with ESMTP id 236BF1C8112B;
-        Wed,  6 Apr 2022 17:25:44 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 6 Apr
- 2022 17:25:43 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Wed, 6 Apr 2022
- 17:25:43 +0800
-Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS01.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
- Transport; Wed, 6 Apr 2022 17:25:42 +0800
-Message-ID: <ab89589f-6dd7-d4ff-635d-ff8dbd2d3e02@nuvoton.com>
-Date:   Wed, 6 Apr 2022 17:25:42 +0800
+        with ESMTP id S231490AbiDFNCQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:02:16 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9B45BE763;
+        Wed,  6 Apr 2022 02:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649237228; x=1680773228;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=3xqa3zQff+Io2JArriZqk5H3xdDEHifKgrjChaWfIJQ=;
+  b=P8IT8nOS7zIuHLuFqvh879M/wkd6ok/JiTznAggAg5lcRWz7KDCKS3+D
+   Hnp9wCoOJBTIWECzgwP5PFNKSkNvu7yM4y9KM/0zA/Pro5zkP34s3dRYK
+   4ghpvMbnXVYQaTkk7dNXQhOg7x/yu/NFZHHlryNwTYH8NbB4N1pp+ATGU
+   o=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Apr 2022 02:26:56 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 02:26:55 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 6 Apr 2022 02:26:54 -0700
+Received: from [10.216.50.162] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 6 Apr 2022
+ 02:26:50 -0700
+Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008
+ PMIC
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
+References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53tXnOw_hRD-O9juAbJ1FDcEOx1rHqGijZs8fuanqMNfg@mail.gmail.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <b57d23c6-bb34-8253-b2ad-8c69f6e92128@quicinc.com>
+Date:   Wed, 6 Apr 2022 14:56:46 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
+In-Reply-To: <CAE-0n53tXnOw_hRD-O9juAbJ1FDcEOx1rHqGijZs8fuanqMNfg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "soc@kernel.org" <soc@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220307091923.9909-1-ychuang3@nuvoton.com>
- <20220307091923.9909-4-ychuang3@nuvoton.com>
- <2669852c-5bb6-1edf-bf58-ea815f54d50f@kernel.org>
- <ef8efda1-e985-0684-470f-7acf9b8a5e93@nuvoton.com>
- <bba99b9d-6960-f6e8-0ee4-0b5fe8a5601d@linaro.org>
-From:   Jacky Huang <ychuang3@nuvoton.com>
-In-Reply-To: <bba99b9d-6960-f6e8-0ee4-0b5fe8a5601d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,126 +75,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 4/6/2022 12:39 AM, Stephen Boyd wrote:
+> Quoting Satya Priya (2022-04-05 06:50:31)
+>> +
+>> +static struct platform_driver pm8008_regulator_driver = {
+>> +       .driver = {
+>> +               .name           = "qcom,pm8008-regulators",
+> Also, the name should be something like pm8008_regulators
 
-On 2022/4/6 下午 03:14, Krzysztof Kozlowski wrote:
-> On 06/04/2022 04:58, Jacky Huang wrote:
->>>> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
->>>> index 639e01a4d855..28e01442094f 100644
->>>> --- a/arch/arm64/boot/dts/Makefile
->>>> +++ b/arch/arm64/boot/dts/Makefile
->>>> @@ -30,3 +30,4 @@ subdir-y += synaptics
->>>>    subdir-y += ti
->>>>    subdir-y += toshiba
->>>>    subdir-y += xilinx
->>>> +subdir-y += nuvoton
->>>> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
->>>> new file mode 100644
->>>> index 000000000000..e1e0c466bf5e
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
->>>> @@ -0,0 +1,2 @@
->>>> +# SPDX-License-Identifier: GPL-2.0
->>>> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-evb.dtb
->>> ARCH_NUVOTON does not exist.
->> I would add the following to end of arch/arm64/Kconfig.platforms,
-> Don't add things at the end of files but rather in respective place
-> without messing the order.
 
-OK, I will put it to the right place in alphanumeric order.
-It should be between ARCH_MXC and ARCH_QCOM.
-
->
->> and
->> add the
->> modification to this patch series.
->>
->> config ARCH_MA35D1
->>       bool "Nuvoton MA35D1 SOC Family"
-> We do not add options for specific SoCs, but for entire families, so
-> ARCH_NUVOTON is correct.
-
-Yes, I would like to modify it as the following:
-
-config ARCH_NUVOTON
-     bool "Nuvoton SoC Family"
-     select PINCTRL
-     select PINCTRL_MA35D1
-     select PM
-     select GPIOLIB
-     select SOC_BUS
-     help
-       This enables support for Nuvoton MA35D1 ARMv8 SoC.
-
-(Currently, we have MA35D1 only in the support list for arm64 SoC.).
-
->>       select PINCTRL
->>       select PINCTRL_MA35D1
->>       select PM
->>       select GPIOLIB
->>       select SOC_BUS
->>       select VIDEOMODE_HELPERS
->>       select FB_MODE_HELPERS
->>       help
->>         This enables support for Nuvoton MA35D1 SOC Family.
->>
->>
->>>> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts
->>>> new file mode 100644
->>>> index 000000000000..38e4f734da0f
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts
->>>> @@ -0,0 +1,23 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +/*
->>>> + * Device Tree Source for MA35D1 Evaluation Board (EVB)
->>>> + *
->>>> + * Copyright (C) 2021 Nuvoton Technology Corp.
->>>> + */
->>>> +
->>>> +/dts-v1/;
->>>> +#include "ma35d1.dtsi"
->>>> +
->>>> +/ {
->>>> +       model = "Nuvoton MA35D1-EVB";
->>>> +
->>>> +       chosen {
->>>> +               bootargs = "console=ttyS0,115200n8";
->>> No bootargs. "chosen", please.
->> OK, I would modify it as:
->>
->> chosen {
->>           stdout-path = "serial0:115200n8";
->>       };
->>
->>
->>>> +       };
->>> You need compatible and bindings.
->> I will add the compatible here
->> compatible = "nuvoton,ma35d1-evb", "nuvoton,ma35d1"
->>
->> And, I should create a new binding file
->> Documentation/devicetree/bindings/arm/nuvoton.yaml to this patch series.
->> And the property would be:
->>
->> properties:
->>     compatible:
->>       description: Nuvoton MA35D1-EVB
->>       items:
->>         - const: nuvoton,ma35d1-evb
->>         - const: nuvoton,ma35d1
->>
->>
->> Is it OK?
-> Yes
->
->
->
-> Best regards,
-> Krzysztof
-
-Thanks for your review.
-
-Sincerely,
-Jacky
+I've seen the other qcom regulator driver names, I think I shouldn't be 
+using coma here. How about qcom-pm8008-regulator ? similar to the other 
+regulator drivers
 
 
