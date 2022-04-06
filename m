@@ -2,93 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C8624F6A1D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5D5C4F6A35
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:44:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231876AbiDFTkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:40:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58840 "EHLO
+        id S232333AbiDFTpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:45:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231934AbiDFTjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:39:35 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62EB1A3967;
-        Wed,  6 Apr 2022 10:45:13 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e1dcc0a327so3746539fac.1;
-        Wed, 06 Apr 2022 10:45:13 -0700 (PDT)
+        with ESMTP id S232112AbiDFTpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:45:41 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFEA179433;
+        Wed,  6 Apr 2022 10:54:54 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id v75so3204576oie.1;
+        Wed, 06 Apr 2022 10:54:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=L5TvrQjpMWSCvDIj2tp5HdoUF6y6vYimFqx2SemcKe8=;
-        b=U8EDWZGrOhyYcDyd0nLKND9znK9AbRVolGZ8Nf/mIbB+8XJvs3EWdYjLxFehq+14z3
-         ZZzG1qrZW2bI8voW7Q7JHk1N833DoP+LqKUaDNRXZBVWnDzybUnX0KMl3w/TTarlSjRs
-         AAzgwpOj/46iHJ4IZG/yF/7bG24IgdHGK1jDmPRjR0m5DW/QKjtXQb8FPo79lw3ZiPnE
-         fRGXWt5T9Z92SvIGKuBjmi0YYowGVBlLouGOTVMZVMOj2L/4PtglqeXiExxjYMn7BJJO
-         h6slRrskX9TSs4+rId56jpuPCiwfAuofW5TEILdr9/UUe55oMOlNBVqTVduhgX1VNWua
-         R/7w==
-X-Gm-Message-State: AOAM531VtMy+yroPWIWLTn9ccR+x4LQE+I5m9i9pzprfUybomeIZMsj6
-        K9TvERxkDVtrhCU9B9m6nA==
-X-Google-Smtp-Source: ABdhPJxevK8UXw8048KxmB62o7gsRRl5YC6His46gPTV8+KpOCTt5xixSjhRHKnoLPd4JALpA8l/5w==
-X-Received: by 2002:a05:6870:210b:b0:de:6ec1:3f59 with SMTP id f11-20020a056870210b00b000de6ec13f59mr4505084oae.171.1649267112959;
-        Wed, 06 Apr 2022 10:45:12 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=wC447ObMJsFX2n8f7dJ0Uuo8JZfPvybMvM0nYJqQlsE=;
+        b=Z/HFmr5nIjxMmAcznEgpP4C8cRnq7O9gex0FM4FMoHoIC7Kwk7I4p7QJdaT0I4wHVm
+         sB1wqoHL0u8EXrH6VGXg9yP/th/RAb2Moo46m5JjNyds9Qdf8mZk3X7UvLFAAC0juj2X
+         FfslbDe/hHDoE3M5PuWaGcTo+Opkd5y+YvoJfwrNFO88JEDMj8qCXjcf2MUM6IMXSTLH
+         5jX7NjJc6Qa3TeRd6QpEzG1DxJQKO4gs150pjDRLUvwfOXItxBUnx+xn+HP+j4ufKeTn
+         q1JEoE7jo9iHTs2RTEzD4kjknU2e5xIS31ZJOjLVX7jAVg5jXD2QOV4PzVyzdlAEY89e
+         Eu1w==
+X-Gm-Message-State: AOAM530CrYEkWIStCNH5wOatLoem1Uqu+2vdqHvziQzmTQMHpsjx46Cw
+        GtJxZRpU4FNY641CkEKzsg==
+X-Google-Smtp-Source: ABdhPJx3MZjf9koEO8rLPvTH8e9/qTugSHX7pwejvjKTqCgni/3MEZuYVXy7E8AoUG8jLjBqjZnuSQ==
+X-Received: by 2002:aca:61c1:0:b0:2ec:d091:ff53 with SMTP id v184-20020aca61c1000000b002ecd091ff53mr4238583oib.235.1649267693846;
+        Wed, 06 Apr 2022 10:54:53 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id hg14-20020a056870790e00b000e1c070a73asm6082977oab.55.2022.04.06.10.45.11
+        by smtp.gmail.com with ESMTPSA id f21-20020a056830205500b005cdb59d5d34sm6974033otp.81.2022.04.06.10.54.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 10:45:11 -0700 (PDT)
-Received: (nullmailer pid 2481762 invoked by uid 1000);
-        Wed, 06 Apr 2022 17:45:10 -0000
-Date:   Wed, 6 Apr 2022 12:45:10 -0500
+        Wed, 06 Apr 2022 10:54:53 -0700 (PDT)
+Received: (nullmailer pid 2495173 invoked by uid 1000);
+        Wed, 06 Apr 2022 17:54:52 -0000
+Date:   Wed, 6 Apr 2022 12:54:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org,
-        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: qcom: qcom,geni-se: refer to
- dtschema for SPI
-Message-ID: <Yk3RpmKj0eRKnCdU@robh.at.kernel.org>
-References: <20220404064017.68634-1-krzysztof.kozlowski@linaro.org>
- <20220404064017.68634-2-krzysztof.kozlowski@linaro.org>
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Johan Hovold <johan@kernel.org>, heiko@sntech.de,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Lukas Wunner <lukas@wunner.de>,
+        giulio.benetti@micronovasrl.com,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Subject: Re: [PATCH v2 05/12] dt_bindings: rs485: Add receiver enable polarity
+Message-ID: <Yk3T7CBSi72Ce6j0@robh.at.kernel.org>
+References: <20220404082912.6885-1-ilpo.jarvinen@linux.intel.com>
+ <20220404082912.6885-6-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220404064017.68634-2-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220404082912.6885-6-ilpo.jarvinen@linux.intel.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Apr 2022 08:40:17 +0200, Krzysztof Kozlowski wrote:
-> After adding DT schema for the SPI controller, the Qualcomm GENI Serial
-> Engine QUP Wrapper Controller bindings can reference it directly for
-> full schema validation.
+On Mon, 04 Apr 2022 11:29:05 +0300, Ilpo Järvinen wrote:
+> Add polarity property for receiver enable. Some UARTs have
+> separate enable pins for tx (RTS or DE) and rx (RE). As most
+> RS485 transceivers have !RE pin, the default is active low in
+> contrast to rs485-rts-active-low that defaults to active high.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 > ---
-> 
-> Changes since v2:
-> 1. Add tag.
-> 
-> Changes since v1:
-> 1. None
-> 
-> Patch depends on previous patch (DT schema conversion).
-> ---
->  .../bindings/soc/qcom/qcom,geni-se.yaml       | 22 +------------------
->  1 file changed, 1 insertion(+), 21 deletions(-)
+>  Documentation/devicetree/bindings/serial/rs485.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
