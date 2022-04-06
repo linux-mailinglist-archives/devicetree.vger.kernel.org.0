@@ -2,136 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FBD4F6B79
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:32:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29E5C4F6BB8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233112AbiDFUeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 16:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55544 "EHLO
+        id S233747AbiDFUx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 16:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235439AbiDFUcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:32:55 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C90F136478D;
-        Wed,  6 Apr 2022 11:54:52 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id b188so3330866oia.13;
-        Wed, 06 Apr 2022 11:54:52 -0700 (PDT)
+        with ESMTP id S233763AbiDFUx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:53:28 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95FA9FFF76;
+        Wed,  6 Apr 2022 12:09:49 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-de3eda6b5dso4037889fac.0;
+        Wed, 06 Apr 2022 12:09:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Lm/ONmGbxsdA25Z0fG4ZT+Z1iRsHjkpKpaJkjdZ5COY=;
-        b=OBCYVmoZGwmKz2RveRDMOVs2tyG2SUzg6l843Tz1ES5nqYMeR6lhsQzbW7PrrHKUTu
-         VmLycItgZMeGPxFH7vmEO4ySoqOufvA/dj4TwdOQrM8RfkwH9Prb+2d2W/0Ipby2ueaH
-         fu7gegCEQ/hsTLIlSU/mP0S5bVtvBTv4NvjqXi1/KZDKIF4eNT6Cf3qejmolrOpAKw4t
-         89wo3dSy1TgNMovchL9KR/7Lc3t6Hw3OgHYXkC/BO7kXF4AYy8ArrrxyK+T7FKk2uDFl
-         L279xSvXzJSZsBQtvaLWy5wqLdQn+541p9KSZ+i4nlZ7UmPIrw58XJIe4RY/7AQj/uLk
-         cT+Q==
-X-Gm-Message-State: AOAM531Lwx3jQuHJcGR3Mi4XOz8NMpNO09oxgtAHUjxMkBiVWaNlihuJ
-        kbjUgaKLSWESwgIvkJZGjJ6SXbf+cw==
-X-Google-Smtp-Source: ABdhPJxXvM3z8yhyG8vVgJqle/yx/OreVndgv4ogfsuisU/phylm10J6pGMGOEt5/5eHIivc2c65lQ==
-X-Received: by 2002:a05:6808:3ad:b0:2d9:fc59:ef0e with SMTP id n13-20020a05680803ad00b002d9fc59ef0emr4358505oie.266.1649271291912;
-        Wed, 06 Apr 2022 11:54:51 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=nkvvt5iU3/huYVMTWpqmeVmasOECJdxAJG738D8isiA=;
+        b=OKWvqx7hcaKUS/28ToViBmpMK0cuazkpiIkPLGVzHVCNju/1O0JgfrlscSu44yFLqA
+         f59T54LRbdIpBAMUM1TpK6XgrhmaKmtLuGqNJzxiCHQkEMOZvsxNXLCU328KWOEJggNc
+         Z2ReyLQ6AhvWz2cVAIanWUQcPBJVNkeXs1/zbxeAU/0V37jp1rmIxF70V4Bsi+2YhStb
+         jMcVWu4o5VXUgFQqysqIQFBmJ4vdea3Hqrv4oVk/0LZASYK5SbUFQqbzUau6sZn//eLe
+         LZlixLmp/OvajG6ThkWfDKF2HUK5fan3ob0r1EK+0VRuRAEfwN3dDNMIdnTwv7oDYnbL
+         DHtw==
+X-Gm-Message-State: AOAM532x1LV8EvZEfD3TnYzQPZ5dSXEzREBz4afbcC3RzhGlTOeCvFkJ
+        1FGwTORK3dCx+qUpo7vvUg==
+X-Google-Smtp-Source: ABdhPJw25u3J4jdicjV95QI6NUKAkXMnWtfFRhrT2nJEQpb3wVemqoBH7x9wlwuPgFzL3oA/pMeSGw==
+X-Received: by 2002:a05:6870:2103:b0:de:29de:12c4 with SMTP id f3-20020a056870210300b000de29de12c4mr4829087oae.203.1649272188810;
+        Wed, 06 Apr 2022 12:09:48 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w7-20020a9d6387000000b005b2265711fcsm7152964otk.16.2022.04.06.11.54.51
+        by smtp.gmail.com with ESMTPSA id w1-20020a056808090100b002da82caced5sm6676892oih.3.2022.04.06.12.09.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:54:51 -0700 (PDT)
-Received: (nullmailer pid 2581012 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:54:50 -0000
+        Wed, 06 Apr 2022 12:09:48 -0700 (PDT)
+Received: (nullmailer pid 2604082 invoked by uid 1000);
+        Wed, 06 Apr 2022 19:09:47 -0000
+Date:   Wed, 6 Apr 2022 14:09:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org,
-        ssantosh@kernel.org, vigneshr@ti.com, kishon@ti.com,
-        mathieu.poirier@linaro.org, nm@ti.com, netdev@vger.kernel.org,
-        s-anna@ti.com, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20220406094358.7895-13-p-mohan@ti.com>
-References: <20220406094358.7895-1-p-mohan@ti.com> <20220406094358.7895-13-p-mohan@ti.com>
-Subject: Re: [RFC 12/13] dt-bindings: net: Add ICSSG Ethernet Driver bindings
-Date:   Wed, 06 Apr 2022 13:54:50 -0500
-Message-Id: <1649271290.537509.2581011.nullmailer@robh.at.kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        soc@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH] arm: dts: at91: Fix boolean properties with values
+Message-ID: <Yk3leykDEKGBN8rk@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email 2.32.0
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_FILL_THIS_FORM_SHORT,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Apr 2022 15:13:57 +0530, Puranjay Mohan wrote:
-> Add a YAML binding document for the ICSSG Programmable real time unit
-> based Ethernet driver. This driver uses the PRU and PRUSS consumer APIs
-> to interface the PRUs and load/run the firmware for supporting ethernet
-> functionality.
-> 
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> ---
->  .../bindings/net/ti,icssg-prueth.yaml         | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> 
+Boolean properties in DT are present or not present and don't take a value.
+A property such as 'foo = <0>;' evaluated to true. IOW, the value doesn't
+matter.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+It may have been intended that 0 values are false, but there is no change
+in behavior with this patch.
 
-yamllint warnings/errors:
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Can someone apply this for 5.18 please.
 
-dtschema/dtc warnings/errors:
-schemas/remoteproc/ti,pru-consumer.yaml: ignoring, error parsing file
-schemas/remoteproc/ti,pru-consumer.yaml: ignoring, error parsing file
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-validate", line 176, in <module>
-    sg.check_trees(filename, testtree)
-  File "/usr/local/bin/dt-validate", line 123, in check_trees
-    self.check_subtree(dt, subtree, False, "/", "/", filename)
-  File "/usr/local/bin/dt-validate", line 112, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-  File "/usr/local/bin/dt-validate", line 112, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-  File "/usr/local/bin/dt-validate", line 107, in check_subtree
-    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
-  File "/usr/local/bin/dt-validate", line 51, in check_node
-    errors = sorted(dtschema.DTValidator(schema).iter_errors(node), key=lambda e: e.linecol)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 1027, in iter_errors
-    for error in super().iter_errors(instance, _schema):
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 229, in iter_errors
-    for error in errors:
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 362, in allOf
-    yield from validator.descend(instance, subschema, schema_path=index)
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 245, in descend
-    for error in self.evolve(schema=schema).iter_errors(instance):
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 1027, in iter_errors
-    for error in super().iter_errors(instance, _schema):
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 229, in iter_errors
-    for error in errors:
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 298, in ref
-    yield from validator.descend(instance, resolved)
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 245, in descend
-    for error in self.evolve(schema=schema).iter_errors(instance):
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 1027, in iter_errors
-    for error in super().iter_errors(instance, _schema):
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 219, in iter_errors
-    scope = id_of(_schema)
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 96, in _id_of
-    return schema.get("$id", "")
-AttributeError: 'NoneType' object has no attribute 'get'
+ arch/arm/boot/dts/at91-kizbox3-hs.dts      | 2 +-
+ arch/arm/boot/dts/at91-kizbox3_common.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm/boot/dts/at91-kizbox3-hs.dts b/arch/arm/boot/dts/at91-kizbox3-hs.dts
+index 2799b2a1f4d2..f7d90cf1bb77 100644
+--- a/arch/arm/boot/dts/at91-kizbox3-hs.dts
++++ b/arch/arm/boot/dts/at91-kizbox3-hs.dts
+@@ -225,7 +225,7 @@ pinctrl_pio_zbe_rst: gpio_zbe_rst {
+ 		pinctrl_pio_io_reset: gpio_io_reset {
+ 			pinmux = <PIN_PB30__GPIO>;
+ 			bias-disable;
+-			drive-open-drain = <1>;
++			drive-open-drain;
+ 			output-low;
+ 		};
+ 		pinctrl_pio_input: gpio_input {
+diff --git a/arch/arm/boot/dts/at91-kizbox3_common.dtsi b/arch/arm/boot/dts/at91-kizbox3_common.dtsi
+index abe27adfa4d6..465664628419 100644
+--- a/arch/arm/boot/dts/at91-kizbox3_common.dtsi
++++ b/arch/arm/boot/dts/at91-kizbox3_common.dtsi
+@@ -211,7 +211,7 @@ pinctrl_flx4_default: flx4_i2c6_default {
+ 		pinmux = <PIN_PD12__FLEXCOM4_IO0>, //DATA
+ 		<PIN_PD13__FLEXCOM4_IO1>; //CLK
+ 		bias-disable;
+-		drive-open-drain = <1>;
++		drive-open-drain;
+ 	};
+ 
+ 	pinctrl_pwm0 {
+-- 
+2.32.0
 
