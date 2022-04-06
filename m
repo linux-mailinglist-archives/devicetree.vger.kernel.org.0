@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCCEB4F6986
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8ED34F6A4A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbiDFTFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:05:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37484 "EHLO
+        id S232495AbiDFTsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:48:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231626AbiDFTDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:03:13 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A51221BAE
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 10:15:34 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-de3ca1efbaso3611230fac.9
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 10:15:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=29TsaCwNe7IIgWiQ9KKg2gI7kYNmr8IJXlOP+DPhD5A=;
-        b=Ag+gCiB80VQYXul7HsewEq+ECrGTgc1pb0H8aBeK6eR5FaP1H00NrmfIGmjU2v9yF1
-         eHjk0V0InkOZQTeumwr6+yDpW+xXub2ApmWWXucQGqaxE18fl2crUqIEUjfZ9YjG7ItT
-         wTj6CQFwDw3g+oJTWbtgu/StGEuUBiimHT+bQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=29TsaCwNe7IIgWiQ9KKg2gI7kYNmr8IJXlOP+DPhD5A=;
-        b=TNRDFFde3rpBU41s2JsryDFGCf/jlTdit/G2pi7PfA2sF1gJZy29FxWqsAe+M+iuen
-         hPKTc5FXCr+LdLKbQm+wUp755fQq3XdxkRJhthFWSqOFRCC9ZoCmO+d3CoXbvCHeJYfl
-         oipjfxowJrcaFL5U1aUlc4/owpWsl9XICMEnAxEUnnxeO42zPcAqaN0Oa45svUPEaaH3
-         CpIaE6vx8bM99x9yn+QUhYXOZRvEU0crzJIWGaI+mJAr+6P2dJydtSlXBmPC06kxihv7
-         zHf1JM3ExUNpmQ71KmPTcijZaV9tMnmeQZGRDStZ4BnxtJH5mlpRIlWeqmVotHTAceZq
-         V+IQ==
-X-Gm-Message-State: AOAM5320rERpo0xujVcbfRha9Hyd55J4xsGIqG1JbP47aID134uCaEq+
-        JTjS30H/grNBpr0X/DmenfnM9rU+ppcdwSWj3TDXYgwgBDk=
-X-Google-Smtp-Source: ABdhPJyQ8fXZTYgdOL/eSrLX3m8IvNlVIi6AAL6YDk4DgLYT4B35Hck6Z1Cubsn/uO2obpuSUQwHXu8BXNhNk0c0+Lg=
-X-Received: by 2002:a05:6870:e314:b0:e1:e5f0:d777 with SMTP id
- z20-20020a056870e31400b000e1e5f0d777mr4241005oad.193.1649265332055; Wed, 06
- Apr 2022 10:15:32 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 6 Apr 2022 10:15:31 -0700
+        with ESMTP id S232521AbiDFTsg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:48:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC8B2BE95A;
+        Wed,  6 Apr 2022 10:27:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 28E8E619B0;
+        Wed,  6 Apr 2022 17:27:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F3A0C385A3;
+        Wed,  6 Apr 2022 17:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649266070;
+        bh=KkbMhLobN1kUPbYF3z6kvOiUl+FffGQ29J+yE6RzbfE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KpOqj/1sc8kVfifET6SQ+laj1UNM5oR9gU7nJO8IZecB3y9chc9k7RSuHPvHf4Oa8
+         weuLl/40Cer9aqaBip8lU19AfVifuiUbLIMJTke2I86xckNhCqaKY38HoZegEdVcHN
+         4SI09GeOgWj8ljB5tS1phi+NEuldGIJu+biGg01FJns73NDJ05xtJdS3qz5Sti7SFU
+         r6w1dY/TRs/UXk+1U34lBW9yhdlmy+eIiNf1ZNdbFo+fKZsrZHpA0mLLqagAHo49bQ
+         DnZKdqHQOekVYmq0dDmOnoso3I/iiGS7P4YHgDau1fIPAzNenLwFCLgB4W1i5quJgY
+         M+QsqS3bu429g==
+Date:   Wed, 6 Apr 2022 18:27:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V9 4/6] regulator: Add a regulator driver for the PM8008
+ PMIC
+Message-ID: <Yk3NkNK3e+fgj4eG@sirena.org.uk>
+References: <1649166633-25872-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1649166633-25872-5-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53G-atsuwqcgNvi3nvWyiO3P=pSj5zDUMYj0ELVYJE54Q@mail.gmail.com>
+ <Yk1B4f51WMGIV9WB@sirena.org.uk>
+ <CAE-0n53Cv_bR92M64dhdnDge_=_jeOs4VZzDhUkksN90Y7rgog@mail.gmail.com>
+ <Yk21pdu16lyR8jXm@sirena.org.uk>
+ <CAE-0n50C8khP2x4sgNP5xnfLVMRQj2=LChyWWx1BWL+Xgecgyw@mail.gmail.com>
+ <Yk3Bfnxe/meBYokp@sirena.org.uk>
+ <CAE-0n53O23=N0zkZpg87Q3EyKquLe3WLNJT8qnZz4WEor6QK7A@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20220406165011.10202-8-gwendal@chromium.org>
-References: <20220406165011.10202-1-gwendal@chromium.org> <20220406165011.10202-8-gwendal@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 6 Apr 2022 10:15:31 -0700
-Message-ID: <CAE-0n53qRwMPLs9kHfN2xHSE0iC4OwVVfPd9vv7eua78yGdvwQ@mail.gmail.com>
-Subject: Re: [PATCH v4 7/8] dt-bindings: iio: sx9360: Add precharge resistor setting
-To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="004SQJl7509giZyq"
+Content-Disposition: inline
+In-Reply-To: <CAE-0n53O23=N0zkZpg87Q3EyKquLe3WLNJT8qnZz4WEor6QK7A@mail.gmail.com>
+X-Cookie: Look ere ye leap.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,10 +70,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Gwendal Grignou (2022-04-06 09:50:10)
-> Allow configure the resistance used during precharge.
->
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> ---
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+--004SQJl7509giZyq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Apr 06, 2022 at 10:21:01AM -0700, Stephen Boyd wrote:
+> Quoting Mark Brown (2022-04-06 09:36:14)
+> > On Wed, Apr 06, 2022 at 08:51:48AM -0700, Stephen Boyd wrote:
+
+> > > My guess is that this is one IC that responds to multiple i2c address=
+es.
+> > > The "main" qcom,pm8008 address is 0x8 and that supports things like
+> > > interrupts. Then there's an address for regulators at 0x9 which contr=
+ols
+> > > the handful of LDOs on the PMIC.
+
+> > So it's like the TI TWL4030 and Palmas - in which case it should
+> > probably be handled similarly?
+
+> How did those work out? I wasn't involved and I don't know what you
+> mean. Do they have multiple i2c addresses they respond to?
+
+Yes, exactly.  The main device uses i2c_new_dummy_device() to
+instantiate the extras when it probes.  See twl-core.c
+
+>=20
+> > Note that the original sumbission was
+> > *also* a MFD subfunction, but using a DT compatible to match the
+> > platform device - this is the first I've heard of this being a separate
+> > I2C function.
+
+> I'm mainly looking at the dts file now. It clearly has two i2c devices
+> at 0x8 and 0x9. Maybe the regulator driver followed the mfd design
+> because the first driver for this device is an mfd.
+
+I'm guessing from the naming that they're also externally described as
+the same device - presumably it's two dies shoved together in the same
+package for some reason without being otherwise joined up.  Is the
+second device geniunely regulators only or does it have anything else
+bundled in there?
+
+--004SQJl7509giZyq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJNzY8ACgkQJNaLcl1U
+h9BXDQf9HHPmN8O2BxmVgWl0924qhTw/rou4mgZ3GdP/YtQLxAe7A2e6GzabQjKE
+M/82tK6k4zp0QJtXTHsqRgdpAYintpwbabCQKzku1DHfNTFSivLhouIiFPqO+qlT
+3X6zsi8OwWHjJs7CZxJ4SeFNQ1Nwn63W+BMqeGl6K775QQ2JgRc1Qit42PZl/6SA
+nLAnL5p7F4a0WfKdw/HOWjhmjhwdI1OauB8lYVBgOWrZburTbeR9sWmnrLRYtoyI
+FHDIxwhCcM1YEj1tqxpoNuaYzWxbBY3afPPNLsGJgM20OPUlD+kDmhunV7LyidxW
+FW5Yp0vrMvbtBr9VGmtDahPoxpdO8Q==
+=qZSa
+-----END PGP SIGNATURE-----
+
+--004SQJl7509giZyq--
