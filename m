@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A8A4F6B31
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7105A4F6B3A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234216AbiDFUVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 16:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57042 "EHLO
+        id S231945AbiDFUWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 16:22:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232301AbiDFUU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:20:28 -0400
+        with ESMTP id S233836AbiDFUVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:21:18 -0400
 Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B281DF86F;
-        Wed,  6 Apr 2022 11:17:10 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id z8so3270023oix.3;
-        Wed, 06 Apr 2022 11:17:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED535329CAC;
+        Wed,  6 Apr 2022 11:33:47 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id t21so3275940oie.11;
+        Wed, 06 Apr 2022 11:33:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=T6gGX1JeafegCBbM2c9piMtf7ay+mZ2pbbpD9LOI+Ak=;
-        b=ca9mM081Zau2l05BylUKdUtYuwdNedgl39ltZnWRlP97HWhkPw3lg/WVr6tFilGRsx
-         3UIcm1IFgLMzzaSCBj6VtXvzeLURK1hOAJ+BxOGyME8btAVs0z7dt1Ee2buo1k5HDgW4
-         0QMAqfzrhKtgSbMS9eGsFVfhHGFccGoXJgNSrmBCJvTqY6VDwQ+5tG9r/PVsCvzH9JKF
-         y+uSNe/T5KCSV6zHkn3OIzXawkiYs70BNWR2wf7QdSIndllqeWDgoe5njjVJlaPJ1gU9
-         zOp4El708hgyuf+CddAmgk9DO730X8u+wrPQdsu1/2NHWtLuvAy/jpRaybb7BDHTXzmR
-         SzKg==
-X-Gm-Message-State: AOAM530fin9lCrVly0yhAR10ym+H/uFFPn2OWRYhjBmC7wA2POGDs7YM
-        imo4I3U/TrhJWHKUCs3iQw==
-X-Google-Smtp-Source: ABdhPJwfpvF0tXlBwNI9AWhehhWEr+8ujcczl865A4l9Y+c9W2djLeJTG6CYjERcm6c4EjcWSg1ocA==
-X-Received: by 2002:a05:6808:120d:b0:2d9:a01a:4895 with SMTP id a13-20020a056808120d00b002d9a01a4895mr4342004oil.224.1649269029656;
-        Wed, 06 Apr 2022 11:17:09 -0700 (PDT)
+        bh=sIlgTwiNbfwFFAy/yXeyQZoSzXEnPFRyql/iL5iCCtE=;
+        b=EavmNT81m2zPk7pJS6EZPpHNfJlHPQ0kUzliAamOJ/6oVjU2AT9jnyz2im4jfY5447
+         B6kp6qB/sWmRE42U/V0UTTWmYcqG2OueC+vYYLYvK/qYJpFjl4rd+dXemTjBuBVXpdIC
+         N+3uMpQOxtjnYnkz68BEc5IOLUIn+4gnzxj1UVZ1zUk8Ii8OCQsMe9Ix3AMLXYxphlcu
+         KeY5Izmx9OsaV/n19OSxUuuNIIgAFqwrLVo3vT5oSb/Sgb1qk1vQ9t9PmTDxwVV7E+VL
+         8TjNtPJ6mO3NFaIMb8p9ZWm927juWoorK0XDxJL8hV/HQMrOzd3Hq9ES0AdY7iQlg6G3
+         2qQA==
+X-Gm-Message-State: AOAM533sAKnXSCTUPR/QEFMzR2HSMfdze9JPyCqVCY72nYDFHsDsvSTY
+        Bn8/arOIhQ7NU80QentuGw==
+X-Google-Smtp-Source: ABdhPJzoDiAm1Di4r6ZLELhVjZd9pldCOh/h5QYfD8dFKDaipx5siYm49mB3Emx2ZZfS+3iBhWYjsA==
+X-Received: by 2002:aca:36c1:0:b0:2ec:cf67:b8ef with SMTP id d184-20020aca36c1000000b002eccf67b8efmr4103516oia.115.1649270027272;
+        Wed, 06 Apr 2022 11:33:47 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l18-20020a4a3512000000b00324add481b1sm6391334ooa.9.2022.04.06.11.17.09
+        by smtp.gmail.com with ESMTPSA id b21-20020a9d7555000000b005b24c85da2csm6980665otl.51.2022.04.06.11.33.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 11:17:09 -0700 (PDT)
-Received: (nullmailer pid 2527774 invoked by uid 1000);
-        Wed, 06 Apr 2022 18:17:08 -0000
-Date:   Wed, 6 Apr 2022 13:17:08 -0500
+        Wed, 06 Apr 2022 11:33:46 -0700 (PDT)
+Received: (nullmailer pid 2551211 invoked by uid 1000);
+        Wed, 06 Apr 2022 18:33:46 -0000
+Date:   Wed, 6 Apr 2022 13:33:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: uniphier: Clean up clocks,
- resets, and their names using compatible string
-Message-ID: <Yk3ZJOotL22jZM/+@robh.at.kernel.org>
-References: <1649145303-30221-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1649145303-30221-2-git-send-email-hayashi.kunihiko@socionext.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     nicolas.ferre@microchip.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        sre@kernel.org, p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com
+Subject: Re: [PATCH 2/8] dt-bindings: reset: convert Atmel/Microchip reset
+ controller to YAML
+Message-ID: <Yk3dCu8ef9Scbklp@robh.at.kernel.org>
+References: <20220405112724.2760905-1-claudiu.beznea@microchip.com>
+ <20220405112724.2760905-3-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1649145303-30221-2-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20220405112724.2760905-3-claudiu.beznea@microchip.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,16 +65,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Apr 2022 16:55:02 +0900, Kunihiko Hayashi wrote:
-> Instead of "oneOf:" choices, use "allOf:" and "if:" to define clocks,
-> resets, and their names that can be taken by the compatible string.
+On Tue, 05 Apr 2022 14:27:18 +0300, Claudiu Beznea wrote:
+> Convert Atmel/Microchip reset controller to YAML.
 > 
-> The order of clock-names and reset-names doesn't change here.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > ---
->  .../socionext,uniphier-regulator.yaml         | 55 +++++++++++++------
->  1 file changed, 38 insertions(+), 17 deletions(-)
+>  .../devicetree/bindings/arm/atmel-sysregs.txt | 15 ------
+>  .../reset/atmel,at91sam9260-reset.yaml        | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 15 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/reset/atmel,at91sam9260-reset.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
