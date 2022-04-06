@@ -2,169 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7DE04F620B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 812174F6216
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 16:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234999AbiDFOpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 10:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55678 "EHLO
+        id S234991AbiDFOs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 10:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235139AbiDFOpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:45:11 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42B34DF167;
-        Wed,  6 Apr 2022 04:13:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649243602; x=1680779602;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=2PAsFYfRWWJDutvD3FhIa3IQXNXAlmetZzLJmG6mtNU=;
-  b=ueZqMoc1b1QN03yuCI6zq11YNOaA2u2n/z2V5yGgCPCLIMn/AhKfB1tG
-   +xivm50/W16GBRdpNtMJ6x/vJ1ySKsAHENhOP/oStJRewDqsxe1mbYc6I
-   ganqIxtw6sTRi3n/NkeZsN5Yb/OPqRV262LQfDurIF2zEVJd5CjzVQ0cq
-   A=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Apr 2022 04:13:21 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 04:13:21 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 04:13:20 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 04:13:18 -0700
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <mka@chromium.org>,
-        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Subject: [PATCH v4] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
-Date:   Wed, 6 Apr 2022 16:43:03 +0530
-Message-ID: <20220406111303.27670-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S235283AbiDFOrg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 10:47:36 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 42B79541E22
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 04:15:40 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D150423A;
+        Wed,  6 Apr 2022 04:15:39 -0700 (PDT)
+Received: from [10.57.41.19] (unknown [10.57.41.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E042C3F718;
+        Wed,  6 Apr 2022 04:15:37 -0700 (PDT)
+Message-ID: <bb429523-6a06-33ab-2289-22ef5fa8b0cb@arm.com>
+Date:   Wed, 6 Apr 2022 12:15:33 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v9 01/23] clk: rk3568: Mark hclk_vo as critical
+Content-Language: en-GB
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <20220328151116.2034635-2-s.hauer@pengutronix.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220328151116.2034635-2-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DTS node for WCN6750 WiFi chipset.
+On 2022-03-28 16:10, Sascha Hauer wrote:
+> Whenever pclk_vo is enabled hclk_vo must be enabled as well. This is
+> described in the Reference Manual as:
+> 
+> | 2.8.6 NIU Clock gating reliance
+> |
+> | A part of niu clocks have a dependence on another niu clock in order to
+> | sharing the internal bus. When these clocks are in use, another niu
+> | clock must be opened, and cannot be gated.  These clocks and the special
+> | clock on which they are relied are as following:
+> |
+> | Clocks which have dependency     The clock which can not be gated
+> | -----------------------------------------------------------------
+> | ...
+> | pclk_vo_niu, hclk_vo_s_niu       hclk_vo_niu
+> | ...
+> 
+> The clock framework doesn't offer a way to enable clock B whenever clock A is
+> enabled, at least not when B is not an ancestor of A. Workaround this by
+> marking hclk_vo as critical so it is never disabled. This is suboptimal in
+> terms of power consumption, but a stop gap solution until the clock framework
+> has a way to deal with this.
+> 
+> We have this clock tree:
+> 
+> |      aclk_vo                  2        2        0   300000000          0     0  50000         Y
+> |         aclk_hdcp             0        0        0   300000000          0     0  50000         N
+> |         pclk_vo               2        3        0    75000000          0     0  50000         Y
+> |            pclk_edp_ctrl      0        0        0    75000000          0     0  50000         N
+> |            pclk_dsitx_1       0        0        0    75000000          0     0  50000         N
+> |            pclk_dsitx_0       1        2        0    75000000          0     0  50000         Y
+> |            pclk_hdmi_host     1        2        0    75000000          0     0  50000         Y
+> |            pclk_hdcp          0        0        0    75000000          0     0  50000         N
+> |         hclk_vo               2        5        0   150000000          0     0  50000         Y
+> |            hclk_hdcp          0        0        0   150000000          0     0  50000         N
+> |            hclk_vop           0        2        0   150000000          0     0  50000         N
+> 
+> Without this patch the edp, dsitx, hdmi and hdcp driver would enable their
+> clocks which then enables pclk_vo, but hclk_vo stays disabled and register
+> accesses just hang. hclk_vo is enabled by the VOP2 driver, so reproducibility
+> of this issue depends on the probe order.
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-Depends on:
-- https://patchwork.kernel.org/project/linux-arm-msm/patch/20220328070701.28551-1-quic_mpubbise@quicinc.com/
-- https://patchwork.kernel.org/project/linux-wireless/patch/20220328060937.16738-2-quic_mpubbise@quicinc.com/
+FWIW,
 
-Changes from V3:
-- Rebased on ToT
-- Minor changes regarding '0' padding
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 
-Changes from V2:
-- Changes based on DT binding concerns
-- Rebased on ToT
-
-Changes from V1:
-- Corrected the case for hex values
-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 ++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 46 ++++++++++++++++++++++++
- 2 files changed, 53 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index f61a3e15fa8b..015a3474d401 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -550,3 +550,10 @@ sw_ctrl: sw-ctrl {
- &remoteproc_wpss {
- 	status = "okay";
- };
-+
-+&wifi {
-+	status = "okay";
-+	wifi-firmware {
-+		iommus = <&apps_smmu 0x1c02 0x1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index b757e8ad1199..26f66f46a950 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -85,6 +85,11 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		wlan_ce_mem: memory@4cd000 {
-+			no-map;
-+			reg = <0x0 0x004cd000 0x0 0x1000>;
-+		};
-+
- 		hyp_mem: memory@80000000 {
- 			reg = <0x0 0x80000000 0x0 0x600000>;
- 			no-map;
-@@ -1808,6 +1813,47 @@ mmss_noc: interconnect@1740000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		wifi: wifi@17a10040 {
-+			compatible = "qcom,wcn6750-wifi";
-+			reg = <0 0x17a10040 0 0x0>;
-+			iommus = <&apps_smmu 0x1c00 0x1>;
-+			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
-+			qcom,rproc = <&remoteproc_wpss>;
-+			memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
-+			status = "disabled";
-+		};
-+
- 		pcie1: pci@1c08000 {
- 			compatible = "qcom,pcie-sc7280";
- 			reg = <0 0x01c08000 0 0x3000>,
--- 
-2.35.1
-
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+> 
+> Notes:
+>      Changes since v8:
+>      - new patch
+> 
+>   drivers/clk/rockchip/clk-rk3568.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
+> index 63dfbeeeb06d9..62694d95173ab 100644
+> --- a/drivers/clk/rockchip/clk-rk3568.c
+> +++ b/drivers/clk/rockchip/clk-rk3568.c
+> @@ -1591,6 +1591,7 @@ static const char *const rk3568_cru_critical_clocks[] __initconst = {
+>   	"hclk_php",
+>   	"pclk_php",
+>   	"hclk_usb",
+> +	"hclk_vo",
+>   };
+>   
+>   static const char *const rk3568_pmucru_critical_clocks[] __initconst = {
