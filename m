@@ -2,187 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77F5C4F5BCF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 13:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E49D4F5BDB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 13:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239721AbiDFKvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 06:51:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
+        id S1351266AbiDFKyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 06:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242457AbiDFKu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 06:50:26 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED9D50D257
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 00:15:04 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id p15so2320795ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 00:15:03 -0700 (PDT)
+        with ESMTP id S236696AbiDFKxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 06:53:50 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FEBE2DBFD1;
+        Wed,  6 Apr 2022 00:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ItLT2iWRQ8MK455HPWYXz8o5FEVTFaa0PW9WN5W7PWQ=;
-        b=aljVglaiorKfLr8hIxisEour0ptMG48CK1Bco7fzAXebuy++7+j30VgUqeBNWNdapT
-         46/oBIK5ME7783f1qbqsbxF5x372/E+eU6rexLJ3siZ4UM45XdYoJ8n8w31/ArgK1aNk
-         uwAEQrHoYEM0WjRO1nd1VUEwecsGsuQ1oi5AAOjZiNcyShoav28NWybX7c8Oa+tJbMez
-         Mey+ABS6X67p4P5xSubdsTVUfYEFFabbavXous5101XE2chjMSSJAY5XDxyGP1N/xccQ
-         JHURGWS09J+gDo3OLTrPKlNqcW6azIrdVUp/cCMhfqs+syP26YHknSOBGxCrRJue8I7e
-         mA1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ItLT2iWRQ8MK455HPWYXz8o5FEVTFaa0PW9WN5W7PWQ=;
-        b=GTjSyq8otNtTNEf2tm0LBCcK2SROCFbhEkUAehU5y52TEim7EQXGr8e8VhmTVs9FPM
-         nUHRAVs5zaF5r9jXu8F1WubViXikKkDZ0WNbT2FpNu4NrmuWL9vn9yRZfT2sdFFBAglN
-         U6Yf7UmNYWwDilrA0RarlwP/VuzpL5loNBJYyWspdmW9A8q8tXQp9O7vnQB752nfJQqZ
-         wctKTXQ2H3uEIzDs6Ay8iclScmriZxXDzmT8uOngmc9n8s7aazKENirvyv3KdQx0khUi
-         uQ9rUmkbUF7Gr+foG2xQXKX8TDLXK+zVAGqzXJh8t3/QsKG+l/xpfHa7ZcGQzBrCgKZD
-         IlWQ==
-X-Gm-Message-State: AOAM531FzKER8NYrpvEZAkqedx4q05O+7rlIZyqIbyToidcet9rSLVr3
-        dhffDv6/0AmCvzqZ/XcF6MkmPYmAXjiUmFVa
-X-Google-Smtp-Source: ABdhPJxkVzG6YeLl1AHfVOPZW8vCgyulJy2IwvFDrOQZC3HKys5OOJ6wApTj/h6GZDOZpaKoaF2krQ==
-X-Received: by 2002:a17:906:dc92:b0:6e4:a93b:8958 with SMTP id cs18-20020a170906dc9200b006e4a93b8958mr7148361ejc.403.1649229298612;
-        Wed, 06 Apr 2022 00:14:58 -0700 (PDT)
-Received: from [192.168.0.182] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id n6-20020aa7c786000000b00410d2403ccfsm7531111eds.21.2022.04.06.00.14.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Apr 2022 00:14:58 -0700 (PDT)
-Message-ID: <bba99b9d-6960-f6e8-0ee4-0b5fe8a5601d@linaro.org>
-Date:   Wed, 6 Apr 2022 09:14:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
-Content-Language: en-US
-To:     Jacky Huang <ychuang3@nuvoton.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "soc@kernel.org" <soc@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220307091923.9909-1-ychuang3@nuvoton.com>
- <20220307091923.9909-4-ychuang3@nuvoton.com>
- <2669852c-5bb6-1edf-bf58-ea815f54d50f@kernel.org>
- <ef8efda1-e985-0684-470f-7acf9b8a5e93@nuvoton.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ef8efda1-e985-0684-470f-7acf9b8a5e93@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649229400; x=1680765400;
+  h=from:to:cc:subject:date:message-id;
+  bh=Vl5j/pBxlHz62sLl5o4S7qA+aF8cOf+Iuq5127cXBMM=;
+  b=IA08wZ3TQ+ZpYcRoeRCB91bk9y/8wG3Iy4W4KHo2ZcH27dXIHQJExwBn
+   8S3Xn8DGplxni/33s+LQePVh1U7TquPN/WDEJKSBLbHFQLIOh3UtjjCfJ
+   EoGMxBQpEONn0e49cfwuYghWyK3UrUakZ3JVPd3jiV3kJcG5ckkMWLPL1
+   U=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 06 Apr 2022 00:16:26 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 06 Apr 2022 00:16:24 -0700
+X-QCInternal: smtphost
+Received: from hu-vnivarth-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.111.166])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 06 Apr 2022 12:46:10 +0530
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3994820)
+        id DE96E3B51; Wed,  6 Apr 2022 12:46:09 +0530 (+0530)
+From:   Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     quic_msavaliy@quicinc.com, dianders@chromium.org,
+        Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+Subject: [V3 0/3] arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
+Date:   Wed,  6 Apr 2022 12:45:59 +0530
+Message-Id: <1649229362-31183-1-git-send-email-quic_vnivarth@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2022 04:58, Jacky Huang wrote:
->>> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
->>> index 639e01a4d855..28e01442094f 100644
->>> --- a/arch/arm64/boot/dts/Makefile
->>> +++ b/arch/arm64/boot/dts/Makefile
->>> @@ -30,3 +30,4 @@ subdir-y += synaptics
->>>   subdir-y += ti
->>>   subdir-y += toshiba
->>>   subdir-y += xilinx
->>> +subdir-y += nuvoton
->>> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
->>> new file mode 100644
->>> index 000000000000..e1e0c466bf5e
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
->>> @@ -0,0 +1,2 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-evb.dtb
->> ARCH_NUVOTON does not exist.
-> 
-> I would add the following to end of arch/arm64/Kconfig.platforms,
+WLAN rail was leaking power during RBSC/sleep even after turning BT off.
+Change sleep pinctrl configuration to handle same.
 
-Don't add things at the end of files but rather in respective place
-without messing the order.
+---
+v3: apply same change to active state and other sc7280*.dts* as well
+v2: used bias-bus-hold as per review comments
+v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
+---
 
-> and 
-> add the
-> modification to this patch series.
-> 
-> config ARCH_MA35D1
->      bool "Nuvoton MA35D1 SOC Family"
+Vijaya Krishna Nivarthi (3):
+  arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
+  arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
+  arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
 
-We do not add options for specific SoCs, but for entire families, so
-ARCH_NUVOTON is correct.
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts | 12 ++++++------
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                   | 12 ++++++------
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                 | 13 ++++++++-----
+ 3 files changed, 20 insertions(+), 17 deletions(-)
 
->      select PINCTRL
->      select PINCTRL_MA35D1
->      select PM
->      select GPIOLIB
->      select SOC_BUS
->      select VIDEOMODE_HELPERS
->      select FB_MODE_HELPERS
->      help
->        This enables support for Nuvoton MA35D1 SOC Family.
-> 
-> 
->>> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts
->>> new file mode 100644
->>> index 000000000000..38e4f734da0f
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts
->>> @@ -0,0 +1,23 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Device Tree Source for MA35D1 Evaluation Board (EVB)
->>> + *
->>> + * Copyright (C) 2021 Nuvoton Technology Corp.
->>> + */
->>> +
->>> +/dts-v1/;
->>> +#include "ma35d1.dtsi"
->>> +
->>> +/ {
->>> +       model = "Nuvoton MA35D1-EVB";
->>> +
->>> +       chosen {
->>> +               bootargs = "console=ttyS0,115200n8";
->> No bootargs. "chosen", please.
-> 
-> OK, I would modify it as:
-> 
-> chosen {
->          stdout-path = "serial0:115200n8";
->      };
-> 
-> 
->>> +       };
->> You need compatible and bindings.
-> 
-> I will add the compatible here
-> compatible = "nuvoton,ma35d1-evb", "nuvoton,ma35d1"
-> 
-> And, I should create a new binding file 
-> Documentation/devicetree/bindings/arm/nuvoton.yaml to this patch series.
-> And the property would be:
-> 
-> properties:
->    compatible:
->      description: Nuvoton MA35D1-EVB
->      items:
->        - const: nuvoton,ma35d1-evb
->        - const: nuvoton,ma35d1
-> 
-> 
-> Is it OK?
+-- 
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
 
-Yes
-
-
-
-Best regards,
-Krzysztof
