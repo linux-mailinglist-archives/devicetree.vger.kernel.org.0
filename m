@@ -2,85 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BF444F6822
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 836D34F6872
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236064AbiDFRzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:55:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40340 "EHLO
+        id S239844AbiDFR5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239693AbiDFRzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:55:37 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F214405D3;
-        Wed,  6 Apr 2022 09:05:12 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-e2442907a1so3029327fac.8;
-        Wed, 06 Apr 2022 09:05:12 -0700 (PDT)
+        with ESMTP id S239758AbiDFR5H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:57:07 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02293305B22;
+        Wed,  6 Apr 2022 09:07:12 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id 12so2831088oix.12;
+        Wed, 06 Apr 2022 09:07:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MpA4CfNVqRRzfNI0NZazohhpjC3Wdx9B0oPB6HfE+1c=;
-        b=ZCruhWHRnvWp3O8B/q7fFIEsktNyHuDsn3qz7ofQHoZ3z+pHNPqKU5ybwV4BxLSEGb
-         RAmGu0P1kYxH80xSL9gMkGgNkDsCoNxSCsCbRVjyd3oaBqIHyYk7N8tIW5Zoeh5wtJhf
-         1PtPC/w5aHo+/CP4OlFE9h6kLVRwFolXRORDuBjynt9mHDIkoKCZJpVIVFmgcpfIMymk
-         AnBfWbGeC1ETs2zJ2E5BuVx+4nkyG49PLe5kmAYC/c7L0K9BoCbV3QEWxVglKHHfdYjY
-         ZNJsFw5cEE1f8X/jfPpUK8XDqBZVBSEACQGOvy7P8RL1vtZ2OOYKmGgBwEiDXuuF4fVA
-         31SA==
-X-Gm-Message-State: AOAM533QeTLZ3TuCCmzONbYhaxP2Qm2a62nbXKJ89Eq0kAnZ0qQmu3Eo
-        tbcCD2Bn6OQ+VWaKjQcODA==
-X-Google-Smtp-Source: ABdhPJxWnogmTkLiwRUqI1DLFzJoxqP9hindg9vBS92SZbO9tvjdBwxEVyklhAyB6REgphp91XXYvw==
-X-Received: by 2002:a05:6870:5b9e:b0:cf:f6de:3e89 with SMTP id em30-20020a0568705b9e00b000cff6de3e89mr4372076oab.94.1649261111777;
-        Wed, 06 Apr 2022 09:05:11 -0700 (PDT)
+        bh=mi0PlXno3D6jBV7awtJNZHmVjzTuCmSnSrCiUvwpU7E=;
+        b=ixA+1+fWlID6n92LIWvIyDbKuSPpFwo/ptM4XSfETNyHRztEoISeuDm5oZOuBfejFA
+         cdz3ZZJx4uvmM3qrCfDt1fX5xa/W47mHPv43UE1MiViOzbrzXPWzy5HB/69wFAR/UvgS
+         l8D0qbFbcX4en5QUcqp2oHfbOL7BM4jMbyBFsG8JP3Wye62z/mkBRT4bvZ/ZnVL8npBJ
+         kh0l2C25nNAeQTJxLjxMqzCd+ZIMAC33ljbzKaG4YBb8aYjDMcDsNONcT+pecjDvM3Ym
+         my9d+7ELK8uqzb6N41hDEUv4NO9lIb9nOlZ8a1D8YZXDV+F7d0BpTrC6pwpP8oOofjkz
+         PpYQ==
+X-Gm-Message-State: AOAM530WwdKiwYs1OJ3zYCBky39w8xkAL/bqm9GAGo1uKfNSJbG8VYE+
+        9hX6gnUS8TyELR3hXA6I1A==
+X-Google-Smtp-Source: ABdhPJyf9cDvzdnJyrz88zNtK+fVSdGACNFc6ZhTULEzyvDAXPx26QtcqONjw4TvsYhTPVBvMs061A==
+X-Received: by 2002:a05:6808:2183:b0:2da:6d62:6ec6 with SMTP id be3-20020a056808218300b002da6d626ec6mr3895459oib.51.1649261230982;
+        Wed, 06 Apr 2022 09:07:10 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w39-20020a056830412700b005cda87bbdcesm7033390ott.6.2022.04.06.09.05.10
+        by smtp.gmail.com with ESMTPSA id mj27-20020a0568700d9b00b000de29e1d6adsm4905187oab.16.2022.04.06.09.07.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 09:05:11 -0700 (PDT)
-Received: (nullmailer pid 2331636 invoked by uid 1000);
-        Wed, 06 Apr 2022 16:05:10 -0000
-Date:   Wed, 6 Apr 2022 11:05:10 -0500
+        Wed, 06 Apr 2022 09:07:10 -0700 (PDT)
+Received: (nullmailer pid 2334572 invoked by uid 1000);
+        Wed, 06 Apr 2022 16:07:09 -0000
+Date:   Wed, 6 Apr 2022 11:07:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Joel Selvaraj <jo@jsfamily.in>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Andy Gross <agross@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: novatek,nt36672a: add
- backlight property
-Message-ID: <Yk26Nli4RXgV5KgK@robh.at.kernel.org>
-References: <20220401001810.81507-1-jo@jsfamily.in>
- <BY5PR02MB70090BB5D8C7D655BEE0642FD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     krzk+dt@kernel.org, linux-crypto@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        heiko@sntech.de, herbert@gondor.apana.org.au,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 29/33] clk: rk3399: use proper crypto0 name
+Message-ID: <Yk26rQaTfZ1QvLN0@robh.at.kernel.org>
+References: <20220401201804.2867154-1-clabbe@baylibre.com>
+ <20220401201804.2867154-30-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BY5PR02MB70090BB5D8C7D655BEE0642FD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <20220401201804.2867154-30-clabbe@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Apr 2022 05:48:09 +0530, Joel Selvaraj wrote:
-> Add backlight property and update example to include it.
+On Fri, 01 Apr 2022 20:18:00 +0000, Corentin Labbe wrote:
+> RK3399 has 2 crypto instance, named crypto0 and crypto1 in the TRM.
+> Only reset for crypto1 is correctly named, but crypto0 is not.
+> Since nobody use them, add a 0 to be consistent with the TRM and crypto1 entries.
 > 
-> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 > ---
->  .../devicetree/bindings/display/panel/novatek,nt36672a.yaml     | 2 ++
->  1 file changed, 2 insertions(+)
+>  include/dt-bindings/clock/rk3399-cru.h | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
