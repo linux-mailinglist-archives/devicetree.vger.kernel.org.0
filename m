@@ -2,45 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 725A04F6783
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17ECC4F6715
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239055AbiDFRbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 13:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49326 "EHLO
+        id S239386AbiDFRdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239066AbiDFRax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:30:53 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 596862317B5
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 08:34:17 -0700 (PDT)
-Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nc7fd-0005jN-QV; Wed, 06 Apr 2022 17:34:09 +0200
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 11/11] arm64: dts: imx8mp: add HDMI power-domains
-Date:   Wed,  6 Apr 2022 17:34:02 +0200
-Message-Id: <20220406153402.1265474-12-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220406153402.1265474-1-l.stach@pengutronix.de>
-References: <20220406153402.1265474-1-l.stach@pengutronix.de>
+        with ESMTP id S239209AbiDFRda (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:33:30 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB852AC2;
+        Wed,  6 Apr 2022 08:38:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CA4E4B824B4;
+        Wed,  6 Apr 2022 15:38:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50BD0C385A1;
+        Wed,  6 Apr 2022 15:38:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649259527;
+        bh=j/cHGt1Adp/5ckJatmOAtFz8YwOh1uG9kyL0/rqOdAI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZxMGCv64eYBNc1avTLYsfD8OTSDZAzQlny1jcKpgW7cpaNUn7n2lzRAB8KA+0J+lc
+         blAso325sUH2hSDdGMBvrLnlq7sBAn7rt+3e0nMPFHgiaqm3WW7oDk8r6r0EjD/33C
+         3zJFZhJkYKMkbll+HRI/2m9zRNN7EtPN7AGtPU93fqfe75x7mw7W9LpfxSs0yNy968
+         c3gGMTbxAhAO8iPe+QiMSfuQiT/dcs7TPgHbp29GUwEK7hdb12Zraumk5vV7L3JElu
+         /kqCfIhCb3N2mHJnynG8r5EIciy+D8KcqFnwwcCTHtxXDyo3TtxOG/OZ8g9SvONgYu
+         KHxSDu2GKbKkg==
+Received: by mail-pg1-f172.google.com with SMTP id 32so401846pgl.4;
+        Wed, 06 Apr 2022 08:38:47 -0700 (PDT)
+X-Gm-Message-State: AOAM5337yWeQjhOnkwDS/9Yjpru+wrCkCn8NxLoNwYn9VxRJskoZjcQu
+        SqA58Rt2YUuKdS3yQDGfQFReG/vMCsVLdW/MfLU=
+X-Google-Smtp-Source: ABdhPJx6nrBYoOc7Poen+QC3GhpAJV8qLRa+XzbVgFrkIodhg2moVi8VEmGesevH2qrojOojIBiXA0F7l3qLHy9jsCo=
+X-Received: by 2002:a05:6a00:1501:b0:4fb:2d19:b6a8 with SMTP id
+ q1-20020a056a00150100b004fb2d19b6a8mr9579739pfu.21.1649259526810; Wed, 06 Apr
+ 2022 08:38:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20220326022728.2969-1-jianjun.wang@mediatek.com> <06c9f2f8236f8dab6b27da9db0332b4ca45a1039.camel@mediatek.com>
+In-Reply-To: <06c9f2f8236f8dab6b27da9db0332b4ca45a1039.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 6 Apr 2022 17:38:35 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfWH-XSogkWVy0Q5LcHSk9SXinR7AA_Odo-oTc32y1Ykg@mail.gmail.com>
+Message-ID: <CAJKOXPfWH-XSogkWVy0Q5LcHSk9SXinR7AA_Odo-oTc32y1Ykg@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] phy: mediatek: Add PCIe PHY driver
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wei-Shun Chang <weishunc@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
+        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
+        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -49,67 +75,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the PGC and HDMI blk-ctrl nodes providing power control for
-HDMI subsystem peripherals.
+On Wed, 6 Apr 2022 at 07:47, Jianjun Wang <jianjun.wang@mediatek.com> wrote:
+>
+> Hello Maintainers,
+>
+> Is there anything I can do to get these patches merged?
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 35 +++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Patience. :) You posted a patch during the merge window which finished
+three days ago, so basically one can assume you ping folks after three
+days. Three days is too fast for pinging. :(
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 627846434901..cbe75b816b43 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -542,6 +542,23 @@ pgc_mediamix: power-domain@10 {
- 							 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
- 					};
- 
-+					pgc_hdmimix: power-domains@14 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_HDMIMIX>;
-+						clocks = <&clk IMX8MP_CLK_HDMI_ROOT>,
-+							 <&clk IMX8MP_CLK_HDMI_APB>;
-+						assigned-clocks = <&clk IMX8MP_CLK_HDMI_AXI>,
-+								  <&clk IMX8MP_CLK_HDMI_APB>;
-+						assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>,
-+									 <&clk IMX8MP_SYS_PLL1_133M>;
-+						assigned-clock-rates = <500000000>, <133000000>;
-+					};
-+
-+					pgc_hdmi_phy: power-domains@15 {
-+						#power-domain-cells = <0>;
-+						reg = <IMX8MP_POWER_DOMAIN_HDMI_PHY>;
-+					};
-+
- 					pgc_mipi_phy2: power-domain@16 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_MIPI_PHY2>;
-@@ -1039,6 +1056,24 @@ hsio_blk_ctrl: blk-ctrl@32f10000 {
- 						     "usb-phy2", "pcie", "pcie-phy";
- 				#power-domain-cells = <1>;
- 			};
-+
-+			hdmi_blk_ctrl: blk-ctrl@32fc0000 {
-+				compatible = "fsl,imx8mp-hdmi-blk-ctrl", "syscon";
-+				reg = <0x32fc0000 0x23c>;
-+				clocks = <&clk IMX8MP_CLK_HDMI_APB>,
-+					 <&clk IMX8MP_CLK_HDMI_ROOT>,
-+					 <&clk IMX8MP_CLK_HDMI_REF_266M>,
-+					 <&clk IMX8MP_CLK_HDMI_24M>;
-+				clock-names = "apb", "axi", "ref_266m", "ref_24m";
-+				power-domains = <&pgc_hdmimix>, <&pgc_hdmimix>,
-+						<&pgc_hdmimix>, <&pgc_hdmimix>,
-+						<&pgc_hdmimix>, <&pgc_hdmimix>,
-+						<&pgc_hdmimix>, <&pgc_hdmi_phy>;
-+				power-domain-names = "bus", "irqsteer", "lcdif",
-+						     "pai", "pvi", "trng",
-+						     "hdmi-tx", "hdmi-tx-phy";
-+				#power-domain-cells = <1>;
-+			};
- 		};
- 
- 		gpu3d: gpu@38000000 {
--- 
-2.30.2
-
+Best regards,
+Krzysztof
