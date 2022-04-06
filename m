@@ -2,178 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9084F5E04
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 14:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC4A4F5E1D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 14:46:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232042AbiDFMoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 08:44:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
+        id S230514AbiDFMgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 08:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230324AbiDFMoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:44:04 -0400
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C794898A6;
-        Wed,  6 Apr 2022 01:45:44 -0700 (PDT)
-Received: from relay2-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::222])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 2AFF0C0380;
-        Wed,  6 Apr 2022 08:32:40 +0000 (UTC)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B5ACB4000E;
-        Wed,  6 Apr 2022 08:32:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649233953;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=PZxxQo3dVhrsiwd8skvk945aAYTYNSp19GOHWGGNzKw=;
-        b=iLXbCHleLr0fpEmdF/teBjhd0vz4JA7GOX0jtRRTjHWBZdFABwBbIZB5+yNdAOKov3e//P
-        aAxRAdKQbIsViI0I4v59pAKI5B+wohE/Rt+h9f104Nr+W0A8WrWxRSceWBkEujAGVh14Iu
-        3TM1K+Ec0kFl82tb0qkCcZznT7BFLu/jTz5VnzdC5pb0ck/33Pa3GhriSFj61KQ1PlYNNE
-        XRSfOR/piCotExVeUuBw3OKbUT8gr280ZcsTCG6uMKL6OCH0KFD6rX34mwvKxr0ib3vltz
-        XKckXDirb/yME6NU1TYHXvhSMesIW0nhp5u4WgsFPvnBR2u/3MiyiB6JVffGKw==
-Date:   Wed, 6 Apr 2022 10:32:31 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 2/7] soc: renesas: rzn1-sysc: Export a function to
- enable/disable the RTC
-Message-ID: <Yk1QH71VskeACqqm@mail.local>
-References: <20220405184716.1578385-1-miquel.raynal@bootlin.com>
- <20220405184716.1578385-3-miquel.raynal@bootlin.com>
+        with ESMTP id S232065AbiDFMey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:34:54 -0400
+Received: from mail-m17637.qiye.163.com (mail-m17637.qiye.163.com [59.111.176.37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE310CB02F
+        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 01:36:52 -0700 (PDT)
+Received: from [192.168.60.102] (unknown [103.29.142.67])
+        by mail-m17637.qiye.163.com (Hmail) with ESMTPA id B89019801AA;
+        Wed,  6 Apr 2022 16:36:48 +0800 (CST)
+Message-ID: <a5e070ae-d9e1-e5ee-0871-2cdf58958203@rock-chips.com>
+Date:   Wed, 6 Apr 2022 16:36:42 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220405184716.1578385-3-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Kever Yang <Kever.yang@rock-chips.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <1c0fbf4f-2e17-29f9-5c69-c80b53ff3d2f@rock-chips.com>
+ <20220405093700.GQ4012@pengutronix.de>
+ <12a8c0ef-90ee-cf7e-50a0-e00add8af147@rock-chips.com>
+ <20220406081333.GU4012@pengutronix.de>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20220406081333.GU4012@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUNKGR5WTEwaTktMGE4ZHU
+        IZVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkxVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PBw6Ejo*LD5MI0oxNz0yDwgZ
+        PD0KFDNVSlVKTU9CSUhPSUpKS05MVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZSktIVUlCVUpPSVVNTFlXWQgBWUFNSUhMNwY+
+X-HM-Tid: 0a7ffe04ef24d992kuwsb89019801aa
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/04/2022 20:47:11+0200, Miquel Raynal wrote:
-> There are two RTC registers located within the system controller.
-> 
-> Like with the dmamux register, let's add a new helper to enable/disable
-> the power, reset and clock of the RTC.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  drivers/clk/renesas/r9a06g032-clocks.c        | 49 +++++++++++++++++++
->  include/linux/soc/renesas/r9a06g032-sysctrl.h |  2 +
->  2 files changed, 51 insertions(+)
-> 
-> diff --git a/drivers/clk/renesas/r9a06g032-clocks.c b/drivers/clk/renesas/r9a06g032-clocks.c
-> index 1df56d7ab3e1..7e61db39a43b 100644
-> --- a/drivers/clk/renesas/r9a06g032-clocks.c
-> +++ b/drivers/clk/renesas/r9a06g032-clocks.c
-> @@ -26,6 +26,13 @@
->  #include <dt-bindings/clock/r9a06g032-sysctrl.h>
->  
->  #define R9A06G032_SYSCTRL_DMAMUX 0xA0
-> +#define R9A06G032_SYSCTRL_PWRCTRL_RTC 0x140
-> +#define   R9A06G032_SYSCTRL_PWRCTRL_RTC_CLKEN BIT(0)
-> +#define   R9A06G032_SYSCTRL_PWRCTRL_RTC_RST BIT(1)
-> +#define   R9A06G032_SYSCTRL_PWRCTRL_RTC_IDLE_REQ BIT(2)
-> +#define   R9A06G032_SYSCTRL_PWRCTRL_RTC_RSTN_FW BIT(3)
-> +#define R9A06G032_SYSCTRL_PWRSTAT_RTC 0x144
-> +#define   R9A06G032_SYSCTRL_PWRSTAT_RTC_IDLE BIT(1)
->  
->  struct r9a06g032_gate {
->  	u16 gate, reset, ready, midle,
-> @@ -343,6 +350,48 @@ int r9a06g032_sysctrl_set_dmamux(u32 mask, u32 val)
->  }
->  EXPORT_SYMBOL_GPL(r9a06g032_sysctrl_set_dmamux);
->  
-> +/* Exported helper to enable/disable the RTC */
-> +int r9a06g032_sysctrl_enable_rtc(bool enable)
-> +{
-> +	unsigned long flags;
-> +	u32 val;
-> +
-> +	if (!sysctrl_priv)
-> +		return -EPROBE_DEFER;
-> +
-> +	spin_lock_irqsave(&sysctrl_priv->lock, flags);
-> +
-> +	if (enable) {
-> +		val = readl(sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val &= ~R9A06G032_SYSCTRL_PWRCTRL_RTC_RST;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val |= R9A06G032_SYSCTRL_PWRCTRL_RTC_CLKEN;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val |= R9A06G032_SYSCTRL_PWRCTRL_RTC_RSTN_FW;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val &= ~R9A06G032_SYSCTRL_PWRCTRL_RTC_IDLE_REQ;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val = readl(sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRSTAT_RTC);
-> +		if (val & R9A06G032_SYSCTRL_PWRSTAT_RTC_IDLE)
-> +			return -EIO;
-> +	} else {
-> +		val = readl(sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val |= R9A06G032_SYSCTRL_PWRCTRL_RTC_IDLE_REQ;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val &= ~R9A06G032_SYSCTRL_PWRCTRL_RTC_RSTN_FW;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val &= ~R9A06G032_SYSCTRL_PWRCTRL_RTC_CLKEN;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +		val |= R9A06G032_SYSCTRL_PWRCTRL_RTC_RST;
-> +		writel(val, sysctrl_priv->reg + R9A06G032_SYSCTRL_PWRCTRL_RTC);
-> +	}
-> +
-> +	spin_unlock_irqrestore(&sysctrl_priv->lock, flags);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(r9a06g032_sysctrl_enable_rtc);
-> +
->  /* register/bit pairs are encoded as an uint16_t */
->  static void
->  clk_rdesc_set(struct r9a06g032_priv *clocks,
-> diff --git a/include/linux/soc/renesas/r9a06g032-sysctrl.h b/include/linux/soc/renesas/r9a06g032-sysctrl.h
-> index 066dfb15cbdd..914c8789149c 100644
-> --- a/include/linux/soc/renesas/r9a06g032-sysctrl.h
-> +++ b/include/linux/soc/renesas/r9a06g032-sysctrl.h
-> @@ -4,8 +4,10 @@
->  
->  #ifdef CONFIG_CLK_R9A06G032
->  int r9a06g032_sysctrl_set_dmamux(u32 mask, u32 val);
-> +int r9a06g032_sysctrl_enable_rtc(bool enable);
->  #else
->  static inline int r9a06g032_sysctrl_set_dmamux(u32 mask, u32 val) { return -ENODEV; }
-> +static inline int r9a06g032_sysctrl_enable_rtc(bool enable) { return -ENODEV; }
+Hi:
 
-Couldn't that be handled using the reset subsystem to avoid leaking a
-random API in the RTC driver? (and that would remove the build
-dependency)
+On 4/6/22 16:13, Sascha Hauer wrote:
+> On Wed, Apr 06, 2022 at 10:02:59AM +0800, Andy Yan wrote:
+>> Hi:
+>>
+>> On 4/5/22 17:37, Sascha Hauer wrote:
+>>> On Sat, Apr 02, 2022 at 09:37:17AM +0800, Andy Yan wrote:
+>>>> Hi Sacha:
+>>>>
+>>>> On 4/1/22 20:52, Sascha Hauer wrote:
+>>>>> -- 
+>>>>> >From cbc03073623a7180243331ac24c3afaf9dec7522 Mon Sep 17 00:00:00 2001
+>>>>> From: Sascha Hauer<s.hauer@pengutronix.de>
+>>>>> Date: Fri, 1 Apr 2022 14:48:49 +0200
+>>>>> Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
+>>>>>
+>>>>> ---
+>>>>>     drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 ++++++++++++++
+>>>>>     1 file changed, 14 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>>>> index 7dba7b9b63dc6..1421bf2f133f1 100644
+>>>>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>>>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+>>>>> @@ -2287,6 +2287,20 @@ static int vop2_create_crtc(struct vop2 *vop2)
+>>>>>     			}
+>>>>>     		}
+>>>>> +		if (vop2->data->soc_id == 3566) {
+>>>>> +			/*
+>>>>> +			 * On RK3566 these windows don't have an independent
+>>>>> +			 * framebuffer. They share the framebuffer with smart0,
+>>>>> +			 * esmart0 and cluster0 respectively.
+>>>>> +			 */
+>>>>> +			switch (win->data->phys_id) {
+>>>>> +			case ROCKCHIP_VOP2_SMART1:
+>>>>> +			case ROCKCHIP_VOP2_ESMART1:
+>>>>> +			case ROCKCHIP_VOP2_CLUSTER1:
+>>>>> +				continue;
+>>>>> +			}
+>>>> Think about this , there maybe other upcoming vop2 base soc, they may only
+>>>> have
+>>>>
+>>>> mirror window Smart1 Esmart1, or Smart1, Esmart1, Esmart2, Cluster1.
+>>>>
+>>>> I think this should add WIN_FEATURE at the platform description file
+>>>> rockchip_vop2_reg.c, then
+>>>>
+>>>> check the FEATURE to decide whether the driver should give this window a
+>>>> special treatment.
+>>>>
+>>>> this can make one code run for different soc with different platform
+>>>> description. or we should add
+>>>>
+>>>> the same code logic for different soc again and again.
+>>> You mean like done in the downstream Kernel? Here indeed we have a
+>>> WIN_FEATURE_MIRROR flag added to the platform description. This is then
+>>> evaluated with:
+>>>
+>>> static bool vop2_is_mirror_win(struct vop2_win *win)
+>>> {
+>>>           return soc_is_rk3566() && (win->feature & WIN_FEATURE_MIRROR);
+>>> }
+>>>
+>>> So a flag is added and afterwards its evaluation is SoC specific. That
+>>> doesn't help at all and only obfuscates things.
+>>>
+>>> Besides, experience shows that you can't predict a good abstraction for
+>> This is not a  predict,  this is an IP feature, so it will appeared on
+>> upcoming SOC.
+>>
+>> We have rk3588 with 8 windows(4 Cluster + 4 Esmart, no Smart window), and
+>>
+>> also have a entry level soc which only have 4 windows, they both have this
+>> feature.
+> Same as with the other discussion: Please let's solve this once we are
+> there.
 
->  #endif
->  
->  #endif /* __LINUX_SOC_RENESAS_R9A06G032_SYSCTRL_H__ */
-> -- 
-> 2.27.0
-> 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+I am not sure if this is the suitable way for upstream, this sound like
+
+just solve the issue appeared at the front of eyes and not think any
+
+thing about make this driver easy to support new hardware in the future.
+
+> For now my addition is the easiest way out. Once other SoCs shall be
+> supported we can re-evaluate that and find better suitable ways for SoC
+> abstractions. This may result in just your suggestion (in which case you
+> can say told-you-so) or completely different.
+>
+> Sascha
+>
