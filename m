@@ -2,143 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F1574F655F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465D64F64E1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237637AbiDFQ32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 12:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43790 "EHLO
+        id S237651AbiDFQ2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 12:28:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237748AbiDFQ2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:28:49 -0400
-Received: from mail-m17637.qiye.163.com (mail-m17637.qiye.163.com [59.111.176.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215B82016B7
-        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 19:03:02 -0700 (PDT)
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-        by mail-m17637.qiye.163.com (Hmail) with ESMTPA id F0DA798048A;
-        Wed,  6 Apr 2022 10:02:59 +0800 (CST)
-Message-ID: <12a8c0ef-90ee-cf7e-50a0-e00add8af147@rock-chips.com>
-Date:   Wed, 6 Apr 2022 10:02:59 +0800
+        with ESMTP id S237928AbiDFQ1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:27:45 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B4633A8D4
+        for <devicetree@vger.kernel.org>; Tue,  5 Apr 2022 19:05:51 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-de3eda6b5dso1501758fac.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 19:05:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/B6OEeKNYPJ4Ptjy67RysQjps4ixI/LDrWNN950F0R4=;
+        b=LOFD1TB5DHCmdfFhLMSs0KFUQCTqjO1cUH6JeNgY3rqhZKF4HwlfE5cVVqI7+9FwI3
+         1nWfuNTNewIPCUr2fopefsiatrMpzcGWOywnhsuJ1QCvvzT/rigzes5gu0xjmGk6RTbj
+         91zvAhi3vAWNLCyc3+P49DKDOOP9IICYV9kwc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/B6OEeKNYPJ4Ptjy67RysQjps4ixI/LDrWNN950F0R4=;
+        b=MWZ/1rj/UZITqNg2HTDlQt0272jp8fiNkGlPExJKfNMjGEFsSwl56QNlJO/aKYDftT
+         K5DgXeyRO7RYhTYjTlMBbWqx3XQtvh6XREyhgb4J2gixo2MKzxxlWPNN9NfCBfvD3hpf
+         O30uuw0Lwjo4G3MbTu20U1HAJmrZl5WeJPWaYrV+juwXfRauZCExVESIIJfO0wFCXP8j
+         aoU7yMyyDSlOsK8blVxMkTOvmo2hYTm0j9Pv94tLJcn2IRc3BY27W+SnbpfNVH8W4Gy3
+         ZOxOsX2WwxYv4aCdAQuHutT1suPFSaj+go9aPzvt1Qat85hE7xp2yH1NseOXKt9ypxrP
+         Htng==
+X-Gm-Message-State: AOAM533Mu8h33yDW/4RnIz/8Ss/J8B6MsRm389gAvBy4PXyg/RawJ4jz
+        7RjtloMbnOb1E1RD97H15whvXPTdVq+w8A==
+X-Google-Smtp-Source: ABdhPJwPJ+KT7xE23AiKo4YgG/cGViz3EoKuzf1tMgiLYYhf2tGv8mTuEZXQN4wKBPrsouG09qkxZw==
+X-Received: by 2002:a05:6870:d353:b0:e1:9304:e807 with SMTP id h19-20020a056870d35300b000e19304e807mr3037400oag.70.1649210749497;
+        Tue, 05 Apr 2022 19:05:49 -0700 (PDT)
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com. [209.85.160.48])
+        by smtp.gmail.com with ESMTPSA id 38-20020a9d0da9000000b005cb437ac0e2sm6483635ots.44.2022.04.05.19.05.45
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Apr 2022 19:05:45 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-d6ca46da48so1408709fac.12
+        for <devicetree@vger.kernel.org>; Tue, 05 Apr 2022 19:05:45 -0700 (PDT)
+X-Received: by 2002:a05:6870:c142:b0:dd:d5a3:767c with SMTP id
+ g2-20020a056870c14200b000ddd5a3767cmr2910063oad.291.1649210744492; Tue, 05
+ Apr 2022 19:05:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+References: <20220127230727.3369358-1-briannorris@chromium.org>
+ <20220127150615.v2.12.I3a5c7f21ecd8221b42c2dbcd618386bce7b3e9a6@changeid> <CAMdYzYo9Y_pEAAtreQU0B9DVzGsbUgpTA2g7HGRyUXcSBjMy4g@mail.gmail.com>
+In-Reply-To: <CAMdYzYo9Y_pEAAtreQU0B9DVzGsbUgpTA2g7HGRyUXcSBjMy4g@mail.gmail.com>
+From:   Brian Norris <briannorris@chromium.org>
+Date:   Tue, 5 Apr 2022 19:05:33 -0700
+X-Gmail-Original-Message-ID: <CA+ASDXP46bVqZAyzgUQkZAqqVf6Yc5Zg9CZ_1k0XCYUSYq_QLg@mail.gmail.com>
+Message-ID: <CA+ASDXP46bVqZAyzgUQkZAqqVf6Yc5Zg9CZ_1k0XCYUSYq_QLg@mail.gmail.com>
+Subject: Re: [PATCH v2 12/15] arm64: dts: rockchip: Enable dmc and dfi nodes
+ on gru
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220401125205.GL4012@pengutronix.de>
- <1c0fbf4f-2e17-29f9-5c69-c80b53ff3d2f@rock-chips.com>
- <20220405093700.GQ4012@pengutronix.de>
-From:   Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20220405093700.GQ4012@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWRlIGEtWGE1LSkpOGB
-        oYSkhIVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MRA6GCo5Aj4MHUsIMBYxFThK
-        NDYwCjNVSlVKTU9CSUpLTkNLTUxIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBTklNSjcG
-X-HM-Tid: 0a7ffc9c5db9d992kuwsf0da798048a
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Lin Huang <hl@rock-chips.com>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Derek Basehore <dbasehore@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-pm <linux-pm@vger.kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        =?UTF-8?B?R2HDq2wgUE9SVEFZ?= <gael.portay@collabora.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi:
+Hello again Peter,
 
-On 4/5/22 17:37, Sascha Hauer wrote:
-> On Sat, Apr 02, 2022 at 09:37:17AM +0800, Andy Yan wrote:
->> Hi Sacha:
->>
->> On 4/1/22 20:52, Sascha Hauer wrote:
->>> -- 
->>> >From cbc03073623a7180243331ac24c3afaf9dec7522 Mon Sep 17 00:00:00 2001
->>> From: Sascha Hauer<s.hauer@pengutronix.de>
->>> Date: Fri, 1 Apr 2022 14:48:49 +0200
->>> Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
->>>
->>> ---
->>>    drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 ++++++++++++++
->>>    1 file changed, 14 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>> index 7dba7b9b63dc6..1421bf2f133f1 100644
->>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
->>> @@ -2287,6 +2287,20 @@ static int vop2_create_crtc(struct vop2 *vop2)
->>>    			}
->>>    		}
->>> +		if (vop2->data->soc_id == 3566) {
->>> +			/*
->>> +			 * On RK3566 these windows don't have an independent
->>> +			 * framebuffer. They share the framebuffer with smart0,
->>> +			 * esmart0 and cluster0 respectively.
->>> +			 */
->>> +			switch (win->data->phys_id) {
->>> +			case ROCKCHIP_VOP2_SMART1:
->>> +			case ROCKCHIP_VOP2_ESMART1:
->>> +			case ROCKCHIP_VOP2_CLUSTER1:
->>> +				continue;
->>> +			}
->>
->> Think about this , there maybe other upcoming vop2 base soc, they may only
->> have
->>
->> mirror window Smart1 Esmart1, or Smart1, Esmart1, Esmart2, Cluster1.
->>
->> I think this should add WIN_FEATURE at the platform description file
->> rockchip_vop2_reg.c, then
->>
->> check the FEATURE to decide whether the driver should give this window a
->> special treatment.
->>
->> this can make one code run for different soc with different platform
->> description. or we should add
->>
->> the same code logic for different soc again and again.
-> You mean like done in the downstream Kernel? Here indeed we have a
-> WIN_FEATURE_MIRROR flag added to the platform description. This is then
-> evaluated with:
+On Fri, Mar 4, 2022 at 6:47 AM Peter Geis <pgwipeout@gmail.com> wrote:
+> Transitions anywhere from the default 800mhz cause a lock.
 >
-> static bool vop2_is_mirror_win(struct vop2_win *win)
-> {
->          return soc_is_rk3566() && (win->feature & WIN_FEATURE_MIRROR);
-> }
->
-> So a flag is added and afterwards its evaluation is SoC specific. That
-> doesn't help at all and only obfuscates things.
->
-> Besides, experience shows that you can't predict a good abstraction for
+> I'm digging deeper, but I'm hoping you can answer some questions in
+> the meantime:
+> 1. Does this require something from firmware that isn't available on
+> Mainline ATF? (AKA special firmware to the Chromebook line)
+> 2. If not, do you have any recommendations off the top of your head?
 
-This is not a  predict,  this is an IP feature, so it will appeared on 
-upcoming SOC.
+I may have a better answer for you now. In the intervening time
+period, I've discovered a potentially-relevant bug, involving
+interactions between the kernel power-domain driver and ATF. See this
+series for my current fixes:
 
-We have rk3588 with 8 windows(4 Cluster + 4 Esmart, no Smart window), and
+https://lore.kernel.org/linux-rockchip/20220406014842.2771799-1-briannorris@chromium.org/
+[RFC PATCH 0/2] rockchip / devfreq: Coordinate DRAM controller
+resources between ATF and kernel
 
-also have a entry level soc which only have 4 windows, they both have 
-this feature.
+If that happens to help you (it may help, for instance, if your system
+was toggling NPLL off/on like mine was; it also may help if you're
+hitting a race on PMU_BUS_IDLE_REQ like noticed in patch 1), I'd love
+your feedback there.
 
-> future hardware revisions, the hardware guys are just too creative in
-> creating hardware that breaks existing abstractions.
->
-> Sascha
->
+It's still possible your problems are completely unrelated though.
+
+Regards,
+Brian
