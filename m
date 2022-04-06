@@ -2,95 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C75C14F6463
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:08:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07884F64B2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236920AbiDFQAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 12:00:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58294 "EHLO
+        id S236868AbiDFQEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 12:04:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236832AbiDFQAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:00:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D292255AB7;
-        Wed,  6 Apr 2022 06:30:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05226B823DD;
-        Wed,  6 Apr 2022 13:30:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9BD5AC385A7;
-        Wed,  6 Apr 2022 13:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649251817;
-        bh=r0Jkg5TINenFot4Tj/g1Ta9k+qUla3NNZ2acVa9ZqqE=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=f2lALW/iqquEnYqMFl+Q8Bc3OucCzWmO9VeeJdHeu9Gv5ixZR2hQ6F/MlC68mHsQU
-         k0rXAWLgr+Vg0RbCrj06h3WL7F5TtI9s9AKEMxxxNdfdnlfVhAceeqSXVb5DnDHRM6
-         qYbJ5R9NvN+r+RsgLfKsEEGCbW9X05f4VK5eJzjjfKNmJRtUTYNFBr6dz0Oi7o2dl8
-         kINPKBjoOCZr24mzDE1Txwx4Iqv1sebOSv1hIVltYDqgic9IuV2urjDjb/JgMRP9Qf
-         EZ9Xb5d0WH+wa49QslmlrTEdftoUp+hgzPBPjChmNWdoxJeoxU7Y1r3OseVElFucho
-         OXQ7xEAjLwdFA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 7D7DDE85D15;
-        Wed,  6 Apr 2022 13:30:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S237123AbiDFQCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:02:23 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AEE7147AC7;
+        Wed,  6 Apr 2022 06:33:50 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E414124000D;
+        Wed,  6 Apr 2022 13:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649252029;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=VZSNvYxkXiI/qyt3Ay1/TRdTEkEBSR7Ri5rYdZsNpJg=;
+        b=GnVoS3ntG9TD90Pj1QbyeCJNCqbLE3j84RFT8YpwsBp2LiW0njGPShVG0jQg3FhPaPuCE+
+        EILKKtlxrpvoHxDd21noWHF0QD9piuDxcGf0t3nfMepTqrCZdM4nyr4c+E+CrVBaATKwgc
+        JMsYFJt+LMlagQVqdqU33fT/CzSnEaqhG5yBMsEmhyLybc9C1vCv7WXh0d08VZfymFgBUT
+        NOI4adGUAINE12QXOw6IqQ2iuCqVTPVJiyHJN9Pu3AOYUbJvwJweTRLP+QNaZkO0aAWPuL
+        46sJDwmjU6ghkoMqn9+kfsn08ukZ0uDMQrPVmxf/WnSQ5lACH1f2LjkXfG8kVA==
+Date:   Wed, 6 Apr 2022 15:33:46 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Sonal Santan <sonal.santan@xilinx.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
+Message-ID: <Yk2WulTcdtwlMGrj@mail.local>
+References: <20220324141237.297207-1-clement.leger@bootlin.com>
+ <Ykst0Vb4fk+iALzc@robh.at.kernel.org>
+ <20220405092434.6e424ed4@fixe.home>
+ <YkxWeMNw9Ba0KjHM@robh.at.kernel.org>
+ <20220405175120.23fc6b2a@fixe.home>
+ <CAL_JsqLdBcAw1KPnrATHqEngRWkx6moxDODH1xV67EKAufc6_w@mail.gmail.com>
+ <20220406094019.670a2956@fixe.home>
+ <Yk2TVAfPVh9a1tUR@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/3] net: phy: mscc-miim: add MDIO bus frequency
- support
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164925181750.19554.8207066606756390444.git-patchwork-notify@kernel.org>
-Date:   Wed, 06 Apr 2022 13:30:17 +0000
-References: <20220405120951.4044875-1-michael@walle.cc>
-In-Reply-To: <20220405120951.4044875-1-michael@walle.cc>
-To:     Michael Walle <michael@walle.cc>
-Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        alexandre.belloni@bootlin.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yk2TVAfPVh9a1tUR@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Tue,  5 Apr 2022 14:09:48 +0200 you wrote:
-> Introduce MDIO bus frequency support. This way the board can have a
-> faster (or maybe slower) bus frequency than the hardware default.
+On 06/04/2022 08:19:16-0500, Rob Herring wrote:
+> > > > > I've told the Xilinx folks the same thing, but I would separate this
+> > > > > into 2 parts. First is just h/w work in a DT based system. Second is
+> > > > > creating a base tree an overlay can be applied to. The first part should
+> > > > > be pretty straightforward. We already have PCI bus bindings. The only
+> > > > > tricky part is getting address translation working from leaf device thru
+> > > > > the PCI bus to host bus, but support for that should all be in place
+> > > > > (given we support ISA buses off of PCI bus). The second part will
+> > > > > require generating PCI DT nodes at runtime. That may be needed for both
+> > > > > DT and ACPI systems as we don't always describe all the PCI hierarchy
+> > > > > in DT.  
+> > > >
+> > > > But then, if the driver generate the nodes, it will most probably
+> > > > have to describe the nodes by hardcoding them right ?  
+> > > 
+> > > No, the kernel already maintains its own tree of devices. You just
+> > > need to use that to generate the tree. That's really not much more
+> > > than nodes with a 'reg' property encoding the device and function
+> > > numbers.
+> > 
+> > Just to clarified a point, my PCI device exposes multiple peripherals
+> > behind one single PCI function.
 > 
-> changes since v2:
->  - resend, no RFC anymore, because net-next is open again
+> Right. I would expect your PCI device DT node to have a 'simple-bus' 
+> child node with all those peripherals. And maybe there's other nodes 
+> like fixed-clocks, etc.
 > 
-> changes since v1:
->  - fail probe if clock-frequency is set, but not clock is given
->  - rename clk_freq to bus_freq
->  - add maxItems to interrupts property
->  - put compatible and reg first in the example
+> > To be sure I understood what you are suggesting, you propose to create
+> > a DT node from the PCI driver that has been probed dynamically
+> > matching this same PCI device with a 'reg' property. I also think
+> > this would requires to generate some 'pci-ranges' to remap the
+> > downstream devices that are described in the DTBO, finally, load the
+> > overlay to be apply under this newly created node. Is that right ?
 > 
-> [...]
+> Right. You'll need to take the BAR address(es) for the device and stick 
+> those into 'ranges' to translate offsets to BAR+offset.
+> 
 
-Here is the summary with links:
-  - [net-next,v3,1/3] dt-bindings: net: convert mscc-miim to YAML format
-    https://git.kernel.org/netdev/net-next/c/ed941f65da81
-  - [net-next,v3,2/3] dt-bindings: net: mscc-miim: add clock and clock-frequency
-    https://git.kernel.org/netdev/net-next/c/b0385d4c1fff
-  - [net-next,v3,3/3] net: phy: mscc-miim: add support to set MDIO bus frequency
-    https://git.kernel.org/netdev/net-next/c/bb2a1934ca01
+Last time I tried that, this was not working well because it means that
+the ranges property of the device depends on the host machine...
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
