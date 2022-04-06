@@ -2,97 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 684404F5EA7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A86B4F5FDD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 15:30:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbiDFMzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 08:55:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41600 "EHLO
+        id S233259AbiDFN3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 09:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231444AbiDFMze (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 08:55:34 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC4B183B2;
-        Wed,  6 Apr 2022 01:57:32 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 32FAB482;
-        Wed,  6 Apr 2022 10:57:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1649235450;
-        bh=v5nTKQqUqKr5/cx0X/3Bedy0Wjdy1thvy6+ObtvhlJQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vo5nF1u0KxQrvXumWtqaqPudJetgRSMuJAIT8CUyJa3ahEB8hTYI6jSgc8g99f2P0
-         pqO2fVJWhj78sU/mskdcU1Rf9cQJEuADsC8P8xxL4N+f018kJgIc+orzfxYI7DIBo2
-         Pb66JyE2YSPsxlgNlwb674RrknZ3T7aw8uYfuDSE=
-Date:   Wed, 6 Apr 2022 11:57:26 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, l.stach@pengutronix.de,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 2/5] arm64: dts: imx8mp: add noc node
-Message-ID: <Yk1V9vyyilj9lRY8@pendragon.ideasonboard.com>
-References: <20220406082330.2681591-1-peng.fan@oss.nxp.com>
- <20220406082330.2681591-3-peng.fan@oss.nxp.com>
+        with ESMTP id S233646AbiDFN2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 09:28:01 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 578D01BE117;
+        Wed,  6 Apr 2022 03:25:47 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 236BF1C8112B;
+        Wed,  6 Apr 2022 17:25:44 +0800 (CST)
+Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 6 Apr
+ 2022 17:25:43 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS03.nuvoton.com
+ (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Wed, 6 Apr 2022
+ 17:25:43 +0800
+Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS01.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
+ Transport; Wed, 6 Apr 2022 17:25:42 +0800
+Message-ID: <ab89589f-6dd7-d4ff-635d-ff8dbd2d3e02@nuvoton.com>
+Date:   Wed, 6 Apr 2022 17:25:42 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220406082330.2681591-3-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "soc@kernel.org" <soc@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220307091923.9909-1-ychuang3@nuvoton.com>
+ <20220307091923.9909-4-ychuang3@nuvoton.com>
+ <2669852c-5bb6-1edf-bf58-ea815f54d50f@kernel.org>
+ <ef8efda1-e985-0684-470f-7acf9b8a5e93@nuvoton.com>
+ <bba99b9d-6960-f6e8-0ee4-0b5fe8a5601d@linaro.org>
+From:   Jacky Huang <ychuang3@nuvoton.com>
+In-Reply-To: <bba99b9d-6960-f6e8-0ee4-0b5fe8a5601d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
 
-Thank you for the patch.
 
-On Wed, Apr 06, 2022 at 04:23:27PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX8MP main noc node
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index e9e55fdd7652..be902f8155e8 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1015,6 +1015,13 @@ gpu2d: gpu@38008000 {
->  			power-domains = <&pgc_gpu2d>;
->  		};
->  
-> +		noc: interconnect@32700000 {
-> +			compatible = "fsl,imx8mp-noc", "fsl,imx8m-noc", "syscon";
-> +			reg = <0x32700000 0x100000>;
+On 2022/4/6 下午 03:14, Krzysztof Kozlowski wrote:
+> On 06/04/2022 04:58, Jacky Huang wrote:
+>>>> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+>>>> index 639e01a4d855..28e01442094f 100644
+>>>> --- a/arch/arm64/boot/dts/Makefile
+>>>> +++ b/arch/arm64/boot/dts/Makefile
+>>>> @@ -30,3 +30,4 @@ subdir-y += synaptics
+>>>>    subdir-y += ti
+>>>>    subdir-y += toshiba
+>>>>    subdir-y += xilinx
+>>>> +subdir-y += nuvoton
+>>>> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
+>>>> new file mode 100644
+>>>> index 000000000000..e1e0c466bf5e
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
+>>>> @@ -0,0 +1,2 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0
+>>>> +dtb-$(CONFIG_ARCH_NUVOTON) += ma35d1-evb.dtb
+>>> ARCH_NUVOTON does not exist.
+>> I would add the following to end of arch/arm64/Kconfig.platforms,
+> Don't add things at the end of files but rather in respective place
+> without messing the order.
 
-I can't comment on this, as the memory is documented as reserved in the
-reference manual, but I have no reason not to trust you :-)
+OK, I will put it to the right place in alphanumeric order.
+It should be between ARCH_MXC and ARCH_QCOM.
 
-> +			clocks = <&clk IMX8MP_CLK_NOC>;
+>
+>> and
+>> add the
+>> modification to this patch series.
+>>
+>> config ARCH_MA35D1
+>>       bool "Nuvoton MA35D1 SOC Family"
+> We do not add options for specific SoCs, but for entire families, so
+> ARCH_NUVOTON is correct.
 
-There's also a NOC_WRAPPER clock documented in the reference manual, and
-also a NOC_IO clock. Are those related, do we need to care about them ?
+Yes, I would like to modify it as the following:
 
-> +			#interconnect-cells = <1>;
-> +		};
-> +
->  		aips4 {
->  			compatible = "fsl,aips-bus", "simple-bus";
->  			reg = <0x32c00000 0x400000>;
+config ARCH_NUVOTON
+     bool "Nuvoton SoC Family"
+     select PINCTRL
+     select PINCTRL_MA35D1
+     select PM
+     select GPIOLIB
+     select SOC_BUS
+     help
+       This enables support for Nuvoton MA35D1 ARMv8 SoC.
 
--- 
-Regards,
+(Currently, we have MA35D1 only in the support list for arm64 SoC.).
 
-Laurent Pinchart
+>>       select PINCTRL
+>>       select PINCTRL_MA35D1
+>>       select PM
+>>       select GPIOLIB
+>>       select SOC_BUS
+>>       select VIDEOMODE_HELPERS
+>>       select FB_MODE_HELPERS
+>>       help
+>>         This enables support for Nuvoton MA35D1 SOC Family.
+>>
+>>
+>>>> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts
+>>>> new file mode 100644
+>>>> index 000000000000..38e4f734da0f
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-evb.dts
+>>>> @@ -0,0 +1,23 @@
+>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>> +/*
+>>>> + * Device Tree Source for MA35D1 Evaluation Board (EVB)
+>>>> + *
+>>>> + * Copyright (C) 2021 Nuvoton Technology Corp.
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +#include "ma35d1.dtsi"
+>>>> +
+>>>> +/ {
+>>>> +       model = "Nuvoton MA35D1-EVB";
+>>>> +
+>>>> +       chosen {
+>>>> +               bootargs = "console=ttyS0,115200n8";
+>>> No bootargs. "chosen", please.
+>> OK, I would modify it as:
+>>
+>> chosen {
+>>           stdout-path = "serial0:115200n8";
+>>       };
+>>
+>>
+>>>> +       };
+>>> You need compatible and bindings.
+>> I will add the compatible here
+>> compatible = "nuvoton,ma35d1-evb", "nuvoton,ma35d1"
+>>
+>> And, I should create a new binding file
+>> Documentation/devicetree/bindings/arm/nuvoton.yaml to this patch series.
+>> And the property would be:
+>>
+>> properties:
+>>     compatible:
+>>       description: Nuvoton MA35D1-EVB
+>>       items:
+>>         - const: nuvoton,ma35d1-evb
+>>         - const: nuvoton,ma35d1
+>>
+>>
+>> Is it OK?
+> Yes
+>
+>
+>
+> Best regards,
+> Krzysztof
+
+Thanks for your review.
+
+Sincerely,
+Jacky
+
+
