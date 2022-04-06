@@ -2,57 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70574F6A87
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F924F6A0E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 21:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233166AbiDFTyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 15:54:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57026 "EHLO
+        id S229769AbiDFTih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 15:38:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235315AbiDFTx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:53:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D21F2EC515;
-        Wed,  6 Apr 2022 10:30:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8F256B824ED;
-        Wed,  6 Apr 2022 17:30:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B8CCC385A9;
-        Wed,  6 Apr 2022 17:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649266214;
-        bh=qYRpRNZs3OEzs4LYnyrIl0pJ6/CiB0ubdZRFp4cKc2E=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=K1GIxYa4XJqhh4t5X+qk8bnEhCoqrZCT3Hy+2nyY/58JCBw2nD6ELZAT1epDOzNIO
-         TKuPQTJB/UMb1eyIDK9YON0FZzb+6rKmE0u7hm33p20E7b8QjNDTlBQhJujIIZh/Ob
-         Oheaq9a6AcXhtQWuPL2UDHVkmCuCBYa59SfHC2+NOpS5mkS0S1SQDI7Slt0K+ChJLV
-         XyeEPlRa6ipfRqycaWIj+vrBGy/iCXorIySwHi6GaBtx71PX7Zl96dgA692lqWcu7y
-         ExRez1k+0K7hjt54f20KLFC8V16e3IpifHyW1WJhM9MX3bY5sPwAWyrU8b27Y61Rgq
-         6SDMFMXz2gyXA==
-Received: by wens.tw (Postfix, from userid 1000)
-        id 633365FD3C; Thu,  7 Apr 2022 01:30:11 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Javier Martinez Canillas <javierm@redhat.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] drm/ssd130x: Add support for SINO WEALTH SH1106
-Date:   Thu,  7 Apr 2022 01:29:56 +0800
-Message-Id: <20220406172956.3953-5-wens@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220406172956.3953-1-wens@kernel.org>
-References: <20220406172956.3953-1-wens@kernel.org>
+        with ESMTP id S231926AbiDFTg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 15:36:59 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760B71CD7C8;
+        Wed,  6 Apr 2022 10:37:43 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id j83so3129242oih.6;
+        Wed, 06 Apr 2022 10:37:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bWQxY5qyzsRtNQUVZiKXQsEQFjbMtJVPZxjBRNS4c44=;
+        b=tu9pAKPhJmXFM+fWqdsFCValc43P9KWfM7AT2a6ckxloUTaHgxcM84PjJXvsl/D4jw
+         wQF0lMGbgpSYysNniqoh5hSFu8F2mb/okXPehU2c0eiTmnGrMFAEPJ6S9tb384kpVt/0
+         v/OtglcBlB5aMKFPLiBkj3js6z+pOIA+SU6aYc5igtqD5Bxcldz/48ifuG0jwt0NniEj
+         PyzAWqVRGbcKT4OUcWnPnbZDgbirOg1OyhvEyPOaTWr9iClOCun6R+Fazs8W3opdcO2s
+         61DLV9lGo38vyNz1uuw+kPbnnhN5Yo5lP+AXZ4twTLZ9SJhJz+ugdyLV7ixcT5Vv+wBN
+         JyZw==
+X-Gm-Message-State: AOAM530+xk1uG5MvvMnrUxVahhNWL71lEvzF10v9u/bkvhGsUBDfcPad
+        6pvMPwr0Cek2prx7e5VISw==
+X-Google-Smtp-Source: ABdhPJyzi7wqXV7P6dcUFRdbsbYuHW2em5UAKJdXRpZAl/Zz7UV2IAa4hpbuDLSTquX/lfirapIvOA==
+X-Received: by 2002:a05:6808:218d:b0:2da:7a2e:8607 with SMTP id be13-20020a056808218d00b002da7a2e8607mr4070817oib.145.1649266662694;
+        Wed, 06 Apr 2022 10:37:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l1-20020a056830268100b005c93e625b9dsm7901393otu.46.2022.04.06.10.37.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Apr 2022 10:37:42 -0700 (PDT)
+Received: (nullmailer pid 2470965 invoked by uid 1000);
+        Wed, 06 Apr 2022 17:37:41 -0000
+Date:   Wed, 6 Apr 2022 12:37:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dongjin Yang <dj76.yang@samsung.com>
+Cc:     Moon-Ki Jun <moonki.jun@samsung.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: snps: remove duplicate name
+Message-ID: <Yk3P5b1uNln8TK60@robh.at.kernel.org>
+References: <CGME20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c@epcms1p6>
+ <20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c@epcms1p6>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220404022857epcms1p6e6af1a6a86569f339e50c318abde7d3c@epcms1p6>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,77 +70,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+On Mon, 04 Apr 2022 11:28:57 +0900, Dongjin Yang wrote:
+> snps,dwmac has duplicated name for loongson,ls2k-dwmac and
+> loongson,ls7a-dwmac.
+> 
+> Signed-off-by: Dongjin Yang <dj76.yang@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
 
-The SINO WEALTH SH1106 is an OLED display driver that is somewhat
-compatible with the SSD1306. It supports a slightly wider display,
-at 132 instead of 128 pixels. The basic commands are the same, but
-the SH1106 doesn't support the horizontal or vertical address modes.
-
-Add support for this display driver. The default values for some of
-the hardware settings are taken from the datasheet.
-
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- drivers/gpu/drm/solomon/Kconfig       |  9 +++++----
- drivers/gpu/drm/solomon/ssd130x-i2c.c | 11 +++++++++++
- 2 files changed, 16 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/solomon/Kconfig b/drivers/gpu/drm/solomon/Kconfig
-index 6230369505c9..8c0a0c788385 100644
---- a/drivers/gpu/drm/solomon/Kconfig
-+++ b/drivers/gpu/drm/solomon/Kconfig
-@@ -5,9 +5,9 @@ config DRM_SSD130X
- 	select DRM_GEM_SHMEM_HELPER
- 	select DRM_KMS_HELPER
- 	help
--	  DRM driver for the SSD1305, SSD1306, SSD1307 and SSD1309 Solomon
--	  OLED controllers. This is only for the core driver, a driver for
--	  the appropriate bus transport in your chip also must be selected.
-+	  DRM driver for the SSD130x Solomon and SINO WEALTH SH110x OLED
-+	  controllers. This is only for the core driver, a driver for the
-+	  appropriate bus transport in your chip also must be selected.
- 
- 	  If M is selected the module will be called ssd130x.
- 
-@@ -16,6 +16,7 @@ config DRM_SSD130X_I2C
- 	depends on DRM_SSD130X && I2C
- 	select REGMAP_I2C
- 	help
--	  Say Y here if the SSD130x OLED display is connected via I2C bus.
-+	  Say Y here if the SSD130x or SH110x OLED display is connected via
-+	  I2C bus.
- 
- 	  If M is selected the module will be called ssd130x-i2c.
-diff --git a/drivers/gpu/drm/solomon/ssd130x-i2c.c b/drivers/gpu/drm/solomon/ssd130x-i2c.c
-index 3126aeda4ced..d099b241dd3f 100644
---- a/drivers/gpu/drm/solomon/ssd130x-i2c.c
-+++ b/drivers/gpu/drm/solomon/ssd130x-i2c.c
-@@ -53,6 +53,13 @@ static void ssd130x_i2c_shutdown(struct i2c_client *client)
- 	ssd130x_shutdown(ssd130x);
- }
- 
-+static struct ssd130x_deviceinfo ssd130x_sh1106_deviceinfo = {
-+	.default_vcomh = 0x40,
-+	.default_dclk_div = 1,
-+	.default_dclk_frq = 5,
-+	.page_mode_only = 1,
-+};
-+
- static struct ssd130x_deviceinfo ssd130x_ssd1305_deviceinfo = {
- 	.default_vcomh = 0x34,
- 	.default_dclk_div = 1,
-@@ -80,6 +87,10 @@ static struct ssd130x_deviceinfo ssd130x_ssd1309_deviceinfo = {
- };
- 
- static const struct of_device_id ssd130x_of_match[] = {
-+	{
-+		.compatible = "sinowealth,sh1106-i2c",
-+		.data = &ssd130x_sh1106_deviceinfo,
-+	},
- 	{
- 		.compatible = "solomon,ssd1305fb-i2c",
- 		.data = &ssd130x_ssd1305_deviceinfo,
--- 
-2.34.1
-
+Applied, thanks!
