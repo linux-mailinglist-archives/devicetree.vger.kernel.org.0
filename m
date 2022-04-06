@@ -2,125 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9B24F6AF5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A15A34F6B06
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 22:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231845AbiDFUOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 16:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40970 "EHLO
+        id S234186AbiDFUOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 16:14:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234960AbiDFUNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:13:12 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDB52EC506;
-        Wed,  6 Apr 2022 10:30:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7F67DB824DF;
-        Wed,  6 Apr 2022 17:30:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18936C385A3;
-        Wed,  6 Apr 2022 17:30:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649266214;
-        bh=7lnEc/dVbTGKJwcO+vpl8TJuBka5jKqU+BsGyNZKjcQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=AvWc6IzVyufeZxhslT9jaoj3tbw7OzPJAdI8asHAw+4zMLK7sXziQSy6RG1qKY6Te
-         GWZf5PjXZt4aUBkYWPibMXeNLXr1J/TqzoUoYBEA9G7CCqVmIG7Th6wugd5H58yAPh
-         SRO++MeGBOKkFxD9KpahDomQgA7xuN65YohsMMKPPzt2G9GHROPO4NSMbJQaNSOtHs
-         i+gOtIvzDu1RHXg71a5Yem0sCysOv0QBTfdfEd0sh1Mv/IMf1Vz/XgfM4yLKlljDBs
-         mSBr41cY8Zq4JMNztD/9bYsjbdivEkZjsc2H1p4PAS7ixEl4nPIV0gi3dNTDddDSSX
-         IIN3ZMj4EKdAQ==
-Received: by wens.tw (Postfix, from userid 1000)
-        id 3FD635FC39; Thu,  7 Apr 2022 01:30:11 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Javier Martinez Canillas <javierm@redhat.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/4] drm/ssd130x: Add support for SINO WEALTH SH1106
-Date:   Thu,  7 Apr 2022 01:29:52 +0800
-Message-Id: <20220406172956.3953-1-wens@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S236982AbiDFUNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 16:13:55 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3131140A1;
+        Wed,  6 Apr 2022 10:44:59 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id a17-20020a9d3e11000000b005cb483c500dso2205336otd.6;
+        Wed, 06 Apr 2022 10:44:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UQGAhVkoMVchgmtJMVhAtK7JRG3UaGk6gAi1FHksJok=;
+        b=CxQ0tfR/V0mUHbcjblolrvkLrAtOuBoAnQSQ9ujIar9o8fprzjeQkvLC6lTvTlxSi3
+         aH0gqT9y4k3T9r8rDk7LBi5FS6ImS1jEw7AO/Jfbl/23gFYCdNYYaY79Or+wZxKs1Ibd
+         KjS12E7UQ5/3ZtUZK4wV0fwuKLhzpET28ovQ28EAXCLPkaM8YqtfUNMw724ic/Jqd+md
+         mxzn9VBcicTAUW44xqPREQwA/WLcvOxpJP/DBADaqK7//GpMZlbnkFN1JEjiGpyTgh+L
+         u4lt8ZhbFfegDDjNsysJ7k3g9VtwE/xkWpL1h2d4s0oiGXhpQi2Ms/cBZny5u5TqyRdp
+         fvpg==
+X-Gm-Message-State: AOAM530EAr7Xcj9g6P8BdZpRKKk7zk4Pybo5vE0vQSn/EpTJkQ3+3CJJ
+        oyvKF2CdpEyaygGwjUB2zg==
+X-Google-Smtp-Source: ABdhPJxmVkSyx43KIty/v1EZpatUCR4dvx3Ts6J5KNstYq0qO+8+CbAh29CaRQszr4r5SfRUiJs+4A==
+X-Received: by 2002:a05:6830:82a:b0:5b2:36d5:1603 with SMTP id t10-20020a056830082a00b005b236d51603mr3472144ots.240.1649267098688;
+        Wed, 06 Apr 2022 10:44:58 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e4-20020a056870920400b000e1bdf90ba5sm6236468oaf.22.2022.04.06.10.44.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Apr 2022 10:44:58 -0700 (PDT)
+Received: (nullmailer pid 2481314 invoked by uid 1000);
+        Wed, 06 Apr 2022 17:44:57 -0000
+Date:   Wed, 6 Apr 2022 12:44:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] spi: dt-bindings: qcom,spi-geni-qcom: convert to
+ dtschema
+Message-ID: <Yk3RmTJD5XHX1hIM@robh.at.kernel.org>
+References: <20220404064017.68634-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220404064017.68634-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+On Mon, 04 Apr 2022 08:40:16 +0200, Krzysztof Kozlowski wrote:
+> Convert the GENI based Qualcomm Universal Peripheral (QUP) Serial
+> Peripheral Interface (SPI) bindings to DT Schema.
+> 
+> The original bindings in TXT were not complete, so add during conversion
+> properties already used in DTS and/or in the driver: dmas,
+> interconnects, operating points and power-domains.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v2:
+> 1. Drop reg-names.
+> 
+> Changes since v1:
+> 1. Correct $ref path and remove interconnect minItems (Kuldeep).
+> 2. Remove child tpm device from example.
+> 3. Pad reg hex addresses with 00.
+> ---
+>  .../bindings/spi/qcom,spi-geni-qcom.txt       |  39 ------
+>  .../bindings/spi/qcom,spi-geni-qcom.yaml      | 116 ++++++++++++++++++
+>  2 files changed, 116 insertions(+), 39 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+> 
 
-Hi everyone,
-
-This series adds support for SH1106 to the ssd130x OLED display
-driver.
-
-Changes since v1:
-
-- Fixed ordering of SINO WEALTH in vendor prefix list
-
-- Updated allOf:if: blocks in DT binding, i.e. added default values for
-  solomon,dclk-{div,frq}
-
-- Added SSD130X_PAGE_COL_START_{HIGH,LOW}_SET and used that to set the
-  bitfields for the two commands.
-  I didn't feel SSD130X_PAGE_COL_START_{HIGH,LOW}_MASK was needed, as
-  it was the same between both commands.
-
-- Added SH110x to the SSD130X Kconfig help texts
-  There are SH110[789] as well, but they don't seem to be easy to find.
-
-
-The SINO WEALTH SH1106 is an OLED display driver that is somewhat
-compatible with the SSD1306. It supports a slightly wider display,
-at 132 instead of 128 pixels. The basic commands are the same, but
-the SH1106 doesn't support the horizontal or vertical address modes.
-
-This driver chip is found in some cheap 1.3" OLED panel modules. It
-acts as a substitute for the SSD1306.
-
-Patch 1 adds an entry to the vendor prefixes for SINO WEALTH
-Eletronics Ltd.
-
-Patch 2 adds an entry for SH1106 to the ssd1307fb binding.
-
-Patch 3 adds support for the base "page addressing mode" to the ssd130x
-driver.
-
-Patch 4 adds support for the SH1106 to the ssd130x driver.
-
-Please have a look.
-
-
-Thanks
-ChenYu
-
-
-Chen-Yu Tsai (4):
-  dt-bindings: vendor-prefixes: Add prefix for SINO WEALTH Eletronics
-    Ltd.
-  dt-bindings: display: ssd1307fb: Add entry for SINO WEALTH SH1106
-  drm/ssd130x: Support page addressing mode
-  drm/ssd130x: Add support for SINO WEALTH SH1106
-
- .../bindings/display/solomon,ssd1307fb.yaml   | 13 ++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- drivers/gpu/drm/solomon/Kconfig               |  9 ++-
- drivers/gpu/drm/solomon/ssd130x-i2c.c         | 11 +++
- drivers/gpu/drm/solomon/ssd130x.c             | 73 +++++++++++++++++--
- drivers/gpu/drm/solomon/ssd130x.h             |  2 +
- 6 files changed, 99 insertions(+), 11 deletions(-)
-
--- 
-2.34.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
