@@ -2,93 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 336664F656D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 18:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3604B4F669A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 19:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237617AbiDFQgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 12:36:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60730 "EHLO
+        id S238444AbiDFRSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 13:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237821AbiDFQgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 12:36:12 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66ECC2C9923;
-        Wed,  6 Apr 2022 08:08:44 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-de48295467so3220917fac.2;
-        Wed, 06 Apr 2022 08:08:44 -0700 (PDT)
+        with ESMTP id S238987AbiDFRRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 13:17:35 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B39FE41C8AE;
+        Wed,  6 Apr 2022 08:13:30 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id j83so2689353oih.6;
+        Wed, 06 Apr 2022 08:13:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=RBUbX74ObfqzzSNCHOoh02AEXuH/Bv5AB2YAxYPhz64=;
-        b=pCXcRlFeRqL1CBjktd9etRPJbEh/UUKTawuNove875XSKExyTpolm+mN1ynmiTUiao
-         ugkE9DWysb58whjlrOlcvE6cjHhwQM6wfTDAHnotq7pxALmnEUcJ9HPkHSCGl0iH8l59
-         lvSXmqLNqjlu4ugFJOusaNqahFblUxnlh/Pzcz/mq/beudvL3lO9q3HReekjszbdlbEP
-         0RDuEEOa7x3sK+KAZF+sULI6YMilroslncTIweE1SVeux1NB48aZCTk/sqTRwcK5Ks4M
-         +nYtTeaw9sILFTf8xmZTzFtVKcW5Sf6F611wabur1z+04k+0SgIfEA4F7cc4cnxoREvw
-         1PhQ==
-X-Gm-Message-State: AOAM532R01CnOdwFP6jFg79KkOubV7SAx+OC93q7arzUZeTAaB9Wwc9h
-        SRqDyMua5ngaHzcGRtW4NwH789HWxg==
-X-Google-Smtp-Source: ABdhPJx1qtYaiwuI0WnLa7ET2uBlBwt+jJZcV45wjauHWImhM3vIaQgljQ4NKCifrB4FrBLJqNNfRA==
-X-Received: by 2002:a05:6870:c1cb:b0:dd:b81f:3ea1 with SMTP id i11-20020a056870c1cb00b000ddb81f3ea1mr4004298oad.131.1649257723709;
-        Wed, 06 Apr 2022 08:08:43 -0700 (PDT)
+        bh=H6cKGjj+bqATtNpTiy+UlEgdvGT8QgL8VDcWJrcBl4k=;
+        b=zJOdLf7T4U7OHA5mLQGS1P+UVpv3Lf/ZhzWuFJvjmw3bIxz//Fk4FzBr88MUANMUmY
+         /QIQZDfsllNZ4H9+15SXOgUkoMMdDMNzNWD52vq4Pwq37AQFkhlO3dX2/pyCuyeaT3QK
+         d28hVxoSfJlS1AEW53mm8GCMcdcHEo9g/6bdrAQG2TwzN1/+jz5g2flXdTEiU2VjcyhE
+         W7K2POwJ70NgUcuTsonBFnu8SG2Dd9ncnhsJlZgQUHapwFSIQPNSW/hDofQyZreyZc41
+         e//Duln2MbRYdZhroSK+WXrAZSTiNSibuO5tJJv3gcUmEwBR1VM9wVQPL6rpyyzw7eSe
+         Ql1w==
+X-Gm-Message-State: AOAM532A2RLd3lR8iUbj1IPwPZvOoFTjc0x6/hDFr0tYR6hnHwCHP6Rr
+        /WR8vX4YOeode1vnEOl/ZjhUJa2iVQ==
+X-Google-Smtp-Source: ABdhPJzTV0ESMpCaV6HUnB9QYxaeKpG6lZgJ2cIo7TZ1nk/oy0qcu/j100Dfwf7uqRdaOHp1htJHHw==
+X-Received: by 2002:a05:6808:e86:b0:2f7:5228:5e52 with SMTP id k6-20020a0568080e8600b002f752285e52mr3945666oil.70.1649258009629;
+        Wed, 06 Apr 2022 08:13:29 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id fw15-20020a056870080f00b000ddc3ec2533sm6547545oab.9.2022.04.06.08.08.43
+        by smtp.gmail.com with ESMTPSA id 38-20020a9d0da9000000b005cb437ac0e2sm7036730ots.44.2022.04.06.08.13.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 08:08:43 -0700 (PDT)
-Received: (nullmailer pid 2253710 invoked by uid 1000);
-        Wed, 06 Apr 2022 15:08:42 -0000
-Date:   Wed, 6 Apr 2022 10:08:42 -0500
+        Wed, 06 Apr 2022 08:13:29 -0700 (PDT)
+Received: (nullmailer pid 2260364 invoked by uid 1000);
+        Wed, 06 Apr 2022 15:13:28 -0000
+Date:   Wed, 6 Apr 2022 10:13:28 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     linux-wireless@vger.kernel.org, mka@chromium.org,
-        ath11k@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 01/12] dt: bindings: net: add bindings of WCN6750 for
- ath11k
-Message-ID: <Yk2s+srO9DKP7xW1@robh.at.kernel.org>
-References: <20220406094107.17878-1-quic_mpubbise@quicinc.com>
- <20220406094107.17878-2-quic_mpubbise@quicinc.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>, shruthi.sanil@intel.com,
+        tglx@linutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@linux.intel.com,
+        mgross@linux.intel.com, srikanth.thokala@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com
+Subject: Re: [PATCH v10 1/2] dt-bindings: timer: Add bindings for Intel Keem
+ Bay SoC Timer
+Message-ID: <Yk2uGHsu49/seLMT@robh.at.kernel.org>
+References: <20220322130005.16045-1-shruthi.sanil@intel.com>
+ <20220322130005.16045-2-shruthi.sanil@intel.com>
+ <7e711327-bcb8-4c7f-5537-425ba1a79e62@linaro.org>
+ <71e82477-16fb-2e7a-e5a9-e22327f31e77@kernel.org>
+ <3d74d7e2-1f52-11d8-e458-b7074bc4c070@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220406094107.17878-2-quic_mpubbise@quicinc.com>
+In-Reply-To: <3d74d7e2-1f52-11d8-e458-b7074bc4c070@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Apr 2022 15:10:55 +0530, Manikanta Pubbisetty wrote:
-> WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
-> Though being a PCIe based solution, it is not attached to
-> the APSS processor (Application Processor SubSystem), it is
-> instead attached to another tiny processor called WPSS Q6
-> processor (Wireless Processor SubSystem) on the SC7280 MSM,
-> where the WLAN firmware runs, and it is the WLAN firmware
-> running on the Q6 processor which enumerates WCN6750, as a
-> result APPS processor would never know such a device being
-> present in the system and would not detect the WCN6750
-> hardware unless and otherwise WCN6750 is registered as a
-> platform device. This is the reason behind adding WCN6750
-> WLAN node in the device tree.
+On Wed, Apr 06, 2022 at 10:06:00AM +0200, Daniel Lezcano wrote:
 > 
-> Add WCN6750 wireless driver support, its based on ath11k driver.
+> Hi Rob,
 > 
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> ---
->  .../bindings/net/wireless/qcom,ath11k.yaml    | 361 ++++++++++++------
->  1 file changed, 252 insertions(+), 109 deletions(-)
+> On 30/03/2022 13:55, Krzysztof Kozlowski wrote:
+> > On 30/03/2022 13:44, Daniel Lezcano wrote:
+> > > On 22/03/2022 14:00, shruthi.sanil@intel.com wrote:
+> > > > From: Shruthi Sanil <shruthi.sanil@intel.com>
+> > > > 
+> > > > Add Device Tree bindings for the Timer IP, which can be used as
+> > > > clocksource and clockevent device in the Intel Keem Bay SoC.
+> > > > 
+> > > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > > Signed-off-by: Shruthi Sanil <shruthi.sanil@intel.com>
+> > > 
+> > > 
+> > > In order to pick this binding I need an ack from Rob or Krzysztof (added
+> > > to the recipients)
+> > 
+> > Rob was looking into this and there were some comments around v8, so I
+> > will leave it to him.
 > 
+> whenever possible could you review this patch, so I can merge the series
+> which has been a long on the mailing list ?
 
+I did... Multiple times.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+I don't see any need for 1 node per counter. I don't find 'it might be 
+synthesized with a different number of counters' a convincing argument.
 
-If a tag was not added on purpose, please state why and what changed.
+Rob
 
