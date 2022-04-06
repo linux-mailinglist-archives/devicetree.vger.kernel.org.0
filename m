@@ -2,67 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD914F5C18
-	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 13:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 969E54F5C4A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Apr 2022 13:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241452AbiDFL2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 07:28:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43890 "EHLO
+        id S235556AbiDFLe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 07:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241445AbiDFL1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 07:27:36 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E681834DDE3
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 01:13:45 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nc0nI-00039x-UW; Wed, 06 Apr 2022 10:13:36 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nc0nF-00058m-ND; Wed, 06 Apr 2022 10:13:33 +0200
-Date:   Wed, 6 Apr 2022 10:13:33 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Message-ID: <20220406081333.GU4012@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220401125205.GL4012@pengutronix.de>
- <1c0fbf4f-2e17-29f9-5c69-c80b53ff3d2f@rock-chips.com>
- <20220405093700.GQ4012@pengutronix.de>
- <12a8c0ef-90ee-cf7e-50a0-e00add8af147@rock-chips.com>
+        with ESMTP id S234947AbiDFLcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 07:32:21 -0400
+Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CA656FD22;
+        Wed,  6 Apr 2022 01:20:47 -0700 (PDT)
+Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id 0D75130ADE7F;
+        Wed,  6 Apr 2022 10:20:45 +0200 (CEST)
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id 1D2BF30ADE4A;
+        Wed,  6 Apr 2022 10:20:44 +0200 (CEST)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 2368KhCX018534;
+        Wed, 6 Apr 2022 10:20:43 +0200
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 2368KhL8018533;
+        Wed, 6 Apr 2022 10:20:43 +0200
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     "Marc Kleine-Budde" <mkl@pengutronix.de>
+Subject: Re: [PATCH v8 0/7] CTU CAN FD open-source IP core SocketCAN driver, PCI, platform integration and documentation
+Date:   Wed, 6 Apr 2022 10:20:42 +0200
+User-Agent: KMail/1.9.10
+Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marin Jerabek <martin.jerabek01@gmail.com>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Jiri Novak <jnovak@fel.cvut.cz>,
+        Jaroslav Beran <jara.beran@gmail.com>,
+        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
+        Drew Fustini <pdp7pdp7@gmail.com>,
+        Mataj Vasilevski <vasilmat@fel.cvut.cz>
+References: <cover.1647904780.git.pisa@cmp.felk.cvut.cz> <202203220918.33033.pisa@cmp.felk.cvut.cz> <20220322092212.f5eaxm5k45j5khra@pengutronix.de>
+In-Reply-To: <20220322092212.f5eaxm5k45j5khra@pengutronix.de>
+X-KMail-QuotePrefix: > 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <12a8c0ef-90ee-cf7e-50a0-e00add8af147@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:03:09 up 6 days, 20:32, 65 users,  load average: 0.42, 0.38, 0.21
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Message-Id: <202204061020.42943.pisa@cmp.felk.cvut.cz>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,92 +64,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 06, 2022 at 10:02:59AM +0800, Andy Yan wrote:
-> Hi:
-> 
-> On 4/5/22 17:37, Sascha Hauer wrote:
-> > On Sat, Apr 02, 2022 at 09:37:17AM +0800, Andy Yan wrote:
-> > > Hi Sacha:
-> > > 
-> > > On 4/1/22 20:52, Sascha Hauer wrote:
-> > > > -- 
-> > > > >From cbc03073623a7180243331ac24c3afaf9dec7522 Mon Sep 17 00:00:00 2001
-> > > > From: Sascha Hauer<s.hauer@pengutronix.de>
-> > > > Date: Fri, 1 Apr 2022 14:48:49 +0200
-> > > > Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
-> > > > 
-> > > > ---
-> > > >    drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 ++++++++++++++
-> > > >    1 file changed, 14 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > > > index 7dba7b9b63dc6..1421bf2f133f1 100644
-> > > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > > > @@ -2287,6 +2287,20 @@ static int vop2_create_crtc(struct vop2 *vop2)
-> > > >    			}
-> > > >    		}
-> > > > +		if (vop2->data->soc_id == 3566) {
-> > > > +			/*
-> > > > +			 * On RK3566 these windows don't have an independent
-> > > > +			 * framebuffer. They share the framebuffer with smart0,
-> > > > +			 * esmart0 and cluster0 respectively.
-> > > > +			 */
-> > > > +			switch (win->data->phys_id) {
-> > > > +			case ROCKCHIP_VOP2_SMART1:
-> > > > +			case ROCKCHIP_VOP2_ESMART1:
-> > > > +			case ROCKCHIP_VOP2_CLUSTER1:
-> > > > +				continue;
-> > > > +			}
-> > > 
-> > > Think about this , there maybe other upcoming vop2 base soc, they may only
-> > > have
-> > > 
-> > > mirror window Smart1 Esmart1, or Smart1, Esmart1, Esmart2, Cluster1.
-> > > 
-> > > I think this should add WIN_FEATURE at the platform description file
-> > > rockchip_vop2_reg.c, then
-> > > 
-> > > check the FEATURE to decide whether the driver should give this window a
-> > > special treatment.
-> > > 
-> > > this can make one code run for different soc with different platform
-> > > description. or we should add
-> > > 
-> > > the same code logic for different soc again and again.
-> > You mean like done in the downstream Kernel? Here indeed we have a
-> > WIN_FEATURE_MIRROR flag added to the platform description. This is then
-> > evaluated with:
-> > 
-> > static bool vop2_is_mirror_win(struct vop2_win *win)
-> > {
-> >          return soc_is_rk3566() && (win->feature & WIN_FEATURE_MIRROR);
-> > }
-> > 
-> > So a flag is added and afterwards its evaluation is SoC specific. That
-> > doesn't help at all and only obfuscates things.
-> > 
-> > Besides, experience shows that you can't predict a good abstraction for
-> 
-> This is not a  predict,  this is an IP feature, so it will appeared on
-> upcoming SOC.
-> 
-> We have rk3588 with 8 windows(4 Cluster + 4 Esmart, no Smart window), and
-> 
-> also have a entry level soc which only have 4 windows, they both have this
-> feature.
+Hello Marc and others,
 
-Same as with the other discussion: Please let's solve this once we are
-there.
-For now my addition is the easiest way out. Once other SoCs shall be
-supported we can re-evaluate that and find better suitable ways for SoC
-abstractions. This may result in just your suggestion (in which case you
-can say told-you-so) or completely different.
+On Tuesday 22 of March 2022 10:22:12 Marc Kleine-Budde wrote:
+> On 22.03.2022 09:18:32, Pavel Pisa wrote:
+> > > The driver looks much better now. Good work. Please have a look at the
+> > > TX path of the mcp251xfd driver, especially the tx_stop_queue and
+> > > tx_wake_queue in mcp251xfd_start_xmit() and mcp251xfd_handle_tefif(). A
+> > > lockless implementation should work in your hardware, too.
+> >
+> > Is this blocker for now? I would like to start with years tested base.
+>
+> Makes sense.
 
-Sascha
+I have missed timing for 5.18 but v5.18-rc1 is out so I would be
+happy if we do not miss 5.19 merge window at least with minimal version.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+If we succeeds in review reasonably early we could fit with inclusion
+or at least the first review round of Mataj Vasilevski's 
+
+  https://gitlab.fel.cvut.cz/canbus/ctucanfd_ip_core/-/tree/hw-timestamping
+
+Please, help us to finish this subsequent goal of our portfolio development.
+I think that our work is valuable for the community, code can be tested
+even in QEMU CAN bus subsystem which we architected as well
+
+  https://www.qemu.org/docs/master/system/devices/can.html
+
+I hope that it is usable for others. I have the last support call from
+Magdeburg University where they use CAN emulation for some Volkswagen
+projects. The Xilinx uses code for their CAN FD controllers emulation.
+Thei have whole stack including mainline driver for their CAN FD controller
+in mainline but on the other hand, their CAN FD is bound to Xilinx devices
+emulation. But CTU CAN FD provides generic PCI integration and can be used
+even on broad range of FPGAs so its emulation and matching driver provides
+valuable tool even if you do not consider use its actual design on hardware.
+
+New version of the latency tester based on CTU CAN FD timestamping
+is in preparation as upgrade of original Martin Jerabek's
+work done on Oliver Hartkopp's and Volkswagen call
+
+  
+https://gitlab.fel.cvut.cz/canbus/zynq/zynq-can-sja1000-top/wikis/uploads/56b4d27d8f81ae390fc98bdce803398f/F3-BP-2016-Jerabek-Martin-Jerabek-thesis-2016.pdf
+
+Best wishes,
+
+                Pavel
+--
+                Pavel Pisa
+    phone:      +420 603531357
+    e-mail:     pisa@cmp.felk.cvut.cz
+    Department of Control Engineering FEE CVUT
+    Karlovo namesti 13, 121 35, Prague 2
+    university: http://dce.fel.cvut.cz/
+    personal:   http://cmp.felk.cvut.cz/~pisa
+    projects:   https://www.openhub.net/accounts/ppisa
+    CAN related:http://canbus.pages.fel.cvut.cz/
+    Open Technologies Research Education and Exchange Services
+    https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
+
