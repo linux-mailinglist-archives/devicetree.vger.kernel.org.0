@@ -2,84 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 653974F877D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 20:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 155DA4F8782
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 20:56:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234577AbiDGS5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 14:57:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42146 "EHLO
+        id S233753AbiDGS6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 14:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233161AbiDGS5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 14:57:10 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF6E21B755B;
-        Thu,  7 Apr 2022 11:55:09 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id w7so6271085pfu.11;
-        Thu, 07 Apr 2022 11:55:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=xIJxGEc1QXZ1RcKZlcjhf5oZ3vhjq/vBcSj9ntl/GUc=;
-        b=n0B4c8vF3uXc0U2QRZCP2Puug54wEENNNU2K2Z7lLOKs5Ak6K8PZr3M7Wk/8F0d9NF
-         zryGV1LYrPASoDI9neNcWNXoaGLu2i0MriMczwQ/cUxADlRCcw4kmrbh+204tMtV+Qrb
-         eMHy7vGBOjmShFQkwiNdmviJKJJvxhH1k8udRGK0Uo2wC+OntG4I+xuPgzOKblq/x2tH
-         7bW+iMwCFqq5efuW+Mb/gIqq4MibdBBwvpzwAkWBEOGhTp0mx2AcRIGYeOu5Wte/bGgW
-         RymB4+Zr6ZnhZr4EsgvpuoXvBprYZAD/nqQwR5cckJC/DZtzxLapXEEHNoQMJGoCAFQZ
-         oY7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xIJxGEc1QXZ1RcKZlcjhf5oZ3vhjq/vBcSj9ntl/GUc=;
-        b=FIHmsX3X0Rg+1yGenc94h+8gCCtYfAhj/9Q2zvDVMIwqmw6EybOJegRpkthgRUYo6u
-         Pqq+bsIQjQf8FvElHibofs8ofUvL05c0g6WZterZIOHf3ETaV2XtDhiGRUf3cMolI23N
-         /ymNtKuQBzjAojqDBcBg5xSx17Jtjwhv43fMXyfZniwTv23XIYUUha6WMw7tJ0uOg0Kn
-         nRr9fEBu7/QG8p9uhPyoLiCK+PQrsuQHf5PR5xto+5nSHA2Q6lbxFnfWVqd9HfT7ogyq
-         cwdVONKHBwjmgNk8GNupqMeg3Ys7QvaU5nW7F/YF+PsHcIQY0lwsLRL1jjMEzGI/khZK
-         DhIg==
-X-Gm-Message-State: AOAM531GsteKyBIUBTmmBPjKzTqAO4SPJaD6mMJt+KMK6TfvBVw4TLzk
-        YIzrsKK6UZmgQrRRjTOLEXI=
-X-Google-Smtp-Source: ABdhPJz0hVUZVOmEVSFMVj10ITGCRQp26kdI6fMbWtW02DkmKeXXyETlrz1l3lPRvDJlGmIDxwpyKA==
-X-Received: by 2002:a63:24d:0:b0:380:ada1:cd4b with SMTP id 74-20020a63024d000000b00380ada1cd4bmr12455357pgc.127.1649357709221;
-        Thu, 07 Apr 2022 11:55:09 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d21-20020a634f15000000b0039ce7158664sm893218pgb.68.2022.04.07.11.55.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 11:55:08 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S233161AbiDGS6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 14:58:37 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E2A1DFDF4
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 11:56:35 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B60B483C8C;
+        Thu,  7 Apr 2022 20:56:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649357792;
+        bh=bC0Px5YzU58joefUkn3NsLO86IbLJYTHdRr0+ibfnA8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PzVvapYO2/uYIepWK6zYGPHV4fNzm0CfSi7QQ0rGKLZ5l5WKaLW5auysFljdRiNmS
+         Po95/nhwU5VwCrhLieeJQylfxdUZ5YSwPVLe0XoiWvodqM0VKTMpeBxCLn3pGIK6pa
+         gL6BKJjVXQ3ZEN85NQaG7mXxDKjiRlsCAiQZE+0S4F6y/+mDJjkME0Q2sIcvQmqhKm
+         aZsTU4zVlF1Au824NXAZT/Zs80J0gGQYbCQFVafzNuougBUafM5z02J/KJ2DuLzyqU
+         okQ31JSrhsj0lQnKiHcb177859vhO/L4OtLfh55PylfihUH6cem48Z/Qxqzq8+ekUH
+         jngY41JxDX7Ow==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] ARM: dts: broadcom: align SPI NOR node name with dtschema
-Date:   Thu,  7 Apr 2022 11:55:06 -0700
-Message-Id: <20220407185506.2575806-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220407143211.295271-1-krzysztof.kozlowski@linaro.org>
-References: <20220407143211.295271-1-krzysztof.kozlowski@linaro.org>
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: display: bridge: icn6211: Document DSI data-lanes property
+Date:   Thu,  7 Apr 2022 20:56:16 +0200
+Message-Id: <20220407185617.179573-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  7 Apr 2022 16:32:10 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> The node names should be generic and SPI NOR dtschema expects "flash".
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+It is necessary to specify the number of connected/used DSI data lanes when
+using the DSI input port of this bridge. Document the 'data-lanes' property
+of the DSI input port.
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
---
-Florian
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Jagan Teki <jagan@amarulasolutions.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robert Foss <robert.foss@linaro.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+NOTE: This is consistent with all the other DSI panel and bridge bindings which
+      document 'data-lanes' property, all of which already use OF graph and have
+      the 'data-lanes' property in the port@N subnode, see:
+      $ git grep -l data-lanes Documentation/devicetree/bindings/display/
+---
+ .../display/bridge/chipone,icn6211.yaml        | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+index 7257fd0ae4da8..4f0b7c71313c3 100644
+--- a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+@@ -41,10 +41,26 @@ properties:
+ 
+     properties:
+       port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
+         description:
+           Video port for MIPI DSI input
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description:
+-- 
+2.35.1
+
