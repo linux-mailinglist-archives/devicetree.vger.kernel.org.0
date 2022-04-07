@@ -2,150 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E94214F7B7A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62E944F7B93
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230261AbiDGJXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 05:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51728 "EHLO
+        id S243766AbiDGJ3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 05:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243912AbiDGJXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:23:32 -0400
-X-Greylist: delayed 138847 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 07 Apr 2022 02:21:29 PDT
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E9B176659;
-        Thu,  7 Apr 2022 02:21:28 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9A21DC0005;
-        Thu,  7 Apr 2022 09:21:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649323286;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ovt995Vz+TKYIu2nKkb+/jaggU7Fdt/74L9w/t6FZTQ=;
-        b=EZt+u37SQDG+9nMmzmDtiw13PSpBGAclDEGCvXaHchYpOpByVGUl8CKehpHWzkn7DJSd7X
-        aObsbLj0jO072kwKE1K7+2MmTeQ3wPkBBKnLL6DhN465yh1CRVKOGm1K29OWABIkXxOdg/
-        SbmRkkYjTBb5Gv9MciFpGN6ap89l7fOrv7DfuSODYCn7nagx+2qeK8bM4YwkgbHMAlsUIX
-        lZIzDWDYHRaGhNNL7Jkj9JbZU+uVZprD4RK+XgByZtxDH/bZ8RqX91BphqN5mTW43N3x8N
-        O6y4KrdAEdZFalz+lT3ATKvCi75/FvxE6MqlG080zgluJZQ7RfNUZC7yOFf6Tg==
-Date:   Thu, 7 Apr 2022 11:21:22 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: rtc: rzn1: Describe the RZN1 RTC
-Message-ID: <20220407112122.11321834@xps13>
-In-Reply-To: <bdaad2e0-6662-c6aa-974a-326dd513282f@linaro.org>
-References: <20220405184716.1578385-1-miquel.raynal@bootlin.com>
-        <20220405184716.1578385-2-miquel.raynal@bootlin.com>
-        <bdaad2e0-6662-c6aa-974a-326dd513282f@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S235051AbiDGJ3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:29:30 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412285C85A
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:27:31 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id ot30so9483365ejb.12
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 02:27:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HDWRHtMWWsVQlbRd/eGjYgilSV8n+KJqiJ5agkgjVIY=;
+        b=OQ9uTyKQ+3jWh1HTuZTaWHNRc5S1NM8PQ83nAPpN3LgC9aiR0Tu0t+n2dnp4iZa6O+
+         eES7ckdXskCA0uoO+XkmaIm+E9fCs6mqrii2OmomGeRlY2xh3UN0chWPGdr/VKnOsPmp
+         873sGTJGRIwlKIyW97HQpgoBOy5NSfjMj1YTk9qXVZHxpzGyGNs1iOQTVUWrjIqCpKyF
+         jVEBwUUhLpSSjR4p9UieW0nRDjUN93u7Rb3fFvOg0lsBismLsnROQfTGBAsa4JqQBqNE
+         DPDMizM8wexHfBJDFEcRF9HMftLH+agVdD9FGm9EPyvlmW+n43/wDj4lmg+P1YhLOFtX
+         TuQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HDWRHtMWWsVQlbRd/eGjYgilSV8n+KJqiJ5agkgjVIY=;
+        b=Z6paZ53k/PZ35Dvtn7fUiGu9h75DS5DQB2T3YE80e/epx/qOqlwn7ZO2N3aIlYi92D
+         9qCeS6psm/lE9PW4pjtGCheNFt4IglRimwLQtPwRtXlgal3u3wH0CzCQ5xUaBEL9sInp
+         mVlHX9T2KIWeqqKt4QOH57P5wtAPLbCNz/U6wk+IMB7trVD88ItxtSJPeKD0O3S88ON8
+         LsU6LEyaYiw5f9N30O4Q16DvNQ//UbqiWA5XNKTSCb6fFB8jVq5r4Envey336ASzWF/p
+         9TYtqSwoLSJBwK4NoDyvLTApQ/e1jFtSvQQZV/ZvlIXapFILM2N3YikMZe/wxxcL6pwT
+         CufQ==
+X-Gm-Message-State: AOAM530QrL5HYl6cQRBN2U6U/QrXKHlnumYqNMnFqx5HD4bguttbthi8
+        6z2QVY1mF7mIa2Nbb4s+O0FgAdfzOX/6OTCL
+X-Google-Smtp-Source: ABdhPJyKU78KN+4mS3JRor1G8970H/IVU03Ue24ubBszYKjp73+4ayQnbKBogJiekx3wpGolipP3qA==
+X-Received: by 2002:a17:907:2cc3:b0:6da:e6cb:2efa with SMTP id hg3-20020a1709072cc300b006dae6cb2efamr12364953ejc.169.1649323649858;
+        Thu, 07 Apr 2022 02:27:29 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id s14-20020aa7cb0e000000b00410bf015567sm8649435edt.92.2022.04.07.02.27.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 02:27:29 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH v3 1/3] arm64: dts: qcom: msm8996: drop unsupported UFS vddp-ref-clk-max-microamp
+Date:   Thu,  7 Apr 2022 11:27:23 +0200
+Message-Id: <20220407092725.232463-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The property vddp-ref-clk-max-microamp (for VDDP ref clk supply which is
+l25 regulator) is not documented in MSM8996 UFS PHY bindings
+(qcom,msm8996-qmp-ufs-phy).  It is mentioned in the other UFS PHY
+bindings for qcom,msm8996-ufs-phy-qmp-14nm.
 
-krzysztof.kozlowski@linaro.org wrote on Thu, 7 Apr 2022 09:37:39 +0200:
+The MSM8996-based Xiaomi devices configure l25 regulator in a
+conflicting way:
+1. with maximum 100 uAmp for VDDP ref clk supply of UFS PHY,
+2. with maximum 450 mAmp for VCCQ supply of UFS.
 
-> On 05/04/2022 20:47, Miquel Raynal wrote:
-> > Add new binding file for this RTC.
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../bindings/rtc/renesas,rzn1-rtc.yaml        | 69 +++++++++++++++++++
-> >  1 file changed, 69 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/renesas,rzn1-=
-rtc.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yam=
-l b/Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
-> > new file mode 100644
-> > index 000000000000..903f0cd361fa
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/renesas,rzn1-rtc.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/renesas,rzn1-rtc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas RZ/N1 SoCs Real-Time Clock DT bindings
-> > +
-> > +maintainers:
-> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> > +
-> > +allOf:
-> > +  - $ref: rtc.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf: =20
->=20
-> Why oneOf?
+Since the vddp-ref-clk-max-microamp property is basically not
+documented for that UFS PHY and has a conflicting values, drop it
+entirely as it looks like not tested and not used ever.
 
-Right, copy-paste leftover.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
->=20
-> > +      - items:
-> > +          - enum:
-> > +              - renesas,r9a06g032-rtc
-> > +          - const: renesas,rzn1-rtc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    minItems: 3
-> > +    maxItems: 3
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: alarm
-> > +      - const: timer
-> > +      - const: pps
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: hclk
-> > +
-> > +  start-year: true =20
->=20
-> You don't need this, it's coming from rtc.yaml.
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+index 7a9fcbe9bb31..3ade756e1cd9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+@@ -341,7 +341,6 @@ &ufsphy {
+ 	vdda-pll-max-microamp = <9440>;
+ 
+ 	vddp-ref-clk-supply = <&vreg_l25a_1p2>;
+-	vddp-ref-clk-max-microamp = <100>;
+ 	vddp-ref-clk-always-on;
+ };
+ 
+-- 
+2.32.0
 
-Right.
-
-Thanks,
-Miqu=C3=A8l
