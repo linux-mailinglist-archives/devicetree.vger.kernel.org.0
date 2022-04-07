@@ -2,131 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CEA14F8915
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 00:14:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F12C64F8A12
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 00:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbiDGVIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 17:08:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36472 "EHLO
+        id S231187AbiDGVSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 17:18:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230460AbiDGVIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 17:08:30 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F911786B9
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 14:06:27 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id m30so9765861wrb.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 14:06:27 -0700 (PDT)
+        with ESMTP id S231158AbiDGVSO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 17:18:14 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34DE7188560
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 14:16:09 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bq8so13416696ejb.10
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 14:16:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VYDGD/lRh/S3APeRLxg/uVBh3CXm8UmCkYzmr6Xm0TY=;
-        b=N6uhWtFP3F3lmqbvC4tdoeq5G5+gzPYi+82xknSqaEiYQjD5S39+Z+S3+npgLuTd8p
-         sBy09OhRV9U58FqxU+iRDHKxUJjA/1YCpHWdBBa+iZf5PtXaVn2ddP/k7cLBeUdi8a4n
-         ZKMpK/VOaaeiCPcW5Y5hdNGIiL6OR3ayzJsY6bTXlUuM/ZMOomUHcKkwzKg7hLPNw9sJ
-         CUP2mOuyh3Ktc6sZVnY1fIFqSOCO+7bYpX+Eyg/zt4YkLfgKXDkZ+4wz8SUh2e1O5hN0
-         QmpO0X/QdYr0J1sZzo8gOas2C1h1fBqD4fXRq3iBGANBtGxnB1MgN1VtdCNg4UFPCjDs
-         I3ag==
+        bh=Vnl9fzY51zFGbBPdJOVdC/ObBDnpccOA1T51DHqDBAY=;
+        b=FVbhn2jeAkOUEO9Ba9dfgzN+akctgRkp9e8r/OJGtqUO8lzYFJKk/UdmdWrBlgHaR3
+         KBJ3mNPV/aiTD/fHS1DW2fByC91nuDhG3OdD7zFRhc/uDatPtMNeQh5GUggnbBLtSKYR
+         GZDMg+3zMYCU4207u4AgQTlXovz3nYCf1r8oOvJfnTbn73Zz3/we4qONKWT5cNFdqDmf
+         VVSbzEvmlAb6oFkjHuC0TPxUtb4JOCVIx9svyPfWTwe0fguaQ/u+qGTFNRuHIN7UpmPV
+         J9wNCno+UXczE04DoeY6HzidrQtulmBYfY8jFf9ZHrKMbPOa4WWVan08K3dmENV+KtCl
+         ev1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VYDGD/lRh/S3APeRLxg/uVBh3CXm8UmCkYzmr6Xm0TY=;
-        b=T5/N0OMscgL65s9eaxzLz8SJCfQrJ0VAK/Zm79dxvEhTy0JFN48QopsDqB4Kj7DjvY
-         C/XNHf6O59pPMunpn5AjhyWnMa1LQS4ZdhKmGqb8uCFzZazooD+StdFVWESDlTHyTrcG
-         80surFrmQEnl/tT1/DqhaWOx9z8CP8ElSdqusj96qrU9+qLePaQ/iFTsfgvhCaW0w/6D
-         kJFCFg0KvX+7qnZcnJsHoG5yCrJzESEKnt7cLY+t2kWCJ+iTy0LTedx4+x0FIDEnxjH/
-         cS7yeURCaTPP0gZDfd8siJT2V/n3eu0eWLWXlFvjdxf1g5F2NuWmTJ/p9F1k1Cx68t/f
-         r/ZQ==
-X-Gm-Message-State: AOAM531lPkCvCzBZrS4R2PcnpdUZlWGurAjcmfdQAxFoTULS4+ELktfa
-        TSCaOycdCRnWTErwljuZI7MAlQ==
-X-Google-Smtp-Source: ABdhPJyQiv2+i2IpnqHJGw+2b8dO4TXqtW/XLBZB8wqTI1qe3ixmX60ZJmaCzuoWpm23qRrv0x8KeA==
-X-Received: by 2002:a5d:64e6:0:b0:204:975:acde with SMTP id g6-20020a5d64e6000000b002040975acdemr11872191wri.466.1649365586356;
-        Thu, 07 Apr 2022 14:06:26 -0700 (PDT)
+        bh=Vnl9fzY51zFGbBPdJOVdC/ObBDnpccOA1T51DHqDBAY=;
+        b=QTPTI1+eWW6jeVB9+ybrzyqlDE4oeji1ZUkn3f/a8ZqiaSRxaPF0p0Rg1v2OoAjzRD
+         VdH1gT4nH4QxhdNOpoduXfBnMy1TkxUEL2Y4tB+paJ75MENQ/hBLjfvwtZONLnD9RHrb
+         cDuTHgvX5TYDIDg5VK4GHRgI4wZLBB3oPHFFX/UhVbErFsZAxvrEdpTEE7JzYR8HrxhE
+         mL4vxGK6TjljfmbTszFYt/X+eF4pjSICDofBCluLLQ9lHL12gxk+pvLkUd8MZ5JeqnUJ
+         1OPZtNy60X0XqB6jwWq/AeIrh0MGLSZ0FunJGedqyVekmJ5zfljAIhzNmmylD9x3mU+v
+         5ZHA==
+X-Gm-Message-State: AOAM5334BuXNl7hBLUDl0pnBOfG6PyGCod8amAlb7Py2G+wJee16uCpw
+        HWiI9yjy1lqXrysvZgdJB5z8rA==
+X-Google-Smtp-Source: ABdhPJxrUjB7NB/DdRcPGk5eJGqzzzhSc4M6yqToNPSbJYPvv7fa0w3Cx6385NlAPKEiekuaF9jheQ==
+X-Received: by 2002:a17:906:730e:b0:6e0:2ad8:12c8 with SMTP id di14-20020a170906730e00b006e02ad812c8mr15160740ejc.623.1649366167733;
+        Thu, 07 Apr 2022 14:16:07 -0700 (PDT)
 Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c144a00b0038ccc75a6adsm8363430wmi.37.2022.04.07.14.06.25
+        by smtp.gmail.com with ESMTPSA id c4-20020a170906340400b006d077e850b5sm7951415ejb.23.2022.04.07.14.16.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 14:06:25 -0700 (PDT)
-Message-ID: <200a2002-8573-efaa-774a-51dcec9cc807@linaro.org>
-Date:   Thu, 7 Apr 2022 23:06:24 +0200
+        Thu, 07 Apr 2022 14:16:07 -0700 (PDT)
+Message-ID: <865ff6bc-95a2-8b39-5cf2-bb2d3f592c5a@linaro.org>
+Date:   Thu, 7 Apr 2022 23:16:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: remove unneeded
- properties
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: delete incorrect ufs
+ interconnect fields
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220407142004.292782-1-krzysztof.kozlowski@linaro.org>
- <Yk8rpUXmfmULMVjr@robh.at.kernel.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20220407172145.31903-1-jonathan@marek.ca>
+ <e41c26c2-8aa4-cfd2-27b0-eb011f45eda0@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yk8rpUXmfmULMVjr@robh.at.kernel.org>
+In-Reply-To: <e41c26c2-8aa4-cfd2-27b0-eb011f45eda0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 20:21, Rob Herring wrote:
-> On Thu, Apr 07, 2022 at 04:20:04PM +0200, Krzysztof Kozlowski wrote:
->> After conversion the jedec,spi-nor DT schema to reference other schemas
->> (SPI and MTD) and use unevaluatedProperties, several properties are
->> redundant.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/mtd/jedec,spi-nor.yaml        | 11 -----------
->>  1 file changed, 11 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->> index 4abfb4cfc157..708e7f88fd92 100644
->> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->> @@ -50,10 +50,6 @@ properties:
->>      minItems: 1
->>      maxItems: 2
->>  
->> -  spi-max-frequency: true
->> -  spi-rx-bus-width: true
->> -  spi-tx-bus-width: true
->> -
->>    m25p,fast-read:
->>      type: boolean
->>      description:
->> @@ -74,14 +70,9 @@ properties:
->>        be used on such systems, to denote the absence of a reliable reset
->>        mechanism.
->>  
->> -  label: true
->> -
->>    partitions:
->>      type: object
->>  
->> -  '#address-cells': true
->> -  '#size-cells': true
-> 
-> These are needed for 'partition' nodes.
-> 
+On 07/04/2022 21:40, Vladimir Zapolskiy wrote:
+> On 4/7/22 20:21, Jonathan Marek wrote:
+>> Upstream sm8450.dtsi has #interconnect-cells = <2>; so these are wrong.
+>> Ignored and undocumented with upstream UFS driver so delete for now.
 
-I am sure I saw them in one of referenced schemas, that's why I removed
-them. But now I cannot find it so probably I looked at wrong schema.
+This is the upstream and they are documented here, although as pointed
+by Vladimir this was rather a reverse-documentation. The documentation
+might be incorrect, but then the bindings should be corrected instead of
+only modifying the DTS.
 
-Thanks for pointing this out, I'll fix the patch.
+> 
+> Basically the description was added by a commit 462c5c0aa798 ("dt-bindings: ufs:
+> qcom,ufs: convert to dtschema").
+> 
+> It's questionable, if an example in the new yaml file is totally correct
+> in connection to the discussed issue.
+
+To be honest - the example probably is not correct, because it was based
+on existing DTS without your patch. :)
+
+Another question is whether the interconnect properties are here correct
+at all. I assumed that DTS is correct because it should describe the
+hardware, even if driver does not use it. However maybe that was a false
+assumption...
+
 
 Best regards,
 Krzysztof
