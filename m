@@ -2,98 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F3B4F8299
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D544C4F82AD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344517AbiDGPSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 11:18:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
+        id S233117AbiDGPVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 11:21:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237839AbiDGPSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:18:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6171FAA16;
-        Thu,  7 Apr 2022 08:16:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2719661E16;
-        Thu,  7 Apr 2022 15:15:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB02C385A4;
-        Thu,  7 Apr 2022 15:15:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649344556;
-        bh=fkUDGcZMuwhIXlCoSk+tbUQ1xUG4zQs/G/1OVgPCREE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Bd48Y7UHPAbBiKO0ZxHoZekW8iqfOCfz5umBb4NzHj0BSf65Aifrapao09r4GlVPZ
-         hCJr38My9FpRDgkGzKj1Ddc8MNR9wVGlRZfsw6qAmjw4Vgkmg/x24oqWEey3Vm5wzm
-         I1RLmhB5M40vf127g8Ih7qrwGrTiftLBTBwLkLb0ysl1u26kvMeplIAVSZzvBWyyPs
-         phsAKZjzJGyKFWCG8wwfrjZpPOqPH6p0qgPNJPFUQ2WdddpSy7HDXBebN2P6bV+o/x
-         axmpkWPxhsjh6Skc2+CVFPM7r8C53dwjSVZJcSpz5DgSrBijJXjcx5nx14NIAf7bgC
-         60oAg8lqcWY4A==
-Date:   Thu, 7 Apr 2022 16:15:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: align SPI NOR node name with dtschema
-Message-ID: <Yk8AJcFRmYEryqra@sirena.org.uk>
-References: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229995AbiDGPVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:21:50 -0400
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973ED1FAA16
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 08:19:28 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id d7so6773041edn.11
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 08:19:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=pYsYOgntjjlvEHgT5JCPXmKVWoZYP+JG9X5DaFbpiDk=;
+        b=dF5xHwBR29D9nYOAbS7SpTSRKvNoXqg3FwidUbuXMXwA2aP3JY+/kWS7KlOmMm/Gy0
+         T5VuMhOpx4cqcL6RluzwTF8Ad5xcueuXfg0SbJgulSwA09CJO2G+TBnrDr/z9JoX6LnE
+         FY5CnDYX5B7u/2pMv7EwBAjXlXN3Xdss23Gw44KTiu+XhEAG8JSmu8/turfGAg66sCWB
+         0e3TEjxKScWpzImYMGM7GQiDQeD1GKfxW4ahkCjJZLwYA2NEzOoVo1BKX2lhLrHdtPlr
+         wOqQoG/bd+b6ytynKOgP6jWrL35Mi9o4H8Su8MqEkHmkeq2hXMbrKWoHxGonNzj8E8E5
+         1T5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pYsYOgntjjlvEHgT5JCPXmKVWoZYP+JG9X5DaFbpiDk=;
+        b=bluWki+A/UG1ngOCFIQaff731GI2HvWEl+yEQuoLrd+f+n3Jb5NyNNE3xYZDI6iJLA
+         NZt3/MjU/7D+TdqYzU5JUWxs6rgCqkeD+Ik/s/2cR0f8gpMgoJmJxl3UKYNvIhos48mK
+         1Tz0ANT1Pdo4lMKcEX0M/86B0jcNF6hsy3uQ/RtoeUfNbnHgafh3rLKXWIU35FNcRKs8
+         HGo2Rq1cw4p93sPR33y7Hs8DSw1te+WDdHuaH5xkCsDsHv2cp31OKHwPi8dArlIO01fS
+         ulyqlvEFoAZPFDh9WsTzMb7PXgLybPeKFE1yUAlIu0xogpe5bxPGD/VwMChEjc0z0QZ2
+         Mg5w==
+X-Gm-Message-State: AOAM533zpUCKgPkGIfA7Hrwpzq8MfX8ktN93gfzBT/Wk6WmqjjQNJIoS
+        3bEud/OTEQvRlv15NByhJIZwJw==
+X-Google-Smtp-Source: ABdhPJwLbpgSA+Jg7fYudXJFmcMqkdL4fgQYcsmaQKmizJG3dS0PYSHabAoeLbOFMycDRwFLxR8M2w==
+X-Received: by 2002:a05:6402:42d4:b0:416:5cac:a9a0 with SMTP id i20-20020a05640242d400b004165caca9a0mr15045423edc.86.1649344707223;
+        Thu, 07 Apr 2022 08:18:27 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id m1-20020a170906848100b006e8053c7cdcsm3217716ejx.39.2022.04.07.08.18.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Apr 2022 08:18:26 -0700 (PDT)
+Message-ID: <27f5eed0-e59f-9441-4e2f-3a2c5d8dddad@linaro.org>
+Date:   Thu, 7 Apr 2022 17:18:25 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="exxHKs3vl5yFGvsK"
-Content-Disposition: inline
-In-Reply-To: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
-X-Cookie: Look ere ye leap.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings to
+ json-schema
+Content-Language: en-US
+To:     Drew Fustini <dfustini@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220407141750.2289293-1-dfustini@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220407141750.2289293-1-dfustini@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---exxHKs3vl5yFGvsK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Apr 07, 2022 at 04:34:05PM +0200, Krzysztof Kozlowski wrote:
-> The node names should be generic and SPI NOR dtschema expects "flash".
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 07/04/2022 16:17, Drew Fustini wrote:
+> Convert the wkup_m3_ipc bindings documentation to json-schema.
+> 
+> Link: https://lore.kernel.org/linux-arm-kernel/20220221125522.l3tntb6i7yjxp6vb@flattered/
+> Suggested-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt | 2 +-
->  Documentation/devicetree/bindings/spi/spi-davinci.txt           | 2 +-
->  Documentation/devicetree/bindings/spi/spi-pl022.yaml            | 2 +-
+>  .../bindings/soc/ti/wkup_m3_ipc.txt           | 57 -------------
+>  .../bindings/soc/ti/wkup_m3_ipc.yaml          | 81 +++++++++++++++++++
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Changes look good, thanks for fixing, although I forgot about one thing
+- all other files are using 'hyphens' in file name, so please keep it
+consistent with them.
 
-but it would be easier to split this into per subsystem stuff.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---exxHKs3vl5yFGvsK
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJPACUACgkQJNaLcl1U
-h9DhFgf/f0zclEq8qn8Edqu+LBr0uPAux3FUc79aJUiaw52UFqSsyCwAVD1XqJfB
-6AWYVRrGg8ag/JiZSjxzzCQT8tCaZYgUv5FgBL0krLTu+UX9AFJtySLzv9Eh75P/
-BxXn0lVp+eIfEuOKMgzoDbgfLDPANIdb2L6GlSecg1+SV5cfd1eS3xii/zo5woLo
-5W9Z9rV5qACqdxC/7W1MTDk2qpHwM5onJgpslswaJ1j3kT72otXnKBTJNmk3jNO7
-6bXycpaaSp2FfaVQD+L4JrVXJVHVtejlxAe1zRTYgPoLAY4Ga4N9u5dYw59AgY83
-zC9tmaFzlEqB5ozAx2YSOPhf+IIkhA==
-=8MWW
------END PGP SIGNATURE-----
-
---exxHKs3vl5yFGvsK--
+Best regards,
+Krzysztof
