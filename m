@@ -2,102 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E72164F7EB0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 14:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDEC74F7EBA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 14:07:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232317AbiDGMIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 08:08:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40202 "EHLO
+        id S229824AbiDGMJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 08:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237536AbiDGMH2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 08:07:28 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DDCC4E14
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 05:05:23 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id dr20so10320834ejc.6
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 05:05:23 -0700 (PDT)
+        with ESMTP id S232836AbiDGMJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 08:09:35 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8A33F47CE
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 05:07:35 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id w18so6101972edi.13
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 05:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bwsyQ5Vu4W5RWwfy6VtuRb8dpLJkggv+g3kZE12CFcQ=;
-        b=Tgo1TI51TajsJx0sXfbOwR5Gyu9coBohhsu8zhdZpA5kKuZTg8NJboDw/1NK+7+giS
-         63z3ioCQc/KKpkCRyUx1Kql1U0zHvzD2P+/4t1emulGnKynZOlcd40K5G4UbsZaCWuAG
-         WcJcqH+2My0E/GLm6+1ysAUPqpBiuwkB/Vk/BtyU67L3p+ibRJGDzA3J23HKmFE22/PQ
-         /2Hr4TZpBJx3jL0uIwyDjYIP5eg7tNEawLpH78UFM6f39HNe6u0bIaJ8TCnEt/hqXxel
-         +/k51tILeOrMFz8JeqTe5wa2qG3pKBEqqoYZl9ekM9Y3LMDG+wBH/HuFSwQgX+hGf/sn
-         b0Dg==
+        bh=RXZ9lKydxs9kO1JxJb9dd9FMIU/aXNoy++vgijFww0k=;
+        b=fLD8z1WxhKcc6h+Y8bC7AhGku/THlFtrhKM2rXzhUBuY0kZjjS+0nP32uiXsbKo5/g
+         khQVI75054BWUQlt5DPpOFfvB1C+p6Bg6JYLxddgQE2rlBw4T2ZAoRz1jur9dTuSv+4a
+         PuPwoait6By0LinqVCigKsk27Pu1PN4dao0w9VO5oGnS21ll8SA/av/uBJlwRKY1Sa9T
+         uPHNnqI9qcgn07ejmI3ZrgOto5D/UYJV+PRTfpGcbrBnPd44tF7LRqJuSl52TmPmcq1a
+         KEn44H29T8tDkwyZrPS4ekqYz6E73UKuBcnVAcr7NeH3f5F/2pYyzup2hEtYL4f0Hy9M
+         ATcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=bwsyQ5Vu4W5RWwfy6VtuRb8dpLJkggv+g3kZE12CFcQ=;
-        b=f2GxuA67wu9+yVjAhngiSvWjUOJHe8udv8nKpEQCTFbScOb6h8GBkilbHG6S46UoFl
-         s0Q8B9/rQDaiZ3UUyTuzTvjDkd7E50ntPSAZUb1nryOMHqWPjUDH9cxzcVBhTgQt4d2t
-         cj9d58X4WmvhoQQ0dpvjqNRBrbAMg/3qh1jX+Tk1N7DvPfdo822r5TThUPG1XauyKuw2
-         9lu8BUp1IMAFp6u0DVLnPavVCjgZ8u+73umPa6itnbrheYSAJHennD9u0WWyYQ4IzA2m
-         +2FCVEoa0fCTvdd4H8OW+ytKe5Tx34Zddo5Ulmemz3k4Yymp0LVEFBgm1CdS3iPwG8NY
-         6mwA==
-X-Gm-Message-State: AOAM532lrVuMT4NYnXTLi2cZcH7LAdLA45i+VsFLkjXKJRnJ6OXtsoLG
-        bwcdNlt24nZD8fyQXbtCu3MteQ==
-X-Google-Smtp-Source: ABdhPJw306Xv8hi4MiEDFStVaE0H2lWBzMserAaLf5q9MTAVjR/RGdsOIDq6FnIZCvCQRrdAPOBNOA==
-X-Received: by 2002:a17:907:6ea4:b0:6e1:260e:a232 with SMTP id sh36-20020a1709076ea400b006e1260ea232mr13324944ejc.15.1649333121669;
-        Thu, 07 Apr 2022 05:05:21 -0700 (PDT)
+        bh=RXZ9lKydxs9kO1JxJb9dd9FMIU/aXNoy++vgijFww0k=;
+        b=ZZ2hoW2kDjnoXUKBWWiG4HqV2R+dCimxW5/I0L8kvdlN1msbAkEOyOdLVRzCWta+Oh
+         7xJKMGV4CwfurB74+1Adi47zK26kdshbrbUpuHSY86pMf4O4tmqBYn5xB/SBMH9Ep9Sh
+         PKbkZ95ArPX+7EC9OPkEDCANFOmoCRAieD8WjGL5feIRhZurIJt/1jh5N5lwhXgt97ld
+         BDjO42wuNOc+pwGyF85ZdpqUjvsyPpxwHGBzBME3KQdbC2lKyLbz5GdkQOTkvJ6wKvbm
+         xHQe+rq6TRPo7VuG5IDSex1MN6CePZPrYgOGRpq1vYWXxAEnL3NeD0KgQCCiwMgHSGKf
+         DzJA==
+X-Gm-Message-State: AOAM530SP6+QC3tmrIAwe+3TeWo17mknIYBeQN/jFTzvwc8RlCTDu3mo
+        BrBsQTGIhHmWz7JoVthRlUctlA==
+X-Google-Smtp-Source: ABdhPJxY5BbGCb1UPDSfWzKyt1vTRnHHRckAjtmhaAzU6YN/28sHmSGj6JzYZN3UfrqHa7RW1CKLYg==
+X-Received: by 2002:a05:6402:209:b0:416:5211:841f with SMTP id t9-20020a056402020900b004165211841fmr14082498edv.59.1649333254265;
+        Thu, 07 Apr 2022 05:07:34 -0700 (PDT)
 Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id j8-20020aa7c0c8000000b0041934547989sm9247017edp.55.2022.04.07.05.05.20
+        by smtp.gmail.com with ESMTPSA id k26-20020a056402049a00b004197b0867e0sm9133959edv.42.2022.04.07.05.07.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 05:05:21 -0700 (PDT)
-Message-ID: <bc71266a-50c9-ef0f-6bc1-20df79782d32@linaro.org>
-Date:   Thu, 7 Apr 2022 14:05:20 +0200
+        Thu, 07 Apr 2022 05:07:33 -0700 (PDT)
+Message-ID: <01250e59-eb49-43fb-666e-c1592d9dc922@linaro.org>
+Date:   Thu, 7 Apr 2022 14:07:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] spi: atmel,quadspi: Define lan966x QSPI
+Subject: Re: [PATCH 1/2] ARM: dts: lan966x: Add QSPI nodes
 Content-Language: en-US
 To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        broonie@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        claudiu.beznea@microchip.com, tudor.ambarus@microchip.com,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, Manohar.Puri@microchip.com
-References: <20220407105420.10765-1-kavyasree.kotagiri@microchip.com>
+        arnd@arndb.de, robh+dt@kernel.org, krzk+dt@kernel.org,
+        alexandre.belloni@bootlin.com, olof@lixom.net, soc@kernel.org,
+        nicolas.ferre@microchip.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        tudor.ambarus@microchip.com, Manohar.Puri@microchip.com
+References: <20220407105835.10962-1-kavyasree.kotagiri@microchip.com>
+ <20220407105835.10962-2-kavyasree.kotagiri@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220407105420.10765-1-kavyasree.kotagiri@microchip.com>
+In-Reply-To: <20220407105835.10962-2-kavyasree.kotagiri@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 12:54, Kavyasree Kotagiri wrote:
-> LAN966x SoC supports 3 QSPI controllers. Each of them support
-> data and clock frequency upto 100Mhz DDR and QUAD protocol.
+Thank you for your patch. There is something to discuss/improve.
+
+
+This should be sent with your DT bindings patch in one patchset.
+
+On 07/04/2022 12:58, Kavyasree Kotagiri wrote:
+> LAN966x SoC supports 3 instances of QSPI.
+> Data and clock of qspi0, qspi1, qspi2 works upto 100Mhz.
+
+s/upto/up to/
+
 > 
 > Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
 > ---
->  Documentation/devicetree/bindings/spi/atmel,quadspi.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm/boot/dts/lan966x.dtsi | 48 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/atmel,quadspi.yaml b/Documentation/devicetree/bindings/spi/atmel,quadspi.yaml
-> index 1d493add4053..100d6e7f2748 100644
-> --- a/Documentation/devicetree/bindings/spi/atmel,quadspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/atmel,quadspi.yaml
-> @@ -19,6 +19,7 @@ properties:
->        - microchip,sam9x60-qspi
->        - microchip,sama7g5-qspi
->        - microchip,sama7g5-ospi
-> +      - microchip,lan966x-qspi
+> diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
+> index 7d2869648050..b3c687db0aea 100644
+> --- a/arch/arm/boot/dts/lan966x.dtsi
+> +++ b/arch/arm/boot/dts/lan966x.dtsi
+> @@ -196,6 +196,54 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		qspi0: spi@e0804000 {
+> +			compatible = "microchip,lan966x-qspi";
+> +			reg = <0xe0804000 0x100>,
+> +			      <0x20000000 0x08000000>;
+> +			reg-names = "qspi_base", "qspi_mmap";
+> +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clks GCK_ID_QSPI0>;
+> +			clock-names = "gclk";
 
-Expect the comment you got about wildcard, please also put it in
-alphabetical order. As you can check, the other entries are ordered.
+This is not correct with the DT schema.
+
+> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(0)>,
+> +			       <&dma0 AT91_XDMAC_DT_PERID(1)>;
+> +			dma-names = "rx", "tx";
+
+This as well.
+
+You can test schema with 'make dtbs_check DT_SCHEMA_FILES=...."
+(check the docs for help what is needed to do it).
+
 
 Best regards,
 Krzysztof
