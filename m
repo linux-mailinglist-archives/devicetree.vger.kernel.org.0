@@ -2,111 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BC24F7699
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 08:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF1B4F76E9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240155AbiDGGwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 02:52:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42522 "EHLO
+        id S230323AbiDGHMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:12:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241515AbiDGGwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 02:52:49 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8CF147510
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 23:50:50 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id n6so8721532ejc.13
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 23:50:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=sOBNvgaCeaKUl0pCxOaStgi4AtDvD5vTjwRPpX1afgI=;
-        b=OfjisoY9ADHB/LAaU3PStatTtPjqHuthog/JZLRiCrE400Z4N5kB45I/5186gttD2r
-         nqF/uKXWfo1Ud2MnP4pJ4WC0knoEmRdfJ91hf6/vlL68eVgvu0RHxoNJkP9g4Zs76DVJ
-         8RH+bH6R+U4/4sVd/QlFSuXrGdiPzwJX/TWcVAJTbIRzADsNPy/b5nd6PyTYpQgdHC3x
-         YvayfjGXngIvyYwfBvD35tuOGFTd1+j1ItNqYcQtYbPwo+lNLY7Voo110/C1DT3yhDB8
-         HP65WkWBPWfVa/ZQQj97DlMrjNMzeoNE0BDy+7hdFtN3fnCn3kXL+NfqMoe8WTA5oHi0
-         biNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=sOBNvgaCeaKUl0pCxOaStgi4AtDvD5vTjwRPpX1afgI=;
-        b=AzGddLfgKzXbQWF+cp3n8jD49oNMJ+USQxJkk9Q3ohnvfA1yVd5PzGTyW3OVtiip4B
-         C7MMx4qZB20GtKQncfXgX62f6g8xsLIXfAuFF6S1Tcbt/5EjdSbwIeMYBa4hr3ptyycC
-         MSLn+lJTO6449kfGbVA5a6azDxHmXb9FADyMX2nvnku0vHYlvAhcLomMC3qURLwiMycY
-         u0oeBQDApqG+ZenqH/T3eqMQW7xDpfDShVQwNmrCsaZcqJYV8gWwEk9ejjFq2LWL/aqc
-         +IaVhUUERMaJ6leeQmXW/wblqgZiLfePTdVa74F6pnK1yqM93s8I4dwFWRfP+Vf1TRjB
-         w6qw==
-X-Gm-Message-State: AOAM533T0LfckojZypdp10VnFOhcF60YR2IjSeQ2H3KoTENQPqtkpkE4
-        Rbxi6+Tezvi4wVX7NF7MpA8rrQ==
-X-Google-Smtp-Source: ABdhPJwZHd06+OJimqgTZYQ8rpgiu2LawfUnsP7vAlBXm6qHLY+PkgrfMGAWiY+1/KrNeuluf81U8Q==
-X-Received: by 2002:a17:907:86a8:b0:6e7:fbfd:b5fa with SMTP id qa40-20020a17090786a800b006e7fbfdb5famr12305824ejc.703.1649314248606;
-        Wed, 06 Apr 2022 23:50:48 -0700 (PDT)
-Received: from [192.168.0.185] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id z9-20020a17090655c900b006e83ffe41f3sm23085ejp.150.2022.04.06.23.50.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Apr 2022 23:50:48 -0700 (PDT)
-Message-ID: <081c5f7f-31d5-f797-e107-1ea5c9639a5a@linaro.org>
-Date:   Thu, 7 Apr 2022 08:50:47 +0200
+        with ESMTP id S231311AbiDGHMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:12:16 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DC56712AD8;
+        Thu,  7 Apr 2022 00:10:16 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id A114F8125;
+        Thu,  7 Apr 2022 07:07:51 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH 1/4] dt-bindings: timer: Add am6 compatible for ti-timer
+Date:   Thu,  7 Apr 2022 10:10:03 +0300
+Message-Id: <20220407071006.37031-1-tony@atomide.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2] dt-bindings: qcom: update maintainers (drop Akash and
- Mukesh)
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-spi@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220405063724.12850-1-krzysztof.kozlowski@linaro.org>
- <Yk3X94DwNR4AcPP4@robh.at.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yk3X94DwNR4AcPP4@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2022 20:12, Rob Herring wrote:
-> On Tue, 05 Apr 2022 08:37:24 +0200, Krzysztof Kozlowski wrote:
->> Emails to Akash Asthana and Mukesh Savaliya bounce (550: Recipient
->> address rejected: User unknown in virtual alias table), so switch
->> maintainer to Bjorn (as active Qualcomm platform maintainer).
->>
->> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes since v1:
->> 1. Add only Bjorn.
->> ---
->>  Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml  | 3 +--
->>  Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 3 +--
->>  2 files changed, 2 insertions(+), 4 deletions(-)
->>
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> Let me know if you'd rather me pick this up (and the pile of other QCom 
-> bindings).
+Document the dual-mode timers available on am6.
 
-Yes, please pick them up. Few other Qualcomm bindings depend on each
-other (SPI+I2C+Serial to finally convert the GSBI which uses it), so not
-all of them can go via respective subsystems.
+Cc: devicetree@vger.kernel.org
+Cc: Keerthy <j-keerthy@ti.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ Documentation/devicetree/bindings/timer/ti,timer.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
+--- a/Documentation/devicetree/bindings/timer/ti,timer.txt
++++ b/Documentation/devicetree/bindings/timer/ti,timer.txt
+@@ -14,6 +14,7 @@ Required properties:
+ 			ti,omap5430-timer (applicable to OMAP543x devices)
+ 			ti,am335x-timer	(applicable to AM335x devices)
+ 			ti,am335x-timer-1ms (applicable to AM335x devices)
++			ti,am6-timer (applicable to AM6 devices)
+ 
+ - reg:			Contains timer register address range (base address and
+ 			length).
+-- 
+2.35.1
