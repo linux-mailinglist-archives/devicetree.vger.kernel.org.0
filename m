@@ -2,178 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D099E4F828A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F3B4F8299
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:16:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236282AbiDGPL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 11:11:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59032 "EHLO
+        id S1344517AbiDGPSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 11:18:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234054AbiDGPLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:11:55 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DB82BB18;
-        Thu,  7 Apr 2022 08:09:55 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id 88-20020a9d0ee1000000b005d0ae4e126fso4087110otj.5;
-        Thu, 07 Apr 2022 08:09:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mvsoNOk9u8RV2yVCZLMb/29uYaw0/4/Qw5+UfuDkMks=;
-        b=ec2YPQw+MOwqh33IbQ6jfO5ewzH9X6jl14iOKTglcII8F3l0PuXw++gXCgaNN8FfKO
-         lDBEr6GwssmRWJV9YxgwvieXOwyKSLhXUIVtWMiSFcNg/k2HQWAIhHIadKjQb9U3MzmK
-         kyLa3oMqSmEGXay2bgXNHr6nKHHQcB85MICWNJw7EkbXrQQQyIZIQYkDXa7rd8QCnUTX
-         ZliN5vGinAHWQxxalsIviBrhwSemnl5svIbNimC+7i0/HWKTrb7CU2/Ppwr4wv0HrKEn
-         93ZsAIm5vkQ+j9fOm4WSfKInzy2MaGpMhKM18Se0190HbtItgpfoHGuazFvjmaETYVZf
-         q4xA==
-X-Gm-Message-State: AOAM532R/aQn279nKLoaTcasdUgIglW1MG489F1/pr0Q1Hahr1FdjChC
-        ncrtggWy/Edw51/YzIDI8/6P8aZTXw==
-X-Google-Smtp-Source: ABdhPJzdNp+SArorak1XGGcOGrCQUd+SwHej8ANssNSIJv2Vtew9hsSojZk7jiFJDg5SzFN4KY51PA==
-X-Received: by 2002:a9d:136:0:b0:5cd:9e9b:4872 with SMTP id 51-20020a9d0136000000b005cd9e9b4872mr5150803otu.192.1649344194343;
-        Thu, 07 Apr 2022 08:09:54 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q39-20020a4a88ea000000b0032165eb3af8sm7531169ooh.42.2022.04.07.08.09.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 08:09:54 -0700 (PDT)
-Received: (nullmailer pid 1105330 invoked by uid 1000);
-        Thu, 07 Apr 2022 15:09:53 -0000
-Date:   Thu, 7 Apr 2022 10:09:53 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
-        kuba@kernel.org, netdev@vger.kernel.org, vigneshr@ti.com,
-        kishon@ti.com
-Subject: Re: [RFC 01/13] dt-bindings: remoteproc: Add PRU consumer bindings
-Message-ID: <Yk7+wXwDHrtjFo9s@robh.at.kernel.org>
-References: <20220406094358.7895-1-p-mohan@ti.com>
- <20220406094358.7895-2-p-mohan@ti.com>
+        with ESMTP id S237839AbiDGPSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:18:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6171FAA16;
+        Thu,  7 Apr 2022 08:16:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2719661E16;
+        Thu,  7 Apr 2022 15:15:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AB02C385A4;
+        Thu,  7 Apr 2022 15:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649344556;
+        bh=fkUDGcZMuwhIXlCoSk+tbUQ1xUG4zQs/G/1OVgPCREE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Bd48Y7UHPAbBiKO0ZxHoZekW8iqfOCfz5umBb4NzHj0BSf65Aifrapao09r4GlVPZ
+         hCJr38My9FpRDgkGzKj1Ddc8MNR9wVGlRZfsw6qAmjw4Vgkmg/x24oqWEey3Vm5wzm
+         I1RLmhB5M40vf127g8Ih7qrwGrTiftLBTBwLkLb0ysl1u26kvMeplIAVSZzvBWyyPs
+         phsAKZjzJGyKFWCG8wwfrjZpPOqPH6p0qgPNJPFUQ2WdddpSy7HDXBebN2P6bV+o/x
+         axmpkWPxhsjh6Skc2+CVFPM7r8C53dwjSVZJcSpz5DgSrBijJXjcx5nx14NIAf7bgC
+         60oAg8lqcWY4A==
+Date:   Thu, 7 Apr 2022 16:15:49 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: align SPI NOR node name with dtschema
+Message-ID: <Yk8AJcFRmYEryqra@sirena.org.uk>
+References: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="exxHKs3vl5yFGvsK"
 Content-Disposition: inline
-In-Reply-To: <20220406094358.7895-2-p-mohan@ti.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
+X-Cookie: Look ere ye leap.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 06, 2022 at 03:13:46PM +0530, Puranjay Mohan wrote:
-> From: Suman Anna <s-anna@ti.com>
-> 
-> Add a YAML binding document for PRU consumers. The binding includes
-> all the common properties that can be used by different PRU consumer
-> or application nodes and supported by the PRU remoteproc driver.
-> These are used to configure the PRU hardware for specific user
-> applications.
-> 
-> The application nodes themselves should define their own bindings.
-> 
-> Co-developed-by: Tero Kristo <t-kristo@ti.com>
-> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+
+--exxHKs3vl5yFGvsK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Apr 07, 2022 at 04:34:05PM +0200, Krzysztof Kozlowski wrote:
+> The node names should be generic and SPI NOR dtschema expects "flash".
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/remoteproc/ti,pru-consumer.yaml  | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> new file mode 100644
-> index 000000000000..c245fe1de656
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common TI PRU Consumer Binding
-> +
-> +maintainers:
-> +  - Suman Anna <s-anna@ti.com>
-> +
-> +description: |
-> +  A PRU application/consumer/user node typically uses one or more PRU device
-> +  nodes to implement a PRU application/functionality. Each application/client
-> +  node would need a reference to at least a PRU node, and optionally define
-> +  some properties needed for hardware/firmware configuration. The below
-> +  properties are a list of common properties supported by the PRU remoteproc
-> +  infrastructure.
-> +
-> +  The application nodes shall define their own bindings like regular platform
-> +  devices, so below are in addition to each node's bindings.
-> +
-> +properties:
-> +  ti,prus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>  Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt | 2 +-
+>  Documentation/devicetree/bindings/spi/spi-davinci.txt           | 2 +-
+>  Documentation/devicetree/bindings/spi/spi-pl022.yaml            | 2 +-
 
-Needs contraints. A phandle-array is really a matrix of phandles and 
-args. If no args, something like this:
+Acked-by: Mark Brown <broonie@kernel.org>
 
-minItems: ??
-maxItems: ??
-items:
-  maxItems: 1
+but it would be easier to split this into per subsystem stuff.
 
-> +    description: phandles to the PRU, RTU or Tx_PRU nodes used
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    description: |
-> +      firmwares for the PRU cores, the default firmware for the core from
-> +      the PRU node will be used if not provided. The firmware names should
-> +      correspond to the PRU cores listed in the 'ti,prus' property
-> +
-> +  ti,pruss-gp-mux-sel:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    maxItems: 6
-> +    items:
-> +        enum: [0, 1, 2, 3, 4]
-> +    description: |
-> +      array of values for the GP_MUX_SEL under PRUSS_GPCFG register for a PRU.
-> +      This selects the internal muxing scheme for the PRU instance. Values
-> +      should correspond to the PRU cores listed in the 'ti,prus' property. The
-> +      GP_MUX_SEL setting is a per-slice setting (one setting for PRU0, RTU0,
-> +      and Tx_PRU0 on K3 SoCs). Use the same value for all cores within the
-> +      same slice in the associative array. If the array size is smaller than
-> +      the size of 'ti,prus' property, the default out-of-reset value (0) for the
-> +      PRU core is used.
-> +
-> +required:
-> +  - ti,prus
-> +
-> +dependencies:
-> +  firmware-name: [ 'ti,prus' ]
-> +  ti,pruss-gp-mux-sel: [ 'ti,prus' ]
-> +
-> +additionalProperties: true
+--exxHKs3vl5yFGvsK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This must be false unless it is a common, shared schema.
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +examples:
-> +  - |
-> +    /* PRU application node example */
-> +    pru-app {
-> +        ti,prus = <&pru0>, <&pru1>;
-> +        firmware-name = "pruss-app-fw0", "pruss-app-fw1";
-> +        ti,pruss-gp-mux-sel = <2>, <1>;
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmJPACUACgkQJNaLcl1U
+h9DhFgf/f0zclEq8qn8Edqu+LBr0uPAux3FUc79aJUiaw52UFqSsyCwAVD1XqJfB
+6AWYVRrGg8ag/JiZSjxzzCQT8tCaZYgUv5FgBL0krLTu+UX9AFJtySLzv9Eh75P/
+BxXn0lVp+eIfEuOKMgzoDbgfLDPANIdb2L6GlSecg1+SV5cfd1eS3xii/zo5woLo
+5W9Z9rV5qACqdxC/7W1MTDk2qpHwM5onJgpslswaJ1j3kT72otXnKBTJNmk3jNO7
+6bXycpaaSp2FfaVQD+L4JrVXJVHVtejlxAe1zRTYgPoLAY4Ga4N9u5dYw59AgY83
+zC9tmaFzlEqB5ozAx2YSOPhf+IIkhA==
+=8MWW
+-----END PGP SIGNATURE-----
+
+--exxHKs3vl5yFGvsK--
