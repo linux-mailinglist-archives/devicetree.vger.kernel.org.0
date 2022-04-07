@@ -2,119 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8134F7C0F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 606DD4F7C1A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232540AbiDGJrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 05:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40816 "EHLO
+        id S243982AbiDGJtI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 7 Apr 2022 05:49:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244001AbiDGJrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:47:35 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0CF1BB7AA;
-        Thu,  7 Apr 2022 02:45:35 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 49CAA1F45DD0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649324734;
-        bh=L0r7ZwmFnBVo/NbGBVz0kgb+5537luDptsTBBJWqS5o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TkckvxikMUzBrJbYhEwScFTQbnCWKfHPBZk81WwX4QWn/kyI5huVQL8m+lrh/TY27
-         t8+AVCoYvzQA8k7HgKlgk6iXiGmDAI2IjteA2HIsO5aUjIwRdkLr0akOWZZjD9uQdC
-         pUu2GyUcCTdVpb2+NlG9uYKqGt2sGsGEKv17CvCBp5xikUohiEWoVIUJoufs4WwNRs
-         TjXUfwVlqR09bu7yIlOk2soTGrkWHg20lbx8RBtQFX+JFbwIT3BnWYzvN1AuNeQxU8
-         0U1OzbmwxiCfQLtt/T5b71e43t6Wimm61QP3cGThbGFZA7Xp8srjNOf2Cii0Uub237
-         dpCQ5n8UffTBQ==
-Message-ID: <507fd6e4-a425-dbbe-f76f-da90870ff29e@collabora.com>
-Date:   Thu, 7 Apr 2022 11:45:30 +0200
+        with ESMTP id S244015AbiDGJtF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:49:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4B8117C91
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:47:05 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncOix-0007d3-0T; Thu, 07 Apr 2022 11:46:43 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncOix-001aNC-5z; Thu, 07 Apr 2022 11:46:41 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncOiv-0004Dh-5U; Thu, 07 Apr 2022 11:46:41 +0200
+Message-ID: <b9cc064d124bc767c6ea3f3fa39eeb82d291ca0e.camel@pengutronix.de>
+Subject: Re: [PATCH v2 07/10] power: reset: at91-reset: add
+ reset_controller_dev support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>, robh+dt@kernel.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        linux@armlinux.org.uk, sre@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org
+Date:   Thu, 07 Apr 2022 11:46:41 +0200
+In-Reply-To: <20220407071708.3848812-8-claudiu.beznea@microchip.com>
+References: <20220407071708.3848812-1-claudiu.beznea@microchip.com>
+         <20220407071708.3848812-8-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: i2c: convert i2c-mt65xx to json-schema
-Content-Language: en-US
-To:     Miles Chen <miles.chen@mediatek.com>
-Cc:     devicetree@vger.kernel.org, hsinyi@chromium.org,
-        kewei.xu@mediatek.com, krzk+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        matthias.bgg@gmail.com, qii.wang@mediatek.com, robh+dt@kernel.org,
-        wsa@kernel.org
-References: <20220406152940.140224-1-angelogioacchino.delregno@collabora.com>
- <20220406232400.2788-1-miles.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220406232400.2788-1-miles.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/04/22 01:24, Miles Chen ha scritto:
-> Hi AngeloGioacchino,
+On Do, 2022-04-07 at 10:17 +0300, Claudiu Beznea wrote:
+> SAMA7G5 reset controller has 5 extra lines that goes to different devices
+> (3 lines to USB PHYs, 1 line to DDR controller, 1 line to DDR PHY
+> controller). These reset lines could be requested by different controller
+> drivers (e.g. USB PHY driver) and these controllers' drivers could
+> assert/deassert these lines when necessary. Thus add support for
+> reset_controller_dev which brings this functionality.
 > 
->> Convert I2C binding for MediaTek SoCs to Devicetree schema.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../devicetree/bindings/i2c/i2c-mt65xx.txt    |  53 --------
->>   .../devicetree/bindings/i2c/i2c-mt65xx.yaml   | 118 ++++++++++++++++++
->>   MAINTAINERS                                   |   2 +-
->>   3 files changed, 119 insertions(+), 54 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
->>   create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
->> deleted file mode 100644
->> index 026985b8f61a..000000000000
->> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
->> +++ /dev/null
-
-..snip..
-
->> -  - clocks: clock name from clock manager
->> -  - clock-names: Must include "main" and "dma", "arb" is for multi-master that
->> -    one bus has more than two i2c controllers, if enable have-pmic need include
->> -    "pmic" extra.
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  drivers/power/reset/at91-reset.c | 107 +++++++++++++++++++++++++++++--
+>  1 file changed, 103 insertions(+), 4 deletions(-)
 > 
->> +
->> +  clocks:
->> +    minItems: 1
->> +    items:
->> +      - description: Main clock for I2C bus
->> +      - description: Clock for I2C via DMA
->> +      - description: Bus arbitrator clock
->> +      - description: Clock for I2C from PMIC
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    items:
->> +      - const: main
->> +      - const: dma
->> +      - const: arb
->> +      - const: pmic
-> 
-> I read "clock-names: Must include "main" and "dma"" from i2c-mt65xx.txt.
-> Does it means that we should have at least 2 clock-names (minItems: 2)?
-> 
-> Thanks,
-> Miles
-> 
+> diff --git a/drivers/power/reset/at91-reset.c b/drivers/power/reset/at91-reset.c
+> index 1b2aca3f490d..a6f65ac430cd 100644
+> --- a/drivers/power/reset/at91-reset.c
+> +++ b/drivers/power/reset/at91-reset.c
+[...]
+> +static int at91_reset_update(struct reset_controller_dev *rcdev,
+> +			     unsigned long id, bool assert)
+> +{
+> +	struct at91_reset *reset = to_at91_reset(rcdev);
+> +	u32 val;
+> +
+> +	spin_lock(&reset->lock);
 
-Hello Miles,
-yes, you're right, I just rechecked the code and this is indeed the case.
+Use spin_lock_irqsave. We don't know where we are called from and this
+isn't a time critical path.
 
-Thanks for catching that, will send a v2 shortly.
+> +	val = readl_relaxed(reset->dev_base);
+> +	if (assert)
+> +		val |= BIT(id);
+> +	else
+> +		val &= ~BIT(id);
+> +	writel_relaxed(val, reset->dev_base);
+> +	spin_unlock(&reset->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static int at91_reset_assert(struct reset_controller_dev *rcdev,
+> +			     unsigned long id)
+> +{
+> +	return at91_reset_update(rcdev, id, true);
+> +}
+> +
+> +static int at91_reset_deassert(struct reset_controller_dev *rcdev,
+> +			       unsigned long id)
+> +{
+> +	return at91_reset_update(rcdev, id, false);
+> +}
+> +
+> +static int at91_reset_dev_status(struct reset_controller_dev *rcdev,
+> +				 unsigned long id)
+> +{
+> +	struct at91_reset *reset = to_at91_reset(rcdev);
+> +	u32 val;
+> +
+> +	spin_lock(&reset->lock);
 
-Regards,
-Angelo
+Locking is not necessary here. If the read is racing against an update,
+it either returns the register value before or after the update, same
+as without a lock.
 
+With those changes,
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
+regards
+Philipp
