@@ -2,181 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C43674F8591
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A854F85B6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:18:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345936AbiDGRJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 13:09:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
+        id S231451AbiDGRTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 13:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232243AbiDGRJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:09:54 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75F21D0C9
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 10:07:53 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id d10so7238773edj.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 10:07:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=m2s4PG1XXBPY+xZ/g2KKtsmSmzO1vbLqhx1OJRbwqHk=;
-        b=VFenbI8vl9C3SVgHSCx12w6Hk5Qy6qGRxJMtZkd2lfhRJFgJjv3Do/knpuu+OWtSMY
-         5b2c+eLOqhqoJks1M7BXl4sXkKZN5YZgLU58Vm7j8JcNmrZlNpaJ8SjKyiX/GO4QvbYC
-         sZXP/gmxVZ1n4Wq7vE1X70J6/KrrTVlQB0LFg=
+        with ESMTP id S241991AbiDGRT2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:19:28 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7891B12B75B;
+        Thu,  7 Apr 2022 10:17:03 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-d6ca46da48so7020656fac.12;
+        Thu, 07 Apr 2022 10:17:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m2s4PG1XXBPY+xZ/g2KKtsmSmzO1vbLqhx1OJRbwqHk=;
-        b=PkDam7XP6OCmP7eARtWurWmnjKxD6Ear3J7Nn7ZduGaROahqKUjP54Gl+OJpokOXAm
-         k9hp2sWDYFI3mtuVce1cclSZ+M/Rlla/P7x10FuOkLpjw3NjPOudfQcxPkluukMBnOfN
-         hLMh3giS8DaF5/ybI8hUCL57ufnzWPXYnt11gtiLH7ZxePsqGgnJPpob8OwDCS/idHmj
-         Uq++IPiRO8dpLo0G3HwC5vOfGsPQ9ZZsdRbtMctfreVjHjmWBGJUeYTzd+6ckOdlPHfN
-         AsjubArAujneurSbbPKcvoB+9jGbYdF5CaXZGXFIHSEeRyjTdhL0/+TW4WpkZ2I0ADWS
-         dfbA==
-X-Gm-Message-State: AOAM530YegPNxLHCgD+VAtqhaLTK74zhJEHQnE3JpaaZxKHJfosagAgw
-        PHSi0kTchlb8pBOKbRwBtseoaTRsIm/0ww==
-X-Google-Smtp-Source: ABdhPJyZbgAkWKwiRLkzQI/Us5ua+LbbJZSE1aK0K9EEnn5Uk94J4si7zdwyPsLdrkACCePh3nWXmQ==
-X-Received: by 2002:aa7:de96:0:b0:418:f9ca:67f6 with SMTP id j22-20020aa7de96000000b00418f9ca67f6mr15358254edv.25.1649351271902;
-        Thu, 07 Apr 2022 10:07:51 -0700 (PDT)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com. [209.85.128.41])
-        by smtp.gmail.com with ESMTPSA id o18-20020a170906769200b006e7fc91251esm4035326ejm.215.2022.04.07.10.07.50
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 10:07:50 -0700 (PDT)
-Received: by mail-wm1-f41.google.com with SMTP id q20so3998113wmq.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 10:07:50 -0700 (PDT)
-X-Received: by 2002:a05:600c:4e10:b0:38e:6a6a:c06a with SMTP id
- b16-20020a05600c4e1000b0038e6a6ac06amr13253896wmq.15.1649351270179; Thu, 07
- Apr 2022 10:07:50 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5EG0rJLTD+MbvhnF4oQMsvQXhv9+LU3aJVkGQ/n7roQ=;
+        b=4b6UcrOrQdEUlTZtFQ6iU0ip8n9gBe+v687a1udsFePLy8TOoYPFg7/3IfiwzkiO+d
+         ksa7pauJSQcpd7lInAdfv+kWnzZ1vL3Q1TWdzE34v/AGQsWNZonkoRIbtpL0w2aGz4n+
+         SyfQnRIAZfJHiUxcEsEUjrHzSuduj66aRd1Dmu4tCnCYGxkUdMXiyL+DUHgyRyOrX1Uy
+         alZ81CFUCKR0KnS91fv3mTRNGNTG2xS34tbrXv3i257w7f91hjBno7lX+wSMrCFStlXa
+         XDJVNyWY5qywNELRmnsQI4Xg9WVVucYC+3fD60vLjQpeweSR92X0WC8nbuH/x1GyWQpF
+         1obQ==
+X-Gm-Message-State: AOAM530bqNf9/8g4kInyu6sesUqlvbRdVnnsBQuTm+Uv/KoX/hzVOBiB
+        E3vHc2k5dGJ7LdCZA4Rf+A==
+X-Google-Smtp-Source: ABdhPJwAwF992HhuCgRfD4AbhjABaBZXkoVS6JYTmRcVMCykjLHu4LCaNf8nJMk6mYL3QdIrniYUkA==
+X-Received: by 2002:a05:6870:d14d:b0:e1:e253:99e8 with SMTP id f13-20020a056870d14d00b000e1e25399e8mr6484169oac.23.1649351816358;
+        Thu, 07 Apr 2022 10:16:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id pn22-20020a0568704d1600b000e27271d76fsm531821oab.58.2022.04.07.10.16.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 10:16:55 -0700 (PDT)
+Received: (nullmailer pid 1462273 invoked by uid 1000);
+        Thu, 07 Apr 2022 17:16:55 -0000
+Date:   Thu, 7 Apr 2022 12:16:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        netdev@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 05/14] dt-bindings: arm: mediatek: document the pcie
+ mirror node on MT7622
+Message-ID: <Yk8chzNBsRZR8e1q@robh.at.kernel.org>
+References: <20220405195755.10817-1-nbd@nbd.name>
+ <20220405195755.10817-6-nbd@nbd.name>
+ <4bafe244-6a3d-d0ec-59d3-3f3f00e71caf@linaro.org>
+ <318163cb-c771-c7eb-73ba-35c66f7d0e68@nbd.name>
 MIME-Version: 1.0
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
- <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
- <392b933f-760c-3c81-1040-c514045df3da@linaro.org> <CAD=FV=W4PYK-t607yjRbfjDjjEZX0KdgHDRukw_vSH8E8EDH6w@mail.gmail.com>
- <CAA8EJppt9XONbgtKfmHmN+==QNqiVJeb8GKJFdZm=yyY-tgmHQ@mail.gmail.com>
- <CAD=FV=U5-sTDLYdkeJWLAOG-0wgxR49VxtwUyUO7z2PuibLGsg@mail.gmail.com>
- <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
- <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
- <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org> <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
- <MW4PR02MB7186245772DAC3E04FA8D1C0E1E69@MW4PR02MB7186.namprd02.prod.outlook.com>
-In-Reply-To: <MW4PR02MB7186245772DAC3E04FA8D1C0E1E69@MW4PR02MB7186.namprd02.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 7 Apr 2022 10:07:36 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Wk3U7_bVdiCPp8iQ4bcCA_Botemu4pwHeRtgBa3Xk6KQ@mail.gmail.com>
-Message-ID: <CAD=FV=Wk3U7_bVdiCPp8iQ4bcCA_Botemu4pwHeRtgBa3Xk6KQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
-To:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-Cc:     "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sean Paul <sean@poorly.run>, Sean Paul <seanpaul@chromium.org>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        freedreno <freedreno@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <318163cb-c771-c7eb-73ba-35c66f7d0e68@nbd.name>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Apr 06, 2022 at 01:01:06PM +0200, Felix Fietkau wrote:
+> 
+> On 06.04.22 10:20, Krzysztof Kozlowski wrote:
+> > On 05/04/2022 21:57, Felix Fietkau wrote:
+> > > From: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > 
+> > > This patch adds the pcie mirror document bindings for MT7622 SoC.
+> > > The feature is used for intercepting PCIe MMIO access for the WED core
+> > > Add related info in mediatek-net bindings.
+> > > 
+> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > Signed-off-by: Felix Fietkau <nbd@nbd.name>
+> > > ---
+> > >  .../mediatek/mediatek,mt7622-pcie-mirror.yaml | 42 +++++++++++++++++++
+> > 
+> > Eh, I wanted to ask to not put it inside arm/, but judging by your usage
+> > - you did not create drivers for both of these (WED and PCIe mirror).
+> > 
+> > You only need them to expose address spaces via syscon.
+> > 
+> > This actually looks hacky. Either WED and PCIe mirror are part of
+> > network driver, then add the address spaces via "reg". If they are not,
+> > but instead they are separate blocks, why you don't have drivers for them?
+> The code that uses the WED block is built into the Ethernet driver, but not
+> all SoCs that use this ethernet core have it. Also, there are two WED
+> blocks, and I'm not sure if future SoCs might have a different number of
+> them at some point.
+> The WED code also needs to access registers of the ethernet MAC.
+> One reason for having a separate device is this:
+> As long as WED is not in use, ethernet supports coherent DMA for increased
+> performance. When the first wireless device attaches to WED, IO coherency
+> gets disabled and the ethernet DMA rings are cleaned up and allocated again,
+> this time with the struct device of WED (which doesn't have the dma-coherent
+> property).
 
-On Thu, Apr 7, 2022 at 7:19 AM Sankeerth Billakanti (QUIC)
-<quic_sbillaka@quicinc.com> wrote:
->
-> Hi Dmitry and Doug,
->
-> > Hi,
-> >
-> > On Tue, Apr 5, 2022 at 10:36 AM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > On 05/04/2022 20:02, Doug Anderson wrote:
-> > > > Hi,
-> > > >
-> > > > On Tue, Apr 5, 2022 at 5:54 AM Dmitry Baryshkov
-> > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > >>> 3. For DP and eDP HPD means something a little different.
-> > > >>> Essentially there are two concepts: a) is a display physically
-> > > >>> connected and b) is the display powered up and ready. For DP, the
-> > > >>> two are really tied together. From the kernel's point of view you
-> > > >>> never "power down" a DP display and you can't detect that it's
-> > > >>> physically connected until it's ready. Said another way, on you
-> > > >>> tie "is a display there" to the HPD line and the moment a display
-> > > >>> is there it's ready for you to do AUX transfers. For eDP, in the
-> > > >>> lowest power state of a display it _won't_ assert its "HPD"
-> > > >>> signal. However, it's still physically present. For eDP you simply
-> > > >>> have to _assume_ it's present without any actual proof since you
-> > > >>> can't get proof until you power it up. Thus for eDP, you report
-> > > >>> that the display is there as soon as we're asked. We can't _talk_
-> > > >>> to the display yet, though. So in get_modes() we need to be able
-> > > >>> to power the display on enough to talk over the AUX channel to it.
-> > > >>> As part of this, we wait for the signal named "HPD" which really means
-> > "panel finished powering on" in this context.
-> > > >>>
-> > > >>> NOTE: for aux transfer, we don't have the _display_ pipe and
-> > > >>> clocks running. We only have enough stuff running to do the AUX
-> > transfer.
-> > > >>> We're not clocking out pixels. We haven't fully powered on the
-> > > >>> display. The AUX transfer is designed to be something that can be
-> > > >>> done early _before_ you turn on the display.
-> > > >>>
-> > > >>>
-> > > >>> OK, so basically that was a longwinded way of saying: yes, we
-> > > >>> could avoid the AUX transfer in probe, but we can't wait all the
-> > > >>> way to enable. We have to be able to transfer in get_modes(). If
-> > > >>> you think that's helpful I think it'd be a pretty easy patch to
-> > > >>> write even if it would look a tad bit awkward IMO. Let me know if
-> > > >>> you want me to post it up.
-> > > >>
-> > > >> I think it would be a good idea. At least it will allow us to
-> > > >> judge, which is the more correct way.
-> > > >
-> > > > I'm still happy to prototype this, but the more I think about it the
-> > > > more it feels like a workaround for the Qualcomm driver. The eDP
-> > > > panel driver is actually given a pointer to the AUX bus at probe
-> > > > time. It's really weird to say that we can't do a transfer on it
-> > > > yet... As you said, this is a little sideband bus. It should be able
-> > > > to be used without all the full blown infra of the rest of the driver.
-> > >
-> > > Yes, I have that feeling too. However I also have a feeling that just
-> > > powering up the PHY before the bus probe is ... a hack. There are no
-> > > obvious stopgaps for the driver not to power it down later.
-> >
-> > This is why I think we need to move to Runtime PM to manage this. Basically:
-> >
-> > 1. When an AUX transfer happens, you grab a PM runtime reference that
-> > _that_ powers up the PHY.
-> >
-> > 2. At the end of the AUX transfer function, you do a "put_autosuspend".
-> >
-> > Then it becomes not a hack, right?
-> >
-> >
->
-> pm runtime ops needs to be implemented for both eDP and DP. This change
-> take good amount of planning and code changes as it affects DP also.
->
-> Because this patch series consist of basic eDP changes for SC7280 bootup,
-> shall we take this pm_runtime implementation in subsequent patch series?
+I'm pretty sure there are assumptions in the driver core that coherency 
+is not changing on the fly. In any case, if it is, using 'dma-coherent' 
+is not appropriate. You obviously have another method to determine 
+whether you are coherent or not.
 
-Dmitry is the real decision maker here, but in my opinion it would be
-OK to get something landed first that worked OK and wasn't taking us
-too far in the wrong direction and then we could get a follow up patch
-to move to pm_runtime.
+Rob
