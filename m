@@ -2,118 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A03A4F8686
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C5C4F86A3
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:52:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244177AbiDGRtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 13:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
+        id S1346636AbiDGRyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 13:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235671AbiDGRs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:48:59 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D632186FB;
-        Thu,  7 Apr 2022 10:46:58 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-d39f741ba0so7107973fac.13;
-        Thu, 07 Apr 2022 10:46:58 -0700 (PDT)
+        with ESMTP id S1346635AbiDGRyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:54:38 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68FD22EBFF;
+        Thu,  7 Apr 2022 10:52:34 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id z9-20020a05683020c900b005b22bf41872so4384360otq.13;
+        Thu, 07 Apr 2022 10:52:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MmJLuyekwoblpDX5b95jqgHit0wkMxVufsew2de6Slo=;
-        b=0T5kaHlE1ipsHES8GxwMFE+DH+UvG7yo9S1SjOA8OaNGX0IYQzJZo76rn0/intxKMZ
-         K8NK3KQ1dN+0sl8WOZ02/N46Lc8fb9hrdG7BdBQd2iepC2Bim6q1d53u3BLucg4zT9pu
-         O5kShshmE5PSZIfYNoVJqV0hZ+vGJI8F3GV5Gp9/M2YeuL1sMKhqbJtxOGn5yZUnclsv
-         9MvEAozfXc7r2sGIEsRav/byS/MGRed01yqoFimbNOb7vvXb9E1hDvlrp5Jr1uDG1OY1
-         rxI1Ll9U6ANtOtjiPL6Q5XEX2Lp8guKUMCzVwiZXEuCELrGDCMXgTFmJdlu3R/TlmPyD
-         V+FA==
-X-Gm-Message-State: AOAM530oNeayLCliorKugaC151UzHBIFWIX6pJXW/QHK11eSjUUf03Kw
-        7cLwE1yj+jZ9IFecKMYE2Q==
-X-Google-Smtp-Source: ABdhPJw754vwBgnN/nBlQiTizQIA1UI3kDsgOYrCH4cfGSEpTe/2uKtRnMgf93qE3ml0Uw6wprvEeA==
-X-Received: by 2002:a05:6870:2310:b0:da:b3f:2b76 with SMTP id w16-20020a056870231000b000da0b3f2b76mr6804229oao.277.1649353617755;
-        Thu, 07 Apr 2022 10:46:57 -0700 (PDT)
+        bh=mo3WCvv9BObQyiASkaZil+j+BG8MFzY+q8FFufHymq8=;
+        b=qxBWcWL06lf0nByXjtBBN7nszl/e9ZNQN2M5OCf+9EGEZ8RE+k+tyr0cD+Jw0lume9
+         Nsd0okH1TeSal74D25yzhmGfjJcnLHOhBLruAxPLH8hvdxHfQc7/Wu3X0e9+S4pLita8
+         3AIvLvc0wfvU+AgthyMdqY8PRHNx/JLpwe8IaAyzSdtxBeCMtzTRlRtH0be1ockqK3q4
+         P4MNKM8Pa6Wrn3M8soX2W6Cc8cz4YJFBxpmANXbAhmcay9CWAcxeETyRf+C1U+xOXqEo
+         UgIRA8mqf6lwE52sxUruBhII3POeY6d1uL04r/Tod+vmyJinSkTONL9f3xYVhT6HsujW
+         xDUg==
+X-Gm-Message-State: AOAM533B+sTiEE4J8Rh0xOa0ZY3j1uIk5PCrHzBL0ejEyk+yjA5HKpVq
+        F+OVSba5Puf1gSzamDdAi2C8GoOdDA==
+X-Google-Smtp-Source: ABdhPJxuvm+7/qiSF8An8GtUmg5yWdMv1srUohUwkdVkIhM2C1sSKa5MPdT8Vf7bqJSbeLibdUtO6w==
+X-Received: by 2002:a9d:7496:0:b0:5e6:b2bd:1d1d with SMTP id t22-20020a9d7496000000b005e6b2bd1d1dmr1409484otk.23.1649353952112;
+        Thu, 07 Apr 2022 10:52:32 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o17-20020a9d5c11000000b005b2611a13edsm8263373otk.61.2022.04.07.10.46.56
+        by smtp.gmail.com with ESMTPSA id bp21-20020a056820199500b003298e6877c7sm1619204oob.29.2022.04.07.10.52.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 10:46:57 -0700 (PDT)
-Received: (nullmailer pid 1614078 invoked by uid 1000);
-        Thu, 07 Apr 2022 17:46:56 -0000
-Date:   Thu, 7 Apr 2022 12:46:56 -0500
+        Thu, 07 Apr 2022 10:52:31 -0700 (PDT)
+Received: (nullmailer pid 1639829 invoked by uid 1000);
+        Thu, 07 Apr 2022 17:52:31 -0000
+Date:   Thu, 7 Apr 2022 12:52:31 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org,
-        Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Subject: Re: [PATCH v4 0/9] dt-bindings: qcom: convert entire GSBI (QUP
- I2C/SPI/UART) to DT schema
-Message-ID: <Yk8jkJepgcRMo73l@robh.at.kernel.org>
-References: <20220405063451.12011-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Enclustra
+Message-ID: <Yk8k38diGzzDDL1N@robh.at.kernel.org>
+References: <20220406160728.720902-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220405063451.12011-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220406160728.720902-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 05, 2022 at 08:34:42AM +0200, Krzysztof Kozlowski wrote:
-> Hi,
+On Wed, 06 Apr 2022 18:07:28 +0200, Krzysztof Kozlowski wrote:
+> Add vendor prefix for Enclustra GmbH (https://www.enclustra.com).
 > 
-> Changes since v3
-> ================
-> 1. Correct dmas in serial/UART bindings example.
-> 2. Use "const" in compatible for GSBI.
-> 3. Add review tags.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Changes since v2
-> ================
-> 1. Several new schema patches (GSBI, I2C and UART schema).
-> 2. Several DTS fixes for clocks and DMAs. The choice of dma tx-rx
->    and clocks core-iface was by more-or-less number of fixes needed.
-> 3. Add Kuldeep acks to patches without changes.
+> ---
 > 
-> Changes since v1
-> ================
-> 1. Fix path in com/qcom,gsbi.txt.
-> 2. Merge clock-names in example, correct $ref path (Kuldeep).
+> Hi Rob,
 > 
-> Merging
-> =======
-> 1. The DTS patches are independent and silence warnings pointed
->     out by schema.
+> Could you pick it up directly?
 > 
-> 2. The DT schema patches should be taken together as GSBI (final patch)
->    depends on previous bindings.
+> This was missed from old patchset:
+> https://lore.kernel.org/linux-devicetree/20211227133131.134369-1-krzysztof.kozlowski@canonical.com/
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Best regards,
-> Krzysztof
-> 
-> Cc: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> 
-> Krzysztof Kozlowski (9):
->   arm64: dts: qcom: align dmas in I2C/SPI/UART with DT schema
->   arm64: dts: qcom: align clocks in I2C/SPI with DT schema
->   ARM: dts: qcom: ipq4019: align dmas in SPI/UART with DT schema
->   ARM: dts: qcom: ipq4019: align clocks in I2C with DT schema
->   ARM: dts: qcom: msm8660: disable GSBI8
->   spi: dt-bindings: qcom,spi-qup: convert to dtschema
->   dt-bindings: serial: qcom,msm-uartdm: convert to dtschema
->   dt-bindings: i2c: qcom,i2c-qup: convert to dtschema
->   dt-bindings: qcom: qcom,gsbi: convert to dtschema
 
-Patches 6-9 applied.
-
-Rob
+Applied, thanks!
