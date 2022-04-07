@@ -2,74 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 492244F86E2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 20:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6414F86ED
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 20:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242810AbiDGSIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 14:08:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54026 "EHLO
+        id S231837AbiDGSLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 14:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232490AbiDGSIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 14:08:44 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB3AD1E8CC2
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 11:06:43 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id q142so5581653pgq.9
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 11:06:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zsMzuXd+r/gGNu25Y2YqB8KwP80W1Nu0q91qDYpe8G8=;
-        b=EsZrsDrKDDnH2WosGK6v464NbIxx8Do5CMKlCNXQE/QXA386Xrzpt+4hqdy8gO/viE
-         Wb5DTVPupHc2/bvEbty2T9hFk5MlVsPxDUK+L7Xwxgo6sDLvTTz9gSdWWUXX/QrvEmfk
-         v+FQXq0mnnW4PD8xC3bTIfJQ7oKm1nccD+OhY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zsMzuXd+r/gGNu25Y2YqB8KwP80W1Nu0q91qDYpe8G8=;
-        b=hsyv66jCIbs0k61Bco9VbHQ3ZxadpnvMB9ERYYme/7RukvKY7SjTmT8BA/HXbeHaxT
-         c4EPndSttt/qz15LiBdFYqTQRIB8roVw2lGdzW3HMXZ3quvgU89p3kQBBTMp70P09ZoK
-         QJ3r7+sJ2NHx4MNyCZsalZfAlZTM4JiVpGiT+efEGy0nKPN9zzWbCyhtuDIsR/PTNCMs
-         oEuvpjPz9++5Iz42KlsueYMuZ3DIV03WDMN9rCMBeovEbhJwY/84+lgCIRoDqZFRWbpB
-         AGqttYr9g2Pjee8ZnHpFa5KTKDAwYcHW5qEOnRcEQXxGYQOtGoMk7LR0aNm5kY+x1k3L
-         PKqw==
-X-Gm-Message-State: AOAM530Uie0e1VTyRaK9TMAk+cQ8vNupI0rxspwK33G6/eSN1kj/C9Um
-        c0Czb3k11WwhoOES1aY7kXnC3g==
-X-Google-Smtp-Source: ABdhPJygNkNjwnBFdsduVzGuUGdmQn/+8t2Hpw8qCogNXLLlj0/CsjD/AY2ipAum3jC39PZtDfML4w==
-X-Received: by 2002:a63:f4e:0:b0:382:1e31:79e8 with SMTP id 14-20020a630f4e000000b003821e3179e8mr12532181pgp.167.1649354803124;
-        Thu, 07 Apr 2022 11:06:43 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:693e:9ca0:42a0:6bf7])
-        by smtp.gmail.com with UTF8SMTPSA id n19-20020a62e513000000b005048eef5827sm3940718pff.142.2022.04.07.11.06.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 11:06:42 -0700 (PDT)
-Date:   Thu, 7 Apr 2022 11:06:40 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_kriskura@quicinc.com, quic_vpulyala@quicinc.com
-Subject: Re: [PATCH v12 6/6] arm64: dts: qcom: sc7280: Add wakeup-source
- property for USB node
-Message-ID: <Yk8oMI3zifzFpJmW@google.com>
-References: <1649321104-31322-1-git-send-email-quic_c_sanm@quicinc.com>
- <1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com>
+        with ESMTP id S231742AbiDGSLq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 14:11:46 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 060F322477D;
+        Thu,  7 Apr 2022 11:09:44 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 237I9HxA086717;
+        Thu, 7 Apr 2022 13:09:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649354957;
+        bh=ROjjpxK8BAdaQhzZKm7fS9sSF97YsYdJqBc7SXBiyXQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=aG6bRaKBLjPYE8/aaIUpzqTnq47aQCUNoupStawPJB/AS5R6BlZU3rynoPt1Afzuf
+         m0kgyP9KM9Tq079oVNRCjkjNA5mS5GKigobsLLOv1ADPcDbJS8J2TmvD3rkxJiT5Zi
+         1hojg9At0W74tI6iEle50pIoHSaMoqDa+FYMMP3Y=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 237I9HKm104001
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 7 Apr 2022 13:09:17 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
+ Apr 2022 13:09:17 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 7 Apr 2022 13:09:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 237I9Gxo087536;
+        Thu, 7 Apr 2022 13:09:16 -0500
+Date:   Thu, 7 Apr 2022 23:39:16 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: remove unneeded
+ properties
+Message-ID: <20220407180916.a6b2z7iqqoefsn7m@ti.com>
+References: <20220407142004.292782-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220407142004.292782-1-krzysztof.kozlowski@linaro.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,28 +70,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 02:15:04PM +0530, Sandeep Maheswaram wrote:
-> Adding wakeup-source property for USB controller in SC7280.
-> This property is added to inform that the USB controller is
-> wake up capable and to conditionally power down the phy during
-> system suspend.
+On 07/04/22 04:20PM, Krzysztof Kozlowski wrote:
+> After conversion the jedec,spi-nor DT schema to reference other schemas
+> (SPI and MTD) and use unevaluatedProperties, several properties are
+> redundant.
 > 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index f0b64be..046262a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2916,6 +2916,7 @@
->  				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
->  				phy-names = "usb2-phy", "usb3-phy";
->  				maximum-speed = "super-speed";
-> +				wakeup-source;
->  			};
->  		};
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Not all SC7280 boards may want to enable wakeup from USB, so this is
-probably best configured on a per-board basis.
+Reviewed-by: Pratyush Yadav <p.yadav@ti.com>
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
