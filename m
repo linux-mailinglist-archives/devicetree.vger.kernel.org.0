@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9791E4F7F5D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 14:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B62174F7F7E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 14:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245370AbiDGMoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 08:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37960 "EHLO
+        id S245457AbiDGMxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 08:53:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245369AbiDGMoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 08:44:30 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CF38BF33;
-        Thu,  7 Apr 2022 05:42:29 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 237App9x000574;
-        Thu, 7 Apr 2022 14:42:02 +0200
+        with ESMTP id S230055AbiDGMxy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 08:53:54 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9DF2224741;
+        Thu,  7 Apr 2022 05:51:54 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 237Aq0jf009474;
+        Thu, 7 Apr 2022 14:51:42 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=selector1;
- bh=xEj07bnKbmA4CDhusd7BmrO3eMvYcqE8ELVHnIo7L0Q=;
- b=2T0p5swQZkTcYb7/egmsKIhNRz4hsykUNBIYaVQdKIRiR/dpwktRVjSstflCvRQiDtmP
- qYwq45Aqf5xgyU9VrsfLQs1NGodkgvIb5AjKqWeO8aVseSGwKhjbxuUZsTSMoPEb7CtX
- xqv4FtF5yEf+8PP17HtezKi21LaPpQ69+bwdFBOiSCO5lfeB1PXDmBxYCx7nSVWt+lKY
- x6gdmAFAgl/k7VlHw02sY2ckru2faI+3Bb/K30YiUNDg85+IRnCji3dgAj8/6qKsvHoU
- XVV+Q63UIH+Fa77cK8FnNuI0YrY9wr4LdMJ4JKC654oYAep7MdfstL1/Wri6K16KvW0n LA== 
+ bh=13b18C+QnCO96hAQswheWvxn/oYiNl1M/rXD0ThSX+o=;
+ b=pzC0Z1TuNgjH4uMUvTS0kcpw+02eWvd/3XkZGoakzGMa7sjEyFM3Yg7MUheEh0HTbOwH
+ VmvyQOIFjpj2NTdIYMlhHt47GnXNoFXyPmciTpB1iLc1e+vaqubl7YGzq5Qg+4Q3KMRR
+ 2p1yPs3XChyMlevkosOJpnNBl47eZ6c417MZ18n/eGisfLL5kdwSMLQ3APtG2R9K5Ufz
+ jdvx/2tjDDMj9wt0xg9ZAjA3KnXNPIuFhbBdSXkVqmTcbhuZ607gG7OvtaQRXIT3iCLY
+ 2n60AKkdncFjGPFtMBiAQBpGLQevJIjmuV/J7gRPfIWNzR4/h9dvEMx7CG4x5Xsr582Q Uw== 
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3f9wr7gyuw-1
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3f8x4rm2j0-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Apr 2022 14:42:02 +0200
+        Thu, 07 Apr 2022 14:51:42 +0200
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 86AE410002A;
-        Thu,  7 Apr 2022 14:41:59 +0200 (CEST)
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 72D5F10002A;
+        Thu,  7 Apr 2022 14:51:41 +0200 (CEST)
 Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3132921B50F;
-        Thu,  7 Apr 2022 14:41:59 +0200 (CEST)
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5DB7A21B52C;
+        Thu,  7 Apr 2022 14:51:41 +0200 (CEST)
 Received: from [10.48.0.142] (10.75.127.44) by SHFDAG1NODE1.st.com
  (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Thu, 7 Apr
- 2022 14:41:58 +0200
-Message-ID: <6824a158-9837-c61d-cbf9-c8a2ca46110e@foss.st.com>
-Date:   Thu, 7 Apr 2022 14:41:58 +0200
+ 2022 14:51:40 +0200
+Message-ID: <60b04d4f-71ae-2c06-4570-eacd1f3db172@foss.st.com>
+Date:   Thu, 7 Apr 2022 14:51:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 3/3] ARM: dts: Use new media bus type macros
+Subject: Re: [PATCH RESEND v3 00/13] Introduction of STM32MP13 RCC driver
+ (Reset Clock Controller)
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
+To:     <gabriel.fernandez@foss.st.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>
-References: <20220306173905.22990-1-laurent.pinchart@ideasonboard.com>
- <20220306173905.22990-4-laurent.pinchart@ideasonboard.com>
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220316131000.9874-1-gabriel.fernandez@foss.st.com>
 From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220306173905.22990-4-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20220316131000.9874-1-gabriel.fernandez@foss.st.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.75.127.44]
@@ -82,218 +80,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent
+Hi Gabriel,
 
-On 3/6/22 18:39, Laurent Pinchart wrote:
-> Now that a header exists with macros for the media interface bus-type
-> values, replace hardcoding numerical constants with the corresponding
-> macros in the DT sources.
+On 3/16/22 14:09, gabriel.fernandez@foss.st.com wrote:
+> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->   arch/arm/boot/dts/imx6ul-14x14-evk.dtsi               |  4 +++-
->   arch/arm/boot/dts/omap3-n900.dts                      |  5 +++--
->   arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts       | 11 +++++++----
->   .../dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi     |  4 +++-
->   .../dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi     |  4 +++-
->   arch/arm/boot/dts/stm32429i-eval.dts                  |  3 ++-
->   arch/arm/boot/dts/stm32mp157c-ev1.dts                 |  3 ++-
->   7 files changed, 23 insertions(+), 11 deletions(-)
+> v3:
+>    - cosmetic change from Stephen Boyd
+>    - rename some functions in clk-stm32-core
+>    - add missing static for variables or functions
+> 
+> v2:
+>    - Resend because patch 9,10,12,13 has not been sent
+>    - add Reviewed by Krzysztof Kozlowski for patch 1
+> 
+> Gabriel Fernandez (13):
+>    dt-bindings: rcc: stm32: add new compatible for STM32MP13 SoC
+>    clk: stm32: Introduce STM32MP13 RCC drivers (Reset Clock Controller)
+>    clk: stm32mp13: add stm32_mux clock management
+>    clk: stm32mp13: add stm32_gate management
+>    clk: stm32mp13: add stm32 divider clock
+>    clk: stm32mp13: add composite clock
+>    clk: stm32mp13: manage secured clocks
+>    clk: stm32mp13: add all STM32MP13 peripheral clocks
+>    clk: stm32mp13: add all STM32MP13 kernel clocks
+>    clk: stm32mp13: add multi mux function
+>    clk: stm32mp13: add safe mux management
+>    ARM: dts: stm32: enable optee firmware and SCMI support on STM32MP13
+>    ARM: dts: stm32: add RCC on STM32MP13x SoC family
 > 
 
-sorry for this late answer. Is it possible to split ARM DT patches by 
-vendor ?
+DT patches look good for me. I'll apply them on stm32-next as soon as 
+dt-bindings + drivers patch are applied.
 
-Thanks
+cheers
 Alex
 
 
-> diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
-> index a3fde3316c73..89234bbd02f4 100644
-> --- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
-> @@ -2,6 +2,8 @@
->   //
->   // Copyright (C) 2015 Freescale Semiconductor, Inc.
->   
-> +#include <dt-bindings/media/video-interfaces.h>
-> +
->   / {
->   	chosen {
->   		stdout-path = &uart1;
-> @@ -170,7 +172,7 @@ &csi {
->   	port {
->   		parallel_from_ov5640: endpoint {
->   			remote-endpoint = <&ov5640_to_parallel>;
-> -			bus-type = <5>; /* Parallel bus */
-> +			bus-type = <MEDIA_BUS_TYPE_BT601>;
->   		};
->   	};
->   };
-> diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
-> index d40c3d2c4914..9cad9d6a83e2 100644
-> --- a/arch/arm/boot/dts/omap3-n900.dts
-> +++ b/arch/arm/boot/dts/omap3-n900.dts
-> @@ -9,6 +9,7 @@
->   #include "omap34xx.dtsi"
->   #include <dt-bindings/input/input.h>
->   #include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/media/video-interfaces.h>
->   
->   /*
->    * Default secure signed bootloader (Nokia X-Loader) does not enable L3 firewall
-> @@ -194,7 +195,7 @@ port@1 {
->   
->   			csi_isp: endpoint {
->   				remote-endpoint = <&csi_cam1>;
-> -				bus-type = <3>; /* CCP2 */
-> +				bus-type = <MEDIA_BUS_TYPE_CCP2>;
->   				clock-lanes = <1>;
->   				data-lanes = <0>;
->   				lane-polarity = <0 0>;
-> @@ -835,7 +836,7 @@ cam1: camera@3e {
->   
->   		port {
->   			csi_cam1: endpoint {
-> -				bus-type = <3>; /* CCP2 */
-> +				bus-type = <MEDIA_BUS_TYPE_CCP2>;
->   				strobe = <1>;
->   				clock-inv = <0>;
->   				crc = <1>;
-> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-> index 3c8a7c8b1fdd..1043603fc4a5 100644
-> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-> @@ -7,6 +7,9 @@
->    */
->   
->   /dts-v1/;
-> +
-> +#include <dt-bindings/media/video-interfaces.h>
-> +
->   #include "r8a7742-iwg21d-q7.dts"
->   
->   / {
-> @@ -242,7 +245,7 @@ port {
->   		vin0ep: endpoint {
->   			remote-endpoint = <&cam0ep>;
->   			bus-width = <8>;
-> -			bus-type = <6>;
-> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
->   		};
->   	};
->   };
-> @@ -273,7 +276,7 @@ port {
->   		vin1ep: endpoint {
->   			remote-endpoint = <&cam1ep>;
->   			bus-width = <8>;
-> -			bus-type = <6>;
-> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
->   		};
->   	};
->   };
-> @@ -305,7 +308,7 @@ vin2ep: endpoint {
->   			remote-endpoint = <&cam2ep>;
->   			bus-width = <8>;
->   			data-shift = <8>;
-> -			bus-type = <6>;
-> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
->   		};
->   	};
->   };
-> @@ -335,7 +338,7 @@ port {
->   		vin3ep: endpoint {
->   			remote-endpoint = <&cam3ep>;
->   			bus-width = <8>;
-> -			bus-type = <6>;
-> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
->   		};
->   	};
->   };
-> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
-> index 40cef0b1d1e6..c73160df619d 100644
-> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
-> @@ -7,6 +7,8 @@
->    * Copyright (C) 2020 Renesas Electronics Corp.
->    */
->   
-> +#include <dt-bindings/media/video-interfaces.h>
-> +
->   #define CAM_ENABLED	1
->   
->   &CAM_PARENT_I2C {
-> @@ -26,7 +28,7 @@ port {
->   			CAM_EP: endpoint {
->   				bus-width = <8>;
->   				data-shift = <2>;
-> -				bus-type = <6>;
-> +				bus-type = <MEDIA_BUS_TYPE_BT656>;
->   				pclk-sample = <1>;
->   				remote-endpoint = <&VIN_EP>;
->   			};
-> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
-> index f5e77f024251..a7f5cfec64b8 100644
-> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
-> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
-> @@ -7,6 +7,8 @@
->    * Copyright (C) 2020 Renesas Electronics Corp.
->    */
->   
-> +#include <dt-bindings/media/video-interfaces.h>
-> +
->   #define CAM_ENABLED	1
->   
->   &CAM_PARENT_I2C {
-> @@ -21,7 +23,7 @@ ov7725@21 {
->   		port {
->   			CAM_EP: endpoint {
->   				bus-width = <8>;
-> -				bus-type = <6>;
-> +				bus-type = <MEDIA_BUS_TYPE_BT656>;
->   				remote-endpoint = <&VIN_EP>;
->   			};
->   		};
-> diff --git a/arch/arm/boot/dts/stm32429i-eval.dts b/arch/arm/boot/dts/stm32429i-eval.dts
-> index cb46326a8c75..ecb10613d962 100644
-> --- a/arch/arm/boot/dts/stm32429i-eval.dts
-> +++ b/arch/arm/boot/dts/stm32429i-eval.dts
-> @@ -50,6 +50,7 @@
->   #include "stm32f429-pinctrl.dtsi"
->   #include <dt-bindings/input/input.h>
->   #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/media/video-interfaces.h>
->   
->   / {
->   	model = "STMicroelectronics STM32429i-EVAL board";
-> @@ -186,7 +187,7 @@ &dcmi {
->   	port {
->   		dcmi_0: endpoint {
->   			remote-endpoint = <&ov2640_0>;
-> -			bus-type = <5>;
-> +			bus-type = <MEDIA_BUS_TYPE_BT601>;
->   			bus-width = <8>;
->   			hsync-active = <0>;
->   			vsync-active = <0>;
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> index e222d2d2cb44..24f59f3b15dc 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> @@ -8,6 +8,7 @@
->   #include "stm32mp157c-ed1.dts"
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/media/video-interfaces.h>
->   
->   / {
->   	model = "STMicroelectronics STM32MP157C eval daughter on eval mother";
-> @@ -90,7 +91,7 @@ &dcmi {
->   	port {
->   		dcmi_0: endpoint {
->   			remote-endpoint = <&ov5640_0>;
-> -			bus-type = <5>;
-> +			bus-type = <MEDIA_BUS_TYPE_BT601>;
->   			bus-width = <8>;
->   			hsync-active = <0>;
->   			vsync-active = <0>;
+
+>   .../bindings/clock/st,stm32mp1-rcc.yaml       |    2 +
+>   arch/arm/boot/dts/stm32mp131.dtsi             |  128 +-
+>   arch/arm/boot/dts/stm32mp133.dtsi             |    4 +-
+>   arch/arm/boot/dts/stm32mp13xf.dtsi            |    3 +-
+>   drivers/clk/Kconfig                           |    5 +
+>   drivers/clk/Makefile                          |    1 +
+>   drivers/clk/stm32/Makefile                    |    1 +
+>   drivers/clk/stm32/clk-stm32-core.c            |  695 +++++++
+>   drivers/clk/stm32/clk-stm32-core.h            |  188 ++
+>   drivers/clk/stm32/clk-stm32mp13.c             | 1620 +++++++++++++++
+>   drivers/clk/stm32/reset-stm32.c               |  122 ++
+>   drivers/clk/stm32/reset-stm32.h               |    8 +
+>   drivers/clk/stm32/stm32mp13_rcc.h             | 1748 +++++++++++++++++
+>   include/dt-bindings/clock/stm32mp13-clks.h    |  229 +++
+>   include/dt-bindings/reset/stm32mp13-resets.h  |  100 +
+>   15 files changed, 4794 insertions(+), 60 deletions(-)
+>   create mode 100644 drivers/clk/stm32/Makefile
+>   create mode 100644 drivers/clk/stm32/clk-stm32-core.c
+>   create mode 100644 drivers/clk/stm32/clk-stm32-core.h
+>   create mode 100644 drivers/clk/stm32/clk-stm32mp13.c
+>   create mode 100644 drivers/clk/stm32/reset-stm32.c
+>   create mode 100644 drivers/clk/stm32/reset-stm32.h
+>   create mode 100644 drivers/clk/stm32/stm32mp13_rcc.h
+>   create mode 100644 include/dt-bindings/clock/stm32mp13-clks.h
+>   create mode 100644 include/dt-bindings/reset/stm32mp13-resets.h
+> 
 
