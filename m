@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50DA14F81C1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:33:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A784F81CC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344029AbiDGOfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50796 "EHLO
+        id S241346AbiDGOfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 10:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344050AbiDGOfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:35:05 -0400
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49361AA052
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:33:04 -0700 (PDT)
-Received: by mail-ej1-f43.google.com with SMTP id n6so11176482ejc.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:33:04 -0700 (PDT)
+        with ESMTP id S1344079AbiDGOf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:35:29 -0400
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECAD81AECB7
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:33:18 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a6so11370801ejk.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:33:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0TAzQQyPNU1EgPS8VUfo26k9TNfuGUl3earvG+VF99I=;
-        b=i38AwXcU2ZfWid4WOd8yC6nFL/X1PwlRH5WJNl1Ubox53GScaSDBSn6UqI9G3inbD8
-         7Lu9OpTVfqf/vgA9UjRw/333sDKlaf6VKbPM42T924BghK3JQuQxHaDbISGOiLPGV9Fq
-         AktN2SqJymOGfavyOXDqCu2Nd1j06/HZjw9ju+Y40yacPWXajJ1XEl6zC1MfuSdUozqg
-         KkXfEWsbf5uU/W43wwEmJJKy+yF45gHriGq2GUowK0YRTXjvyLLp7oxT/9c1GZ0pBgi0
-         EAYk58AgNI2jCXG5qvz7V6UaVfu6p2XNKmGKOLKmVQGIpzglubdp1R1NNAyIEN92PbrY
-         b2dg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZhILZayX6pXffknKnd7HfQgbBKm0wpl0VHuQYrvMsZ0=;
+        b=oW2QY6FhGdQmhBgp/MADoYPdud7e2/D0LNs/qdWYbhbNaEcAPcVX5b3hhAJY3VQ5b2
+         7gC62rgwdrtW0dN34ZqnDI949PTioIaYWOmD8g9DRjeJOFGDNtUkU/2K+DkcBusmwsHh
+         qgNCoe8enlFYxi3NEz+kwrxqVILx9Ub4fvDS3bmFlkjWL8vnmVpp069M6FBYtVW5xyrE
+         HZjS6fs5ZQEKL5sl4QfpEkSJ6vRUmOJhHjbOOO/pm+eRDIIpCcBvIsH/6KT27ZMUg4Ee
+         2y+5/E5s2YMnRNLGT8OS6ZwKzo3/BQIwG8BulPimXxSeVP3UoSNxqEA6Kbr4TzFqlNZg
+         4/OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0TAzQQyPNU1EgPS8VUfo26k9TNfuGUl3earvG+VF99I=;
-        b=iTYMQVpD8Gs+0NT6WvxxUc1TLDifgTZRUUIzLHkr3vhoW2HzYMAQ0kS6tLRjns7LyW
-         7DefR56oy1WIBzJq5wkyMRWUdHm3slR+ZoYLFbTRlLHIcN0wRNx0EmLWeuYSWTA1uJ9g
-         XHjW0PL55X5kX9cczHNKXs8u8pgMIjoO9m9foqj6jff1IoGnmeCN0rUj7AfXJNs6YkmI
-         Uhna2uvAK9pPVQI9IuK24UIRsaf4KazPT70akiKhmPOTjq9uNl/QxLqah73oSr/EkVFe
-         pSa4/TmL+XV5OGC93xY9qrV8rRJyq9cgEWXEjGOJO3BfYEOvBDC2/AZV658lOTu4Osgx
-         8sCQ==
-X-Gm-Message-State: AOAM5330z295q1cnjKgLFY1pEfwDugTlaUSr30EMqoUy3I+YN7Iektkr
-        8PkXxzqVCFge4+hWtV0A0ETLgg==
-X-Google-Smtp-Source: ABdhPJy8PYhwc89e2VGBuc6MZsvxcFC02HNAPZvqr4IO8NBMMzByoyS5099bZvJ5EKHPk2yrUP9kPw==
-X-Received: by 2002:a17:906:60d4:b0:6db:f0a8:f39e with SMTP id f20-20020a17090660d400b006dbf0a8f39emr13611261ejk.54.1649341922301;
-        Thu, 07 Apr 2022 07:32:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZhILZayX6pXffknKnd7HfQgbBKm0wpl0VHuQYrvMsZ0=;
+        b=c4cm5STHU8pfzct+nzGmAbcIoM74c3D29+8FJfVqlPlXp6RovuezlyLpGgbTuM9fRF
+         f2kvIc6jBWyvWKuF2itR1327qeBCwfu/PfgpYzOGeQpBziMWgQqlntzgOzjUf1U64ERj
+         iv7c/qj6fNccc750N/9rywmEpCmUyABW3ph+lfPJD/WUiH1SOt73t+95mqSX8OSCBqrc
+         E4uydmnevoaxffeW5FwtGeTzhzchdzHJGJyE+U0WRQ5GB9lNUkJ6rbTOXpCR8cPj++pr
+         lNlKFze3VbyuiWvBKkDLx6Ht8at9faQWQfH6mE5FBX5dUE6sbbF1G1V3xv6+XSiHKoBT
+         R+UQ==
+X-Gm-Message-State: AOAM532PmHPCnrCIkbYuhBDc74fM8UoufvtpE9mNpX9LKOYPxuDMizce
+        KMT+POTFM14OsIioS4Ga+nw5mw==
+X-Google-Smtp-Source: ABdhPJzuh9XHvvGbe8ZPu/7duVfCJ0rW8LwjHVbbAzHzQRh2mnP/nQ+KvF7KNjIa4gr2QrU8GxcQVw==
+X-Received: by 2002:a17:907:3f92:b0:6e7:2ad3:a92b with SMTP id hr18-20020a1709073f9200b006e72ad3a92bmr14282064ejc.239.1649341936092;
+        Thu, 07 Apr 2022 07:32:16 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id fy5-20020a1709069f0500b006e841c87243sm236526ejc.64.2022.04.07.07.32.01
+        by smtp.gmail.com with ESMTPSA id n9-20020a05640205c900b00418d79d4a61sm9602135edx.97.2022.04.07.07.32.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 07:32:01 -0700 (PDT)
+        Thu, 07 Apr 2022 07:32:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: freescale: align SPI NOR node name with dtschema
-Date:   Thu,  7 Apr 2022 16:31:55 +0200
-Message-Id: <20220407143155.295187-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: broadcom: align SPI NOR node name with dtschema
+Date:   Thu,  7 Apr 2022 16:32:10 +0200
+Message-Id: <20220407143211.295271-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220407143155.295187-1-krzysztof.kozlowski@linaro.org>
-References: <20220407143155.295187-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,98 +76,134 @@ The node names should be generic and SPI NOR dtschema expects "flash".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls208xa-qds.dtsi     | 10 +++++-----
- arch/arm64/boot/dts/freescale/fsl-ls208xa-rdb.dtsi     |  2 +-
- arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi        |  2 +-
- .../boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi   |  2 +-
- 4 files changed, 8 insertions(+), 8 deletions(-)
+ arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dts | 2 +-
+ arch/arm/boot/dts/bcm958522er.dts                 | 2 +-
+ arch/arm/boot/dts/bcm958525er.dts                 | 2 +-
+ arch/arm/boot/dts/bcm958525xmc.dts                | 2 +-
+ arch/arm/boot/dts/bcm958622hr.dts                 | 2 +-
+ arch/arm/boot/dts/bcm958623hr.dts                 | 2 +-
+ arch/arm/boot/dts/bcm958625hr.dts                 | 2 +-
+ arch/arm/boot/dts/bcm958625k.dts                  | 2 +-
+ arch/arm/boot/dts/bcm988312hr.dts                 | 2 +-
+ 9 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa-qds.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa-qds.dtsi
-index 10d2fe091965..6fab73d484b6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa-qds.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa-qds.dtsi
-@@ -104,21 +104,21 @@ &i2c3 {
- 
- &dspi {
+diff --git a/arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dts b/arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dts
+index 2e7fda9b998c..975f854f652f 100644
+--- a/arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dts
++++ b/arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dts
+@@ -34,7 +34,7 @@ &qspi {
  	status = "okay";
--	dflash0: n25q128a@0 {
-+	dflash0: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "st,m25p80";
- 		spi-max-frequency = <3000000>;
- 		reg = <0>;
- 	};
--	dflash1: sst25wf040b@1 {
-+	dflash1: flash@1 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "st,m25p80";
- 		spi-max-frequency = <3000000>;
- 		reg = <1>;
- 	};
--	dflash2: en25s64@2 {
-+	dflash2: flash@2 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "st,m25p80";
-@@ -129,7 +129,7 @@ dflash2: en25s64@2 {
+ 	bspi-sel = <0>;
  
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		compatible = "m25p80";
+ 		reg = <0>;
+ 		#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/bcm958522er.dts b/arch/arm/boot/dts/bcm958522er.dts
+index 60376b62cd5f..15f023656df0 100644
+--- a/arch/arm/boot/dts/bcm958522er.dts
++++ b/arch/arm/boot/dts/bcm958522er.dts
+@@ -136,7 +136,7 @@ nand_sel: nand_sel {
  &qspi {
  	status = "okay";
--	flash0: s25fl256s1@0 {
-+	flash0: flash@0 {
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "st,m25p80";
-@@ -138,7 +138,7 @@ flash0: s25fl256s1@0 {
- 		spi-tx-bus-width = <4>;
- 		reg = <0>;
- 	};
--	flash2: s25fl256s1@2 {
-+	flash2: flash@2 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "st,m25p80";
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa-rdb.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa-rdb.dtsi
-index 4b71c4fcb35f..f8135c5c252d 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa-rdb.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa-rdb.dtsi
-@@ -100,7 +100,7 @@ &i2c3 {
- 
- &dspi {
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm958525er.dts b/arch/arm/boot/dts/bcm958525er.dts
+index 8eeb319f5b54..9b9c225a1fb3 100644
+--- a/arch/arm/boot/dts/bcm958525er.dts
++++ b/arch/arm/boot/dts/bcm958525er.dts
+@@ -136,7 +136,7 @@ nand_sel: nand_sel {
+ &qspi {
  	status = "okay";
--	dflash0: n25q512a@0 {
-+	dflash0: flash@0 {
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
- 		compatible = "st,m25p80";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-index 7c4af71baab9..0dbdc9ec3fe5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-@@ -98,7 +98,7 @@ &flexspi {
- 	pinctrl-1 = <&pinctrl_flexspi1>;
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm958525xmc.dts b/arch/arm/boot/dts/bcm958525xmc.dts
+index dc86d5a91292..ca9311452739 100644
+--- a/arch/arm/boot/dts/bcm958525xmc.dts
++++ b/arch/arm/boot/dts/bcm958525xmc.dts
+@@ -152,7 +152,7 @@ nand_sel: nand_sel {
+ &qspi {
  	status = "okay";
- 
--	flash0: spi-flash@0 {
-+	flash0: flash@0 {
- 		reg = <0>;
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
  		#address-cells = <1>;
  		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-index 22a5ef771d4e..8f90eb02550d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-@@ -66,7 +66,7 @@ &ecspi1 {
- 	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm958622hr.dts b/arch/arm/boot/dts/bcm958622hr.dts
+index c457e53d886e..9db3c851451a 100644
+--- a/arch/arm/boot/dts/bcm958622hr.dts
++++ b/arch/arm/boot/dts/bcm958622hr.dts
+@@ -140,7 +140,7 @@ nand_sel: nand_sel {
+ &qspi {
  	status = "okay";
- 
--	spi-flash@0 {
-+	flash@0 {
- 		compatible = "mxicy,mx25r1635f", "jedec,spi-nor";
- 		spi-max-frequency = <80000000>;
- 		reg = <0>;
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm958623hr.dts b/arch/arm/boot/dts/bcm958623hr.dts
+index c06871915a1c..32786e7c4e12 100644
+--- a/arch/arm/boot/dts/bcm958623hr.dts
++++ b/arch/arm/boot/dts/bcm958623hr.dts
+@@ -144,7 +144,7 @@ &sata_phy0 {
+ &qspi {
+ 	status = "okay";
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm958625hr.dts b/arch/arm/boot/dts/bcm958625hr.dts
+index b22fc6624ae4..74263d98de73 100644
+--- a/arch/arm/boot/dts/bcm958625hr.dts
++++ b/arch/arm/boot/dts/bcm958625hr.dts
+@@ -151,7 +151,7 @@ nand_sel: nand_sel {
+ &qspi {
+ 	status = "okay";
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm958625k.dts b/arch/arm/boot/dts/bcm958625k.dts
+index 0183f8965a74..69ebc7a913a7 100644
+--- a/arch/arm/boot/dts/bcm958625k.dts
++++ b/arch/arm/boot/dts/bcm958625k.dts
+@@ -155,7 +155,7 @@ &pwm {
+ &qspi {
+ 	status = "okay";
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "m25p80";
+diff --git a/arch/arm/boot/dts/bcm988312hr.dts b/arch/arm/boot/dts/bcm988312hr.dts
+index 007e34715956..e96bc3f2d5cf 100644
+--- a/arch/arm/boot/dts/bcm988312hr.dts
++++ b/arch/arm/boot/dts/bcm988312hr.dts
+@@ -140,7 +140,7 @@ nand_sel: nand_sel {
+ &qspi {
+ 	status = "okay";
+ 	bspi-sel = <0>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "m25p80";
 -- 
 2.32.0
 
