@@ -2,127 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9170C4F81D6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 692724F81F0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344173AbiDGOgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:36:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54850 "EHLO
+        id S1344137AbiDGOll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 10:41:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344178AbiDGOgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:36:35 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D421E8CF4
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:34:15 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id l26so11311083ejx.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:34:15 -0700 (PDT)
+        with ESMTP id S1344148AbiDGOll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:41:41 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4B51B2161
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:39:02 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id p26-20020a05600c1d9a00b0038ccbff1951so4432014wms.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:39:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZMc3AfG5H7Eoze1riLsoKQySy0boPTnHcGifTlbw67U=;
-        b=ACt2wLpnHluTK801WClxUNjv0T9X0tOd4oKiCIIrZ9eNjavRSu/0d5x723ScrD6OQJ
-         4ycrRvTpZwenEIWc5szrw7Xy7HZlT+y1tGmDJX1OMZr31b6onPuNIXxnElG8KwNEHG8v
-         7cO8koLd+3k74YrxsfvbF4gSaFYQmeSEhO1sAvwcmL/frMNgxZdh5zphOLrEI0Sir9er
-         DC9hAsYxXq9WhYZGMdDJ0rR2BpvJwQH5Utv5DyHXDBxGVwcgUk5UG0UAy1cblo+jn8md
-         HomLK/kqgRoT+SxkiPmU1UQqoCsxtMxO6f0uP0EAexdHFKupYpNvhem6YnmogCUO6aYv
-         /jyA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+HrqUl2stcAnQOvkV/cLC8sh1bdsuE9uaYRM3SC8TAI=;
+        b=QC/NBWbz8s242GqiqGVCxZjqkf65n2BOMSMdySwx5OMCnmpmfgmy2Gl0mqkViPk58A
+         B0hFl228YREAAGFp1bTWTBF48v9/vcamAwhlivD7F9RoAWhkxTVUUszkElVwniFp+KSW
+         153YOYtKLxloRx116E1JbzBPjjKXbUaIisB8A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZMc3AfG5H7Eoze1riLsoKQySy0boPTnHcGifTlbw67U=;
-        b=2C3Bpfbr+W39kKf5k+rzlg+z6oP0nxSvx/AoZOCeekkQUdLzQXiiwS6AUglkT0sAxC
-         rSWiwX9M6/cSAPPY9yaRR4VuK+ZnR+ghK9P2mmZyqO5WsfOm85KZVm4qjsLf/UR+Sd3l
-         Rr0Kn02kjT4SOoZSLK0qI/KNOJqG5YXUAW7KbWiadVq//6vDGsZsUjdpAin5FbWZJni0
-         jWylnFKDyF/YYIlzVojtvH6YpCumf7x/SxHql8JP542RErP6oytq5TZAg/LoQDgDYEGI
-         9SMBQ2M8EQgAkKie5mcsRkzQVCRZC35eAOyD3QpfG6kFabZnH6q2sNVhvjloiRMNItEY
-         gWVg==
-X-Gm-Message-State: AOAM531u1/HY3Zgus4g2PpHaOhrK4AOAKP3KpeqeXYp9w9fg/E+5BrJY
-        WNyhg7QzoAR4xw1lkUVx+rVSVA==
-X-Google-Smtp-Source: ABdhPJwXyL4FeMCVoeo0dwl9+9FIwF5PtSlfyv2y65g/77g1GH8eFdummy9lPfT8/0+oXckSp7xQIw==
-X-Received: by 2002:a17:906:9c8e:b0:6df:f6bf:7902 with SMTP id fj14-20020a1709069c8e00b006dff6bf7902mr13552991ejc.191.1649342050635;
-        Thu, 07 Apr 2022 07:34:10 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id r18-20020a05640251d200b0041d1600ab09sm107835edd.54.2022.04.07.07.34.09
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+HrqUl2stcAnQOvkV/cLC8sh1bdsuE9uaYRM3SC8TAI=;
+        b=ErpvOAFHEjQg70D0hEOfF8PVpaJmaH3Uh8GzajF/DjD+gzuoo+c+CYDMcEraqjtOfp
+         Yhjp1zli2GLA+hO6pkDFqjR6DS7+MWGPnhN4HbkYgkOdx68LEG1m4PkJYyBOKO21JXyv
+         vejVLtp3J0KcokqbPcHAM1bz1wMBGMbATiMhQctJjrnfWshGJVwhCZ+8ZkbwU3uFRu1l
+         quwzF60DKlUQ21yWfXwaS7OAtrGj3AKqKOHHtyZfS1Krhz/WI79pM1PjXvtPEpEXa0mL
+         795xlKJzFpmDEl23I6ek9t/XhIGKkxvT+TxbO/W+KRH4fA4UfW8F0mrJs5fiVr6mncxY
+         C/cg==
+X-Gm-Message-State: AOAM533x2o0yEFeQUxziQRYQbVBq8jf0uovVTBFiXb3i+VMrSYb+1ogQ
+        YUzy7SlnaNCR/NhxfFPo4iB1mw==
+X-Google-Smtp-Source: ABdhPJxSm1o4AJPWmwSiOwXUcoOrfrDDoE6QavOVO+5QTW+urJsTAfmBJCV6RwoUxCRXXNUmmjXF1A==
+X-Received: by 2002:a1c:f605:0:b0:37b:b5de:89a0 with SMTP id w5-20020a1cf605000000b0037bb5de89a0mr12345916wmc.88.1649342337820;
+        Thu, 07 Apr 2022 07:38:57 -0700 (PDT)
+Received: from google.com ([37.228.205.1])
+        by smtp.gmail.com with ESMTPSA id bg8-20020a05600c3c8800b0038e4c5967besm7983010wmb.3.2022.04.07.07.38.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 07:34:10 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: align SPI NOR node name with dtschema
-Date:   Thu,  7 Apr 2022 16:34:05 +0200
-Message-Id: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        Thu, 07 Apr 2022 07:38:57 -0700 (PDT)
+Date:   Thu, 7 Apr 2022 14:38:55 +0000
+From:   Fabio Baltieri <fabiobaltieri@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: update google,cros-ec-pwm
+ documentation
+Message-ID: <Yk73f9yyxy5LBC+V@google.com>
+References: <20220331125818.3776912-1-fabiobaltieri@chromium.org>
+ <20220331125818.3776912-4-fabiobaltieri@chromium.org>
+ <Yk20uTE/Vdm2c6jI@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yk20uTE/Vdm2c6jI@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and SPI NOR dtschema expects "flash".
+Hi Rob,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt | 2 +-
- Documentation/devicetree/bindings/spi/spi-davinci.txt           | 2 +-
- Documentation/devicetree/bindings/spi/spi-pl022.yaml            | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+On Wed, Apr 06, 2022 at 10:41:45AM -0500, Rob Herring wrote:
+> On Thu, Mar 31, 2022 at 12:58:17PM +0000, Fabio Baltieri wrote:
+> > Update google,cros-ec-pwm node documentation to mention the
+> > google,use_pwm_type property.
+> > 
+> > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+> > ---
+> >  .../devicetree/bindings/pwm/google,cros-ec-pwm.yaml         | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> > index 4cfbffd8414a..9c895c990ed8 100644
+> > --- a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> > +++ b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> > @@ -19,6 +19,12 @@ description: |
+> >  properties:
+> >    compatible:
+> >      const: google,cros-ec-pwm
+> > +
+> > +  google,use-pwm-type:
+> > +    description:
+> > +      Use PWM types (CROS_EC_PWM_DT_<...>) instead of generic channels.
+> > +    type: boolean
+> 
+> Either do a new compatible string if the cell interpretation is mutually 
+> exclusive (channel number vs. type) or split the number space for the 
+> 1st cell between type and channel number. IOW, set a bit (31?) to 
+> signify the number is a type, not a channel.
 
-diff --git a/Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt b/Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt
-index 74981520d6dd..a99de13c7ccd 100644
---- a/Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt
-+++ b/Documentation/devicetree/bindings/mtd/hisilicon,fmc-spi-nor.txt
-@@ -17,7 +17,7 @@ spi-nor-controller@10000000 {
- 	reg = <0x10000000 0x1000>, <0x14000000 0x1000000>;
- 	reg-names = "control", "memory";
- 	clocks = <&clock HI3519_FMC_CLK>;
--	spi-nor@0 {
-+	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 	};
-diff --git a/Documentation/devicetree/bindings/spi/spi-davinci.txt b/Documentation/devicetree/bindings/spi/spi-davinci.txt
-index 200c7fc7b089..f012888656ec 100644
---- a/Documentation/devicetree/bindings/spi/spi-davinci.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-davinci.txt
-@@ -78,7 +78,7 @@ spi0:spi@20bf0000 {
- 	interrupts			= <338>;
- 	clocks				= <&clkspi>;
- 
--	flash: n25q032@0 {
-+	flash: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "st,m25p32";
-diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-index bda45ff3d294..0e382119c64f 100644
---- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-@@ -143,7 +143,7 @@ examples:
-         <&dma_controller 24 0>;
-       dma-names = "rx", "tx";
- 
--      m25p80@1 {
-+      flash@1 {
-         compatible = "st,m25p80";
-         reg = <1>;
-         spi-max-frequency = <12000000>;
+Split the number space was my first (tentative) implementation as well,
+but it turns out that the PWM subsystem really wants channels to be
+zero-based[1], so I don't think flags or bitmasks are really an option.
+
+New compatible sounds good though, I'll rework a v3 with that change.
+
+Thanks!
+Fabio
+
+[1] https://elixir.bootlin.com/linux/v5.17/source/drivers/pwm/core.c#L423
+
 -- 
-2.32.0
-
+Fabio Baltieri
