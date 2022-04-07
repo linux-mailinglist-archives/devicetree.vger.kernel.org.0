@@ -2,89 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EC74F8193
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 957674F8220
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:49:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344031AbiDGO2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37138 "EHLO
+        id S242898AbiDGOvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 10:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238417AbiDGO2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:28:06 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D81F18D2B1
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:25:32 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id v13so2266517qkv.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:25:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SFCu5OPfr2u719QHLQmAFOOnrZqifL8kEuqIFWPJZfw=;
-        b=nkVklxuWxxl1JFd86S9ghjBHOJvTmapWl7hhrYXdo946L+xXZ59GFWXfXDC6rxS/95
-         8G3WeOIB/AdwIz+EAAdHoo33AbOz6KiqL+WKZMCXBMWeyQ2KAq0MdYMB8BjH3lSuCvjR
-         f79Aap2K+dCWRekmqt0Evl5jKtmk4UvK07fbaICwfSjmBXGuSfnbQ1ihrGNejys6XF5F
-         9vPwbPXIIQu1CMnjzyu0XENj6rQUAZy7uHtFwuMIPZrQ2U7qLj1tjq8uGYsd1mLXjlXv
-         sY96j02kjbUOqVrgs2TukSHSytmAchK8qTurOx7GHHe6ehdRj7x8/TIKFn4c+7iNpc8J
-         +iAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SFCu5OPfr2u719QHLQmAFOOnrZqifL8kEuqIFWPJZfw=;
-        b=yvyjpyDjMkn4XeGjXIPKcgueWtqvqgesmgAq/ek5pyFf9sRGTeKD4lVfqlw0mySirb
-         Csvo6Z9OgQGamW1XiGB+zqgOZoue9mYYiT4dxxedbozHHyiDl/WeJzC1XzfLedHVjMbc
-         rzmU+ekDLyeBSWxg1Vq6Hovv23TFJ91hsoAB9KVIoxwFBpsMinv2ZI5LKNd7C7KDqPzR
-         xKSUqMyDNEQfTkL3iWZOIDgTUte0g+SfYvBeQLBLqg2Vp9CDh9T9wuBWurXKcG55wf2T
-         YoiCjGnkjcC8J+2hAdKDPnVokEXdJO4vbJfEFNlpW2tXQEIF5jXPXpXZiMTU46x1Fc/R
-         nQzg==
-X-Gm-Message-State: AOAM532hL5LA5O1jQ4kXIqesiHxidZXiQBV56yg68LvivApsh9yTC0vj
-        44+YH1sC7Dq4JA6j6OdxCLHC4Q==
-X-Google-Smtp-Source: ABdhPJyoDvpsbtXc4mfn920OWQuGw8iLgBJ+mS0m+1UtIn9V7+msI3aLvZeekwcERfCqF6qVgniHBg==
-X-Received: by 2002:a05:620a:178f:b0:699:90a7:ffdf with SMTP id ay15-20020a05620a178f00b0069990a7ffdfmr8978417qkb.523.1649341528353;
-        Thu, 07 Apr 2022 07:25:28 -0700 (PDT)
-Received: from ziepe.ca ([206.223.160.26])
-        by smtp.gmail.com with ESMTPSA id s13-20020a05620a0bcd00b0067afe7dd3ffsm13059428qki.49.2022.04.07.07.25.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 07:25:27 -0700 (PDT)
-Received: from jgg by mlx with local (Exim 4.94)
-        (envelope-from <jgg@ziepe.ca>)
-        id 1ncT4g-00EF4I-LL; Thu, 07 Apr 2022 11:25:26 -0300
-Date:   Thu, 7 Apr 2022 11:25:26 -0300
-From:   Jason Gunthorpe <jgg@ziepe.ca>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc:     peterhuewe@gmx.de, jarkko@kernel.org, =robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stefanb@linux.ibm.com,
-        p.rosenberger@kunbus.com, lukas@wunner.de
-Subject: Re: [PATCH 1/5] tpm: add functions to set and unset the tpm chips
- reset state
-Message-ID: <20220407142526.GW64706@ziepe.ca>
-References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
- <20220407111849.5676-2-LinoSanfilippo@gmx.de>
+        with ESMTP id S241089AbiDGOvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:51:39 -0400
+X-Greylist: delayed 1295 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 07 Apr 2022 07:49:39 PDT
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 079C51BFDE2;
+        Thu,  7 Apr 2022 07:49:38 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1ncT6r-0000NC-PG; Thu, 07 Apr 2022 16:27:41 +0200
+Date:   Thu, 7 Apr 2022 15:27:35 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        cujomalainey@google.com, Kevin Hilman <khilman@baylibre.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        tzungbi@google.com, linux-mediatek@lists.infradead.org,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        linux-kernel@vger.kernel.org, sound-open-firmware@alsa-project.org
+Subject: Re: [PATCH v7 0/1] firmware: mtk: add adsp ipc protocol for SOF
+Message-ID: <Yk701wLNKQs1DEVx@makrotopia.org>
+References: <20220407130338.28939-1-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220407111849.5676-2-LinoSanfilippo@gmx.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <20220407130338.28939-1-allen-kh.cheng@mediatek.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 01:18:45PM +0200, Lino Sanfilippo wrote:
-> Currently it is not possible to set the tpm chips reset state from within
-> the driver. This is problematic if the chip is still in reset after the
-> system comes up. This may e.g. happen if the reset line is pulled into
-> reset state by a pin configuration in the device tree.
+On Thu, Apr 07, 2022 at 09:03:37PM +0800, Allen-KH Cheng wrote:
+> This patch provides mediatek adsp ipc support for SOF.
+> ADSP IPC protocol offers (send/recv) interfaces using
+> mediatek-mailbox APIs.
+> 
+> This patch was tested and confirmed to with SOF fw on MT8195
+> cherry board.
 
-This kind of system is badly misdesigned.
+... confirmed to **work** with ...
+is probably what you meant to write here.
 
-TPM PCRs fundementally cannot work if the TPM reset line is under
-software control.
 
-Jason
+> 
+> Based on matthias.bgg/linux.git, v5.18-next/soc
+> changes since v6:
+> - rebase to matthias.bgg/linux.git, v5.18-next/soc
+> - Prefer "GPL" over "GPL v2" for MODULE_LICENSE
+> 
+> changes since v5:
+> - fix WARNING: modpost: missing MODULE_LICENSE() in drivers/mailbox
+>   /mtk-adsp-mailbox.o. Add MODULE_LICENSE in the last line.
+> - Due to WARNING: Missing or malformed SPDX-License-Identifier tag
+>   in line 1 in checkpatch, we don't remove SPDX-License in line 1.
+> 
+> changes since v4:
+> - add error message for wrong mbox chan
+> 
+> changes since v3:
+> - rebase on v5.16-rc8
+> - update reviewers
+> 
+> changes since v2:
+> - add out tag for two memory free phases
+> 
+> changes since v1:
+> - add comments for mtk_adsp_ipc_send and mtk_adsp_ipc_recv
+> - remove useless MODULE_LICENSE
+> - change label name to out_free
+> 
+> 
+> Allen-KH Cheng (1):
+>   firmware: mediatek: add adsp ipc protocol interface
+> 
+>  drivers/firmware/Kconfig                      |   1 +
+>  drivers/firmware/Makefile                     |   1 +
+>  drivers/firmware/mediatek/Kconfig             |   9 +
+>  drivers/firmware/mediatek/Makefile            |   2 +
+>  drivers/firmware/mediatek/mtk-adsp-ipc.c      | 161 ++++++++++++++++++
+>  .../linux/firmware/mediatek/mtk-adsp-ipc.h    |  65 +++++++
+>  6 files changed, 239 insertions(+)
+>  create mode 100644 drivers/firmware/mediatek/Kconfig
+>  create mode 100644 drivers/firmware/mediatek/Makefile
+>  create mode 100644 drivers/firmware/mediatek/mtk-adsp-ipc.c
+>  create mode 100644 include/linux/firmware/mediatek/mtk-adsp-ipc.h
+> 
+> -- 
+> 2.18.0
+> 
