@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 457204F80A2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 15:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BDDE4F80C6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 15:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236713AbiDGNgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 09:36:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32890 "EHLO
+        id S1343717AbiDGNkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 09:40:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231817AbiDGNgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 09:36:07 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9E724D9B7;
-        Thu,  7 Apr 2022 06:34:07 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 237DXjBH047530;
-        Thu, 7 Apr 2022 08:33:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1649338425;
-        bh=tuDtmrZ/JCOGuQoIOjbg452duIx7WDeBGy1pAwK9JO4=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=xuwxeKZjRS70tzQmIO4sWBXDVcwegIgA9cZt96TW5xjEJgvM1xN77ZmAsi14RrftV
-         gvVpqXCbp1w75wqX0/Z6GiZO3Pq8pvPmlW5OqvOCXCesoIJ9x0l6l6onj0n1ayQ0gE
-         fIfySuCxD69CQQvmmHMQDyToDIsaz1JqgaXycu3I=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 237DXjTP072645
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Apr 2022 08:33:45 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
- Apr 2022 08:33:44 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 7 Apr 2022 08:33:44 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 237DXiKQ031379;
-        Thu, 7 Apr 2022 08:33:44 -0500
-Date:   Thu, 7 Apr 2022 08:33:44 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tony Lindgren <tony@atomide.com>
-CC:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/4] dt-bindings: timer: Add am6 compatible for ti-timer
-Message-ID: <20220407133344.v2x2b6rkmskatips@handled>
-References: <20220407071006.37031-1-tony@atomide.com>
+        with ESMTP id S233639AbiDGNkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 09:40:14 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB44D7522F;
+        Thu,  7 Apr 2022 06:38:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=8xUY+6z0XGg4FC1jk7TlBzJSYvpUJMRLP9Xa5YtemiU=;
+        b=U1pyT7hZfk7dG7ZtOMSE//6Ao5/Nqog+vbGZawaRtg6t6k7SMmr5zWUL36MQKpoNcsL4tvQ5BV+eI
+         WCGbEg2+6IR1W6NPv13IIJwE4g3u85kEThSlWzbOJU5JsMzuuCo/TGxywjW/wzjpP4GXN0giPuOfN+
+         VJqT7BuKmj5SBMMY7ts12swj6itCj+KUvxEPEB/6CMIQ61yDYB8WWUuTqjmwfTdjSv5br9QlaaibpY
+         M7dzOMYZJgkN0tA6UmnRLcNC2Ic9+nukNRLqbXPv5G+00fXSvekdXRCF2+wxblcHQ1PVXZaEg21sCi
+         dBphaB3uheTGxKOjAiGn+9nNLvcpwgA==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.2.1410, Stamp: 3], Multi: [Enabled, t: (0.000007,0.009301)], BW: [Enabled, t: (0.000019,0.000001)], RTDA: [Enabled, t: (0.075250), Hit: No, Details: v2.34.0; Id: 15.52kd6l.1g023tfl4.d7qj; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Thu, 7 Apr 2022 16:37:39 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>, mdf@kernel.org,
+        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+        conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, system@metrotek.ru,
+        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v9 0/3] Microchip Polarfire FPGA manager
+Date:   Thu,  7 Apr 2022 16:36:55 +0300
+Message-Id: <20220407133658.15699-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220407071006.37031-1-tony@atomide.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:10-20220407, Tony Lindgren wrote:
-> Document the dual-mode timers available on am6.
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  Documentation/devicetree/bindings/timer/ti,timer.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
-> --- a/Documentation/devicetree/bindings/timer/ti,timer.txt
-> +++ b/Documentation/devicetree/bindings/timer/ti,timer.txt
-> @@ -14,6 +14,7 @@ Required properties:
->  			ti,omap5430-timer (applicable to OMAP543x devices)
->  			ti,am335x-timer	(applicable to AM335x devices)
->  			ti,am335x-timer-1ms (applicable to AM335x devices)
-> +			ti,am6-timer (applicable to AM6 devices)
+Add support to the FPGA manager for programming Microchip Polarfire
+FPGAs over slave SPI interface with .dat formatted bitsream image.
 
-Suggestion:
+Changelog:
+  v1 -> v2: fix printk formating
+  v2 -> v3:
+   * replace "microsemi" with "microchip"
+   * replace prefix "microsemi_fpga_" with "mpf_"
+   * more sensible .compatible and .name strings
+   * remove unused defines STATUS_SPI_VIOLATION and STATUS_SPI_ERROR
+  v3 -> v4: fix unused variable warning
+    Put 'mpf_of_ids' definition under conditional compilation, so it
+    would not hang unused if CONFIG_OF is not enabled.
+  v4 -> v5:
+   * prefix defines with MPF_
+   * mdelay() -> usleep_range()
+   * formatting fixes
+   * add DT bindings doc
+   * rework fpga_manager_ops.write() to fpga_manager_ops.write_sg()
+     We can't parse image header in write_init() because image header
+     size is not known beforehand. Thus parsing need to be done in
+     fpga_manager_ops.write() callback, but fpga_manager_ops.write()
+     also need to be reenterable. On the other hand,
+     fpga_manager_ops.write_sg() is called once. Thus, rework usage of
+     write() callback to write_sg().
+  v5 -> v6: fix patch applying
+     I forgot to clean up unrelated local changes which lead to error on
+     patch 0001-fpga-microchip-spi-add-Microchip-MPF-FPGA-manager.patch
+     applying on vanilla kernel.
+  v6 -> v7: fix binding doc to pass dt_binding_check
+  v7 -> v8: another fix for dt_binding_check warning
+  v8 -> v9:
+   * add another patch to support bitstream offset in FPGA image buffer
+   * rework fpga_manager_ops.write_sg() back to fpga_manager_ops.write()
+   * move image header parsing from write() to write_init()
 
-Could we call this ti,am65-timer instead? AM6 is a bit nuanced and spans
-a couple of sub SoC architectures.
+Ivan Bornyakov (3):
+  fpga: fpga-mgr: support bitstream offset in image buffer
+  fpga: microchip-spi: add Microchip MPF FPGA manager
+  dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
 
->  
->  - reg:			Contains timer register address range (base address and
->  			length).
-> -- 
-> 2.35.1
+ .../fpga/microchip,mpf-spi-fpga-mgr.yaml      |  44 ++
+ drivers/fpga/Kconfig                          |  10 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/fpga-mgr.c                       |  48 ++-
+ drivers/fpga/microchip-spi.c                  | 379 ++++++++++++++++++
+ include/linux/fpga/fpga-mgr.h                 |   5 +
+ 6 files changed, 479 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/microchip-spi.c
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.25.1
+
+
