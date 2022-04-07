@@ -2,124 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 733CC4F847A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:01:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4DED4F8474
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:00:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231640AbiDGQDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 12:03:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59136 "EHLO
+        id S231719AbiDGQCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 12:02:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbiDGQDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 12:03:33 -0400
-X-Greylist: delayed 549 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 07 Apr 2022 09:01:31 PDT
-Received: from confino.investici.org (confino.investici.org [93.190.126.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8FD1DEC1B
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 09:01:31 -0700 (PDT)
-Received: from mx1.investici.org (unknown [127.0.0.1])
-        by confino.investici.org (Postfix) with ESMTP id 4KZ5VW3F8Pz119V;
-        Thu,  7 Apr 2022 15:52:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inventati.org;
-        s=stigmate; t=1649346739;
-        bh=YY96/+Dgd8fDn9ZCYrRnAua7OzxXAs/qOe2O/oagfE0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hB6yJ5dsD/HXR6OLOdl2z7fB8tBJwqAD4YRsMwnvfaXOTDNCiwSGbmsD0PrUHfkik
-         GU5Xaw1cazoAm8R0Nd5+/s/s9/SweR2DW4lfifAv9DE8Y2CyOEZgg3HoKJp5k9zRjA
-         ewoDJHelVgz9LiM1K+DbriZhS+KYeKO6dAqGUtrI=
-Received: from [93.190.126.19] (mx1.investici.org [93.190.126.19]) (Authenticated sender: rinni@inventati.org) by localhost (Postfix) with ESMTPSA id 4KZ5VW0Kj1z117n;
-        Thu,  7 Apr 2022 15:52:19 +0000 (UTC)
-From:   Philip Rinn <rinni@inventati.org>
-To:     robh+dt@kernel.org, krzk+dt@kernel.org, wens@csie.org,
-        jernej.skrabec@gmail.com, samuel@sholland.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Cc:     Philip Rinn <rinni@inventati.org>
-Subject: [PATCH v4] arm64: dts: allwinner: a64: olinuxino: Enable audio
-Date:   Thu,  7 Apr 2022 17:51:45 +0200
-Message-Id: <20220407155145.10891-1-rinni@inventati.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <4fc41278-c46c-6486-a336-f2a329bd6bd0@sholland.org>
-References: <4fc41278-c46c-6486-a336-f2a329bd6bd0@sholland.org>
+        with ESMTP id S230512AbiDGQCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 12:02:21 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929171CFF8F
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 09:00:20 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id n8so5365076plh.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 09:00:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6a4H8HV1J1GWRBIi4IGbWGv8XxIGXLwrXto7pFoaICI=;
+        b=6m9mi3vVxxLf3dcis67u5E5YSBGmN8iT0b28RQFOuZvE2djmgulr9ENEXauJ5+2Ewz
+         dVgvmRwzBaagyCHmpTjRZTq+RMx3ajYMcTd5XKFwJSErsWTwCewmFWr+zVy97GrNu3Mw
+         U6+SAPd25JkyWHARZES9Pk0Eie8wwXyNLhoyLUkgK/cf5vWcR8EfIw9n8aihvfFe6+we
+         btl9OU/KuGGB0fgAsDNL2zvH9O4z4bpzHvqTUb+ZANxHt2Z/k/QjpUW5tMMP7GAE5/RS
+         AB8hS/nr15x1+H5YElFKi+K9tlGF3bCIv9F0PN3xiFJ0la4ZMH1/L2sZ7uXoz0u5puRw
+         Tf7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6a4H8HV1J1GWRBIi4IGbWGv8XxIGXLwrXto7pFoaICI=;
+        b=5RmE1SHOwqXIfQT+JRnIlJmfpcHZHfc8P0hOOMTAIBmvQ8gLmY07Z/TKlgJ3pZCBev
+         3bJDM2qIPaYhBhQQMpPNX5/cMnE7V7CUkfI//WAhAs++wXt7WFxdrWGO0NHdOHTNGIVJ
+         6a2CWM0btX5pIBQzXSxUh/Mq0LN+090FX1icomAHFAD8W7JXLwhQ7ktIKdib9t2wSGip
+         EdU/RCMX93lyiy0UCYUlgkhGZKh9qOzFzMfMCukijW69j13PcSYXcz6faatbljSdsQnx
+         GfTuLzycEz5qZpqKNKmtJG4YXHlwvas30ehSIRxD2LraFBJtAiPt63FAX8RXihCGAGdn
+         WK6Q==
+X-Gm-Message-State: AOAM533QYRAd/djEKLATHe+S9EyV/CeVfyPO8M2LdNWEbwxE2F3t0Rcg
+        77fEiZxlXUy0/vJ57fCwgvqXDA==
+X-Google-Smtp-Source: ABdhPJwI5u1tLe7Koa1GVWuqpDc8QwpaIfxSQBk3a/zEQdqfjz6ZvDKCdBQ5iBGZfXI8BP+4wpd/+A==
+X-Received: by 2002:a17:90a:6945:b0:1cb:f39:5096 with SMTP id j5-20020a17090a694500b001cb0f395096mr5086624pjm.42.1649347220042;
+        Thu, 07 Apr 2022 09:00:20 -0700 (PDT)
+Received: from x1 ([2601:1c2:1001:7090:172d:8708:69ef:da3a])
+        by smtp.gmail.com with ESMTPSA id b7-20020a17090ae38700b001ca8947e73csm8949640pjz.0.2022.04.07.09.00.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 09:00:19 -0700 (PDT)
+Date:   Thu, 7 Apr 2022 09:01:06 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings
+ to json-schema
+Message-ID: <Yk8KwohcR3I3UzVp@x1>
+References: <20220407141750.2289293-1-dfustini@baylibre.com>
+ <27f5eed0-e59f-9441-4e2f-3a2c5d8dddad@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27f5eed0-e59f-9441-4e2f-3a2c5d8dddad@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the audio hardware on the Olimex A64-OLinuXino board family.
-Tested on the A64-OLinuXino-2Ge8G-IND variant.
+On Thu, Apr 07, 2022 at 05:18:25PM +0200, Krzysztof Kozlowski wrote:
+> On 07/04/2022 16:17, Drew Fustini wrote:
+> > Convert the wkup_m3_ipc bindings documentation to json-schema.
+> > 
+> > Link: https://lore.kernel.org/linux-arm-kernel/20220221125522.l3tntb6i7yjxp6vb@flattered/
+> > Suggested-by: Nishanth Menon <nm@ti.com>
+> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> > ---
+> >  .../bindings/soc/ti/wkup_m3_ipc.txt           | 57 -------------
+> >  .../bindings/soc/ti/wkup_m3_ipc.yaml          | 81 +++++++++++++++++++
+> 
+> Changes look good, thanks for fixing, although I forgot about one thing
+> - all other files are using 'hyphens' in file name, so please keep it
+> consistent with them.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Philip Rinn <rinni@inventati.org>
----
+Thank you for your fast responses. I've submitted v3.
 
-Changes in v2: added missing &sound {...} part
-Changes in v3: removed HDMI audio part as requested by Jernej Škrabec
-Changes in v4: right microphone jack is also biased on MBIAS
-
- arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts    | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-index ec7e2c0e82c1..6f2674bb1b7f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-@@ -58,6 +58,15 @@ wifi_pwrseq: wifi_pwrseq {
- 	};
- };
- 
-+&codec {
-+	status = "okay";
-+};
-+
-+&codec_analog {
-+	cpvdd-supply = <&reg_eldo1>;
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&reg_dcdc2>;
- };
-@@ -74,6 +83,10 @@ &cpu3 {
- 	cpu-supply = <&reg_dcdc2>;
- };
- 
-+&dai {
-+	status = "okay";
-+};
-+
- &de {
- 	status = "okay";
- };
-@@ -328,6 +341,23 @@ &simplefb_hdmi {
- 	vcc-hdmi-supply = <&reg_dldo1>;
- };
- 
-+&sound {
-+	simple-audio-card,aux-devs = <&codec_analog>;
-+	simple-audio-card,widgets = "Microphone", "Microphone Jack Left",
-+		    "Microphone", "Microphone Jack Right",
-+		    "Headphone", "Headphone Jack";
-+	simple-audio-card,routing = "Left DAC", "DACL",
-+		    "Right DAC", "DACR",
-+		    "Headphone Jack", "HP",
-+		    "ADCL", "Left ADC",
-+		    "ADCR", "Right ADC",
-+		    "Microphone Jack Left", "MBIAS",
-+		    "MIC1", "Microphone Jack Left",
-+		    "Microphone Jack Right", "MBIAS",
-+		    "MIC2", "Microphone Jack Right";
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
--- 
-2.34.1
-
+-Drew
