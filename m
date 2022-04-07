@@ -2,84 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB9E74F7CB1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 12:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1AE74F7CC7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 12:30:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243636AbiDGK2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 06:28:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35080 "EHLO
+        id S237683AbiDGKcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 06:32:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244236AbiDGK2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 06:28:35 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9C89E972DC;
-        Thu,  7 Apr 2022 03:26:29 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 110738125;
-        Thu,  7 Apr 2022 10:24:06 +0000 (UTC)
-Date:   Thu, 7 Apr 2022 13:26:27 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] clocksource/drivers/timer-ti-dm: Update defines for
- am6 for inline functions
-Message-ID: <Yk68U6Kbs/ws42f8@atomide.com>
-References: <20220407071006.37031-1-tony@atomide.com>
- <20220407071006.37031-2-tony@atomide.com>
- <9671f0a5-6860-8a75-d65e-345ce890cd88@linaro.org>
- <Yk6drKxwOSVdrKp+@atomide.com>
- <7f3cbdf3-401c-6c30-20fa-b5121bd3f63d@linaro.org>
- <Yk6mb1HjEH4H/b7p@atomide.com>
+        with ESMTP id S244263AbiDGKcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 06:32:32 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A18739161
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 03:30:29 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 672878309E;
+        Thu,  7 Apr 2022 12:30:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649327427;
+        bh=wKaSOVMfBXk7LVywQAIXVp9+bsEotQwz0GMnZnKdIg4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=P5bUmAL/bFiza2SbLLU9gVaTzyV1Ap0RD/KRANPZE02Zb7Jmji7iMncxO+gHrbxcy
+         Vw8PoH76O9zIBkiHDy5qUTMelX7o0jBDo2wIc9Hj29VJV6xRJ/pj5Lw0PycE4+hOdh
+         9jrmJQDoPnaIgO26HgbSjvWlSNjK9tmQ+CL+l/6gKDLwmPewZD4mN/0hbFrKEipYK8
+         UzwWmjqXzCeputkalM7j3M5b9vQwVkwAbDi1Sg1sBfuQkh+E4xJbYSBR3xgMrppYyd
+         ju2VTQsO+AAiUEh3MKwlCXkvdgwfBsO5PK5nLePLqC5NM1K5WQ/2IZW2vmbn+18UDq
+         9kgABnBbVClhw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Anson Huang <Anson.Huang@nxp.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: nvmem: snvs-lpgpr: Add i.MX8M compatible strings
+Date:   Thu,  7 Apr 2022 12:30:16 +0200
+Message-Id: <20220407103016.16543-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yk6mb1HjEH4H/b7p@atomide.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tony Lindgren <tony@atomide.com> [220407 08:50]:
-> * Daniel Lezcano <daniel.lezcano@linaro.org> [220407 08:23]:
-> > On 07/04/2022 10:15, Tony Lindgren wrote:
-> > > * Daniel Lezcano <daniel.lezcano@linaro.org> [220407 08:01]:
-> > > > On 07/04/2022 09:10, Tony Lindgren wrote:
-> > > > > @@ -251,7 +251,8 @@ int omap_dm_timers_active(void);
-> > > > >     * The below are inlined to optimize code size for system timers. Other code
-> > > > >     * should not need these at all.
-> > > > >     */
-> > > > > -#if defined(CONFIG_ARCH_OMAP1) || defined(CONFIG_ARCH_OMAP2PLUS)
-> > > > > +#if defined(CONFIG_ARCH_OMAP1) || defined(CONFIG_ARCH_OMAP2PLUS) || \
-> > > > > +	defined(CONFIG_ARCH_K3)
-> > > > 
-> > > > Why not replace the above by CONFIG_OMAP_DM_TIMER ?
-> > > 
-> > > Hmm that's a good question for why it was not that way earlier.
-> > > 
-> > > This series changes things for tristate "OMAP dual-mode timer driver" if
-> > > ARCH_K3 || COMPILE_TEST though. So the inline stubs are still needed for
-> > > COMPILE_TEST it seems.
-> > 
-> > But if ARCH_K3 or COMPILE_TEST is set, CONFIG_DM_TIMER is also set, no?
-> 
-> Right but I suspect that COMPILE_TEST will produce a build error on other
-> architectures. I need to check that though, maybe that is no longer the
-> case.
+Add compatible strings for i.MX8M(Q), i.MX8M Mini, i.MX8M Nano, i.MX8M Plus.
+All these SoCs have the SNVS LPGPR registers and they are at the same offset
+as on i.MX7D.
 
-We could use IS_ENABLED(CONFIG_OMAP_DM_TIMER), but looks like we can now
-just move the __omap_dm_timer_* inline functions to timer-ti-dm.c instead.
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Anson Huang <Anson.Huang@nxp.com>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Oleksij Rempel <linux@rempel-privat.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+ Documentation/devicetree/bindings/nvmem/snvs-lpgpr.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I'll do that and repost after some testing.
+diff --git a/Documentation/devicetree/bindings/nvmem/snvs-lpgpr.yaml b/Documentation/devicetree/bindings/nvmem/snvs-lpgpr.yaml
+index c819f0e903209..e374aa7891ae7 100644
+--- a/Documentation/devicetree/bindings/nvmem/snvs-lpgpr.yaml
++++ b/Documentation/devicetree/bindings/nvmem/snvs-lpgpr.yaml
+@@ -15,6 +15,10 @@ properties:
+       - fsl,imx6q-snvs-lpgpr
+       - fsl,imx6ul-snvs-lpgpr
+       - fsl,imx7d-snvs-lpgpr
++      - fsl,imx8mm-snvs-lpgpr
++      - fsl,imx8mn-snvs-lpgpr
++      - fsl,imx8mp-snvs-lpgpr
++      - fsl,imx8mq-snvs-lpgpr
+ 
+ required:
+   - compatible
+-- 
+2.35.1
 
-Regards,
-
-Tony
