@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D764F8875
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 22:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD6564F8887
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 22:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiDGUaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 16:30:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        id S229730AbiDGUa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 16:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiDGUaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:30:03 -0400
+        with ESMTP id S229655AbiDGUa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:30:26 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5F3D4488BC2
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 13:14:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 57F45488CC3
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 13:14:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1649362441;
+        s=mimecast20190719; t=1649362449;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=3ubm6YFhYAC6YInMSbu5d7oAdD3benT+KYPcFzTrtvY=;
-        b=JqudqxJCNnY7aPxqUFDgPfRyySE3yMd95yEZh9DmBNFmnaB6TZUrDMVVWb19klfehlf89i
-        0kFALsc5WMVYKu1b7V/3+rImbkUwKGzwVSy0jDDAGaJYzyghA2v0oUoLmDKXrj76WhPcmD
-        hfOKUoDC1igZgfkFDblw80IyqhzwkTs=
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=6ujVDZk4U6RzShQ/rIDRVpIv+f7MFQZhzBrH2NX9HlA=;
+        b=cPKtw1A1OeiDPilpaBVOTQ17rwePe2jR9Ai8on/DXhip3ZDTbTGtWd1ytU6sJ9gJzhoV3n
+        QnkCXUaJRuyMaerIC4jrqvVMbT60NoR32Iu34ZsAw+ZRObrBxfYidNB+OFNoM1qZE29UY8
+        ACqXld4fRwDUe4gaL8zj2i8qOQzsLyc=
 Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
  [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-102-Z0jiCtOiPWOdrK1XlZLSlw-1; Thu, 07 Apr 2022 16:02:59 -0400
-X-MC-Unique: Z0jiCtOiPWOdrK1XlZLSlw-1
-Received: by mail-wm1-f69.google.com with SMTP id r19-20020a7bc093000000b0038e706da7c0so3443758wmh.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 13:02:59 -0700 (PDT)
+ us-mta-463-NN-vqGRJOxOe-B7GUy3IhA-1; Thu, 07 Apr 2022 16:03:01 -0400
+X-MC-Unique: NN-vqGRJOxOe-B7GUy3IhA-1
+Received: by mail-wm1-f69.google.com with SMTP id i184-20020a1c3bc1000000b0038e4c5968b5so5039273wma.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 13:03:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3ubm6YFhYAC6YInMSbu5d7oAdD3benT+KYPcFzTrtvY=;
-        b=d3aaQZirE8lJmQsh7jw6VcJuO1yMsEK74bNlILoXNngDv9oOBXVQ816wvVl9JY6Bp1
-         lPcbAyU3LuXvRFNBGEHEXbI0U+8sXm5J+AEXp3YW0z8Qn9vLAj58F9vTiqTzf+QLWPlI
-         NxrMJfT2kDz/GW+NXRFBbLUai1EpUmgBM5yLSm4JUgDJNvEvthAQ9FH9RjvSeo8qGWeX
-         YQCywWGdkOcvdQihTq2RZoUiI/+653PtWpFmg0xbid5gZsnD05rV882T/hZ+OnPsDXDL
-         jqfgxcAB72wKHGWOotzKhKdCRGBPSwFFLl7fgjsZnFoFmVOIj6VBDPu5Iqa+41OP0dti
-         qing==
-X-Gm-Message-State: AOAM533uYn8V9Xkp+oFKPzG0VyKp4TB0VP4nwjqopo4NMQ3PPBS+r+3O
-        jc3B0vKNbS6hmNxyTc4i/CJyFTqFg+4sx1MBX7VmJ1km+00Ecp+wA5OJaF2pKS7Y7/JdaV8/RbC
-        O1HBj/SsTAnE/HXdUfVLiuQ==
-X-Received: by 2002:a05:600c:3c8c:b0:38e:4c59:6852 with SMTP id bg12-20020a05600c3c8c00b0038e4c596852mr13621688wmb.194.1649361778334;
-        Thu, 07 Apr 2022 13:02:58 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJysWMrIHnSxlQAqg6ZsL9nRoRIt6fyQo/+UTGcvFjw2Wl1wRNhCzVnqbJMc1z8BK0S49w+MJg==
-X-Received: by 2002:a05:600c:3c8c:b0:38e:4c59:6852 with SMTP id bg12-20020a05600c3c8c00b0038e4c596852mr13621668wmb.194.1649361778123;
-        Thu, 07 Apr 2022 13:02:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6ujVDZk4U6RzShQ/rIDRVpIv+f7MFQZhzBrH2NX9HlA=;
+        b=M8T9NA10X/UvgZh+TOAMeW37a/c1plEmNlLEsmm3Rh0YNsnYOx019NBzc3bSWK2Zpk
+         GvzWFP9OCXNUDJqRq1IG+W0euWSAYhNI3rqxuzlNiGj/vV2GuNeESer3/zyw6NUg88lI
+         mmOkW3lRHzxCP5GyW44sUYkvm1C4fvERzOJ+Zt0P5JKXOq691h25pAXepdp3wIYSDhNO
+         Sx244Gkcjj/GAHAIBbjTGtKoXRs+tRkZuym8Z60tOKtlxmJFiuKaP33/D6jl7UZVn7yW
+         SlpfuJMxVLxb6KSdotZczr4aXI8TKwvCLEx290j+T8UoxWrnOggtRsg+SmPQjL/fKcFE
+         9gcg==
+X-Gm-Message-State: AOAM531NoPMWouYzfDeA7kqo1+bPJHUM+rUfiG3IbHiZLovmEKW6TtSN
+        3nH3t+KQ6gSAV8avN1nsRjdZtuG23ZBtgW9znlX31SNOXJ+Jtxzxi+Kfms8afCY1DdZfSF9Ha3p
+        vcmwjF5laEM0wyT5NCeSrcQ==
+X-Received: by 2002:a7b:cd1a:0:b0:38c:720a:a123 with SMTP id f26-20020a7bcd1a000000b0038c720aa123mr13899239wmj.5.1649361779739;
+        Thu, 07 Apr 2022 13:02:59 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyVyONRQEvtL645zP8TFrYruvkYYBDs16vpp3BQmLOliyy4X90HgJIz+51Rgv9qnGmJHkP1ig==
+X-Received: by 2002:a7b:cd1a:0:b0:38c:720a:a123 with SMTP id f26-20020a7bcd1a000000b0038c720aa123mr13899228wmj.5.1649361779545;
+        Thu, 07 Apr 2022 13:02:59 -0700 (PDT)
 Received: from minerva.home ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id f15-20020a0560001a8f00b002078f74ccd2sm1048712wry.36.2022.04.07.13.02.57
+        by smtp.gmail.com with ESMTPSA id f15-20020a0560001a8f00b002078f74ccd2sm1048712wry.36.2022.04.07.13.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 13:02:57 -0700 (PDT)
+        Thu, 07 Apr 2022 13:02:59 -0700 (PDT)
 From:   Javier Martinez Canillas <javierm@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     dri-devel@lists.freedesktop.org,
@@ -61,17 +62,17 @@ Cc:     dri-devel@lists.freedesktop.org,
         Geert Uytterhoeven <geert@linux-m68k.org>,
         Mark Brown <broonie@kernel.org>,
         Javier Martinez Canillas <javierm@redhat.com>,
-        Chen-Yu Tsai <wens@csie.org>, Daniel Vetter <daniel@ffwll.ch>,
+        Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@linux.ie>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
         Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        YueHaibing <yuehaibing@huawei.com>, devicetree@vger.kernel.org
-Subject: [PATCH 0/5] drm/solomon: Add SSD130x OLED displays SPI support
-Date:   Thu,  7 Apr 2022 22:01:59 +0200
-Message-Id: <20220407200205.28838-1-javierm@redhat.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev compatible strings
+Date:   Thu,  7 Apr 2022 22:02:00 +0200
+Message-Id: <20220407200205.28838-2-javierm@redhat.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220407200205.28838-1-javierm@redhat.com>
+References: <20220407200205.28838-1-javierm@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -85,51 +86,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+The current compatible strings for SSD130x I2C controllers contain an -fb
+suffix, this seems to indicate that are for a fbdev driver. But the DT is
+supposed to describe the hardware and not Linux implementation details.
 
-This series adds a ssd130x-spi driver that provides a 4-wire SPI transport
-support for SSD130x OLED controllers that can be accessed through a SPI.
+Let's deprecate those compatible strings and add a new enum that contains
+compatible strings that don't have a -fb suffix. These will be matched by
+the ssd130x-i2c DRM driver.
 
-The driver is quite similar to existing ssd130x-i2c driver that is used by
-I2C controllers, but there is a difference in the protocol used by SSD130x
-depending on the transport used. The details are in patch #4 description.
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+---
 
-Patch #1 just makes the current ssd130x-i2c compatible strings in the DT
-binding to be deprecated, and add new ones that don't have an -fb suffix.
+ .../bindings/display/solomon,ssd1307fb.yaml   | 36 ++++++++++++-------
+ 1 file changed, 24 insertions(+), 12 deletions(-)
 
-Patch #2 extends the DT binding with the compatible string and properties
-needed to support the ssd130x-spi devices.
-
-Patch #3 adds the new compatible strings to the OF device ID table in the
-ssd130x-i2c DRM driver.
-
-Patch #4 moves the device info for the different SSD130x variants from
-the ssd130x-i2c transport driver to the ssd130x core driver.
-
-Finally patch #5 adds the ssd130x-spi DRM driver for the OLED controllers
-that come with a 4-wire SPI interface, instead of an I2C interface.
-
-Best regards,
-Javier
-
-
-Javier Martinez Canillas (5):
-  dt-bindings: display: ssd1307fb: Deprecate fbdev compatible strings
-  dt-bindings: display: ssd1307fb: Extend schema for SPI controllers
-  drm/solomon: Add ssd130x-i2c compatible strings without an -fb suffix
-  drm/solomon: Move device info from ssd130x-i2c to the core driver
-  drm/solomon: Add SSD130x OLED displays SPI support
-
- .../bindings/display/solomon,ssd1307fb.yaml   | 117 ++++++++---
- drivers/gpu/drm/solomon/Kconfig               |   9 +
- drivers/gpu/drm/solomon/Makefile              |   1 +
- drivers/gpu/drm/solomon/ssd130x-i2c.c         |  60 +++---
- drivers/gpu/drm/solomon/ssd130x-spi.c         | 184 ++++++++++++++++++
- drivers/gpu/drm/solomon/ssd130x.c             |  60 +++++-
- drivers/gpu/drm/solomon/ssd130x.h             |  13 ++
- 7 files changed, 376 insertions(+), 68 deletions(-)
- create mode 100644 drivers/gpu/drm/solomon/ssd130x-spi.c
-
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+index ade61d502edd..46207f2c12b8 100644
+--- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
++++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+@@ -12,12 +12,24 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - sinowealth,sh1106-i2c
+-      - solomon,ssd1305fb-i2c
+-      - solomon,ssd1306fb-i2c
+-      - solomon,ssd1307fb-i2c
+-      - solomon,ssd1309fb-i2c
++    oneOf:
++      # Deprecated compatible strings
++      - items:
++          - enum:
++              - solomon,ssd1305fb-i2c
++              - solomon,ssd1306fb-i2c
++              - solomon,ssd1307fb-i2c
++              - solomon,ssd1309fb-i2c
++        deprecated: true
++
++      # SSD130x I2C controllers
++      - items:
++          - enum:
++              - sinowealth,sh1106-i2c
++              - solomon,ssd1305-i2c
++              - solomon,ssd1306-i2c
++              - solomon,ssd1307-i2c
++              - solomon,ssd1309-i2c
+ 
+   reg:
+     maxItems: 1
+@@ -148,7 +160,7 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: solomon,ssd1305fb-i2c
++            const: solomon,ssd1305-i2c
+     then:
+       properties:
+         solomon,dclk-div:
+@@ -160,7 +172,7 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: solomon,ssd1306fb-i2c
++            const: solomon,ssd1306-i2c
+     then:
+       properties:
+         solomon,dclk-div:
+@@ -172,7 +184,7 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: solomon,ssd1307fb-i2c
++            const: solomon,ssd1307-i2c
+     then:
+       properties:
+         solomon,dclk-div:
+@@ -186,7 +198,7 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: solomon,ssd1309fb-i2c
++            const: solomon,ssd1309-i2c
+     then:
+       properties:
+         solomon,dclk-div:
+@@ -203,14 +215,14 @@ examples:
+             #size-cells = <0>;
+ 
+             ssd1307: oled@3c {
+-                    compatible = "solomon,ssd1307fb-i2c";
++                    compatible = "solomon,ssd1307-i2c";
+                     reg = <0x3c>;
+                     pwms = <&pwm 4 3000>;
+                     reset-gpios = <&gpio2 7>;
+             };
+ 
+             ssd1306: oled@3d {
+-                    compatible = "solomon,ssd1306fb-i2c";
++                    compatible = "solomon,ssd1306-i2c";
+                     reg = <0x3c>;
+                     pwms = <&pwm 4 3000>;
+                     reset-gpios = <&gpio2 7>;
 -- 
 2.35.1
 
