@@ -2,126 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B767A4F7E57
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 13:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7674F7E67
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 13:51:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238791AbiDGLuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 07:50:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45926 "EHLO
+        id S238953AbiDGLxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 07:53:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238581AbiDGLuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 07:50:10 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2DF7190585
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 04:48:09 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id bi13-20020a05600c3d8d00b0038c2c33d8f3so5472880wmb.4
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 04:48:09 -0700 (PDT)
+        with ESMTP id S232177AbiDGLxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 07:53:36 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC26160FF2;
+        Thu,  7 Apr 2022 04:51:36 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id x33so2724532lfu.1;
+        Thu, 07 Apr 2022 04:51:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WFekK56Gey0nwjwSFnx0O6aDoHsXBZvzYZ5aCHEoU+Q=;
-        b=fss10bR3bROT9qAiIjftMdGUyAxbS+hSjahXvNa5oNK2t0r3zNv6qqfpEvqMoMFIIu
-         i6dxHsLbYmyBPl+8V3FtoKhIH+Qn7OXwxa1lNCG3cU0t3Bki5wkDHOTqFMOciHPI+W4M
-         iN5DDZ3IDi8rkB/V928MqOmRTxXHgGNhiP+X2iIDuBjG36g2gzSR8bze17fdd+LJq15W
-         J4MhVSBGJpme302mRdlm90AKGhQ6F/WvPMdPaKdwerzYTDHlR85+NTUdy6VXuHnjg9W9
-         Jlwpt3rRR265vssH0rVpHuPgTE2EwEL+ciWi7xErcTTtMzWPYZNLVpZ/SOuxTwOWOr0E
-         QGuw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=u09dbr2J3kWX6uA8quc83UCris5KYtbTqkYaBN/TfUU=;
+        b=DlgvL2jitqBXAHqL63GXHMC94DMVkHePzuUlrAHuCFdMzJk4kSksdZrV4qFeJ2PCyk
+         UQ5xSmIlkrc24HW7n4GZJbpCoNolVH376u2SGitmiPhWZvQurmZtX7Sti77gFmnNq61P
+         wTMutTkRpUyT00Bvpl+mhLMjOOpbNvDbuda28cM+pmjbxSiY9IyytWPdgYHl+N8JTaqO
+         xyT2TyPzPbDtw7npit4w2Ve5YIRd4MhDBWTKBcwKuuEL8rb+MAsZgBk+i9g6T8iziM6t
+         G9yrPvd/VnAAp9Wle0s+G1BsbF0YlbywsTZJJ6w4oZAPMXs2CdoxZhwN34YPJScZeGMA
+         vzsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=WFekK56Gey0nwjwSFnx0O6aDoHsXBZvzYZ5aCHEoU+Q=;
-        b=erOE9K94t4ed10QkPvgfiEvDz4E68uQvB8EKaUc+X/IGUmin/nBNMa2yakHm8eLRi5
-         P12SBdJOriYr3tg/+F/cSkjcLN8uqWZVAHht6dEVMbIIws+2XHmPIj8Gw5d5L413mKKM
-         kMDWJE7vRmmrZ1fjL9A6nXMi18Ay9kGb90di1acg+x3uie2suBgzUkGeRxbZ4vGR6Kwi
-         T6IgFAHIkw/8dGwpR70ox8xPyDq9pdiE/BJmZbAiZs/++HuNHQZxuSbfhKyVKxL/Azrq
-         L/bBLVyiBYAKv9fU2nE4qNA+jW6rTpcJhoXn21eWQsb4cA1LOphuQSYrZcRJPFaTYCdZ
-         etyg==
-X-Gm-Message-State: AOAM53194v31OnI7N6lOEAJTMqQF21cpnCZnCcsTMkhEHthEB3ow5daP
-        b8lIG/qC1AqLJ2qiJZaPROYoVw==
-X-Google-Smtp-Source: ABdhPJwoMdNeuU1YCgrz1ayp3i5UQaxt1w9dTjtvLwbtPi6o+Kryz3m3ioMA0Tes3nKunn+xCVFdZA==
-X-Received: by 2002:a05:600c:1d9b:b0:38c:af70:9998 with SMTP id p27-20020a05600c1d9b00b0038caf709998mr12025660wms.169.1649332088181;
-        Thu, 07 Apr 2022 04:48:08 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ed2f:f020:f2a2:7d81:4e67:6c1c? ([2a01:e34:ed2f:f020:f2a2:7d81:4e67:6c1c])
-        by smtp.googlemail.com with ESMTPSA id f8-20020a5d50c8000000b002061622ec88sm9037808wrt.105.2022.04.07.04.48.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 04:48:07 -0700 (PDT)
-Message-ID: <e2a50981-9d11-35ee-c7db-a5796a027099@linaro.org>
-Date:   Thu, 7 Apr 2022 13:48:05 +0200
+        bh=u09dbr2J3kWX6uA8quc83UCris5KYtbTqkYaBN/TfUU=;
+        b=Qtegu+vRntD+XoblPWOHy5s+eqjre1SD4n8rHWs7zAihT2BvKuDGQ964FDhNS6WetX
+         mkAPyAO7whSpFbZ+tS40y/Dt3jaaGS/G45Grp4jOu0G9hhpHKyMxKPcvN4x6G9IZECD6
+         uT0iZCME6j3tzrozKJpGaR32wFmspNh3aOxRIGcedtyFGH/Z9sM77v75NkepoPfbvKOH
+         g1XEFjJ7pGmVtea+fhFFxEhRtO0xSTYzSvZrthSESPBnShBDALPKhseqzaZ9XaohD0V0
+         gdd5i7MgtH7DkGI4UYxH7FUdQIfKqiuOHvBCoSKW9UFbd19cfpBE3QrPrdUtMsmy/JZK
+         +LSQ==
+X-Gm-Message-State: AOAM531j8dLTRI1o2Ge3HpaJvRGxeMOHHCyMvzc6ZYJXzGyvVgVPwvIh
+        FWOYnbY1qFdYUMVVtxJY6Ml8rEvdvVQ=
+X-Google-Smtp-Source: ABdhPJx8jP2VaJwm1llTHyjsLGBW8X2d60KjIl5HU4kD4ZNMB1nzwljTIx+roRV8Pq54FTREvarmmQ==
+X-Received: by 2002:a05:6512:2210:b0:44a:d493:bb9c with SMTP id h16-20020a056512221000b0044ad493bb9cmr9110087lfu.3.1649332294248;
+        Thu, 07 Apr 2022 04:51:34 -0700 (PDT)
+Received: from nergzd-desktop.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id i16-20020a198c50000000b0044a2580a2d3sm2143666lfj.156.2022.04.07.04.51.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 04:51:33 -0700 (PDT)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] Make AUX gpio pin optional for ktd2692
+Date:   Thu,  7 Apr 2022 14:51:23 +0300
+Message-Id: <20220407115126.69293-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 2/4] clocksource/drivers/timer-ti-dm: Update defines for
- am6 for inline functions
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220407071006.37031-1-tony@atomide.com>
- <20220407071006.37031-2-tony@atomide.com>
- <9671f0a5-6860-8a75-d65e-345ce890cd88@linaro.org>
- <Yk6drKxwOSVdrKp+@atomide.com>
- <7f3cbdf3-401c-6c30-20fa-b5121bd3f63d@linaro.org>
- <Yk6mb1HjEH4H/b7p@atomide.com> <Yk68U6Kbs/ws42f8@atomide.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <Yk68U6Kbs/ws42f8@atomide.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 12:26, Tony Lindgren wrote:
-> * Tony Lindgren <tony@atomide.com> [220407 08:50]:
->> * Daniel Lezcano <daniel.lezcano@linaro.org> [220407 08:23]:
->>> On 07/04/2022 10:15, Tony Lindgren wrote:
->>>> * Daniel Lezcano <daniel.lezcano@linaro.org> [220407 08:01]:
->>>>> On 07/04/2022 09:10, Tony Lindgren wrote:
->>>>>> @@ -251,7 +251,8 @@ int omap_dm_timers_active(void);
->>>>>>      * The below are inlined to optimize code size for system timers. Other code
->>>>>>      * should not need these at all.
->>>>>>      */
->>>>>> -#if defined(CONFIG_ARCH_OMAP1) || defined(CONFIG_ARCH_OMAP2PLUS)
->>>>>> +#if defined(CONFIG_ARCH_OMAP1) || defined(CONFIG_ARCH_OMAP2PLUS) || \
->>>>>> +	defined(CONFIG_ARCH_K3)
->>>>>
->>>>> Why not replace the above by CONFIG_OMAP_DM_TIMER ?
->>>>
->>>> Hmm that's a good question for why it was not that way earlier.
->>>>
->>>> This series changes things for tristate "OMAP dual-mode timer driver" if
->>>> ARCH_K3 || COMPILE_TEST though. So the inline stubs are still needed for
->>>> COMPILE_TEST it seems.
->>>
->>> But if ARCH_K3 or COMPILE_TEST is set, CONFIG_DM_TIMER is also set, no?
->>
->> Right but I suspect that COMPILE_TEST will produce a build error on other
->> architectures. I need to check that though, maybe that is no longer the
->> case.
-> 
-> We could use IS_ENABLED(CONFIG_OMAP_DM_TIMER), but looks like we can now
-> just move the __omap_dm_timer_* inline functions to timer-ti-dm.c instead.
-> 
-> I'll do that and repost after some testing.
+Some appliances of ktd2692 don't have the AUX pin connected to
+a GPIO. Specifically, Samsung Galaxy J5 (2015), which uses ktd2692
+for driving the front flash LED, has the pin not connected anywhere on
+schematics. Make specifying the AUX pin optional, since it is additional
+functionality and only affects amount of current going through the LED.
 
-Even better :)
+Also convert the txt device-tree bindings to yaml and pick up maintainership
+over the yaml binding and the driver itself.
 
+v2:
+- fix the dt_binding_check
+v3:
+- set the aux_gpio to NULL to avoid passing ERR_PTR as a gpio
+
+Markuss Broks (2):
+  dt-bindings: leds: convert ktd2692 bindings to yaml
+  leds: ktd2692: Make aux-gpios optional
+
+ .../bindings/leds/kinetic,ktd2692.yaml        | 87 +++++++++++++++++++
+ .../devicetree/bindings/leds/leds-ktd2692.txt | 50 -----------
+ MAINTAINERS                                   |  6 ++
+ drivers/leds/flash/leds-ktd2692.c             | 18 ++--
+ 4 files changed, 103 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-ktd2692.txt
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.35.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
