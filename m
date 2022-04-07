@@ -2,185 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38FD04F784F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 962B24F7853
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232102AbiDGH51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 03:57:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
+        id S242410AbiDGH6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:58:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242391AbiDGH50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:57:26 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEB71140BE
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:55:26 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id w18so5371038edi.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:55:26 -0700 (PDT)
+        with ESMTP id S242605AbiDGH6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:58:15 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F658FE7E
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:56:15 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id dr20so9057492ejc.6
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:56:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=uWgB1TPWrG17Im7IPZMnLsPtOW+zyWLCGeaLXICJLyk=;
-        b=rqgldnAzVueo5sDBj0XN11SiGwiV3OIN4Fqm3AYvyt+IRI1LjUacj9rXLO6kHazqsA
-         piNOEs1wHY1jdizJV0YvZ1PyOLysD3AO4RqQGiepnSmU4t+t437qRGzr2ZOgwDLNLzwM
-         Bcchvq3w4saU30mpm1HLJgrlSttDgOUSWJ5ht7KvI5e5PntidMkdODobYOvN8PGt9w6M
-         uJXZgtAhuDZ2REFBm5vzYlcMa5ihnyf2YfBudGwJoZktsFaZbJf5lFYGtA7MMsd3hEJD
-         3lwM/icCIiOlpVQFF0IzFuzkQohsS1DnGDXYfJG6/zno0dI+PXrKPRcfHL/IMK24o4mD
-         JpoQ==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=6WVPzKa/oVSlY6ElApmVDHPgbstzzKBIJ8ZBSGYPUNI=;
+        b=Bj8U5eCDAIDu0L5hyu3KEs6U6RpCe1XAprdw8cbYuwKLMScU8eUlTzgA/QkrR28zzs
+         BSoZwd5cDihHE8xqLqS5+3fKf2ZToq2sT8fywPitz4yVNC1ZexjA4Kvp84C5s0sxCKcz
+         6AQ4XVMjBX1qdrfAVVSq+IV19Gqyzf0RgEdoUnaWylNOIwEJQ2HwWNa22u9sG2E2f7Rn
+         ofTGgB9m9GSl2IvlW+4htIveFVtfb1nvSzwfzn8W+t8EaO+G0xf0Vsi36EejXf36F/Lj
+         picDldHzISN5NBnrqIBB1Rct70iUZj709NEB/ONHDD6id0DuoXQyvy630AUWtqQJzujU
+         BBMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uWgB1TPWrG17Im7IPZMnLsPtOW+zyWLCGeaLXICJLyk=;
-        b=3NW4MSlxzXl1iA3tMziWIohX7yPUyRuHzL9hrQy5Gq7orYHXdtxdyG2ylS/75iBZsP
-         XhLhR+jDAwBrX5+0eZOAlq0KaZxipIDGV3u0aoCjZQEX88a9MVsCV1SDHDrOMBqyLIQa
-         3D3HR4nJodrEI7h5srAwa9tU4CXMSEF+nqR4LXTbWB5lDPAyWHBLNlrmMisyMkvbRFK/
-         YI3kNkpzocDqEYuE0Q+IBTehWpcNjZM0+X/bBUGQJ7AQc4OY+pwryJgZzFS52w50DqlF
-         pVLTorSzUU5u9dWBxC1b4yraqBqhm1L20hUaHY5lqht4qJMHE9kvDEirxDs01ThVQGLm
-         C50A==
-X-Gm-Message-State: AOAM531ul455rbIW7K805isPMwcs51r6w+sAkYq13xpb4e6HGttMBkPD
-        yKEvNcPDrOhxqWDouq+mlVvk0TfyUfFpO18i
-X-Google-Smtp-Source: ABdhPJy/47fiNsQ6b10hGrkNQmi52hrmZo3QD/pTkUnCM3VFv1gV2ZTqhrM+rp2O/ww0tg4Cs0KmKg==
-X-Received: by 2002:a05:6402:268a:b0:419:e9cb:f62d with SMTP id w10-20020a056402268a00b00419e9cbf62dmr13051173edd.194.1649318123332;
-        Thu, 07 Apr 2022 00:55:23 -0700 (PDT)
+        bh=6WVPzKa/oVSlY6ElApmVDHPgbstzzKBIJ8ZBSGYPUNI=;
+        b=sXWCa9BzZ+Wn7bUpzLfSJ+SKonUDPnJ9iR5yAisbjtSU4B6VzfTUuF29GfMzqNjb3r
+         60GsIdJG8kzq/7nRrqvRm0QYoN40GQrz1WOfEPOtDR4tnSDL8K6Kje28EQ+NsLwW7Nrh
+         cvLaiVmUWiRq3ieGUzz5YcBl7cHWFLnutyo2xiNnII+9Fld2147LOz4A8h7ldIgwKSJf
+         yxMA4LxHpRsFKemAvUADyUVb9iZbIAJ8u5j0R42cZoeUzLJgKAIJj16Py+CTDoZXZCis
+         VKVmZKkwDTcjoHUhggDyRBvmE1b0IWiQ6hknX2fSTs2qz9Gc4lyLlQFG3LoQUGSn+1Kt
+         cNVg==
+X-Gm-Message-State: AOAM530SkTcvXgoz1Bs5UhRPzQtQ3mIN8xzXg2ma9t1TUzRrCrQFyzwi
+        jCFOYD5lERvtvVqtxPRmg9+t8A==
+X-Google-Smtp-Source: ABdhPJyfkGckurrNepv72gk9ruBCms6U9TvOyrtxxR81N7ay+ksnAyIXhy330FBRomO7hIbsVQMN6A==
+X-Received: by 2002:a17:906:f85:b0:6d6:e97b:d276 with SMTP id q5-20020a1709060f8500b006d6e97bd276mr11809288ejj.431.1649318174105;
+        Thu, 07 Apr 2022 00:56:14 -0700 (PDT)
 Received: from [192.168.0.185] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id za11-20020a170906878b00b006e7f5d17d4dsm3994155ejb.140.2022.04.07.00.55.22
+        by smtp.gmail.com with ESMTPSA id qk30-20020a1709077f9e00b006dfae33d969sm7409359ejc.216.2022.04.07.00.56.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 00:55:22 -0700 (PDT)
-Message-ID: <e9e3a689-fafd-62e8-9e17-1f15445228cd@linaro.org>
-Date:   Thu, 7 Apr 2022 09:55:21 +0200
+        Thu, 07 Apr 2022 00:56:13 -0700 (PDT)
+Message-ID: <04b5c481-8801-7d56-54ad-beb10bba07d2@linaro.org>
+Date:   Thu, 7 Apr 2022 09:56:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings to
- json-schema
+Subject: Re: [PATCH 1/4] dt-bindings: timer: Add am6 compatible for ti-timer
 Content-Language: en-US
-To:     Drew Fustini <dfustini@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Tony Lindgren <tony@atomide.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Keerthy <j-keerthy@ti.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220407032208.2249485-1-dfustini@baylibre.com>
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20220407071006.37031-1-tony@atomide.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220407032208.2249485-1-dfustini@baylibre.com>
+In-Reply-To: <20220407071006.37031-1-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 05:22, Drew Fustini wrote:
-> Convert the wkup_m3_ipc bindings documentation to json-schema.
+On 07/04/2022 09:10, Tony Lindgren wrote:
+> Document the dual-mode timers available on am6.
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Keerthy <j-keerthy@ti.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  Documentation/devicetree/bindings/timer/ti,timer.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-(...)
 
-> diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-> new file mode 100644
-> index 000000000000..04ed5ada1d28
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/ti/wkup_m3_ipc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Wakeup M3 IPC device
-> +
-> +maintainers:
-> +  - Dave Gerlach <d-gerlach@ti.com>
-> +  - Drew Fustini <dfustini@baylibre.com>
-> +
-> +description: |+
-> +
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Remove unneeded line break.
-
-> +  The TI AM33xx and AM43xx family of devices use a small Cortex M3 co-processor
-> +  (commonly referred to as Wakeup M3 or CM3) to help with various low power tasks
-> +  that cannot be controlled from the MPU, like suspend/resume and certain deep
-> +  C-states for CPU Idle. Once the wkup_m3_ipc driver uses the wkup_m3_rproc driver
-> +  to boot the wkup_m3, it handles communication with the CM3 using IPC registers
-> +  present in the SoC's control module and a mailbox. The wkup_m3_ipc exposes an
-> +  API to allow the SoC PM code to execute specific PM tasks.
-> +
-> +  Wkup M3 Device Node
-> +  ====================
-> +  A wkup_m3_ipc device node is used to represent the IPC registers within an
-> +  SoC.
-> +
-> +properties:
-> +
-
-Remove unneeded line break.
-
-> +  compatible:
-> +    enum:
-> +      - ti,am3352-wkup-m3-ipc # for AM33xx SoCs
-> +      - ti,am4372-wkup-m3-ipc # for AM43xx SoCs
-> +
-> +  reg:
-> +    description:
-> +      Contains the IPC register address space to communicate with the
-> +      Wakeup M3 processor
-
-Just "The IPC register address space to communicate with the Wakeup M3
-processor"
-
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Contains the interrupt information for the wkup_m3 interrupt that
-> +      signals the MPU
-
-Just the "wkup_m3 interrupt that signals the MPU".
-
-> +    maxItems: 1
-> +
-> +  ti,rproc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the wkup_m3 rproc node so the IPC driver can boot it
-> +
-> +  mboxes:
-> +    description:
-> +      phandles used by IPC framework to get correct mbox
-> +      channel for communication. Must point to appropriate
-> +      mbox_wkupm3 child node.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - ti,rproc
-> +  - mboxes
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        mailbox: mailbox {
-> +            #mbox-cells = <1>;
-> +        };
-
-I propose to skip the mailbox node, it's trivial and obvious from
-mailbox providers/consumers documentation.
 
 Best regards,
 Krzysztof
