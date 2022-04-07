@@ -2,179 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A7024F8874
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 22:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9554F8858
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 22:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbiDGUdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 16:33:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37194 "EHLO
+        id S229671AbiDGUcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 16:32:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbiDGUdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:33:32 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB417312B67
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 13:18:53 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id g24so8895459lja.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 13:18:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=z3JBr/Ttk7vxXbtA7Vt1dI5zaBzrSMklwGnLl7DuQF8=;
-        b=k1zUJORmR8UXVnkZNcWeOp/6IT8g5UMti0Cye0c+lX5Th5oxgyZHD/umuo5csEVQIC
-         lqgW3KYvapSL+87pXafFH8W0ncqlD8tpuknBCTHhvDCMNSvUu15mTe3YURilc8LHkWBv
-         l2iONbTQPeGZEOE1GozbutDGrLnkWzBMkwyKzNxYDKIGloy1Th9or6aKgnNqcu6Qd59B
-         EgwC/BG+2hfGLKsRXCnG1HQN6KKoX+wPRrv2GfdFtnWql4zqpmdlj1MZJiZdFdDjfxZN
-         XlhdZnQyJflevAui3tvhtFOZzNHvcO7R5yOc7a3vkd9NnfTsWqXaUcssTxsbQ2MrSDJC
-         ESDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=z3JBr/Ttk7vxXbtA7Vt1dI5zaBzrSMklwGnLl7DuQF8=;
-        b=AufwnHchdf9N2qot+cRkALSaN+V/4uI1e9yX9yUTGjGHzURfB6MQGNqJuZFxbZnwrn
-         VdfFkJmRIjDCIFv5H+v+v7ILcSdKRTTCzpFImj3jI5fZjo0XgDbQek3/MqItcEeM+2l/
-         Ygc+j3kiNdV6AvPak7fwN/TUGrE0NGcHLnbzOsRxSTmBjp/RS7FYoVY3r3cQycFcVlds
-         uHr1k4UnTf15yuYILHwObBIsGyvP+gI2pIEXyEKFp3sAstTXwNNhUWOXPhnVsVjt/LkY
-         /FBRGOsr9P0UMxP+B9Jbglzwi6tAplvwepL5JZy4MXAkuVunbZslx+UacJ1nYwjN/dR+
-         QOzg==
-X-Gm-Message-State: AOAM5334ij/elwOF7Z7nyRVqHAevq0jJv3TBBhAixzQMjxmnXOoZIqea
-        PeHjGp11uJO+LFEe8gXRwVcvpQF9pfehzUpL
-X-Google-Smtp-Source: ABdhPJxVW1FZgomHKEdT3i2TbB5n2ep9jmVmh3X4KT0JDr9MKjb6LQUXqQHR1E83MJwDd8YNhwdvYw==
-X-Received: by 2002:a17:907:6e04:b0:6e0:95c0:47b8 with SMTP id sd4-20020a1709076e0400b006e095c047b8mr14960993ejc.483.1649360493289;
-        Thu, 07 Apr 2022 12:41:33 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id j17-20020a05640211d100b00419357a2647sm10015528edw.25.2022.04.07.12.41.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 12:41:32 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH v2] dt-bindings: timer: exynos4210-mct: describe known hardware and its interrupts
-Date:   Thu,  7 Apr 2022 21:41:27 +0200
-Message-Id: <20220407194127.19004-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S229751AbiDGUcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:32:46 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C952921C6;
+        Thu,  7 Apr 2022 13:17:28 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 49EA483936;
+        Thu,  7 Apr 2022 21:49:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649360991;
+        bh=Y9uLVCHFNZeAMheEdRMSrKkwnqJgsFDn460DerI5fKU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KJAI1xoGWF4qAAY4NUOLuu+6SfZYKW3ODOH/X/avcicETSQFJX2GgjEn0SH8+Pmc7
+         HLX0HeAT9hDL8RbVC1hyH8EydDiTMmwERxb2RNZ31tEzDi6Gf6Nbhs019OvnIU6kr8
+         +rpqhdPDV6TCcIzxDoKAI4g9bVPZ6yqXHuRznvEvcbAK7qDflXtk9qIJNFZTiDVYkx
+         s6gfbM5KZBFMSI5Oxtb/dE6dJrOpiPuhK7++8cqoVKC3dHdymqWsB13c+z4/vJvPqq
+         1aP45orYYNrPKN2I8AP6KzjbuYEqI0UK7mODdwt1FEQJMVXn33zpAaGN/zKVgoBO6c
+         zb859lIlzjNBw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-spi@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: spi: Add YAML DT binding document for trivial devices
+Date:   Thu,  7 Apr 2022 21:49:36 +0200
+Message-Id: <20220407194936.223041-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most of the Samsung Exynos SoCs use almost the same Multi-Core Timer
-block, so only two compatibles were used so far (for Exynos4210 and
-Exynos4412 flavors) with Exynos4210-one being used in most of the SoCs.
-However the Exynos4210 flavor actually differs by number of interrupts.
+Document trivial SPI devices in single YAML DT binding document.
+Currently this overlaps Linux kernel spidev.
 
-Add new compatibles, maintaining backward compatibility with Exynos4210,
-and constraints for number of interrupts.  This allows to exactly match
-the Exynos MCT hardware.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+To: linux-spi@vger.kernel.org
 ---
- .../timer/samsung,exynos4210-mct.yaml         | 67 ++++++++++++++++++-
- 1 file changed, 64 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/spi/trivial.yaml      | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/trivial.yaml
 
-diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-index f11cbc7ccc14..1584944c7ac4 100644
---- a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-+++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
-@@ -19,9 +19,20 @@ description: |+
- 
- properties:
-   compatible:
--    enum:
--      - samsung,exynos4210-mct
--      - samsung,exynos4412-mct
-+    oneOf:
-+      - enum:
-+          - samsung,exynos4210-mct
-+          - samsung,exynos4412-mct
-+      - items:
-+          - enum:
-+              - samsung,exynos3250-mct
-+              - samsung,exynos5250-mct
-+              - samsung,exynos5260-mct
-+              - samsung,exynos5420-mct
-+              - samsung,exynos5433-mct
-+              - samsung,exynos850-mct
-+              - tesla,fsd-mct
-+          - const: samsung,exynos4210-mct
- 
-   clocks:
-     minItems: 2
-@@ -63,6 +74,56 @@ required:
-   - interrupts
-   - reg
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos3250-mct
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 8
-+          maxItems: 8
+diff --git a/Documentation/devicetree/bindings/spi/trivial.yaml b/Documentation/devicetree/bindings/spi/trivial.yaml
+new file mode 100644
+index 0000000000000..6d6e682948dfc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/trivial.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/trivial.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos5250-mct
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 6
-+          maxItems: 6
++title: Trivial SPI device DT bindings
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos5260-mct
-+              - samsung,exynos5420-mct
-+              - samsung,exynos5433-mct
-+              - samsung,exynos850-mct
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 12
-+          maxItems: 12
++maintainers:
++  - Marek Vasut <marex@denx.de>
++  - Mark Brown <broonie@kernel.org>
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - tesla,fsd-mct
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 16
-+          maxItems: 16
++properties:
++  compatible:
++    enum:
++      - cisco,spi-petra
++      - dh,dhcom-board
++      - lineartechnology,ltc2488
++      - lwn,bk4
++      - menlo,m53cpld
++      - micron,spi-authenta
++      - rohm,dh2228fv
++      - semtech,sx1301
 +
- additionalProperties: false
- 
- examples:
++  reg:
++    description: Chip select
++    maxItems: 1
++
++  spi-max-frequency: true
++  spi-cs-high: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      spidev@0 {
++        compatible = "rohm,dh2228fv";
++        reg = <0>;
++        spi-max-frequency = <1000000>;
++      };
++    };
 -- 
-2.32.0
+2.35.1
 
