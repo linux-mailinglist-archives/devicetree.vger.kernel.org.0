@@ -2,239 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D2554F784A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38FD04F784F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239002AbiDGH4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 03:56:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47604 "EHLO
+        id S232102AbiDGH51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:57:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242389AbiDGH4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:56:38 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1EB1EA5EA;
-        Thu,  7 Apr 2022 00:54:39 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id DA65B3200EC0;
-        Thu,  7 Apr 2022 03:54:37 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 07 Apr 2022 03:54:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; bh=hvRJV0pvl3fLnQVaefDbK7s+xg+2wLBb3A3T1r
-        b+a40=; b=eHXmPPGVwTO8n00CRZPJ/6qTXK53BXAYGEUgX5Q4ulhZYaZVBXofVC
-        e+73TlEPGRjNEFTAp62XHawGFRcv2Vx+8OLji0ezh+6h6xAdNRW+gVDTsxgOQ6xC
-        SSSNTiV9WCeODs5dwjKJW3t8vBPjfA7m+chKp6C+lGrfMDNC88Yuj90znL63t3pl
-        aWYzG9i7wNkWts7SEosxihm928gTA1/9LUPssyeWPbh4Lj642vl5JvABNea7TPJo
-        kLVEo5rbL5yXxkuw11T5gy46szdIEA3Vr6eA6rfeYdOWTVKgsogCd9vomaoqQQWZ
-        aXf+NG3BJKBREvlz5Wb1UUhlKOL2tO3Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=hvRJV0pvl3fLnQVae
-        fDbK7s+xg+2wLBb3A3T1rb+a40=; b=ddD17FI/e7dTpvPXM+oT59gLJeP8esacR
-        qzemYeqBlTAXFmFAjU3Ldoh3ezkkg2slPyZBqvXnbGGWQ5ASMbPNM1J43qkF5d+V
-        AI5ivyyhGS9fHqtymUlz7K9Y/nxQKulVmN16w5HNL+KBQ7qC+R6r0G7fJZltQdMW
-        6tWmP4v6PVLaLkuxmLzI3pQmA7tME4yYOlmJF4aNC+ZWy24REG6fL8ihMJA1Hwhw
-        Vffq64B7/L4MvQUX2Wsm54NG+oWDZQBRT3fCbnJ1veDg0D2hlx1iHJtUcncteV7L
-        dhCWtywu5mHtmGmhdFJvH81fui0Ev1ead+22PGH7VzxNm1DcxNEnQ==
-X-ME-Sender: <xms:vZhOYvSYNG6eJq3NPujn5RnFmTh3UGDWuwo-62PxUGlhVgTTtmjPbw>
-    <xme:vZhOYgx0tg6Ra_heBgZ3o603PS36jkw_8ZAyXHIauJYx7-pH1wdkySWiEoCbud1mY
-    zrAcdO9lrQKuNeRj0s>
-X-ME-Received: <xmr:vZhOYk2JYooCHNI9FCJpq7_sVxnIYri9TrxS18AA_SiesYmfy0UiungjQWLUdo004MsR8R-ctJao0kU_HDNMVJd2czLP5DuMczGRYGA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudejjedguddvjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpefhffdtueegvedvueffjeeuffejfeffjedtfeevfeeuleejkeeghfeuheet
-    ffduheenucffohhmrghinhepghhithhlrggsrdgtohhmpdhtuhigsghuihhlugdrtghomh
-    dpkhgvrhhnvghlrdhorhhgpdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigv
-    pedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtg
-    hh
-X-ME-Proxy: <xmx:vZhOYvAPLxH8jNLQWE9e3F1tB7METMXDutZ6OGPwtL9BbYgXU02n7Q>
-    <xmx:vZhOYogt36ZM9nWwgr3bYUgxrLqKVLAdYNmmjA3730hgffxEdR-Lyg>
-    <xmx:vZhOYjovNfrQvOv4Uvu9GX1FkT1TLcjJPQQ6R-sMH-M1iSSnu43eaQ>
-    <xmx:vZhOYkwGstWp97xfECSUvb9tHw6Elo7bdYe_jGXMYDxSvXroLaMOrw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 7 Apr 2022 03:54:36 -0400 (EDT)
-Date:   Thu, 7 Apr 2022 09:54:35 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Naresh Kamboju <naresh.kamboju@linaro.org>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        lkft-triage@lists.linaro.org, regressions@lists.linux.dev,
-        gabriel.fernandez@foss.st.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Subject: Re: [next] db845c: WARNING: CPU: 5 PID: 8 at
- drivers/clk/clk-divider.c:139 divider_recalc_rate
-Message-ID: <20220407075435.ahlylmbqmqnpxz64@houat>
-References: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
- <20220401151058.fipdax3kvmxknctv@houat>
- <CA+G9fYu+WddXTb0NcbviUfGQHhsmThssVCafLPw7+nj3JsoFAA@mail.gmail.com>
+        with ESMTP id S242391AbiDGH50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:57:26 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEB71140BE
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:55:26 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id w18so5371038edi.13
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:55:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=uWgB1TPWrG17Im7IPZMnLsPtOW+zyWLCGeaLXICJLyk=;
+        b=rqgldnAzVueo5sDBj0XN11SiGwiV3OIN4Fqm3AYvyt+IRI1LjUacj9rXLO6kHazqsA
+         piNOEs1wHY1jdizJV0YvZ1PyOLysD3AO4RqQGiepnSmU4t+t437qRGzr2ZOgwDLNLzwM
+         Bcchvq3w4saU30mpm1HLJgrlSttDgOUSWJ5ht7KvI5e5PntidMkdODobYOvN8PGt9w6M
+         uJXZgtAhuDZ2REFBm5vzYlcMa5ihnyf2YfBudGwJoZktsFaZbJf5lFYGtA7MMsd3hEJD
+         3lwM/icCIiOlpVQFF0IzFuzkQohsS1DnGDXYfJG6/zno0dI+PXrKPRcfHL/IMK24o4mD
+         JpoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=uWgB1TPWrG17Im7IPZMnLsPtOW+zyWLCGeaLXICJLyk=;
+        b=3NW4MSlxzXl1iA3tMziWIohX7yPUyRuHzL9hrQy5Gq7orYHXdtxdyG2ylS/75iBZsP
+         XhLhR+jDAwBrX5+0eZOAlq0KaZxipIDGV3u0aoCjZQEX88a9MVsCV1SDHDrOMBqyLIQa
+         3D3HR4nJodrEI7h5srAwa9tU4CXMSEF+nqR4LXTbWB5lDPAyWHBLNlrmMisyMkvbRFK/
+         YI3kNkpzocDqEYuE0Q+IBTehWpcNjZM0+X/bBUGQJ7AQc4OY+pwryJgZzFS52w50DqlF
+         pVLTorSzUU5u9dWBxC1b4yraqBqhm1L20hUaHY5lqht4qJMHE9kvDEirxDs01ThVQGLm
+         C50A==
+X-Gm-Message-State: AOAM531ul455rbIW7K805isPMwcs51r6w+sAkYq13xpb4e6HGttMBkPD
+        yKEvNcPDrOhxqWDouq+mlVvk0TfyUfFpO18i
+X-Google-Smtp-Source: ABdhPJy/47fiNsQ6b10hGrkNQmi52hrmZo3QD/pTkUnCM3VFv1gV2ZTqhrM+rp2O/ww0tg4Cs0KmKg==
+X-Received: by 2002:a05:6402:268a:b0:419:e9cb:f62d with SMTP id w10-20020a056402268a00b00419e9cbf62dmr13051173edd.194.1649318123332;
+        Thu, 07 Apr 2022 00:55:23 -0700 (PDT)
+Received: from [192.168.0.185] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id za11-20020a170906878b00b006e7f5d17d4dsm3994155ejb.140.2022.04.07.00.55.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Apr 2022 00:55:22 -0700 (PDT)
+Message-ID: <e9e3a689-fafd-62e8-9e17-1f15445228cd@linaro.org>
+Date:   Thu, 7 Apr 2022 09:55:21 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="i5yz424gkn64kvgh"
-Content-Disposition: inline
-In-Reply-To: <CA+G9fYu+WddXTb0NcbviUfGQHhsmThssVCafLPw7+nj3JsoFAA@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings to
+ json-schema
+Content-Language: en-US
+To:     Drew Fustini <dfustini@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220407032208.2249485-1-dfustini@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220407032208.2249485-1-dfustini@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/04/2022 05:22, Drew Fustini wrote:
+> Convert the wkup_m3_ipc bindings documentation to json-schema.
+> 
 
---i5yz424gkn64kvgh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+(...)
 
-Hi,
+> diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
+> new file mode 100644
+> index 000000000000..04ed5ada1d28
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/ti/wkup_m3_ipc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Wakeup M3 IPC device
+> +
+> +maintainers:
+> +  - Dave Gerlach <d-gerlach@ti.com>
+> +  - Drew Fustini <dfustini@baylibre.com>
+> +
+> +description: |+
+> +
 
-On Sat, Apr 02, 2022 at 12:16:48AM +0530, Naresh Kamboju wrote:
-> On Fri, 1 Apr 2022 at 20:41, Maxime Ripard <maxime@cerno.tech> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, Mar 31, 2022 at 05:33:57PM +0530, Naresh Kamboju wrote:
-> > > Following kernel warning noticed on db845c while booting linux next-2=
-0220331.
-> > >
-> > > metadata:
-> > >   git_ref: master
-> > >   git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
-> > >   git_sha: fdcbcd1348f4ef713668bae1b0fa9774e1811205
-> > >   git_describe: next-20220331
-> > >   kernel_version: 5.17.0
-> > >   kernel-config: https://builds.tuxbuild.com/278RLnhgJL7XdlJbcbv07jiw=
-bYB/config
-> > >
-> > > Boot log:
-> > > [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x517f803c]
-> > > [    0.000000] Linux version 5.17.0-next-20220331 (tuxmake@tuxmake)
-> > > (aarch64-linux-gnu-gcc (Debian 11.2.0-18) 11.2.0, GNU ld (GNU Binutils
-> > > for Debian) 2.38) #1 SMP PREEMPT @1648699852
-> > > [    0.000000] Machine model: Thundercomm Dragonboard 845c
-> > > <trim>
-> > > [    8.131366] ------------[ cut here ]------------
-> > > [    8.131374] dsi0_pll_bit_clk: Zero divisor and CLK_DIVIDER_ALLOW_Z=
-ERO not set
-> > > [    8.131387] WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
-> > > divider_recalc_rate+0x8c/0xc0
-> > > [    8.131398] Modules linked in: qcom_spmi_adc5 snd_soc_sdm845
-> > > qcom_vadc_common qcom_spmi_temp_alarm qcom_pon crct10dif_ce rtc_pm8xxx
-> > > snd_soc_rt5663 msm snd_soc_qcom_common gpu_sched snd_soc_rl6231
-> > > soundwire_bus reset_qcom_pdc drm_dp_helper qcom_camss hci_uart
-> > > videobuf2_dma_sg btqca v4l2_fwnode venus_core ath10k_snoc v4l2_async
-> > > btbcm ath10k_core i2c_qcom_geni v4l2_mem2mem videobuf2_memops
-> > > videobuf2_v4l2 ath bluetooth camcc_sdm845 videobuf2_common
-> > > spi_geni_qcom i2c_qcom_cci qcom_rng mac80211 xhci_pci qcom_q6v5_mss
-> > > xhci_pci_renesas cfg80211 icc_osm_l3 slim_qcom_ngd_ctrl qcom_wdt
-> > > rfkill qrtr lmh pdr_interface display_connector slimbus qcom_q6v5_pas
-> > > drm_kms_helper qcom_pil_info qcom_q6v5 qcom_sysmon qcom_common
-> > > qcom_glink_smem qmi_helpers drm mdt_loader socinfo rmtfs_mem fuse
-> > > [    8.131462] CPU: 5 PID: 8 Comm: kworker/u16:0 Not tainted
-> > > 5.17.0-next-20220331 #1
-> > > [    8.131465] Hardware name: Thundercomm Dragonboard 845c (DT)
-> > > [    8.131467] Workqueue: events_unbound deferred_probe_work_func
-> > > [    8.131475] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS =
-BTYPE=3D--)
-> > > [    8.131477] pc : divider_recalc_rate+0x8c/0xc0
-> > > [    8.131479] lr : divider_recalc_rate+0x8c/0xc0
-> > > [    8.131481] sp : ffff8000080936c0
-> > > [    8.131482] x29: ffff8000080936c0 x28: ffff781940e58d00 x27: ffffa=
-7f3f1bc6d38
-> > > [    8.131485] x26: ffffa7f3f1bc6cf8 x25: 0000000000000000 x24: fffff=
-fffffffffff
-> > > [    8.131488] x23: ffff781947e8a400 x22: 000000003b9aca50 x21: ffff7=
-81940be0800
-> > > [    8.131491] x20: ffff781947e8a800 x19: 000000003b9aca50 x18: 00000=
-00000000000
-> > > [    8.131494] x17: 0000000000000000 x16: 0000000000000000 x15: 00000=
-00000000000
-> > > [    8.131497] x14: ffff7819bd718000 x13: 0a74657320746f6e x12: 204f5=
-2455a5f574f
-> > > [    8.131500] x11: 4c4c415f52454449 x10: 5649445f4b4c4320 x9 : ffffa=
-7f3f011de84
-> > > [    8.131502] x8 : 445f4b4c4320646e x7 : 6120726f73697669 x6 : 00000=
-00000000001
-> > > [    8.131505] x5 : ffffa7f3f288f000 x4 : ffffa7f3f288f2d0 x3 : 00000=
-00000000000
-> > > [    8.131508] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff7=
-819402c7000
-> > > [    8.131511] Call trace:
-> > > [    8.131512]  divider_recalc_rate+0x8c/0xc0
-> > > [    8.131513]  clk_divider_recalc_rate+0x64/0x90
-> > > [    8.131515]  clk_recalc+0x40/0xb0
-> > > [    8.131519]  clk_calc_subtree+0x58/0x90
-> > > [    8.131521]  clk_calc_subtree+0x70/0x90
-> > > [    8.131523]  clk_calc_new_rates+0x150/0x290
-> > > [    8.131526]  clk_calc_new_rates+0x100/0x290
-> > > [    8.131528]  clk_calc_new_rates+0x100/0x290
-> > > [    8.131530]  clk_calc_new_rates+0x100/0x290
-> > > [    8.131533]  clk_core_set_rate_nolock+0xa0/0x2a4
-> > > [    8.131535]  clk_set_rate_range_nolock.part.0+0xbc/0x2a0
-> > > [    8.131538]  __clk_put+0x70/0x140
-> > > [    8.131540]  clk_put+0x1c/0x30
-> > > [    8.131543]  of_clk_set_defaults+0x140/0x3c0
-> > > [    8.131546]  platform_probe+0x48/0xf0
-> > > [    8.131548]  really_probe+0x184/0x3d0
-> > > [    8.131550]  __driver_probe_device+0x11c/0x190
-> > > [    8.131553]  driver_probe_device+0x44/0xf4
-> > > [    8.131556]  __device_attach_driver+0xa4/0x140
-> > > [    8.131558]  bus_for_each_drv+0x84/0xe0
-> > > [    8.131561]  __device_attach+0xe4/0x1c0
-> > > [    8.131563]  device_initial_probe+0x20/0x30
-> > > [    8.131565]  bus_probe_device+0xa4/0xb0
-> > > [    8.131567]  deferred_probe_work_func+0xa8/0xfc
-> > > [    8.131570]  process_one_work+0x1dc/0x450
-> > > [    8.131575]  worker_thread+0x154/0x450
-> > > [    8.131577]  kthread+0x100/0x110
-> > > [    8.131579]  ret_from_fork+0x10/0x20
-> > > [    8.131584] ---[ end trace 0000000000000000 ]---
-> > > [    8.131588] ------------[ cut here ]------------
-> >
-> > I'm not sure if it's feasible, but if it is, it looks like something
-> > that could be fixed by the patch pasted here:
-> >
-> > https://lore.kernel.org/linux-clk/20220401122736.5yvanksa4pla7uql@houat/
-> > Could you test it?
->=20
-> I have tested the single line patch and reported problems not fixed.
+Remove unneeded line break.
 
-Could you test this branch?
-https://github.com/mripard/linux/tree/rpi/clk-improvements-more-fixes
+> +  The TI AM33xx and AM43xx family of devices use a small Cortex M3 co-processor
+> +  (commonly referred to as Wakeup M3 or CM3) to help with various low power tasks
+> +  that cannot be controlled from the MPU, like suspend/resume and certain deep
+> +  C-states for CPU Idle. Once the wkup_m3_ipc driver uses the wkup_m3_rproc driver
+> +  to boot the wkup_m3, it handles communication with the CM3 using IPC registers
+> +  present in the SoC's control module and a mailbox. The wkup_m3_ipc exposes an
+> +  API to allow the SoC PM code to execute specific PM tasks.
+> +
+> +  Wkup M3 Device Node
+> +  ====================
+> +  A wkup_m3_ipc device node is used to represent the IPC registers within an
+> +  SoC.
+> +
+> +properties:
+> +
 
-Thanks!
-Maxime
+Remove unneeded line break.
 
---i5yz424gkn64kvgh
-Content-Type: application/pgp-signature; name="signature.asc"
+> +  compatible:
+> +    enum:
+> +      - ti,am3352-wkup-m3-ipc # for AM33xx SoCs
+> +      - ti,am4372-wkup-m3-ipc # for AM43xx SoCs
+> +
+> +  reg:
+> +    description:
+> +      Contains the IPC register address space to communicate with the
+> +      Wakeup M3 processor
 
------BEGIN PGP SIGNATURE-----
+Just "The IPC register address space to communicate with the Wakeup M3
+processor"
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYk6YuwAKCRDj7w1vZxhR
-xUChAP0UVOSNtC1qP84XhYgR5jOX0+qkLgOnE+8H9phnEaSRYAD/b4tGeJzdEGe1
-t+sCqPDcVmNLKYmYYv37511sduZt7Qw=
-=U3cn
------END PGP SIGNATURE-----
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Contains the interrupt information for the wkup_m3 interrupt that
+> +      signals the MPU
 
---i5yz424gkn64kvgh--
+Just the "wkup_m3 interrupt that signals the MPU".
+
+> +    maxItems: 1
+> +
+> +  ti,rproc:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the wkup_m3 rproc node so the IPC driver can boot it
+> +
+> +  mboxes:
+> +    description:
+> +      phandles used by IPC framework to get correct mbox
+> +      channel for communication. Must point to appropriate
+> +      mbox_wkupm3 child node.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - ti,rproc
+> +  - mboxes
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        mailbox: mailbox {
+> +            #mbox-cells = <1>;
+> +        };
+
+I propose to skip the mailbox node, it's trivial and obvious from
+mailbox providers/consumers documentation.
+
+Best regards,
+Krzysztof
