@@ -2,241 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30BEC4F74FD
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 06:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E144F7460
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 06:07:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240821AbiDGEvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 00:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46958 "EHLO
+        id S234597AbiDGEJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 00:09:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240828AbiDGEvV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 00:51:21 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD3010F6E9
-        for <devicetree@vger.kernel.org>; Wed,  6 Apr 2022 21:49:18 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id f10so3853033plr.6
-        for <devicetree@vger.kernel.org>; Wed, 06 Apr 2022 21:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y7rbcSp4fuzvzN4uIAMZ1TVJvFtHbPKyD1JNqsKzlus=;
-        b=Q2xkmVxAyy3CrxlyqbBn2kZxvgiIjGR0OydNdl3GHhHTSrkQsl3LO+TnP/g6RD/+5q
-         W8YMZ6PCB4s7iuDnWizmM7VOBD5gsjMzQ/+Bb2epAxyAq4UqS+rYWwPcsw0KGHZugI0l
-         1xW3jYS2CEqnPSMRwA5ctFd+mEc7dIp8hgTNSmFw9BwEPOK5gCiQLGaNCmk2xkhBnT1j
-         QAdC6a84hGgC3SYX97577QBqbcz4kvTsEX3Dpo2C6hJdlW2ulbJldPeGPjQ/uuuA61UT
-         8ZZ9szJhn0szhbDd4bkPYMfSpTGKge1FcEYWhcIgWoxTr+Y8W3CX8c2o9jUICwDvbfz5
-         SWXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y7rbcSp4fuzvzN4uIAMZ1TVJvFtHbPKyD1JNqsKzlus=;
-        b=Rq657E0008JjN8O3ONfOzlobACOmigesK7Y0JrQ0VWlNoGghhqYZDtWtGkc03YiW/V
-         vdGacLx+xErtLTggDw1iu2qLtJTLV5/6tfilAjSsLsVm03hpKfm9YJV7hrFqQl4y2MqX
-         OQ2TdsglqEdPtswHin2p9lqjoe8IT4feIEEesNHfyp6kpzOfVZGJpmvQC4ZZB1G0yRk5
-         NSHSEwZ6Hq890+hrsbL9TiQIBZ9DXpiErt8MnPS6yoSSAvlABOJJjvWwFHm9RXZOWVgM
-         Q2XMwdG3WO80VsHmQ20RyGjxcRAk/GJZ9Zgi33GmCD+GFkimmrJlvV510XIuQX+H9JTF
-         eAfQ==
-X-Gm-Message-State: AOAM532U+6Vt/YNZ3HqxK9Gfx+zztx9r0cUhKl/hxfRaG32y1VDYCaAO
-        U3/+UUmwO1rSpeAt9Q0zW6LjpQ==
-X-Google-Smtp-Source: ABdhPJywP1gsaETWFMYATeJF/uQxkBYNCMWvbNfGmYqHmdg23ZJoCF8A2ZAS6fpxy2loB+0t1XPJJw==
-X-Received: by 2002:a17:90b:3e8c:b0:1c7:3001:f359 with SMTP id rj12-20020a17090b3e8c00b001c73001f359mr13814906pjb.179.1649306958293;
-        Wed, 06 Apr 2022 21:49:18 -0700 (PDT)
-Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:c0af:e9e:e3fa:ae9f])
-        by smtp.gmail.com with ESMTPSA id k13-20020aa7820d000000b004fa72a52040sm20976546pfi.172.2022.04.06.21.49.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Apr 2022 21:49:17 -0700 (PDT)
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Drew Fustini <dfustini@baylibre.com>
-Subject: [PATCH] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings to json-schema
-Date:   Wed,  6 Apr 2022 20:22:10 -0700
-Message-Id: <20220407032208.2249485-1-dfustini@baylibre.com>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S230131AbiDGEJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 00:09:31 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 40B7D58E67;
+        Wed,  6 Apr 2022 21:07:31 -0700 (PDT)
+Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 640071C810A3;
+        Thu,  7 Apr 2022 12:07:29 +0800 (CST)
+Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Thu, 7 Apr 2022
+ 12:07:29 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS03.nuvoton.com
+ (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Thu, 7 Apr 2022
+ 12:07:28 +0800
+Received: from [172.19.1.47] (172.19.1.47) by NTHCCAS01.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
+ Transport; Thu, 7 Apr 2022 12:07:28 +0800
+Message-ID: <125f4a13-cd4c-7deb-6ff6-0dc2e5458bf1@nuvoton.com>
+Date:   Thu, 7 Apr 2022 12:07:28 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add initial support for MA35D1
+Content-Language: en-US
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "soc@kernel.org" <soc@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220307091923.9909-1-ychuang3@nuvoton.com>
+ <20220307091923.9909-4-ychuang3@nuvoton.com>
+ <2669852c-5bb6-1edf-bf58-ea815f54d50f@kernel.org>
+ <ef8efda1-e985-0684-470f-7acf9b8a5e93@nuvoton.com>
+ <CAK8P3a1Gbr4PoJbPy3BEQ=T3iJo9kQdjes7+0UK5vnc4CDckSw@mail.gmail.com>
+From:   Jacky Huang <ychuang3@nuvoton.com>
+In-Reply-To: <CAK8P3a1Gbr4PoJbPy3BEQ=T3iJo9kQdjes7+0UK5vnc4CDckSw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the wkup_m3_ipc bindings documentation to json-schema.
 
-Link: https://lore.kernel.org/linux-arm-kernel/20220221125522.l3tntb6i7yjxp6vb@flattered/
-Suggested-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- .../bindings/soc/ti/wkup_m3_ipc.txt           | 57 ------------
- .../bindings/soc/ti/wkup_m3_ipc.yaml          | 86 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 57 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
- create mode 100644 Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
 
-diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-deleted file mode 100644
-index 401550487ed6..000000000000
---- a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Wakeup M3 IPC Driver
--=====================
--
--The TI AM33xx and AM43xx family of devices use a small Cortex M3 co-processor
--(commonly referred to as Wakeup M3 or CM3) to help with various low power tasks
--that cannot be controlled from the MPU, like suspend/resume and certain deep
--C-states for CPU Idle. Once the wkup_m3_ipc driver uses the wkup_m3_rproc driver
--to boot the wkup_m3, it handles communication with the CM3 using IPC registers
--present in the SoC's control module and a mailbox. The wkup_m3_ipc exposes an
--API to allow the SoC PM code to execute specific PM tasks.
--
--Wkup M3 Device Node:
--====================
--A wkup_m3_ipc device node is used to represent the IPC registers within an
--SoC.
--
--Required properties:
----------------------
--- compatible:		Should be,
--				"ti,am3352-wkup-m3-ipc" for AM33xx SoCs
--				"ti,am4372-wkup-m3-ipc" for AM43xx SoCs
--- reg:			Contains the IPC register address space to communicate
--			with the Wakeup M3 processor
--- interrupts:		Contains the interrupt information for the wkup_m3
--			interrupt that signals the MPU.
--- ti,rproc:		phandle to the wkup_m3 rproc node so the IPC driver
--			can boot it.
--- mboxes:		phandles used by IPC framework to get correct mbox
--			channel for communication. Must point to appropriate
--			mbox_wkupm3 child node.
--
--Example:
----------
--/* AM33xx */
--	l4_wkup: l4_wkup@44c00000 {
--		...
--
--		scm: scm@210000 {
--			compatible = "ti,am3-scm", "simple-bus";
--			reg = <0x210000 0x2000>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0 0x210000 0x2000>;
--
--			...
--
--			wkup_m3_ipc: wkup_m3_ipc@1324 {
--				compatible = "ti,am3352-wkup-m3-ipc";
--				reg = <0x1324 0x24>;
--				interrupts = <78>;
--				ti,rproc = <&wkup_m3>;
--				mboxes = <&mailbox &mbox_wkupm3>;
--			};
--
--			...
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-new file mode 100644
-index 000000000000..04ed5ada1d28
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/ti/wkup_m3_ipc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Wakeup M3 IPC device
-+
-+maintainers:
-+  - Dave Gerlach <d-gerlach@ti.com>
-+  - Drew Fustini <dfustini@baylibre.com>
-+
-+description: |+
-+
-+  The TI AM33xx and AM43xx family of devices use a small Cortex M3 co-processor
-+  (commonly referred to as Wakeup M3 or CM3) to help with various low power tasks
-+  that cannot be controlled from the MPU, like suspend/resume and certain deep
-+  C-states for CPU Idle. Once the wkup_m3_ipc driver uses the wkup_m3_rproc driver
-+  to boot the wkup_m3, it handles communication with the CM3 using IPC registers
-+  present in the SoC's control module and a mailbox. The wkup_m3_ipc exposes an
-+  API to allow the SoC PM code to execute specific PM tasks.
-+
-+  Wkup M3 Device Node
-+  ====================
-+  A wkup_m3_ipc device node is used to represent the IPC registers within an
-+  SoC.
-+
-+properties:
-+
-+  compatible:
-+    enum:
-+      - ti,am3352-wkup-m3-ipc # for AM33xx SoCs
-+      - ti,am4372-wkup-m3-ipc # for AM43xx SoCs
-+
-+  reg:
-+    description:
-+      Contains the IPC register address space to communicate with the
-+      Wakeup M3 processor
-+    maxItems: 1
-+
-+  interrupts:
-+    description:
-+      Contains the interrupt information for the wkup_m3 interrupt that
-+      signals the MPU
-+    maxItems: 1
-+
-+  ti,rproc:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle to the wkup_m3 rproc node so the IPC driver can boot it
-+
-+  mboxes:
-+    description:
-+      phandles used by IPC framework to get correct mbox
-+      channel for communication. Must point to appropriate
-+      mbox_wkupm3 child node.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ti,rproc
-+  - mboxes
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        mailbox: mailbox {
-+            #mbox-cells = <1>;
-+        };
-+
-+        wkup_m3_ipc: wkup_m3_ipc@1324 {
-+           compatible = "ti,am3352-wkup-m3-ipc";
-+           reg = <0x1324 0x24>;
-+           interrupts = <78>;
-+           ti,rproc = <&wkup_m3>;
-+           mboxes = <&mailbox &mbox_wkupm3>;
-+        };
-+    };
-+...
--- 
-2.32.0
+On 2022/4/6 下午 03:43, Arnd Bergmann wrote:
+> On Wed, Apr 6, 2022 at 4:58 AM Jacky Huang <ychuang3@nuvoton.com> wrote:
+>> On 2022/3/7 下午 06:25, Krzysztof Kozlowski wrote:
+>>> On 07/03/2022 10:19, Jacky Huang wrote:
+>> I would add the following to end of arch/arm64/Kconfig.platforms, and
+>> add the
+>> modification to this patch series.
+>>
+>> config ARCH_MA35D1
+>>       bool "Nuvoton MA35D1 SOC Family"
+>>       select PINCTRL
+>>       select PINCTRL_MA35D1
+>>       select PM
+>>       select GPIOLIB
+>>       select SOC_BUS
+>>       select VIDEOMODE_HELPERS
+>>       select FB_MODE_HELPERS
+>>       help
+>>         This enables support for Nuvoton MA35D1 SOC Family.
+> Selecting SOC_BUS and the gpio/pinctrl stuff is ok, but please don't
+> select the video helpers from the platform config, those should not
+> be essential for building a kernel.
+>
+>         Arnd
+
+Yes, I will remove  VIDEOMODE_HELPERS and FB_MODE_HELPERS.
+
+
+Best Regards,
+Jacky
 
