@@ -2,87 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FAB94F79C4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 10:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA7D74F79BD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 10:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231993AbiDGIdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 04:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36598 "EHLO
+        id S243086AbiDGIdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 04:33:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243083AbiDGIdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 04:33:15 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE7651624B2;
-        Thu,  7 Apr 2022 01:31:03 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 033AA1F4557A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649320257;
-        bh=6e8HenrGm7ueDzpKsobNNpLOHDIySrUgYBvMNTWkXV8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Ai2pKUULO/Q4bNNaYxGOfgX9yE0r4mBHrfh9sOznK3UT3kXoxwYq35TL5YUwWUqZg
-         qzLiEAbruH8URXZvTvEK1Mt3fdMt9+BFQ2klTx0/MMe2S6avCtRMUHsVRVmi8EFzVj
-         sV0extkjPfZNaCOGIoHF3wrqr4qQVIDy1GkE8X2pcD3yO4w7QIDp5ndi6SGPjio/uT
-         jVCUwMCWj+bwOVMXdTXasjgyrsOxlftY41FLngMAvVZ96tXJOpYji8ugZ/5k8MF3Cs
-         8uCdIGjgKhuqaB4+TDb5c5d0nzFTgixeCibhSSwQIkUr/WJKyKkdUBLqa0wQqjgc4G
-         ixlLMGjssk+Fw==
-Message-ID: <5337d925-b904-6f05-8fc9-2ff5f429c447@collabora.com>
-Date:   Thu, 7 Apr 2022 10:30:53 +0200
+        with ESMTP id S243087AbiDGIdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 04:33:00 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C3681605E1
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 01:30:59 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id c7so6790204wrd.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 01:30:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=mhNafdINL/bGSsdlwXHEq3XpvjEJWoppfiwKb+g/P+c=;
+        b=ueQuovcZvEt3n41Rr5VE/fSBy6pGmbFsDIHSEDegP7Du3XYgNWq9xzJDUuLESdpJ2K
+         27O5kvicyEcqww64Id2bAU3wdmT4ulnvrCP3KEnFdrlZo24ekaISTuI+oDQnsa/lYBDC
+         mfEl5+8MsJKNxPjf8HeSWf1WFJwD+VSINxrw8s5FuMnOqQ2wdp4LLDDMD6iW30HYArl7
+         /iHWftqJlMj316Zw4w/T+st8ed53A1WUoC0E1d2N2VoUR5PInyHfgtC4CdX3zCLodMLW
+         61PHkxhRX2KF4MIKnhn2PtQXHvlDyOeVAN9HR/JUmAKVfcbfXYdpI+h1axeibEfeO28L
+         kycQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=mhNafdINL/bGSsdlwXHEq3XpvjEJWoppfiwKb+g/P+c=;
+        b=e4BwIcboFcwAWgI2kq0IyGmuAJYx84S42cSruygqvBulrwTg0YidC6UIOlhc1NZr+O
+         fT2mRP1l4eaEcGrrPgpK70I1oxJYw0EIAgB+axr9BlRUeHcsLHYOLQldyrurn45OAEk0
+         S6525b/VQk7x7u3h710fvtJRSlJCmIsEIAE9//sg4/heqNzrEnVjPnPXpB19a0G7QbgY
+         mFtWR1Mb21kAnvsfRF6sSMdPcdaTECuhWZWFNjeOfH8BhcHoFJEj061R1tQ0OCXDpm+s
+         jEoWgJb3XuJmbIKYFRjTp0hd3YNqH25uW2sfgcwTmt/grrZiQaZxp6aJCV1MlhQ7aHAZ
+         jlzg==
+X-Gm-Message-State: AOAM5320zcT2IcQZC0tbznWl70aL/AZkyyAOxANFCoydErFa6b6YALr0
+        +wf5nTEEq+uw4jS3wlNyT5Flwg==
+X-Google-Smtp-Source: ABdhPJyDahYyDu5X5b9pS0X7gZEs4+O0WHJD+fGEmCO9oi7r9gXJOeQ3Y1cMEpPj7dDF7hjSGxZ0UA==
+X-Received: by 2002:adf:f387:0:b0:206:1028:921f with SMTP id m7-20020adff387000000b002061028921fmr9785982wro.706.1649320257690;
+        Thu, 07 Apr 2022 01:30:57 -0700 (PDT)
+Received: from [10.1.3.188] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id 11-20020a056000156b00b002040674fd13sm20116879wrz.38.2022.04.07.01.30.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Apr 2022 01:30:57 -0700 (PDT)
+Message-ID: <b3abd199-0acb-a2d3-bd53-aa26182aa0c9@baylibre.com>
+Date:   Thu, 7 Apr 2022 10:30:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [RESEND v17 2/7] dt-bindings: arm: mediatek: mmsys: add mt8195
- SoC binding
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v0 01/10] drm/bridge: dw-hdmi: add low-active PHY reset
 Content-Language: en-US
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        John 'Warthog9' Hawley <warthog9@eaglescrag.net>,
-        postmaster@vger.kernel.org, hsinyi@chromium.org,
-        fshao@chromium.org, moudy.ho@mediatek.com, roy-cw.yeh@mediatek.com,
-        CK Hu <ck.hu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>, nancy.lin@mediatek.com,
-        singo.chang@mediatek.com, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220407030409.9664-1-jason-jh.lin@mediatek.com>
- <20220407030409.9664-3-jason-jh.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220407030409.9664-3-jason-jh.lin@mediatek.com>
+        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
+References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+ <20220406160123.1272911-2-l.stach@pengutronix.de>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220406160123.1272911-2-l.stach@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/04/22 05:04, jason-jh.lin ha scritto:
-> In the SoC before, such as mt8173, it has 2 pipelines binding to one
-> mmsys with the same clock driver and the same power domain.
-> 
-> In mt8195, there are 4 pipelines binding to 4 different mmsys, such as
-> vdosys0, vdosys1, vppsys0 and vppsys1.
-> Each mmsys uses different clock drivers and different power domain.
-> 
-> Since each mmsys has its own clock, they could be identified
-> by the different name of their clock.
-> 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+Hi Lucas,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 06/04/2022 18:01, Lucas Stach wrote:
+> Allow vendor PHY implementations to reset PHYs with different polarity
+> than the current Gen2 reset.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 7 +++++++
+>   include/drm/bridge/dw_hdmi.h              | 1 +
+>   2 files changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index 4befc104d220..7600f26aab27 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -1365,6 +1365,13 @@ void dw_hdmi_phy_reset(struct dw_hdmi *hdmi)
+>   }
+>   EXPORT_SYMBOL_GPL(dw_hdmi_phy_reset);
+>   
+> +void dw_hdmi_phy_reset_active_low(struct dw_hdmi *hdmi)
+> +{
+> +	hdmi_writeb(hdmi, 0, HDMI_MC_PHYRSTZ);
+> +	hdmi_writeb(hdmi, HDMI_MC_PHYRSTZ_PHYRSTZ, HDMI_MC_PHYRSTZ);
+> +}
+> +EXPORT_SYMBOL_GPL(dw_hdmi_phy_reset_active_low);
+> +
+>   void dw_hdmi_phy_i2c_set_addr(struct dw_hdmi *hdmi, u8 address)
+>   {
+>   	hdmi_phy_test_clear(hdmi, 1);
+> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+> index 2a1f85f9a8a3..9b3d52a1e62a 100644
+> --- a/include/drm/bridge/dw_hdmi.h
+> +++ b/include/drm/bridge/dw_hdmi.h
+> @@ -190,6 +190,7 @@ void dw_hdmi_phy_i2c_write(struct dw_hdmi *hdmi, unsigned short data,
+>   void dw_hdmi_phy_gen2_pddq(struct dw_hdmi *hdmi, u8 enable);
+>   void dw_hdmi_phy_gen2_txpwron(struct dw_hdmi *hdmi, u8 enable);
+>   void dw_hdmi_phy_reset(struct dw_hdmi *hdmi);
+> +void dw_hdmi_phy_reset_active_low(struct dw_hdmi *hdmi);
+>   
+>   enum drm_connector_status dw_hdmi_phy_read_hpd(struct dw_hdmi *hdmi,
+>   					       void *data);
 
+This has already been submitted at https://lore.kernel.org/r/800262112191a720639ba321be18f0926d4e1d2a.1649230434.git.Sandor.yu@nxp.com
