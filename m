@@ -2,94 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F104F75C4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 08:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B11C74F75E7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 08:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236628AbiDGGOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 02:14:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38894 "EHLO
+        id S241046AbiDGGYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 02:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234204AbiDGGOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 02:14:04 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77759DE098;
-        Wed,  6 Apr 2022 23:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1649311923; x=1680847923;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=nBxEeOwcr6xTw6EPEUZhmjsNBINTTtRUxCKTCYECXjA=;
-  b=d0PC2xj2pxaOPHpDy1BU5+q/DY6uhbMwbt9sEhaQ8MGz8yAUvys0aX2S
-   HfAEj81lYZI/loDgK7ILqi6qwDWdjcdwadQ3RqSROfEFvpvuygRNHmSzt
-   zIVWzsQ6NRaeJYdgN7isk2tNtSOR8AV0rNUGoqTh7aoymI+RyNH3dieIl
-   A=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 06 Apr 2022 23:12:01 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2022 23:12:00 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 6 Apr 2022 23:12:00 -0700
-Received: from [10.50.10.231] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 6 Apr 2022
- 23:11:56 -0700
-Message-ID: <5c87d5d9-66d0-41d9-4adb-53b3ec7cadeb@quicinc.com>
-Date:   Thu, 7 Apr 2022 11:41:50 +0530
+        with ESMTP id S241000AbiDGGYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 02:24:33 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6625CCB037;
+        Wed,  6 Apr 2022 23:22:28 -0700 (PDT)
+X-UUID: 634795d8d3e34ebd85765f82cca8dd7e-20220407
+X-UUID: 634795d8d3e34ebd85765f82cca8dd7e-20220407
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1335707426; Thu, 07 Apr 2022 14:22:24 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 7 Apr 2022 14:22:22 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 7 Apr 2022 14:22:22 +0800
+Message-ID: <c9a54f1c9350d63489a0f85443f5623fe5d7fe1d.camel@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: mediatek: Correct disp_aal
+ binding for MT8183
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <chunkuang.hu@kernel.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
+        <airlied@linux.ie>, <yongqiang.niu@mediatek.com>,
+        <jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 7 Apr 2022 14:22:22 +0800
+In-Reply-To: <397e30c2-18c3-93d6-16f5-b113be77f51a@linaro.org>
+References: <20220406094654.29722-1-rex-bc.chen@mediatek.com>
+         <20220406094654.29722-2-rex-bc.chen@mediatek.com>
+         <397e30c2-18c3-93d6-16f5-b113be77f51a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v11] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_sibis@quicinc.com>,
-        <kuabhs@chromium.org>, <quic_pillair@quicinc.com>
-References: <20220406111101.27412-1-quic_mpubbise@quicinc.com>
- <CAE-0n51vq_V85SKh+hN1Ueas9t1dV7ZFaFyQsG9vukRBAHUc5A@mail.gmail.com>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <CAE-0n51vq_V85SKh+hN1Ueas9t1dV7ZFaFyQsG9vukRBAHUc5A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 4/6/2022 8:47 PM, Stephen Boyd wrote:
-> Quoting Manikanta Pubbisetty (2022-04-06 04:11:01)
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index ecbf2b89d896..f61a3e15fa8b 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -547,3 +547,6 @@ sw_ctrl: sw-ctrl {
->>          };
->>   };
->>
->> +&remoteproc_wpss {
->> +       status = "okay";
->> +};
+On Wed, 2022-04-06 at 16:44 +0200, Krzysztof Kozlowski wrote:
+> On 06/04/2022 11:46, Rex-BC Chen wrote:
+> > The driver data of MT8183 and MT8173 are different.
+> > The value of has_gamma for MT8173 is true while the value of MT8183
+> > is
+> > false. Therefore, the compatible of disp_aal for MT8183 is not
+> > suitable
+> > for the compatible for MT8173.
 > 
-> This should be before the PINCTRL section in this file. I believe after
-> the uart node.
+> Just because one feature is not supported, it does not mean they are
+> incompatible, which you claim in the patch below. Are you sure they
+> are
+> really incompatible and MT8173 fallback cannot be used?
+> 
+> 
+> Best regards,
+> Krzysztof
 
-I have not understood your concern, any specific reason as why 
-remoteproc_wpss node has to be before PINCTRL section?
-There is no problem in moving, just wanted to understand the reason.
+Hello Krzysztof,
 
-Thanks,
-Manikanta
+Thanks for your review.
+
+The difference of disp_aal for each MediaTek SoCs is "has_gamma".
+And we only control this variable for different MediaTek SoCs.
+
+The value of has_gamma for MT8173 is true.
+The value of has_gamma for MT8183 is false. (Moreover, the driver data
+is null for MT8183)
+
+From this situation, I think it's not compatible between MT8173 and
+MT8183.
+
+reference: 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/mediatek/mtk_disp_aal.c?h=v5.18-rc1#n153
+
+BRs,
+Rex
+
