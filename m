@@ -2,113 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 957674F8220
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0471D4F819E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:30:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242898AbiDGOvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46256 "EHLO
+        id S236594AbiDGOce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 10:32:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241089AbiDGOvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:51:39 -0400
-X-Greylist: delayed 1295 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 07 Apr 2022 07:49:39 PDT
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 079C51BFDE2;
-        Thu,  7 Apr 2022 07:49:38 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.94.2)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1ncT6r-0000NC-PG; Thu, 07 Apr 2022 16:27:41 +0200
-Date:   Thu, 7 Apr 2022 15:27:35 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S235739AbiDGOce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:32:34 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407FD192599
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:30:32 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id d10so6691207edj.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:30:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zllbixT8uwwRAVX+QMa2CP3U9HgtcTg/FeMKsXjsUYM=;
+        b=u6ATGlIv6X2WFKo3R1hVE/lTaoxaCg9Er9kklI3dOr/U/syEMPq5alKk5jKRLSoMz0
+         J1ZJSvSIoN9sc//+nHCBPtYPO85jf7HtKRlDi6/+xycPUBMI2SL70ZUViNmFT21AZ4DJ
+         6elP3inT+iiuIKDg3ER0qpTI1oXh3n/JciGaZu3NUGcXsCnP52+Fd0RcqClZkXxEce8l
+         Tdrvr95CWJiNNqwFZuZ2zHGss0FyXg1bQbRB5zPrBLHMIYVpx3CnAaHdBCaFhNZD1gsa
+         RzcQ7Hr7UKu1k9hwd0AOtLhQp9Q4FOhrST6VoIkOUXBaWI4WMReKUKkXb+V4KdbikNlc
+         AE5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zllbixT8uwwRAVX+QMa2CP3U9HgtcTg/FeMKsXjsUYM=;
+        b=OvzHF1HJBngVPQCkzobw2XvGiSbFnkPPir7khC2LLb7aGUBMQChgZuIEjgC6AdwVIa
+         spqzRZ1kLaMrLdh+vXBKGkATC/IQyG+BWk3HVtyfuye1mek6388SyVy3iByEElZxMkZb
+         lzaIMTD+uBSrkWBGMtSS9EeNklCiwLWrMY+RE/z8l0VXA51pfBm54yrvABjokrVK5jxI
+         LurVyd8pwrzTSrsshNhplWdzuekmQ1fH81U8CR+3rjUi6i14/B+Lgk9WoCew16EVSgRN
+         nFotB8o512KHTfPEGP1Mtw9zLrs5AMKGGPD43M3Uti59FeH5Lr8y4QQ+RshmuBmWq7M4
+         PJBA==
+X-Gm-Message-State: AOAM532OWGqUXwfxSjHjJo9QoPmkr4kZ30eK8MmRHfA3NQvufkKmSYaA
+        pPZI7vbU369/JbH/YMcgn+dclQ==
+X-Google-Smtp-Source: ABdhPJylvMQfZo0mmKmPVZrTGayBO1CUslG2f0TvN0gV6Pn8PN9mNCoe3csN+n6Mvj9EGmyt5P+V2g==
+X-Received: by 2002:a05:6402:350c:b0:419:3d18:7dd2 with SMTP id b12-20020a056402350c00b004193d187dd2mr14847093edd.148.1649341830705;
+        Thu, 07 Apr 2022 07:30:30 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id x9-20020a05640226c900b0041d015bb8a5sm1133039edd.26.2022.04.07.07.30.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 07:30:30 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sekhar Nori <nsekhar@ti.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        cujomalainey@google.com, Kevin Hilman <khilman@baylibre.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        tzungbi@google.com, linux-mediatek@lists.infradead.org,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        linux-kernel@vger.kernel.org, sound-open-firmware@alsa-project.org
-Subject: Re: [PATCH v7 0/1] firmware: mtk: add adsp ipc protocol for SOF
-Message-ID: <Yk701wLNKQs1DEVx@makrotopia.org>
-References: <20220407130338.28939-1-allen-kh.cheng@mediatek.com>
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Cc:     arm@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: align SPI NOR node name with dtschema
+Date:   Thu,  7 Apr 2022 16:30:27 +0200
+Message-Id: <20220407143027.294678-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220407130338.28939-1-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 09:03:37PM +0800, Allen-KH Cheng wrote:
-> This patch provides mediatek adsp ipc support for SOF.
-> ADSP IPC protocol offers (send/recv) interfaces using
-> mediatek-mailbox APIs.
-> 
-> This patch was tested and confirmed to with SOF fw on MT8195
-> cherry board.
+The node names should be generic and SPI NOR dtschema expects "flash".
 
-... confirmed to **work** with ...
-is probably what you meant to write here.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/da850-evm.dts                  | 2 +-
+ arch/arm/boot/dts/dm8168-evm.dts                 | 2 +-
+ arch/arm/boot/dts/spear1310-evb.dts              | 2 +-
+ arch/arm/boot/dts/spear1340-evb.dts              | 2 +-
+ arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 2 +-
+ arch/arm/boot/dts/stm32mp157c-ev1.dts            | 4 ++--
+ 6 files changed, 7 insertions(+), 7 deletions(-)
 
+diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
+index 87c517d65f62..e9aecac4f5b5 100644
+--- a/arch/arm/boot/dts/da850-evm.dts
++++ b/arch/arm/boot/dts/da850-evm.dts
+@@ -278,7 +278,7 @@ &spi1 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi1_pins &spi1_cs0_pin>;
+-	flash: m25p80@0 {
++	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "jedec,spi-nor";
+diff --git a/arch/arm/boot/dts/dm8168-evm.dts b/arch/arm/boot/dts/dm8168-evm.dts
+index 5126e2d72ed7..778796c10af8 100644
+--- a/arch/arm/boot/dts/dm8168-evm.dts
++++ b/arch/arm/boot/dts/dm8168-evm.dts
+@@ -177,7 +177,7 @@ &mcspi1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mcspi1_pins>;
+ 
+-	m25p80@0 {
++	flash@0 {
+ 		compatible = "w25x32";
+ 		spi-max-frequency = <48000000>;
+ 		reg = <0>;
+diff --git a/arch/arm/boot/dts/spear1310-evb.dts b/arch/arm/boot/dts/spear1310-evb.dts
+index 4cbadcb41084..ddd1cf4d0554 100644
+--- a/arch/arm/boot/dts/spear1310-evb.dts
++++ b/arch/arm/boot/dts/spear1310-evb.dts
+@@ -379,7 +379,7 @@ stmpe_touchscreen {
+ 					};
+ 				};
+ 
+-				m25p80@1 {
++				flash@1 {
+ 					compatible = "st,m25p80";
+ 					reg = <1>;
+ 					spi-max-frequency = <12000000>;
+diff --git a/arch/arm/boot/dts/spear1340-evb.dts b/arch/arm/boot/dts/spear1340-evb.dts
+index fd194ebeedc9..3a51a41eb5e4 100644
+--- a/arch/arm/boot/dts/spear1340-evb.dts
++++ b/arch/arm/boot/dts/spear1340-evb.dts
+@@ -439,7 +439,7 @@ spi0: spi@e0100000 {
+ 				cs-gpios = <&gpiopinctrl 80 0>, <&gpiopinctrl 24 0>,
+ 					   <&gpiopinctrl 85 0>;
+ 
+-				m25p80@0 {
++				flash@0 {
+ 					compatible = "m25p80";
+ 					reg = <0>;
+ 					spi-max-frequency = <12000000>;
+diff --git a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+index 33ae5e0590df..ac53ee3c496b 100644
+--- a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
++++ b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+@@ -398,7 +398,7 @@ &qspi {
+ 	#size-cells = <0>;
+ 	status = "okay";
+ 
+-	flash0: is25lp016d@0 {
++	flash0: flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <133000000>;
+diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+index e222d2d2cb44..d142dd30e16b 100644
+--- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+@@ -262,7 +262,7 @@ &qspi {
+ 	#size-cells = <0>;
+ 	status = "okay";
+ 
+-	flash0: mx66l51235l@0 {
++	flash0: flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-rx-bus-width = <4>;
+@@ -271,7 +271,7 @@ flash0: mx66l51235l@0 {
+ 		#size-cells = <1>;
+ 	};
+ 
+-	flash1: mx66l51235l@1 {
++	flash1: flash@1 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <1>;
+ 		spi-rx-bus-width = <4>;
+-- 
+2.32.0
 
-> 
-> Based on matthias.bgg/linux.git, v5.18-next/soc
-> changes since v6:
-> - rebase to matthias.bgg/linux.git, v5.18-next/soc
-> - Prefer "GPL" over "GPL v2" for MODULE_LICENSE
-> 
-> changes since v5:
-> - fix WARNING: modpost: missing MODULE_LICENSE() in drivers/mailbox
->   /mtk-adsp-mailbox.o. Add MODULE_LICENSE in the last line.
-> - Due to WARNING: Missing or malformed SPDX-License-Identifier tag
->   in line 1 in checkpatch, we don't remove SPDX-License in line 1.
-> 
-> changes since v4:
-> - add error message for wrong mbox chan
-> 
-> changes since v3:
-> - rebase on v5.16-rc8
-> - update reviewers
-> 
-> changes since v2:
-> - add out tag for two memory free phases
-> 
-> changes since v1:
-> - add comments for mtk_adsp_ipc_send and mtk_adsp_ipc_recv
-> - remove useless MODULE_LICENSE
-> - change label name to out_free
-> 
-> 
-> Allen-KH Cheng (1):
->   firmware: mediatek: add adsp ipc protocol interface
-> 
->  drivers/firmware/Kconfig                      |   1 +
->  drivers/firmware/Makefile                     |   1 +
->  drivers/firmware/mediatek/Kconfig             |   9 +
->  drivers/firmware/mediatek/Makefile            |   2 +
->  drivers/firmware/mediatek/mtk-adsp-ipc.c      | 161 ++++++++++++++++++
->  .../linux/firmware/mediatek/mtk-adsp-ipc.h    |  65 +++++++
->  6 files changed, 239 insertions(+)
->  create mode 100644 drivers/firmware/mediatek/Kconfig
->  create mode 100644 drivers/firmware/mediatek/Makefile
->  create mode 100644 drivers/firmware/mediatek/mtk-adsp-ipc.c
->  create mode 100644 include/linux/firmware/mediatek/mtk-adsp-ipc.h
-> 
-> -- 
-> 2.18.0
-> 
