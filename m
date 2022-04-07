@@ -2,160 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED0D4F8934
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 00:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 027A74F8A34
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 00:15:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbiDGU4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 16:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57638 "EHLO
+        id S230211AbiDGVAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 17:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbiDGUzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:55:53 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F9F6E786;
-        Thu,  7 Apr 2022 13:53:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8457AB82995;
-        Thu,  7 Apr 2022 20:53:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CB0C385A9;
-        Thu,  7 Apr 2022 20:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649364795;
-        bh=hH0meYZ7KFxv8pBbd7Ld0RQ57xC725s9BToCO/hz7FY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ceU1Tao/URFDuuOZJunGv8ZJW10hHL4SFtQqZpM8Kfd3z7jx1i48ARHfVCZy1jE3F
-         WLOYcQzK63738uhkbVLqfOY/UY4JOb1bv3qnys8pXWNomkfFpaqBINjHljdZ2o6kIN
-         1zn2KOwRe/IgGBQX3+NYlGLL1BJZ/duHUUi1OQzSho+OSfBXBiQqgSkW8QXH8run14
-         elhpLoCVCnwYwP4JnVTcmgRWwLBylflW1iPnPXyVXGf/96m7WYKGKUgxCk9t7bOS6y
-         5ZRETNFtF7wok/zfav5nfofKG7ia6MpwKPYTHmr0tvGjBHY1aE5fKlL/Vy2BBO/YWE
-         R9903jrFqq5aQ==
-Received: by mail-io1-f46.google.com with SMTP id p135so2437484iod.2;
-        Thu, 07 Apr 2022 13:53:15 -0700 (PDT)
-X-Gm-Message-State: AOAM532jCau7dbc1dro1Dt10/79nSQjytJJe8DJ85/KO704cO7bQp41C
-        sfHu9UUFiydVj4QaL2cks1nWFD2bBRgYdLp1vQ==
-X-Google-Smtp-Source: ABdhPJwX9EOC7s4lernQaEBJdy8BtvchpcglTWArVdpbaOe2SaItODmejqV/qePgLb8HxSMQeV0F6nHDwxLGyrA/EGA=
-X-Received: by 2002:a05:6638:1301:b0:323:3b47:8b3f with SMTP id
- r1-20020a056638130100b003233b478b3fmr7914802jad.291.1649364794440; Thu, 07
- Apr 2022 13:53:14 -0700 (PDT)
+        with ESMTP id S230264AbiDGVA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 17:00:26 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE25B15EDDC
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 13:58:18 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id d10so7910865edj.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 13:58:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gOv/51dHbvSvAxLzxG0YE6pJrgjLizkZFj88kA5U1Ts=;
+        b=LtV+LimrEebMzUK1IOhvEXGb2ymNgMZl7qh+Db0K2zNRN9P2+inYAeLmBHYB2w6OkO
+         mn/kik52wDH8tc8FUpvnPbCEntUH62DwQiMG6ydiIqlYKJmkEYvdOUC8WI9fYcl0ysB1
+         H6FwSKAovj274rvZkqlyUAzRkERYk49kh8aZUoMkYXZSgZxVakbuGIBuJ5MwSay6PeWy
+         mzuQZ7aln0oPp2FhclYJyvKN5snzc2HBQQSTWgLAs7rRk1QNqx4VpUvRU2ENIa5w2Yxt
+         4cczopCH7g7pzQE8kYQ/fYdIrqeKWaHCjByr9giggQf34469Y2UAfBvapmZcmSD+hqiH
+         /fjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gOv/51dHbvSvAxLzxG0YE6pJrgjLizkZFj88kA5U1Ts=;
+        b=iw7703rl2lapDO9xahlZ7VdiaKd0IkfXmWfeZ89HMISe7uyLIEVpHddV02lDAXiXy6
+         RoJ/xwdaBhzdbGwbcHfg1Kd3+u7jfmC0i7KltdJD9RLsQPKuu80Z8znOAujIBxn+HwXL
+         EE/pTg3c7SogVzD+J2idwIzlhbXJvdSlW082L4nSaBE6UztLNph6d3lsQt4ov8TxRgwm
+         3rc8j0iljda0Rig3bA3zN/64ELYxHhGDcM/ZE5YIfrQpf7UhyEWH459P5oVepkZfmUAj
+         TYSn/+XdI1gLFoR3FxLbn0pEObd1ElwC3B8lic9M98v3lD3YSojQGcKoanMoSOcCFKpI
+         aNYw==
+X-Gm-Message-State: AOAM532aeNDBJMhbVkXiypR99uHJgz+oQ5qniuWHVz4zpcLuKu4tYgnS
+        QhMkTYRnqcDSbhWqagIHElNhag==
+X-Google-Smtp-Source: ABdhPJzKZKgo7bJk0AYUXlwb2y8mbmmQYcn7Gd1R46cDu+04zIt7arhMKkYnlMab8y4eU6cP1/Q3hg==
+X-Received: by 2002:a05:6402:3604:b0:41c:c4e6:2988 with SMTP id el4-20020a056402360400b0041cc4e62988mr16115607edb.157.1649365097189;
+        Thu, 07 Apr 2022 13:58:17 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id b11-20020a17090630cb00b006e83fb1e6b1sm738450ejb.100.2022.04.07.13.58.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Apr 2022 13:58:16 -0700 (PDT)
+Message-ID: <827e5f9c-13ef-08fb-d167-80c6c4ea5631@linaro.org>
+Date:   Thu, 7 Apr 2022 22:58:15 +0200
 MIME-Version: 1.0
-References: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
-In-Reply-To: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 7 Apr 2022 15:53:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJs=zLegXz_oDqYFebJReCSnbHPWcPDD6rFv9SpSMmjAQ@mail.gmail.com>
-Message-ID: <CAL_JsqJs=zLegXz_oDqYFebJReCSnbHPWcPDD6rFv9SpSMmjAQ@mail.gmail.com>
-Subject: Re: [PATCH V4] arm64: dts: add support for S4 based Amlogic AQ222
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 11/11] arm64: dts: Add Pensando Elba SoC support
+Content-Language: en-US
+To:     Brad Larson <brad@pensando.io>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     arnd@arndb.de, linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        broonie@kernel.org, fancer.lancer@gmail.com,
+        adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net,
+        dac2@pensando.io, linux-gpio@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220406233648.21644-1-brad@pensando.io>
+ <20220406233648.21644-12-brad@pensando.io>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220406233648.21644-12-brad@pensando.io>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 6, 2022 at 5:22 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->
-> Add basic support for the Amlogic S4 based Amlogic AQ222 board:
-> which describe components as follows: CPU, GIC, IRQ, Timer, UART.
-> It's capable of booting up into the serial console.
->
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 07/04/2022 01:36, Brad Larson wrote:
+> Add Pensando common and Elba SoC specific device nodes
+> 
+> Signed-off-by: Brad Larson <brad@pensando.io>
 > ---
-> V3 -> V4: cleaned up coding style.
-> V2 -> V3: add of dts board  compatible family.
-> V1 -> V2: cleaned up coding style, modify CPU affinity of timer interrups,
->           and modify GIC reg defintions.
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->  .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 99 +++++++++++++++++++
->  3 files changed, 130 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 5148cd9e5146..faea74a45994 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> new file mode 100644
-> index 000000000000..a942d7e06d6e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-s4.dtsi"
-> +
-> +/ {
-> +       model = "Amlogic Meson S4 AQ222 Development Board";
-> +       compatible = "amlogic,aq222", "amlogic,s4";
-> +       interrupt-parent = <&gic>;
-> +       #address-cells = <2>;
-> +       #size-cells = <2>;
-> +
-> +       aliases {
-> +               serial0 = &uart_B;
-> +       };
-> +
-> +       memory@00000000 {
-> +               device_type = "memory";
-> +               reg = <0x0 0x0 0x0 0x40000000>;
-> +       };
-> +
+> Change from V3:
+> - Changed to dual copyright (GPL-2.0+ OR MIT)
+> - Minor changes from review input
+
+Thank you for your patch. There is something to discuss/improve.
+
+(...)
+
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +	rtc@51 {
+> +		compatible = "nxp,pcf85263";
+> +		reg = <0x51>;
+> +	};
 > +};
 > +
-> +&uart_B {
-> +       status = "okay";
+> +&spi0 {
+> +	num-cs = <4>;
+> +	cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
+> +		   <&porta 7 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +	spi0_cs0@0 {
+
+Generic node name needed matching the class of a devicxe.
+
+> +		compatible = "semtech,sx1301";	/* Enable spidev */
+
+This comment is a bit odd... did you just use random compatible from
+spidev instead of defining proper compatible?
+
+
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+
+Why address/size cells?
+
+> +		spi-max-frequency = <12000000>;
+> +		reg = <0>;
+
+Please put reg just after compatible. It's the most common pattern.
+
+> +	};
+> +
+> +	spi0_cs1@1 {
+> +		compatible = "semtech,sx1301";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <12000000>;
+> +		reg = <1>;
+> +	};
+> +
+
+(...)
+
+> +
+> +		emmc: mmc@30440000 {
+> +			compatible = "pensando,elba-sd4hc", "cdns,sd4hc";
+> +			clocks = <&emmc_clk>;
+> +			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> +			reg = <0x0 0x30440000 0x0 0x10000>,
+> +			      <0x0 0x30480044 0x0 0x4>;	/* byte-lane ctrl */
+> +			cdns,phy-input-delay-sd-highspeed = <0x4>;
+> +			cdns,phy-input-delay-legacy = <0x4>;
+> +			cdns,phy-input-delay-sd-uhs-sdr50 = <0x6>;
+> +			cdns,phy-input-delay-sd-uhs-ddr50 = <0x16>;
+> +			mmc-ddr-1_8v;
+> +			status = "disabled";
+> +		};
+> +
+> +		mssoc: mssoc@307c0000 {
+
+Generic node name.
+
+> +			compatible = "syscon", "simple-mfd";
+
+This does not look correct. Syscon is okay, but why do you need
+simple-mfd (there are no children here)?
+
+> +			reg = <0x0 0x307c0000 0x0 0x3000>;
+> +		};
+> +	};
 > +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> new file mode 100644
-> index 000000000000..bf9ae1e1016b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -0,0 +1,99 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +       cpus {
-> +               #address-cells = <2>;
-> +               #size-cells = <0>;
-> +
-> +               cpu0: cpu@0 {
-> +                       device_type = "cpu";
-> +                       compatible = "arm,cortex-a35","arm,armv8";
 
-I see this is already applied, but 'arm,armv8' is only valid for s/w
-models. Please send a fix.
 
-Rob
+Best regards,
+Krzysztof
