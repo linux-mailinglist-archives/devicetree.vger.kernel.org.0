@@ -2,69 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FEC14F856F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 933E44F8575
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345939AbiDGRDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 13:03:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34092 "EHLO
+        id S1345921AbiDGREW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 13:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345969AbiDGRDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:03:01 -0400
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9741C886C;
-        Thu,  7 Apr 2022 10:01:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:Subject:
-        From:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
-        :List-Post:List-Owner:List-Archive;
-        bh=o3qoOir9WAPGzi1sWnNPLakfeNGwPLGP2JcLR4qBR0w=; b=MuioKSfFuI7blzwCV/6wb+YekZ
-        ZxFLRKdEmgFHBL5G5EjD8gQ7NqEpdI5RH75hyyi5Lx+Qpo/ZHjbVyA8sOLM81+Cf/jnhuNTEqrUMV
-        AKRzPBibxD304idWTvyCsPVM59NiEmQMfnURAJfh2CAAQpBDkCnXgKqwp0Bbiz2WY6Zs=;
-Received: from p200300daa70ef2000000000000000451.dip0.t-ipconnect.de ([2003:da:a70e:f200::451] helo=nf.local)
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <nbd@nbd.name>)
-        id 1ncVU3-0005oz-2F; Thu, 07 Apr 2022 18:59:47 +0200
-Message-ID: <15c8aab5-41b7-4d25-4b4c-98536bc197fc@nbd.name>
-Date:   Thu, 7 Apr 2022 18:59:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.7.0
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     Networking <netdev@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC..." 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220405195755.10817-1-nbd@nbd.name>
- <20220405195755.10817-5-nbd@nbd.name>
- <d0bffa9a-0ea6-0f59-06b2-7eef3c746de1@linaro.org>
- <e3ea7381-87e3-99e1-2277-80835ec42f15@nbd.name>
- <CAK8P3a1A6QYajv_HTw79HjiJ8CN6YPeKXc_X3ZFD83pdOqVTkQ@mail.gmail.com>
- <08883cf4-27b9-30bf-bd27-9391b763417c@nbd.name>
- <750c1f9e-6a53-16d5-390e-f9f81fa23afd@linaro.org>
-From:   Felix Fietkau <nbd@nbd.name>
-Subject: Re: [PATCH v2 04/14] dt-bindings: arm: mediatek: document WED binding
- for MT7622
-In-Reply-To: <750c1f9e-6a53-16d5-390e-f9f81fa23afd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        with ESMTP id S243254AbiDGRES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:04:18 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEA981C9B44;
+        Thu,  7 Apr 2022 10:02:17 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id e189so6246851oia.8;
+        Thu, 07 Apr 2022 10:02:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Wp8RSwIrgzG7uQ3b1/ypwJs7daFfqxiiYUEMrzxbqT0=;
+        b=1tYAl2yFyP6/X2KSem7RfxY6ckyAUuZDEu4EjliaL2r+TVs9KQJXEzDjxU89Tx1EVL
+         88F4iQqBYLRaUSaWAFn8Qx+snactdPUnhIx6a+A/xAN8VjtrmmMWnBs8UD8pCBAQf37R
+         xkhXQTQ3Woqilebpz5pVPYQPHbTBKYPcdtzSRDLM6WrZ8f8iK+ZD3na+wdf7hXLyM0vh
+         KmIUta8eaJ4eLFT0tveJgj9fhEXriPUWAhpRTKYY6vUTuw3VVZBdYEyIX54rmOfLmoSo
+         MI8Xt6AVTwGm78kFweTr3keWlTQDVJ4dHdxOTWyhUTzxX/ok5GBN8NIExAUEUr7tTW3R
+         qV4Q==
+X-Gm-Message-State: AOAM531pwWDXbhtxKmp0F+6PqtIEuFaj7yGM/Vo1cblbKyB1wvxcxtlA
+        69k47FjgVHfdo9GLoZBbZQ==
+X-Google-Smtp-Source: ABdhPJwfZgiNM9aE7g93ngGxHZ9S+c/XahJIWijit/HHJyW68508gY+Yc3Pn8uYTbOC5M8Fw+qgcdQ==
+X-Received: by 2002:a05:6808:30a7:b0:2ec:cf1c:9a06 with SMTP id bl39-20020a05680830a700b002eccf1c9a06mr6455461oib.272.1649350935482;
+        Thu, 07 Apr 2022 10:02:15 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id mj27-20020a0568700d9b00b000de29e1d6adsm6053342oab.16.2022.04.07.10.02.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 10:02:15 -0700 (PDT)
+Received: (nullmailer pid 1406984 invoked by uid 1000);
+        Thu, 07 Apr 2022 17:02:14 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        phone-devel@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Pavel Machek <pavel@ucw.cz>, linux-kernel@vger.kernel.org
+In-Reply-To: <20220407101034.13122-2-markuss.broks@gmail.com>
+References: <20220407101034.13122-1-markuss.broks@gmail.com> <20220407101034.13122-2-markuss.broks@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: convert ktd2692 bindings to yaml
+Date:   Thu, 07 Apr 2022 12:02:14 -0500
+Message-Id: <1649350934.490785.1406983.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,19 +62,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 06.04.22 10:57, Krzysztof Kozlowski wrote:
-> Thanks for clarification. I still wonder about the missing drivers as I
-> responded to your second bindings:
-> https://lore.kernel.org/all/20220405195755.10817-1-nbd@nbd.name/T/#m6d108c644f0c05cd12c05e56abe2ef75760c6cef
+On Thu, 07 Apr 2022 13:10:05 +0300, Markuss Broks wrote:
+> This patch converts the leds-ktd2692.txt bindings to modern yaml
+> style device-tree bindings.
 > 
-> Both of these compatibles - WED and PCIe - are not actually used. Now
-> everything is done inside your Ethernet driver which pokes WED and
-> PCIe-mirror address space via regmap/syscon.
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
+>  .../bindings/leds/kinetic,ktd2692.yaml        | 87 +++++++++++++++++++
+>  .../devicetree/bindings/leds/leds-ktd2692.txt | 50 -----------
+>  2 files changed, 87 insertions(+), 50 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-ktd2692.txt
 > 
-> Separate bindings might have sense if WED/PCIe mirror were ever
-> converted to real drivers.I think in terms of hardware description it makes more sense to have 
-separate nodes, even if the implementation uses them in one driver at 
-the moment.
 
-- Felix
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml:37:24: [error] syntax error: expected <block end>, but found '<scalar>' (syntax)
+
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/leds/kinetic,ktd2692.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 52, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.parser.ParserError: while parsing a block mapping
+  in "<unicode string>", line 36, column 5
+did not find expected key
+  in "<unicode string>", line 37, column 24
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/leds/kinetic,ktd2692.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml:  while parsing a block mapping
+  in "<unicode string>", line 36, column 5
+did not find expected key
+  in "<unicode string>", line 37, column 24
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml: ignoring, error parsing file
+make: *** [Makefile:1401: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
