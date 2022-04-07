@@ -2,101 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A83D54F824C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 853114F825E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238723AbiDGPAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 11:00:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59356 "EHLO
+        id S231831AbiDGPEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 11:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230356AbiDGPAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:00:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C2251EF9FE
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:58:08 -0700 (PDT)
-Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ncTaI-0001MW-Sq; Thu, 07 Apr 2022 16:58:06 +0200
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: reset: Drop the hisilicon,hi6220-reset binding
-Date:   Thu,  7 Apr 2022 16:58:02 +0200
-Message-Id: <20220407145802.4060130-1-p.zabel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1344401AbiDGPEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:04:49 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038B945060
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 08:02:43 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id c15so7802299ljr.9
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 08:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=y0f+Yu3Bpr5dxm0vLBTScFhvDFwOgu8Ul3zj8DwXFvI=;
+        b=MI+BMCKmiyEUYsaqRiYUuOTpjzzmk50hLgB8MvB/eXZBiLlQcJOfnDDY8GxZ+e5h3t
+         IgbFl0VC05MtzBWAFU7fLpaHIo+9uOg8vrFgVzLiyJZ21n07adq2+Wtj81GFDWaVRUeC
+         DOZLMp3TmTrZZVcIhWCsE8HGEPdbq+cZ1VU6wHjEQMtkKLXbijkj0BzsX2HXSmbU79l2
+         lrmnQLrbxpa4vKG5N4TM2cuiB9dXkC6j9Oeij5Tdf/oXvcwh+ML1QvxXLC1idsLB/ws7
+         +K6/ut2++ORoaPKiYVJnDB6nvnShL+rdgTuoF7L5B9zFJdWVr13pTtgG07MYTKR39t95
+         f52g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=y0f+Yu3Bpr5dxm0vLBTScFhvDFwOgu8Ul3zj8DwXFvI=;
+        b=uqBwWJhOBgNKBng02u+BToAbKFDmOs2aUIlFEInQhgvZZlf8jp6+Trs2564z8Jfhgi
+         +RN6YN/9uwIINCdcpfBR4SOzmheifF40ATJFqvnb2UnOJQPMY5qTK0j7xmzWSjx9fv5H
+         ksr+YTuH8I1vSOR0xF/2c1OE9yJrJJV0Xz4YS3M01zUdYhfMJ1DcGs2j78gzUdz6kra7
+         2F9dTeX2ntoCM3BplFA/5HtOdMcdFXnOuwjJFRrtt9pg0PrUrlEdBsFi5n/6y4UOsKS4
+         bBVr9X5nSY/VI1JaPriYCr6nF1n1TjFZ4ziowsCD7sFVScSc9vVHSPm3BpUm/eco8OJ6
+         /Krw==
+X-Gm-Message-State: AOAM531tbipW8DZsGf3aezx+Kx4DHuVFmoPmLbAdE+OdXiv8A4+Al+NF
+        VOprZjD9QhFiZ1hj4gdmXpg=
+X-Google-Smtp-Source: ABdhPJxCMJJTwHYUQon8+nPlhvp8RZX3B2bkoMvlFBC2Tnnw3b7tmTlX82Qt3xh9n2CaSH6+MgcAGQ==
+X-Received: by 2002:a05:651c:150a:b0:249:a0b1:2e15 with SMTP id e10-20020a05651c150a00b00249a0b12e15mr9039980ljf.182.1649343760989;
+        Thu, 07 Apr 2022 08:02:40 -0700 (PDT)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id bi2-20020a0565120e8200b0044826a117bcsm2191087lfb.44.2022.04.07.08.02.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 07 Apr 2022 08:02:40 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20220407101642.GE4012@pengutronix.de>
+Date:   Thu, 7 Apr 2022 17:02:36 +0200
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <BF7F3C19-1BB6-4A2B-AA36-DEC25C443E24@gmail.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
+ <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
+ <20220406145847.GX4012@pengutronix.de>
+ <1A6985CC-CBEB-44B2-AA61-3005D204C023@gmail.com>
+ <20220407101642.GE4012@pengutronix.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The hisilicon,hi6220-sysctrl, hisilicon,hi6220-mediactrl, and
-hisilicon,hi6220-aoctrl controllers are already described in:
 
-  Documentation/devicetree/bindings/arm/hisilicon/controller/sysctrl.yaml
-  Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
 
-Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
----
- .../bindings/reset/hisilicon,hi6220-reset.txt | 37 -------------------
- 1 file changed, 37 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt
+> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
+<s.hauer@pengutronix.de> w dniu 07.04.2022, o godz. 12:16:
+>=20
+>=20
+> Yes, and it raises a few more ;)
 
-diff --git a/Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt b/Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt
-deleted file mode 100644
-index ea0a6a9734c1..000000000000
---- a/Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt
-+++ /dev/null
-@@ -1,37 +0,0 @@
--Hisilicon System Reset Controller
--======================================
--
--Please also refer to reset.txt in this directory for common reset
--controller binding usage.
--
--The reset controller registers are part of the system-ctl block on
--hi6220 SoC.
--
--Required properties:
--- compatible: should be one of the following:
--  - "hisilicon,hi6220-sysctrl", "syscon" : For peripheral reset controller.
--  - "hisilicon,hi6220-mediactrl", "syscon" : For media reset controller.
--  - "hisilicon,hi6220-aoctrl", "syscon" : For ao reset controller.
--- reg: should be register base and length as documented in the
--  datasheet
--- #reset-cells: 1, see below
--
--Example:
--sys_ctrl: sys_ctrl@f7030000 {
--	compatible = "hisilicon,hi6220-sysctrl", "syscon";
--	reg = <0x0 0xf7030000 0x0 0x2000>;
--	#clock-cells = <1>;
--	#reset-cells = <1>;
--};
--
--Specifying reset lines connected to IP modules
--==============================================
--example:
--
--        uart1: serial@..... {
--                ...
--                resets = <&sys_ctrl PERIPH_RSTEN3_UART1>;
--                ...
--        };
--
--The index could be found in <dt-bindings/reset/hisi,hi6220-resets.h>.
--- 
-2.30.2
+pls see at end of email: DRI state with playback
 
+>=20
+>>=20
+>> player:
+>>=20
+>> 2022-04-06 17:52:26.424487 I Display: Geometry: 1920x1080+0+0 =
+Size(Qt): 930mmx530mm
+>> 2022-04-06 17:52:26.424922 I /dev/dri/card0 Qt EGLFS/KMS Fd:5 Crtc =
+id:49 Connector id:51 Atomic: 1
+>> 2022-04-06 17:52:26.425061 I /dev/dri/card0: Authenticated
+>> 2022-04-06 17:52:26.534362 I /dev/dri/card0: Found 3 planes; 3 for =
+this CRTC
+>> 2022-04-06 17:52:26.534384 I /dev/dri/card0: Selected Plane #37 =
+Overlay for video
+>> 2022-04-06 17:52:26.534430 I /dev/dri/card0: Supported DRM video =
+formats: NV12,NV16,NV24,YVYU,VYUY
+>> 2022-04-06 17:52:26.534437 I /dev/dri/card0: Selected Plane #43 =
+Overlay for GUI
+>> 2022-04-06 17:52:26.534480 I /dev/dri/card0: DRM device retrieved =
+from Qt
+>> 2022-04-06 17:52:26.534489 I /dev/dri/card0: Multi-plane setup: =
+Requested: 1 Setup: 1
+>>=20
+>> so:
+>> plane #37 is where video is drawing
+>> plane #43 is GUI/OSD
+>>=20
+>>=20
+>> dri state:
+>>=20
+>> root@Myth-Frontend-06c7e973c2f1:~ # cat /sys/kernel/debug/dri/0/state
+>> plane[31]: Smart0-win0
+>>        crtc=3Dvideo_port0
+>>        fb=3D58
+>>                allocated by =3D mythfrontend
+>>                refcount=3D2
+>>                format=3DXR24 little-endian (0x34325258)
+>>                modifier=3D0x0
+>>                size=3D1920x1080
+>>                layers:
+>>                        size[0]=3D1920x1080
+>>                        pitch[0]=3D7680
+>>                        offset[0]=3D0
+>>                        obj[0]:
+>>                                name=3D0
+>>                                refcount=3D4
+>>                                start=3D00000000
+>>                                size=3D8294400
+>>                                imported=3Dno
+>>        crtc-pos=3D1920x1080+0+0
+>>        src-pos=3D1920.000000x1080.000000+0.000000+0.000000
+>>        rotation=3D1
+>>        normalized-zpos=3D0
+>>        color-encoding=3DITU-R BT.601 YCbCr
+>>        color-range=3DYCbCr limited range
+>=20
+> Ok, this seems to be the base plane.
+>=20
+>> plane[37]: Esmart0-win0
+>>        crtc=3D(null)
+>=20
+> crtc=3Dnull? Did you capture the state without a video playing? =
+Otherwise
+> I would expect a crtc associated here.
+
+Indeed. This was from player sitting in UI (no playback).
+Pls see at bottom of email state with video playback
+(it has crtc=3Dvideo_port0) =20
+
+>=20
+>>        fb=3D0
+>>        crtc-pos=3D1920x1080+0+0
+>>        src-pos=3D1920.000000x1080.000000+0.000000+0.000000
+>>        rotation=3D1
+>>        normalized-zpos=3D0
+>>        color-encoding=3DITU-R BT.601 YCbCr
+>>        color-range=3DYCbCr limited range
+>> plane[43]: Cluster0-win0
+>>        crtc=3D(null)
+>=20
+> This plane is selected for OSD by your application. The cluster =
+windows
+> can't show a regular linear framebuffer, they can only do AFBC. You'll
+> see that in modetest:
+>=20
+> 	in_formats blob decoded:
+>                 XR24:  ARM_BLOCK_SIZE=3D16x16,
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DSPARSE
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DYTR
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DCBR
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DYTR|SPARSE
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DSPARSE|CBR
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DYTR|CBR
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DYTR|SPARSE|CBR
+> 			 ARM_BLOCK_SIZE=3D16x16,MODE=3DYTR|SPLIT|SPARSE
+> 		...
+>=20
+> The other windows show "XR24: LINEAR" here. Does your application use
+> the GPU to render the OSD?
+
+Yes.
+
+> Otherwise I doubt your application can
+> handle this format, so it should not use this layer.
+>=20
+>>        fb=3D0
+>>        crtc-pos=3D0x0+0+0
+>>        src-pos=3D0.000000x0.000000+0.000000+0.000000
+>>        rotation=3D1
+>>        normalized-zpos=3D0
+>=20
+> I would be interested in this output when the player is actually =
+playing
+> something.
+
+Pls see at bottom.
+
+> This normalized-zpos puzzles me a bit.
+
+I'm not surprised :-).
+You are puzzled probably because rk35xx current VOP2 code requires - =
+from me - to force Z-position =3D 0 in Qt if I want to have GUI visible =
+on screen.
+Without this screen is black.=20
+This seems to be i think - another issue to resolve (no any other SoC =
+requires this....).
+I'm not sure where issue is - but as i need to do this only on VOP2 - i =
+think there is somewhere something not right in VOP2 code.       =20
+
+> Normally it should be
+> unique over all enabled planes for a CRTC. Maybe 0 is ok here because
+> it's currently not associated to any CRTC.
+
+It is because of me setting it to 0 (see explanations above) =20
+
+>=20
+>=20
+
+DRI state with video playback:
+
+root@Myth-Frontend-06c7e973c2f1:~ # cat /sys/kernel/debug/dri/0/state
+plane[31]: Smart0-win0
+        crtc=3Dvideo_port0
+        fb=3D55
+                allocated by =3D mythfrontend
+                refcount=3D2
+                format=3DXR24 little-endian (0x34325258)
+                modifier=3D0x0
+                size=3D1920x1080
+                layers:
+                        size[0]=3D1920x1080
+                        pitch[0]=3D7680
+                        offset[0]=3D0
+                        obj[0]:
+                                name=3D0
+                                refcount=3D4
+                                start=3D00000000
+                                size=3D8294400
+                                imported=3Dno
+        crtc-pos=3D1920x1080+0+0
+        src-pos=3D1920.000000x1080.000000+0.000000+0.000000
+        rotation=3D1
+        normalized-zpos=3D1
+        color-encoding=3DITU-R BT.601 YCbCr
+        color-range=3DYCbCr limited range
+plane[37]: Esmart0-win0
+        crtc=3Dvideo_port0
+        fb=3D65
+                allocated by =3D mythfrontend
+                refcount=3D2
+                format=3DNV12 little-endian (0x3231564e)
+                modifier=3D0x0
+                size=3D1920x1080
+                layers:
+                        size[0]=3D1920x1080
+                        pitch[0]=3D1920
+                        offset[0]=3D0
+                        obj[0]:
+                                name=3D0
+                                refcount=3D3
+                                start=3D00000000
+                                size=3D3657728
+                                imported=3Dyes
+                        size[1]=3D960x540
+                        pitch[1]=3D1920
+                        offset[1]=3D2088960
+                        obj[1]:
+                                name=3D0
+                                refcount=3D3
+                                start=3D00000000
+                                size=3D3657728
+                                imported=3Dyes
+        crtc-pos=3D1920x1080+0+0
+        src-pos=3D1920.000000x1080.000000+0.000000+0.000000
+        rotation=3D1
+        normalized-zpos=3D0
+        color-encoding=3DITU-R BT.601 YCbCr
+        color-range=3DYCbCr limited range
+plane[43]: Cluster0-win0
+        crtc=3D(null)
+        fb=3D0
+        crtc-pos=3D0x0+0+0
+        src-pos=3D0.000000x0.000000+0.000000+0.000000
+        rotation=3D1
+        normalized-zpos=3D0
+        color-encoding=3DITU-R BT.601 YCbCr
+        color-range=3DYCbCr limited range
+crtc[49]: video_port0
+        enable=3D1
+        active=3D1
+        self_refresh_active=3D0
+        planes_changed=3D1
+        mode_changed=3D0
+        active_changed=3D0
+        connectors_changed=3D0
+        color_mgmt_changed=3D0
+        plane_mask=3D3
+        connector_mask=3D1
+        encoder_mask=3D1
+        mode: "1920x1080": 50 148500 1920 2448 2492 2640 1080 1084 1089 =
+1125 0x40 0x5
+connector[51]: HDMI-A-1
+        crtc=3Dvideo_port0
+        self_refresh_aware=3D0=
