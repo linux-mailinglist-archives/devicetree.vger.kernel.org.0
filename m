@@ -2,66 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B33E4F6F4F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 02:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2A64F6F55
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 02:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbiDGArQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Apr 2022 20:47:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43812 "EHLO
+        id S232526AbiDGAxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Apr 2022 20:53:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbiDGArO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 20:47:14 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A021CD7C7;
-        Wed,  6 Apr 2022 17:45:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8E4CFB82475;
-        Thu,  7 Apr 2022 00:45:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A6D1C385A3;
-        Thu,  7 Apr 2022 00:45:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649292311;
-        bh=HTXn7kVKBe4UU307aYiMEL2SVHwhEFq0F/tZioWsuFQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=E4hZR+Vc1njlKy9GM/dEpt9PCuaDXMQgC3N+3MskIf0i501Hn62DQV9HxbAu0svyG
-         Kfqv6SOsm1kaLdQ/idNLppb4syr2IzcCS95bdvf/2qHJRu/V8i3wNXR5rEHapYfhLC
-         1Ys2Z0w5mgrvdYupIHPtupB9u7pYAz88dUP431cMcKcj/4bXvQkQr25lltVYSpyMQJ
-         6gQbz2JO9sNbviytwhXtMcoCfcqx0KPOAaIzebjjvekUODjZSomu0SO14aY/bbfmsn
-         pgwtnA0NaULJiIMpjKZ3Y5pxPaE/uWuLC44VG2T5l2W8zPA3/xltqgiGbupcBTTFbf
-         VVl9BvBXYZzhA==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230120AbiDGAxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Apr 2022 20:53:13 -0400
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 365BCAACAF;
+        Wed,  6 Apr 2022 17:51:11 -0700 (PDT)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 07 Apr 2022 09:51:10 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 2C9832058B50;
+        Thu,  7 Apr 2022 09:51:10 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 7 Apr 2022 09:51:10 +0900
+Received: from [10.212.181.247] (unknown [10.212.181.247])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 66CDFB62B7;
+        Thu,  7 Apr 2022 09:51:09 +0900 (JST)
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: designware-ep: Increase maxItems of
+ reg and reg-names
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1649145062-29833-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1649145062-29833-2-git-send-email-hayashi.kunihiko@socionext.com>
+ <Yk3YaAWPJ0bpLTHK@robh.at.kernel.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <b7cd4fe0-5d61-322a-b42a-d239ee23b201@socionext.com>
+Date:   Thu, 7 Apr 2022 09:51:09 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
-References: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v8 0/9] RZN1 DMA support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-To:     Gareth Williams <gareth.williams.jx@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>
-Date:   Wed, 06 Apr 2022 17:45:09 -0700
-User-Agent: alot/0.10
-Message-Id: <20220407004511.3A6D1C385A3@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <Yk3YaAWPJ0bpLTHK@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,20 +55,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Miquel Raynal (2022-04-06 09:18:47)
-> Hello,
->=20
-> Here is a first series bringing DMA support to RZN1 platforms. Soon a
-> second series will come with changes made to the UART controller
-> driver, in order to interact with the RZN1 DMA controller.
->=20
-> Stephen acked the sysctrl patch (in the clk driver) but somehow I feel
-> like it would be good to have this patch applied on both sides
-> (dmaengine and clk) because more changes will depend on the addition of
-> this helper, that are not related to DMA at all. I'll let you folks
-> figure out what is best.
+Hi Rob,
+Thank you for pointing out.
 
-Are you sending more patches in the next 7 weeks or so that will touch
-the same area? If so, then it sounds like I'll need to take the clk
-patch through clk tree. I don't know what is best because I don't have
-the information about what everyone plans to do in that file.
+On 2022/04/07 3:14, Rob Herring wrote:
+> On Tue, Apr 05, 2022 at 04:51:00PM +0900, Kunihiko Hayashi wrote:
+>> UniPhier PCIe EP controller has 5 register mappings (dbi, dbi2, link,
+>> config and atu), so maxItems of "reg" and "reg-names" should allow 5.
+> 
+> Shouldn't that be 'addr_space' rather than 'config'? IIRC, 'config' is
+> only for the host.
+
+Yes. I made a mistake in the comment.
+UniPhier EP controller has also "addr_space", not "config".
+I'll fix it next.
+
+Thank you,
+
+---
+Best Regards
+Kunihiko Hayashi
