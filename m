@@ -2,82 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C5C4F86A3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 913EC4F86B5
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:56:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346636AbiDGRyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 13:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36924 "EHLO
+        id S245441AbiDGR6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 13:58:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346635AbiDGRyi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:54:38 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68FD22EBFF;
-        Thu,  7 Apr 2022 10:52:34 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id z9-20020a05683020c900b005b22bf41872so4384360otq.13;
-        Thu, 07 Apr 2022 10:52:34 -0700 (PDT)
+        with ESMTP id S1343632AbiDGR6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:58:53 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDCAC6EEB
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 10:56:52 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id f23so10929554ybj.7
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 10:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VlVF6lOp5dpC/j+GTWtTRB8fshiniUoILlPCbn8biBo=;
+        b=cnyeRbdWotGynXREUrsZQqgNgw9t4HD1KXVc4VKbHn62elv0ZJt7/Sny282D3dfpa7
+         9mwQsjnSnkas/boXNFGM4nCbO8mV/xB7h4n5AXa8sVjfI3a6kspQMlWxD7mZyWIVwdGO
+         1k9Sx57p+wkTVmp+URiYVrQqs+xgROZiGchYY37qIcmaFSYoqXA6sCPLlvBhtZUFpu3f
+         gvjzwXPBDF9oHVP9nQmjySzPmPJpUHFLeynLskBL2jB3YA1jp/eVHOgk7UEUFUcJOEAi
+         tFuYYy5mhJhPwfEJ/9nNrBcZZrwOjPrIpmdswHYrYNZ6PiZjnrXsqcHnToS9LDQHE13L
+         +V7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mo3WCvv9BObQyiASkaZil+j+BG8MFzY+q8FFufHymq8=;
-        b=qxBWcWL06lf0nByXjtBBN7nszl/e9ZNQN2M5OCf+9EGEZ8RE+k+tyr0cD+Jw0lume9
-         Nsd0okH1TeSal74D25yzhmGfjJcnLHOhBLruAxPLH8hvdxHfQc7/Wu3X0e9+S4pLita8
-         3AIvLvc0wfvU+AgthyMdqY8PRHNx/JLpwe8IaAyzSdtxBeCMtzTRlRtH0be1ockqK3q4
-         P4MNKM8Pa6Wrn3M8soX2W6Cc8cz4YJFBxpmANXbAhmcay9CWAcxeETyRf+C1U+xOXqEo
-         UgIRA8mqf6lwE52sxUruBhII3POeY6d1uL04r/Tod+vmyJinSkTONL9f3xYVhT6HsujW
-         xDUg==
-X-Gm-Message-State: AOAM533B+sTiEE4J8Rh0xOa0ZY3j1uIk5PCrHzBL0ejEyk+yjA5HKpVq
-        F+OVSba5Puf1gSzamDdAi2C8GoOdDA==
-X-Google-Smtp-Source: ABdhPJxuvm+7/qiSF8An8GtUmg5yWdMv1srUohUwkdVkIhM2C1sSKa5MPdT8Vf7bqJSbeLibdUtO6w==
-X-Received: by 2002:a9d:7496:0:b0:5e6:b2bd:1d1d with SMTP id t22-20020a9d7496000000b005e6b2bd1d1dmr1409484otk.23.1649353952112;
-        Thu, 07 Apr 2022 10:52:32 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bp21-20020a056820199500b003298e6877c7sm1619204oob.29.2022.04.07.10.52.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 10:52:31 -0700 (PDT)
-Received: (nullmailer pid 1639829 invoked by uid 1000);
-        Thu, 07 Apr 2022 17:52:31 -0000
-Date:   Thu, 7 Apr 2022 12:52:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Enclustra
-Message-ID: <Yk8k38diGzzDDL1N@robh.at.kernel.org>
-References: <20220406160728.720902-1-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VlVF6lOp5dpC/j+GTWtTRB8fshiniUoILlPCbn8biBo=;
+        b=koMAge95wH2PjsDvXkUJ3Dy0zVuqhtufSNNIaRUNDQ3g54rD+t8hAbIlSDA1+Y+LJx
+         +seRkpPovyV9LMy5tC2tbAnUX0Uhpmy3y9AdICaVytLKQj+6sAU2aZPJXyK4Llm19qqk
+         s/9TuTDoeXZHriO2gpNmnarU3rvAwFr9OOC1/uFxkpGoPYzCNFgpGTBN9oD1F9daoijx
+         OCBH6hGwHk0N8nU+bijaDpfpljMZHmJYK1cWk24RXHY/qnbQgH+bPGx2kHu6kXwzx2/y
+         qgV6M3XSIcXfwH9o/mTDGQ2//Y5pWdckcw0ZgecbQnZa3YO4nhIAkKxdkS+cLk8Yz9pm
+         uG3A==
+X-Gm-Message-State: AOAM533Kw9X+vBPaNjd8+FE6vUGk08+NEyO/bITbeFTxbMu64CxJWqh1
+        AFnP0sVmmTSUPyAued8eUkjaEI48Fy+O8X0fsqY4LA==
+X-Google-Smtp-Source: ABdhPJx7pBIu4DCGwRwQQvrbwgWliwJ3a5uEdC2cz90Zd9apB6WTYrp2DxQjMM+J44bGx5hlZh8QCq7A4LTclign76w=
+X-Received: by 2002:a25:2409:0:b0:634:15f4:2240 with SMTP id
+ k9-20020a252409000000b0063415f42240mr10337229ybk.88.1649354211810; Thu, 07
+ Apr 2022 10:56:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220406160728.720902-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+References: <CA+G9fYuqU45hHmK4WMUNEXQbmBucE+9fB=S9wcHEfEHaZ2jgcQ@mail.gmail.com>
+ <20220401151058.fipdax3kvmxknctv@houat> <CA+G9fYu+WddXTb0NcbviUfGQHhsmThssVCafLPw7+nj3JsoFAA@mail.gmail.com>
+ <20220407075435.ahlylmbqmqnpxz64@houat> <CA+G9fYvT_W9+0AguQu97mqTm5zNnSvF0asnatZX8BTf=_1oANg@mail.gmail.com>
+ <20220407134615.pqx4lxvgl4ofjrki@houat>
+In-Reply-To: <20220407134615.pqx4lxvgl4ofjrki@houat>
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Thu, 7 Apr 2022 23:26:40 +0530
+Message-ID: <CA+G9fYucyqd6LqBGGzmwXA=hYRyETJmk_w1Z0qPnFn3+Fzj7sQ@mail.gmail.com>
+Subject: Re: [next] db845c: WARNING: CPU: 5 PID: 8 at drivers/clk/clk-divider.c:139
+ divider_recalc_rate
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        lkft-triage@lists.linaro.org, regressions@lists.linux.dev,
+        gabriel.fernandez@foss.st.com,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Apr 2022 18:07:28 +0200, Krzysztof Kozlowski wrote:
-> Add vendor prefix for Enclustra GmbH (https://www.enclustra.com).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Hi Rob,
-> 
-> Could you pick it up directly?
-> 
-> This was missed from old patchset:
-> https://lore.kernel.org/linux-devicetree/20211227133131.134369-1-krzysztof.kozlowski@canonical.com/
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Hi Maxime
 
-Applied, thanks!
+On Thu, 7 Apr 2022 at 19:16, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi Naresh,
+>
+> On Thu, Apr 07, 2022 at 05:12:09PM +0530, Naresh Kamboju wrote:
+> > On Thu, 7 Apr 2022 at 13:24, Maxime Ripard <maxime@cerno.tech> wrote:
+> > >
+> > > Hi,
+> > >
+> > > > > I'm not sure if it's feasible, but if it is, it looks like something
+> > > > > that could be fixed by the patch pasted here:
+> > > > >
+> > > > > https://lore.kernel.org/linux-clk/20220401122736.5yvanksa4pla7uql@houat/
+> > > > > Could you test it?
+> > > >
+> > > > I have tested the single line patch and reported problems not fixed.
+> > >
+> > > Could you test this branch?
+> > > https://github.com/mripard/linux/tree/rpi/clk-improvements-more-fixes
+> >
+> > I have tested your tree and branch.
+> > I saw more clk prints in the boot log and did not notice the reported warning.
+>
+> I just pushed a new version of my branch? It should get rid of most of
+> the side effects (and logs) you were seeing.
+
+The reported problem has been fixed.
+Please check this boot log and test log [1].
+FYI, "clk_ignore_unused" has been used in Kernel boot args.
+
+https://lkft.validation.linaro.org/scheduler/job/4862043#L2712
+
+
+- Naresh
+
+>
+> Thanks!
+> Maxime
