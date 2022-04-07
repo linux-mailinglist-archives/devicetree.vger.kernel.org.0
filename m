@@ -2,40 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CB74F7809
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 526F84F7819
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:49:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242222AbiDGHsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 03:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40460 "EHLO
+        id S232024AbiDGHtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:49:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242173AbiDGHsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:48:51 -0400
+        with ESMTP id S242169AbiDGHts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:49:48 -0400
 Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C3310E9C8A;
-        Thu,  7 Apr 2022 00:46:51 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 07 Apr 2022 16:46:51 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 24A852058443;
-        Thu,  7 Apr 2022 16:46:51 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 7 Apr 2022 16:46:51 +0900
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CC5B4EACB2;
+        Thu,  7 Apr 2022 00:47:48 -0700 (PDT)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 07 Apr 2022 16:47:48 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 499972058B50;
+        Thu,  7 Apr 2022 16:47:48 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 7 Apr 2022 16:47:48 +0900
 Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 5DD5DB62B7;
-        Thu,  7 Apr 2022 16:46:50 +0900 (JST)
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id E6C82B62B7;
+        Thu,  7 Apr 2022 16:47:47 +0900 (JST)
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>,
-        Keiji Hayashibara <hayashibara.keiji@socionext.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH] dt-bindings: watchdog: uniphier: Use unevaluatedProperties
-Date:   Thu,  7 Apr 2022 16:46:46 +0900
-Message-Id: <1649317606-21267-1-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: [PATCH] dt-bindings: interrrupt-controller: uniphier-aidet: Use unevaluatedProperties
+Date:   Thu,  7 Apr 2022 16:47:44 +0900
+Message-Id: <1649317664-21391-1-git-send-email-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -51,16 +49,16 @@ unevaluatedProperties instead of additionalProperties.
 
 Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- .../devicetree/bindings/watchdog/socionext,uniphier-wdt.yaml    | 2 +-
+ .../bindings/interrupt-controller/socionext,uniphier-aidet.yaml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/socionext,uniphier-wdt.yaml b/Documentation/devicetree/bindings/watchdog/socionext,uniphier-wdt.yaml
-index a059d16cb4f2..90698cfa8f94 100644
---- a/Documentation/devicetree/bindings/watchdog/socionext,uniphier-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/socionext,uniphier-wdt.yaml
-@@ -19,7 +19,7 @@ properties:
- required:
-   - compatible
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphier-aidet.yaml b/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphier-aidet.yaml
+index f89ebde76dab..77f2d58a9c3f 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphier-aidet.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/socionext,uniphier-aidet.yaml
+@@ -49,7 +49,7 @@ required:
+   - interrupt-controller
+   - '#interrupt-cells'
  
 -additionalProperties: false
 +unevaluatedProperties: false
