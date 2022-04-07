@@ -2,325 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF3F4F851E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A05D4F852C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345799AbiDGQp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 12:45:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33806 "EHLO
+        id S239061AbiDGQvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 12:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234198AbiDGQp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 12:45:57 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F431C1E42
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 09:43:49 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id gt4so6100066pjb.4
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 09:43:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ua13KjJ44TnzMW/JsRGbxh5MdZZs5pUlw2C+XLDEQAU=;
-        b=kmDrfwgHcJfDO6CqJKi8wbwaQKrr9LHOWNheZWqSFdFeL5ZuSgD/YmQiUhFyOVy0uC
-         DBgRoipvJ6c+7bzP67Ywn7+E+dMJO/70nCuF9MA7VAN0nq4x1nOsZ2iW3RwcUxwv3K3A
-         uJ1qPh4r7v36KtvUEx9Ql+TtTyVbVd94RSdwA=
+        with ESMTP id S238015AbiDGQvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 12:51:12 -0400
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23D0B61;
+        Thu,  7 Apr 2022 09:49:11 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id c24-20020a9d6c98000000b005e6b7c0a8a8so822518otr.2;
+        Thu, 07 Apr 2022 09:49:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ua13KjJ44TnzMW/JsRGbxh5MdZZs5pUlw2C+XLDEQAU=;
-        b=hIuuucsloCeQpciSoq/rM1y7sDRNRg9O80S6rtraMFIOdR8gQN7bIPI0ROlVgYGWsX
-         bDu8ZwCFZunnnvm7f8Ji+BJC0wriSirXp/sQsfnk6HWrfAH/Ns2xi3I+RQW23Xwj9SyD
-         Ix3PYHrFejM3b02lLyVGm2AvBi/nsyxT+0TydxWq24lKqsOaW573kEym8wnUdEI69eN0
-         k01QdOHGFtdYbCo0fGjsnrVUX4azZ1z5fUomjHk5xtN2NbZW9c0/BqwafBwp98wk4ZAY
-         cM3HkOfEGgrW5CEl/L7IXf2yWmuD/pGn8h7d4hYAkmrrbSMRshZZ2GoynnpCwg/hQl95
-         9qyA==
-X-Gm-Message-State: AOAM5335z2CR3lKsZLl3pv91r7dQZYtg2jQ59ywsh2zFMvkQKXIxmoCL
-        PZLomZ4MxuGJSAWovPiOWKoCm1Wwy3OP7Q==
-X-Google-Smtp-Source: ABdhPJwD9ZPPEfmsluDZxDBfd5nSYo8Z7c3H37FzPDzr6bIxpBhX5zCHgKTIjg7w21SQZT7dKdhNLw==
-X-Received: by 2002:a17:90b:915:b0:1ca:b584:8241 with SMTP id bo21-20020a17090b091500b001cab5848241mr16878815pjb.46.1649349828860;
-        Thu, 07 Apr 2022 09:43:48 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:693e:9ca0:42a0:6bf7])
-        by smtp.gmail.com with UTF8SMTPSA id q7-20020a056a00084700b004fb205947c7sm24520071pfk.131.2022.04.07.09.43.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 09:43:48 -0700 (PDT)
-Date:   Thu, 7 Apr 2022 09:43:46 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
-Cc:     agross@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] [v2]arm64: dts: qcom: Add sc7180-gelarshie
-Message-ID: <Yk8Uws1/Uia1B4Ok@google.com>
-References: <20220407075427.41141-1-chenxiangrui@huaqin.corp-partner.google.com>
+        bh=W9Hs+gnhjn+YVFkRSWJCDbSOkGyWB/bGPp9Wsa3Ssvo=;
+        b=y3G9GyvZ3A8QzOl2MdfqS5ZAZhmvOrJDwsA9CTfoGhVXxTmkvVLebqgc7ybRtX4Cnp
+         xX2GknR4v0G8VM5NKkWaSMKBFpVg0Wvm7yqA70uWKLsM/RTU4B2eIzhREMwhPiFv3Lcd
+         x12wJoTOAoSDMtQqxPjsyHM0X0H/fMuvqAxRfeohDfVJ64jkkEa1MurY2iFiaUaCgAx+
+         N91Saq9REQ7CtH1diaOsa7iYJu3NWnHtxc4M08dQqWwDRSBt722GqwUlAQJ0xkNfa9uh
+         aG3Qzq4YldSfIlwcnt5/AOzpCGgAuFWoy7ZYaWITXlknKMC9BKwULZKKoy2UoKNVPQk5
+         ffXg==
+X-Gm-Message-State: AOAM532L0tDe5a0sa1eibe/JqHj/lsd4eF/6VvDMiODDJe7hvfUf/rxW
+        rX1HC5ywU45t5nNV/nM4ig==
+X-Google-Smtp-Source: ABdhPJwtMm69VAvbQPAQ41G9xgsuOi4yyFdqa/5hxgMvXOSvRMkU3dG5e/0MEKC0tS0NXw25Es2XZw==
+X-Received: by 2002:a9d:20e2:0:b0:5c9:2edb:af8e with SMTP id x89-20020a9d20e2000000b005c92edbaf8emr5228736ota.325.1649350150961;
+        Thu, 07 Apr 2022 09:49:10 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q11-20020a05683033cb00b005e686fd52d6sm4950701ott.17.2022.04.07.09.49.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 09:49:10 -0700 (PDT)
+Received: (nullmailer pid 1386536 invoked by uid 1000);
+        Thu, 07 Apr 2022 16:49:09 -0000
+Date:   Thu, 7 Apr 2022 11:49:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Fabio Baltieri <fabiobaltieri@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        chrome-platform@lists.linux.dev, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: update google,cros-ec-pwm
+ documentation
+Message-ID: <Yk8WBXBH53rtZsBF@robh.at.kernel.org>
+References: <20220331125818.3776912-1-fabiobaltieri@chromium.org>
+ <20220331125818.3776912-4-fabiobaltieri@chromium.org>
+ <Yk20uTE/Vdm2c6jI@robh.at.kernel.org>
+ <Yk73f9yyxy5LBC+V@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220407075427.41141-1-chenxiangrui@huaqin.corp-partner.google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Yk73f9yyxy5LBC+V@google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 03:54:26PM +0800, Mars Chen wrote:
-
-> Subject: [PATCH] [v2]arm64: dts: qcom: Add sc7180-gelarshie
-
-Krzysztof already pointed out that the subject is incorrect. Besides that
-the version number also looks wrong. This is at least v3:
-
-v3: this patch
-v2 dupe (?): https://patchwork.kernel.org/project/linux-arm-msm/patch/20220406094156.3191-1-chenxiangrui@huaqin.corp-partner.google.com/
-v2 dupe (?): https://patchwork.kernel.org/project/linux-arm-msm/patch/20220406074707.2393-1-chenxiangrui@huaqin.corp-partner.google.com/
-v2: https://patchwork.kernel.org/project/linux-arm-msm/patch/20220406073756.2041-1-chenxiangrui@huaqin.corp-partner.google.com/
-v1: https://patchwork.kernel.org/project/linux-arm-msm/patch/20220330090947.9100-1-chenxiangrui@huaqin.corp-partner.google.com/
-
-> Add device tree for Gelarshie, a trogdor variant
+On Thu, Apr 07, 2022 at 02:38:55PM +0000, Fabio Baltieri wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sc7180-trogdor-gelarshie-r0.dts  |  15 +
->  .../dts/qcom/sc7180-trogdor-gelarshie.dtsi    | 280 ++++++++++++++++++
->  3 files changed, 296 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+> On Wed, Apr 06, 2022 at 10:41:45AM -0500, Rob Herring wrote:
+> > On Thu, Mar 31, 2022 at 12:58:17PM +0000, Fabio Baltieri wrote:
+> > > Update google,cros-ec-pwm node documentation to mention the
+> > > google,use_pwm_type property.
+> > > 
+> > > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+> > > ---
+> > >  .../devicetree/bindings/pwm/google,cros-ec-pwm.yaml         | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> > > index 4cfbffd8414a..9c895c990ed8 100644
+> > > --- a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> > > +++ b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+> > > @@ -19,6 +19,12 @@ description: |
+> > >  properties:
+> > >    compatible:
+> > >      const: google,cros-ec-pwm
+> > > +
+> > > +  google,use-pwm-type:
+> > > +    description:
+> > > +      Use PWM types (CROS_EC_PWM_DT_<...>) instead of generic channels.
+> > > +    type: boolean
+> > 
+> > Either do a new compatible string if the cell interpretation is mutually 
+> > exclusive (channel number vs. type) or split the number space for the 
+> > 1st cell between type and channel number. IOW, set a bit (31?) to 
+> > signify the number is a type, not a channel.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index f9e6343acd03..cf8f88b065c3 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-gelarshie-r0.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
-> new file mode 100644
-> index 000000000000..027d6d563a5f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Gelarshie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sc7180-trogdor-gelarshie.dtsi"
-> +
-> +/ {
-> +	model = "Google Gelarshie (rev0+)";
-> +	compatible = "google,gelarshie", "qcom,sc7180";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
-> new file mode 100644
-> index 000000000000..8758cafb2d89
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
->
-> ...
->
-> +&sound {
-> +	compatible = "google,sc7180-gelarshie";
+> Split the number space was my first (tentative) implementation as well,
+> but it turns out that the PWM subsystem really wants channels to be
+> zero-based[1], so I don't think flags or bitmasks are really an option.
 
-There is currently no device tree binding for this compatible string. Is
-the gelarshie audio config different from that of coachz? If not the
-compatible string "google,sc7180-coachz" should be used.
+Fix the PWM subsystem then...
 
-> +	model = "sc7180-adau7002-max98357a";
-> +	audio-routing = "PDM_DAT", "DMIC";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&dmic_clk_en>;
-> +};
-> +
-> +&sound_multimedia0_codec {
-> +	sound-dai = <&adau7002>;
-> +};
-> +
-> +/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-> +
-> +&en_pp3300_dx_edp {
-> +	pinmux  {
-> +		pins = "gpio67";
-> +	};
-> +
-> +	pinconf {
-> +		pins = "gpio67";
-> +	};
-> +};
-> +
-> +&ts_reset_l {
-> +	pinconf {
-> +		/*
-> +		 * We want reset state by default and it will be up to the
-> +		 * driver to disable this when it's ready.
-> +		 */
-> +		output-low;
-> +	};
-> +};
-> +
-> +/* PINCTRL - board-specific pinctrl */
-> +
-> +&tlmm {
-> +	gpio-line-names = "HUB_RST_L",
-
-nit: to make this list more digestible you could add comments with
-pin numbers for every 10th pin and an empty line to separate the
-'pin groups'  even more visually. See sc7280-herobrine-herobrine-r1.dts
-for an example.
-
-> +			  "AP_RAM_ID0",
-> +			  "AP_SKU_ID2",
-> +			  "AP_RAM_ID1",
-> +			  "WF_CAM_EN2",
-> +			  "AP_RAM_ID2",
-> +			  "UF_CAM_EN",
-> +			  "WF_CAM_EN",
-> +			  "TS_RESET_L",
-> +			  "TS_INT_L",
-> +			  "",
-> +			  "EDP_BRIJ_IRQ",
-> +			  "AP_EDP_BKLTEN",
-> +			  "UF_CAM_MCLK",
-> +			  "WF_CAM_MCLK",
-> +			  "EDP_BRIJ_I2C_SDA",
-> +			  "EDP_BRIJ_I2C_SCL",
-> +			  "UF_CAM_SDA",
-> +			  "UF_CAM_SCL",
-> +			  "WF_CAM_SDA",
-> +			  "WF_CAM_SCL",
-> +			  "",
-> +			  "",
-> +			  "AMP_EN",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "WF_CAM_RST_L",
-> +			  "UF_CAM_RST_L",
-> +			  "AP_BRD_ID2",
-> +			  "BRIJ_SUSPEND",
-> +			  "AP_BRD_ID0",
-> +			  "AP_H1_SPI_MISO",
-> +			  "AP_H1_SPI_MOSI",
-> +			  "AP_H1_SPI_CLK",
-> +			  "AP_H1_SPI_CS_L",
-> +			  "BT_UART_CTS",
-> +			  "BT_UART_RTS",
-> +			  "BT_UART_TXD",
-> +			  "BT_UART_RXD",
-> +			  "H1_AP_INT_ODL",
-> +			  "",
-> +			  "UART_AP_TX_DBG_RX",
-> +			  "UART_DBG_TX_AP_RX",
-> +			  "",
-> +			  "",
-> +			  "FORCED_USB_BOOT",
-> +			  "AMP_BCLK",
-> +			  "AMP_LRCLK",
-> +			  "AMP_DIN",
-> +			  "",
-> +			  "HP_BCLK",
-> +			  "HP_LRCLK",
-> +			  "HP_DOUT",
-> +			  "",
-> +			  "",
-> +			  "AP_SKU_ID0",
-> +			  "AP_EC_SPI_MISO",
-> +			  "AP_EC_SPI_MOSI",
-> +			  "AP_EC_SPI_CLK",
-> +			  "AP_EC_SPI_CS_L",
-> +			  "AP_SPI_CLK",
-> +			  "AP_SPI_MOSI",
-> +			  "AP_SPI_MISO",
-> +			  /*
-> +			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-> +			   * call it BIOS_FLASH_WP_L.
-> +			   */
-> +			  "AP_FLASH_WP_L",
-> +			  "EN_PP3300_DX_EDP",
-> +			  "AP_SPI_CS0_L",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "WLAN_SW_CTRL",
-> +			  "BOOT_CONFIG_0",
-> +			  "REPORT_SWITCH",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "DMIC_CLK_EN",
-> +			  "HUB_EN",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "AP_SKU_ID1",
-> +			  "AP_RST_REQ",
-> +			  "",
-> +			  "AP_BRD_ID1",
-> +			  "AP_EC_INT_L",
-> +			  "BOOT_CONFIG_1",
-> +			  "",
-> +			  "",
-> +			  "BOOT_CONFIG_4",
-> +			  "BOOT_CONFIG_2",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "EDP_BRIJ_EN",
-> +			  "",
-> +			  "",
-> +			  "BOOT_CONFIG_3",
-> +			  "WCI2_LTE_COEX_TXD",
-> +			  "WCI2_LTE_COEX_RXD",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "",
-> +			  "FORCED_USB_BOOT_POL",
-> +			  "AP_TS_PEN_I2C_SDA",
-> +			  "AP_TS_PEN_I2C_SCL",
-> +			  "DP_HOT_PLUG_DET",
-> +			  "EC_IN_RW_ODL";
-> +
-> +	dmic_clk_en: dmic_clk_en {
-
-node names should use dashes as separators, i.e.:
-	dmic_clk_en: dmic-clk-en {
-
-> +		pinmux {
-> +			pins = "gpio83";
-> +			function = "gpio";
-> +		};
-> +
-> +		pinconf {
-> +			pins = "gpio83";
-> +			drive-strength = <8>;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +};
+> New compatible sounds good though, I'll rework a v3 with that change.
+> 
+> Thanks!
+> Fabio
+> 
+> [1] https://elixir.bootlin.com/linux/v5.17/source/drivers/pwm/core.c#L423
+> 
+> -- 
+> Fabio Baltieri
