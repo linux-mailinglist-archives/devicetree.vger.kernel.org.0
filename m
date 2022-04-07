@@ -2,114 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 496DE4F7D19
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 12:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D174F7D3C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 12:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244402AbiDGKjS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 7 Apr 2022 06:39:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49196 "EHLO
+        id S244537AbiDGKte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 06:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245129AbiDGKjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 06:39:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711DB3B2AC
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 03:37:03 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ncPVR-0006uR-6o; Thu, 07 Apr 2022 12:36:49 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ncPVQ-001apD-H0; Thu, 07 Apr 2022 12:36:47 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ncPVO-0005T6-6E; Thu, 07 Apr 2022 12:36:46 +0200
-Message-ID: <4b2f47a4870fbec9da5d7a6ad1b8a9bb9ff68e83.camel@pengutronix.de>
-Subject: Re: [PATCH v0 05/10] drm/imx: add driver for HDMI TX Parallel Video
- Interface
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
-Date:   Thu, 07 Apr 2022 12:36:46 +0200
-In-Reply-To: <20220406160123.1272911-6-l.stach@pengutronix.de>
-References: <20220406160123.1272911-1-l.stach@pengutronix.de>
-         <20220406160123.1272911-6-l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S237902AbiDGKtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 06:49:33 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EDD381B29CD
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 03:47:33 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 7E5198125;
+        Thu,  7 Apr 2022 10:45:09 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Keerthy <j-keerthy@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-am65: Configure pinctrl for timer IO pads
+Date:   Thu,  7 Apr 2022 13:47:24 +0300
+Message-Id: <20220407104725.41755-1-tony@atomide.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2022-04-06 at 18:01 +0200, Lucas Stach wrote:
-> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-> full timing generator and can switch between different video sources. On
-> the i.MX8MP however the only supported source is the LCDIF. The block
-> just needs to be powered up and told about the polarity of the video
-> sync signals to act in bypass mode.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
-[...]
-> +static void imx_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-> +				       struct drm_bridge_state *bridge_state)
-> +{
-> +	struct drm_atomic_state *state = bridge_state->base.state;
-> +	struct imx_hdmi_pvi *pvi = to_imx_hdmi_pvi(bridge);
-> +	struct drm_connector_state *conn_state;
-> +	const struct drm_display_mode *mode;
-> +	struct drm_crtc_state *crtc_state;
-> +	struct drm_connector *connector;
-> +	u32 bus_flags, val;
-> +
-> +	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-> +	if (WARN_ON(!connector))
-> +		return;
-> +
-> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> +	if (WARN_ON(!conn_state))
-> +		return;
-> +
-> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-> +	if (WARN_ON(!crtc_state))
-> +		return;
+Compared to the earlier TI SoCs, am6 has an additional level of dedicated
+multiplexing registers for the timer IO pads.
 
-Can those happen at all, and if so, should they be caught at
-atomic_check time?
+There are timer IO pads in the MCU domain, and in the MAIN domain. These
+pads can be muxed for the related timers.
 
-> +
-> +	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-> +		return;
+There are timer IO control registers for input and output. The registers
+for CTRLMMR_TIMER*_CTRL and CTRLMMR_MCU_TIMER*_CTRL are used to control
+the input. The registers for CTCTRLMMR_TIMERIO*_CTRL and
+CTRLMMR_MCU_TIMERIO*_CTRL the output.
 
-Should be pm_runtime_get_sync(), since the error is ignored.
+The multiplexing is documented in TRM "5.1.2.3.1.4 Timer IO Muxing Control
+Registers" and "5.1.3.3.1.5 Timer IO Muxing Control Registers", and the
+CASCADE_EN bit is documented in TRM "12.8.3.1 Timers Overview".
 
-Otherwise the pm_runtime_put() in imx_hdmi_pvi_bridge_disable() will
-double-decrement the usage counter in case this failed.
+For chaining timers, the timer IO control registers also have a CASCADE_EN
+input bit in the CTRLMMR_TIMER*_CTRL in the registers. The CASCADE_EN bit
+muxes the previous timer output, or possibly and external TIMER_IO pad
+source, to the input clock of the selected timer instance for odd numered
+timers. For even numbered timers the CASCADE_EN bit does not do anything.
+The timer cascade input routing options are shown in TRM "Figure 12-3632.
+Timers Overview". For handling beyond multiplexing, the driver support for
+timer cascading should be likely be handled via the clock framework.
 
-regards
-Philipp
+Cc: Keerthy <j-keerthy@ti.com>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 18 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi  | 18 ++++++++++++++++++
+ 2 files changed, 36 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -130,6 +130,24 @@ rng: rng@4e10000 {
+ 		};
+ 	};
+ 
++	/* TIMERIO pad input CTRLMMR_TIMER*_CTRL registers */
++	main_timerio_input: pinctrl@104200 {
++		compatible = "pinctrl-single";
++		reg = <0x0 0x104200 0x0 0x30>;
++		#pinctrl-cells = <1>;
++		pinctrl-single,register-width = <32>;
++		pinctrl-single,function-mask = <0x0000001ff>;
++	};
++
++	/* TIMERIO pad output CTCTRLMMR_TIMERIO*_CTRL registers */
++	main_timerio_output: pinctrl@104280 {
++		compatible = "pinctrl-single";
++		reg = <0x0 0x104280 0x0 0x20>;
++		#pinctrl-cells = <1>;
++		pinctrl-single,register-width = <32>;
++		pinctrl-single,function-mask = <0x0000000f>;
++	};
++
+ 	main_pmx0: pinctrl@11c000 {
+ 		compatible = "pinctrl-single";
+ 		reg = <0x0 0x11c000 0x0 0x2e4>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+--- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+@@ -20,6 +20,24 @@ phy_gmii_sel: phy@4040 {
+ 		};
+ 	};
+ 
++	/* MCU_TIMERIO pad input CTRLMMR_MCU_TIMER*_CTRL registers */
++	mcu_timerio_input: pinctrl@40f04200 {
++		compatible = "pinctrl-single";
++		reg = <0x0 0x40f04200 0x0 0x10>;
++		#pinctrl-cells = <1>;
++		pinctrl-single,register-width = <32>;
++		pinctrl-single,function-mask = <0x00000101>;
++	};
++
++	/* MCU_TIMERIO pad output CTRLMMR_MCU_TIMERIO*_CTRL registers */
++	mcu_timerio_output: pinctrl@40f04280 {
++		compatible = "pinctrl-single";
++		reg = <0x0 0x40f04280 0x0 0x8>;
++		#pinctrl-cells = <1>;
++		pinctrl-single,register-width = <32>;
++		pinctrl-single,function-mask = <0x00000003>;
++	};
++
+ 	mcu_uart0: serial@40a00000 {
+ 		compatible = "ti,am654-uart";
+ 			reg = <0x00 0x40a00000 0x00 0x100>;
+-- 
+2.35.1
