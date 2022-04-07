@@ -2,81 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3EE4F84A0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6AF4F84CA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343929AbiDGQNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 12:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52524 "EHLO
+        id S1345706AbiDGQXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 12:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345616AbiDGQN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 12:13:29 -0400
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5009B12082;
-        Thu,  7 Apr 2022 09:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=8ilOzeEpMGnqmcxm5ACkIhP+cfoDdajkjlKSouIG/qg=; b=h3DD6AtKVrCXay15nFo1Hm2b9S
-        1LO7hycjezhdpT3vtU9MCsyOM/K4Z1SVW+wZIuBsTllbvCmGDd9V6xrjTeHsdxOC4rFm/UQTA5p8t
-        5QqDxhQWdzdeuGi5oxFQS+BwmvIHf/X11kMCr30FIazWpeX45qK+nZozHAvhmPNkJrJ4=;
-Received: from p200300daa70ef20069621b7d3c575442.dip0.t-ipconnect.de ([2003:da:a70e:f200:6962:1b7d:3c57:5442] helo=nf.local)
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <nbd@nbd.name>)
-        id 1ncUip-0003Lb-Od; Thu, 07 Apr 2022 18:11:00 +0200
-Message-ID: <7ee0b60b-a931-357e-7d88-ee2fd04f6902@nbd.name>
-Date:   Thu, 7 Apr 2022 18:10:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.7.0
-Subject: Re: [PATCH v2 04/14] dt-bindings: arm: mediatek: document WED binding
- for MT7622
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1345767AbiDGQXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 12:23:31 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C3E6228D2C;
+        Thu,  7 Apr 2022 09:21:18 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 237Apw6h022051;
+        Thu, 7 Apr 2022 18:21:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=l80vPjd5qYSa6FhlBCDjA+CHxt2mqTlfw0Ep0SOG8+M=;
+ b=tD73dFhKtQ/7vK3JiuNAloYLosoxJ2BYBiMGwdXXABL65QgGV6oWvFWrMMjE/Vl8WZSY
+ O7/S4ewIhH7VZrASEtkwogsKw3lg7wch3fYrKgzealeRMwoGq/F+ktGtWuiRICRvUFmn
+ 0rY/HafVedV6SatRRXHoPo21n6Hpx1SCYeRsKLdcWmzOlgkz3M/Y0rdR+UixGidV/gNa
+ IlDZwmEvne6Dam09DXqi8L5au7wDVIDrD3CjSciB/oS4cwchhWRrTSuAha16k+1uOR9S
+ 7RIZAku0N8WRLQMgV7tEp/QPyE/FU4KzHG+YJXDZKWNxI6KZFq9Svb/duKU66tRBjdkX dA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3f8x9gncwf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 07 Apr 2022 18:21:04 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 768A510002A;
+        Thu,  7 Apr 2022 18:21:02 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6F3C4220FBF;
+        Thu,  7 Apr 2022 18:21:02 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 7 Apr 2022 18:21:02
+ +0200
+From:   Valentin Caron <valentin.caron@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220405195755.10817-1-nbd@nbd.name>
- <20220405195755.10817-5-nbd@nbd.name>
- <d0bffa9a-0ea6-0f59-06b2-7eef3c746de1@linaro.org>
- <e3ea7381-87e3-99e1-2277-80835ec42f15@nbd.name> <Yk8IXno6sjkHVf4g@lunn.ch>
-From:   Felix Fietkau <nbd@nbd.name>
-In-Reply-To: <Yk8IXno6sjkHVf4g@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] ARM: dts: stm32: add RTC support on stm32mp13 boards
+Date:   Thu, 7 Apr 2022 18:20:40 +0200
+Message-ID: <20220407162042.361956-1-valentin.caron@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-04-07_03,2022-04-07_01,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.04.22 17:50, Andrew Lunn wrote:
->> > Isn't this a network offload engine? If yes, then probably it should be
->> > in "net/".
->> It's not a network offload engine by itself. It's a SoC component that
->> connects to the offload engine and controls a MTK PCIe WLAN device,
->> intercepting interrupts and DMA rings in order to be able to inject packets
->> coming in from the offload engine.
-> 
-> Hi Felix
-> 
-> Maybe turn the question around. Can it be used for something other
-> than networking? If not, then somewhere under net seems reasonable.
-I'm fine with moving this to net.
+Add RTC node on stm32mp13 soc.
+Enable RTC on stm32mp135f-dk board.
 
-- Felix
+Valentin Caron (2):
+  ARM: dts: stm32: add RTC node on stm32mp131
+  ARM: dts: stm32: enable RTC support on stm32mp135f-dk
+
+ arch/arm/boot/dts/stm32mp131.dtsi    | 15 +++++++++++++++
+ arch/arm/boot/dts/stm32mp135f-dk.dts |  4 ++++
+ 2 files changed, 19 insertions(+)
+
+-- 
+2.25.1
+
