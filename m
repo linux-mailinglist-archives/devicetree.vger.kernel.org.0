@@ -2,133 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D55B4F880B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 21:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 608F94F8831
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 21:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiDGT2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 15:28:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45950 "EHLO
+        id S229502AbiDGTi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 15:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbiDGT2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 15:28:32 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225A22856BE
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 12:26:20 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id n6so12854553ejc.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 12:26:19 -0700 (PDT)
+        with ESMTP id S229582AbiDGTiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 15:38:24 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B312E75BF
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 12:35:45 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c42so7607800edf.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 12:35:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Pt10RsrkjtTqI7tRKxXhfbCG7SYw1TyGobgP4LoidEQ=;
-        b=B0LYDf2Y+Y8ci2+SnKIs+kKAslu81N6UlsJtaXn3wPUwtuhkw11odPm7pEs+3JoEZV
-         J4BBre+1VgUUzLmQ7lIF6XShZ2WlE//1gseL5lb5YuulRM7WfdCOgrOs2Ir50Oxu51kM
-         nxmXFIjTyxTunUCyye9Zmt5eP/5svJiPZMm6TzWRzF5Dn25kkup4s67fUDvqTQV8kIUT
-         OuRhtAPqLySb3n48UneZbAYAD5I2ZXyVdP4gZeeFH4XyTLzbW9dk2Un/F/PgZn9wIKDb
-         sTbo6SUT6NoP1L35BmcxVs8hK5XqIqsjiPBIwoI5SdYi3xUWNeefQ0TYvTBEYxiY7t38
-         H9Nw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=rNwKqGxuMSmu4ITdMt4hiQ6a/iL0Wffb/UMWAJM9vH0=;
+        b=hsmvyBbxXvdx21ikiwmuVndGz4VB9w7Tp8QBKQn+4CNqn/NDD64qxOegLGjhBwUvk3
+         1E+8EUa5A2Auwb3N3Llk4fxWapEcn3LN0wxkTDB1P9oj27ObGxdhFs1Fmom5yEAvf4+0
+         Sv0kaRJ/+TffnA0DPFpUTnFmRLwCPyKQvOmGmGM9rnwe+GURB2bz0ghQGZSfxK3QHZrk
+         NqAUOD/MDWWFbu4ci+xw0dluP9fgDaVkoG0pVyFmoRAvxyYTBdu00RdXAJ/pAqd4S6aR
+         fozXIq5Ahdtd4zb8ETOFZSYh6dMmR0zl7kVWfhmWN1TufP0wK2yDZGelYLssdjZzPHsr
+         edfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Pt10RsrkjtTqI7tRKxXhfbCG7SYw1TyGobgP4LoidEQ=;
-        b=DPDJzceFKLJornj2l+Xk3RnzbBuEkrZaqDjQZOYJ2kGTHdWdKqWFWzt6w9mR/x7aL+
-         cLT9Wm3N4//xOA3QaPmQ7bQgkRHAy9VVR5znexUexqUkYesiTilYynGAESapTJeaN9l0
-         DTWp19wg8+AvPhl0BxbFQh8hrPJBvx3Ab1lgNeueHxVcN7YI4dNGAajHSYuc9Vgy7uIQ
-         XL7+/R+/6mySJorWf324+Sb7ZB+rKGnJIqo+uHtucLab+DoYUjTiCiIR1sHVGXbMBxcw
-         V3J+YEyGScwNIgHytDE5kodBHXWjsGDXpDlqok+w4UPNZUZPTwtXnmJIVQXPJS1Kj0P5
-         gLQQ==
-X-Gm-Message-State: AOAM530kdVVL2qpt83q1T5rdQ2YkwxTjdselj322paa49CJqHlYr+71b
-        JOqkUaTd9zCfx2lvGs4lDkYXVA==
-X-Google-Smtp-Source: ABdhPJwlZTR88OKvwkQEMzYCa334/1l2hJQ0quuyoq+NOf+z4h6Uqn6Xj7nBtcwnLLb8Dg8e0PylUA==
-X-Received: by 2002:a17:907:2d90:b0:6d8:9fc9:ac36 with SMTP id gt16-20020a1709072d9000b006d89fc9ac36mr15114337ejc.28.1649359578493;
-        Thu, 07 Apr 2022 12:26:18 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=rNwKqGxuMSmu4ITdMt4hiQ6a/iL0Wffb/UMWAJM9vH0=;
+        b=MBhK1YMAK5rbonsz9ebxcu/12yB9WycZuBaqAkK0N9Y5I1J2TUmXPohg/kKJ4WgZpI
+         eCW9e+Nl35Ek+hceAmQD1LFv2j/V0kQjgKWEtRIcETYPA/l2rAHoXOk5IzooahQd4r9+
+         QYuhAcX3aIsajC3lTPY4pVO1tbh/6aqDz5wRQMjddyLposOJh23aZ30JkjVoIxOzYwgK
+         6n7a1LUunYwPBRmyUjnGWgTPQsS4Ka59fChq6hAH5bE6UJnXe1yLWMe/6BMpQ2DGOMaE
+         N+PhkuDFxKfbhaWNZrkx4OY3W6lshd0T7Vm5sgiMe5Vr6z6NW0J6BOneskkzIJv3uJzc
+         K78A==
+X-Gm-Message-State: AOAM5318v7EvmZ8/+Ep6dfA90r4Ho7wG3vScUcCOW1TKPNlt/WiSEFuX
+        Km2WbT02wQQJzHautSTqas/4JQ==
+X-Google-Smtp-Source: ABdhPJx538vA9HnshG5J/vO6w3P62mH/HcbQXvcsr2oa0UiljWyZJm8pcZNCtCmIOY/cboHmSFz0hA==
+X-Received: by 2002:a50:c3c6:0:b0:416:293f:1f42 with SMTP id i6-20020a50c3c6000000b00416293f1f42mr15809234edf.187.1649359849767;
+        Thu, 07 Apr 2022 12:30:49 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id z9-20020a17090655c900b006e83ffe41f3sm637893ejp.150.2022.04.07.12.26.17
+        by smtp.gmail.com with ESMTPSA id ds5-20020a170907724500b006df8f39dadesm7964617ejc.218.2022.04.07.12.30.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 12:26:18 -0700 (PDT)
+        Thu, 07 Apr 2022 12:30:49 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Daniel Palmer <daniel@thingy.jp>,
+        linux-riscv@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org,
+        Jason Cooper <jason@lakedaemon.net>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Bert Vermeulen <bert@biot.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Nishanth Menon <nm@ti.com>, linux-oxnas@groups.io,
+        Linus Walleij <linusw@kernel.org>,
+        Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Michael Walle <michael@walle.cc>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Suman Anna <s-anna@ti.com>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        openbmc@lists.ozlabs.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH] dt-bindings: usb: samsung,exynos-usb2: include usb-hcd schema
-Date:   Thu,  7 Apr 2022 21:26:11 +0200
-Message-Id: <20220407192611.15353-1-krzysztof.kozlowski@linaro.org>
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 01/18] ARM: dts: nspire: use lower case hex addresses in node unit addresses
+Date:   Thu,  7 Apr 2022 21:30:39 +0200
+Message-Id: <164935983571.16396.11670729285639659849.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220317115542.450032-2-krzysztof.kozlowski@canonical.com>
+References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com> <20220317115542.450032-2-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove parts duplicated with usb-hcd.yaml DT schema and include it
-directly.
+On Thu, 17 Mar 2022 12:55:25 +0100, Krzysztof Kozlowski wrote:
+> Convert all hex addresses in node unit addresses to lower case to fix
+> dt_binding_check and dtc W=1 warnings.
+> 
+> Conversion was done using sed:
+> 
+>   $ sed -e 's/@\([a-zA-Z0-9_-]*\) {/@\L\1 {/' -i arch/arm/boot/dts/nspire*
+>   $ sed -e 's/<0x\([a-zA-Z0-9_-]*\) /<0x\L\1 /g' -i arch/arm/boot/dts/nspire*
+> 
+> [...]
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/usb/samsung,exynos-usb2.yaml         | 15 ++-------------
- 1 file changed, 2 insertions(+), 13 deletions(-)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
-index 340dff8d19c3..d51f91d1139f 100644
---- a/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
-@@ -15,9 +15,6 @@ properties:
-       - samsung,exynos4210-ehci
-       - samsung,exynos4210-ohci
- 
--  '#address-cells':
--    const: 1
--
-   clocks:
-     maxItems: 1
- 
-@@ -46,15 +43,6 @@ properties:
-       Only for controller in EHCI mode, if present, specifies the GPIO that
-       needs to be pulled up for the bus to be powered.
- 
--  '#size-cells':
--    const: 0
--
--patternProperties:
--  "^.*@[0-9a-f]{1,2}$":
--    description: The hard wired USB devices
--    type: object
--    $ref: /usb/usb-device.yaml
--
- required:
-   - compatible
-   - clocks
-@@ -64,6 +52,7 @@ required:
-   - phy-names
- 
- allOf:
-+  - $ref: usb-hcd.yaml#
-   - if:
-       properties:
-         compatible:
-@@ -73,7 +62,7 @@ allOf:
-       properties:
-         samsung,vbus-gpio: false
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
+[01/18] ARM: dts: nspire: use lower case hex addresses in node unit addresses
+        commit: fa04ccac619085332563fb433ffc4ecc8ba5489e
+
+Best regards,
 -- 
-2.32.0
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
