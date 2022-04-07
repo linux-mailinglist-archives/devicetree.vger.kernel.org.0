@@ -2,88 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDF74F89E7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 00:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 624AD4F8A48
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 00:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232030AbiDGWLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 18:11:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
+        id S230128AbiDGWLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 18:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbiDGWKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 18:10:49 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D25829AE03;
-        Thu,  7 Apr 2022 15:03:40 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 965F41F41F77
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649369018;
-        bh=7REwnRCWL+X+/erOVACD0vx8O/QM9s4GDT9qZ654vt4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fvM/2hwlOx04mVlDKKzyF4XI6AmYyyNtmpW5+LxeIgJOFPind/vscDXxG1ZUJcckX
-         yhppYDiGwrNHaK2i+k+q1+Y7mUOBHPi7+tabnHQtgo3eaaWr2zGISidJfpleXo3XK8
-         EUPUvNFoyelpDOLXbHz0nJfjw3we9J3Nx5WAmA5590UEOAHozbz34rWcKtof5A3Vi5
-         BjNU1oTfFgv0lHK4CNQq16YAnOmmoTEsZqK/B79nWawlc1V5QR/7OxFkoZ/NlFYoWE
-         Bn1R2mZ7u9w4aMGepLglH0twlvSnhdL6+uQKkmFhhYv1jP7BKcV/gt7WJUuCdpprvc
-         wE60jue281WFQ==
-Date:   Thu, 7 Apr 2022 18:03:33 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org, tzungbi@google.com,
-        angelogioacchino.delregno@collabora.com, aaronyu@google.com,
-        matthias.bgg@gmail.com, trevor.wu@mediatek.com, linmq006@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: Re: [v9 4/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Message-ID: <20220407220333.v4enuv3mqzyrawkb@notapiano>
-References: <20220406100514.11269-1-jiaxin.yu@mediatek.com>
- <20220406100514.11269-5-jiaxin.yu@mediatek.com>
+        with ESMTP id S232026AbiDGWKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 18:10:54 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05892C9903;
+        Thu,  7 Apr 2022 15:06:06 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 6837F5C021A;
+        Thu,  7 Apr 2022 18:06:03 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Thu, 07 Apr 2022 18:06:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=06FJnN1XVgmNd4
+        4sTYWmSIeLqce0O5OHT4AOf34aFqM=; b=YQEZRQQOQW24kGfnrQIp8NL3nMa9lw
+        NQ7lQhfh20lOiOWdJE4lMK3FQ6S+GFJZvEa0cSrfXtclM1h6aowYBfpfR8V0Rc3c
+        I1ZMIiAMXEane0Kn2YYp0nLip3Dm3Qifv7Jala66CDq5USbye6eM23gSxEmbhHh9
+        uT6jOW2zYNYwtQBSVNY5Ovz03Y5cw5rVdojjkE3M5xO54K0Er0S7gMKNxq+utNyx
+        y35h8Zwa8UqUt19112FlOPkJkHucyVjK5jkWEbfCWC0z4jMkI0QJxI1sPPHZD3hk
+        c328185cNAi8cHxWUm2Svsn3DGXBh2MkUEehI6aVe53uqPM43gMH5YUg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=06FJnN1XVgmNd44sTYWmSIeLqce0O5OHT4AOf34aF
+        qM=; b=e6F2r/OKEDdkknDuKwiu4Zt+yLnZnmWEtj5JcmPIIJCayZc4B9y4Q/YJu
+        I/M2wTM/I1XyAl4DF2PjYjRz2df+nBeMgUFfNowCZr78GT+zidehFlhBJajjU+IC
+        qYsJW21CIC/rNpZPI8zDFsKn4+RKUiwmylQ6/yzkm+JRQA2hw4Ppk0kfrCkfEykq
+        uUfSjXOMrzBtb5diQUF1Sc5b4uWW5BdEaQc182FJVzNeOV6ywgN+fTnK0RiapOxx
+        3tZWgp+7EiCdqn2KSH0hK8W9HPiLX1vTuQ3rdHIjKw4wFyAUE+PFQ4WllQTp3cs1
+        Tpp++eUmH+C+VyAFTgNpnHhjnRbZA==
+X-ME-Sender: <xms:SmBPYgrKrns4AcluQ0cuCAyjOa8kvfNQn2dHGaJeiF_I3FBTmhnLwQ>
+    <xme:SmBPYmoeH-iyQy8rssq4GZD9z9KEZCWhYtmKT77CNeYln6GVkZ4rmhS91vHtwZT7s
+    ipqQgstO9pOZlUHew>
+X-ME-Received: <xmr:SmBPYlOHq7dnbI2eMpEvTFybUBCjTO_U7XM5LSpEs62J5EAngZ3BRyzqF0nM2KKVnV3r0nI7_UrgYqOKQExdqsQiYVl_EYyh5mVF3X3H6RVUCgrCCw32uIu5Rw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudejledgtdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
+    uefgtedtgeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:SmBPYn6cBE-n3WsrIV01cYdaw7piGP6GbdBaCQb7jpEqbNROb9te1A>
+    <xmx:SmBPYv6Z-41A8SFTfv0w3omFyuDA0oPBKuA4NLqvmhOzG6VLAPrjOA>
+    <xmx:SmBPYnhhiTsQ1NnCVHcQpDycq3PnBxIoXq3lmkMMulAoY6LURxTQOw>
+    <xmx:S2BPYiYXlai98REUoKEGAJ0JvyqRv2l32n8zUHFuFMLME7pWdYme7w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 7 Apr 2022 18:06:01 -0400 (EDT)
+Subject: Re: [PATCH v4] arm64: dts: allwinner: a64: olinuxino: Enable audio
+To:     Philip Rinn <rinni@inventati.org>, wens@csie.org,
+        jernej.skrabec@gmail.com
+References: <4fc41278-c46c-6486-a336-f2a329bd6bd0@sholland.org>
+ <20220407155145.10891-1-rinni@inventati.org>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <40976a35-2241-a2f0-c9be-dd32c1b51814@sholland.org>
+Date:   Thu, 7 Apr 2022 17:06:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220406100514.11269-5-jiaxin.yu@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220407155145.10891-1-rinni@inventati.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jiaxin,
-
-On Wed, Apr 06, 2022 at 06:05:14PM +0800, Jiaxin Yu wrote:
-> To support machine that only choose one of the rt5682s and rt5682 as
-> headset codec, adds new compatible string "mt8192_mt6359_rt1015p_rt5682s".
-> Meanwhile, using macros to simplifies card name and compatible name.
-
-That first sentence is particularly confusing to me. Suggestion for the commit
-message:
-
-Add support for using the rt5682s codec together with rt1015p on mt8192-mt6359
-machines. All configurations are shared with the rt5682 codec variant, so simply
-select the SND_SOC_RT5682S config to ensure the codec is present and set the
-correct card name. The codec will be linked to by pointing to it in the
-headset-codec property in the devicetree.
-
-While at it, also create macros for the names of the different codec variants
-supported by this driver, as well as rename occurrences of rt1015p_rt5682 to
-rt1015p_rt5682x, since they are shared between rt5682 and rt5682s.
-
+On 4/7/22 10:51 AM, Philip Rinn wrote:
+> Enable the audio hardware on the Olimex A64-OLinuXino board family.
+> Tested on the A64-OLinuXino-2Ge8G-IND variant.
 > 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> Signed-off-by: Philip Rinn <rinni@inventati.org>
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Acked-by: Samuel Holland <samuel@sholland.org>
 
-Thanks,
-Nícolas
+Thanks!
