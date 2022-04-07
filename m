@@ -2,74 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2830F4F822A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A83D54F824C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245163AbiDGOyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:54:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
+        id S238723AbiDGPAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 11:00:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241089AbiDGOyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:54:21 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4572D4C96;
-        Thu,  7 Apr 2022 07:52:19 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2A1D3240013;
-        Thu,  7 Apr 2022 14:52:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1649343138;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7kE93EQdeX/78I13r54jYxB9RFr1bELvDiK/AcybMWg=;
-        b=BnbNHHSvwabukydz7YNOnjhZfd/kJNVkIjlJIRJ8ByrO1ycXW+J/XnHNoHmR8jw5pmBpu4
-        ZJWgbKzA/xi9MX39Bvp9kjAcygeD/SN9F2P7yl4aPVWFmllVIK3JFw2tqo6xL1ipPC6mig
-        4y2wGFLT6rBfRDuYmHp1lSVd9gCxUK3/7LQytvWXhEpJrbFylOCE5dyAsS2X/oNliFn0es
-        fKi5yn6gyOIVy86LZLNCOEcleY1m/egZINhDV2hCuYWhABIBOGDz/kTVhls/Lp2B3k9CM5
-        YobGQGh9SEG2JbW4Eou3D31LSLARZnfmyr/+tK448Obl2kcV93oaVvvXV29n+w==
-Date:   Thu, 7 Apr 2022 16:52:14 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: align SPI NOR node name with dtschema
-Message-ID: <20220407165214.725ae8f0@xps13>
-In-Reply-To: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
-References: <20220407143405.295907-1-krzysztof.kozlowski@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S230356AbiDGPAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:00:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C2251EF9FE
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:58:08 -0700 (PDT)
+Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncTaI-0001MW-Sq; Thu, 07 Apr 2022 16:58:06 +0200
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: reset: Drop the hisilicon,hi6220-reset binding
+Date:   Thu,  7 Apr 2022 16:58:02 +0200
+Message-Id: <20220407145802.4060130-1-p.zabel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The hisilicon,hi6220-sysctrl, hisilicon,hi6220-mediactrl, and
+hisilicon,hi6220-aoctrl controllers are already described in:
 
-krzysztof.kozlowski@linaro.org wrote on Thu,  7 Apr 2022 16:34:05 +0200:
+  Documentation/devicetree/bindings/arm/hisilicon/controller/sysctrl.yaml
+  Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
 
-> The node names should be generic and SPI NOR dtschema expects "flash".
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+---
+ .../bindings/reset/hisilicon,hi6220-reset.txt | 37 -------------------
+ 1 file changed, 37 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt
 
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+diff --git a/Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt b/Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt
+deleted file mode 100644
+index ea0a6a9734c1..000000000000
+--- a/Documentation/devicetree/bindings/reset/hisilicon,hi6220-reset.txt
++++ /dev/null
+@@ -1,37 +0,0 @@
+-Hisilicon System Reset Controller
+-======================================
+-
+-Please also refer to reset.txt in this directory for common reset
+-controller binding usage.
+-
+-The reset controller registers are part of the system-ctl block on
+-hi6220 SoC.
+-
+-Required properties:
+-- compatible: should be one of the following:
+-  - "hisilicon,hi6220-sysctrl", "syscon" : For peripheral reset controller.
+-  - "hisilicon,hi6220-mediactrl", "syscon" : For media reset controller.
+-  - "hisilicon,hi6220-aoctrl", "syscon" : For ao reset controller.
+-- reg: should be register base and length as documented in the
+-  datasheet
+-- #reset-cells: 1, see below
+-
+-Example:
+-sys_ctrl: sys_ctrl@f7030000 {
+-	compatible = "hisilicon,hi6220-sysctrl", "syscon";
+-	reg = <0x0 0xf7030000 0x0 0x2000>;
+-	#clock-cells = <1>;
+-	#reset-cells = <1>;
+-};
+-
+-Specifying reset lines connected to IP modules
+-==============================================
+-example:
+-
+-        uart1: serial@..... {
+-                ...
+-                resets = <&sys_ctrl PERIPH_RSTEN3_UART1>;
+-                ...
+-        };
+-
+-The index could be found in <dt-bindings/reset/hisi,hi6220-resets.h>.
+-- 
+2.30.2
 
-Thanks,
-Miqu=C3=A8l
