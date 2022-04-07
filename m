@@ -2,138 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9DE4F87B3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 21:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3F04F87F9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 21:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243581AbiDGTK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 15:10:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
+        id S229534AbiDGTX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 15:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245438AbiDGTKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 15:10:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73402325FE;
-        Thu,  7 Apr 2022 12:08:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229497AbiDGTX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 15:23:59 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06471267C12
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 12:21:58 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6CC2EB81D07;
-        Thu,  7 Apr 2022 19:08:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C0B5C385A0;
-        Thu,  7 Apr 2022 19:08:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649358501;
-        bh=6yPuCYRnx+F4o2uZ6o9Uuci5WKPtnEjGL8sx+h1fraA=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=Ldt4DqCF/rJ2Ik2U1wFqVJFrpu29vG4Wsyvmd9T/lGPwI5ZYJeRBXUVtpCb0iT08G
-         2RH+ZXMd5WBxpoNdTmaFcaXeAgOC3svRJunw5RcDATlNBmOOekf/GeDBeDtk7lnGBy
-         /aleruG8y4Y6HDRvSdWt48Nk273lvwTLkwUJMLt7TuYzH83uDPgpJLjiCzlEUDFlEN
-         cUgKdicI+Tt+XgxBShz7ER2F8PX1EK+94HGMkH+eI+Bt8vLdX20GauQo7ZkRLszWhm
-         zXIjna4jTTbqJHkV4gcnU5pcGTl8VkK3dZaH1sEjZhoTTWSBrLjCHSvjNZo5DjAGN5
-         xoKo6Yzwva35g==
-Message-ID: <bfb8a830-4cd9-361b-e4db-a6d07dc1cbe0@kernel.org>
-Date:   Thu, 7 Apr 2022 14:08:18 -0500
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 6722F83CF3;
+        Thu,  7 Apr 2022 21:21:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649359316;
+        bh=ehU18/MdtRAR4T3rAgjsTaEje+IDkKG89jU4ZK/oG1w=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ob8LkvueWhlPtoF3rRaYX6YGCeqOJ7+Tf4pHYhy/LoAQicHvG/yPao27Q4fh6nAmU
+         UmT9N/zyiUv8PGhQ8FwMR+LTo0Mtm9nohkrHqeKyIia+7oLn1xEzvt8C6IHzObkDbf
+         OMcjS4Boi4pbd/iHkmjN47a8PU0SgmvtDk8ItKIb4Bc4eUFYoC8rysOxgVnWfpbPXc
+         YVt6rK41lP8zx8ssfWcppqyn1hxj+veZGtO0SBMjnuB7KQd1yL8zxNoxs8o1cQOref
+         YbFibJOEOIFHhmu+yZ5C5nm7tgESO8KlsjsOiWEDLkQD5w6rsJ4dPnx3KtbFtRfeKm
+         D64imLBGYGcPA==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: Add i.MX53 based Menlo board comment
+Date:   Thu,  7 Apr 2022 21:21:41 +0200
+Message-Id: <20220407192141.179845-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] ARM: dts: socfpga: align SPI NOR node name with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220407143049.294794-1-krzysztof.kozlowski@linaro.org>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20220407143049.294794-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-10.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add comment regarding the i.MX53 based Menlo board.
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 4/7/22 09:30, Krzysztof Kozlowski wrote:
-> The node names should be generic and SPI NOR dtschema expects "flash".
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts   | 2 +-
->   arch/arm/boot/dts/socfpga_cyclone5_socdk.dts       | 2 +-
->   arch/arm/boot/dts/socfpga_cyclone5_sodia.dts       | 2 +-
->   arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 4 ++--
->   4 files changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-> index 2a745522404d..11ccdc6c2dc6 100644
-> --- a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-> +++ b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-> @@ -9,7 +9,7 @@
->   &qspi {
->   	status = "okay";
->   
-> -	flash0: n25q00@0 {
-> +	flash0: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "micron,mt25qu02g", "jedec,spi-nor";
-> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-> index 253ef139181d..b2241205c7a9 100644
-> --- a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-> +++ b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-> @@ -121,7 +121,7 @@ &mmc0 {
->   &qspi {
->   	status = "okay";
->   
-> -	flash0: n25q00@0 {
-> +	flash0: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "micron,mt25qu02g", "jedec,spi-nor";
-> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-> index b0003f350e65..2564671fc1c6 100644
-> --- a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-> +++ b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-> @@ -113,7 +113,7 @@ &usb1 {
->   &qspi {
->   	status = "okay";
->   
-> -	flash0: n25q512a@0 {
-> +	flash0: flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "micron,n25q512a", "jedec,spi-nor";
-> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-> index 25874e1b9c82..f24f17c2f5ee 100644
-> --- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-> +++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-> @@ -221,7 +221,7 @@ at24@50 {
->   &qspi {
->   	status = "okay";
->   
-> -	n25q128@0 {
-> +	flash@0 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "micron,n25q128", "jedec,spi-nor";
-> @@ -238,7 +238,7 @@ n25q128@0 {
->   		cdns,tslch-ns = <4>;
->   	};
->   
-> -	n25q00@1 {
-> +	flash@1 {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
->   		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 03b8d8cf2c6b4..8a7ed7782e99f 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -172,7 +172,7 @@ properties:
+               - karo,tx53                     # Ka-Ro electronics TX53 module
+               - kiebackpeter,imx53-ddc        # K+P imx53 DDC
+               - kiebackpeter,imx53-hsc        # K+P imx53 HSC
+-              - menlo,m53menlo
++              - menlo,m53menlo                # i.MX53 Menlo board
+               - voipac,imx53-dmm-668          # Voipac i.MX53 X53-DMM-668
+           - const: fsl,imx53
+ 
+-- 
+2.35.1
 
-
-Applied!
-
-Thanks,
-Dinh
