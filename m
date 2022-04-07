@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C1274F7E22
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 13:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 850154F7E2F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 13:41:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236362AbiDGLka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 07:40:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60170 "EHLO
+        id S244856AbiDGLnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 07:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236391AbiDGLk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 07:40:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B36D5F8E7;
-        Thu,  7 Apr 2022 04:38:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S237994AbiDGLnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 07:43:21 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB526DA6F9;
+        Thu,  7 Apr 2022 04:41:21 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0DF7061E11;
-        Thu,  7 Apr 2022 11:38:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D5DC385A0;
-        Thu,  7 Apr 2022 11:38:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649331509;
-        bh=TG0yL4INQRkSWREccn9ae6NDvDoCcJKDi8COYvkgGgs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SfmDwz9CXnvV6mzu9+3DgBV3o1t++mInJYjqeuJHR3/Umq6H1EoMXZ+FNSmPsF9/O
-         mQyOlBoV3xMDMnDjEQU/hV0Bv+1VzYKxXgTOEmWlQEz4ZBhD5kKv8hB09FyntYt9Gd
-         ifxHmsDKvK3OYyfLlak9t7NcEOcZr24W/M9cT9giJj+S97IaHCnWAQbF8aGuGWCIlu
-         ry7NTvnvfnUMFs4WYK2ijfiJyxWIrZyXb6PO/4zBkYKQVrA3pfALJyzsbbC5rLcZiT
-         zBWRsp1iFME84R5kXgMW3IOQ3G6q9aZxQ/MU4sxTNDR8n9Ih/TDOFbEseGwKB28/SY
-         n2LOxe/zNPKMw==
-Message-ID: <78ddc1a6-4597-46b7-76f0-32087ed62546@kernel.org>
-Date:   Thu, 7 Apr 2022 13:38:24 +0200
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4D00122175;
+        Thu,  7 Apr 2022 13:41:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1649331680;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=anZIlz+C7nCyO9qv7nTAB94XjsPcbeyf8vLkyCHxpOY=;
+        b=FzQxRClq9Dt7zR4qrq5+7nAYwxA8epciMbhR6QgAhAdcsB9VSFnDpXL0e/m2n72UKgQEXa
+        G9f58KhmGMSjHPs1PhKiaYTQeK47TBV3TWKbYtCaSDjp0MUKZFHKuKVZKF986gCWJWycta
+        UUYQeIoTzSwVSja4hsS1NTI4P4EqLCg=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] arm64: dts: qcom: Add sc7180-gelarshie
-Content-Language: en-US
-To:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220406094156.3191-1-chenxiangrui@huaqin.corp-partner.google.com>
- <Yk21MbGKVi8d9cAy@google.com>
- <CA+Bnokw-8023cvifSZtT8WR4TvUi8K3512TmEoXhKezMjbQNUQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <CA+Bnokw-8023cvifSZtT8WR4TvUi8K3512TmEoXhKezMjbQNUQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-10.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 07 Apr 2022 13:41:20 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Manohar.Puri@microchip.com, UNGLinuxDriver@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        devicetree@vger.kernel.org, kavyasree.kotagiri@microchip.com,
+        krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        nicolas.ferre@microchip.com, robh+dt@kernel.org,
+        tudor.ambarus@microchip.com
+Subject: Re: [PATCH] spi: atmel,quadspi: Define lan966x QSPI
+In-Reply-To: <Yk7LjrvqSLbzPYkw@sirena.org.uk>
+References: <Yk7Ex5ltaxC7Z+N6@sirena.org.uk>
+ <20220407112345.148316-1-michael@walle.cc> <Yk7LjrvqSLbzPYkw@sirena.org.uk>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <561bbc1cf43c3795eee67e10537ba365@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 10:15, Mars Chen wrote:
-> Hi Matthias,
-> I had removed camera related files on upstream device trees.
+Am 2022-04-07 13:31, schrieb Mark Brown:
+> On Thu, Apr 07, 2022 at 01:23:45PM +0200, Michael Walle wrote:
+>> The subject should also be prefixed with "dt-bindings: ".
 > 
-> Hi Krzysztof,
-> The v2 patch just addressed the v1 patch comment and I had sent the v2
-> patch. 
-> 
+> I tend to complain about people doing that.
 
-Hi,
+After all it is mentioned to use that prefix in
+Documentation/devicetree/bindings/submitting-patches.rst. I try to
+remember when submitting SPI related bindings.
 
-I do not see it being addressed at all. :(
-
-Best regards,
-Krzysztof
+-michael
