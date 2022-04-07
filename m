@@ -2,118 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 340B04F8567
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 18:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FEC14F856F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 19:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345911AbiDGRBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 13:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32858 "EHLO
+        id S1345939AbiDGRDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 13:03:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238296AbiDGRBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:01:39 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E352F1C7F21
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 09:59:37 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id h3-20020a4ae8c3000000b00324b9ae6ff2so1027498ooe.10
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 09:59:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aC19x5r9rZubAKpC81guZrRX4y273dQzbgSbAky6Be0=;
-        b=Ozl+dTEkjYZP1MUQEjwRUob3OnnPv5v/PC9ouorHRaPR5vABaIGr3EEg5Nf1ZxPhwY
-         fiDot3A+5MZ1wyr9XNX3ZjWVw+eX2SDEXat/M//0dR9OM8b2crFIERA8irWTKAyiMXZo
-         5NdzdIWoLrFHDx1G2rUKonB3q+4WBEEDdS1p5oCHdhntzK8UTSzkp2W3s5xIYWncv17+
-         7qKYPHbn5JRYJGX9CJb8e3rMGuszAwEgBXdH1IKNg5eLSp4gjyoZQVxR0AtkD2Elpk/U
-         tQLq8dHc/kJ1Bm8u71q9M/6JyvuaSrosZf4pcqsz3vqfM30HhquMUf13ptnFcg18gtwJ
-         N9IQ==
-X-Gm-Message-State: AOAM531du6ctahRn48PrDOZRP2cum/WYD3dvRGw4fn4YKzYDRRFX+NeU
-        MxWy3gUrPh5PbpnLoZmrGg==
-X-Google-Smtp-Source: ABdhPJyX3QvTe0zmiLuNGWZy+chauwpSC9x6rEqLF6MEabvEoOfirFI8gL6EubY0Io0O9Jw5NP94Nw==
-X-Received: by 2002:a4a:d1c4:0:b0:329:7ba9:1c43 with SMTP id a4-20020a4ad1c4000000b003297ba91c43mr4805762oos.63.1649350777082;
-        Thu, 07 Apr 2022 09:59:37 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f8-20020a4a8908000000b0032472938f95sm6737942ooi.17.2022.04.07.09.59.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 09:59:36 -0700 (PDT)
-Received: (nullmailer pid 1401083 invoked by uid 1000);
-        Thu, 07 Apr 2022 16:59:35 -0000
-Date:   Thu, 7 Apr 2022 11:59:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v0 02/10] dt-bindings: display: imx: add binding for
- i.MX8MP HDMI TX
-Message-ID: <Yk8Yd1etl7pK3B+a@robh.at.kernel.org>
-References: <20220406160123.1272911-1-l.stach@pengutronix.de>
- <20220406160123.1272911-3-l.stach@pengutronix.de>
- <1649275702.749756.2682164.nullmailer@robh.at.kernel.org>
- <6ce2484e9b0482b01c139118cc5b5472e5563314.camel@pengutronix.de>
+        with ESMTP id S1345969AbiDGRDB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 13:03:01 -0400
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9741C886C;
+        Thu,  7 Apr 2022 10:01:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:Subject:
+        From:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
+        :List-Post:List-Owner:List-Archive;
+        bh=o3qoOir9WAPGzi1sWnNPLakfeNGwPLGP2JcLR4qBR0w=; b=MuioKSfFuI7blzwCV/6wb+YekZ
+        ZxFLRKdEmgFHBL5G5EjD8gQ7NqEpdI5RH75hyyi5Lx+Qpo/ZHjbVyA8sOLM81+Cf/jnhuNTEqrUMV
+        AKRzPBibxD304idWTvyCsPVM59NiEmQMfnURAJfh2CAAQpBDkCnXgKqwp0Bbiz2WY6Zs=;
+Received: from p200300daa70ef2000000000000000451.dip0.t-ipconnect.de ([2003:da:a70e:f200::451] helo=nf.local)
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <nbd@nbd.name>)
+        id 1ncVU3-0005oz-2F; Thu, 07 Apr 2022 18:59:47 +0200
+Message-ID: <15c8aab5-41b7-4d25-4b4c-98536bc197fc@nbd.name>
+Date:   Thu, 7 Apr 2022 18:59:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6ce2484e9b0482b01c139118cc5b5472e5563314.camel@pengutronix.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.7.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Networking <netdev@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220405195755.10817-1-nbd@nbd.name>
+ <20220405195755.10817-5-nbd@nbd.name>
+ <d0bffa9a-0ea6-0f59-06b2-7eef3c746de1@linaro.org>
+ <e3ea7381-87e3-99e1-2277-80835ec42f15@nbd.name>
+ <CAK8P3a1A6QYajv_HTw79HjiJ8CN6YPeKXc_X3ZFD83pdOqVTkQ@mail.gmail.com>
+ <08883cf4-27b9-30bf-bd27-9391b763417c@nbd.name>
+ <750c1f9e-6a53-16d5-390e-f9f81fa23afd@linaro.org>
+From:   Felix Fietkau <nbd@nbd.name>
+Subject: Re: [PATCH v2 04/14] dt-bindings: arm: mediatek: document WED binding
+ for MT7622
+In-Reply-To: <750c1f9e-6a53-16d5-390e-f9f81fa23afd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 11:15:26AM +0200, Lucas Stach wrote:
-> Am Mittwoch, dem 06.04.2022 um 15:08 -0500 schrieb Rob Herring:
-> > On Wed, 06 Apr 2022 18:01:15 +0200, Lucas Stach wrote:
-> > > The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
-> > > core with a little bit of SoC integration around it.
-> > > 
-> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > > ---
-> > >  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 72 +++++++++++++++++++
-> > >  1 file changed, 72 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
-> > > 
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > Error: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.example.dts:36.45-46 syntax error
-> > FATAL ERROR: Unable to parse input tree
-> > make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.example.dtb] Error 1
-> > make[1]: *** Waiting for unfinished jobs....
-> > make: *** [Makefile:1401: dt_binding_check] Error 2
-> > 
-> > doc reference errors (make refcheckdocs):
-> > 
-> > See https://patchwork.ozlabs.org/patch/
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
-> Those failures are caused by the example referencing the power domain
-> defines, that are only added in a dependency of this series. They build
-> fine with all the dependencies applied, so please don't let this bot
-> failure prevent you from looking at the actual bindings.
 
-I review the failures. It otherwise looks fine.
+On 06.04.22 10:57, Krzysztof Kozlowski wrote:
+> Thanks for clarification. I still wonder about the missing drivers as I
+> responded to your second bindings:
+> https://lore.kernel.org/all/20220405195755.10817-1-nbd@nbd.name/T/#m6d108c644f0c05cd12c05e56abe2ef75760c6cef
+> 
+> Both of these compatibles - WED and PCIe - are not actually used. Now
+> everything is done inside your Ethernet driver which pokes WED and
+> PCIe-mirror address space via regmap/syscon.
+> 
+> Separate bindings might have sense if WED/PCIe mirror were ever
+> converted to real drivers.I think in terms of hardware description it makes more sense to have 
+separate nodes, even if the implementation uses them in one driver at 
+the moment.
 
-Rob
+- Felix
