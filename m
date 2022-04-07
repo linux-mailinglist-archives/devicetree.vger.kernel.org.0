@@ -2,113 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0FE94F7B95
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FA24F7B9C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243769AbiDGJ3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 05:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47882 "EHLO
+        id S243803AbiDGJ3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 05:29:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243772AbiDGJ3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:29:33 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E16A56CB
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:27:33 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id bg10so9593983ejb.4
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 02:27:33 -0700 (PDT)
+        with ESMTP id S243786AbiDGJ3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:29:51 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FD8DB4BF
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:27:51 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id p15so9546971ejc.7
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 02:27:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tvjrnyli3QMelnewMZziigqajOZNR5QEHUsi4Mp0djY=;
-        b=p3ULPi0cyERr1Dv8VmKELpnBQL2ebtWgryo2YH3BSV+Mrugzv3ntjAoxGg6bqVEL2b
-         PTmJlzRGvWf1xHDsRyBrzptISXqbsn24BccoQEbLClGI21RqMmVJjTl1DydbyyCmp6ew
-         s1GnXEOrLJ1iKPQyS/VfhzAZl4KHVR+3za3q09u4/f1TNntxdZfWr8lm+E330dGlCfha
-         DFTCSHqkvCAYWKzh8U61GldznUdgmnhV6NupS5CJzxidX5o0J18askUIOG06ByIBxwph
-         w34f9K3DzbpWdnmTOPv0G8RM0gKwTJ+6jXV63zPPjFOBl7mSo6S5YP5rry3jiulJW8zO
-         AxMQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4XD1rP9un2hmsqq0b2Cm9MfuJFrWq4hgmVGB9CsvK7E=;
+        b=iABlEFG8GrPja1/jzRRcIfR9Dvt7wl8LU7VmVR1w/91XfwsCvReILJid/u6X1Yk6MO
+         F4azg/k9gk/gF0Q6NJInkJ7WFIv/uCmUbM4ZdWvwThQxwmWsM3eIdFEs+qf4z9ABKTKM
+         tNcn+FIhp5c0szBe+pZ7vE6HhdLbTg28wJPl8ZTlQwta0EiAVYKkna6LITVh/BGkcURP
+         Q8HGMNo3oAjb89leKAaNK2MSHh1x0HGFBmlx7yXkxInfl5Y3rBRxP7mhrvltIZRt+94p
+         J8JEjPjOKzLWXJ9TXJXA8rszr+6LbYyisWRJcxZ58cR0dyfYSkVcyLaNExXe7hPIm3hQ
+         2+gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tvjrnyli3QMelnewMZziigqajOZNR5QEHUsi4Mp0djY=;
-        b=k67q914IISeEFrC6TAGJnJDEvINj5FMdEeKyRUbwG6qKTt9XaxswdTLKJRasdWsHoj
-         lFTS+sznjj06eVeLTyrltc67L/TwBtyW89GbLF8kSpjAayBTyCyg54Ds6ffjhyvY21Y1
-         FnR3irG9s9K/lZ2Q+E7VFAX3H30ruizASs8bJGnrhRcgIJZkMmpik5MNY4Z0OdOIvA9S
-         69HD/Gpj7uCcZbgS2aUKBnBE7sY2iRb0AAYJm2r0WcvuWBQcACwvPVUaoVifj5EUBjOY
-         t5jCscdmiG45fd3N3WURbVwWhGVGV5vnmq6LCGDTu0n2mX1HwL0DWAHzsOi56F0TbPcE
-         5oKg==
-X-Gm-Message-State: AOAM530FZlcJ1PeY9xKWK7/cAH8FyV+EEvrBWpdzq38yimH8v+48m78I
-        7jFZhGXRy9BegqawfvfZADkNSg==
-X-Google-Smtp-Source: ABdhPJy/4Gx1gqe8CTqLfxNWBysJvQLIBo0Zs3aHFrJ4Lak2QmDQE4w3xnChxDtygXQx3u0BuTmdbA==
-X-Received: by 2002:a17:907:3c81:b0:6e6:9387:3d74 with SMTP id gl1-20020a1709073c8100b006e693873d74mr12489705ejc.589.1649323652182;
-        Thu, 07 Apr 2022 02:27:32 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4XD1rP9un2hmsqq0b2Cm9MfuJFrWq4hgmVGB9CsvK7E=;
+        b=Ovq1B1miQJYZYrp769GI6nMq2ZMfrfN7Q9cF6qQFDWD5sfdgF5rQZEkCn36dKHxQxn
+         RO82OjZDibacJ1vU+n383ai1Fns4Hh4cTLbVZi0ZMsDFbVPYCm9BwriU95H6YX4Y8bJx
+         krEmLBS500BfNyZeYW8r2zKGYbHs+4Re5JHRcmjWudT5Cm+l9rXyF6czmU+YMNPE1rq6
+         gSIJHg2EPUoJVPlYLSRImqPwufVs+ZRnMqtryzE357WxZntqAwJe5wmLdoNn9uQlUJ6z
+         1yzIxUybWTdu61rg0NLiP6RK9Qn26I3gq9MTLlrKk+tQcREGzii2MM2t7KqM1OAQLC37
+         nkNA==
+X-Gm-Message-State: AOAM531GLSAFtqVsiQbxU1CAt140cf4W6eDwMWChG6/bPsLo0SuExcwu
+        TWS2biPfkJTNBKCs3ciIyfo6Kg==
+X-Google-Smtp-Source: ABdhPJwup3iMLbpJBGlTFYCEdADs+iBSFW7bU8p/YDdJmXjEEl1BV7FIj7iEMfgXcywtB85A2JTw9Q==
+X-Received: by 2002:a17:907:6e10:b0:6e7:f672:f39b with SMTP id sd16-20020a1709076e1000b006e7f672f39bmr12533217ejc.451.1649323669689;
+        Thu, 07 Apr 2022 02:27:49 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id s14-20020aa7cb0e000000b00410bf015567sm8649435edt.92.2022.04.07.02.27.30
+        by smtp.gmail.com with ESMTPSA id b20-20020a1709063f9400b006e12836e07fsm7454790ejj.154.2022.04.07.02.27.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 02:27:31 -0700 (PDT)
+        Thu, 07 Apr 2022 02:27:49 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RESEND PATCH v3 3/3] arm64: dts: qcom: sm8350: drop duplicated ref_clk in UFS
-Date:   Thu,  7 Apr 2022 11:27:25 +0200
-Message-Id: <20220407092725.232463-3-krzysztof.kozlowski@linaro.org>
+Subject: [RESEND PATCH v3] arm64: dts: hisilicon: align 'freq-table-hz' with dtschema in UFS
+Date:   Thu,  7 Apr 2022 11:27:46 +0200
+Message-Id: <20220407092746.232547-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220407092725.232463-1-krzysztof.kozlowski@linaro.org>
-References: <20220407092725.232463-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ref_clk clock in UFS node is already there with a <0 0> frequency, which
-matches other DTSI files.
+The DT schema expects 'freq-table-hz' property to be an uint32-matrix,
+which is also easier to read.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 20f850b94158..e70687d6c2da 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1916,7 +1916,6 @@ ufs_mem_hc: ufshc@1d84000 {
- 			iommus = <&apps_smmu 0xe0 0x0>;
- 
- 			clock-names =
--				"ref_clk",
- 				"core_clk",
- 				"bus_aggr_clk",
- 				"iface_clk",
-@@ -1926,7 +1925,6 @@ ufs_mem_hc: ufshc@1d84000 {
- 				"rx_lane0_sync_clk",
- 				"rx_lane1_sync_clk";
- 			clocks =
--				<&rpmhcc RPMH_CXO_CLK>,
- 				<&gcc GCC_UFS_PHY_AXI_CLK>,
- 				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
- 				<&gcc GCC_UFS_PHY_AHB_CLK>,
-@@ -1936,7 +1934,6 @@ ufs_mem_hc: ufshc@1d84000 {
- 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
- 				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
- 			freq-table-hz =
--				<75000000 300000000>,
- 				<75000000 300000000>,
- 				<0 0>,
- 				<0 0>,
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+index 8bd6d7e8a474..6b3057a09251 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+@@ -1045,8 +1045,8 @@ ufs: ufs@ff3b0000 {
+ 			clocks = <&crg_ctrl HI3660_CLK_GATE_UFSIO_REF>,
+ 				<&crg_ctrl HI3660_CLK_GATE_UFSPHY_CFG>;
+ 			clock-names = "ref_clk", "phy_clk";
+-			freq-table-hz = <0 0
+-					 0 0>;
++			freq-table-hz = <0 0>,
++					<0 0>;
+ 			/* offset: 0x84; bit: 12 */
+ 			resets = <&crg_rst 0x84 12>;
+ 			reset-names = "rst";
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+index 636c8817df7e..3125c3869c69 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+@@ -671,8 +671,8 @@ ufs: ufs@ff3c0000 {
+ 			clocks = <&crg_ctrl HI3670_CLK_GATE_UFSIO_REF>,
+ 				 <&crg_ctrl HI3670_CLK_GATE_UFS_SUBSYS>;
+ 			clock-names = "ref_clk", "phy_clk";
+-			freq-table-hz = <0 0
+-					 0 0>;
++			freq-table-hz = <0 0>,
++					<0 0>;
+ 			/* offset: 0x84; bit: 12 */
+ 			resets = <&crg_rst 0x84 12>;
+ 			reset-names = "rst";
 -- 
 2.32.0
 
