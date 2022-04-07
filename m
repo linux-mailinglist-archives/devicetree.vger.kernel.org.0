@@ -2,131 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EFCA4F827F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D099E4F828A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 17:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344465AbiDGPKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 11:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55168 "EHLO
+        id S236282AbiDGPL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 11:11:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbiDGPKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:10:05 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1911F081E;
-        Thu,  7 Apr 2022 08:08:05 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id kw18so5842486pjb.5;
-        Thu, 07 Apr 2022 08:08:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jrtvb4212It3IhUoSO26JM4Kh2WKJPNfVyn34wMno3s=;
-        b=CdKoyvFYtcgYgIoynZn9xJOG4ouYERktRTxynaEiC2GYuw4iKl+zzb8DOXVBUCqchY
-         kD3Cca7aLaBOPFeQqIRdyNoAOvb730Fy04LKCPyKRm6ExlPltGoj8CxZQib03AVtDF4n
-         W/XwpGD49YOQQKXySra6y7MBmlkN7X7riVsofaERvlAqwHe7DDrr0WxbJ/a+VJttVqcZ
-         npjBJsxu5zTBm4xvfTZzfttZu6WYp/u6nmaHIGehEmTPEilAn/LeGwXz6zPGOe9iUSzY
-         bXDgJV8SfpyJka/V0NuQQ0tFquxzhm+7dLoQtIw3NUYJMjOnltyCtZWiVprPWmb99Rss
-         NWaw==
+        with ESMTP id S234054AbiDGPLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 11:11:55 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DB82BB18;
+        Thu,  7 Apr 2022 08:09:55 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id 88-20020a9d0ee1000000b005d0ae4e126fso4087110otj.5;
+        Thu, 07 Apr 2022 08:09:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jrtvb4212It3IhUoSO26JM4Kh2WKJPNfVyn34wMno3s=;
-        b=mGAqOQVS3Ut23az79zQiG1YTqp3ltBbiyYrAmqy0wQ2YZWkBSO5WAniGhMEAm3Jz7t
-         Qk0wETjiB1A1EY2kByw6dy/TPVzLgQ/BGxJcHczvRcWnIVjVUy4cZQRFowcgukFGNWL5
-         d9e549NbfsPppkBO0OQNUWTzTuR24lgucQGyzQVbDHQ4DIKctBmfNciH/jvLOzy62Ds8
-         UvfwK9kNLPEy+EsFeaK0I6czPXRpqQ4i1X61vQ9MBisBLA3Qg/e64cszgVOHCyID7hVn
-         4d+0sPuTwU8ZGgq/ltIvVE2kv459t3b+bs2Ft/9Z082u14EtHCla6AAo5xWj/2UHV8bF
-         0STg==
-X-Gm-Message-State: AOAM5321WEhbaGP2euaazlYSPJOmIyqUHCknuPSW3CpP+SjqFSsKJm+Q
-        kKDQUiPs5xkwTAAp6SNvfm1yTldkKRitB24wagk=
-X-Google-Smtp-Source: ABdhPJwo9sQWb5/mta+s4Cyd7+A2btFwfuVblu9GNLlR6RUcNF57pVGnmshWcIMgUsebh44jAvBnpg==
-X-Received: by 2002:a17:902:cec2:b0:154:6df6:1e6a with SMTP id d2-20020a170902cec200b001546df61e6amr14428036plg.58.1649344069155;
-        Thu, 07 Apr 2022 08:07:49 -0700 (PDT)
-Received: from guoguo-omen.lan ([2401:c080:1400:4da2:b701:47d5:9291:4cf9])
-        by smtp.gmail.com with ESMTPSA id x2-20020a63aa42000000b0038265eb2495sm19329908pgo.88.2022.04.07.08.07.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mvsoNOk9u8RV2yVCZLMb/29uYaw0/4/Qw5+UfuDkMks=;
+        b=ec2YPQw+MOwqh33IbQ6jfO5ewzH9X6jl14iOKTglcII8F3l0PuXw++gXCgaNN8FfKO
+         lDBEr6GwssmRWJV9YxgwvieXOwyKSLhXUIVtWMiSFcNg/k2HQWAIhHIadKjQb9U3MzmK
+         kyLa3oMqSmEGXay2bgXNHr6nKHHQcB85MICWNJw7EkbXrQQQyIZIQYkDXa7rd8QCnUTX
+         ZliN5vGinAHWQxxalsIviBrhwSemnl5svIbNimC+7i0/HWKTrb7CU2/Ppwr4wv0HrKEn
+         93ZsAIm5vkQ+j9fOm4WSfKInzy2MaGpMhKM18Se0190HbtItgpfoHGuazFvjmaETYVZf
+         q4xA==
+X-Gm-Message-State: AOAM532R/aQn279nKLoaTcasdUgIglW1MG489F1/pr0Q1Hahr1FdjChC
+        ncrtggWy/Edw51/YzIDI8/6P8aZTXw==
+X-Google-Smtp-Source: ABdhPJzdNp+SArorak1XGGcOGrCQUd+SwHej8ANssNSIJv2Vtew9hsSojZk7jiFJDg5SzFN4KY51PA==
+X-Received: by 2002:a9d:136:0:b0:5cd:9e9b:4872 with SMTP id 51-20020a9d0136000000b005cd9e9b4872mr5150803otu.192.1649344194343;
+        Thu, 07 Apr 2022 08:09:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q39-20020a4a88ea000000b0032165eb3af8sm7531169ooh.42.2022.04.07.08.09.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 08:07:48 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Chuanhong Guo <gch981213@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Cai Huoqing <cai.huoqing@linux.dev>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Colin Ian King <colin.king@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Pratyush Yadav <p.yadav@ti.com>, Yu Kuai <yukuai3@huawei.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list),
-        linux-mtd@lists.infradead.org (open list:NAND FLASH SUBSYSTEM)
-Subject: [PATCH v4 5/5] arm64: dts: mediatek: add mtk-snfi for mt7622
-Date:   Thu,  7 Apr 2022 23:06:52 +0800
-Message-Id: <20220407150652.21885-6-gch981213@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220407150652.21885-1-gch981213@gmail.com>
-References: <20220407150652.21885-1-gch981213@gmail.com>
+        Thu, 07 Apr 2022 08:09:54 -0700 (PDT)
+Received: (nullmailer pid 1105330 invoked by uid 1000);
+        Thu, 07 Apr 2022 15:09:53 -0000
+Date:   Thu, 7 Apr 2022 10:09:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Puranjay Mohan <p-mohan@ti.com>
+Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org, vigneshr@ti.com,
+        kishon@ti.com
+Subject: Re: [RFC 01/13] dt-bindings: remoteproc: Add PRU consumer bindings
+Message-ID: <Yk7+wXwDHrtjFo9s@robh.at.kernel.org>
+References: <20220406094358.7895-1-p-mohan@ti.com>
+ <20220406094358.7895-2-p-mohan@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220406094358.7895-2-p-mohan@ti.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a device-tree node for the MTK SPI-NAND Flash Interface
-for MT7622 device tree.
+On Wed, Apr 06, 2022 at 03:13:46PM +0530, Puranjay Mohan wrote:
+> From: Suman Anna <s-anna@ti.com>
+> 
+> Add a YAML binding document for PRU consumers. The binding includes
+> all the common properties that can be used by different PRU consumer
+> or application nodes and supported by the PRU remoteproc driver.
+> These are used to configure the PRU hardware for specific user
+> applications.
+> 
+> The application nodes themselves should define their own bindings.
+> 
+> Co-developed-by: Tero Kristo <t-kristo@ti.com>
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+> ---
+>  .../bindings/remoteproc/ti,pru-consumer.yaml  | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> new file mode 100644
+> index 000000000000..c245fe1de656
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common TI PRU Consumer Binding
+> +
+> +maintainers:
+> +  - Suman Anna <s-anna@ti.com>
+> +
+> +description: |
+> +  A PRU application/consumer/user node typically uses one or more PRU device
+> +  nodes to implement a PRU application/functionality. Each application/client
+> +  node would need a reference to at least a PRU node, and optionally define
+> +  some properties needed for hardware/firmware configuration. The below
+> +  properties are a list of common properties supported by the PRU remoteproc
+> +  infrastructure.
+> +
+> +  The application nodes shall define their own bindings like regular platform
+> +  devices, so below are in addition to each node's bindings.
+> +
+> +properties:
+> +  ti,prus:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
-Changes since v1:
-  1. use the newly introduced nand-ecc-engine instead
-  2. reword commit message
-Change since v2: none
-Change since v3: none
+Needs contraints. A phandle-array is really a matrix of phandles and 
+args. If no args, something like this:
 
- arch/arm64/boot/dts/mediatek/mt7622.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+minItems: ??
+maxItems: ??
+items:
+  maxItems: 1
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 6f8cb3ad1e84..4b8f7dc1ec23 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -545,6 +545,18 @@ nandc: nfi@1100d000 {
- 		status = "disabled";
- 	};
- 
-+	snfi: spi@1100d000 {
-+		compatible = "mediatek,mt7622-snand";
-+		reg = <0 0x1100d000 0 0x1000>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		clocks = <&pericfg CLK_PERI_NFI_PD>, <&pericfg CLK_PERI_SNFI_PD>;
-+		clock-names = "nfi_clk", "pad_clk";
-+		nand-ecc-engine = <&bch>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+	};
-+
- 	bch: ecc@1100e000 {
- 		compatible = "mediatek,mt7622-ecc";
- 		reg = <0 0x1100e000 0 0x1000>;
--- 
-2.35.1
+> +    description: phandles to the PRU, RTU or Tx_PRU nodes used
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description: |
+> +      firmwares for the PRU cores, the default firmware for the core from
+> +      the PRU node will be used if not provided. The firmware names should
+> +      correspond to the PRU cores listed in the 'ti,prus' property
+> +
+> +  ti,pruss-gp-mux-sel:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    maxItems: 6
+> +    items:
+> +        enum: [0, 1, 2, 3, 4]
+> +    description: |
+> +      array of values for the GP_MUX_SEL under PRUSS_GPCFG register for a PRU.
+> +      This selects the internal muxing scheme for the PRU instance. Values
+> +      should correspond to the PRU cores listed in the 'ti,prus' property. The
+> +      GP_MUX_SEL setting is a per-slice setting (one setting for PRU0, RTU0,
+> +      and Tx_PRU0 on K3 SoCs). Use the same value for all cores within the
+> +      same slice in the associative array. If the array size is smaller than
+> +      the size of 'ti,prus' property, the default out-of-reset value (0) for the
+> +      PRU core is used.
+> +
+> +required:
+> +  - ti,prus
+> +
+> +dependencies:
+> +  firmware-name: [ 'ti,prus' ]
+> +  ti,pruss-gp-mux-sel: [ 'ti,prus' ]
+> +
+> +additionalProperties: true
 
+This must be false unless it is a common, shared schema.
+
+> +
+> +examples:
+> +  - |
+> +    /* PRU application node example */
+> +    pru-app {
+> +        ti,prus = <&pru0>, <&pru1>;
+> +        firmware-name = "pruss-app-fw0", "pruss-app-fw1";
+> +        ti,pruss-gp-mux-sel = <2>, <1>;
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
