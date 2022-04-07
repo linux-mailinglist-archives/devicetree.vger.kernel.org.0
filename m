@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBAB34F81A3
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDF2F4F81A6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343952AbiDGOdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:33:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46282 "EHLO
+        id S1343948AbiDGOdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 10:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343949AbiDGOdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:33:08 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20DDA19316E
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:31:08 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id b24so6602650edu.10
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:31:08 -0700 (PDT)
+        with ESMTP id S1343964AbiDGOdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:33:17 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E2719322B
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:31:17 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id f18so6639561edc.5
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:31:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+MO1E0w+2/1EPzxlLgrrH8CqJaD5WV6dxLv2/TAv594=;
-        b=GZX6tU8mAuua1dN18gxMF7fk9paFFuoMJVXaLcemMCH/JTsgYRCEUX8M/Dt3ceJLhI
-         cUQrsGQlR+gTQ3jxJmX59NuS5AbqaQRA2rRfNHysgCS2A12KO4mFsOpVS7avpqNL4yaA
-         c+W8zJfHfTtlpc6B7INw8B0LDlmGldGiPOxz+y+2fvaA9sOCbD2wJEaE5LGJXI/d1XHV
-         LP+8eeQyNIGVeWFBNSWvuWKQs9qilEE/a9SIQvBjK5wVCbpXyG9G1xAgzsl0ViHiQRAo
-         T4H920upvJ/iFL2JRpoN+5YkdkwAWcxa1+EDV6ELM3NauPVkjrfkbU4Q0AXRWwwtl5tx
-         DSOQ==
+        bh=Lbmt2ZWkYQOCIxnrzFI9pJMNabnWaT0G0BJUYh98KKQ=;
+        b=osVx5uLdCQntezxcS1EuI5EjLmg15e9eBXjpqoffCJtGiWBFV6QeZBS2DdckdNkFSi
+         2ZhU76lYaxzms4vS+tWIUCZOH9WSUkr2/yMyflGcLjVQjrsZS7Zp3oqszMabepw1cpPt
+         pR/7vTPBZHlVVwtqfZ7pj1VMO5vUgWkxfLo3c2SrqdkNAKZctGebvYDxpzzdof1ieR76
+         5zb4sZ3ZTYYAzdX3JBkL9VLxBvEIEGhv9ZLsZEGKtomGxcKul/88oQbr8GmcNk1H+1Fa
+         8rtyruqhJ3BCFUznT318s5JNDZmV1nSbFFi7csQ0QiQzves1AjaZZ0TAhuv+yqL+/end
+         v2Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+MO1E0w+2/1EPzxlLgrrH8CqJaD5WV6dxLv2/TAv594=;
-        b=XI2KC8S3E5RvGPu0O3HPwB7rE++QsmODVPab72/pABgivwdveDujledt6l3A/cf8QG
-         upcp+/fpP1vPYOOB6y1zOocdSSJPZhgtCVVah+s2VKj6rABLPlqkeqF50SVQIGa9PNET
-         p4rvE0X98LyFY6s+9lYUCcy/WWDVDWfu/Ib+N8Lx/nbiiPWHd39k94yNI8an0kPvya1o
-         CCsP/dtB07YbN5lzk9hmacIbgCIC4tiThukzJZw8wF2bjN+vOZdmnUKuWQ/InpKSOHWh
-         hGV+lZgNwa8oZ+f8wGCyd8TIDtpa+gLYABbAtot3jK4Ymz63lljHU38bDw8xFT849t2M
-         j6fw==
-X-Gm-Message-State: AOAM532D/MffejPeWFiZiKVq/Dp+pJjsNqUxCZRHtE5NSlJjzg2Fg4Lk
-        ONhDsdgdBq5GEHD7m7EVdemeaHiClN9HPMbv
-X-Google-Smtp-Source: ABdhPJwD7fIvY0MVYCLFR71cQB+h8zrNTAvyJz7TL2Xlw2Gkn4B7OIvI4xsJlx+naZ4FB1qC5oN9fw==
-X-Received: by 2002:a05:6402:3593:b0:419:7a2d:4b0b with SMTP id y19-20020a056402359300b004197a2d4b0bmr14175923edc.39.1649341855537;
-        Thu, 07 Apr 2022 07:30:55 -0700 (PDT)
+        bh=Lbmt2ZWkYQOCIxnrzFI9pJMNabnWaT0G0BJUYh98KKQ=;
+        b=Z29WqX+zr910xfeG0WNc+LTbzH/OlxVTx3qOw4K0ltk33PBTva5yIXRHGi+mzvQWFd
+         jU2DDpsR6w3faieiwH/PJG9R2O2wex2gaxlhombY7Tpd9iysYxxG2aaidMg1ClW+J89x
+         OmRs122DzIPNFAoNKaRJQyN4aXM70OxSos686x19BZNJzvfd2Fh1JQWgjMdWFvUd7lAg
+         bKb2/xXcsaOgH/KyFITrMmKfVxB1M5b/uP6h1q2N5Ts0tET+zzdCrJyePcy4k1RWnVjR
+         8skua+zyTCSRc6cWbgNRlQDh1VRP64M4u+u9xQ244MphCTYFjKqV8/bioob95GDPAi41
+         gjeA==
+X-Gm-Message-State: AOAM532nIHUcxWh4GJIV8sHcpgxGG/0TmzufQZ17UPjiAIB9/5hhIs3Q
+        5d1AkhD8ECfGITS1fZCBuQHJ5g==
+X-Google-Smtp-Source: ABdhPJzl+5jnd4VTKp6cs/rXYPYKOYGnBaiLrJG9EA3aHe4G3M4emyq4amT2Ssv5YlHk+Don0kddHQ==
+X-Received: by 2002:aa7:c793:0:b0:408:4a69:90b4 with SMTP id n19-20020aa7c793000000b004084a6990b4mr14397051eds.58.1649341875838;
+        Thu, 07 Apr 2022 07:31:15 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id hp11-20020a1709073e0b00b006dfd53a0e39sm7691029ejc.135.2022.04.07.07.30.54
+        by smtp.gmail.com with ESMTPSA id c3-20020a17090654c300b006e4e1a3e9d5sm7256670ejp.144.2022.04.07.07.31.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 07:30:55 -0700 (PDT)
+        Thu, 07 Apr 2022 07:31:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: socfpga: align SPI NOR node name with dtschema
-Date:   Thu,  7 Apr 2022 16:30:49 +0200
-Message-Id: <20220407143049.294794-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: qcom: align SPI NOR node name with dtschema
+Date:   Thu,  7 Apr 2022 16:31:11 +0200
+Message-Id: <20220407143112.294930-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -73,73 +75,50 @@ The node names should be generic and SPI NOR dtschema expects "flash".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts   | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_socdk.dts       | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_sodia.dts       | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 4 ++--
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi   | 2 +-
+ arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dts | 2 +-
+ arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi        | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-index 2a745522404d..11ccdc6c2dc6 100644
---- a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-+++ b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-@@ -9,7 +9,7 @@
- &qspi {
- 	status = "okay";
+diff --git a/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi b/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi
+index 7a337dc08741..2fba904491d9 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi
+@@ -89,7 +89,7 @@ spi@78b5000 { /* BLSP1 QUP1 */
+ 			status = "okay";
+ 			cs-gpios = <&tlmm 12 0>;
  
--	flash0: n25q00@0 {
-+	flash0: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "micron,mt25qu02g", "jedec,spi-nor";
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-index 253ef139181d..b2241205c7a9 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-@@ -121,7 +121,7 @@ &mmc0 {
- &qspi {
- 	status = "okay";
+-			m25p80@0 {
++			flash@0 {
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+ 				reg = <0>;
+diff --git a/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dts b/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dts
+index 06f9f2cb2fe9..d596dd1180ae 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dts
++++ b/arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dts
+@@ -52,7 +52,7 @@ spi@78b5000 {
+ 			status = "okay";
+ 			cs-gpios = <&tlmm 12 0>;
  
--	flash0: n25q00@0 {
-+	flash0: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "micron,mt25qu02g", "jedec,spi-nor";
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-index b0003f350e65..2564671fc1c6 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-@@ -113,7 +113,7 @@ &usb1 {
- &qspi {
- 	status = "okay";
+-			m25p80@0 {
++			flash@0 {
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+ 				reg = <0>;
+diff --git a/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi
+index 65330065390a..5c802b99e15f 100644
+--- a/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi
+@@ -36,7 +36,7 @@ spi4: spi@1a280000 {
  
--	flash0: n25q512a@0 {
-+	flash0: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "micron,n25q512a", "jedec,spi-nor";
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-index 25874e1b9c82..f24f17c2f5ee 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-@@ -221,7 +221,7 @@ at24@50 {
- &qspi {
- 	status = "okay";
+ 				cs-gpios = <&qcom_pinmux 20 0>;
  
--	n25q128@0 {
-+	flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "micron,n25q128", "jedec,spi-nor";
-@@ -238,7 +238,7 @@ n25q128@0 {
- 		cdns,tslch-ns = <4>;
- 	};
- 
--	n25q00@1 {
-+	flash@1 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+-				flash: m25p80@0 {
++				flash: flash@0 {
+ 					compatible = "s25fl256s1";
+ 					#address-cells = <1>;
+ 					#size-cells = <1>;
 -- 
 2.32.0
 
