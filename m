@@ -2,193 +2,404 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 766614F7823
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 712904F7847
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242247AbiDGHxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 03:53:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33226 "EHLO
+        id S242377AbiDGH4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230269AbiDGHxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:53:32 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C071275AA;
-        Thu,  7 Apr 2022 00:51:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649317891; x=1680853891;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=QBdgNg3CkZxz57h4oYZP1B39caJqO+PANLXiVBuL2KU=;
-  b=HA6sQTHIrofqXgx2k8iL4zxp1k159J7dE5V2mzNQ5g8KrMtuema/eGDi
-   uvZv66lB0XuwIV6P01lo2uke4TtiUnXFXEgjteW8sJ4v8wL6uOVV0TB6T
-   nB8E4UV9RMupcKl+wywsatJJsQDZrfMEgGBNJMb9QMiUiwKXEmv7U9Kga
-   TjzmKqHVlb7iWsT9rGMWuSNeofYxXgOoIpeoRNLagMkWWIOt+vRoabefk
-   o48+BO2IyG4Sl0sUkOfCvBsZXV4vJIN+UR7mKjsNWtlpeqGctglQE1EEY
-   f6pKv7gut25/DTedZv+8gaI8y5MmevlkbQcc+uDERdqcmEztxgxGPDh42
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,241,1643698800"; 
-   d="scan'208";a="154737922"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Apr 2022 00:51:31 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 7 Apr 2022 00:51:31 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Thu, 7 Apr 2022 00:51:30 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RlaXnqdW4yLUwMYTtHCAJHAutW0nJLYJtCvo5B3cp/cIATObpdHC3dcp+F+D2hRmZ3Cumrp4o3KvQWtuNQx5b3O6HJABj0C2hCPsNgsqcgksMIWDIa4g990UGSkdA+5sAThPhGtDFOJtc1zXw3TdIcLgC9cFiLYHTQLdibak4HcY8Shz2AeUc0W2+woFJu/CZo8Vv+RlCpv9wGl5Rew/VCg79QXmnb30bGf7U5H2fALAVLdEe4dnratowwV7ssBZ0mgaJ7KCByzyfXx7GnBazJQNvPAbnH7pKIL/c46qQZ7iXVGCrXH1O0g2U/H4KGUax0Gvh/G3cBIhDgWdJ2RB2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QBdgNg3CkZxz57h4oYZP1B39caJqO+PANLXiVBuL2KU=;
- b=BRzgdLxWg4zlP7/dV8cnxQg0tLC1sW4pdE98XoQpbO3WITlealaBTbPIGnw6qNPIxw332+HH2ySJtB1HMTSRFBQ23bju+q2hOC7OZk82+yDGbwNEwNlhKSLHtLUIQODdhnj+XuCWggjECa0ncTV1yp7CuKOa0rUnTfFfHbYxkrbI+xdw6EU7Qtc6M7cxz9itHpt34GuSLmCUwtbc8DMAJaikMgK+S/nRcUxtqXy8R1rJFQjkG21j6D5ufapL7y7aEHL7RV9svqjYtmiiWL70YeZx1y7dwSlhrItFzNRSh/2CNvv92AepH68g+6hbAxVF9Ajp3o9qBbLA20OBuiTwyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S239002AbiDGH4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:56:36 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96561E963F
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:54:35 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id p8so4738639pfh.8
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:54:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QBdgNg3CkZxz57h4oYZP1B39caJqO+PANLXiVBuL2KU=;
- b=SCBVDEQroHX/ciiRiq1ZdCDdiJn4Q5u+ObgUzs2YEKn1wCmXn0kJW4HE+TKkAiPifrTEWfR+hkVzG00bnM3pPfC3w/eMr1RWl3RC1h4qDfLn6h1XNcHlLDk5bK2bcGnQmxvPk0RXD0HUA5imlONiTLdKGFeh+oKhZYdkypoXhhU=
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
- by BN6PR11MB1716.namprd11.prod.outlook.com (2603:10b6:404:4a::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.23; Thu, 7 Apr
- 2022 07:51:25 +0000
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::7cb5:d2dd:7e5:c812]) by SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::7cb5:d2dd:7e5:c812%9]) with mapi id 15.20.5144.022; Thu, 7 Apr 2022
- 07:51:24 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <Claudiu.Beznea@microchip.com>, <Nicolas.Ferre@microchip.com>
-CC:     <alexandre.belloni@bootlin.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Mihai.Sain@microchip.com>
-Subject: Re: [PATCH] ARM: dts: at91: sama7g5ek: Align the impedance of the
- QSPI0's HSIO and PCB lines
-Thread-Topic: [PATCH] ARM: dts: at91: sama7g5ek: Align the impedance of the
- QSPI0's HSIO and PCB lines
-Thread-Index: AQHYSlRHeFYIcdZvzkefF9wZv787bA==
-Date:   Thu, 7 Apr 2022 07:51:24 +0000
-Message-ID: <515d14f2-1a3f-1bfe-93e7-2baafc45ce4f@microchip.com>
-References: <20220406130505.422042-1-tudor.ambarus@microchip.com>
- <8f778b95-d68e-6575-ff8b-f1dd8d4d8777@microchip.com>
-In-Reply-To: <8f778b95-d68e-6575-ff8b-f1dd8d4d8777@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: aac90c38-b299-4cce-7a71-08da186b6a33
-x-ms-traffictypediagnostic: BN6PR11MB1716:EE_
-x-microsoft-antispam-prvs: <BN6PR11MB17166957A41FCCACBD6F8A91F0E69@BN6PR11MB1716.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Y0AG7Gheuf52ZFIFBzLFnoz5wgFJOJJvJoP3zHK+APMv/UCCE1LyD18Ybs7W9/gHL4H0Z67flBYOAx5whwV9cZ1ESAmDPnlXE/bN5NeA4LpDcyTJ4S1A5Oamq++8LCJLc2ZJ/SpvnfOz6IEIAey7CpPJmIAcskBdhBku1u24gbEdcbiKpvQqUsf9tfutWmUMJZkdts/OJjmWTGjVfK69K6erfE4bEo2bVWbJRxSQELrI/SmeBAc5CNG7Iaq+zNQ+tJOvQiKWDSvXeQPltznSotuDmYzpYIyOtezWRTNFuLt7btfyzmpoO4BfZTE4n336q8PWL6LKR23EjI6W4S9cSJRH3IZ8Y5rB4VyQStD/8EViEcVvavIQqrrH5Rxz8zD+H6a6pe1RAclB4W6PRbe5B6D6tVRgrVwbH+QKMCQ6zlGcmajxlgUvtJPlHUzHhJ7xtznuLoqA9fy3Uo7qTpnWUaKvGxl6+pDflTizRUKJT/fVEDe3fjk+vIxBuixTO96p19uMM0/g5Dcdl5N0ysgvaUnODlW0ssv/Q53ItmsA/CRPGzEQwTvnjbYPPH8Q1Jqj7+Fp9hGdJImlCn9kw1VtU5FiFR1WU5xHQUjbPn3bWYwkVxTxfHtcYN4yU03vK6vGeUmUJUz47CdUIdM1b4QcWTNximLZuxGx8g4+nxJ2gQp8BKrW3sub2pjSIMWhkg1zNAL2Mu7zn1RRRRVYWirBxBTyMQ1D7J5XeoM3T8Ptf3GtxcTGgFdRR1GAF2ENIxKrfNAsarucv2R5j/4JJJeEeQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(76116006)(66476007)(31686004)(66556008)(66946007)(91956017)(66446008)(64756008)(122000001)(38100700002)(38070700005)(4326008)(8676002)(316002)(6636002)(110136005)(36756003)(54906003)(2616005)(6506007)(53546011)(6512007)(8936002)(71200400001)(107886003)(86362001)(508600001)(2906002)(83380400001)(31696002)(186003)(26005)(6486002)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZEhUSHRNYnl6VDk2UWhJR3JpVU1qZ25TeUVwbEd1aTdLS1kxVTlKcVZ6Rldj?=
- =?utf-8?B?OHdPZE1BMnhucDdMYmdsdFhUTllRZzE2Szg3WU1TM2JWUVJ2VkNjY3cwTmJC?=
- =?utf-8?B?Q2haQjZReEFMVVVkRDkrNnp4Q2YvOFVjL1FIS3pRNGVyRml1MklNNURPTjJ2?=
- =?utf-8?B?Ri9lRHdkL2E3TDJOeEVtT1l4T3BYRDVSK1BXcEx1VURFa1Z4Sk45dDFQZERx?=
- =?utf-8?B?YjNoZzJQYzZZc1JMQ0NER2o4UEVON0lRdzhDNkdZRjdwSWVrMEN2QWYwdzF1?=
- =?utf-8?B?NldGUjRBYkY1RG5pR3U5S0Mwd2ZtMXpoZmZRMGRIVmlTQ056L3FkVVdJeFVP?=
- =?utf-8?B?M1lybGt6Z3pQWXBGZnJ4QVNKRGFSYks2YmFKb01hZUJmbTVXSjZHczZnWGF1?=
- =?utf-8?B?WTVOUXIwdlBNR3NNSnQ5WHpwRmZzY2s4akJFS0xyZDdFcnRjUXdrSzUvdGZz?=
- =?utf-8?B?MGIxS0l6bG9rWTljUVRCY1Y4MXU3MjMwUC9wMzhvSWc3UU9UYTlhNC9NTEw2?=
- =?utf-8?B?bjN1dzBadXhxbVYxenhHdjRLZmVBSDdMME5PTElkYVQwbDh3QzQ5N2ZBaTd3?=
- =?utf-8?B?VENYaVl0dUZyVlhBd0ZEMU8vVTk2ZUZnWnBOT281UENjS3NKRFJ2dlg2SHN2?=
- =?utf-8?B?RlJITzVTK2lwcWlaeWpHZzV2cG00eWwrZzNYQ2Z5L0NJb2VqejdTUm5nT3Zk?=
- =?utf-8?B?bGZQVXhGZjFOb3F6amZ5NUsvblNTQXlEVDBQemcrMG55WE95YXdMaU1EUEtn?=
- =?utf-8?B?VWJVMCs2VlFuQ3RGWmZIT29VR1RHdForem5uWWo5S0UyclQzQ0xiejMybTFz?=
- =?utf-8?B?RjhKaklkL2ZkODZwNE55QjNIYXd3cVV2eS8yOW43dndiazJua0JmV0dZalJL?=
- =?utf-8?B?aGRVSU16UFluekYwMjdqa1U1bUV4aTY5a3NCblV0S04xWkFvdmxEbWVWWWwr?=
- =?utf-8?B?OHZLRU9WbUpTSlhNSERUSUdlcTVMeDRqTlhHRlRBRExXZ3h6QWpVZ1MyWEo4?=
- =?utf-8?B?ZkVvdUNlU01vMjc4SnpsYmJxVXl0b244b2wrUnBvWU5pMWg1WjFxbE5KcFdv?=
- =?utf-8?B?c3hEWDRWU3R3TWtHTW9LTHZEVDZWdCtEK2VPTHNyZXBkU05RVHgzK1YrZnFZ?=
- =?utf-8?B?SFBjdWJYTmloWWJLcGh4TmFycG1XTk5DRko4bFJDemQ5NlFZaUZjUWcxUm5r?=
- =?utf-8?B?OERtWDZ1bXY4NUNtZmZsRGxWSHp1eXVLeHYrdGdXc0trNHNvWnBYUFY4UURE?=
- =?utf-8?B?U0p4U3g2dUhUZk50bm4ycDRvd1B4UnpoRkwzeFJ4Tmt2aEF4d3N1UGZRZEpq?=
- =?utf-8?B?K3RuQU5YZE5rS1h4TStJYUNrdk9HUDdUQk82STVzTm9zY2loR3RxWVd6dGtF?=
- =?utf-8?B?c1c5bVJockVyU3NtYUMvTlBZSVpDYkRpWW1wZHZ0cDk4bUh2Yy93bmR5cVZv?=
- =?utf-8?B?UmUyY0xnMmt0VU93NVZyRlk0MVdFdDdzMkRLdnlJRmZJNXl4czlOZkZzZnFj?=
- =?utf-8?B?dGozMnV0NTA3V1hkOERpaTNwd25hbVBkbE9ZMGhmdFNRSHJqanNkcE10UC9K?=
- =?utf-8?B?ZVhVNE9XRmNEQThoREo3bGJTMkFxMFBFbUNkd2hxYnN3Tk5ac0lUcEpDM0hy?=
- =?utf-8?B?Z1p5dFFjWEZmdjRBR0drRHlmS2RaNm0zeDRoYzdLRDhzTXJia3N3TG0zVlpu?=
- =?utf-8?B?V3JsblRXY3BUbjk4SGpuNmt3aDFiYXFZVUhNaFoyNFJUNXEzckZqYnBXVE1F?=
- =?utf-8?B?aUpucXlkUXZ3ODREYXZhcEoySyt4Tk82cHNJRUFHZ0lMUmJYMml2UkNwMlhI?=
- =?utf-8?B?R1FWbVNBLzd5Zk1lOHlnNFlYakdTOXpoTGZUa2JNUTUwUmU0L2RaOWs1cm1q?=
- =?utf-8?B?VVFmT3RiVzR5ckJ4elc3WVRYL3h0WVhRdWFaSWxPM2t5NUxmR2pVazVZejZQ?=
- =?utf-8?B?TnRYdk1HOU03aDVRWG5vdENsMk5hUnNrQkR1Wjhlb3EwY2kvOXdIR1hvdEdI?=
- =?utf-8?B?Y1FhcWF5a1pQVyt3dlJraHBiRVR4YjEyTHViUjg3bTBoYnZBUlNrSktibnJi?=
- =?utf-8?B?ZnJETnNWVkxTS0ZzaERBcjFpZEp6V0x1bWxXZnR0Zzd0MG51RjlacVBOMlQx?=
- =?utf-8?B?c3psL2RTSWV1d3B4SzcvOXQ4Y1lKNTBVMzFMc2d1RVpFRFIyMW9NSVpjVmV5?=
- =?utf-8?B?bDE3YzJqMC8za1Ntb25BdGd4QVUxTVAwczBaM2I2T3Y4bzl1VndObTVjWExh?=
- =?utf-8?B?RkNWYTFOZEZUSDR5UjVOQ3NYTDhuYng1LzVLTytqREJwNnJIcGdBUGVJU2Rx?=
- =?utf-8?B?THdIaE9lVUxSZmtkVkh3WUFCVnV0ZnN5dmRwdmdrLzZVTTIzeWloeW9VbTBP?=
- =?utf-8?Q?xvY/UM2nFyWgXaTI=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2C194E705A8A384BBB53549F0EEF6626@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E21S/+1Oc88PYlTNz8REwkook2wml8IdpHgAuGAbnss=;
+        b=r6de84Y5A/+xd0WJ9MQ07QDQwrn9ZKZ5irlqPr8RKVA6SnJaU/hnxbGDdOpJTCf6VB
+         +rAa0NyzT+M+1bzItfFsMQMZ14o0nasgt+lIB3gt9oC/i4TU5bPfLfTi47wXYoNJgxbu
+         9weCjJ+Ta8jLZaghQjKHD1RPNhYp8Ydh3cZJi5Z7xDB8BhpopH1hCXRMj5Do6dBjnLGR
+         KAOgdFop6UASgEk56MRiuW2uKNhIPNLWlW5Mx/DD5EMi29SrKMzafqu9grG9EZULeFkx
+         nYQqcqM2z7X8VyPtiadyC0WVVtn7JIxLmE4gCmjN5aDMIsl3VdWmjZODbEJz57E9izZY
+         TuXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E21S/+1Oc88PYlTNz8REwkook2wml8IdpHgAuGAbnss=;
+        b=sO5M7pFs0yopVZDwNZzlgOqfjekZJY7NFulWJeV73STZFI0Erv0igosqnYk8BMD/0S
+         GP70xncCCbPOrqA+ne4KFlJkt3lEEOUxPp7mDXkOVm8q3f2Ww7ZtwQLihcv7Wm57hgbv
+         I/gdxE48XWWEps+WqsnrGazDQCSwcWwnEKp1NtZ0Sd25fd971QUVYLEJePWimMjzM9Lm
+         RUlRaa8sMAG9ChNDPGoKEFo21HDu+qXiNSVtCKeUrJIJC5fMnQ+yPl2Ewx5tpLz/6Eef
+         cweBEQU+Sgu6us5jq+9/VmkfhsOeyvirtq7tiaBccEVLqqqlgFcjb23+wQyIufqCYtn8
+         dVSw==
+X-Gm-Message-State: AOAM533voXfOW2cuxrcOi8iNps5cCxEtx9MAolWBlPx0noK0nEymwQ+g
+        Kh5FBEZ6Qm3oGEbxQxbB9E7Q5A==
+X-Google-Smtp-Source: ABdhPJxBI/vpow02/PorOX05No+RlPCkBnixIq0FwwudE/CbCLnMAQZr7jvSIPhkUmYS6u6TEwyoZQ==
+X-Received: by 2002:aa7:8b14:0:b0:4f7:83b1:2e0b with SMTP id f20-20020aa78b14000000b004f783b12e0bmr12937905pfd.37.1649318075348;
+        Thu, 07 Apr 2022 00:54:35 -0700 (PDT)
+Received: from localhost.localdomain (203-75-29-53.hinet-ip.hinet.net. [203.75.29.53])
+        by smtp.gmail.com with ESMTPSA id bx22-20020a056a00429600b004fa936a64b0sm19957157pfb.196.2022.04.07.00.54.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Apr 2022 00:54:34 -0700 (PDT)
+From:   Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+To:     agross@kernel.org
+Cc:     Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] [v2]arm64: dts: qcom: Add sc7180-gelarshie
+Date:   Thu,  7 Apr 2022 15:54:26 +0800
+Message-Id: <20220407075427.41141-1-chenxiangrui@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aac90c38-b299-4cce-7a71-08da186b6a33
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2022 07:51:24.8359
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fOP83TMDKrlrV5gZwrX5Kkvr1pWli8MAEAkXN6YRjRloih4i+PqC6TdXkX5tu6jWC5PO0OFwLf+l2lfbEuWKUDSn10bISZtc4pUV5xT4M4o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1716
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gNC83LzIyIDA5OjI2LCBDbGF1ZGl1IEJlem5lYSAtIE0xODA2MyB3cm90ZToNCj4gSGksIFR1
-ZG9yLA0KPiANCj4gT24gMDYuMDQuMjAyMiAxNjowNSwgVHVkb3IgQW1iYXJ1cyB3cm90ZToNCj4+
-IFRoZSBpbXBlZGFuY2Ugb2YgdGhlIFFTUEkgUENCIGxpbmVzIG9uIHRoZSBzYW1hN2c1ZWsgaXMg
-NTAgT2htcy4NCj4+IEFsaWduIHRoZSBvdXRwdXQgaW1wZWRhbmNlIG9mIHRoZSBRU1BJMCBIU0lP
-cyBieSBzZXR0aW5nIGEgbWVkaXVtIGRyaXZlDQo+PiBzdHJlbmd0aCB3aGljaCBjb3JyZXNwb25k
-cyB0byBhbiBpbXBlZGFuY2Ugb2YgNTYgT2htcyB3aGVuIFZERCBpcyBpbiB0aGUNCj4+IDMuMFYg
-LSAzLjZWIHJhbmdlLiBUaGUgaGlnaCBkcml2ZSBzdHJlbmd0aCBzZXR0aW5nIGNvcnJlc3BvbmRz
-IHRvIGFuDQo+PiBvdXRwdXQgaW1wZWRhbmNlIG9mIDQyIE9obXMgb24gdGhlIFFTUEkwIEhTSU9z
-Lg0KPj4NCj4+IFN1Z2dlc3RlZC1ieTogTWloYWkgU2FpbiA8bWloYWkuc2FpbkBtaWNyb2NoaXAu
-Y29tPg0KPj4gU2lnbmVkLW9mZi1ieTogVHVkb3IgQW1iYXJ1cyA8dHVkb3IuYW1iYXJ1c0BtaWNy
-b2NoaXAuY29tPg0KPiANCj4gSXMgaXQgbmVjZXNzYXJ5IGEgZml4ZXMgdGFnIGhlcmU/DQo+IA0K
-DQpJdCdzIG5vdCBhIGZpeCBwZXIgc2UsIGl0J3MganVzdCBhIGZpbmUgdHVuaW5nIHRoYXQncyB3
-aHkgSSBjaG9zZSB0byBkb24ndCBhZGQNCnRoZSBmaXhlcyB0YWcuIFRoZSBtZW1vcnkgdGhhdCB3
-ZSBoYXZlIHBvcHVsYXRlZCBvbiBzYW1hN2c1ZWsgd29ya3MgZmluZSBldmVuDQp3aXRoIGhpZ2gg
-ZHJpdmUgc3RyZW5ndGgsIGJ1dCBpdCdzIGJldHRlciB0byBhZGp1c3QgaXQgYW5kIHVzZSBtZWRp
-dW0gaW5zdGVhZCwNCmluIGNhc2Ugc29tZSBvdGhlciBmbGFzaGVzIHdpdGggaGlnaGVyIGZyZXF1
-ZW5jaWVzIGFyZSB0ZXN0ZWQuIElmIHlvdSB0aGluayBhDQpmaXhlcyB0YWcgaXMgbmVlZGVkLCBn
-aXZlIG1lIGEgc2lnbiBhbmQgSSdsbCByZXN1Ym1pdC4NCg0KPiANCj4+IC0tLQ0KPj4gIGFyY2gv
-YXJtL2Jvb3QvZHRzL2F0OTEtc2FtYTdnNWVrLmR0cyB8IDIgKy0NCj4+ICAxIGZpbGUgY2hhbmdl
-ZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvYXJj
-aC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hN2c1ZWsuZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5
-MS1zYW1hN2c1ZWsuZHRzDQo+PiBpbmRleCAwODY4NWExMGVkYTEuLjhmOTY0MzE3MGJhMyAxMDA2
-NDQNCj4+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2F0OTEtc2FtYTdnNWVrLmR0cw0KPj4gKysr
-IGIvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hN2c1ZWsuZHRzDQo+PiBAQCAtNjU1LDcgKzY1
-NSw3IEBAIHBpbmN0cmxfcXNwaTogcXNwaSB7DQo+PiAgCQkJIDxQSU5fUEIyMV9fUVNQSTBfSU5U
-PjsNCj4+ICAJCWJpYXMtZGlzYWJsZTsNCj4+ICAJCXNsZXctcmF0ZSA9IDwwPjsNCj4+IC0JCWF0
-bWVsLGRyaXZlLXN0cmVuZ3RoID0gPEFUTUVMX1BJT19EUlZTVFJfSEk+Ow0KPj4gKwkJYXRtZWws
-ZHJpdmUtc3RyZW5ndGggPSA8QVRNRUxfUElPX0RSVlNUUl9NRT47DQo+PiAgCX07DQo+PiAgDQo+
-PiAgCXBpbmN0cmxfc2RtbWMwX2RlZmF1bHQ6IHNkbW1jMF9kZWZhdWx0IHsNCj4gDQoNCg==
+Add device tree for Gelarshie, a trogdor variant
+
+Signed-off-by: Mars Chen <chenxiangrui@huaqin.corp-partner.google.com>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/sc7180-trogdor-gelarshie-r0.dts  |  15 +
+ .../dts/qcom/sc7180-trogdor-gelarshie.dtsi    | 280 ++++++++++++++++++
+ 3 files changed, 296 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index f9e6343acd03..cf8f88b065c3 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-gelarshie-r0.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+new file mode 100644
+index 000000000000..027d6d563a5f
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie-r0.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Gelarshie board device tree source
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-gelarshie.dtsi"
++
++/ {
++	model = "Google Gelarshie (rev0+)";
++	compatible = "google,gelarshie", "qcom,sc7180";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+new file mode 100644
+index 000000000000..8758cafb2d89
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-gelarshie.dtsi
+@@ -0,0 +1,280 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Gelarshie board device tree source
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++#include "sc7180.dtsi"
++
++ap_ec_spi: &spi6 {};
++ap_h1_spi: &spi0 {};
++
++#include "sc7180-trogdor.dtsi"
++#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
++
++/* Deleted nodes from trogdor.dtsi */
++
++/delete-node/ &alc5682;
++/delete-node/ &pp3300_codec;
++
++/ {
++	/* BOARD-SPECIFIC TOP LEVEL NODES */
++
++	adau7002: audio-codec-1 {
++		compatible = "adi,adau7002";
++		IOVDD-supply = <&pp1800_l15a>;
++		wakeup-delay-ms = <80>;
++		#sound-dai-cells = <0>;
++	};
++};
++
++&backlight {
++	pwms = <&cros_ec_pwm 0>;
++};
++
++&camcc {
++	status = "okay";
++};
++
++&cros_ec {
++	cros_ec_proximity: proximity {
++		compatible = "google,cros-ec-mkbp-proximity";
++		label = "proximity-wifi";
++	};
++};
++
++ap_ts_pen_1v8: &i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	ap_ts: touchscreen@5d {
++		compatible = "goodix,gt7375p";
++		reg = <0x5d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
++
++		vdd-supply = <&pp3300_ts>;
++	};
++};
++
++&i2c7 {
++	status = "disabled";
++};
++
++&i2c9 {
++	status = "disabled";
++};
++
++&panel {
++	compatible = "edp-panel";
++};
++
++&pp1800_uf_cam {
++	status = "okay";
++};
++
++&pp1800_wf_cam {
++	status = "okay";
++};
++
++&pp2800_uf_cam {
++	status = "okay";
++};
++
++&pp2800_wf_cam {
++	status = "okay";
++};
++
++&pp3300_dx_edp {
++	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
++};
++
++&sdhc_2 {
++	status = "okay";
++};
++
++&sn65dsi86_out {
++	data-lanes = <0 1 2 3>;
++};
++
++&sound {
++	compatible = "google,sc7180-gelarshie";
++	model = "sc7180-adau7002-max98357a";
++	audio-routing = "PDM_DAT", "DMIC";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&dmic_clk_en>;
++};
++
++&sound_multimedia0_codec {
++	sound-dai = <&adau7002>;
++};
++
++/* PINCTRL - modifications to sc7180-trogdor.dtsi */
++
++&en_pp3300_dx_edp {
++	pinmux  {
++		pins = "gpio67";
++	};
++
++	pinconf {
++		pins = "gpio67";
++	};
++};
++
++&ts_reset_l {
++	pinconf {
++		/*
++		 * We want reset state by default and it will be up to the
++		 * driver to disable this when it's ready.
++		 */
++		output-low;
++	};
++};
++
++/* PINCTRL - board-specific pinctrl */
++
++&tlmm {
++	gpio-line-names = "HUB_RST_L",
++			  "AP_RAM_ID0",
++			  "AP_SKU_ID2",
++			  "AP_RAM_ID1",
++			  "WF_CAM_EN2",
++			  "AP_RAM_ID2",
++			  "UF_CAM_EN",
++			  "WF_CAM_EN",
++			  "TS_RESET_L",
++			  "TS_INT_L",
++			  "",
++			  "EDP_BRIJ_IRQ",
++			  "AP_EDP_BKLTEN",
++			  "UF_CAM_MCLK",
++			  "WF_CAM_MCLK",
++			  "EDP_BRIJ_I2C_SDA",
++			  "EDP_BRIJ_I2C_SCL",
++			  "UF_CAM_SDA",
++			  "UF_CAM_SCL",
++			  "WF_CAM_SDA",
++			  "WF_CAM_SCL",
++			  "",
++			  "",
++			  "AMP_EN",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "WF_CAM_RST_L",
++			  "UF_CAM_RST_L",
++			  "AP_BRD_ID2",
++			  "BRIJ_SUSPEND",
++			  "AP_BRD_ID0",
++			  "AP_H1_SPI_MISO",
++			  "AP_H1_SPI_MOSI",
++			  "AP_H1_SPI_CLK",
++			  "AP_H1_SPI_CS_L",
++			  "BT_UART_CTS",
++			  "BT_UART_RTS",
++			  "BT_UART_TXD",
++			  "BT_UART_RXD",
++			  "H1_AP_INT_ODL",
++			  "",
++			  "UART_AP_TX_DBG_RX",
++			  "UART_DBG_TX_AP_RX",
++			  "",
++			  "",
++			  "FORCED_USB_BOOT",
++			  "AMP_BCLK",
++			  "AMP_LRCLK",
++			  "AMP_DIN",
++			  "",
++			  "HP_BCLK",
++			  "HP_LRCLK",
++			  "HP_DOUT",
++			  "",
++			  "",
++			  "AP_SKU_ID0",
++			  "AP_EC_SPI_MISO",
++			  "AP_EC_SPI_MOSI",
++			  "AP_EC_SPI_CLK",
++			  "AP_EC_SPI_CS_L",
++			  "AP_SPI_CLK",
++			  "AP_SPI_MOSI",
++			  "AP_SPI_MISO",
++			  /*
++			   * AP_FLASH_WP_L is crossystem ABI. Schematics
++			   * call it BIOS_FLASH_WP_L.
++			   */
++			  "AP_FLASH_WP_L",
++			  "EN_PP3300_DX_EDP",
++			  "AP_SPI_CS0_L",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "WLAN_SW_CTRL",
++			  "BOOT_CONFIG_0",
++			  "REPORT_SWITCH",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "DMIC_CLK_EN",
++			  "HUB_EN",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "AP_SKU_ID1",
++			  "AP_RST_REQ",
++			  "",
++			  "AP_BRD_ID1",
++			  "AP_EC_INT_L",
++			  "BOOT_CONFIG_1",
++			  "",
++			  "",
++			  "BOOT_CONFIG_4",
++			  "BOOT_CONFIG_2",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "EDP_BRIJ_EN",
++			  "",
++			  "",
++			  "BOOT_CONFIG_3",
++			  "WCI2_LTE_COEX_TXD",
++			  "WCI2_LTE_COEX_RXD",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "FORCED_USB_BOOT_POL",
++			  "AP_TS_PEN_I2C_SDA",
++			  "AP_TS_PEN_I2C_SCL",
++			  "DP_HOT_PLUG_DET",
++			  "EC_IN_RW_ODL";
++
++	dmic_clk_en: dmic_clk_en {
++		pinmux {
++			pins = "gpio83";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio83";
++			drive-strength = <8>;
++			bias-pull-up;
++		};
++	};
++};
+-- 
+2.25.1
+
