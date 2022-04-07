@@ -2,106 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B76784F8093
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 15:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D50D4F8091
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 15:31:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231704AbiDGNdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 09:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51658 "EHLO
+        id S231301AbiDGNdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 09:33:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiDGNdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 09:33:45 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABCB2316D;
-        Thu,  7 Apr 2022 06:31:42 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 237DVHwX121831;
-        Thu, 7 Apr 2022 08:31:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1649338277;
-        bh=FkL+nLnsDIczf1J4USqtIGn2t+WprQVeZK6cfAqE0No=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=aomvn3LCtUkkFY3iWkSRwOxd7WkuVpc69cyKSPZCDOLgx0OEUY4WVqpHe+eX9wlQD
-         BPoPsYzJ95Y0ezzF7LsOBjfflFsgz4fRVwxpM5NpuJ60UJ1PerrubKDwygTp1y3p51
-         Y6gJVNW0E4QBotRil97aveDGV42zfdKCB4rDXuew=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 237DVHwU034787
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Apr 2022 08:31:17 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
- Apr 2022 08:31:13 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 7 Apr 2022 08:31:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 237DVCSH029520;
-        Thu, 7 Apr 2022 08:31:12 -0500
-Date:   Thu, 7 Apr 2022 08:31:12 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tony Lindgren <tony@atomide.com>
-CC:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        with ESMTP id S229603AbiDGNdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 09:33:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D9CA201B7;
+        Thu,  7 Apr 2022 06:31:35 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8CC82499;
+        Thu,  7 Apr 2022 15:31:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1649338293;
+        bh=5g/7+0v7BXowhz/aR2zHtPdm5mwSl3JLP4Sz0oWHeUk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RoIAchgI9ibXHuor2DiHMgmKdLP+UfCuL0NwoNArDDuomaMNI1Z+fiNHwJL6zi5U/
+         qkQ/1+JtOZLBOzK4a3tz5KZsoPKx/i1BwTrRtpYX8cOaSk0kvGcBq4Hq/gGSreatR3
+         wqSX0v7Gw2vYHCAo2Rw4P22oZlQxtaGWagD08d6I=
+Date:   Thu, 7 Apr 2022 16:31:29 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 1/4] dt-bindings: timer: Add am6 compatible for ti-timer
-Message-ID: <20220407133112.lhs3dm6tvvvbooen@friday>
-References: <20220407071006.37031-1-tony@atomide.com>
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 3/3] ARM: dts: Use new media bus type macros
+Message-ID: <Yk7nsbQ7xoASlxVm@pendragon.ideasonboard.com>
+References: <20220306173905.22990-1-laurent.pinchart@ideasonboard.com>
+ <20220306173905.22990-4-laurent.pinchart@ideasonboard.com>
+ <6824a158-9837-c61d-cbf9-c8a2ca46110e@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220407071006.37031-1-tony@atomide.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <6824a158-9837-c61d-cbf9-c8a2ca46110e@foss.st.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:10-20220407, Tony Lindgren wrote:
-> Document the dual-mode timers available on am6.
+Hi Alexandre,
+
+On Thu, Apr 07, 2022 at 02:41:58PM +0200, Alexandre TORGUE wrote:
+> On 3/6/22 18:39, Laurent Pinchart wrote:
+> > Now that a header exists with macros for the media interface bus-type
+> > values, replace hardcoding numerical constants with the corresponding
+> > macros in the DT sources.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >   arch/arm/boot/dts/imx6ul-14x14-evk.dtsi               |  4 +++-
+> >   arch/arm/boot/dts/omap3-n900.dts                      |  5 +++--
+> >   arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts       | 11 +++++++----
+> >   .../dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi     |  4 +++-
+> >   .../dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi     |  4 +++-
+> >   arch/arm/boot/dts/stm32429i-eval.dts                  |  3 ++-
+> >   arch/arm/boot/dts/stm32mp157c-ev1.dts                 |  3 ++-
+> >   7 files changed, 23 insertions(+), 11 deletions(-)
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  Documentation/devicetree/bindings/timer/ti,timer.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
-> --- a/Documentation/devicetree/bindings/timer/ti,timer.txt
-> +++ b/Documentation/devicetree/bindings/timer/ti,timer.txt
-> @@ -14,6 +14,7 @@ Required properties:
->  			ti,omap5430-timer (applicable to OMAP543x devices)
->  			ti,am335x-timer	(applicable to AM335x devices)
->  			ti,am335x-timer-1ms (applicable to AM335x devices)
-> +			ti,am6-timer (applicable to AM6 devices)
->  
->  - reg:			Contains timer register address range (base address and
->  			length).
-> -- 
-> 2.35.1
+> sorry for this late answer. Is it possible to split ARM DT patches by 
+> vendor ?
 
+Sure. Is that only to ease backporting, or do you want the ST part to be
+merged through a different tree ?
 
-We need to convert this into yaml prior to the dts updates patches :(
-
+> > diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+> > index a3fde3316c73..89234bbd02f4 100644
+> > --- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+> > +++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+> > @@ -2,6 +2,8 @@
+> >   //
+> >   // Copyright (C) 2015 Freescale Semiconductor, Inc.
+> >   
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> >   / {
+> >   	chosen {
+> >   		stdout-path = &uart1;
+> > @@ -170,7 +172,7 @@ &csi {
+> >   	port {
+> >   		parallel_from_ov5640: endpoint {
+> >   			remote-endpoint = <&ov5640_to_parallel>;
+> > -			bus-type = <5>; /* Parallel bus */
+> > +			bus-type = <MEDIA_BUS_TYPE_BT601>;
+> >   		};
+> >   	};
+> >   };
+> > diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
+> > index d40c3d2c4914..9cad9d6a83e2 100644
+> > --- a/arch/arm/boot/dts/omap3-n900.dts
+> > +++ b/arch/arm/boot/dts/omap3-n900.dts
+> > @@ -9,6 +9,7 @@
+> >   #include "omap34xx.dtsi"
+> >   #include <dt-bindings/input/input.h>
+> >   #include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/media/video-interfaces.h>
+> >   
+> >   /*
+> >    * Default secure signed bootloader (Nokia X-Loader) does not enable L3 firewall
+> > @@ -194,7 +195,7 @@ port@1 {
+> >   
+> >   			csi_isp: endpoint {
+> >   				remote-endpoint = <&csi_cam1>;
+> > -				bus-type = <3>; /* CCP2 */
+> > +				bus-type = <MEDIA_BUS_TYPE_CCP2>;
+> >   				clock-lanes = <1>;
+> >   				data-lanes = <0>;
+> >   				lane-polarity = <0 0>;
+> > @@ -835,7 +836,7 @@ cam1: camera@3e {
+> >   
+> >   		port {
+> >   			csi_cam1: endpoint {
+> > -				bus-type = <3>; /* CCP2 */
+> > +				bus-type = <MEDIA_BUS_TYPE_CCP2>;
+> >   				strobe = <1>;
+> >   				clock-inv = <0>;
+> >   				crc = <1>;
+> > diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+> > index 3c8a7c8b1fdd..1043603fc4a5 100644
+> > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+> > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+> > @@ -7,6 +7,9 @@
+> >    */
+> >   
+> >   /dts-v1/;
+> > +
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> >   #include "r8a7742-iwg21d-q7.dts"
+> >   
+> >   / {
+> > @@ -242,7 +245,7 @@ port {
+> >   		vin0ep: endpoint {
+> >   			remote-endpoint = <&cam0ep>;
+> >   			bus-width = <8>;
+> > -			bus-type = <6>;
+> > +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+> >   		};
+> >   	};
+> >   };
+> > @@ -273,7 +276,7 @@ port {
+> >   		vin1ep: endpoint {
+> >   			remote-endpoint = <&cam1ep>;
+> >   			bus-width = <8>;
+> > -			bus-type = <6>;
+> > +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+> >   		};
+> >   	};
+> >   };
+> > @@ -305,7 +308,7 @@ vin2ep: endpoint {
+> >   			remote-endpoint = <&cam2ep>;
+> >   			bus-width = <8>;
+> >   			data-shift = <8>;
+> > -			bus-type = <6>;
+> > +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+> >   		};
+> >   	};
+> >   };
+> > @@ -335,7 +338,7 @@ port {
+> >   		vin3ep: endpoint {
+> >   			remote-endpoint = <&cam3ep>;
+> >   			bus-width = <8>;
+> > -			bus-type = <6>;
+> > +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+> >   		};
+> >   	};
+> >   };
+> > diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
+> > index 40cef0b1d1e6..c73160df619d 100644
+> > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
+> > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
+> > @@ -7,6 +7,8 @@
+> >    * Copyright (C) 2020 Renesas Electronics Corp.
+> >    */
+> >   
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> >   #define CAM_ENABLED	1
+> >   
+> >   &CAM_PARENT_I2C {
+> > @@ -26,7 +28,7 @@ port {
+> >   			CAM_EP: endpoint {
+> >   				bus-width = <8>;
+> >   				data-shift = <2>;
+> > -				bus-type = <6>;
+> > +				bus-type = <MEDIA_BUS_TYPE_BT656>;
+> >   				pclk-sample = <1>;
+> >   				remote-endpoint = <&VIN_EP>;
+> >   			};
+> > diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+> > index f5e77f024251..a7f5cfec64b8 100644
+> > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+> > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+> > @@ -7,6 +7,8 @@
+> >    * Copyright (C) 2020 Renesas Electronics Corp.
+> >    */
+> >   
+> > +#include <dt-bindings/media/video-interfaces.h>
+> > +
+> >   #define CAM_ENABLED	1
+> >   
+> >   &CAM_PARENT_I2C {
+> > @@ -21,7 +23,7 @@ ov7725@21 {
+> >   		port {
+> >   			CAM_EP: endpoint {
+> >   				bus-width = <8>;
+> > -				bus-type = <6>;
+> > +				bus-type = <MEDIA_BUS_TYPE_BT656>;
+> >   				remote-endpoint = <&VIN_EP>;
+> >   			};
+> >   		};
+> > diff --git a/arch/arm/boot/dts/stm32429i-eval.dts b/arch/arm/boot/dts/stm32429i-eval.dts
+> > index cb46326a8c75..ecb10613d962 100644
+> > --- a/arch/arm/boot/dts/stm32429i-eval.dts
+> > +++ b/arch/arm/boot/dts/stm32429i-eval.dts
+> > @@ -50,6 +50,7 @@
+> >   #include "stm32f429-pinctrl.dtsi"
+> >   #include <dt-bindings/input/input.h>
+> >   #include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/media/video-interfaces.h>
+> >   
+> >   / {
+> >   	model = "STMicroelectronics STM32429i-EVAL board";
+> > @@ -186,7 +187,7 @@ &dcmi {
+> >   	port {
+> >   		dcmi_0: endpoint {
+> >   			remote-endpoint = <&ov2640_0>;
+> > -			bus-type = <5>;
+> > +			bus-type = <MEDIA_BUS_TYPE_BT601>;
+> >   			bus-width = <8>;
+> >   			hsync-active = <0>;
+> >   			vsync-active = <0>;
+> > diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> > index e222d2d2cb44..24f59f3b15dc 100644
+> > --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> > +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> > @@ -8,6 +8,7 @@
+> >   #include "stm32mp157c-ed1.dts"
+> >   #include <dt-bindings/gpio/gpio.h>
+> >   #include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/media/video-interfaces.h>
+> >   
+> >   / {
+> >   	model = "STMicroelectronics STM32MP157C eval daughter on eval mother";
+> > @@ -90,7 +91,7 @@ &dcmi {
+> >   	port {
+> >   		dcmi_0: endpoint {
+> >   			remote-endpoint = <&ov5640_0>;
+> > -			bus-type = <5>;
+> > +			bus-type = <MEDIA_BUS_TYPE_BT601>;
+> >   			bus-width = <8>;
+> >   			hsync-active = <0>;
+> >   			vsync-active = <0>;
 
 -- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Laurent Pinchart
