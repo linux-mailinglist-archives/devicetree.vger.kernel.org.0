@@ -2,112 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72FA24F7B9C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45CF44F7BA3
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243803AbiDGJ3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 05:29:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49144 "EHLO
+        id S233212AbiDGJbf convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 7 Apr 2022 05:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243786AbiDGJ3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:29:51 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FD8DB4BF
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:27:51 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id p15so9546971ejc.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 02:27:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4XD1rP9un2hmsqq0b2Cm9MfuJFrWq4hgmVGB9CsvK7E=;
-        b=iABlEFG8GrPja1/jzRRcIfR9Dvt7wl8LU7VmVR1w/91XfwsCvReILJid/u6X1Yk6MO
-         F4azg/k9gk/gF0Q6NJInkJ7WFIv/uCmUbM4ZdWvwThQxwmWsM3eIdFEs+qf4z9ABKTKM
-         tNcn+FIhp5c0szBe+pZ7vE6HhdLbTg28wJPl8ZTlQwta0EiAVYKkna6LITVh/BGkcURP
-         Q8HGMNo3oAjb89leKAaNK2MSHh1x0HGFBmlx7yXkxInfl5Y3rBRxP7mhrvltIZRt+94p
-         J8JEjPjOKzLWXJ9TXJXA8rszr+6LbYyisWRJcxZ58cR0dyfYSkVcyLaNExXe7hPIm3hQ
-         2+gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4XD1rP9un2hmsqq0b2Cm9MfuJFrWq4hgmVGB9CsvK7E=;
-        b=Ovq1B1miQJYZYrp769GI6nMq2ZMfrfN7Q9cF6qQFDWD5sfdgF5rQZEkCn36dKHxQxn
-         RO82OjZDibacJ1vU+n383ai1Fns4Hh4cTLbVZi0ZMsDFbVPYCm9BwriU95H6YX4Y8bJx
-         krEmLBS500BfNyZeYW8r2zKGYbHs+4Re5JHRcmjWudT5Cm+l9rXyF6czmU+YMNPE1rq6
-         gSIJHg2EPUoJVPlYLSRImqPwufVs+ZRnMqtryzE357WxZntqAwJe5wmLdoNn9uQlUJ6z
-         1yzIxUybWTdu61rg0NLiP6RK9Qn26I3gq9MTLlrKk+tQcREGzii2MM2t7KqM1OAQLC37
-         nkNA==
-X-Gm-Message-State: AOAM531GLSAFtqVsiQbxU1CAt140cf4W6eDwMWChG6/bPsLo0SuExcwu
-        TWS2biPfkJTNBKCs3ciIyfo6Kg==
-X-Google-Smtp-Source: ABdhPJwup3iMLbpJBGlTFYCEdADs+iBSFW7bU8p/YDdJmXjEEl1BV7FIj7iEMfgXcywtB85A2JTw9Q==
-X-Received: by 2002:a17:907:6e10:b0:6e7:f672:f39b with SMTP id sd16-20020a1709076e1000b006e7f672f39bmr12533217ejc.451.1649323669689;
-        Thu, 07 Apr 2022 02:27:49 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id b20-20020a1709063f9400b006e12836e07fsm7454790ejj.154.2022.04.07.02.27.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 02:27:49 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RESEND PATCH v3] arm64: dts: hisilicon: align 'freq-table-hz' with dtschema in UFS
-Date:   Thu,  7 Apr 2022 11:27:46 +0200
-Message-Id: <20220407092746.232547-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S239660AbiDGJbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:31:34 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD4D1CFE4
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:29:34 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncOS8-0004Bg-EB; Thu, 07 Apr 2022 11:29:20 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncOS8-001aLn-C1; Thu, 07 Apr 2022 11:29:18 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ncOS5-00041P-Ki; Thu, 07 Apr 2022 11:29:17 +0200
+Message-ID: <f410271385fc8901d7c1dac0187122eb96e96aaf.camel@pengutronix.de>
+Subject: Re: [PATCH v0 07/10] phy: freescale: add Samsung HDMI PHY
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de
+Date:   Thu, 07 Apr 2022 11:29:17 +0200
+In-Reply-To: <20220406160123.1272911-8-l.stach@pengutronix.de>
+References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+         <20220406160123.1272911-8-l.stach@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT schema expects 'freq-table-hz' property to be an uint32-matrix,
-which is also easier to read.
+Hi Lucas,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+On Mi, 2022-04-06 at 18:01 +0200, Lucas Stach wrote:
+> This adds the driver for the Samsung HDMI PHY found on the
+> i.MX8MP SoC.
+> 
+> Heavily based on the PHY implementation in the downstream kernel
+> written by Sandor Yu <Sandor.yu@nxp.com>, but also cleaned up
+> quite a bit and extended to support runtime PM.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+> FIXME: The PHY configuration could be cleaned up further, it
+> currently has a lot of register writes that are same across
+> all supported modes.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index 8bd6d7e8a474..6b3057a09251 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -1045,8 +1045,8 @@ ufs: ufs@ff3b0000 {
- 			clocks = <&crg_ctrl HI3660_CLK_GATE_UFSIO_REF>,
- 				<&crg_ctrl HI3660_CLK_GATE_UFSPHY_CFG>;
- 			clock-names = "ref_clk", "phy_clk";
--			freq-table-hz = <0 0
--					 0 0>;
-+			freq-table-hz = <0 0>,
-+					<0 0>;
- 			/* offset: 0x84; bit: 12 */
- 			resets = <&crg_rst 0x84 12>;
- 			reset-names = "rst";
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 636c8817df7e..3125c3869c69 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -671,8 +671,8 @@ ufs: ufs@ff3c0000 {
- 			clocks = <&crg_ctrl HI3670_CLK_GATE_UFSIO_REF>,
- 				 <&crg_ctrl HI3670_CLK_GATE_UFS_SUBSYS>;
- 			clock-names = "ref_clk", "phy_clk";
--			freq-table-hz = <0 0
--					 0 0>;
-+			freq-table-hz = <0 0>,
-+					<0 0>;
- 			/* offset: 0x84; bit: 12 */
- 			resets = <&crg_rst 0x84 12>;
- 			reset-names = "rst";
--- 
-2.32.0
+Agreed.
 
+[...]
+> ---
+>  drivers/phy/freescale/Kconfig                |    7 +
+>  drivers/phy/freescale/Makefile               |    1 +
+>  drivers/phy/freescale/phy-fsl-samsung-hdmi.c | 1145 ++++++++++++++++++
+>  3 files changed, 1153 insertions(+)
+>  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> 
+> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> index f9c54cd02036..f80c92eb7c55 100644
+> --- a/drivers/phy/freescale/Kconfig
+> +++ b/drivers/phy/freescale/Kconfig
+> @@ -26,6 +26,13 @@ config PHY_FSL_IMX8M_PCIE
+>  	  Enable this to add support for the PCIE PHY as found on
+>  	  i.MX8M family of SOCs.
+>  
+> +config PHY_FSL_SAMSUNG_HDMI_PHY
+> +	tristate "Samsung HDMI PHY support"
+> +	depends on OF && HAS_IOMEM
+> +	select GENERIC_PHY
+
+Why select GENERIC_PHY when all the driver does is register a clock?
+
+[...]
+> +struct fsl_samsung_hdmi_phy {
+> +	struct device *dev;
+> +	void __iomem *regs;
+> +	struct clk *apbclk;
+> +	struct clk *refclk;
+
+refclk isn't really used beyond phy_clk_register, it doesn't have to be
+stored in struct fsl_samsung_hdmi_phy.
+
+> +
+> +	/* clk provider */
+> +	struct clk_hw hw;
+> +	const struct phy_config *cur_cfg;
+> +};
+> +
+> +static inline struct fsl_samsung_hdmi_phy *
+> +to_fsl_samsung_hdmi_phy(struct clk_hw *hw)
+> +{
+> +	return container_of(hw, struct fsl_samsung_hdmi_phy, hw);
+> +}
+> +
+> +static void fsl_samsung_hdmi_phy_configure(struct fsl_samsung_hdmi_phy *phy,
+> +					  const struct phy_config *cfg)
+> +{
+> +	int i;
+> +
+> +	/* HDMI PHY init */
+> +	writeb(REG33_FIX_DA, phy->regs + PHY_REG_33);
+> +
+> +	for (i = 0; i < PHY_PLL_REGS_NUM; i++)
+> +		writeb(cfg->regs[i], phy->regs + i * 4);
+> +
+> +	writeb(REG33_FIX_DA | REG33_MODE_SET_DONE , phy->regs + PHY_REG_33);
+> +}
+> +
+> +static int phy_clk_prepare(struct clk_hw *hw)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy = to_fsl_samsung_hdmi_phy(hw);
+> +	int ret = 0;
+> +	u8 val;
+> +
+> +	return 0;
+
+I'd say remove this line or pyh_clk_prepare().
+
+> +	ret = readb_poll_timeout(phy->regs + PHY_REG_34, val,
+> +				 val & REG34_PLL_LOCK,
+> +				 20, 20000);
+> +	if (ret)
+> +		dev_err(phy->dev, "PLL failed to lock\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static unsigned long phy_clk_recalc_rate(struct clk_hw *hw,
+> +					 unsigned long parent_rate)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy = to_fsl_samsung_hdmi_phy(hw);
+> +
+> +	if (!phy->cur_cfg)
+> +		return 0;
+> +
+> +	return phy->cur_cfg->clk_rate;
+> +}
+> +
+> +static long phy_clk_round_rate(struct clk_hw *hw,
+> +			       unsigned long rate, unsigned long *parent_rate)
+> +{
+> +	const struct phy_config *phy_cfg = phy_pll_cfg;
+> +
+> +	for (; phy_cfg->clk_rate != 0; phy_cfg++)
+> +		if (phy_cfg->clk_rate == rate)
+
+ * @round_rate: Given a target rate as input, returns the closest rate actually
+ *              supported by the clock. The parent rate is an input/output
+ *              parameter.
+
+This should round, not -EINVAL on unsupported rates.
+
+> +			break;
+> +
+> +	if (phy_cfg->clk_rate == 0)
+> +		return -EINVAL;
+> +
+> +	return phy_cfg->clk_rate;
+> +}
+> +
+> +static int phy_clk_set_rate(struct clk_hw *hw,
+> +			    unsigned long rate, unsigned long parent_rate)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy = to_fsl_samsung_hdmi_phy(hw);
+> +	const struct phy_config *phy_cfg = phy_pll_cfg;
+> +	int ret = 0;
+
+Unnecessary initialization.
+
+> +	u8 val;
+> +
+> +	for (; phy_cfg->clk_rate != 0; phy_cfg++)
+> +		if (phy_cfg->clk_rate == rate)
+> +			break;
+> +
+> +	if (phy_cfg->clk_rate == 0)
+> +		return -EINVAL;
+> +
+> +	phy->cur_cfg = phy_cfg;
+> +
+> +	fsl_samsung_hdmi_phy_configure(phy, phy_cfg);
+> +
+> +	ret = readb_poll_timeout(phy->regs + PHY_REG_34, val,
+> +				 val & REG34_PLL_LOCK,
+> +				 50, 20000);
+> +	if (ret)
+> +		dev_err(phy->dev, "PLL failed to lock\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct clk_ops phy_clk_ops = {
+> +	.prepare = phy_clk_prepare,
+> +	.recalc_rate = phy_clk_recalc_rate,
+> +	.round_rate = phy_clk_round_rate,
+> +	.set_rate = phy_clk_set_rate,
+> +};
+> +
+> +static int phy_clk_register(struct fsl_samsung_hdmi_phy *phy)
+> +{
+> +	struct device *dev = phy->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct clk_init_data init;
+> +	const char *parent_name;
+> +	struct clk *phyclk;
+> +	int ret;
+> +
+> +	parent_name = __clk_get_name(phy->refclk);
+> +
+> +	init.parent_names = &parent_name;
+> +	init.num_parents = 1;
+> +	init.flags = 0;
+> +	init.name = "hdmi_pclk";
+> +	init.ops = &phy_clk_ops;
+> +
+> +	phy->hw.init = &init;
+> +
+> +	phyclk = devm_clk_register(dev, &phy->hw);
+> +	if (IS_ERR(phyclk))
+> +		return dev_err_probe(dev, PTR_ERR(phyclk),
+> +				     "failed to register clock\n");
+> +
+> +	ret = of_clk_add_provider(np, of_clk_src_simple_get, phyclk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to register clock provider\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy;
+> +	int ret;
+> +
+> +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, phy);
+> +	phy->dev = &pdev->dev;
+> +
+> +	phy->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(phy->regs))
+> +		return PTR_ERR(phy->regs);
+> +
+> +	phy->apbclk = devm_clk_get(phy->dev, "apb");
+> +	if (IS_ERR(phy->apbclk))
+> +		return dev_err_probe(phy->dev, PTR_ERR(phy->apbclk),
+> +				     "failed to get apb clk\n");
+> +
+> +	phy->refclk = devm_clk_get(phy->dev, "ref");
+> +	if (IS_ERR(phy->refclk))
+> +		return dev_err_probe(phy->dev, PTR_ERR(phy->refclk),
+> +				     "failed to get ref clk\n");
+> +
+> +	ret = clk_prepare_enable(phy->apbclk);
+> +	if (ret) {
+> +		dev_err(phy->dev, "failed to enable apbclk\n");
+> +		return ret;
+> +	}
+> +
+> +	pm_runtime_get_noresume(phy->dev);
+> +	pm_runtime_set_active(phy->dev);
+> +	pm_runtime_enable(phy->dev);
+> +
+> +	ret = phy_clk_register(phy);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "register clk failed\n");
+> +		goto register_clk_failed;
+> +	}
+> +
+> +	pm_runtime_put(phy->dev);
+> +
+> +	return 0;
+> +
+> +register_clk_failed:
+> +	clk_disable_unprepare(phy->apbclk);
+> +
+> +	return ret;
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_remove(struct platform_device *pdev)
+> +{
+> +	of_clk_del_provider(pdev->dev.of_node);
+> +
+> +	return 0;
+> +}
+> +
+> +#ifdef CONFIG_PM
+> +static int fsl_samsung_hdmi_phy_suspend(struct device *dev)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy = dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(phy->apbclk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int fsl_samsung_hdmi_phy_resume(struct device *dev)
+> +{
+> +	struct fsl_samsung_hdmi_phy *phy = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(phy->apbclk);
+> +	if (ret) {
+> +		dev_err(phy->dev, "failed to enable apbclk\n");
+> +		return ret;
+> +	}
+> +
+> +	if (phy->cur_cfg)
+> +		fsl_samsung_hdmi_phy_configure(phy, phy->cur_cfg);
+
+Not checking PLL lock during resume?
+
+
+regards
+Philipp
