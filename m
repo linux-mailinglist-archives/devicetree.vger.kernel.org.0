@@ -2,185 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F406B4F75FB
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 08:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 808854F7603
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 08:27:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240848AbiDGG2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 02:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38856 "EHLO
+        id S241094AbiDGG31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 02:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240254AbiDGG2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 02:28:41 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E9313D35;
-        Wed,  6 Apr 2022 23:26:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649312800; x=1680848800;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=POKA+BzYE6fvSdeeA50WOBXm6GBDORiWD0ixHCK+GPU=;
-  b=gLD0SqH8ZISB6q+jYd3tdBP1AVTqaiUCbulli5fY1JiGzbnvMaUyb0O7
-   OQHg9zz4Qdx+C9Pu5U8Iy3coSimAM3ppeJ52+GlADL8WuUGU8pU1xTCsC
-   OSigHJ7xQWE6NsEBLtYrNUPjMBlfQKnLr8MhENBlFsa/7NagvroFh8bS1
-   kay6pDvHLnnuFqPj6j1iZRpGCrp1CQ4hOSFRrnrU6JfpBVEZ6NjWTTtZu
-   WLFZUqaI25IMt0ECWBqY2U6jEVmF1kI/43yQ2lNSSLHCPZR2qelEaSuPY
-   tkfPWo4cIXH7eMZjA2hKTyeNWbioFLHyomvk/nZt3K0qYoDdbrv+7tJc9
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,241,1643698800"; 
-   d="scan'208";a="159673523"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Apr 2022 23:26:39 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 6 Apr 2022 23:26:38 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Wed, 6 Apr 2022 23:26:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nt2l+AWv71LamkeJqlE+WqksPJCyEErh70CFTc4bB2WClAcZ0gA+exLnS+HZRQcIut47gXlRkAXdxIcdUuVHNqVKMOSeJbfVxyS7oJKly5dCnlbnz2nekP3OJravxKexN1dHgZhXdflliALEZ3Xag5CxMUOCWJCuITWvYNK3m0DJYDkXQJu0i3ch/q2Vrot24ePg7pvvJV9zvnjNx0DeBF3VrXQ+XbXP3GsQDA6mdaRmUQxS0p8oEhXDwAsRQLvy43BMrALIkc9EEGXAT6vrFAAbON5awXz7h0uEr63VC6lgrt+wKVfuH3MkzKXXwI0cPjJLJVD+Bx4w96P9abCueA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=POKA+BzYE6fvSdeeA50WOBXm6GBDORiWD0ixHCK+GPU=;
- b=TMQOSw+PjkaH56gnivy45iI/SzQNxXiZOflmOJJOASv7dQ6psyQ5eNuCkyytQOMfMSBMY0S1NWtXV2yiwafV41hDWeREo8eIDvNtL45LH46qr7yZc5TkmINsDeNS/9ekWamBj9wWPzHrqeTA09eE6nENvIp36fGE7q+V8dGD5+u1tzpjD0OXowapRkGWawjz2ZRTsEHE9+t5tcYJE+J1lmrmuRKmufDYiNr48jIJT13erhHHmu84VPl7f0Pz+gAn3oYcgkdVibBy26C3tvOG5a3yxx0pSeuGqh28QOG+w0e6Sub3QL43pNU+jiHGLJT/VR0W5hNJsD59/9FUi4/fJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=POKA+BzYE6fvSdeeA50WOBXm6GBDORiWD0ixHCK+GPU=;
- b=veURw1A55w87oy/ikRRQmeXoWtDwagas3FVAsVC+YJCzLfvX3Jll8MOMWPysFJ6KK3RGoRCfRCh43NwQ/MaN9uIDqm9WuAG6FAb1CbXY5hTqBW7PmCKBqIfxssm0A63VuQcvduTn6HKoILT31hwRhxFEd48ey4Cavt+6SOmvB6Y=
-Received: from CO1PR11MB4769.namprd11.prod.outlook.com (2603:10b6:303:91::21)
- by SN6PR11MB3071.namprd11.prod.outlook.com (2603:10b6:805:d6::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22; Thu, 7 Apr
- 2022 06:26:37 +0000
-Received: from CO1PR11MB4769.namprd11.prod.outlook.com
- ([fe80::6d66:3f1d:7b05:660b]) by CO1PR11MB4769.namprd11.prod.outlook.com
- ([fe80::6d66:3f1d:7b05:660b%7]) with mapi id 15.20.5144.022; Thu, 7 Apr 2022
- 06:26:37 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <Tudor.Ambarus@microchip.com>, <Nicolas.Ferre@microchip.com>
-CC:     <alexandre.belloni@bootlin.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Mihai.Sain@microchip.com>
-Subject: Re: [PATCH] ARM: dts: at91: sama7g5ek: Align the impedance of the
- QSPI0's HSIO and PCB lines
-Thread-Topic: [PATCH] ARM: dts: at91: sama7g5ek: Align the impedance of the
- QSPI0's HSIO and PCB lines
-Thread-Index: AQHYSkhvqPPZ9iBRZEaUnnDvnC7rzQ==
-Date:   Thu, 7 Apr 2022 06:26:37 +0000
-Message-ID: <8f778b95-d68e-6575-ff8b-f1dd8d4d8777@microchip.com>
-References: <20220406130505.422042-1-tudor.ambarus@microchip.com>
-In-Reply-To: <20220406130505.422042-1-tudor.ambarus@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9ea7588e-bcb2-4744-2d49-08da185f91cd
-x-ms-traffictypediagnostic: SN6PR11MB3071:EE_
-x-microsoft-antispam-prvs: <SN6PR11MB307198D5A051563A09F560A487E69@SN6PR11MB3071.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LskkKsEU/A5nrGaXhFr5++ojOelgPL/WJUDjbFtfvmqtWBUeTaVmoKlOPnjKQUspBbIx1k9HQ9cRZI3RTlAI/BGQE1zvPMD45Unty9v0hH3KesT3WRjSniGt52CXe2by+oEtG938Y5kzEMqQnyUxRXZOjObYXsCyPuzp3xCfzkcmjUYKHig+QSYeJ/X0eaaF0eYHVNr2iXTb3EoxbceZtfFuacQxM9QCrZjxj55A6VEZD6i9nFFzJflWA1NdJBYrf71kxEJgYq5BXeJ8nVDv5nA5xwbbx+RWVfsPMMtzBNaMeTiV5XRuP8IDpSc7/Eq0myBirLHV4oae5r0/CePuJTLENyAKv7ojEX0ObRuRDuXiYFWiD+W1AAZgBWL7zs7s0YfRu8XCwi1NL5ilPr6oVnyTvqRzUoscd/vNvW6y3T6ddyzScMy6nLJ1SRb+d59yT3pK2SEA61aMwlMIg1NuyAVRXYvZBTEf925lA1USXojK1zS2bt25pryy8wo41KS1Ni3gQHStk+TtBjTJtAqA6IJZ5t50j16z/pscqxr+AogtQ3i3zV4/TxYMcvqfsm1dRKDH3/rm3D67tPnfUNxFn74KUedUqdgWAtvJWA5vLcZcp6S/IgXgFYM1jhSkwfGM6ZEZGEZ6O+78b8gkYJ6JFxZbkt2JPNcrapAGE7piUJGxst5zWVL4DWbPb2P9RQ3lmelWj54Nw+80MlY13KKt6rfn/7xTxSLG2I3iqR9UWm1iAPG2paVwi+ziT6Me7tGvrp8x5jR6/2ypD7C/yomx0Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4769.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(86362001)(31696002)(6486002)(8936002)(5660300002)(107886003)(508600001)(53546011)(2616005)(6512007)(26005)(186003)(2906002)(110136005)(6506007)(6636002)(4326008)(91956017)(38100700002)(76116006)(66556008)(38070700005)(8676002)(64756008)(66446008)(66476007)(66946007)(316002)(122000001)(54906003)(36756003)(31686004)(71200400001)(83380400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NHdnVUZhTnl5VVluN3NuWjFKWWFTZENJVDhpM1F2ZUwrNGxCQmN3WTNYbjMw?=
- =?utf-8?B?R2hMQ0tIa3hyMGxUT1RTNHhFVHlyWUFNc29QMENzaHZPTEJiVlIxYkJwNndZ?=
- =?utf-8?B?eStwTkpGYzFON2hqcncyWkdPRWlFZUdOTHdlTjB0TmdqR211Wld5R01hMVZY?=
- =?utf-8?B?bU9idkU2WnRMQU5UbDZUMWRYeE13MEZackJzZ29nR1RTZnp1YXhIYzcvMGFC?=
- =?utf-8?B?TXJicHIvZUk5U3VUdTk3b2lJYzNLODZPZjFNZk85Q21yR2JSSCtyWDl1blVU?=
- =?utf-8?B?SkdGTVpUN0V4QzdBdXhKMlU5T3FQQzRRdXBkajdURzhicHFHZW54RWpRUU1y?=
- =?utf-8?B?cDdJcm53bk5JazJ4WDd6cWd0L2hXK2lzVTZDazZrOFBLSEpyeHdKZlBQSUxq?=
- =?utf-8?B?WlhDQTNiMXhaMm5jeUJEK0hRQXp5WDBzdGxPajZmSnpMZW5nbWhCS1piTWda?=
- =?utf-8?B?SG5Wb1dJaU9WZEk1RzdZNzRDaWJUQS9kLy9vb1dodkdzMitMY3o3bEVlTkRP?=
- =?utf-8?B?YWlMZTczK1VXQXVsSGVZL3cycGt3RXdBbGhTUkdhVVdJTXdqaEprcTBOaU53?=
- =?utf-8?B?YU91dE83SU95dzVtSTJibEQzcXVYZnRjZU1UWW9uNmxndWFPZytTb1JUT29G?=
- =?utf-8?B?cUltVXVXZDZoSWhxTTdqbFlueW5mVS85WHUvMkFYYXNUZzFpR3cvRzFjTGth?=
- =?utf-8?B?SlpZVUdrQlRNZmwrQU8xR2hMRWZWRXFFakI4SU5rVUF2ZEE2dXdIc1Y4aWVv?=
- =?utf-8?B?bStXSEl0Q3Z2bm8wN2taYXU3N1lwT3kwRGY4M3l3Y3RVbkhoMG5ZRlZmdTVj?=
- =?utf-8?B?Q1hsSmdlZ3gvVi8wcGY0MkQyZ3pCdmF6MEJLRUZSVjVHQmVNb1o2OFNJeHN3?=
- =?utf-8?B?akpUSXQ0R0tNd013OHhPTGlCVXFTeWZ5ejB2MGtCYUdhYkNEQkM2VFBDVk1i?=
- =?utf-8?B?SnNNeUVYcmFXdWUySUhSS0UzbEFNQjBGWEdFN0xtVk1pWU9sT2tRQi9EM1NG?=
- =?utf-8?B?TWRmZEhiU1d1OEdBQ1lyOTVNMkRrUjkybmtjZDU4S0twRkpVVUlmaDJqUXFr?=
- =?utf-8?B?M1ZlMWMrTDBpZ1orZEo4K0VXcGE1ODV0ZU5tSnpxR21rZVNEc0E0aC8vQXAw?=
- =?utf-8?B?YldYbUF2UWRBaVk5cE1OUnBYUDRVdCt2LzAzZmhYSmZoRng1QUsrbHNENVl6?=
- =?utf-8?B?R3BvZHpGeHRGa1QxQXEyVjA5VmhubTdpRkpGcFowVUFMV1FuY3YwOU93amhN?=
- =?utf-8?B?UjgzZ3B1VGRLeGtBYU9jcm5iQTNpT0hZN2pvQVQ5SnNyVlRiRzJGYUsvaS80?=
- =?utf-8?B?cmMrSi9oTmE5NU1lRGZZNVV6czg1a3Npc1hFTzF6cEZDOFVWdjZZQWI3VEpZ?=
- =?utf-8?B?R1ArNkZtd2c3MHYzaUE1a0V5UjUzYk5oZGlLRHFZUFdOZFdXdk9kUnNWUFRT?=
- =?utf-8?B?Uk5XUXVoTGNGWk5mMy9wdU5xaGVNSFFtZFlMTHdVVHpBTmZUbnE0dTFILzRG?=
- =?utf-8?B?ZCs1UlI0S1VtdDBuM08ydXRjU1hPdE0vcXBpMUdIaGN0VnlsYlUvWDlOVWF0?=
- =?utf-8?B?c2VwVXZWV0VpQktTUDlER1JLMG1mNUhHMUlET0lINWxxNkp1L2hvaVpySnlM?=
- =?utf-8?B?UWlvaTJVRVp2c2ppdGVvMThmSUlZeEZKK083NWVzSCtKcE8xeGtIZTB0akFZ?=
- =?utf-8?B?Znlyb0gxY0FQTFpzTVY4WnlEdzdDSnpGak1WVzB1MHJUeWZyS2tDWmovZllu?=
- =?utf-8?B?clN3US96M0xXSHpCeFRGNndGMTNFRStxSTlEVU1UNHhUVlMrKy8rd2NiV3dj?=
- =?utf-8?B?SjdqbUZuL1hhQXV0WnMySTYydGFCMjJRWGFWLy8rWUltd1ROUTRuZ25RMmZ6?=
- =?utf-8?B?dHY3YjVKajNSQWxRNC9MTUhpaDU5TDBsWk16c0ZzQU8rSTE4djEzdTlNb1dT?=
- =?utf-8?B?dDFTUDB6MVozWVh0ZXlUUnBTbHlnWm5DYTNNdXo3VkF6ZWM5bVFudnIzV0Nj?=
- =?utf-8?B?VmlxOGNldjdETDR4YW5sRW52OFBsSzkxbGU0bHBLYy9RL2ZRcGF3OUo0YmxE?=
- =?utf-8?B?T1N3NWVRbzlLSS9XMy9WcXV4Tzd5cTBrM2ZNTDcwd2ZuU2pMbUZqUkU0R1RB?=
- =?utf-8?B?c0V6dEo0ME8yRUsvdW02SnhnU1o2RnQ5R3owbmttOUR3MHNLWWt1aTFrTlZR?=
- =?utf-8?B?VHc0V3JsNU1WeFZQcmRxYmYrOGFycDFaR0xPam1vbHNoelRHWjhrVTJLWjNZ?=
- =?utf-8?B?VGVUREJka25LK3JKNnhMQURKcTFENzVIaytySGYrUjYrMWswUEhGMVQ2UE1i?=
- =?utf-8?B?STdHR0dyblBRZ04yaTlQQmFudXQ3Q3BtWEE1bmlrZy96SjdWU0F4aUxQN3Vn?=
- =?utf-8?Q?h3pyC0u1Qa/8zI/g=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <9B99A8262CA69840AFEB0F725A928CCB@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S241089AbiDGG3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 02:29:25 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F0C1F6BF6;
+        Wed,  6 Apr 2022 23:27:23 -0700 (PDT)
+X-UUID: 93121cf8a2c048c1a70853a77a6974a5-20220407
+X-UUID: 93121cf8a2c048c1a70853a77a6974a5-20220407
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jason-jh.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 801607603; Thu, 07 Apr 2022 14:27:16 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 7 Apr 2022 14:27:14 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 7 Apr 2022 14:27:14 +0800
+Message-ID: <d8711b8e4d233240eda73db54a625e88b9b3970b.camel@mediatek.com>
+Subject: Re: [RESEND v17 3/7] soc: mediatek: add mtk-mmsys support for
+ mt8195 vdosys0
+From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     David Airlie <airlied@linux.ie>, <singo.chang@mediatek.com>,
+        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
+        <postmaster@vger.kernel.org>,
+        "Fabien Parent" <fparent@baylibre.com>,
+        John 'Warthog9' Hawley <warthog9@eaglescrag.net>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <roy-cw.yeh@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <devicetree@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+        <nancy.lin@mediatek.com>, <linux-mediatek@lists.infradead.org>,
+        <hsinyi@chromium.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <moudy.ho@mediatek.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Date:   Thu, 7 Apr 2022 14:27:14 +0800
+In-Reply-To: <67b3e42d6a094108f724ed9b8c73f5cd6b2ce219.camel@mediatek.com>
+References: <20220407030409.9664-1-jason-jh.lin@mediatek.com>
+         <20220407030409.9664-4-jason-jh.lin@mediatek.com>
+         <67b3e42d6a094108f724ed9b8c73f5cd6b2ce219.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4769.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ea7588e-bcb2-4744-2d49-08da185f91cd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2022 06:26:37.2667
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J0AeZNVdxmuYzXNZSeYuWuBIDOHZKBNL4gxuuboNLpXfcEkyQDlNf2NvC4/o+UKhbjBtMxiDKKTvaAQWQWZtjdZ+G3CYR9Zv6lK7/otMI0s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3071
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFR1ZG9yLA0KDQpPbiAwNi4wNC4yMDIyIDE2OjA1LCBUdWRvciBBbWJhcnVzIHdyb3RlOg0K
-PiBUaGUgaW1wZWRhbmNlIG9mIHRoZSBRU1BJIFBDQiBsaW5lcyBvbiB0aGUgc2FtYTdnNWVrIGlz
-IDUwIE9obXMuDQo+IEFsaWduIHRoZSBvdXRwdXQgaW1wZWRhbmNlIG9mIHRoZSBRU1BJMCBIU0lP
-cyBieSBzZXR0aW5nIGEgbWVkaXVtIGRyaXZlDQo+IHN0cmVuZ3RoIHdoaWNoIGNvcnJlc3BvbmRz
-IHRvIGFuIGltcGVkYW5jZSBvZiA1NiBPaG1zIHdoZW4gVkREIGlzIGluIHRoZQ0KPiAzLjBWIC0g
-My42ViByYW5nZS4gVGhlIGhpZ2ggZHJpdmUgc3RyZW5ndGggc2V0dGluZyBjb3JyZXNwb25kcyB0
-byBhbg0KPiBvdXRwdXQgaW1wZWRhbmNlIG9mIDQyIE9obXMgb24gdGhlIFFTUEkwIEhTSU9zLg0K
-PiANCj4gU3VnZ2VzdGVkLWJ5OiBNaWhhaSBTYWluIDxtaWhhaS5zYWluQG1pY3JvY2hpcC5jb20+
-DQo+IFNpZ25lZC1vZmYtYnk6IFR1ZG9yIEFtYmFydXMgPHR1ZG9yLmFtYmFydXNAbWljcm9jaGlw
-LmNvbT4NCg0KSXMgaXQgbmVjZXNzYXJ5IGEgZml4ZXMgdGFnIGhlcmU/DQoNClRoYW5rIHlvdSwN
-CkNsYXVkaXUgQmV6bmVhDQoNCj4gLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE3
-ZzVlay5kdHMgfCAyICstDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVs
-ZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE3
-ZzVlay5kdHMgYi9hcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE3ZzVlay5kdHMNCj4gaW5kZXgg
-MDg2ODVhMTBlZGExLi44Zjk2NDMxNzBiYTMgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3Qv
-ZHRzL2F0OTEtc2FtYTdnNWVrLmR0cw0KPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9hdDkxLXNh
-bWE3ZzVlay5kdHMNCj4gQEAgLTY1NSw3ICs2NTUsNyBAQCBwaW5jdHJsX3FzcGk6IHFzcGkgew0K
-PiAgCQkJIDxQSU5fUEIyMV9fUVNQSTBfSU5UPjsNCj4gIAkJYmlhcy1kaXNhYmxlOw0KPiAgCQlz
-bGV3LXJhdGUgPSA8MD47DQo+IC0JCWF0bWVsLGRyaXZlLXN0cmVuZ3RoID0gPEFUTUVMX1BJT19E
-UlZTVFJfSEk+Ow0KPiArCQlhdG1lbCxkcml2ZS1zdHJlbmd0aCA9IDxBVE1FTF9QSU9fRFJWU1RS
-X01FPjsNCj4gIAl9Ow0KPiAgDQo+ICAJcGluY3RybF9zZG1tYzBfZGVmYXVsdDogc2RtbWMwX2Rl
-ZmF1bHQgew0KDQo=
+Hi CK,
+
+Thanks for the reviews.
+
+On Thu, 2022-04-07 at 13:45 +0800, CK Hu wrote:
+> Hi, Jason:
+> 
+> On Thu, 2022-04-07 at 11:04 +0800, jason-jh.lin wrote:
+> > 1. Add mt8195 mmsys compatible for vdosys0.
+> > 2. Add mt8195 routing table settings and fix build fail.
+> > 3. Add clock name, clock driver name and routing table into the
+> > driver data
+> >    of mt8195 vdosys0.
+> > 4. Add get match data by clock name function and clock platform
+> > labels
+> >    to identify which mmsys node is corresponding to vdosys0.
+> > 
+> > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   2 +-
+> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   6 +-
+> >  drivers/soc/mediatek/mt8167-mmsys.h         |   2 +-
+> >  drivers/soc/mediatek/mt8183-mmsys.h         |   2 +-
+> >  drivers/soc/mediatek/mt8186-mmsys.h         |   4 +-
+> >  drivers/soc/mediatek/mt8192-mmsys.h         |   4 +-
+> >  drivers/soc/mediatek/mt8195-mmsys.h         | 370
+> > ++++++++++++++++++++
+> >  drivers/soc/mediatek/mt8365-mmsys.h         |   4 +-
+> >  drivers/soc/mediatek/mtk-mmsys.c            |  62 ++++
+> >  drivers/soc/mediatek/mtk-mmsys.h            |   1 +
+> >  drivers/soc/mediatek/mtk-mutex.c            |   8 +-
+> >  include/linux/soc/mediatek/mtk-mmsys.h      |  13 +-
+> >  12 files changed, 461 insertions(+), 17 deletions(-)
+> >  create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
+> > 
+> 
+> [snip]
+> 
+> > diff --git a/drivers/soc/mediatek/mtk-mmsys.c
+> > b/drivers/soc/mediatek/mtk-mmsys.c
+> > index 4fc4c2c9ea20..b2fa239c5f5f 100644
+> > --- a/drivers/soc/mediatek/mtk-mmsys.c
+> > +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> > @@ -4,6 +4,8 @@
+> >   * Author: James Liao <jamesjj.liao@mediatek.com>
+> >   */
+> >  
+> > +#include <linux/clk.h>
+> > +#include <linux/clk-provider.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/device.h>
+> >  #include <linux/io.h>
+> > @@ -17,6 +19,7 @@
+> >  #include "mt8183-mmsys.h"
+> >  #include "mt8186-mmsys.h"
+> >  #include "mt8192-mmsys.h"
+> > +#include "mt8195-mmsys.h"
+> >  #include "mt8365-mmsys.h"
+> >  
+> >  static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data
+> > =
+> > {
+> > @@ -72,12 +75,24 @@ static const struct mtk_mmsys_driver_data
+> > mt8192_mmsys_driver_data = {
+> >  	.num_routes = ARRAY_SIZE(mmsys_mt8192_routing_table),
+> >  };
+> >  
+> > +static const struct mtk_mmsys_driver_data
+> > mt8195_vdosys0_driver_data
+> > = {
+> > +	.clk_name = "cfg_vdo0",
+> > +	.clk_driver = "clk-mt8195-vdo0",
+> > +	.routes = mmsys_mt8195_routing_table,
+> > +	.num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
+> > +};
+> > +
+> >  static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data
+> > =
+> > {
+> >  	.clk_driver = "clk-mt8365-mm",
+> >  	.routes = mt8365_mmsys_routing_table,
+> >  	.num_routes = ARRAY_SIZE(mt8365_mmsys_routing_table),
+> >  };
+> >  
+> > +static const struct of_device_id mtk_clk_platform_labels[] = {
+> > +	{ .compatible = "mediatek,mt8195-mmsys",
+> > +	  .data = (void *)"clk-mt8195"},
+> > +};
+> > +
+> >  struct mtk_mmsys {
+> >  	void __iomem *regs;
+> >  	const struct mtk_mmsys_driver_data *data;
+> > @@ -85,6 +100,45 @@ struct mtk_mmsys {
+> >  	struct reset_controller_dev rcdev;
+> >  };
+> >  
+> > +static int mtk_mmsys_get_match_data_by_clk_name(const struct
+> > mtk_mmsys_driver_data **data,
+> > +						struct device *dev)
+> > +{
+> > +	int i;
+> > +	struct clk *clk;
+> > +	const char *clk_name;
+> > +	const struct of_device_id *of_id =
+> > of_match_node(mtk_clk_platform_labels,
+> > +							 dev->of_node);
+> > +	const struct mtk_mmsys_driver_data *drvdata[] = {
+> > +		&mt8195_vdosys0_driver_data,
+> > +	};
+> > +
+> > +	if (!of_id || !of_id->data) {
+> > +		dev_err(dev, "Can't find match clk platform labels\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	clk = devm_clk_get(dev, NULL);
+> > +	if (IS_ERR(clk)) {
+> > +		dev_err(dev, "failed to get mmsys clk\n");
+> > +		return PTR_ERR(clk);
+> > +	}
+> > +
+> > +	clk_name = __clk_get_name(clk);
+> > +	if (!clk_name) {
+> > +		dev_err(dev, "invalid mmsys clk name\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(drvdata); i++)
+> > +		if (strncmp(drvdata[i]->clk_name, clk_name,
+> > strlen(clk_name)) == 0 &&
+> > +		    strncmp(drvdata[i]->clk_driver, of_id->data,
+> > strlen(of_id->data)) == 0) {
+> 
+> I think clk_name is enough to identify the mmsys, why do you need
+> clk_driver?
+
+I think there might be another chip that needs to get driver data by
+clk_name .
+So I use "clk-mt8195" in clk_driver to identify the corresponding
+platform whose clk_name of mmsys is also "cfg_vod0".
+
+> > +			*data = drvdata[i];
+> > +			return 0;
+> > +		}
+> > +
+> > +	return -EINVAL;
+> > +}
+> > +
+> >  void mtk_mmsys_ddp_connect(struct device *dev,
+> >  			   enum mtk_ddp_comp_id cur,
+> >  			   enum mtk_ddp_comp_id next)
+> > @@ -206,6 +260,11 @@ static int mtk_mmsys_probe(struct
+> > platform_device *pdev)
+> >  	}
+> >  
+> >  	mmsys->data = of_device_get_match_data(&pdev->dev);
+> > +	if (!mmsys->data &&
+> > mtk_mmsys_get_match_data_by_clk_name(&mmsys->data, dev) < 0) {
+> > +		dev_err(dev, "Couldn't get match driver data\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> >  	platform_set_drvdata(pdev, mmsys);
+> >  
+> >  	clks = platform_device_register_data(&pdev->dev, mmsys->data-
+> > > clk_driver,
+> > 
+> > @@ -260,6 +319,9 @@ static const struct of_device_id
+> > of_match_mtk_mmsys[] = {
+> >  		.compatible = "mediatek,mt8192-mmsys",
+> >  		.data = &mt8192_mmsys_driver_data,
+> >  	},
+> > +	{
+> > +		.compatible = "mediatek,mt8195-mmsys",
+> > +	},
+> >  	{
+> >  		.compatible = "mediatek,mt8365-mmsys",
+> >  		.data = &mt8365_mmsys_driver_data,
+> > 
+> 
+> [snip]
+> 
+> > b/include/linux/soc/mediatek/mtk-mmsys.h
+> > index 4bba275e235a..fb719fd1281c 100644
+> > --- a/include/linux/soc/mediatek/mtk-mmsys.h
+> > +++ b/include/linux/soc/mediatek/mtk-mmsys.h
+> > @@ -16,14 +16,25 @@ enum mtk_ddp_comp_id {
+> >  	DDP_COMPONENT_CCORR,
+> >  	DDP_COMPONENT_COLOR0,
+> >  	DDP_COMPONENT_COLOR1,
+> > -	DDP_COMPONENT_DITHER,
+> > +	DDP_COMPONENT_DITHER0,
+> 
+> I would like soc and drm modification to go through different tree,
+> so
+> this setting would not modify drm driver in this patch.
+> 
+> DDP_COMPONENT_DITHER0 = DDP_COMPONENT_DITHER,
+> 
+> Then modify drm driver after this patch.
+> 
+> Regards,
+> CK
+
+OK, I will use this modification at the next version.
+Thanks!
+
+Regards,
+Jason-JH.Lin
+
+> 
+> > +	DDP_COMPONENT_DITHER1,
+> > +	DDP_COMPONENT_DP_INTF0,
+> > +	DDP_COMPONENT_DP_INTF1,
+> >  	DDP_COMPONENT_DPI0,
+> >  	DDP_COMPONENT_DPI1,
+> > +	DDP_COMPONENT_DSC0,
+> > +	DDP_COMPONENT_DSC1,
+> >  	DDP_COMPONENT_DSI0,
+> >  	DDP_COMPONENT_DSI1,
+> >  	DDP_COMPONENT_DSI2,
+> >  	DDP_COMPONENT_DSI3,
+> >  	DDP_COMPONENT_GAMMA,
+> > +	DDP_COMPONENT_MERGE0,
+> > +	DDP_COMPONENT_MERGE1,
+> > +	DDP_COMPONENT_MERGE2,
+> > +	DDP_COMPONENT_MERGE3,
+> > +	DDP_COMPONENT_MERGE4,
+> > +	DDP_COMPONENT_MERGE5,
+> >  	DDP_COMPONENT_OD0,
+> >  	DDP_COMPONENT_OD1,
+> >  	DDP_COMPONENT_OVL0,
+> 
+> 
+-- 
+Jason-JH Lin <jason-jh.lin@mediatek.com>
+
