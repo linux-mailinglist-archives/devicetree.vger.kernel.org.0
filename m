@@ -2,99 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 001984F889C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 22:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E189F4F8860
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 22:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbiDGUeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 16:34:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39398 "EHLO
+        id S229756AbiDGUeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 16:34:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbiDGUd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:33:57 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2FB31E788
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 13:19:47 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id k23so9479699wrd.8
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 13:19:47 -0700 (PDT)
+        with ESMTP id S230037AbiDGUdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 16:33:47 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 198064416F2
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 13:19:18 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id bx37so8903480ljb.4
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 13:19:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JJSbUDifbnKiCK7OxjEYTIFgKb9+e/PTX5OKVRIiP8Q=;
-        b=hd2cjk9p73fGKxH7od8GPCflsA3w0/7xSp6Em8srH/JA7WqbKWz8ozYtWwgffmatqc
-         ZjK/TwTCTeRsMZQUD57l64pyQQjAQDmxwfGS/tL9dE+hNgo6GdYQboropLVCAKova7wu
-         kHlE9rzK+pCMzVdJ7tbShhVGEF9tU4sJZ4owYDqwsTWLZdJDad5fOBEyNS58zA0ECYGo
-         qAvev3LSHwJFlnQ+R8SHN7cJYIkxu+4/cchEG6C8zqrjRFlVnsEeKbe97Opo0ZQ5Udrg
-         Paj3abv4rxah4hJKQs+tSxPqxexYFJnPUP87ikqT27udwl+BuHd3BgAqnIaOd3z0SZhw
-         MDIQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=539tKapVnhTf+rr/UYXZW8Cq7Ffl8HHTv+MpMPMBGwU=;
+        b=ffo6LfUuDcD6KO3JYi4Bph7AGnw9CfbScz/u0s/+boAFG7UTH2D4eV4A9G5S1n6Llp
+         MyhQArAjnTTLRhZahWihXQWI+3bLYesLkmBOK1ffEgvcrrBsmi2zY/eNLm9eYG8HGfr0
+         fVHMnwDXny2Kr09j7dKRgeIHQc9UWgqJlsrkbbpMdLGujwyCnH8JQaKTIpcZGRgMHPQX
+         uhl55nyqi7NvGXWRAReZ879L1RbS25Y+QYZMBiQHFeKreSIOkqmg17F9gay/cwSOdVRB
+         ptExR9O7EmEyFV5VenF12VqrgrprAmwEnA95kjwS4LQGqzgn/gcr2evW0L5OpWkgvg35
+         Lm4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JJSbUDifbnKiCK7OxjEYTIFgKb9+e/PTX5OKVRIiP8Q=;
-        b=4AaaahNOEfRevEPN9E/hgJ0GiD/+2q9j4cVgXLJyFAowcyuWQ9CNAr0lmY11Uu2d3H
-         mhN9nd4f8yfDK4khsseT0BPJ+4rLUvnvK/bInRsFJZADQH9VXqmp9LySvkPb1Ayx4aiK
-         e4f+1WST4n9mlMPfUZ3b9SKeprJqYx5d5TlakngIJWjZGiJQ7LgJDvJaCSfPtshNIZjf
-         WLIxgDpvuxf8A8GOW90kFIQLCKCQOHmOqiDXds/viLiwIPjM8/+9Ced3eDlNBvPnx85z
-         yzRGmx6Inu53DDNwQq1ql0/9bCwtl4yo5THNVckAGbrrBWpTeV99D6JtJAr0x35V4Vtw
-         kG5A==
-X-Gm-Message-State: AOAM532O/4vT/K8QWEELE7z0P6S/nmBqF955pknjZquSXXZstKT/kcJg
-        JOv90IF+5GShB9wNgo8Xpo09C+0u3TcmpMxQ
-X-Google-Smtp-Source: ABdhPJwNLPy67bEWqYLzGAxwSpQ8ki3vGFaI7YdSZF0inJLa3UZuK4crjNLHxrGjUrAEcPnCUKDHNw==
-X-Received: by 2002:a17:906:c0c8:b0:6d0:562c:2894 with SMTP id bn8-20020a170906c0c800b006d0562c2894mr15225490ejb.625.1649360340546;
-        Thu, 07 Apr 2022 12:39:00 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id w14-20020a170906d20e00b006cee22553f7sm7923846ejz.213.2022.04.07.12.38.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 12:39:00 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [RESEND PATCH] riscv: dts: sifive: fu540-c000: align dma node name with dtschema
-Date:   Thu,  7 Apr 2022 21:38:56 +0200
-Message-Id: <20220407193856.18223-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        bh=539tKapVnhTf+rr/UYXZW8Cq7Ffl8HHTv+MpMPMBGwU=;
+        b=MjdWcH+1hGAPrM+qXW1KEQvx5E90FWCER/bf3eBZevV1ey3SJOwFRqiScybQ1WLjxC
+         v5vqBDNbynaoCPLjjxNtwKF+aJTSvuH2Z/1nq2kfXSNvo7Mr/zhZ8CZfaWLX0gwdExI0
+         Ws1d9Q1ejr5D7J9YOQfsdFtCg/6iwmuTQWBNqgBtWr2fseer/QHqhtcAwKZKkf4RxNud
+         xNeV8RbxTkogP5OVH9d7Ku3iFBre0GuMUlU/mRKWuabyAX7wtm0PVe2hzVanDISgt+Vn
+         gtZt0YaTHs1+lzs+yeECvfCEPpSSqVkexvsQPL2VxZCTu7QH5IjkXc9C/vqTmZTCg8O7
+         DkNg==
+X-Gm-Message-State: AOAM532gjVHErmtMtqrMrlFMmOJnmLC0T8hbCyWxFiWdJIZvPPDwXZG7
+        HCKBIrzyMhYBd64bXai2rm0AiMCkmW6BQaac
+X-Google-Smtp-Source: ABdhPJwjCz/scWlPU6Kt2+e4Q1dq3Q08NUjCeAlPsLiSPT5fACZSj0YnzfNW6uP0kVDbmCFlTABcmw==
+X-Received: by 2002:a2e:9092:0:b0:24b:4cd4:ca5a with SMTP id l18-20020a2e9092000000b0024b4cd4ca5amr667427ljg.260.1649360438002;
+        Thu, 07 Apr 2022 12:40:38 -0700 (PDT)
+Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
+        by smtp.gmail.com with ESMTPSA id f17-20020a2e1f11000000b00247f8eb86a7sm1968503ljf.108.2022.04.07.12.40.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Apr 2022 12:40:37 -0700 (PDT)
+Message-ID: <e41c26c2-8aa4-cfd2-27b0-eb011f45eda0@linaro.org>
+Date:   Thu, 7 Apr 2022 22:40:27 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: delete incorrect ufs
+ interconnect fields
+Content-Language: en-US
+To:     Jonathan Marek <jonathan@marek.ca>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20220407172145.31903-1-jonathan@marek.ca>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20220407172145.31903-1-jonathan@marek.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+On 4/7/22 20:21, Jonathan Marek wrote:
+> Upstream sm8450.dtsi has #interconnect-cells = <2>; so these are wrong.
+> Ignored and undocumented with upstream UFS driver so delete for now.
 
-Fixes dtbs_check warnings like:
+Basically the description was added by a commit 462c5c0aa798 ("dt-bindings: ufs:
+qcom,ufs: convert to dtschema").
 
-  dma@3000000: $nodename:0: 'dma@3000000' does not match '^dma-controller(@.*)?$'
+It's questionable, if an example in the new yaml file is totally correct
+in connection to the discussed issue.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 3 ---
+>   1 file changed, 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 2c18e1ef9e82d..90cdbec3cac99 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1663,9 +1663,6 @@ ufs_mem_hc: ufshc@1d84000 {
+>   
+>   			iommus = <&apps_smmu 0xe0 0x0>;
+>   
+> -			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+> -					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+> -			interconnect-names = "ufs-ddr", "cpu-ufs";
+>   			clock-names =
+>   				"core_clk",
+>   				"bus_aggr_clk",
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index aad45d7f498f..5c638fd5b35c 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -167,7 +167,7 @@ uart0: serial@10010000 {
- 			clocks = <&prci FU540_PRCI_CLK_TLCLK>;
- 			status = "disabled";
- 		};
--		dma: dma@3000000 {
-+		dma: dma-controller@3000000 {
- 			compatible = "sifive,fu540-c000-pdma";
- 			reg = <0x0 0x3000000 0x0 0x8000>;
- 			interrupt-parent = <&plic0>;
--- 
-2.32.0
+You may look at https://lore.kernel.org/linux-arm-msm/20220310221934.1560729-1-vladimir.zapolskiy@linaro.org/
 
+--
+Best wishes,
+Vladimir
