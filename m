@@ -2,172 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0831F4F87AC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 21:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B9DE4F87B3
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 21:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232779AbiDGTI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 15:08:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58140 "EHLO
+        id S243581AbiDGTK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 15:10:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236267AbiDGTIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 15:08:25 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FECF1B989E
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 12:06:24 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id q26so7520293edc.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 12:06:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gOv/51dHbvSvAxLzxG0YE6pJrgjLizkZFj88kA5U1Ts=;
-        b=O9N5piyZ8ghdKuId5L9aiMvkNuf62owbuCE+bZDTC6+xdnskK2aUwjkRUGOHdchCvA
-         /J+QuQpbFJM/EfFm8RsWGeBGnPnBdya6DSH3nBGlfOGxOQfphaxLgDC+zzgMMt+VmjXu
-         OSMZhW68bPY1HCTsk1/kZgPdo6KTzbrFSetJ89hvIb1T7A9C/NsRlGJk36F6rGcSxWLF
-         js+BATsURtMBOD9XP5WBgZ8B9ahlWlXnGEpQSISIIdLvqgDDKE4wkVtb80Yln+Nyneo5
-         sOOhyqrnY0o9IB8O7pFrrQJI/FsA2bBNe7fN2rsX34K5jkhc7gGS5VTCFiWFKPd1F1JU
-         lubQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gOv/51dHbvSvAxLzxG0YE6pJrgjLizkZFj88kA5U1Ts=;
-        b=NVjWQaLic2XQisakns/37ylOVpn8fQLUJTzK82OlC8HdDfqk7SAUNcWw4Rz1xuTObT
-         mSp3IGV545v8mCy7WQod3NGiBv1LfpY7E+rp6AVi5d75m4VLAJG5AqmZtCajALQTdLVX
-         G4WmESS08chr6rySHY2nogWbZJT/AkSRJucRIDDYIf/8hjryIoC1/AC2yVEeiEiUb75X
-         xloZAk98tJCN+9AAXEVfcdFKjj4U8/RcRxWD9srraWzgHtI5ADhAIfeb/tnByfERWxB8
-         8fIARysYIPs9GLCZNxDy7Dv4827388bWPD4YIdicdvEFn1MS8zQZrgISibUcrTixv54E
-         x6FQ==
-X-Gm-Message-State: AOAM5302EC6Pog0pBld47eS2kjiwubw+6nnMKyW4bKdwwMXdR79nv99h
-        EG/p756LzLWMT6+HQ5SQwB6oRw==
-X-Google-Smtp-Source: ABdhPJyhh/Yt+dDqYCjKan4H/N0nxJOJereGCAdjBh0lD6wnLfFa+OHp2IVxiD8+UeuiyRjWGDtvFA==
-X-Received: by 2002:a50:e79b:0:b0:41c:dd2c:3e19 with SMTP id b27-20020a50e79b000000b0041cdd2c3e19mr15774315edn.291.1649358382461;
-        Thu, 07 Apr 2022 12:06:22 -0700 (PDT)
-Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm7890988eji.67.2022.04.07.12.06.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 12:06:21 -0700 (PDT)
-Message-ID: <eed2f337-3d5a-3440-d19e-c5ff032409ab@linaro.org>
-Date:   Thu, 7 Apr 2022 21:06:20 +0200
+        with ESMTP id S245438AbiDGTKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 15:10:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73402325FE;
+        Thu,  7 Apr 2022 12:08:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6CC2EB81D07;
+        Thu,  7 Apr 2022 19:08:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C0B5C385A0;
+        Thu,  7 Apr 2022 19:08:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649358501;
+        bh=6yPuCYRnx+F4o2uZ6o9Uuci5WKPtnEjGL8sx+h1fraA=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=Ldt4DqCF/rJ2Ik2U1wFqVJFrpu29vG4Wsyvmd9T/lGPwI5ZYJeRBXUVtpCb0iT08G
+         2RH+ZXMd5WBxpoNdTmaFcaXeAgOC3svRJunw5RcDATlNBmOOekf/GeDBeDtk7lnGBy
+         /aleruG8y4Y6HDRvSdWt48Nk273lvwTLkwUJMLt7TuYzH83uDPgpJLjiCzlEUDFlEN
+         cUgKdicI+Tt+XgxBShz7ER2F8PX1EK+94HGMkH+eI+Bt8vLdX20GauQo7ZkRLszWhm
+         zXIjna4jTTbqJHkV4gcnU5pcGTl8VkK3dZaH1sEjZhoTTWSBrLjCHSvjNZo5DjAGN5
+         xoKo6Yzwva35g==
+Message-ID: <bfb8a830-4cd9-361b-e4db-a6d07dc1cbe0@kernel.org>
+Date:   Thu, 7 Apr 2022 14:08:18 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 11/11] arm64: dts: Add Pensando Elba SoC support
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] ARM: dts: socfpga: align SPI NOR node name with dtschema
 Content-Language: en-US
-To:     Brad Larson <brad@pensando.io>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     arnd@arndb.de, linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, fancer.lancer@gmail.com,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net,
-        dac2@pensando.io, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220406233648.21644-1-brad@pensando.io>
- <20220406233648.21644-12-brad@pensando.io>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220406233648.21644-12-brad@pensando.io>
-Content-Type: text/plain; charset=UTF-8
+References: <20220407143049.294794-1-krzysztof.kozlowski@linaro.org>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220407143049.294794-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-10.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 01:36, Brad Larson wrote:
-> Add Pensando common and Elba SoC specific device nodes
+
+
+On 4/7/22 09:30, Krzysztof Kozlowski wrote:
+> The node names should be generic and SPI NOR dtschema expects "flash".
 > 
-> Signed-off-by: Brad Larson <brad@pensando.io>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Change from V3:
-> - Changed to dual copyright (GPL-2.0+ OR MIT)
-> - Minor changes from review input
-
-Thank you for your patch. There is something to discuss/improve.
-
-(...)
-
-> +&i2c0 {
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +	rtc@51 {
-> +		compatible = "nxp,pcf85263";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&spi0 {
-> +	num-cs = <4>;
-> +	cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
-> +		   <&porta 7 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +	spi0_cs0@0 {
-
-Generic node name needed matching the class of a devicxe.
-
-> +		compatible = "semtech,sx1301";	/* Enable spidev */
-
-This comment is a bit odd... did you just use random compatible from
-spidev instead of defining proper compatible?
-
-
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-
-Why address/size cells?
-
-> +		spi-max-frequency = <12000000>;
-> +		reg = <0>;
-
-Please put reg just after compatible. It's the most common pattern.
-
-> +	};
-> +
-> +	spi0_cs1@1 {
-> +		compatible = "semtech,sx1301";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-max-frequency = <12000000>;
-> +		reg = <1>;
-> +	};
-> +
-
-(...)
-
-> +
-> +		emmc: mmc@30440000 {
-> +			compatible = "pensando,elba-sd4hc", "cdns,sd4hc";
-> +			clocks = <&emmc_clk>;
-> +			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> +			reg = <0x0 0x30440000 0x0 0x10000>,
-> +			      <0x0 0x30480044 0x0 0x4>;	/* byte-lane ctrl */
-> +			cdns,phy-input-delay-sd-highspeed = <0x4>;
-> +			cdns,phy-input-delay-legacy = <0x4>;
-> +			cdns,phy-input-delay-sd-uhs-sdr50 = <0x6>;
-> +			cdns,phy-input-delay-sd-uhs-ddr50 = <0x16>;
-> +			mmc-ddr-1_8v;
-> +			status = "disabled";
-> +		};
-> +
-> +		mssoc: mssoc@307c0000 {
-
-Generic node name.
-
-> +			compatible = "syscon", "simple-mfd";
-
-This does not look correct. Syscon is okay, but why do you need
-simple-mfd (there are no children here)?
-
-> +			reg = <0x0 0x307c0000 0x0 0x3000>;
-> +		};
-> +	};
-> +};
+>   arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts   | 2 +-
+>   arch/arm/boot/dts/socfpga_cyclone5_socdk.dts       | 2 +-
+>   arch/arm/boot/dts/socfpga_cyclone5_sodia.dts       | 2 +-
+>   arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 4 ++--
+>   4 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
+> index 2a745522404d..11ccdc6c2dc6 100644
+> --- a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
+> +++ b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
+> @@ -9,7 +9,7 @@
+>   &qspi {
+>   	status = "okay";
+>   
+> -	flash0: n25q00@0 {
+> +	flash0: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
+> index 253ef139181d..b2241205c7a9 100644
+> --- a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
+> +++ b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
+> @@ -121,7 +121,7 @@ &mmc0 {
+>   &qspi {
+>   	status = "okay";
+>   
+> -	flash0: n25q00@0 {
+> +	flash0: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
+> index b0003f350e65..2564671fc1c6 100644
+> --- a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
+> +++ b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
+> @@ -113,7 +113,7 @@ &usb1 {
+>   &qspi {
+>   	status = "okay";
+>   
+> -	flash0: n25q512a@0 {
+> +	flash0: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		compatible = "micron,n25q512a", "jedec,spi-nor";
+> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+> index 25874e1b9c82..f24f17c2f5ee 100644
+> --- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+> +++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+> @@ -221,7 +221,7 @@ at24@50 {
+>   &qspi {
+>   	status = "okay";
+>   
+> -	n25q128@0 {
+> +	flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		compatible = "micron,n25q128", "jedec,spi-nor";
+> @@ -238,7 +238,7 @@ n25q128@0 {
+>   		cdns,tslch-ns = <4>;
+>   	};
+>   
+> -	n25q00@1 {
+> +	flash@1 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		compatible = "micron,mt25qu02g", "jedec,spi-nor";
 
 
-Best regards,
-Krzysztof
+Applied!
+
+Thanks,
+Dinh
