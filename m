@@ -2,239 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF9A54F8189
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B45A4F8174
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 16:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343907AbiDGO1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 10:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36528 "EHLO
+        id S240749AbiDGOVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 10:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343903AbiDGO1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:27:07 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47723182AC1
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 07:24:19 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id j8so5029055pll.11
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 07:24:19 -0700 (PDT)
+        with ESMTP id S237393AbiDGOVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 10:21:39 -0400
+Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.140.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71B72EBAE2;
+        Thu,  7 Apr 2022 07:19:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+nK9SRbUB5i4er0Nc2x3M4CSJ4RiMR6/wcutg0xiHzE=;
-        b=BG9bTY9/90nnq5XMYGSYghQLUjR1HPYPk0BdlmCStQ6lZrcNzo5f+9DX5UTIzB7zi8
-         APQCLYf+sAbyni171SWwk5wHsnAJh3TBFYYWEW0AJKEIjSC8hPAMSSi0Ryd6e+ASdeze
-         AQfdcRAGMOo1XFE1iO6sXphVXM5mN3F4Huo/EzXiJz0pHxWBmjW3LXF1krbLhe9rgtgc
-         xT8JBUdz4dR6CqVvVUFPci+xTirov06jCjeT+Cs6GXPH8RJH6dXllou0SDB0hJxZtgbB
-         8cU3t7A4Rcj9iuRMAo5qAygcSb6L2soxaLvkLsDBLcRlUI9SETudzAkqC8xDF7vfqhWk
-         2EoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+nK9SRbUB5i4er0Nc2x3M4CSJ4RiMR6/wcutg0xiHzE=;
-        b=34Ru4i8VW+12DL9O9VQYI6ymNcJ5CKr7mS/Tos2kD1rPcph+i99qTWZNlljdXyzCvf
-         nYwVMktiTcYsw3Zt3Cb1a5myLNwh8Cw8NcSynpgHn6Amg4znWpruxLyzENqOsc+ePHIL
-         FZ0S5SH54rpqha23JCX8jEbhy4rsPbrblvlp6A9myrR7JMzn4VtdaEMyiLJ3fgiNDUYa
-         kQC/am2ijRk+v1lxyWU9Ps8nMJv0xafaPEbfTlS6+PkUQHX7yJpwgTIh13LRJsBHVQ6m
-         bYGbolahT4Bjf41aCRmOVFa+nglNLIfEBuoBpG/pOs2Q1+US2918oTe5TpY9nIYLGGxU
-         wLMw==
-X-Gm-Message-State: AOAM533cWTqD+zbZvEjW+6BdbStAm18CtGeLSqg547GU59lPnxa83e0h
-        E1KMoQC9qQMX82t0vnzGTgLjxg==
-X-Google-Smtp-Source: ABdhPJyWjpOUQOpPX3P6u/QFz5ac/xm/7Q+g/Trta+CDcME4Mv0B0mlxTYchvtAIU5o9eTnl6nrBTg==
-X-Received: by 2002:a17:902:d486:b0:157:1cc0:48bd with SMTP id c6-20020a170902d48600b001571cc048bdmr11887plg.108.1649341410446;
-        Thu, 07 Apr 2022 07:23:30 -0700 (PDT)
-Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:172d:8708:69ef:da3a])
-        by smtp.gmail.com with ESMTPSA id v3-20020a056a00148300b004fb04acde5dsm22499353pfu.166.2022.04.07.07.23.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 07:23:30 -0700 (PDT)
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Drew Fustini <dfustini@baylibre.com>
-Subject: [PATCH v2] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings to json-schema
-Date:   Thu,  7 Apr 2022 07:17:51 -0700
-Message-Id: <20220407141750.2289293-1-dfustini@baylibre.com>
-X-Mailer: git-send-email 2.32.0
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
+  t=1649341179; x=1649945979;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=eU/zp7ABwhP3hTkDiaG5edzO4/gp9SuNU0nuoR4MQm0=;
+  b=Yt68ReIAW0S/mH2q0g/S3Sb+jSYY2UlsfC2qaZOHPOshhIkz0SbYrMjO
+   YkRlXVIvrLXpB/n6ki3sSpCJFwg2t9hj/dfDtThoWPrsxB1yaNRUKS4EZ
+   dqJzyDNLkpgEFLSLH+Klc+WEzjzx1EeKPVgfYE3lpG0n0FD9TN5Ej8ac1
+   s=;
+Received: from mail-bn8nam12lp2176.outbound.protection.outlook.com (HELO NAM12-BN8-obe.outbound.protection.outlook.com) ([104.47.55.176])
+  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Apr 2022 14:19:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c6UKuZIs9HePIMUiulSBdMO0Uty39VYAO80rGTxZpc1yxjiL0xn4s99lgz70QxXBxk4sp9Phc6ceeyfINoKgX2N+g/5tHk5t2+n0ixQwMNYrPkGQx4iAs2YfOyX2vO+i3w3h8qardP1/E4q+FwFNqR1CKZJtRrd5LPBT5ougFDH0VaKCOy+ZicJ8xtwLyYNubAHUo60r2b/vk7F82myMtngMMoO+4YDNQaLJTUoYJA9KxxVjUWvujDH55eGi6v6kkTE7mQnLBHIdev17dy5H58DkjpnEy/Kh8dkQV8ABfkAFII/DAKGifC1NMRia76npGpqkCv3wq7pdIrIjeYcu7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eU/zp7ABwhP3hTkDiaG5edzO4/gp9SuNU0nuoR4MQm0=;
+ b=cf5QTU0oOEogJTeaC1MeO8HApE4Cw/ib6Gtdh5yzjCiALvU51anHGBvw12xEJ6h7mHyep0tSugXpDeXpOl8ym5gWDGivrbj6aeLwWiKoLnH6NR1DD2ATBYJ6hy2AAmyx8EkfwGfwvgDRr3Cc44aN+i3rSJ5pRoisPdkeqO9OWAppo7Rz4MUskuLZffnxKvXxemOzJcZuGZNTFTnl7RO398dPsfUs8kCvIjpdA5DCET/2YhepeL6J8KNLprC0RFs0ZAnbDmAZ28wrBUZD7VkiMtpmxVDUdX1y/hR2L5HBbHWu3blgDWCfmIRUIey/wl4MdMkDdIMIbdXECQGdwKyaOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from MW4PR02MB7186.namprd02.prod.outlook.com (2603:10b6:303:73::6)
+ by MW4PR02MB7204.namprd02.prod.outlook.com (2603:10b6:303:7a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22; Thu, 7 Apr
+ 2022 14:19:32 +0000
+Received: from MW4PR02MB7186.namprd02.prod.outlook.com
+ ([fe80::9485:c59c:6877:f492]) by MW4PR02MB7186.namprd02.prod.outlook.com
+ ([fe80::9485:c59c:6877:f492%7]) with mapi id 15.20.5144.022; Thu, 7 Apr 2022
+ 14:19:32 +0000
+From:   "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
+To:     Doug Anderson <dianders@chromium.org>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>
+CC:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
+Subject: RE: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
+Thread-Topic: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
+Thread-Index: AQHYRE+1+KMNz76x10es+Ckf6s/Ci6zaI54AgAJPIQCAAGyYAIAAN98AgAMsKoCAAQxrgIAARYIAgAAJUACAAAn1AIAC48tA
+Date:   Thu, 7 Apr 2022 14:19:32 +0000
+Message-ID: <MW4PR02MB7186245772DAC3E04FA8D1C0E1E69@MW4PR02MB7186.namprd02.prod.outlook.com>
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
+ <392b933f-760c-3c81-1040-c514045df3da@linaro.org>
+ <CAD=FV=W4PYK-t607yjRbfjDjjEZX0KdgHDRukw_vSH8E8EDH6w@mail.gmail.com>
+ <CAA8EJppt9XONbgtKfmHmN+==QNqiVJeb8GKJFdZm=yyY-tgmHQ@mail.gmail.com>
+ <CAD=FV=U5-sTDLYdkeJWLAOG-0wgxR49VxtwUyUO7z2PuibLGsg@mail.gmail.com>
+ <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
+ <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
+ <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org>
+ <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
+In-Reply-To: <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quicinc.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f36240ed-f305-4e56-ea4f-08da18a1a2b8
+x-ms-traffictypediagnostic: MW4PR02MB7204:EE_
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-microsoft-antispam-prvs: <MW4PR02MB72043CD9C902864D1D0791909DE69@MW4PR02MB7204.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: khBE+rfeyX3E+CHBRwCVZOkVkb4x6TtRlCw98V4yAizcRaRQwtyd3zY80P5Y3IjwnZ8k6AIiNHyenzg2OUnblRt96NPm6RoJKiSkWDU5jCLQwWfzfnxT3MS7O8cFLiwmLCAttagdIFAvyGqhnxX61DFNNAtHT/JR/Q0cXIN9bldl2YyXvNla3XErfTTY5PeW7okMVbJbz7mqDwYyAG23fqneTLZAHr4/b0QdTGcDuEB6mNhHkKVo1k7O6EYwa7Byw+J6ca/IQeD2db4RlYniIMEfsY6zGp3yeujxWYwBk4OJsihGACfmz81Km3pab2V073WHHdqd3YsvK+YWNr1fB6MbD2NNiX7OQo+ID9JuOfddJBfnuksx/bz5EBEzLG7DD7fh+BYtmqBU3WjWOZbizfcbR0jaS60jgMCe3h1PYkYQAn1dcu3yxPW0wCXBux9J90ri8xrMWpU7EQdqNSUiDD2cW2MgQXqA6Nbr4RyXUhmBcGZXHVMQ0le8jbEHdDFQP2Dh2e0yxAmeg8Lz4tZ8NAB0n76Vp5h4/SdaOTelPbLC6QsZ38iwIyXv0AL9aGrDB6myr77ZqQb6yHydyRZLCeJirc2IdE+2wKvlWXxKk2sS1jgybQRHgMHxHpDKRi9XBFOxQSDJUfIzu8PnpxtJd/H1o1PxObggzuF05G2Jf8P4deNghvknLVP+O4JUD9P9QqBmdhLy8oP8K8TFFL58uw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR02MB7186.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66476007)(66446008)(316002)(66556008)(6506007)(64756008)(66946007)(2906002)(71200400001)(9686003)(110136005)(54906003)(53546011)(76116006)(5660300002)(38070700005)(4326008)(7696005)(33656002)(186003)(107886003)(26005)(122000001)(83380400001)(8936002)(7416002)(508600001)(55016003)(86362001)(8676002)(38100700002)(52536014);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?STh0RC9mcWpiUjFvK1B5NWZMWkwxY1RDK25HZDJKeWJjRmYzcThEWjVNbDdT?=
+ =?utf-8?B?QWI1ZGtONXpjUDY3eE91RkpCZWRLZ1dDZ3dOQm9VNTJiK3BSWmtSa3Q4aC94?=
+ =?utf-8?B?QWhPejVXV2ZtTWdJV3NQbWdCUWRiby95UHR1OUlzMU1mTng0MWpabDZ2OGlS?=
+ =?utf-8?B?UHNRU2RMU24zdkYxMll3L1lscE0vdzdhbXp0UXFXdGFyRi9iRzB6bVpuQUsz?=
+ =?utf-8?B?clp1cjNaYlJOeS8wZmVBd3JidEduUEtCUWxTSXF4bTN6UndCLzlaR3BHR0Qy?=
+ =?utf-8?B?QTg5aTdPSjF1WU5COTVNZjFGNHc3RlJjaGQ2T1dROHhjdVBKam16UXR2NFMv?=
+ =?utf-8?B?dWJGankrTWYzRmxVU2tZaDllLzJIYmtQYy9LaXo1TlBQeTkyT2o2K0R4cWVF?=
+ =?utf-8?B?VEJOUnNuUllISldXa2l4dnU2ZWlFVlczZXMzWW5qazU1R1VIUEFwemU1dGxU?=
+ =?utf-8?B?T25NTVJCOGhQbWFPNFF1cFREQi9ZWDI4RVVEMXpuL3FQekRTQ24yTFoxZkh4?=
+ =?utf-8?B?NzNJOWVwaU1DRU44RTREUGFZbjRKbGhQOUhKWUtGeVFMU1RFekhYZlo5TzhL?=
+ =?utf-8?B?bUJXSTdXdVhTRkRicCtISXVCYXpRMm1MRUwxY1E4V3RlREJocTU1QXNHWWl5?=
+ =?utf-8?B?SkdnY2FBSEZyQWcvb0pyTDRNV2l2SGJ5VFhnU0lPS05oRlREa0dISFk0d3pW?=
+ =?utf-8?B?SHBhQlBBbVg2WnIwM2s3R0dMMm5kZlgrZDZEL1RHMzJDczY3WU44bk4yUHAw?=
+ =?utf-8?B?UjUzQlJ1VHJGOEFmZmQ5YS9VVW9zVlk5eWZQVUlvTUNkSzdudEVoc0Jubmtu?=
+ =?utf-8?B?S1lXTGVOWnkrT29tM1BMUzQ4UmFZR2NIRnNWTlQrRUFvUU92eE9LSFhaWWNz?=
+ =?utf-8?B?MnlvcnpiTEI3aGo4NVZwMTB0MjhsbWxMNXdkQWlRc204dnFQcE8wb2xNbVRh?=
+ =?utf-8?B?YjZTYXN5ZHkwemE0cFh2UjdGSDhUUDIwTmRPNkJ2QXZReklaQW03c3FkdzZw?=
+ =?utf-8?B?aklaTDB6bnNqT1BQVDVTNG9OT2twTHFqelJpNUN0Vm5COWl4UE9HcUxTT0N1?=
+ =?utf-8?B?Y0NrMkVPQzZSVGlLL2N5SGF0KzU4U2VtcnBPTmtUdk5Mb3RXQ0JjUlNrc0lO?=
+ =?utf-8?B?cWFvVFltNUptM0JoaFEvdVhMUjFoeXZNOVZHVjFsL1hNTVViM3NUR0pYOVMv?=
+ =?utf-8?B?S0RqQnFqT2pRUDQxZG5lb0d2OTJ1bDJEeTFNb2NGSUpVYnlyV0ZOa2Y2UXcw?=
+ =?utf-8?B?aThEWVNNcXlSc0tjdzdad3NMSkE0aW5IUlhtVW9BTW5yZzYrdWZnNUpwZE9E?=
+ =?utf-8?B?eFQ5MGoyLzYwVW80Nm14QkVYUGRqNVlmbGFrdlFVTTM0Y0lxeVBNOHFUZE9i?=
+ =?utf-8?B?RkdlMXlGSDFYTkp3MXcvK1E0ZCt4RVk0aFRWemhtWWxmMktNWWI4YVBzTTJm?=
+ =?utf-8?B?NUs2akhCRUlLaFR4ZXA5NEhDUlYzQU5qOG5uZWRjTzVQeGpaem1Oa0JqR1c3?=
+ =?utf-8?B?blR6T210VzlzUm1lWnB6SEhJRlZDKzdNVEQvbEpGL1JYZGJQL1hJelJUR1dk?=
+ =?utf-8?B?aE9qdXZ5SDZ0MTFSOC96YjlmVG1nM3FUQ3Qrb21nUW1wYlBTKzhIcFVmWU1w?=
+ =?utf-8?B?bWNhY292RXNrakNQTThIUE5KSktXNDlnVFZCdDJVNHl6ekNVOG9VMFdFRlZq?=
+ =?utf-8?B?WldwVTgrNFN6Q004L3hhY3JZMXZDemlNbVdkeUd5eUxRRElmMll0NXIydk5K?=
+ =?utf-8?B?bmlkc1djc0RkVlNEeGZjWkpOQkFqelk5QnI5VEFya3oyMERuVmtaa0NHOFNv?=
+ =?utf-8?B?UkZ1czZ5SkdSa1A1Z0RxRittQUVIU1VnYTRGdW4yc2lFTk5SMUtiN1hvZXN6?=
+ =?utf-8?B?V1BCZEZEWU5DbXV0aW94Yk1UYTBKWm95cEhFNzRFT08zU0gyRlpLc05IUHBO?=
+ =?utf-8?B?azMzemRJNnBwUWdsZjZ3WnVLZVdQc3d5RDBBNnppbEZyYnJtVUlJcHpGUmh2?=
+ =?utf-8?B?SjliZEQyd3NYa3J0OG5RaU9ucDc5dVlTYlJKV2FnekRkUzQ2L1RxcUY3L0s5?=
+ =?utf-8?B?U0JzQlpMZVkwdkJkYkhsMDh3YVYxN1N1QWg4QVBoSVlFRnpsTnpaWkNGV1Z4?=
+ =?utf-8?B?Ly9oOHhKdGRvT1FsdXZ6cEFWd1phWmxiYTFLcG4xcnFpQ1pGRzFGQnZVRE9w?=
+ =?utf-8?B?Z1QvQlg3TXU5SWpGZFJTUFdYMmxSNGphQU5GRU9TZWhER1ZlQ0xPWkk1TFNR?=
+ =?utf-8?B?L2NPQUIxMjlQZW1XQ05BUXlCSkZOQ0ZHRVpCc2wwOHlnNDVGcVIvTWlwNnRX?=
+ =?utf-8?B?M0tSUFZteFBkRUN5RWZ1SHJOV3RQNGd2SFZoUWw3Q2l0dzd1ZEtvQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR02MB7186.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f36240ed-f305-4e56-ea4f-08da18a1a2b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2022 14:19:32.3144
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FXe+YJ1oJ+17+DX9EeL90T/M1XUVIur4CKHhU2iH9WUfekE58EAIPCFNxXswrveUD8GE6IVfyCNkz7e8qWDUbMb0jXsghVpGOEOAqEi7amM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7204
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the wkup_m3_ipc bindings documentation to json-schema.
-
-Link: https://lore.kernel.org/linux-arm-kernel/20220221125522.l3tntb6i7yjxp6vb@flattered/
-Suggested-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- .../bindings/soc/ti/wkup_m3_ipc.txt           | 57 -------------
- .../bindings/soc/ti/wkup_m3_ipc.yaml          | 81 +++++++++++++++++++
- 2 files changed, 81 insertions(+), 57 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
- create mode 100644 Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-
-Changes in v2:
-- removed unnecessary line breaks and shorten property descriptions
-
-diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-deleted file mode 100644
-index 401550487ed6..000000000000
---- a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Wakeup M3 IPC Driver
--=====================
--
--The TI AM33xx and AM43xx family of devices use a small Cortex M3 co-processor
--(commonly referred to as Wakeup M3 or CM3) to help with various low power tasks
--that cannot be controlled from the MPU, like suspend/resume and certain deep
--C-states for CPU Idle. Once the wkup_m3_ipc driver uses the wkup_m3_rproc driver
--to boot the wkup_m3, it handles communication with the CM3 using IPC registers
--present in the SoC's control module and a mailbox. The wkup_m3_ipc exposes an
--API to allow the SoC PM code to execute specific PM tasks.
--
--Wkup M3 Device Node:
--====================
--A wkup_m3_ipc device node is used to represent the IPC registers within an
--SoC.
--
--Required properties:
----------------------
--- compatible:		Should be,
--				"ti,am3352-wkup-m3-ipc" for AM33xx SoCs
--				"ti,am4372-wkup-m3-ipc" for AM43xx SoCs
--- reg:			Contains the IPC register address space to communicate
--			with the Wakeup M3 processor
--- interrupts:		Contains the interrupt information for the wkup_m3
--			interrupt that signals the MPU.
--- ti,rproc:		phandle to the wkup_m3 rproc node so the IPC driver
--			can boot it.
--- mboxes:		phandles used by IPC framework to get correct mbox
--			channel for communication. Must point to appropriate
--			mbox_wkupm3 child node.
--
--Example:
----------
--/* AM33xx */
--	l4_wkup: l4_wkup@44c00000 {
--		...
--
--		scm: scm@210000 {
--			compatible = "ti,am3-scm", "simple-bus";
--			reg = <0x210000 0x2000>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0 0x210000 0x2000>;
--
--			...
--
--			wkup_m3_ipc: wkup_m3_ipc@1324 {
--				compatible = "ti,am3352-wkup-m3-ipc";
--				reg = <0x1324 0x24>;
--				interrupts = <78>;
--				ti,rproc = <&wkup_m3>;
--				mboxes = <&mailbox &mbox_wkupm3>;
--			};
--
--			...
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-new file mode 100644
-index 000000000000..50cc89c2d1c3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/ti/wkup_m3_ipc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Wakeup M3 IPC device
-+
-+maintainers:
-+  - Dave Gerlach <d-gerlach@ti.com>
-+  - Drew Fustini <dfustini@baylibre.com>
-+
-+description: |+
-+  The TI AM33xx and AM43xx family of devices use a small Cortex M3 co-processor
-+  (commonly referred to as Wakeup M3 or CM3) to help with various low power tasks
-+  that cannot be controlled from the MPU, like suspend/resume and certain deep
-+  C-states for CPU Idle. Once the wkup_m3_ipc driver uses the wkup_m3_rproc driver
-+  to boot the wkup_m3, it handles communication with the CM3 using IPC registers
-+  present in the SoC's control module and a mailbox. The wkup_m3_ipc exposes an
-+  API to allow the SoC PM code to execute specific PM tasks.
-+
-+  Wkup M3 Device Node
-+  ====================
-+  A wkup_m3_ipc device node is used to represent the IPC registers within an
-+  SoC.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am3352-wkup-m3-ipc # for AM33xx SoCs
-+      - ti,am4372-wkup-m3-ipc # for AM43xx SoCs
-+
-+  reg:
-+    description:
-+      The IPC register address space to communicate with the Wakeup M3 processor
-+    maxItems: 1
-+
-+  interrupts:
-+    description: wkup_m3 interrupt that signals the MPU
-+    maxItems: 1
-+
-+  ti,rproc:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle to the wkup_m3 rproc node so the IPC driver can boot it
-+
-+  mboxes:
-+    description:
-+      phandles used by IPC framework to get correct mbox
-+      channel for communication. Must point to appropriate
-+      mbox_wkupm3 child node.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ti,rproc
-+  - mboxes
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        mailbox: mailbox {
-+            #mbox-cells = <1>;
-+        };
-+
-+        wkup_m3_ipc: wkup_m3_ipc@1324 {
-+           compatible = "ti,am3352-wkup-m3-ipc";
-+           reg = <0x1324 0x24>;
-+           interrupts = <78>;
-+           ti,rproc = <&wkup_m3>;
-+           mboxes = <&mailbox &mbox_wkupm3>;
-+        };
-+    };
-+...
--- 
-2.32.0
-
+SGkgRG1pdHJ5IGFuZCBEb3VnLA0KDQo+IEhpLA0KPiANCj4gT24gVHVlLCBBcHIgNSwgMjAyMiBh
+dCAxMDozNiBBTSBEbWl0cnkgQmFyeXNoa292DQo+IDxkbWl0cnkuYmFyeXNoa292QGxpbmFyby5v
+cmc+IHdyb3RlOg0KPiA+DQo+ID4gT24gMDUvMDQvMjAyMiAyMDowMiwgRG91ZyBBbmRlcnNvbiB3
+cm90ZToNCj4gPiA+IEhpLA0KPiA+ID4NCj4gPiA+IE9uIFR1ZSwgQXByIDUsIDIwMjIgYXQgNTo1
+NCBBTSBEbWl0cnkgQmFyeXNoa292DQo+ID4gPiA8ZG1pdHJ5LmJhcnlzaGtvdkBsaW5hcm8ub3Jn
+PiB3cm90ZToNCj4gPiA+Pj4gMy4gRm9yIERQIGFuZCBlRFAgSFBEIG1lYW5zIHNvbWV0aGluZyBh
+IGxpdHRsZSBkaWZmZXJlbnQuDQo+ID4gPj4+IEVzc2VudGlhbGx5IHRoZXJlIGFyZSB0d28gY29u
+Y2VwdHM6IGEpIGlzIGEgZGlzcGxheSBwaHlzaWNhbGx5DQo+ID4gPj4+IGNvbm5lY3RlZCBhbmQg
+YikgaXMgdGhlIGRpc3BsYXkgcG93ZXJlZCB1cCBhbmQgcmVhZHkuIEZvciBEUCwgdGhlDQo+ID4g
+Pj4+IHR3byBhcmUgcmVhbGx5IHRpZWQgdG9nZXRoZXIuIEZyb20gdGhlIGtlcm5lbCdzIHBvaW50
+IG9mIHZpZXcgeW91DQo+ID4gPj4+IG5ldmVyICJwb3dlciBkb3duIiBhIERQIGRpc3BsYXkgYW5k
+IHlvdSBjYW4ndCBkZXRlY3QgdGhhdCBpdCdzDQo+ID4gPj4+IHBoeXNpY2FsbHkgY29ubmVjdGVk
+IHVudGlsIGl0J3MgcmVhZHkuIFNhaWQgYW5vdGhlciB3YXksIG9uIHlvdQ0KPiA+ID4+PiB0aWUg
+ImlzIGEgZGlzcGxheSB0aGVyZSIgdG8gdGhlIEhQRCBsaW5lIGFuZCB0aGUgbW9tZW50IGEgZGlz
+cGxheQ0KPiA+ID4+PiBpcyB0aGVyZSBpdCdzIHJlYWR5IGZvciB5b3UgdG8gZG8gQVVYIHRyYW5z
+ZmVycy4gRm9yIGVEUCwgaW4gdGhlDQo+ID4gPj4+IGxvd2VzdCBwb3dlciBzdGF0ZSBvZiBhIGRp
+c3BsYXkgaXQgX3dvbid0XyBhc3NlcnQgaXRzICJIUEQiDQo+ID4gPj4+IHNpZ25hbC4gSG93ZXZl
+ciwgaXQncyBzdGlsbCBwaHlzaWNhbGx5IHByZXNlbnQuIEZvciBlRFAgeW91IHNpbXBseQ0KPiA+
+ID4+PiBoYXZlIHRvIF9hc3N1bWVfIGl0J3MgcHJlc2VudCB3aXRob3V0IGFueSBhY3R1YWwgcHJv
+b2Ygc2luY2UgeW91DQo+ID4gPj4+IGNhbid0IGdldCBwcm9vZiB1bnRpbCB5b3UgcG93ZXIgaXQg
+dXAuIFRodXMgZm9yIGVEUCwgeW91IHJlcG9ydA0KPiA+ID4+PiB0aGF0IHRoZSBkaXNwbGF5IGlz
+IHRoZXJlIGFzIHNvb24gYXMgd2UncmUgYXNrZWQuIFdlIGNhbid0IF90YWxrXw0KPiA+ID4+PiB0
+byB0aGUgZGlzcGxheSB5ZXQsIHRob3VnaC4gU28gaW4gZ2V0X21vZGVzKCkgd2UgbmVlZCB0byBi
+ZSBhYmxlDQo+ID4gPj4+IHRvIHBvd2VyIHRoZSBkaXNwbGF5IG9uIGVub3VnaCB0byB0YWxrIG92
+ZXIgdGhlIEFVWCBjaGFubmVsIHRvIGl0Lg0KPiA+ID4+PiBBcyBwYXJ0IG9mIHRoaXMsIHdlIHdh
+aXQgZm9yIHRoZSBzaWduYWwgbmFtZWQgIkhQRCIgd2hpY2ggcmVhbGx5IG1lYW5zDQo+ICJwYW5l
+bCBmaW5pc2hlZCBwb3dlcmluZyBvbiIgaW4gdGhpcyBjb250ZXh0Lg0KPiA+ID4+Pg0KPiA+ID4+
+PiBOT1RFOiBmb3IgYXV4IHRyYW5zZmVyLCB3ZSBkb24ndCBoYXZlIHRoZSBfZGlzcGxheV8gcGlw
+ZSBhbmQNCj4gPiA+Pj4gY2xvY2tzIHJ1bm5pbmcuIFdlIG9ubHkgaGF2ZSBlbm91Z2ggc3R1ZmYg
+cnVubmluZyB0byBkbyB0aGUgQVVYDQo+IHRyYW5zZmVyLg0KPiA+ID4+PiBXZSdyZSBub3QgY2xv
+Y2tpbmcgb3V0IHBpeGVscy4gV2UgaGF2ZW4ndCBmdWxseSBwb3dlcmVkIG9uIHRoZQ0KPiA+ID4+
+PiBkaXNwbGF5LiBUaGUgQVVYIHRyYW5zZmVyIGlzIGRlc2lnbmVkIHRvIGJlIHNvbWV0aGluZyB0
+aGF0IGNhbiBiZQ0KPiA+ID4+PiBkb25lIGVhcmx5IF9iZWZvcmVfIHlvdSB0dXJuIG9uIHRoZSBk
+aXNwbGF5Lg0KPiA+ID4+Pg0KPiA+ID4+Pg0KPiA+ID4+PiBPSywgc28gYmFzaWNhbGx5IHRoYXQg
+d2FzIGEgbG9uZ3dpbmRlZCB3YXkgb2Ygc2F5aW5nOiB5ZXMsIHdlDQo+ID4gPj4+IGNvdWxkIGF2
+b2lkIHRoZSBBVVggdHJhbnNmZXIgaW4gcHJvYmUsIGJ1dCB3ZSBjYW4ndCB3YWl0IGFsbCB0aGUN
+Cj4gPiA+Pj4gd2F5IHRvIGVuYWJsZS4gV2UgaGF2ZSB0byBiZSBhYmxlIHRvIHRyYW5zZmVyIGlu
+IGdldF9tb2RlcygpLiBJZg0KPiA+ID4+PiB5b3UgdGhpbmsgdGhhdCdzIGhlbHBmdWwgSSB0aGlu
+ayBpdCdkIGJlIGEgcHJldHR5IGVhc3kgcGF0Y2ggdG8NCj4gPiA+Pj4gd3JpdGUgZXZlbiBpZiBp
+dCB3b3VsZCBsb29rIGEgdGFkIGJpdCBhd2t3YXJkIElNTy4gTGV0IG1lIGtub3cgaWYNCj4gPiA+
+Pj4geW91IHdhbnQgbWUgdG8gcG9zdCBpdCB1cC4NCj4gPiA+Pg0KPiA+ID4+IEkgdGhpbmsgaXQg
+d291bGQgYmUgYSBnb29kIGlkZWEuIEF0IGxlYXN0IGl0IHdpbGwgYWxsb3cgdXMgdG8NCj4gPiA+
+PiBqdWRnZSwgd2hpY2ggaXMgdGhlIG1vcmUgY29ycmVjdCB3YXkuDQo+ID4gPg0KPiA+ID4gSSdt
+IHN0aWxsIGhhcHB5IHRvIHByb3RvdHlwZSB0aGlzLCBidXQgdGhlIG1vcmUgSSB0aGluayBhYm91
+dCBpdCB0aGUNCj4gPiA+IG1vcmUgaXQgZmVlbHMgbGlrZSBhIHdvcmthcm91bmQgZm9yIHRoZSBR
+dWFsY29tbSBkcml2ZXIuIFRoZSBlRFANCj4gPiA+IHBhbmVsIGRyaXZlciBpcyBhY3R1YWxseSBn
+aXZlbiBhIHBvaW50ZXIgdG8gdGhlIEFVWCBidXMgYXQgcHJvYmUNCj4gPiA+IHRpbWUuIEl0J3Mg
+cmVhbGx5IHdlaXJkIHRvIHNheSB0aGF0IHdlIGNhbid0IGRvIGEgdHJhbnNmZXIgb24gaXQNCj4g
+PiA+IHlldC4uLiBBcyB5b3Ugc2FpZCwgdGhpcyBpcyBhIGxpdHRsZSBzaWRlYmFuZCBidXMuIEl0
+IHNob3VsZCBiZSBhYmxlDQo+ID4gPiB0byBiZSB1c2VkIHdpdGhvdXQgYWxsIHRoZSBmdWxsIGJs
+b3duIGluZnJhIG9mIHRoZSByZXN0IG9mIHRoZSBkcml2ZXIuDQo+ID4NCj4gPiBZZXMsIEkgaGF2
+ZSB0aGF0IGZlZWxpbmcgdG9vLiBIb3dldmVyIEkgYWxzbyBoYXZlIGEgZmVlbGluZyB0aGF0IGp1
+c3QNCj4gPiBwb3dlcmluZyB1cCB0aGUgUEhZIGJlZm9yZSB0aGUgYnVzIHByb2JlIGlzIC4uLiBh
+IGhhY2suIFRoZXJlIGFyZSBubw0KPiA+IG9idmlvdXMgc3RvcGdhcHMgZm9yIHRoZSBkcml2ZXIg
+bm90IHRvIHBvd2VyIGl0IGRvd24gbGF0ZXIuDQo+IA0KPiBUaGlzIGlzIHdoeSBJIHRoaW5rIHdl
+IG5lZWQgdG8gbW92ZSB0byBSdW50aW1lIFBNIHRvIG1hbmFnZSB0aGlzLiBCYXNpY2FsbHk6DQo+
+IA0KPiAxLiBXaGVuIGFuIEFVWCB0cmFuc2ZlciBoYXBwZW5zLCB5b3UgZ3JhYiBhIFBNIHJ1bnRp
+bWUgcmVmZXJlbmNlIHRoYXQNCj4gX3RoYXRfIHBvd2VycyB1cCB0aGUgUEhZLg0KPiANCj4gMi4g
+QXQgdGhlIGVuZCBvZiB0aGUgQVVYIHRyYW5zZmVyIGZ1bmN0aW9uLCB5b3UgZG8gYSAicHV0X2F1
+dG9zdXNwZW5kIi4NCj4gDQo+IFRoZW4gaXQgYmVjb21lcyBub3QgYSBoYWNrLCByaWdodD8NCj4g
+DQo+IA0KDQpwbSBydW50aW1lIG9wcyBuZWVkcyB0byBiZSBpbXBsZW1lbnRlZCBmb3IgYm90aCBl
+RFAgYW5kIERQLiBUaGlzIGNoYW5nZQ0KdGFrZSBnb29kIGFtb3VudCBvZiBwbGFubmluZyBhbmQg
+Y29kZSBjaGFuZ2VzIGFzIGl0IGFmZmVjdHMgRFAgYWxzby4NCg0KQmVjYXVzZSB0aGlzIHBhdGNo
+IHNlcmllcyBjb25zaXN0IG9mIGJhc2ljIGVEUCBjaGFuZ2VzIGZvciBTQzcyODAgYm9vdHVwLA0K
+c2hhbGwgd2UgdGFrZSB0aGlzIHBtX3J1bnRpbWUgaW1wbGVtZW50YXRpb24gaW4gc3Vic2VxdWVu
+dCBwYXRjaCBzZXJpZXM/DQoNCj4gPiBBIGNsZWFuZXIgZGVzaWduIG1pZ2h0IGJlIHRvIHNwbGl0
+IGFsbCBob3RwbHVnIGV2ZW50IGhhbmRsaW5nIGZyb20gdGhlDQo+ID4gZHBfZGlzcGxheSwgcHJv
+dmlkZSBhIGxpZ2h0d2VpZ2h0IHN0YXRlIG1hY2hpbmUgZm9yIHRoZSBlRFAgYW5kIHNlbGVjdA0K
+PiA+IHdoaWNoIHN0YXRlIG1hY2hpbmUgdG8gdXNlIGRlcGVuZGluZyBvbiB0aGUgaGFyZHdhcmUg
+Y29ubmVjdG9yIHR5cGUuDQo+ID4gVGhlIGRwX2Rpc3BsYXlfYmluZC91bmJpbmQgd291bGQgcHJv
+YmFibHkgYWxzbyBiZSBkdXBsaWNhdGVkIGFuZA0KPiA+IHJlY2VpdmUgY29ycmVjdCBjb2RlIGZs
+b3dzIGZvciBjYWxsaW5nIGRwX3BhcnNlcl9nZXRfbmV4dF9icmlkZ2UsIGV0Yy4NCj4gPiBCYXNp
+Y2FsbHkgdGhhdCBtZWFucyB0aGF0IGRlcGVuZGluZyBvbiB0aGUgZGV2aWNlIGRhdGEgd2UnZCB1
+c2UgZWl0aGVyDQo+ID4gZHBfZGlzcGxheV9jb21wX29wcyBvciAobmV3KSBlZHBfY29tcF9vcHMu
+DQo+ID4NCj4gPiBXRFlUPw0KPiANCj4gSSBkb24ndCB0aGluayBJIGtub3cgdGhlIHN0cnVjdHVy
+ZSBvZiB0aGUgTVNNIERQIGNvZGUgdG8gbWFrZSBhIGRlZmluaXRpdmUNCj4gYW5zd2VyIGhlcmUu
+IEkgdGhpbmsgSSdkIGhhdmUgdG8gc2VlIGEgcGF0Y2guIEhvd2V2ZXIgSSdkIGFncmVlIGluIGdl
+bmVyYWwNCj4gdGVybXMgdGhhdCB3ZSBuZWVkIHNvbWUgZGlmZmVyZW50IGZsb3dzIGZvciB0aGUg
+dHdvLg0KPiA7LSkgV2UgZGVmaW5pdGVseSB3YW50IHRvIGxpbWl0IHRoZSBkaWZmZXJlbmNlcyBi
+dXQgc29tZSBvZiB0aGVtIHdpbGwgYmUNCj4gdW5hdm9pZGFibGUuLi4NCj4gDQo+IA0KPiAtRG91
+Zw0KDQpUaGFuayB5b3UsDQpTYW5rZWVydGgNCg==
