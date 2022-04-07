@@ -2,64 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E6C94F7B44
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5112E4F7B5E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 11:15:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243639AbiDGJRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 05:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54744 "EHLO
+        id S241925AbiDGJRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 05:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231945AbiDGJRD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:17:03 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 402393CA6E;
-        Thu,  7 Apr 2022 02:15:03 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B54001F45D10
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649322901;
-        bh=Vp8spYIhwo7N7JRZAF9B+aIKQJcypmlmdcxKZySVhHI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AluF5CwDx5CVbLKCQNTxPZUwsgNwazRh3dLrh3ErmlnI5jUJO2lRktx0PXSKBwGj0
-         iZ9YnX5mCb4RdgIKes22gC895MUKXXaZZ5Ng1ZRGkrdyNXzkdpWayDjDo+EvQr/2UA
-         LJUbZLFi5ZZRdiu9m9pIRe90Lh6bYs6AyJxElSVws5zJQayRS4MgBkIOvCDESV1sHC
-         ti2qdF6tCCF1HNYAHLdeo3IiEQvI5YvKbZmNMJW0ydEyfdl+fKvOLK0SjJas7bUwhu
-         +pjv85M6V3pA9HDckFLg53Srld34H7MG6VbEq2saEv//PTXD5ofFMHK+gm+9hijD8f
-         iBKU29Mo9Kk6w==
-Message-ID: <88182c78-de18-bf9a-994b-95d720d90917@collabora.com>
-Date:   Thu, 7 Apr 2022 11:14:58 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 2/2] iommu/mediatek: Add mt8186 iommu support
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        with ESMTP id S243786AbiDGJRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 05:17:36 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FD18E1A0
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 02:15:35 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1ncOEj-00019L-5t; Thu, 07 Apr 2022 11:15:29 +0200
+Message-ID: <6ce2484e9b0482b01c139118cc5b5472e5563314.camel@pengutronix.de>
+Subject: Re: [PATCH v0 02/10] dt-bindings: display: imx: add binding for
+ i.MX8MP HDMI TX
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Robert Foss <robert.foss@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
-        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, libo.kang@mediatek.com,
-        chengci.xu@mediatek.com
-References: <20220407083230.18041-1-yong.wu@mediatek.com>
- <20220407083230.18041-3-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220407083230.18041-3-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        patchwork-lst@pengutronix.de
+Date:   Thu, 07 Apr 2022 11:15:26 +0200
+In-Reply-To: <1649275702.749756.2682164.nullmailer@robh.at.kernel.org>
+References: <20220406160123.1272911-1-l.stach@pengutronix.de>
+         <20220406160123.1272911-3-l.stach@pengutronix.de>
+         <1649275702.749756.2682164.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,12 +61,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/04/22 10:32, Yong Wu ha scritto:
-> Add mt8186 iommu supports.
+Am Mittwoch, dem 06.04.2022 um 15:08 -0500 schrieb Rob Herring:
+> On Wed, 06 Apr 2022 18:01:15 +0200, Lucas Stach wrote:
+> > The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> > core with a little bit of SoC integration around it.
+> > 
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 72 +++++++++++++++++++
+> >  1 file changed, 72 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> > 
 > 
-> Signed-off-by: Anan Sun <anan.sun@mediatek.com>
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.example.dts:36.45-46 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1401: dt_binding_check] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+Those failures are caused by the example referencing the power domain
+defines, that are only added in a dependency of this series. They build
+fine with all the dependencies applied, so please don't let this bot
+failure prevent you from looking at the actual bindings.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Regards,
+Lucas
+
 
