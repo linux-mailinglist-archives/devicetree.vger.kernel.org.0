@@ -2,102 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E35874F80FA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 15:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B385E4F80FF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 15:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240614AbiDGNwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 09:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
+        id S238358AbiDGNxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 09:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240557AbiDGNwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 09:52:34 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E41EBAD6;
-        Thu,  7 Apr 2022 06:50:31 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id c24-20020a9d6c98000000b005e6b7c0a8a8so454514otr.2;
-        Thu, 07 Apr 2022 06:50:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=DxCif+I+h3qUJ8PQJ1TMI3wZ+FQkVzQw6LHqikw6lm0=;
-        b=jA2zm6SPqlXPyXM3r9bOc33nbcUT1FoYbtTM8m3hcm1IWYKb39on5Pt0dznRSpOYod
-         0ybbjdcaEAgN9rKWe2rE0f/1cb4kxLgRe7Gxp47h/1bCsS5rOmWHypbDUStwej2dpmXA
-         AEgYeD9Zd3vAg/PTRIdKa97S8OY9MFvSh8OMHcxcd+72hXHfi/QN7+WULYtmL/NzRzDJ
-         wORdvWfrYmnsj9FWe7eS00k8C5syWtew3yMEWdDtMCh8a8rCllTgCfJlbO8f4b2G+Iqy
-         4Dc6kYZCxfGpliBniY9YHqLuxKuSKWqqHmeG2uA0YI0dOu2ZiCAIHTXPRKu9Er+MeMj8
-         7n0w==
-X-Gm-Message-State: AOAM530vk7CePAF/Qra2wilx350LJIGqPimj37H15nrUARelWOevoLKg
-        poCzKTydPh+FmosQvolrSQ==
-X-Google-Smtp-Source: ABdhPJz7AbEDxicrWgNX9xYJXUZeZZWDvsq5xGhm1fr6P71xE5bIBsFHeBa6kF9+Ki73uORHgipl2Q==
-X-Received: by 2002:a05:6830:4126:b0:5c9:2a3e:be43 with SMTP id w38-20020a056830412600b005c92a3ebe43mr4755801ott.143.1649339430608;
-        Thu, 07 Apr 2022 06:50:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u16-20020a056808151000b002f734da0881sm7885466oiw.57.2022.04.07.06.50.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 06:50:29 -0700 (PDT)
-Received: (nullmailer pid 795408 invoked by uid 1000);
-        Thu, 07 Apr 2022 13:50:27 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Mikhail Zhilkin <csharper2005@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Karim <Karimdplay@gmail.com>,
-        NOGUCHI Hiroshi <drvlabo@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>, M <x1@disroot.org>,
-        linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-In-Reply-To: <20220406195946.2019-1-csharper2005@gmail.com>
-References: <20220406195557.1956-1-csharper2005@gmail.com> <20220406195946.2019-1-csharper2005@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for Sercomm parser
-Date:   Thu, 07 Apr 2022 08:50:27 -0500
-Message-Id: <1649339427.653492.795407.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S233540AbiDGNxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 09:53:30 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50487DB2F9;
+        Thu,  7 Apr 2022 06:51:27 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 237Apvew000610;
+        Thu, 7 Apr 2022 15:50:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=DeX3F7rQwgZttJ4OMZBXInnYsmGXSs5NIMQvoJGc/JM=;
+ b=vGfzWyyvQWd5kmNdsQm1GVP2POpJAbdtBBuyzhokMsaOPnssnRMYG6Hol/dn7H15VRYP
+ a7KW+CTm1I458Wimuxy45Mz/K0sQGH87ymPnBxQ0bfTjr6TIi4CwXi/wrRAQsoJTmuos
+ N311Noklf8IJ3o9nqqvEgX9RdVVBy3Xr6GGDWvPaL/TXOaNZLokxdp/Nz8qoIkFhqZlB
+ R2WhLoJQwBuWQnkPPPziSCcxCM42jNpJDb59uNRQ0+92hMJ1s2TjsT0XF6CPMDCMdxo3
+ zm56fvkuLW5xznQJa+U0pdLeTZoxIR4KWUMKDfsTpXy2jqtE6kLBAZMzbJsgxuX5436q +Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3f9wr7hdwg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 07 Apr 2022 15:50:52 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 25DA210002A;
+        Thu,  7 Apr 2022 15:50:50 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BC581215133;
+        Thu,  7 Apr 2022 15:50:50 +0200 (CEST)
+Received: from [10.48.0.142] (10.75.127.44) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Thu, 7 Apr
+ 2022 15:50:50 +0200
+Message-ID: <e0a6ebfe-0c95-7bc1-926b-42726f84f1ac@foss.st.com>
+Date:   Thu, 7 Apr 2022 15:50:49 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 3/3] ARM: dts: Use new media bus type macros
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     <devicetree@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20220306173905.22990-1-laurent.pinchart@ideasonboard.com>
+ <20220306173905.22990-4-laurent.pinchart@ideasonboard.com>
+ <6824a158-9837-c61d-cbf9-c8a2ca46110e@foss.st.com>
+ <Yk7nsbQ7xoASlxVm@pendragon.ideasonboard.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <Yk7nsbQ7xoASlxVm@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-04-07_02,2022-04-07_01,2022-02-23_01
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Apr 2022 19:59:46 +0000, Mikhail Zhilkin wrote:
-> Add YAML binding for Sercomm partition parser.
+On 4/7/22 15:31, Laurent Pinchart wrote:
+> Hi Alexandre,
 > 
-> Signed-off-by: Mikhail Zhilkin <csharper2005@gmail.com>
-> ---
->  .../mtd/partitions/sercomm,sc-partitions.yaml | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
+> On Thu, Apr 07, 2022 at 02:41:58PM +0200, Alexandre TORGUE wrote:
+>> On 3/6/22 18:39, Laurent Pinchart wrote:
+>>> Now that a header exists with macros for the media interface bus-type
+>>> values, replace hardcoding numerical constants with the corresponding
+>>> macros in the DT sources.
+>>>
+>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>> ---
+>>>    arch/arm/boot/dts/imx6ul-14x14-evk.dtsi               |  4 +++-
+>>>    arch/arm/boot/dts/omap3-n900.dts                      |  5 +++--
+>>>    arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts       | 11 +++++++----
+>>>    .../dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi     |  4 +++-
+>>>    .../dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi     |  4 +++-
+>>>    arch/arm/boot/dts/stm32429i-eval.dts                  |  3 ++-
+>>>    arch/arm/boot/dts/stm32mp157c-ev1.dts                 |  3 ++-
+>>>    7 files changed, 23 insertions(+), 11 deletions(-)
+>>
+>> sorry for this late answer. Is it possible to split ARM DT patches by
+>> vendor ?
 > 
+> Sure. Is that only to ease backporting, or do you want the ST part to be
+> merged through a different tree ?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I usually take all STM32 DT patches in my stm32-next branch. It's to 
+avoid merge issue at arm-soc maintainer level.
 
-yamllint warnings/errors:
+thanks
+alex
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.example.dts:21.13-14 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+>>> diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+>>> index a3fde3316c73..89234bbd02f4 100644
+>>> --- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+>>> +++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+>>> @@ -2,6 +2,8 @@
+>>>    //
+>>>    // Copyright (C) 2015 Freescale Semiconductor, Inc.
+>>>    
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>> +
+>>>    / {
+>>>    	chosen {
+>>>    		stdout-path = &uart1;
+>>> @@ -170,7 +172,7 @@ &csi {
+>>>    	port {
+>>>    		parallel_from_ov5640: endpoint {
+>>>    			remote-endpoint = <&ov5640_to_parallel>;
+>>> -			bus-type = <5>; /* Parallel bus */
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT601>;
+>>>    		};
+>>>    	};
+>>>    };
+>>> diff --git a/arch/arm/boot/dts/omap3-n900.dts b/arch/arm/boot/dts/omap3-n900.dts
+>>> index d40c3d2c4914..9cad9d6a83e2 100644
+>>> --- a/arch/arm/boot/dts/omap3-n900.dts
+>>> +++ b/arch/arm/boot/dts/omap3-n900.dts
+>>> @@ -9,6 +9,7 @@
+>>>    #include "omap34xx.dtsi"
+>>>    #include <dt-bindings/input/input.h>
+>>>    #include <dt-bindings/leds/common.h>
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>>    
+>>>    /*
+>>>     * Default secure signed bootloader (Nokia X-Loader) does not enable L3 firewall
+>>> @@ -194,7 +195,7 @@ port@1 {
+>>>    
+>>>    			csi_isp: endpoint {
+>>>    				remote-endpoint = <&csi_cam1>;
+>>> -				bus-type = <3>; /* CCP2 */
+>>> +				bus-type = <MEDIA_BUS_TYPE_CCP2>;
+>>>    				clock-lanes = <1>;
+>>>    				data-lanes = <0>;
+>>>    				lane-polarity = <0 0>;
+>>> @@ -835,7 +836,7 @@ cam1: camera@3e {
+>>>    
+>>>    		port {
+>>>    			csi_cam1: endpoint {
+>>> -				bus-type = <3>; /* CCP2 */
+>>> +				bus-type = <MEDIA_BUS_TYPE_CCP2>;
+>>>    				strobe = <1>;
+>>>    				clock-inv = <0>;
+>>>    				crc = <1>;
+>>> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+>>> index 3c8a7c8b1fdd..1043603fc4a5 100644
+>>> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+>>> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+>>> @@ -7,6 +7,9 @@
+>>>     */
+>>>    
+>>>    /dts-v1/;
+>>> +
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>> +
+>>>    #include "r8a7742-iwg21d-q7.dts"
+>>>    
+>>>    / {
+>>> @@ -242,7 +245,7 @@ port {
+>>>    		vin0ep: endpoint {
+>>>    			remote-endpoint = <&cam0ep>;
+>>>    			bus-width = <8>;
+>>> -			bus-type = <6>;
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+>>>    		};
+>>>    	};
+>>>    };
+>>> @@ -273,7 +276,7 @@ port {
+>>>    		vin1ep: endpoint {
+>>>    			remote-endpoint = <&cam1ep>;
+>>>    			bus-width = <8>;
+>>> -			bus-type = <6>;
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+>>>    		};
+>>>    	};
+>>>    };
+>>> @@ -305,7 +308,7 @@ vin2ep: endpoint {
+>>>    			remote-endpoint = <&cam2ep>;
+>>>    			bus-width = <8>;
+>>>    			data-shift = <8>;
+>>> -			bus-type = <6>;
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+>>>    		};
+>>>    	};
+>>>    };
+>>> @@ -335,7 +338,7 @@ port {
+>>>    		vin3ep: endpoint {
+>>>    			remote-endpoint = <&cam3ep>;
+>>>    			bus-width = <8>;
+>>> -			bus-type = <6>;
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT656>;
+>>>    		};
+>>>    	};
+>>>    };
+>>> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
+>>> index 40cef0b1d1e6..c73160df619d 100644
+>>> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
+>>> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi
+>>> @@ -7,6 +7,8 @@
+>>>     * Copyright (C) 2020 Renesas Electronics Corp.
+>>>     */
+>>>    
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>> +
+>>>    #define CAM_ENABLED	1
+>>>    
+>>>    &CAM_PARENT_I2C {
+>>> @@ -26,7 +28,7 @@ port {
+>>>    			CAM_EP: endpoint {
+>>>    				bus-width = <8>;
+>>>    				data-shift = <2>;
+>>> -				bus-type = <6>;
+>>> +				bus-type = <MEDIA_BUS_TYPE_BT656>;
+>>>    				pclk-sample = <1>;
+>>>    				remote-endpoint = <&VIN_EP>;
+>>>    			};
+>>> diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+>>> index f5e77f024251..a7f5cfec64b8 100644
+>>> --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+>>> +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+>>> @@ -7,6 +7,8 @@
+>>>     * Copyright (C) 2020 Renesas Electronics Corp.
+>>>     */
+>>>    
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>> +
+>>>    #define CAM_ENABLED	1
+>>>    
+>>>    &CAM_PARENT_I2C {
+>>> @@ -21,7 +23,7 @@ ov7725@21 {
+>>>    		port {
+>>>    			CAM_EP: endpoint {
+>>>    				bus-width = <8>;
+>>> -				bus-type = <6>;
+>>> +				bus-type = <MEDIA_BUS_TYPE_BT656>;
+>>>    				remote-endpoint = <&VIN_EP>;
+>>>    			};
+>>>    		};
+>>> diff --git a/arch/arm/boot/dts/stm32429i-eval.dts b/arch/arm/boot/dts/stm32429i-eval.dts
+>>> index cb46326a8c75..ecb10613d962 100644
+>>> --- a/arch/arm/boot/dts/stm32429i-eval.dts
+>>> +++ b/arch/arm/boot/dts/stm32429i-eval.dts
+>>> @@ -50,6 +50,7 @@
+>>>    #include "stm32f429-pinctrl.dtsi"
+>>>    #include <dt-bindings/input/input.h>
+>>>    #include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>>    
+>>>    / {
+>>>    	model = "STMicroelectronics STM32429i-EVAL board";
+>>> @@ -186,7 +187,7 @@ &dcmi {
+>>>    	port {
+>>>    		dcmi_0: endpoint {
+>>>    			remote-endpoint = <&ov2640_0>;
+>>> -			bus-type = <5>;
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT601>;
+>>>    			bus-width = <8>;
+>>>    			hsync-active = <0>;
+>>>    			vsync-active = <0>;
+>>> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+>>> index e222d2d2cb44..24f59f3b15dc 100644
+>>> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
+>>> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+>>> @@ -8,6 +8,7 @@
+>>>    #include "stm32mp157c-ed1.dts"
+>>>    #include <dt-bindings/gpio/gpio.h>
+>>>    #include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/media/video-interfaces.h>
+>>>    
+>>>    / {
+>>>    	model = "STMicroelectronics STM32MP157C eval daughter on eval mother";
+>>> @@ -90,7 +91,7 @@ &dcmi {
+>>>    	port {
+>>>    		dcmi_0: endpoint {
+>>>    			remote-endpoint = <&ov5640_0>;
+>>> -			bus-type = <5>;
+>>> +			bus-type = <MEDIA_BUS_TYPE_BT601>;
+>>>    			bus-width = <8>;
+>>>    			hsync-active = <0>;
+>>>    			vsync-active = <0>;
+> 
 
