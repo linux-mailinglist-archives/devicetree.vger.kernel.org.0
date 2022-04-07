@@ -2,95 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF3C4F778D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2785C4F77A5
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241805AbiDGHeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 03:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40558 "EHLO
+        id S241893AbiDGHhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234761AbiDGHet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:34:49 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8926E177D39
-        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:32:49 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id f18so5369865edc.5
-        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:32:49 -0700 (PDT)
+        with ESMTP id S241942AbiDGHgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:36:50 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DF451A54E2
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:34:44 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id c42so5373717edf.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+EUKtGXqpzIiuM97OU9EnfIBqXUuugdodntp3RmpB2g=;
-        b=MLD6Pa+acykChUKYnfN5TlyaI2DFI3571kmJ0xwMHyfkfJkDEmnAFhXVSgHmKhSdUU
-         CZQ1lyks55pzyVktHVoYFbNKKG8kXahI6EhIs8eGSfn1O9f3ntDxN5C6Y/zTn90o+YQ8
-         EhWiMs6RJVWYj0ehCvlPSAWsXpJ9W0C3Nw5DvvPo0IdrQvYQyWS0yh/3cKz7SAE5VvtF
-         3CeyNI4eGh3tkj20VQ95XOGK8FZFWFF3B6WEUxCxFGdxVPMnAW9+8iZdoBEKMk7ogPHa
-         92G465mJCWogofCCre/3YYA+mwoaqVb026bmzJ/K6K8lcgj+t+xx5V3ZEDCeftNXbHDo
-         wlag==
+        bh=D0eewgzwxQKM6rJm3nMWSPJRt+DNSKba6io2SPOxSUw=;
+        b=Z62JlS8D0nSV6/VKnpdKI7q7XoAQgwVimEZAlXcOruIWVu8e12ojkZCGKrX/0ZSlgv
+         Kp82XWDG7rdVVyPgnHK1mgBnr2JsyHR0yxXUwvhepp1VLr8zFelNlP07ytHOEOWjr2L+
+         m5BDXBZz4fonZV6mVCCRYXamTNR6K9FYSeXre37O3DFvXy/Ydw8Z77YKi1SCYhinGj9Y
+         Biu9Aq/7tb44Jnq+w6+KhJBwOf4p9JBYM7cYdTZIc4ev1Y2mESKgguEfWBAhah54uD2f
+         BJdMmn5ENX997m1grd82HbZzgfChTo6HXpsZ7PudpUvYYB4OuS4ct3rM1QKO9k+7r+35
+         0ZEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+EUKtGXqpzIiuM97OU9EnfIBqXUuugdodntp3RmpB2g=;
-        b=cRbx/aDXGz2cJ0l2Ey5HGTBOVFYLpECjSUjb+BdiuM8CO5CtEu3WHZGppWfAlfU0J6
-         EOXP/v4Gp1L8/3xWILiXaK7z5BsD3BHGoSH276HnERDOJ0aV/qtFgATTQPbIV8tIuoTz
-         fEjtgqZ4dWIzgIz1LZ/kkd5ygbiAxkvDdE615M5WZMaNk8ATwDdL2WXMzL6i0UIlSNqo
-         GYS9oSrhTkRCwZEVqOd0jTIapWZUuz2EIgBAZpX//sJJaCf+4eGgO927PQSw1DYBTjhv
-         AHFveOCZsZo+OtOP++MmB9qTuIBgQFhXDoLXzF766WW2dOYbfOH0cIOeOrLFHz+r5MZd
-         oUWw==
-X-Gm-Message-State: AOAM533Qxr0kumvE/dBjZu0acmm9pK3/lhU9pKM0iA289r34C/Nb1+x4
-        0MbHWrW4j+6AQiRYZZrJYFKv2ZmbBmuY7BXl
-X-Google-Smtp-Source: ABdhPJyIpHoo5CyU+omZm76Ir2AEajIb5A/rhFDOmn6KNjdwWWGCZXA1IvhboAVJ40Su1x4Bx+KhiQ==
-X-Received: by 2002:a50:f106:0:b0:41c:d793:3ae5 with SMTP id w6-20020a50f106000000b0041cd7933ae5mr12892876edl.390.1649316768155;
-        Thu, 07 Apr 2022 00:32:48 -0700 (PDT)
+        bh=D0eewgzwxQKM6rJm3nMWSPJRt+DNSKba6io2SPOxSUw=;
+        b=N3B7tcwqcKSkeCSN57wd4ydX0IxTlm7jqvTKDgqMsIeWxqu73egNVsAyAjp9QblzAL
+         bJwAdlMjITCBZh8fg6IZLuQqycwGaeN575rjBLFjkkkGcfQORebNjU5/dCkmY4N76xup
+         orV2/AZKpoCTv+J7F475N9tzN9MKh2V01PW6qmdmT95M3w8xFSSZCTBzZYK7Z1dIEedL
+         MhMAWuA/anq93laSd42kQeoSySJXwUFiZs5w8uJjNpYs0f+8hcz4KUl4NVUnEBY2EtMl
+         Un77lISqcuqcqIkAjsjVAGqEg7S2F0Hr+Kt9C0iVv58C9YvWlWI7AfyODrNmNwnppbSr
+         r8Iw==
+X-Gm-Message-State: AOAM5328uaHnuiYE8MO/vHEEDLAoacxU3IGtFWjiImgj5xkOnJIwdhIO
+        HnQwNL0gnkZNtL2zbNk23eWJHA==
+X-Google-Smtp-Source: ABdhPJxFuFxmy/rxMdEhYWXQIH/1JyMCkjI+Js9rkyfTp2rZ3T+uDfui+0IYKUP5knnDnKoHCzd/hg==
+X-Received: by 2002:aa7:cdd9:0:b0:41d:10cc:7904 with SMTP id h25-20020aa7cdd9000000b0041d10cc7904mr80897edw.202.1649316883063;
+        Thu, 07 Apr 2022 00:34:43 -0700 (PDT)
 Received: from [192.168.0.185] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id lj11-20020a170906f9cb00b006e8402c3379sm32496ejb.58.2022.04.07.00.32.47
+        by smtp.gmail.com with ESMTPSA id b5-20020a17090630c500b006e8044fa76bsm2998844ejb.143.2022.04.07.00.34.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Apr 2022 00:32:47 -0700 (PDT)
-Message-ID: <f3f5c297-a94b-9544-5673-3da3188623f9@linaro.org>
-Date:   Thu, 7 Apr 2022 09:32:46 +0200
+        Thu, 07 Apr 2022 00:34:42 -0700 (PDT)
+Message-ID: <6b070220-a8f9-f2a2-72b7-7adc807ef754@linaro.org>
+Date:   Thu, 7 Apr 2022 09:34:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 2/3] dt-bindings: dmaengine: qcom: gpi: add compatible for
- sm8350/sm8350
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add documentation for AM62 USB
+ Wrapper module
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20220406132508.1029348-1-vkoul@kernel.org>
- <20220406132508.1029348-2-vkoul@kernel.org>
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220406135214.6989-1-a-govindraju@ti.com>
+ <20220406135214.6989-2-a-govindraju@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220406132508.1029348-2-vkoul@kernel.org>
+In-Reply-To: <20220406135214.6989-2-a-govindraju@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2022 15:25, Vinod Koul wrote:
-> Add the compatible for newer qcom socs with gpi dma i.e qcom sm8350 and
-> sm8450.
+On 06/04/2022 15:52, Aswath Govindraju wrote:
+> Add bindings for the TI's AM62 wrapper module for the Synopsys USBSS-DRD
+> controller.
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> 
+> changes since v2:
+> - Removed the implementation of detecting the role from the wrapper
+>   driver and moved the implementation to using linux,extcon-usb-gpio
+>   driver for role detection.
+> - Updated the binding documentation and example to reflect the same.
+> 
+>  .../devicetree/bindings/usb/ti,am62-usb.yaml  | 115 ++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
 > 
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
