@@ -2,326 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A994F77D1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF3C4F778D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Apr 2022 09:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241970AbiDGHl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 03:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
+        id S241805AbiDGHeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 03:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241989AbiDGHlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:41:25 -0400
-X-Greylist: delayed 367 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 07 Apr 2022 00:39:17 PDT
-Received: from mail.schwermer.no (mail.schwermer.no [49.12.228.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E76E6326;
-        Thu,  7 Apr 2022 00:39:16 -0700 (PDT)
-From:   sven@svenschwermer.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
-        s=mail; t=1649316788;
-        bh=YjSfJgahcyOe04pZ9pdE0sp2HmcDXPOk4E4irpcypQo=;
-        h=From:To:Cc:Subject:In-Reply-To:References;
-        b=ltiNNn28VZIHzcG3e0hHpzSyUQcNI0szQihFzwZfoqZsINpTTojHYXOKyhAPL1dWz
-         FiTpa/kFevjGChTDr7HyVNzV+FJfpbxGNJ1ixfRdkDEJl3Hcd+pA0W4hOUvPWwg4VN
-         13tSXaiBxaKifwvOTA/2rxmb77sr8IX0eL37bp0c2lfNZvRdAFc03WVJJVzBxV1khj
-         jVt8lg4UHiVVl76LPGdrOCmG3jmTlT6+F3bBNJwMKWrx8nbNQRvq0fFG/ZZTGLBMye
-         EAFacPWmYa8GQgxLCJv9hRTd2lfIAvVUCHkWI9HJMPs9FYfQvZzUlMAoL7jBa43wyv
-         atGL26wyZq5SA==
-To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de, andy.shevchenko@gmail.com, robh@kernel.org
-Subject: [PATCH v8 3/3 RESEND] leds: Add PWM multicolor driver
-Date:   Thu,  7 Apr 2022 09:32:25 +0200
-Message-Id: <20220407073225.71605-4-sven@svenschwermer.de>
-In-Reply-To: <20220407073225.71605-1-sven@svenschwermer.de>
-References: <20220407073225.71605-1-sven@svenschwermer.de>
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S234761AbiDGHet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 03:34:49 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8926E177D39
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 00:32:49 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id f18so5369865edc.5
+        for <devicetree@vger.kernel.org>; Thu, 07 Apr 2022 00:32:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+EUKtGXqpzIiuM97OU9EnfIBqXUuugdodntp3RmpB2g=;
+        b=MLD6Pa+acykChUKYnfN5TlyaI2DFI3571kmJ0xwMHyfkfJkDEmnAFhXVSgHmKhSdUU
+         CZQ1lyks55pzyVktHVoYFbNKKG8kXahI6EhIs8eGSfn1O9f3ntDxN5C6Y/zTn90o+YQ8
+         EhWiMs6RJVWYj0ehCvlPSAWsXpJ9W0C3Nw5DvvPo0IdrQvYQyWS0yh/3cKz7SAE5VvtF
+         3CeyNI4eGh3tkj20VQ95XOGK8FZFWFF3B6WEUxCxFGdxVPMnAW9+8iZdoBEKMk7ogPHa
+         92G465mJCWogofCCre/3YYA+mwoaqVb026bmzJ/K6K8lcgj+t+xx5V3ZEDCeftNXbHDo
+         wlag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+EUKtGXqpzIiuM97OU9EnfIBqXUuugdodntp3RmpB2g=;
+        b=cRbx/aDXGz2cJ0l2Ey5HGTBOVFYLpECjSUjb+BdiuM8CO5CtEu3WHZGppWfAlfU0J6
+         EOXP/v4Gp1L8/3xWILiXaK7z5BsD3BHGoSH276HnERDOJ0aV/qtFgATTQPbIV8tIuoTz
+         fEjtgqZ4dWIzgIz1LZ/kkd5ygbiAxkvDdE615M5WZMaNk8ATwDdL2WXMzL6i0UIlSNqo
+         GYS9oSrhTkRCwZEVqOd0jTIapWZUuz2EIgBAZpX//sJJaCf+4eGgO927PQSw1DYBTjhv
+         AHFveOCZsZo+OtOP++MmB9qTuIBgQFhXDoLXzF766WW2dOYbfOH0cIOeOrLFHz+r5MZd
+         oUWw==
+X-Gm-Message-State: AOAM533Qxr0kumvE/dBjZu0acmm9pK3/lhU9pKM0iA289r34C/Nb1+x4
+        0MbHWrW4j+6AQiRYZZrJYFKv2ZmbBmuY7BXl
+X-Google-Smtp-Source: ABdhPJyIpHoo5CyU+omZm76Ir2AEajIb5A/rhFDOmn6KNjdwWWGCZXA1IvhboAVJ40Su1x4Bx+KhiQ==
+X-Received: by 2002:a50:f106:0:b0:41c:d793:3ae5 with SMTP id w6-20020a50f106000000b0041cd7933ae5mr12892876edl.390.1649316768155;
+        Thu, 07 Apr 2022 00:32:48 -0700 (PDT)
+Received: from [192.168.0.185] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id lj11-20020a170906f9cb00b006e8402c3379sm32496ejb.58.2022.04.07.00.32.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Apr 2022 00:32:47 -0700 (PDT)
+Message-ID: <f3f5c297-a94b-9544-5673-3da3188623f9@linaro.org>
+Date:   Thu, 7 Apr 2022 09:32:46 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/3] dt-bindings: dmaengine: qcom: gpi: add compatible for
+ sm8350/sm8350
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org
+References: <20220406132508.1029348-1-vkoul@kernel.org>
+ <20220406132508.1029348-2-vkoul@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220406132508.1029348-2-vkoul@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+On 06/04/2022 15:25, Vinod Koul wrote:
+> Add the compatible for newer qcom socs with gpi dma i.e qcom sm8350 and
+> sm8450.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-By allowing to group multiple monochrome PWM LEDs into multicolor LEDs,
-all involved LEDs can be controlled in-sync. This enables using effects
-using triggers, etc.
 
-Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Notes:
-    Changes in v8:
-    * (no changes)
-    
-    Changes in v7:
-    * (no changes)
-    
-    Changes in v6:
-    * (no changes)
-    
-    Changes in v5:
-    * Factor iteration over subleds out into function
-    
-    Changes in v4:
-    * Remove mutex destruction and remove function
-    * Include missing headers
-    * Use post-increment instead of pre-increment
-    * Variable declarations in reverse xmas tree order
-    * Use dev_err_probe where possible
-    * Return immediately where possible
-    * Cosmetic changes
-    * Document LKM name
-    
-    Changes in v3:
-    * Release fwnode handles
-    * Sort header includes
-    * Remove deprecated device tree properties
-    * Remove deprecated LED_OFF
-    * Remove subled channel assignment
-    * s/pwmstate/state/
 
- drivers/leds/Kconfig               |  11 ++
- drivers/leds/Makefile              |   1 +
- drivers/leds/leds-pwm-multicolor.c | 186 +++++++++++++++++++++++++++++
- 3 files changed, 198 insertions(+)
- create mode 100644 drivers/leds/leds-pwm-multicolor.c
-
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 6090e647daee..e70a46704076 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -552,6 +552,17 @@ config LEDS_PWM
- 	help
- 	  This option enables support for pwm driven LEDs
- 
-+config LEDS_PWM_MULTICOLOR
-+	tristate "PWM driven multi-color LED Support"
-+	depends on LEDS_CLASS_MULTICOLOR
-+	depends on PWM
-+	help
-+	  This option enables support for PWM driven monochrome LEDs that are
-+	  grouped into multicolor LEDs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-pwm-multicolor.
-+
- config LEDS_REGULATOR
- 	tristate "REGULATOR driven LED support"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index e58ecb36360f..ba2c2c1edf12 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -73,6 +73,7 @@ obj-$(CONFIG_LEDS_PCA963X)		+= leds-pca963x.o
- obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
- obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
- obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
-+obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_REGULATOR)		+= leds-regulator.o
- obj-$(CONFIG_LEDS_S3C24XX)		+= leds-s3c24xx.o
- obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
-diff --git a/drivers/leds/leds-pwm-multicolor.c b/drivers/leds/leds-pwm-multicolor.c
-new file mode 100644
-index 000000000000..45e38708ecb1
---- /dev/null
-+++ b/drivers/leds/leds-pwm-multicolor.c
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * PWM-based multi-color LED control
-+ *
-+ * Copyright 2022 Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/leds.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/pwm.h>
-+
-+struct pwm_led {
-+	struct pwm_device *pwm;
-+	struct pwm_state state;
-+};
-+
-+struct pwm_mc_led {
-+	struct led_classdev_mc mc_cdev;
-+	struct mutex lock;
-+	struct pwm_led leds[];
-+};
-+
-+static int led_pwm_mc_set(struct led_classdev *cdev,
-+			  enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
-+	struct pwm_mc_led *priv = container_of(mc_cdev, struct pwm_mc_led, mc_cdev);
-+	unsigned long long duty;
-+	int ret = 0;
-+	int i;
-+
-+	led_mc_calc_color_components(mc_cdev, brightness);
-+
-+	mutex_lock(&priv->lock);
-+
-+	for (i = 0; i < mc_cdev->num_colors; i++) {
-+		duty = priv->leds[i].state.period;
-+		duty *= mc_cdev->subled_info[i].brightness;
-+		do_div(duty, cdev->max_brightness);
-+
-+		priv->leds[i].state.duty_cycle = duty;
-+		priv->leds[i].state.enabled = duty > 0;
-+		ret = pwm_apply_state(priv->leds[i].pwm,
-+				      &priv->leds[i].state);
-+		if (ret)
-+			break;
-+	}
-+
-+	mutex_unlock(&priv->lock);
-+
-+	return ret;
-+}
-+
-+static int iterate_subleds(struct device *dev, struct pwm_mc_led *priv,
-+			   struct fwnode_handle *mcnode)
-+{
-+	struct mc_subled *subled = priv->mc_cdev.subled_info;
-+	struct fwnode_handle *fwnode;
-+	struct pwm_led *pwmled;
-+	u32 color;
-+	int ret;
-+
-+	/* iterate over the nodes inside the multi-led node */
-+	fwnode_for_each_child_node(mcnode, fwnode) {
-+		pwmled = &priv->leds[priv->mc_cdev.num_colors];
-+		pwmled->pwm = devm_fwnode_pwm_get(dev, fwnode, NULL);
-+		if (IS_ERR(pwmled->pwm)) {
-+			ret = PTR_ERR(pwmled->pwm);
-+			dev_err(dev, "unable to request PWM: %d\n", ret);
-+			goto release_fwnode;
-+		}
-+		pwm_init_state(pwmled->pwm, &pwmled->state);
-+
-+		ret = fwnode_property_read_u32(fwnode, "color", &color);
-+		if (ret) {
-+			dev_err(dev, "cannot read color: %d\n", ret);
-+			goto release_fwnode;
-+		}
-+
-+		subled[priv->mc_cdev.num_colors].color_index = color;
-+		priv->mc_cdev.num_colors++;
-+	}
-+
-+	return 0;
-+
-+release_fwnode:
-+	fwnode_handle_put(fwnode);
-+	return ret;
-+}
-+
-+static int led_pwm_mc_probe(struct platform_device *pdev)
-+{
-+	struct fwnode_handle *mcnode, *fwnode;
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct mc_subled *subled;
-+	struct pwm_mc_led *priv;
-+	int count = 0;
-+	int ret = 0;
-+
-+	mcnode = device_get_named_child_node(&pdev->dev, "multi-led");
-+	if (!mcnode)
-+		return dev_err_probe(&pdev->dev, -ENODEV,
-+				     "expected multi-led node\n");
-+
-+	/* count the nodes inside the multi-led node */
-+	fwnode_for_each_child_node(mcnode, fwnode)
-+		count++;
-+
-+	priv = devm_kzalloc(&pdev->dev, struct_size(priv, leds, count),
-+			    GFP_KERNEL);
-+	if (!priv) {
-+		ret = -ENOMEM;
-+		goto release_mcnode;
-+	}
-+	mutex_init(&priv->lock);
-+
-+	subled = devm_kcalloc(&pdev->dev, count, sizeof(*subled), GFP_KERNEL);
-+	if (!subled) {
-+		ret = -ENOMEM;
-+		goto release_mcnode;
-+	}
-+	priv->mc_cdev.subled_info = subled;
-+
-+	/* init the multicolor's LED class device */
-+	cdev = &priv->mc_cdev.led_cdev;
-+	fwnode_property_read_u32(mcnode, "max-brightness",
-+				 &cdev->max_brightness);
-+	cdev->flags = LED_CORE_SUSPENDRESUME;
-+	cdev->brightness_set_blocking = led_pwm_mc_set;
-+
-+	ret = iterate_subleds(&pdev->dev, priv, mcnode);
-+	if (ret)
-+		goto release_mcnode;
-+
-+	init_data.fwnode = mcnode;
-+	ret = devm_led_classdev_multicolor_register_ext(&pdev->dev,
-+							&priv->mc_cdev,
-+							&init_data);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"failed to register multicolor PWM led for %s: %d\n",
-+			cdev->name, ret);
-+		goto release_mcnode;
-+	}
-+
-+	ret = led_pwm_mc_set(cdev, cdev->brightness);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "failed to set led PWM value for %s: %d",
-+				     cdev->name, ret);
-+
-+	platform_set_drvdata(pdev, priv);
-+	return 0;
-+
-+release_mcnode:
-+	fwnode_handle_put(mcnode);
-+	return ret;
-+}
-+
-+static const struct of_device_id of_pwm_leds_mc_match[] = {
-+	{ .compatible = "pwm-leds-multicolor", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_pwm_leds_mc_match);
-+
-+static struct platform_driver led_pwm_mc_driver = {
-+	.probe		= led_pwm_mc_probe,
-+	.driver		= {
-+		.name	= "leds_pwm_multicolor",
-+		.of_match_table = of_pwm_leds_mc_match,
-+	},
-+};
-+module_platform_driver(led_pwm_mc_driver);
-+
-+MODULE_AUTHOR("Sven Schwermer <sven.schwermer@disruptive-technologies.com>");
-+MODULE_DESCRIPTION("multi-color PWM LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:leds-pwm-multicolor");
--- 
-2.35.1
-
+Best regards,
+Krzysztof
