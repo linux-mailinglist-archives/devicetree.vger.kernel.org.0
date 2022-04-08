@@ -2,190 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 517714F9B5E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 214BF4F9B81
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234719AbiDHRPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 13:15:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60992 "EHLO
+        id S234980AbiDHRXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 13:23:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231322AbiDHRPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:15:00 -0400
-Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.142.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41DF13DE4;
-        Fri,  8 Apr 2022 10:12:54 -0700 (PDT)
+        with ESMTP id S234939AbiDHRXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:23:17 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5750F10242D;
+        Fri,  8 Apr 2022 10:21:12 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id z15so1988542qtj.13;
+        Fri, 08 Apr 2022 10:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
-  s=qccesdkim1; t=1649437974; x=1650042774;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=leFdFo5LapAeT/iEoi3m8H/vxb43JSie8IGgsx0zhNA=;
-  b=WYbXYRl0nPYWkduTSZg8oQDRZK96y+Cx9ZgQKc7sJTC3h7kIJgJvd9OQ
-   dhm99C+2QM4WcPCyIe6Jd+q8K1fxgHHJjxmvJd5nUH1AqcGs1GO5t85lm
-   tJYBXdfFWCKkqHZlnE1pOcwMmx6AGEPxuJ1oco9Wnyda76hltzmJ5iP5C
-   U=;
-Received: from mail-bn8nam11lp2169.outbound.protection.outlook.com (HELO NAM11-BN8-obe.outbound.protection.outlook.com) ([104.47.58.169])
-  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 17:12:52 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K9Ia5noWK8mGLoYWud9+W8sNn94UvTAjQfcEFZ3NTNGaW7RzyFpQJATnqNYOdWVjn+nYQCnyYLgr1asWE3tpLqJDR0LmAUUr/6p+jEJ0baMO4+oWOdHoHefJXDgPjzyq3BfbhF5GgCfMxkKfpU4S6SqHWNpejkDOG9jpns2ANi+1hWAgAp0+dGjvIbxAlubkwv1x684UEKh8Lwv/CBRR73L4nfNZ2JY+ucQEvr/IQazY/S5/JU7Qa7lIO/3DgGAwzQ5Swwki7+0TkFeM0k1HHTvp46o59EN/WrOFOjDDeaLqnUhlTbIki1rPvOec9bGbUjOgjHKVPGVO+4/Y6OYicw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=leFdFo5LapAeT/iEoi3m8H/vxb43JSie8IGgsx0zhNA=;
- b=IEr4o7AI5jf9SS39mUh31/7w7TCe+w3R4KBR1aBFOcZ5gB3oUqgUP3p29wRsksThlqUuSbci1QUMcyOxSiPU48aT4QX0G72GRVi4jo6Y1SPpXFSyQp5azXR71FdVumdfSiRQ8De+RByncijr7u4BVjdXeWmSEjx03+59U9XbzoUKnYFE7J6Q5O6QH2pC8K7FhIggNGjZON1gXiU99/oo+FkRmjhRWcxWAzlC2mkONCiCDFqKEAjO4vyXXbLPoDETDmexwhNvYJJp7yLexCIKewYMbWQLogesBoe7FtYcAEwVygZ3KC3vzSPOOhA4yTz19aRriQM43Ivq6s8sABMVCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=qti.qualcomm.com; dmarc=pass action=none
- header.from=qti.qualcomm.com; dkim=pass header.d=qti.qualcomm.com; arc=none
-Received: from MW4PR02MB7186.namprd02.prod.outlook.com (2603:10b6:303:73::6)
- by DM6PR02MB5786.namprd02.prod.outlook.com (2603:10b6:5:17d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22; Fri, 8 Apr
- 2022 17:12:49 +0000
-Received: from MW4PR02MB7186.namprd02.prod.outlook.com
- ([fe80::9485:c59c:6877:f492]) by MW4PR02MB7186.namprd02.prod.outlook.com
- ([fe80::9485:c59c:6877:f492%7]) with mapi id 15.20.5144.022; Fri, 8 Apr 2022
- 17:12:49 +0000
-From:   Sankeerth Billakanti <sbillaka@qti.qualcomm.com>
-To:     "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-CC:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>
-Subject: RE: [PATCH v6 5/8] drm/msm/dp: prevent multiple votes for dp
- resources
-Thread-Topic: [PATCH v6 5/8] drm/msm/dp: prevent multiple votes for dp
- resources
-Thread-Index: AQHYRE/GcQocYa4qfUa1ywd1Z9u6yKzaI+yAgAwbAgCAAA2g8A==
-Date:   Fri, 8 Apr 2022 17:12:49 +0000
-Message-ID: <MW4PR02MB7186B3A2F8EDF388CA521498E1E99@MW4PR02MB7186.namprd02.prod.outlook.com>
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
- <1648656179-10347-6-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=Wn-XypjRcw-D0VtBHZbuTz=RHiMq6RCHCa=CWmZM42nQ@mail.gmail.com>
- <94da2c97-2ad2-4575-bd73-d66ad989e17b@linaro.org>
-In-Reply-To: <94da2c97-2ad2-4575-bd73-d66ad989e17b@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=qti.qualcomm.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7b7dc4f4-105f-44f9-2acc-08da19830237
-x-ms-traffictypediagnostic: DM6PR02MB5786:EE_
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-microsoft-antispam-prvs: <DM6PR02MB5786A3821A327BDEAAA84B3FE1E99@DM6PR02MB5786.namprd02.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WCiZFg/SqOAtZ4f2hLqD+N2eWHCy1W3OphEFEaA19g9jlj06t12P9wefMJmrEuwgX77mUyX5zXLzIBaAPbCzm+mC7VQznD3ku8itftMg5L2fFIkg38J+560mOclyYhkOdULgHSnhLZPzTyitlfi3DM9zkWCZE0M66Y/hgSCCOeheHOaHXRSoHdM04gvwgrUwnOnkA8i5k5SablQHP16rAdXOT4nN2a9FpnMZQw04JehaUp+DgU2i2SFQaMThOzdrIZN3FM7U6j10KBE1zGRxQxto9SCSmW9/ZDs5Y50QuAuLsOsCnY7pZb7m6cKJ2j5Lc9e5wXflNnTlxNP+MNXCdLIrbo1a5ItuSkyGFcX3Gadksq40PpzL7exBJB+hUuRGBj9thdOHzhFI4xcyQKN6450HYCp3S2fXb5bacYi5AzXK2jrg/86drJb7miPhzkskqdnlgMRxnVTS1cub1JTD3o3aGKkzTSp/4vyp3PNZHsja1ZwU1QTjFJX5etaxbCg/XRx9c1MualdCtiuXBGh1kQ11FLlzzDeK/90YVp3hcKpJre9GqDaqsHjwgnO5LWlHII3iQcd19KX9qg/JqMNVjblEjHfhhlj0j6LbglGupyBwCVHi7IiXpFvWvFb81s32lUYgRyH9B4aHXLlw94nFJv2ZwT7tFu4LLdqW7EhkDaxd5nI6scI37g/CngcuwwFFgkJwzaQRai9/ojzyfTNjrQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR02MB7186.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(7696005)(4326008)(8676002)(76116006)(38070700005)(66946007)(66556008)(66476007)(66446008)(508600001)(186003)(38100700002)(26005)(64756008)(110136005)(71200400001)(122000001)(53546011)(9686003)(6506007)(33656002)(55016003)(2906002)(5660300002)(7416002)(54906003)(86362001)(107886003)(52536014)(8936002)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R1lHZXI4N3c5NFlybUJlZytaYXZBOS9LQkJPODJpaXdnY2M3bzBGSFV5YnZB?=
- =?utf-8?B?eFl0cmh6Y1dwRWxtSHJOR2dpZnpKaHFjR08ySjFETnJaL2h2WExYU1BpcDB6?=
- =?utf-8?B?VkJnKzNhK3Q1cmdDZThRTlVTRkFkRDhMRFJ4WG9OWFg4MHBISGhnVHEwdnNz?=
- =?utf-8?B?WXBveUJ4K0ljU04xQk56dkNNMUFlQkNkY3FSYk1iWS9WdnFtdlppdzFwTWlt?=
- =?utf-8?B?N3dqNEtrMDlCV0FPM2xZWm15by9adzRHVFZuSURkOVNRdVBGeG42dFN4SmYz?=
- =?utf-8?B?Ky85SmhNbm9Bcjc4WGM1SzVTMEN3MTRZYm5Bd1o2Mk5xbFcwc0ZLK1I3bkZI?=
- =?utf-8?B?ekVGN0xvU0cyTEVLMlRXTEh0ZXNnaUp2VWpxRTZSOW5VZHQ5a1FINnZ1TmtV?=
- =?utf-8?B?eDNNR3hPdVBKTGRueHdybWxvSzZIazVlcFZZa3BhbVhTV2tZRFNEVXJPU0Zl?=
- =?utf-8?B?MDVkclpoUEVicDhhNDhQRml2SFQ1WDhvYmZIUVFFM2ZjWFlLaXlqT09XODdp?=
- =?utf-8?B?U08zeDNpOW8zWTRwbFBNZ3c1a3lwa0taQjg4emwvV3lwNTl1TDNUWGpNeG53?=
- =?utf-8?B?S2hwMFUzaHRDdjAvT3JlVzltOXpUUE5VdkZmQTlER3hZd3ZhM1pXNkNLT0Jw?=
- =?utf-8?B?M2tvRGxjZHEycEJScGhIWlRMa0F4cTJmY3pJQzkxR2JZRDJyZitFR3EyK2pT?=
- =?utf-8?B?UEFweVZDZ3pCRVJLNUEwWlFNa3czZFZUc0pTMGl0U1FzOHlQa1V2VnRFNTJC?=
- =?utf-8?B?dlBUU2V4QkQvZ3BHTDZhU09oeVRlRHdwSXlCQk1ZekUxbjRxM1RUcDR5aXlO?=
- =?utf-8?B?SGpxeElvVFF0ZmZKVDJFR1Mxckx5dVVkaXJvRURkQXhFVkVaYXgxN1hoNm1o?=
- =?utf-8?B?NktNQTZQT2pKak52bHZoaWZ0b05NWVhCUkpNRTJhZ3ZVN1pBS1k4ZFNDQXNL?=
- =?utf-8?B?UDFSUDR2NTBqZGt1OWpHNnd1UmluUVFka29WRlJZNkgzazc1NXNDWVFKcmJ1?=
- =?utf-8?B?S1dWY2VLeGN6MEF2b1dSUjhmZ3p1a3BNZGpYWDhiZ0dGQ2YxeTZMMWVrSUxK?=
- =?utf-8?B?U0RjcWRsbjc4OWFHQWlPQ2lzdXBWUEdMQVVoTkxSMFFGdGlaZ2haVHJYYTNu?=
- =?utf-8?B?N2R1eGxJajJuZkhUczI5ZGpNaG1lUzhLSWFnemdmeFBDSHVYTHJ6b2x1c2FO?=
- =?utf-8?B?TUpzUUh3SHJSYXZsTjIrN1RhcHA2SlRjTHpveFdKdmdQdU1zVngwN3lOV1I4?=
- =?utf-8?B?dkFlZ2pxdDhBaXNKNjU1enRndlplMlhYWGRPTWQxNzlPUTl4a3R0TlZpTnJw?=
- =?utf-8?B?UWtvdnk0YzNhYlpLMVR1Ukh3Rmpkb3lGSDVKSmd0Y2ZBdERxVFFZS1JZSDNE?=
- =?utf-8?B?ZWM1OXlON1laRjU5RENEMXdZTUQycGl5MWI2MnVpSVN0ZitQT0lIemdZYjZ2?=
- =?utf-8?B?aXBWMGZXRFZaWURDMm8zWU12VUg0VmJIOUZvZ0N5QVRpUWdaazVXdWtaYkNO?=
- =?utf-8?B?OGdtR3BzN3orS1NqeHd6SmVvakEvUldNTTRTdjFRM1NPcGpJQlNrNDlpWHJL?=
- =?utf-8?B?TktIczJPbkt1QTkxYXJ1RVBzMkgxRXVERFE1YlhFSTFLcDE0Nkl2bVlNYmR2?=
- =?utf-8?B?ZG1NK1pLRHl3QjBHeUhKNWlOY0I0WDJsbTd6T29aNUsyTkVuQkRsKzUxTEd2?=
- =?utf-8?B?Q3NEMmVNY2lHd0FJVnFwQ2k1RSs4L2REc1FBaStHVDFVSDFUOTcrVXViVU1O?=
- =?utf-8?B?QitNT2FqWW16UEJxREU5Ry8rVkRSRG01UWdZK05TeW9xSkI3ZnlPalBjL2R5?=
- =?utf-8?B?NFJGK21YK0ZsNi9WS1FWZVV2aEdjTW1XWjFLK0tqdzBQdE1TUkpOR20zUXZI?=
- =?utf-8?B?RUJkYkFWbTJaL2t5bnB3WHRZdTBJb2didmxYbCtGTGVQSTdwT05CZmpybmpQ?=
- =?utf-8?B?QmxodnNkTGFxTEI3WmdTWHZ1bEZJazljTmgvenJzRkkrdUdCUTVBZmxVVE9D?=
- =?utf-8?B?VVBLWENNRzQ5L1VRelN3Y0JYVDVYNERxZmptRWFIMEk4RnZPRmZzNXFKYW5L?=
- =?utf-8?B?TG5Uc2FtdXdSelZFYmljNDhaSTlMcjRoNGlaR1NLbFl5S0VuL1h4K0pvSDRG?=
- =?utf-8?B?dW1IU1BaUVczTGdMbHdkN1kvVWkrcllqUWtGaHpoL1o4UkhUZCtlUFZmdW56?=
- =?utf-8?B?QmpkR1lLRW1UUzhtYkY3TElNeEtoclk3Q1ZqMWRuZExXeXdGWllSM2hNTk1a?=
- =?utf-8?B?WkUrL0FMbTZVdDNVUFdrdzg0d09HdkszUUt5L3MwNEFHRzIzNE1kakxQc2JH?=
- =?utf-8?B?YU9EZDFtc05hZlI5WTNTTVN3TzFGMmhRdHNOVWJKSURjYkRqS3JWclVPQndC?=
- =?utf-8?Q?2ZXse5PVnTs4WFLs=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=w53mUy5JVWp+l7UDjfpOdeHtwRO8q8QjeFkHdugkyDA=;
+        b=Ch3QMPejiCrhfiPCkc0KlBxrHZ6jo/geYFR746XH3Lhg/AVVBKLLAPsXWicVhUBOUU
+         hQnhOfiBD0tP5/rwWhEk4zRQ6SWcPFmJU8ShkV3cdErzb7eKTpOyhh9X19oBDrRNGSbL
+         IDh7dUKKotM3Z3VCE43gCYjTAI4gat4PxcKufljZfnbz2Z8k0Fw8MFqnJnekRTsaxfDi
+         POuTRINZfI1cxofu5pcQEDi3w4ADZM6f4zN9kmJudH+MNkTGSTjFp+VJPThFlx7v2Ho4
+         msR+q3Wv/8el+JlCbfrvolS5ngGlX4fV2x9yQ5B5uriRv7/t5J286rxMr07ntqzG8gHn
+         L8gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=w53mUy5JVWp+l7UDjfpOdeHtwRO8q8QjeFkHdugkyDA=;
+        b=Fu3kYaS3lrCjLCDGQ16nI9Ng85q5o1NnmB2tsJIxrewL+GA3kkl1XvTISSWvJDFfOp
+         /VZOkGTkhEQxvgZHyp/af0Cm4/wsBIvAx9brQb18nbDn27HF4PkaVaG5xxjIs/utuieO
+         h89aReMdCJ3+RZBGTi2YeaAHvvq6T7YWo6M9VfSTd9DFTykhwCz1xL5PM6uAxhbbFHQZ
+         WhxvnnEJJhqeAZAqkSghFc1hcjMuWtkb887HRnGvS7CvwNDR01v2gW/DobQvUiZ6cLHZ
+         YY34w1SI2JhJ1diAsTTrwsoPV4TVosN7+PVbjH+DJpaV/h8cjgcMktlg/1q1lwNsbn0g
+         hUYA==
+X-Gm-Message-State: AOAM531Fni7Oz9oRNTdZqhl5/F1lwk/QG0g7w/FilSIVTX242lG8P+Lc
+        XLVVpLovQWmAIKnYKCY2nDc=
+X-Google-Smtp-Source: ABdhPJzpS+aigGsUmcgHTp7fhO3McjQyQkhz3VbEFkqd6pgLOkv5FWi7HcZ+NnY9b2mmpueFmGT+Wg==
+X-Received: by 2002:a05:622a:1a27:b0:2e0:64c2:7469 with SMTP id f39-20020a05622a1a2700b002e064c27469mr17003111qtb.187.1649438471403;
+        Fri, 08 Apr 2022 10:21:11 -0700 (PDT)
+Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:db9:563b:eb2c:7a7b])
+        by smtp.gmail.com with ESMTPSA id br13-20020a05620a460d00b00680d020b4cbsm13378941qkb.10.2022.04.08.10.21.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 10:21:10 -0700 (PDT)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Slawomir Stepien <sst@poczta.fm>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alan Tull <atull@kernel.org>
+Subject: [PATCH 1/1] of: overlay: of_overlay_apply() kfree() errors
+Date:   Fri,  8 Apr 2022 12:21:03 -0500
+Message-Id: <20220408172103.371637-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: qti.qualcomm.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR02MB7186.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b7dc4f4-105f-44f9-2acc-08da19830237
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2022 17:12:49.3208
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XxwQuYpeyJVpwz+W5D8G0q4QwZEKuedBlfTtw+AnGNFoDUwkxbxucgPb79ruwbqiJJKY+qNt8tU+wBaUyqEtvNIyWKzY9P3lzWC9zA2dP8U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5786
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+IE9uIFdlZCwgTWFyIDMwLCAyMDIyIGF0IDk6MDQgQU0gU2Fua2VlcnRoIEJpbGxha2FudGkN
-Cj4gPiA8cXVpY19zYmlsbGFrYUBxdWljaW5jLmNvbT4gd3JvdGU6DQo+ID4+DQo+ID4+IFRoZSBh
-dXhfYnVzIHN1cHBvcnQgd2l0aCB0aGUgZHBfZGlzcGxheSBkcml2ZXIgd2lsbCBlbmFibGUgdGhl
-IGRwDQo+ID4+IHJlc291cmNlcyBkdXJpbmcgbXNtX2RwX21vZGVzZXRfaW5pdC4gVGhlIGhvc3Rf
-aW5pdCBoYXMgdG8gcmV0dXJuDQo+ID4+IGVhcmx5IGlmIHRoZSBjb3JlIGlzIGFscmVhZHkgaW5p
-dGlhbGl6ZWQgdG8gcHJldmVudCBwdXR0aW5nIGFuDQo+ID4+IGFkZGl0aW9uYWwgdm90ZSBmb3Ig
-dGhlIGRwIGNvbnRyb2xsZXIgcmVzb3VyY2VzLg0KPiA+Pg0KPiA+PiBTaWduZWQtb2ZmLWJ5OiBT
-YW5rZWVydGggQmlsbGFrYW50aSA8cXVpY19zYmlsbGFrYUBxdWljaW5jLmNvbT4NCj4gPj4gLS0t
-DQo+ID4+ICAgZHJpdmVycy9ncHUvZHJtL21zbS9kcC9kcF9kaXNwbGF5LmMgfCAxMCArKysrKysr
-KysrDQo+ID4+ICAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKykNCj4gPg0KPiA+IEkn
-bSBub3QgYSBodWdlIGZhbiBvZiB0aGlzIGJ1dCBJJ2xsIGxlYXZlIGl0IHVwIHRvIERtaXRyeS4g
-SW4gZ2VuZXJhbA0KPiA+IGl0IGZlZWxzIGxpa2UgdGhlcmUgc2hvdWxkIGJlIF9hXyBwbGFjZSB0
-aGF0IGVuYWJsZXMgdGhlc2UgcmVzb3VyY2VzLg0KPiA+IENoZWNrcyBsaWtlIHRoaXMgbWFrZSBp
-dCBmZWVsIGxpa2Ugd2UganVzdCBzY2F0dGVyc2hvdCBlbmFibGluZw0KPiA+IHJlc291cmNlcyBp
-biBhIGJ1bmNoIG9mIHJhbmRvbSBwbGFjZXMgaW5zdGVhZCBvZiBjb21pbmcgdXAgd2l0aCB0aGUN
-Cj4gPiBkZXNpZ24gZm9yIGVuYWJsaW5nIHRoZW0gaW4gdGhlIHJpZ2h0IHBsYWNlLg0KPiANCj4g
-SSdkIHByZWZlciB0byBzZWUgYSBjaGVjayBmb3IgZURQIGluIGRwX2Rpc3BsYXlfY29uZmlnX2hw
-ZCgpLiBPciBldmVuIGJldHRlcg0KPiB0byBzZWUgdGhhdCB0aGlzIGZ1bmN0aW9uIGlzbid0IGNh
-bGxlZCBmb3IgZURQIGF0IGFsbC4NCj4NCg0KVGhpcyBuZWVkcyB0byBiZSBjYWxsZWQgd2hlbiBl
-RFAgaXMgbm90IHVzaW5nIHRoZSBhdXhfYnVzIHBhdGguIElmIHRoZSBlRFAgcGFuZWwgaXMNCmdp
-dmVuIGFzIGEgc2VwYXJhdGUgcGFuZWwgZHJpdmVyLCB0aGVuIHRoZSByZXNvdXJjZXMgbmVlZCB0
-byBiZSBlbmFibGVkIGhlcmUuDQoNCklmIHdlIGRvbid0IHdhbnQgdG8gc3VwcG9ydCBlRFAgd2l0
-aG91dCBhdXhfYnVzLCB0aGVuIHdlIGNhbiBza2lwIHRoaXMgZnVuY3Rpb24uDQogDQo+ID4NCj4g
-PiBJbiBhbnkgY2FzZSwgaWYgd2UgZG8gZW5kIHVwIGxhbmRpbmcgdGhpcyBwYXRjaCwgaXQgc3Vy
-ZSBmZWVscyBsaWtlIGl0DQo+ID4gbmVlZHMgdG8gbW92ZSBlYXJsaWVyIGluIHRoZSBwYXRjaCBz
-ZXJpZXMsIHJpZ2h0PyBUaGlzIHBhdGNoIHNob3VsZG4ndA0KPiA+IGh1cnQgZXZlbiB3aXRob3V0
-IHRoZSBvdGhlciBwYXRjaGVzIGluIHRoZSBzZXJpZXMgYnV0IGlmIHlvdSBhcHBseSB0aGUNCj4g
-PiBlYXJsaWVyIHBhdGNoZXMgaW4gdGhlIHNlcmllcyB3aXRob3V0IHRoaXMgb25lIHRoZW4geW91
-J2xsIGhhdmUgYSBidWcsDQo+ID4gcmlnaHQ/IFRoYXQgbWVhbnMgdGhpcyBuZWVkcyB0byBjb21l
-IGVhcmxpZXIuDQo+ID4NCj4gPiAtRG91Zw0KPiANCj4gDQo+IC0tDQo+IFdpdGggYmVzdCB3aXNo
-ZXMNCj4gRG1pdHJ5DQoNClRoYW5rIHlvdSwNClNhbmtlZXJ0aA0K
+From: Frank Rowand <frank.rowand@sony.com>
+
+Fix various kfree() issues related to of_overlay_apply().
+  - Double kfree() of fdt and tree when init_overlay_changeset()
+    returns an error.
+  - free_overlay_changeset() free of the root of the unflattened
+    overlay (variable tree) instead of the memory that contains
+    the unflattened overlay.
+  - Move similar kfree()s from multiple error locations to a
+    common error path (err_free_tree_unlocked:).
+
+Double kfree()
+Reported-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+
+Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+---
+ drivers/of/overlay.c | 64 ++++++++++++++++++++++++++++----------------
+ 1 file changed, 41 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+index d80160cf34bb..1b9a90d61496 100644
+--- a/drivers/of/overlay.c
++++ b/drivers/of/overlay.c
+@@ -58,6 +58,7 @@ struct fragment {
+  * @id:			changeset identifier
+  * @ovcs_list:		list on which we are located
+  * @fdt:		base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
++ * @overlay_mem:	the memory chunk that contains @overlay_tree
+  * @overlay_tree:	expanded device tree that contains the fragment nodes
+  * @count:		count of fragment structures
+  * @fragments:		fragment nodes in the overlay expanded device tree
+@@ -68,6 +69,7 @@ struct overlay_changeset {
+ 	int id;
+ 	struct list_head ovcs_list;
+ 	const void *fdt;
++	const void *overlay_mem;
+ 	struct device_node *overlay_tree;
+ 	int count;
+ 	struct fragment *fragments;
+@@ -720,6 +722,7 @@ static struct device_node *find_target(struct device_node *info_node)
+  * init_overlay_changeset() - initialize overlay changeset from overlay tree
+  * @ovcs:	Overlay changeset to build
+  * @fdt:	base of memory allocated to hold aligned FDT that was unflattened to create @tree
++ * @tree_mem:	Memory that contains @tree
+  * @tree:	Contains the overlay fragments and overlay fixup nodes
+  *
+  * Initialize @ovcs.  Populate @ovcs->fragments with node information from
+@@ -730,13 +733,23 @@ static struct device_node *find_target(struct device_node *info_node)
+  * detected in @tree, or -ENOSPC if idr_alloc() error.
+  */
+ static int init_overlay_changeset(struct overlay_changeset *ovcs,
+-		const void *fdt, struct device_node *tree)
++		const void *fdt, const void *tree_mem, struct device_node *tree)
+ {
+ 	struct device_node *node, *overlay_node;
+ 	struct fragment *fragment;
+ 	struct fragment *fragments;
+ 	int cnt, id, ret;
+ 
++	/*
++	 * Must set these fields before any error return. fdt and tree_mem
++	 * will be freed by free_overlay_changeset(), which is called if
++	 * init_overlay_changeset() returns an error.
++	 */
++
++	ovcs->fdt = fdt;
++	ovcs->overlay_mem = tree_mem;
++	ovcs->overlay_tree = tree;
++
+ 	/*
+ 	 * Warn for some issues.  Can not return -EINVAL for these until
+ 	 * of_unittest_apply_overlay() is fixed to pass these checks.
+@@ -750,9 +763,6 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
+ 	if (!of_node_is_root(tree))
+ 		pr_debug("%s() tree is not root\n", __func__);
+ 
+-	ovcs->overlay_tree = tree;
+-	ovcs->fdt = fdt;
+-
+ 	INIT_LIST_HEAD(&ovcs->ovcs_list);
+ 
+ 	of_changeset_init(&ovcs->cset);
+@@ -865,7 +875,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+ 	 * ovcs->fdt due to the policy that overlay notifiers are not allowed
+ 	 * to retain pointers into the overlay devicetree.
+ 	 */
+-	kfree(ovcs->overlay_tree);
++	kfree(ovcs->overlay_mem);
+ 	kfree(ovcs->fdt);
+ 	kfree(ovcs);
+ }
+@@ -875,6 +885,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+  *
+  * of_overlay_apply() - Create and apply an overlay changeset
+  * @fdt:	base of memory allocated to hold the aligned FDT
++ * @tree_mem:	Memory that contains @tree
+  * @tree:	Expanded overlay device tree
+  * @ovcs_id:	Pointer to overlay changeset id
+  *
+@@ -913,31 +924,27 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+  * id is returned to *ovcs_id.
+  */
+ 
+-static int of_overlay_apply(const void *fdt, struct device_node *tree,
+-		int *ovcs_id)
++static int of_overlay_apply(const void *fdt, void *tree_mem,
++		struct device_node *tree, int *ovcs_id)
+ {
+ 	struct overlay_changeset *ovcs;
+ 	int ret = 0, ret_revert, ret_tmp;
+ 
+ 	/*
+-	 * As of this point, fdt and tree belong to the overlay changeset.
++	 * As of this point, fdt and tree_mem belong to the overlay changeset.
+ 	 * overlay changeset code is responsible for freeing them.
+ 	 */
+ 
+ 	if (devicetree_corrupt()) {
+ 		pr_err("devicetree state suspect, refuse to apply overlay\n");
+-		kfree(fdt);
+-		kfree(tree);
+ 		ret = -EBUSY;
+-		goto out;
++		goto err_free_tree_unlocked;
+ 	}
+ 
+ 	ovcs = kzalloc(sizeof(*ovcs), GFP_KERNEL);
+ 	if (!ovcs) {
+-		kfree(fdt);
+-		kfree(tree);
+ 		ret = -ENOMEM;
+-		goto out;
++		goto err_free_tree_unlocked;
+ 	}
+ 
+ 	of_overlay_mutex_lock();
+@@ -947,9 +954,14 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+ 	if (ret)
+ 		goto err_free_tree;
+ 
+-	ret = init_overlay_changeset(ovcs, fdt, tree);
++	/*
++	 * init_overlay_changeset() promises to add tree_mem and tree to ovcs
++	 * even in the case of an early error return, so they can be freed by
++	 * free_overlay_changeset().
++	 */
++	ret = init_overlay_changeset(ovcs, fdt, tree_mem, tree);
+ 	if (ret)
+-		goto err_free_tree;
++		goto err_free_overlay_changeset;
+ 
+ 	/*
+ 	 * after overlay_notify(), ovcs->overlay_tree related pointers may have
+@@ -999,7 +1011,7 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+ 
+ err_free_tree:
+ 	kfree(fdt);
+-	kfree(tree);
++	kfree(tree_mem);
+ 
+ err_free_overlay_changeset:
+ 	free_overlay_changeset(ovcs);
+@@ -1008,9 +1020,14 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+ 	mutex_unlock(&of_mutex);
+ 	of_overlay_mutex_unlock();
+ 
+-out:
+ 	pr_debug("%s() err=%d\n", __func__, ret);
+ 
++	return ret;
++
++err_free_tree_unlocked:
++	kfree(fdt);
++	kfree(tree_mem);
++
+ 	return ret;
+ }
+ 
+@@ -1019,6 +1036,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+ {
+ 	void *new_fdt;
+ 	void *new_fdt_align;
++	void *overlay_mem;
+ 	int ret;
+ 	u32 size;
+ 	struct device_node *overlay_root = NULL;
+@@ -1046,18 +1064,17 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+ 	new_fdt_align = PTR_ALIGN(new_fdt, FDT_ALIGN_SIZE);
+ 	memcpy(new_fdt_align, overlay_fdt, size);
+ 
+-	of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
+-	if (!overlay_root) {
++	overlay_mem = of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
++	if (!overlay_mem) {
+ 		pr_err("unable to unflatten overlay_fdt\n");
+ 		ret = -EINVAL;
+ 		goto out_free_new_fdt;
+ 	}
+ 
+-	ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
++	ret = of_overlay_apply(new_fdt, overlay_mem, overlay_root, ovcs_id);
+ 	if (ret < 0) {
+ 		/*
+-		 * new_fdt and overlay_root now belong to the overlay
+-		 * changeset.
++		 * new_fdt and overlay_mem now belong to the overlay changeset.
+ 		 * overlay changeset code is responsible for freeing them.
+ 		 */
+ 		goto out;
+@@ -1067,6 +1084,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+ 
+ 
+ out_free_new_fdt:
++	kfree(overlay_mem);
+ 	kfree(new_fdt);
+ 
+ out:
+-- 
+Frank Rowand <frank.rowand@sony.com>
+
