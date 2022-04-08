@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 745374F8AB7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 02:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F27E4F8B3B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 02:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiDHAf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 20:35:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
+        id S233029AbiDHAql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 20:46:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbiDHAf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 20:35:26 -0400
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605A8132EA4;
-        Thu,  7 Apr 2022 17:33:25 -0700 (PDT)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-d39f741ba0so8149567fac.13;
-        Thu, 07 Apr 2022 17:33:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FuhSRqLc9YX+vS3DQySTObIYyjmCN9so1xiUO3aEse4=;
-        b=lLX67thIZW7C1urVy1JCswj70Qdqa+i0+RPxKdzpKHvvj9NvSXQss8EUGM7iOX0Xuo
-         f4nY3EKDXFQWoFyfOYJpnyUx4CUrMcsyq/AxMkf5DrALk8igNiUGKFqb8RcN3EztKNZ2
-         LBqgyPsKYmj56ZMh1FEzwh5CNByI1LcXZmyfLAGNxTXhukcYccttS2czgLTpbYH6QFUe
-         bzQ5cm4wvl/JPdRlvYpIqRR+aVHXlgJ9vLk5cIG0wbj1cuAr9SRNHDE3H2WXW8l5FUrj
-         wuiogQLN4wrkisX/USAroRhYwvgMGLBCpSf33Wlpyj8Wuhk7lYzcB17D8qRJB+cUD/7k
-         nlWA==
-X-Gm-Message-State: AOAM53310Jl3065GV/K2frfjjgOZBqSadJO+MVmBo05UdhXbYengM4HY
-        wGnMQ1Kkw0uPCokAhCS8bUkUgUO9UA==
-X-Google-Smtp-Source: ABdhPJx4rH+2+AE5Tzihn8EsxMfe4JS9cw90ljWp/QDayo/YYWWb8m9bWWoObNAVtikPZzjnJqk80g==
-X-Received: by 2002:a05:6870:d58c:b0:de:6900:6222 with SMTP id u12-20020a056870d58c00b000de69006222mr7437702oao.179.1649378004683;
-        Thu, 07 Apr 2022 17:33:24 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y3-20020a056870e50300b000d9be6436f1sm8179775oag.29.2022.04.07.17.33.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 17:33:24 -0700 (PDT)
-Received: (nullmailer pid 2315471 invoked by uid 1000);
-        Fri, 08 Apr 2022 00:33:23 -0000
-Date:   Thu, 7 Apr 2022 19:33:23 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>
-Subject: Re: [RESEND PATCH] dt-bindings: power: renesas,rcar-sysc: drop
- useless consumer example
-Message-ID: <Yk+C098vWGzE0tnl@robh.at.kernel.org>
-References: <20220407193542.17230-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S233015AbiDHAqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 20:46:40 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B19925882E
+        for <devicetree@vger.kernel.org>; Thu,  7 Apr 2022 17:44:34 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id C5B01839A1;
+        Fri,  8 Apr 2022 02:44:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649378672;
+        bh=w0D23MRSjhyzKPbKbg3mlGfdQCG2spK00bysC/PSgLk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bU1FJfmRE2nqm6/YMm+Vjv8+uSSIExcKO1uDUejwkkLw3h6gUslOb/n8RH4Ham3/Y
+         47Vz/xOG5v7+8f0Vb+9JvsNjfbOa9gYaXGQdZw2zmMKwt+wlXTOtuIJBUDyGRNAkYD
+         syMplkjUrIrEXaAesnxNY5Dye8DoboOhhmnzzbifqBxRffpAryTYYFMaiy9GtXBi1T
+         2nbUMKrbTKjXS+uRr+PV4zmaWTULbdqKelGQZVMP39v/YyQErRglmMyefsHoaWKPz3
+         z92xDCN49iY17jKhHwOiqJfUzM+V23ssW6NPPYunqfObUx7q9wV+PD31yl9pCNYpkX
+         CnSYR31DnYK/A==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Subject: [PATCH v2] dt-bindings: rcc: Add common clock properties
+Date:   Fri,  8 Apr 2022 02:44:12 +0200
+Message-Id: <20220408004412.663880-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220407193542.17230-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Apr 2022 21:35:42 +0200, Krzysztof Kozlowski wrote:
-> Consumer examples in the bindings of resource providers are trivial,
-> useless and duplication of code.  Remove the example code for consumer.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/power/renesas,rcar-sysc.yaml         | 15 +++------------
->  1 file changed, 3 insertions(+), 12 deletions(-)
-> 
+Add common properties appearing in DTSes (assigned-clocks and similar)
+to fix dtbs_check warnings like:
 
-Applied, thanks!
+arch/arm/boot/dts/stm32mp153c-dhcom-drc02.dt.yaml: rcc@50000000: 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+To: devicetree@vger.kernel.org
+Acked-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+V2: Add AB from Gabriel
+---
+ .../devicetree/bindings/clock/st,stm32mp1-rcc.yaml          | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+index a0ae4867ed27e..9bcf198bae170 100644
+--- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
++++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
+@@ -62,6 +62,12 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  clocks: true
++  clock-names: true
++  assigned-clocks: true
++  assigned-clock-parents: true
++  assigned-clock-rates: true
++
+ required:
+   - "#clock-cells"
+   - "#reset-cells"
+-- 
+2.35.1
+
