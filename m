@@ -2,133 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C97C54F9CA8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 20:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 258C74F9CAE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 20:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238668AbiDHS0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 14:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44494 "EHLO
+        id S236397AbiDHS1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 14:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238671AbiDHSZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 14:25:36 -0400
-Received: from smtp.smtpout.orange.fr (smtp10.smtpout.orange.fr [80.12.242.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7106639018C
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 11:23:28 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.180.246])
-        by smtp.orange.fr with ESMTPA
-        id ctGUnWKJjD97rctGVn6qy3; Fri, 08 Apr 2022 20:23:26 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Fri, 08 Apr 2022 20:23:26 +0200
-X-ME-IP: 86.243.180.246
-Message-ID: <d08f3202-54f1-4c5a-01bd-70816a917b50@wanadoo.fr>
-Date:   Fri, 8 Apr 2022 20:23:22 +0200
+        with ESMTP id S230085AbiDHS1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 14:27:40 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE36B195338;
+        Fri,  8 Apr 2022 11:25:35 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id r8so9673806oib.5;
+        Fri, 08 Apr 2022 11:25:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vQfJAKUgvClkkyeIs6rV92XnnDXDzlXjyxiEcCWwtPU=;
+        b=JCOKm2epdNbLbzOfOW7NJN9KKvwqsWZZsu7qLW7p8f4aTU3Bp9Fh1FKhc3jJopzbcr
+         IngDn/os6nhGWfKL4KINWjLHHHjeDhPOg8Pbo5DOghmezeS54X4Wl/ruAZ8q3Hb5tyZY
+         Rply5WtKgCI6EBMEgRnD9oAWJPZalkadlyWU5TMLETd/2feGwpQWBUitM3plq8HylWKy
+         JRprlYuLL3TuLDscHjEhtqXZ/1nUINCheB2Y8lwJfXyI+BLgUIm/cr0lUdBEWXmsll8M
+         trMGcGExgyS0UzVQK/7UOYg0kpJ+AsiUQ8b/gbrgA84Kn9mmulQOYOaA5s2jeXFHplvw
+         /WuQ==
+X-Gm-Message-State: AOAM530LQlmLT6b+s2ZTdrEifvBzLK15lXFapp79JQHzdHzTaikEFkrl
+        oHZGpVyXICcShS8alb52zQ==
+X-Google-Smtp-Source: ABdhPJzlQwv14QkshbNP1Oi/GdkIrCLDU8BlOxyh9LjdZe+xlONWhQsKwHIiwkgNu3FuyPLiAB6bsA==
+X-Received: by 2002:a05:6808:18a4:b0:2da:5b12:840a with SMTP id bi36-20020a05680818a400b002da5b12840amr511330oib.241.1649442335043;
+        Fri, 08 Apr 2022 11:25:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 12-20020a05687012cc00b000de97cc1beesm9285382oam.43.2022.04.08.11.25.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 11:25:34 -0700 (PDT)
+Received: (nullmailer pid 3815891 invoked by uid 1000);
+        Fri, 08 Apr 2022 18:25:33 -0000
+Date:   Fri, 8 Apr 2022 13:25:33 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Luis Oliveira <Luis.Oliveira@synopsys.com>
+Subject: Re: [PATCH 09/14] dt-bindings: reset: snps,dw-reset: Convert to yaml
+Message-ID: <YlB+Hd6IGdM8SD8X@robh.at.kernel.org>
+References: <20220407154338.4190674-1-p.zabel@pengutronix.de>
+ <20220407154338.4190674-9-p.zabel@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5 2/2] leds: ktd2692: Make aux-gpios optional
-Content-Language: en-GB
-To:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220408175929.281453-1-markuss.broks@gmail.com>
- <20220408175929.281453-3-markuss.broks@gmail.com>
-From:   Marion & Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220408175929.281453-3-markuss.broks@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220407154338.4190674-9-p.zabel@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Le 08/04/2022 à 19:59, Markuss Broks a écrit :
-> Make the AUX pin optional, since it isn't a core part of functionality,
-> and the device is designed to be operational with only one CTRL pin.
->
-> Also pick up maintenance for the LED driver and the yaml bindings.
->
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+On Thu, Apr 07, 2022 at 05:43:33PM +0200, Philipp Zabel wrote:
+> Convert the device tree bindings for the Synopsys DesignWare reset
+> controller to YAML schema to allow participating in DT validation.
+> 
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Luis Oliveira <Luis.Oliveira@synopsys.com>
 > ---
->   MAINTAINERS                       | 6 ++++++
->   drivers/leds/flash/leds-ktd2692.c | 4 ++--
->   2 files changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2db49ea7ae55..8ef5667a1d98 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10479,6 +10479,12 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
->   F:	drivers/video/backlight/ktd253-backlight.c
->   
-> +KTD2692 FLASH LED DRIVER
-> +M:	Markuss Broks <markuss.broks@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd2692.yaml
-> +F:	drivers/leds/flash/leds-ktd2692.yaml
+>  .../bindings/reset/snps,dw-reset.txt          | 30 -------------
+>  .../bindings/reset/snps,dw-reset.yaml         | 44 +++++++++++++++++++
+>  2 files changed, 44 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+>  create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/snps,dw-reset.txt b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+> deleted file mode 100644
+> index 0c241d4aae76..000000000000
+> --- a/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Synopsys DesignWare Reset controller
+> -=======================================
+> -
+> -Please also refer to reset.txt in this directory for common reset
+> -controller binding usage.
+> -
+> -Required properties:
+> -
+> -- compatible: should be one of the following.
+> -	"snps,dw-high-reset" - for active high configuration
+> -	"snps,dw-low-reset" - for active low configuration
+> -
+> -- reg: physical base address of the controller and length of memory mapped
+> -	region.
+> -
+> -- #reset-cells: must be 1.
+> -
+> -example:
+> -
+> -	dw_rst_1: reset-controller@0000 {
+> -		compatible = "snps,dw-high-reset";
+> -		reg = <0x0000 0x4>;
+> -		#reset-cells = <1>;
+> -	};
+> -
+> -	dw_rst_2: reset-controller@1000 {
+> -		compatible = "snps,dw-low-reset";
+> -		reg = <0x1000 0x8>;
+> -		#reset-cells = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/reset/snps,dw-reset.yaml b/Documentation/devicetree/bindings/reset/snps,dw-reset.yaml
+> new file mode 100644
+> index 000000000000..f9b36ddc0ea1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/snps,dw-reset.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/snps,dw-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   KTEST
->   M:	Steven Rostedt <rostedt@goodmis.org>
->   M:	John Hawley <warthog9@eaglescrag.net>
-> diff --git a/drivers/leds/flash/leds-ktd2692.c b/drivers/leds/flash/leds-ktd2692.c
-> index f341da1503a4..fc9c2e441caa 100644
-> --- a/drivers/leds/flash/leds-ktd2692.c
-> +++ b/drivers/leds/flash/leds-ktd2692.c
-> @@ -284,8 +284,8 @@ static int ktd2692_parse_dt(struct ktd2692_context *led, struct device *dev,
->   		return ret;
->   	}
->   
-> -	led->aux_gpio = devm_gpiod_get(dev, "aux", GPIOD_ASIS);
-> -	ret = PTR_ERR_OR_ZERO(led->aux_gpio);
-> +	led->aux_gpio = devm_gpiod_get_optional(dev, "aux", GPIOD_ASIS);
-> +	ret = PTR_ERR(led->aux_gpio);
->   	if (ret) {
->   		dev_err(dev, "cannot get aux-gpios %d\n", ret);
->   		return ret;
+> +title: Synopsys DesignWare Reset controller
+> +
+> +maintainers:
+> +  - Luis Oliveira <Luis.Oliveira@synopsys.com>
 
-Hi,
+Mail bounces, needs a new one.
 
-Sorry if I was unclear. What I was meaning is below.
-
-This v5 is just wrong. If 'led->aux_gpio' is a valid pointer, then 
-'PTR_ERR(led->aux_gpio)' will be non-0 and you will bail-out with a 
-pointless error value.
-
-PTR_ERR(x) is a valid error value if IS_ERR(x) is true. Otherwise it is 
-just 'x' casted as a long. So if 'x' is valid, it can be anything.
-
-
-What I had in mind was more something like:
-
-@@ -284,10 +284,9 @@ static int ktd2692_parse_dt(struct ktd2692_context *led, struct device *dev,
-  		return ret;
-  	}
-  
--	led->aux_gpio = devm_gpiod_get(dev, "aux", GPIOD_ASIS);
--	ret = PTR_ERR_OR_ZERO(led->aux_gpio);
--	if (ret) {
--		dev_err(dev, "cannot get aux-gpios %d\n", ret);
-+	led->aux_gpio = devm_gpiod_get_optional(dev, "aux", GPIOD_ASIS);
-+	if (IS_ERR(led->aux_gpio)) {
-+		ret = PTR_ERR(led->aux_gpio);
-+		dev_err(dev, "cannot get aux-gpios: %d\n", ret);
-  		return ret;
-  	}
-  
-
-
-I guess that using PTR_ERR_OR_ZERO() is an option (like in the original 
-code) but personally I find it less readable (but it is just a matter of 
-taste)
-
-CJ
-
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - snps,dw-high-reset # for active high configuration
+> +      - snps,dw-low-reset  # for active low configuration
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dw_rst_1: reset-controller@0000 {
+> +        compatible = "snps,dw-high-reset";
+> +        reg = <0x0000 0x4>;
+> +        #reset-cells = <1>;
+> +    };
+> +
+> +    dw_rst_2: reset-controller@1000 {
+> +        compatible = "snps,dw-low-reset";
+> +        reg = <0x1000 0x8>;
+> +        #reset-cells = <1>;
+> +    };
+> +
+> -- 
+> 2.30.2
+> 
+> 
