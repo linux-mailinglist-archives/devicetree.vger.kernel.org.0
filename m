@@ -2,198 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0247B4F9D7E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0602B4F9D98
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:19:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239137AbiDHTKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 15:10:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
+        id S234491AbiDHTVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 15:21:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbiDHTKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:10:15 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2264EFE40E;
-        Fri,  8 Apr 2022 12:08:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649444890; x=1680980890;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AWYekLkV9Dk0OIItlmpZ6xPEjkw9ZzDl/PwK+X2pq44=;
-  b=I1QOHrdEHmqK1sUo2QIZ1jl/Dud1v8RgW7jCzIxlLqAzK6qvibrAmHBy
-   DJQJ+Kc1X6/osZbOg67VyDgbECZj1VtSWIMY5khVWw5RSOY3Q8upusOdv
-   i7KzcQdTBrtBfOCzjBzMgkfP+NcabXA8Uf5jLFm7IlIk7F0sUzcMPCh0H
-   VlflFX6xdgcZS7mK6CVrMOhmYJgqjnUdLfPT8mHZuzUqGXKa9WK6rsLXj
-   qxIiEt6AyPWjwh2NWVi3dwAEvfWhxjGfOYbdiQzhg1dktVQEXTfbQUg03
-   bAZNIR/9w8439jMsNonnCdB7HHvcQAvngYXCAv+48aFyGmVLEkndMTHgc
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="259266366"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
-   d="scan'208";a="259266366"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 12:08:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
-   d="scan'208";a="659594181"
-Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 08 Apr 2022 12:08:04 -0700
-Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nctxj-0000Yk-DD;
-        Fri, 08 Apr 2022 19:08:03 +0000
-Date:   Sat, 9 Apr 2022 03:07:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     kbuild-all@lists.01.org, linux-media@vger.kernel.org,
-        Irui Wang <irui.wang@mediatek.com>,
-        George Sun <george.sun@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9, 16/17] media: mediatek: vcodec: support stateless VP9
- decoding
-Message-ID: <202204090240.SZpTTylK-lkp@intel.com>
-References: <20220408120240.29571-17-yunfei.dong@mediatek.com>
+        with ESMTP id S230393AbiDHTVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:21:34 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7A0D713E10
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 12:19:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1649445568;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=0fvEhjlM3QZzX1sj1DtKINnNazNEUJ++0aetbtdWVKg=;
+        b=h3YwPQ61pEGrif5jUTkO4x2FqVcpNsK4Nkin39Oy77JTTZkii1NyrIlF8gR/7/INtjjniC
+        r5qdPfG7d0SFhg0FIL/dv/mpWSNIBfUCXq2zM9Ti2xZmb7OCzPJoFxoh/+DC1wGsksXUjc
+        /D2y7aXQ8bJFTwQNqMujhn6MfahmB7E=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-318-_ipvTY9ZNAeOuvpr3-PQTg-1; Fri, 08 Apr 2022 15:19:27 -0400
+X-MC-Unique: _ipvTY9ZNAeOuvpr3-PQTg-1
+Received: by mail-wm1-f71.google.com with SMTP id r127-20020a1c4485000000b0038eaca2b8c9so324030wma.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 12:19:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0fvEhjlM3QZzX1sj1DtKINnNazNEUJ++0aetbtdWVKg=;
+        b=mqM9CxWsqfqIkugPV9wfyAV6QrT7ITiO4QKi+qq+XjmnpYWj+8jpLE89BAM9z98hKn
+         9C54kZlOk619MxqJPwVZQOOL8HEmJVkEfzPg75nadxpRKl1L4UtLaxbfEfIv53C+uN0D
+         CZMizszl79FrKCTjquKdVr/CIFB2HdQnWJErGFDJSzqEUr/XpyA6YqQVC8jMAUj+RtHJ
+         6nfsbm4B0//oS8swP2oRZtaHpt4NfF0NVSfqsiwq/LqsQlB5ud/PRRv0rx1gEer5uasF
+         LiwiyNzmo8clxicYls23ibbiW7xLg5MasQAuOrv4y4cTBRQh8yMa1uVVlIQcX3f4Uj2E
+         MOzw==
+X-Gm-Message-State: AOAM532D9bHucHH7L5LsHNm7pw8XxikSvl4YV98jRT/Tk/9DuUgW7XLR
+        uv5zA2YDeCDAjJrVJLqfXKLrVgOICQ+NhLsNVvzdmL4bqlFNmaR+PxjrZyVZpgYncjgr6dJ5qkn
+        DCJHQwEABxAD3kTjW7X0JGw==
+X-Received: by 2002:a1c:f717:0:b0:38e:6bed:2aad with SMTP id v23-20020a1cf717000000b0038e6bed2aadmr18373482wmh.45.1649445565779;
+        Fri, 08 Apr 2022 12:19:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzTT0GmyN7JrE/yRf+eSHTLh9bVjgwg1JFALb3opklGlOqu4r3MXnbDoHko0BkqNp4p7yOH1g==
+X-Received: by 2002:a1c:f717:0:b0:38e:6bed:2aad with SMTP id v23-20020a1cf717000000b0038e6bed2aadmr18373474wmh.45.1649445565511;
+        Fri, 08 Apr 2022 12:19:25 -0700 (PDT)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id i14-20020a0560001ace00b00203da1fa749sm30024255wry.72.2022.04.08.12.19.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 12:19:25 -0700 (PDT)
+Message-ID: <ffe5c7d4-d27f-ccb6-932e-e027e1ae14da@redhat.com>
+Date:   Fri, 8 Apr 2022 21:19:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408120240.29571-17-yunfei.dong@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev
+ compatible strings
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org
+References: <20220407200205.28838-1-javierm@redhat.com>
+ <20220407200205.28838-2-javierm@redhat.com>
+ <YlB9TsbhoQblo1H8@robh.at.kernel.org>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <YlB9TsbhoQblo1H8@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
+Hello Rob,
 
-Thank you for the patch! Perhaps something to improve:
+On 4/8/22 20:22, Rob Herring wrote:
+> On Thu, Apr 07, 2022 at 10:02:00PM +0200, Javier Martinez Canillas wrote:
+>> The current compatible strings for SSD130x I2C controllers contain an -fb
+>> suffix, this seems to indicate that are for a fbdev driver. But the DT is
+>> supposed to describe the hardware and not Linux implementation details.
+> 
+> True, but compatible is just an identifier. There's no reason to 
+> deprecate unless the binding as a whole needs to be redone.
+> 
+> I imagine you also want 2 compatibles for 2 drivers. That's saying you 
+> should change your firmware to switch drivers. The fact that we have 2 
+> drivers for the same h/w is a kernel problem. Don't bring DT into it.
+>
 
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on v5.18-rc1 next-20220408]
-[cannot apply to remoteproc/rproc-next drm-tip/drm-tip]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+No, that's not what I meant. In fact, we currently have two drivers that
+match against the same set of compatible strings. These drivers are:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yunfei-Dong/media-mediatek-vcodec-Add-vdec-enable-disable-hardware-helpers/20220408-210244
-base:   git://linuxtv.org/media_tree.git master
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20220409/202204090240.SZpTTylK-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/251c7c77f6690881357df39867a32a03eb7db3b7
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yunfei-Dong/media-mediatek-vcodec-Add-vdec-enable-disable-hardware-helpers/20220408-210244
-        git checkout 251c7c77f6690881357df39867a32a03eb7db3b7
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/media/
+* drivers/video/fbdev/ssd1307fb.c
+* drivers/gpu/drm/solomon/ssd130x-i2c.c
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+what I don't personally like about the current compatible strings is that
+the *driver* name was encoded on those, rather than the IC names. So for
+instance there's a "solomon,ssd1307fb-i2c" (notice the fb suffix) instead
+of just "solomon,ssd1307-i2c" or "solomon,ssd1307".
 
-All warnings (new ones prefixed by >>):
+When I ported the fbdev driver to DRM, I considered using different values
+for the compatible strings but decided to just use the same for backward
+compatibility.
 
-   In file included from drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:12:
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c: In function 'vdec_vp9_slice_lat_decode':
->> drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 6 has type 'dma_addr_t' {aka 'unsigned int'} [-Wformat=]
-      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-         |                     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
-     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
-     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
-     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
-      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
-         |         ^~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1938:9: note: in expansion of macro 'mtk_vcodec_debug'
-    1938 |         mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 7 has type 'dma_addr_t' {aka 'unsigned int'} [-Wformat=]
-      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-         |                     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
-     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
-     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
-     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
-      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
-         |         ^~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1938:9: note: in expansion of macro 'mtk_vcodec_debug'
-    1938 |         mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c: In function 'vdec_vp9_slice_core_decode':
->> drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 6 has type 'dma_addr_t' {aka 'unsigned int'} [-Wformat=]
-      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-         |                     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
-     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
-     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
-     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
-      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
-         |         ^~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:2007:9: note: in expansion of macro 'mtk_vcodec_debug'
-    2007 |         mtk_vcodec_debug(instance, "core dma_addr_end 0x%lx\n", pfc->vsi.trans.dma_addr_end);
-         |         ^~~~~~~~~~~~~~~~
+But now I want to add compatible strings for OLED controllers that use a
+SPI interface instead, and I don't really want to add a compatible string
+"solomon,ssd1307fb-spi" but just without the "fb".
 
+I want the SPI compatible strings to be consistent with the I2C ones though,
+hence the deprecation so new DTS could just use the ones without a "fb".
 
-vim +29 drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h
+Now, if you say that I can't do add new ones for I2C, then I will just add
+"solomon,ssd1307fb-spi" and similar even though I don't like the "fb" there.
 
-4e855a6efa5470 drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Tiffany Lin      2016-05-03  27  
-71c789760ff9ba drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Dafna Hirschfeld 2021-11-17  28  #undef pr_fmt
-71c789760ff9ba drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Dafna Hirschfeld 2021-11-17 @29  #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-4e855a6efa5470 drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Tiffany Lin      2016-05-03  30  
+And just to make clear, the DRM driver will continue matching against both
+compatible strings, but the fbdev will only match the old "fb" ones.
+
+[snip]
+
+>> +
+>> +      # SSD130x I2C controllers
+>> +      - items:
+>> +          - enum:
+>> +              - sinowealth,sh1106-i2c
+>> +              - solomon,ssd1305-i2c
+>> +              - solomon,ssd1306-i2c
+>> +              - solomon,ssd1307-i2c
+>> +              - solomon,ssd1309-i2c
+> 
+> There's also no reason to put the bus interface into the compatible as 
+> the same compatible will work on different buses. But since you want to 
+> add SPI, just using the 'i2c' one will confuse people. For that reason 
+> you could add 'solomon,ssd1305', etc. for both SPI support and I2C DRM.
+
+That's not really true. There's a reason to add per bus compatible strings
+at least in Linux. And is that there's no information about the bus types
+in module aliases that are reported to user-space for module auto-loading.
+
+For example, 
+
+$ cat /sys/devices/platform/soc/fe804000.i2c/i2c-1/1-003c/modalias 
+of:NoledT(null)Csolomon,ssd1306fb-i2c
+
+$ cat /sys/devices/platform/soc/fe804000.i2c/i2c-1/1-003c/uevent 
+DRIVER=ssd130x-i2c
+OF_NAME=oled
+OF_FULLNAME=/soc/i2c@7e804000/oled@3c
+OF_COMPATIBLE_0=solomon,ssd1306fb-i2c
+OF_COMPATIBLE_N=1
+MODALIAS=of:NoledT(null)Csolomon,ssd1306fb-i2c
+
+and
+
+$ modinfo ssd130x-i2c | grep alias
+alias:          of:N*T*Csolomon,ssd1309fb-i2cC*
+alias:          of:N*T*Csolomon,ssd1309fb-i2c
+alias:          of:N*T*Csolomon,ssd1307fb-i2cC*
+alias:          of:N*T*Csolomon,ssd1307fb-i2c
+alias:          of:N*T*Csolomon,ssd1306fb-i2cC*
+alias:          of:N*T*Csolomon,ssd1306fb-i2c
+alias:          of:N*T*Csolomon,ssd1305fb-i2cC*
+alias:          of:N*T*Csolomon,ssd1305fb-i2c
+alias:          of:N*T*Csinowealth,sh1106-i2cC*
+alias:          of:N*T*Csinowealth,sh1106-i2c
+
+this module will match against any MODALIAS uevent that has one of the
+listed compatible strings in "C" and any node name in "N". But also for
+any type "T".
+
+And even if the module alias was more restrictive and say only matched
+against 'of:N*Ti2cCsolomon,ssd1307fb-i2c', the type information is not
+filled by the bus drivers.
+
+So, if we just had a "solomon,ssd1307" compatible string, then a device
+registered through OF could lead to the wrong kernel module to be loaded.
+
+In other words, it's true that having a single compatible strings for all
+bus drivers will work for device -> driver matching but may not work for
+module auto-loading.
+
+> (You should also support the 'fb-i2c' variant in DRM IMO, but doubtful 
+> that I'll review that.)
+>
+
+As mentioned above, it does even after adding support for the new strings,
+for backward compatibility.
+ 
+> Rob
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best regards,
+
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
