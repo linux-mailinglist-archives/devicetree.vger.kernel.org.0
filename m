@@ -2,76 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3954F9BDD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 680AC4F9C12
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237139AbiDHRnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 13:43:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54502 "EHLO
+        id S229666AbiDHR54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 13:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238372AbiDHRnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:43:02 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7941690FC3;
-        Fri,  8 Apr 2022 10:40:58 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id b19so5390228qkk.12;
-        Fri, 08 Apr 2022 10:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=aEGMMSoqzQV29Yb3vuyxXwWYzXUyMcWqjEt/8PwjhP4=;
-        b=f5+kjuwksQh4ROVlTCgr6Bmrfuh7tv7d2sKBntQaNA9RkEEG/8YHNYJS8Lm3GaAKLY
-         6wiVB3nqxEc8RbW6j+ID+7Yg3t/yvgZSEZ4R3D8Bt7rlKw6khDqNF62CGtWSYv3EsoZ5
-         3JTkkN1Nil0CUHRORoOWuBcWsowiQTlEiM18fOEOvijFXgSVbAnQVgny63DENrr8gyic
-         LZhYITb1UhHZsijwT+h8De5Ur9GSKjlTeynpZdblz186EU5fDuv+IHnfXHyTrtg0m9Rt
-         NhgW4DzGPdP5EEStA/ZyOVWilT+cYDIGy96rU4Yq7PY4AJ72cI9ZwohsK4kgn6s4wkVs
-         GKNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=aEGMMSoqzQV29Yb3vuyxXwWYzXUyMcWqjEt/8PwjhP4=;
-        b=vU2s3vgiveMFdxRRoajOMel5tmtox9AjEi0prK+pL38f6DcTWlRxXj5fp1zQ8iOSec
-         B0i2IOadn/r1Eg+DvxRz/Tl6FY8NUuC6BL8fwbQaUr/ssl6Pll4L3ECX9zKVATS/cb5n
-         La7nxEPBxPJ3CNkTr2kR4Qv0KIA9cY5NE1Cwzo176Yot3xDGzZ+aEnSzOFrSfyJrvTDh
-         jANlpV9IaTjQDWgGvpm7lxn8Xd6OFrgfcseIZCGlIC1wF1Mm4TZUVgMm/wf8zBnru1EW
-         1TTJqFGaYZa0jGs7Uq5sCrXrYekBJZav2aBwFSyC3KOqxpGwSSNbQTd/iMOsZkDk+6cY
-         r+KQ==
-X-Gm-Message-State: AOAM530+PWfllESFvAz7ne7JrOw8l3b4y+muR0UVaMmDwykxLLaQWrGF
-        iuoGYUS/xJMhT7LGm1PJDqu8a9vAbDY=
-X-Google-Smtp-Source: ABdhPJyGWb1/E9mWepAzuuHv95UgS5bl6t4bSWTiiNmVXIifF60fF07UXLQHxTRzwcOEoHEyfASS3Q==
-X-Received: by 2002:a37:554:0:b0:69b:ef36:cd6f with SMTP id 81-20020a370554000000b0069bef36cd6fmr1454823qkf.129.1649439657667;
-        Fri, 08 Apr 2022 10:40:57 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:6d2d:3351:3e49:3378? ([2600:1700:2442:6db0:6d2d:3351:3e49:3378])
-        by smtp.gmail.com with ESMTPSA id h186-20020a376cc3000000b00699c789a757sm9336207qkc.132.2022.04.08.10.40.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 10:40:57 -0700 (PDT)
-Message-ID: <1ed7ea01-b515-7c0b-4b3e-547d19717deb@gmail.com>
-Date:   Fri, 8 Apr 2022 12:40:56 -0500
+        with ESMTP id S238444AbiDHR5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:57:47 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E526330
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 10:55:42 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E426C83A97;
+        Fri,  8 Apr 2022 19:55:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649440539;
+        bh=BDWp6Jago7GfLdFMp4ltJ39tiOzPTVkDp8buYKrvTmY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=f+aidy7DKMENj2sk7/p0sIkVEtnCf94n83X5Js5WdVYofSaCk4MwCLJQZhu3ubN9h
+         yprf8Htsdzc15h33iFGnJKVjx0s08x+2km883r3OlcY2hFehgJJLXZtFSEB9/YNhtk
+         KuyFaz/T54LUm9l41sII6T30x18ZupUE50vfDDvUVqQGUrdUu7gCnHpOcWxolLnnhc
+         skHru1TwidCoqHJ4FabIjGQlSrQtxnlaH4vOUL4LFDsHIs0mvFEtJ50etkwnXSEpu1
+         mwale7OhboVJZU4gVGgRkh/kN57Xp+oYDop1wLZ8mvGBmxb9GlNp6IjO1l3r8KfJ6t
+         sxA51sRNu91oA==
+Message-ID: <257ef1da-dd1f-cec6-2950-42990750af43@denx.de>
+Date:   Fri, 8 Apr 2022 19:55:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/1] of: overlay: of_overlay_apply() kfree() errors
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] dt-bindings: display: panel: mipi-dbi-spi: Make
+ width-mm/height-mm mandatory
 Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Slawomir Stepien <slawomir.stepien@nokia.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alan Tull <atull@kernel.org>
-References: <20220408172103.371637-1-frowand.list@gmail.com>
- <CAL_JsqJC6pKxEmwMeirVLwJEbOH0WD+01VEfFXC257a+ZDRtsw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <CAL_JsqJC6pKxEmwMeirVLwJEbOH0WD+01VEfFXC257a+ZDRtsw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+To:     =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220404192105.12547-1-marex@denx.de>
+ <2d4ef041-8339-006e-3e94-8ff16309cba7@tronnes.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <2d4ef041-8339-006e-3e94-8ff16309cba7@tronnes.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,27 +67,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/22 12:34, Rob Herring wrote:
-> On Fri, Apr 8, 2022 at 12:21 PM <frowand.list@gmail.com> wrote:
->>
->> From: Frank Rowand <frank.rowand@sony.com>
-> 
-> The subject needs a verb.
-> 
->>
->> Fix various kfree() issues related to of_overlay_apply().
->>   - Double kfree() of fdt and tree when init_overlay_changeset()
->>     returns an error.
->>   - free_overlay_changeset() free of the root of the unflattened
->>     overlay (variable tree) instead of the memory that contains
->>     the unflattened overlay.
->>   - Move similar kfree()s from multiple error locations to a
->>     common error path (err_free_tree_unlocked:).
-> 
-> What about my question/suggestion on the original patch from Slawomir?
-> 
+On 4/8/22 16:50, Noralf Trønnes wrote:
+> Hi Marek,
 
-I lost track of your email while investigating the problem.  I'll go
-back and look at your suggestion and question.
+Hi,
 
--Frank
+> I see that you have commit rights so I assume you will be applying this
+> patch.
+
+It's already in drm-misc-fixes:
+
+https://cgit.freedesktop.org/drm/drm-misc/log/?h=drm-misc-fixes
+
+https://cgit.freedesktop.org/drm/drm-misc/commit/?h=drm-misc-fixes&id=1ecc0c09f19f8e10a2c52676f8ca47c28c9f73c7
