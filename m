@@ -2,109 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190434F98B8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 588F14F98CA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237231AbiDHO6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 10:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60320 "EHLO
+        id S237270AbiDHPAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:00:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234894AbiDHO6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:58:15 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB66F5881F
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:56:10 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id b24so10333530edu.10
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 07:56:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5HiRw4Vbmz1rrJh2dozRKVeZfGCAzISbQu8r7Z7QixE=;
-        b=TXoWEV0RnLwLPtIPTm4lzG3zoNDm3YiWUjCw7wRjYTfTrFmkWqp+LdrZg0MSY5Avkv
-         q7EJYQhW6ssnLt9w9Vbe6vrWBEZiXEjwAdHqUDm7N1hWkOSV7A1MtLjw9SpAvAtg3jiY
-         LU74+guOMRM8Rqk6kmvWoyZmDQvWQkB8KXpt52/sPqAFqujQ8o4NyaHvtyGuLOgb5xIE
-         s1bO1plHEn5j78tXuUN3xUGKnpcQ0dBkA4rfVq9v8wb/NiC/3s+y1lPR51CZV9VYjk2l
-         pk8EF5kkkVIz+rrN9FHxCf4e+N2qNQdL0xIrWJf2z9qZGA+5/6vV0CtGmFuhIxYSvQJi
-         P8Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5HiRw4Vbmz1rrJh2dozRKVeZfGCAzISbQu8r7Z7QixE=;
-        b=EiovvaNRzlo07nN6KwHCSRFg+Y7O5rUCX1bFuWnmqoPD017k1qbFo7D1EvI+VG+Z7g
-         jm+blG3v27q5Vis9bxZ/28LxfoVRg1bvv2FWEhGv+mzSBrTCZ+DnuM0jp/vthgE5bZ6x
-         DS/fd3moKngHyGDCHvvIF7Kb1NJv/pTJNmYdK48wUfeT85K1iAhQ6omssIZuXGWxGHJ9
-         ggE30Ja+eqQxQ4rY5uN3f5IdPBuhaK1g1T6vnOYd4emVO0Mfv78ZVkFL0ZqclsI694sX
-         BvwL9ryroroQpJ5HtcKcJaJA33Kme7dulknVCT9tgIbLFZhLS2XmxMk9NAd9pE5zgAwq
-         +OPA==
-X-Gm-Message-State: AOAM531q4t7TP1ouWNEr2TairBfKqDwsGDcJGLtKPnQpVQnciVVpnUfn
-        nAHQfTIPVTyS+cGsoIJKEatdeg==
-X-Google-Smtp-Source: ABdhPJxqNP+oRfi6jK3hfh9fSH7vhe1Rb/5oyPMUQ5ccKNJVzZTw0YRcPQZ6iCNpOHvO5UhXj0BfFw==
-X-Received: by 2002:a05:6402:548:b0:41c:bf00:307 with SMTP id i8-20020a056402054800b0041cbf000307mr19591699edx.6.1649429769508;
-        Fri, 08 Apr 2022 07:56:09 -0700 (PDT)
-Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id n13-20020a170906724d00b006cedd6d7e24sm8814562ejk.119.2022.04.08.07.56.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 07:56:09 -0700 (PDT)
-Message-ID: <5edc7895-5e51-bf6e-e37a-26bdc2a5db9a@linaro.org>
-Date:   Fri, 8 Apr 2022 16:56:07 +0200
+        with ESMTP id S235049AbiDHPAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:00:17 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7580119278;
+        Fri,  8 Apr 2022 07:58:12 -0700 (PDT)
+Received: from localhost.localdomain ([81.221.85.15]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MulRf-1nvKg00Qkt-00rqfV;
+ Fri, 08 Apr 2022 16:57:43 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiko Schocher <hs@denx.de>, Jacky Bai <ping.bai@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Olof Johansson <olof@lixom.net>, Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Reinhold Mueller <reinhold.mueller@emtrion.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] arm64: prepare and add verdin imx8m plus support
+Date:   Fri,  8 Apr 2022 16:57:22 +0200
+Message-Id: <20220408145725.812566-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v1 3/7] dt-bindings: rtc: add refclk to mpfs-rtc
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
-        palmer@rivosinc.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220408143646.3693104-1-conor.dooley@microchip.com>
- <20220408143646.3693104-4-conor.dooley@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220408143646.3693104-4-conor.dooley@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:GJ100Ph/AlprSBXidRKIqO1jfuHULfMHeRBA0Ew1BMxe1b7sLhP
+ J9M0IUo7z1E/SnM/Iq33Rp0JFUe43NRJbFmaP28hlCTOZ6HdcaoUNuVNnKRDNQr4dgk5jYI
+ BKEmzGGXKSCfVAHp7NMueA95MlGqcpRuYpnr/+pYNOHF82mgHzRb1eKDAiktt3Z8U5OfD6j
+ 2nGcQS9Otnk5O6K/E5QWw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:hoWg9qK/Oig=:bS5wZd0Iz2F3WVYFmwIH8I
+ iGiNEFTb4VO3+2ROW892M7PkInACe0dfjY8ryxi14CpRn/mm7jYuDLTYNcdQXvxBwY2wSn3C2
+ fE+84VFqeJQL3hmvXB4spFXDnxvXO+ljDzQnmzWXNTVWe3g1e1H1rjOJ8XssfRRnVaz1c4int
+ 7Eziv+xTqlbcgkRGlJNCNGJkPVQGxiBSE5DnZIDn8EAU8DQ9c2YmPN1Yf46OBOyr2ote1nm8b
+ BE1KyLVSu+uKE4GTkeO4voWOcM72puCKR+AHvO8k2O1whFRtwhHYdj8oIORL54RjRyxO6bbPw
+ w1BpZl42oQBr8C/KQzAEZwZz5ZaekSsxZMKbZ3VoQmWMc9mkWiviT8vvXZSAsZ+8VvAD6frW5
+ jmL+ni/CMtuea6fEDCFWQu2Deje0lWZCM47bDrrqCKnothFDxoDK6fbCdSftHbqExCmukRdGc
+ 4mhNLTuA8qlEZnbU7eD+gwVvODl3EnN4wnc8CTzG/OxLBKztd9BEz1hSBwk9DZ03BXRGzYTk+
+ uLAOiv5A7siG8+7NK2GLmMtaqekDTa2TgvrB/YNceyyHfSNe3ANt4iHXO0G4xvI/t+PQ2IuUu
+ 99qTJTijFhLU9mazemTQhs842NxRxRHm0lTnOl3ShdN6xzxiqKRJu+4Ngg6HpdVjFnU1v3oTi
+ ZOo8idlhqejXw7oGI9vThSqYytmJcHOrGW1VyJQiqjgUQ3NuK1t1bM+TguyySCid/424=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 16:36, Conor Dooley wrote:
-> The rtc on PolarFire SoC does not use the AHB clock as its reference
-> frequency, but rather a 1 MHz refclk that it shares with MTIMER. Add
-> this second clock to the binding as a required property.
-> 
-> Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../bindings/rtc/microchip,mfps-rtc.yaml           | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
-> index a2e984ea3553..1ffd97dbe6b9 100644
-> --- a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
-> @@ -31,11 +31,18 @@ properties:
->            to that of the RTC's count register.
->  
->    clocks:
-> -    maxItems: 1
-> +    items:
-> +      - description: |
-> +          AHB clock
-> +      - description: |
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Same as your patch #1 - this breaks the ABI.
 
-Best regards,
-Krzysztof
+Add DMA properties to uart2 node of the base i.MX 8M Plus device tree,
+add toradex,verdin-imx8mp et al. to dt-bindings and finally, add
+initial support for Verdin iMX8M Plus.
+
+Changes in v3:
+- Add missing audio codec todo on development board as well.
+- Actually define scl/sda-gpios for Verdin I2C_2_DSI aka i2c2. Also
+  pointed out by Laurent. Thanks!
+- Update PMIC LDO4 and I2C level shifter enablement comment.
+- Fix USDHC2_VSELECT sleep pinctrl value and add a comment.
+- Add comment about lowering frequency on Verdin I2C_2_DSI as suggested
+  by Laurent.
+- Re-based on top of Shawn's latest for-next based on 5.18-rc1.
+
+Changes in v2:
+- Add Laurent's reviewed-by tag.
+- Add Krzysztof's reviewed-by tag.
+- Fix capitalisation of verdin in comments as reported by Laurent.
+- Add/modify todo comments as suggested by Laurent.
+- Add Laurent's reviewed- and tested-by tags.
+
+Marcel Ziswiler (3):
+  arm64: dts: imx8mp: add uart2 dma
+  dt-bindings: arm: fsl: add toradex,verdin-imx8mp et al.
+  arm64: dts: freescale: add initial support for verdin imx8m plus
+
+ .../devicetree/bindings/arm/fsl.yaml          |   21 +
+ arch/arm64/boot/dts/freescale/Makefile        |    4 +
+ .../dts/freescale/imx8mp-verdin-dahlia.dtsi   |  129 ++
+ .../boot/dts/freescale/imx8mp-verdin-dev.dtsi |   46 +
+ .../imx8mp-verdin-nonwifi-dahlia.dts          |   18 +
+ .../freescale/imx8mp-verdin-nonwifi-dev.dts   |   18 +
+ .../dts/freescale/imx8mp-verdin-nonwifi.dtsi  |   54 +
+ .../freescale/imx8mp-verdin-wifi-dahlia.dts   |   18 +
+ .../dts/freescale/imx8mp-verdin-wifi-dev.dts  |   18 +
+ .../dts/freescale/imx8mp-verdin-wifi.dtsi     |   82 +
+ .../boot/dts/freescale/imx8mp-verdin.dtsi     | 1380 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |    2 +
+ 12 files changed, 1790 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-dahlia.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-dev.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+
+-- 
+2.35.1
+
