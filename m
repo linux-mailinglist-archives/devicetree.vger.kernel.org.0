@@ -2,115 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E18C64F990C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2933F4F991A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbiDHPNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:13:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56734 "EHLO
+        id S236630AbiDHPOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:14:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237461AbiDHPMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:12:46 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D0B7ECB3A
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:10:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 20396B82AA0
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 15:10:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFC42C385A3
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 15:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649430639;
-        bh=fsZOXMwHu2ZNIXU2kc3vSm8dbR+voAow4ZtRTPsdEtM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DABJ8pclKmv2H3RXc6OM8ogQ9CsUZpn6Vgw1O3z0ma3ymWfnmMG+RJOcZqNqsr0oQ
-         /c+cLt4uUgHzwp2XCqdJtGKoYQknyRpsZKp9XKMTVfuah6uqNJRV3p9+MyrXXRbhJd
-         jz6H3AYuBsmelQaIdDrc+DECS9Ul5Vul6Qfr/Y2EXSUBN2SLgkgLz2ecAcpy639Lrz
-         D1y5wegLSX0Tyw1pM/2J6Grb0UjBftcEeaWD4MFjJLAAe2+rjnga0qSMLeqgi/X4jq
-         tFrOJqZMisd1f000zEKoAeTEwxomIAaHiYa/wJAYvGnQgTH+HeGOkmpkyZTOvHK1Aw
-         fvETG4BWQc3Iw==
-Received: by mail-il1-f172.google.com with SMTP id y16so6662718ilc.7
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:10:39 -0700 (PDT)
-X-Gm-Message-State: AOAM533ah/X7usy5oiYrOtO5mHLGOTAwwWRgsbGaAWMzP4VK2bT74IZ1
-        klgga2vRFgcoqemiZSPYvVgX73Tffi5eKEoOCw==
-X-Google-Smtp-Source: ABdhPJyM0sjfy7XBwS0atfEtqzgudyb/jAkrEq9JqvSRloHOmVV5OKHjiKalS30FHFJ3JI7E4JWIs/FsESGo/ucU+A8=
-X-Received: by 2002:a05:6e02:b43:b0:2ca:89c0:896a with SMTP id
- f3-20020a056e020b4300b002ca89c0896amr1426624ilu.37.1649430638943; Fri, 08 Apr
- 2022 08:10:38 -0700 (PDT)
+        with ESMTP id S235257AbiDHPOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:14:46 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D837FC8A5;
+        Fri,  8 Apr 2022 08:12:42 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id j6so5023886qkp.9;
+        Fri, 08 Apr 2022 08:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ChSEY7h2sRW/2ExANChMlGLpgvQbTjAzXwSGw78syU4=;
+        b=VL1Y942y0CjJChV2tq2vsSLGf9pTuJOFpVmdTPyNruzKwny/pl92SPdwDE7JjJqrC7
+         sPQ3fqggNInkGYeBcIH1fiyaPuU4wvysUlDRIkRuRC3Wqb3Bbhvc3ym473gBDVOGKQk4
+         mv7YZUmqITDZ2Etk09PrfFLmxD3Ki6eRYtXWKKCloAtUE2FjDY8TfQQH7mBktUkR+LN1
+         2kBJZHf1ktDPuQxcejrWCIngAVNBKuFZJRRmXCKCn0VUQrha0K1exXCzIg6xq5v1Ag5A
+         EL6mehVqJWqU4dbcne64OMdSdvKp1KXxcr8Ti6xKJUdhKPiRGp5aMIIJd8mb/2XEC11r
+         fvQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ChSEY7h2sRW/2ExANChMlGLpgvQbTjAzXwSGw78syU4=;
+        b=B4fMJrK+Xcy+q8dMb+jDKSeCLXu1/BXtzIF7wx6NjytrmRzR/+XnJpCZJLp4cMc9Z+
+         RHESNk6e99aJp01l974HGQvAeWv8s87Wa8zadxusQqw5PugGkcnJ6QhztcMtbqokvnCB
+         /S4xO7+99DA5A0AGh10QhIZOcJjP97NWg9h7yJ9HaVELqVNUpP8j8DPpDX887irkD/nk
+         zM0sc7UtSlGytW7l5yF+CQv9giOm7pv9JsblyHzdDLn9FwhXqMBmTKldJrZUqAc3Hnup
+         aClNfQxmK/GwHXjw/IOibsMkcrXTlLiqJ37cekQrzDM0KGvKPRPbp35MSacD813MbRUc
+         r9JA==
+X-Gm-Message-State: AOAM531qMrTaCUMyldbyZfV0iLv1vyazplBb4keYtdPRRVjVZcCo2sjx
+        3iEj7tErk10woXLQVu7S/Lw=
+X-Google-Smtp-Source: ABdhPJwyTFG9s1eZqDpr0it5uK6x7Wfc6bXkHoffjYadfbrQpn/oFApdowm3ocx0VSpB92zWbYg23A==
+X-Received: by 2002:a05:620a:460b:b0:67d:1cd4:527e with SMTP id br11-20020a05620a460b00b0067d1cd4527emr12838615qkb.277.1649430761326;
+        Fri, 08 Apr 2022 08:12:41 -0700 (PDT)
+Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
+        by smtp.gmail.com with ESMTPSA id 191-20020a3707c8000000b0069a13545fcfsm2266052qkh.123.2022.04.08.08.12.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 08:12:41 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH v5 0/5] enable usb support on rk356x
+Date:   Fri,  8 Apr 2022 11:12:32 -0400
+Message-Id: <20220408151237.3165046-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <4175872e-c4d3-4504-2de8-f9a2b6c36fbc@quicinc.com>
-In-Reply-To: <4175872e-c4d3-4504-2de8-f9a2b6c36fbc@quicinc.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 8 Apr 2022 10:10:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ7bDSya+YTi33wrw2xv54cK=3K7gP5FOjufz3z-Xdc6Q@mail.gmail.com>
-Message-ID: <CAL_JsqJ7bDSya+YTi33wrw2xv54cK=3K7gP5FOjufz3z-Xdc6Q@mail.gmail.com>
-Subject: Re: Using devicetree in a non-kernel environment
-To:     "T.Michael Turney" <quic_mturney@quicinc.com>
-Cc:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 7, 2022 at 1:45 PM T.Michael Turney
-<quic_mturney@quicinc.com> wrote:
->
-> Folks,
-> I posted some queries to this list a couple of years back when we were
-> first getting started.  As I discovered our basic model differs from the
-> kernel use-case in one very important area:  we want our builds to fail
-> when anything is out of whack.
->
-> For example, DTC only throws an error on syntax and we want all of the
-> semantic warnings to cause an error and halt the build.  We addressed
-> this by creating a wrapper script that handles CPP + DTC invocation and
-> catches all warnings/errors and exits with error-code on any warning or
-> error.
+Good Morning,
 
-Why work-around what you want? Contribute to dtc and add the option.
+This is my patch series that I have maintained out of tree until the
+combophy driver landed.
 
-> We are now starting to use dt-schema and experiencing deja-vu.  We want
-> all warnings/errors to break things.  We have again created some wrapper
-> scripts and are well down the path, but a couple of questions remain.
+This has been rebased on v5.18-rc1, several patches in the previous
+series already landed and have been dropped.
 
-The current state of affairs is if we errored out on everything, no
-one would be able to run the tools. It's all I can do to keep the
-errors we do have from getting merged. The bindings are generally
-warning free, but dts files have 1000s.
+Patch 1 adds the dt bindings for the grf changes necessary.
+Patch 2 adds support to the grf driver to set the rk3566 otg clock
+source.
+Patch 3 adds the dwc3 nodes to the rk356x device tree includes.
+Patch 4 enables the dwc3 nodes on the Quartz64 Model A.
+Patch 5 enables the dwc3 nodes on the rk3568-evb.
 
-> 1. There is tight coupling of compatible property with .yaml file for
-> dt-schema.  Is there a way to force a rule that if a compatible property
-> is found in the tree there must be a corresponding yaml file as well?
+Please review and apply.
 
-I wish.
+Very Respectfully,
+Peter Geis
 
-There's a couple of things we could do. The problem is how do you
-extract compatible strings from the C code? For drivers that are
-modules, the compatible strings do end up in the module meta-data for
-autoloading. That could be extracted and checked. That doesn't get the
-non-module cases.
+Changelog:
+v5:
+- Rebase on v5.18-rc1
+- Drop patches already merged
+- Collect acks and tested-by
 
-The other idea I have is to extract properties and type information
-from schema (that's already done) and put that into C structures to
-use to validate calls reading properties. That of course would need to
-be a debug feature. Something similar with checking compatible strings
-could be possible too. We already extract all compatibles in schemas
-into a generated schema for checking undocumented compatibles in dts
-files. If for what you care about has a dts file(s), then checking the
-kernel side would be redundant.
+v4:
+- Add SoC specific binding, fall back to core.
+ 
+v3:
+- Drop the dwc-of-simple method in favor of using dwc core.
+- Drop all quirks except snps,dis_u2_susphy_quirk, which is necessary to
+  prevent device detection failures in some states.
+- Drop the reset-names.
 
-> 2. Since a lot of our devicetree nodes have a 1-1 mapping to a C struct,
-> is there a way to enforce property ordering with dt-schema and yaml
-> files today?
+v2:
+- Add a dt-bindings fix for grf.yaml
+- Unify the reset names.
+- Constrain the force usb2 clock dwc3 patch to only supported variants of
+the ip.
+- Change dwc3-of-simple to support of-match-data.
+- Drop the PCLK-PIPE clk.
+- Rename the usb nodes to be more friendly.
+- Add the rk3568-evb enable patch.
 
-You should not depend on property or node ordering. That is NOT part of the ABI.
+Michael Riesch (1):
+  arm64: dts: rockchip: add usb3 support to rk3568-evb1-v10
 
-Rob
+Peter Geis (4):
+  dt-bindings: soc: grf: add rk3566-pipe-grf compatible
+  soc: rockchip: set dwc3 clock for rk3566
+  arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
+  arm64: dts: rockchip: enable dwc3 on quartz64-a
+
+ .../devicetree/bindings/soc/rockchip/grf.yaml |  1 +
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 37 +++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      | 11 +++++
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 46 +++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  9 ++++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 35 +++++++++++++-
+ drivers/soc/rockchip/grf.c                    | 17 +++++++
+ 7 files changed, 155 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
