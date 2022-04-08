@@ -2,168 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D44D84F9256
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 11:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 081344F9265
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 11:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233884AbiDHJ6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 05:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59852 "EHLO
+        id S233984AbiDHKBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 06:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233841AbiDHJ6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 05:58:07 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A581D59CA;
-        Fri,  8 Apr 2022 02:56:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649411760; x=1680947760;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=VFW5ooso+q6hlaQnz7e4gtHdL3Ba8aSrKhhWGKZ5rUQ=;
-  b=k4cEr2LOiHEG/NGGiHN9gS31kq/aD/edsFdayOMNLL82J421wDnfAD9I
-   92YNF+DNUgTYmzwKPpxI5vmmoOiniCuYAoOyqhrWdtoSefklJWtkdLAxY
-   Dh6hfbm3PAhqH9WLOok+fWLtpU+91MwV2qlL4Pz0TgFNCfx2xakR/To/F
-   QJfCYxx6EoLVdLT2GD5tWDD/HVgQYMDfjURPN4BeA10SxG9c+Ep9cb8fF
-   wAPCjGzs7/9z/q4/VMY38DWcYqer4f5J13gewnJyiz30ObJSXEfjXfH5c
-   EP3GIZKnmrZFQVNiEKxMXKciEp1YImKeaVyttpXfxuzbTmzS6z3lnQnnt
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="260391197"
-X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; 
-   d="scan'208";a="260391197"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 02:56:00 -0700
-X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; 
-   d="scan'208";a="571433908"
-Received: from aecajiao-mobl.amr.corp.intel.com ([10.252.48.54])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 02:55:54 -0700
-Date:   Fri, 8 Apr 2022 12:55:47 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router
- support
-In-Reply-To: <20220406161856.1669069-6-miquel.raynal@bootlin.com>
-Message-ID: <6fbeebe2-9693-f91-78bd-451480f7a6dd@linux.intel.com>
-References: <20220406161856.1669069-1-miquel.raynal@bootlin.com> <20220406161856.1669069-6-miquel.raynal@bootlin.com>
+        with ESMTP id S232881AbiDHKBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 06:01:13 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C5411A568;
+        Fri,  8 Apr 2022 02:59:10 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2389x1AZ102923;
+        Fri, 8 Apr 2022 04:59:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649411941;
+        bh=1TfjV239esv+7aTz/zr3hg2oJ37B3aZabbbD1JyH6ZU=;
+        h=Date:Subject:To:References:CC:From:In-Reply-To;
+        b=nnMJ2a0S75lMW6xQBvuBW25Lz8OUg2ro9eVDbtYj7J44NtvU44VUtNMeLcQ10Q0px
+         ht6ouwog19IgWUB9qAGF5TS/lnGermrppHN6+BaxQdrxHwVXSfB9CeSd5DTFNhNZg0
+         kbdFfpiGhOEumwXoGNQg5GWLvwhZPMjOXAGwaYZ8=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2389x13x043820
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 8 Apr 2022 04:59:01 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 8
+ Apr 2022 04:59:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 8 Apr 2022 04:59:01 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2389wx6T116724;
+        Fri, 8 Apr 2022 04:58:59 -0500
+Message-ID: <690cd69d-00e7-2112-eae7-ab0ea058d4ef@ti.com>
+Date:   Fri, 8 Apr 2022 12:58:59 +0300
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1766008063-1649411759=:1643"
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/2] ARM: dts: keystone: fix case in SPI NOR node
+ compatible
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220407143140.295092-1-krzysztof.kozlowski@linaro.org>
+ <20220407143140.295092-2-krzysztof.kozlowski@linaro.org>
+CC:     Roger Quadros <rogerq@kernel.org>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+In-Reply-To: <20220407143140.295092-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-1766008063-1649411759=:1643
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
 
-On Wed, 6 Apr 2022, Miquel Raynal wrote:
-
-> The Renesas RZN1 DMA IP is based on a DW core, with eg. an additional
-> dmamux register located in the system control area which can take up to
-> 32 requests (16 per DMA controller). Each DMA channel can be wired to
-> two different peripherals.
+On 07/04/2022 17:31, Krzysztof Kozlowski wrote:
+> Vendor prefix in compatible should be lower-case.
 > 
-> We need two additional information from the 'dmas' property: the channel
-> (bit in the dmamux register) that must be accessed and the value of the
-> mux for this channel.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>   arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
+>   arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
+>   arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
+>   3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/keystone-k2e-evm.dts b/arch/arm/boot/dts/keystone-k2e-evm.dts
+> index 8f49883a675e..9e507293a8d7 100644
+> --- a/arch/arm/boot/dts/keystone-k2e-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2e-evm.dts
+> @@ -140,7 +140,7 @@ &spi0 {
+>   	nor_flash: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+> -		compatible = "Micron,n25q128a11";
+> +		compatible = "micron,n25q128a11";
+>   		spi-max-frequency = <54000000>;
+>   		m25p,fast-read;
+>   		reg = <0>;
+> diff --git a/arch/arm/boot/dts/keystone-k2hk-evm.dts b/arch/arm/boot/dts/keystone-k2hk-evm.dts
+> index f968af0bfad3..1a1a49c19a19 100644
+> --- a/arch/arm/boot/dts/keystone-k2hk-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2hk-evm.dts
+> @@ -164,7 +164,7 @@ &spi0 {
+>   	nor_flash: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+> -		compatible = "Micron,n25q128a11";
+> +		compatible = "micron,n25q128a11";
+>   		spi-max-frequency = <54000000>;
+>   		m25p,fast-read;
+>   		reg = <0>;
+> diff --git a/arch/arm/boot/dts/keystone-k2l-evm.dts b/arch/arm/boot/dts/keystone-k2l-evm.dts
+> index 32619b3c5804..06d55b89170d 100644
+> --- a/arch/arm/boot/dts/keystone-k2l-evm.dts
+> +++ b/arch/arm/boot/dts/keystone-k2l-evm.dts
+> @@ -113,7 +113,7 @@ &spi0 {
+>   	nor_flash: flash@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+> -		compatible = "Micron,n25q128a11";
+> +		compatible = "micron,n25q128a11";
+>   		spi-max-frequency = <54000000>;
+>   		m25p,fast-read;
+>   		reg = <0>;
 
-> +static void *rzn1_dmamux_route_allocate(struct of_phandle_args *dma_spec,
-> +					struct of_dma *ofdma)
-> +{
-> +	struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
-> +	struct rzn1_dmamux_data *dmamux = platform_get_drvdata(pdev);
-> +	struct rzn1_dmamux_map *map;
-> +	unsigned int dmac_idx, chan, val;
-> +	u32 mask;
-> +	int ret;
-> +
-> +	if (dma_spec->args_count != 6)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	map = kzalloc(sizeof(*map), GFP_KERNEL);
-> +	if (!map)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	chan = dma_spec->args[0];
-> +	map->req_idx = dma_spec->args[4];
-> +	val = dma_spec->args[5];
-> +	dma_spec->args_count -= 2;
-> +
-> +	if (chan >= RZN1_DMAMUX_MAX_LINES) {
-> +		dev_err(&pdev->dev, "Invalid DMA request line: %u\n", chan);
-> +		ret = -EINVAL;
-> +		goto free_map;
-> +	}
-> +
-> +	if (map->req_idx >= RZN1_DMAMUX_LINES ||
-> +	    (map->req_idx % RZN1_DMAMUX_MAX_LINES) != chan) {
-> +		dev_err(&pdev->dev, "Invalid MUX request line: %u\n", map->req_idx);
-> +		ret = -EINVAL;
-> +		goto free_map;
-> +	}
-> +
-> +	dmac_idx = map->req_idx >= RZN1_DMAMUX_MAX_LINES ? 1 : 0;
-> +	dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", dmac_idx);
-> +	if (!dma_spec->np) {
-> +		dev_err(&pdev->dev, "Can't get DMA master\n");
-> +		ret = -EINVAL;
-> +		goto free_map;
-> +	}
-> +
-> +	dev_dbg(&pdev->dev, "Mapping DMAMUX request %u to DMAC%u request %u\n",
-> +		map->req_idx, dmac_idx, chan);
-> +
-> +	mask = BIT(map->req_idx);
-> +	mutex_lock(&dmamux->lock);
-> +	dmamux->used_chans |= mask;
-> +	ret = r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
-> +	if (ret)
-> +		goto release_chan_and_unlock;
-> +
-> +	mutex_unlock(&dmamux->lock);
-> +
-> +	return map;
-> +
-> +release_chan_and_unlock:
-> +	dmamux->used_chans &= ~mask;
-
-Now that I check this again, I'm not sure why dmamux->used_chans |= mask; 
-couldn't be done after r9a06g032_sysctrl_set_dmamux() call so this 
-rollback of it wouldn't be necessary.
-
-Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-
-
+Thanks you.
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
 -- 
- i.
-
---8323329-1766008063-1649411759=:1643--
+Best regards,
+Grygorii, Ukraine
