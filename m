@@ -2,74 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED3EF4F8FBA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F3C44F8FC0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbiDHHol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 03:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41474 "EHLO
+        id S229861AbiDHHp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 03:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiDHHoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 03:44:39 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FAAD1B60CF
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 00:42:35 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id j5-20020a05600c1c0500b0038ea8b53580so269133wms.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 00:42:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mHMATotH/7GH36y4JV3UnVZN/1YVFDx1H+DptS3+PWc=;
-        b=mu/sVZgEh6+wr0/vA8nHityCIOLvTeBafSpMxYQg0Ho/GexTByIYESg54GUWecIReL
-         Y5sFAnvh5Q3VphOaUxz5yeVAuVd8RjGVzh/WundduB03NIeJATZ/Ev+TguQMVev7rt0r
-         XAINJGkAohkGxKSwgUuPPcd0urmt1yqaw047ssYtI8GaW0Nuo9azgC7MUM/XlDZdZJBF
-         5Od84ntYjv3Rhvpn6BLuJb6zxuk+v6YsXIFoQWDXRIbLjoXAHSQ/9f+DWyifn0xA7PiG
-         qg6ieRl9nCgahuy8ePNmpLqFzahtcBr4rApLtfKP8svON0SgHt8iptL0upMYU46x5Z1N
-         NAEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mHMATotH/7GH36y4JV3UnVZN/1YVFDx1H+DptS3+PWc=;
-        b=l4teXtRnOISZAWx/s6bTH5p+vCYZRR2Df9p2Ou55vio1somWTjGnc8sdZriUNS4vU6
-         bnYYaMQo1/GghfzrXKLmE1WmDdTP4FMmviwHiinYPGjnNgn1QPWCiBvpl7nUOoEvn1+W
-         GV4LnraqS/A+lBRh2MHRyPPE+ecepXQaGdH20WTvQaS4yznbX/hyZVo8HzzeqI2yIEQF
-         kCiyDsjnxIJQCCzqcM5vljCxDrpeoDa9oiPsDt5y4gxbG91ZMW2SXt0qB3jZ+ttF3Uyl
-         AAIaFeRo37nnYmg35M5s+QRr+KtdVPBXpAq5pVL2jzbsJZPUt/gFa2dIAVL2xqZEvSa2
-         YQNA==
-X-Gm-Message-State: AOAM530DqD1+GTcIeSrM+Rr8NqbjNWpYjlHENmcGPODqgl+TZFcGL/fC
-        detN5q1PKME6jZadCvTqr6W2ug==
-X-Google-Smtp-Source: ABdhPJxvN2y8IaSXW8095VaZadvE9+99TAQdw3rmhA3hdG8AgGca4W0iH4zucfGoysujnM+oIij5eg==
-X-Received: by 2002:a05:600c:3d0e:b0:38c:9b5e:52c0 with SMTP id bh14-20020a05600c3d0e00b0038c9b5e52c0mr15289652wmb.3.1649403753807;
-        Fri, 08 Apr 2022 00:42:33 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:eacd:ce6:e294:acd1])
-        by smtp.gmail.com with ESMTPSA id m4-20020a7bcb84000000b00389efb7a5b4sm9241164wmi.17.2022.04.08.00.42.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 00:42:33 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229852AbiDHHp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 03:45:26 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B84DC1C025F;
+        Fri,  8 Apr 2022 00:43:23 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 0A62A807E;
+        Fri,  8 Apr 2022 07:40:58 +0000 (UTC)
+Date:   Fri, 8 Apr 2022 10:43:21 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-amlogic@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 1/2] ARM: dts: meson: align SPI NOR node name with dtschema
-Date:   Fri,  8 Apr 2022 09:42:32 +0200
-Message-Id: <164940374766.3650310.16771762331635334011.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220407142159.293836-1-krzysztof.kozlowski@linaro.org>
-References: <20220407142159.293836-1-krzysztof.kozlowski@linaro.org>
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/4] dt-bindings: timer: Add am6 compatible for ti-timer
+Message-ID: <Yk/nmTNL4tm0sd1X@atomide.com>
+References: <20220407071006.37031-1-tony@atomide.com>
+ <20220407133344.v2x2b6rkmskatips@handled>
+ <Yk+8P5EdsdZR5h1Z@atomide.com>
+ <20220408073418.4yjs3ykt34fhqjco@boondocks>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220408073418.4yjs3ykt34fhqjco@boondocks>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,19 +47,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, 7 Apr 2022 16:21:58 +0200, Krzysztof Kozlowski wrote:
-> The node names should be generic and SPI NOR dtschema expects "flash".
+* Nishanth Menon <nm@ti.com> [220408 07:31]:
+> On 07:38-20220408, Tony Lindgren wrote:
+> > Hi,
+> > 
+> > * Nishanth Menon <nm@ti.com> [220407 13:31]:
+> > > On 10:10-20220407, Tony Lindgren wrote:
+> > > > diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
+> > > > --- a/Documentation/devicetree/bindings/timer/ti,timer.txt
+> > > > +++ b/Documentation/devicetree/bindings/timer/ti,timer.txt
+> > > > @@ -14,6 +14,7 @@ Required properties:
+> > > >  			ti,omap5430-timer (applicable to OMAP543x devices)
+> > > >  			ti,am335x-timer	(applicable to AM335x devices)
+> > > >  			ti,am335x-timer-1ms (applicable to AM335x devices)
+> > > > +			ti,am6-timer (applicable to AM6 devices)
+> > > 
+> > > Suggestion:
+> > > 
+> > > Could we call this ti,am65-timer instead? AM6 is a bit nuanced and spans
+> > > a couple of sub SoC architectures.
+> > 
+> > I think the timer hardware is the same across am64, am65 and j7. So we
+> > should pick something to represent the am6 timers as it would allow using
+> > shared dtsi files for the 16 - 30 timers there are.
+> > 
+> > Using shared timer dtsi files should work as long as the clocks are
+> > defined in include/dt-bindings/clock for each SoC, and assuming we can use
+> > the same compatible property for the timers.
 > 
+> Compatible should work fine, Though I doubt clock and other indices
+> (base address etc will scale appropriately), but we could give it a
+> shot, but we can discuss that in the context of the dts patches.
+
+Yeah that's a separate series for sure and can be done later on after we
+have am6 timers working first.
+
+> > Of course if the timers are really different across am64, am65 and j72
+> > then multiple compatible properties are neeeded.
+> > 
+> > If the timer hardware is the same, then I guess we should just pick the
+> > earliest version, so how about using ti,am64-timer?
 > 
+> yep - the oldest version will be ti,am654-timer ( AM65 was the first
+> K3 device. Unfortunately, the numbering does'nt follow a chronological
+> order)
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.19/dt64)
+OK great, I will use ti,am654-timer then.
 
-[1/2] ARM: dts: meson: align SPI NOR node name with dtschema
-      (no commit info)
-[2/2] arm64: dts: meson: align SPI NOR node name with dtschema
-      https://git.kernel.org/amlogic/c/8771ce5eadb5b73daab190c2451172e43e16ae41
+Regards,
 
--- 
-Neil
+Tony
