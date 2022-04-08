@@ -2,152 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CAF34F98FB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:06:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E18C64F990C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237369AbiDHPHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:07:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38232 "EHLO
+        id S231265AbiDHPNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237424AbiDHPHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:07:35 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA1B7C057C
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:05:30 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id h16so5706542wmd.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:05:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=z2vqFQdPAyfvut6ovQoXQ5XOm4NDygCMv5XEJBGIwVs=;
-        b=kZbVnHdSrExx7M2nYO683DIu9cLpkisfrS1P7V37RaHZVOCRV6srvL65ZqTkgVgpps
-         5es1L1ZX8PiQ6lYbBqafkUOufe0j48/IAtOG7kYWyFGkMUmjVJ8ypzm/SI2w1sdQR5P1
-         2lZroaCY2AVXV4lNW9kMFwge7FxP+Dm2U7tamg63N0QSKHVeVE7TOhT0wwD65RqnVfWu
-         6LgitVy/dU9rQr/Ddx2Q8d1ay/ddTBYfj7X63J9gyHcS0dhn3xZd+JFNG8WqXEqzdkKA
-         sZ8MKmIUPDQRPFgnyPigaKFfyBrT3C6gKcZNb8jiYsr8TRg/uUGPvlXy6QoWviwnHxss
-         smhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=z2vqFQdPAyfvut6ovQoXQ5XOm4NDygCMv5XEJBGIwVs=;
-        b=zZ3r4oCSPeWH3nnkrcUGzlGdIWN2GjY17c84LglwT8bDXcSAQyYtSh3z70vbyiPJra
-         yQfs1QdPNkCwDWDdrGEYjppEzCzn2AyqULsUu4ny5IgiqD92Y4mtZnzabzm6qZ7nlSRi
-         dEdIAnML6frs8r1NTX7lDuTxHozBZTn5CbwXJD81tlu9bixqjuXGDCugs9tJSGTZh0gd
-         0o2Ck0b5NdqGUpwxjGXgR4hFL0pCrCgQRy9abSmV7x16W7+yIZmyI1DZITY5uCqzB9Dl
-         sFkLVxC4QrdZWIloB/igbw8Q0kit1n7q3dxLDtSmv9QPilHOx81BoLmIk3xc7GtmhszV
-         1xUg==
-X-Gm-Message-State: AOAM533QXnUX3XEf8UWmWu00ymflnw7+Xir35cIeoJNTlJU7dd3VXedi
-        4MEwHXGizzUOn4oNARpLBHOOxQ==
-X-Google-Smtp-Source: ABdhPJzaJKjlfwBc4j57iWbiUBbG/JGU1kd5M0DvZJTA45YHU8Zkq5kzdGmXh1xKiEp/TQEZIXxUVQ==
-X-Received: by 2002:a05:600c:4f42:b0:38c:21:fffe with SMTP id m2-20020a05600c4f4200b0038c0021fffemr17300289wmq.63.1649430329411;
-        Fri, 08 Apr 2022 08:05:29 -0700 (PDT)
-Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id l2-20020a05600c4f0200b0038e8fb63293sm4576689wmq.22.2022.04.08.08.05.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 08:05:28 -0700 (PDT)
-Message-ID: <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
-Date:   Fri, 8 Apr 2022 17:05:27 +0200
+        with ESMTP id S237461AbiDHPMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:12:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D0B7ECB3A
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:10:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 20396B82AA0
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 15:10:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFC42C385A3
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 15:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649430639;
+        bh=fsZOXMwHu2ZNIXU2kc3vSm8dbR+voAow4ZtRTPsdEtM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DABJ8pclKmv2H3RXc6OM8ogQ9CsUZpn6Vgw1O3z0ma3ymWfnmMG+RJOcZqNqsr0oQ
+         /c+cLt4uUgHzwp2XCqdJtGKoYQknyRpsZKp9XKMTVfuah6uqNJRV3p9+MyrXXRbhJd
+         jz6H3AYuBsmelQaIdDrc+DECS9Ul5Vul6Qfr/Y2EXSUBN2SLgkgLz2ecAcpy639Lrz
+         D1y5wegLSX0Tyw1pM/2J6Grb0UjBftcEeaWD4MFjJLAAe2+rjnga0qSMLeqgi/X4jq
+         tFrOJqZMisd1f000zEKoAeTEwxomIAaHiYa/wJAYvGnQgTH+HeGOkmpkyZTOvHK1Aw
+         fvETG4BWQc3Iw==
+Received: by mail-il1-f172.google.com with SMTP id y16so6662718ilc.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:10:39 -0700 (PDT)
+X-Gm-Message-State: AOAM533ah/X7usy5oiYrOtO5mHLGOTAwwWRgsbGaAWMzP4VK2bT74IZ1
+        klgga2vRFgcoqemiZSPYvVgX73Tffi5eKEoOCw==
+X-Google-Smtp-Source: ABdhPJyM0sjfy7XBwS0atfEtqzgudyb/jAkrEq9JqvSRloHOmVV5OKHjiKalS30FHFJ3JI7E4JWIs/FsESGo/ucU+A8=
+X-Received: by 2002:a05:6e02:b43:b0:2ca:89c0:896a with SMTP id
+ f3-20020a056e020b4300b002ca89c0896amr1426624ilu.37.1649430638943; Fri, 08 Apr
+ 2022 08:10:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
- haptics
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220408115311.237039-1-luca.weiss@fairphone.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220408115311.237039-1-luca.weiss@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <4175872e-c4d3-4504-2de8-f9a2b6c36fbc@quicinc.com>
+In-Reply-To: <4175872e-c4d3-4504-2de8-f9a2b6c36fbc@quicinc.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 8 Apr 2022 10:10:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ7bDSya+YTi33wrw2xv54cK=3K7gP5FOjufz3z-Xdc6Q@mail.gmail.com>
+Message-ID: <CAL_JsqJ7bDSya+YTi33wrw2xv54cK=3K7gP5FOjufz3z-Xdc6Q@mail.gmail.com>
+Subject: Re: Using devicetree in a non-kernel environment
+To:     "T.Michael Turney" <quic_mturney@quicinc.com>
+Cc:     devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 13:53, Luca Weiss wrote:
-> Add a document describing the bindings for the AW8695 LRA Haptic Driver.
+On Thu, Apr 7, 2022 at 1:45 PM T.Michael Turney
+<quic_mturney@quicinc.com> wrote:
+>
+> Folks,
+> I posted some queries to this list a couple of years back when we were
+> first getting started.  As I discovered our basic model differs from the
+> kernel use-case in one very important area:  we want our builds to fail
+> when anything is out of whack.
+>
+> For example, DTC only throws an error on syntax and we want all of the
+> semantic warnings to cause an error and halt the build.  We addressed
+> this by creating a wrapper script that handles CPP + DTC invocation and
+> catches all warnings/errors and exits with error-code on any warning or
+> error.
 
-(...)
+Why work-around what you want? Contribute to dtc and add the option.
 
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO connected to RSTN pin (active high)
-> +
-> +  awinic,f0-preset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Default value for the f0 of LRA
-> +
-> +  awinic,f0-coefficient:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Coefficient between actual f0 and the value in the registers
-> +
-> +  awinic,f0-calibration-percent:
-> +    maxItems: 1
-> +    description: Limit of f0 deviation from awinic,f0-preset
-> +
-> +  awinic,drive-level:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Level of drive waveform in normal driving
-> +
-> +  awinic,f0-detection-play-time:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Drive waveform play times in the first period in the f0 detection
+> We are now starting to use dt-schema and experiencing deja-vu.  We want
+> all warnings/errors to break things.  We have again created some wrapper
+> scripts and are well down the path, but a couple of questions remain.
 
-Use standard unit suffixes for known units (e.g. time).
+The current state of affairs is if we errored out on everything, no
+one would be able to run the tools. It's all I can do to keep the
+errors we do have from getting merged. The bindings are generally
+warning free, but dts files have 1000s.
 
-> +
-> +  awinic,f0-detection-wait-time:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Waveform wait times in the f0 detection
+> 1. There is tight coupling of compatible property with .yaml file for
+> dt-schema.  Is there a way to force a rule that if a compatible property
+> is found in the tree there must be a corresponding yaml file as well?
 
-Ditto.
+I wish.
 
-> +
-> +  awinic,f0-detection-repeat:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Repeat times in the f0 detection
-> +
-> +  awinic,f0-detection-trace:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Drive waveform play times in the second period and later in the f0 detection
-> +
-> +  awinic,boost-debug:
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 3
-> +    maxItems: 3
-> +    description: Values for BSTDBG1-3 registers
+There's a couple of things we could do. The problem is how do you
+extract compatible strings from the C code? For drivers that are
+modules, the compatible strings do end up in the module meta-data for
+autoloading. That could be extracted and checked. That doesn't get the
+non-module cases.
 
-Do not encode device programming model (registers) into the binding. You
-need to define it as a property related to hardware itself, not its
-registers (e.g. boost value in mV).
+The other idea I have is to extract properties and type information
+from schema (that's already done) and put that into C structures to
+use to validate calls reading properties. That of course would need to
+be a debug feature. Something similar with checking compatible strings
+could be possible too. We already extract all compatibles in schemas
+into a generated schema for checking undocumented compatibles in dts
+files. If for what you care about has a dts file(s), then checking the
+kernel side would be redundant.
 
-> +
-> +  awinic,tset:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: Value for TSET register
+> 2. Since a lot of our devicetree nodes have a 1-1 mapping to a C struct,
+> is there a way to enforce property ordering with dt-schema and yaml
+> files today?
 
-Ditto.
+You should not depend on property or node ordering. That is NOT part of the ABI.
 
-> +
-> +  awinic,r-spare:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: Value for R_SPARE register
-
-Ditto.
-
-
-Best regards,
-Krzysztof
+Rob
