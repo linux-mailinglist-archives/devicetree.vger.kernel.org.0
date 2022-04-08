@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 805D74F9E6F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 22:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F86A4F9E70
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 22:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbiDHU4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 16:56:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49828 "EHLO
+        id S234263AbiDHU4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 16:56:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbiDHU4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 16:56:10 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192D06A052
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 13:54:04 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D5BE0839B7;
-        Fri,  8 Apr 2022 22:54:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1649451242;
-        bh=5k4KKJbpXu0JjbXqQTv2ZQQXPX/d2iqZo/oiphjWtEs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=IjxE1sO63nI00iV7qzUtmN2Ia9UkEK3mD6yAibTgH+qXm2U88/rVW1/4miiRMlaLJ
-         B8Eirv/5T7mtUfPHt4JyIeVtIKp4vtucBurWIE0ZHmecfS4BZYgqtHRBQSzYXh9n+7
-         nOo/E+iuvQxrgUq70P3pW/34xF9w+4r7DX0vjo7yJbW51QIqygwMallUApu5s7jPu8
-         OtrBb+Vs6RhnLkA7q+PNRPA7ub+euT0NzNFbRjaTLbsxhgctOqIL7uzaVTY7wlbgzP
-         3nqbxXamWTzTM+VfUP5hOlS3G3HEG0XCXYdGS6aN6fzUeutaiFk5qszBu3RA5BKOtD
-         wtqd64GsFlLJw==
-Message-ID: <bac0a6ab-a188-698f-e1d7-caf369d6b845@denx.de>
-Date:   Fri, 8 Apr 2022 22:54:01 +0200
+        with ESMTP id S233943AbiDHU4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 16:56:43 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF3813DF3
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 13:54:38 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id r66so8777494pgr.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 13:54:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=s2fZHIotgsxswHvP6sguOxIbmh2IU0gAkJkvl8us6mg=;
+        b=kSFN4A0aUO7j8SQVn5H/Fqr4jiYtS3UROq0rDlzzLesv4zln2QvOKFdhoBiD9nrnC/
+         ly6HOweBb7Y5mjm30ZI8ER4Re7zKQSAGymlBiqijlENVEIFYc2ZzF5hFv8CvosOQL9lc
+         lC5sjl4V1mY5YoZsvNeeBGsn0cHuojNJtdav3e8b9n3m90EyJ3EvkcY17N5xM6EifeKI
+         ZcUvor38Bav3ISeUKVY4+7HmiA4Vugkp8gijpYdcN+hHV249zDdfnXZH1+welko7hklG
+         PKbutjw0UbA3REDa4Md8VLUI2Ol/jr9gYv+b86jyY/fpCBngvmZPhPAoaG5BjgUApDN7
+         BeDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=s2fZHIotgsxswHvP6sguOxIbmh2IU0gAkJkvl8us6mg=;
+        b=X+aUYwW6OmOsTc5YTJv0xylnp5e0ZYJYcsLB+lGcHJsmaM20OMMUvz+OGsd0p+FYrI
+         DlKHvP9lVaU6ZNXMaBNBqmA1g3GcTC1EEwMWL89o11fIJk9yfkEwiOaIApZVvxIxUGFx
+         BYyQLtmKFKWgtvHjcce0Heexodgy4J3kbEB5ppb1z7zfnqH/WGbavG16mSxQyUSXHf8U
+         PzerhYzVMUjTQlJwfHxwyErsMQ97tdbQ2iQyD84Zm/VWNnCT0BZ6new7q/x+D+rACl1o
+         GA+T2vJOFDnJd+5iITnj0bZcwOxS6+IkFnAHzBDAYPWzHJ3MZoH3W04Q7PkGrmoO6AnP
+         CnCg==
+X-Gm-Message-State: AOAM531plHTBSA3KHFOrIx3bkOP+VsOvYBMiwJUE+IaC3rMXnpvSfaaQ
+        OoDSxPHIk95pga9EDgJIzzjViA==
+X-Google-Smtp-Source: ABdhPJzl2qcM0uP6/pCLd+oZzLdz9tDMXdCr5zj20GepMe5DR+cWERKZFDNS6wBxjC7dH6BrquqL6w==
+X-Received: by 2002:a63:121d:0:b0:39c:c252:135a with SMTP id h29-20020a63121d000000b0039cc252135amr9281357pgl.289.1649451277433;
+        Fri, 08 Apr 2022 13:54:37 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id s35-20020a056a001c6300b004fb20b5d6c1sm26732009pfw.40.2022.04.08.13.54.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 13:54:37 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH V2 13/15] cpufreq: mediatek: Link CCI device to CPU
+In-Reply-To: <20220408045908.21671-14-rex-bc.chen@mediatek.com>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+ <20220408045908.21671-14-rex-bc.chen@mediatek.com>
+Date:   Fri, 08 Apr 2022 13:54:36 -0700
+Message-ID: <7hfsmn5m9f.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: icn6211: Document DSI
- data-lanes property
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, robert.foss@linaro.org,
-        Thomas Zimmermann <tzimmermann@suse.de>
-References: <20220407185617.179573-1-marex@denx.de>
- <YlCgcw06jJ14n+kT@robh.at.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <YlCgcw06jJ14n+kT@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/22 22:52, Rob Herring wrote:
-> On Thu, 07 Apr 2022 20:56:16 +0200, Marek Vasut wrote:
->> It is necessary to specify the number of connected/used DSI data lanes when
->> using the DSI input port of this bridge. Document the 'data-lanes' property
->> of the DSI input port.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Jagan Teki <jagan@amarulasolutions.com>
->> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Cc: Maxime Ripard <maxime@cerno.tech>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Robert Foss <robert.foss@linaro.org>
->> Cc: Sam Ravnborg <sam@ravnborg.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: devicetree@vger.kernel.org
->> To: dri-devel@lists.freedesktop.org
->> ---
->> NOTE: This is consistent with all the other DSI panel and bridge bindings which
->>        document 'data-lanes' property, all of which already use OF graph and have
->>        the 'data-lanes' property in the port@N subnode, see:
->>        $ git grep -l data-lanes Documentation/devicetree/bindings/display/
->> ---
->>   .../display/bridge/chipone,icn6211.yaml        | 18 +++++++++++++++++-
->>   1 file changed, 17 insertions(+), 1 deletion(-)
->>
-> 
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
+Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
 
-I suspect Maxime wants to have one more look at this and the 2/2 patch.
+> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+>
+> In some MediaTek SoCs, like MT8183, CPU and CCI share the same power
+> supplies. Cpufreq needs to check if CCI devfreq exists and wait until
+> CCI devfreq ready before scaling frequency.
+>
+> - Add is_ccifreq_ready() to link CCI device to CPI, and CPU will start
+>   DVFS when CCI is ready.
+> - Add platform data for MT8183.
+>
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+
+The checks here are not enough, and will lead to unexpected behavior.
+IIUC, before doing DVFS, you're checking:
+
+1) if the "cci" DT node is present and
+2) if the driver for that device is bound
+
+If both those conditions are not met, you don't actually fail, you just
+silently do nothing in ->set_target().  As Angelo pointed out also, this
+is not a good idea, and will be rather confusing to users.
+
+The same thing would happen if the cci DT node was present, but the CCI
+devfreq driver was disabled.  Silent failure would also be quite
+unexpected behavior.  Similarily, if the cci DT node is not present at
+all (like it is in current upstream DT), this CPUfreq driver will
+silently do nothing.  Not good.
+
+So, this patch needs to handle several scenarios:
+
+1) CCI DT node not present
+
+In this case, the driver should still operate normally.  With no CCI
+node, or driver there's no conflict.
+
+2) CCI DT present/enabled but not yet bound
+
+In this case, you could return -EAGAIN as suggested by Angelo, or maybe
+better, it should do a deferred probe.
+
+3) CCI DT present, but driver disabled
+
+This case is similar to (1), this driver should continue to work.
+
+Kevin
