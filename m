@@ -2,103 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC4434F8F57
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 553FA4F8F6E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbiDHHTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 03:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55380 "EHLO
+        id S229679AbiDHHYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 03:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiDHHTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 03:19:47 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03FDF21D7FC
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 00:17:43 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id l7so10083446ejn.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 00:17:43 -0700 (PDT)
+        with ESMTP id S229480AbiDHHYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 03:24:04 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA9A2A878D
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 00:22:00 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id d3so11469574wrb.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 00:22:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0n61blmIAkKQaBF3fgsPecQx9lDeya+dROG3fR+36zM=;
-        b=rDO9wCF+y70cv/4I1pJUnF98waE70HN2mn7xOtAJ9/6tJr21SWhOZql1eQ2iIIAceV
-         SouBBS6HQQvDLfzFgnyLqOzIVFl74VSfOqOqLJcXsV/b5g3OJxI6OSGuxKFVvxboDHuU
-         dfcG7kxNFAm5pcNpnO+IOiXjDVjG73fGtM9xmBqIFuuPVrhbHvI7AQm8L0ota6qOyL3x
-         /3tWERQE7Ufrx//4MJWfnvyL49HaAS3AHb9RPVKBBLG8uBkomK6Ky0gFcm8h8w6I6CK4
-         l+cO5AMMgSgJhqe8hB6QpRdhcHJ/zsDOfoSawHbFzY8fLYM2K/+TyRlRhoTe6sVTxkYB
-         Gg9g==
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=ZGcjpUUcfgP9IW26yYzp2+FIg2PXCgHauq2I9TC2kbY=;
+        b=f0ChkPMGYvWEb5HOMzhJZGZwXnORO/qvbkabvEKg15tcMUIxo2aVoBVsgHUNckcwrL
+         S2Pu0xfcm5tUHA3YjiMyd7G7g4GZPvBB66YDEk5ZrtltHhqPVgD4iSvGiI5hNu1t7CTL
+         ak5/LNpwdwrrDQ2fLnL2hnmgGQdwV3NhD0Uclma1EEhHathAh08A6nQyfRjfz+cc5uzN
+         rUSjcZeDgkVhykjtZ9edtGpvPmnecVDD4oVQFkFCFknUR1m+pwfE/EoXI8buljH/5suG
+         +ka+wtz/Bn4jaRT9l90HGVcIVud6VRbaTectqFT5VTbs+w0REnMd2g+Uvmv8E4PfjpCM
+         mmTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:organization:in-reply-to
          :content-transfer-encoding;
-        bh=0n61blmIAkKQaBF3fgsPecQx9lDeya+dROG3fR+36zM=;
-        b=ElhTR5kviq38Kpo6OxnjlUUd4StSWH11LKjSR0jHym/7gaSOZf2LjtLqMJ/kt62xLL
-         XssG1qTPyudnRdpcf3/fw1s2by59c0GC7ajginHmwKZGgEHxv35XXssXdxZg6GtQcMNK
-         9KgyixyLFycF7S+89idnTDG0r0vSvBn8YIGbGE71BWtczrXrv903Y4kO7nhyQK+JC4ez
-         vXlFYtS9Lj8sndndsDt2iey1jF870UmVfpQG/lIlRDfFQ1TBhfAfDoc/1B1WEafHumXo
-         wPSlyfyQHlx9X7vEpUadd8dc5SFxi9ePi25QP2a4zwvT/3MHg56TEMUurhcBymN8nb+P
-         V64A==
-X-Gm-Message-State: AOAM53117D3L7NXIQ4Iv5+Y14IGdr3pXnJbuRPEqW722/RbM7dQx0BWz
-        V0P2ouPvU4Hb22wontbOvGMgJw==
-X-Google-Smtp-Source: ABdhPJxnIy7zF7uE8xRHZ/boIh9E4X89WLB9SMQMnABLEB9K24hPdos6iUbx2cmBnQl1AWhRIsKFYA==
-X-Received: by 2002:a17:906:434e:b0:6d0:ed9c:68bc with SMTP id z14-20020a170906434e00b006d0ed9c68bcmr16390976ejm.70.1649402262518;
-        Fri, 08 Apr 2022 00:17:42 -0700 (PDT)
-Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bl24-20020a170906c25800b006e809b6bf89sm3720393ejb.221.2022.04.08.00.17.41
+        bh=ZGcjpUUcfgP9IW26yYzp2+FIg2PXCgHauq2I9TC2kbY=;
+        b=pRRs9HVGq/PwpMhTxlwCVJBrBIEweZn/tShh3IdTHSQ/cvpmz1rwldpyVjC013UEZZ
+         l/jhfA2FZHotoWGNSCIc4VWy2hu9eOV/XLMkjZg5Cs8o+EGBcD6zuKqB84DL9j3IfUPc
+         Od5suOQ+o/KPy3VYFRmIWuuHWupC3kIg+4ez0jfqLJKWCce8NLI1Ytft3r1+lGnI0KdH
+         4wB2dhRE8MmiJA/aJ6XtgnQevPQh31820meoy1WeqLVNHmWAVdS/oI6lWE3DbcjO2bUl
+         ZGCj/x2IL+sZGVrsQ/9xHrnJiBzvc3quvh/lKGCbMrL5krXiUA5a1d6DHKvNVEGol4ik
+         3PDQ==
+X-Gm-Message-State: AOAM5329gNIt125WeIo8riFY6cibH8B8e1mBxk9KVDm9hP/V3LRXUfom
+        ZQWMCtJw+QZ8BtpY3wTdRscOHWY5XjNkMLyq
+X-Google-Smtp-Source: ABdhPJzoBeTvbUia+BRkSc8mokO77vad2moWN4GMwAB8WHAiFj1BA4UNzXTSWzp/mv3LW4OwfSucJg==
+X-Received: by 2002:adf:fa4c:0:b0:205:7cb2:e6f0 with SMTP id y12-20020adffa4c000000b002057cb2e6f0mr13509715wrr.218.1649402518576;
+        Fri, 08 Apr 2022 00:21:58 -0700 (PDT)
+Received: from ?IPV6:2001:861:44c0:66c0:eacd:ce6:e294:acd1? ([2001:861:44c0:66c0:eacd:ce6:e294:acd1])
+        by smtp.gmail.com with ESMTPSA id q16-20020adff510000000b002079ab38635sm112962wro.81.2022.04.08.00.21.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 00:17:42 -0700 (PDT)
-Message-ID: <9d6ba801-6ad1-80aa-a92a-bfc06c1cf1df@linaro.org>
-Date:   Fri, 8 Apr 2022 09:17:41 +0200
+        Fri, 08 Apr 2022 00:21:58 -0700 (PDT)
+Message-ID: <f4e4b45f-a62d-05ad-9750-787edb0f2146@baylibre.com>
+Date:   Fri, 8 Apr 2022 09:21:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 2/4] clocksource/drivers/exynos_mct: Support frc-shared
- property
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] ARM: dts: meson: align SPI NOR node name with
+ dtschema
 Content-Language: en-US
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        tglx@linutronix.de, daniel.lezcano@linaro.org
-Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20220407074432.424578-1-vincent.whitchurch@axis.com>
- <20220407074432.424578-3-vincent.whitchurch@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220407074432.424578-3-vincent.whitchurch@axis.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220407142159.293836-1-krzysztof.kozlowski@linaro.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220407142159.293836-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/04/2022 09:44, Vincent Whitchurch wrote:
-> When the FRC is shared with another main processor, the other processor
-> is assumed to have started it and this processor should not write to the
-> global registers.
+On 07/04/2022 16:21, Krzysztof Kozlowski wrote:
+> The node names should be generic and SPI NOR dtschema expects "flash".
 > 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>   arch/arm/boot/dts/meson8-minix-neo-x8.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Notes:
->     v3:
->     - Split FRC sharing handling from local timer indices handling
->     - Remove addition of global variable.
-> 
->  drivers/clocksource/exynos_mct.c | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
-> 
+> diff --git a/arch/arm/boot/dts/meson8-minix-neo-x8.dts b/arch/arm/boot/dts/meson8-minix-neo-x8.dts
+> index 61ec929ab86e..56ea875c418c 100644
+> --- a/arch/arm/boot/dts/meson8-minix-neo-x8.dts
+> +++ b/arch/arm/boot/dts/meson8-minix-neo-x8.dts
+> @@ -65,7 +65,7 @@ &spifc {
+>   	pinctrl-0 = <&spi_nor_pins>;
+>   	pinctrl-names = "default";
+>   
+> -	spi-flash@0 {
+> +	flash@0 {
+>   		compatible = "mxicy,mx25l1606e";
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
 
-Looks correct and I hope it works correct. :) I did not test it though.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
