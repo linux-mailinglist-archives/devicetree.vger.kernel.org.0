@@ -2,144 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF68F4F9056
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E89864F9063
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbiDHIFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:05:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40648 "EHLO
+        id S230432AbiDHIKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:10:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbiDHIFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:05:38 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D034193ED
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:03:35 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id h14so8568652lfl.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:03:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=J1QVpP3nerTWKa1cyXGMgzBZ9LJVJEdqC7pjfww4Eh0=;
-        b=IeHertmL2Qe+vuZ8bL1egILsY7UVK9i7WmMVBevq7VhIsjazs1pJ+Ube2AyCXTxyLx
-         kPIMhbh0ndj9+nSc9CyU7BM9LpmGocVAs1rADnKyDy8c6JuYZ+cKpmbwwLq3sIQjW4xG
-         2WqhW5ZdCysAjQZtB6lo1phb0nqgzgv6uVjFnREhiOttLuIKWNk1mSvSPx061KIJJgVQ
-         9JDvEoyEJV5+YdTQPoficS4rT+6Rsd9Llr2uKJ7lwes/Nir2gNcr5XPsU8rc94bWOCHQ
-         4NSR1q6+Tenym6U0iGBZigdZPrnYdalm9sEJUnagjyHXi+oocrTVrRqx3TRq2Gkq/bSZ
-         gEuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J1QVpP3nerTWKa1cyXGMgzBZ9LJVJEdqC7pjfww4Eh0=;
-        b=3moj+/eTqU5mjpI7tc7nvU+A2t3DjRaJxBopRG9qYETavQkUMAAv4iWGEh8+2YZF6n
-         YrcUeo0wutnNbiT1N9QjAatnxjvTUqSJ4YxEWm0sxtILRu71MovV2cB4EfTyg4z5nu0i
-         tV4b1w0yaS4iPfQXIt3oqoqLotfQgZ45jrkFV/ZsA+BI7fZUpfyf/tJAEo7kpm6Cld05
-         sn45l/W3dW2RVF7Z2aY2iuSestf0ZQj22piFgC0rJJ1zeAZ6DF23yBglq606oLW5oudI
-         eZaPtbXbA4TVswq58A5llhA4IMRAywqbJiy9yLhnp8DrBpZbUPX26OuAoEKh134e76gA
-         R8XQ==
-X-Gm-Message-State: AOAM530QFEma48n/lVDaGS+phbzQ5jYKy9yZ8S0LrDoTzAE6+SuaaxHv
-        9fwreQqTHIl+Cu2JH5L6ekHM8zFJNDrykNmVNKL3rVHBaZc=
-X-Google-Smtp-Source: ABdhPJytOGV4FV7cxGl9JWBImAtlMB4k8mvHiIAddgBXq11/Fmeb9upmp/zsxOMs5V3rbsnaBv4P8xhZXt/X//ewaMk=
-X-Received: by 2002:ac2:4834:0:b0:45d:519d:933 with SMTP id
- 20-20020ac24834000000b0045d519d0933mr12035301lft.5.1649405012705; Fri, 08 Apr
- 2022 01:03:32 -0700 (PDT)
+        with ESMTP id S229852AbiDHIKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:10:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056CB2DD55
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:08:00 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncjep-0006gG-Rw; Fri, 08 Apr 2022 10:07:51 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncjem-0001ic-HQ; Fri, 08 Apr 2022 10:07:48 +0200
+Date:   Fri, 8 Apr 2022 10:07:48 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Message-ID: <20220408080748.GA2387@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
+ <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
 MIME-Version: 1.0
-References: <cover.1648461096.git.zong.li@sifive.com> <mhng-6ddf988e-9f86-4f3e-8b6a-6be65f384829@palmer-ri-x1c9>
- <YkU6dPFNPkD0Jay+@matsya>
-In-Reply-To: <YkU6dPFNPkD0Jay+@matsya>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Fri, 8 Apr 2022 16:03:22 +0800
-Message-ID: <CANXhq0oz_zNHJEaWxk9QFy=sDf1cKmrJROn3pEfQWo0AF2Cetw@mail.gmail.com>
-Subject: Re: [PATCH v8 0/4] Determine the number of DMA channels by
- 'dma-channels' property
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:04:12 up 8 days, 20:33, 66 users,  load average: 0.29, 0.37, 0.24
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 31, 2022 at 1:22 PM Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 30-03-22, 20:15, Palmer Dabbelt wrote:
-> > On Mon, 28 Mar 2022 02:52:21 PDT (-0700), zong.li@sifive.com wrote:
-> > > The PDMA driver currently assumes there are four channels by default, it
-> > > might cause the error if there is actually less than four channels.
-> > > Change that by getting number of channel dynamically from device tree.
-> > > For backwards-compatible, it uses the default value (i.e. 4) when there
-> > > is no 'dma-channels' information in dts.
-> > >
-> > > This patch set contains the dts and dt-bindings change.
-> > >
-> > > Changed in v8:
-> > >  - Rebase on master
-> > >  - Remove modification of microchip-mpfs.dtsi
-> > >  - Rename DMA node name of fu540-c000.dtsi
-> > >
-> > > Changed in v7:
-> > >  - Rebase on tag v5.17-rc7
-> > >  - Modify the subject of patch
-> > >
-> > > Changed in v6:
-> > >  - Rebase on tag v5.17-rc6
-> > >  - Change sf_pdma.chans[] to a flexible array member.
-> > >
-> > > Changed in v5:
-> > >  - Rebase on tag v5.17-rc3
-> > >  - Fix typo in dt-bindings and commit message
-> > >  - Add PDMA versioning scheme for compatible
-> > >
-> > > Changed in v4:
-> > >  - Remove cflags of debug use reported-by: kernel test robot <lkp@intel.com>
-> > >
-> > > Changed in v3:
-> > >  - Fix allocating wrong size
-> > >  - Return error if 'dma-channels' is larger than maximum
-> > >
-> > > Changed in v2:
-> > >  - Rebase on tag v5.16
-> > >  - Use 4 as default value of dma-channels
-> > >
-> > > Zong Li (4):
-> > >   dt-bindings: dma-engine: sifive,fu540: Add dma-channels property and
-> > >     modify compatible
-> > >   riscv: dts: Add dma-channels property and modify compatible
-> > >   riscv: dts: rename the node name of dma
-> > >   dmaengine: sf-pdma: Get number of channel by device tree
-> > >
-> > >  .../bindings/dma/sifive,fu540-c000-pdma.yaml  | 19 +++++++++++++--
-> > >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  5 ++--
-> > >  drivers/dma/sf-pdma/sf-pdma.c                 | 24 ++++++++++++-------
-> > >  drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++-----
-> > >  4 files changed, 38 insertions(+), 18 deletions(-)
-> >
-> > Thanks, these are on for-next.
->
-> The drivers/dma/ should go thru dmaengine tree. During merge window I
-> dont apply the patches
->
-> --
-> ~Vinod
+On Wed, Apr 06, 2022 at 11:47:22AM +0200, Piotr Oniszczuk wrote:
+> 
+> 
+> > Wiadomość napisana przez Piotr Oniszczuk <piotr.oniszczuk@gmail.com> w dniu 01.04.2022, o godz. 15:05:
+> > Sascha
+> > 
+> > Now works perfectly!
+> > (hd playback with 3.5...5.5% cpu while rendering to drm plane)
+> > 
+> > Fantastic work of You!
+> 
+> Sascha,
+> 
+> Having vop2 finally working with drm planes rendering i discovered another issue: overlay osd is invisible at playback. 
+> 
+> context: player draws video on plane #X and osd on overlay plane #Y
+> When user do i.e. seek at playback - app uses overlay OSD plane to display OSD to user. This approach is used by majority of players (KODI, etc.)
+> 
+> This works well on all platforms i have  - except rk3566 
+> 
+> For me it looks like z-order vop2 issue or alpha blending issue.
+> As this is only on rk3566 and only on drm-planes mode - issue is vop2 related imho.
 
-Hi Vinod,
-Many thanks for considering this patchset :)  Could I know if there is
-an opportunity to pick this into the following few -rc kernels?
+That turned out to be simpler than I thought it would be. The zpos
+values were never actually written to the hardware. Please try the
+following fixup, it should fix this issue.
+
+Thanks for your valuable testing feedback so far :)
+
+Sascha
+
+----------------------------8<------------------------
+
+From d5a102ff1d3010320f492a6ebac6710276fc641f Mon Sep 17 00:00:00 2001
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Fri, 8 Apr 2022 09:45:24 +0200
+Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
+
+---
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 54208b20a5a7e..8d1323a47f822 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -1943,8 +1943,10 @@ static void vop2_setup_layer_mixer(struct vop2_video_port *vp)
+ 			break;
+ 		}
+ 
+-		layer_sel &= ~RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, 0x7);
+-		layer_sel |= RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, win->data->layer_sel_id);
++		layer_sel &= ~RK3568_OVL_LAYER_SEL__LAYER(plane->state->normalized_zpos + ofs,
++							  0x7);
++		layer_sel |= RK3568_OVL_LAYER_SEL__LAYER(plane->state->normalized_zpos + ofs,
++							 win->data->layer_sel_id);
+ 		nlayer++;
+ 	}
+ 
+-- 
+2.30.2
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
