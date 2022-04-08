@@ -2,159 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9794B4F9A8C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E9C4F9AD1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231140AbiDHQZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 12:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46424 "EHLO
+        id S233234AbiDHQkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 12:40:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231203AbiDHQZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:25:42 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954DB2FF6F9
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:23:38 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id f10so8310324plr.6
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 09:23:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7BcGnOMSzwjZFrNXSVlFPVWXXS7lgriFVwZOMf5bb+Q=;
-        b=We3vH+y0Mvp4vomDHy48uyUJfB57yiHGtFksV7jKt/RqNk13ogzyaOBhxM3TKa/UdX
-         W/jTuE53ny3+jzqdozCu3JA/EnajIxxtSEBz288qV3N6dAWioF9i5yRnWsZZSiC8geWr
-         aK6d60mZynTT1pJUpHGdZ8dMO3RzL14039dvo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7BcGnOMSzwjZFrNXSVlFPVWXXS7lgriFVwZOMf5bb+Q=;
-        b=AFYnFB3yVhBNd3dJdZno2bmBtwrL+ctZ6g7pwB4jvKmBjCwMoENb1s/gguNrazBzBh
-         5Yw3Iwhzf4a8hVEjosOqsYNFz8/wK8+cPVndXOuo8HkdcV6cTmvmjYXnLkumrDn+iWAE
-         E9gWmOiM9GFEvFDp+Ftfw50Xf/jOmJOVtGrM7jTfsoAfb84IUZO6UZIu7gXoxGhu/w01
-         wqhErUwP0ZJvScWr/gEx3Nc6RnJHotmzjFGDpPjYN1sCYAmzok/J+FWeNlLTdoULr8be
-         hja2S8KoIvmbWalRGu65Vc6mDXc6WMJwFXF0bipa8bbbuRgYpaX+1y+xIpBuG2nSath2
-         k/tg==
-X-Gm-Message-State: AOAM530x5S8zxaahzGTonSy9jZw66WbOYlyXivueBjFdS3/WCNR5kyTZ
-        8yzC0HIyzb+qbk/foWt+FlzSCA==
-X-Google-Smtp-Source: ABdhPJyY5V/jo6PLk4tqnezupCR3cG8rU+NwTCbFTj+TP9E+tVz7a4uK9wo6MO7hilmUa5Zedheelw==
-X-Received: by 2002:a17:903:2352:b0:155:d4e8:12c6 with SMTP id c18-20020a170903235200b00155d4e812c6mr20780844plh.27.1649435018093;
-        Fri, 08 Apr 2022 09:23:38 -0700 (PDT)
-Received: from j-ThinkPad-E14-Gen-2.domain.name ([45.249.78.214])
-        by smtp.gmail.com with ESMTPSA id n18-20020a056a0007d200b004fdac35672fsm24929863pfu.68.2022.04.08.09.23.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 09:23:37 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Adam Ford <aford173@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 11/11] drm: bridge: samsung-dsim: Add i.MX8MM support
-Date:   Fri,  8 Apr 2022 21:51:08 +0530
-Message-Id: <20220408162108.184583-12-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220408162108.184583-1-jagan@amarulasolutions.com>
-References: <20220408162108.184583-1-jagan@amarulasolutions.com>
+        with ESMTP id S232714AbiDHQkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:40:35 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332AE122213
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:38:28 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E2CE383AFF;
+        Fri,  8 Apr 2022 18:38:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1649435905;
+        bh=FosmuyZlHcCoNFnrY5Gn852WiIIppXj5Vt/uxU8sfzE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CHli/DT0NNYtghCfxR7mxxAY83YXOXb+NpuFExnbEWek75MUYGDxteDHZWDUfUaDi
+         jafw+/BaewVlADp9+I1rAc/lsKrEmSyhZk1b7y1338iPxzhvm0dVrXvxXnQBfN5DfF
+         jHRvIQVytZMVE8nDLhIcX1/q3ybONQr66a70jTu5IYNhDqImU+sGMuqvucknvfjBHz
+         kwLB9aGaUCIfYAN/O0WAWu5xBWVMsCnFypYw1njJzWaQxe81oK/XsUvQ3AH4XVZuSf
+         djkVucd1hxSV3mGVnPh85GFDIcIEUPca4NsREljkcmtsW7KNit3ZfP7WR7/l/MhtTX
+         HnF4+vTiKwKTg==
+Message-ID: <d662e462-b9a2-39ab-cefb-5d391d49a96b@denx.de>
+Date:   Fri, 8 Apr 2022 18:25:26 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
+ based Menlo board
+Content-Language: en-US
+To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Cc:     "peng.fan@nxp.com" <peng.fan@nxp.com>,
+        "festevam@denx.de" <festevam@denx.de>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220407202456.244917-1-marex@denx.de>
+ <defe2e0dc5447028e38014e55d77b98b39d8a1a4.camel@toradex.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <defe2e0dc5447028e38014e55d77b98b39d8a1a4.camel@toradex.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung MIPI DSIM master can also be found in i.MX8MM SoC.
+On 4/8/22 09:55, Marcel Ziswiler wrote:
 
-Add compatible and associated driver_data for it.
+[...]
+>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> index 8a7ed7782e99f..a6286581fa13b 100644
+>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> @@ -819,6 +819,7 @@ properties:
+>>                 - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
+>>                 - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
+>>                 - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) SOM
+>> +              - menlo,mx8menlo            # i.MX8MM Menlo board
+> 
+> Would it make sense mentioning that it is a carrier board for Verdin modules?
 
-v1:
-* none
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- drivers/gpu/drm/bridge/samsung-dsim.c | 34 +++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
-
-diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-index 71bbaf19f530..d91510a51981 100644
---- a/drivers/gpu/drm/bridge/samsung-dsim.c
-+++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-@@ -360,6 +360,24 @@ static const unsigned int exynos5433_reg_values[] = {
- 	[PHYTIMING_HS_TRAIL] = DSIM_PHYTIMING2_HS_TRAIL(0x0c),
- };
- 
-+static const unsigned int imx8mm_dsim_reg_values[] = {
-+	[RESET_TYPE] = DSIM_SWRST,
-+	[PLL_TIMER] = 500,
-+	[STOP_STATE_CNT] = 0xf,
-+	[PHYCTRL_ULPS_EXIT] = 0,
-+	[PHYCTRL_VREG_LP] = 0,
-+	[PHYCTRL_SLEW_UP] = 0,
-+	[PHYTIMING_LPX] = DSIM_PHYTIMING_LPX(0x06),
-+	[PHYTIMING_HS_EXIT] = DSIM_PHYTIMING_HS_EXIT(0x0b),
-+	[PHYTIMING_CLK_PREPARE] = DSIM_PHYTIMING1_CLK_PREPARE(0x07),
-+	[PHYTIMING_CLK_ZERO] = DSIM_PHYTIMING1_CLK_ZERO(0x26),
-+	[PHYTIMING_CLK_POST] = DSIM_PHYTIMING1_CLK_POST(0x0d),
-+	[PHYTIMING_CLK_TRAIL] = DSIM_PHYTIMING1_CLK_TRAIL(0x08),
-+	[PHYTIMING_HS_PREPARE] = DSIM_PHYTIMING2_HS_PREPARE(0x08),
-+	[PHYTIMING_HS_ZERO] = DSIM_PHYTIMING2_HS_ZERO(0x0d),
-+	[PHYTIMING_HS_TRAIL] = DSIM_PHYTIMING2_HS_TRAIL(0x0b),
-+};
-+
- static const struct samsung_dsim_driver_data exynos3_dsi_driver_data = {
- 	.reg_ofs = exynos_reg_ofs,
- 	.plltmr_reg = 0x50,
-@@ -426,6 +444,18 @@ static const struct samsung_dsim_driver_data exynos5422_dsi_driver_data = {
- 	.platform_init = true,
- };
- 
-+static const struct samsung_dsim_driver_data imx8mm_dsi_driver_data = {
-+	.reg_ofs = exynos5433_reg_ofs,
-+	.plltmr_reg = 0xa0,
-+	.has_clklane_stop = 1,
-+	.num_clks = 2,
-+	.max_freq = 2100,
-+	.wait_for_reset = 0,
-+	.num_bits_resol = 12,
-+	.pll_p_offset = 14,
-+	.reg_values = imx8mm_dsim_reg_values,
-+};
-+
- static const struct of_device_id samsung_dsim_of_match[] = {
- 	{
- 		.compatible = "samsung,exynos3250-mipi-dsi",
-@@ -447,6 +477,10 @@ static const struct of_device_id samsung_dsim_of_match[] = {
- 		.compatible = "samsung,exynos5433-mipi-dsi",
- 		.data = &exynos5433_dsi_driver_data
- 	},
-+	{
-+		.compatible = "fsl,imx8mm-mipi-dsim",
-+		.data = &imx8mm_dsi_driver_data
-+	},
- 	{ /* sentinel. */ }
- };
- 
--- 
-2.25.1
-
+I will add it in V2.
