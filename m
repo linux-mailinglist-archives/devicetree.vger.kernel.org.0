@@ -2,120 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E66314F906A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 571204F9077
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230504AbiDHIMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
+        id S231207AbiDHIOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbiDHIMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:12:07 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0269436333
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:10:05 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id bh17so15709330ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:10:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=16qq4T8W7Wb3W3I0GFoxZjqEJT94+MYc2RlGkdbX2ac=;
-        b=DHUn3OoULpXK+mm9ySoqW5WNBlp+pqhHBqMvxhOBi/v95ukvoDz09bDR+K4ILGQPxW
-         KZra/kNcINrwhQ2t+V3PgKTeZqSs5Z+BXx7BSUsqw/p5/p7AhIhRdWUDjLk44f5JRiy1
-         roa+7FL5knMpJNMxTxNhVK3kovdvgEmQ115DQjQmmrKoARK3kWCTzUmEQ/2+NByzAtg5
-         XD6m7Wgp99VyLQoorf8GoYIo6DNYMwdAZCJAGMcBGWeXpd9kiKLu2WPIt5yN85m+JlAf
-         l/D0BXr604LNNDLQcUA4EcfuSImnq0/txS+smMOdRfajZN0K3EnUgVCQ9MJOgWAuZpAH
-         ri6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=16qq4T8W7Wb3W3I0GFoxZjqEJT94+MYc2RlGkdbX2ac=;
-        b=jKN0/p9SgYKUpl5lnMOYfpKPcRPG2Elf9NiBfM5X3LoPri21Wl21t1D5JwOE4d6FQV
-         VCLOFJDERfl2prr7fVtc3Y0jUWg81iNzWu079+ZsAieqaAePAhR/3akbkFAD+2WBvJWi
-         i93w50i2fS5lO9J9lWZ6yhn0hQE1NG9NdZBP2a/Z+iWvaCb9dB2Deot4cRayLb0e/bqC
-         WC2jrNNR+zYSUM6uOfwBR0lQKyBUm2OnR2veQlI+hQ+6ftdUzPEzdR86+SvQKO7AYtXQ
-         NaIFmgsQLpSi5DCl1lkt3khG2e3txM1jAE8YBBgOtknJEuZFQhLhbfidOdQmEIPzu3ig
-         gfTQ==
-X-Gm-Message-State: AOAM531CH+y9SX4lw/LUIPALp3kXUqqUAzPtASB+BKm6iGUDq5O4KPjw
-        puqZ7WymBWQjSiq+/SappBQsJQ==
-X-Google-Smtp-Source: ABdhPJyd+7LeacyRv4S4s8A5mEZaNzMiHeOn8GceZ6A7SUV88bQI8PoI45QiWp3fyzkIiAh8+Qduvg==
-X-Received: by 2002:a17:906:acf:b0:6e7:681e:b4b6 with SMTP id z15-20020a1709060acf00b006e7681eb4b6mr17535515ejf.61.1649405403553;
-        Fri, 08 Apr 2022 01:10:03 -0700 (PDT)
-Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id u6-20020a17090626c600b006e74ef7f092sm6549148ejc.176.2022.04.08.01.10.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 01:10:03 -0700 (PDT)
-Message-ID: <a171f33c-cda1-8602-ac67-93076b676578@linaro.org>
-Date:   Fri, 8 Apr 2022 10:10:02 +0200
+        with ESMTP id S231214AbiDHIOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:14:25 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2DC1A52B17;
+        Fri,  8 Apr 2022 01:12:22 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 26291807E;
+        Fri,  8 Apr 2022 08:09:55 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH] ARM: dts: Drop unused ti,am4372-timer compatible
+Date:   Fri,  8 Apr 2022 11:12:16 +0300
+Message-Id: <20220408081216.57146-1-tony@atomide.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH V2 01/15] dt-bindings: cpufreq: mediatek: Add MediaTek CCI
- property
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
-        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
- <20220408045908.21671-2-rex-bc.chen@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220408045908.21671-2-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 06:58, Rex-BC Chen wrote:
-> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> 
-> MediaTek Cache Coherent Interconnect (CCI) uses software devfreq module
-> for scaling clock frequency and adjust voltage.
-> The phandle could be linked between CPU and MediaTek CCI for some
-> MediaTek SoCs, like MT8183 and MT8186.
-> Therefore, we add this property in cpufreq-mediatek.txt.
-> 
-> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt          | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
-> index b8233ec91d3d..d1b3d430c25c 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
-> @@ -20,6 +20,10 @@ Optional properties:
->  	       Vsram to fit SoC specific needs. When absent, the voltage scaling
->  	       flow is handled by hardware, hence no software "voltage tracking" is
->  	       needed.
-> +- cci: MediaTek Cache Coherent Interconnect uses software devfreq module for scaling
-> +       clock frequency and adjust voltage.
+Drop unused (and undocumented) ti,am4372-timer related compatible
+properties to avoid dtb warnings when updating the binding to yaml.
 
-You need to describe the type. I am a bit confused whether this is a cci
-(so cci-control-port property?) or an interconnect (so interconnect
-property)... It does not look like a generic property, so you need
-vendor prefix.
+The dual-mode timer instances on am43 are compatible with the am3
+timers.
 
-> +       For details, please refer to
-> +       Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Keerthy <j-keerthy@ti.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm/boot/dts/am437x-l4.dtsi | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-Such file does not exist.
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/am437x-l4.dtsi b/arch/arm/boot/dts/am437x-l4.dtsi
+--- a/arch/arm/boot/dts/am437x-l4.dtsi
++++ b/arch/arm/boot/dts/am437x-l4.dtsi
+@@ -361,7 +361,7 @@ SYSC_OMAP2_SOFTRESET |
+ 			ranges = <0x0 0x31000 0x1000>;
+ 
+ 			timer1: timer@0 {
+-				compatible = "ti,am4372-timer-1ms","ti,am335x-timer-1ms";
++				compatible = "ti,am335x-timer-1ms";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
+ 				ti,timer-alwon;
+@@ -906,7 +906,7 @@ timer2_target: target-module@40000 {	/* 0x48040000, ap 18 1e.0 */
+ 			ranges = <0x0 0x40000 0x1000>;
+ 
+ 			timer2: timer@0  {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&timer2_fck>;
+@@ -933,7 +933,7 @@ target-module@42000 {			/* 0x48042000, ap 20 24.0 */
+ 			ranges = <0x0 0x42000 0x1000>;
+ 
+ 			timer3: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+@@ -959,7 +959,7 @@ target-module@44000 {			/* 0x48044000, ap 22 26.0 */
+ 			ranges = <0x0 0x44000 0x1000>;
+ 
+ 			timer4: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
+ 				ti,timer-pwm;
+@@ -986,7 +986,7 @@ target-module@46000 {			/* 0x48046000, ap 24 28.0 */
+ 			ranges = <0x0 0x46000 0x1000>;
+ 
+ 			timer5: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
+ 				ti,timer-pwm;
+@@ -1013,7 +1013,7 @@ target-module@48000 {			/* 0x48048000, ap 26 1a.0 */
+ 			ranges = <0x0 0x48000 0x1000>;
+ 
+ 			timer6: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
+ 				ti,timer-pwm;
+@@ -1040,7 +1040,7 @@ target-module@4a000 {			/* 0x4804a000, ap 71 48.0 */
+ 			ranges = <0x0 0x4a000 0x1000>;
+ 
+ 			timer7: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+ 				ti,timer-pwm;
+@@ -1549,7 +1549,7 @@ target-module@c1000 {			/* 0x481c1000, ap 94 68.0 */
+ 			ranges = <0x0 0xc1000 0x1000>;
+ 
+ 			timer8: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+@@ -2263,7 +2263,7 @@ target-module@3d000 {			/* 0x4833d000, ap 102 6e.0 */
+ 			ranges = <0x0 0x3d000 0x1000>;
+ 
+ 			timer9: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+@@ -2289,7 +2289,7 @@ target-module@3f000 {			/* 0x4833f000, ap 104 5c.0 */
+ 			ranges = <0x0 0x3f000 0x1000>;
+ 
+ 			timer10: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+@@ -2315,7 +2315,7 @@ target-module@41000 {			/* 0x48341000, ap 106 76.0 */
+ 			ranges = <0x0 0x41000 0x1000>;
+ 
+ 			timer11: timer@0 {
+-				compatible = "ti,am4372-timer","ti,am335x-timer";
++				compatible = "ti,am335x-timer";
+ 				reg = <0x0 0x400>;
+ 				interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+-- 
+2.35.1
