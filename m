@@ -2,514 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CEBE4F9D72
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0247B4F9D7E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:08:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbiDHTHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 15:07:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S239137AbiDHTKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 15:10:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbiDHTHI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:07:08 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06862F8EEC;
-        Fri,  8 Apr 2022 12:05:02 -0700 (PDT)
-Received: from zn.tnic (p200300ea971561a9329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9715:61a9:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E67201EC04CB;
-        Fri,  8 Apr 2022 21:04:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1649444697;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=KpaRWCXQvHMw13tAWTqc0fir1KBH9bfP8YIlzscHHqM=;
-        b=HdVauC39hzz0mf3eYL8lBD/oGzomz9EgqNvtjWk8zITUxAo4TczKOZlAQmqdlAA7yFZZcU
-        BqbYCj3AI+MIa63YihD9Z5vc4ExNEMntsEDQ4exSB4vlfK9Ln8HgcDDw2k4nm7YIIE1GwH
-        h7SEgD73GgGHXiwyINA8Heo8RcViqmQ=
-Date:   Fri, 8 Apr 2022 21:04:53 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Medad CChien <medadyoung@gmail.com>
-Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v6 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-Message-ID: <YlCHVen0zv/ujEYN@zn.tnic>
-References: <20220322030152.19018-1-ctcchien@nuvoton.com>
- <20220322030152.19018-4-ctcchien@nuvoton.com>
+        with ESMTP id S229839AbiDHTKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:10:15 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2264EFE40E;
+        Fri,  8 Apr 2022 12:08:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649444890; x=1680980890;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AWYekLkV9Dk0OIItlmpZ6xPEjkw9ZzDl/PwK+X2pq44=;
+  b=I1QOHrdEHmqK1sUo2QIZ1jl/Dud1v8RgW7jCzIxlLqAzK6qvibrAmHBy
+   DJQJ+Kc1X6/osZbOg67VyDgbECZj1VtSWIMY5khVWw5RSOY3Q8upusOdv
+   i7KzcQdTBrtBfOCzjBzMgkfP+NcabXA8Uf5jLFm7IlIk7F0sUzcMPCh0H
+   VlflFX6xdgcZS7mK6CVrMOhmYJgqjnUdLfPT8mHZuzUqGXKa9WK6rsLXj
+   qxIiEt6AyPWjwh2NWVi3dwAEvfWhxjGfOYbdiQzhg1dktVQEXTfbQUg03
+   bAZNIR/9w8439jMsNonnCdB7HHvcQAvngYXCAv+48aFyGmVLEkndMTHgc
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="259266366"
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
+   d="scan'208";a="259266366"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 12:08:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
+   d="scan'208";a="659594181"
+Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 08 Apr 2022 12:08:04 -0700
+Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nctxj-0000Yk-DD;
+        Fri, 08 Apr 2022 19:08:03 +0000
+Date:   Sat, 9 Apr 2022 03:07:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     kbuild-all@lists.01.org, linux-media@vger.kernel.org,
+        Irui Wang <irui.wang@mediatek.com>,
+        George Sun <george.sun@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9, 16/17] media: mediatek: vcodec: support stateless VP9
+ decoding
+Message-ID: <202204090240.SZpTTylK-lkp@intel.com>
+References: <20220408120240.29571-17-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220322030152.19018-4-ctcchien@nuvoton.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220408120240.29571-17-yunfei.dong@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 22, 2022 at 11:01:52AM +0800, Medad CChien wrote:
-> Add support for Nuvoton NPCM SoC.
-> 
-> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All errors (new ones prefixed by >>):
+Hi Yunfei,
 
-I'm sure you can summarize this in one sentence instead of pasting all
-the warnings in the commit message where they don't belong.
+Thank you for the patch! Perhaps something to improve:
 
-...
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on v5.18-rc1 next-20220408]
+[cannot apply to remoteproc/rproc-next drm-tip/drm-tip]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> diff --git a/drivers/edac/npcm_edac.c b/drivers/edac/npcm_edac.c
-> new file mode 100644
-> index 000000000000..9dd05bec0b7f
-> --- /dev/null
-> +++ b/drivers/edac/npcm_edac.c
-> @@ -0,0 +1,706 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2022 Nuvoton Technology corporation.
-> +
-> +#include <linux/delay.h>
-> +#include <linux/of_device.h>
-> +
-> +#include "edac_module.h"
-> +
-> +#define NPCM_EDAC_MOD_NAME "npcm-edac"
-> +#define FORCED_ECC_ERR_EVENT_SUPPORT	BIT(1)
-> +#define EDAC_MSG_SIZE                  256
-> +/* Granularity of reported error in bytes */
-> +#define NPCM_EDAC_ERR_GRAIN		1
-> +
-> +#define MEM_TYPE_DDR4			0xA
-> +
-> +#define NPCM8XX_CHIP			0x800
-> +#define NPCM7XX_CHIP			0x700
-> +
-> +/* Control register width definitions */
-> +#define WDTH_16				(2)
-> +#define WDTH_32				(1)
-> +#define WDTH_64				(0)
-> +#define CTL_MEM_MAX_WIDTH_MASK		GENMASK(4, 0)
-> +#define CTL_REG_WIDTH_SHIFT		(32)
-> +#define XOR_CHECK_BIT_SPLIT_WIDTH		(16)
-> +#define CTL_CONTROLLER_BUSY_FLAG	BIT(0)
-> +#define NPCM_ECC_CTL_FORCE_WC		BIT(8)
-> +#define NPCM_ECC_CTL_AUTO_WRITEBACK_EN	BIT(24)
-> +#define NPCM_ECC_CTL_XOR_BITS_MASK		GENMASK(23, 16)
-> +#define NPCM_ECC_CTL_MTYPE_MASK			GENMASK(11, 8)
-> +#define NPCM_ECC_CTL_GLOBAL_INT_DISABLE	BIT(31)
+url:    https://github.com/intel-lab-lkp/linux/commits/Yunfei-Dong/media-mediatek-vcodec-Add-vdec-enable-disable-hardware-helpers/20220408-210244
+base:   git://linuxtv.org/media_tree.git master
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20220409/202204090240.SZpTTylK-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/251c7c77f6690881357df39867a32a03eb7db3b7
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Yunfei-Dong/media-mediatek-vcodec-Add-vdec-enable-disable-hardware-helpers/20220408-210244
+        git checkout 251c7c77f6690881357df39867a32a03eb7db3b7
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/media/
 
-Align those values vertically pls.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> +
-> +#ifdef CONFIG_EDAC_DEBUG
-> +
-> +/* Syndrome values */
-> +#define ECC_DOUBLE_MULTI_ERR_SYND	0x03
-> +
-> +static char data_synd[] = {
-> +			0xf4, 0xf1, 0xec, 0xea, 0xe9, 0xe6, 0xe5, 0xe3,
-> +			0xdc, 0xda, 0xd9, 0xd6, 0xd5, 0xd3, 0xce, 0xcb,
-> +			0xb5, 0xb0, 0xad, 0xab, 0xa8, 0xa7, 0xa4, 0xa2,
-> +			0x9d, 0x9b, 0x98, 0x97, 0x94, 0x92, 0x8f, 0x8a,
-> +			0x75, 0x70, 0x6d, 0x6b, 0x68, 0x67, 0x64, 0x62,
-> +			0x5e, 0x5b, 0x58, 0x57, 0x54, 0x52, 0x4f, 0x4a,
-> +			0x34, 0x31, 0x2c, 0x2a, 0x29, 0x26, 0x25, 0x23,
-> +			0x1c, 0x1a, 0x19, 0x16, 0x15, 0x13, 0x0e, 0x0b
-> +		  };
-> +
-> +static char check_synd[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
-> +#endif
-> +
-> +struct npcm_edac_platform_data {
-> +	/* force ECC event */
-> +	u32 ip_features;
-> +	u32 ddr_ctl_controller_busy_reg;
-> +	u32 ecc_ctl_xor_check_bits_reg;
-> +
-> +	u32 chip;
-> +
-> +	/* DDR4 Controller Registers */
-> +	u32 ddr_ctl_mem_type_reg;
-> +	u32 ddr_ctl_mem_width_reg;
-> +
-> +	u32 ecc_ctl_en_reg;
-> +	u32 ecc_ctl_int_mask;
-> +	u32 ecc_ctl_int_status;
-> +	u32 ecc_ctl_int_ack;
-> +	u32 ecc_ctl_int_mask_master;
-> +	u32 ecc_ctl_int_mask_ecc;
-> +
-> +	u32 ecc_sig_ecc_c_addr_l;
-> +	u32 ecc_sig_ecc_c_addr_h;
-> +	u32 ecc_sig_ecc_c_data_l;
-> +	u32 ecc_sig_ecc_c_data_h;
-> +	u32 ecc_sig_ecc_c_id;
-> +	u32 ecc_sig_ecc_c_synd;
-> +
-> +	u32 ecc_sig_ecc_u_addr_l;
-> +	u32 ecc_sig_ecc_u_addr_h;
-> +	u32 ecc_sig_ecc_u_data_l;
-> +	u32 ecc_sig_ecc_u_data_h;
-> +	u32 ecc_sig_ecc_u_id;
-> +	u32 ecc_sig_ecc_u_synd;
-> +
-> +	/* MASK */
-> +	u32 ecc_ctl_ecc_enable_mask;
-> +	u32 ecc_ctl_en_int_master_mask;
-> +	u32 ecc_ctl_en_int_ecc_mask;
-> +
-> +	/* ECC IRQ Macros */
-> +	u32 ecc_int_ce_event;
-> +	u32 ecc_int_second_ce_event;
-> +	u32 ecc_int_ue_event;
-> +	u32 ecc_int_second_ue_event;
-> +	u32 ecc_int_ce_ue_mask;
-> +	u32 ecc_ce_intr_mask;
-> +	u32 ecc_ue_intr_mask;
-> +
-> +	/* ECC Signature Macros */
-> +	u32 ecc_sig_ecc_c_id_shift;
-> +	u32 ecc_sig_ecc_c_synd_shift;
-> +	u32 ecc_sig_ecc_c_addr_h_mask;
-> +	u32 ecc_sig_ecc_c_id_mask;
-> +	u32 ecc_sig_ecc_c_synd_mask;
-> +
-> +	u32 ecc_sig_ecc_u_id_shift;
-> +	u32 ecc_sig_ecc_u_synd_shift;
-> +	u32 ecc_sig_ecc_u_addr_h_mask;
-> +	u32 ecc_sig_ecc_u_id_mask;
-> +	u32 ecc_sig_ecc_u_synd_mask;
+All warnings (new ones prefixed by >>):
 
-I'd try to shorten those if I were you - "ecc_sig_" could go, "ecc_int_"
-too. Then the code accessing them would become more readable and you
-won't have to break long lines.
+   In file included from drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:12:
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c: In function 'vdec_vp9_slice_lat_decode':
+>> drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 6 has type 'dma_addr_t' {aka 'unsigned int'} [-Wformat=]
+      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
+         |                     ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
+     134 |                 func(&id, ##__VA_ARGS__);               \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
+     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
+     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
+     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
+      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
+         |         ^~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1938:9: note: in expansion of macro 'mtk_vcodec_debug'
+    1938 |         mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
+         |         ^~~~~~~~~~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 7 has type 'dma_addr_t' {aka 'unsigned int'} [-Wformat=]
+      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
+         |                     ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
+     134 |                 func(&id, ##__VA_ARGS__);               \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
+     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
+     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
+     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
+      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
+         |         ^~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1938:9: note: in expansion of macro 'mtk_vcodec_debug'
+    1938 |         mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
+         |         ^~~~~~~~~~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c: In function 'vdec_vp9_slice_core_decode':
+>> drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 6 has type 'dma_addr_t' {aka 'unsigned int'} [-Wformat=]
+      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
+         |                     ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
+     134 |                 func(&id, ##__VA_ARGS__);               \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
+     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
+     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
+     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
+      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
+         |         ^~~~~~~~
+   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:2007:9: note: in expansion of macro 'mtk_vcodec_debug'
+    2007 |         mtk_vcodec_debug(instance, "core dma_addr_end 0x%lx\n", pfc->vsi.trans.dma_addr_end);
+         |         ^~~~~~~~~~~~~~~~
 
-> +};
-> +
-> +struct priv_data {
-> +	void __iomem *reg;
-> +	u32 ce_cnt;
-> +	u32 ue_cnt;
-> +	char message[EDAC_MSG_SIZE];
-> +	const struct npcm_edac_platform_data *npcm_chip;
-> +};
-> +
-> +#ifdef CONFIG_EDAC_DEBUG
 
-Move that ifdeffery...
+vim +29 drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h
 
-> +static void init_mem_layout(struct mem_ctl_info *mci)
-> +{
-
-... here and then you won't need the ifdeffery at the call site below.
-
-> +	struct priv_data *priv = mci->pvt_info;
-> +	const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-> +	struct csrow_info *csi;
-> +	struct dimm_info *dimm;
-> +	struct sysinfo inf;
-> +	enum mem_type mtype;
-> +	u32 val, width;
-> +	u32 size, row;
-> +	u8 j;
-> +
-> +	dimm = edac_get_dimm(mci, 0, 0, 0);
-> +	if (!dimm) {
-
-Save an indentation level:
-
-	if (dimm)
-		return;
-
-	si_meminfo(&inf);
-	...
-
-> +		si_meminfo(&inf);
-> +		for (row = 0; row < mci->nr_csrows; row++) {
-> +			csi = mci->csrows[row];
-> +			size = inf.totalram * inf.mem_unit;
-> +
-> +			for (j = 0; j < csi->nr_channels; j++) {
-> +				dimm            = csi->channels[j]->dimm;
-> +				dimm->edac_mode = EDAC_FLAG_SECDED;
-> +				/* Get memory type by reading hw registers*/
-> +				val = readl(priv->reg + npcm_chip->ddr_ctl_mem_type_reg);
-> +				mtype = val & NPCM_ECC_CTL_MTYPE_MASK;
-> +
-> +				if (mtype == MEM_TYPE_DDR4)
-> +					dimm->mtype = MEM_DDR4;
-> +				else
-> +					dimm->mtype = MEM_EMPTY;
-> +
-> +				/*Get EDAC devtype width for the current mc*/
-
-Put spaces between the * and the text. There are other comments who have
-this, pls fix them all.
-
-> +				width = readl(priv->reg + npcm_chip->ddr_ctl_mem_width_reg)
-> +					      & CTL_MEM_MAX_WIDTH_MASK;
-> +				switch (width) {
-> +				case WDTH_16:
-> +					dimm->dtype  = DEV_X2;
-> +					break;
-> +				case WDTH_32:
-> +					dimm->dtype  = DEV_X4;
-> +					break;
-> +				case WDTH_64:
-> +					dimm->dtype  = DEV_X8;
-> +					break;
-> +				default:
-> +					dimm->dtype = DEV_UNKNOWN;
-> +				}
-> +
-> +				dimm->nr_pages  = (size >> PAGE_SHIFT) /
-> +					csi->nr_channels;
-> +				dimm->grain     = NPCM_EDAC_ERR_GRAIN;
-> +			}
-> +		}
-> +	}
-> +}
-> +#endif
-> +
-> +static void handle_ce(struct mem_ctl_info *mci)
-> +{
-> +	struct priv_data *priv = mci->pvt_info;
-> +	const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-> +	u64 err_c_addr = 0x0;
-> +	u64 err_c_data = 0x0;
-> +	u32 err_c_synd, err_c_id;
-> +	u32 sig_val_l, sig_val_h;
-> +
-> +	sig_val_l = readl(priv->reg + npcm_chip->ecc_sig_ecc_c_addr_l);
-> +
-> +	if (npcm_chip->chip == NPCM8XX_CHIP)
-> +		sig_val_h = (readl(priv->reg + npcm_chip->ecc_sig_ecc_c_addr_h) &
-> +				npcm_chip->ecc_sig_ecc_c_addr_h_mask);
-> +	else
-> +		sig_val_h = 0x0;
-
-assign those vars to 0 at declaration time and you won't need the else
-branch here...
-
-> +
-> +	err_c_addr = (((err_c_addr | sig_val_h) <<
-> +				CTL_REG_WIDTH_SHIFT) | sig_val_l);
-> +
-> +	sig_val_l = readl(priv->reg + npcm_chip->ecc_sig_ecc_c_data_l);
-> +
-> +	if (npcm_chip->chip == NPCM8XX_CHIP)
-> +		sig_val_h = readl(priv->reg + npcm_chip->ecc_sig_ecc_c_data_h);
-> +	else
-> +		sig_val_h = 0x0;
-
-... and here.
-
-Ditto for handle_ue() below.
-
-> +	err_c_data = (((err_c_data | sig_val_h) <<
-> +				CTL_REG_WIDTH_SHIFT) | sig_val_l);
-> +
-> +	err_c_id = ((readl(priv->reg + npcm_chip->ecc_sig_ecc_c_id) &
-> +				npcm_chip->ecc_sig_ecc_c_id_mask) >>
-> +				npcm_chip->ecc_sig_ecc_c_id_shift);
-> +
-> +	err_c_synd = ((readl(priv->reg + npcm_chip->ecc_sig_ecc_c_synd) &
-> +				npcm_chip->ecc_sig_ecc_c_synd_mask) >>
-> +				npcm_chip->ecc_sig_ecc_c_synd_shift);
-> +
-> +	priv->ce_cnt = priv->ce_cnt + 1;
-> +
-> +	snprintf(priv->message,
-> +		 EDAC_MSG_SIZE, "DDR ECC %s: data=0x%llx source_id=%#08x",
-> +		 mci->ctl_name, err_c_data, err_c_id);
-> +
-> +	edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci,
-> +			     1,
-> +			     err_c_addr >> PAGE_SHIFT,
-> +			     err_c_addr & ~PAGE_MASK,
-> +			     err_c_synd, 0, 0, -1,
-> +			     priv->message, "");
-> +}
->
-
-...
-
-> +static ssize_t forced_ecc_error_store(struct device *dev,
-> +				      struct device_attribute *mattr,
-> +				      const char *data, size_t count)
-> +{
-> +	struct mem_ctl_info *mci = to_mci(dev);
-> +	struct priv_data *priv = mci->pvt_info;
-> +	const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-> +	int	args_cnt;
-> +	int	ret;
-> +	char	**args;
-> +	u32	regval;
-> +	u8	bit_no;
-> +
-> +	/* Split string buffer into separate parameters */
-> +	args = argv_split(GFP_KERNEL, data, &args_cnt);
-
-Move that args splitting...
-
-> +
-> +	/* Check ecc enabled */
-> +	if (!(readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask))
-> +		return count;
-> +
-> +	/* Check no write operation pending to controller*/
-> +	while (readl(priv->reg + npcm_chip->ddr_ctl_controller_busy_reg) &
-> +			CTL_CONTROLLER_BUSY_FLAG) {
-> +		usleep_range(1000, 10000);
-> +	}
-
-... here.
-
-> +
-> +	/* Write appropriate syndrome to xor_check_bit*/
-
-Any documentation about the string being written to debugfs here? I
-wouldn't want to read the source each time :)
-
-> +	if (!strcmp(args[0], "CE") && args_cnt == 3) {
-> +		ret = kstrtou8(args[2], 0, &bit_no);
-> +		if (ret)
-> +			return ret;
-> +		if (!strcmp(args[1], "checkcode")) {
-> +			if (bit_no > 7) {
-> +				edac_printk(KERN_INFO, NPCM_EDAC_MOD_NAME, "bit_no for checkcode must be 0~7\n");
-> +				return count;
-> +			}
-> +			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +			regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-> +				(check_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
-> +			writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +		} else if (!strcmp(args[1], "data")) {
-> +			if (bit_no > 63) {
-> +				edac_printk(KERN_INFO, NPCM_EDAC_MOD_NAME, "bit_no for data must be 0~63\n");
-> +				return count;
-> +			}
-> +			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +			regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-> +					 (data_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
-> +			writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +		}
-> +		/* Enable the ECC writeback_en for corrected error */
-> +		regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +		writel((regval | NPCM_ECC_CTL_AUTO_WRITEBACK_EN),
-> +		       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +	} else if (!strcmp(args[0], "UE")) {
-> +		regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +		regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-> +				 (ECC_DOUBLE_MULTI_ERR_SYND << XOR_CHECK_BIT_SPLIT_WIDTH);
-> +		writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +	}
-> +
-> +	/* Assert fwc */
-> +	writel((NPCM_ECC_CTL_FORCE_WC | readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg)),
-> +	       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-> +
-> +	return count;
-> +}
-
-...
-
-> +#ifdef CONFIG_EDAC_DEBUG
-> +	if ((npcm_chip->ip_features & FORCED_ECC_ERR_EVENT_SUPPORT) &&
-> +	    npcm_chip->chip == NPCM8XX_CHIP) {
-> +		if (create_sysfs_attributes(mci)) {
-> +			edac_printk(KERN_ERR, NPCM_EDAC_MOD_NAME,
-> +				    "Failed to create sysfs entries\n");
-> +			goto err1;
-> +		}
-> +	}
-> +#endif
-> +
-> +	/* Only enable MC interrupts with ECC - clear global int mask bit and ecc bit */
-> +	writel(npcm_chip->ecc_ctl_en_int_master_mask,
-> +	       priv_data->reg + npcm_chip->ecc_ctl_int_mask_master);
-> +
-> +	if (npcm_chip->chip == NPCM8XX_CHIP) {
-> +		/* clear single and multi for ce and ue */
-> +		writel(npcm_chip->ecc_ctl_en_int_ecc_mask,
-> +		       priv_data->reg + npcm_chip->ecc_ctl_int_mask_ecc);
-> +	}
-> +
-> +	return 0;
-> +
-> +#ifdef CONFIG_EDAC_DEBUG
-> +err1:
-> +#endif
-
-This is just silly. Why should loading of the driver fail when it cannot
-create a couple of sysfs debugging helpers? I think you're fine if you
-simply issue the error message but continue.
-
-> +
-> +	edac_mc_del_mc(&pdev->dev);
-> +
-> +err:
-> +	edac_mc_free(mci);
-> +	return ret;
-> +}
-> +
-> +static int npcm_edac_mc_remove(struct platform_device *pdev)
-> +{
-> +	struct mem_ctl_info *mci = platform_get_drvdata(pdev);
-> +	struct priv_data *priv = mci->pvt_info;
-> +	const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-> +
-> +	writel(NPCM_ECC_CTL_GLOBAL_INT_DISABLE, priv->reg + npcm_chip->ecc_ctl_int_mask_master);
-> +
-> +	/* Disable ecc feature before removing driver by writing 0 */
-> +	writel((unsigned int)(~(npcm_chip->ecc_ctl_ecc_enable_mask)),
-> +	       priv->reg + npcm_chip->ecc_ctl_en_reg);
-> +
-> +#ifdef CONFIG_EDAC_DEBUG
-> +	remove_sysfs_attributes(mci);
-> +#endif
-> +	edac_mc_del_mc(&pdev->dev);
-> +	edac_mc_free(mci);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver npcm_edac_mc_driver = {
-> +	.driver = {
-> +		   .name = "npcm-edac",
-> +		   .of_match_table = npcm_edac_of_match,
-> +	},
-> +	.probe = npcm_edac_mc_probe,
-> +	.remove = npcm_edac_mc_remove,
-> +};
-> +
-> +module_platform_driver(npcm_edac_mc_driver);
-> +
-> +MODULE_AUTHOR("Medad <ctcchien@nuvoton.com>");
-			^^
-
-Your surname too pls.
-
-> +MODULE_DESCRIPTION("Nuvoton NPCM EDAC Driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.17.1
-> 
+4e855a6efa5470 drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Tiffany Lin      2016-05-03  27  
+71c789760ff9ba drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Dafna Hirschfeld 2021-11-17  28  #undef pr_fmt
+71c789760ff9ba drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Dafna Hirschfeld 2021-11-17 @29  #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
+4e855a6efa5470 drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Tiffany Lin      2016-05-03  30  
 
 -- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+0-DAY CI Kernel Test Service
+https://01.org/lkp
