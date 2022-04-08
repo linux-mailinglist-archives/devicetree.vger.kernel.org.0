@@ -2,116 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFDB34F9983
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 720E44F99AE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237600AbiDHPbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
+        id S237687AbiDHPoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:44:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237599AbiDHPbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:31:35 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1FA11DD1D
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:29:31 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id w4so13393696wrg.12
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:29:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ifY6DMbLg1SCliDlEYY8vn7YQNz7rwzE6gWMsXWpwWQ=;
-        b=f+pyN4QcTJS1ikUlp6zjJcPGoEm4rBGxHM19/nqQZbVxnOqEcOk2tnU1AWTctJfUBJ
-         fv/a+ioFkF8LckXVZPc4njJ05ACyEe7V2pw8eBC9HuIGeKsEUjJtdKrcOq5XKn/Nedgy
-         MHpAJG7Ww/lDRZHMBeJj3zDtNFQrJjDPZv2aki1LdrTy1FIF3azC8RVqVNXxL/yCBmMX
-         AUV/MQTx+o96TemNGq3MEXkq+vSI2R841mjlTLWdta3s3sw1pNv/75mudQVfVyEGZyBa
-         0F+N0emulepgjY3lCG0t36N9cFBgVe/dxYBjr8T5HozlaUYA0BJKml00E+I5AQk+aWOM
-         RGVg==
+        with ESMTP id S230231AbiDHPoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:44:00 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 639067EB26;
+        Fri,  8 Apr 2022 08:41:56 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so10082827fac.11;
+        Fri, 08 Apr 2022 08:41:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ifY6DMbLg1SCliDlEYY8vn7YQNz7rwzE6gWMsXWpwWQ=;
-        b=CiEU8Il5u6QceQLc8g1qzR/MeNnz180ki6Fphdf7Sj5xUraHsX8VRJmF1U9RY0397Y
-         k4Frjqt3+AfFIohT/ZXhTatrWQOf2JWXHi9hpihJLfJb/5xT4ZFkNrx6OuqVlQTSz+VH
-         wKjmBnM8kQH4Emj2mzms82pO0cImgesaEq0YoOZA1dtIKnMTowwkAgXXv4dXNC8fONe9
-         kdy8Y9XouOuU1mrI4EuH7b60AhK8doMBs6v4buPtHTgTynP/yuOQIeEnazOhr+zaibss
-         /QDA4WbVu24X2fy81qZVIvFy9L9veiXCmk6uL1S/+ij7ey1rVmakr7smLbJ0BOdZeyMU
-         getA==
-X-Gm-Message-State: AOAM533RF+P6rWnRvzNTQuI7zq4Yqc8eLCCF5XLXJKeECM2ScSV2QbzK
-        JYjBSQhdlJkgnCxxhHZtH79NoQ==
-X-Google-Smtp-Source: ABdhPJze7wG69pOLr7bONpv65bzq93TZexBOiF5c8eNlAqorPQ/UAQk7C54nPkcIOHDXC/mmjbKaaw==
-X-Received: by 2002:a05:6000:1848:b0:204:e92:5af6 with SMTP id c8-20020a056000184800b002040e925af6mr14917867wri.180.1649431770416;
-        Fri, 08 Apr 2022 08:29:30 -0700 (PDT)
-Received: from [192.168.2.222] ([51.37.209.28])
-        by smtp.gmail.com with ESMTPSA id p14-20020a05600c1d8e00b0038dbb5ecc8asm10965530wms.2.2022.04.08.08.29.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 08:29:29 -0700 (PDT)
-Message-ID: <cc11d576-3670-ff0a-e0a1-e92780a04c2a@conchuod.ie>
-Date:   Fri, 8 Apr 2022 16:29:28 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v1 0/7] Add rtc refclk support for PolarFire SoC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        mturquette@baylibre.com, sboyd@kernel.org, aou@eecs.berkeley.edu,
-        paul.walmsley@sifive.com, palmer@rivosinc.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220408143646.3693104-1-conor.dooley@microchip.com>
- <1fa15b36-7a84-e0ac-2c56-d6a2bec566ff@linaro.org>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <1fa15b36-7a84-e0ac-2c56-d6a2bec566ff@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=gc3rc9UDAle15X3NUQszdkSzEDch8StpUzd09vVKlk4=;
+        b=XcBp5mVNpJ3QUvgm935+rOUjA4879G12hpwRmKNkqWQ12H1HHC7gw8cdhyosmPnemf
+         9YMdjNp6HhDIyuWh6BbJLPtZtyfWVCpy2RysY+YohUswLsMYQDXtXB14hNzCkYiZFvu4
+         TJrHuoYH6DL+bokHlTyDjwAod25fa4AAJFwTgi14cF39v2GsI1AX4AiLu33RTVKbBf+h
+         NQ3wJUEuNM2GisjlpW22kVdjN33wLLwXGZLxOqkcPwU5P5akdL2MCxkQd55dNcS+7zAv
+         ATwCof8GPcKEXcVgCI1QJSQw9X94UcXBbVZsZPI/j82LFQkaGhklUxDT1y2mBAOHZxVk
+         cqfA==
+X-Gm-Message-State: AOAM531FUn+G1w+qFrrDUdxuu2gzKwdNNLc4eEzEheUdYFBaC2t3MFY6
+        +4lDjony/ETbjVLxCoFpyQ==
+X-Google-Smtp-Source: ABdhPJwUS18j+rvvp45gUAkE+0ZDG9xKpavicWZYQRIQL0ljRiJ5S15MjjjksL5opKRuzCDAdLthdg==
+X-Received: by 2002:a05:6870:c101:b0:da:b3f:2b89 with SMTP id f1-20020a056870c10100b000da0b3f2b89mr8951063oad.296.1649432515683;
+        Fri, 08 Apr 2022 08:41:55 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s82-20020acadb55000000b002d9ce64bea0sm8758874oig.48.2022.04.08.08.41.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 08:41:55 -0700 (PDT)
+Received: (nullmailer pid 3536063 invoked by uid 1000);
+        Fri, 08 Apr 2022 15:41:54 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Keerthy <j-keerthy@ti.com>, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20220408081258.57213-1-tony@atomide.com>
+References: <20220408081258.57213-1-tony@atomide.com>
+Subject: Re: [PATCH] dt-bindings: timer: Update TI timer to yaml and add compatible for am6
+Date:   Fri, 08 Apr 2022 10:41:54 -0500
+Message-Id: <1649432514.728371.3536062.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 08/04/2022 15:57, Krzysztof Kozlowski wrote:
-> On 08/04/2022 16:36, Conor Dooley wrote:
->> Hey,
->> As I mentioned in my fixes for 5.18 [0], found out that the reference
->> clock for the rtc is actually missing from the clock driver (and the
->> dt binding).
->>
->> Currently the mpfs clock driver uses a reference clock called the
->> "msspll", set in the device tree, as the parent for the cpu/axi/ahb
->> (config) clocks. The frequency of the msspll is determined by the FPGA
->> bitstream & the bootloader configures the clock to match the bitstream.
->> The real reference is provided by a 100 or 125 MHz off chip oscillator.
->>
->> However, the msspll clock is not actually the parent of all clocks on
->> the system - the reference clock for the rtc/mtimer actually has the
->> off chip oscillator as its parent.
->>
->> This series enables reading the rate of the msspll clock, converts
->> the refclock in the device tree to the external reference & adds
->> the missing rtc reference clock.
->>
->> I assume it is okay not to add fixes tags for the rtc dt binding?
->> Since the clock was previously missing, the binding is wrong, but
->> idk if that qualifies as a fix?
+On Fri, 08 Apr 2022 11:12:58 +0300, Tony Lindgren wrote:
+> Let's update the TI timer binding to use yaml. And add compatible for
+> ti,am654-timer for TI am64, am65 and j72 SoCs. As the timer hardware is
+> the same between am64, am65 and j72 we use the compatible name for the
+> earliest SoC with this timer.
 > 
-> Usually ABI breakage, even if accepted, should be be tagged as fix
-> because it is clearly then a break of other peoples' trees...
+> As this binding is specific to the TI dual-mode timers also known
+> as dm-timers, let's use ti,timer-dm.yaml naming for the new file.
+> 
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Keerthy <j-keerthy@ti.com>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  .../bindings/timer/ti,timer-dm.yaml           | 105 ++++++++++++++++++
+>  .../devicetree/bindings/timer/ti,timer.txt    |  44 --------
+>  2 files changed, 105 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/timer/ti,timer.txt
 > 
 
-That means either a) do something messy in the clock driver or b) mark
-the whole series as fixes (and roll it into [0]).
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-The second option seems far more sensible to me, do you agree?
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+timer@0: compatible:0: 'ti,am4372-timer-1ms' is not one of ['ti,omap2420-timer', 'ti,omap3430-timer', 'ti,omap4430-timer', 'ti,omap5430-timer', 'ti,am335x-timer', 'ti,am335x-timer-1ms', 'ti,am654-timer']
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+
+timer@0: compatible:0: 'ti,am4372-timer' is not one of ['ti,omap2420-timer', 'ti,omap3430-timer', 'ti,omap4430-timer', 'ti,omap5430-timer', 'ti,am335x-timer', 'ti,am335x-timer-1ms', 'ti,am654-timer']
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+
+timer@0: compatible: ['ti,am4372-timer-1ms', 'ti,am335x-timer-1ms'] is too long
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+
+timer@0: compatible: ['ti,am4372-timer', 'ti,am335x-timer'] is too long
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-cm-t43.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-gp-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-idk-evm.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sbc-t43.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am437x-sk-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+	arch/arm/boot/dts/am43x-epos-evm.dtb
+
