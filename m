@@ -2,64 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89864F9063
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E66314F906A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230432AbiDHIKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58210 "EHLO
+        id S230504AbiDHIMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:12:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229852AbiDHIKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:10:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056CB2DD55
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:08:00 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1ncjep-0006gG-Rw; Fri, 08 Apr 2022 10:07:51 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1ncjem-0001ic-HQ; Fri, 08 Apr 2022 10:07:48 +0200
-Date:   Fri, 8 Apr 2022 10:07:48 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
-Message-ID: <20220408080748.GA2387@pengutronix.de>
-References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
- <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
- <20220401125205.GL4012@pengutronix.de>
- <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
- <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
+        with ESMTP id S229520AbiDHIMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:12:07 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0269436333
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:10:05 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id bh17so15709330ejb.8
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:10:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=16qq4T8W7Wb3W3I0GFoxZjqEJT94+MYc2RlGkdbX2ac=;
+        b=DHUn3OoULpXK+mm9ySoqW5WNBlp+pqhHBqMvxhOBi/v95ukvoDz09bDR+K4ILGQPxW
+         KZra/kNcINrwhQ2t+V3PgKTeZqSs5Z+BXx7BSUsqw/p5/p7AhIhRdWUDjLk44f5JRiy1
+         roa+7FL5knMpJNMxTxNhVK3kovdvgEmQ115DQjQmmrKoARK3kWCTzUmEQ/2+NByzAtg5
+         XD6m7Wgp99VyLQoorf8GoYIo6DNYMwdAZCJAGMcBGWeXpd9kiKLu2WPIt5yN85m+JlAf
+         l/D0BXr604LNNDLQcUA4EcfuSImnq0/txS+smMOdRfajZN0K3EnUgVCQ9MJOgWAuZpAH
+         ri6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=16qq4T8W7Wb3W3I0GFoxZjqEJT94+MYc2RlGkdbX2ac=;
+        b=jKN0/p9SgYKUpl5lnMOYfpKPcRPG2Elf9NiBfM5X3LoPri21Wl21t1D5JwOE4d6FQV
+         VCLOFJDERfl2prr7fVtc3Y0jUWg81iNzWu079+ZsAieqaAePAhR/3akbkFAD+2WBvJWi
+         i93w50i2fS5lO9J9lWZ6yhn0hQE1NG9NdZBP2a/Z+iWvaCb9dB2Deot4cRayLb0e/bqC
+         WC2jrNNR+zYSUM6uOfwBR0lQKyBUm2OnR2veQlI+hQ+6ftdUzPEzdR86+SvQKO7AYtXQ
+         NaIFmgsQLpSi5DCl1lkt3khG2e3txM1jAE8YBBgOtknJEuZFQhLhbfidOdQmEIPzu3ig
+         gfTQ==
+X-Gm-Message-State: AOAM531CH+y9SX4lw/LUIPALp3kXUqqUAzPtASB+BKm6iGUDq5O4KPjw
+        puqZ7WymBWQjSiq+/SappBQsJQ==
+X-Google-Smtp-Source: ABdhPJyd+7LeacyRv4S4s8A5mEZaNzMiHeOn8GceZ6A7SUV88bQI8PoI45QiWp3fyzkIiAh8+Qduvg==
+X-Received: by 2002:a17:906:acf:b0:6e7:681e:b4b6 with SMTP id z15-20020a1709060acf00b006e7681eb4b6mr17535515ejf.61.1649405403553;
+        Fri, 08 Apr 2022 01:10:03 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id u6-20020a17090626c600b006e74ef7f092sm6549148ejc.176.2022.04.08.01.10.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 01:10:03 -0700 (PDT)
+Message-ID: <a171f33c-cda1-8602-ac67-93076b676578@linaro.org>
+Date:   Fri, 8 Apr 2022 10:10:02 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:04:12 up 8 days, 20:33, 66 users,  load average: 0.29, 0.37, 0.24
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH V2 01/15] dt-bindings: cpufreq: mediatek: Add MediaTek CCI
+ property
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+ <20220408045908.21671-2-rex-bc.chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220408045908.21671-2-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,71 +80,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 06, 2022 at 11:47:22AM +0200, Piotr Oniszczuk wrote:
+On 08/04/2022 06:58, Rex-BC Chen wrote:
+> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
 > 
+> MediaTek Cache Coherent Interconnect (CCI) uses software devfreq module
+> for scaling clock frequency and adjust voltage.
+> The phandle could be linked between CPU and MediaTek CCI for some
+> MediaTek SoCs, like MT8183 and MT8186.
+> Therefore, we add this property in cpufreq-mediatek.txt.
 > 
-> > Wiadomość napisana przez Piotr Oniszczuk <piotr.oniszczuk@gmail.com> w dniu 01.04.2022, o godz. 15:05:
-> > Sascha
-> > 
-> > Now works perfectly!
-> > (hd playback with 3.5...5.5% cpu while rendering to drm plane)
-> > 
-> > Fantastic work of You!
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt          | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Sascha,
-> 
-> Having vop2 finally working with drm planes rendering i discovered another issue: overlay osd is invisible at playback. 
-> 
-> context: player draws video on plane #X and osd on overlay plane #Y
-> When user do i.e. seek at playback - app uses overlay OSD plane to display OSD to user. This approach is used by majority of players (KODI, etc.)
-> 
-> This works well on all platforms i have  - except rk3566 
-> 
-> For me it looks like z-order vop2 issue or alpha blending issue.
-> As this is only on rk3566 and only on drm-planes mode - issue is vop2 related imho.
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> index b8233ec91d3d..d1b3d430c25c 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.txt
+> @@ -20,6 +20,10 @@ Optional properties:
+>  	       Vsram to fit SoC specific needs. When absent, the voltage scaling
+>  	       flow is handled by hardware, hence no software "voltage tracking" is
+>  	       needed.
+> +- cci: MediaTek Cache Coherent Interconnect uses software devfreq module for scaling
+> +       clock frequency and adjust voltage.
 
-That turned out to be simpler than I thought it would be. The zpos
-values were never actually written to the hardware. Please try the
-following fixup, it should fix this issue.
+You need to describe the type. I am a bit confused whether this is a cci
+(so cci-control-port property?) or an interconnect (so interconnect
+property)... It does not look like a generic property, so you need
+vendor prefix.
 
-Thanks for your valuable testing feedback so far :)
+> +       For details, please refer to
+> +       Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
 
-Sascha
-
-----------------------------8<------------------------
-
-From d5a102ff1d3010320f492a6ebac6710276fc641f Mon Sep 17 00:00:00 2001
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Fri, 8 Apr 2022 09:45:24 +0200
-Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
-
----
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 54208b20a5a7e..8d1323a47f822 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -1943,8 +1943,10 @@ static void vop2_setup_layer_mixer(struct vop2_video_port *vp)
- 			break;
- 		}
- 
--		layer_sel &= ~RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, 0x7);
--		layer_sel |= RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, win->data->layer_sel_id);
-+		layer_sel &= ~RK3568_OVL_LAYER_SEL__LAYER(plane->state->normalized_zpos + ofs,
-+							  0x7);
-+		layer_sel |= RK3568_OVL_LAYER_SEL__LAYER(plane->state->normalized_zpos + ofs,
-+							 win->data->layer_sel_id);
- 		nlayer++;
- 	}
- 
--- 
-2.30.2
+Such file does not exist.
 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
