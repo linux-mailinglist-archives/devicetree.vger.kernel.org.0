@@ -2,116 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5034B4F9874
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:44:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AFD84F9885
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:47:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232016AbiDHOqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 10:46:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
+        id S231622AbiDHOtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 10:49:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233966AbiDHOqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:46:32 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1974F3A7C
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:44:27 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id i20so80079wrb.13
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 07:44:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4x/upSoWHiog4isXgyEOmPfG0ImFBqCVE6uW1bG0IPk=;
-        b=EQ935yiFvjCehYb9frNX6P21JAaTBgnRMF4VC64YzYGDjyJmMoF7rk0IL/tLlp+vcZ
-         galZCnkCYTKrz4vqZBOTVxxBa4Om1jSOiCo2jnDkD0nokKAMFaL0SXAIHijkkzVnGR2H
-         Af5XQ8aJJ9+Yyj8q6kO8awGTXKZ2iI4VYvCO9U+u7YKzTIs8GSm44TjLXnr7CVIfl2RL
-         BtMEGj/UNdeVhp6B8NSFaoQa4SUmguLqphfT2dHdDICAXbBHtvwkQWWHvksqbSfgl9xz
-         UMY3A/67I9ZNPaKLbs7mSu4uS9xh51EFpNXCv2kx+mSN5c+OUHN4s4HKW6S6g79eKAeL
-         Iwcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4x/upSoWHiog4isXgyEOmPfG0ImFBqCVE6uW1bG0IPk=;
-        b=KH0c5+k0wlQTDm4iiw0umkNgJkl0+lc0jBjwOy6CuH88/5EvrcBvANUYGmCy3WoiMe
-         +fWpbgJvC+g7gJGDA0G59OqWlsgdVEY0wiY2OJ5ZlNL+n++5q/T0lsD1a75UuJph7Bz2
-         bQg5+t6ItxuQKz6a+40RNGt+gnnBV3lAcHDhpz8b+lWf6YQbElQK5owE9wPJLsX4dLzX
-         nPJCHI2NqQnfOmgpU2e5j89pln+A7kSbij2/HBzdPaCR/LgQ9SsnyW1PILDFN/cNDM+g
-         BK4iU2TsgSLdyZ5dMKR/HaLFG1Z0bD/cQOQVG17T93wJ1g/n1NgRf6mI6ME1DI3ReSOm
-         C+Ww==
-X-Gm-Message-State: AOAM532dhnqoG7AzPLV6tWDFMm6oUtnQv7WhYNxCKy1OurdJC5Xgv1JX
-        p2+YS9jWTieZEURmfp9b4JX++w==
-X-Google-Smtp-Source: ABdhPJwAlPDRFgSScU2FS28hlbqjFhs06rEn6gMszy6CYMDp7CRzwGmxAoN5ZCZHh7cqWO0JQSLtTQ==
-X-Received: by 2002:a05:6000:2cd:b0:204:1bf4:e4f8 with SMTP id o13-20020a05600002cd00b002041bf4e4f8mr15235444wry.682.1649429066390;
-        Fri, 08 Apr 2022 07:44:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e34:ed2f:f020:3c94:dc25:f0c5:7ff7? ([2a01:e34:ed2f:f020:3c94:dc25:f0c5:7ff7])
-        by smtp.googlemail.com with ESMTPSA id o19-20020a05600c511300b0038d0d8f67e5sm10533343wms.16.2022.04.08.07.44.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 07:44:23 -0700 (PDT)
-Message-ID: <4035e567-7096-eda5-5a22-4c6e7a0f7514@linaro.org>
-Date:   Fri, 8 Apr 2022 16:44:18 +0200
+        with ESMTP id S235102AbiDHOtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:49:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1FE864FE;
+        Fri,  8 Apr 2022 07:47:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B4275B82B7D;
+        Fri,  8 Apr 2022 14:47:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA850C385A1;
+        Fri,  8 Apr 2022 14:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649429226;
+        bh=VQX066yFGsYa8X9WFsJ18Wdtsul1sn0pOjLIbhD9EZM=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=YBZKwm24jHCmwQeoOUonaVdSZ/osYDmAwV/8h1o54UnPhyw2WpqlJSQ3CCr+aFqSl
+         b1jdUX1L5QmRQxCVUO6rG71d3VweqZl6ofDxEXKTeaykWYZut3bTFw87zVpH9/NiRZ
+         9Nb9Yi3WxOSVpETRs+niqtEux1jxd1i3pF5WYRHSAqytDduInnOdsQfz8XB9SirFE4
+         enXRnysDd8oXue+QE8yw8th6NJAI6w34xGtceiSu/dEenroWIIAycCd6mxmbsQy5Bi
+         CkWsm9EgPfIrWDrLHC6BOIwlQRRLZ7nA03R3lv4BrkVgeEswxsOLvH3l29HlTBSFrl
+         lIJYdf4yqwL1g==
+From:   Mark Brown <broonie@kernel.org>
+To:     tzungbi@google.com, robh+dt@kernel.org, jiaxin.yu@mediatek.com
+Cc:     trevor.wu@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aaronyu@google.com,
+        matthias.bgg@gmail.com, alsa-devel@alsa-project.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linmq006@gmail.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        angelogioacchino.delregno@collabora.com
+In-Reply-To: <20220402051754.17513-1-jiaxin.yu@mediatek.com>
+References: <20220402051754.17513-1-jiaxin.yu@mediatek.com>
+Subject: Re: [v8 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Message-Id: <164942922353.1424253.18184837371560126158.b4-ty@kernel.org>
+Date:   Fri, 08 Apr 2022 15:47:03 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 05/10] dt-bindings: thermal: tsens: Add SM6350 compatible
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        linux-pm@vger.kernel.org, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>
-References: <20211213082614.22651-1-luca.weiss@fairphone.com>
- <20211213082614.22651-6-luca.weiss@fairphone.com>
- <YbpLqwFJI/nfvxd9@robh.at.kernel.org> <CJ4TKNHK955X.2YYNAV248UMK8@otso>
- <YlBGfqNex49CgXze@robh.at.kernel.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <YlBGfqNex49CgXze@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 16:28, Rob Herring wrote:
-> On Fri, Apr 08, 2022 at 01:25:26PM +0200, Luca Weiss wrote:
->> Hi all,
->>
->> On Wed Dec 15, 2021 at 9:10 PM CET, Rob Herring wrote:
->>> On Mon, 13 Dec 2021 09:26:06 +0100, Luca Weiss wrote:
->>>> Add devicetree compatible for tsens on SM6350 SoC.
->>>>
->>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>>> ---
->>>>   Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->>>>   1 file changed, 1 insertion(+)
->>>>
->>>
->>> Acked-by: Rob Herring <robh@kernel.org>
->>
->> It looks like this patch hasn't been applied yet. Could the responsible
->> maintainer please pick it up?
+On Sat, 2 Apr 2022 13:17:50 +0800, Jiaxin Yu wrote:
+> The series reuses mt8192-mt6359-rt10150rt5682.c for supporting machine
+> driver with rt1015p speaker amplifier and rt5682s headset codec.
 > 
-> Normally that should be the thermal maintainers, but I've applied this.
+> Changes from v7:
+>   - "mediatek,hdmi-codec" is an optional property, the code and the
+>     binding document should match.
+> 
+> [...]
 
-Right, I missed it, thanks for taking care of the patch.
+Applied to
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Thanks!
+
+[1/4] ASoC: dt-bindings: mt8192-mt6359: add new compatible and new properties
+      commit: 1efe7eca170d344c5101c69ac51df6982de764e4
+[2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
+      commit: e1e408e60e856b99782b26308a9dc3937b1ba8bf
+[3/4] ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
+      commit: f8910fb4985a00c0a1e6932dc5bda6181c549b76
+[4/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+      commit: 7a80167b08f52e7b5eaa18a9d515efdcff9085fc
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
