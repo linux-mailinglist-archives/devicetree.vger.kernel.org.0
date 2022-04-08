@@ -2,163 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 571204F9077
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E7824F907C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbiDHIOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47126 "EHLO
+        id S231255AbiDHIPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:15:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbiDHIOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:14:25 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2DC1A52B17;
-        Fri,  8 Apr 2022 01:12:22 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 26291807E;
-        Fri,  8 Apr 2022 08:09:55 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Keerthy <j-keerthy@ti.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH] ARM: dts: Drop unused ti,am4372-timer compatible
-Date:   Fri,  8 Apr 2022 11:12:16 +0300
-Message-Id: <20220408081216.57146-1-tony@atomide.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S231300AbiDHIPF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:15:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032E64D9D5
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:13:03 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1ncjjg-0007iG-8O; Fri, 08 Apr 2022 10:12:52 +0200
+Message-ID: <4f8f93c51fedc84d94534e962bc7c68c4a4e5616.camel@pengutronix.de>
+Subject: Re: [PATCH v2 0/7] Add the iMX8MP PCIe support
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Hongxing Zhu <hongxing.zhu@nxp.com>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Date:   Fri, 08 Apr 2022 10:12:49 +0200
+In-Reply-To: <AS8PR04MB86766041887E97E22B0AC8C48CE99@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
+         <CAJ+vNU0McZxj_74DC0wCUyHq-NaT14URnvUP+kvudz7YLQq7fg@mail.gmail.com>
+         <AS8PR04MB86766041887E97E22B0AC8C48CE99@AS8PR04MB8676.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop unused (and undocumented) ti,am4372-timer related compatible
-properties to avoid dtb warnings when updating the binding to yaml.
+Am Freitag, dem 08.04.2022 um 03:14 +0000 schrieb Hongxing Zhu:
+> > 
+[...]
+> > Richard,
+> > 
+> > Thanks for working on this!
+> > 
+> > Do you plan on submitting another version soon? I've tried to test this with an
+> > imx8mp board I'm bringing up and while the host controller enumerates I fail
+> > to get a link to a device. It's very likely I am missing something as this series
+> > depends on the IMX8MP blk-ctrl and gpc series which I also can't cleanly apply.
+> > Lucas just submitted a 'consolidated i.MX8MP HSIO/MEDIA/HDMI blk-ctrl
+> > series' [1] yet I can't find a repo/branch that applies to either.
+> > 
+> > Perhaps you have a git repo somewhere I can look at while we wait for
+> > imx8mp blk-ctl/gpc to settle and you to submit a v3?
+> Hi Tim:
+> Thanks for your kindly help to do the tests.
+> I had listed the dependencies in the cover-letter log.
+> Alexander and I used to test this series commits based on the V5.17 kernel.
+> 
+> Lucas had provided some review comments and suggestions about the PLL bits
+>  manipulations of HSIOMIX in i.MX8MP PCIe PHY driver #3 of this series.
+> And he suggested to let the HSIOMIX blk-ctrl make this PLL as a real clock,
+>  and used by i.MX8MP PCIe PHY driver later.
+> 
+> Although I have some confusions, it's better let's wating for the blk-ctrl
+> settle down and get clear discussion with Lucas later.
+> How do you think about that?
 
-The dual-mode timer instances on am43 are compatible with the am3
-timers.
+Just to let you know my plans: I was quite busy with getting the
+i.MX8MP HDMI part to work. Now that this is at least in a state where
+it can collect some feedback from upstream I have some time to circle
+back to this topic. I can't commit to do it immediately, but I'll get
+around to looking at the PCIe series a bit more in-depth and apply my
+HSIO PLL suggestion to the blk-ctrl driver during the next week.
 
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/am437x-l4.dtsi | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+Regards,
+Lucas
 
-diff --git a/arch/arm/boot/dts/am437x-l4.dtsi b/arch/arm/boot/dts/am437x-l4.dtsi
---- a/arch/arm/boot/dts/am437x-l4.dtsi
-+++ b/arch/arm/boot/dts/am437x-l4.dtsi
-@@ -361,7 +361,7 @@ SYSC_OMAP2_SOFTRESET |
- 			ranges = <0x0 0x31000 0x1000>;
- 
- 			timer1: timer@0 {
--				compatible = "ti,am4372-timer-1ms","ti,am335x-timer-1ms";
-+				compatible = "ti,am335x-timer-1ms";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
- 				ti,timer-alwon;
-@@ -906,7 +906,7 @@ timer2_target: target-module@40000 {	/* 0x48040000, ap 18 1e.0 */
- 			ranges = <0x0 0x40000 0x1000>;
- 
- 			timer2: timer@0  {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&timer2_fck>;
-@@ -933,7 +933,7 @@ target-module@42000 {			/* 0x48042000, ap 20 24.0 */
- 			ranges = <0x0 0x42000 0x1000>;
- 
- 			timer3: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
-@@ -959,7 +959,7 @@ target-module@44000 {			/* 0x48044000, ap 22 26.0 */
- 			ranges = <0x0 0x44000 0x1000>;
- 
- 			timer4: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
- 				ti,timer-pwm;
-@@ -986,7 +986,7 @@ target-module@46000 {			/* 0x48046000, ap 24 28.0 */
- 			ranges = <0x0 0x46000 0x1000>;
- 
- 			timer5: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
- 				ti,timer-pwm;
-@@ -1013,7 +1013,7 @@ target-module@48000 {			/* 0x48048000, ap 26 1a.0 */
- 			ranges = <0x0 0x48000 0x1000>;
- 
- 			timer6: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
- 				ti,timer-pwm;
-@@ -1040,7 +1040,7 @@ target-module@4a000 {			/* 0x4804a000, ap 71 48.0 */
- 			ranges = <0x0 0x4a000 0x1000>;
- 
- 			timer7: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
- 				ti,timer-pwm;
-@@ -1549,7 +1549,7 @@ target-module@c1000 {			/* 0x481c1000, ap 94 68.0 */
- 			ranges = <0x0 0xc1000 0x1000>;
- 
- 			timer8: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
-@@ -2263,7 +2263,7 @@ target-module@3d000 {			/* 0x4833d000, ap 102 6e.0 */
- 			ranges = <0x0 0x3d000 0x1000>;
- 
- 			timer9: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
-@@ -2289,7 +2289,7 @@ target-module@3f000 {			/* 0x4833f000, ap 104 5c.0 */
- 			ranges = <0x0 0x3f000 0x1000>;
- 
- 			timer10: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
-@@ -2315,7 +2315,7 @@ target-module@41000 {			/* 0x48341000, ap 106 76.0 */
- 			ranges = <0x0 0x41000 0x1000>;
- 
- 			timer11: timer@0 {
--				compatible = "ti,am4372-timer","ti,am335x-timer";
-+				compatible = "ti,am335x-timer";
- 				reg = <0x0 0x400>;
- 				interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
- 				status = "disabled";
--- 
-2.35.1
