@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CADF34F9921
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5DF64F991E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237418AbiDHPOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:14:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35436 "EHLO
+        id S236367AbiDHPOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:14:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237431AbiDHPOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:14:50 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FBE1017DF;
-        Fri,  8 Apr 2022 08:12:46 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id z15so1667132qtj.13;
-        Fri, 08 Apr 2022 08:12:46 -0700 (PDT)
+        with ESMTP id S237416AbiDHPOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:14:47 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70EE6FFF7E
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:12:43 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id g20so10416696edw.6
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:12:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=BiTCbZuuiqDpXPtBKnm7lrk6/Udlslh2uUBYoU46tJs=;
-        b=mbS4q19oIqjAQ62E/SZBSAS+VQIoZvxk+Lvp/grvWdLSp1HSOjFEPHff+FMIPeer47
-         ZTtnIRo7fEiU88/vZmzjyRJGJAnUet7X+rkS/8K3MzFektq6sA8aK2HLGW3AOHFZZVOm
-         1tbnwiFwgBiEyC0e0JUnY1SF+1lHuSD2IioJQccwK5XE24rU0dTV3NawdCQD3o0Vkl3Y
-         Pv1F9cPRFLNNWorCW6K8QglPWTwwGNXyGuKMT8Gdd+0aW0EROo5D5gyZzSvueyD9IEUA
-         pv2KqNKRfPWeQaxsgaIkCbpSKmXxwRHN1G+aFCGb/IMkNTtPOBcwwtneyAOwMSUdjB/Y
-         JhPg==
+        bh=XX2KXCol/cB+F9F2M6wlzFqK3IJlqDqtRBrRFqCr29Y=;
+        b=xmZp2V8/SWQoUosFHxYo5+Zv/mSOMGKBwKZmvMSMHnsAA6Lzmak2UdaU2ffkf0qICk
+         CdtxzrJa64VXnINoRbhednGfkz1nzzejp09cDA/CuPQPIDKKjv7vQAWa4Q7WuALe+WcE
+         8p8ICxJ+91iX59qks9YZvD97YYWeOiUKFOJ0+5xDRZdLs+bQfbK29uo+UnGnTjQxdfV3
+         qoYR4R0XPvi2KM7FmnS5BAtuwYiPIEsVzGxgShawQv7p78jGuvy/dayt2hHFeHxZV3hG
+         OqC0G+BBI3ZmiAP06mS1eAI2qKgC2rFABCwbJJtedNvj16SY/cXqhVZHXXJi1sBZLmbD
+         +5lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=BiTCbZuuiqDpXPtBKnm7lrk6/Udlslh2uUBYoU46tJs=;
-        b=eZHx4RdKulj1I3zSjYdV1iY5FqB46J5+ZhYcYB94oY3/xOS0kqa5E0xOJMcmLQpztK
-         4V4qKNTYpYe8s+OL99ndW3RGxKUqhewsaV1c3qZASyO2WVSM/Lhbvxo7aMgrcS3BfTB+
-         m0qNGe1c+XMx8+BZStMMscUPc9bqPin6Mkzshid/7Z3sHF8LRZmTxn7S+GlILIsqEPgk
-         LNWxqsXH9YwzuTvEFg91udEE9yoz3cGDc8O6LsjMOW2/QY7opfn2WeBa0PyWyBgeICwK
-         t0ujriFM7PDeOav8YD2+mUlzwCTrVrZrn0KZfMMg1Lu4z5hSig4O6k54cPMSOVw4zZMF
-         uQdQ==
-X-Gm-Message-State: AOAM532XsNMzHB5qDUe0XzswXcpV7Kx2QwylUA7xH4SHzLYH21o60XVJ
-        CgguQEBLw2DhDVx9qHlzQmc=
-X-Google-Smtp-Source: ABdhPJxfCAacR/8MMW94Q5F36iZ+s7P9L3sPX/KHUxhf9Szg+AfYfAADj3i67pPKqBOD9hxbtum3Kw==
-X-Received: by 2002:a05:622a:1894:b0:2e1:cbdb:8b74 with SMTP id v20-20020a05622a189400b002e1cbdb8b74mr15793603qtc.643.1649430765418;
-        Fri, 08 Apr 2022 08:12:45 -0700 (PDT)
-Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
-        by smtp.gmail.com with ESMTPSA id 191-20020a3707c8000000b0069a13545fcfsm2266052qkh.123.2022.04.08.08.12.44
+        bh=XX2KXCol/cB+F9F2M6wlzFqK3IJlqDqtRBrRFqCr29Y=;
+        b=iKDb8PWd7ShJjdKcM8eJ7QmKRB9P7tQnypIyCLch6wXusyluE6liCJtDyOr0V/mfjh
+         wkVBGq01R7qFgRVe19fVoPjkY3ik/p/WJjp3/3MVDEMM2K/qhdZ8A3c1cPG+HyrNwl+s
+         PhCnNd5/NvipCQ3bGlQMQ4vsJVflYtukjF81hFO7YORh21UYInUVyp0E2PCw+l2A2LW+
+         rxtJkyXmOUJbnXqPSQgNAvVAgwoZS1wbknMB8v2zexwLPngkGkdIXdI4PHx5SBfoJmE4
+         bHMGssgCSDZY2aadRbLs/tXeGuPsa93iFU2Hc3d5MyTS1/LHsFhpAL1kIAJ5mVJXR3XZ
+         GP+A==
+X-Gm-Message-State: AOAM5324KHDe+1+TWeV+BCJT1J+ZoVLl8yGeeojLDCAK3/dhU5txZ8JL
+        poH0iJ+1UCaT04cE5TZdTFC0dw==
+X-Google-Smtp-Source: ABdhPJyyk6UanMuslV4A5Fs+9kw8DBweVAWH39SlZJfK/DvSvceiUMZFRxlsbK/sPjGHa4B4qMXAYg==
+X-Received: by 2002:a05:6402:3693:b0:41c:dd5a:e8ca with SMTP id ej19-20020a056402369300b0041cdd5ae8camr19645323edb.225.1649430762007;
+        Fri, 08 Apr 2022 08:12:42 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id b20-20020a1709063f9400b006e12836e07fsm8774030ejj.154.2022.04.08.08.12.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 08:12:45 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
+        Fri, 08 Apr 2022 08:12:41 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/5] arm64: dts: rockchip: enable dwc3 on quartz64-a
-Date:   Fri,  8 Apr 2022 11:12:36 -0400
-Message-Id: <20220408151237.3165046-5-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220408151237.3165046-1-pgwipeout@gmail.com>
-References: <20220408151237.3165046-1-pgwipeout@gmail.com>
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document R-Car H3/M3/E3 support
+Date:   Fri,  8 Apr 2022 17:12:37 +0200
+Message-Id: <164943075366.672946.10621467910167215562.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <3784b6cb76a008fb56d6cb4ba228d78c77e710fa.1648546583.git.geert+renesas@glider.be>
+References: <3784b6cb76a008fb56d6cb4ba228d78c77e710fa.1648546583.git.geert+renesas@glider.be>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,77 +74,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The quartz64 model a has support for both the dwc3 otg port and the dwc3
-host port. Add the otg power supply and dwc3 nodes to the device tree to
-enable support for these.
+On Tue, 29 Mar 2022 11:38:03 +0200, Geert Uytterhoeven wrote:
+> Document support for the SPI Multi I/O Bus Controller (RPC-IF) in the
+> R-Car H3, M3-W, M3-W+, M3-N, and E3 SoCs.
+> 
+> 
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index dd7f4b9b686b..141a433429b5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -151,6 +151,16 @@ vcc5v0_usb20_host: vcc5v0_usb20_host {
- 		vin-supply = <&vcc5v0_usb>;
- 	};
- 
-+	vcc5v0_usb20_otg: vcc5v0_usb20_otg {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PB5 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vcc5v0_usb20_otg";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dcdc_boost>;
-+	};
-+
- 	vcc3v3_sd: vcc3v3_sd {
- 		compatible = "regulator-fixed";
- 		enable-active-low;
-@@ -187,6 +197,10 @@ vcc_wl: vcc_wl {
- 	};
- };
- 
-+&combphy1 {
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&vdd_cpu>;
- };
-@@ -672,6 +686,29 @@ &usb_host1_ohci {
- 	status = "okay";
- };
- 
-+&usb_host0_xhci {
-+	status = "okay";
-+};
-+
-+/* usb3 controller is muxed with sata1 */
-+&usb_host1_xhci {
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_usb20_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	phy-supply = <&vcc5v0_usb20_otg>;
-+	status = "okay";
-+};
-+
- &usb2phy1 {
- 	status = "okay";
- };
+[1/1] dt-bindings: memory: renesas,rpc-if: Document R-Car H3/M3/E3 support
+      commit: 8f0e3af81711bf72b9c6138b0138bdc330d8c388
+
+Best regards,
 -- 
-2.25.1
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
