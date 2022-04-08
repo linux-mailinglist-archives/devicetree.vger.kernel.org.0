@@ -2,83 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C76D34F9E7C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 22:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E95A24F9E88
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:01:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234218AbiDHVBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 17:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
+        id S235289AbiDHVCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 17:02:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbiDHVBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:01:46 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74152C38;
-        Fri,  8 Apr 2022 13:59:41 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-d6ca46da48so10958249fac.12;
-        Fri, 08 Apr 2022 13:59:41 -0700 (PDT)
+        with ESMTP id S229586AbiDHVCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:02:39 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A41C38
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 14:00:35 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-e1dcc0a327so11029706fac.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 14:00:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f8JKuamLlG+jVMNtvAkq4wZJiZp3w7kpyzKbDeN8Fnw=;
+        b=NLO9SLAPT58rbnIklDh7wm66wgY8PpYlyEhH8yN94D6RQ4oNojHPhLWkid7T60WtR8
+         vmLvgJwMQMNgOTTcBFt2lNsma5aRvRim2DUeaxMORvS6fC1Lisw65k290IW7lWGmtnRo
+         mxUs3O4nGCkIP7NS7IFGbrgK+cDPc11Ig2N2C8d5HggIFMcQV6BiFaOuR9l8KyubQlFO
+         X/vI/47rplgg3y0SZTHhGhFf54/uhB9DKbyOPuTImDOXmqPJ7nK3W28bs1LgHM6EwHI0
+         MEVssq1u8Sj79Ai+yE++qTCNUhbWG/V2Yz8hrOvHjvKXHGWXWdtU1opjzEHLsC3JOEPj
+         GH/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mgIV08Nzu1AulSexKN4gF1Bv7Djf0q021L8PdHI29+k=;
-        b=0KDYXMJLORdgfiJ2GSIMXR3iq+8/3pEDfPegG5VGgNXMEQtLBpwkQ4gyrW9hRDxZtf
-         BSzMK+ZFzex3faRoyjxnXO2/EgdtwSa0ujcZZDYz34ZpZ2IiNYrbTjQxk1xDUouoemMO
-         FoxmISOqpid4ktfaR2xKOI1Yalm+2Ye4xaRyIwY3y/i6rhKO5Ok9cbQcU1IbsAgZ/K34
-         E446v+D343LArxGbfV5KnHbubwsiLGJexAUo/+ZCIqZ2r2ImOImLOmh+VMsCGzT5zARK
-         KWNtXjdp5/2ZAx8/6aPiaT4d/GSF9M9p5anOCiOsHI51lqY4cE81kGWLgEYzJI7cEv2t
-         9G/Q==
-X-Gm-Message-State: AOAM530+YgFTXTl33d8CAwKCaBOO/XyB7I1PjuEXM4NJvzWuFVXLXl/W
-        E8waMYiKjoFKx7JZ5JKdHELruaPYMw==
-X-Google-Smtp-Source: ABdhPJxHqBYnOljjlPwoSREFiVsVGDcfYviUYhyu+neONh6XlOy5IYfgmJpr6obbximEBUAHpbNLjw==
-X-Received: by 2002:a05:6870:a1a8:b0:e2:182d:6375 with SMTP id a40-20020a056870a1a800b000e2182d6375mr9625671oaf.247.1649451580743;
-        Fri, 08 Apr 2022 13:59:40 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x18-20020a056830245200b005ce01c28c77sm9417283otr.1.2022.04.08.13.59.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f8JKuamLlG+jVMNtvAkq4wZJiZp3w7kpyzKbDeN8Fnw=;
+        b=KshNudvWDaz+k7ouUVZiULTyo9IrCDpHWAUvKniKayjHMaeuVK+PEJnNo37xz+5f6K
+         ssrJL6UDddUdwZGn5OEvu/irgLiFKS2dS/srKdM75cBF+5K4ljLDOEqpuxFtctf0HXFb
+         qTEH1+ghq16VG2NaCkgyDBVyDrgkGKZ0y5QE2Oaf37Mioghamfnc6X/BrQeYWzUAlXJG
+         55/F97kIZ4nmLlLsxsSdebGfu1rbMr1jW2lBR+ofMiLFW73Oh86/O1eP9RXQlPGtU8fF
+         6EiXDCa4YkttwSxBQ9vsWUCrdc15nXMswHZAZCAeqmhwpISWRj5HVycJkqxcaVYekFq6
+         /o8w==
+X-Gm-Message-State: AOAM532QCHXyj2uTdbrrsswks46ztluEQhol3eCuYBpH1mDjDOUkhF5s
+        UBiqAf5QNzGpWMQhjfwl1hZhWQ==
+X-Google-Smtp-Source: ABdhPJyI+VIO0rEHSz94ZWi70PoGLTvBLc0XQ2Fxj6aiFvF8KexUrGX3Jl09zX+KRsIqz8mRmFwviA==
+X-Received: by 2002:a05:6870:9611:b0:df:200f:a6dd with SMTP id d17-20020a056870961100b000df200fa6ddmr9166367oaq.299.1649451634423;
+        Fri, 08 Apr 2022 14:00:34 -0700 (PDT)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id j126-20020acab984000000b002da77222b7dsm9160490oif.22.2022.04.08.14.00.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 13:59:40 -0700 (PDT)
-Received: (nullmailer pid 4052959 invoked by uid 1000);
-        Fri, 08 Apr 2022 20:59:39 -0000
-Date:   Fri, 8 Apr 2022 15:59:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Pavel Machek <pavel@ucw.cz>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: leds: convert ktd2692 bindings to
- yaml
-Message-ID: <YlCiO3hfTtzJwq5H@robh.at.kernel.org>
-References: <20220408184104.13665-1-markuss.broks@gmail.com>
- <20220408184104.13665-2-markuss.broks@gmail.com>
+        Fri, 08 Apr 2022 14:00:33 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: display: msm: Add optional resets
+Date:   Fri,  8 Apr 2022 14:02:52 -0700
+Message-Id: <20220408210253.581337-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408184104.13665-2-markuss.broks@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Apr 2022 21:40:54 +0300, Markuss Broks wrote:
-> This patch converts the leds-ktd2692.txt bindings to modern yaml
-> style device-tree bindings.
-> 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> ---
->  .../bindings/leds/kinetic,ktd2692.yaml        | 87 +++++++++++++++++++
->  .../devicetree/bindings/leds/leds-ktd2692.txt | 50 -----------
->  2 files changed, 87 insertions(+), 50 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/leds/kinetic,ktd2692.yaml
->  delete mode 100644 Documentation/devicetree/bindings/leds/leds-ktd2692.txt
-> 
+Add an optional reference to the MDSS_CORE reset, which when specified
+can be used by the implementation to reset the hardware blocks.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+
+Changes since v2:
+- None
+
+ .../devicetree/bindings/display/msm/dpu-qcm2290.yaml          | 4 ++++
+ Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml | 4 ++++
+ Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml | 4 ++++
+ Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml | 4 ++++
+ 4 files changed, 16 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+index 6fb7e321f011..734d14de966d 100644
+--- a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+@@ -66,6 +66,10 @@ properties:
+   interconnect-names:
+     const: mdp0-mem
+ 
++  resets:
++    items:
++      - description: MDSS_CORE reset
++
+ patternProperties:
+   "^display-controller@[0-9a-f]+$":
+     type: object
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+index 12a86b1ec1bc..b41991eaa454 100644
+--- a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+@@ -65,6 +65,10 @@ properties:
+   interconnect-names:
+     const: mdp0-mem
+ 
++  resets:
++    items:
++      - description: MDSS_CORE reset
++
+ patternProperties:
+   "^display-controller@[0-9a-f]+$":
+     type: object
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
+index fbeb931a026e..6e417d06fc79 100644
+--- a/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
+@@ -64,6 +64,10 @@ properties:
+   interconnect-names:
+     const: mdp0-mem
+ 
++  resets:
++    items:
++      - description: MDSS_CORE reset
++
+ patternProperties:
+   "^display-controller@[0-9a-f]+$":
+     type: object
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+index 0dca4b3d66e4..1a42491efdbc 100644
+--- a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+@@ -57,6 +57,10 @@ properties:
+ 
+   ranges: true
+ 
++  resets:
++    items:
++      - description: MDSS_CORE reset
++
+ patternProperties:
+   "^display-controller@[0-9a-f]+$":
+     type: object
+-- 
+2.35.1
+
