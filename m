@@ -2,79 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 227AE4F9271
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 12:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0D2F4F9289
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 12:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234118AbiDHKDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 06:03:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50336 "EHLO
+        id S229454AbiDHKJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 06:09:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234101AbiDHKDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 06:03:37 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 493F7120AE;
-        Fri,  8 Apr 2022 03:01:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 711501F46D05
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1649412093;
-        bh=7NGSuo4Sc3q7d+xEOL+gCuZe8DYDWsEbLcdLWfuCj9I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JxcO36VmnJPCLOLcyirJ48rdA8J1Gy93FP8p7ew06GuDciO5pj3p+5yjfd/VgFyNf
-         fB3zwg1o7CBqPqDV11/Jg3p2t0pqRD7WHS3NXe3476+ti6gJmpNqDXnDP8gcDi8xx+
-         Nw/H5hhpQJnE6qKWQmWRCFuGxvVvc8IqB4H8K6y3KaxEeZh0sxet79Ye2cVJ79E6Cq
-         HSSp6JCE8ML4aA0vKpze42X1qA1mHjF4LT2byKPpog94zHIypR2JiPYgvDy28RfKwP
-         1WSEJB60U5gJRYxl8wPdrrpWJwRsjxiIxHS/VcJqFk++49D3SVnxhlefn9hEJfPwt2
-         GFxXISHXBDiZQ==
-Message-ID: <118239ae-e1c9-2f72-4a4f-26a5523755bb@collabora.com>
-Date:   Fri, 8 Apr 2022 12:01:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [v10 4/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Content-Language: en-US
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org,
-        robh+dt@kernel.org, nfraprado@collabora.com, tzungbi@google.com
-Cc:     aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
-        linmq006@gmail.com, alsa-devel@alsa-project.org,
+        with ESMTP id S229518AbiDHKJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 06:09:47 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9EA209A995;
+        Fri,  8 Apr 2022 03:07:44 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 6890C807E;
+        Fri,  8 Apr 2022 10:05:19 +0000 (UTC)
+Date:   Fri, 8 Apr 2022 13:07:42 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-References: <20220408060552.26607-1-jiaxin.yu@mediatek.com>
- <20220408060552.26607-5-jiaxin.yu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220408060552.26607-5-jiaxin.yu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-omap@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: timer: Update TI timer to yaml and add
+ compatible for am6
+Message-ID: <YlAJbgqpHLEfYIjO@atomide.com>
+References: <20220408081258.57213-1-tony@atomide.com>
+ <d8ad6a2b-0982-a7f2-c331-cced4e321c7c@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8ad6a2b-0982-a7f2-c331-cced4e321c7c@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 08/04/22 08:05, Jiaxin Yu ha scritto:
-> Add support for using the rt5682s codec together with rt1015p on
-> mt8192-mt6359 machines. All configurations are shared with the rt5682
-> codec variant, so simply select the SND_SOC_RT5682S config to ensure the
-> codec is present and set the correct card name. The codec will be linked
-> to by pointing to it in the headset-codec property in the devicetree.
+* Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [220408 08:30]:
+> On 08/04/2022 10:12, Tony Lindgren wrote:
+> > +required:
+> > +  - compatible
+> > +  - reg
 > 
-> While at it, also create macros for the names of the different codec
-> variants supported by this driver, as well as rename occurrences of
-> rt1015p_rt5682 to rt1015p_rt5682x, since they are shared between rt5682
-> and rt5682s.
-> 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
-> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Missing interrupts - they were required. Aren't anymore?
 
+There are cases where the interrupts are not routable to Linux yet
+the timer registers can be accessible. These timers can still be usable
+in a limited way for some PWM cases though.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thanks for the good comments on the binding, will update accordingly.
+Yeah adding a second patch for the new features makes sense as few
+things have changed with the new SoCs.
+
+Regards,
+
+Tony
