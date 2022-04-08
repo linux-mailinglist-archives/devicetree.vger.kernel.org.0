@@ -2,122 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43EDD4F92CC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 12:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 783CA4F92DB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 12:25:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbiDHKWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 06:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44258 "EHLO
+        id S232283AbiDHK1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 06:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbiDHKWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 06:22:13 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF48271C
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 03:20:10 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id z1so12137133wrg.4
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 03:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2yfd+GIvbnmbmGFC5BWUDblHytx97qylz5/YCX2I91k=;
-        b=oYHo65iLPSC3y7IHrPaqaKOA5+doEwBr+aacx3K1hQh8mHkRMVhEmhbPSuSpVX2wJn
-         5j9etU8E5JWTO4uU9mGABX/gWLpumCND1fg4lQ0P8dFaExVOw6YdrgH53e34sLFX2xIH
-         Uf5ryWQjTk7ppBSe78BgYgrDcT3Ub8hc0mnqk7Mi6lb4HkcZ4ZLCFcinOL4HS4mX8c7I
-         0tGbofCVbIws2NQwbOUEkNJNDrDiBnPF0JU6/2d8srKp73HFelN7V6bYCX/LwbheA9CT
-         36l27IvkwMfLh2OrNvMc5AKjZL3ZgFkkmqgq0tYn2vqMW7fmPAqAshuoA1DV5j03rjjh
-         Jczg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2yfd+GIvbnmbmGFC5BWUDblHytx97qylz5/YCX2I91k=;
-        b=QGY8i86wQJsR9jYL7Ur9P0awCp6ezfECLFiLJytXJzXOlu8IwcEge7Fy2xucCY7PLM
-         po3h78kfxgdT61IaFDHagrang9Y9/1PUAPbmKbNopBvTN06VxjOorp6KLJZQw04e8lVD
-         lzTYTun+6fDY1MNQmoj8RhglVFVeeQnL2zNjA0sXPAo0QZ7zyRkonODmdoTByqRWI4ih
-         IHnX5ohFQqf4V30M7KaLhdH6hz/TtfAtk/Ahpy6MeXOxHIvn1bXVfq3JKEyy825NAmDS
-         1UZcaq86PIwpA09LOtrdQTxDHgiA37bJAWu++FiAs0O6rCArJkRxe1fkImhh2JS60qD1
-         aM7g==
-X-Gm-Message-State: AOAM532QsAY1Og+UILuKU82WkPE230pF3g8/MJ4tyB4XmDARmLrsdjh6
-        jFlfrdeLtZXPQ2af0xq/3gdNBg==
-X-Google-Smtp-Source: ABdhPJx4oE0+v9HkiYvlHpoFSouxE4OF9MxigavzUV6WLXDnmwJVA7++sPHfrFGiq/gkvSne+coPZQ==
-X-Received: by 2002:a5d:452c:0:b0:207:9915:60b9 with SMTP id j12-20020a5d452c000000b00207991560b9mr1428427wra.379.1649413208638;
-        Fri, 08 Apr 2022 03:20:08 -0700 (PDT)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id r15-20020a5d6c6f000000b002040552e88esm22842290wrz.29.2022.04.08.03.20.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 03:20:08 -0700 (PDT)
-Message-ID: <a4ef3498-9f05-8bce-309c-de9d3965020d@linaro.org>
-Date:   Fri, 8 Apr 2022 11:20:06 +0100
+        with ESMTP id S232210AbiDHK1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 06:27:01 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4590025F651;
+        Fri,  8 Apr 2022 03:24:53 -0700 (PDT)
+X-UUID: e076817dd6434f348d7a6e4cc24b21cb-20220408
+X-UUID: e076817dd6434f348d7a6e4cc24b21cb-20220408
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1050780404; Fri, 08 Apr 2022 18:24:48 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 8 Apr 2022 18:24:47 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 8 Apr 2022 18:24:47 +0800
+Message-ID: <8d466903d42dbc823f4d0a245378d983ab904435.camel@mediatek.com>
+Subject: Re: [PATCH V2 01/15] dt-bindings: cpufreq: mediatek: Add MediaTek
+ CCI property
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <jia-wei.chang@mediatek.com>,
+        <roger.lu@mediatek.com>, <hsinyi@google.com>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 8 Apr 2022 18:24:47 +0800
+In-Reply-To: <a171f33c-cda1-8602-ac67-93076b676578@linaro.org>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+         <20220408045908.21671-2-rex-bc.chen@mediatek.com>
+         <a171f33c-cda1-8602-ac67-93076b676578@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] nvmem: core: support passing DT node in cell info
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220228093351.28162-1-zajec5@gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220228093351.28162-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 28/02/2022 09:33, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Fri, 2022-04-08 at 10:10 +0200, Krzysztof Kozlowski wrote:
+> On 08/04/2022 06:58, Rex-BC Chen wrote:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > MediaTek Cache Coherent Interconnect (CCI) uses software devfreq
+> > module
+> > for scaling clock frequency and adjust voltage.
+> > The phandle could be linked between CPU and MediaTek CCI for some
+> > MediaTek SoCs, like MT8183 and MT8186.
+> > Therefore, we add this property in cpufreq-mediatek.txt.
+> > 
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt          | 4
+> > ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > mediatek.txt b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > mediatek.txt
+> > index b8233ec91d3d..d1b3d430c25c 100644
+> > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > mediatek.txt
+> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > mediatek.txt
+> > @@ -20,6 +20,10 @@ Optional properties:
+> >  	       Vsram to fit SoC specific needs. When absent, the
+> > voltage scaling
+> >  	       flow is handled by hardware, hence no software "voltage
+> > tracking" is
+> >  	       needed.
+> > +- cci: MediaTek Cache Coherent Interconnect uses software devfreq
+> > module for scaling
+> > +       clock frequency and adjust voltage.
 > 
-> Some hardware may have NVMEM cells described in Device Tree using
-> individual nodes. Let drivers pass such nodes to the NVMEM subsystem so
-> they can be later used by NVMEM consumers.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+> You need to describe the type. I am a bit confused whether this is a
+> cci
+> (so cci-control-port property?) or an interconnect (so interconnect
+> property)... It does not look like a generic property, so you need
+> vendor prefix.
 
-Applied both, thanks,
+Hello Krzysztof,
 
---srini
->   drivers/nvmem/core.c           | 1 +
->   include/linux/nvmem-consumer.h | 1 +
->   2 files changed, 2 insertions(+)
+Thanks for your review.
+
+Yes, this cci is not arm's cci (cci-control-port property), and it's
+mediatek's cci. I will revise this name to "mtk-cci" in next version.
+
 > 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 6d5702e715d6..5fcf2793b599 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -467,6 +467,7 @@ static int nvmem_cell_info_to_nvmem_cell_entry_nodup(struct nvmem_device *nvmem,
->   
->   	cell->bit_offset = info->bit_offset;
->   	cell->nbits = info->nbits;
-> +	cell->np = info->np;
->   
->   	if (cell->nbits)
->   		cell->bytes = DIV_ROUND_UP(cell->nbits + cell->bit_offset,
-> diff --git a/include/linux/nvmem-consumer.h b/include/linux/nvmem-consumer.h
-> index c0c0cefc3b92..980f9c9ac0bc 100644
-> --- a/include/linux/nvmem-consumer.h
-> +++ b/include/linux/nvmem-consumer.h
-> @@ -25,6 +25,7 @@ struct nvmem_cell_info {
->   	unsigned int		bytes;
->   	unsigned int		bit_offset;
->   	unsigned int		nbits;
-> +	struct device_node	*np;
->   };
->   
->   /**
+> > +       For details, please refer to
+> > +       Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> 
+> Such file does not exist.
+
+This mediatek cci is still upstreaming in this patch:
+message-id:20220408052150.22536-2-johnson.wang@mediatek.com
+
+Do you have suggestion that I should put this reference?
+Or I just remove it and describe the mediatek cci in detail?
+
+BRs,
+Rex
+> 
+> 
+> Best regards,
+> Krzysztof
+
