@@ -2,105 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 643874F9886
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF7954F989C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237165AbiDHOtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 10:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54564 "EHLO
+        id S237253AbiDHOwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 10:52:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234867AbiDHOtR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:49:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC1438D84;
-        Fri,  8 Apr 2022 07:47:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9537B61E83;
-        Fri,  8 Apr 2022 14:47:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37655C385A8;
-        Fri,  8 Apr 2022 14:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649429233;
-        bh=6UAy6vwa9qNgF6GIFreKzgcGTOebGNa25UsFFF9iOHw=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=GNsF6pDXrgnU84AB89bG6z8gC2Cqfueje8sDfg6VZIHVELT3aZpBrW83/h+TzNRU1
-         +HOib9Djh1UWy1FXxcf5vlKMCBr0Y984nAVX2Zid9VcnGjvf9jXakgXlFBjP/HbUPC
-         6rbsYHQj+Qg1I9ZpcSMPbhB4o7+GFfUqAQxFwof0Yn++oNdsESMKYhEPsCpEiIRaOs
-         Nf4VcYQBlrYkKneakat1KYW2nRSLACsX5fR6i7Ll6PcQlQAcJEQg4XHcDvUntKAp4Y
-         TmIJd349vXbssjDOJfkK6OVy05oRsf9kfkafxCi9CDcY/aaj7Dv30U4B/PSjlVSP7G
-         rsGHas/pYKhKA==
-From:   Mark Brown <broonie@kernel.org>
-To:     tzungbi@google.com, robh+dt@kernel.org, jiaxin.yu@mediatek.com,
-        nfraprado@collabora.com
-Cc:     trevor.wu@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aaronyu@google.com,
-        matthias.bgg@gmail.com, alsa-devel@alsa-project.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linmq006@gmail.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        angelogioacchino.delregno@collabora.com
-In-Reply-To: <20220408060552.26607-1-jiaxin.yu@mediatek.com>
-References: <20220408060552.26607-1-jiaxin.yu@mediatek.com>
-Subject: Re: [v10 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Message-Id: <164942922994.1424253.17635473999849755848.b4-ty@kernel.org>
-Date:   Fri, 08 Apr 2022 15:47:09 +0100
+        with ESMTP id S237283AbiDHOwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:52:45 -0400
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1865107AAC
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:50:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=lbQrec/P7nY5K0hgzcsjE7n8vNAsq0z5LZqHe9INe8M=; b=KMTqAMt6+x7mYAvv1p0ZsVjuTz
+        pp/v/ws/iOR1Ghvl5ZmmfEuS18js85Zozi+K4BtIOuDM3u7BCb0xv7ME3S2GV6ZTlb/EX2Utbz/J5
+        KSFbT+KwDIUGwwSLusEEq9i28ycrtdSQSkx4Jr+x7oUxwrEsLZVn+sPzCqyghbL7/iJ0jUu+y6whG
+        WY7odZk37VR2CbUgewlZL87SUMGJHpkGcTVi3BH/END0XvQWpuFJ8xTi906TWMPe6dvixcSVXeokt
+        RZrLp6yOVgApphjmrNKMFNavC+hGpxTDgv6DJwugV6m6d3xjNTDKjseT0VVP+gEReo1RIVbzmFIid
+        xxtvvtEQ==;
+Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=50028)
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1ncpwc-0003o2-IN; Fri, 08 Apr 2022 16:50:38 +0200
+Message-ID: <2d4ef041-8339-006e-3e94-8ff16309cba7@tronnes.org>
+Date:   Fri, 8 Apr 2022 16:50:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH] dt-bindings: display: panel: mipi-dbi-spi: Make
+ width-mm/height-mm mandatory
+To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+References: <20220404192105.12547-1-marex@denx.de>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20220404192105.12547-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Apr 2022 14:05:48 +0800, Jiaxin Yu wrote:
-> The series reuses mt8192-mt6359-rt1015-rt5682.c for supporting machine
-> driver with rt1015p speaker amplifier and rt5682s headset codec.
+Hi Marek,
+
+I see that you have commit rights so I assume you will be applying this
+patch.
+
+Noralf.
+
+Den 04.04.2022 21.21, skrev Marek Vasut:
+> Make the width-mm/height-mm panel properties mandatory
+> to correctly report the panel dimensions to the OS.
 > 
-> Changes from v9:
->   - Modify the commit messages to make them more clear.
+> Fixes: 2f3468b82db97 ("dt-bindings: display: add bindings for MIPI DBI compatible SPI panels")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Dmitry Osipenko <digetx@gmail.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Noralf Trønnes <noralf@tronnes.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
+>  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Changes from v8:
->   - fix typos.
-> 
-> [...]
-
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] ASoC: dt-bindings: mt8192-mt6359: add new compatible and new properties
-      commit: 1efe7eca170d344c5101c69ac51df6982de764e4
-[2/4] ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
-      commit: e1e408e60e856b99782b26308a9dc3937b1ba8bf
-[3/4] ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
-      commit: f8910fb4985a00c0a1e6932dc5bda6181c549b76
-[4/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-      commit: 7a80167b08f52e7b5eaa18a9d515efdcff9085fc
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> index f29789994b180..c2df8d28aaf5f 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> @@ -83,6 +83,8 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - width-mm
+> +  - height-mm
+>    - panel-timing
+>  
+>  unevaluatedProperties: false
