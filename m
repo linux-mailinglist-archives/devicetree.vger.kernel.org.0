@@ -2,89 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D244F9F21
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF744F9F26
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239836AbiDHV0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 17:26:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51924 "EHLO
+        id S239845AbiDHV2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 17:28:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233408AbiDHV0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:26:03 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BB631539;
-        Fri,  8 Apr 2022 14:23:57 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id j83so10124037oih.6;
-        Fri, 08 Apr 2022 14:23:57 -0700 (PDT)
+        with ESMTP id S234779AbiDHV2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:28:40 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEBB3982B
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 14:26:35 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-de48295467so11070960fac.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 14:26:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LuBUF01ZBrqCNLOoe4NqejorkIDPWmO6iOO+rFH62ao=;
+        b=c0M8y/Bb7Rf4Wwftddj/IeeR3nUFU+FLP+ksOmfhwZqYsbFhKcd44Z5BxPgSmt+2vG
+         nsDw18jqh8kt3lbner8JWDhnDnNRDxBkcG7R8hka2+ORNa13Dl2+3OxvW7LKw+aikIXU
+         NPWSTRkYV+y+XnM++4Z/3SK2ldTB4NM/FG8b2mq8cy0D0/aZDssjv8wKkqmWpiZi6Aiy
+         DPF7QB6nVsZ4sN/P4/yFKeEM1J4MJSOADEhz9o/7IXcRLydIElt/4dzGSNqGjLo7xokr
+         Xp8pfEApgX2AEc3MQBeICthB+AQJYYobiJrFcbJJQdsoZv0glsT2B2AUdqoA9jryWvbX
+         BlJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0T6S7+QP7qWOZqAmU2HeursYTQCWQoHrmh79ye1Au6A=;
-        b=pJva/3tYgYHpnd2TM+FiU+CstOvIUQh0r8s/vGIVtKgy3PhYEobIOAI7GoDqwM0bGk
-         lvxaopfx1E73kjj6oXb9FK1H5VQzrLoFpZlTDLMbzEeCjQtNtr2QAKk9VeqO3Ttj+4Ki
-         2f8/p+Be0PgX2PWLv6AENf37gtZJrDbTxX0Mo6M0whAFyMOGT8KMOAIXI3mv3IkeN+2b
-         QQBsO9B/+ZiYM4srL/BqYDgs7pMOQn/g7bxPvDLknO4WTsBlhjZKtrNphchYhixvAd8C
-         tF3T99yRlxf1OPptXwIu6l7utLE5fx2/9guwxxcFcZyAh0n95wTHf2ah2Rn9PWGY5WBT
-         8Zcw==
-X-Gm-Message-State: AOAM532USHl1RzYgI3C6j5sbDJOzrBkrNpcgvfkKvHtVv07fXe3Ukv9s
-        NqhmADg8TFjPjHjwijQXOg==
-X-Google-Smtp-Source: ABdhPJzJGJC0SnhPZeOBXHawRPojHmwZQHykZy3Yf4Unn2+H1trg/FFezSEv1rfslsihDjHVXco/Qg==
-X-Received: by 2002:a05:6808:1b12:b0:2da:28e1:39f7 with SMTP id bx18-20020a0568081b1200b002da28e139f7mr786027oib.289.1649453037335;
-        Fri, 08 Apr 2022 14:23:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bp21-20020a056820199500b003298e6877c7sm2982402oob.29.2022.04.08.14.23.56
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LuBUF01ZBrqCNLOoe4NqejorkIDPWmO6iOO+rFH62ao=;
+        b=ABKU/BZY98tVPD9WB/4CQ2e9ztZ1YiYtshQOB/zXNFW7fY8x5lGYZyAcUSo9eS4nwp
+         hoid0FSFyuZ5b51oG1t04kKt4Bss9G2Zwsmc7tSqA/6F4yKXxfYiGiKJmGRLfkOPlrIe
+         q22Wjnq2fvT/1nza/h6ubIpE6AJdKKHTAIeOkdiKWiFi9c1e2sb2VgCaTvrrgEl0oiFc
+         ldOshhD4rr+kx349Za6cpI/AwEsAnT5tBdH4C4vAcMw1ZoVYNghDUg4HpGOFzOXwoL8r
+         uV7CmzReaBgqR7CLkFmk6tX+oO6k1LFR0A/yvcppmeAEpll59dXJ0EQ2q/gR2MPqgG1H
+         heOA==
+X-Gm-Message-State: AOAM533NGVB6XhYATTGCNinIxC4ESjq+4RzSgGyEwKFUaG2KaLJiuanP
+        WqydKiO/8fH3QEtzg30FWVRDSQ==
+X-Google-Smtp-Source: ABdhPJx1hLX6sWFGswxg/d/TlxwSW4Bfk7FDwpLlOBNoLiQYTQEP5tUm3YS6+AJxyUAa4utX5JGY/Q==
+X-Received: by 2002:a05:6870:5708:b0:e2:8a41:2261 with SMTP id k8-20020a056870570800b000e28a412261mr2363922oap.247.1649453194618;
+        Fri, 08 Apr 2022 14:26:34 -0700 (PDT)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id q11-20020a05683033cb00b005e686fd52d6sm6339475ott.17.2022.04.08.14.26.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 14:23:56 -0700 (PDT)
-Received: (nullmailer pid 4094588 invoked by uid 1000);
-        Fri, 08 Apr 2022 21:23:55 -0000
-Date:   Fri, 8 Apr 2022 16:23:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Pratyush Yadav <p.yadav@ti.com>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fri, 08 Apr 2022 14:26:34 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: mtd: jedec,spi-nor: remove unneeded
- properties
-Message-ID: <YlCn639koXzXcAY8@robh.at.kernel.org>
-References: <20220408063720.12826-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: Add SC8180X and SC8280XP compatibles
+Date:   Fri,  8 Apr 2022 14:28:54 -0700
+Message-Id: <20220408212854.581481-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408063720.12826-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Apr 2022 08:37:20 +0200, Krzysztof Kozlowski wrote:
-> After conversion the jedec,spi-nor DT schema to reference other schemas
-> (SPI and MTD) and use unevaluatedProperties, few properties are
-> redundant.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Pratyush Yadav <p.yadav@ti.com>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Do not remove address/size cells (Rob).
-> 2. Add Pratyush review.
-> ---
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 8 --------
->  1 file changed, 8 deletions(-)
-> 
+Add compatibles for the SC8180X and SC8280XP platforms to the Qualcomm
+watchdog binding.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+index 16c6f82a13ca..cdb09a2d244d 100644
+--- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+@@ -18,6 +18,8 @@ properties:
+       - qcom,apss-wdt-qcs404
+       - qcom,apss-wdt-sc7180
+       - qcom,apss-wdt-sc7280
++      - qcom,apss-wdt-sc8180x
++      - qcom,apss-wdt-sc8280xp
+       - qcom,apss-wdt-sdm845
+       - qcom,apss-wdt-sdx55
+       - qcom,apss-wdt-sm6350
+-- 
+2.35.1
+
