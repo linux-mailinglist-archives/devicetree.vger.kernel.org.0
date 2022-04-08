@@ -2,67 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 214BF4F9B81
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 362B04F9B9A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234980AbiDHRXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 13:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
+        id S235026AbiDHRZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 13:25:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234939AbiDHRXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:23:17 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5750F10242D;
-        Fri,  8 Apr 2022 10:21:12 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id z15so1988542qtj.13;
-        Fri, 08 Apr 2022 10:21:12 -0700 (PDT)
+        with ESMTP id S234331AbiDHRZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:25:33 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD7E15FC6;
+        Fri,  8 Apr 2022 10:23:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=w53mUy5JVWp+l7UDjfpOdeHtwRO8q8QjeFkHdugkyDA=;
-        b=Ch3QMPejiCrhfiPCkc0KlBxrHZ6jo/geYFR746XH3Lhg/AVVBKLLAPsXWicVhUBOUU
-         hQnhOfiBD0tP5/rwWhEk4zRQ6SWcPFmJU8ShkV3cdErzb7eKTpOyhh9X19oBDrRNGSbL
-         IDh7dUKKotM3Z3VCE43gCYjTAI4gat4PxcKufljZfnbz2Z8k0Fw8MFqnJnekRTsaxfDi
-         POuTRINZfI1cxofu5pcQEDi3w4ADZM6f4zN9kmJudH+MNkTGSTjFp+VJPThFlx7v2Ho4
-         msR+q3Wv/8el+JlCbfrvolS5ngGlX4fV2x9yQ5B5uriRv7/t5J286rxMr07ntqzG8gHn
-         L8gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=w53mUy5JVWp+l7UDjfpOdeHtwRO8q8QjeFkHdugkyDA=;
-        b=Fu3kYaS3lrCjLCDGQ16nI9Ng85q5o1NnmB2tsJIxrewL+GA3kkl1XvTISSWvJDFfOp
-         /VZOkGTkhEQxvgZHyp/af0Cm4/wsBIvAx9brQb18nbDn27HF4PkaVaG5xxjIs/utuieO
-         h89aReMdCJ3+RZBGTi2YeaAHvvq6T7YWo6M9VfSTd9DFTykhwCz1xL5PM6uAxhbbFHQZ
-         WhxvnnEJJhqeAZAqkSghFc1hcjMuWtkb887HRnGvS7CvwNDR01v2gW/DobQvUiZ6cLHZ
-         YY34w1SI2JhJ1diAsTTrwsoPV4TVosN7+PVbjH+DJpaV/h8cjgcMktlg/1q1lwNsbn0g
-         hUYA==
-X-Gm-Message-State: AOAM531Fni7Oz9oRNTdZqhl5/F1lwk/QG0g7w/FilSIVTX242lG8P+Lc
-        XLVVpLovQWmAIKnYKCY2nDc=
-X-Google-Smtp-Source: ABdhPJzpS+aigGsUmcgHTp7fhO3McjQyQkhz3VbEFkqd6pgLOkv5FWi7HcZ+NnY9b2mmpueFmGT+Wg==
-X-Received: by 2002:a05:622a:1a27:b0:2e0:64c2:7469 with SMTP id f39-20020a05622a1a2700b002e064c27469mr17003111qtb.187.1649438471403;
-        Fri, 08 Apr 2022 10:21:11 -0700 (PDT)
-Received: from xps8900.attlocal.net ([2600:1700:2442:6db0:db9:563b:eb2c:7a7b])
-        by smtp.gmail.com with ESMTPSA id br13-20020a05620a460d00b00680d020b4cbsm13378941qkb.10.2022.04.08.10.21.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 10:21:10 -0700 (PDT)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Slawomir Stepien <sst@poczta.fm>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alan Tull <atull@kernel.org>
-Subject: [PATCH 1/1] of: overlay: of_overlay_apply() kfree() errors
-Date:   Fri,  8 Apr 2022 12:21:03 -0500
-Message-Id: <20220408172103.371637-1-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1649438609; x=1680974609;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=aa5sCfirQTu8in8E9d3/He4tgrCReFZ3CgCEUVvEwHo=;
+  b=Zom5E9ESdRO37HNAzAxF/vwo4nxl+JOtYmBQXKTe/vd2h+Qdeki6nQjD
+   2yNhOhYbzpH4MIosszYtpDFa9/snTmmhTSXw8M+BjO7WJdJt8YdkB8hgK
+   KIJ4awuTJRyJhApAqiQp8VWEPPjcxwDV+ZSl0NVV6lLBA9w4zr/4siezJ
+   M=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 08 Apr 2022 10:23:29 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 10:23:28 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 8 Apr 2022 10:23:28 -0700
+Received: from [10.111.161.146] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 8 Apr 2022
+ 10:23:24 -0700
+Message-ID: <e91f4f18-020b-7919-0a82-0b733cdc2de2@quicinc.com>
+Date:   Fri, 8 Apr 2022 10:23:22 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Doug Anderson <dianders@chromium.org>
+CC:     "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Sean Paul <sean@poorly.run>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
+ <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org>
+ <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
+ <MW4PR02MB7186245772DAC3E04FA8D1C0E1E69@MW4PR02MB7186.namprd02.prod.outlook.com>
+ <CAD=FV=Wk3U7_bVdiCPp8iQ4bcCA_Botemu4pwHeRtgBa3Xk6KQ@mail.gmail.com>
+ <c4f086ce-c56f-f7c9-4092-7f2432330d50@quicinc.com>
+ <CAD=FV=UmU_BVUaL_X75yOEvQPtGUBTR5-jiVWBHq7uSRt6HM4Q@mail.gmail.com>
+ <225d2c0a-42ec-28ad-688c-e7e9e2035ee1@quicinc.com>
+ <CAD=FV=W=WjSACHvRDFBnkLUp-LU2c4XMu3=FTzTx=zexNF5PAw@mail.gmail.com>
+ <CAA8EJpqLZ9up4euGEbhf5QyBqm4tJuLcHi7D+0Si7ak9Jej52w@mail.gmail.com>
+ <CAD=FV=XwOzsRf7RnvyBjr5TtedMhC0LJFKoK9tp-kw1eEyuJmQ@mail.gmail.com>
+ <CAA8EJprb5UF24WRNvGaY_hSqW--NPd=9=8AaPYWSMbUumNn+dQ@mail.gmail.com>
+ <CAD=FV=UG7k4A+hMXxwju-0mLddD1oJdGngXMkMA-dO3AxOx0rQ@mail.gmail.com>
+ <CAA8EJprLRiWrkqLG09UG1arDmo1fuq917ztfxts66p+AaYcYbA@mail.gmail.com>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <CAA8EJprLRiWrkqLG09UG1arDmo1fuq917ztfxts66p+AaYcYbA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,223 +94,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
+Hi Doug and Dmitry
 
-Fix various kfree() issues related to of_overlay_apply().
-  - Double kfree() of fdt and tree when init_overlay_changeset()
-    returns an error.
-  - free_overlay_changeset() free of the root of the unflattened
-    overlay (variable tree) instead of the memory that contains
-    the unflattened overlay.
-  - Move similar kfree()s from multiple error locations to a
-    common error path (err_free_tree_unlocked:).
+On 4/8/2022 7:58 AM, Dmitry Baryshkov wrote:
+> On Fri, 8 Apr 2022 at 16:43, Doug Anderson <dianders@chromium.org> wrote:
+>>
+>> Hi,
+>>
+>> On Fri, Apr 8, 2022 at 5:20 AM Dmitry Baryshkov
+>> <dmitry.baryshkov@linaro.org> wrote:
+>>>
+>>>> I guess my thought was that in DP you could still create the AUX bus
+>>>> at probe time. Then for DP you just return an instant "transfer
+>>>> failed" from the AUX bus if HPD isn't asserted. For eDP (as discussed
+>>>> elsewhere) when we try to do an AUX transfer then we delay until HPD
+>>>> is there.
+>>>
+>>> I think panel-edp would already handle the delay, so we do not need to
+>>> have this logic in the DP driver.
+>>
+>> There's a whole discussion about this between Stephen and me in patch
+>> #5 ("drm/msm/dp: wait for hpd high before any sink interaction").
+>> Basically:
+>>
+>> * If panel HPD is hooked up to the dedicated HPD pin on the eDP
+>> controller then the panel driver doesn't have a way to read it.
+> 
+> I refreshed that dialog. I must admit, I have missed the fact that the
+> HPD pin might not be visible as the GPIO pin.
+> 
+>> * We can't leverage the existing "HPD" query functions in DRM because
+>> those indicate whether a panel is _physically_ connected. For eDP, it
+>> always is.
+> 
+> Yes, I was thinking about (mis)using the
+> drm_bridge_connector_hpd_notify() for generic HPD-related
+> notifications (to tell eDP that it should check the current state). I
+> have abandoned that idea.
+> 
+>> For now the rule is that the AUX transfer function is in charge of
+>> waiting for HPD for eDP if the dedicated HPD pin is used. If we want
+>> to re-invent this we could, but that system works, isn't _too_ ugly,
+>> and we're already making big enough changes in this series.
+> 
+> The is_hpd_asserted() looks like a good callback for the aux bus.
+> It will allow the panel driver to check if the panel is powered up (in
+> the absence of the GPIO pin).
+> 
+>>>> So we can still acquire resources (clocks, PHY, io maps, etc) at probe
+>>>> time for DP and create the AUX bus, right? It will just return
+>>>> "-ENODEV" if HPD isn't asserted and you're DP?
+>>>
+>>> Yes, please. I still suppose that we'd need a separate case to
+>>> power_on eDP's PHY during the probe time. Maybe I'm mistaken here.
+>>
+>> I think the ideal way is to do it like Kieran's proposal for sn65dsi86:
+>>
+>> https://lore.kernel.org/r/20220317131250.1481275-4-kieran.bingham+renesas@ideasonboard.com/
+>>
+>> * When enabling HPD (physical hot plug detect) in the hpd_enable()
+>> callback you do a pm_runtime_get(). You do the
+>> pm_runtime_put_autosuspend() when disabling. This is only used for DP
+>> since we only provide DRM_BRIDGE_OP_HPD for DP, not for eDP.
+>>
+>> * We do a pm_runtime_get() / pm_runtime_put_autosuspend() in the AUX
+>> transfer routine. While holding the pm_runtime reference we check HPD.
+>> For DP we return immediately if HPD isn't asserted. For eDP, we delay.
+>>
+>> * We do the pm_runtime_get() in pre_enable and the pm_runtime_put() in
+>> post_disable. For DP this will add a 2nd refcount (since we probably
+>> were holding the reference for HPD). For eDP this will cause us to
+>> power on.
+>>
+>> * If there's any other time we need to read HW registers, and we
+>> aren't guaranteed to already have a pm_runtime reference (like during
+>> probe), we can do a temporary pm_runtime_get() /
+>> pm_runtime_put_autosuspend().
+> 
+> This looks good. I'd be more than welcome to review such series.
+> 
+> Note: I think this would require using
+> drm_bridge_connector_enable_hpd() in the DP code.
+> Hopefully at some point we would be able to move all
+> drm_bridge_connector calls to the core msm layer.
+> --
+> With best wishes
+> Dmitry
 
-Double kfree()
-Reported-by: Slawomir Stepien <slawomir.stepien@nokia.com>
 
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
----
- drivers/of/overlay.c | 64 ++++++++++++++++++++++++++++----------------
- 1 file changed, 41 insertions(+), 23 deletions(-)
+Thanks for the proposals.
 
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index d80160cf34bb..1b9a90d61496 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -58,6 +58,7 @@ struct fragment {
-  * @id:			changeset identifier
-  * @ovcs_list:		list on which we are located
-  * @fdt:		base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
-+ * @overlay_mem:	the memory chunk that contains @overlay_tree
-  * @overlay_tree:	expanded device tree that contains the fragment nodes
-  * @count:		count of fragment structures
-  * @fragments:		fragment nodes in the overlay expanded device tree
-@@ -68,6 +69,7 @@ struct overlay_changeset {
- 	int id;
- 	struct list_head ovcs_list;
- 	const void *fdt;
-+	const void *overlay_mem;
- 	struct device_node *overlay_tree;
- 	int count;
- 	struct fragment *fragments;
-@@ -720,6 +722,7 @@ static struct device_node *find_target(struct device_node *info_node)
-  * init_overlay_changeset() - initialize overlay changeset from overlay tree
-  * @ovcs:	Overlay changeset to build
-  * @fdt:	base of memory allocated to hold aligned FDT that was unflattened to create @tree
-+ * @tree_mem:	Memory that contains @tree
-  * @tree:	Contains the overlay fragments and overlay fixup nodes
-  *
-  * Initialize @ovcs.  Populate @ovcs->fragments with node information from
-@@ -730,13 +733,23 @@ static struct device_node *find_target(struct device_node *info_node)
-  * detected in @tree, or -ENOSPC if idr_alloc() error.
-  */
- static int init_overlay_changeset(struct overlay_changeset *ovcs,
--		const void *fdt, struct device_node *tree)
-+		const void *fdt, const void *tree_mem, struct device_node *tree)
- {
- 	struct device_node *node, *overlay_node;
- 	struct fragment *fragment;
- 	struct fragment *fragments;
- 	int cnt, id, ret;
- 
-+	/*
-+	 * Must set these fields before any error return. fdt and tree_mem
-+	 * will be freed by free_overlay_changeset(), which is called if
-+	 * init_overlay_changeset() returns an error.
-+	 */
-+
-+	ovcs->fdt = fdt;
-+	ovcs->overlay_mem = tree_mem;
-+	ovcs->overlay_tree = tree;
-+
- 	/*
- 	 * Warn for some issues.  Can not return -EINVAL for these until
- 	 * of_unittest_apply_overlay() is fixed to pass these checks.
-@@ -750,9 +763,6 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 	if (!of_node_is_root(tree))
- 		pr_debug("%s() tree is not root\n", __func__);
- 
--	ovcs->overlay_tree = tree;
--	ovcs->fdt = fdt;
--
- 	INIT_LIST_HEAD(&ovcs->ovcs_list);
- 
- 	of_changeset_init(&ovcs->cset);
-@@ -865,7 +875,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
- 	 * ovcs->fdt due to the policy that overlay notifiers are not allowed
- 	 * to retain pointers into the overlay devicetree.
- 	 */
--	kfree(ovcs->overlay_tree);
-+	kfree(ovcs->overlay_mem);
- 	kfree(ovcs->fdt);
- 	kfree(ovcs);
- }
-@@ -875,6 +885,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  *
-  * of_overlay_apply() - Create and apply an overlay changeset
-  * @fdt:	base of memory allocated to hold the aligned FDT
-+ * @tree_mem:	Memory that contains @tree
-  * @tree:	Expanded overlay device tree
-  * @ovcs_id:	Pointer to overlay changeset id
-  *
-@@ -913,31 +924,27 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  * id is returned to *ovcs_id.
-  */
- 
--static int of_overlay_apply(const void *fdt, struct device_node *tree,
--		int *ovcs_id)
-+static int of_overlay_apply(const void *fdt, void *tree_mem,
-+		struct device_node *tree, int *ovcs_id)
- {
- 	struct overlay_changeset *ovcs;
- 	int ret = 0, ret_revert, ret_tmp;
- 
- 	/*
--	 * As of this point, fdt and tree belong to the overlay changeset.
-+	 * As of this point, fdt and tree_mem belong to the overlay changeset.
- 	 * overlay changeset code is responsible for freeing them.
- 	 */
- 
- 	if (devicetree_corrupt()) {
- 		pr_err("devicetree state suspect, refuse to apply overlay\n");
--		kfree(fdt);
--		kfree(tree);
- 		ret = -EBUSY;
--		goto out;
-+		goto err_free_tree_unlocked;
- 	}
- 
- 	ovcs = kzalloc(sizeof(*ovcs), GFP_KERNEL);
- 	if (!ovcs) {
--		kfree(fdt);
--		kfree(tree);
- 		ret = -ENOMEM;
--		goto out;
-+		goto err_free_tree_unlocked;
- 	}
- 
- 	of_overlay_mutex_lock();
-@@ -947,9 +954,14 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- 	if (ret)
- 		goto err_free_tree;
- 
--	ret = init_overlay_changeset(ovcs, fdt, tree);
-+	/*
-+	 * init_overlay_changeset() promises to add tree_mem and tree to ovcs
-+	 * even in the case of an early error return, so they can be freed by
-+	 * free_overlay_changeset().
-+	 */
-+	ret = init_overlay_changeset(ovcs, fdt, tree_mem, tree);
- 	if (ret)
--		goto err_free_tree;
-+		goto err_free_overlay_changeset;
- 
- 	/*
- 	 * after overlay_notify(), ovcs->overlay_tree related pointers may have
-@@ -999,7 +1011,7 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- 
- err_free_tree:
- 	kfree(fdt);
--	kfree(tree);
-+	kfree(tree_mem);
- 
- err_free_overlay_changeset:
- 	free_overlay_changeset(ovcs);
-@@ -1008,9 +1020,14 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- 	mutex_unlock(&of_mutex);
- 	of_overlay_mutex_unlock();
- 
--out:
- 	pr_debug("%s() err=%d\n", __func__, ret);
- 
-+	return ret;
-+
-+err_free_tree_unlocked:
-+	kfree(fdt);
-+	kfree(tree_mem);
-+
- 	return ret;
- }
- 
-@@ -1019,6 +1036,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- {
- 	void *new_fdt;
- 	void *new_fdt_align;
-+	void *overlay_mem;
- 	int ret;
- 	u32 size;
- 	struct device_node *overlay_root = NULL;
-@@ -1046,18 +1064,17 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- 	new_fdt_align = PTR_ALIGN(new_fdt, FDT_ALIGN_SIZE);
- 	memcpy(new_fdt_align, overlay_fdt, size);
- 
--	of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
--	if (!overlay_root) {
-+	overlay_mem = of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
-+	if (!overlay_mem) {
- 		pr_err("unable to unflatten overlay_fdt\n");
- 		ret = -EINVAL;
- 		goto out_free_new_fdt;
- 	}
- 
--	ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
-+	ret = of_overlay_apply(new_fdt, overlay_mem, overlay_root, ovcs_id);
- 	if (ret < 0) {
- 		/*
--		 * new_fdt and overlay_root now belong to the overlay
--		 * changeset.
-+		 * new_fdt and overlay_mem now belong to the overlay changeset.
- 		 * overlay changeset code is responsible for freeing them.
- 		 */
- 		goto out;
-@@ -1067,6 +1084,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- 
- 
- out_free_new_fdt:
-+	kfree(overlay_mem);
- 	kfree(new_fdt);
- 
- out:
--- 
-Frank Rowand <frank.rowand@sony.com>
+In general I would break up this task as follows:
+
+1) Re-factoring dp/edp parsing code to move it to probe ( its currently
+done in bind ). So not sure what dependencies we will uncover there.
+Nonetheless, lets assume for now it can be done.
+
+2) Then bind all the power resources needed for AUX in pm_runtime_ops
+
+3) Handle EPROBE_DEFER cases of the panel-eDP aux device
+
+4) Probably the biggest from our point of view --- makes sure none of 
+this breaks DP/eDP
+
+Since QC will be taking ownership of all of this, I would still suggest 
+land this series first so that basic display functionality on sc7280
+chromebooks works, unblocks more developers and this program and we can
+internally evaluate all of this and post the changes as-and-when ready
+for review.
+
+So, I suggest/request acking this current one after
+fixing the other comments (unrelated to this re-factor) which have been 
+given so far ofcourse, as we all agree this is not breaking and seems 
+pretty reasonable short term.
+
+Doug, you can track this re-factor with a different bug so that all this 
+discussion remains intact.
+
+Thanks
+
+Abhinav
+
 
