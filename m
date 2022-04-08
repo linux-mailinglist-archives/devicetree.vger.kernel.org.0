@@ -2,59 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7954F989C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E00E4F98AD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237253AbiDHOwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 10:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39568 "EHLO
+        id S237214AbiDHO5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 10:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237283AbiDHOwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:52:45 -0400
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1865107AAC
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:50:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=lbQrec/P7nY5K0hgzcsjE7n8vNAsq0z5LZqHe9INe8M=; b=KMTqAMt6+x7mYAvv1p0ZsVjuTz
-        pp/v/ws/iOR1Ghvl5ZmmfEuS18js85Zozi+K4BtIOuDM3u7BCb0xv7ME3S2GV6ZTlb/EX2Utbz/J5
-        KSFbT+KwDIUGwwSLusEEq9i28ycrtdSQSkx4Jr+x7oUxwrEsLZVn+sPzCqyghbL7/iJ0jUu+y6whG
-        WY7odZk37VR2CbUgewlZL87SUMGJHpkGcTVi3BH/END0XvQWpuFJ8xTi906TWMPe6dvixcSVXeokt
-        RZrLp6yOVgApphjmrNKMFNavC+hGpxTDgv6DJwugV6m6d3xjNTDKjseT0VVP+gEReo1RIVbzmFIid
-        xxtvvtEQ==;
-Received: from [2a01:799:961:d200:cca0:57ac:c55d:a485] (port=50028)
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1ncpwc-0003o2-IN; Fri, 08 Apr 2022 16:50:38 +0200
-Message-ID: <2d4ef041-8339-006e-3e94-8ff16309cba7@tronnes.org>
-Date:   Fri, 8 Apr 2022 16:50:35 +0200
+        with ESMTP id S237209AbiDHO5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:57:04 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21EE245AD
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:55:00 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id q26so10344124edc.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 07:55:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=09k0cdXExIXi2nZQGUowL8FTPg31pRqik4f6jmnnO2w=;
+        b=MpbglDaS3k4EI/fk+SJWAT/f1sz20SJeI9EtjdiqXMiihqP1mS3ENkAO9g8FRFAN9J
+         b30/PEOhU/Z2Gtcj3XsCAWwjN/8ZGJc2KoR8PPSyGLSibIx2jqdhtEWw7xfxdAsj/B2A
+         UuvK26k322/fI+NzVLdyaJh95QBE09uVgbcDJjwVg7+3NmXytaRgvsAgX5RBMVGwkLhb
+         WlidJYMNyaTKZNGXJbHAycABGs1gHPhEjA7s7pfjSQd5usRl3n9mlhJg9yQJVkSDd7/S
+         n9DbZ/gShKAr3Bs8IllyEzXi2vIIo58F88IExJ6FEUL+YBowSMaQ6VH4hYAboT5Y55nA
+         M16g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=09k0cdXExIXi2nZQGUowL8FTPg31pRqik4f6jmnnO2w=;
+        b=uTICDYcHOYybB6zZlcUhJWPF1KF4V99dz3vVBpoKBSAFkEv7BAjLG3hUxm0HqeH3Sf
+         TFxIl7aNebHYhZ0T2P51TD0ZkgKHxIkUrwxwMCTFVPTz1OpzGZJ63AepX7tzj67OCskC
+         f8H5ynOCiYiM9SRgkUAu38kxk5dCaWBLhUigIorsagaxGNVZa6iF0bhuTEkRADRuPOfK
+         6Ty7d7OnTjtX4Wpv9ISwFFMaTbwjjncyVtDUt9Pl9YK56ruu17DRB4Seq3rQAQNPdkDJ
+         PqBpkWGfdKkiAAi5d3cjNk2DUKgyJynGpT+ja9gQ+kIEcBwGx9PjbCB4KHbElHr2tMUZ
+         SaLg==
+X-Gm-Message-State: AOAM531jbv+p9dpFo7j4WU7vmcAnW47FU349YniNrIIsbMhqeU7kTAyb
+        Q7X2OvNvgIbfBpe9oRXq/jgJpQ==
+X-Google-Smtp-Source: ABdhPJwHlNeuxcQeuAi8hDLAkT+emovtzwN0HxRAZ5hQ7o8XUVx4+YFAgDy29RKu/t3/uNC1/OGIWw==
+X-Received: by 2002:a05:6402:278d:b0:419:3794:de39 with SMTP id b13-20020a056402278d00b004193794de39mr19787666ede.137.1649429699052;
+        Fri, 08 Apr 2022 07:54:59 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id j22-20020a50ed16000000b00419366b2146sm10878381eds.43.2022.04.08.07.54.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 07:54:58 -0700 (PDT)
+Message-ID: <d4a182e8-9469-6dfb-af97-6e570d4c5ab1@linaro.org>
+Date:   Fri, 8 Apr 2022 16:54:57 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: display: panel: mipi-dbi-spi: Make
- width-mm/height-mm mandatory
-To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
-Cc:     robert.foss@linaro.org,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-References: <20220404192105.12547-1-marex@denx.de>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220404192105.12547-1-marex@denx.de>
+Subject: Re: [PATCH v1 1/7] dt-bindings: clk: mpfs document msspll dri
+ registers
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
+        palmer@rivosinc.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220408143646.3693104-1-conor.dooley@microchip.com>
+ <20220408143646.3693104-2-conor.dooley@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220408143646.3693104-2-conor.dooley@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,44 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On 08/04/2022 16:36, Conor Dooley wrote:
+> As there are two sections of registers that are responsible for clock
+> configuration on the PolarFire SoC: add the dynamic reconfiguration
+> interface section to the binding & describe what each of the sections
+> are used for.
 
-I see that you have commit rights so I assume you will be applying this
-patch.
+(...)
 
-Noralf.
-
-Den 04.04.2022 21.21, skrev Marek Vasut:
-> Make the width-mm/height-mm panel properties mandatory
-> to correctly report the panel dimensions to the OS.
-> 
-> Fixes: 2f3468b82db97 ("dt-bindings: display: add bindings for MIPI DBI compatible SPI panels")
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Dmitry Osipenko <digetx@gmail.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Noralf Trønnes <noralf@tronnes.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
-> ---
->  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> index f29789994b180..c2df8d28aaf5f 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> @@ -83,6 +83,8 @@ properties:
->  required:
->    - compatible
->    - reg
-> +  - width-mm
-> +  - height-mm
->    - panel-timing
 >  
->  unevaluatedProperties: false
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - description: |
+> +          clock config registers:
+> +          These registers contain enable, reset & divider tables for the, cpu, axi, ahb and
+> +          rtc/mtimer reference clocks as well as enable and reset for the peripheral clocks.
+> +      - description: |
+> +          mss pll dri registers:
+> +          Block of registers responsible for dynamic reconfiguration of the mss pll
+>  
+
+This breaks all of DTS - in and out of tree.
+
+Best regards,
+Krzysztof
