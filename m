@@ -2,108 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B09D4F9DC9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C350C4F9E2B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 22:30:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233015AbiDHTwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 15:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35962 "EHLO
+        id S239478AbiDHUbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 16:31:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233000AbiDHTwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:52:13 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB82CE7;
-        Fri,  8 Apr 2022 12:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649447409; x=1680983409;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NFsxnCy8jPc0T8qrhjEMXjZ/Yl35VCVnze/5CyH4DhI=;
-  b=eAp+xma37z+Q90McpeCvtk05+uxrQhk/YUfTYBZuqwPRLWInwmLkRRVE
-   tGaMMUTqg7gpCCAe/FUMc8U1ZOP7ZwlhR1QUJoXRoqu1iaYqJJJp0/Fs+
-   0PU9crgLQ68sOiIK8QNf7ucLMwxSC2ji99S/le3iSqYO79kktypmQTcLy
-   +/19acWkD/godtNk9aAtcXCCARz3+q0AN15eDSI00wQnMondHb0N25fLy
-   5M3Aku2Pzbw7RHGZrhArSQBpubcXnGEE7y+jWiJHwTDNQuBizq/4LmchN
-   zFM1NOfpGBB00/fX763o+G9cnGsy5JWLJrjsgjJBuNzD4r1+2T6oDr45M
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="260515949"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
-   d="scan'208";a="260515949"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 12:50:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
-   d="scan'208";a="524897967"
-Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 08 Apr 2022 12:50:05 -0700
-Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1ncucO-0000aT-JY;
-        Fri, 08 Apr 2022 19:50:04 +0000
-Date:   Sat, 9 Apr 2022 03:49:09 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fairphone-fp4: Add AW8695
- haptics
-Message-ID: <202204090333.QZXMI2tu-lkp@intel.com>
-References: <20220408115311.237039-3-luca.weiss@fairphone.com>
+        with ESMTP id S231722AbiDHUbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 16:31:17 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341211DA8D6
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 13:29:12 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id u14so9690862pjj.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 13:29:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=HD9KWxYgHovL4d+swYpmuaTcGaPIaYm36t/rSV4RSvg=;
+        b=Q0KeoqDnCa8t9t7sVZPbYG3qKLWKWSwjPdVPsqLNyYAIkNInfvFrnib1WBJF0cFwPV
+         cS88dBGtsAWScifpLSaO+kVpUGO8xGswNZgPNdhGOFmClE5dE1T/mSRm+cmRZvX03LET
+         vP9besdhVUGIMppcb/yOkqKHoE8YUfnOTbgL48zbFm+MKrKJlL59Z62zG0lP5qZKbd8C
+         P8ZQUoDvx7UGRpcUIa7VokvDC02Y2wGLGOTj7/BGPLKFLWg/j4a4j3DqqtljU//u7sps
+         iKvkuYkzerCCmTAseaxt4wrz8EffCcexE6DaU0McLwY4AdgJaXXMFUzw3XUhZEHLN3IZ
+         sYwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=HD9KWxYgHovL4d+swYpmuaTcGaPIaYm36t/rSV4RSvg=;
+        b=ows49jfIhOtY5mrDZqra/DBIyjn7VwbSPsywngzlujjz2thhmNzcpQ8NmxZENW+pAF
+         EmfxkYI8EyP/xfCI9WEA/ieo43XlKGuqCStUMzEHgdpqBmmPsqQfohAzgEf1ahmzjhSM
+         LrxJaiVzVfShv4vX8nKQ3sAaLG3ZVeq6AWOfhP/0ix/BquD5mZkbPqtElRL1A745QGYN
+         8UkfyAnNOSMiQsAWh/8LC7iBEqbbVzgbNzttfOI63xs/i5T/HPUb1evh1XuF9tg9fix8
+         x43Eb/E2izAPiWfA15x6UEpmE1VKTZH2VvCDyBC3Jk5Fl6WtgrlF3ApbQJ00BnMbXCLA
+         /7KA==
+X-Gm-Message-State: AOAM533Ihab619yty/TnhmczVUl/N94diF+f+lBOPYYePQMjp5pnXBpR
+        7hQm2t0xLe6/oy4uMV1pm+Z6rA==
+X-Google-Smtp-Source: ABdhPJz1t8RKOgx1OockyWLTtqK9N64BneuYukw0ht7tEOMRQDgSerOayaO2vT0LBXJsp4/C/ABSyw==
+X-Received: by 2002:a17:90b:4f8e:b0:1c7:3652:21bc with SMTP id qe14-20020a17090b4f8e00b001c7365221bcmr23626082pjb.38.1649449751645;
+        Fri, 08 Apr 2022 13:29:11 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id x8-20020aa784c8000000b0050577c51d38sm3849034pfn.20.2022.04.08.13.29.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 13:29:11 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
+        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: Re: [PATCH V2 07/15] cpufreq: mediatek: Add opp notification for
+ SVS support
+In-Reply-To: <20220408045908.21671-8-rex-bc.chen@mediatek.com>
+References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
+ <20220408045908.21671-8-rex-bc.chen@mediatek.com>
+Date:   Fri, 08 Apr 2022 13:29:10 -0700
+Message-ID: <7hsfqn5nft.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408115311.237039-3-luca.weiss@fairphone.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
 
-Thank you for the patch! Yet something to improve:
+> From: "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+>
+> The Smart Voltage Scaling (SVS) is a hardware which calculates suitable
+> SVS bank voltages to OPP voltage table.
+>
+> When the SVS is enabled, cpufreq should listen to opp notification and do
+> proper actions when receiving events of disable and voltage adjustment.
 
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on hid/for-next robh/for-next v5.18-rc1 next-20220408]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+So listenting for OPP notifications should be done only when SVS is enabled...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Weiss/dt-bindings-input-Add-bindings-for-Awinic-AW8695-haptics/20220408-195432
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-config: arm64-randconfig-r015-20220408 (https://download.01.org/0day-ci/archive/20220409/202204090333.QZXMI2tu-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/3f233916afe417b8d4b9100f560892dff2c93f0c
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Luca-Weiss/dt-bindings-input-Add-bindings-for-Awinic-AW8695-haptics/20220408-195432
-        git checkout 3f233916afe417b8d4b9100f560892dff2c93f0c
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
+[...]
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+>  static int mtk_cpu_dvfs_info_init(struct mtk_cpu_dvfs_info *info, int cpu)
+>  {
+>  	struct device *cpu_dev;
+> @@ -392,6 +455,17 @@ static int mtk_cpu_dvfs_info_init(struct mtk_cpu_dvfs_info *info, int cpu)
+>  	info->intermediate_voltage = dev_pm_opp_get_voltage(opp);
+>  	dev_pm_opp_put(opp);
+>  
+> +	info->opp_cpu = cpu;
+> +	info->opp_nb.notifier_call = mtk_cpufreq_opp_notifier;
+> +	ret = dev_pm_opp_register_notifier(cpu_dev, &info->opp_nb);
 
-All errors (new ones prefixed by >>):
+...but here youlisten to OPP notifications unconditionally.  Seems there
+should be a check whether SVS is enabled before deciding to register.
 
->> Error: arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts:298.1-7 Label or path i2c10 not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Kevin
