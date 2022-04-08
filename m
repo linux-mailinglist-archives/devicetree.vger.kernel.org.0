@@ -2,71 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264974F9384
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B6C24F93C0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232134AbiDHLMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 07:12:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59616 "EHLO
+        id S232766AbiDHLZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 07:25:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiDHLL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:11:58 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316541F9;
-        Fri,  8 Apr 2022 04:09:54 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id l7so11192447ejn.2;
-        Fri, 08 Apr 2022 04:09:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=918u9S2PhfmGwhTKyqYKA9YXzqxdHFTZDcAn11BmImU=;
-        b=G+DuWB37PrwAEULcdvBxilvoCWAN02EDgldDQUGMSSQqfj9ZDSXVHz+4+6cXyA9EQW
-         scEiwNRs82zknRJTAip04cErtewExi1Lme43KUO+xHxQLF7PDLel9cr+05UHyH4fHn/K
-         9k2oPP8D75yxFs7YKV5oQPR5CzyO5yQV9a8EE93RhEwq/t4FiPdsDzUFmpdplgc6T4W4
-         9xdaYXDa0EMbIJMoHJplkPGfuBxGqSSv3G+JYpIHmu0EmCTyNDR438dOo54l8VMRwHIC
-         fQeTn5AgDrXavUpxAt9hQTK8iqzUI73eBK35zN6ep9B+EZMRFnRoC+JdADvTTJpshBek
-         Gx/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=918u9S2PhfmGwhTKyqYKA9YXzqxdHFTZDcAn11BmImU=;
-        b=gQd6ltVFXKSOt1/Mn8vZs6IMmb24eT9e0VT3C+dEoFadWqSF2j8doUD6msxa8wiz2O
-         2DtFuV7Y649+IAVB3ybjGkcfNIHTd6AuPpcb489fEIg0XHshwmqdxPnQSV+ZyGwbI8sy
-         7LLfdNGkpu+HVkF+j2AQ1/F5k5o3OZ+YZUjspe5BOoPtbp4VAcL0LefMQrme9+Ae6C/J
-         NHD3DHGpUQVwYEaAUdq2TEscqvDfTwWh4hrae+TWLxQ7t5N9b7UW6fW3vOELxmEp+Jok
-         KwoZ+TULIZlnibcRMPnMdMjN+3Wd70IPrxy0ABO+f4fbAbaRFSQIFRzY2RQLY3DsNByF
-         i/Gw==
-X-Gm-Message-State: AOAM5307ZUQwWHLjVyp0dShi7OfSokChGMCecko1gANIjyG9H37tyDOI
-        i7rYuCh6lV7Gvj+6wd0T4Fp4VwFk04bvg3PmR+A=
-X-Google-Smtp-Source: ABdhPJx7dSmNNuGyDMucpcenHMHbI3t4J35CIGAwuf++Br+nt2ZKUQLR9k/derUEvtPK4ZddUQexkbI8ChLXgKIbrPA=
-X-Received: by 2002:a17:907:728e:b0:6e7:edf7:f0a4 with SMTP id
- dt14-20020a170907728e00b006e7edf7f0a4mr18029233ejc.497.1649416190704; Fri, 08
- Apr 2022 04:09:50 -0700 (PDT)
+        with ESMTP id S233335AbiDHLZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:25:02 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC07DB3C
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:22:57 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncmhS-0002HR-4K; Fri, 08 Apr 2022 13:22:46 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncmhQ-001n3l-CT; Fri, 08 Apr 2022 13:22:42 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncmhO-005Z3b-5C; Fri, 08 Apr 2022 13:22:42 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v10 00/24] drm/rockchip: RK356x VOP2 support
+Date:   Fri,  8 Apr 2022 13:22:14 +0200
+Message-Id: <20220408112238.1274817-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20220407115126.69293-1-markuss.broks@gmail.com> <20220407115126.69293-3-markuss.broks@gmail.com>
-In-Reply-To: <20220407115126.69293-3-markuss.broks@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 8 Apr 2022 14:05:33 +0300
-Message-ID: <CAHp75VcpPvU7Nh5XBx7Xo7LyQS36Um+6z0u-KkU1185W-fgfRA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] leds: ktd2692: Make aux-gpios optional
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,15 +56,148 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 7, 2022 at 9:03 PM Markuss Broks <markuss.broks@gmail.com> wrote:
->
-> Make the AUX pin optional, since it isn't a core part of functionality,
-> and the device is designed to be operational with only one CTRL pin.
->
-> Also pick up maintainership for the LED driver and the yaml bindings.
+This is v10 finally. The series is rebased to v5.18-rc1 which means that
+it no longer depends on the clk patches, but there are new dependencies:
 
-Same comments as per v1 are still applicable here.
+drm/rockchip: Refactor IOMMU initialisation (https://lists.freedesktop.org/archives/dri-devel/2022-April/349548.html)
+arm64: dts: rockchip: add basic dts for the radxa rock3 model a
+
+The latter is only necessary for adding VOP2 support for that board. It should
+be in Heikos tree already.
+
+Highlight in this series is that it now works properly on a RK3566. Also
+z-ordering of the planes is fixed.
+
+Sascha
+
+Changes since v9:
+- rebase on v5.18-rc1
+- Do not register windows which don't have its own framebuffer on RK3566
+- fix mixed up register writes in vop2_setup_dly_for_windows()
+- move call to rockchip_drm_dma_attach_device() from vop2_bind() to vop2_enable()
+- Fix zpos handling
+
+Changes since v8:
+- make hclk_vo a critical clock instead of enabling it in the hdmi driver
+- Fix vop2_setup_layer_mixer(), reported by Andy Yan
+- Limit planes possible_crtcs to actually existing crtcs
+- simplify vop2_create_crtc() a bit
+
+Changes since v7:
+- rename hclk to niu
+
+Changes since v6:
+- Move of_graph parsing out of runtime code to initialization
+
+Changes since v5:
+- Add new patch to fix dw-hdmi of_graph binding
+- Drop "drm/encoder: Add of_graph port to struct drm_encoder" and solve
+  issue internally in the driver
+- make checkpatch cleaner
+
+Changes since v4:
+- Reorder patches in a way that binding/dts/driver patches are closer together
+- Drop clk patches already applied by Heiko
+
+Changes since v3:
+- added changelog to each patch
+- Add 4k support to hdmi driver
+- rebase on v5.17-rc1
+
+Changes since v2:
+- Add pin names to HDMI supply pin description
+- Add hclk support to HDMI driver
+- Dual license rockchip-vop2 binding, update binding
+- Add HDMI connector to board dts files
+- drop unnecessary gamma_lut registers from vop2
+- Update dclk_vop[012] clock handling, no longer hacks needed
+- Complete regmap conversion
+
+Changes since v1:
+- drop all unnecessary waiting for frames within atomic modeset and plane update
+- Cluster subwin support removed
+- gamma support removed
+- unnecessary irq_lock removed
+- interrupt handling simplified
+- simplified zpos handling
+- drop is_alpha_support(), use fb->format->has_alpha instead
+- use devm_regulator_get() rather than devm_regulator_get_optional() for hdmi regulators
+- Use fixed number of planes per video port
+- Drop homegrown regmap code from vop2 driver (not complete yet)
+- Add separate include file for vop2 driver to not pollute the vop include
+
+Andy Yan (1):
+  drm: rockchip: Add VOP2 driver
+
+Benjamin Gaignard (1):
+  dt-bindings: display: rockchip: dw-hdmi: Add compatible for rk3568
+    HDMI
+
+Douglas Anderson (2):
+  drm/rockchip: dw_hdmi: Use auto-generated tables
+  drm/rockchip: dw_hdmi: Set cur_ctr to 0 always
+
+Michael Riesch (2):
+  arm64: dts: rockchip: enable vop2 and hdmi tx on quartz64a
+  arm64: dts: rockchip: enable vop2 and hdmi tx on rock-3a
+
+Nickey Yang (1):
+  drm/rockchip: dw_hdmi: add default 594Mhz clk for 4K@60hz
+
+Sascha Hauer (17):
+  clk: rk3568: Mark hclk_vo as critical
+  drm/rockchip: Embed drm_encoder into rockchip_decoder
+  drm/rockchip: Add crtc_endpoint_id to rockchip_encoder
+  drm/rockchip: dw_hdmi: rename vpll clock to reference clock
+  dt-bindings: display: rockchip: dw-hdmi: use "ref" as clock name
+  arm64: dts: rockchip: rk3399: rename HDMI ref clock to 'ref'
+  drm/rockchip: dw_hdmi: add rk3568 support
+  drm/rockchip: dw_hdmi: add regulator support
+  dt-bindings: display: rockchip: dw-hdmi: Add regulator support
+  drm/rockchip: dw_hdmi: drop mode_valid hook
+  dt-bindings: display: rockchip: dw-hdmi: Make unwedge pinctrl optional
+  arm64: dts: rockchip: rk356x: Add VOP2 nodes
+  arm64: dts: rockchip: rk356x: Add HDMI nodes
+  arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
+  drm/rockchip: Make VOP driver optional
+  dt-bindings: display: rockchip: Add binding for VOP2
+  dt-bindings: display: rockchip: dw-hdmi: fix ports description
+
+ .../display/rockchip/rockchip,dw-hdmi.yaml    |   46 +-
+ .../display/rockchip/rockchip-vop2.yaml       |  140 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |    2 +-
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |   47 +
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      |    4 +
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   47 +
+ .../boot/dts/rockchip/rk3568-rock-3a.dts      |   47 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |    4 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   83 +
+ drivers/clk/rockchip/clk-rk3568.c             |    1 +
+ drivers/gpu/drm/rockchip/Kconfig              |   14 +
+ drivers/gpu/drm/rockchip/Makefile             |    4 +-
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   |   32 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |   18 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.h        |    2 +-
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |   17 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  276 +-
+ drivers/gpu/drm/rockchip/inno_hdmi.c          |   32 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        |   34 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |   36 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |   20 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |    2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   15 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 2706 +++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  477 +++
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |   26 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  281 ++
+ include/dt-bindings/soc/rockchip,vop2.h       |   14 +
+ 28 files changed, 4232 insertions(+), 195 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+ create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.30.2
+
