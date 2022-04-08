@@ -2,62 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF664F921B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 11:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE4234F923B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 11:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232869AbiDHJg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 05:36:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39284 "EHLO
+        id S233817AbiDHJu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 05:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231565AbiDHJg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 05:36:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00BD37BC5;
-        Fri,  8 Apr 2022 02:34:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CCFA61DAF;
-        Fri,  8 Apr 2022 09:34:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E113C385A3;
-        Fri,  8 Apr 2022 09:34:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649410462;
-        bh=dkChLmZ2U6SrY+w/IpSt6wIwgxrmR0TxbU9q/QExDMQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c4vF7qEbi2YzOfQ6VvUOsxEKrY7PsCc18mKFzr640NTlOw3U0/GIdtTqiNKd7Yv8T
-         Tv+GepSTDxEo+H2Vf1Z9S8BjhJPFm69MhOFpJZFK+3Me1PSXW7QXOYMZMg2SDX+DCV
-         4QNJnhQKc/1lQl9vNFzbbyX4c0TwEt496AKPHSNdyWXPWOwSwVWRID62U5J1n0jU0/
-         uprVJx07FJQRac/uuZ05cqvENdQM4UXQMbVCLeDtVRu6IrP9C3rwV0WZNaIZPC+ROw
-         NHh2aMHS5z1wX3w/eUqTmmy4DC2OkNAMHoROc7f69n4TdcnGaRzKau61UZL9sVvORo
-         Ob7q2YJUe4heQ==
-Date:   Fri, 8 Apr 2022 11:34:18 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Felix Fietkau <nbd@nbd.name>, netdev@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 01/14] dt-bindings: net: mediatek: add optional
- properties for the SoC ethernet core
-Message-ID: <YlABmtzBDVRehh5u@lore-desk>
-References: <20220405195755.10817-1-nbd@nbd.name>
- <20220405195755.10817-2-nbd@nbd.name>
- <Yk8ddwmSiFg3pslA@robh.at.kernel.org>
+        with ESMTP id S233540AbiDHJuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 05:50:25 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C707415A1C;
+        Fri,  8 Apr 2022 02:48:10 -0700 (PDT)
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4KZYKq1bV9zgYWs;
+        Fri,  8 Apr 2022 17:46:23 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 8 Apr 2022 17:48:08 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 8 Apr 2022 17:48:07 +0800
+Subject: Re: [PATCH v21 0/5] support reserving crashkernel above 4G on arm64
+ kdump
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <YlABRPBEaTldZwuL@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <3a0bb9a9-c2a1-2e3a-8f23-16109ae1e525@huawei.com>
+Date:   Fri, 8 Apr 2022 17:47:55 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jTDiGlGeTX59jyR9"
-Content-Disposition: inline
-In-Reply-To: <Yk8ddwmSiFg3pslA@robh.at.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YlABRPBEaTldZwuL@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,64 +74,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---jTDiGlGeTX59jyR9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-> On Tue, Apr 05, 2022 at 09:57:42PM +0200, Felix Fietkau wrote:
-> > From: Lorenzo Bianconi <lorenzo@kernel.org>
-> >=20
-> > Introduce dma-coherent, cci-control and hifsys optional properties to
-> > the mediatek ethernet controller bindings
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > Signed-off-by: Felix Fietkau <nbd@nbd.name>
-> > ---
-> >  Documentation/devicetree/bindings/net/mediatek-net.txt | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/mediatek-net.txt b/D=
-ocumentation/devicetree/bindings/net/mediatek-net.txt
-> > index 72d03e07cf7c..13cb12ee4ed6 100644
-> > --- a/Documentation/devicetree/bindings/net/mediatek-net.txt
-> > +++ b/Documentation/devicetree/bindings/net/mediatek-net.txt
-> > @@ -41,6 +41,12 @@ Required properties:
-> >  - mediatek,pctl: phandle to the syscon node that handles the ports sle=
-w rate
-> >  	and driver current: only for MT2701 and MT7623 SoC
-> > =20
-> > +Optional properties:
-> > +- dma-coherent: present if dma operations are coherent
-> > +- mediatek,cci-control: phandle to the cache coherent interconnect node
->=20
-> There's a common property for this already. See CCI-400 binding.
->=20
-> > +- mediatek,hifsys: phandle to the mediatek hifsys controller used to p=
-rovide
-> > +	various clocks and reset to the system.
-> > +
->=20
-> This series is adding a handful of new properties. Please convert the=20
-> binding to DT schema first.
+On 2022/4/8 17:32, Baoquan He wrote:
+> Hi, Lei
+> 
+> On 02/27/22 at 11:07am, Zhen Lei wrote:
+>> Changes since [v20]:
+>> 1. Check whether crashkernel=Y,low is incorrectly configured or not configured. Do different processing.
+>> 2. Share the existing description of x86. The configuration of arm64 is the same as that of x86.
+>> 3. Define the value of macro CRASH_ADDR_HIGH_MAX as memblock.current_limit, instead of MEMBLOCK_ALLOC_ACCESSIBLE.
+>> 4. To improve readability, some lightweight code adjustments have been made to reserve_craskernel(), including comments.
+>> 5. The defined value of DEFAULT_CRASH_KERNEL_LOW_SIZE reconsiders swiotlb, just like x86, to share documents.
+> 
+> 5.18 rc1 is already done, do you have plan to post a new version for
+> reviewing?
 
-ack, I will converti this file to yaml format.
+Yes, v5.18-rc1 has added a new patch
+commit  031495635b46 ("arm64: Do not defer reserve_crashkernel() for platforms with no DMA memory zones")
+to allow block mapping again, so my patches need to be modified. It should be post next week.
 
+> 
+> Thanks
+> Baoquan
+> 
+> .
+> 
+
+-- 
 Regards,
-Lorenzo
-
->=20
-> Rob
-
---jTDiGlGeTX59jyR9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYlABmgAKCRA6cBh0uS2t
-rCHGAQCQmaNe46BtAnnaU0XjfU5usUblA/08rL3VkR0T5cktfAD/RcsMuvT+pISo
-W0sCkOXhxLB2IBuyswPUVSZCO0JShQE=
-=mbp4
------END PGP SIGNATURE-----
-
---jTDiGlGeTX59jyR9--
+  Zhen Lei
