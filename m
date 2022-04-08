@@ -2,228 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C51A4F99E8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B6A4F99F4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237816AbiDHPyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:54:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
+        id S237855AbiDHP4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:56:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbiDHPys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:54:48 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F015BCDC
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:52:44 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id t13so8113344pgn.8
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:52:44 -0700 (PDT)
+        with ESMTP id S237853AbiDHP4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:56:34 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F14D5DA0F
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:54:30 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id x33so9359132lfu.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:54:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U2m6sZvhn5jXhSxSuuwgVSE4PMt55EOgxxP4khF/1Ec=;
-        b=rqYiT3mO7OAW/9pQb4Bv0jmpQfS3eQThb0XDj5b3ab7mzXEjdprjcShcxuFmmXYxPw
-         JJdr4ZfdWgGPOYTo2KE8ojdNMognZ5Bx7rp+PFZ2PfJpp0HkoKyvF90wCoZ4HN/eP7iO
-         nE1jkN09Bd203oHQTIed9RNZ39dBBGBvh8DY/oEV9y2K2nAXLtT7eWaUtXDoF2hxvzwP
-         j7ExPvqldNrnhmOYGu8Gf05hnfDKnqgyOvGAoaDgD6tUhDMUCFRe2DnOXIguQYGAtHIo
-         urdkVcXhNch9/79pJgcEQF1zCr2mZLdlhWzi03SrrAklbRF6H/5d4cMhsumVv3mF81Ih
-         pwiA==
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=dMedrJyyPp2AgciwGwoI4gGO2Wx2Sr0zepsVnCRbIjE=;
+        b=A8vrBw3oP8HTsp1QlGgoAB7EBM+Sjeia5CjW++jfKK5AcRoF3PGzuU04n2UO8kJNx5
+         wDq9ipFPcPX13nQQ5kmVwXCIkRwpGkXxcLJHpx0OX6xpNvZcTeo8mbxuVlw5AFvwLeiT
+         vVCkmCdxeyYAVMDho4bk06siNnXPz8DXE+6gIDCrOiYKYcxabHXXf6jpSMNmeWmwIY8z
+         OhbTDzJ9aYk8HGnyG87CBHMo+pD+Jniq7fdkogyQ0wNbcJMPJDjo9itwj63EDDlYITjM
+         5BEmAT2rAfyHTeBOrRCj+vtsVTF82UwzZKSQTOkm2FGj27AkR5X3xNEb1Mttx0v5JWgL
+         8XRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U2m6sZvhn5jXhSxSuuwgVSE4PMt55EOgxxP4khF/1Ec=;
-        b=YfNppxNqHXOsKlaP1wNnManFDzIsfbogsJR0PSQv9m3zYCeoNjRy82tpNzuR2ep1so
-         g2pT5dbtPwK25c+Z3rYGEikXEgPqam/4g2YaIcIlfT9OOtefHitxoWlqLcLG/B0GMY0y
-         O61XmnWXMmLWV31XRcSfhzANJ9B3b6oyfUHcogBkVscC9CiV6Ai5xB5CTPrpYWFqHNmM
-         Hrs4uTlYoaHoF4liPwlpTHVqV/pN2AF0qI+cO5LgGVPn4PgqsQe/40hzmB0APvNEEijj
-         UQAGH2bCe/0IStb/2P22C6M7r3MPbEfm27ad9iMeh7TcB7tY91DD7mQCdPVCmX99tf3a
-         uwhA==
-X-Gm-Message-State: AOAM532I1J2bSJ+mPkvh7Rv80PIg3z9GSMpxVs7f08eQTRx1o9MY10ks
-        ldBbcdt7Z33HJbUr5BzaDD0ZPr3qGi68P+H4vXABSA==
-X-Google-Smtp-Source: ABdhPJy9FQ6uYwPaN5CUJzHIkvpy40btXyZUV19mC607ZSdEGApt8HLJXEX4FQYr0a/7rGStv07GV6WmG+tncDWPau0=
-X-Received: by 2002:a05:6a00:1307:b0:4b0:b1c:6fd9 with SMTP id
- j7-20020a056a00130700b004b00b1c6fd9mr20103097pfu.27.1649433164360; Fri, 08
- Apr 2022 08:52:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220407210411.8167-1-tharvey@gateworks.com> <20220407210411.8167-2-tharvey@gateworks.com>
- <be7fd7be-c65a-215c-df96-5a6eed52b5e7@linaro.org>
-In-Reply-To: <be7fd7be-c65a-215c-df96-5a6eed52b5e7@linaro.org>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 8 Apr 2022 08:52:32 -0700
-Message-ID: <CAJ+vNU1D5GowKH97mpS+zT97XTavbKfijt6P8KEHN8-DD+gtYA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx: Add i.MX8M Plus Gateworks gw7400 dts support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=dMedrJyyPp2AgciwGwoI4gGO2Wx2Sr0zepsVnCRbIjE=;
+        b=piQsa5qPDqfOX8P1l7q0marCZ1l1AjpHhdo1JGlgZE10ue2F5PKuC9F+cpO/uQk6gk
+         jybC3/zu/LRlBKMNqerKMio2n0es8DbP6V4Yc04a4m1H7C50ovSH4eJyGgsoWjmVVwxU
+         NdOG/aKuX26JRqQAPnalubjsRJ/6y5rFMW2ZYIRVOWdMbmsPWIHkh3pih61zec2zaRoX
+         ItWbEvZhmhQ2ZyakD2tDWHzWkP8h+CaFgxiKtNXj8QXldHCtQkX8z3florrA6jgPWvit
+         KsXewyCmvtJWwLgEUmkHL9B6NxNyAzpuWJ+jaO3vFvsXc8Ag/GBkRsYDNhk1KVw2bL/h
+         Hadg==
+X-Gm-Message-State: AOAM531oawPy/is5vfHSJUggojgWdYMo59aNZPeiJcubqjPLvRkdmTtY
+        9U6S+/mKxZssNSD8+Lp+QkYYxpOJcZg=
+X-Google-Smtp-Source: ABdhPJwfgu52z8PaJQneJJMuJk5hON8/mrklFYZkHFBLFZ1DMsYY5NDjuYTkAAhsz+y6JrZoyviv8g==
+X-Received: by 2002:a05:6512:104e:b0:44a:379a:e2ff with SMTP id c14-20020a056512104e00b0044a379ae2ffmr13221555lfb.495.1649433268647;
+        Fri, 08 Apr 2022 08:54:28 -0700 (PDT)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id k22-20020a056512331600b0046b8c25a307sm113244lfe.75.2022.04.08.08.54.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 08 Apr 2022 08:54:28 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20220408120021.GO4012@pengutronix.de>
+Date:   Fri, 8 Apr 2022 17:54:24 +0200
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B3E76A7A-9B62-4E6F-9472-00B6298689C5@gmail.com>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
+ <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
+ <20220408080748.GA2387@pengutronix.de> <20220408120021.GO4012@pengutronix.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 8, 2022 at 12:13 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 07/04/2022 23:04, Tim Harvey wrote:
-> > The Gateworks GW7400 is an ARM based single board computer (SBC)
-> > featuring:
-> >  - i.MX8M Plus SoC
-> >  - LPDDR4 DRAM
-> >  - eMMC FLASH
->
-> Thank you for your patch. There is something to discuss/improve.
->
 
-Krzysztof,
 
-Thanks for the review!
+> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
+<s.hauer@pengutronix.de> w dniu 08.04.2022, o godz. 14:00:
+>=20
+>> That turned out to be simpler than I thought it would be. The zpos
+>> values were never actually written to the hardware. Please try the
+>> following fixup, it should fix this issue.
+>=20
+> Or better try v10 which I have just sent.
+>=20
 
-> (...)
->
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +
-> > +#include "imx8mp.dtsi"
-> > +
-> > +/ {
-> > +     model = "Gateworks Venice GW74xx i.MX8MP board";
-> > +     compatible = "gw,imx8mp-gw74xx", "fsl,imx8mp";
->
-> Deprecated vendor prefix.
+Sascha,
 
-thanks - I wasn't aware 'gw' got deprecated. I will update to 'gateworks'.
+I applied v10 on 5.17.2 and...can't see difference.
+I still need to play with zpos to get ui screen.
+if i have playback - no OSD.
+If I have OSD - no playback.
 
-I'm in the habit of using 'make dtbs W=1' to check for errors. Is
-there something better I should be using that would catch this?
+Maybe fix needs some adjustments for 3566?=20
 
->
-> > +
-> > +     aliases {
-> > +             ethernet0 = &eqos;
-> > +             ethernet1 = &fec;
-> > +             ethernet2 = &lan1;
-> > +             ethernet3 = &lan2;
-> > +             ethernet4 = &lan3;
-> > +             ethernet5 = &lan4;
-> > +             ethernet6 = &lan5;
-> > +     };
-> > +
-> > +     chosen {
-> > +             stdout-path = &uart2;
-> > +     };
-> > +
-> > +     memory@40000000 {
-> > +             device_type = "memory";
-> > +             reg = <0x0 0x40000000 0 0x80000000>;
-> > +     };
-> > +
-> > +     gpio-keys {
-> > +             compatible = "gpio-keys";
-> > +
-> > +             user-pb {
->
-> Generic node names please, so "key-0" or "user-pb-key" (although adding
-> specific parts is really not needed, because you have the label).
+Here is short summary of playings with zpos and kms plane in Qt:
 
-ok
+QT_QPA_EGLFS_KMS_ZPOS, QT_QPA_EGLFS_KMS_PLANE_INDEX
 
->
-> > +                     label = "user_pb";
-> > +                     gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-> > +                     linux,code = <BTN_0>;
-> > +             };
-> > +
-> > +             user-pb1x {
-> > +                     label = "user_pb1x";
-> > +                     linux,code = <BTN_1>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <0>;
-> > +             };
-> > +
-> > +             key-erased {
-> > +                     label = "key_erased";
-> > +                     linux,code = <BTN_2>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <1>;
-> > +             };
-> > +
-> > +             eeprom-wp {
-> > +                     label = "eeprom_wp";
-> > +                     linux,code = <BTN_3>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <2>;
-> > +             };
-> > +
-> > +             tamper {
-> > +                     label = "tamper";
-> > +                     linux,code = <BTN_4>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <5>;
-> > +             };
-> > +
-> > +             switch-hold {
-> > +                     label = "switch_hold";
-> > +                     linux,code = <BTN_5>;
-> > +                     interrupt-parent = <&gsc>;
-> > +                     interrupts = <7>;
-> > +             };
-> > +     };
-> > +
-> > +     led-controller {
-> > +             compatible = "gpio-leds";
-> > +             pinctrl-names = "default";
-> > +             pinctrl-0 = <&pinctrl_gpio_leds>;
-> > +
-> > +             led-0 {
-> > +                     function = LED_FUNCTION_STATUS;
->
-> LED_FUNCTION_HEARTBEAT
+0,0 - GUI=3Dok, playback=3Dok, OSD=3Dnok
+1,0 - GUI=3Dok, playback=3Dnok, OSD=3Dok
+2,0 - GUI=3Dok, playback=3Dnok, OSD=3Dok
 
-yes, thanks for catching this
+0,1 - GUI=3Dok, playback=3Dnok, OSD=3Dok
+1,1 - GUI=3Dok, playback=3Dnok, OSD=3Dok
+2,1 - GUI=3Dok, playback=3Dnok, OSD=3Dok
 
->
-> > +                     color = <LED_COLOR_ID_GREEN>;
-> > +                     gpios = <&gpio2 15 GPIO_ACTIVE_HIGH>;
-> > +                     default-state = "on";
-> > +                     linux,default-trigger = "heartbeat";
-> > +             };
-> > +
-> > +             led-1 {
-> > +                     function = LED_FUNCTION_STATUS;
-> > +                     color = <LED_COLOR_ID_RED>;
-> > +                     gpios = <&gpio2 16 GPIO_ACTIVE_HIGH>;
-> > +                     default-state = "off";
-> > +             };
-> > +     };
-> > +
-> > +     pps {
-> > +             compatible = "pps-gpio";
-> > +             pinctrl-names = "default";
-> > +             pinctrl-0 = <&pinctrl_pps>;
-> > +             gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-> > +             status = "okay";
->
-> No need for status.
+0,2 - GUI=3Dnok, playback=3Dn/a, OSD=3Dn/a
+1,2 - GUI=3Dnok, playback=3Dn/a, OSD=3Dn/a
+2,2 - GUI=3Dnok, playback=3Dn/a, OSD=3Dn/a
 
-ok. What is the best way to know if a binding uses status or not?
 
-Documentation/devicetree/bindings/net/fsl,fec.yaml for example does
-not mention it uses status, yet it does.
+player launch:
+.......
+2022-04-08 17:47:57.035668 I /dev/dri/card0 Qt EGLFS/KMS Fd:5 Crtc id:49 =
+Connector id:51 Atomic: 1
+2022-04-08 17:47:57.035806 I /dev/dri/card0: Authenticated
+2022-04-08 17:47:57.145447 I /dev/dri/card0: Found 3 planes; 3 for this =
+CRTC
+2022-04-08 17:47:57.145469 I /dev/dri/card0: Selected Plane #37 Overlay =
+for video
+2022-04-08 17:47:57.145515 I /dev/dri/card0: Supported DRM video =
+formats: NV12,NV16,NV24,YVYU,VYUY
+2022-04-08 17:47:57.145523 I /dev/dri/card0: Selected Plane #43 Overlay =
+for GUI
+2022-04-08 17:47:57.145567 I /dev/dri/card0: DRM device retrieved from =
+Qt
+2022-04-08 17:47:57.145574 I /dev/dri/card0: Multi-plane setup: =
+Requested: 1 Setup: 1
+.......
 
-Best Regards,
 
-Tim
+playback:
+.....
+2022-04-08 17:48:55.457823 I DRMVideo: Using Plane #37 for video
+.....
+
+
+DRI state with zpos=3D0, kms_id=3D0 and ongoing playback:
+
+root@Myth-Frontend-06c7e973c2f1:~ # cat /sys/kernel/debug/dri/0/state
+plane[31]: Smart0-win0
+        crtc=3Dvideo_port0
+        fb=3D58
+                allocated by =3D mythfrontend
+                refcount=3D2
+                format=3DXR24 little-endian (0x34325258)
+                modifier=3D0x0
+                size=3D1920x1080
+                layers:
+                        size[0]=3D1920x1080
+                        pitch[0]=3D7680
+                        offset[0]=3D0
+                        obj[0]:
+                                name=3D0
+                                refcount=3D4
+                                start=3D00000000
+                                size=3D8294400
+                                imported=3Dno
+        crtc-pos=3D1920x1080+0+0
+        src-pos=3D1920.000000x1080.000000+0.000000+0.000000
+        rotation=3D1
+        normalized-zpos=3D0
+        color-encoding=3DITU-R BT.601 YCbCr
+        color-range=3DYCbCr limited range
+plane[37]: Esmart0-win0
+        crtc=3Dvideo_port0
+        fb=3D65
+                allocated by =3D mythfrontend
+                refcount=3D2
+                format=3DNV12 little-endian (0x3231564e)
+                modifier=3D0x0
+                size=3D1920x1080
+                layers:
+                        size[0]=3D1920x1080
+                        pitch[0]=3D1920
+                        offset[0]=3D0
+                        obj[0]:
+                                name=3D0
+                                refcount=3D3
+                                start=3D00000000
+                                size=3D3657728
+                                imported=3Dyes
+                        size[1]=3D960x540
+                        pitch[1]=3D1920
+                        offset[1]=3D2088960
+                        obj[1]:
+                                name=3D0
+                                refcount=3D3
+                                start=3D00000000
+                                size=3D3657728
+                                imported=3Dyes
+        crtc-pos=3D1920x1080+0+0
+        src-pos=3D1920.000000x1080.000000+0.000000+0.000000
+        rotation=3D1
+        normalized-zpos=3D1
+        color-encoding=3DITU-R BT.601 YCbCr
+        color-range=3DYCbCr limited range
+plane[43]: Cluster0-win0
+        crtc=3D(null)
+        fb=3D0
+        crtc-pos=3D0x0+0+0
+        src-pos=3D0.000000x0.000000+0.000000+0.000000
+        rotation=3D1
+        normalized-zpos=3D0
+        color-encoding=3DITU-R BT.601 YCbCr
+        color-range=3DYCbCr limited range
+crtc[49]: video_port0
+        enable=3D1
+        active=3D1
+        self_refresh_active=3D0
+        planes_changed=3D1
+        mode_changed=3D0
+        active_changed=3D0
+        connectors_changed=3D0
+        color_mgmt_changed=3D0
+        plane_mask=3D3
+        connector_mask=3D1
+        encoder_mask=3D1
+        mode: "1920x1080": 50 148500 1920 2448 2492 2640 1080 1084 1089 =
+1125 0x40 0x5
+connector[51]: HDMI-A-1
+        crtc=3Dvideo_port0
+        self_refresh_aware=3D0
+root@Myth-Frontend-06c7e973c2f1:~ #
+
+
+
