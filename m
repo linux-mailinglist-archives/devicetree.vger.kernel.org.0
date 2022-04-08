@@ -2,222 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A3A4F907F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 146674F9092
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbiDHIPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:15:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50240 "EHLO
+        id S231431AbiDHITe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbiDHIPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:15:08 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 73FE55BE60;
-        Fri,  8 Apr 2022 01:13:05 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 1CFAB807E;
-        Fri,  8 Apr 2022 08:10:38 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH] dt-bindings: timer: Update TI timer to yaml and add compatible for am6
-Date:   Fri,  8 Apr 2022 11:12:58 +0300
-Message-Id: <20220408081258.57213-1-tony@atomide.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S231417AbiDHITd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:19:33 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7365D6830A
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:17:29 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id g20so9181895edw.6
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=yuQFl788i69gkuHZnfVhALt8fZsIexOSaYwO7DsFL54=;
+        b=gx8vkxt3S763Ala7vzwT1kODYsT4g6h9F/zXUPb23Kp7SxBqah2MLv/qepESsLFEk6
+         I0ssg1XGAfLpTdDwbWD4XOyGCf1OaXP7MTUwFge2EkjWfCqDuI9cbnBKQghpKTSNb+FZ
+         qQiXqB5C+6GD7/kuW52bYq8t0iaiLUOwEH2Gy5BwrGYXzXXkp7NTwGQcZ2MpnvUUOoRE
+         8UllVY1p3GkIjUo9lvPFKOrk+3+oTIFWk3jYgmGy2leoAdfs+MGwaRimWw+KYJ0Gamjn
+         j+cp3u90dmMQdHjdkVO7f2J+JL8VKRUppRdrEM545wEFGS7/HXzUyxt2c1TjJNQuTQQ1
+         yHtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yuQFl788i69gkuHZnfVhALt8fZsIexOSaYwO7DsFL54=;
+        b=LUR9XaG4KKH+i5e/X9qQQ9SQ5659jF8TikFvYi/ZeLxEPP7I21bnxf7uty1CFVdqVq
+         nGxcxvFFd7C6fJAG6lvbugBfbnMprbHsczO7fgmJNoLrZpcdYn5lBio7UdzjnPlJFzqd
+         MRf/q5OyQv+OcJHqxuDJKUY/LVFa0Dp0/cHY76Gon/2/j+lAjNDmR9hLpKzELLaY+nsN
+         lO/Bs2TAzwXKYi66UQXI82WbojsV8HhnzR8lYvN/rtnuPd4LMd5yzTUkNv9AhajjeSYM
+         Rqa0I1jCgRL69CcPqMBABw4XySPFer1AEUEZ0MIPg40UwzTDa6Sl0A50087QDl9da/hc
+         i5Ng==
+X-Gm-Message-State: AOAM532ahRutGsm0yfoP3AU6AkxPZss7IpmbGGDm0KMcgxszktPMOvin
+        ZuoEMCTcEzY7yjlSQr3frhX4BA==
+X-Google-Smtp-Source: ABdhPJx+VdDdTFo570Fvyfw4GeKW7zvLGZVHe5kAq6tSIeQZxQjNGhr1a2UD5tZKmhXqwhMA9rkmDA==
+X-Received: by 2002:aa7:d287:0:b0:41d:79:73ca with SMTP id w7-20020aa7d287000000b0041d007973camr8932500edq.142.1649405848011;
+        Fri, 08 Apr 2022 01:17:28 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id h26-20020a170906111a00b006e778bd4fc8sm6167691eja.38.2022.04.08.01.17.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 01:17:27 -0700 (PDT)
+Message-ID: <855d7daa-45d1-d6d8-32bd-51778cf58392@linaro.org>
+Date:   Fri, 8 Apr 2022 10:17:26 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: devfreq: mediatek: Add mtk cci
+ devfreq dt-bindings
+Content-Language: en-US
+To:     Johnson Wang <johnson.wang@mediatek.com>, cw00.choi@samsung.com,
+        krzk+dt@kernel.org, robh+dt@kernel.org, kyungmin.park@samsung.com
+Cc:     khilman@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220408052150.22536-1-johnson.wang@mediatek.com>
+ <20220408052150.22536-2-johnson.wang@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220408052150.22536-2-johnson.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's update the TI timer binding to use yaml. And add compatible for
-ti,am654-timer for TI am64, am65 and j72 SoCs. As the timer hardware is
-the same between am64, am65 and j72 we use the compatible name for the
-earliest SoC with this timer.
+On 08/04/2022 07:21, Johnson Wang wrote:
+> Add devicetree binding of mtk cci devfreq on MediaTek SoC.
+> 
 
-As this binding is specific to the TI dual-mode timers also known
-as dm-timers, let's use ti,timer-dm.yaml naming for the new file.
+Thank you for your patch. There is something to discuss/improve.
 
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- .../bindings/timer/ti,timer-dm.yaml           | 105 ++++++++++++++++++
- .../devicetree/bindings/timer/ti,timer.txt    |  44 --------
- 2 files changed, 105 insertions(+), 44 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
- delete mode 100644 Documentation/devicetree/bindings/timer/ti,timer.txt
+> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> ---
+>  .../devicetree/bindings/devfreq/mtk-cci.yaml  | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
 
-diff --git a/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml b/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
-new file mode 100644
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/ti,timer-dm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Binding for TI dual-mode timer
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description: |
-+  The TI dual-mode timer is a general purpose timer with PWM capabilities.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap2420-timer
-+      - ti,omap3430-timer
-+      - ti,omap4430-timer
-+      - ti,omap5430-timer
-+      - ti,am335x-timer
-+      - ti,am335x-timer-1ms
-+      - ti,am654-timer
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    description: Timer IO register range
-+
-+  '#address-cells':
-+    enum: [ 1, 2 ]
-+
-+  '#size-cells':
-+    enum: [ 1, 2 ]
-+
-+  clocks:
-+    description:
-+      The functional clock for the timer. Some SoCs like omap24xx also have a
-+      separate interface clock, and some clocks may be only defined for the
-+      interconnect target module parent.
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    description:
-+      Timer clock names like "fck", "timer_sys_ck".
-+    oneOf:
-+      - enum: [ ick, fck ]
-+      - items:
-+          - const: fck
-+          - enum: [ ick, timer_sys_ck ]
-+
-+  interrupts:
-+    description:
-+      Interrupt if available. The timer PWM features may be usable
-+      in a limited way even without interrupts.
-+    maxItems: 1
-+
-+  ti,timer-alwon:
-+    description:
-+      Timer is always enabled when the SoC is powered. Note that some SoCs like
-+      am335x can suspend to PM coprocessor RTC only mode and in that case the
-+      SoC power is cut including timers.
-+    type: boolean
-+
-+  ti,timer-dsp:
-+    description:
-+      Timer is routable to the DSP in addition to the operating system.
-+    type: boolean
-+
-+  ti,timer-pwm:
-+    description:
-+      Timer has been wired for PWM capability.
-+    type: boolean
-+
-+  ti,timer-secure:
-+    description:
-+      Timer access has been limited to secure mode only.
-+    type: boolean
-+
-+  ti,hwmods:
-+    description:
-+      Name of the HWMOD associated with timer. This is for legacy
-+      omap2/3 platforms only.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    deprecated: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timer1: timer@0 {
-+      compatible = "ti,am335x-timer-1ms";
-+      reg = <0x0 0x400>;
-+      interrupts = <67>;
-+      ti,timer-alwon;
-+      clocks = <&timer1_fck>;
-+      clock-names = "fck";
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
-deleted file mode 100644
---- a/Documentation/devicetree/bindings/timer/ti,timer.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--OMAP Timer bindings
--
--Required properties:
--- compatible:		Should be set to one of the below. Please note that
--			OMAP44xx devices have timer instances that are 100%
--			register compatible with OMAP3xxx devices as well as
--			newer timers that are not 100% register compatible.
--			So for OMAP44xx devices timer instances may use
--			different compatible strings.
--
--			ti,omap2420-timer (applicable to OMAP24xx devices)
--			ti,omap3430-timer (applicable to OMAP3xxx/44xx devices)
--			ti,omap4430-timer (applicable to OMAP44xx devices)
--			ti,omap5430-timer (applicable to OMAP543x devices)
--			ti,am335x-timer	(applicable to AM335x devices)
--			ti,am335x-timer-1ms (applicable to AM335x devices)
--
--- reg:			Contains timer register address range (base address and
--			length).
--- interrupts: 		Contains the interrupt information for the timer. The
--			format is being dependent on which interrupt controller
--			the OMAP device uses.
--- ti,hwmods:		Name of the hwmod associated to the timer, "timer<X>",
--			where <X> is the instance number of the timer from the
--			HW spec.
--
--Optional properties:
--- ti,timer-alwon:	Indicates the timer is in an alway-on power domain.
--- ti,timer-dsp:		Indicates the timer can interrupt the on-chip DSP in
--			addition to the ARM CPU.
--- ti,timer-pwm: 	Indicates the timer can generate a PWM output.
--- ti,timer-secure: 	Indicates the timer is reserved on a secure OMAP device
--			and therefore cannot be used by the kernel.
--
--Example:
--
--timer12: timer@48304000 {
--	compatible = "ti,omap3430-timer";
--	reg = <0x48304000 0x400>;
--	interrupts = <95>;
--	ti,hwmods = "timer12"
--	ti,timer-alwon;
--	ti,timer-secure;
--};
--- 
-2.35.1
+Filename with vendor prefix, so something like:
+
+mediatek,cci.yaml
+
+Also please put it in the "interconnect" directory.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml b/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> new file mode 100644
+> index 000000000000..ef4ea951025c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/devfreq/mtk-cci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Cache Coherent Interconnect (CCI) frequency and voltage scaling
+> +
+> +maintainers:
+> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> +
+> +description: |
+> +  MediaTek Cache Coherent Interconnect (CCI) uses the software devfreq module
+
+Do not reference software implementation (devfreq).
+
+> +  to scale the clock frequency and adjust the voltage. MediaTek CCI shares
+> +  the same power supplies with CPU, so the scheduling involves with CPUfreq.
+
+The same - cpufreq.
+
+Instead, focus on the hardware, what do you describe here?
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8183-cci
+> +      - mediatek,mt8186-cci
+> +
+> +  clocks:
+> +    items:
+> +      - description:
+> +          The multiplexer for clock input of CPU cluster.
+> +      - description:
+> +          A parent of "cpu" clock which is used as an intermediate clock source
+> +          when the original CPU is under transition and not stable yet.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cci
+> +      - const: intermediate
+> +
+> +  operating-points-v2:
+> +    description:
+> +      For details, please refer to
+> +      Documentation/devicetree/bindings/opp/opp-v2.yaml
+
+No need for description. Just "operating-points-v2: true".
+
+"opp-table:true" could stay. My previous comment about its removal was a
+wrong advice, because opp-table is used for a table being a children of
+this device node.
+
+Best regards,
+Krzysztof
