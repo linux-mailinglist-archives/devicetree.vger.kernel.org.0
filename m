@@ -2,112 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 986114F99CE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 051894F99DE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237757AbiDHPr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:47:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45456 "EHLO
+        id S237803AbiDHPwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:52:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237775AbiDHPrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:47:55 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64FFBE9CE
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:45:51 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id r66so8118036pgr.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:45:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=a8LQvS2IDMfT7AfI5L149G2Y2gHx1++a+D0M/c9N+Is=;
-        b=jznrHDdMq++SsQ5Wb+PA2dZALsOj7yD63+KADfRkGG5Z9X+lpkEm6E3Ls5iDVBPHBJ
-         LcyIyvhh4O33WKepwf6h9Ut/2U5fJF54KNWkgaVEc3SN2ZYdwTlI6ak1hW2eo2t0atSC
-         fec4tseUvM4dwaaI5Zx5hhKd4Nf8yZ4oV3ePJKuOjWt6NqTDslMmRj7/7DAJsOGclEuU
-         kTC+J2olbcaQaHlyQsHTZmD3nnV/KnlV8kCBM1riYh3NSeVxjK9higmyL166sslzKwOq
-         UtEraPYXaIpCkoclm4Z2HZiGCKeoGcZseHE1UdCyzUphRp3nIC4IAOUUoKzYt78SoVm3
-         502A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=a8LQvS2IDMfT7AfI5L149G2Y2gHx1++a+D0M/c9N+Is=;
-        b=ei02F/ET1M/liCFIGaEjff8QscL7MfKW5w9qyWdjPQbf2c7bOcguQFXtyfG+TqVI/j
-         /qKU30sygB/4gdBg0M4Ewd1hXyfkYLsRHHNhilY5hijIJQX0XBxtojr7BUeWmTn28iSK
-         kx0YbxxlpcNtmndoQQ6WXhqKdwUvctpjxMfDPAPk1xM5oE6Z/ShsCNbCBSQMzEQDt7p9
-         XLCJMCEGlleu8E60NRCz1HxDbb4Ulz+JI9ioZia+elhJLhbEesFlWAdr3XF09H+wr9b0
-         /qY5DjtydxcO3hid9P3FD+G7yRuvMw0vY37GRTFMsJ70e/VTIJEH0lxzaS7FBnuw6s16
-         0aTg==
-X-Gm-Message-State: AOAM532UNqwTyF4nJZp/wfCt+B89F3DlP5UvbPcH0/MjV7xHJbTSs3qS
-        yANqHZ9k9tFXlqLpWFwMtXaKC+GfMBuGJT9b5q0cMw==
-X-Google-Smtp-Source: ABdhPJzR3j6x8l8Za7nDxMHGog4JAum2Pcwl1K2K+XdW/8m5ix4E6SP4xJ2g8UpSJJ3li88c+xaDKR0I/gdUgQugdkM=
-X-Received: by 2002:a05:6a00:14ca:b0:4fb:5d3e:5f77 with SMTP id
- w10-20020a056a0014ca00b004fb5d3e5f77mr20239165pfu.34.1649432751151; Fri, 08
- Apr 2022 08:45:51 -0700 (PDT)
+        with ESMTP id S237793AbiDHPwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:52:18 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3CFCA6FB;
+        Fri,  8 Apr 2022 08:50:12 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EB2ECC0003;
+        Fri,  8 Apr 2022 15:50:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1649433011;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=rAt83kGtVYJZF3EBEbN5MMvf2qH0ArJM1Y4wwCRzF+U=;
+        b=goYCf35UiOfKb4ovjeqCSFHPqjUX3tM40fxE3XD+Wq4RyPbPohztgA71H3Yi9bpVbBXBi5
+        gMskv8UFPDa90U/jaP3a/s6KsVrUrCb2wUT7rwKTCVgWAeX/xraUBK5dF4+7kGeJJYQpC2
+        aezVXmlE4tN8MSGGIu6pSlC1vTGmxM+M7H/n/cxYXjO4q3OKklOvPMscUXsybbIFmaad04
+        gFm+Jb0iPYEL6s6Tt8wIYS5tJljiUduDVbo5TtJ3WAloASa/kYC87so4fltXcq2Z2Ii79R
+        B35n6YO3fyqhB4hJ/WzTI6ZbTe+wkldCQMwNqt+o7Mf86A0AKrmqqSTo/j+6OQ==
+Date:   Fri, 8 Apr 2022 17:48:41 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lizhi Hou <lizhi.hou@xilinx.com>,
+        Sonal Santan <sonal.santan@xilinx.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 0/3] add fwnode support to reset subsystem
+Message-ID: <20220408174841.34458529@fixe.home>
+In-Reply-To: <Yk2TVAfPVh9a1tUR@robh.at.kernel.org>
+References: <20220324141237.297207-1-clement.leger@bootlin.com>
+        <Ykst0Vb4fk+iALzc@robh.at.kernel.org>
+        <20220405092434.6e424ed4@fixe.home>
+        <YkxWeMNw9Ba0KjHM@robh.at.kernel.org>
+        <20220405175120.23fc6b2a@fixe.home>
+        <CAL_JsqLdBcAw1KPnrATHqEngRWkx6moxDODH1xV67EKAufc6_w@mail.gmail.com>
+        <20220406094019.670a2956@fixe.home>
+        <Yk2TVAfPVh9a1tUR@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20220407210411.8167-1-tharvey@gateworks.com> <41bee12f-fa23-16d6-7244-1c4c543cbea0@linaro.org>
-In-Reply-To: <41bee12f-fa23-16d6-7244-1c4c543cbea0@linaro.org>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 8 Apr 2022 08:45:39 -0700
-Message-ID: <CAJ+vNU2BybB6dqo4GWTGT7Bv+Qi1Ph3t3+vxJPxDrttHrs9O=w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Plus Gateworks GW74xx board
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 8, 2022 at 12:07 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 07/04/2022 23:04, Tim Harvey wrote:
-> > Add DT compatible string for i.MX8M Plus based Gateworks GW74xx board.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Shawn Guo <shawnguo@kernel.org>
-> > Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > Cc: Fabio Estevam <festevam@gmail.com>
-> > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 08bdd30e511c..c04203d537d0 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -860,6 +860,7 @@ properties:
-> >          items:
-> >            - enum:
-> >                - fsl,imx8mp-evk            # i.MX8MP EVK Board
-> > +              - gw,imx8mp-gw74xx          # i.MX8MP Gateworks Board
->
-> gateworks
-> You are using a deprecated vendor prefix.
->
+Le Wed, 6 Apr 2022 08:19:16 -0500,
+Rob Herring <robh@kernel.org> a =C3=A9crit :
 
-Krzysztof,
+> >  =20
+> > >=20
+> > >  =20
+> > > > > I've told the Xilinx folks the same thing, but I would separate t=
+his
+> > > > > into 2 parts. First is just h/w work in a DT based system. Second=
+ is
+> > > > > creating a base tree an overlay can be applied to. The first part=
+ should
+> > > > > be pretty straightforward. We already have PCI bus bindings. The =
+only
+> > > > > tricky part is getting address translation working from leaf devi=
+ce thru
+> > > > > the PCI bus to host bus, but support for that should all be in pl=
+ace
+> > > > > (given we support ISA buses off of PCI bus). The second part will
+> > > > > require generating PCI DT nodes at runtime. That may be needed fo=
+r both
+> > > > > DT and ACPI systems as we don't always describe all the PCI hiera=
+rchy
+> > > > > in DT.   =20
+> > > >
+> > > > But then, if the driver generate the nodes, it will most probably
+> > > > have to describe the nodes by hardcoding them right ?   =20
+> > >=20
+> > > No, the kernel already maintains its own tree of devices. You just
+> > > need to use that to generate the tree. That's really not much more
+> > > than nodes with a 'reg' property encoding the device and function
+> > > numbers. =20
+> >=20
+> > Just to clarified a point, my PCI device exposes multiple peripherals
+> > behind one single PCI function. =20
+>=20
+> Right. I would expect your PCI device DT node to have a 'simple-bus'=20
+> child node with all those peripherals. And maybe there's other nodes=20
+> like fixed-clocks, etc.
+>=20
+> > To be sure I understood what you are suggesting, you propose to create
+> > a DT node from the PCI driver that has been probed dynamically
+> > matching this same PCI device with a 'reg' property. I also think
+> > this would requires to generate some 'pci-ranges' to remap the
+> > downstream devices that are described in the DTBO, finally, load the
+> > overlay to be apply under this newly created node. Is that right ? =20
+>=20
+> Right. You'll need to take the BAR address(es) for the device and stick=20
+> those into 'ranges' to translate offsets to BAR+offset.
 
-Ok - did not realize this got deprecated. Will change to gateworks,imx8mp-gw74xx
+Hi Rob,
 
-Best Regards,
+I got something working (address translation, probing and so on) using
+what you started. I switch to using changeset however, I'm not sure that
+it make sense for property creation since the node has not yet been
+added to the tree. Attaching the node with changeset however seems
+to make sense. But I'm no expert here, so any advise is welcome.
 
-Tim
+Based on what we said, I created a PCI driver which uses a builtin
+overlay. In order to be able to apply the overlay on the correct PCI
+node -the one on which the card was plugged) and thus be totally plug
+and play, the 'target-path' property is patched using direct fdt
+function and replaced the target with the PCI device node path.
+I don't see any other way to do that before applying the overlay since
+of_overlay_fdt_apply() takes a fdt blob as input.
+
+The driver also insert correct ranges into the PCI device in order to
+translate the downstream node addresses to BAR addresses. It seems
+reasonnable to assume that this depends on the driver and thus should
+not be done by the PCI of core at all.
+
+Finally, the driver probes the newly added childs using
+of_platform_populate(). With all of that, the address translation
+and the probing works correctly and the platform devices are created.
+There is still a few things to fix such as the following:
+
+[ 2830.324773] OF: overlay: WARNING: memory leak will occur if overlay
+removed, property: /pci/pci@2,6/dev@0,0/compatible
+
+But it seems like this is something that works and would allow to
+support various use cases. From what I see, it should also work on
+other platforms. Major advantage of that over fwnode is that the
+changes are pretty small and relatively contained.
+
+However, one point that might be a bit of a problem is enabling
+CONFIG_OF on x86 for instance. While it seems to work, is there any
+potential concerns about this ? Moreover, ideally, I would want the
+driver to "select OF" since without that, the driver won't be visible.
+Or should it "depends on OF" but thus, it would be almost mandatory to
+enable CONFIG_OF on x86 kernels if we want to support this driver
+without the need to recompile a kernel.
+
+Thanks,
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
