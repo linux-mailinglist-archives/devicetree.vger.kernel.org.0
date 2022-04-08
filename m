@@ -2,90 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9764F9016
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA0224F9051
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:03:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbiDHIBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51226 "EHLO
+        id S230001AbiDHIE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:04:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbiDHIBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:01:07 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A418D29689F;
-        Fri,  8 Apr 2022 00:58:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1649404734; x=1680940734;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=sxYyjrK7igJydMiwAHuSHa3rYPohXNdb9pi8bMAAvkw=;
-  b=EmV2joN2Je9tx3U1j3A5VOasq6h02rFdOev7pmgsM98N8jS/6PIGTi4o
-   s9hgsnHhMKt61u++ZbjdrBOj/zTd9fe66Czp6Xr0uQo18iLa6gD6Q1yW0
-   ln6OOAa3vxHGXpplpKytqrERgl7DGRIWUb4lferxOaJArYcAm0qP9qhai
-   xXnDbk9it9qlC6megSI0VfoWdI+45vGO8lAtoaZdiadAN2oK9Mh+7+yS4
-   ZWIUTDIGd0lKIJVzoBGYdxBLmTKhc0bCnXQZp62lEPVkvl0kJIaSfZVw8
-   EYIJjDHOYxeuDI3tOWfMbEacsJGeDMopcNauc1pF5WjLqk/n9uBQTxiPO
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,244,1643698800"; 
-   d="scan'208";a="159403694"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Apr 2022 00:58:54 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 8 Apr 2022 00:58:53 -0700
-Received: from localhost.localdomain (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 8 Apr 2022 00:58:49 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <sre@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <cristian.birsan@microchip.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v3 10/10] ARM: configs: sama7: enable CONFIG_RESET_CONTROLLER
-Date:   Fri, 8 Apr 2022 11:00:31 +0300
-Message-ID: <20220408080031.2527232-11-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220408080031.2527232-1-claudiu.beznea@microchip.com>
-References: <20220408080031.2527232-1-claudiu.beznea@microchip.com>
+        with ESMTP id S230370AbiDHIEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:04:54 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C8D2AD2
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:02:51 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id qh7so15621878ejb.11
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=R9Md63+7fr/H3jBSeDn6jW2GcrFtPS6wpqfkErlWzYs=;
+        b=wXNxS+sXTeFjGclx/evzx327C3xVpMS4QBc7+yw9rYbeVDC6oSkDRn2RkOVSaDK1TG
+         8oUK0NAPDSS9UkzMn/f/WFIEszV7CK8uaO0JW/+RpG6BS1CbB8x9HdS0iRJanDEOGIp9
+         2TT8iErw0dgR2GNxrXRIM1iJPzExQIlNw4C5D3OGi11+813vRdDoUgQAMOv6P6KC3e/r
+         MdwjRfX6NvAkIZbttaCDTBtxgD+zAN9AcqJRFUiindDTpv+99wYVETna4uuzl5aflirm
+         QWep79zBfnF+J+YcL7EPP4o8guH7DcN6oJlpXVBbr2EhX8DXWyvxHSvam/gu5XdKE941
+         RVkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=R9Md63+7fr/H3jBSeDn6jW2GcrFtPS6wpqfkErlWzYs=;
+        b=P2YTY2XYKc6DUutag81XXkBHp2qLeOCyz2eN9aNoOlN7MlLQPD9j1qTTOqKjwm9LZe
+         SH6n/6F41c1neprmoqSEOOJrs2xX5ZLsYJ0Ysb+m+RQ/W41lAcho9bcFL2lZRir7zAqi
+         SeucIWLVpAseG096+Xlu7wwihTOvY+fHXkm2AF+3uakYUjKSVromlEN07AXxT+hmLd/e
+         tAg1qBE582WUchY5V8NMYQBWKWwgJtXkS/Vgor/dhHxis4FnXhQKgX88oUEI44MdKfyR
+         6Juvp6WSNoegD59E0INsR+VS94q4xD2wMQ3nPJGV5dF0x5zSo/iTaqy+ACGmxkKNLjde
+         HUEg==
+X-Gm-Message-State: AOAM5333VcJxvG54d8z0mVYnHb+iJOJA1uyFTEWERsTC3b6sdZ0vbhTN
+        b/YYsLe1+V2LFH/F4DTWYrE0Aw==
+X-Google-Smtp-Source: ABdhPJw2gfzBuf2XdCtgNaMTM0ghNsz5J1dYtRJ4Ror0ozVjlCbuufkcCCmi2st+vP5tn+jNhrRFWw==
+X-Received: by 2002:a17:907:1c0c:b0:6e0:9b15:29d5 with SMTP id nc12-20020a1709071c0c00b006e09b1529d5mr17347893ejc.416.1649404969626;
+        Fri, 08 Apr 2022 01:02:49 -0700 (PDT)
+Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id d7-20020a170906174700b006e80a7e3111sm3826217eje.17.2022.04.08.01.02.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 01:02:49 -0700 (PDT)
+Message-ID: <d3cd6d0c-26b7-c870-ee30-361ef4e11f35@linaro.org>
+Date:   Fri, 8 Apr 2022 10:02:48 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v3 3/4] clocksource/drivers/exynos_mct: Support
+ local-timers property
+Content-Language: en-US
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        tglx@linutronix.de, daniel.lezcano@linaro.org
+Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+References: <20220407074432.424578-1-vincent.whitchurch@axis.com>
+ <20220407074432.424578-4-vincent.whitchurch@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220407074432.424578-4-vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CONFIG_RESET_CONTROLLER. It is necessary for resetting individual
-in SoC devices.
+On 07/04/2022 09:44, Vincent Whitchurch wrote:
+> If the device tree indicates that the hardware requires that the
+> processor only use certain local timers, respect that.
+> 
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+> 
+> Notes:
+>     v3:
+>     - Use array in devicetree
+>     - Remove addition of global variable
+>     - Split out FRC sharing changes
+> 
+>  drivers/clocksource/exynos_mct.c | 51 ++++++++++++++++++++++++++++----
+>  1 file changed, 45 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/clocksource/exynos_mct.c b/drivers/clocksource/exynos_mct.c
+> index 12023831dedf..4093a71ff618 100644
+> --- a/drivers/clocksource/exynos_mct.c
+> +++ b/drivers/clocksource/exynos_mct.c
+> @@ -33,7 +33,7 @@
+>  #define EXYNOS4_MCT_G_INT_ENB		EXYNOS4_MCTREG(0x248)
+>  #define EXYNOS4_MCT_G_WSTAT		EXYNOS4_MCTREG(0x24C)
+>  #define _EXYNOS4_MCT_L_BASE		EXYNOS4_MCTREG(0x300)
+> -#define EXYNOS4_MCT_L_BASE(x)		(_EXYNOS4_MCT_L_BASE + (0x100 * x))
+> +#define EXYNOS4_MCT_L_BASE(x)		(_EXYNOS4_MCT_L_BASE + (0x100 * (x)))
+>  #define EXYNOS4_MCT_L_MASK		(0xffffff00)
+>  
+>  #define MCT_L_TCNTB_OFFSET		(0x00)
+> @@ -66,6 +66,8 @@
+>  #define MCT_L0_IRQ	4
+>  /* Max number of IRQ as per DT binding document */
+>  #define MCT_NR_IRQS	20
+> +/* Max number of local timers */
+> +#define MCT_NR_LOCAL	(MCT_NR_IRQS - MCT_L0_IRQ)
+>  
+>  enum {
+>  	MCT_INT_SPI,
+> @@ -456,7 +458,6 @@ static int exynos4_mct_starting_cpu(unsigned int cpu)
+>  		per_cpu_ptr(&percpu_mct_tick, cpu);
+>  	struct clock_event_device *evt = &mevt->evt;
+>  
+> -	mevt->base = EXYNOS4_MCT_L_BASE(cpu);
+>  	snprintf(mevt->name, sizeof(mevt->name), "mct_tick%d", cpu);
+>  
+>  	evt->name = mevt->name;
+> @@ -528,7 +529,9 @@ static int __init exynos4_timer_resources(struct device_node *np)
+>  }
+>  
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- arch/arm/configs/sama7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Document the arguments, especially focusing on the keys and the contents
+of local_idx. The code is getting to a state with 3 or 4 variables
+having similar meaning (IRQ number, local IRQ number, local IRQ index).
 
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index 0368068e04d9..ce20bef1246e 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -180,6 +180,7 @@ CONFIG_IIO_SW_TRIGGER=y
- CONFIG_AT91_SAMA5D2_ADC=y
- CONFIG_PWM=y
- CONFIG_PWM_ATMEL=y
-+CONFIG_RESET_CONTROLLER=y
- CONFIG_EXT2_FS=y
- CONFIG_EXT3_FS=y
- CONFIG_FANOTIFY=y
--- 
-2.32.0
+>  static int __init exynos4_timer_interrupts(struct device_node *np,
+> -					   unsigned int int_type)
+> +					   unsigned int int_type,
+> +					   u32 *local_idx,
 
+const u32 *
+
+> +					   size_t nr_local)
+>  {
+>  	int nr_irqs, i, err, cpu;
+>  
+> @@ -561,13 +564,19 @@ static int __init exynos4_timer_interrupts(struct device_node *np,
+>  	} else {
+>  		for_each_possible_cpu(cpu) {
+>  			int mct_irq;
+> +			unsigned int irqidx;
+
+irq_idx
+
+>  			struct mct_clock_event_device *pcpu_mevt =
+>  				per_cpu_ptr(&percpu_mct_tick, cpu);
+>  
+> +			if (cpu >= nr_local)
+> +				break;
+> +
+> +			irqidx = MCT_L0_IRQ + local_idx[cpu];
+> +
+>  			pcpu_mevt->evt.irq = -1;
+> -			if (MCT_L0_IRQ + cpu >= ARRAY_SIZE(mct_irqs))
+> +			if (irqidx >= ARRAY_SIZE(mct_irqs))
+>  				break;
+> -			mct_irq = mct_irqs[MCT_L0_IRQ + cpu];
+> +			mct_irq = mct_irqs[irqidx];
+>  
+>  			irq_set_status_flags(mct_irq, IRQ_NOAUTOEN);
+>  			if (request_irq(mct_irq,
+> @@ -583,6 +592,15 @@ static int __init exynos4_timer_interrupts(struct device_node *np,
+>  		}
+>  	}
+>  
+> +	for_each_possible_cpu(cpu) {
+> +		struct mct_clock_event_device *mevt = per_cpu_ptr(&percpu_mct_tick, cpu);
+> +
+> +		if (cpu >= nr_local)
+
+It looks like an error condition, so this should not be handled silently
+because later base==0 will be used. Probably old code has similar problem...
+
+
+Best regards,
+Krzysztof
