@@ -2,56 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4824E4F9467
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CB304F9478
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234687AbiDHLqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 07:46:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        id S231455AbiDHLvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 07:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235009AbiDHLqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:46:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE061CB142;
-        Fri,  8 Apr 2022 04:44:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D975762021;
-        Fri,  8 Apr 2022 11:44:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 030D5C385A3;
-        Fri,  8 Apr 2022 11:44:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649418246;
-        bh=3Kul2wzQtsB35iEOBFbQYyIbEh9+IstWKxxpGQnGGtU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ux4sDwkTHqmfSx44F/w1VTmBoYIT9wzmqMBtsqvwVOpoqvnbSHsNSUmdgxFSKIx5f
-         G62/pe0F1SIx3grxriLFSpgMpr3x3MMuPVk9dPal2tLWwIv6OwQ7P5r6/XEZkCyIMH
-         kIyY3qd8dpoWrxsZO8l7KWzzdYjX2SDkR9IPQU+HCAxMeOc4sK7JHv6IG/gPhRBfwt
-         PwqR9M4wNmgJn3PPaLv1jfI9+PTYiko5YfCL1QBH4cxQfVdRZGBwcSm9HKDgDDcI7G
-         PVlJAPt5vwaMlsf9t5vtnefLXwKfJ8ckOCEgZb1dtkBAHITsUOBYrINiRbo9YEwtz8
-         pdM+1scHZh4Jg==
-Date:   Fri, 8 Apr 2022 19:43:58 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, heiko.thiery@gmail.com
-Subject: Re: [PATCH] arm64: dts: imx8mn-evk: add QSPI flash
-Message-ID: <20220408114358.GV129381@dragon>
-References: <20220228132523.2679099-1-michael@walle.cc>
+        with ESMTP id S235126AbiDHLvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:51:41 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0608824314E;
+        Fri,  8 Apr 2022 04:49:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649418578; x=1680954578;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=0h8qDCJbgj5JnaE7KMtlcmvlSc/sxYVlAQJlYRyN6Pc=;
+  b=Ebx/NYa5WPIGkNjSfw1IiTUQJdLHqfkvamxi3NWypBhVje3Jh92i/u4H
+   +KhK2Te2dtoO1kr30Wj9AMUP1t0cE9uMeJmug/3a5qDkiV829eKJPDwgB
+   WfkCcLoloys9IGDpwHD8Lw4vYcYucF17KfGqzaKpGfCZoinyvBB269uUu
+   Px5Y1Hjpx/ON85HJeYIScfjda3v6OMf8HIrHSCeKEkkUhXZ017ETHt/86
+   3tDfDdEnYLjJYG2lid0G2bwAx70FNqiqds0fTxNav9Lyw2R5yFgBecjTc
+   t/1hBegqHlfjb5GoVx51cjAFiOVXKwIOkNLxuEmAVHk8WKv/BwnhTSWAp
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="260408763"
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; 
+   d="scan'208";a="260408763"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 04:49:37 -0700
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; 
+   d="scan'208";a="524750342"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 04:49:32 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1ncn3m-000H0a-HS;
+        Fri, 08 Apr 2022 14:45:50 +0300
+Date:   Fri, 8 Apr 2022 14:45:50 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 5/9] dmaengine: dw: dmamux: Introduce RZN1 DMA router
+ support
+Message-ID: <YlAgbh2AFevBktxd@smile.fi.intel.com>
+References: <20220406161856.1669069-1-miquel.raynal@bootlin.com>
+ <20220406161856.1669069-6-miquel.raynal@bootlin.com>
+ <6fbeebe2-9693-f91-78bd-451480f7a6dd@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220228132523.2679099-1-michael@walle.cc>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6fbeebe2-9693-f91-78bd-451480f7a6dd@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,12 +82,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 02:25:23PM +0100, Michael Walle wrote:
-> There is a 32MiB Micron MT25QU256ABA1 serial NOR flash on the EVK board.
-> Add a device tree node for it.
+On Fri, Apr 08, 2022 at 12:55:47PM +0300, Ilpo Järvinen wrote:
+> On Wed, 6 Apr 2022, Miquel Raynal wrote:
 > 
-> Tested on a 8MNANOD3L-EVK.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> > The Renesas RZN1 DMA IP is based on a DW core, with eg. an additional
+> > dmamux register located in the system control area which can take up to
+> > 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> > two different peripherals.
+> > 
+> > We need two additional information from the 'dmas' property: the channel
+> > (bit in the dmamux register) that must be accessed and the value of the
+> > mux for this channel.
 
-Applied, thanks!
+> > +	mask = BIT(map->req_idx);
+> > +	mutex_lock(&dmamux->lock);
+> > +	dmamux->used_chans |= mask;
+> > +	ret = r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
+> > +	if (ret)
+> > +		goto release_chan_and_unlock;
+> > +
+> > +	mutex_unlock(&dmamux->lock);
+> > +
+> > +	return map;
+> > +
+> > +release_chan_and_unlock:
+> > +	dmamux->used_chans &= ~mask;
+> 
+> Now that I check this again, I'm not sure why dmamux->used_chans |= mask; 
+> couldn't be done after r9a06g032_sysctrl_set_dmamux() call so this 
+> rollback of it wouldn't be necessary.
+
+I would still need the mutex unlock which I believe is down path there under
+some other label. Hence you are proposing something like
+
+	mask = BIT(map->req_idx);
+
+	mutex_lock(&dmamux->lock);
+	ret = r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
+	if (ret)
+		goto err_unlock; // or whatever label is
+
+	dmamux->used_chans |= mask;
+	mutex_unlock(&dmamux->lock);
+
+	return map;
+
+Is that correct? If so, I don't see impediments either.
+
+> Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
