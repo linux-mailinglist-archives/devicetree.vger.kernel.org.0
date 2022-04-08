@@ -2,105 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000BD4F8B71
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 02:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745374F8AB7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 02:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232942AbiDHAcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Apr 2022 20:32:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54430 "EHLO
+        id S230079AbiDHAf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Apr 2022 20:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbiDHAcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 20:32:52 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE05429F11A;
-        Thu,  7 Apr 2022 17:30:50 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so8172178fac.7;
-        Thu, 07 Apr 2022 17:30:50 -0700 (PDT)
+        with ESMTP id S232174AbiDHAf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Apr 2022 20:35:26 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605A8132EA4;
+        Thu,  7 Apr 2022 17:33:25 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-d39f741ba0so8149567fac.13;
+        Thu, 07 Apr 2022 17:33:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=W70F/zd2AKch386n29+TKgnYuWJ1dPUuzRF3aXkzTdw=;
-        b=fFKOEndy7Ln5agkPC4XFZoNfgDqQbp2yoUL3N8MqfVEfb2BOTC6v2XpKZeDyL5SEO3
-         CiU39HDryUSfa1mwqS0QvM+T9lc/rbaiDtcHLWm7wU3BDQeAMPpUfWpQjICrT2fy0vLl
-         4kl996yLvN1+wZ97fo7THLWpI+Kw+PjpWTPM2rvNk7rCPJop9Ke4Ts2j+hmciv7rJrtB
-         6lguvJnbrF4fUKbxwGz82D8o9l/RgPjYtxkpT9w9Ta9f+RA35F3WkRsmfDISz53iLSSU
-         JNFKwICX4oTMEZut5T/qbZHhk1eeEuCl6wwqXlfGPMHfg/m/OVsm+ztc/4cV/hycZUqt
-         nIpQ==
-X-Gm-Message-State: AOAM532vXUtPe3Ez2lm5CAoZHRMIPVr2jqqpVNzrIS3C39ahIfYsyU5J
-        oMhNx2sJRfAFtFYWRhxNpqEt8Tl3YA==
-X-Google-Smtp-Source: ABdhPJyh0KtpubbGQRl0vMSxyBRMX5cXuTTcgR9gbNVftxyA3x9smxRykHIUBImThHKPQ9vZmgat8w==
-X-Received: by 2002:a05:6870:d154:b0:e2:8d2f:b725 with SMTP id f20-20020a056870d15400b000e28d2fb725mr47677oac.56.1649377849962;
-        Thu, 07 Apr 2022 17:30:49 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FuhSRqLc9YX+vS3DQySTObIYyjmCN9so1xiUO3aEse4=;
+        b=lLX67thIZW7C1urVy1JCswj70Qdqa+i0+RPxKdzpKHvvj9NvSXQss8EUGM7iOX0Xuo
+         f4nY3EKDXFQWoFyfOYJpnyUx4CUrMcsyq/AxMkf5DrALk8igNiUGKFqb8RcN3EztKNZ2
+         LBqgyPsKYmj56ZMh1FEzwh5CNByI1LcXZmyfLAGNxTXhukcYccttS2czgLTpbYH6QFUe
+         bzQ5cm4wvl/JPdRlvYpIqRR+aVHXlgJ9vLk5cIG0wbj1cuAr9SRNHDE3H2WXW8l5FUrj
+         wuiogQLN4wrkisX/USAroRhYwvgMGLBCpSf33Wlpyj8Wuhk7lYzcB17D8qRJB+cUD/7k
+         nlWA==
+X-Gm-Message-State: AOAM53310Jl3065GV/K2frfjjgOZBqSadJO+MVmBo05UdhXbYengM4HY
+        wGnMQ1Kkw0uPCokAhCS8bUkUgUO9UA==
+X-Google-Smtp-Source: ABdhPJx4rH+2+AE5Tzihn8EsxMfe4JS9cw90ljWp/QDayo/YYWWb8m9bWWoObNAVtikPZzjnJqk80g==
+X-Received: by 2002:a05:6870:d58c:b0:de:6900:6222 with SMTP id u12-20020a056870d58c00b000de69006222mr7437702oao.179.1649378004683;
+        Thu, 07 Apr 2022 17:33:24 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l33-20020a0568302b2100b005cdad9100desm8818369otv.40.2022.04.07.17.30.49
+        by smtp.gmail.com with ESMTPSA id y3-20020a056870e50300b000d9be6436f1sm8179775oag.29.2022.04.07.17.33.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Apr 2022 17:30:49 -0700 (PDT)
-Received: (nullmailer pid 2311421 invoked by uid 1000);
-        Fri, 08 Apr 2022 00:30:48 -0000
+        Thu, 07 Apr 2022 17:33:24 -0700 (PDT)
+Received: (nullmailer pid 2315471 invoked by uid 1000);
+        Fri, 08 Apr 2022 00:33:23 -0000
+Date:   Thu, 7 Apr 2022 19:33:23 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org
-In-Reply-To: <20220407194936.223041-1-marex@denx.de>
-References: <20220407194936.223041-1-marex@denx.de>
-Subject: Re: [PATCH] dt-bindings: spi: Add YAML DT binding document for trivial devices
-Date:   Thu, 07 Apr 2022 19:30:48 -0500
-Message-Id: <1649377848.893085.2311420.nullmailer@robh.at.kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>
+Subject: Re: [RESEND PATCH] dt-bindings: power: renesas,rcar-sysc: drop
+ useless consumer example
+Message-ID: <Yk+C098vWGzE0tnl@robh.at.kernel.org>
+References: <20220407193542.17230-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220407193542.17230-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Apr 2022 21:49:36 +0200, Marek Vasut wrote:
-> Document trivial SPI devices in single YAML DT binding document.
-> Currently this overlaps Linux kernel spidev.
+On Thu, 07 Apr 2022 21:35:42 +0200, Krzysztof Kozlowski wrote:
+> Consumer examples in the bindings of resource providers are trivial,
+> useless and duplication of code.  Remove the example code for consumer.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-spi@vger.kernel.org
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../devicetree/bindings/spi/trivial.yaml      | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/trivial.yaml
+>  .../bindings/power/renesas,rcar-sysc.yaml         | 15 +++------------
+>  1 file changed, 3 insertions(+), 12 deletions(-)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
-
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-/: '#address-cells', '#size-cells', 'aliases', 'chosen', 'cpus', 'fxosc', 'iio-hwmon', 'leds', 'memory@80000000', 'model', 'oscillator-audio', 'oscillator-ethernet', 'regulator-3p3v', 'regulator-vcc3v3mcu', 'soc', 'spi-gpio', 'sxosc', 'syscon-reboot' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/vf610-bk4.dtb
-
-channel@0: '#address-cells', '#size-cells', 'spi-cpha' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/am335x-sancloud-bbe-lite.dtb
-
-/: compatible: ['lwn,bk4', 'fsl,vf610'] is too long
-	arch/arm/boot/dts/vf610-bk4.dtb
-
-dac@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/rv1108-elgin-r1.dtb
-
-/: 'reg' is a required property
-	arch/arm/boot/dts/vf610-bk4.dtb
-
-slave: 'reg' is a required property
-	arch/arm/boot/dts/vf610-bk4.dtb
-
-spidev0@0: 'fsl,spi-cs-sck-delay', 'fsl,spi-sck-cs-delay' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/vf610-bk4.dtb
-
+Applied, thanks!
