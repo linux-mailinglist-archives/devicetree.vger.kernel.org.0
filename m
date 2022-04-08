@@ -2,130 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8BC4F993D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C572A4F996C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:28:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231624AbiDHPV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:21:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60140 "EHLO
+        id S237554AbiDHPaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237479AbiDHPV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:21:28 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718B339B9A
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:19:22 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2389hItH009505;
-        Fri, 8 Apr 2022 17:18:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=BJPh09OuN2vkxDfN//4LhHfa8nRlHWyf3N0XomHXsKY=;
- b=q30X057yLL0K1i5IKVTO02Vexo7I6XZcYYqhNNc6n98hGdv4wgA8B0oUhfvJiDzNJzEO
- Abk89SS8f1ywodnEIGM375jQFONBPMOolyTGL0/+CNva5opNmkGiYCyzwPnbeVZmuFDj
- 5bcmWijb5NBxfBFJM5nyaQMgsxUrdCN+E9brfv7t3w2Q0IOlu5NoHD0vjro9zE9PqF8K
- 7D2F/YgRPelO2gNr0R8JijfD5dv9ssDnZxmPrj9sdrmHvto8O2199gE2xAl85uzv7PQ0
- x7rOqk9nv0wLtC4/jWZOlzxXSEUjuOw9Ah/FZO6ezdpT7uFtAlzcRCSzEd1FOsgbggY8 JQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3f8x4rv371-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 08 Apr 2022 17:18:52 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 891E610002A;
-        Fri,  8 Apr 2022 17:18:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 81800220FC7;
-        Fri,  8 Apr 2022 17:18:51 +0200 (CEST)
-Received: from [10.251.20.121] (10.75.127.44) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Fri, 8 Apr
- 2022 17:18:50 +0200
-Message-ID: <d3d1907a-37af-16a1-d5c6-52cfe497775b@foss.st.com>
-Date:   Fri, 8 Apr 2022 17:18:50 +0200
+        with ESMTP id S235594AbiDHPaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:30:17 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2507E10FDF9
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:28:11 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id f3so8676691pfe.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:28:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1wXlO1/OweZPaHt8M+nzEA7n6raTEZFPMqSrFHsFy68=;
+        b=MBHgOKWhgWG5n/O1LvUP1gmEucefc1d1UqihpPPHc/YMi20+QGU9jlYs+Ar+BKo2xv
+         eHZucs1INCirCqPZj+jXdPX9MPIRwIM+glwQqYAcMfsFXuGsSSy1Y47RsD2i8YaTYESx
+         GJtd11a1lGhywBBavZolL1ht9fgER0kt0gB1Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1wXlO1/OweZPaHt8M+nzEA7n6raTEZFPMqSrFHsFy68=;
+        b=6vKD3zLw/OHDJOVLV62RmijSMlGiSCGbkHCqPt7l19WZw3JeHvO/pL1Wn2AaA1tKdL
+         Yrb8aKDxCYdLMvUQ+H8KoE7ZqzsJoJJQL2ecXAr69NmE1jlMcWQBq1bw3MCMyhMd9/eQ
+         HFeSMaH5T/Oae4oFAQEBsogbLuYWWG4Lp2Z2o1jxD8l6UWK36Az0DVre1yOFRuYe+mgS
+         Ig7hdQQ/fYZo0vQQtcbzfgg8CI3Z1CpDTl9rvetol98oR1YMOCzrSJ6+V9gHgN/kfvBl
+         Js6oWZzDAfkaQFShkAm5Sm2bg/ezePqc690JcffKxPdlu52POM1HdbrpeTEBonjZP9vs
+         Sc8w==
+X-Gm-Message-State: AOAM532QrI881D59DyhEn0ws14Cjjo0lb54uJs3feXecL2SO+2USu8mT
+        Ndoy8ka/yUd9LSIhegCeHaH/2w==
+X-Google-Smtp-Source: ABdhPJw94w7jXnsvHlrKirC7rL9BHIBOthUmugLehPK83vyxfXwhKk6v5pdfs8vieWoC8xjP1vdL0g==
+X-Received: by 2002:a05:6a00:1a49:b0:505:7ab3:e5c7 with SMTP id h9-20020a056a001a4900b005057ab3e5c7mr4404001pfv.62.1649431690633;
+        Fri, 08 Apr 2022 08:28:10 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:5944:d1ca:a1fe:33cc])
+        by smtp.gmail.com with UTF8SMTPSA id g15-20020a056a0023cf00b004e17e11cb17sm28018059pfc.111.2022.04.08.08.28.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 08:28:10 -0700 (PDT)
+Date:   Fri, 8 Apr 2022 08:28:08 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
+Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_ppratap@quicinc.com, quic_kriskura@quicinc.com,
+        quic_vpulyala@quicinc.com
+Subject: Re: [PATCH v12 6/6] arm64: dts: qcom: sc7280: Add wakeup-source
+ property for USB node
+Message-ID: <YlBUiBZv6Hhsxn3C@google.com>
+References: <1649321104-31322-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com>
+ <Yk8oMI3zifzFpJmW@google.com>
+ <20220408020239.GB26536@hu-pkondeti-hyd.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: stm32-timers: Document how to
- specify interrupts
-Content-Language: en-US
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220408063502.136403-1-u.kleine-koenig@pengutronix.de>
- <20220408063502.136403-2-u.kleine-koenig@pengutronix.de>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20220408063502.136403-2-u.kleine-koenig@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-04-08_05,2022-04-08_01,2022-02-23_01
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220408020239.GB26536@hu-pkondeti-hyd.qualcomm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/22 08:35, Uwe Kleine-König wrote:
-> The timer units in the stm32mp1 CPUs have interrupts, depending on the
-> timer flavour either one "global" or four dedicated ones. Document how
-> to formalize these in a device tree.
+On Fri, Apr 08, 2022 at 07:32:39AM +0530, Pavan Kondeti wrote:
+> On Thu, Apr 07, 2022 at 11:06:40AM -0700, Matthias Kaehlcke wrote:
+> > On Thu, Apr 07, 2022 at 02:15:04PM +0530, Sandeep Maheswaram wrote:
+> > > Adding wakeup-source property for USB controller in SC7280.
+> > > This property is added to inform that the USB controller is
+> > > wake up capable and to conditionally power down the phy during
+> > > system suspend.
+> > > 
+> > > Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > index f0b64be..046262a 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > @@ -2916,6 +2916,7 @@
+> > >  				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+> > >  				phy-names = "usb2-phy", "usb3-phy";
+> > >  				maximum-speed = "super-speed";
+> > > +				wakeup-source;
+> > >  			};
+> > >  		};
+> > 
+> > Not all SC7280 boards may want to enable wakeup from USB, so this is
+> > probably best configured on a per-board basis.
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> ---
->  .../devicetree/bindings/mfd/st,stm32-timers.yaml    | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> index 10b330d42901..5e4214d1613b 100644
-> --- a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> @@ -46,6 +46,19 @@ properties:
->      minItems: 1
->      maxItems: 7
->  
-> +  interrupts:
-> +    maxItems: 4
+> This wakeup capability is provided by the SoC. If a particular
+> board does not want to support, ideally it needs to be disabled from
+> user space. The capability is always there but some platforms choose to
+> disable it.
 
-Hi Uwe,
+I guess 'wakeup-source' is a bit of an edge case between hardware capability
+(which is certainly required to make wakeup work) and policy.
 
-Rob posted a remark in V1, which need to be taken IMHO:
+arch/arm64/boot/dts/mediatek/mt2712-evb.dts and
+arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi are two example where
+'wakeup-source' is set at the board level for a USB controller.
 
-https://lore.kernel.org/all/CAL_JsqKW3XJ6n5CLg_BNEaASkUnXLM=J_XZW8M6i7sGPuZ8_9A@mail.gmail.com/
+It's also true that user space can disable wakeup as you said, and a board
+could also delete the property in its device tree if desired.
 
-Running a dtbs_check with dts change, shows some issues like:
-...timer@40000000: interrupts: [[0, 28, 4]] is too short
-...timer@40001000: interrupts: [[0, 29, 4]] is too short
-...
+With that I agree that setting 'wakeup-source' at the SoC level provides
+more flexibility and is more in line with the DT as hardware description.
 
-It should be ok with Rob's proposal.
-
-Thanks,
-Best Regards,
-Fabrice
-
-> +
-> +  interrupt-names:
-> +    anyOf:
-> +      - items:
-> +          - const: global
-> +      - items:
-> +          - const: brk
-> +          - const: up
-> +          - const: trg-com
-> +          - const: cc
-> +
->    "#address-cells":
->      const: 1
->  
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
