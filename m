@@ -2,82 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 450034F9EB9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2ECD4F9EE1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231260AbiDHVHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 17:07:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
+        id S237600AbiDHVJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 17:09:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239661AbiDHVHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:07:16 -0400
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAB9137B2A;
-        Fri,  8 Apr 2022 14:05:11 -0700 (PDT)
-Received: by mail-oo1-f50.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so1685388ooj.2;
-        Fri, 08 Apr 2022 14:05:11 -0700 (PDT)
+        with ESMTP id S239645AbiDHVJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:09:30 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E85165ABE;
+        Fri,  8 Apr 2022 14:07:25 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id e189so10073424oia.8;
+        Fri, 08 Apr 2022 14:07:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FUAf7zk283U1T5VFSaBwah/pxXVLLCo5dNbwCoL9Vhw=;
-        b=fGbNul2gDxuMd54+6GJJjGkIqjllXb2TNRA51Md/rgC5G8X3es4KCKr5BrToQ9X9JK
-         pET5yhSoT+ackUNJNbD5fXhIogDnQEeErnSgJwVtj0kGMXKeiIEhBHgts9UqNDmNuFNO
-         qzidvnG5rbQLftseLxLXkyDUVIUweSDI/6SzwWcSpLfoUYYGMPf3OlAv/0CgJ6122+FY
-         /JuNp1T8gkMSFinxuuhQy6Fkg/rZxfSeofotTbNdpPMWU5K3BdgiFozDPd+niEpwJnEU
-         ITg+11OpoLcwBeZIryF0Av4SLv8PEeHTtHD17RvPYx2wlJ4fZi8ZEqOdnn/9N26I6dew
-         90GQ==
-X-Gm-Message-State: AOAM530i7ulE2Ifpcs4F+pKyapFQ973G3dgU/ZoYNWvobF0K4L6r4iB2
-        yj+y9O7q+5/KkVUvYPE2kDtM18oVsQ==
-X-Google-Smtp-Source: ABdhPJwodFcJpcdpNy4sdAksv7oOG3Rz2cNAXOY1I8YOsFmy2g4UgYW6rBapLL7VMiqT2CnN97i1yA==
-X-Received: by 2002:a4a:4f4f:0:b0:320:eccb:7309 with SMTP id c76-20020a4a4f4f000000b00320eccb7309mr6767810oob.44.1649451910726;
-        Fri, 08 Apr 2022 14:05:10 -0700 (PDT)
+        bh=pYrMZV8IjCW8iYNoKDQBPlJEM2DsRfccLQtP6lTmZ+E=;
+        b=RnNWOTvYDB6rKNZLc32W2dkm6O4YJt4caUr8tMNR1k1uANhCLuRpERkysK16grNfBE
+         KqBnPjR0uBrfasFkRFsv9WyGzIKwCyVnXKRqe/E1VWaIdOG8IhO5kiQgNiGnJZc2Kdxd
+         Anh6VocnlSULdHu5CGlXzcxggmF7uFs2daNNV+uTiXViT1IMoQrx/62WzPlgutr46xc6
+         oaL8lAcB2kE3I15cufSbc7L6fR1RQgVWMLCRF+EzAhI4IcKz4PG6ELUY+dMtgg7bqZdb
+         cATaZvqDZJ+WEAq55mYrtWmPY8OICNU9gWUrYXDvqLgfsf5FvV64FBrteWPTexRuUiPh
+         o1fg==
+X-Gm-Message-State: AOAM530vcIByHmFwhk8Yj/FoHxoK7mb3wsp+FxwqBbKExKSY27WQhFGx
+        OrMyV75k+gsKWExiHOI5KQ==
+X-Google-Smtp-Source: ABdhPJwWTpgR9nwArxEDDPxXD6GGCtIyRk9dQCxH/2JfmFaUUrC5PDmCLr6vKJ/kDuhQQXT9PXQRLw==
+X-Received: by 2002:a05:6808:2189:b0:2da:b59:3acb with SMTP id be9-20020a056808218900b002da0b593acbmr824624oib.112.1649452044989;
+        Fri, 08 Apr 2022 14:07:24 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056870d68300b000e2a0a74f9fsm583084oap.37.2022.04.08.14.05.10
+        by smtp.gmail.com with ESMTPSA id 17-20020a056870121100b000e296227c9bsm793744oan.9.2022.04.08.14.07.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 14:05:10 -0700 (PDT)
-Received: (nullmailer pid 4064290 invoked by uid 1000);
-        Fri, 08 Apr 2022 21:05:09 -0000
-Date:   Fri, 8 Apr 2022 16:05:09 -0500
+        Fri, 08 Apr 2022 14:07:24 -0700 (PDT)
+Received: (nullmailer pid 4067486 invoked by uid 1000);
+        Fri, 08 Apr 2022 21:07:24 -0000
+Date:   Fri, 8 Apr 2022 16:07:24 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 04/14] dt-bindings: reset: bitmain,bm1880-reset: Convert
- to yaml
-Message-ID: <YlCjhZlAa7EB/pJG@robh.at.kernel.org>
+Subject: Re: [PATCH 05/14] dt-bindings: reset: lantiq,reset: Convert to yaml
+Message-ID: <YlCkDJAUJx/w65HJ@robh.at.kernel.org>
 References: <20220407154338.4190674-1-p.zabel@pengutronix.de>
- <20220407154338.4190674-4-p.zabel@pengutronix.de>
+ <20220407154338.4190674-5-p.zabel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220407154338.4190674-4-p.zabel@pengutronix.de>
+In-Reply-To: <20220407154338.4190674-5-p.zabel@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Apr 2022 17:43:28 +0200, Philipp Zabel wrote:
-> Convert the device tree bindings for the Bitmain BM1880 reset controller
-> to YAML schema to allow participating in DT validation.
+On Thu, 07 Apr 2022 17:43:29 +0200, Philipp Zabel wrote:
+> Convert the device tree bindings for the Lantiq XWAY SoC RCU reset
+> controller to YAML schema to allow participating in DT validation.
 > 
 > Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Manivannan Sadhasivam <mani@kernel.org>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../bindings/reset/bitmain,bm1880-reset.txt   | 18 ----------
->  .../bindings/reset/bitmain,bm1880-reset.yaml  | 36 +++++++++++++++++++
->  2 files changed, 36 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/reset/bitmain,bm1880-reset.txt
->  create mode 100644 Documentation/devicetree/bindings/reset/bitmain,bm1880-reset.yaml
+>  .../bindings/reset/lantiq,reset.txt           | 30 ------------
+>  .../bindings/reset/lantiq,reset.yaml          | 49 +++++++++++++++++++
+>  2 files changed, 49 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/reset/lantiq,reset.txt
+>  create mode 100644 Documentation/devicetree/bindings/reset/lantiq,reset.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
