@@ -2,134 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E06E4F9C7A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 20:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C97C54F9CA8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 20:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbiDHSYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 14:24:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
+        id S238668AbiDHS0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 14:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbiDHSYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 14:24:13 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87DFD36DD9E;
-        Fri,  8 Apr 2022 11:22:08 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id i11-20020a9d4a8b000000b005cda3b9754aso6635164otf.12;
-        Fri, 08 Apr 2022 11:22:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Lf2HIDOgcxd3N/SJmrm+i3BU0QKkjgIH52w0l9HZULg=;
-        b=EqzXutcN6XQcvHV0Lyf70TjAnCMJVdNvbZpDJAk+l2d16apb+brgxkf91hYThQx1V8
-         kxr+E+pysmSEpHCMTqjpBxvdhXruwdHZXPqln9EgMoNDWpmVYRzlpmxIdaP2I3Z6N6YC
-         yUc/UaQ0fdjxK/NAebS9XLh3WjVmtf2aVtb6H3bkBI43SQ2t0EKrAbG/IO4J9EQBUsG1
-         HJ4kDQji5gg8dc4VoqvMKArAlrfaZ9qtZEK14a7WHnCXbZWE/UpQiCcE5cpHblZ+WORP
-         uulri5klj+DrPAbxSAy9YGASK37alaDRnXUQ+b8gw7gnAs4RbCVm2WaOBblPH12h/d0d
-         IYbg==
-X-Gm-Message-State: AOAM533M7hmHhZEsat/RmTqE+KKdVkjAR6fHw0iZbj/twx/GkMJMHYTV
-        tConhtg14Xx3xmakarGzb9W/obrPOQ==
-X-Google-Smtp-Source: ABdhPJy91m7vj0F/F1zyS9qB+nTfpd/raBdG+Fj65mRFlO9Vv/D+Ezuacy99dHSUu24EJa4eacDzpg==
-X-Received: by 2002:a9d:4798:0:b0:5b2:3791:beb7 with SMTP id b24-20020a9d4798000000b005b23791beb7mr7026104otf.123.1649442127768;
-        Fri, 08 Apr 2022 11:22:07 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056870d68300b000e2a0a74f9fsm394717oap.37.2022.04.08.11.22.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 11:22:07 -0700 (PDT)
-Received: (nullmailer pid 3810091 invoked by uid 1000);
-        Fri, 08 Apr 2022 18:22:06 -0000
-Date:   Fri, 8 Apr 2022 13:22:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev
- compatible strings
-Message-ID: <YlB9TsbhoQblo1H8@robh.at.kernel.org>
-References: <20220407200205.28838-1-javierm@redhat.com>
- <20220407200205.28838-2-javierm@redhat.com>
+        with ESMTP id S238671AbiDHSZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 14:25:36 -0400
+Received: from smtp.smtpout.orange.fr (smtp10.smtpout.orange.fr [80.12.242.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7106639018C
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 11:23:28 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.180.246])
+        by smtp.orange.fr with ESMTPA
+        id ctGUnWKJjD97rctGVn6qy3; Fri, 08 Apr 2022 20:23:26 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Fri, 08 Apr 2022 20:23:26 +0200
+X-ME-IP: 86.243.180.246
+Message-ID: <d08f3202-54f1-4c5a-01bd-70816a917b50@wanadoo.fr>
+Date:   Fri, 8 Apr 2022 20:23:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220407200205.28838-2-javierm@redhat.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 2/2] leds: ktd2692: Make aux-gpios optional
+Content-Language: en-GB
+To:     Markuss Broks <markuss.broks@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220408175929.281453-1-markuss.broks@gmail.com>
+ <20220408175929.281453-3-markuss.broks@gmail.com>
+From:   Marion & Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220408175929.281453-3-markuss.broks@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 10:02:00PM +0200, Javier Martinez Canillas wrote:
-> The current compatible strings for SSD130x I2C controllers contain an -fb
-> suffix, this seems to indicate that are for a fbdev driver. But the DT is
-> supposed to describe the hardware and not Linux implementation details.
 
-True, but compatible is just an identifier. There's no reason to 
-deprecate unless the binding as a whole needs to be redone.
-
-I imagine you also want 2 compatibles for 2 drivers. That's saying you 
-should change your firmware to switch drivers. The fact that we have 2 
-drivers for the same h/w is a kernel problem. Don't bring DT into it.
-
-> Let's deprecate those compatible strings and add a new enum that contains
-> compatible strings that don't have a -fb suffix. These will be matched by
-> the ssd130x-i2c DRM driver.
-> 
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Le 08/04/2022 à 19:59, Markuss Broks a écrit :
+> Make the AUX pin optional, since it isn't a core part of functionality,
+> and the device is designed to be operational with only one CTRL pin.
+>
+> Also pick up maintenance for the LED driver and the yaml bindings.
+>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
 > ---
-> 
->  .../bindings/display/solomon,ssd1307fb.yaml   | 36 ++++++++++++-------
->  1 file changed, 24 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> index ade61d502edd..46207f2c12b8 100644
-> --- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> +++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-> @@ -12,12 +12,24 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - sinowealth,sh1106-i2c
-> -      - solomon,ssd1305fb-i2c
-> -      - solomon,ssd1306fb-i2c
-> -      - solomon,ssd1307fb-i2c
-> -      - solomon,ssd1309fb-i2c
-> +    oneOf:
-> +      # Deprecated compatible strings
-> +      - items:
-> +          - enum:
-> +              - solomon,ssd1305fb-i2c
-> +              - solomon,ssd1306fb-i2c
-> +              - solomon,ssd1307fb-i2c
-> +              - solomon,ssd1309fb-i2c
-> +        deprecated: true
+>   MAINTAINERS                       | 6 ++++++
+>   drivers/leds/flash/leds-ktd2692.c | 4 ++--
+>   2 files changed, 8 insertions(+), 2 deletions(-)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2db49ea7ae55..8ef5667a1d98 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10479,6 +10479,12 @@ S:	Maintained
+>   F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
+>   F:	drivers/video/backlight/ktd253-backlight.c
+>   
+> +KTD2692 FLASH LED DRIVER
+> +M:	Markuss Broks <markuss.broks@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd2692.yaml
+> +F:	drivers/leds/flash/leds-ktd2692.yaml
 > +
-> +      # SSD130x I2C controllers
-> +      - items:
-> +          - enum:
-> +              - sinowealth,sh1106-i2c
-> +              - solomon,ssd1305-i2c
-> +              - solomon,ssd1306-i2c
-> +              - solomon,ssd1307-i2c
-> +              - solomon,ssd1309-i2c
+>   KTEST
+>   M:	Steven Rostedt <rostedt@goodmis.org>
+>   M:	John Hawley <warthog9@eaglescrag.net>
+> diff --git a/drivers/leds/flash/leds-ktd2692.c b/drivers/leds/flash/leds-ktd2692.c
+> index f341da1503a4..fc9c2e441caa 100644
+> --- a/drivers/leds/flash/leds-ktd2692.c
+> +++ b/drivers/leds/flash/leds-ktd2692.c
+> @@ -284,8 +284,8 @@ static int ktd2692_parse_dt(struct ktd2692_context *led, struct device *dev,
+>   		return ret;
+>   	}
+>   
+> -	led->aux_gpio = devm_gpiod_get(dev, "aux", GPIOD_ASIS);
+> -	ret = PTR_ERR_OR_ZERO(led->aux_gpio);
+> +	led->aux_gpio = devm_gpiod_get_optional(dev, "aux", GPIOD_ASIS);
+> +	ret = PTR_ERR(led->aux_gpio);
+>   	if (ret) {
+>   		dev_err(dev, "cannot get aux-gpios %d\n", ret);
+>   		return ret;
 
-There's also no reason to put the bus interface into the compatible as 
-the same compatible will work on different buses. But since you want to 
-add SPI, just using the 'i2c' one will confuse people. For that reason 
-you could add 'solomon,ssd1305', etc. for both SPI support and I2C DRM. 
-(You should also support the 'fb-i2c' variant in DRM IMO, but doubtful 
-that I'll review that.)
+Hi,
 
-Rob
+Sorry if I was unclear. What I was meaning is below.
+
+This v5 is just wrong. If 'led->aux_gpio' is a valid pointer, then 
+'PTR_ERR(led->aux_gpio)' will be non-0 and you will bail-out with a 
+pointless error value.
+
+PTR_ERR(x) is a valid error value if IS_ERR(x) is true. Otherwise it is 
+just 'x' casted as a long. So if 'x' is valid, it can be anything.
+
+
+What I had in mind was more something like:
+
+@@ -284,10 +284,9 @@ static int ktd2692_parse_dt(struct ktd2692_context *led, struct device *dev,
+  		return ret;
+  	}
+  
+-	led->aux_gpio = devm_gpiod_get(dev, "aux", GPIOD_ASIS);
+-	ret = PTR_ERR_OR_ZERO(led->aux_gpio);
+-	if (ret) {
+-		dev_err(dev, "cannot get aux-gpios %d\n", ret);
++	led->aux_gpio = devm_gpiod_get_optional(dev, "aux", GPIOD_ASIS);
++	if (IS_ERR(led->aux_gpio)) {
++		ret = PTR_ERR(led->aux_gpio);
++		dev_err(dev, "cannot get aux-gpios: %d\n", ret);
+  		return ret;
+  	}
+  
+
+
+I guess that using PTR_ERR_OR_ZERO() is an option (like in the original 
+code) but personally I find it less readable (but it is just a matter of 
+taste)
+
+CJ
+
