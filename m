@@ -2,109 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A62E4F9B2B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E29714F9B47
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 19:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236025AbiDHRAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 13:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34504 "EHLO
+        id S238011AbiDHRE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 13:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234636AbiDHRAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:00:08 -0400
-Received: from smtp.smtpout.orange.fr (smtp09.smtpout.orange.fr [80.12.242.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B39B343300
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:58:01 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.180.246])
-        by smtp.orange.fr with ESMTPA
-        id crvlnGf4Gs0FRcrvlnrZPt; Fri, 08 Apr 2022 18:57:59 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Fri, 08 Apr 2022 18:57:59 +0200
-X-ME-IP: 86.243.180.246
-Message-ID: <f0f934b8-2e97-2b9a-76de-e1cb217fc58c@wanadoo.fr>
-Date:   Fri, 8 Apr 2022 18:57:53 +0200
+        with ESMTP id S238024AbiDHREu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 13:04:50 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9963C2134;
+        Fri,  8 Apr 2022 10:02:43 -0700 (PDT)
+Received: from zn.tnic (p200300ea971561a9329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9715:61a9:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2D46A1EC051E;
+        Fri,  8 Apr 2022 19:02:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1649437358;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=89ZZusgZlQLzjBgn/vcDWRXT/K3jazA2dI5kFw6JX9I=;
+        b=KMShXiXQDurLK/vgHdfMrM+Bc1DrLH0mxV3HkZnwtJ4q6i6wPKi4D20Nmfp+NpLK/FzTwX
+        SGTwF9N4W0OE5/dBjtPXJSujvo4Ql1OJnNpoKEVGGc9S0lOET1RclTGx4/YkRMyWbmE+3D
+        ssuRUjHgkKkqyGVlA+/n9Ii0m5im8U0=
+Date:   Fri, 8 Apr 2022 19:02:36 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, robh+dt@kernel.org, benjaminfair@google.com,
+        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v6 1/3] ARM: dts: nuvoton: Add memory controller node
+Message-ID: <YlBqrAApeb8rV9WJ@zn.tnic>
+References: <20220322030152.19018-1-ctcchien@nuvoton.com>
+ <20220322030152.19018-2-ctcchien@nuvoton.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v4 2/2] leds: ktd2692: Make aux-gpios optional
-Content-Language: fr
-To:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220408163330.200898-1-markuss.broks@gmail.com>
- <20220408163330.200898-3-markuss.broks@gmail.com>
-From:   Marion & Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220408163330.200898-3-markuss.broks@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220322030152.19018-2-ctcchien@nuvoton.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Le 08/04/2022 à 18:33, Markuss Broks a écrit :
-> Make the AUX pin optional, since it isn't a core part of functionality,
-> and the device is designed to be operational with only one CTRL pin.
->
-> Also pick up maintenance for the LED driver and the yaml bindings.
->
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+On Tue, Mar 22, 2022 at 11:01:50AM +0800, Medad CChien wrote:
+> ECC must be configured in the BootBlock header.
+> Then, you can read error counts via
+> the EDAC kernel framework.
+> 
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
 > ---
->   MAINTAINERS                       | 6 ++++++
->   drivers/leds/flash/leds-ktd2692.c | 7 +++----
->   2 files changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2db49ea7ae55..8ef5667a1d98 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10479,6 +10479,12 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml
->   F:	drivers/video/backlight/ktd253-backlight.c
->   
-> +KTD2692 FLASH LED DRIVER
-> +M:	Markuss Broks <markuss.broks@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/leds/backlight/kinetic,ktd2692.yaml
-> +F:	drivers/leds/flash/leds-ktd2692.yaml
+>  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> index 3696980a3da1..ba542b26941e 100644
+> --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> @@ -106,6 +106,13 @@
+>  		interrupt-parent = <&gic>;
+>  		ranges;
+>  
+> +		mc: memory-controller@f0824000 {
+> +			compatible = "nuvoton,npcm750-memory-controller";
+> +			reg = <0x0 0xf0824000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +			status = "disabled";
+> +		};
 > +
->   KTEST
->   M:	Steven Rostedt <rostedt@goodmis.org>
->   M:	John Hawley <warthog9@eaglescrag.net>
-> diff --git a/drivers/leds/flash/leds-ktd2692.c b/drivers/leds/flash/leds-ktd2692.c
-> index f341da1503a4..26edf41dfa7d 100644
-> --- a/drivers/leds/flash/leds-ktd2692.c
-> +++ b/drivers/leds/flash/leds-ktd2692.c
-> @@ -284,10 +284,9 @@ static int ktd2692_parse_dt(struct ktd2692_context *led, struct device *dev,
->   		return ret;
->   	}
->   
-> -	led->aux_gpio = devm_gpiod_get(dev, "aux", GPIOD_ASIS);
-> -	ret = PTR_ERR_OR_ZERO(led->aux_gpio);
-> -	if (ret) {
-> -		dev_err(dev, "cannot get aux-gpios %d\n", ret);
-> +	led->aux_gpio = devm_gpiod_get_optional(dev, "aux", GPIOD_ASIS);
-> +	if (IS_ERR(led->aux_gpio)) {
-> +		dev_err(dev, "cannot get aux-gpios: %d\n", ret);
->   		return ret;
+>  		rstc: rstc@f0801000 {
+>  			compatible = "nuvoton,npcm750-reset";
+>  			reg = <0xf0801000 0x70>;
+> --
 
-Hi,
+This needs an ACK from devicetree folks.
 
-'ret' is known to be 0 at this point.
-maybe adding:
-    ret = PTR_ERR(led->aux_gpio);
+-- 
+Regards/Gruss,
+    Boris.
 
-?
-
-CJ
-
->   	}
->   
+https://people.kernel.org/tglx/notes-about-netiquette
