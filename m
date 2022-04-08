@@ -2,91 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24ED24F9EF3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A53E14F9EEC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 23:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234564AbiDHVNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 17:13:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60086 "EHLO
+        id S234590AbiDHVOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 17:14:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237610AbiDHVNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:13:33 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E3361877CE
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 14:11:29 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 66so8764639pga.12
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 14:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=yJoHVgCYASD8LnGD6yxNNYWY7QMbfJ8fAJgs8FOfIBo=;
-        b=PPblHVCYNoTcYVGEDB9f3y8lb6kGlK/DpqflWVJ48wuqmbEKlX2Am4/NlbakXY8uK+
-         yyv8n3dHilgLjLb/sdCT3X4JJW7BI9ZFFJUfwjVLdZozHe+ZlbNR+pgWNf1nmzPQ0iDM
-         euXaJWoaJfy7oqug4JTuNadUjl3uBhsQwIlkwp9tRv71F9NHh5qbOn8ecKngNrh4k/cP
-         8osiIySWZ7z/RFLqEFdUQxS5j9ehgEoZEOiViRACJUDNZWaMZB2/1E/EXGHLValnxRtb
-         j9nA+i/kOfJTxme/3eo7B+pinZ0T5nwBfOD6ubx2YL4L0qZaTRlh7McDg+y50L5+d4ea
-         jQJg==
+        with ESMTP id S239129AbiDHVOO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 17:14:14 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0372B187B92;
+        Fri,  8 Apr 2022 14:12:10 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id r8so10099752oib.5;
+        Fri, 08 Apr 2022 14:12:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=yJoHVgCYASD8LnGD6yxNNYWY7QMbfJ8fAJgs8FOfIBo=;
-        b=S2Z+qNP4T1CyzOlqDpB0C0V3r8iU7TTG9KS+kobajAQ/LedzeQ6cEJpJolfJteAPMi
-         oIWQdik4UWmEJvyCpqYZs7q2wc1Dv8XILCfppjDJ0nbSmoak1SUnEPCG9f3U246iVEH6
-         wekCFN74RPjy3Otzzsx+KR5dn1Tfeyk7cAc1mORKaUAGFJmXlVNH8r2ccG62GX+pohRH
-         yvcdR/2F4ZB3/iOr+x8ceWfOD1mGIQxhS8BIRHnTBsCOEXbp0IU1VBNpykq7n3IXgk+1
-         pLokkqEHI12YNzRlcnKAncqLTP9C8CEOwKRVQI/GT7KfHHmbf/g5TnY8kF+9gIPQRWad
-         bCEw==
-X-Gm-Message-State: AOAM530/GShOx4uPJkulkRAGQUONmpPgO7jHVF1Ugts0SobO9duvnUhR
-        JeBL9jHbuuJMmri1CeksnPKrtQ==
-X-Google-Smtp-Source: ABdhPJwz6J42A+7QBRIWB9Mr2szuhxRCqq/9FHbuGOK9KLJKIYDpU9wSFNCxsthrDdcpshIsu1yBbA==
-X-Received: by 2002:a05:6a00:1152:b0:4be:ab79:fcfa with SMTP id b18-20020a056a00115200b004beab79fcfamr21713713pfm.3.1649452288648;
-        Fri, 08 Apr 2022 14:11:28 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id l18-20020a056a00141200b004f75395b2cesm26668230pfu.150.2022.04.08.14.11.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cQV88Wncy+sFJVshappGK0lQZjUfJDBJIGxPr0CLJDM=;
+        b=EvzNumx+2+ci8gPLHLmrfusRorbNEvY9m/vi4bIvrHfqN6dVU9YYnXRk+gf5Zmc5pA
+         mkAdtKChnTBzVuGxJpz53nKZVaub24VdEuiYz6vHEZw/orkYW/3ViTlhh84/cgDQfyho
+         x3P7W9mc9BHjhmEvA8DgtFqd3xVbAVt8PgXmPd6CArz3oYn6Lk2xQTNm2RxRCwl1szbH
+         6qgcb4AhqU2/sqE1i0iVe7RGhPSvSw3gVMThktA9zndfps2YPM/LZMoMWuCx86J2YGhg
+         y8ylvnCqrCkl3/nYHm6EZobJAndx+yke0RPUKUWj/IQPd5AMAUxu0x0LJctyPwIx5tkY
+         TM7Q==
+X-Gm-Message-State: AOAM5322xy0z0ttlKvpxXphqKr07TVpnbEjjaquxYRztWnmh94Ip3Zhs
+        6BiMjzPZWLv0O2L5fYmZ8Tj/pugw6A==
+X-Google-Smtp-Source: ABdhPJwgayvKCJkT67GWWcOJ8t7e7vNECjz++q6KwPK6vYwLsJuYnrkPQrsymj/1ROQAtop7cTV/zQ==
+X-Received: by 2002:a05:6808:1281:b0:2ec:eac7:1d0d with SMTP id a1-20020a056808128100b002eceac71d0dmr781840oiw.169.1649452329113;
+        Fri, 08 Apr 2022 14:12:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j145-20020acaeb97000000b002d9f37166c1sm8991041oih.17.2022.04.08.14.12.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 14:11:28 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     matthias.bgg@gmail.com, jia-wei.chang@mediatek.com,
-        roger.lu@mediatek.com, hsinyi@google.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: Re: [PATCH V2 00/15] cpufreq: mediatek: Cleanup and support MT8183
- and MT8186
-In-Reply-To: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
-References: <20220408045908.21671-1-rex-bc.chen@mediatek.com>
-Date:   Fri, 08 Apr 2022 14:11:27 -0700
-Message-ID: <7h5ynj5lhc.fsf@baylibre.com>
+        Fri, 08 Apr 2022 14:12:08 -0700 (PDT)
+Received: (nullmailer pid 4074368 invoked by uid 1000);
+        Fri, 08 Apr 2022 21:12:08 -0000
+Date:   Fri, 8 Apr 2022 16:12:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Subject: Re: [PATCH 10/14] dt-bindings: reset: snps,hsdk-reset: Convert to
+ yaml
+Message-ID: <YlClKKHnTwsNUayj@robh.at.kernel.org>
+References: <20220407154338.4190674-1-p.zabel@pengutronix.de>
+ <20220407154338.4190674-10-p.zabel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220407154338.4190674-10-p.zabel@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rex-BC Chen <rex-bc.chen@mediatek.com> writes:
+On Thu, Apr 07, 2022 at 05:43:34PM +0200, Philipp Zabel wrote:
+> Convert the device tree bindings for the Synopsys HSDK reset controller
+> to YAML schema to allow participating in DT validation.
+> 
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> ---
+>  .../bindings/reset/snps,hsdk-reset.txt        | 28 -----------
+>  .../bindings/reset/snps,hsdk-reset.yaml       | 47 +++++++++++++++++++
+>  2 files changed, 47 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/reset/snps,hsdk-reset.txt
+>  create mode 100644 Documentation/devicetree/bindings/reset/snps,hsdk-reset.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/snps,hsdk-reset.txt b/Documentation/devicetree/bindings/reset/snps,hsdk-reset.txt
+> deleted file mode 100644
+> index 830069b1c37c..000000000000
+> --- a/Documentation/devicetree/bindings/reset/snps,hsdk-reset.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -Binding for the Synopsys HSDK reset controller
+> -
+> -This binding uses the common reset binding[1].
+> -
+> -[1] Documentation/devicetree/bindings/reset/reset.txt
+> -
+> -Required properties:
+> -- compatible: should be "snps,hsdk-reset".
+> -- reg: should always contain 2 pairs address - length: first for reset
+> -  configuration register and second for corresponding SW reset and status bits
+> -  register.
+> -- #reset-cells: from common reset binding; Should always be set to 1.
+> -
+> -Example:
+> -	reset: reset@880 {
+> -		compatible = "snps,hsdk-reset";
+> -		#reset-cells = <1>;
+> -		reg = <0x8A0 0x4>, <0xFF0 0x4>;
+> -	};
+> -
+> -Specifying reset lines connected to IP modules:
+> -	ethernet@.... {
+> -		....
+> -		resets = <&reset HSDK_V1_ETH_RESET>;
+> -		....
+> -	};
+> -
+> -The index could be found in <dt-bindings/reset/snps,hsdk-reset.h>
+> diff --git a/Documentation/devicetree/bindings/reset/snps,hsdk-reset.yaml b/Documentation/devicetree/bindings/reset/snps,hsdk-reset.yaml
+> new file mode 100644
+> index 000000000000..a7cb5580c070
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/snps,hsdk-reset.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/snps,hsdk-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys HSDK reset controller
+> +
+> +maintainers:
+> +  - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: snps,hsdk-reset
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 2
+> +    description: |
+> +      Should always contain 2 pairs address - length: first for reset
+> +      configuration register and second for corresponding SW reset and status
+> +      bits register.
 
-> Cpufreq is a DVFS driver used for power saving to scale the clock frequency
-> and supply the voltage for CPUs. This series do some cleanup for MediaTek
-> cpufreq drivers and add support for MediaTek SVS[2] and MediaTek CCI
-> devfreq[3] which are supported in MT8183 and MT8186.
+items:
+  - description: reset configuration register
+  - description: corresponding SW reset and status bits register
 
-There's no upstream DT for MT8186 and there are no OPPs defined in the
-upstream DT for MT8183.
 
-In order to test this on mainline, could you provide a patch for MT8183
-that adds OPPs to the DT so this can be tested with mainline?
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/reset/snps,hsdk-reset.h>
+> +
+> +    reset: reset@880 {
+> +        compatible = "snps,hsdk-reset";
+> +        #reset-cells = <1>;
+> +        reg = <0x8A0 0x4>, <0xFF0 0x4>;
+> +    };
+> +
+> +    // Specifying reset lines connected to IP modules:
+> +    ethernet {
+> +        resets = <&reset HSDK_ETH_RESET>;
+> +    };
 
-Thanks,
+No need to show the consumer side in every provider. Please drop.
 
-Kevin
+Rob
