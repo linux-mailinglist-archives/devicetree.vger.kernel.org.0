@@ -2,182 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC8904F90A3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 405474F90B5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231565AbiDHIXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:23:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57208 "EHLO
+        id S231701AbiDHI1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbiDHIXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:23:36 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F23835FB5
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:21:32 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id bh17so15761371ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:21:32 -0700 (PDT)
+        with ESMTP id S231629AbiDHI1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:27:05 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1AE1B8FFB
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:25:02 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id d10so9264256edj.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:25:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xeGOI+hxBRRDCw8I69VJZGllvVRkuKM+GL1fDWIHwuE=;
-        b=NMOd190nGhnmVD60Zvn3Etf8Z3SwRZPaQ5AoYH685WmUKlO2nsX2vBdXYbwKFp7kBt
-         TnwPNJCpPNbyvcZ8DgooR2RwHXwCIGH0jjrpplV+2dXG3+5EG6COoOUKwCvaqtwHRVU8
-         5xYd4miMtAlzUCEVLxlb4c/wJIWGq7lTjOHae6o30zQR9HKPnF7ZQrFe0hA1TgmU6Rv2
-         nOSLc7T/jA4pEN6xIGT5KSKrYgffDkt+jyl+GTUg6QTufXdaFDkUauaazQh4JzPc2j9e
-         1bd5Q4SMrlmFLquHIC/yu5wBpDHT4DjZp+ga2ugrHX21UlOv//t8rtAqWIWSrOD1nkFg
-         31iw==
+        bh=0uFzDQ9ka3hrce8//K9E+h2qA1+z8XYzZogK/JPYbio=;
+        b=jBYLjbqH9e3oByNZCvHICqdZ6ihI4UJR8zUHoMg3PU1TcMV9sEIVd2pFhVr152i+WW
+         6xltAUWud25pyuEfgv9npLB++LjGY9YqOSeHGnUEvw3bA/YbwUzHp6Hy3MyvjsqxM7Dp
+         kV8VdsTh62vTphYN/KxpSEt61YUFTt4yAD5ua4Ro2cQCdIZQBhTuyD2P08y6hyjhr+YC
+         KPImZ8pR/h/2gDjTaYEuKl7/p/cSXBBiSzOR53kwW8XKHfA0OCTEwmMt2YCf6yCSS9Ek
+         POrBhgtBnoOeAiiv+31fQ8Fo6erVSyOS68I/9Wj+07MfghRKS7TSYfELXEFbR5CHP6H9
+         oV/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=xeGOI+hxBRRDCw8I69VJZGllvVRkuKM+GL1fDWIHwuE=;
-        b=tII7xPTX7/ee1pzuIe/vD0bwqzJpzJ6Oh1COnwDj+eDH6rdcLPkN7h6Xg8nXsmMAd+
-         jDXHtFuqte0Sn6KCyr3yht39PLiSzpuykDksC5G4mYV47Smw9xBTOXppAO8hQ5hIsU55
-         UHWvByWlmFyQcgl+8BAe0ab0Gk4KnLDnqQQpS5sxb7rLeQoIYnHK6OPey8031BlnRW5c
-         LEgdiwtXRPWmFRXmnKE+jgosYeq0H3mwA/YrKHfAaUUjw9xe5rAps4zB4v6CzZPfSqCi
-         fMVnsgkHI5bPBCIcCmejWOfhOFmnbuH7YDOdgq+OyEGgORBqIFiVbSCP7SQ0dGyV00de
-         2/7A==
-X-Gm-Message-State: AOAM5322KDcUW1ddb8aFyECMPZcG6C7hnho8t2HrBsA6h5xhAlyVltuD
-        Fs7W+kMVy2Hl3PTJL86tQbEoDA==
-X-Google-Smtp-Source: ABdhPJyECBMXetuRDQC9zHM+ji1UA36sURAIRNcwnY01yfNVSOdRrknMnly6epCHA8osgRfsPfiH+Q==
-X-Received: by 2002:a17:906:2f97:b0:6ce:3ef6:94be with SMTP id w23-20020a1709062f9700b006ce3ef694bemr17650508eji.136.1649406091573;
-        Fri, 08 Apr 2022 01:21:31 -0700 (PDT)
+        bh=0uFzDQ9ka3hrce8//K9E+h2qA1+z8XYzZogK/JPYbio=;
+        b=DENW33cLOkE40G5EEv23hughLy29ZNG1PllucHqv/r5f5gcwactxdRdA7KUO6D+7lT
+         rY240aFiWRrlgZH2CuFXSKjnm0Xy+9QMHGzzwBEf4LuF6i0wzBugqm/4YxrG+JSpBZqu
+         4cdoDUt+nEvO69gD9OjJLe/gapYg577jyxX8IgL0kl3DySwDnHwlYcrnvmS+lOntMUyu
+         q7oed6jyuMvUDZvZRd9MVDDpt+n/Mu2dR/BkNErhDlIXWxs6qpkvn8PN2grrmyScPZdF
+         hVNvTwf3bqsvThAkZQARxmFKYRS4NY0o4PvvTLrAYNu4BU0UkvVK7otHDmslMVJPMiOo
+         RIRg==
+X-Gm-Message-State: AOAM530ELQUqhSPy7xu4vEB5pu8U45e+UqDN9v2Wpjns/pwxsHnRN+WE
+        RbrOfHvxizH9NNlm7TNeHEI1zg==
+X-Google-Smtp-Source: ABdhPJxL3r9jzp7Pco9U65hlEHZVMRC/lP30PU3euZ19O8Nre4ZqhqoIixumtK8gG03DDzQDiYHYkA==
+X-Received: by 2002:a05:6402:268a:b0:419:e9cb:f62d with SMTP id w10-20020a056402268a00b00419e9cbf62dmr18510068edd.194.1649406300969;
+        Fri, 08 Apr 2022 01:25:00 -0700 (PDT)
 Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id ke11-20020a17090798eb00b006e7fbf53398sm4764031ejc.129.2022.04.08.01.21.30
+        by smtp.gmail.com with ESMTPSA id o17-20020a056402439100b0041938757232sm10204557edc.17.2022.04.08.01.25.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 01:21:31 -0700 (PDT)
-Message-ID: <76d58182-2f56-32b2-42e9-2ecbdd09ba3d@linaro.org>
-Date:   Fri, 8 Apr 2022 10:21:30 +0200
+        Fri, 08 Apr 2022 01:25:00 -0700 (PDT)
+Message-ID: <3a4b5e26-e770-d778-5ae5-f46ba00066ce@linaro.org>
+Date:   Fri, 8 Apr 2022 10:24:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/2] PM / devfreq: mediatek: Introduce MediaTek CCI
- devfreq driver
+Subject: Re: [PATCH] ARM: dts: Drop unused ti,am4372-timer compatible
 Content-Language: en-US
-To:     Johnson Wang <johnson.wang@mediatek.com>, cw00.choi@samsung.com,
-        krzk+dt@kernel.org, robh+dt@kernel.org, kyungmin.park@samsung.com
-Cc:     khilman@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220408052150.22536-1-johnson.wang@mediatek.com>
- <20220408052150.22536-3-johnson.wang@mediatek.com>
+To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20220408081216.57146-1-tony@atomide.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220408052150.22536-3-johnson.wang@mediatek.com>
+In-Reply-To: <20220408081216.57146-1-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 07:21, Johnson Wang wrote:
-> We introduce a devfreq driver for the MediaTek Cache Coherent Interconnect
-> (CCI) used by some MediaTek SoCs.
+On 08/04/2022 10:12, Tony Lindgren wrote:
+> Drop unused (and undocumented) ti,am4372-timer related compatible
+> properties to avoid dtb warnings when updating the binding to yaml.
 > 
-(...)
+> The dual-mode timer instances on am43 are compatible with the am3
+> timers.
 
-> index 87eb2b837e68..d985597f343f 100644
-> --- a/drivers/devfreq/Kconfig
-> +++ b/drivers/devfreq/Kconfig
-> @@ -120,6 +120,16 @@ config ARM_TEGRA_DEVFREQ
->  	  It reads ACTMON counters of memory controllers and adjusts the
->  	  operating frequencies and voltages with OPP support.
->  
-> +config ARM_MEDIATEK_CCI_DEVFREQ
-> +	tristate "MEDIATEK CCI DEVFREQ Driver"
-> +	depends on ARM_MEDIATEK_CPUFREQ
+Are you sure this is correct approach? Maybe some other user of DTS
+references the am43 compatible, so instead it should be documented in
+the bindings?
 
-|| COMPILE_TEST? And check if it test compiles.
-
-(...)
-
-> +
-> +static int mtk_ccifreq_remove(struct platform_device *pdev)
-> +{
-> +	struct device *cci_dev = &pdev->dev;
-
-s/cci_dev/dev/
-Everywhere.
-
-> +	struct mtk_ccifreq_drv *drv;
-> +
-> +	drv = platform_get_drvdata(pdev);
-> +
-> +	dev_pm_opp_unregister_notifier(cci_dev, &drv->opp_nb);
-> +	dev_pm_opp_of_remove_table(cci_dev);
-> +	clk_disable_unprepare(drv->inter_clk);
-> +	clk_disable_unprepare(drv->cci_clk);
-> +	regulator_disable(drv->proc_reg);
-> +	if (!IS_ERR(drv->sram_reg))
-> +		regulator_disable(drv->sram_reg);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct mtk_ccifreq_platform_data mt8183_platform_data = {
-> +	.min_volt_shift = 100000,
-> +	.max_volt_shift = 200000,
-> +	.proc_max_volt = 1150000,
-> +	.sram_min_volt = 0,
-> +	.sram_max_volt = 1150000,
-> +};
-> +
-> +static const struct mtk_ccifreq_platform_data mt8186_platform_data = {
-> +	.min_volt_shift = 100000,
-> +	.max_volt_shift = 250000,
-> +	.proc_max_volt = 1118750,
-> +	.sram_min_volt = 850000,
-> +	.sram_max_volt = 1118750,
-> +};
-> +
-> +static const struct of_device_id mtk_ccifreq_machines[] = {
-> +	{ .compatible = "mediatek,mt8183-cci", .data = &mt8183_platform_data },
-> +	{ .compatible = "mediatek,mt8186-cci", .data = &mt8186_platform_data },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_ccifreq_machines);
-> +
-> +static struct platform_driver mtk_ccifreq_platdrv = {
-> +	.probe	= mtk_ccifreq_probe,
-> +	.remove	= mtk_ccifreq_remove,
-> +	.driver = {
-> +		.name = "mtk-ccifreq",
-> +		.of_match_table = of_match_ptr(mtk_ccifreq_machines),
-
-You use of_match_ptr() so is it possible to build it without OF? If so,
-then mtk_ccifreq_machines needs maybe_unused.
-
-> +	},
-> +};
-> +
-> +static int __init mtk_ccifreq_platdrv_init(void)
-> +{
-> +	return platform_driver_register(&mtk_ccifreq_platdrv);
-> +}
-> +module_init(mtk_ccifreq_platdrv_init)
-> +
-> +static void __exit mtk_ccifreq_platdrv_exit(void)
-> +{
-> +	platform_driver_unregister(&mtk_ccifreq_platdrv);
-> +}
-> +module_exit(mtk_ccifreq_platdrv_exit)
-
-Why not module_platform_driver()?
-
-> +
-> +MODULE_DESCRIPTION("MediaTek CCI devfreq driver");
-> +MODULE_AUTHOR("Jia-Wei Chang <jia-wei.chang@mediatek.com>");
-> +MODULE_LICENSE("GPL v2");
-
+See also recommendation "DO use fallback compatibles...":
+Documentation/devicetree/bindings/writing-bindings.rst
+which maybe applies here?
 
 Best regards,
 Krzysztof
