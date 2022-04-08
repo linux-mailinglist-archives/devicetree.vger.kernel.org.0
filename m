@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2AD4F9725
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 15:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE7B44F9791
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236427AbiDHNpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 09:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42046 "EHLO
+        id S235681AbiDHOEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 10:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbiDHNpu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 09:45:50 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0AA441FB3
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 06:43:46 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id k23so17460563ejd.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 06:43:46 -0700 (PDT)
+        with ESMTP id S233666AbiDHOEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 10:04:44 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7C5791365
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:02:39 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id h14so10118433lfl.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 07:02:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=1ZpanQL7fJ5Imrl94t4mOv+0fifiSCixQTFhocGBbW4=;
-        b=ocU4WzdvqVtDrF+QNMkeIFKSbQDrw614kxrKDCXUNEPj0TcZTn2VF33O7pzWeuQcUi
-         /kpIefrRb+tIPM7KdnbR0CjVrj0C7uFD+iwBJMThlUaqxYgu/HgyrOL3xZXxjwikkwPM
-         /w5y4+LqxJFClA/AFhhdE9da2MRmrUgMM0sYM=
+        bh=/riFro2rp+YPV2RL0ntlJGrQPbAV1ror6e1xkPF4jY4=;
+        b=ZrcPXCjlLr2kJMAefVdXyBTcZWLIPlH9iR7KIzIcEQRej1QTBRcAVJ0B52So659Hz8
+         sQPp83HIEj6X3u0Kh2adyZBV+5MDBkMI6LcExWMQYmBZQjfNIfKbpOnOFsU6FlJjmvHA
+         jef0xNy9msqv5DJ4aLWu4OAK7OMd+XLDtRzKI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1ZpanQL7fJ5Imrl94t4mOv+0fifiSCixQTFhocGBbW4=;
-        b=6CId9B7uU6YAjFMTD3on3SvdAZ/tfqaHzZiRtmWps77F55lRnGoarZBivBjp77x0an
-         nllD52xcYAteJMHPDqxx1HbjnIVF6KbAQKo1gNm2zrYF7qF5vfauIZ9NMJc63WEm1USS
-         GcWNB2CMDGB1vG36pLOKHPmt183dG0kNU4a2BlRitY48QCYs2R6RGLDribZzuxhhUAQM
-         DCsxDsshtlhxaJyIOIe/j96qn2v9iS9Cu4ltn789HahUMqFvuk5pGHe1UBq6u6PuKpmy
-         70wSAp/C/XIG4llyQ6xU1kcZq+jv/KT6MhmsMVCeJtNUctACLk7JDfMJdyNtkHajcdEi
-         YQcw==
-X-Gm-Message-State: AOAM532uZHqZ0YGdfr1boM6nx6D+YWZryefb1XU9olzPn2yTjMzqOsKy
-        Mbb7K4+K/CmYkFBAGMgDWnnjf8znJ0NGwQAHOVI=
-X-Google-Smtp-Source: ABdhPJzXd1ZoehENiZCm57vnHqNZf3N1QdWVA6TEr/j+gsij9saL27MIuaSTBPzqlD5PyrkJMsYk+g==
-X-Received: by 2002:a17:907:3f03:b0:6df:b04b:8712 with SMTP id hq3-20020a1709073f0300b006dfb04b8712mr18796519ejc.290.1649425424938;
-        Fri, 08 Apr 2022 06:43:44 -0700 (PDT)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
-        by smtp.gmail.com with ESMTPSA id ky5-20020a170907778500b006d1b2dd8d4csm8738709ejc.99.2022.04.08.06.43.42
+        bh=/riFro2rp+YPV2RL0ntlJGrQPbAV1ror6e1xkPF4jY4=;
+        b=vcR/1iQTps5lZxJySq6J1UUs5oRRATaQmIWI4iEz0hXYX7+HXnYMTBUVkCU7tYOj6E
+         rUFNoSRE8eKM7kr5m1+7KeSy1QbHZ47aWvKpxBccSAz5rXjBm0fZn/l+xj3bYAuzqJSS
+         woXqoM/OqUQYcN1SrZiIXHdhsdAN3sDkMHAz6576NXyckmjeMiylbKJ4sfeT5cVdmbOs
+         iePrZWfNGFQu3mFF1IZO6oEOmyx6e3VNdZxQpa+Y1UBwOp7LJA25WFbFEQI8wUR01DHb
+         MuAeY51oSw1eKIYGVnoh3NWBMAGE245hTMLNGcQNBhbYW20ZpiQ9dtC+lslTciZ8Ha0h
+         0Obg==
+X-Gm-Message-State: AOAM531qUMUlWUzmUIyd0NPUWJuUvzoEBX23FB+Al7HNdK2kk8XPT+mG
+        XTJ5/sdqkvKfOHk9BT6B14XdfTnf5+asYH1hfWA=
+X-Google-Smtp-Source: ABdhPJw2go0WvFPd8hdHu5Y/5oiZ8E2KS6wRqO4S60kQaB9eWqIk4hoc4jnwzSeGWmnpSVi6wFq4Ow==
+X-Received: by 2002:a05:6512:3b90:b0:450:829f:6047 with SMTP id g16-20020a0565123b9000b00450829f6047mr13023276lfv.418.1649426557857;
+        Fri, 08 Apr 2022 07:02:37 -0700 (PDT)
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
+        by smtp.gmail.com with ESMTPSA id f5-20020a05651201c500b0046b890cb0a4sm143931lfp.98.2022.04.08.07.02.37
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 06:43:43 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id m30so12961736wrb.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 06:43:42 -0700 (PDT)
-X-Received: by 2002:adf:e591:0:b0:206:1202:214 with SMTP id
- l17-20020adfe591000000b0020612020214mr14896572wrm.342.1649425421934; Fri, 08
- Apr 2022 06:43:41 -0700 (PDT)
+        Fri, 08 Apr 2022 07:02:37 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id o16so5714088ljp.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 07:02:37 -0700 (PDT)
+X-Received: by 2002:a05:6000:1c15:b0:207:849a:648b with SMTP id
+ ba21-20020a0560001c1500b00207849a648bmr7029583wrb.513.1649426182365; Fri, 08
+ Apr 2022 06:56:22 -0700 (PDT)
 MIME-Version: 1.0
 References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
  <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
@@ -62,15 +62,13 @@ References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
  <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org> <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
  <MW4PR02MB7186245772DAC3E04FA8D1C0E1E69@MW4PR02MB7186.namprd02.prod.outlook.com>
  <CAD=FV=Wk3U7_bVdiCPp8iQ4bcCA_Botemu4pwHeRtgBa3Xk6KQ@mail.gmail.com>
- <c4f086ce-c56f-f7c9-4092-7f2432330d50@quicinc.com> <CAD=FV=UmU_BVUaL_X75yOEvQPtGUBTR5-jiVWBHq7uSRt6HM4Q@mail.gmail.com>
- <225d2c0a-42ec-28ad-688c-e7e9e2035ee1@quicinc.com> <CAD=FV=W=WjSACHvRDFBnkLUp-LU2c4XMu3=FTzTx=zexNF5PAw@mail.gmail.com>
- <CAA8EJpqLZ9up4euGEbhf5QyBqm4tJuLcHi7D+0Si7ak9Jej52w@mail.gmail.com>
- <CAD=FV=XwOzsRf7RnvyBjr5TtedMhC0LJFKoK9tp-kw1eEyuJmQ@mail.gmail.com> <CAA8EJprb5UF24WRNvGaY_hSqW--NPd=9=8AaPYWSMbUumNn+dQ@mail.gmail.com>
-In-Reply-To: <CAA8EJprb5UF24WRNvGaY_hSqW--NPd=9=8AaPYWSMbUumNn+dQ@mail.gmail.com>
+ <c4f086ce-c56f-f7c9-4092-7f2432330d50@quicinc.com> <CAA8EJprdV64jOexEF-XqbkwsNDWBNRRndOAas-QqMHaL=zp9rw@mail.gmail.com>
+ <CAD=FV=XdRKWFQnJx9AKYmB2p26sXmhjqxLzz+LYyCt7rg+zF6w@mail.gmail.com> <CAA8EJprvSy1PuYCXMr-TxBF1XwcAZaErSmzH2Tw5-NAovxHY7A@mail.gmail.com>
+In-Reply-To: <CAA8EJprvSy1PuYCXMr-TxBF1XwcAZaErSmzH2Tw5-NAovxHY7A@mail.gmail.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 8 Apr 2022 06:43:28 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UG7k4A+hMXxwju-0mLddD1oJdGngXMkMA-dO3AxOx0rQ@mail.gmail.com>
-Message-ID: <CAD=FV=UG7k4A+hMXxwju-0mLddD1oJdGngXMkMA-dO3AxOx0rQ@mail.gmail.com>
+Date:   Fri, 8 Apr 2022 06:56:08 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XS8h8GwL11CmJou31hTbf=mS77-j1y66uY+2YuGAUpzQ@mail.gmail.com>
+Message-ID: <CAD=FV=XS8h8GwL11CmJou31hTbf=mS77-j1y66uY+2YuGAUpzQ@mail.gmail.com>
 Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
@@ -94,7 +92,7 @@ Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -103,61 +101,77 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Fri, Apr 8, 2022 at 5:20 AM Dmitry Baryshkov
+On Fri, Apr 8, 2022 at 5:13 AM Dmitry Baryshkov
 <dmitry.baryshkov@linaro.org> wrote:
 >
-> > I guess my thought was that in DP you could still create the AUX bus
-> > at probe time. Then for DP you just return an instant "transfer
-> > failed" from the AUX bus if HPD isn't asserted. For eDP (as discussed
-> > elsewhere) when we try to do an AUX transfer then we delay until HPD
-> > is there.
+> On Fri, 8 Apr 2022 at 03:28, Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Thu, Apr 7, 2022 at 4:36 PM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > The ps8640 driver looks 'working by coincidence'. It calls
+> > > dp_aux_populate, then immediately after the function returns it checks
+> > > for the panel. If panel-edp is built as a module, the probe might fail
+> > > easily.
+> > > The anx7625 driver has the same kind of issue. The DP AUX bus is
+> > > populated from the probe() and after some additional work the panel is
+> > > being checked.
+> > > This design is fragile and from my quick glance it can break (or be
+> > > broken) too easy. It reminds me of our drm msm 'probe' loops
+> > > preventing the device to boot completely if the dsi bridge/panel could
+> > > not be probed in time.
+> >
+> > I did spend some time thinking about this, at least for ps8640. I
+> > believe that as long as the panel's probe isn't asynchronous.
 >
-> I think panel-edp would already handle the delay, so we do not need to
-> have this logic in the DP driver.
+> By panel probe (as a probe of any device) is potentially asynchronous.
+> As in your example, the PWM might not be present, the regulator probe
+> might have been delayed, the panel-edp might be built as a module,
+> which is not present for some reason.
 
-There's a whole discussion about this between Stephen and me in patch
-#5 ("drm/msm/dp: wait for hpd high before any sink interaction").
-Basically:
+Well, in those cases it's not exactly asynchronous, or at least not in
+the way I was thinking about. Either it will work now, or we should
+try again later when more drivers have probed. The case I was worried
+about was:
 
-* If panel HPD is hooked up to the dedicated HPD pin on the eDP
-controller then the panel driver doesn't have a way to read it.
+1. We call devm_of_dp_aux_populate_ep_devices()
 
-* We can't leverage the existing "HPD" query functions in DRM because
-those indicate whether a panel is _physically_ connected. For eDP, it
-always is.
+2. devm_of_dp_aux_populate_ep_devices() kicks off a probe to the panel
+in the background
 
-For now the rule is that the AUX transfer function is in charge of
-waiting for HPD for eDP if the dedicated HPD pin is used. If we want
-to re-invent this we could, but that system works, isn't _too_ ugly,
-and we're already making big enough changes in this series.
+3. devm_of_dp_aux_populate_ep_devices() returns to us without waiting
+for the panel's probe to finish.
+
+I think that's possible if the panel driver sets PROBE_PREFER_ASYNCHRONOUS.
+
+I was less worried about the resources missing since I thought that
+would be handled by the normal probe deferral case. IIRC the "infinite
+loop" that we used to end up with MSM's probe was because something
+about the way the MSM DRM driver worked would cause the deferral
+mechanisms to retry instantly each time we deferred. I don't remember
+exactly what triggered it, but I don't _think_ that's true for ps8640?
 
 
-> > So we can still acquire resources (clocks, PHY, io maps, etc) at probe
-> > time for DP and create the AUX bus, right? It will just return
-> > "-ENODEV" if HPD isn't asserted and you're DP?
+> > Basically if the panel isn't ready then ps8640 should return and we'll
+> > retry later. I do remember the probe loops that we used to have with
+> > msm and I don't _think_ this would trigger it.
 >
-> Yes, please. I still suppose that we'd need a separate case to
-> power_on eDP's PHY during the probe time. Maybe I'm mistaken here.
+> I don't have proof here. But as I wrote, this thing might break at some point.
+>
+> > That being said, if we need to separate out the AUX bus into a
+> > sub-device like we did in sn65dsi86 we certainly could.
+>
+> Ideally we should separate the "bridge" subdevice, like it was done in
+> sn65dsi86.
+> So that the aux host probes, registers the EP device, then the bridge
+> device can not be probed (and thus the drm_bridge is not created)
+> until the next  bridge becomes available.
 
-I think the ideal way is to do it like Kieran's proposal for sn65dsi86:
+You're definitely right, that's best. I was hesitant to force the
+issue during review of the ps8640 because it adds a bunch of
+complexity and didn't _seem_ to be needed. Maybe it makes sense to
+just code it up, though...
 
-https://lore.kernel.org/r/20220317131250.1481275-4-kieran.bingham+renesas@ideasonboard.com/
-
-* When enabling HPD (physical hot plug detect) in the hpd_enable()
-callback you do a pm_runtime_get(). You do the
-pm_runtime_put_autosuspend() when disabling. This is only used for DP
-since we only provide DRM_BRIDGE_OP_HPD for DP, not for eDP.
-
-* We do a pm_runtime_get() / pm_runtime_put_autosuspend() in the AUX
-transfer routine. While holding the pm_runtime reference we check HPD.
-For DP we return immediately if HPD isn't asserted. For eDP, we delay.
-
-* We do the pm_runtime_get() in pre_enable and the pm_runtime_put() in
-post_disable. For DP this will add a 2nd refcount (since we probably
-were holding the reference for HPD). For eDP this will cause us to
-power on.
-
-* If there's any other time we need to read HW registers, and we
-aren't guaranteed to already have a pm_runtime reference (like during
-probe), we can do a temporary pm_runtime_get() /
-pm_runtime_put_autosuspend().
+-Doug
