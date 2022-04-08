@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2AB64F9493
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23A434F94FE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 14:01:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235248AbiDHLzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 07:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
+        id S230515AbiDHMDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 08:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235235AbiDHLzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:55:48 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A12972E2
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:53:44 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id q26so9755220edc.7
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 04:53:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TuDwf9DmfKjZ+Hb8XYy4JWoDUAtU27fdQoF6Y3FaEbI=;
-        b=I9Hti15oCiC+1r9/T+zZIT1MUflgV81Xou4UucCb06wTS93uAeuHskYIC9qzSXemRD
-         eQoiI+Et4U5fTIebjGWx7pp4sE3m+9SZKqNJf6N9MMNSfrrZOo8GNMtoL5c0JCYao5qN
-         i5z/LeQE8KtHM9y0Hq2hdON+yPvGYIVgGgRsuJnhPKmeFIoRUd7sjFTS5TvTM3N7Rc0S
-         ugMHzrx/VUpxWwxdHzpIPsfMqKiaSXnXBH4GNOfcSDkMSZnwa2TfPdubUPYOqCUxoI1H
-         C6XhOWhbmHfrBcs3NYRlqQqBU8VyCczN4WqLVpHXOtNOghRAxOLVKWUINX3iRTSNNoCB
-         HMDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TuDwf9DmfKjZ+Hb8XYy4JWoDUAtU27fdQoF6Y3FaEbI=;
-        b=6Tf9UMwJZilcCoirCvM6/6PWlghv+2YD1qwmbasw+f2Wp7Y7Alrk+zLpaUPkxoswDa
-         4nsEOsXOhr0luigK/9cTU5MsUKTlYXSHdmXLM4St4uNKlxBQ20QM77Vc3LS81WLPTo6A
-         DQCU4VLlsurB9/5uZz9cTZgLFgj5633AidZpA7pnWjtzpxEJKYut8dbrL7WzGDWuDr14
-         BV3c0zdjSPVDfwCRjHm88dNcs2oJ846v3XcEbYwD+ON4WG7yKqUbHKUrWsdjIlnXt+GJ
-         nXRR8dgqTmhGoYbgWssAPJp4sbSuLy2q+5a4jp/SjI8o5de9fHtelyCVahxomy6LBWq8
-         ZQIA==
-X-Gm-Message-State: AOAM531gT8q3/XeVKO6+g7QA+XB7znMKbYTcDMF79b7xc3y/VgFycFfn
-        6ySIe2og4vPS9hn4CWl7CmIPLuPKCLJsdw==
-X-Google-Smtp-Source: ABdhPJx9CMUuOFZ7M6KLhPEfsnIyRxwVd/e2o+GD6WcluNzSPL96cEabbtQ9QSpF8hxSTM+ijA1puA==
-X-Received: by 2002:a05:6402:1652:b0:41d:5896:a7b0 with SMTP id s18-20020a056402165200b0041d5896a7b0mr517524edx.128.1649418822970;
-        Fri, 08 Apr 2022 04:53:42 -0700 (PDT)
-Received: from otso.. (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id r29-20020a50c01d000000b00415fb0dc793sm10470899edb.47.2022.04.08.04.53.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 04:53:42 -0700 (PDT)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-To:     linux-input@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: sm7225-fairphone-fp4: Add AW8695 haptics
-Date:   Fri,  8 Apr 2022 13:53:10 +0200
-Message-Id: <20220408115311.237039-3-luca.weiss@fairphone.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220408115311.237039-1-luca.weiss@fairphone.com>
-References: <20220408115311.237039-1-luca.weiss@fairphone.com>
+        with ESMTP id S235358AbiDHMCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 08:02:34 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9765F2EC
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 05:00:29 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncnHs-0001mb-Nz; Fri, 08 Apr 2022 14:00:24 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1ncnHp-00075S-Ow; Fri, 08 Apr 2022 14:00:21 +0200
+Date:   Fri, 8 Apr 2022 14:00:21 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v9 00/23] drm/rockchip: RK356x VOP2 support
+Message-ID: <20220408120021.GO4012@pengutronix.de>
+References: <20220328151116.2034635-1-s.hauer@pengutronix.de>
+ <FB201567-AE5A-4242-82F1-7C55D8F111EA@gmail.com>
+ <20220401125205.GL4012@pengutronix.de>
+ <5420D26D-34FD-4637-B602-F6271E38BB8D@gmail.com>
+ <BA4C591F-D115-43D2-BF59-A75B29889E50@gmail.com>
+ <20220408080748.GA2387@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220408080748.GA2387@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 13:59:56 up 9 days, 29 min, 69 users,  load average: 0.11, 0.12,
+ 0.10
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,92 +70,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for the haptics driver found on the phone.
+On Fri, Apr 08, 2022 at 10:07:48AM +0200, Sascha Hauer wrote:
+> On Wed, Apr 06, 2022 at 11:47:22AM +0200, Piotr Oniszczuk wrote:
+> > 
+> > 
+> > > Wiadomość napisana przez Piotr Oniszczuk <piotr.oniszczuk@gmail.com> w dniu 01.04.2022, o godz. 15:05:
+> > > Sascha
+> > > 
+> > > Now works perfectly!
+> > > (hd playback with 3.5...5.5% cpu while rendering to drm plane)
+> > > 
+> > > Fantastic work of You!
+> > 
+> > Sascha,
+> > 
+> > Having vop2 finally working with drm planes rendering i discovered another issue: overlay osd is invisible at playback. 
+> > 
+> > context: player draws video on plane #X and osd on overlay plane #Y
+> > When user do i.e. seek at playback - app uses overlay OSD plane to display OSD to user. This approach is used by majority of players (KODI, etc.)
+> > 
+> > This works well on all platforms i have  - except rk3566 
+> > 
+> > For me it looks like z-order vop2 issue or alpha blending issue.
+> > As this is only on rk3566 and only on drm-planes mode - issue is vop2 related imho.
+> 
+> That turned out to be simpler than I thought it would be. The zpos
+> values were never actually written to the hardware. Please try the
+> following fixup, it should fix this issue.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
-This patch depends on the i2c10 node introduced in this patch:
-https://lore.kernel.org/linux-arm-msm/20220408114205.234635-2-luca.weiss@fairphone.com/
+Or better try v10 which I have just sent.
 
-For reference, the dt properties are based on the following properties
-from the original vendor driver:
+Sascha
 
-vib_f0_pre = < 2350 >;
-=> awinic,f0-preset = <2350>;
-
-vib_f0_coeff = < 260 >;
-=> awinic,f0-coefficient = <260>;
-
-vib_f0_cali_percen = < 7 >;
-=> awinic,f0-calibration-percent = <7>;
-
-vib_cont_drv_lev = < 125 >;
-=> awinic,drive-level = <125>;
-
-vib_f0_trace_parameter = < 0x05 0x03 0x02 0x0f >;
-=> awinic,f0-detection-play-time = <5>;
-=> awinic,f0-detection-wait-time = <3>;
-=> awinic,f0-detection-repeat = <2>;
-=> awinic,f0-detection-trace = <15>;
-
-vib_bstdbg = < 0x30 0xeb 0xd4 0 0 0 >;
-=> awinic,boost-debug = /bits/ 8 <0x30 0xeb 0xd4>;
-
-vib_tset = < 0x12 >;
-=> awinic,tset = /bits/ 8 <0x12>;
-
-vib_r_spare = < 0x68 >;
-=> awinic,r-spare = /bits/ 8 <0x68>;
-
-vib_bemf_config = < 0x10 0x08 0x03 0xf8 >;
-                                 (0x10 << 8) | 0x08
-=> awinic,bemf-upper-threshold = <4104>;
-                                 (0x03 << 8) | 0xf8
-=> awinic,bemf-lower-threshold = <1016>;
-
- .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-index 67d14bda3797..4691a5e5c8e5 100644
---- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-+++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-@@ -296,6 +296,35 @@ &cdsp {
- 	firmware-name = "qcom/sm7225/fairphone4/cdsp.mdt";
- };
- 
-+&i2c10 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	haptics@5a {
-+		compatible = "awinic,aw8695";
-+		reg = <0x5a>;
-+		interrupts-extended = <&tlmm 85 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&tlmm 90 GPIO_ACTIVE_HIGH>;
-+
-+		awinic,f0-preset = <2350>;
-+		awinic,f0-coefficient = <260>;
-+		awinic,f0-calibration-percent = <7>;
-+		awinic,drive-level = <125>;
-+
-+		awinic,f0-detection-play-time = <5>;
-+		awinic,f0-detection-wait-time = <3>;
-+		awinic,f0-detection-repeat = <2>;
-+		awinic,f0-detection-trace = <15>;
-+
-+		awinic,boost-debug = /bits/ 8 <0x30 0xeb 0xd4>;
-+		awinic,tset = /bits/ 8 <0x12>;
-+		awinic,r-spare = /bits/ 8 <0x68>;
-+
-+		awinic,bemf-upper-threshold = <4104>;
-+		awinic,bemf-lower-threshold = <1016>;
-+	};
-+};
-+
- &mpss {
- 	status = "okay";
- 	firmware-name = "qcom/sm7225/fairphone4/modem.mdt";
 -- 
-2.35.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
