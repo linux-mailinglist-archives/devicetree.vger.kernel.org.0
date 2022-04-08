@@ -2,127 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A3B24F9DA4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B09D4F9DC9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 21:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237286AbiDHT1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 15:27:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55830 "EHLO
+        id S233015AbiDHTwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 15:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239253AbiDHT1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:27:33 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6CDFA1FDFC5
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 12:25:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1649445927;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=UGrov/V4uOu3LT5x6dwFAgilRHaV8cu7rkG7AUn9KTY=;
-        b=h5cJ5V2Q8G5FWDMZJr6M2jJ59Jrq8M4UHC+cg3Ftpa4GD/yT08sutXH/Pngr52KwIrtKX1
-        OF31gA59XEd62zAu8dDG0OYLuQ4PGfjBw9QpfJH59O7Ovm5lDIg+H8aAvAlBN5rF/PHgaI
-        QTXm64b2pX00KkmtQbw8UbILJRplhPc=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-461-N7pgVzpHOYyCxdFr_iEEQw-1; Fri, 08 Apr 2022 15:25:26 -0400
-X-MC-Unique: N7pgVzpHOYyCxdFr_iEEQw-1
-Received: by mail-wm1-f71.google.com with SMTP id k16-20020a7bc310000000b0038e6cf00439so4823543wmj.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 12:25:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=UGrov/V4uOu3LT5x6dwFAgilRHaV8cu7rkG7AUn9KTY=;
-        b=KiqoVcsHHRhwHXMxKBt9xAlQ+Al9X1Tu39n6dbv5hPK1vfT+qPhQ9UaRczUwrnXh16
-         eDWTawCsw1U7IdXQUC7ewtRX8NSZtBnoOQGbjxMaPJfdkH5DhZhSij7u9y1RjC4W98ei
-         /0nfsECuGxqrlUOQUmq44HKbpZirnDdh8V8B8pIkZekSVI3V5SfEh4MmcVJ4+rlpvX38
-         TZxGOnX7xiA5koOTHnkdOyDmfw6enAecp67OPfeM1cJiAHN7g4UROWbtHRnJATmthbr+
-         ULfYKlpqEI7/cYM89xJMiHM1O8fEt/wdPtduOvZ1S97Ktw3RwLdyMkG48hat3u+xtPK4
-         Rksw==
-X-Gm-Message-State: AOAM530Ys5auDMsbOrXfxqqww9aH9e2I5vxELVWc8S3kaEDK9e25Rv3g
-        RIKcDMLTI4jrz6ilrnVJ2OEoHcjJhM+9Socm6S5Svoskll/G8t6xAW0BY6NaTNjbIWbEadJD55r
-        RGqDK57OHfhnPT4FelO0Yjw==
-X-Received: by 2002:a5d:6a0b:0:b0:207:9e23:8b4b with SMTP id m11-20020a5d6a0b000000b002079e238b4bmr45502wru.337.1649445925314;
-        Fri, 08 Apr 2022 12:25:25 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwtpxhv4RA2iFT06aQJ6jH2+mBKBrcJL3FNdxAkbV0UH3rboulTNyoMaM+1BcHn/wT4wRNyKg==
-X-Received: by 2002:a5d:6a0b:0:b0:207:9e23:8b4b with SMTP id m11-20020a5d6a0b000000b002079e238b4bmr45485wru.337.1649445925090;
-        Fri, 08 Apr 2022 12:25:25 -0700 (PDT)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id m7-20020adfe0c7000000b002060e7bbe49sm19704733wri.45.2022.04.08.12.25.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 12:25:24 -0700 (PDT)
-Message-ID: <dfc438ab-29fd-881d-f019-7223cae60e88@redhat.com>
-Date:   Fri, 8 Apr 2022 21:25:18 +0200
+        with ESMTP id S233000AbiDHTwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 15:52:13 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB82CE7;
+        Fri,  8 Apr 2022 12:50:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649447409; x=1680983409;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NFsxnCy8jPc0T8qrhjEMXjZ/Yl35VCVnze/5CyH4DhI=;
+  b=eAp+xma37z+Q90McpeCvtk05+uxrQhk/YUfTYBZuqwPRLWInwmLkRRVE
+   tGaMMUTqg7gpCCAe/FUMc8U1ZOP7ZwlhR1QUJoXRoqu1iaYqJJJp0/Fs+
+   0PU9crgLQ68sOiIK8QNf7ucLMwxSC2ji99S/le3iSqYO79kktypmQTcLy
+   +/19acWkD/godtNk9aAtcXCCARz3+q0AN15eDSI00wQnMondHb0N25fLy
+   5M3Aku2Pzbw7RHGZrhArSQBpubcXnGEE7y+jWiJHwTDNQuBizq/4LmchN
+   zFM1NOfpGBB00/fX763o+G9cnGsy5JWLJrjsgjJBuNzD4r1+2T6oDr45M
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="260515949"
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
+   d="scan'208";a="260515949"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 12:50:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; 
+   d="scan'208";a="524897967"
+Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 08 Apr 2022 12:50:05 -0700
+Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1ncucO-0000aT-JY;
+        Fri, 08 Apr 2022 19:50:04 +0000
+Date:   Sat, 9 Apr 2022 03:49:09 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fairphone-fp4: Add AW8695
+ haptics
+Message-ID: <202204090333.QZXMI2tu-lkp@intel.com>
+References: <20220408115311.237039-3-luca.weiss@fairphone.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/5] dt-bindings: display: ssd1307fb: Deprecate fbdev
- compatible strings
-Content-Language: en-US
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org
-References: <20220407200205.28838-1-javierm@redhat.com>
- <20220407200205.28838-2-javierm@redhat.com>
- <YlB9TsbhoQblo1H8@robh.at.kernel.org>
- <ffe5c7d4-d27f-ccb6-932e-e027e1ae14da@redhat.com>
-In-Reply-To: <ffe5c7d4-d27f-ccb6-932e-e027e1ae14da@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220408115311.237039-3-luca.weiss@fairphone.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/22 21:19, Javier Martinez Canillas wrote:
+Hi Luca,
 
-[snip]
+Thank you for the patch! Yet something to improve:
 
->>
->> There's also no reason to put the bus interface into the compatible as 
->> the same compatible will work on different buses. But since you want to 
->> add SPI, just using the 'i2c' one will confuse people. For that reason 
->> you could add 'solomon,ssd1305', etc. for both SPI support and I2C DRM.
-> 
-> That's not really true. There's a reason to add per bus compatible strings
-> at least in Linux. And is that there's no information about the bus types
-> in module aliases that are reported to user-space for module auto-loading.
->
+[auto build test ERROR on dtor-input/next]
+[also build test ERROR on hid/for-next robh/for-next v5.18-rc1 next-20220408]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Forgot to mention that in this particular case it will work but just because
-the SPI subsystem always report a module alias of the form "spi:device" even
-for devices that are registered through OF.
+url:    https://github.com/intel-lab-lkp/linux/commits/Luca-Weiss/dt-bindings-input-Add-bindings-for-Awinic-AW8695-haptics/20220408-195432
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+config: arm64-randconfig-r015-20220408 (https://download.01.org/0day-ci/archive/20220409/202204090333.QZXMI2tu-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/3f233916afe417b8d4b9100f560892dff2c93f0c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Luca-Weiss/dt-bindings-input-Add-bindings-for-Awinic-AW8695-haptics/20220408-195432
+        git checkout 3f233916afe417b8d4b9100f560892dff2c93f0c
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-So having a single "solomon,ssd1306" would work because for I2C the module
-alias will be "of:NoledT(null)Csolomon,ssd1306" and for SPI it will be
-"spi:ssd1306".
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-But if ever the SPI subsystem is fixed to report proper OF module aliases
-things will break. And since the DT bindings is an ABI, it's safer to have
-"-i2c" and "-spi" compatible strings variants.
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts:298.1-7 Label or path i2c10 not found
+   FATAL ERROR: Syntax error parsing input tree
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
