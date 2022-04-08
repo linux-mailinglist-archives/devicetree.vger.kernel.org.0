@@ -2,82 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50E9C4F9AD1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9182C4F9A96
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233234AbiDHQkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 12:40:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44296 "EHLO
+        id S231269AbiDHQ2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 12:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232714AbiDHQkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:40:35 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332AE122213
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:38:28 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E2CE383AFF;
-        Fri,  8 Apr 2022 18:38:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1649435905;
-        bh=FosmuyZlHcCoNFnrY5Gn852WiIIppXj5Vt/uxU8sfzE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CHli/DT0NNYtghCfxR7mxxAY83YXOXb+NpuFExnbEWek75MUYGDxteDHZWDUfUaDi
-         jafw+/BaewVlADp9+I1rAc/lsKrEmSyhZk1b7y1338iPxzhvm0dVrXvxXnQBfN5DfF
-         jHRvIQVytZMVE8nDLhIcX1/q3ybONQr66a70jTu5IYNhDqImU+sGMuqvucknvfjBHz
-         kwLB9aGaUCIfYAN/O0WAWu5xBWVMsCnFypYw1njJzWaQxe81oK/XsUvQ3AH4XVZuSf
-         djkVucd1hxSV3mGVnPh85GFDIcIEUPca4NsREljkcmtsW7KNit3ZfP7WR7/l/MhtTX
-         HnF4+vTiKwKTg==
-Message-ID: <d662e462-b9a2-39ab-cefb-5d391d49a96b@denx.de>
-Date:   Fri, 8 Apr 2022 18:25:26 +0200
+        with ESMTP id S229865AbiDHQ2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:28:49 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41E7D365A31
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:26:45 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id q129so9349853oif.4
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 09:26:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3fbZmWB6O3mb/21fFRIc132TWoVAB1cJZxMXBwE2MHc=;
+        b=z7mBKMRGWsboA6Fg18NBg8ipuc8VUNFKHc879q9vILXgpiWm/R94Hw29vvtN91dUzb
+         cdPkl+6Ytp3CPngUfkVAJohYVMX0MO2qmMwD4Ni3e7jCx0M82ywquY5/CtPoNh4jhQyh
+         nwLuUx9EeZymQKhsp7Bu3PWewbMKxwzMn9Y+f0MvSQMK9XwEyOnLNSE+hdeilLMtE9fX
+         WB1WOWxJrwXLBgIKTCEW5+BlSlKtjS0JYAGIwVvR29TGLpAOxfxXiddmY8yg+4bICy60
+         lJp/yVykAPOdFKJZRX4bY0UoZ/XPRc5/G74QocrUnxcZx1sunLBQeDA9iR0ubk1weclu
+         bSKA==
+X-Gm-Message-State: AOAM533lm4Tv5v5007sOBTjnjia4MRTriwN/xZJwkulPMKUmAKO6geDM
+        K/8uxQ/vLgKm+AnaGvQE7g==
+X-Google-Smtp-Source: ABdhPJxY7fkuQ6s7RK/rZfjDFwW9frnIB8exlVBfHb1VI6Tjtd8dQFqX8ZMxqrA5uRSzqNrck1RRyA==
+X-Received: by 2002:a05:6808:1895:b0:2d9:fcf6:94b4 with SMTP id bi21-20020a056808189500b002d9fcf694b4mr222839oib.243.1649435204315;
+        Fri, 08 Apr 2022 09:26:44 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p16-20020a05680811d000b002d72ec3a921sm8857640oiv.21.2022.04.08.09.26.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 09:26:44 -0700 (PDT)
+Received: (nullmailer pid 3601685 invoked by uid 1000);
+        Fri, 08 Apr 2022 16:26:43 -0000
+Date:   Fri, 8 Apr 2022 11:26:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Rui Miguel Silva <rui.silva@linaro.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] arm64: dts: arm: add corstone1000 device tree
+Message-ID: <YlBiQ1ss8D2Bg8IZ@robh.at.kernel.org>
+References: <20220408131922.3864348-1-rui.silva@linaro.org>
+ <20220408131922.3864348-3-rui.silva@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Mini Toradex Verdin
- based Menlo board
-Content-Language: en-US
-To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     "peng.fan@nxp.com" <peng.fan@nxp.com>,
-        "festevam@denx.de" <festevam@denx.de>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20220407202456.244917-1-marex@denx.de>
- <defe2e0dc5447028e38014e55d77b98b39d8a1a4.camel@toradex.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <defe2e0dc5447028e38014e55d77b98b39d8a1a4.camel@toradex.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220408131922.3864348-3-rui.silva@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/8/22 09:55, Marcel Ziswiler wrote:
-
-[...]
->> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->> index 8a7ed7782e99f..a6286581fa13b 100644
->> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->> @@ -819,6 +819,7 @@ properties:
->>                 - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
->>                 - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
->>                 - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) SOM
->> +              - menlo,mx8menlo            # i.MX8MM Menlo board
+On Fri, Apr 08, 2022 at 02:19:22PM +0100, Rui Miguel Silva wrote:
+> Corstone1000 is a platform from arm, which includes pre
+> verified Corstone SSE710 sub-system that combines Cortex-A and
+> Cortex-M processors [0].
 > 
-> Would it make sense mentioning that it is a carrier board for Verdin modules?
+> These device trees contains the necessary bits to support the
+> Corstone 1000 FVP (Fixed Virtual Platform) [1] and the
+> FPGA MPS3 board Cortex-A35 implementation at Cortex-A35 host
+> side of this platform. [2]
+> 
+> 0: https://developer.arm.com/documentation/102360/0000
+> 1: https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps
+> 2: https://developer.arm.com/documentation/dai0550/c/
+> 
+> Signed-off-by: Rui Miguel Silva <rui.silva@linaro.org>
+> ---
+>  arch/arm64/boot/dts/arm/Makefile              |   1 +
+>  arch/arm64/boot/dts/arm/corstone1000-fvp.dts  |  51 ++++++
+>  arch/arm64/boot/dts/arm/corstone1000-mps3.dts |  32 ++++
+>  arch/arm64/boot/dts/arm/corstone1000.dtsi     | 164 ++++++++++++++++++
+>  4 files changed, 248 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-fvp.dts
+>  create mode 100644 arch/arm64/boot/dts/arm/corstone1000-mps3.dts
+>  create mode 100644 arch/arm64/boot/dts/arm/corstone1000.dtsi
 
-I will add it in V2.
+Reviewed-by: Rob Herring <robh@kernel.org>
