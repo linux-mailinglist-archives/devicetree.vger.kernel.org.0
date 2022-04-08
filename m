@@ -2,56 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7824F907C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A3A4F907F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbiDHIPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:15:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50026 "EHLO
+        id S231352AbiDHIPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231300AbiDHIPF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:15:05 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032E64D9D5
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:13:03 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1ncjjg-0007iG-8O; Fri, 08 Apr 2022 10:12:52 +0200
-Message-ID: <4f8f93c51fedc84d94534e962bc7c68c4a4e5616.camel@pengutronix.de>
-Subject: Re: [PATCH v2 0/7] Add the iMX8MP PCIe support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Hongxing Zhu <hongxing.zhu@nxp.com>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>
-Date:   Fri, 08 Apr 2022 10:12:49 +0200
-In-Reply-To: <AS8PR04MB86766041887E97E22B0AC8C48CE99@AS8PR04MB8676.eurprd04.prod.outlook.com>
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
-         <CAJ+vNU0McZxj_74DC0wCUyHq-NaT14URnvUP+kvudz7YLQq7fg@mail.gmail.com>
-         <AS8PR04MB86766041887E97E22B0AC8C48CE99@AS8PR04MB8676.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S231290AbiDHIPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:15:08 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 73FE55BE60;
+        Fri,  8 Apr 2022 01:13:05 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 1CFAB807E;
+        Fri,  8 Apr 2022 08:10:38 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH] dt-bindings: timer: Update TI timer to yaml and add compatible for am6
+Date:   Fri,  8 Apr 2022 11:12:58 +0300
+Message-Id: <20220408081258.57213-1-tony@atomide.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,43 +40,184 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 08.04.2022 um 03:14 +0000 schrieb Hongxing Zhu:
-> > 
-[...]
-> > Richard,
-> > 
-> > Thanks for working on this!
-> > 
-> > Do you plan on submitting another version soon? I've tried to test this with an
-> > imx8mp board I'm bringing up and while the host controller enumerates I fail
-> > to get a link to a device. It's very likely I am missing something as this series
-> > depends on the IMX8MP blk-ctrl and gpc series which I also can't cleanly apply.
-> > Lucas just submitted a 'consolidated i.MX8MP HSIO/MEDIA/HDMI blk-ctrl
-> > series' [1] yet I can't find a repo/branch that applies to either.
-> > 
-> > Perhaps you have a git repo somewhere I can look at while we wait for
-> > imx8mp blk-ctl/gpc to settle and you to submit a v3?
-> Hi Tim:
-> Thanks for your kindly help to do the tests.
-> I had listed the dependencies in the cover-letter log.
-> Alexander and I used to test this series commits based on the V5.17 kernel.
-> 
-> Lucas had provided some review comments and suggestions about the PLL bits
->  manipulations of HSIOMIX in i.MX8MP PCIe PHY driver #3 of this series.
-> And he suggested to let the HSIOMIX blk-ctrl make this PLL as a real clock,
->  and used by i.MX8MP PCIe PHY driver later.
-> 
-> Although I have some confusions, it's better let's wating for the blk-ctrl
-> settle down and get clear discussion with Lucas later.
-> How do you think about that?
+Let's update the TI timer binding to use yaml. And add compatible for
+ti,am654-timer for TI am64, am65 and j72 SoCs. As the timer hardware is
+the same between am64, am65 and j72 we use the compatible name for the
+earliest SoC with this timer.
 
-Just to let you know my plans: I was quite busy with getting the
-i.MX8MP HDMI part to work. Now that this is at least in a state where
-it can collect some feedback from upstream I have some time to circle
-back to this topic. I can't commit to do it immediately, but I'll get
-around to looking at the PCIe series a bit more in-depth and apply my
-HSIO PLL suggestion to the blk-ctrl driver during the next week.
+As this binding is specific to the TI dual-mode timers also known
+as dm-timers, let's use ti,timer-dm.yaml naming for the new file.
 
-Regards,
-Lucas
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Keerthy <j-keerthy@ti.com>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ .../bindings/timer/ti,timer-dm.yaml           | 105 ++++++++++++++++++
+ .../devicetree/bindings/timer/ti,timer.txt    |  44 --------
+ 2 files changed, 105 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/ti,timer.txt
 
+diff --git a/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml b/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
+new file mode 100644
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/ti,timer-dm.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/ti,timer-dm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for TI dual-mode timer
++
++maintainers:
++  - Tony Lindgren <tony@atomide.com>
++
++description: |
++  The TI dual-mode timer is a general purpose timer with PWM capabilities.
++
++properties:
++  compatible:
++    enum:
++      - ti,omap2420-timer
++      - ti,omap3430-timer
++      - ti,omap4430-timer
++      - ti,omap5430-timer
++      - ti,am335x-timer
++      - ti,am335x-timer-1ms
++      - ti,am654-timer
++
++  reg:
++    minItems: 1
++    maxItems: 2
++    description: Timer IO register range
++
++  '#address-cells':
++    enum: [ 1, 2 ]
++
++  '#size-cells':
++    enum: [ 1, 2 ]
++
++  clocks:
++    description:
++      The functional clock for the timer. Some SoCs like omap24xx also have a
++      separate interface clock, and some clocks may be only defined for the
++      interconnect target module parent.
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    description:
++      Timer clock names like "fck", "timer_sys_ck".
++    oneOf:
++      - enum: [ ick, fck ]
++      - items:
++          - const: fck
++          - enum: [ ick, timer_sys_ck ]
++
++  interrupts:
++    description:
++      Interrupt if available. The timer PWM features may be usable
++      in a limited way even without interrupts.
++    maxItems: 1
++
++  ti,timer-alwon:
++    description:
++      Timer is always enabled when the SoC is powered. Note that some SoCs like
++      am335x can suspend to PM coprocessor RTC only mode and in that case the
++      SoC power is cut including timers.
++    type: boolean
++
++  ti,timer-dsp:
++    description:
++      Timer is routable to the DSP in addition to the operating system.
++    type: boolean
++
++  ti,timer-pwm:
++    description:
++      Timer has been wired for PWM capability.
++    type: boolean
++
++  ti,timer-secure:
++    description:
++      Timer access has been limited to secure mode only.
++    type: boolean
++
++  ti,hwmods:
++    description:
++      Name of the HWMOD associated with timer. This is for legacy
++      omap2/3 platforms only.
++    $ref: /schemas/types.yaml#/definitions/string
++    deprecated: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    timer1: timer@0 {
++      compatible = "ti,am335x-timer-1ms";
++      reg = <0x0 0x400>;
++      interrupts = <67>;
++      ti,timer-alwon;
++      clocks = <&timer1_fck>;
++      clock-names = "fck";
++    };
++...
+diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
+deleted file mode 100644
+--- a/Documentation/devicetree/bindings/timer/ti,timer.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-OMAP Timer bindings
+-
+-Required properties:
+-- compatible:		Should be set to one of the below. Please note that
+-			OMAP44xx devices have timer instances that are 100%
+-			register compatible with OMAP3xxx devices as well as
+-			newer timers that are not 100% register compatible.
+-			So for OMAP44xx devices timer instances may use
+-			different compatible strings.
+-
+-			ti,omap2420-timer (applicable to OMAP24xx devices)
+-			ti,omap3430-timer (applicable to OMAP3xxx/44xx devices)
+-			ti,omap4430-timer (applicable to OMAP44xx devices)
+-			ti,omap5430-timer (applicable to OMAP543x devices)
+-			ti,am335x-timer	(applicable to AM335x devices)
+-			ti,am335x-timer-1ms (applicable to AM335x devices)
+-
+-- reg:			Contains timer register address range (base address and
+-			length).
+-- interrupts: 		Contains the interrupt information for the timer. The
+-			format is being dependent on which interrupt controller
+-			the OMAP device uses.
+-- ti,hwmods:		Name of the hwmod associated to the timer, "timer<X>",
+-			where <X> is the instance number of the timer from the
+-			HW spec.
+-
+-Optional properties:
+-- ti,timer-alwon:	Indicates the timer is in an alway-on power domain.
+-- ti,timer-dsp:		Indicates the timer can interrupt the on-chip DSP in
+-			addition to the ARM CPU.
+-- ti,timer-pwm: 	Indicates the timer can generate a PWM output.
+-- ti,timer-secure: 	Indicates the timer is reserved on a secure OMAP device
+-			and therefore cannot be used by the kernel.
+-
+-Example:
+-
+-timer12: timer@48304000 {
+-	compatible = "ti,omap3430-timer";
+-	reg = <0x48304000 0x400>;
+-	interrupts = <95>;
+-	ti,hwmods = "timer12"
+-	ti,timer-alwon;
+-	ti,timer-secure;
+-};
+-- 
+2.35.1
