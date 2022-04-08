@@ -2,179 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DDEC4F98D1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 16:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CAF34F98FB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237306AbiDHPAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:00:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41614 "EHLO
+        id S237369AbiDHPHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:07:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237304AbiDHPAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:00:45 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E80BE1C5900
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 07:58:40 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id j21so10963164qta.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 07:58:40 -0700 (PDT)
+        with ESMTP id S237424AbiDHPHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:07:35 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA1B7C057C
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:05:30 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id h16so5706542wmd.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:05:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oK4c0Q5n4J9QZqL0KRS62UFXdtvmGL0QpHUG9UqlFtM=;
-        b=JiaoeEJ/h9I9ehyz8BB6b9aKvzhlWiELooPvTLvhQPWAibE2DQQfgLRqmoAyu/5dvT
-         rnPF14ChjvoWWRTv1O1+XGk7d7CJaDjrPBzhI5kNAqSbVvHLEDKlSwnepynKSS382oJy
-         KRSei97PDYMYZ94FSluYQxLrD913+mXOOxVOtoZkWB3KA5eS5WrnMIHM2QkMCAAs7Dbu
-         7bmklpOVzpmMLTFCXp1ZBNeN4XW577KkV4MJy3932uMLZ3wmLOWREGM25Ndko/6r690q
-         r5EPs7PQTXDQR5cT4l3+GmWBYArICqxEdbETXBxTRdr6Q6Dhix31+mOqoVVKgySLNTpy
-         VmWQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=z2vqFQdPAyfvut6ovQoXQ5XOm4NDygCMv5XEJBGIwVs=;
+        b=kZbVnHdSrExx7M2nYO683DIu9cLpkisfrS1P7V37RaHZVOCRV6srvL65ZqTkgVgpps
+         5es1L1ZX8PiQ6lYbBqafkUOufe0j48/IAtOG7kYWyFGkMUmjVJ8ypzm/SI2w1sdQR5P1
+         2lZroaCY2AVXV4lNW9kMFwge7FxP+Dm2U7tamg63N0QSKHVeVE7TOhT0wwD65RqnVfWu
+         6LgitVy/dU9rQr/Ddx2Q8d1ay/ddTBYfj7X63J9gyHcS0dhn3xZd+JFNG8WqXEqzdkKA
+         sZ8MKmIUPDQRPFgnyPigaKFfyBrT3C6gKcZNb8jiYsr8TRg/uUGPvlXy6QoWviwnHxss
+         smhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oK4c0Q5n4J9QZqL0KRS62UFXdtvmGL0QpHUG9UqlFtM=;
-        b=Z5SZ6HgGle2jf2/ICxVaE+kMrbSvuSQztZOTbeFvLqNEh/Ky4/Mkg199oj7qxuKjYc
-         n4McFk895NpFFyhMeDHNFdtpZ+q2l5FtFTfMjGkexn+A1xA9BM050/YS99QZd3rN1rWs
-         GdaO/XyigDKUE2qc+NRx+lcUF81iRmOSujxOCO9M4mzQo6MrKaJLg19y+WM3GPaG4+DO
-         SXB690fOBGlCd6gbfa1Jmkd4BTiMCSUT8g749FKJhCji2v0fAumplg2MLSm4muNopcP2
-         RZMSn/8NzcKiyTGn+fuL2Ndk47zF/mtHdvAQrkEKgc13e7jdCcdXj5FNu9RqkHScfxC6
-         im+Q==
-X-Gm-Message-State: AOAM5319i8znV1GawAFjkTAvboMyKr4prVoYy2B1IEAaEWbWct+nS0XO
-        VAeCyPUG5+pyAujKs/JeAU7GWBaeDVjcccuRMqi64g==
-X-Google-Smtp-Source: ABdhPJz4zF64TRpqJTVRBI33gdjEupkPabNbuA0AKMSnErc+1tO72wtp19hJVfKoDbuiPTth9omw+T8ZHl/AJ/7gkmg=
-X-Received: by 2002:ac8:5a46:0:b0:2e2:2edd:374 with SMTP id
- o6-20020ac85a46000000b002e22edd0374mr16119166qta.295.1649429920056; Fri, 08
- Apr 2022 07:58:40 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=z2vqFQdPAyfvut6ovQoXQ5XOm4NDygCMv5XEJBGIwVs=;
+        b=zZ3r4oCSPeWH3nnkrcUGzlGdIWN2GjY17c84LglwT8bDXcSAQyYtSh3z70vbyiPJra
+         yQfs1QdPNkCwDWDdrGEYjppEzCzn2AyqULsUu4ny5IgiqD92Y4mtZnzabzm6qZ7nlSRi
+         dEdIAnML6frs8r1NTX7lDuTxHozBZTn5CbwXJD81tlu9bixqjuXGDCugs9tJSGTZh0gd
+         0o2Ck0b5NdqGUpwxjGXgR4hFL0pCrCgQRy9abSmV7x16W7+yIZmyI1DZITY5uCqzB9Dl
+         sFkLVxC4QrdZWIloB/igbw8Q0kit1n7q3dxLDtSmv9QPilHOx81BoLmIk3xc7GtmhszV
+         1xUg==
+X-Gm-Message-State: AOAM533QXnUX3XEf8UWmWu00ymflnw7+Xir35cIeoJNTlJU7dd3VXedi
+        4MEwHXGizzUOn4oNARpLBHOOxQ==
+X-Google-Smtp-Source: ABdhPJzaJKjlfwBc4j57iWbiUBbG/JGU1kd5M0DvZJTA45YHU8Zkq5kzdGmXh1xKiEp/TQEZIXxUVQ==
+X-Received: by 2002:a05:600c:4f42:b0:38c:21:fffe with SMTP id m2-20020a05600c4f4200b0038c0021fffemr17300289wmq.63.1649430329411;
+        Fri, 08 Apr 2022 08:05:29 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id l2-20020a05600c4f0200b0038e8fb63293sm4576689wmq.22.2022.04.08.08.05.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Apr 2022 08:05:28 -0700 (PDT)
+Message-ID: <1a45984a-752b-6bad-0320-f0946d83f2b9@linaro.org>
+Date:   Fri, 8 Apr 2022 17:05:27 +0200
 MIME-Version: 1.0
-References: <1648656179-10347-1-git-send-email-quic_sbillaka@quicinc.com>
- <1648656179-10347-2-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=X+QvjwoT2zGP82KW4kD0oMUY6ZgCizSikNX_Uj8dNDqA@mail.gmail.com>
- <392b933f-760c-3c81-1040-c514045df3da@linaro.org> <CAD=FV=W4PYK-t607yjRbfjDjjEZX0KdgHDRukw_vSH8E8EDH6w@mail.gmail.com>
- <CAA8EJppt9XONbgtKfmHmN+==QNqiVJeb8GKJFdZm=yyY-tgmHQ@mail.gmail.com>
- <CAD=FV=U5-sTDLYdkeJWLAOG-0wgxR49VxtwUyUO7z2PuibLGsg@mail.gmail.com>
- <CAA8EJppgfYgQjG8A4LsR-1wmBj3Ku3eO8cKfAYhxjWXL7e3eHg@mail.gmail.com>
- <CAD=FV=V=a1CnT8fqTJR40WoS3BaDQ3xZ=HnHVHqZh=MEmVUZBA@mail.gmail.com>
- <3e5fa57f-d636-879a-b98f-77323d07c156@linaro.org> <CAD=FV=Uibu-kZyix7K4_WVc-+C8xpzTqU4WFy7O=6sukMZrX5g@mail.gmail.com>
- <MW4PR02MB7186245772DAC3E04FA8D1C0E1E69@MW4PR02MB7186.namprd02.prod.outlook.com>
- <CAD=FV=Wk3U7_bVdiCPp8iQ4bcCA_Botemu4pwHeRtgBa3Xk6KQ@mail.gmail.com>
- <c4f086ce-c56f-f7c9-4092-7f2432330d50@quicinc.com> <CAD=FV=UmU_BVUaL_X75yOEvQPtGUBTR5-jiVWBHq7uSRt6HM4Q@mail.gmail.com>
- <225d2c0a-42ec-28ad-688c-e7e9e2035ee1@quicinc.com> <CAD=FV=W=WjSACHvRDFBnkLUp-LU2c4XMu3=FTzTx=zexNF5PAw@mail.gmail.com>
- <CAA8EJpqLZ9up4euGEbhf5QyBqm4tJuLcHi7D+0Si7ak9Jej52w@mail.gmail.com>
- <CAD=FV=XwOzsRf7RnvyBjr5TtedMhC0LJFKoK9tp-kw1eEyuJmQ@mail.gmail.com>
- <CAA8EJprb5UF24WRNvGaY_hSqW--NPd=9=8AaPYWSMbUumNn+dQ@mail.gmail.com> <CAD=FV=UG7k4A+hMXxwju-0mLddD1oJdGngXMkMA-dO3AxOx0rQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=UG7k4A+hMXxwju-0mLddD1oJdGngXMkMA-dO3AxOx0rQ@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 8 Apr 2022 17:58:28 +0300
-Message-ID: <CAA8EJprLRiWrkqLG09UG1arDmo1fuq917ztfxts66p+AaYcYbA@mail.gmail.com>
-Subject: Re: [PATCH v6 1/8] drm/msm/dp: Add eDP support via aux_bus
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sean Paul <sean@poorly.run>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/3] dt-bindings: input: Add bindings for Awinic AW8695
+ haptics
+Content-Language: en-US
+To:     Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220408115311.237039-1-luca.weiss@fairphone.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220408115311.237039-1-luca.weiss@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Apr 2022 at 16:43, Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Fri, Apr 8, 2022 at 5:20 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > > I guess my thought was that in DP you could still create the AUX bus
-> > > at probe time. Then for DP you just return an instant "transfer
-> > > failed" from the AUX bus if HPD isn't asserted. For eDP (as discussed
-> > > elsewhere) when we try to do an AUX transfer then we delay until HPD
-> > > is there.
-> >
-> > I think panel-edp would already handle the delay, so we do not need to
-> > have this logic in the DP driver.
->
-> There's a whole discussion about this between Stephen and me in patch
-> #5 ("drm/msm/dp: wait for hpd high before any sink interaction").
-> Basically:
->
-> * If panel HPD is hooked up to the dedicated HPD pin on the eDP
-> controller then the panel driver doesn't have a way to read it.
+On 08/04/2022 13:53, Luca Weiss wrote:
+> Add a document describing the bindings for the AW8695 LRA Haptic Driver.
 
-I refreshed that dialog. I must admit, I have missed the fact that the
-HPD pin might not be visible as the GPIO pin.
+(...)
 
-> * We can't leverage the existing "HPD" query functions in DRM because
-> those indicate whether a panel is _physically_ connected. For eDP, it
-> always is.
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO connected to RSTN pin (active high)
+> +
+> +  awinic,f0-preset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Default value for the f0 of LRA
+> +
+> +  awinic,f0-coefficient:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Coefficient between actual f0 and the value in the registers
+> +
+> +  awinic,f0-calibration-percent:
+> +    maxItems: 1
+> +    description: Limit of f0 deviation from awinic,f0-preset
+> +
+> +  awinic,drive-level:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Level of drive waveform in normal driving
+> +
+> +  awinic,f0-detection-play-time:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Drive waveform play times in the first period in the f0 detection
 
-Yes, I was thinking about (mis)using the
-drm_bridge_connector_hpd_notify() for generic HPD-related
-notifications (to tell eDP that it should check the current state). I
-have abandoned that idea.
+Use standard unit suffixes for known units (e.g. time).
 
-> For now the rule is that the AUX transfer function is in charge of
-> waiting for HPD for eDP if the dedicated HPD pin is used. If we want
-> to re-invent this we could, but that system works, isn't _too_ ugly,
-> and we're already making big enough changes in this series.
+> +
+> +  awinic,f0-detection-wait-time:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Waveform wait times in the f0 detection
 
-The is_hpd_asserted() looks like a good callback for the aux bus.
-It will allow the panel driver to check if the panel is powered up (in
-the absence of the GPIO pin).
+Ditto.
 
-> > > So we can still acquire resources (clocks, PHY, io maps, etc) at probe
-> > > time for DP and create the AUX bus, right? It will just return
-> > > "-ENODEV" if HPD isn't asserted and you're DP?
-> >
-> > Yes, please. I still suppose that we'd need a separate case to
-> > power_on eDP's PHY during the probe time. Maybe I'm mistaken here.
->
-> I think the ideal way is to do it like Kieran's proposal for sn65dsi86:
->
-> https://lore.kernel.org/r/20220317131250.1481275-4-kieran.bingham+renesas@ideasonboard.com/
->
-> * When enabling HPD (physical hot plug detect) in the hpd_enable()
-> callback you do a pm_runtime_get(). You do the
-> pm_runtime_put_autosuspend() when disabling. This is only used for DP
-> since we only provide DRM_BRIDGE_OP_HPD for DP, not for eDP.
->
-> * We do a pm_runtime_get() / pm_runtime_put_autosuspend() in the AUX
-> transfer routine. While holding the pm_runtime reference we check HPD.
-> For DP we return immediately if HPD isn't asserted. For eDP, we delay.
->
-> * We do the pm_runtime_get() in pre_enable and the pm_runtime_put() in
-> post_disable. For DP this will add a 2nd refcount (since we probably
-> were holding the reference for HPD). For eDP this will cause us to
-> power on.
->
-> * If there's any other time we need to read HW registers, and we
-> aren't guaranteed to already have a pm_runtime reference (like during
-> probe), we can do a temporary pm_runtime_get() /
-> pm_runtime_put_autosuspend().
+> +
+> +  awinic,f0-detection-repeat:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Repeat times in the f0 detection
+> +
+> +  awinic,f0-detection-trace:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Drive waveform play times in the second period and later in the f0 detection
+> +
+> +  awinic,boost-debug:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 3
+> +    maxItems: 3
+> +    description: Values for BSTDBG1-3 registers
 
-This looks good. I'd be more than welcome to review such series.
+Do not encode device programming model (registers) into the binding. You
+need to define it as a property related to hardware itself, not its
+registers (e.g. boost value in mV).
 
-Note: I think this would require using
-drm_bridge_connector_enable_hpd() in the DP code.
-Hopefully at some point we would be able to move all
-drm_bridge_connector calls to the core msm layer.
---
-With best wishes
-Dmitry
+> +
+> +  awinic,tset:
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    description: Value for TSET register
+
+Ditto.
+
+> +
+> +  awinic,r-spare:
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    description: Value for R_SPARE register
+
+Ditto.
+
+
+Best regards,
+Krzysztof
