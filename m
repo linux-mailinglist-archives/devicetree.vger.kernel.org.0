@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405474F90B5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79EA34F90C2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 10:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231701AbiDHI1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 04:27:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43764 "EHLO
+        id S231756AbiDHIaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 04:30:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231629AbiDHI1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:27:05 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1AE1B8FFB
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 01:25:02 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id d10so9264256edj.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 01:25:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0uFzDQ9ka3hrce8//K9E+h2qA1+z8XYzZogK/JPYbio=;
-        b=jBYLjbqH9e3oByNZCvHICqdZ6ihI4UJR8zUHoMg3PU1TcMV9sEIVd2pFhVr152i+WW
-         6xltAUWud25pyuEfgv9npLB++LjGY9YqOSeHGnUEvw3bA/YbwUzHp6Hy3MyvjsqxM7Dp
-         kV8VdsTh62vTphYN/KxpSEt61YUFTt4yAD5ua4Ro2cQCdIZQBhTuyD2P08y6hyjhr+YC
-         KPImZ8pR/h/2gDjTaYEuKl7/p/cSXBBiSzOR53kwW8XKHfA0OCTEwmMt2YCf6yCSS9Ek
-         POrBhgtBnoOeAiiv+31fQ8Fo6erVSyOS68I/9Wj+07MfghRKS7TSYfELXEFbR5CHP6H9
-         oV/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0uFzDQ9ka3hrce8//K9E+h2qA1+z8XYzZogK/JPYbio=;
-        b=DENW33cLOkE40G5EEv23hughLy29ZNG1PllucHqv/r5f5gcwactxdRdA7KUO6D+7lT
-         rY240aFiWRrlgZH2CuFXSKjnm0Xy+9QMHGzzwBEf4LuF6i0wzBugqm/4YxrG+JSpBZqu
-         4cdoDUt+nEvO69gD9OjJLe/gapYg577jyxX8IgL0kl3DySwDnHwlYcrnvmS+lOntMUyu
-         q7oed6jyuMvUDZvZRd9MVDDpt+n/Mu2dR/BkNErhDlIXWxs6qpkvn8PN2grrmyScPZdF
-         hVNvTwf3bqsvThAkZQARxmFKYRS4NY0o4PvvTLrAYNu4BU0UkvVK7otHDmslMVJPMiOo
-         RIRg==
-X-Gm-Message-State: AOAM530ELQUqhSPy7xu4vEB5pu8U45e+UqDN9v2Wpjns/pwxsHnRN+WE
-        RbrOfHvxizH9NNlm7TNeHEI1zg==
-X-Google-Smtp-Source: ABdhPJxL3r9jzp7Pco9U65hlEHZVMRC/lP30PU3euZ19O8Nre4ZqhqoIixumtK8gG03DDzQDiYHYkA==
-X-Received: by 2002:a05:6402:268a:b0:419:e9cb:f62d with SMTP id w10-20020a056402268a00b00419e9cbf62dmr18510068edd.194.1649406300969;
-        Fri, 08 Apr 2022 01:25:00 -0700 (PDT)
-Received: from [192.168.0.187] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id o17-20020a056402439100b0041938757232sm10204557edc.17.2022.04.08.01.25.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 01:25:00 -0700 (PDT)
-Message-ID: <3a4b5e26-e770-d778-5ae5-f46ba00066ce@linaro.org>
-Date:   Fri, 8 Apr 2022 10:24:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] ARM: dts: Drop unused ti,am4372-timer compatible
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
-Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Keerthy <j-keerthy@ti.com>,
+        with ESMTP id S231760AbiDHIaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 04:30:10 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B85929EE2D;
+        Fri,  8 Apr 2022 01:28:07 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2388Rw0A128418;
+        Fri, 8 Apr 2022 03:27:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649406478;
+        bh=2HDzjxil59aCwsm7fYoHlyTAjnrcOPkH946EmkW9CCA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=qJgMeFX+VE8mrlRFrdm8bo1okC1kEF3PSnazKGHZhLdNL2tZtanriss93HodkNTy9
+         AMGX6SEyDJ7muQtjXpB8v31gubvbF0WhAUFBXzbco8apiQcr7pZd1kMKYT8RmbcKvl
+         uzYkMwSYAtIjkZxv+7c87gif3kRDbaQxltAZqyQs=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2388RvpT062069
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 8 Apr 2022 03:27:58 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 8
+ Apr 2022 03:27:57 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 8 Apr 2022 03:27:57 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2388RvkN034940;
+        Fri, 8 Apr 2022 03:27:57 -0500
+Date:   Fri, 8 Apr 2022 03:27:57 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tony Lindgren <tony@atomide.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20220408081216.57146-1-tony@atomide.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220408081216.57146-1-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keerthy <j-keerthy@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: timer: Update TI timer to yaml and add
+ compatible for am6
+Message-ID: <20220408082757.3cnhvekpty4o4j2k@ladder>
+References: <20220408081258.57213-1-tony@atomide.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220408081258.57213-1-tony@atomide.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 10:12, Tony Lindgren wrote:
-> Drop unused (and undocumented) ti,am4372-timer related compatible
-> properties to avoid dtb warnings when updating the binding to yaml.
-> 
-> The dual-mode timer instances on am43 are compatible with the am3
-> timers.
+On 11:12-20220408, Tony Lindgren wrote:
+[...]
 
-Are you sure this is correct approach? Maybe some other user of DTS
-references the am43 compatible, so instead it should be documented in
-the bindings?
+> +  ti,hwmods:
+> +    description:
+> +      Name of the HWMOD associated with timer. This is for legacy
+> +      omap2/3 platforms only.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    deprecated: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
 
-See also recommendation "DO use fallback compatibles...":
-Documentation/devicetree/bindings/writing-bindings.rst
-which maybe applies here?
+Should we strengthen the check like in 8250_omap.yaml - something to the
+effect of:
 
-Best regards,
-Krzysztof
+if:
+  properties:
+    compatible:
+      contains:
+        enum:
+          - ti,omap2420-timer
+          - ti,omap3430-timer
+          - ti,omap4430-timer
+
+then:
+  properties:
+    ti,hwmods:
+      items:
+        - pattern: "^timer([1-9]+)$"
+
+else:
+  properties:
+    ti,hwmods: false
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
