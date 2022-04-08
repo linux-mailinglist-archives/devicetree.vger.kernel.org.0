@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F5B34F9A80
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C5854F9A84
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231126AbiDHQZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 12:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
+        id S230335AbiDHQZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 12:25:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbiDHQZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:25:17 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A03231BBBA
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:23:14 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id t13so8182533pgn.8
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 09:23:14 -0700 (PDT)
+        with ESMTP id S230430AbiDHQZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:25:29 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8AC2AE9C9
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 09:23:22 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d15so8293514pll.10
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 09:23:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=JGCB1sW6LyijUbLjQ0T8cjIYHkAIPaRA2Df2SDrEzx4=;
-        b=AUwD0c/HONK4kHDWXFTViVCCou9fnZO3egeZ7s04cFUrIltfJNz+ce01OgdXRoKPky
-         Qkn7DhXb4N84zNHd/krryzjn7wt8LZHuJrE8sag6vqNiMuhrbA8rmCGniWNhzX93z3W2
-         I7GiWwvIi93BO5QHIKJZ6nPobVHPgqzk3Dgus=
+        bh=lhe1gjfVmNBzu+OAJh4OI2ThwckJvfBSRTmYzb4Lz0s=;
+        b=GEYKFzIcWeEp6hEGddeuWkDudWkl/gOlJK6Hh6JGbmHTlbqv6CNW/ZkiFclphnFgLi
+         htBq+ZuDGcwVO4UyzklcSh0/YAFKedzvFS8L8pp0xp+g8CUAnWS0o1YytTthNovINEfI
+         51kMWQzuAgs94d9kB0pFq4vNMcdLe1X4tlFIk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=JGCB1sW6LyijUbLjQ0T8cjIYHkAIPaRA2Df2SDrEzx4=;
-        b=CsUu8f94Emb/nnM7UxIsYNVNVRH99cjLYkx4HZHJPHLo/IGRXpIDybCw4gt1IcWc3K
-         fScmY481zVcncX+fgSXht1tP6xpr3mXjO+mkUfOyH9Qufagq8kj5/Lx0GsS7h9Q0Dfi5
-         OmmF6/RNUTQrhuoO8w+Ei2ZkI3Gpy61Ub5hHJsbUembnI2XzPZWmKXDF83yLp1U0LxWO
-         MzT9wwfo01ArRR6xF+gqRu536HK6JBi1DTh2qDF9d4pA7c604wLJRynjMvqCIrIxxPwV
-         hJ6zxzN8ieTyRaMxVQ1g5eHuP8vq2bTMQW9D6VZ7MtJI+HbMBZfj2MkJa8IF4F2gX4cS
-         1SKw==
-X-Gm-Message-State: AOAM532ZxgdeRznvDlZ2P8g10kzhUpdt5pSmzo3xDtJA+/Mi+z7aeMXp
-        VuN2KU1VKxuVCEYPHljHfOyJ6g==
-X-Google-Smtp-Source: ABdhPJzVK2WLZLH7V+ZzPjQ0OUWUy++6NHPog+TXp4Ddp3DIpi/rUciXcNDblhENViSmJwi5aCHlIA==
-X-Received: by 2002:a63:9d07:0:b0:398:9594:a48f with SMTP id i7-20020a639d07000000b003989594a48fmr16365061pgd.51.1649434993731;
-        Fri, 08 Apr 2022 09:23:13 -0700 (PDT)
+        bh=lhe1gjfVmNBzu+OAJh4OI2ThwckJvfBSRTmYzb4Lz0s=;
+        b=lxd9JDfyvFzrh8eARbrXlYlWCcHhuKTOOYZcamwgXPMR89IFwc2q4BExjAC76mJCkV
+         6zMe5+kXhYI+hlIW9tVC3svpEPbh1eLFfs/nyTj111WUfJMIzDa/fUr5VUBbQ+1MUSfm
+         2uNC7wH9KYPgWt9KLk/6bULqlrstm4pnRytBu5q87vMeQVROcBqLs/At8seNG6lJJ6K7
+         LWGsT8pjmSn1xrUeeZno8o/bETvDkXIXiYrq/jZthNl1RDqt4Rjboe6hBy9/3JmfHZkj
+         unHH+lIqgriPrMIIVZICjZ4TzpFluicaDij3/oiqqVg2yrsX4Ud0HZmu36RNcvEX1tAr
+         cykQ==
+X-Gm-Message-State: AOAM5302Au9MNdI85PVH9pJM6eNg9GyqmDU6q2w/Z5LuOsLGKUlngjN0
+        XnlqrTBqakwBvB1Hmp4AVD5fCw==
+X-Google-Smtp-Source: ABdhPJzjdH/kgRX17oIXGBe/rX2xmyR6sfgMFtUQQX/U7WzDzL3u6ctkQvEnSDFpMOlRzZI8k5IFCw==
+X-Received: by 2002:a17:90a:c302:b0:1bd:14ff:15 with SMTP id g2-20020a17090ac30200b001bd14ff0015mr22844531pjt.19.1649435001831;
+        Fri, 08 Apr 2022 09:23:21 -0700 (PDT)
 Received: from j-ThinkPad-E14-Gen-2.domain.name ([45.249.78.214])
-        by smtp.gmail.com with ESMTPSA id n18-20020a056a0007d200b004fdac35672fsm24929863pfu.68.2022.04.08.09.23.05
+        by smtp.gmail.com with ESMTPSA id n18-20020a056a0007d200b004fdac35672fsm24929863pfu.68.2022.04.08.09.23.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 09:23:13 -0700 (PDT)
+        Fri, 08 Apr 2022 09:23:21 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Andrzej Hajda <andrzej.hajda@intel.com>,
         Inki Dae <inki.dae@samsung.com>,
@@ -66,9 +66,9 @@ Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
         linux-amarula <linux-amarula@amarulasolutions.com>,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 08/11] drm: bridge: samsung-dsim: Add atomic_get_input_bus_fmts
-Date:   Fri,  8 Apr 2022 21:51:05 +0530
-Message-Id: <20220408162108.184583-9-jagan@amarulasolutions.com>
+Subject: [PATCH 09/11] drm: bridge: samsung-dsim: Add input_bus_flags
+Date:   Fri,  8 Apr 2022 21:51:06 +0530
+Message-Id: <20220408162108.184583-10-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220408162108.184583-1-jagan@amarulasolutions.com>
 References: <20220408162108.184583-1-jagan@amarulasolutions.com>
@@ -84,67 +84,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Finding the right input bus format throughout the pipeline is hard
-so add atomic_get_input_bus_fmts callback and initialize with the
-default RGB888_1X24 bus format on DSI-end.
+eLCDIF is expecting to have input_bus_flags as DE_LOW in order to
+set active low during valid data transfer on each horizontal line.
 
-This format can be used in pipeline for negotiating bus format between
-the DSI-end of this bridge and the other component closer to pipeline
-components.
+Add DE_LOW flag via drm bridge timings.
 
 v1:
-* new patch
+* none
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- drivers/gpu/drm/bridge/samsung-dsim.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ drivers/gpu/drm/bridge/samsung-dsim.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-index 38db1f93ed51..02802526f82f 100644
+index 02802526f82f..71bbaf19f530 100644
 --- a/drivers/gpu/drm/bridge/samsung-dsim.c
 +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-@@ -1338,6 +1338,32 @@ static void samsung_dsim_atomic_post_disable(struct drm_bridge *bridge,
- 	pm_runtime_put_sync(dsi->dev);
+@@ -1543,6 +1543,10 @@ __weak void samsung_dsim_plat_remove(struct samsung_dsim *priv)
+ {
  }
  
-+#define MAX_INPUT_SEL_FORMATS	1
++static const struct drm_bridge_timings samsung_dsim_bridge_timings = {
++	.input_bus_flags = DRM_BUS_FLAG_DE_LOW,
++};
 +
-+static u32 *
-+samsung_dsim_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+				       struct drm_bridge_state *bridge_state,
-+				       struct drm_crtc_state *crtc_state,
-+				       struct drm_connector_state *conn_state,
-+				       u32 output_fmt,
-+				       unsigned int *num_input_fmts)
-+{
-+	u32 *input_fmts;
-+
-+	*num_input_fmts = 0;
-+
-+	input_fmts = kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts),
-+			     GFP_KERNEL);
-+	if (!input_fmts)
-+		return NULL;
-+
-+	/* This is the DSI-end bus format */
-+	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-+	*num_input_fmts = 1;
-+
-+	return input_fmts;
-+}
-+
- static int samsung_dsim_atomic_check(struct drm_bridge *bridge,
- 				     struct drm_bridge_state *bridge_state,
- 				     struct drm_crtc_state *crtc_state,
-@@ -1372,6 +1398,7 @@ static const struct drm_bridge_funcs samsung_dsim_bridge_funcs = {
- 	.atomic_duplicate_state		= drm_atomic_helper_bridge_duplicate_state,
- 	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,
- 	.atomic_reset			= drm_atomic_helper_bridge_reset,
-+	.atomic_get_input_bus_fmts	= samsung_dsim_atomic_get_input_bus_fmts,
- 	.atomic_check			= samsung_dsim_atomic_check,
- 	.atomic_pre_enable		= samsung_dsim_atomic_pre_enable,
- 	.atomic_enable			= samsung_dsim_atomic_enable,
+ static int samsung_dsim_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -1622,6 +1626,7 @@ static int samsung_dsim_probe(struct platform_device *pdev)
+ 
+ 	dsi->bridge.funcs = &samsung_dsim_bridge_funcs;
+ 	dsi->bridge.of_node = dev->of_node;
++	dsi->bridge.timings = &samsung_dsim_bridge_timings;
+ 	dsi->bridge.type = DRM_MODE_CONNECTOR_DSI;
+ 
+ 	if (dsi->driver_data->platform_init) {
 -- 
 2.25.1
 
