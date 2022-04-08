@@ -2,129 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B104F8F72
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E9AA4F8FA8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 09:34:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbiDHHY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 03:24:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45458 "EHLO
+        id S229483AbiDHHgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 03:36:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiDHHY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 03:24:26 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B982D8C35
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 00:22:21 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id u3so11504107wrg.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 00:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=+i3M7I/si8nBTwp4HQFlyF6kBw/Y86O3UtaIOhQqSgw=;
-        b=njMPMNppMly5ssPAOWWTMzALhM0HuSZ4dOHB+/r2gqxGyi/nQQNRlus2x/AzAuQrKq
-         xCilly7J5UpWytTYHGj/BJaOyWPPe6iScw8BQ1a/oUCPMMw4Yp1CxsDEGRWKgFfd+ykL
-         ZGMozqHk83wJ5DmDgszP1Z35wW+R9WleLoi+DIx2nvUQDCefq/HcPuchXIBbwRZ+7wiL
-         XuBSOvjFLXquYJb4WPbu2gZnDc+YANvNfHJ9gPYnGlX8f4IANQYMlBC+yG/mThiAUJat
-         luu6g5f9FuWplQUkrgYlMMRm0SWFJTby6uL48HZSa1aiYsry0+sbc1tk2fR9A8EfCOiz
-         vbNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=+i3M7I/si8nBTwp4HQFlyF6kBw/Y86O3UtaIOhQqSgw=;
-        b=q62jfIT64T4CQy+OugpL6FGxXAPTTlMMh6q55ijMxD1Fr+6MB1mqaur3KMzoITxXlH
-         NJPtPO274KZOxDowHdfKDisIqtKbObmwidRlOnwLy6LTn/jqO2vYX6b5gdQ5z/MTGoZ2
-         B96tkbB4UqehaSe+Sbw8C/FQ3tLj+mQELAIzzEYMLPJzfJ2nWa81eoMGkHzGC/ATQuHo
-         uo74mW4JQiyUGxR24YCO5HOD9b0UeaE8xe7KxXNA4m9yr5vwmkzg9HJhSlZj254ApMnh
-         dRWZx70C/EvxzF6kIbHFwMZClwmdUCX+7eNBEUAlydYd8ewzqLPvR/BrDMePd/MfkIt0
-         qNaw==
-X-Gm-Message-State: AOAM532zMyWWR2QrKiygVycNHY4IDk60TcSnHh3ttTUrMRms/Aq81hqf
-        G5iKfUvEwuQPSBmEMLw918KGeg==
-X-Google-Smtp-Source: ABdhPJzgZitTrYz3M9Cl0bidcrh0p0LPFm7YGEXMIsJOsY8wQ5D2NRTazZW7HoEvc0P98B75WWK8dg==
-X-Received: by 2002:a5d:44ca:0:b0:206:893:6b5c with SMTP id z10-20020a5d44ca000000b0020608936b5cmr13623307wrr.145.1649402540310;
-        Fri, 08 Apr 2022 00:22:20 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:eacd:ce6:e294:acd1? ([2001:861:44c0:66c0:eacd:ce6:e294:acd1])
-        by smtp.gmail.com with ESMTPSA id m7-20020adfe0c7000000b002060e7bbe49sm17924124wri.45.2022.04.08.00.22.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 00:22:19 -0700 (PDT)
-Message-ID: <e704bdfd-7b09-6549-5efc-a2088e3490f1@baylibre.com>
-Date:   Fri, 8 Apr 2022 09:22:18 +0200
+        with ESMTP id S229437AbiDHHgi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 03:36:38 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5564517DC8C;
+        Fri,  8 Apr 2022 00:34:33 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2387YLf3112553;
+        Fri, 8 Apr 2022 02:34:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1649403261;
+        bh=utB+5AJ0MG+aUScpIOnzQKbcaFxDRZbL4sQdqSpNBT0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XyMHiYNPIR0MA1iQ7sXFITOkjxzyj1z8YkGf7pMZBMmeHlBldxDA81+L40N3W/pjv
+         2iPicZJv3YjpFjK/7TXBod7ZYF1yHGj3o99nfJkqdRbEF30VNi3dtWQLP+ImyMHQW6
+         Y0OOCNiZBffl7F7Xs/PiEvjNhZT3BpdLSeL4H2Cs=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2387YLxQ030868
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 8 Apr 2022 02:34:21 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 8
+ Apr 2022 02:34:18 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 8 Apr 2022 02:34:18 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2387YIpj073598;
+        Fri, 8 Apr 2022 02:34:18 -0500
+Date:   Fri, 8 Apr 2022 02:34:18 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tony Lindgren <tony@atomide.com>
+CC:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Keerthy <j-keerthy@ti.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/4] dt-bindings: timer: Add am6 compatible for ti-timer
+Message-ID: <20220408073418.4yjs3ykt34fhqjco@boondocks>
+References: <20220407071006.37031-1-tony@atomide.com>
+ <20220407133344.v2x2b6rkmskatips@handled>
+ <Yk+8P5EdsdZR5h1Z@atomide.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] arm64: dts: remove cpu compatible "arm,armv8" for s4
-Content-Language: en-US
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220408070901.26446-1-xianwei.zhao@amlogic.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220408070901.26446-1-xianwei.zhao@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <Yk+8P5EdsdZR5h1Z@atomide.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 09:09, Xianwei Zhao wrote:
-> Amlogic s4 device is already applied, but cpu compatible 'arm,armv8'
-> is only valid for software models, so we remove it.
+On 07:38-20220408, Tony Lindgren wrote:
+> Hi,
 > 
-> Fixes: ac4dfd0d1d35 ("arm64: dts: add support for S4 based Amlogic AQ222")
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
+> * Nishanth Menon <nm@ti.com> [220407 13:31]:
+> > On 10:10-20220407, Tony Lindgren wrote:
+> > > diff --git a/Documentation/devicetree/bindings/timer/ti,timer.txt b/Documentation/devicetree/bindings/timer/ti,timer.txt
+> > > --- a/Documentation/devicetree/bindings/timer/ti,timer.txt
+> > > +++ b/Documentation/devicetree/bindings/timer/ti,timer.txt
+> > > @@ -14,6 +14,7 @@ Required properties:
+> > >  			ti,omap5430-timer (applicable to OMAP543x devices)
+> > >  			ti,am335x-timer	(applicable to AM335x devices)
+> > >  			ti,am335x-timer-1ms (applicable to AM335x devices)
+> > > +			ti,am6-timer (applicable to AM6 devices)
+> > 
+> > Suggestion:
+> > 
+> > Could we call this ti,am65-timer instead? AM6 is a bit nuanced and spans
+> > a couple of sub SoC architectures.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index bf9ae1e1016b..480afa2cc61f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -13,28 +13,28 @@ cpus {
->   
->   		cpu0: cpu@0 {
->   			device_type = "cpu";
-> -			compatible = "arm,cortex-a35","arm,armv8";
-> +			compatible = "arm,cortex-a35";
->   			reg = <0x0 0x0>;
->   			enable-method = "psci";
->   		};
->   
->   		cpu1: cpu@1 {
->   			device_type = "cpu";
-> -			compatible = "arm,cortex-a35","arm,armv8";
-> +			compatible = "arm,cortex-a35";
->   			reg = <0x0 0x1>;
->   			enable-method = "psci";
->   		};
->   
->   		cpu2: cpu@2 {
->   			device_type = "cpu";
-> -			compatible = "arm,cortex-a35","arm,armv8";
-> +			compatible = "arm,cortex-a35";
->   			reg = <0x0 0x2>;
->   			enable-method = "psci";
->   		};
->   
->   		cpu3: cpu@3 {
->   			device_type = "cpu";
-> -			compatible = "arm,cortex-a35","arm,armv8";
-> +			compatible = "arm,cortex-a35";
->   			reg = <0x0 0x3>;
->   			enable-method = "psci";
->   		};
+> I think the timer hardware is the same across am64, am65 and j7. So we
+> should pick something to represent the am6 timers as it would allow using
+> shared dtsi files for the 16 - 30 timers there are.
 > 
-> base-commit: fd86d85401c2049f652293877c0f7e6e5afc3bbc
+> Using shared timer dtsi files should work as long as the clocks are
+> defined in include/dt-bindings/clock for each SoC, and assuming we can use
+> the same compatible property for the timers.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Compatible should work fine, Though I doubt clock and other indices
+(base address etc will scale appropriately), but we could give it a
+shot, but we can discuss that in the context of the dts patches.
+
+> 
+> Of course if the timers are really different across am64, am65 and j72
+> then multiple compatible properties are neeeded.
+> 
+> If the timer hardware is the same, then I guess we should just pick the
+> earliest version, so how about using ti,am64-timer?
+
+yep - the oldest version will be ti,am654-timer ( AM65 was the first
+K3 device. Unfortunately, the numbering does'nt follow a chronological
+order)
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
