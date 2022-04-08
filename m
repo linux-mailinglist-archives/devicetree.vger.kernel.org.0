@@ -2,130 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C572A4F996C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDB34F9983
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237554AbiDHPaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:30:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37212 "EHLO
+        id S237600AbiDHPbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:31:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235594AbiDHPaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:30:17 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2507E10FDF9
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:28:11 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id f3so8676691pfe.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:28:11 -0700 (PDT)
+        with ESMTP id S237599AbiDHPbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:31:35 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1FA11DD1D
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:29:31 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id w4so13393696wrg.12
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:29:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1wXlO1/OweZPaHt8M+nzEA7n6raTEZFPMqSrFHsFy68=;
-        b=MBHgOKWhgWG5n/O1LvUP1gmEucefc1d1UqihpPPHc/YMi20+QGU9jlYs+Ar+BKo2xv
-         eHZucs1INCirCqPZj+jXdPX9MPIRwIM+glwQqYAcMfsFXuGsSSy1Y47RsD2i8YaTYESx
-         GJtd11a1lGhywBBavZolL1ht9fgER0kt0gB1Q=
+        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ifY6DMbLg1SCliDlEYY8vn7YQNz7rwzE6gWMsXWpwWQ=;
+        b=f+pyN4QcTJS1ikUlp6zjJcPGoEm4rBGxHM19/nqQZbVxnOqEcOk2tnU1AWTctJfUBJ
+         fv/a+ioFkF8LckXVZPc4njJ05ACyEe7V2pw8eBC9HuIGeKsEUjJtdKrcOq5XKn/Nedgy
+         MHpAJG7Ww/lDRZHMBeJj3zDtNFQrJjDPZv2aki1LdrTy1FIF3azC8RVqVNXxL/yCBmMX
+         AUV/MQTx+o96TemNGq3MEXkq+vSI2R841mjlTLWdta3s3sw1pNv/75mudQVfVyEGZyBa
+         0F+N0emulepgjY3lCG0t36N9cFBgVe/dxYBjr8T5HozlaUYA0BJKml00E+I5AQk+aWOM
+         RGVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1wXlO1/OweZPaHt8M+nzEA7n6raTEZFPMqSrFHsFy68=;
-        b=6vKD3zLw/OHDJOVLV62RmijSMlGiSCGbkHCqPt7l19WZw3JeHvO/pL1Wn2AaA1tKdL
-         Yrb8aKDxCYdLMvUQ+H8KoE7ZqzsJoJJQL2ecXAr69NmE1jlMcWQBq1bw3MCMyhMd9/eQ
-         HFeSMaH5T/Oae4oFAQEBsogbLuYWWG4Lp2Z2o1jxD8l6UWK36Az0DVre1yOFRuYe+mgS
-         Ig7hdQQ/fYZo0vQQtcbzfgg8CI3Z1CpDTl9rvetol98oR1YMOCzrSJ6+V9gHgN/kfvBl
-         Js6oWZzDAfkaQFShkAm5Sm2bg/ezePqc690JcffKxPdlu52POM1HdbrpeTEBonjZP9vs
-         Sc8w==
-X-Gm-Message-State: AOAM532QrI881D59DyhEn0ws14Cjjo0lb54uJs3feXecL2SO+2USu8mT
-        Ndoy8ka/yUd9LSIhegCeHaH/2w==
-X-Google-Smtp-Source: ABdhPJw94w7jXnsvHlrKirC7rL9BHIBOthUmugLehPK83vyxfXwhKk6v5pdfs8vieWoC8xjP1vdL0g==
-X-Received: by 2002:a05:6a00:1a49:b0:505:7ab3:e5c7 with SMTP id h9-20020a056a001a4900b005057ab3e5c7mr4404001pfv.62.1649431690633;
-        Fri, 08 Apr 2022 08:28:10 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:5944:d1ca:a1fe:33cc])
-        by smtp.gmail.com with UTF8SMTPSA id g15-20020a056a0023cf00b004e17e11cb17sm28018059pfc.111.2022.04.08.08.28.09
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ifY6DMbLg1SCliDlEYY8vn7YQNz7rwzE6gWMsXWpwWQ=;
+        b=CiEU8Il5u6QceQLc8g1qzR/MeNnz180ki6Fphdf7Sj5xUraHsX8VRJmF1U9RY0397Y
+         k4Frjqt3+AfFIohT/ZXhTatrWQOf2JWXHi9hpihJLfJb/5xT4ZFkNrx6OuqVlQTSz+VH
+         wKjmBnM8kQH4Emj2mzms82pO0cImgesaEq0YoOZA1dtIKnMTowwkAgXXv4dXNC8fONe9
+         kdy8Y9XouOuU1mrI4EuH7b60AhK8doMBs6v4buPtHTgTynP/yuOQIeEnazOhr+zaibss
+         /QDA4WbVu24X2fy81qZVIvFy9L9veiXCmk6uL1S/+ij7ey1rVmakr7smLbJ0BOdZeyMU
+         getA==
+X-Gm-Message-State: AOAM533RF+P6rWnRvzNTQuI7zq4Yqc8eLCCF5XLXJKeECM2ScSV2QbzK
+        JYjBSQhdlJkgnCxxhHZtH79NoQ==
+X-Google-Smtp-Source: ABdhPJze7wG69pOLr7bONpv65bzq93TZexBOiF5c8eNlAqorPQ/UAQk7C54nPkcIOHDXC/mmjbKaaw==
+X-Received: by 2002:a05:6000:1848:b0:204:e92:5af6 with SMTP id c8-20020a056000184800b002040e925af6mr14917867wri.180.1649431770416;
+        Fri, 08 Apr 2022 08:29:30 -0700 (PDT)
+Received: from [192.168.2.222] ([51.37.209.28])
+        by smtp.gmail.com with ESMTPSA id p14-20020a05600c1d8e00b0038dbb5ecc8asm10965530wms.2.2022.04.08.08.29.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Apr 2022 08:28:10 -0700 (PDT)
-Date:   Fri, 8 Apr 2022 08:28:08 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_ppratap@quicinc.com, quic_kriskura@quicinc.com,
-        quic_vpulyala@quicinc.com
-Subject: Re: [PATCH v12 6/6] arm64: dts: qcom: sc7280: Add wakeup-source
- property for USB node
-Message-ID: <YlBUiBZv6Hhsxn3C@google.com>
-References: <1649321104-31322-1-git-send-email-quic_c_sanm@quicinc.com>
- <1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com>
- <Yk8oMI3zifzFpJmW@google.com>
- <20220408020239.GB26536@hu-pkondeti-hyd.qualcomm.com>
+        Fri, 08 Apr 2022 08:29:29 -0700 (PDT)
+Message-ID: <cc11d576-3670-ff0a-e0a1-e92780a04c2a@conchuod.ie>
+Date:   Fri, 8 Apr 2022 16:29:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220408020239.GB26536@hu-pkondeti-hyd.qualcomm.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v1 0/7] Add rtc refclk support for PolarFire SoC
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        mturquette@baylibre.com, sboyd@kernel.org, aou@eecs.berkeley.edu,
+        paul.walmsley@sifive.com, palmer@rivosinc.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220408143646.3693104-1-conor.dooley@microchip.com>
+ <1fa15b36-7a84-e0ac-2c56-d6a2bec566ff@linaro.org>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <1fa15b36-7a84-e0ac-2c56-d6a2bec566ff@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 08, 2022 at 07:32:39AM +0530, Pavan Kondeti wrote:
-> On Thu, Apr 07, 2022 at 11:06:40AM -0700, Matthias Kaehlcke wrote:
-> > On Thu, Apr 07, 2022 at 02:15:04PM +0530, Sandeep Maheswaram wrote:
-> > > Adding wakeup-source property for USB controller in SC7280.
-> > > This property is added to inform that the USB controller is
-> > > wake up capable and to conditionally power down the phy during
-> > > system suspend.
-> > > 
-> > > Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index f0b64be..046262a 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -2916,6 +2916,7 @@
-> > >  				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> > >  				phy-names = "usb2-phy", "usb3-phy";
-> > >  				maximum-speed = "super-speed";
-> > > +				wakeup-source;
-> > >  			};
-> > >  		};
-> > 
-> > Not all SC7280 boards may want to enable wakeup from USB, so this is
-> > probably best configured on a per-board basis.
+
+
+On 08/04/2022 15:57, Krzysztof Kozlowski wrote:
+> On 08/04/2022 16:36, Conor Dooley wrote:
+>> Hey,
+>> As I mentioned in my fixes for 5.18 [0], found out that the reference
+>> clock for the rtc is actually missing from the clock driver (and the
+>> dt binding).
+>>
+>> Currently the mpfs clock driver uses a reference clock called the
+>> "msspll", set in the device tree, as the parent for the cpu/axi/ahb
+>> (config) clocks. The frequency of the msspll is determined by the FPGA
+>> bitstream & the bootloader configures the clock to match the bitstream.
+>> The real reference is provided by a 100 or 125 MHz off chip oscillator.
+>>
+>> However, the msspll clock is not actually the parent of all clocks on
+>> the system - the reference clock for the rtc/mtimer actually has the
+>> off chip oscillator as its parent.
+>>
+>> This series enables reading the rate of the msspll clock, converts
+>> the refclock in the device tree to the external reference & adds
+>> the missing rtc reference clock.
+>>
+>> I assume it is okay not to add fixes tags for the rtc dt binding?
+>> Since the clock was previously missing, the binding is wrong, but
+>> idk if that qualifies as a fix?
 > 
-> This wakeup capability is provided by the SoC. If a particular
-> board does not want to support, ideally it needs to be disabled from
-> user space. The capability is always there but some platforms choose to
-> disable it.
+> Usually ABI breakage, even if accepted, should be be tagged as fix
+> because it is clearly then a break of other peoples' trees...
+> 
 
-I guess 'wakeup-source' is a bit of an edge case between hardware capability
-(which is certainly required to make wakeup work) and policy.
+That means either a) do something messy in the clock driver or b) mark
+the whole series as fixes (and roll it into [0]).
 
-arch/arm64/boot/dts/mediatek/mt2712-evb.dts and
-arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi are two example where
-'wakeup-source' is set at the board level for a USB controller.
-
-It's also true that user space can disable wakeup as you said, and a board
-could also delete the property in its device tree if desired.
-
-With that I agree that setting 'wakeup-source' at the SoC level provides
-more flexibility and is more in line with the DT as hardware description.
-
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+The second option seems far more sensible to me, do you agree?
