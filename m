@@ -2,47 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0AC4F9A37
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 075B54F9A4F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 18:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbiDHQPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 12:15:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34780 "EHLO
+        id S229571AbiDHQRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 12:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbiDHQPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:15:51 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B56EA377C1;
-        Fri,  8 Apr 2022 09:13:38 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 09 Apr 2022 01:13:37 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 2F7262058443;
-        Sat,  9 Apr 2022 01:13:37 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Sat, 9 Apr 2022 01:13:37 +0900
-Received: from [10.212.182.227] (unknown [10.212.182.227])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 386EBB62B7;
-        Sat,  9 Apr 2022 01:13:36 +0900 (JST)
-Subject: Re: [PATCH] dt-bindings: dma: uniphier: Use unevaluatedProperties
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1649317447-20996-1-git-send-email-hayashi.kunihiko@socionext.com>
- <Yk80eFKwDVnU67p/@robh.at.kernel.org>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <f350b1d8-23d5-e13b-d908-0fa02f8fcea5@socionext.com>
-Date:   Sat, 9 Apr 2022 01:13:35 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S236939AbiDHQRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 12:17:09 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB153192D;
+        Fri,  8 Apr 2022 09:15:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1649434480;
+        bh=M/wORagk9F6eEZAHAShAnzR7ugdTzdqnJRbwzPJoTyo=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=VLJb29bfnyWRwZGJDxu1bT/B2ePmqJodp0jdQlvJj0eFHhsdW82Ksmp4gN+L7eX7J
+         kLMNTQRyKENs4HDhnplV05ti/u4lC7h/SltEO77H/V6G7MH4/8Zk3BgFzdLGmt3/RH
+         6hRT6bazOsG3Oz6fvfmZGEuDvxz6t25E/Qs4H8uk=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.152.139] ([217.61.152.139]) by web-mail.gmx.net
+ (3c-app-gmx-bap48.server.lan [172.19.172.118]) (via HTTP); Fri, 8 Apr 2022
+ 18:14:40 +0200
 MIME-Version: 1.0
-In-Reply-To: <Yk80eFKwDVnU67p/@robh.at.kernel.org>
-Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Message-ID: <trinity-3ae2b0d1-a3f0-4c64-acb6-2fb4fa0b36b3-1649434480623@3c-app-gmx-bap48>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Aw: [PATCH v5 3/5] arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 8 Apr 2022 18:14:40 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220408151237.3165046-4-pgwipeout@gmail.com>
+References: <20220408151237.3165046-1-pgwipeout@gmail.com>
+ <20220408151237.3165046-4-pgwipeout@gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:4EazFF7mfT+8p/kITM7n4WxfCwb0CQccEauJrFW8h8EOkdz+MsWy9IZ1bTy6CTr35aOPR
+ 8apVvZpo5gs0BKRqH6giqH+rHXqLt/LZS0xrAsr4Sa0LSXTL+zzKqF5kfnPy4dOH07WWxeDzOYT1
+ b01Oo9Lg+3aAoe1+6cv7FHWHvf1B2wBrxOi3Jg6Dz6Os80tJAQdy8RwGRsG6JCVrHobLvZGMggyg
+ w8tWCMXakOiE9ZAXTNsKz1MnXvoIRwDzQO2bSZqYV6zOGJF5AbioBONlLGBd2234Debr/bARY1Yr
+ 4g=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:1XaxmLoTN6o=:FpRa9nz83qJjs46sFl81aH
+ 8Ior15Sk1jHzwIrb9zhM7JX0b+WT06aovGbjFONxflnVinUWax3aJkByXPuAugt7xmh0GRHH3
+ tQ4ocBiMtTEF658BIqCwNLZgs5ILj6XcQbBjqq7e+TJbl/j8Rgr0sonCeMY83vqOPOSDJxilH
+ ZhWuJ477vmjr+BMQxkIBxJtgs+NKxewEHXh23vyhg7Z7dwVp3NVTfrTU0jvbpXIUWmZnqztlp
+ 0j6mQjSf39f/yfWw3h6T1IrfXy1v8VUjNJA71T0N38qD7l/0AgZEe9zSo0NrJrMsR5588hwVt
+ +/q4kBDqEIjVsnwzjBDnr6jHRyjXgTYgRsbUoFqR5bHqIyEfFJJy7CT0QX3hU7HRQm5seH/sW
+ dEUYZnLu2KpUWhf5N7fc7RXXfPXB73Kd+tCTG/K5W/TN4WDtxD3Hi0y2DG8f7XoEaNkdYMmX6
+ M3X2WcUXeD+wuSBt2ElC8Vm9Zp23ihKOlOEhioZxUEc79TDJtNNgiTyc9uOrIl1oo9Vie9ZL1
+ bheFQnTo+Ky5qyf+3f5ozaHEikY1cAI5+U23Hc9TXpdVByngMCuwAeY9CajpRWyJU/yTFxfmh
+ 3OF0pjAiOPtcIHMSyzjO4vFDzihMjyhLZKAj0Dc4mo+JTqz2Pgv40UsK3mXq3Or62fTUmy8/L
+ grYrpDcKVSn+H0JQbGixbutKLsSZ/j+QSElTvfhWzOyt/IX/RdVvqfanVI+IyXr6F4ZEjHkqE
+ 7STOO2eOxHz3UDhbB/R6jjVp5i82Elr/UbugBDNaoQ9BFRCtZVu2a/jfIAiDlmITaICkHSLj0
+ 03gu+ZW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -51,33 +73,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi
 
-On 2022/04/08 3:59, Rob Herring wrote:
-> On Thu, Apr 07, 2022 at 04:44:07PM +0900, Kunihiko Hayashi wrote:
->> This refers common bindings, so this is preferred for
->> unevaluatedProperties instead of additionalProperties.
-> 
-> Yes and no. If you want to define specific common properties are used
-> (and not used), then listing them in the specific schema with
-> 'additionalProperties' is the right way to do that. If all properties in
-> the referenced schema are valid, then unevaluatedProperties is correct.
+seems like usb (2+3) is broken in 5.18-rc1
 
-I understand that having a reference to a common schema isn't a direct reason
-to replace with unevaluatedProperties because it depends on how each property
-of the common schema is handled in this schema.
+i see controllers, ports are powered, but no device detection.
 
-Since there is no property to evaluate with "if" etc., I think that it can
-be left as "additionalProperties" in this schema.
-I withdraw this patch.
+maybe anyone else have same behaviour with different board?
 
-> If we wanted using unevaluatedProperties to be a hard rule, we could
-> make the meta-schema enforce that.
-
-At the moment it is difficult to decide it to be a hard rule.
-
-Thank you,
-
----
-Best Regards
-Kunihiko Hayashi
+regards Frank
