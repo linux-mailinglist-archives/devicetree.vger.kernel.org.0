@@ -2,89 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2A94F9CD1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 20:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB9F4F9D01
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 20:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234781AbiDHSfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 14:35:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
+        id S238844AbiDHSkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 14:40:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233545AbiDHSfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 14:35:51 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC8111FE02;
-        Fri,  8 Apr 2022 11:33:47 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id t21so9660989oie.11;
-        Fri, 08 Apr 2022 11:33:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=32MZ6/GiwNewgXpQg3EoxpslEsiSE1hROUpjwx2PFl4=;
-        b=IYAweu+FIbfzLCt5sgzrsEWBYdNGQBFEzOnjCynLCVtBLyS4WjU4ocdOQ3Uo11CUs+
-         tbbwSi461kn/Dd040oqSE9Mz40z5zSVN7kdNsArDPNwYTDYGsQJaoUjYfJtNNxw1lBFh
-         Aqe2JYrdTPH0FHCtDC74w6YFVuD3lhooIymnfa7VVIdarFQ/Sn5/v03+Ruiv5RGBtcuM
-         M/8YKte/MQxI77PxfWXBAjgSX8u3/Pr/JcEGzHgkDPivvtZesokDSuPBHNyHKzB2Jqks
-         vDdPV+6D8rxS36hbUmi8GiOGQ4sQaLjIT9vPMYxNSJhLgAs9ljFtc+gKWr/GsbfLZarg
-         UR0A==
-X-Gm-Message-State: AOAM530Jgut6DeufNPmx1rHV80GEbUkKZ8dZTPDhdE/J8nQF7rOD1xf9
-        8SQVItbxC9CAiOQM1Ats+g==
-X-Google-Smtp-Source: ABdhPJxnfx7lczucZKi6bjuWia9vvgOBuefG0+LH+e0YK8qb+cNHpkbHnyLoHSUc0mOucfg16RugzQ==
-X-Received: by 2002:aca:2311:0:b0:2ec:c76a:5237 with SMTP id e17-20020aca2311000000b002ecc76a5237mr545840oie.67.1649442826544;
-        Fri, 08 Apr 2022 11:33:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 12-20020a05687012cc00b000de97cc1beesm9293723oam.43.2022.04.08.11.33.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 11:33:46 -0700 (PDT)
-Received: (nullmailer pid 3830547 invoked by uid 1000);
-        Fri, 08 Apr 2022 18:33:45 -0000
-Date:   Fri, 8 Apr 2022 13:33:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Drew Fustini <dfustini@baylibre.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dave Gerlach <d-gerlach@ti.com>, Nishanth Menon <nm@ti.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Suman Anna <s-anna@ti.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: soc: ti: wkup_m3_ipc: convert bindings
- to json-schema
-Message-ID: <YlCACSZx5xsPSwNC@robh.at.kernel.org>
-References: <20220407154618.2297171-1-dfustini@baylibre.com>
+        with ESMTP id S238830AbiDHSkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 14:40:32 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D661D26118;
+        Fri,  8 Apr 2022 11:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1649443082;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=x0kzI/Isg/dHTuXL9pr/4hUBYIzgC3UJIabNTaOuy8o=;
+    b=TGSShNyKbNY3TnGA6u08YYHcc5Lb1TgNndcEpvxBpkjJqKzhlzKEsjYbHmNAzK7sUh
+    tlH4RfMg/KoU8vSpndg5YejlRRRWGsVIxn8wIlLWPCoIgXQptlCkurhQV29LPurk4IRC
+    VnN2erl1zNRk+VPGKLyVWtgY5MhGRWt7/5c1FW/Ym3Its6qutnpe7z4K86R76y0BPRFX
+    mhYHBVVdjke/FKn0ztkSLB6S7rlx37q8GlXHUIYY6bjP2pNtXRD/iJvT7IX13o3OmmHl
+    ULQH1sthDx6b3SbJQFzMKRRixb23S8Rw6P15eBdZ21H+W9VeWyjKHiVzF/Tk2WGVdUqn
+    O7fw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UMf2MwPVbgdr/a"
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 47.42.2 DYNA|AUTH)
+    with ESMTPSA id k708cfy38Ic2snr
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 8 Apr 2022 20:38:02 +0200 (CEST)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH 00/18] MIPS: DTS: fix some findings by "make ci20_defconfig dt_binding_check dtbs_check"
+Date:   Fri,  8 Apr 2022 20:37:43 +0200
+Message-Id: <cover.1649443080.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220407154618.2297171-1-dfustini@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Apr 2022 08:46:20 -0700, Drew Fustini wrote:
-> Convert the wkup_m3_ipc bindings documentation to json-schema.
-> 
-> Link: https://lore.kernel.org/linux-arm-kernel/20220221125522.l3tntb6i7yjxp6vb@flattered/
-> Suggested-by: Nishanth Menon <nm@ti.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> ---
->  .../bindings/soc/ti/wkup-m3-ipc.yaml          | 81 +++++++++++++++++++
->  .../bindings/soc/ti/wkup_m3_ipc.txt           | 57 -------------
->  2 files changed, 81 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/ti/wkup-m3-ipc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-> 
-> Changes in v3:
-> - rename underscores to hyphens in the filename
-> 
-> Changes in v2:
-> - removed unnecessary line breaks and shorten property descriptions
-> 
+PATCH V1 2022-04-08 20:38:00:
+This series fixes many (not all) warnings from dt_binding_check/dtbs_check for the jz4780 based Imagination CI20 board.
 
-Applied, thanks!
+
+H. Nikolaus Schaller (18):
+  MIPS: DTS: jz4780: remove cpu clock-names as reported by dtbscheck
+  MIPS: DTS: jz4780: fix cgu as reported by dtbscheck
+  MIPS: DTS: jz4780: fix tcu timer as reported by dtbscheck
+  MIPS: DTS: jz4780: fix ost timer as reported by dtbscheck
+  MIPS: DTS: jz4780: fix pinctrl as reported by dtbscheck
+  MIPS: DTS: jz4780: fix rtc node as reported by dtbscheck
+  MIPS: DTS: jz4780: fix otg node as reported by dtbscheck
+  MIPS: DTS: jz4780: fix lcd controllers as reported by dtbscheck
+  MIPS: DTS: jz4780: fix dma-controller as reported by dtbscheck
+  MIPS: DTS: jz4780: fix uart dmas as reported by dtbscheck
+  MIPS: DTS: jz4780: fix i2c dmas as reported by dtbscheck
+  MIPS: DTS: jz4780: fix nemc memory controller as reported by dtbscheck
+  dt-bindings: fix jz4780-nemc issue as reported by dtbscheck
+  MIPS: DTS: CI20: add missing model as reported by dtbscheck
+  MIPS: DTS: CI20: fix fixed regulators as reported by dtbscheck
+  MIPS: DTS: CI20: fix /memory as reported by dtbscheck
+  MIPS: DTS: CI20: fix wifi as reported by dtbscheck
+  MIPS: DTS: CI20: fix bluetooth as reported by dtbscheck
+
+ .../memory-controllers/ingenic,nemc.yaml      |  2 +-
+ arch/mips/boot/dts/ingenic/ci20.dts           | 14 ++--
+ arch/mips/boot/dts/ingenic/jz4780.dtsi        | 71 ++++++++++++++-----
+ 3 files changed, 64 insertions(+), 23 deletions(-)
+
+-- 
+2.33.0
+
