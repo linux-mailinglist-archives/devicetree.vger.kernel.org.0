@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6EF84F93BC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1CD64F93C4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229457AbiDHLZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 07:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50792 "EHLO
+        id S233993AbiDHLZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 07:25:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233286AbiDHLY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:24:59 -0400
+        with ESMTP id S233572AbiDHLZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:25:05 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE75DEF0
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:22:56 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167DF255AA
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:22:58 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhS-0002I5-KX; Fri, 08 Apr 2022 13:22:46 +0200
+        id 1ncmhS-0002I4-AK; Fri, 08 Apr 2022 13:22:46 +0200
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhT-001n4P-26; Fri, 08 Apr 2022 13:22:45 +0200
+        id 1ncmhS-001n4M-Pg; Fri, 08 Apr 2022 13:22:45 +0200
 Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhO-005Z41-Bf; Fri, 08 Apr 2022 13:22:42 +0200
+        id 1ncmhO-005Z44-CU; Fri, 08 Apr 2022 13:22:42 +0200
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -37,10 +37,10 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Subject: [PATCH v10 09/24] drm/rockchip: dw_hdmi: add regulator support
-Date:   Fri,  8 Apr 2022 13:22:23 +0200
-Message-Id: <20220408112238.1274817-10-s.hauer@pengutronix.de>
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v10 10/24] dt-bindings: display: rockchip: dw-hdmi: Add regulator support
+Date:   Fri,  8 Apr 2022 13:22:24 +0200
+Message-Id: <20220408112238.1274817-11-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220408112238.1274817-1-s.hauer@pengutronix.de>
 References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
@@ -59,109 +59,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs needed
-for the HDMI port. add support for these to the driver for boards which
-have them supplied by switchable regulators.
+The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs
+needed for the HDMI port. Add the binding for these supplies.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 41 +++++++++++++++++++--
- 1 file changed, 38 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index b64cc62c7b5af..fe4f9556239ac 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -9,6 +9,7 @@
- #include <linux/platform_device.h>
- #include <linux/phy/phy.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
+Notes:
+    Changes since v4:
+    - Add Robs Ack
+
+ .../bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+index e6b8437a1e2d1..38ebb69830287 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+@@ -28,6 +28,17 @@ properties:
+   reg-io-width:
+     const: 4
  
- #include <drm/bridge/dw_hdmi.h>
- #include <drm/drm_edid.h>
-@@ -76,6 +77,8 @@ struct rockchip_hdmi {
- 	struct clk *ref_clk;
- 	struct clk *grf_clk;
- 	struct dw_hdmi *hdmi;
-+	struct regulator *avdd_0v9;
-+	struct regulator *avdd_1v8;
- 	struct phy *phy;
- };
- 
-@@ -226,6 +229,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
- 		return PTR_ERR(hdmi->grf_clk);
- 	}
- 
-+	hdmi->avdd_0v9 = devm_regulator_get(hdmi->dev, "avdd-0v9");
-+	if (IS_ERR(hdmi->avdd_0v9))
-+		return PTR_ERR(hdmi->avdd_0v9);
++  avdd-0v9-supply:
++    description:
++      A 0.9V supply that powers up the SoC internal circuitry. The actual pin name
++      varies between the different SoCs and is usually HDMI_TX_AVDD_0V9 or sometimes
++      HDMI_AVDD_1V0.
 +
-+	hdmi->avdd_1v8 = devm_regulator_get(hdmi->dev, "avdd-1v8");
-+	if (IS_ERR(hdmi->avdd_1v8))
-+		return PTR_ERR(hdmi->avdd_1v8);
++  avdd-1v8-supply:
++    description:
++      A 1.8V supply that powers up the SoC internal circuitry. The pin name on the
++      SoC usually is HDMI_TX_AVDD_1V8.
 +
- 	return 0;
- }
- 
-@@ -566,11 +577,23 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
- 		return ret;
- 	}
- 
-+	ret = regulator_enable(hdmi->avdd_0v9);
-+	if (ret) {
-+		DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd0v9: %d\n", ret);
-+		goto err_avdd_0v9;
-+	}
-+
-+	ret = regulator_enable(hdmi->avdd_1v8);
-+	if (ret) {
-+		DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd1v8: %d\n", ret);
-+		goto err_avdd_1v8;
-+	}
-+
- 	ret = clk_prepare_enable(hdmi->ref_clk);
- 	if (ret) {
- 		DRM_DEV_ERROR(hdmi->dev, "Failed to enable HDMI reference clock: %d\n",
- 			      ret);
--		return ret;
-+		goto err_clk;
- 	}
- 
- 	if (hdmi->chip_data == &rk3568_chip_data) {
-@@ -594,10 +617,19 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
- 	 */
- 	if (IS_ERR(hdmi->hdmi)) {
- 		ret = PTR_ERR(hdmi->hdmi);
--		drm_encoder_cleanup(encoder);
--		clk_disable_unprepare(hdmi->ref_clk);
-+		goto err_bind;
- 	}
- 
-+	return 0;
-+
-+err_bind:
-+	clk_disable_unprepare(hdmi->ref_clk);
-+	drm_encoder_cleanup(encoder);
-+err_clk:
-+	regulator_disable(hdmi->avdd_1v8);
-+err_avdd_1v8:
-+	regulator_disable(hdmi->avdd_0v9);
-+err_avdd_0v9:
- 	return ret;
- }
- 
-@@ -608,6 +640,9 @@ static void dw_hdmi_rockchip_unbind(struct device *dev, struct device *master,
- 
- 	dw_hdmi_unbind(hdmi->hdmi);
- 	clk_disable_unprepare(hdmi->ref_clk);
-+
-+	regulator_disable(hdmi->avdd_1v8);
-+	regulator_disable(hdmi->avdd_0v9);
- }
- 
- static const struct component_ops dw_hdmi_rockchip_ops = {
+   clocks:
+     minItems: 2
+     items:
 -- 
 2.30.2
 
