@@ -2,100 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC694F99BC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 986114F99CE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 17:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237732AbiDHPpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 11:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35822 "EHLO
+        id S237757AbiDHPr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 11:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232562AbiDHPpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:45:30 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 093D4939BD;
-        Fri,  8 Apr 2022 08:43:27 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id 12so9178024oix.12;
-        Fri, 08 Apr 2022 08:43:27 -0700 (PDT)
+        with ESMTP id S237775AbiDHPrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 11:47:55 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64FFBE9CE
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 08:45:51 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id r66so8118036pgr.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 08:45:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=a8LQvS2IDMfT7AfI5L149G2Y2gHx1++a+D0M/c9N+Is=;
+        b=jznrHDdMq++SsQ5Wb+PA2dZALsOj7yD63+KADfRkGG5Z9X+lpkEm6E3Ls5iDVBPHBJ
+         LcyIyvhh4O33WKepwf6h9Ut/2U5fJF54KNWkgaVEc3SN2ZYdwTlI6ak1hW2eo2t0atSC
+         fec4tseUvM4dwaaI5Zx5hhKd4Nf8yZ4oV3ePJKuOjWt6NqTDslMmRj7/7DAJsOGclEuU
+         kTC+J2olbcaQaHlyQsHTZmD3nnV/KnlV8kCBM1riYh3NSeVxjK9higmyL166sslzKwOq
+         UtEraPYXaIpCkoclm4Z2HZiGCKeoGcZseHE1UdCyzUphRp3nIC4IAOUUoKzYt78SoVm3
+         502A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=IuCdWneO/2MVEgPWK3W9Br9orThPe68KZF9Rp7MYybo=;
-        b=FetcGKvWrSjumtvzQr+KCSL8Bf5+5Tv2HBVJ1h2MKu4xw1FZBhQOFq6lEqioGum66i
-         fRX8UGVhmMhtaYo6Mwqw4QhEfoQbXRNGtrWZkmIFxxSNJrYsG6fRA+iSvcQvyeI1OMQh
-         cgIDK2qVu7+UwxqcgofBqhu9oNauA0nA04a3IP7xg4Dr917h9wdfYBab0hFRnntVrBxf
-         NJWanKWt0xRT/IZ+owECZmWq6i5OHHZ6NaqrUwKn/V5Fh95hJXgPYzy7nvAO4FIWdolX
-         ScI226Ql1wBoOZbfJ7DE4eJSvQrgySAaYhMGDb3xniQsYxIuXFIyYcvYBBt/PKSqc5pc
-         hhsw==
-X-Gm-Message-State: AOAM533rF0nCTXhnb1jY4XPhFgoSCoJqbnw/NHW/yxie8Y5atOvVFQcQ
-        kO1An8pOgBCYx5taGkmOfA==
-X-Google-Smtp-Source: ABdhPJzodqVef1yNcHldkh/KMqy7DXZg8yUbAPn4QcdjEFlMZE7nR7fKFCFOl/oFjoKqPwLdlQy+fg==
-X-Received: by 2002:a05:6808:1592:b0:2f7:3095:b7fd with SMTP id t18-20020a056808159200b002f73095b7fdmr129321oiw.190.1649432606348;
-        Fri, 08 Apr 2022 08:43:26 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x18-20020a056830245200b005ce01c28c77sm9125548otr.1.2022.04.08.08.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 08:43:26 -0700 (PDT)
-Received: (nullmailer pid 3538557 invoked by uid 1000);
-        Fri, 08 Apr 2022 15:43:25 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=a8LQvS2IDMfT7AfI5L149G2Y2gHx1++a+D0M/c9N+Is=;
+        b=ei02F/ET1M/liCFIGaEjff8QscL7MfKW5w9qyWdjPQbf2c7bOcguQFXtyfG+TqVI/j
+         /qKU30sygB/4gdBg0M4Ewd1hXyfkYLsRHHNhilY5hijIJQX0XBxtojr7BUeWmTn28iSK
+         kx0YbxxlpcNtmndoQQ6WXhqKdwUvctpjxMfDPAPk1xM5oE6Z/ShsCNbCBSQMzEQDt7p9
+         XLCJMCEGlleu8E60NRCz1HxDbb4Ulz+JI9ioZia+elhJLhbEesFlWAdr3XF09H+wr9b0
+         /qY5DjtydxcO3hid9P3FD+G7yRuvMw0vY37GRTFMsJ70e/VTIJEH0lxzaS7FBnuw6s16
+         0aTg==
+X-Gm-Message-State: AOAM532UNqwTyF4nJZp/wfCt+B89F3DlP5UvbPcH0/MjV7xHJbTSs3qS
+        yANqHZ9k9tFXlqLpWFwMtXaKC+GfMBuGJT9b5q0cMw==
+X-Google-Smtp-Source: ABdhPJzR3j6x8l8Za7nDxMHGog4JAum2Pcwl1K2K+XdW/8m5ix4E6SP4xJ2g8UpSJJ3li88c+xaDKR0I/gdUgQugdkM=
+X-Received: by 2002:a05:6a00:14ca:b0:4fb:5d3e:5f77 with SMTP id
+ w10-20020a056a0014ca00b004fb5d3e5f77mr20239165pfu.34.1649432751151; Fri, 08
+ Apr 2022 08:45:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220407210411.8167-1-tharvey@gateworks.com> <41bee12f-fa23-16d6-7244-1c4c543cbea0@linaro.org>
+In-Reply-To: <41bee12f-fa23-16d6-7244-1c4c543cbea0@linaro.org>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 8 Apr 2022 08:45:39 -0700
+Message-ID: <CAJ+vNU2BybB6dqo4GWTGT7Bv+Qi1Ph3t3+vxJPxDrttHrs9O=w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Plus Gateworks GW74xx board
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20220407154338.4190674-7-p.zabel@pengutronix.de>
-References: <20220407154338.4190674-1-p.zabel@pengutronix.de> <20220407154338.4190674-7-p.zabel@pengutronix.de>
-Subject: Re: [PATCH 07/14] dt-bindings: reset: oxsemi,oxnas-reset: Convert to yaml
-Date:   Fri, 08 Apr 2022 10:43:25 -0500
-Message-Id: <1649432605.552479.3538556.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Apr 2022 17:43:31 +0200, Philipp Zabel wrote:
-> Convert the device tree bindings for the Oxford Semiconductor OXNAS
-> reset controllers to YAML schema to allow participating in DT
-> validation.
-> 
-> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../devicetree/bindings/reset/oxnas,reset.txt | 32 -------------
->  .../bindings/reset/oxsemi,oxnas-reset.yaml    | 48 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 32 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/reset/oxnas,reset.txt
->  create mode 100644 Documentation/devicetree/bindings/reset/oxsemi,oxnas-reset.yaml
-> 
+On Fri, Apr 8, 2022 at 12:07 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 07/04/2022 23:04, Tim Harvey wrote:
+> > Add DT compatible string for i.MX8M Plus based Gateworks GW74xx board.
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > Cc: Shawn Guo <shawnguo@kernel.org>
+> > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > Cc: Fabio Estevam <festevam@gmail.com>
+> > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 08bdd30e511c..c04203d537d0 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -860,6 +860,7 @@ properties:
+> >          items:
+> >            - enum:
+> >                - fsl,imx8mp-evk            # i.MX8MP EVK Board
+> > +              - gw,imx8mp-gw74xx          # i.MX8MP Gateworks Board
+>
+> gateworks
+> You are using a deprecated vendor prefix.
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Krzysztof,
 
-yamllint warnings/errors:
+Ok - did not realize this got deprecated. Will change to gateworks,imx8mp-gw74xx
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/reset/oxsemi,oxnas-reset.example.dts:23.30-31.11: Warning (unit_address_format): /example-0/sys-ctrl@000000: unit name should not have leading 0s
-Documentation/devicetree/bindings/reset/oxsemi,oxnas-reset.example.dtb:0:0: /example-0/sys-ctrl@000000: failed to match any schema with compatible: ['oxsemi,ox810se-sys-ctrl', 'syscon', 'simple-mfd']
+Best Regards,
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Tim
