@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9244F93B2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E3394F93D2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233306AbiDHLY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 07:24:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50696 "EHLO
+        id S233572AbiDHLZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 07:25:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233158AbiDHLY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:24:58 -0400
+        with ESMTP id S233652AbiDHLZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:25:09 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0144297
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:22:54 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41E63181D97
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:23:02 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhT-0002LU-P5; Fri, 08 Apr 2022 13:22:47 +0200
+        id 1ncmhS-0002Hz-5c; Fri, 08 Apr 2022 13:22:46 +0200
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhU-001n51-8S; Fri, 08 Apr 2022 13:22:46 +0200
+        id 1ncmhS-001n4A-Bb; Fri, 08 Apr 2022 13:22:44 +0200
 Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhO-005Z4G-FH; Fri, 08 Apr 2022 13:22:42 +0200
+        id 1ncmhO-005Z4J-G8; Fri, 08 Apr 2022 13:22:42 +0200
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -36,11 +36,11 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
-        Nickey Yang <nickey.yang@rock-chips.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v10 14/24] drm/rockchip: dw_hdmi: add default 594Mhz clk for 4K@60hz
-Date:   Fri,  8 Apr 2022 13:22:28 +0200
-Message-Id: <20220408112238.1274817-15-s.hauer@pengutronix.de>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v10 15/24] dt-bindings: display: rockchip: dw-hdmi: Make unwedge pinctrl optional
+Date:   Fri,  8 Apr 2022 13:22:29 +0200
+Message-Id: <20220408112238.1274817-16-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220408112238.1274817-1-s.hauer@pengutronix.de>
 References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
@@ -59,33 +59,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nickey Yang <nickey.yang@rock-chips.com>
+None of the upstream device tree files has a "unwedge" pinctrl
+specified. Make it optional.
 
-add 594Mhz configuration parameters in rockchip_phy_config
-
-Signed-off-by: Nickey Yang <nickey.yang@rock-chips.com>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 Notes:
-    Changes since v3:
-    - new patch
+    Changes since v4:
+    - Add Robs Ack
 
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 1 +
+ .../devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index 5be5d1d4963cd..7e6dc851a9c8b 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -191,6 +191,7 @@ static const struct dw_hdmi_phy_config rockchip_phy_config[] = {
- 	{ 74250000,  0x8009, 0x0004, 0x0272},
- 	{ 148500000, 0x802b, 0x0004, 0x028d},
- 	{ 297000000, 0x8039, 0x0005, 0x028d},
-+	{ 594000000, 0x8039, 0x0000, 0x019d},
- 	{ ~0UL,	     0x0000, 0x0000, 0x0000}
- };
- 
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+index 38ebb69830287..d7cb2b2be60e8 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+@@ -89,6 +89,7 @@ properties:
+       The unwedge pinctrl entry shall drive the DDC SDA line low. This is
+       intended to work around a hardware errata that can cause the DDC I2C
+       bus to be wedged.
++    minItems: 1
+     items:
+       - const: default
+       - const: unwedge
 -- 
 2.30.2
 
