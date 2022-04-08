@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1CD64F93C4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A62F4F93CD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Apr 2022 13:23:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233993AbiDHLZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 07:25:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
+        id S233853AbiDHLZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 07:25:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233572AbiDHLZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:25:05 -0400
+        with ESMTP id S230015AbiDHLZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 07:25:07 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167DF255AA
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:22:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F0416D8CC
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 04:23:01 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhS-0002I4-AK; Fri, 08 Apr 2022 13:22:46 +0200
+        id 1ncmhT-0002KU-BY; Fri, 08 Apr 2022 13:22:47 +0200
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhS-001n4M-Pg; Fri, 08 Apr 2022 13:22:45 +0200
+        id 1ncmhT-001n4q-Q0; Fri, 08 Apr 2022 13:22:46 +0200
 Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1ncmhO-005Z44-CU; Fri, 08 Apr 2022 13:22:42 +0200
+        id 1ncmhO-005Z47-D2; Fri, 08 Apr 2022 13:22:42 +0200
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -36,11 +36,12 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v10 10/24] dt-bindings: display: rockchip: dw-hdmi: Add regulator support
-Date:   Fri,  8 Apr 2022 13:22:24 +0200
-Message-Id: <20220408112238.1274817-11-s.hauer@pengutronix.de>
+        Douglas Anderson <dianders@chromium.org>,
+        Yakir Yang <ykk@rock-chips.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v10 11/24] drm/rockchip: dw_hdmi: Use auto-generated tables
+Date:   Fri,  8 Apr 2022 13:22:25 +0200
+Message-Id: <20220408112238.1274817-12-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220408112238.1274817-1-s.hauer@pengutronix.de>
 References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
@@ -51,50 +52,203 @@ X-SA-Exim-Mail-From: sha@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs
-needed for the HDMI port. Add the binding for these supplies.
+From: Douglas Anderson <dianders@chromium.org>
 
+The previous tables for mpll_cfg and curr_ctrl were created using the
+20-pages of example settings provided by the PHY vendor.  Those
+example settings weren't particularly dense, so there were places
+where we were guessing what the settings would be for 10-bit and
+12-bit (not that we use those anyway).  It was also always a lot of
+extra work every time we wanted to add a new clock rate since we had
+to cross-reference several tables.
+
+In <https://crrev.com/c/285855> I've gone through the work to figure
+out how to generate this table automatically.  Let's now use the
+automatically generated table and then we'll never need to look at it
+again.
+
+We only support 8-bit mode right now and only support a small number
+of clock rates and I've verified that the only 8-bit rate that was
+affected was 148.5.  That mode appears to have been wrong in the old
+table.
+
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Yakir Yang <ykk@rock-chips.com>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 Notes:
-    Changes since v4:
-    - Add Robs Ack
+    Changes since v5:
+    - Add missing Signed-off-by me
+    
+    Changes since v3:
+    - new patch
 
- .../bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 130 +++++++++++---------
+ 1 file changed, 69 insertions(+), 61 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index e6b8437a1e2d1..38ebb69830287 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -28,6 +28,17 @@ properties:
-   reg-io-width:
-     const: 4
+diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+index fe4f9556239ac..cb43e7b47157d 100644
+--- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+@@ -91,80 +91,88 @@ static struct rockchip_hdmi *to_rockchip_hdmi(struct drm_encoder *encoder)
  
-+  avdd-0v9-supply:
-+    description:
-+      A 0.9V supply that powers up the SoC internal circuitry. The actual pin name
-+      varies between the different SoCs and is usually HDMI_TX_AVDD_0V9 or sometimes
-+      HDMI_AVDD_1V0.
-+
-+  avdd-1v8-supply:
-+    description:
-+      A 1.8V supply that powers up the SoC internal circuitry. The pin name on the
-+      SoC usually is HDMI_TX_AVDD_1V8.
-+
-   clocks:
-     minItems: 2
-     items:
+ static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
+ 	{
+-		27000000, {
+-			{ 0x00b3, 0x0000},
+-			{ 0x2153, 0x0000},
+-			{ 0x40f3, 0x0000}
++		30666000, {
++			{ 0x00b3, 0x0000 },
++			{ 0x2153, 0x0000 },
++			{ 0x40f3, 0x0000 },
+ 		},
+-	}, {
+-		36000000, {
+-			{ 0x00b3, 0x0000},
+-			{ 0x2153, 0x0000},
+-			{ 0x40f3, 0x0000}
++	},  {
++		36800000, {
++			{ 0x00b3, 0x0000 },
++			{ 0x2153, 0x0000 },
++			{ 0x40a2, 0x0001 },
+ 		},
+-	}, {
+-		40000000, {
+-			{ 0x00b3, 0x0000},
+-			{ 0x2153, 0x0000},
+-			{ 0x40f3, 0x0000}
++	},  {
++		46000000, {
++			{ 0x00b3, 0x0000 },
++			{ 0x2142, 0x0001 },
++			{ 0x40a2, 0x0001 },
+ 		},
+-	}, {
+-		54000000, {
+-			{ 0x0072, 0x0001},
+-			{ 0x2142, 0x0001},
+-			{ 0x40a2, 0x0001},
++	},  {
++		61333000, {
++			{ 0x0072, 0x0001 },
++			{ 0x2142, 0x0001 },
++			{ 0x40a2, 0x0001 },
+ 		},
+-	}, {
+-		65000000, {
+-			{ 0x0072, 0x0001},
+-			{ 0x2142, 0x0001},
+-			{ 0x40a2, 0x0001},
++	},  {
++		73600000, {
++			{ 0x0072, 0x0001 },
++			{ 0x2142, 0x0001 },
++			{ 0x4061, 0x0002 },
+ 		},
+-	}, {
+-		66000000, {
+-			{ 0x013e, 0x0003},
+-			{ 0x217e, 0x0002},
+-			{ 0x4061, 0x0002}
++	},  {
++		92000000, {
++			{ 0x0072, 0x0001 },
++			{ 0x2145, 0x0002 },
++			{ 0x4061, 0x0002 },
+ 		},
+-	}, {
+-		74250000, {
+-			{ 0x0072, 0x0001},
+-			{ 0x2145, 0x0002},
+-			{ 0x4061, 0x0002}
++	},  {
++		122666000, {
++			{ 0x0051, 0x0002 },
++			{ 0x2145, 0x0002 },
++			{ 0x4061, 0x0002 },
+ 		},
+-	}, {
+-		83500000, {
+-			{ 0x0072, 0x0001},
++	},  {
++		147200000, {
++			{ 0x0051, 0x0002 },
++			{ 0x2145, 0x0002 },
++			{ 0x4064, 0x0003 },
+ 		},
+-	}, {
+-		108000000, {
+-			{ 0x0051, 0x0002},
+-			{ 0x2145, 0x0002},
+-			{ 0x4061, 0x0002}
++	},  {
++		184000000, {
++			{ 0x0051, 0x0002 },
++			{ 0x214c, 0x0003 },
++			{ 0x4064, 0x0003 },
+ 		},
+-	}, {
+-		106500000, {
+-			{ 0x0051, 0x0002},
+-			{ 0x2145, 0x0002},
+-			{ 0x4061, 0x0002}
++	},  {
++		226666000, {
++			{ 0x0040, 0x0003 },
++			{ 0x214c, 0x0003 },
++			{ 0x4064, 0x0003 },
+ 		},
+-	}, {
+-		146250000, {
+-			{ 0x0051, 0x0002},
+-			{ 0x2145, 0x0002},
+-			{ 0x4061, 0x0002}
++	},  {
++		272000000, {
++			{ 0x0040, 0x0003 },
++			{ 0x214c, 0x0003 },
++			{ 0x5a64, 0x0003 },
+ 		},
+-	}, {
+-		148500000, {
+-			{ 0x0051, 0x0003},
+-			{ 0x214c, 0x0003},
+-			{ 0x4064, 0x0003}
++	},  {
++		340000000, {
++			{ 0x0040, 0x0003 },
++			{ 0x3b4c, 0x0003 },
++			{ 0x5a64, 0x0003 },
+ 		},
+-	}, {
++	},  {
++		600000000, {
++			{ 0x1a40, 0x0003 },
++			{ 0x3b4c, 0x0003 },
++			{ 0x5a64, 0x0003 },
++		},
++	},  {
+ 		~0UL, {
+-			{ 0x00a0, 0x000a },
+-			{ 0x2001, 0x000f },
+-			{ 0x4002, 0x000f },
++			{ 0x0000, 0x0000 },
++			{ 0x0000, 0x0000 },
++			{ 0x0000, 0x0000 },
+ 		},
+ 	}
+ };
 -- 
 2.30.2
 
