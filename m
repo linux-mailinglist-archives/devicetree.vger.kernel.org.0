@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927474FA8E6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 16:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA8CF4FA909
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 16:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237428AbiDIOIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 10:08:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45756 "EHLO
+        id S229567AbiDIOf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 10:35:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232370AbiDIOIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 10:08:12 -0400
-Received: from mo4-p03-ob.smtp.rzone.de (mo4-p03-ob.smtp.rzone.de [85.215.255.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358A22274F3;
-        Sat,  9 Apr 2022 07:06:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1649513161;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=AobUghhpQ3ekLNHOG9d7IDWN4zF0yDIKYAaL0zaeRNg=;
-    b=l2WNtM2nz5Agjaw+9H/XkXINfOWW1gZxdJXjllnmybTTYgZzpLx3kH9JDmGwVFiNiS
-    bbVWy5bgzrU0tK4Lh/tTZFzhynSYELdVKQopCbfMQOzx7/b3lhYdMfnDLqVlioQ45d0i
-    1c/YJlS0AG9Kk/lb64OJUCYOZD6AyPRh1wwTCYNu7jUP8/4zDLuMOlr0WzUQLr9kBnJ/
-    2TP7Vkkngr6aOGmDMt+KXAEjgQIXWC2poaptIWXM1o9/iY03bS+6qGt4xBUv5NYeF/sK
-    As43ColaTv2bBXpLZTlUslorW+yCdaQaDPzg6CvI7KcgcpOH5PmYO5XFVBzaKxoTeDNd
-    EF4g==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH/jrwDepmg=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.42.2 DYNA|AUTH)
-    with ESMTPSA id k708cfy39E60ud3
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Sat, 9 Apr 2022 16:06:00 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH 05/18] MIPS: DTS: jz4780: fix pinctrl as reported by
- dtbscheck
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <7a2e986f-708b-ae4f-e877-6cdc1607626a@linaro.org>
-Date:   Sat, 9 Apr 2022 16:06:00 +0200
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
+        with ESMTP id S242338AbiDIOf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 10:35:27 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2770637AA7;
+        Sat,  9 Apr 2022 07:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1649514793;
+        bh=8hN+2AVbFXleT27mHGzC218qFEUyVtCqOPDIaAbNPX0=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=VYtBQJ4ZBZgI2YKC51XQHYkbw2j5rDmErWTNFYKXbXO3ZXAYDGhXezPvSqnP7vQBm
+         ZtzisTD6h/05mU9+ZLcvA5w+YxM7TBt9PfZYh/GB+FnnnAt92QMYsun3z/1EoEFmfH
+         9V63dxMcGk+wfmBT2+kn+ueKToa68O2qYITDZlNs=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([78.35.207.192]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MzQgC-1nqJDs3vvs-00vPuC; Sat, 09
+ Apr 2022 16:33:12 +0200
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     openbmc@lists.ozlabs.org
+Cc:     Joel Stanley <joel@jms.id.au>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: nuvoton: Add missing aliases for serial0/serial1
+Date:   Sat,  9 Apr 2022 16:33:09 +0200
+Message-Id: <20220409143309.2446741-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <318AA65F-A6DD-46F7-9BFA-7283EF0FFE94@goldelico.com>
-References: <cover.1649443080.git.hns@goldelico.com>
- <1941bc4ed553b27f399ad00ea61ff2b0237d14e3.1649443080.git.hns@goldelico.com>
- <e905896e-335d-a88a-1961-d17b92e46585@linaro.org>
- <530E0F7F-FC03-45DD-BF87-D049D3108AD3@goldelico.com>
- <c84b5ec0-0193-ab62-1985-25bc2baa9f05@linaro.org>
- <B5EB5983-DA9F-4631-B737-2B1417CF9054@goldelico.com>
- <f40e1a00-be4d-11c7-6a7c-6b50635a2960@linaro.org>
- <499848FD-3F64-4B5D-9259-5C9E1ED4E8AB@goldelico.com>
- <fb521d87-2d52-c15c-83c0-1b62bf1b1cc4@linaro.org>
- <F0C0E942-BA61-4C74-860B-93D57C3D0F9A@goldelico.com>
- <7a2e986f-708b-ae4f-e877-6cdc1607626a@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: Apple Mail (2.3445.104.21)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+X-Provags-ID: V03:K1:iIZmxWytLTz+5+OF4HAMOkkSGGLVy/iwOE4rQF3lm0xhe1C8IgA
+ mP/2HFSpfKUGUR5HhsLAbjIZhplUAPi3xtGMOOlq0HatVIJOvbG9ABGJvMkilaKnyPasI/7
+ Ghe1SK+JUV6u5GPvWD3u5g1G90+y0CdRSy+vOo4nS5k1nm445bdDn0SIMsiVKxPzGx81iz0
+ fr2CtmMkSgjsmn0LjdXKw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/LlXazknttE=:+z+MkVSa87IJ4Xv6hrvBc+
+ Sfo0R2vSjFWmfRFwJq83Qn2u1D4+v5pdJAe8CTqPaHpJxXqJii2Ca44B32K7ue8N1xuk6dXw1
+ CydANBAsinVCRybAcwh2jnUVS/RZzIobX6WJo6WrKDY3LG0EOnOoGmA/NYABpguF8UOe6P5id
+ By3HCrUubrFBKW+3b2ElstNE4CP6bNZ6hhbWontQmWKIxNVyVGrKq4zwab+JlgpcQQrkNtcsb
+ /PjjFXRLpeGd/nA9k/IDcez3LwtvXrXAmX5No1/aeiNuDBWxPXDMrKx4diInCBELPzJf2m7ax
+ EN3GmdKm0go3Lai4KY3SIFFO7gia5SPj6QnByfFw9P4VKHYNwcjyDbo8w16RyoUQ+VzOETKdY
+ ZTAPD7VpjDo2guXVbQfnC8E2se80rnqsGjPOHxHJDjkXZaAY0bWpIPxF9wOp0GJxJAPq9UA5S
+ tZpsvpKL2Ls9r3hsv6UA/OTLbfwYDlr6t0DFPGmLDMsI6GoJ/XCH4KriMTeyb7zhnIEOAjNkZ
+ utajzHMf6PqYPb26VTM01GfbZPX/yeTwghfA58lFxzt9z9LBf71SV5WbH5c/Wa0VOeGPwMFMF
+ gHimbfn5Uwau+yGYIStS9L9pyQhsL0khyVcRf7cWR0CpHXdCU6VbLq42aniLCOjhLEYZVebC+
+ spLR+kADqTfEU1xUgasT5WYUysfWXE0vJ+Uo5VTs33sqy4YFOd9uBo5fU7P+7AHz+HLQJJO6y
+ elVYDJ2ATHZjZG8UoOI7P6uLNonpvp4MN5PLSBNgcHxwV307XpfUKKznKZx/EsIJSiHzlBjtt
+ esNUShDyjdfTNbkZbPcH9a5kN5542jzZSmElaepeweP/MZcprOrXbkvNz91li0rk5RV2/eEJm
+ L6zomOqUXTXNKF4XuaUVp0eENJCUlMppB3atjK69qXOj5LycR/C/zPSmwuJ18oB6hxky54GoW
+ KRtms2U4strSZ6Kh6RR7q+cZwNnm53Gqmu0RTqV7A1Z8a6gcbl7//pFxvpcF6/ShY1eQJUMld
+ u1zcpq4w+/R7TtoxCLnXH1zzvydWN4Tyj/x7JoSgCJxItyJoEI1HOedcBnypIOHHNWHXeAiFj
+ gidGV207Ov6X3g=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,74 +70,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Without these, /chosen/stdout-path =3D "serial0:115200n8", as done in
+nuvoton-wpcm450-supermicro-x9sci-ln4f.dts, does not work.
 
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
+ arch/arm/boot/dts/nuvoton-wpcm450.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> Am 09.04.2022 um 16:00 schrieb Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org>:
->=20
-> On 09/04/2022 15:57, H. Nikolaus Schaller wrote:
->>=20
->>=20
->>> Am 09.04.2022 um 15:46 schrieb Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org>:
->>>=20
->>> On 09/04/2022 15:41, H. Nikolaus Schaller wrote:
->>>>>=20
->>>>> No. I ask you to fix all pin-controller cases, for entire MIPS, =
-not just
->>>>> one.
->>>>=20
->>>> Oops. Nope. I am a volunteer and neither your employee nor slave.
->>>=20
->>> No one thinks differently and I am sorry that you felt it. Please =
-accept
->>> my apologies, if you get different impression. You understand though =
-the
->>> meaning of word "ask for something" and "order something" (the =
-latter
->>> which I did not use).
->>>=20
->>> I just asked.
->>=20
->> Ok. Maybe english is not our mother language and we sometimes don't
->> get the nuances right. Sorry if I understood that wrongly.
->>=20
->> At least I now understand what you did suggest.
->=20
-> Yeah, probably I did not express my thoughts correctly.
->=20
-> I would like to state that I appreciate your work and I think it is
-> important, even if I do not express it correctly. Please accept my
-> apologies if I am bit harsh or impolite. That's not my intention.
+diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
+voton-wpcm450.dtsi
+index 93595850a4c3c..57943bf5aa4a9 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
++++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
+@@ -17,6 +17,8 @@ aliases {
+ 		gpio5 =3D &gpio5;
+ 		gpio6 =3D &gpio6;
+ 		gpio7 =3D &gpio7;
++		serial0 =3D &serial0;
++		serial1 =3D &serial1;
+ 	};
 
-I also was a little harsh in my response. Sorry again.
-
->=20
->>=20
->> Doing the same change for treewide MIPS is beyond my capabilities =
-since
->> I can't easily test any compile setup. So far I only compile for CI20 =
-and
->> as far as I know every machine still needs its own config for MIPS=20
->> (haven't checked recently). So I am not even sure if dtbscheck tells =
-me
->> all locations.
->=20
->=20
-> OK, fair enough.
->=20
->=20
-> Best regards,
-> Krzysztof
-
-Anyways thank you very much for your reviews and sharing comments.
-
-As far as I see there are only the jz4780-nemc/simple-mfd and the =
-snps,dwc2/jz4780-otg
-issues really unsolved while the others are more cosmetics.
-
-Let's see how these settle.
-
-BR and thanks,
-Nikolaus
+ 	cpus {
+=2D-
+2.35.1
 
