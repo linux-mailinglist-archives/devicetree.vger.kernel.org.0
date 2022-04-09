@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C604FAAAB
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 22:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 552404FAACB
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 22:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231158AbiDIUT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 16:19:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33150 "EHLO
+        id S243149AbiDIUiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 16:38:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbiDIUTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 16:19:55 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD6E6152
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 13:17:46 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id q20so7609959wmq.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 13:17:46 -0700 (PDT)
+        with ESMTP id S231560AbiDIUiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 16:38:24 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89E824F16
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 13:36:15 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id h19so11346174pfv.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 13:36:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=q1lxCdHBuJxbjBxwpnh6sKKElMTUleBSs75hBgURlRY=;
-        b=hzHf7vRkvfJeJMWuL8VfxUjnk/K7K0xF6pvUkc5En63ToYPb5e1Kt0qs9ReOGfoKUQ
-         K5RUJkfF8N/75TpttuyMN/9Ch5kjQJ+6bU/kCu10Q6wjQfDxPaFtYOfTKPsUDNak7ZkY
-         3/ciwURzduGUWoQyT51AbESlQIqsFW98O8X32z7MdJgn0xoiMFniCK1BXmGuHrUm5at4
-         Wdc4DqlvacvML9hP2Ni6W36HKJyMougYeCWwLnin88SV8RJb3JJ6E7uYEct1V85SPRy7
-         bKGPTDG0cCpQh5SUvKCGgo0SpmWorZVgf1Kr8KN98og14ov3Ew9IizrwHQOImZ33qRIo
-         1wZw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ToaemIh0N/ictNMTY6+8rwYpqhr7q8UZjVORvPQt/1Y=;
+        b=VrFx9bSfQ+cfWs6cBGHXR9DrCWbguRAu9pGUcToAoFl0OMrWqmJrS4UZ8HJrm1XmlA
+         ON6bJiMXpSqwUItF6z5n1hBhNbWDRowvH/6ptVky3daXm/LYeOUiLh9B/kmy52D/tDaQ
+         mNlpDgQNKap2oxboEiwlJZW+uUqOQl13LxJclL2yUwQ/Q4dbHeUn7crvm8cNtb0pCJgN
+         RLO7nskSGcQIbgp9QjWq7akVn3HeobMjuCoG9VJkZ7UBfmLj4VnQ1kCoZ6Ec4FI7NPxc
+         JIYY8AF+i9HLJkdXfbfYR0bSwEEmW9Cz7Ca7opz7Q/mYdsMbL+/C6JNXYStCUjBzGZ9d
+         A65w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=q1lxCdHBuJxbjBxwpnh6sKKElMTUleBSs75hBgURlRY=;
-        b=R72Z209yWgZ2REx6arsAGj/1Ye9gYnSxvUJij18g6jHVL2omQmYuGB4G5J3LbXpMyb
-         WLgCKihRCb3Q7RI4vypr/CNNcokZhliTbjOz8KkNmo3tPk/Wyd1+GJH8RlUqEfrV50Bl
-         D49bu0EvEaHY/YfZUUk7Wwr/m82Y8lqvpzSE92v9W0loH2US0nyzNsx/m+c15Ie17KW6
-         MmAg5CLR2xFSbmH2kHNDlS+MYALpqOmmW1L0PxxiBMmiXmhh3c3L099wJcp3F6kWKSX7
-         oL2HbJa1KMESj4Z6lyyx4Cz4IWT5KoNEvD7Yxpkd6H2RnxuT+IYYxbYutZMEoO1+vLPz
-         +W7A==
-X-Gm-Message-State: AOAM532I7gyqgPih0xVFrUY07uhwfr4RkXinryX3NYLg5AjpEyFWCAi8
-        XXwbaqAqcSFsJI4/sItoYpHOSw==
-X-Google-Smtp-Source: ABdhPJyPhXW8Dtj381wf89dQcXMgzwmh+JZcAU60DG4J9/z8AKiVUazKM/8tyzG9vucLww9Zp15s6g==
-X-Received: by 2002:a05:600c:500e:b0:38c:6d79:d5ac with SMTP id n14-20020a05600c500e00b0038c6d79d5acmr23120020wmr.42.1649535464708;
-        Sat, 09 Apr 2022 13:17:44 -0700 (PDT)
-Received: from [192.168.2.222] ([51.37.209.28])
-        by smtp.gmail.com with ESMTPSA id 20-20020a05600c22d400b0038c8dbdc1a3sm13115012wmg.38.2022.04.09.13.17.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 13:17:44 -0700 (PDT)
-Message-ID: <8a7e16c3-ce17-3726-5702-763d57075c25@conchuod.ie>
-Date:   Sat, 9 Apr 2022 21:17:43 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ToaemIh0N/ictNMTY6+8rwYpqhr7q8UZjVORvPQt/1Y=;
+        b=FJIVfaAd83suCh5YJiKPMFSvPMHsQoAkM+qGQHU5t65OzWbPFbahynsTpJkuO6gw+3
+         eoxu366EjlHIRSQS61JLPTyiM2mDWxXClfZN7AnSC5Vx6sP0E97zoJFjIAlMPkSBzl39
+         m6rEHzbpSv50tpdxXRwLCFr+nz+ejXz1PG01oppFtBIjdwsiaRKQFGn28IKiuSrtPdts
+         ixb7i4mgtzWeK5QozN6t9HFf2QMTYXoeARPZiBqKaTK/rFfOFpr55CQL2LYKzq03Tv6Z
+         PQtY0m2p7VsYL4BooSR6NxkrdQvPfkRx5hdK7toxaC3fB6PxdFMLK3qzg5t4Lt7PueVv
+         o8zQ==
+X-Gm-Message-State: AOAM532gO0myZ1E4KO7fBH3QEnwHf7bxTKMKYXj+8zZYFVhtTasH6Nam
+        ssc9bx/rK5bBtI2oWcuOa/x9jA==
+X-Google-Smtp-Source: ABdhPJw/rmDw7bqHCMDpzikztX0oH3Td8uC+JRWeVwaLpimkoupGZubMwy2iGBHTimSdAcvPSSyFzQ==
+X-Received: by 2002:a62:6dc3:0:b0:505:895a:d38b with SMTP id i186-20020a626dc3000000b00505895ad38bmr9336064pfc.7.1649536575239;
+        Sat, 09 Apr 2022 13:36:15 -0700 (PDT)
+Received: from x1 ([2601:1c2:1001:7090:925c:1a60:e433:31b7])
+        by smtp.gmail.com with ESMTPSA id x17-20020a17090ab01100b001ca8458964esm15629780pjq.18.2022.04.09.13.36.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Apr 2022 13:36:14 -0700 (PDT)
+Date:   Sat, 9 Apr 2022 13:37:01 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: wkup-m3-ipc: Add vtt toggle bindings
+Message-ID: <YlHubYmrx2w/s20N@x1>
+References: <20220409045145.2434096-1-dfustini@baylibre.com>
+ <20220409045145.2434096-2-dfustini@baylibre.com>
+ <c4536b89-4843-c669-e499-f82fa3fec7f8@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v1 0/7] Add rtc refclk support for PolarFire SoC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>, sboyd@kernel.org,
-        aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
-        palmer@rivosinc.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, mturquette@baylibre.com
-Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220408143646.3693104-1-conor.dooley@microchip.com>
- <1fa15b36-7a84-e0ac-2c56-d6a2bec566ff@linaro.org>
- <cc11d576-3670-ff0a-e0a1-e92780a04c2a@conchuod.ie>
- <98026c4a-a065-3965-27f0-71de29cdb264@conchuod.ie>
- <7e6a0489-f90f-a362-e37b-b219fe2d71fe@linaro.org>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <7e6a0489-f90f-a362-e37b-b219fe2d71fe@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c4536b89-4843-c669-e499-f82fa3fec7f8@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2022 11:48, Krzysztof Kozlowski wrote:
-> On 09/04/2022 09:14, Conor Dooley wrote:
->> On 08/04/2022 16:29, Conor Dooley wrote:
->>> On 08/04/2022 15:57, Krzysztof Kozlowski wrote:
->>>> On 08/04/2022 16:36, Conor Dooley wrote:
->>>>> Hey,
->>>>> As I mentioned in my fixes for 5.18 [0], found out that the reference
->>>>> clock for the rtc is actually missing from the clock driver (and the
->>>>> dt binding).
->>>>>
->>>>> Currently the mpfs clock driver uses a reference clock called the
->>>>> "msspll", set in the device tree, as the parent for the cpu/axi/ahb
->>>>> (config) clocks. The frequency of the msspll is determined by the FPGA
->>>>> bitstream & the bootloader configures the clock to match the bitstream.
->>>>> The real reference is provided by a 100 or 125 MHz off chip oscillator.
->>>>>
->>>>> However, the msspll clock is not actually the parent of all clocks on
->>>>> the system - the reference clock for the rtc/mtimer actually has the
->>>>> off chip oscillator as its parent.
->>>>>
->>>>> This series enables reading the rate of the msspll clock, converts
->>>>> the refclock in the device tree to the external reference & adds
->>>>> the missing rtc reference clock.
->>>>>
->>>>> I assume it is okay not to add fixes tags for the rtc dt binding?
->>>>> Since the clock was previously missing, the binding is wrong, but
->>>>> idk if that qualifies as a fix?
->>>>
->>>> Usually ABI breakage, even if accepted, should be be tagged as fix
->>>> because it is clearly then a break of other peoples' trees...
->>>>
->>>
->>> That means either a) do something messy in the clock driver or b) mark
->>> the whole series as fixes (and roll it into [0]).
->>>
->>> The second option seems far more sensible to me, do you agree?
->>
->> Having thought some more about it, patches 2, 3 and the rtc part of 7
->> should be moved into [0] since they're fixing a binding that only
->> arrived in 5.18-rc1.
->> For the rest, make the second part of the reg optional and if it doesnt
->> exist just return prate for the msspll clock?
+On Sat, Apr 09, 2022 at 06:25:24PM +0200, Krzysztof Kozlowski wrote:
+> On 09/04/2022 06:51, Drew Fustini wrote:
+> > Document the Wakeup M3 IPC properties that can be used to toggle the VTT
+> > regulator during low power mode transitions.
+> >
 > 
-> Ah, so this got into v5.18-rc1?
+> (...)
+> 
+> > @@ -51,6 +61,15 @@ properties:
+> >        mbox_wkupm3 child node.
+> >      maxItems: 1
+> >  
+> > +  ti,needs-vtt-toggle:
+> > +    type: boolean
+> > +    description: boards requires VTT toggling during suspend/resume
+> > +
+> > +  ti,vtt-gpio-pin:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: pin on the GPIO0 module used for VTT toggle
+> > +    maxItems: 1
+> 
+> No need for maxItems, it's a single uint32. You could add "maximum" if
+> you know the constraints for the value.
 
-Yeah, so for context he clock driver & relevant the dt-bindings only
-arrived in 5.18-rc1. The device tree itself has been around (I think)
-5.12 but it wasn't bootable until now. The rtc stanza is also new.
-The clock stanza & "wrong" refclk existed since the device tree was
-first added.
+Thank you for letting me know.
 
-> I think I missed that information from
-> the patches description and focused on backporting to stables.
+> Do you actually need two properties (bool + pin)? A case of
+> "ti,vtt-gpio-pin" without the "ti,needs-vtt-toggle" is valid?
 
-Yeah, zero intention of backporting any of this. Pretty pointless since
-the board hasn't booted until now anyway.
+You raise a good point. In fact, the driver does nothing useful in the
+case of "ti,needs-vtt-toggle" without "ti,vtt-gpio-pin". Therefore, I
+will remove the "ti,needs-vtt-toggle" property.
 
-> Then indeed you could combine all fixes together, mark them with Fixes.
+> 
+> The other way looks wrong, so you need to add a dependency (see
+> example-schema).
+> 
+> 
+> Best regards,
+> Krzysztof
 
-I had split the series (plural) since the clock driver change is fairly
-big, adding a new "layer" of clocks & like 200 lines to a 400 line
-driver. I will respin then, with the dt binding patches marked as fixes
-and combined with the other series.
-
-Do I have to maintain backwards compatibility with the device tree
-from before the board actually booted mainline? If not, I'll merge
-it all into one series, marked as fixes. Otherwise I'll keep the clock 
-changes in this series out of the fixes, mark the second reg entry in
-the clock binding as optional & handle the old, "naive" dt stanza in the
-driver.
-
-Thanks!
-Conor.
+Thank you,
+Drew
