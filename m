@@ -2,128 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E6244FA20D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 05:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5AB4FA229
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 06:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240697AbiDIDmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 23:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
+        id S235067AbiDIEDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 00:03:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240649AbiDIDmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 23:42:06 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEDD304E04;
-        Fri,  8 Apr 2022 20:39:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649475598; x=1681011598;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qze9RYK4ui0ByNmAqFkQyf4VBZx1hpmkKmu8YdbL7gM=;
-  b=oA2EHTT325u3nHFqgJCRdaaxLFUM2eBjIcUrrZnGa8DSB+NUPJaODQnn
-   uOn2v7dhnLrMl9FaWTZkavixHuClu2n1p66dCEOfFe5gP5mvbPT3GKiJ5
-   1mXs6hkhc2swC2anJbs4lmh8iMp3fh289P03izCXVXJQaEz8M0/aN7e0G
-   SdU7gah+2C+gcOpW/BoS3PduA9mfuIZoDiscsOQO5Biy9Vy6oQiqr2EFG
-   W52+pRppVBsWKg3uw51tSNoBlMuwIyfj+J2sgMZb+7gSVHUfGbJrf1cC/
-   QnoqDVXlOj/kGBVKA6WjkTORh04TXv1P6GoPRFnJGwBIIm8LNY3yT0yrd
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="241688562"
-X-IronPort-AV: E=Sophos;i="5.90,246,1643702400"; 
-   d="scan'208";a="241688562"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 20:39:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,246,1643702400"; 
-   d="scan'208";a="653558544"
-Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 08 Apr 2022 20:39:55 -0700
-Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nd1x4-0000qb-Bv;
-        Sat, 09 Apr 2022 03:39:54 +0000
-Date:   Sat, 9 Apr 2022 11:39:44 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>
-Subject: Re: [PATCH v6 4/5] device property: Constify fwnode_handle_get()
-Message-ID: <202204091133.KMBmLNSx-lkp@intel.com>
-References: <20220408184844.22829-4-andriy.shevchenko@linux.intel.com>
+        with ESMTP id S237193AbiDIEDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 00:03:45 -0400
+Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936BD32EEC
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 21:01:37 -0700 (PDT)
+Date:   Sat, 09 Apr 2022 04:01:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1649476892;
+        bh=wMncmnY+rrP3Pvn94fRUXX8ko1xmtHWn5l07vjpjZUA=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID;
+        b=HLKP4Xwd4zfZ6loQiXG3sbR9NuEW5LCougG4m+/QeQth+6QAL3tEsOt/T/WlZpkfy
+         IcxOhPOR3GLkBr12Q3XlUFabin2n1SUEAFdX8qHV//zANuYTbk34sO6hbZKb5C0zi0
+         KrB26sNehSsL1TJdZ+3OFN7RHnMGM+OPrPvpb6j5rt39AaJMRlddWJBpQjzjeQWQmb
+         Gt8fJxDLrxf8UDmhS5dMpzDIPmJrN2nHwts86sWRhq+1L/0FQB0oSQcUhdPPcr1jUq
+         wChKjrVpsWiHPCdZ7NpEpJ6gVoaU3g5WM2P2qfSgCEx2FwT2RwbLT3/jNU5LShFP6V
+         p4qgIjjSGJk2Q==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH v2 0/9] Add support for MSM8996 Pro
+Message-ID: <20220409035804.9192-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408184844.22829-4-andriy.shevchenko@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+MSM8996 Pro (also known as MSM8996SG) is a newer revision of MSM8996
+with different CPU/CBF/GPU frequencies and CPR parameters. Its CBF clock
+also has a different divisor.
 
-I love your patch! Perhaps something to improve:
+This series handles the difference in the CBF clock and adds a new DTSI for
+MSM8996 Pro with CPU and GPU OPPs. It also removes reading msm-id from SMEM
+in qcom-cpufreq-nvmem as it becomes no longer necessary with the introducti=
+on.
+of a separate device tree. Separating MSM8996 and MSM8996 Pro will help wit=
+h
+implementing CBF scaling and CPR; as they have different CPR parameters
+and CPU:CBF OPP mapping which is difficult to implement in the same cluster
+OPP tables.
 
-[auto build test WARNING on driver-core/driver-core-testing]
-[also build test WARNING on rafael-pm/linux-next robh/for-next linus/master v5.18-rc1 next-20220408]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Dependencies:
+- clk: qcom: msm8996-cpu: Add CBF support
+  https://lore.kernel.org/linux-arm-msm/20210528192541.1120703-1-konrad.dyb=
+cio@somainline.org/#t
+- arm64: dts: qcom: msm8996: Add support for the CBF clock
+  https://lore.kernel.org/linux-arm-msm/20210528192541.1120703-2-konrad.dyb=
+cio@somainline.org/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/device-property-Allow-error-pointer-to-be-passed-to-fwnode-APIs/20220409-025056
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git 3123109284176b1532874591f7c81f3837bbdc17
-config: um-i386_defconfig (https://download.01.org/0day-ci/archive/20220409/202204091133.KMBmLNSx-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.2.0-19) 11.2.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/477683439b5ee0954b08970d8c356b4cdaca8bc0
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Andy-Shevchenko/device-property-Allow-error-pointer-to-be-passed-to-fwnode-APIs/20220409-025056
-        git checkout 477683439b5ee0954b08970d8c356b4cdaca8bc0
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=um SUBARCH=i386 SHELL=/bin/bash drivers/base/
+Changes since v1:
+- Rebase DT changes on already merged patches[1][2].
+- Add more details to commit messages.
+- Split removing MSM8996 Pro speed bin bits from opp-supported-hw into
+  a separate patch.
+- Rename msm8996-xiaomi-scorpio.dts to msm8996pro-xiaomi-scorpio.dts
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+[1] https://lore.kernel.org/linux-arm-msm/20220203072226.51482-1-y.oudjana@=
+protonmail.com/T/#m6e1341ccfa50d11d221ba8c618f73c21a83b8acb
+[2] https://lore.kernel.org/linux-arm-msm/20220203072226.51482-1-y.oudjana@=
+protonmail.com/T/#m36f194cd9da1fee7058a88412985aab10c499fa7
 
-All warnings (new ones prefixed by >>):
+Yassine Oudjana (9):
+  dt-bindings: clk: qcom: msm8996-apcc: Add CBF
+  dt-bindings: clk: qcom: msm8996-apcc: Add MSM8996 Pro compatible
+  clk: qcom: msm8996-cpu: Add MSM8996 Pro CBF support
+  cpufreq: qcom_cpufreq_nvmem: Simplify reading kryo speedbin
+  dt-bindings: opp: opp-v2-kryo-cpu: Remove SMEM
+  arm64: dts: qcom: msm8996: Remove MSM8996 Pro speed bins from cluster
+    OPP tables
+  dt-bindings: arm: qcom: Add MSM8996 Pro compatible
+  arm64: dts: qcom: msm8996: Add MSM8996 Pro support
+  arm64: dts: qcom: msm8996-xiaomi-scorpio: Use MSM8996 Pro
 
-   drivers/base/property.c: In function 'fwnode_handle_get':
->> drivers/base/property.c:782:24: warning: return discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     782 |                 return fwnode;
-         |                        ^~~~~~
+ .../devicetree/bindings/arm/qcom.yaml         |   5 +
+ .../bindings/clock/qcom,msm8996-apcc.yaml     |  11 +-
+ .../bindings/opp/opp-v2-kryo-cpu.yaml         |  56 ++--
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +-
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |   3 -
+ .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   |   1 +
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  82 ++---
+ ...rpio.dts =3D> msm8996pro-xiaomi-scorpio.dts} |   4 +-
+ arch/arm64/boot/dts/qcom/msm8996pro.dtsi      | 281 ++++++++++++++++++
+ drivers/clk/qcom/clk-cpu-8996.c               |  61 ++--
+ drivers/cpufreq/Kconfig.arm                   |   1 -
+ drivers/cpufreq/qcom-cpufreq-nvmem.c          |  75 +----
+ 12 files changed, 410 insertions(+), 172 deletions(-)
+ rename arch/arm64/boot/dts/qcom/{msm8996-xiaomi-scorpio.dts =3D> msm8996pr=
+o-xiaomi-scorpio.dts} (99%)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8996pro.dtsi
+
+--
+2.35.1
 
 
-vim +/const +782 drivers/base/property.c
-
-613e97218ccbd7f Adam Thomson    2016-06-21  772  
-e7887c284969a23 Sakari Ailus    2017-03-28  773  /**
-e7887c284969a23 Sakari Ailus    2017-03-28  774   * fwnode_handle_get - Obtain a reference to a device node
-e7887c284969a23 Sakari Ailus    2017-03-28  775   * @fwnode: Pointer to the device node to obtain the reference to.
-cf89a31ca55272e Sakari Ailus    2017-09-19  776   *
-cf89a31ca55272e Sakari Ailus    2017-09-19  777   * Returns the fwnode handle.
-e7887c284969a23 Sakari Ailus    2017-03-28  778   */
-477683439b5ee09 Andy Shevchenko 2022-04-08  779  struct fwnode_handle *fwnode_handle_get(const struct fwnode_handle *fwnode)
-e7887c284969a23 Sakari Ailus    2017-03-28  780  {
-cf89a31ca55272e Sakari Ailus    2017-09-19  781  	if (!fwnode_has_op(fwnode, get))
-cf89a31ca55272e Sakari Ailus    2017-09-19 @782  		return fwnode;
-cf89a31ca55272e Sakari Ailus    2017-09-19  783  
-cf89a31ca55272e Sakari Ailus    2017-09-19  784  	return fwnode_call_ptr_op(fwnode, get);
-e7887c284969a23 Sakari Ailus    2017-03-28  785  }
-e7887c284969a23 Sakari Ailus    2017-03-28  786  EXPORT_SYMBOL_GPL(fwnode_handle_get);
-e7887c284969a23 Sakari Ailus    2017-03-28  787  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
