@@ -2,165 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2794FA578
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 08:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11D94FA57E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 08:53:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbiDIGpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 02:45:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35066 "EHLO
+        id S233423AbiDIGy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 02:54:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237637AbiDIGpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 02:45:11 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED59DB647B;
-        Fri,  8 Apr 2022 23:43:02 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id h126-20020a1c2184000000b0038eb17fb7d6so336811wmh.2;
-        Fri, 08 Apr 2022 23:43:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id;
-        bh=Hew5fcLWaJy7bwAuvYjA3lNei48lfLSyllJNDnqQkVc=;
-        b=jILQ4LHxO5+CInWgmA9XopC7fi7sLeqXXx9pBVE3OL7uY/CCkh9vQt8hlKNx8vQQv6
-         lCLmAnhndgoqf1I+4UIz9HdwcUb8XBn8cGk0o58ymElyZOOt+rqSa5ZJo5ze9rkezna0
-         oxsSslQgdJGQv/f3Q41ckLEsfGQeoZ4MvdjDcFOBfA1DHSpsR6gm+N02GSgGY7tIs9Lw
-         KwZTlemStbsCE7Rf9k23+HFArdXbk867jm3jn0D5OHMX7LrPEE7eQXcEVxGoE6eTLZmU
-         qyB1RPeLQgzslAiW9Guq3hP8d4Gsg8b7s52l+/1pS23Q4hd6M15L6u4QX9aRtfEy+ezN
-         x5/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=Hew5fcLWaJy7bwAuvYjA3lNei48lfLSyllJNDnqQkVc=;
-        b=UxZeWnMDL19WGNyKYUM0HdQn2oYIoccdgE+zrzk9qRdtUo67KQeeK0tWxxmAvnTQ++
-         F4rh9x/GT56H3KibfSKlOgxUY1egb7Rybp5V1TI21u2Oud1ln1d8ngIT79aHMWA/6vc+
-         A2/H7OhIIQP50FjA5bomJbAeTaUGxgP7E7NBY+84zNjIuFHb/nCMZhuA2V7LVtGnlsLk
-         Eowhk+mdho6MiHK6AVZUQ88sUys0WrFVK9YOYwiFRfjxQQKyvz+yxF9n07pYR7p9OEfc
-         +PAdVVGCm63Cmw9CPOj/iAOKZpUF46xETQ+wEvM+3lklxcpg+pxoOZnzIF6AeFrlFDxc
-         mwEQ==
-X-Gm-Message-State: AOAM531g0cJVhlSOjk5WLl64zYCP0C/xQximZ+U/olZQE1LC8H+RbeUV
-        0NSgHDMPhrk0neskn8drMUM=
-X-Google-Smtp-Source: ABdhPJxdQ1FvRmMXuNN14cFg6MkFQt5NUoRYqlA8V6b4WyYE1xKS45Ugoygq92XUmHHpnELWWhi/eA==
-X-Received: by 2002:a7b:c188:0:b0:38e:74f1:7cbf with SMTP id y8-20020a7bc188000000b0038e74f17cbfmr19905948wmi.104.1649486581395;
-        Fri, 08 Apr 2022 23:43:01 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id n7-20020a5d5987000000b00207891050d4sm5375643wri.46.2022.04.08.23.42.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 23:43:01 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: alpa sort the board Makefile
-Date:   Sat,  9 Apr 2022 06:42:57 +0000
-Message-Id: <20220409064257.24453-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232838AbiDIGyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 02:54:55 -0400
+Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358171D33B
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 23:52:45 -0700 (PDT)
+X-Interia-R: Interia
+X-Interia-R-IP: 80.68.225.159
+X-Interia-R-Helo: <t480s.localdomain>
+Received: from t480s.localdomain (unknown [80.68.225.159])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
+        Sat,  9 Apr 2022 08:52:41 +0200 (CEST)
+Date:   Sat, 9 Apr 2022 08:52:39 +0200
+From:   Slawomir Stepien <sst@poczta.fm>
+To:     frowand.list@gmail.com
+Cc:     Rob Herring <robh+dt@kernel.org>, pantelis.antoniou@konsulko.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alan Tull <atull@kernel.org>
+Subject: Re: [PATCH 1/1] of: overlay: of_overlay_apply() kfree() errors
+Message-ID: <YlEtN6vk+XPRUkSX@t480s.localdomain>
+References: <20220408172103.371637-1-frowand.list@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220408172103.371637-1-frowand.list@gmail.com>
+X-Interia-Antivirus: OK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
+        s=biztos; t=1649487162;
+        bh=IrA88DSEzgkplkXRuVFdYiXXiL5inlvned7iHGSa1XY=;
+        h=X-Interia-R:X-Interia-R-IP:X-Interia-R-Helo:Date:From:To:Cc:
+         Subject:Message-ID:References:MIME-Version:Content-Type:
+         Content-Disposition:In-Reply-To:X-Interia-Antivirus;
+        b=RW7CJboh2v8UOakv3X1TjMnN7mrAMDGL5V7JbVFstUIIZhtcRTVJQGt5Vg2MJOYYP
+         ygBMFZw7C8sm6K6XRC4Ud2VzUoMLxbW/2Tadm+yeAVVIQuBjiIjacnPhC//S0qG1oU
+         sJhRLgwsMKi8EUgSRqIH2T+WGUUTwYBrMoYeUNJ4=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's alpha-sort the board Makefile to keep things organised.
+On kwi 08, 2022 12:21, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile | 38 ++++++++++++++--------------
- 1 file changed, 19 insertions(+), 19 deletions(-)
+Hi Frank!
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 0eec18678311..8773211df50e 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,17 +1,18 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gsking-x.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
-@@ -19,29 +20,29 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-p200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-p201.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-meta.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-telos.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-hub.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-play2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-libretech-ac.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-hwacom-amazetv.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-khadas-vim.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-mecool-kii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-sml5442tw.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-vero4k-plus.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-jethome-jethub-j80.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-jethome-jethub-j80.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-hwacom-amazetv.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-khadas-vim.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc-v2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
-@@ -52,15 +53,14 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
+See my one comment below.
+
+> Fix various kfree() issues related to of_overlay_apply().
+>   - Double kfree() of fdt and tree when init_overlay_changeset()
+>     returns an error.
+>   - free_overlay_changeset() free of the root of the unflattened
+>     overlay (variable tree) instead of the memory that contains
+>     the unflattened overlay.
+>   - Move similar kfree()s from multiple error locations to a
+>     common error path (err_free_tree_unlocked:).
+> 
+> Double kfree()
+> Reported-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+> 
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> ---
+>  drivers/of/overlay.c | 64 ++++++++++++++++++++++++++++----------------
+>  1 file changed, 41 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index d80160cf34bb..1b9a90d61496 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -58,6 +58,7 @@ struct fragment {
+>   * @id:			changeset identifier
+>   * @ovcs_list:		list on which we are located
+>   * @fdt:		base of memory allocated to hold aligned FDT that was unflattened to create @overlay_tree
+> + * @overlay_mem:	the memory chunk that contains @overlay_tree
+>   * @overlay_tree:	expanded device tree that contains the fragment nodes
+>   * @count:		count of fragment structures
+>   * @fragments:		fragment nodes in the overlay expanded device tree
+> @@ -68,6 +69,7 @@ struct overlay_changeset {
+>  	int id;
+>  	struct list_head ovcs_list;
+>  	const void *fdt;
+> +	const void *overlay_mem;
+>  	struct device_node *overlay_tree;
+>  	int count;
+>  	struct fragment *fragments;
+> @@ -720,6 +722,7 @@ static struct device_node *find_target(struct device_node *info_node)
+>   * init_overlay_changeset() - initialize overlay changeset from overlay tree
+>   * @ovcs:	Overlay changeset to build
+>   * @fdt:	base of memory allocated to hold aligned FDT that was unflattened to create @tree
+> + * @tree_mem:	Memory that contains @tree
+>   * @tree:	Contains the overlay fragments and overlay fixup nodes
+>   *
+>   * Initialize @ovcs.  Populate @ovcs->fragments with node information from
+> @@ -730,13 +733,23 @@ static struct device_node *find_target(struct device_node *info_node)
+>   * detected in @tree, or -ENOSPC if idr_alloc() error.
+>   */
+>  static int init_overlay_changeset(struct overlay_changeset *ovcs,
+> -		const void *fdt, struct device_node *tree)
+> +		const void *fdt, const void *tree_mem, struct device_node *tree)
+>  {
+>  	struct device_node *node, *overlay_node;
+>  	struct fragment *fragment;
+>  	struct fragment *fragments;
+>  	int cnt, id, ret;
+>  
+> +	/*
+> +	 * Must set these fields before any error return. fdt and tree_mem
+> +	 * will be freed by free_overlay_changeset(), which is called if
+> +	 * init_overlay_changeset() returns an error.
+> +	 */
+> +
+> +	ovcs->fdt = fdt;
+> +	ovcs->overlay_mem = tree_mem;
+> +	ovcs->overlay_tree = tree;
+> +
+>  	/*
+>  	 * Warn for some issues.  Can not return -EINVAL for these until
+>  	 * of_unittest_apply_overlay() is fixed to pass these checks.
+> @@ -750,9 +763,6 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
+>  	if (!of_node_is_root(tree))
+>  		pr_debug("%s() tree is not root\n", __func__);
+>  
+> -	ovcs->overlay_tree = tree;
+> -	ovcs->fdt = fdt;
+> -
+>  	INIT_LIST_HEAD(&ovcs->ovcs_list);
+>  
+>  	of_changeset_init(&ovcs->cset);
+> @@ -865,7 +875,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>  	 * ovcs->fdt due to the policy that overlay notifiers are not allowed
+>  	 * to retain pointers into the overlay devicetree.
+>  	 */
+> -	kfree(ovcs->overlay_tree);
+> +	kfree(ovcs->overlay_mem);
+>  	kfree(ovcs->fdt);
+>  	kfree(ovcs);
+>  }
+> @@ -875,6 +885,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>   *
+>   * of_overlay_apply() - Create and apply an overlay changeset
+>   * @fdt:	base of memory allocated to hold the aligned FDT
+> + * @tree_mem:	Memory that contains @tree
+>   * @tree:	Expanded overlay device tree
+>   * @ovcs_id:	Pointer to overlay changeset id
+>   *
+> @@ -913,31 +924,27 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
+>   * id is returned to *ovcs_id.
+>   */
+>  
+> -static int of_overlay_apply(const void *fdt, struct device_node *tree,
+> -		int *ovcs_id)
+> +static int of_overlay_apply(const void *fdt, void *tree_mem,
+> +		struct device_node *tree, int *ovcs_id)
+>  {
+>  	struct overlay_changeset *ovcs;
+>  	int ret = 0, ret_revert, ret_tmp;
+>  
+>  	/*
+> -	 * As of this point, fdt and tree belong to the overlay changeset.
+> +	 * As of this point, fdt and tree_mem belong to the overlay changeset.
+>  	 * overlay changeset code is responsible for freeing them.
+>  	 */
+>  
+>  	if (devicetree_corrupt()) {
+>  		pr_err("devicetree state suspect, refuse to apply overlay\n");
+> -		kfree(fdt);
+> -		kfree(tree);
+>  		ret = -EBUSY;
+> -		goto out;
+> +		goto err_free_tree_unlocked;
+>  	}
+>  
+>  	ovcs = kzalloc(sizeof(*ovcs), GFP_KERNEL);
+>  	if (!ovcs) {
+> -		kfree(fdt);
+> -		kfree(tree);
+>  		ret = -ENOMEM;
+> -		goto out;
+> +		goto err_free_tree_unlocked;
+>  	}
+>  
+>  	of_overlay_mutex_lock();
+> @@ -947,9 +954,14 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+>  	if (ret)
+>  		goto err_free_tree;
+>  
+> -	ret = init_overlay_changeset(ovcs, fdt, tree);
+> +	/*
+> +	 * init_overlay_changeset() promises to add tree_mem and tree to ovcs
+> +	 * even in the case of an early error return, so they can be freed by
+> +	 * free_overlay_changeset().
+> +	 */
+> +	ret = init_overlay_changeset(ovcs, fdt, tree_mem, tree);
+>  	if (ret)
+> -		goto err_free_tree;
+> +		goto err_free_overlay_changeset;
+>  
+>  	/*
+>  	 * after overlay_notify(), ovcs->overlay_tree related pointers may have
+> @@ -999,7 +1011,7 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+>  
+>  err_free_tree:
+>  	kfree(fdt);
+> -	kfree(tree);
+> +	kfree(tree_mem);
+>  
+>  err_free_overlay_changeset:
+>  	free_overlay_changeset(ovcs);
+> @@ -1008,9 +1020,14 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
+>  	mutex_unlock(&of_mutex);
+>  	of_overlay_mutex_unlock();
+>  
+> -out:
+>  	pr_debug("%s() err=%d\n", __func__, ret);
+>  
+> +	return ret;
+> +
+> +err_free_tree_unlocked:
+> +	kfree(fdt);
+> +	kfree(tree_mem);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -1019,6 +1036,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>  {
+>  	void *new_fdt;
+>  	void *new_fdt_align;
+> +	void *overlay_mem;
+>  	int ret;
+>  	u32 size;
+>  	struct device_node *overlay_root = NULL;
+> @@ -1046,18 +1064,17 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>  	new_fdt_align = PTR_ALIGN(new_fdt, FDT_ALIGN_SIZE);
+>  	memcpy(new_fdt_align, overlay_fdt, size);
+>  
+> -	of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
+> -	if (!overlay_root) {
+> +	overlay_mem = of_fdt_unflatten_tree(new_fdt_align, NULL, &overlay_root);
+> +	if (!overlay_mem) {
+>  		pr_err("unable to unflatten overlay_fdt\n");
+>  		ret = -EINVAL;
+>  		goto out_free_new_fdt;
+>  	}
+>  
+> -	ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
+> +	ret = of_overlay_apply(new_fdt, overlay_mem, overlay_root, ovcs_id);
+>  	if (ret < 0) {
+>  		/*
+> -		 * new_fdt and overlay_root now belong to the overlay
+> -		 * changeset.
+> +		 * new_fdt and overlay_mem now belong to the overlay changeset.
+>  		 * overlay changeset code is responsible for freeing them.
+>  		 */
+>  		goto out;
+> @@ -1067,6 +1084,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
+>  
+>  
+>  out_free_new_fdt:
+> +	kfree(overlay_mem);
+
+There is no need to free this overlay_mem. You can end up here only when
+overlay_mem is NULL.
+
+>  	kfree(new_fdt);
+>  
+>  out:
+
 -- 
-2.17.1
-
+Slawomir Stepien
