@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24DB34FA977
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 18:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD974FA97A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 18:26:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242575AbiDIQ1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 12:27:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35736 "EHLO
+        id S242579AbiDIQ2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 12:28:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235822AbiDIQ1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 12:27:35 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077263669C
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 09:25:27 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id bg10so22915726ejb.4
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 09:25:26 -0700 (PDT)
+        with ESMTP id S242577AbiDIQ2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 12:28:04 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACC13EBB1
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 09:25:56 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id r13so22902909ejd.5
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 09:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/i5bq1sUVPZ8voo09f+RmZlGXIR3LOWZJkP8vxfCkxs=;
-        b=iaRy2XeK3H+BL8S9B//6ecqylfMzpD67Z/6z7Px+5S8xwp99ZQj+I0iUV8Qp2cHoX/
-         hn6b3sszVAot6c0WwbJsjnonJafv5VuJdOXIByL5GlOjfdcUk2YSRVw7pwLPyCP3DKeJ
-         QDTt3L/DviaQUOex7ayqIgeSMsKga1sLwxs2AxQ69/BLPZ5fi6tK4owZieCOtY9fK+PF
-         crU19/rgPa772FI+aPzd1nMtYNEcpEfUMN/AREKFbyPexpHZ0xhJuw7y9V23mIGamvkG
-         bcbq/bOgssl8If7jxqGpb2FGmaQCLyz4G37IyZJ//9VqlPAALkLjvqUA4+jYOjTNwn20
-         GxJA==
+        bh=EQSwR7QanYSaJAzWNCqeAe6R2n+cXNhVnYOQMnz5UoY=;
+        b=jp4aMjRkaftf/a9ytETy1kGs7QnFvvDYaJFNDfhds2rNYQIqPoykF6Ahz+3uG7XQlz
+         DBH8W3Q2KPjgDtHslh0CsWrmN4UMdfQQHVYZEfGg/HGiQO63+IRS7bPaVue3NegsQwtl
+         3QAao+M2UFdTf2aMpPSlRS4TLX+cCdMzHe5EsuXoGCyDbVl3UjMPggUPD/Wfgp5bcScu
+         T/2pKA5tU0ZaMrn43BqvaWkV/JCWO7wctbpC17aT/FdpWd4ow3AJTSoCjq97i+aEkgTt
+         qkCmFf2Xx69Gu7qVhuSeeoNgbDT2ZlGjQBe2wNSHy7hTCsHct/It60lzOC5xT4MaIqsL
+         Z5Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/i5bq1sUVPZ8voo09f+RmZlGXIR3LOWZJkP8vxfCkxs=;
-        b=NwMNLjSDBlGMj1hLBX8D3/qG3quuDGQ5OMbY10lU/KQT+y6fCDNd3rum1sw0iNgn1l
-         i5w2gMY8CTy0awjKbFlJR9dVik1mSKa2w18EiVKNE/esWcXCyONz+erstjQSTl14ro8y
-         Z8oFA/TF8BigZGrO1EtArpl8KPE3N+/5SMcEuIe7FvrdIcA/FMi3oNpC0XIvDQu7Im0n
-         1r+a+gPit+tMDJ6Aslh9GNgExHN3dOdTsbPgyWjwMvCPXJL1XBV3XbvLxAUrrTrHP376
-         ThG7GchabKqRnmXrZHnWdMXbvRmyZpWcEkZpKHxMmCEFPercR+eb3FmhMf7icZN7/hQY
-         ykog==
-X-Gm-Message-State: AOAM530ujZjQUPn3qcKcvLN+yfnzIFMfw6QvYMxotjpn/2EF2Ysti/IQ
-        XBhuRnWeTH2y96Bo6qhhJCQPFQ==
-X-Google-Smtp-Source: ABdhPJwhD1sGm0VjzGzH83FGU3qxCXO1Djq6Bsftw/zRBN6NcwxjyHtdhSbxTa6JQ2P/xdODB18Mgw==
-X-Received: by 2002:a17:906:9c82:b0:6e1:2c94:1616 with SMTP id fj2-20020a1709069c8200b006e12c941616mr23085476ejc.64.1649521525607;
-        Sat, 09 Apr 2022 09:25:25 -0700 (PDT)
+        bh=EQSwR7QanYSaJAzWNCqeAe6R2n+cXNhVnYOQMnz5UoY=;
+        b=fvCXg+nMFxuA9RrH0s/RUlSXx1UB/V8SwPrjZ1CNxrd8r2gv6+CGMWhW5iu7XHmn4g
+         u0xrsce8hiinrxgzhmR3BVRe84afmkq2PD8f2zJd90Lf6nxKp46Vq2G4bjZgAfs+wufg
+         skhzkuekHrwhkEd6a99Gf5h7TeEIOSGnvswbPZ5DVceQGoVG8lDAyusr1JgLZT6H32lQ
+         ZuHa8c91IKyHGkXk6xzgjY03v37EzfSIrtA5EaQHbJtpfgzixeU+ZUed6m0Db0hKoewb
+         9+FtEWZ9YhUDHSd01Tq6JHZfNm0OIumD7LeMyN1WHjkb07L60yyfUiuMam19YHatza0r
+         T5ig==
+X-Gm-Message-State: AOAM531Rf9TJ/xN0BZoC8qTLmXQEmKYG44GludqvqGw52h5CFNb5yltj
+        FahMNezPk/7SsQxnqO2ldYvfEw==
+X-Google-Smtp-Source: ABdhPJyMKsGM5vFbWpvCpI9xV6zqdiaFCdcADKK9S/5OIVr1SV32qzYZPI1q3iSWJza0kGZSuDsmlw==
+X-Received: by 2002:a17:907:97c7:b0:6e0:defd:342d with SMTP id js7-20020a17090797c700b006e0defd342dmr23201073ejc.231.1649521554991;
+        Sat, 09 Apr 2022 09:25:54 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm9807666ejb.187.2022.04.09.09.25.24
+        by smtp.gmail.com with ESMTPSA id o3-20020aa7dd43000000b00419db53ae65sm11983482edw.7.2022.04.09.09.25.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 09:25:25 -0700 (PDT)
-Message-ID: <c4536b89-4843-c669-e499-f82fa3fec7f8@linaro.org>
-Date:   Sat, 9 Apr 2022 18:25:24 +0200
+        Sat, 09 Apr 2022 09:25:54 -0700 (PDT)
+Message-ID: <b0b62e41-daa2-ca9d-f580-3e298effdf40@linaro.org>
+Date:   Sat, 9 Apr 2022 18:25:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 1/2] dt-bindings: wkup-m3-ipc: Add vtt toggle bindings
+Subject: Re: [PATCH 1/3] dt-bindings: arm: msm: Add sc8180x and sc8280xp LLCC
+ compatibles
 Content-Language: en-US
-To:     Drew Fustini <dfustini@baylibre.com>,
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Tony Lindgren <tony@atomide.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220409045145.2434096-1-dfustini@baylibre.com>
- <20220409045145.2434096-2-dfustini@baylibre.com>
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220408213336.581661-1-bjorn.andersson@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220409045145.2434096-2-dfustini@baylibre.com>
+In-Reply-To: <20220408213336.581661-1-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,34 +80,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2022 06:51, Drew Fustini wrote:
-> Document the Wakeup M3 IPC properties that can be used to toggle the VTT
-> regulator during low power mode transitions.
->
+On 08/04/2022 23:33, Bjorn Andersson wrote:
+> Add compatibles for the SC8180X and SC8280XP platforms to the existing
+> LLCC binding.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/msm/qcom,llcc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-(...)
 
-> @@ -51,6 +61,15 @@ properties:
->        mbox_wkupm3 child node.
->      maxItems: 1
->  
-> +  ti,needs-vtt-toggle:
-> +    type: boolean
-> +    description: boards requires VTT toggling during suspend/resume
-> +
-> +  ti,vtt-gpio-pin:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: pin on the GPIO0 module used for VTT toggle
-> +    maxItems: 1
-
-No need for maxItems, it's a single uint32. You could add "maximum" if
-you know the constraints for the value.
-
-Do you actually need two properties (bool + pin)? A case of
-"ti,vtt-gpio-pin" without the "ti,needs-vtt-toggle" is valid?
-
-The other way looks wrong, so you need to add a dependency (see
-example-schema).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
