@@ -2,133 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A454FA58D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 09:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EABE4FA593
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 09:26:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239926AbiDIHRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 03:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41626 "EHLO
+        id S236312AbiDIH00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 03:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239632AbiDIHQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 03:16:58 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E41925EBB
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 00:14:52 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id k23so15916890wrd.8
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 00:14:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=HzhZ3bjU1PEmPe2hwuJeZrkyDW35jm9x4B5yGB0bqZ0=;
-        b=z/2PBvrci46A223ORsA3V1EMb1SgPUGSYjUx8bqkYUtMjKLlNT9vW3686rNO95bISM
-         NBpMrc5lWZtIAnyF9nmuGlfUaNLZwZnZVIts+jaGKWlkLNe7BxchFAtC8bSXcJt9CgBh
-         ZiOOiGuYnx90JPeO6OtVMScIrtMjBLulN1Ng1lZVKp4Y8etWGeICrX3gHcZFo2AbMGe3
-         gR9r4qUqOomrJ+H2nvAvrIw4X/vHMkMXhWnuflaktRS08th5U36rXXHYNT+s5sJWkk3m
-         NqMFm4FNho9ug898GALI4OEsB/Q/nEqCw8qksj8vf5gHb1L7OPCR502UwGOPnR+9dxsm
-         zf2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=HzhZ3bjU1PEmPe2hwuJeZrkyDW35jm9x4B5yGB0bqZ0=;
-        b=A3XD/KKIauJGRyQrHUxoBKdEmJabT/AFqcpCVk0hd7Tz1yOm27JY1WBU5v667FAgMr
-         DVMTVGisDdjO7uVWGdv02rWTu5TUTh0T2wVVqn0s7PJ2t+wFrpVZdScnahwzWv3w8ptY
-         I5j038eE/w+TRVLVSfH0H1QJcxEpiBHNZ63TDtWFdJCXtzSpk4GDKe/QAClYeK+78u2F
-         ebE9Y8XNa+88wFhr9hZWcWedTh+fQ2PPh+2C2zeYNa5hnvhO3YDvlAzUHp9Om8/I4tFr
-         bqZIISXfxsl1haGzNEk3ohX5KWA38FhlocslDTQm664DK5lAZOi6vpinYy9R9a+ZAd98
-         irJQ==
-X-Gm-Message-State: AOAM531DaQP+NvUtlmxnAfQ/sgRr6Ej98SSvzq3LShyA9ZycMiO8cXKK
-        cjZDPNsMT/2Gi9gbmELqbDfxZw==
-X-Google-Smtp-Source: ABdhPJzZvbXk47Qg+XFtSusWdXHB93I7ufry+eUoPOyQxqyPD1Klc1Q6spp6YTEFUje/wE6rXPgNjA==
-X-Received: by 2002:a5d:44d0:0:b0:207:9ac8:2c3b with SMTP id z16-20020a5d44d0000000b002079ac82c3bmr3792006wrr.688.1649488490827;
-        Sat, 09 Apr 2022 00:14:50 -0700 (PDT)
-Received: from [192.168.2.222] ([51.37.209.28])
-        by smtp.gmail.com with ESMTPSA id f8-20020a5d50c8000000b002061622ec88sm13207416wrt.105.2022.04.09.00.14.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 00:14:50 -0700 (PDT)
-Message-ID: <98026c4a-a065-3965-27f0-71de29cdb264@conchuod.ie>
-Date:   Sat, 9 Apr 2022 08:14:48 +0100
+        with ESMTP id S229530AbiDIH0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 03:26:25 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68AB836155;
+        Sat,  9 Apr 2022 00:24:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1649489033;
+        bh=71qv70vZxF+QqOQSgEW+RQ5BfofYTTkw2+VdXFLTcNA=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Vc6rWvHiBmEpggo1vCR0Z6lX9UhZXC6n7sOzWUULSB0v0Vnnnrwgthw7hWl7wEb3w
+         6Z+n/zEU1Ue82RBSqD7uLa8aNjd/uchDo9j68qrYHG4RzOQGgWL+NirQlAPCyDUAt3
+         uS0l0wSlXXnJPSv8jTfjXYBDBYWrBBQ3c4NQ6GR8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.154.105] ([217.61.154.105]) by web-mail.gmx.net
+ (3c-app-gmx-bap35.server.lan [172.19.172.105]) (via HTTP); Sat, 9 Apr 2022
+ 09:23:52 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v1 0/7] Add rtc refclk support for PolarFire SoC
-Content-Language: en-US
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>, sboyd@kernel.org,
-        aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
-        palmer@rivosinc.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, mturquette@baylibre.com
-Cc:     daire.mcnamara@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220408143646.3693104-1-conor.dooley@microchip.com>
- <1fa15b36-7a84-e0ac-2c56-d6a2bec566ff@linaro.org>
- <cc11d576-3670-ff0a-e0a1-e92780a04c2a@conchuod.ie>
-In-Reply-To: <cc11d576-3670-ff0a-e0a1-e92780a04c2a@conchuod.ie>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <trinity-7dbd5148-923f-479b-9eed-a75f000456e5-1649489032880@3c-app-gmx-bap35>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Aw: Re: [PATCH v5 3/5] arm64: dts: rockchip: add rk356x dwc3 usb3
+ nodes
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 9 Apr 2022 09:23:52 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CAMdYzYrK2KV1svrHS=zMjGYh=dUis-JKjgYHaeOB4LQWXM1+4A@mail.gmail.com>
+References: <20220408151237.3165046-1-pgwipeout@gmail.com>
+ <20220408151237.3165046-4-pgwipeout@gmail.com>
+ <trinity-3ae2b0d1-a3f0-4c64-acb6-2fb4fa0b36b3-1649434480623@3c-app-gmx-bap48>
+ <CAMdYzYrK2KV1svrHS=zMjGYh=dUis-JKjgYHaeOB4LQWXM1+4A@mail.gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:TeZQKSghMMZUkUJKs83ylTXQSsU7yV7FSkqP/fuUaLAE6KQax+QMuXgqsf3qW1M6JW66d
+ NHzdML2cIYdHIRESCTwArTUiHYPIaXTSsBm+y2j1c/jVZNx61/K1vKsD6piKqna0HLktYtRt6Sba
+ eKjfuS2RyCepOg45TbGRY3XDLFZw8WlmWh33BvGfVtmiF2Lc0vd3LemRfBN5gfStMh03Fn3xOMgK
+ Aq0PervdwShRT7KoRrCr0bUjd6NoCI1YXwsmvKiTJ43EsDOi8dBsY7va9ajIXvhocpiOGlTog/mN
+ ZU=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:xgRQTaYlAUc=:XIjlEiF7C5aazhG/BoUhUm
+ T91Mr8O3RSzpflZWmrPJ1NAlQZLLeHmYJQG7HQ+X4L7nm1zSf7IPBrLUMDh0gizBIVyloMW3L
+ 0fE/pJhELkc1s1lxf49VodX+qU8xmxBIRdReI6otgP+S8dhoxXFBjzA/0nUMJIDJpKo9PMNcc
+ N5afQ13D3XzUdGnxZkdVXinIGyYqiMC8byFQUmusFR3Pnks5SUv8koMNicPw4DL4V2/UAvpoR
+ dPMhJj0bY6dCz1OTqaMN46f2OGMqaTCOFjxn0Jh3ja/P6qvAggzKBDGNtKmOmqaamvuibVMBS
+ vP6l9pZePvrjOjMNU9s8PFqBuwxLe9m+xbdGl4GqIw5nhXfqJj2L1evKpeB5v/F4BSzvGTAqI
+ IKPVx5GBdQT4jhWKvRTDxDtm+YwLOev4awU8Xm7blpcLCg+Xyrir9MeQW2tLvTvzwSn6xC5e3
+ 2PxfmAesluRiyRWbdfgA+/aF3wkU351BvzZ1gZKl+sFTTetuVnZHS8EU8F0XkvxercHMQop7Z
+ CVrDUuKyRjHIOThoMAWGUgNnx8LSiR+mtKrUUe8z569cQDBSqnw6Kay7lWdV1VmSWyGVYXIOE
+ WIlNFj8hPYvxhYmNDHQhPvcFGIirraR5oaBzY4CPuxsc/xoEQxrosMzc1FhjBIMwKOV9Gohz9
+ xmsQFwyApZx9ukzSK5nXFFI3htl8kbyR+J51889ABYNy74beFY8OO4batPBsAQkQtTo0MxjLN
+ q7i3RN4FH5hQhUzX1mViDs3gzQp9KM3IoyGx1K0+z+GkgXs0NYVmA/FOMI+lxM7uqlP9HsPJv
+ HjyXXel
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Tested on mediatek board (mt7623/bpi-r2) and there xhci is working.
+So it is no problem in core/protocol and specific to rockchip xhci driver.
+
+at least i nailed it down to these 2 commits in drivers/usb/dwc3/core.c, w=
+ithout them it works
+
+5114c3ee2487 2022-01-27 usb: dwc3: Calculate REFCLKPER based on reference =
+clock
+33fb697ec7e5 2022-01-27 usb: dwc3: Get clocks individually
+
+regards Frank
 
 
-On 08/04/2022 16:29, Conor Dooley wrote:
-> 
-> 
-> On 08/04/2022 15:57, Krzysztof Kozlowski wrote:
->> On 08/04/2022 16:36, Conor Dooley wrote:
->>> Hey,
->>> As I mentioned in my fixes for 5.18 [0], found out that the reference
->>> clock for the rtc is actually missing from the clock driver (and the
->>> dt binding).
->>>
->>> Currently the mpfs clock driver uses a reference clock called the
->>> "msspll", set in the device tree, as the parent for the cpu/axi/ahb
->>> (config) clocks. The frequency of the msspll is determined by the FPGA
->>> bitstream & the bootloader configures the clock to match the bitstream.
->>> The real reference is provided by a 100 or 125 MHz off chip oscillator.
->>>
->>> However, the msspll clock is not actually the parent of all clocks on
->>> the system - the reference clock for the rtc/mtimer actually has the
->>> off chip oscillator as its parent.
->>>
->>> This series enables reading the rate of the msspll clock, converts
->>> the refclock in the device tree to the external reference & adds
->>> the missing rtc reference clock.
->>>
->>> I assume it is okay not to add fixes tags for the rtc dt binding?
->>> Since the clock was previously missing, the binding is wrong, but
->>> idk if that qualifies as a fix?
->>
->> Usually ABI breakage, even if accepted, should be be tagged as fix
->> because it is clearly then a break of other peoples' trees...
->>
-> 
-> That means either a) do something messy in the clock driver or b) mark
-> the whole series as fixes (and roll it into [0]).
-> 
-> The second option seems far more sensible to me, do you agree?
+> Gesendet: Samstag, 09. April 2022 um 01:39 Uhr
+> Von: "Peter Geis" <pgwipeout@gmail.com>
 
-Having thought some more about it, patches 2, 3 and the rtc part of 7
-should be moved into [0] since they're fixing a binding that only
-arrived in 5.18-rc1.
-For the rest, make the second part of the reg optional and if it doesnt
-exist just return prate for the msspll clock?
+> On Fri, Apr 8, 2022 at 12:14 PM Frank Wunderlich
+> <frank-w@public-files.de> wrote:
 
-Thanks,
-Conor.
+> > seems like usb (2+3) is broken in 5.18-rc1
+> >
+> > i see controllers, ports are powered, but no device detection.
+> >
+> > maybe anyone else have same behaviour with different board?
+>
+> Yes, it seems you are correct, there has been a regression with xhci
+> between v5.17 and v5.18.
+> I'm bisecting now.
 
-
-
-[0] 
-https://lore.kernel.org/linux-riscv/20220408133543.3537118-1-conor.dooley@microchip.com/
