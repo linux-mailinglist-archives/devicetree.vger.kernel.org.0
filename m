@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 613CF4FA6C8
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 12:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C3384FA6CD
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 12:40:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234964AbiDIKfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 06:35:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50910 "EHLO
+        id S236995AbiDIKmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 06:42:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232164AbiDIKfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 06:35:24 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18CC4342025;
-        Sat,  9 Apr 2022 03:33:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1649500371;
-        bh=80ShU/imSauKnxZdpb2X4iH7Da3hJPqr1WSV5c7Xd0c=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=kWwQtdAxoYn9n6Wk/3UoEfvMS4X69f1gzv5w4Sz6dfUpjA2JWUOscaAf/Dw/hy4Gw
-         PrjqitX2gVqxWmmdIthJcCO/abH4aoZHC4fAWFXgV4atVzm/US1cFgU8a4i2qFOYPJ
-         ynwS3esOn2ijkfr1zthFM7rNIEVIEkhZ/S4raZng=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.154.105] ([217.61.154.105]) by web-mail.gmx.net
- (3c-app-gmx-bap35.server.lan [172.19.172.105]) (via HTTP); Sat, 9 Apr 2022
- 12:32:51 +0200
+        with ESMTP id S234343AbiDIKmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 06:42:11 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48FA215729
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 03:40:03 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id u18so1974490eda.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 03:40:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IH+smdr6HwLu60QJ4rEGM3k3Dwd3Lj1hSShNkYwWADk=;
+        b=rty0p7mqU35z9SiXjeEgTFu8FRbCxhvexcOsUrlIt2BwWJXSFqETpUfh2SurdgIZHw
+         Cxf0QKOMKHkPNrhcH+CV/QQI0ne3PxKaMbZa9I+apWEeb3EmZRb9Xm9DsSqN3fd/y5YS
+         pujlC6id7v5BvTbGc3HuJ3meNyErqCDv1e1p9GFTGXZe48ilLPuKzwrjFVesKoG0u3Rd
+         WRhs2UyS+RLKF8stOLNdwGkLc1oThzFAxJLrYbxYz1oBgY5hIwVZIBQVuyp2DfS8r7Kt
+         NJXmg74A/HlxVPmM6HPI+ZNCN1XkvSzC8vGEn11aQYEYh6aNEXbVNeickzbYxvhJcYfz
+         SGAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IH+smdr6HwLu60QJ4rEGM3k3Dwd3Lj1hSShNkYwWADk=;
+        b=M7/k4LepFB1r7ov0RztIrDiXGFyfXNlTQn8+8xehPZc3I1eS8/StukpGzmG+ThabGl
+         faC2P9ZxGS2dDQsll5l//ypmHTYZ+Ef9+HJwEEcHfutooNAp+uYo8brL66d2sTZ8LvPv
+         w5dZb/LDzZKRGLhE9MKtVJpojcwStZs+dwhrL/c95zdaWgMyOSn5A2MlC0/NllY/4fii
+         dIfYy9aHB+JGEaTBBYtQYI7DB0hb23HEc1uvXNyli68zmUYfyKf0jD8XU53ZEPe4oHc0
+         ZywWvagR+3zclmDu64t8vyaLxYa648j2n/duGyAkiCr0CeunmPIrGtxVAhiXh88+X6xo
+         DeMQ==
+X-Gm-Message-State: AOAM533Vd7QN/QlO6zzVUC2muL8PJszgNFXxvbZryNx47JJl4SiRLUp5
+        A4pRJ5Tn3zpXji65IlYFRgTk6Q==
+X-Google-Smtp-Source: ABdhPJyKA/1xZ2gv355sS2o5W8tQkWswcamJ0HPKtJp41RHmX4J+r9pD8t6bnrZaAwz6XaMcPo2fow==
+X-Received: by 2002:aa7:c58d:0:b0:41d:6d1:6f43 with SMTP id g13-20020aa7c58d000000b0041d06d16f43mr12679263edq.125.1649500801722;
+        Sat, 09 Apr 2022 03:40:01 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id e12-20020a170906c00c00b006e66eff7584sm8204774ejz.102.2022.04.09.03.40.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Apr 2022 03:40:01 -0700 (PDT)
+Message-ID: <49c1d200-8c07-b306-a400-86ee6a637bb4@linaro.org>
+Date:   Sat, 9 Apr 2022 12:39:59 +0200
 MIME-Version: 1.0
-Message-ID: <trinity-8384790e-d2aa-4041-b4e9-aba1130d8577-1649500371045@3c-app-gmx-bap35>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Aw: Re:  [PATCH] arm64: dts: rockchip: Fix clocks for rk356x usb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 01/11] dt-bindings: arm: add Pensando boards
+Content-Language: en-US
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        David Clear <dac2@pensando.io>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220406233648.21644-1-brad@pensando.io>
+ <20220406233648.21644-2-brad@pensando.io>
+ <05febd3f-bfdb-13c2-8cce-b9dc422c5eae@linaro.org>
+ <CAK9rFnyRrS_LvoZ_j66cKDHgecqcqzJN5krSxdCquBanViKyHg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAK9rFnyRrS_LvoZ_j66cKDHgecqcqzJN5krSxdCquBanViKyHg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 9 Apr 2022 12:32:51 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <9183927.T7Z3S40VBb@phil>
-References: <20220409075147.136187-1-linux@fw-web.de>
- <trinity-71c38625-1a00-47d7-8e23-4f33f25a997a-1649499268581@3c-app-gmx-bap35>
- <9183927.T7Z3S40VBb@phil>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:YHhLoSof6i+xBTstqjx6wPaSnP2y8nSyNqN1gxczYGErIYWVv1iuh5Wzjyl7EzuD3MKNX
- o+PqN+1dm2X7LwZ55lC6iMXrLOaOqY5xM/WOPfsOYOqWt5BLKOJgkCxlr64vcdq39IPJnZ4ZLGfU
- CqTFmXgeQpB1JfynYuQBq+ZWp9vZXhXoFimNwpTd1qHFEGcR5B7Kls9GjxubZSgWTYIQ8osBg6FE
- tHz9s0zWwVYcPoU1aaoRBRtyO+ibwotmmnJpo8FI3MEy1DJNMp7Zi3vRLvjAfVHw78lntub7cqWb
- gU=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:C7Jy2Y/6wnM=:zALfx/JatwlapeMTvG9FHB
- e4ingMaVFJLYvoN+xgNK0FpmQs3DKjI9GincKL9CiRGQNz04vwb2utK5PCKVa2hwdV9cNHJa0
- Kdi+cUtwJ/peeTNa8mvOJN9Db1e94lHFChSz9rynUk3NehFHfVqQ5ocd9EGiX9TxerBxauzK5
- ZSpup7UKTtRgLKVKkE5VzQFXS+NO8F9I2hxtGgLoVC/mO+CjZ2tk17+YTogNOwC2YCZyXc98W
- qfTNKT7f2YMDg/PmJjT4LRRYB86DAJE7FJujYbz83Cgqcrt+VD+chtHD65CUYsVyyiyPFDw0g
- /ujkTGR59zXTBYQU6Y92d/Ck5jIUhRWo/ymcM7qKbosVlZmVTNl617FujOAj43hM2GyM3YHRY
- MGLmHya2RQWUT+da1Nzgyle+ntE9GgAsbn5ODh3JlOiDyHeCMj0aKY0Ux5kKXpDocCDwNIl7y
- tS9xkJFkRXBqubgMYlMhbeqwNa6m3PgqxC1e41m8uZJudcQMhM3syqDy1YL6OtS0neiJPFnz4
- 2yWGzHwQFlppmE9utYQYX8TraDHDe+vJLH+d391XkDYJYPkyoYHVQ5lCw0zgs4AaW5z5bp03B
- z0KRjZQ1TXie7Og9Y2doPyvvx2LlUYJfoo8CUkGffvFAXfrzyjKozVHvi/KLKXXspECcDmYem
- /Bxkni2NDJywXpUuczKdUX0ELG3Qek2XBXsfQa69RnxRoS1qgRoh9RK/H3aSyGnIg7PeIn/cH
- 4EvewMIS95Ktj9LGOsMQm9leIKkNh6QpAfsREn+ITOEnZtm0lTODvIkxM0krahu8lxrI680yI
- vIQHBMi
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,34 +90,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Samstag, 09. April 2022 um 12:23 Uhr
-> Von: "Heiko Stuebner" <heiko@sntech.de>
+On 09/04/2022 04:19, Brad Larson wrote:
+> On Thu, Apr 7, 2022 at 11:45 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>> Change from V3:
+>>> - Add description and board compatible
+>>
+>> That's a bit confusing... the subject is for v1.
+> 
+> Goal was to identify in the cover letter patch the key changes from
+> the V3 patchset to this V4 patchset.  Then in each patch that had a
+> material change highlight that in the patch itself.  Will try and make
+> it more clear.
 
+This is fine, I am talking about the subject - it is marked as a v1, so
+it's confusing to see a changelog.
 
-> ok, so do you want to send a v2 including that change?
-> Alternatively I can also add this change when applying.
+One way to achieve this is: "git format-patch -v4 -11 ..."
 
-imho the best way will be that peter includes my patch in his
-
-"arm64: dts: rockchip: add rk356x dwc3 usb3 nodes"
-
-https://patchwork.kernel.org/project/linux-rockchip/patch/20220408151237.3=
-165046-4-pgwipeout@gmail.com/
-
-i just posted the fix for those who want to test his series on 5.18 includ=
-ing himself.
-
-but of course if this is not the right way, i post a v2.
-
-> Also for educational purposes, the format for referencing a commit
-> you're fixing would be
->
-> Fixes: 33fb697ec7e5 ("usb: dwc3: Get clocks individually")
-> Signed-off-by: ....
-
-as the patch not really broke current mainline state, i thought Fixes-tag =
-is not right.
-Imho only the rk356x-usb-patch is not compatible with 5.18 due to this cha=
-nge, but this is not applied yet.
-
-regards Frank
+Best regards,
+Krzysztof
