@@ -2,338 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3823B4FA4C7
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 07:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B974F4FA4EB
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 07:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241048AbiDIFEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 01:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48026 "EHLO
+        id S232516AbiDIFN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 01:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242547AbiDIFCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 01:02:04 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0906BB39;
-        Fri,  8 Apr 2022 21:59:57 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id b21so18160764lfb.5;
-        Fri, 08 Apr 2022 21:59:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zVSR57Cc7QE1uggb8Qy0UDFjKrea3UykmqHWvT1DiyY=;
-        b=E3LGWZi8amaw7nhl++phVHvK+pbP2A/KT0gzkMp73wWpmD0qgt2M6oLozmkokX/mn7
-         uANjh2KJQjjru18AzOHnUrRUNYp+6iDZdfWz3nurk2oW91foLcRGLDleKhyZ0wyG/ry1
-         0IAibz60tK0+dHykDpjU7LNPjgWmDYyLw3l4fbttNQVOet/WxdHRXpzuiJ7MIm0XbT0U
-         MDLgxVDCC1c/q9jS/00PVjh0RADo/N5FA5hrcrclCtpFPaPQ/jg6rmbicnrc6Fmezjh7
-         +pDK8140WXosP5Js07Go7J1sTH02Fb2eQDgQJjs4uppo51W2JB6l9NpCtqiheQs/Sam4
-         ksAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zVSR57Cc7QE1uggb8Qy0UDFjKrea3UykmqHWvT1DiyY=;
-        b=nxb6ybykwFs0XEtYHQNIC0rLvJCuoFIKJvp10afHuFqdHpd+ns+f9+/t6VH6nj+ad3
-         wsfHV+OutpNRRYREbQ5x9Sz1gUOjLT7e/4OE9srE9ibt8IMh8nxsm1DYRhGLr4t3xcUJ
-         0/001B6JpjRo871xgOdeY2u3n0osu5W3+EFgBzdPImWseLHwnOE9wWODhuOBh+/LbfSZ
-         xFiGvKRg1OoqWMlkTtV7vokLckhr1FLWvOiVmsvsKaZLzHpVf2tLQ3NRj2itUo6o2gI1
-         VyUJliw0jOLSaXnTOx3GHsv4o+2J12dWdML2OcMORWkeXdw1VCrgZzTe9Jdh98YuMHpY
-         3W7Q==
-X-Gm-Message-State: AOAM530RNeTZT5Z4cUYRmofXKyPMRVkln0abmUooB+UbmHkLLpLIYJr4
-        rILhs89Uk/2qVGyERLonk/k=
-X-Google-Smtp-Source: ABdhPJx782kS+jVFQgcJrQHY8TzqoG50hdn9605PvdQiq4hfmTjCeemXIq3OPsPkDHgTvnHA2Q31Ww==
-X-Received: by 2002:a05:6512:304a:b0:44a:c4a4:8e9d with SMTP id b10-20020a056512304a00b0044ac4a48e9dmr14458299lfb.624.1649480395014;
-        Fri, 08 Apr 2022 21:59:55 -0700 (PDT)
-Received: from mobilestation ([95.79.134.149])
-        by smtp.gmail.com with ESMTPSA id w17-20020a194911000000b0046b9191418fsm100214lfa.64.2022.04.08.21.59.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 21:59:54 -0700 (PDT)
-Date:   Sat, 9 Apr 2022 07:59:52 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 05/21] ata: libahci_platform: Convert to using devm bulk
- clocks API
-Message-ID: <20220409045952.3h4jkzkgziea4ysh@mobilestation>
-References: <20220324001628.13028-1-Sergey.Semin@baikalelectronics.ru>
- <20220324001628.13028-6-Sergey.Semin@baikalelectronics.ru>
- <603eb020-3f43-c193-b3f6-8ff697f845c8@opensource.wdc.com>
+        with ESMTP id S229701AbiDIFNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 01:13:55 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B93DF5E;
+        Fri,  8 Apr 2022 22:11:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1649481110; x=1681017110;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2uEEnJaBm8W3hYNznIdKioT/aZO4ljgRCwHcLaiU/lc=;
+  b=erQdJ5618afcriUXVQxl8l1BGHzotIsKyxUV4ttObG8VRtdDBbC2trXD
+   fPJe189DQI35KWU69mTQ4r6Kb+MyQ84PRGY+8O3hxvrVTmEwrSTMRaJsL
+   HyybidxO1eAAY+ba7lwHN0Kwf6QuhJs8Qx0iX514AHays2b7KGj6tdQ2H
+   awoUfDCIQIdhz8Fy1fWIczkw5pPeODtUIPpdmkSEUZQaGUG0du9lOpAHt
+   mWhMWN+QEpUeWL44AmFlVOZHPcSjP3AhlrF7tDMq7FmdWU3ttwTpzYfhC
+   MQi0MTJwL3z2WpYNI9y4vUXXMw5/ZdMfi57znF8X/DaPpvgsXQKmgdnAv
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="259358125"
+X-IronPort-AV: E=Sophos;i="5.90,247,1643702400"; 
+   d="scan'208";a="259358125"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 22:11:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,247,1643702400"; 
+   d="scan'208";a="698498511"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.135])
+  by fmsmga001.fm.intel.com with ESMTP; 08 Apr 2022 22:11:47 -0700
+Date:   Sat, 9 Apr 2022 13:04:23 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com,
+        conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, system@metrotek.ru,
+        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 1/3] fpga: fpga-mgr: support bitstream offset in image
+ buffer
+Message-ID: <20220409050423.GA265355@yilunxu-OptiPlex-7050>
+References: <20220407133658.15699-1-i.bornyakov@metrotek.ru>
+ <20220407133658.15699-2-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <603eb020-3f43-c193-b3f6-8ff697f845c8@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220407133658.15699-2-i.bornyakov@metrotek.ru>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 24, 2022 at 10:29:01AM +0900, Damien Le Moal wrote:
-> On 3/24/22 09:16, Serge Semin wrote:
-> > In order to simplify the clock-related code there is a way to convert the
-> > current fixed clocks array into using the common bulk clocks kernel API
-> > with dynamic set of the clock handlers and device-managed clock-resource
-> > tracking. It's a bit tricky due to the complication coming from the
-> > requirement to support the platforms (da850, spear13xx) with the
-> > non-OF-based clock source, but still doable.
-> > 
-> > Before this modification there are two methods have been used to get the
-> > clocks connected to an AHCI device: clk_get() - to get the very first
-> > clock in the list and of_clk_get() - to get the rest of them. Basically
-> > the platforms with non-OF-based clocks definition could specify only a
-> > single reference clock source. The platforms with OF-hw clocks have been
-> > luckier and could setup up to AHCI_MAX_CLKS clocks. Such semantic can be
-> > retained with using devm_clk_bulk_get_all() to retrieve the clocks defined
-> > via the DT firmware and devm_clk_get_optional() otherwise. In both cases
-> > using the device-managed version of the methods will cause the automatic
-> > resources deallocation on the AHCI device removal event. The only
-> > complicated part in the suggested approach is the explicit allocation and
-> > initialization of the clk_bulk_data structure instance for the non-OF
-> > reference clocks. It's required in order to use the Bulk Clocks API for
-> > the both denoted cases of the clocks definition.
-> > 
-> > Note aside with the clock-related code reduction and natural
-> > simplification, there are several bonuses the suggested modification
-> > provides. First of all the limitation of having no greater than
-> > AHCI_MAX_CLKS clocks is now removed, since the devm_clk_bulk_get_all()
-> > method will allocate as many reference clocks data descriptors as there
-> > are clocks specified for the device. Secondly the clock names are
-> > auto-detected. So the glue drivers can make sure that the required clocks
-> > are specified just by checking the clock IDs in the clk_bulk_data array.
-> > Thirdly using the handy Bulk Clocks kernel API improves the
-> > clocks-handling code readability. And the last but not least this
-> > modification implements a true optional clocks support to the
-> > ahci_platform_get_resources() method. Indeed the previous clocks getting
-> > procedure just stopped getting the clocks on any errors (aside from
-> > non-critical -EPROBE_DEFER) in a way so the callee wasn't even informed
-> > about abnormal loop termination. The new implementation lacks of such
-> > problem. The ahci_platform_get_resources() will return an error code if
-> > the corresponding clocks getting method ends execution abnormally.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  drivers/ata/ahci.h             |  4 +-
-> >  drivers/ata/libahci_platform.c | 82 +++++++++++++++-------------------
-> >  2 files changed, 37 insertions(+), 49 deletions(-)
-> > 
-> > diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
-> > index eeac5482f1d1..1564c691094a 100644
-> > --- a/drivers/ata/ahci.h
-> > +++ b/drivers/ata/ahci.h
-> > @@ -38,7 +38,6 @@
-> >  
-> >  enum {
-> >  	AHCI_MAX_PORTS		= 32,
-> > -	AHCI_MAX_CLKS		= 5,
-> >  	AHCI_MAX_SG		= 168, /* hardware max is 64K */
-> >  	AHCI_DMA_BOUNDARY	= 0xffffffff,
-> >  	AHCI_MAX_CMDS		= 32,
-> > @@ -341,7 +340,8 @@ struct ahci_host_priv {
-> >  	u32			em_msg_type;	/* EM message type */
-> >  	u32			remapped_nvme;	/* NVMe remapped device count */
-> >  	bool			got_runtime_pm; /* Did we do pm_runtime_get? */
-> > -	struct clk		*clks[AHCI_MAX_CLKS]; /* Optional */
-> > +	unsigned int		n_clks;
-> > +	struct clk_bulk_data	*clks;		/* Optional */
-> >  	struct reset_control	*rsts;		/* Optional */
-> >  	struct regulator	**target_pwrs;	/* Optional */
-> >  	struct regulator	*ahci_regulator;/* Optional */
-> > diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> > index 8eabbb5f208c..d805ddc3a024 100644
-> > --- a/drivers/ata/libahci_platform.c
-> > +++ b/drivers/ata/libahci_platform.c
-> > @@ -8,6 +8,7 @@
-> >   *   Anton Vorontsov <avorontsov@ru.mvista.com>
-> >   */
-> >  
-> > +#include <linux/clk-provider.h>
-> >  #include <linux/clk.h>
-> >  #include <linux/kernel.h>
-> >  #include <linux/gfp.h>
-> > @@ -97,28 +98,14 @@ EXPORT_SYMBOL_GPL(ahci_platform_disable_phys);
-> >   * ahci_platform_enable_clks - Enable platform clocks
-> >   * @hpriv: host private area to store config values
-> >   *
-> > - * This function enables all the clks found in hpriv->clks, starting at
-> > - * index 0. If any clk fails to enable it disables all the clks already
-> > - * enabled in reverse order, and then returns an error.
-> > + * This function enables all the clks found for the AHCI device.
-> >   *
-> >   * RETURNS:
-> >   * 0 on success otherwise a negative error code
-> >   */
-> >  int ahci_platform_enable_clks(struct ahci_host_priv *hpriv)
-> >  {
-> > -	int c, rc;
-> > -
-> > -	for (c = 0; c < AHCI_MAX_CLKS && hpriv->clks[c]; c++) {
-> > -		rc = clk_prepare_enable(hpriv->clks[c]);
-> > -		if (rc)
-> > -			goto disable_unprepare_clk;
-> > -	}
-> > -	return 0;
-> > -
-> > -disable_unprepare_clk:
-> > -	while (--c >= 0)
-> > -		clk_disable_unprepare(hpriv->clks[c]);
-> > -	return rc;
-> > +	return clk_bulk_prepare_enable(hpriv->n_clks, hpriv->clks);
-> >  }
-> >  EXPORT_SYMBOL_GPL(ahci_platform_enable_clks);
-> >  
-> > @@ -126,16 +113,13 @@ EXPORT_SYMBOL_GPL(ahci_platform_enable_clks);
-> >   * ahci_platform_disable_clks - Disable platform clocks
-> >   * @hpriv: host private area to store config values
-> >   *
-> > - * This function disables all the clks found in hpriv->clks, in reverse
-> > - * order of ahci_platform_enable_clks (starting at the end of the array).
-> > + * This function disables all the clocks enabled before
-> > + * (bulk-clocks-disable function is supposed to do that in reverse
-> > + * from the enabling procedure order).
-> >   */
-> >  void ahci_platform_disable_clks(struct ahci_host_priv *hpriv)
-> >  {
-> > -	int c;
-> > -
-> > -	for (c = AHCI_MAX_CLKS - 1; c >= 0; c--)
-> > -		if (hpriv->clks[c])
-> > -			clk_disable_unprepare(hpriv->clks[c]);
-> > +	clk_bulk_disable_unprepare(hpriv->n_clks, hpriv->clks);
-> >  }
-> >  EXPORT_SYMBOL_GPL(ahci_platform_disable_clks);
-> >  
-> > @@ -292,8 +276,6 @@ static void ahci_platform_put_resources(struct device *dev, void *res)
-> >  		pm_runtime_disable(dev);
-> >  	}
-> >  
-> > -	for (c = 0; c < AHCI_MAX_CLKS && hpriv->clks[c]; c++)
-> > -		clk_put(hpriv->clks[c]);
-> >  	/*
-> >  	 * The regulators are tied to child node device and not to the
-> >  	 * SATA device itself. So we can't use devm for automatically
-> > @@ -374,8 +356,8 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
-> >   * 1) mmio registers (IORESOURCE_MEM 0, mandatory)
-> >   * 2) regulator for controlling the targets power (optional)
-> >   *    regulator for controlling the AHCI controller (optional)
-> > - * 3) 0 - AHCI_MAX_CLKS clocks, as specified in the devs devicetree node,
-> > - *    or for non devicetree enabled platforms a single clock
-> > + * 3) all clocks specified in the devicetree node, or a single
-> > + *    clock for non-OF platforms (optional)
-> >   * 4) resets, if flags has AHCI_PLATFORM_GET_RESETS (optional)
-> >   * 5) phys (optional)
-> >   *
-> > @@ -385,11 +367,10 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
-> >  struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >  						   unsigned int flags)
-> >  {
-> > +	int enabled_ports = 0, rc = 0, child_nodes;
-> >  	struct device *dev = &pdev->dev;
-> >  	struct ahci_host_priv *hpriv;
-> > -	struct clk *clk;
-> >  	struct device_node *child;
-> > -	int i, enabled_ports = 0, rc = 0, child_nodes;
-> >  	u32 mask_port_map = 0;
-> >  
-> >  	if (!devres_open_group(dev, NULL, GFP_KERNEL))
-> > @@ -413,25 +394,32 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >  		}
-> >  	}
-> >  
-> > -	for (i = 0; i < AHCI_MAX_CLKS; i++) {
-> > -		/*
-> > -		 * For now we must use clk_get(dev, NULL) for the first clock,
-> > -		 * because some platforms (da850, spear13xx) are not yet
-> > -		 * converted to use devicetree for clocks.  For new platforms
-> > -		 * this is equivalent to of_clk_get(dev->of_node, 0).
-> > -		 */
-> > -		if (i == 0)
-> > -			clk = clk_get(dev, NULL);
-> > -		else
-> > -			clk = of_clk_get(dev->of_node, i);
-> > -
-> > -		if (IS_ERR(clk)) {
-> > -			rc = PTR_ERR(clk);
-> > -			if (rc == -EPROBE_DEFER)
-> > -				goto err_out;
-> > -			break;
-> > +	/*
-> > +	 * Bulk clock get procedure can fail to find any clock due to running
-> > +	 * an a non-OF platform or due to the clocks being defined in bypass
-> > +	 * from the DT firmware (like da850, spear13xx). In that case we
-> > +	 * fallback to getting a single clock source right from the dev clocks
-> > +	 * list.
-> > +	 */
-> > +	rc = devm_clk_bulk_get_all(dev, &hpriv->clks);
-> 
+On Thu, Apr 07, 2022 at 04:36:56PM +0300, Ivan Bornyakov wrote:
+> It is not always whole FPGA image buffer meant to be written to the
+> device.
 
-> I would move the error check first here to make things more readable:
+Thanks for improving the fpga core. Please see my comments inline.
 
-Agreed. Good note.
+Maybe more description about the issue, i.e. in which case we don't
+write the whole buffer, what's the problem in current implementation.
 
 > 
-> 	rc = devm_clk_bulk_get_all(dev, &hpriv->clks);
-> 	if (rc < 0)
-> 		goto err_out;
+> Add bitstream_start and bitstream_size to the fpga_image_info struct and
+> adjust fpga_mgr_write() callers with respect to them.
 > 
-> 	if (rc) {
-> 		/* Got clocks in bulk */
-> 		hpriv->n_clks = rc;
-> 	} else {
-> 		/*
-> 		 * No clock bulk found: fallback to manually getting
-> 		 * the optional clock.
-> 		 */
-> 		hpriv->clks = devm_kzalloc(dev, sizeof(*hpriv->clks),
-> 					   GFP_KERNEL);
-> 		...
-> 	}
+> If initial_header_size is not known beforehand, pass whole buffer to low
+> level driver's write_init() so it could setup info->bitstream_start and
+> info->bitstream_size regardless.
 > 
-> And it may be cleaner to move this entire code hunk into a helper,
-> something like ahci_platform_get_clks() ?
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> ---
+>  drivers/fpga/fpga-mgr.c       | 48 +++++++++++++++++++++++++++++------
+>  include/linux/fpga/fpga-mgr.h |  5 ++++
+>  2 files changed, 45 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/fpga/fpga-mgr.c b/drivers/fpga/fpga-mgr.c
+> index d49a9ce34568..c64e60e23a71 100644
+> --- a/drivers/fpga/fpga-mgr.c
+> +++ b/drivers/fpga/fpga-mgr.c
+> @@ -139,7 +139,8 @@ EXPORT_SYMBOL_GPL(fpga_image_info_free);
+>   * Call the low level driver's write_init function.  This will do the
+>   * device-specific things to get the FPGA into the state where it is ready to
+>   * receive an FPGA image. The low level driver only gets to see the first
+> - * initial_header_size bytes in the buffer.
+> + * initial_header_size bytes in the buffer, if initial_header_size is set.
+> + * Otherwise, the whole buffer will be passed.
+>   */
+>  static int fpga_mgr_write_init_buf(struct fpga_manager *mgr,
+>  				   struct fpga_image_info *info,
+> @@ -148,12 +149,10 @@ static int fpga_mgr_write_init_buf(struct fpga_manager *mgr,
+>  	int ret;
+>  
+>  	mgr->state = FPGA_MGR_STATE_WRITE_INIT;
+> -	if (!mgr->mops->initial_header_size)
+> -		ret = fpga_mgr_write_init(mgr, info, NULL, 0);
+> -	else
+> -		ret = fpga_mgr_write_init(
+> -		    mgr, info, buf, min(mgr->mops->initial_header_size, count));
+> +	if (mgr->mops->initial_header_size)
+> +		count = min(mgr->mops->initial_header_size, count);
+>  
+> +	ret = fpga_mgr_write_init(mgr, info, buf, count);
 
-I'd rather keep the code embedded seeing it won't be used anywhere
-than here and in order to keep the ahci_platform_get_resources()
-function more-or-less coherent.  Otherwise moving just a part of the
-function would be a half-measure since the methods like
-ahci_platform_get_regs(), ahci_platform_get_regulators(), etc could be
-also unpinned.
+Here we pass the whole buffer for write_init(). Maybe it works for mapped buf,
+but still doesn't work for sg buf.
 
--Sergey
+It is also inefficient if we change to map and copy all sg buffers just for
+write_init().
 
-> 
-> > +	if (rc > 0) {
-> > +		hpriv->n_clks = rc;
-> > +	} else if (!rc) {
-> > +		hpriv->clks = devm_kzalloc(dev, sizeof(*hpriv->clks), GFP_KERNEL);
-> > +		if (!hpriv->clks) {
-> > +			rc = -ENOMEM;
-> > +			goto err_out;
-> >  		}
-> > -		hpriv->clks[i] = clk;
-> > +		hpriv->clks->clk = devm_clk_get_optional(dev, NULL);
-> > +		if (IS_ERR(hpriv->clks->clk)) {
-> > +			rc = PTR_ERR(hpriv->clks->clk);
-> > +			goto err_out;
-> > +		} else if (hpriv->clks->clk) {
-> > +			hpriv->clks->id = __clk_get_name(hpriv->clks->clk);
-> > +			hpriv->n_clks = 1;
-> > +		}
-> > +	} else {
-> > +		goto err_out;
-> >  	}
-> >  
-> >  	hpriv->ahci_regulator = devm_regulator_get(dev, "ahci");
-> 
-> 
+We could discuss on the solution.
+
+My quick mind is we introduce an optional fpga_manager_ops.parse_header()
+callback, and a header_size (dynamic header size) field in
+fpga_image_info. FPGA core starts with mapping a buf of initial_header_size
+for parse_header(), let the drivers decide the dynamic header_size.
+
+The parse_header() could be called several times with updated dynamic
+header_size, if drivers doesn't get enough buffer for final decision and
+return -EAGAIN.
+
+Then write_init() be called with the final dynamic header size.
+
+For mapped buffer, just passing the whole buffer for write_init() is
+fine.
+
+>  	if (ret) {
+>  		dev_err(&mgr->dev, "Error preparing FPGA for writing\n");
+>  		mgr->state = FPGA_MGR_STATE_WRITE_INIT_ERR;
+> @@ -235,13 +234,33 @@ static int fpga_mgr_buf_load_sg(struct fpga_manager *mgr,
+>  	if (mgr->mops->write_sg) {
+>  		ret = fpga_mgr_write_sg(mgr, sgt);
+>  	} else {
+> +		size_t offset, count, length, bitstream_size;
+>  		struct sg_mapping_iter miter;
+>  
+> +		offset = info->bitstream_start;
+> +		bitstream_size = info->bitstream_size;
+> +		count = 0;
+> +
+>  		sg_miter_start(&miter, sgt->sgl, sgt->nents, SG_MITER_FROM_SG);
+>  		while (sg_miter_next(&miter)) {
+> -			ret = fpga_mgr_write(mgr, miter.addr, miter.length);
+> -			if (ret)
+> +			if (offset >= miter.length) {
+> +				offset -= miter.length;
+> +				continue;
+> +			}
+> +
+> +			if (bitstream_size)
+> +				length = min(miter.length - offset,
+> +					     bitstream_size - count);
+> +			else
+> +				length = miter.length - offset;
+> +
+> +			count += length;
+> +
+> +			ret = fpga_mgr_write(mgr, miter.addr + offset, length);
+> +			if (ret || count == bitstream_size)
+>  				break;
+> +
+> +			offset = 0;
+>  		}
+>  		sg_miter_stop(&miter);
+>  	}
+> @@ -265,6 +284,19 @@ static int fpga_mgr_buf_load_mapped(struct fpga_manager *mgr,
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (info->bitstream_start > count) {
+> +		dev_err(&mgr->dev,
+> +			"Bitstream start %zd outruns firmware image %zd\n",
+> +			info->bitstream_start, count);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (info->bitstream_size)
+> +		count = min(info->bitstream_start + info->bitstream_size, count);
+> +
+> +	buf += info->bitstream_start;
+> +	count -= info->bitstream_start;
+> +
+>  	/*
+>  	 * Write the FPGA image to the FPGA.
+>  	 */
+> diff --git a/include/linux/fpga/fpga-mgr.h b/include/linux/fpga/fpga-mgr.h
+> index 0f9468771bb9..32464fd10cca 100644
+> --- a/include/linux/fpga/fpga-mgr.h
+> +++ b/include/linux/fpga/fpga-mgr.h
+> @@ -85,6 +85,9 @@ enum fpga_mgr_states {
+>   * @sgt: scatter/gather table containing FPGA image
+>   * @buf: contiguous buffer containing FPGA image
+>   * @count: size of buf
+> + * @bitstream_start: offset in image buffer where bitstream data starts
+> + * @bitstream_size: size of bitstream.
+> + *	If 0, (count - bitstream_start) will be used.
+>   * @region_id: id of target region
+>   * @dev: device that owns this
+>   * @overlay: Device Tree overlay
+> @@ -98,6 +101,8 @@ struct fpga_image_info {
+>  	struct sg_table *sgt;
+>  	const char *buf;
+>  	size_t count;
+> +	size_t bitstream_start;
+
+How about we name it header_size?
+
+> +	size_t bitstream_size;
+
+And how about data_size?
+
+Thanks,
+Yilun
+
+>  	int region_id;
+>  	struct device *dev;
+>  #ifdef CONFIG_OF
 > -- 
-> Damien Le Moal
-> Western Digital Research
+> 2.25.1
+> 
