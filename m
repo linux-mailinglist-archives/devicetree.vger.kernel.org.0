@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15F614FA816
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 15:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 989FA4FA81A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 15:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241912AbiDINRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 09:17:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
+        id S241927AbiDINSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 09:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231325AbiDINRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 09:17:42 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B65939C9
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 06:15:35 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id r13so22299427ejd.5
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 06:15:35 -0700 (PDT)
+        with ESMTP id S241923AbiDINSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 09:18:32 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA76095A13
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 06:16:24 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id k23so22284273ejd.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 06:16:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=S1kx45CDYtbXE3aPQS22yI8qdr+jqfxleCsscPsVroo=;
-        b=l4QBV0ALsMCa7V6Qgs7OAKmW6ZvX8tgBkP3b+1vA5GnBkykASR3TEFGnl7wTNqZOeE
-         JyuPUeRxjDlnXG7M8z9lzjzvWVMrM94/fxYwAr1RFL5yRelqr7Ufnw8jtFHKAznJLDvH
-         kFInQ7n6yic+bRw0MSOlHSYgyOnglXuV5D2t8SCvayqETm6YvPfzVBqc42rRL8sFP3YH
-         jCn8+DNZ+KHwsRuH0mgVhe4kY63vRODpdoBO0PzSldVRY78Kn/oZDgrfJ/i/elz+HQTj
-         wZI2wbY73wxdvgor/4ND3PlNtepqdQkcH362r9f1hh9qpLFUTNu95LQbFgyFkSOcUUSm
-         SCOg==
+        bh=Ss9MX+8gL4N4vyRNsaMrOS75b4x1ebnPrfSl9fp2oY0=;
+        b=JMllX10YFuNjqx27/rOo2M1HLwoeovBOn3cPsw4U/W/19GVIzS1JC7irYjfLQSZ4+J
+         wI0Lg5htFNguIB4VvI5IDAexpAAItOPwGj2f8Uq5IOYeHQQhMe8Ke5wl7y9nWyN/XWEb
+         yBBtD7Iz5w+n8PQRxvEuV3E/+flRv3BnOo61XQ+KLRy/VCYAMUm1A4qQerFq6GRzUtSo
+         ce5Xg1k0l/QPSlZVVAx+SZSf90c5oW7LFu7JufmggKEUzwkpHM33CQzkd0PHeR9SuFfe
+         2dGTPqSNnoAWZFWSeWPOlRw21Kld3LKaneMwslDnE0GA08Y/BZlT4atMovoKobQ8aiTG
+         LuVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=S1kx45CDYtbXE3aPQS22yI8qdr+jqfxleCsscPsVroo=;
-        b=muxik9JDPCYLKBsZDw3JDNbDASMrRkwlWElPJkl+yrMVuBXC3m8Hk6BzD2uujaszZ9
-         pTSKgZ9aV6uCXqlVwTPAogGxFKqB1VoMwh4wJMlXv1le4xP+H12oYHcRb2L6k05KeXl0
-         W9lf3JVVp0qxhPPJjYcUZF/c7VnfFDiVwcTFD7K5Hu87Nn5NT9A8g6j/7ZlSv3ScWHk/
-         BWbjxf6V0ASnYXj+jZaflIafFi6vAOxM0sD5aYMyId0qiFH1TlTs5ncoPLDCUjxmSU+v
-         lrkmnAU9EtPs1yQnx+IzT+nQrAmflYAD+OpI0trQypf28RyPUfvXxoC52FCsY1ikkFUw
-         NHvA==
-X-Gm-Message-State: AOAM5337CqfGAN0lxHxzD5HPLr7Ua7s3gr7XmV+G9P4loiRPgpUR7M2c
-        nBERlcst7ULa7CSMKXCXByuf6g==
-X-Google-Smtp-Source: ABdhPJyhcWkx5nvbgdb9aN9/K78uAs1TAb9srjwlo+4FYaMTNGRjKYmU9qZumuKsjZpCKJkPNNjdrA==
-X-Received: by 2002:a17:906:7952:b0:6da:94c9:cccb with SMTP id l18-20020a170906795200b006da94c9cccbmr22644777ejo.469.1649510133702;
-        Sat, 09 Apr 2022 06:15:33 -0700 (PDT)
+        bh=Ss9MX+8gL4N4vyRNsaMrOS75b4x1ebnPrfSl9fp2oY0=;
+        b=YsoB7AZ95Gj05ditGxcuLTv0XQu/Qq1eZul1lzHUkY5MPzMpkJVL8gXCYnDz2zwQna
+         phOGUU4SmWJald6hLGku/nsrlqTh5hvO+qYRia5Q95rr6DfCXcoi7eiucFfOwCLG9w1B
+         DJUjivktAPy7JPaJO8xdJovXvzJGhx1370IFfM2AlRtWBbICYh7kotc7XPKLAmdFe5jB
+         idpwL3f5MwrkTAFqde+L57x4KJ1q/1EJbT7epkebZ7YKudlDuilQq3KssBJtVmOX+6cB
+         3FFAMfLXVxhQ04OwbsxyrPCchvQXiT4PjUZwJ/nTI0R5f7W/sQDgAxvAOGwLSJMjnhLb
+         w8Bg==
+X-Gm-Message-State: AOAM531Jb2drnQkfBlGPG1AerbmAf7IiDuWcfGm3mV6SNsGDaQQzbgiU
+        cdAGf1RQVTvQ9Hk5CSKN4d6eRQ==
+X-Google-Smtp-Source: ABdhPJxTJa/ThVbDtrAocRQOPXNgcyksMHjHri7oimqybW2dJSBE3w/ve01GXGppk6F0yQd+Yg/3Pw==
+X-Received: by 2002:a17:907:6297:b0:6da:6388:dc58 with SMTP id nd23-20020a170907629700b006da6388dc58mr23207144ejc.472.1649510183329;
+        Sat, 09 Apr 2022 06:16:23 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id mp19-20020a1709071b1300b006dfdfe15cf8sm9940447ejc.196.2022.04.09.06.15.32
+        by smtp.gmail.com with ESMTPSA id s11-20020a1709066c8b00b006e7ca6f0401sm7273511ejr.136.2022.04.09.06.16.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 06:15:33 -0700 (PDT)
-Message-ID: <535e3eab-a28e-46f3-2a7e-f1ffd1913470@linaro.org>
-Date:   Sat, 9 Apr 2022 15:15:32 +0200
+        Sat, 09 Apr 2022 06:16:22 -0700 (PDT)
+Message-ID: <79dd8425-947d-603c-ebab-0625921551d8@linaro.org>
+Date:   Sat, 9 Apr 2022 15:16:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 07/18] MIPS: DTS: jz4780: fix otg node as reported by
+Subject: Re: [PATCH 10/18] MIPS: DTS: jz4780: fix uart dmas as reported by
  dtbscheck
 Content-Language: en-US
 To:     "H. Nikolaus Schaller" <hns@goldelico.com>
@@ -63,11 +63,11 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
 References: <cover.1649443080.git.hns@goldelico.com>
- <298162bfa2e7225ccc753865e1ffa39ce2722b2a.1649443080.git.hns@goldelico.com>
- <bd19b6eb-d53a-b665-749d-46c275c85ccc@linaro.org>
- <822182F3-5429-4731-9FA1-8F18C5D95DEC@goldelico.com>
+ <00ec9d965cac78b252e14444deed8c93f5116bca.1649443080.git.hns@goldelico.com>
+ <a7a46736-e917-7274-1593-147ed36a2a68@linaro.org>
+ <86044652-7B23-4F4D-B60F-C413F3C7BEF1@goldelico.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <822182F3-5429-4731-9FA1-8F18C5D95DEC@goldelico.com>
+In-Reply-To: <86044652-7B23-4F4D-B60F-C413F3C7BEF1@goldelico.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,24 +80,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2022 15:05, H. Nikolaus Schaller wrote:
+On 09/04/2022 15:07, H. Nikolaus Schaller wrote:
+> 
+> 
+>> Am 09.04.2022 um 13:18 schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
 >>
->> This looks wrong, the block usually should have a specific compatible.
->> Please mention why it does not.
+>> On 08/04/2022 20:37, H. Nikolaus Schaller wrote:
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10030000: 'dmas' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10030000: 'dma-names' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10031000: 'dmas' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10031000: 'dma-names' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10032000: 'dmas' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10032000: 'dma-names' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10033000: 'dmas' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10033000: 'dma-names' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10034000: 'dmas' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: serial@10034000: 'dma-names' is a required property
+>>> 	From schema: Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+>>> arch/mips/boot/dts/ingenic/ci20.dtb: i2c@10050000: 'dmas' is a required property
+>>
+>> All these warnings are the same two warnings...
 > 
-> Well, I did not even have that idea that it could need an explanation.
-> 
-> There is no "ingenic,jz4780-otg" and none is needed here to make it work.
+> See my earlier explanation that without them you can't verify by just reading commit message
+> and diff that all existing warnings have been addressed.
 
-Make it work in what terms? We talk about hardware description, right?
-
-> 
-> Therefore the generic "snps,dwc2" is sufficient.
-
-No, you are mixing now driver behavior (is sufficient) with hardware
-description. Most of licensed blocks require the specific compatible to
-differentiate it.
-
+Which does not make sense and there is no need... Automation does it
+(see Rob's tools). Don't make human life more difficult...
 
 Best regards,
 Krzysztof
