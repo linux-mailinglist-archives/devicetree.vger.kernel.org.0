@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6594FA0A4
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 02:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F414FA0D9
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 02:59:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235027AbiDIA1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 20:27:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40686 "EHLO
+        id S237296AbiDIA6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 20:58:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232506AbiDIA1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 20:27:39 -0400
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A41818E1C
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 17:25:34 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-de3ca1efbaso11411482fac.9
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 17:25:34 -0700 (PDT)
+        with ESMTP id S229491AbiDIA6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 20:58:34 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F805C8BEA
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 17:56:29 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id a5so8793282qvx.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 17:56:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CvlOdjB3+vMb6WfMdUSPA5S26ij9hqMmlmfhzTzVzxI=;
-        b=wZhHDtzhnnFaf/Z3RS31qNESt7qcuJ96Rnd3jTFaDL1H9hwO4HauDN+NBCDXbKvxbY
-         PBMrtdLGVWur2kZ+wwhZhuU9mrOOTBI68t5QJcUenc+v6UUeKfIg/UWDsfLAA4Ux+Jy4
-         r8Zwk85YlaNSVA0LAcJfTI4ITooqyL0Rg7F2/He1XjFHlEDTlNMmg+m1olhpWeg9HWJ+
-         oQy9pweBwsXh/H3G9qfcS+I5gEj6ik2W1AoXsW5SbhZPhfVmPoLu7W6+GVT/Vg+14/NA
-         6HmlJ2Fk5EweDNg50moxn0BC6RSmKiTBBToM7DH3uG1Mq/b3yErXPR+gDGZp0pN3z2ii
-         rQCg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WfKf4vWBXKVDkSg0ucXtRl5Rm+zrC4yREy0YOeH4gUc=;
+        b=SbsoGlrpPOxq5eVe2RHS6Fc2qgezVsfsWAPBrsqFY083kKppljMcyKNxf6fxtiQmea
+         aBzJD0kBJmjb9PdSYNfNWWUXkxV+z3QetqTr0i2f2Fa0luv9QMmI1KsRSQjDGw4Q7pjE
+         /budDdH0oHlvN2fFVV1vBrZh76rPZ30eYwy2OzDUOFI8R/MHqD9g9N37iSvkqQH1rLki
+         ldD0q+7NaDD0+d4L47sogdRrZ6h8Mt0wcAP+WMJn0TOE8HP8JqQ6p7V9OzmOB/bw6iZf
+         c8vHR4EgzGWHybFWEv3zUnRTSJpUnqzU2XrHxjaUip7gvbhqT+BxayqhtVHq+PpsKWd2
+         dfbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CvlOdjB3+vMb6WfMdUSPA5S26ij9hqMmlmfhzTzVzxI=;
-        b=kcKvVbbQDovgAKGTBeF7Kdq5c/nsKB7ZQtXqv+zwykayDQ5nh+X/PXf1ZlZ44feaBk
-         aLqjBl5+hcdAYy2ypq86Y2P7MjREKTi2utnfI2F6JX2xcrcmEDvF/C69xW5fDUXvS6wB
-         I6MpHrR2zK2tnNkO79938BzsO+4y289hF5wQdgU06OAfYKuKhLAKtXiFrIiux7zIgXRN
-         FqpWnV08c0he8ScP1DAESOUVg4zdqS6LKf1FqX2+hBCym8mFgY0pMTp9FS1ryVVDQj9y
-         vhyPkpMCb+7gyuwbHkCf0lBjW9y1O060a/2rmzfakvGgav3VaGuCMsGjR4qdMk56DRPN
-         bakQ==
-X-Gm-Message-State: AOAM5326QxONNF3+wjti5uCWWbpFwofV+ELFjDD1Sz4fyAA68Zz1o8Da
-        1ooFn8tlwRGiP28vcr5aMML0eA==
-X-Google-Smtp-Source: ABdhPJzbsFxjcWZN1TMqg+51RtfqLPl+jfoL9LAzWFSbkcgl9I40vmhI7hD5QVaapMbQwBJuKnO8Ew==
-X-Received: by 2002:a05:6870:51cd:b0:e2:6cd2:f21a with SMTP id b13-20020a05687051cd00b000e26cd2f21amr4621573oaj.7.1649463933469;
-        Fri, 08 Apr 2022 17:25:33 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id m17-20020a0568301e7100b005b256697d7csm9587232otr.72.2022.04.08.17.25.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 17:25:32 -0700 (PDT)
-Date:   Fri, 8 Apr 2022 19:25:30 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm8250: move sound node out of soc
-Message-ID: <YlDSelofsuI0LfyT@builder.lan>
-References: <20220328143035.519909-1-vkoul@kernel.org>
- <20220328143035.519909-5-vkoul@kernel.org>
- <3cc9c1a0-45f3-cb1b-1991-f51da4789afd@linaro.org>
- <YkHs5TuYBKmOLrHO@matsya>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WfKf4vWBXKVDkSg0ucXtRl5Rm+zrC4yREy0YOeH4gUc=;
+        b=XIlkSfePKU/nsg4sBOAHpVtNIr9aSl2EqGkgl/J/Z4VCG6bKLRyyyzCdJAXtlmvSA+
+         rbl/wR3pGSwEfNV2iD35wUZYrqk8vPeizbQ1b5T0qczvyQrT9k0eT/MceRgXB+X8jtyX
+         prsjoFi0tHNbhTjdJfr53Gsv9M96JljcaHZ8Tae+B4OmFeGx07AO2552d5wPAT6NDMXu
+         C7kO4mZtuzKI8y+1CKQbUFVYbwR5MyYUKzcaEofYTyPyAX3UxmusLLggSLsMyb2RfYD8
+         uHfahGKXWxOyFHwu1+CYeHjjatmmi/q0tAUesYDNjKZG3joIje9TcXdY9a9zqgkGae1E
+         cLUw==
+X-Gm-Message-State: AOAM5324xCq1ZAlf9TUPGFaTgXY2BfZlQfSq2O3zttOBlNnTeRGwIb4m
+        pYZR8rHQ8J+DeDlO1cQvmUhmtEtcWCCbe3GBafcNMw==
+X-Google-Smtp-Source: ABdhPJz2DL14RUrS2mQs5G+BjceWY6DRGwYs2DVp88o7IspvTzBgIYnGmtDqdeyP0EjlFaN1l+8GZzgWVN/EFJ3XOaE=
+X-Received: by 2002:a05:6214:2aae:b0:440:f701:e8df with SMTP id
+ js14-20020a0562142aae00b00440f701e8dfmr18782301qvb.55.1649465788483; Fri, 08
+ Apr 2022 17:56:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YkHs5TuYBKmOLrHO@matsya>
+References: <20220408213336.581661-1-bjorn.andersson@linaro.org> <20220408213336.581661-3-bjorn.andersson@linaro.org>
+In-Reply-To: <20220408213336.581661-3-bjorn.andersson@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sat, 9 Apr 2022 03:56:17 +0300
+Message-ID: <CAA8EJpo4cRh64T_dCiOZFVQWt18h74x3avBRLtSRvHy=ybxk_g@mail.gmail.com>
+Subject: Re: [PATCH 3/3] soc: qcom: llcc: Add MODULE_DEVICE_TABLE()
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,41 +71,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 28 Mar 12:14 CDT 2022, Vinod Koul wrote:
+On Sat, 9 Apr 2022 at 00:31, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+>
+> The llcc-qcom driver can be compiled as a module, but lacks
+> MODULE_DEVICE_TABLE() and will therefore not be loaded automatically.
+> Fix this.
+>
+> Fixes: a3134fb09e0b ("drivers: soc: Add LLCC driver")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> On 28-03-22, 17:14, Krzysztof Kozlowski wrote:
-> > On 28/03/2022 16:30, Vinod Koul wrote:
-> > > The soc node expects all the nodes to have unit addresses. The sound
-> > > node does not have that which causes warnings:
-> > > 
-> > > arch/arm64/boot/dts/qcom/sm8250.dtsi:2806.16-2807.5:
-> > > Warning (simple_bus_reg): /soc@0/sound: missing or empty reg/ranges property
-> > > 
-> > > Move sound node out of soc to fix this
-> > > 
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 6 +++---
-> > >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > > 
-> > 
-> > I don't know the SM8250, but usually the sound node (e.g. containing
-> > audio-codec) is not part of SoC. I propose to remove it entirely from
-> > DTSI and define in same place in each DTS. It makes more sense logically
-> > in such case - one clearly see which board defines the sounds, which
-> > does not.
-> 
-> Most of our boards have sound, should we duplicate it in all the
-> boards..? Bjorn..?
-> 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-But is the sndcard platform or device specific? E.g. all the SDM845
-boards seems to use either qcom,sdm845-sndcard or qcom,db845c-sndcard.
-
-Are there room for some common properties in this node?
+> ---
+>  drivers/soc/qcom/llcc-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+> index a76d58195637..918bfd0df0e2 100644
+> --- a/drivers/soc/qcom/llcc-qcom.c
+> +++ b/drivers/soc/qcom/llcc-qcom.c
+> @@ -809,6 +809,7 @@ static const struct of_device_id qcom_llcc_of_match[] = {
+>         { .compatible = "qcom,sm8450-llcc", .data = &sm8450_cfg },
+>         { }
+>  };
+> +MODULE_DEVICE_TABLE(of, qcom_llcc_of_match);
+>
+>  static struct platform_driver qcom_llcc_driver = {
+>         .driver = {
+> --
+> 2.35.1
+>
 
 
-Otherwise it seems reasonable to skip it in the platform dtsi.
-
-Regards,
-Bjorn
+-- 
+With best wishes
+Dmitry
