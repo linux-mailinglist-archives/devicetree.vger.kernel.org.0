@@ -2,57 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4D484FA1D6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 04:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E224FA1DE
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 04:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbiDICzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 22:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52262 "EHLO
+        id S229790AbiDIDB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 23:01:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229996AbiDICzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 22:55:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6BB1F51AD;
-        Fri,  8 Apr 2022 19:53:44 -0700 (PDT)
+        with ESMTP id S229745AbiDIDB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 23:01:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1D533A07
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 19:59:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E1F0DB82DEE;
-        Sat,  9 Apr 2022 02:53:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16563C385A3;
-        Sat,  9 Apr 2022 02:53:38 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E48BB62274
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 02:59:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFA34C385A3;
+        Sat,  9 Apr 2022 02:59:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649472821;
-        bh=WCQR2N7KIiL4SwaxODSB6/18lPomnZZuU2D6eNxjWI0=;
+        s=k20201202; t=1649473190;
+        bh=mTqvXmUS+BoBPL+EEcw2Y9+uhsfV2sMi7KoB9xhv0Y8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tdVbdcQjW6IlJaRg3fn0/iXxXq5DKM7DY39o4blrym295Cktbw9Nudx7Nc5oMj3MW
-         gWVO71yc6zM0BVYhWxdvPZF1HdDl1T/xp5gnKfW/uNJwPrbTqJY9Y4QqNPemMt4eDq
-         9cdf5EyD3vSYYlyJsxm8ahaiYEPfvj6WQJM6+ytyB7zdFooPYV5H8ay/V4mWDF9dlv
-         TpRkc4XvT44IM5qU8Awb7myoxNX34RHaAYGXxWj4GF+tTNBl+4boUQTc2JKirUomb9
-         pf7qpNK7/jxO6ms6I5rL9JQPzUZz1M8tR8ooDgFccq+DPTw6f2yu02nD93vqgwn4Ch
-         loTv0jZYpukIw==
-Date:   Sat, 9 Apr 2022 10:53:34 +0800
+        b=jtD+wXUiLCzWGm2Mq/UJUB6sZzI54VZ2l0bBf2Irn5kwuuub0CsN3Na0c0j84w2DV
+         aasGM+sVdupM8KJE+P3VHNAiAhnT37ofEJXsp4HrUaO5n23+a42HTzoNJ388tb96ZF
+         PHqRbKhZes1N2l8NRwt1W33BnxD5PozSjoXoLHwSSIxTuaqsrGJsgdzU3hKj7ESj5I
+         u0fEMqLnq2xfcuXF0zvthEf2rb/aBwBpoKpGcU/skIVOUiPS8vwNo2J3+h5IKUkJ9J
+         crDi+RhL+7Jzf1kPodjCHPYz/dgo2L04Zfl717lQHMa2Z2oO6odeOFrqGbNUvWxeOX
+         VbbwZIPmk7VtA==
+Date:   Sat, 9 Apr 2022 10:59:44 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] ARM: dts: imx7s: fix iomuxc_lpsr node name
-Message-ID: <20220409025334.GX129381@dragon>
-References: <20220303150653.1903910-1-alexander.stein@ew.tq-group.com>
- <20220303150653.1903910-2-alexander.stein@ew.tq-group.com>
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8qm: Correct SCU clock controller's
+ compatible property
+Message-ID: <20220409025944.GY129381@dragon>
+References: <20220304080443.1733924-1-victor.liu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220303150653.1903910-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220304080443.1733924-1-victor.liu@nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -63,33 +58,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 04:06:53PM +0100, Alexander Stein wrote:
-> Schema requires the node being named 'pinctrl'.
+On Fri, Mar 04, 2022 at 04:04:43PM +0800, Liu Ying wrote:
+> The fsl,scu.txt dt-binding documentation explicitly mentions
+> that the compatible string should be either "fsl,imx8qm-clock"
+> or "fsl,imx8qxp-clock", followed by "fsl,scu-clk".  Also, i.MX8qm
+> SCU clocks and i.MX8qxp SCU clocks are really not the same, so
+> we have to set the compatible property according to SoC name.
+> Let's correct the i.MX8qm clock controller's compatible property
+> from
+> "fsl,imx8qxp-clk", "fsl,scu-clk"
+> to
+> "fsl,imx8qm-clk", "fsl,scu-clk" .
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Fixes: f2180be18a63 ("arm64: dts: imx: add imx8qm common dts file")
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 
-I expect patch #1 would go through pinctrl tree, so only applied this
-one.
-
-Shawn
-
-> ---
->  arch/arm/boot/dts/imx7s.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-> index 5af6d58666f4..008e3da460f1 100644
-> --- a/arch/arm/boot/dts/imx7s.dtsi
-> +++ b/arch/arm/boot/dts/imx7s.dtsi
-> @@ -446,7 +446,7 @@ wdog4: watchdog@302b0000 {
->  				status = "disabled";
->  			};
->  
-> -			iomuxc_lpsr: iomuxc-lpsr@302c0000 {
-> +			iomuxc_lpsr: pinctrl@302c0000 {
->  				compatible = "fsl,imx7d-iomuxc-lpsr";
->  				reg = <0x302c0000 0x10000>;
->  				fsl,input-sel = <&iomuxc>;
-> -- 
-> 2.25.1
-> 
+Applied, thanks!
