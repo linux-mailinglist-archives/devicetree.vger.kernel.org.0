@@ -2,57 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029DE4FA6BB
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 12:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C884FA6C5
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 12:23:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241416AbiDIKSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 06:18:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46432 "EHLO
+        id S237182AbiDIKZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 06:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241209AbiDIKSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 06:18:34 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9178AA94F1;
-        Sat,  9 Apr 2022 03:16:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 52F49B80122;
-        Sat,  9 Apr 2022 10:16:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18EC7C385A4;
-        Sat,  9 Apr 2022 10:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649499383;
-        bh=fSIERel0hD7IgNycNdkrfOcVGRyjKjmcNIBLPgDbTwY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=c9iCjm/rZ/S7J2XfjOAWHVA+IEIm7ujXbfqjxbNuXl0CJ3FOh5NI90Mlr4wlyNMDQ
-         lWFZM4bFJGm13niF13gDU6/1GZpVjkHnIhOv6ZIXNLFtzAPNJWlYNwpDoyi1K1lHdI
-         HKosau6i0kpjuLb6RHSx91QY/wX4JnMnwF8i1k8wltI5+mj3NE2RdIDVh4M3sDQadr
-         Pw8Ja8ZVNVeZLzFfu6S4lALmbmWU0/PAYSoq0hEctbKvo5sF0eUmubzQcEUh4RsXPv
-         XwKK58+DSbpbW8TWyKCUcXP2iWXGUrfGpqPLehfBdsvI3MMs7DLeV7MBqfbLn1Xkoo
-         LQI1Wbgs+2X8Q==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.lan)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nd88i-002yJ4-Q8; Sat, 09 Apr 2022 11:16:20 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Make the v2 compat requirements explicit
-Date:   Sat,  9 Apr 2022 11:16:17 +0100
-Message-Id: <20220409101617.268796-1-maz@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233317AbiDIKZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 06:25:54 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925FEAAB7D;
+        Sat,  9 Apr 2022 03:23:44 -0700 (PDT)
+Received: from p508fd313.dip0.t-ipconnect.de ([80.143.211.19] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nd8Fg-0000g7-0v; Sat, 09 Apr 2022 12:23:32 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Frank Wunderlich <linux@fw-web.de>,
+        Frank Wunderlich <frank-w@public-files.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: Aw: [PATCH] arm64: dts: rockchip: Fix clocks for rk356x usb
+Date:   Sat, 09 Apr 2022 12:23:31 +0200
+Message-ID: <9183927.T7Z3S40VBb@phil>
+In-Reply-To: <trinity-71c38625-1a00-47d7-8e23-4f33f25a997a-1649499268581@3c-app-gmx-bap35>
+References: <20220409075147.136187-1-linux@fw-web.de> <trinity-71c38625-1a00-47d7-8e23-4f33f25a997a-1649499268581@3c-app-gmx-bap35>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,53 +46,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A common mistake when writing a device tree for a platform that is using
-GICv3 with ancient CPUs is to overlook the MMIO frames that implement
-the GICv2 compatibility feature, because this feature is implemented by
-the CPUs and not by the GIC itself.
+Am Samstag, 9. April 2022, 12:14:28 CEST schrieb Frank Wunderlich:
+> Hi,
+> 
+> > Gesendet: Samstag, 09. April 2022 um 09:51 Uhr
+> > Von: "Frank Wunderlich" <linux@fw-web.de>
+> 
+> > -		clock-names = "ref_clk", "suspend_clk",
+> > -			      "bus_clk";
+> > +		clock-names = "ref", "suspend_clk",
+> > +			      "bus_early";
+> >  		dr_mode = "host";
+> >  		phy_type = "utmi_wide";
+> >  		power-domains = <&power RK3568_PD_PIPE>;
+> > @@ -280,8 +280,8 @@ usb_host1_xhci: usb@fd000000 {
+> >  		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+> >  		clocks = <&cru CLK_USB3OTG1_REF>, <&cru CLK_USB3OTG1_SUSPEND>,
+> >  			 <&cru ACLK_USB3OTG1>;
+> > -		clock-names = "ref_clk", "suspend_clk",
+> > -			      "bus_clk";
+> > +		clock-names = "ref", "suspend_clk",
+> > +			      "bus_early";
+> >  		dr_mode = "host";
+> 
+> this is the patch breaking it:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=33fb697ec7e58c4f9b6a68d2786441189cd2df92
+> 
+> suspend clock needs to be renamed too from "suspend_clk" to "suspend"
+> 
+> else i get this error on poweroff
+> 
+> xhci-hcd xhci-hcd.1.auto: Host halt failed, -110
+> 
+> regards Frank
 
-The compatibility feature itself is optional (all the modern
-implementations have dropped it), but is present in all the ARM Ltd
-implementations of the ARMv8.0 architecture (A3x, A53, A57, A72, A73),
-and many others from various implementers.
+ok, so do you want to send a v2 including that change?
+Alternatively I can also add this change when applying.
 
-Make it explicit that GICC, GICH and GICV are required for these CPUs.
-Also take this opportunity to update my email address, as people keep
-sending them to the wrong place...
+Also for educational purposes, the format for referencing a commit
+you're fixing would be
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
----
- .../bindings/interrupt-controller/arm,gic-v3.yaml         | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Fixes: 33fb697ec7e5 ("usb: dwc3: Get clocks individually")
+Signed-off-by: ....
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-index b7197f78e158..3912a89162f0 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: ARM Generic Interrupt Controller, version 3
- 
- maintainers:
--  - Marc Zyngier <marc.zyngier@arm.com>
-+  - Marc Zyngier <maz@kernel.org>
- 
- description: |
-   AArch64 SMP cores are often associated with a GICv3, providing Private
-@@ -78,7 +78,11 @@ properties:
-       - GIC Hypervisor interface (GICH)
-       - GIC Virtual CPU interface (GICV)
- 
--      GICC, GICH and GICV are optional.
-+      GICC, GICH and GICV are optional, but must be described if the CPUs
-+      support them. Examples of such CPUs are ARM's implementations of the
-+      ARMv8.0 architecture such as Cortex-A32, A34, A35, A53, A57, A72 and
-+      A73 (this list is not exhaustive).
-+
-     minItems: 2
-     maxItems: 4096   # Should be enough?
- 
--- 
-2.34.1
+
+Heiko
+
 
