@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66FBA4FA184
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 04:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 511624FA1A0
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 04:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233602AbiDICG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 22:06:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41562 "EHLO
+        id S240584AbiDICWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 22:22:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbiDICG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 22:06:57 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B8482DA88
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 19:04:51 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id b15so11907717edn.4
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 19:04:51 -0700 (PDT)
+        with ESMTP id S240580AbiDICWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 22:22:15 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D12A2DC277
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 19:20:10 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id dr20so20471099ejc.6
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 19:20:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pensando.io; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7cUq6wKL2eg4YK3c6xmRvhrYxfFrlkl8iW8PAzAV5Zc=;
-        b=2ks+z6QqN7kNNK8lKkDTCE7RM5AkUgvnu2j6q6InkjwMR3sUtFR18cLs/tjNaVTctg
-         bfX/BfmbpkCnB16dEWAvDaNgsQwaMECrwCqi00r7zJCEPrG6lDNgbx6NW9YtPMZinUwt
-         5Vk8+CHnJvsPgDEFVToLY6AXbI7ona/+wEKeDa5less2toAKp9tjzfi+Bd05m+/H+r3g
-         aVaoVhS5jzsLJgDiUNkWATqF0mYK85vfpUUtRiL3BTuftGAliYytt1GUXmrMdh2ARE+H
-         2v5NoDc1EGPz+t07TabYy/tmdfqCJo5NmF9pY6WU94TV4nbH9gOPd65s8RstC4ugMpVy
-         mEbQ==
+        bh=wLqDifYAkCjbqxgwOT9vXFiBs8iIdqCb4gO1G0bwpb8=;
+        b=A8ywAY9u1Lr+QmhTA5WfA3JnnocjunoNKsa72DCym45N1HaYtiunOHoDpfMPAOoKLo
+         bQoxKlEgo69jf93NcFV/+ErJZTdgxjyJUNbQ+xv6TjmRH2JB/lb8UYbI73NBoDqNz6um
+         zgaYn1NF3UTH4yVAMttd8ox5PJtV3FSz7iACfmh2Wm438JbzaTencg7/P4rmcs8PZKy6
+         y9dsA2BzotMJ8BtvD/Z7miNoXuY4YyK3wDTV8fQvnuwvZBIDtB9AIFnQ6EUbvD/qMKkJ
+         xHnAN8yYzUMSIJzhHvlF6wLWc5piegxVToWIIzOPyRy8YPx0eZFFVTFsPvf8WM94wyjK
+         OWdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7cUq6wKL2eg4YK3c6xmRvhrYxfFrlkl8iW8PAzAV5Zc=;
-        b=r9/8F0Qq0pLDrHbPBfBE1tRUXgi2ofTnqVNElWxUqM03KRNJowH4Fqbq8+KihcVkJN
-         A+VzinBnOsS9Dlz/BHJpdXJo5VitkwzC0XQviT2DDlt0XRzpVT0MOISUKQTslLWxI4+t
-         ubXyJHAxDcc65r3jvfccugDefpggiMcUKVDqWE7WhCsB1ulEzzfJWTz2Ko09idM0J7h0
-         m2RJjsNnHBrC9REGGKn5D9ZIZbo8yy27julnpuQ/y6sdDU490ieGB5dh94KiPEtZk/MV
-         9zaR+XeGKeYnlberhuLeSa5xfRIiCnxGY1M9WagOaBn1M7o5wax73fXLOweUsLkCHgQd
-         dKcA==
-X-Gm-Message-State: AOAM533a0/Y8GK9KldjZuPpyzZiTvM+Q5k/fYz/Z6FgWtsmbLUfeS9k2
-        bA27yBgR4oRuEk/hLt9uZqsw+NIoIgUYJdbGCDKeyw==
-X-Google-Smtp-Source: ABdhPJw8VmMCU/F2QWOhnLWYUiSxqw1LGnzIiAnctMNwRiGRe1sb6g6TTMrBy4XimjkeJVJbwRyW8L37F65jQJ7PvyY=
-X-Received: by 2002:a05:6402:1541:b0:41c:bfb9:d56b with SMTP id
- p1-20020a056402154100b0041cbfb9d56bmr22092637edx.344.1649469890042; Fri, 08
- Apr 2022 19:04:50 -0700 (PDT)
+        bh=wLqDifYAkCjbqxgwOT9vXFiBs8iIdqCb4gO1G0bwpb8=;
+        b=A5/ZJskYcoZB/SucbAl80qEoaiVE2bHDlU+l7MVAOprXxRYd5t2QPA760OpPE40A5q
+         +entSNYyNK0ECvsilveTQADx06iummkTWh50+iiElXeIFo2QKFFsXSmq1nCXn9D1+try
+         hvYiMepOezH4A7JpPFPt3mTGMsjdzgykO+VDiXinzOsvsZoDlYWndV7xXzusU4qxO5Vq
+         iaI/i9c4GBpJ/wrc8bXhzv2M5l2TDcecGecLCqtGiiYm8E/RDqQGOKmnVRh1webT0EQD
+         7IsX3kK01Cqftuyuy7tMSVgnu4mgE94ZJjAp3XqZM4yfbvE30H2cW6z6BUiOgw2HnMeQ
+         4kxw==
+X-Gm-Message-State: AOAM533ZD8RfKyKy9CU8506wFyUip9LOiUa2BYfClhsGAATJpbD4a6yA
+        +1+tb0dZRNHwYVAZqWRmyydRD1UCYKS6Qa6JpH3A4Q==
+X-Google-Smtp-Source: ABdhPJyulJLecxjVWksSZL6PtYmWt5y8+13DrPt9f3Y6/UqGhYzxYeG7hKgDUXU8McVE9deFiuO8bqEkfHJDgOA9vos=
+X-Received: by 2002:a17:907:3e95:b0:6e8:358:6b7c with SMTP id
+ hs21-20020a1709073e9500b006e803586b7cmr21169398ejc.236.1649470808845; Fri, 08
+ Apr 2022 19:20:08 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220406233648.21644-1-brad@pensando.io> <20220406233648.21644-2-brad@pensando.io>
- <a2f89f06-f586-2bf3-fbfa-f0fd1b6ad057@linaro.org>
-In-Reply-To: <a2f89f06-f586-2bf3-fbfa-f0fd1b6ad057@linaro.org>
+ <05febd3f-bfdb-13c2-8cce-b9dc422c5eae@linaro.org>
+In-Reply-To: <05febd3f-bfdb-13c2-8cce-b9dc422c5eae@linaro.org>
 From:   Brad Larson <brad@pensando.io>
-Date:   Fri, 8 Apr 2022 19:04:39 -0700
-Message-ID: <CAK9rFnw0vxh6hjGf4XCGrfuM4Qak5_BmMcYjxkcUwqFL-V6rmg@mail.gmail.com>
+Date:   Fri, 8 Apr 2022 19:19:57 -0700
+Message-ID: <CAK9rFnyRrS_LvoZ_j66cKDHgecqcqzJN5krSxdCquBanViKyHg@mail.gmail.com>
 Subject: Re: [PATCH 01/11] dt-bindings: arm: add Pensando boards
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
@@ -79,22 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 7, 2022 at 11:54 AM Krzysztof Kozlowski
+On Thu, Apr 7, 2022 at 11:45 AM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
-> > diff --git a/Documentation/devicetree/bindings/arm/pensando,elba.yaml b/Documentation/devicetree/bindings/arm/pensando,elba.yaml
+> > Change from V3:
+> > - Add description and board compatible
 >
-> It seems you ignored to Cc devicetree binding maintainers for all your
-> devicetree bindings patches.
+> That's a bit confusing... the subject is for v1.
+
+Goal was to identify in the cover letter patch the key changes from
+the V3 patchset to this V4 patchset.  Then in each patch that had a
+material change highlight that in the patch itself.  Will try and make
+it more clear.
+
+> > +$id: http://devicetree.org/schemas/arm/pensando,elba.yaml#
 >
-> Please rebase on a recent kernel tree and use scripts/get_maintainers.pl
-> to get list of people to Cc. Your tree could not have my address, but
-> why Rob is missing is a surprise...
+> I propose just pensando.yaml, unless there is going to be hundreds of
+> different families of SoC from Pensando?
+>
+> This patch should be after adding the vendor prefix.
 
-Hi Krzysztof,
-
-Thanks for pointing this out.  I used get_maintainers.pl on the
-original patchset that has evolved.  I will redo the list for the next
-submission.
+pensando.yaml is good, I'll change it to that.  I'll order this patch
+to be after the vendor prefix addition in the next submission.
 
 Best,
 Brad
