@@ -2,198 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E49344FA52B
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 07:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 679F94FA53E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 07:55:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239063AbiDIFfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 01:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37046 "EHLO
+        id S238329AbiDIFzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 01:55:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235759AbiDIFfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 01:35:10 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBBB823BCA;
-        Fri,  8 Apr 2022 22:33:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1649482384; x=1681018384;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VI8FWE1dGcaXVLEWOk5YvZUOuYotXV+G+WRr6XZpzas=;
-  b=LQYgY1GCaAtiJXvYMqs2E2lNQwDEQD0kushrEHXx7Td762gFummbPubq
-   /Y//+lVusPAEfeZffvbID6aNYAhKQUiXLp0fJ2A7o0MmhUwWUfo/M1QPl
-   2WZt1ifp5Yttvzq9RQizTGndUyGDDQv7ZqM2ivUMwUo9pnXSSXtZ8A+0h
-   SCprHb8Z2nZDEz8qqjeRmVbdtrA8+H/eox4i7BC8XutggGAOFca3PS0bl
-   aPFbXM+tsELjlTrUVVXW2on6EYtRYzHyafzIasX4NaQDtLhUoChJFmRYD
-   QFh9X9xMVYTFYr7LZwASq9G6oknhp71lxMYF+2J1vlES4Hs6qsqw6ULB/
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10311"; a="260607102"
-X-IronPort-AV: E=Sophos;i="5.90,247,1643702400"; 
-   d="scan'208";a="260607102"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2022 22:33:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,247,1643702400"; 
-   d="scan'208";a="852420338"
-Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 08 Apr 2022 22:32:57 -0700
-Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nd3iS-0000uY-Mr;
-        Sat, 09 Apr 2022 05:32:56 +0000
-Date:   Sat, 9 Apr 2022 13:32:28 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     kbuild-all@lists.01.org, linux-media@vger.kernel.org,
-        Irui Wang <irui.wang@mediatek.com>,
-        George Sun <george.sun@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v9, 16/17] media: mediatek: vcodec: support stateless VP9
- decoding
-Message-ID: <202204091319.iO0pMmRf-lkp@intel.com>
-References: <20220408120240.29571-17-yunfei.dong@mediatek.com>
+        with ESMTP id S231721AbiDIFzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 01:55:36 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED16B3AA41;
+        Fri,  8 Apr 2022 22:53:29 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id k23so21040826ejd.3;
+        Fri, 08 Apr 2022 22:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+4NMuImCyoCuFp6T7FFagPPjd4YgfqhKWKAbscvD19s=;
+        b=SUuYPdleZLQc2Mg9Um9LGB+HubXYlguWetrsNDJxT2TRStgN4S5YTkuWv2uVzvifXl
+         9CW0n+HUjngSWvQiO4FuttMh/eyGMwSdpV7wXMfwdrPCUJWD7iM4CHkmSOMZM9AWn2n+
+         2Tr+I/8LAyPIYBvn3eEwAPjDVdKCf3Htj70/2ahQc8BEuhaN8hiil9Dq/YRFb/+nVQXM
+         bClnJmA2+AqhuB7AWPLjoVXpYEI5fvo75gZ5+WvKfeLPiM6BFq6iw/7DL4lXZs93ZN7r
+         29HG3qqHWayXG4N3IOLqDk61TBzcHxBG3ZRZLIMk0XCIRqlr9qzUD1zafAWK4R+EcAY6
+         zMFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=+4NMuImCyoCuFp6T7FFagPPjd4YgfqhKWKAbscvD19s=;
+        b=305ilc7paZMuLJgN0jsZRxhv5KEzG8R+rgHghuaWTv8ylIMqgFCjmhvoO6ro+5pGNR
+         Z+1tTnAHUNz6cwXpY0+jGRlQzZoEzJBtGns27b1N3knylSLa1J0nblE4MV6fNMRHQV67
+         kJEkzV4G5tGeY9z5Rb6jTJ3ZMgW3bkCZ4ON/xAG204oOakEDWNERspUUv0Hv6HwzP8VO
+         BIdbeni6kNewhC1FmnymPWRAks2BHATG8vaDgSzj2sj4LC63j4STY+jjBf63xNtGU3yA
+         Ncd4x5GnoG+/OZNMMP4Qeot3obWgYJSLXLql0Vcn9jMItmQosrWO7OrmwvLqAgkVP/ry
+         Mc4g==
+X-Gm-Message-State: AOAM532vwyZzRWNUzT1TZxkgq+7/LoW5DsgFWEKOy0hTYVYdEEwQK62H
+        T3T1wiMvbMQlZPcXx4cQQNCA4TYpYO8=
+X-Google-Smtp-Source: ABdhPJxFt0R2wwZORfE212wpnbKsKcUf66uBPFMjto+NZAnpC7VhwvFpDCzRd3fpBHMb8RqPMzbiVw==
+X-Received: by 2002:a17:907:8688:b0:6d2:c19:e1a0 with SMTP id qa8-20020a170907868800b006d20c19e1a0mr20707198ejc.249.1649483608397;
+        Fri, 08 Apr 2022 22:53:28 -0700 (PDT)
+Received: from pevik ([77.48.21.118])
+        by smtp.gmail.com with ESMTPSA id r8-20020a170906350800b006e83027f295sm2572892eja.146.2022.04.08.22.53.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 22:53:27 -0700 (PDT)
+Date:   Sat, 9 Apr 2022 07:53:06 +0200
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Konrad Dybcio <konradybcio@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v5 1/1] arm64: dts: qcom: msm8994-huawei-angler: Add
+ sdhc1 definition
+Message-ID: <YlEfQoBaqPXrn0P9@pevik>
+Reply-To: Petr Vorel <petr.vorel@gmail.com>
+References: <20220323204840.22832-1-petr.vorel@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220408120240.29571-17-yunfei.dong@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220323204840.22832-1-petr.vorel@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
+Hi Bjorn, Andy,
 
-Thank you for the patch! Perhaps something to improve:
+gently ping. Any change you queue this for v5.19?
 
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on v5.18-rc1 next-20220408]
-[cannot apply to remoteproc/rproc-next drm-tip/drm-tip]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Kind regards,
+Petr
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yunfei-Dong/media-mediatek-vcodec-Add-vdec-enable-disable-hardware-helpers/20220408-210244
-base:   git://linuxtv.org/media_tree.git master
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220409/202204091319.iO0pMmRf-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/251c7c77f6690881357df39867a32a03eb7db3b7
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yunfei-Dong/media-mediatek-vcodec-Add-vdec-enable-disable-hardware-helpers/20220408-210244
-        git checkout 251c7c77f6690881357df39867a32a03eb7db3b7
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/media/
+> Angler does not have SD card, thus sdhc2 kept disabled.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+> ---
+> NOTE: requires Konrad's fix
+> https://lore.kernel.org/linux-arm-msm/YjuE+cgGXCLihPIa@pevik/T/#t
 
-All warnings (new ones prefixed by >>):
+> changes v4->v5:
+> * remove workaround (fixed by Konrad's fix)
 
-   In file included from drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:12:
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c: In function 'vdec_vp9_slice_lat_decode':
->> drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 6 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-         |                     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
-     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
-     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
-     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
-      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
-         |         ^~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1938:9: note: in expansion of macro 'mtk_vcodec_debug'
-    1938 |         mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 7 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-         |                     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
-     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
-     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
-     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
-      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
-         |         ^~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:1938:9: note: in expansion of macro 'mtk_vcodec_debug'
-    1938 |         mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c: In function 'vdec_vp9_slice_core_decode':
->> drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:29:21: warning: format '%lx' expects argument of type 'long unsigned int', but argument 6 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-      29 | #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-         |                     ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in expansion of macro 'pr_fmt'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:152:9: note: in expansion of macro '__dynamic_func_call'
-     152 |         __dynamic_func_call(__UNIQUE_ID(ddebug), fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:162:9: note: in expansion of macro '_dynamic_func_call'
-     162 |         _dynamic_func_call(fmt, __dynamic_pr_debug,             \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/printk.h:570:9: note: in expansion of macro 'dynamic_pr_debug'
-     570 |         dynamic_pr_debug(fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h:45:9: note: in expansion of macro 'pr_debug'
-      45 |         pr_debug("[MTK_VCODEC][%d]: " fmt "\n",                 \
-         |         ^~~~~~~~
-   drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c:2007:9: note: in expansion of macro 'mtk_vcodec_debug'
-    2007 |         mtk_vcodec_debug(instance, "core dma_addr_end 0x%lx\n", pfc->vsi.trans.dma_addr_end);
-         |         ^~~~~~~~~~~~~~~~
+>  arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
+> index 0e3dd48f0dbf..6e43e4339f55 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
+> @@ -1,7 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /* Copyright (c) 2015, Huawei Inc. All rights reserved.
+>   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+> - * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
+> + * Copyright (c) 2021-2022, Petr Vorel <petr.vorel@gmail.com>
+>   */
 
-vim +29 drivers/media/platform/mediatek/vcodec/vdec/../mtk_vcodec_util.h
-
-4e855a6efa5470 drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Tiffany Lin      2016-05-03  27  
-71c789760ff9ba drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Dafna Hirschfeld 2021-11-17  28  #undef pr_fmt
-71c789760ff9ba drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Dafna Hirschfeld 2021-11-17 @29  #define pr_fmt(fmt) "%s(),%d: " fmt, __func__, __LINE__
-4e855a6efa5470 drivers/media/platform/mtk-vcodec/mtk_vcodec_util.h Tiffany Lin      2016-05-03  30  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+>  /dts-v1/;
+> @@ -41,3 +41,8 @@ serial@f991e000 {
+>  &tlmm {
+>  	gpio-reserved-ranges = <85 4>;
+>  };
+> +
+> +&sdhc1 {
+> +	status = "okay";
+> +	mmc-hs400-1_8v;
+> +};
