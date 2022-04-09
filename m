@@ -2,153 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 581844FA833
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 15:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5DE64FA837
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 15:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241854AbiDINZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 09:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34878 "EHLO
+        id S238513AbiDINZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 09:25:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238513AbiDINZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 09:25:06 -0400
-Received: from mo4-p03-ob.smtp.rzone.de (mo4-p03-ob.smtp.rzone.de [85.215.255.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41DB363F6;
-        Sat,  9 Apr 2022 06:22:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1649510575;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=nBDAPlKQ4YG44AbUZ5EopbugVyGZ0YIKrTGGGC/Tzuo=;
-    b=bh9XxcqX+OLWtmHAXi0xPnUr4drHupjYfMjbsqt9dG53zcvtmpv0a/f/Lbv06LHDT0
-    sCNKVjxc6Ym0QAQteM+6TLlK3zkuw+JY/AP6DqtLBPCVm1eTodsISiXwd5scRzq86j5D
-    uy4jALntssnEEAct+LtmIUUixiL2H2lhk/TnYwkeZcKySmZR0lw5Y5VgH8uRecEslMrc
-    AB5M6g7CUksbYcnQMziSm98AnbsOT8GcXN5B8zBqN6304uDOBTNxVKbgXJb0AURclVDX
-    P0O0/kq0sxgOyagpktQZqAqzsNv4Fz7QNHvGvuHgsiMXr20OHQTqhGW2kys4u18bgs1d
-    pOXA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH/jrwDepmg=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.42.2 DYNA|AUTH)
-    with ESMTPSA id k708cfy39DMsuVv
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Sat, 9 Apr 2022 15:22:54 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH 05/18] MIPS: DTS: jz4780: fix pinctrl as reported by
+        with ESMTP id S241961AbiDINZZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 09:25:25 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F35A9AE64
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 06:23:18 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id bq8so22263124ejb.10
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 06:23:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=CFsLuLri4ZzuxFZWMK4QbGgplfV1RiWIfvfyl0fXXPM=;
+        b=JuUlSycWzsEw/r0jFMz9JwRuwtyT0Y7Q/BQu5h4xdSSU6heuxxnEEHiJAbq5O2FMnJ
+         nvhasA1n/LKezFpGAk910XpeWCK3K0873+/GQwxGW2aUWRPwVLciFeA9jZin+txjOMhe
+         KP9+5fWc87S2ImGZlf8uN+t6ImU1gv715j8WSNikxuyrY/XkAZAmGd3jpCbhgprci38T
+         CfM0ogcxEo/pxTjtzQGDph7uQQavF0ES+fXNnhsZpeTLR1ln6nC2h+r/i5kj0fOI6bEW
+         Jo6zni2rpb+flYw01ZxrvpOlL8Oxve33pJP9BECetmBxEsJkENybzWOya5lMT1qh93sQ
+         rpMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CFsLuLri4ZzuxFZWMK4QbGgplfV1RiWIfvfyl0fXXPM=;
+        b=SUfuB/EdG8yjWjlZspUQnthhqmm8YU1fHP7M84kjANlTaO56mLKDn/W26LQTMvHjNP
+         O+Qxn6vqbsg+Jgnyzg3lH5YVue5JQ1pYLM85f/Cfri387e2jY/x3NEMK86mhGtxWFxcv
+         PA+dFxwgLHtLkt1t21AGK+oA0bGRiD6SLltZV2yUk0sw4j8fmmnZP1RiXaPxejzwfoFJ
+         ylqfNub3e5PFPlagg8EAQwpVzYQ2o5b7jqdwsVhYoHal5kFwnl8cgTH+2CRI6m63KSE5
+         zV+kCmSXDPGFwyBu4vk94or5XYdLO7b3Bz/E8XRPNOk/gE4XH78/XTZsAyhEtA+x+dPc
+         y0nQ==
+X-Gm-Message-State: AOAM5318xE7ILoniOHXDwuV/fcEeMGb/9son1B4K0d+v+TIaz5Ay9IYJ
+        WpZQUDQ8DOILak09PgNxgrM2Cw==
+X-Google-Smtp-Source: ABdhPJz/ZL5SjGOTUIidyHTeqYDZw4kqPsYAOodMQYLCgvX6YAi/lThfvlEQviqPHkG7ehSftBVgbw==
+X-Received: by 2002:a17:906:1be1:b0:6ce:b0a8:17d with SMTP id t1-20020a1709061be100b006ceb0a8017dmr22401411ejg.413.1649510596982;
+        Sat, 09 Apr 2022 06:23:16 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id f1-20020a056402194100b00416b174987asm11933953edz.35.2022.04.09.06.23.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Apr 2022 06:23:16 -0700 (PDT)
+Message-ID: <2961d892-609c-c0bf-e9c1-c54306f608c7@linaro.org>
+Date:   Sat, 9 Apr 2022 15:23:15 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 07/18] MIPS: DTS: jz4780: fix otg node as reported by
  dtbscheck
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <c84b5ec0-0193-ab62-1985-25bc2baa9f05@linaro.org>
-Date:   Sat, 9 Apr 2022 15:22:54 +0200
+Content-Language: en-US
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Paul Cercueil <paul@crapouillou.net>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
         Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B5EB5983-DA9F-4631-B737-2B1417CF9054@goldelico.com>
 References: <cover.1649443080.git.hns@goldelico.com>
- <1941bc4ed553b27f399ad00ea61ff2b0237d14e3.1649443080.git.hns@goldelico.com>
- <e905896e-335d-a88a-1961-d17b92e46585@linaro.org>
- <530E0F7F-FC03-45DD-BF87-D049D3108AD3@goldelico.com>
- <c84b5ec0-0193-ab62-1985-25bc2baa9f05@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: Apple Mail (2.3445.104.21)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+ <298162bfa2e7225ccc753865e1ffa39ce2722b2a.1649443080.git.hns@goldelico.com>
+ <bd19b6eb-d53a-b665-749d-46c275c85ccc@linaro.org>
+ <3XN2AR.4ZAYNTAI4XBT3@crapouillou.net>
+ <36C96109-0A56-4ACF-ACD1-367DAD9E3A47@goldelico.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <36C96109-0A56-4ACF-ACD1-367DAD9E3A47@goldelico.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/04/2022 15:18, H. Nikolaus Schaller wrote:
+hould have a specific compatible.
+>>> Please mention why it does not.
+>>
+>> Agreed. The "snps,dwc2" should be a fallback string, otherwise there is no way to uniquely identify the JZ4780 implementation of the IP.
+> 
+> Well, there is no specifc implementation and driver for it. So no need to uniquely identify it.
+
+Specific implementation and driver are not arguments here. This does not
+matter. It's really unrelated argument.
+
+Bindings are not about implementation in Linux. Implementation can
+change, so bindings should also?
 
 
-> Am 09.04.2022 um 15:13 schrieb Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org>:
->=20
-> On 09/04/2022 15:04, H. Nikolaus Schaller wrote:
->>=20
->>=20
->>> Am 09.04.2022 um 13:13 schrieb Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org>:
->>>=20
->>> On 08/04/2022 20:37, H. Nikolaus Schaller wrote:
->>>> arch/mips/boot/dts/ingenic/ci20.dtb: pin-controller@10010000: =
-$nodename:0: 'pin-controller@10010000' does not match =
-'^(pinctrl|pinmux)(@[0-9a-f]+)?$'
->>>> 	=46rom schema: =
-Documentation/devicetree/bindings/pinctrl/ingenic,pinctrl.yaml
->>>>=20
->>>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->>>> ---
->>>> arch/mips/boot/dts/ingenic/jz4780.dtsi | 2 +-
->>>> 1 file changed, 1 insertion(+), 1 deletion(-)
->>>>=20
->>>> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi =
-b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>> index 5f44cf004d473..b5299eaffb84a 100644
->>>> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>> @@ -155,7 +155,7 @@ rtc_dev: rtc@10003000 {
->>>> 		clock-names =3D "rtc";
->>>> 	};
->>>>=20
->>>> -	pinctrl: pin-controller@10010000 {
->>>> +	pinctrl: pinctrl@10010000 {
->>>=20
->>> Do it once for all DTSes, not one file at a time. There are four =
-more
->>> places with this.
->>=20
->> Well, automation has no notion of "similarity" in this case to
->> merge several patches.
->=20
-> What does that mean? One cannot create multiple patches and apply =
-them?
-
-This patch set was created by some automatic scripts. And they produce =
-one patch
-per group of warnings.
-
-But here you ask me to merge 4 unrelated topics into a single one.
-
-Or do you mean something else?
-
->=20
->> And they are not related. Every one is based on a different .yaml
->> schema file.
->=20
-> Which does not matter, because the name of the node does not matter. =
-We
-> enforce it in schema to makes things organized and easier in testing.
-> This does not fix any real problem, just the problem we created by
-> ourselves with schema.
->=20
->>=20
->> That in all cases the result looks similar comes from similar
->> requirements by the schemata and has no inherent connection.
->=20
-> All schemas will require it, won't they? The same for arm...
-
-We may be talking about different things here.
-
-My understanding:
-you ask me to merge 5/18, 8/18, 9/18, 12/18 because they contain =
-"controller" in the node-name.
-
-Right? If not then we must clarify that first.
-
-For pinctrl it is not allowed to have a -controller suffix while for the =
-other it is mandatory
-by the schema pattern.
-
-BR and thanks,
-Nikolaus
-
-
+Best regards,
+Krzysztof
