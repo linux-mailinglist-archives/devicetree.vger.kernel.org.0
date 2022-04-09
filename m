@@ -2,95 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7621E4FA73B
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 13:22:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F41FC4FA73F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 13:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241610AbiDILYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 07:24:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36196 "EHLO
+        id S241631AbiDILYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 07:24:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236302AbiDILYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 07:24:30 -0400
-Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1BA62D4BC8;
-        Sat,  9 Apr 2022 04:22:23 -0700 (PDT)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout2.routing.net (Postfix) with ESMTP id 28E275FDEF;
-        Sat,  9 Apr 2022 11:22:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1649503342;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1HXXCd3EGrkCXHAxs1ufwjLKFz7n60SEUlQZm+lRm7Q=;
-        b=S2XxkNXnry1vD06tavxy28oInfZtq9tvEfaBooAo6Jac+xrvdbEZ5y2FM4TJJCVBMk4x2v
-        AYKEGNU1WOsgirPfjWcxrz4IXaSoD9Y/HlVaTMpoXHMltPIqroTuBvoEVn0ZpXYOBMGu8P
-        SFIRRTsKPu3A+JKSpgP7bXrUF6tOL80=
-Received: from localhost.localdomain (fttx-pool-217.61.154.105.bambit.de [217.61.154.105])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 7FBD436065D;
-        Sat,  9 Apr 2022 11:22:21 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add SATA support to BPI-R2-Pro
-Date:   Sat,  9 Apr 2022 13:21:36 +0200
-Message-Id: <20220409112136.164481-3-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220409112136.164481-1-linux@fw-web.de>
-References: <20220409112136.164481-1-linux@fw-web.de>
+        with ESMTP id S240568AbiDILYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 07:24:39 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B97B2D7D6E
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 04:22:32 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id u18so2049430eda.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 04:22:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=SCzhSNrRKCbd86faPRBvydP9I/4Y5+ZcmnKGbLOwqnU=;
+        b=SbHHDzkpPWBPK4SYIDaXZNqmINDPEaL4pMtS2hyUR3KSZDKbNKVkxBdo4dMwCyC9Eo
+         +LhWHqYQQBceMIfx8AN6cTGvFxl9+IhaV7FJxjtUytQErS/VFJD7SxIsPMBUPRdWZs4f
+         EQuG+SKycajp513DqcWuMACUJEly4CdcpOjbdwvgCX39P4PnRhTfXWhtaP+KMZSgywXN
+         Ef3vD3sK9i9Fk/HNovdHHNm2xuwqWQtHyKESj03J7oK06ymwrWt/04kW+VaBgQzry4QI
+         Mh7YDMWezjejgKnm7v5hbNJFlPqllbmaN/1DQ2F18fu6hsFaI6ogj8YuETl/hHihLBy+
+         hjIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=SCzhSNrRKCbd86faPRBvydP9I/4Y5+ZcmnKGbLOwqnU=;
+        b=MwnURBmpZ0dLRxR+9LNlgxm0rtnGePGvxgLCvaZEIm4kjjcTby6bpHusXwnrXndX9X
+         15KpQ+WG1326g8pRoX/z6No8vaElEFJ0ALqswCden20/K5/q/lekXBBK2zb+oJ9UWb34
+         WI498YjCvtMldEyG2mrFAXW3uZ9Ohkn00+q3HXlQZszDQxVV6fgqXD1VyUJpcqRLqQnS
+         Xd0lWuvLrgC6jjegyQBgN+1HESZmM3n5UvfkgiDsMq91P3obGuyzXnM8kDbhc/PAVqit
+         c78qyMHXefb69mMenMHXQ7wpUd21nNmUdWX7kMIIoL6GD3e5Sr5GBo+De6CDEG09jVan
+         YI3g==
+X-Gm-Message-State: AOAM532Cmq9YeDb/yjk0nOI2+nloHZPEQTIeOYR+dVSed47QON4ByykK
+        oN2TbpI50klcO2FRZdYi7Hxm7A==
+X-Google-Smtp-Source: ABdhPJztf0+IY1Rrex6cuag/BKeZ7Y38Cwi4QevqXNN+vcWJkKbuG+ASGC9A7rMPEyiwrRVC+wIVrg==
+X-Received: by 2002:aa7:c58f:0:b0:41c:d8c6:b6a5 with SMTP id g15-20020aa7c58f000000b0041cd8c6b6a5mr23956580edq.181.1649503350737;
+        Sat, 09 Apr 2022 04:22:30 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
+        by smtp.gmail.com with ESMTPSA id z21-20020a1709063a1500b006da6436819dsm9607341eje.173.2022.04.09.04.22.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Apr 2022 04:22:30 -0700 (PDT)
+Message-ID: <623248f1-7ce2-7ff1-22d4-c56e0983c9bf@linaro.org>
+Date:   Sat, 9 Apr 2022 13:22:29 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 54a16b4f-c6eb-44a6-a462-bdcb58611f6f
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 18/18] MIPS: DTS: CI20: fix bluetooth as reported by
+ dtbscheck
+Content-Language: en-US
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
+References: <cover.1649443080.git.hns@goldelico.com>
+ <32a2afa1a8f1f675a199d1aa9b4469bed2391069.1649443080.git.hns@goldelico.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <32a2afa1a8f1f675a199d1aa9b4469bed2391069.1649443080.git.hns@goldelico.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On 08/04/2022 20:38, H. Nikolaus Schaller wrote:
+> arch/mips/boot/dts/ingenic/ci20.dtb: bluetooth: vcc-supply does not match any of the regexes: pinctrl-[0-9]+
+> 	From schema: Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+> 
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> ---
+>  arch/mips/boot/dts/ingenic/ci20.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
+> index dc587b4b36009..8a120f9374331 100644
+> --- a/arch/mips/boot/dts/ingenic/ci20.dts
+> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
+> @@ -207,7 +207,7 @@ &uart2 {
+>  	bluetooth {
+>  		compatible = "brcm,bcm4330-bt";
+>  		reset-gpios = <&gpf 8 GPIO_ACTIVE_HIGH>;
+> -		vcc-supply = <&wlan0_power>;
+> +		vbat-supply = <&wlan0_power>;
 
-Enable the Combphy and Sata nodes in Bananapi R2 Pro Board.
+Could be also vddio...
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index 879557595a64..40cf2236c0b6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -119,6 +119,11 @@ &combphy1 {
- 	status = "okay";
- };
- 
-+&combphy2 {
-+	/* used for SATA */
-+	status = "okay";
-+};
-+
- &gmac0 {
- 	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
- 	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
-@@ -484,6 +489,10 @@ &saradc {
- 	status = "okay";
- };
- 
-+&sata2 {
-+	status = "okay";
-+};
-+
- &sdhci {
- 	bus-width = <8>;
- 	max-frequency = <200000000>;
--- 
-2.25.1
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
