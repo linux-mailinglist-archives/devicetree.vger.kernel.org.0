@@ -2,259 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3697B4FA0A6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 02:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6594FA0A4
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 02:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240155AbiDIA1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 20:27:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40828 "EHLO
+        id S235027AbiDIA1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 20:27:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233513AbiDIA1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 20:27:41 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD223F59
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 17:25:35 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id f10so9275491plr.6
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 17:25:35 -0700 (PDT)
+        with ESMTP id S232506AbiDIA1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 20:27:39 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A41818E1C
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 17:25:34 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-de3ca1efbaso11411482fac.9
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 17:25:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kz7GnN0ueKLYQdjs167y4clP/UZTHlXJVCCTffQi9xc=;
-        b=GbSXPP9jlr7EuTbmQKNyojNjyS2xBxseTteVGevqz+qfcK/PPF2FeFpT9R9MzHR1JA
-         IE7Ns0+bJOS7d2vCCLRr79HwhAy0UK2jSVWQNlyGEFqoZ2r+wcGOnIY0xgOHbsTgjkxE
-         2fozznD573gbVD3MYU8KqmzIIBmwN/oKFazjaI1+xSWflceXJgN2slJ90MNCOKf9CHKd
-         qfRnsSp1lZo5i8zinwCbvEp9pbnQRarlzmTJj8dzKzKlKb0FkbzUpKi73yymTfwbjBRS
-         W0b331WC97c0vehkPPyTJa1+rkVRdehQxQNtpe5QwNeuXjpXhG1niySyXj3SQw7HYi4A
-         JGMg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CvlOdjB3+vMb6WfMdUSPA5S26ij9hqMmlmfhzTzVzxI=;
+        b=wZhHDtzhnnFaf/Z3RS31qNESt7qcuJ96Rnd3jTFaDL1H9hwO4HauDN+NBCDXbKvxbY
+         PBMrtdLGVWur2kZ+wwhZhuU9mrOOTBI68t5QJcUenc+v6UUeKfIg/UWDsfLAA4Ux+Jy4
+         r8Zwk85YlaNSVA0LAcJfTI4ITooqyL0Rg7F2/He1XjFHlEDTlNMmg+m1olhpWeg9HWJ+
+         oQy9pweBwsXh/H3G9qfcS+I5gEj6ik2W1AoXsW5SbhZPhfVmPoLu7W6+GVT/Vg+14/NA
+         6HmlJ2Fk5EweDNg50moxn0BC6RSmKiTBBToM7DH3uG1Mq/b3yErXPR+gDGZp0pN3z2ii
+         rQCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kz7GnN0ueKLYQdjs167y4clP/UZTHlXJVCCTffQi9xc=;
-        b=pZq2czbnMxZdL3ZgSi+7SlIQ6/FzOliBn0kS2ZLtyy8o4WRDJ3wlJDAL7VEt0Oj34T
-         6wx9yxaQvu3V++8hvlBek2nVAlNAD+Obx8iCu+K4kzo+LdNb+2kIOhCC+tCdkPFIKMxB
-         4k9HkTpx+QuO1bLI+IB5Txs8nAcwq7rMoRPR0KSpRGS4oysqcmfDcWVzNhz9jiVZFC1D
-         VXfLmt1rRFGq+nKibF0vb/g1QhIhv1Adl3D8bPbma20Cppv+X41aiZAKWq19q/pmBpfU
-         SYrYysAqigzXWa9EBrvOyph6WXllzwnvqWN0cl0GluyBVk5QGiubEw4nIKvSDpO6rxhM
-         pFbg==
-X-Gm-Message-State: AOAM530cZUi8AmFE3xobg+7g5WYFzBn6gjx3qIu1GBzccU9dYoMwBYLJ
-        1Lt5nnoz6Qo10GFMX4PGUGmC0eiuefR8BXLmCtosNw==
-X-Google-Smtp-Source: ABdhPJwpGliq5FMMKScQcNLr+H/KLqk+wpd25JkDEPoXoMlLVIoWSM1kMGeMPkISNh8SWxWkaTatpDWxxppN/3b/0zU=
-X-Received: by 2002:a17:902:c401:b0:154:152a:7fb7 with SMTP id
- k1-20020a170902c40100b00154152a7fb7mr22053914plk.63.1649463935333; Fri, 08
- Apr 2022 17:25:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CvlOdjB3+vMb6WfMdUSPA5S26ij9hqMmlmfhzTzVzxI=;
+        b=kcKvVbbQDovgAKGTBeF7Kdq5c/nsKB7ZQtXqv+zwykayDQ5nh+X/PXf1ZlZ44feaBk
+         aLqjBl5+hcdAYy2ypq86Y2P7MjREKTi2utnfI2F6JX2xcrcmEDvF/C69xW5fDUXvS6wB
+         I6MpHrR2zK2tnNkO79938BzsO+4y289hF5wQdgU06OAfYKuKhLAKtXiFrIiux7zIgXRN
+         FqpWnV08c0he8ScP1DAESOUVg4zdqS6LKf1FqX2+hBCym8mFgY0pMTp9FS1ryVVDQj9y
+         vhyPkpMCb+7gyuwbHkCf0lBjW9y1O060a/2rmzfakvGgav3VaGuCMsGjR4qdMk56DRPN
+         bakQ==
+X-Gm-Message-State: AOAM5326QxONNF3+wjti5uCWWbpFwofV+ELFjDD1Sz4fyAA68Zz1o8Da
+        1ooFn8tlwRGiP28vcr5aMML0eA==
+X-Google-Smtp-Source: ABdhPJzbsFxjcWZN1TMqg+51RtfqLPl+jfoL9LAzWFSbkcgl9I40vmhI7hD5QVaapMbQwBJuKnO8Ew==
+X-Received: by 2002:a05:6870:51cd:b0:e2:6cd2:f21a with SMTP id b13-20020a05687051cd00b000e26cd2f21amr4621573oaj.7.1649463933469;
+        Fri, 08 Apr 2022 17:25:33 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id m17-20020a0568301e7100b005b256697d7csm9587232otr.72.2022.04.08.17.25.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Apr 2022 17:25:32 -0700 (PDT)
+Date:   Fri, 8 Apr 2022 19:25:30 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm8250: move sound node out of soc
+Message-ID: <YlDSelofsuI0LfyT@builder.lan>
+References: <20220328143035.519909-1-vkoul@kernel.org>
+ <20220328143035.519909-5-vkoul@kernel.org>
+ <3cc9c1a0-45f3-cb1b-1991-f51da4789afd@linaro.org>
+ <YkHs5TuYBKmOLrHO@matsya>
 MIME-Version: 1.0
-References: <20220408162108.184583-1-jagan@amarulasolutions.com>
-In-Reply-To: <20220408162108.184583-1-jagan@amarulasolutions.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 8 Apr 2022 17:25:23 -0700
-Message-ID: <CAJ+vNU2KMhMg2C2BRQCfqgM3jCrpMHznrPQhkq2L2GSRgX9ehg@mail.gmail.com>
-Subject: Re: [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Adam Ford <aford173@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YkHs5TuYBKmOLrHO@matsya>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 8, 2022 at 9:22 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> This series supports common bridge support for Samsung MIPI DSIM
-> which is used in Exynos and i.MX8MM SoC's.
->
-> Previous RFC can be available here [1].
->
-> The final bridge supports both the Exynos and i.MX8MM DSI devices.
->
-> On, summary this patch-set break the entire DSIM driver into
-> - platform specific glue code for platform ops, component_ops.
-> - common bridge driver which handle platform glue init and invoke.
->
-> Patch 0000:     Samsung DSIM bridge
->
-> Patch 0001:     platform init flag via driver_data
->
-> Patch 0002/9:   bridge fixes, atomic API's
->
-> Patch 0010:     document fsl,imx8mm-mipi-dsim
->
-> Patch 0011:     add i.MX8MM DSIM support
->
-> Tested in Engicam i.Core MX8M Mini SoM.
->
-> Anyone interested, please have a look on this repo [2]
->
-> [2] https://github.com/openedev/kernel/tree/imx8mm-dsi-v1
-> [1] https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/T/
->
-> Any inputs?
-> Jagan.
->
-> Jagan Teki (11):
->   drm: bridge: Add Samsung DSIM bridge driver
->   drm: bridge: samsung-dsim: Handle platform init via driver_data
->   drm: bridge: samsung-dsim: Mark PHY as optional
->   drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
->   drm: bridge: samsung-dsim: Fix PLL_P (PMS_P) offset
->   drm: bridge: samsung-dsim: Add module init, exit
->   drm: bridge: samsung-dsim: Add atomic_check
->   drm: bridge: samsung-dsim: Add atomic_get_input_bus_fmts
->   drm: bridge: samsung-dsim: Add input_bus_flags
->   dt-bindings: display: exynos: dsim: Add NXP i.MX8MM support
->   drm: bridge: samsung-dsim: Add i.MX8MM support
->
->  .../bindings/display/exynos/exynos_dsim.txt   |    1 +
->  MAINTAINERS                                   |   12 +
->  drivers/gpu/drm/bridge/Kconfig                |   12 +
->  drivers/gpu/drm/bridge/Makefile               |    1 +
->  drivers/gpu/drm/bridge/samsung-dsim.c         | 1803 +++++++++++++++++
->  drivers/gpu/drm/exynos/Kconfig                |    1 +
->  drivers/gpu/drm/exynos/exynos_drm_dsi.c       | 1704 +---------------
->  include/drm/bridge/samsung-dsim.h             |   97 +
->  8 files changed, 1982 insertions(+), 1649 deletions(-)
->  create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.c
->  create mode 100644 include/drm/bridge/samsung-dsim.h
->
-> --
-> 2.25.1
->
+On Mon 28 Mar 12:14 CDT 2022, Vinod Koul wrote:
 
-Jagan,
+> On 28-03-22, 17:14, Krzysztof Kozlowski wrote:
+> > On 28/03/2022 16:30, Vinod Koul wrote:
+> > > The soc node expects all the nodes to have unit addresses. The sound
+> > > node does not have that which causes warnings:
+> > > 
+> > > arch/arm64/boot/dts/qcom/sm8250.dtsi:2806.16-2807.5:
+> > > Warning (simple_bus_reg): /soc@0/sound: missing or empty reg/ranges property
+> > > 
+> > > Move sound node out of soc to fix this
+> > > 
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 6 +++---
+> > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > > 
+> > 
+> > I don't know the SM8250, but usually the sound node (e.g. containing
+> > audio-codec) is not part of SoC. I propose to remove it entirely from
+> > DTSI and define in same place in each DTS. It makes more sense logically
+> > in such case - one clearly see which board defines the sounds, which
+> > does not.
+> 
+> Most of our boards have sound, should we duplicate it in all the
+> boards..? Bjorn..?
+> 
 
-Thanks so much for continuing to work this through!
+But is the sndcard platform or device specific? E.g. all the SDM845
+boards seems to use either qcom,sdm845-sndcard or qcom,db845c-sndcard.
 
-I've successfully tested this series on imx8mm-venice-gw73xx-0x using
-the following:
-- DFROBOT 7" raspberrypi touchscreen display (DFR0506) [1]
-- the following defconfig:
-CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
-CONFIG_DRM_PANEL_SIMPLE
-CONFIG_DRM_PANEL_BRIDGE
-CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN
-CONFIG_DRM_TOSHIBA_TC358762
-CONFIG_DRM_SAMSUNG_DSIM
-CONFIG_DRM_MXSFB
-- the following dt overlay:
-// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-/*
- * Copyright 2022 Gateworks Corporation
- */
+Are there room for some common properties in this node?
 
-#include <dt-bindings/gpio/gpio.h>
 
-#include "imx8mm-pinfunc.h"
+Otherwise it seems reasonable to skip it in the platform dtsi.
 
-/dts-v1/;
-/plugin/;
-
-&{/} {
-        compatible = "gw,imx8mm-gw73xx-0x", "fsl,imx8mm";
-
-        panel {
-                compatible = "powertip,ph800480t013-idf02";
-                power-supply = <&attiny>;
-                backlight = <&attiny>;
-
-                port {
-                        panel_out_bridge: endpoint {
-                                remote-endpoint = <&bridge_out_panel>;
-                        };
-                };
-        };
-};
-
-&i2c3 {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        attiny: regulator@45 {
-                compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
-                reg = <0x45>;
-        };
-};
-
-&lcdif {
-        status = "okay";
-};
-
-&dsi {
-        #address-cells = <1>;
-        #size-cells = <0>;
-        status = "okay";
-
-        bridge@0 {
-                compatible = "toshiba,tc358762";
-                reg = <0>;
-                vddc-supply = <&attiny>;
-                #address-cells = <1>;
-                #size-cells = <0>;
-                status = "okay";
-
-                ports {
-                        #address-cells = <1>;
-                        #size-cells = <0>;
-
-                        port@0 {
-                                reg = <0>;
-                                bridge_in_dsi: endpoint {
-                                        remote-endpoint = <&dsi_out_bridge>;
-                                        data-lanes = <0 1>;
-                                };
-                        };
-
-                        port@1 {
-                                reg = <1>;
-                                bridge_out_panel: endpoint {
-                                        remote-endpoint = <&panel_out_bridge>;
-                                };
-                        };
-                };
-        };
-
-        ports {
-                #address-cells = <1>;
-                #size-cells = <0>;
-
-                port@1 {
-                        reg = <1>;
-
-                        dsi_out_bridge: endpoint {
-                                remote-endpoint = <&bridge_in_dsi>;
-                        };
-                };
-        };
-};
-
-Tested-by: Tim Harvey <tharvey@gateworks.com> #imx8mm-venice-gw73xx with DFR0506
-
-I'll be happy to test any follow-on series as needed.
-
-Best Regards,
-
-Tim
-[1] https://www.dfrobot.com/product-1655.html
+Regards,
+Bjorn
