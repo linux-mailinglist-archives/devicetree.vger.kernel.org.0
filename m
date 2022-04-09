@@ -2,77 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D4E4FA7B9
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 14:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 491104FA7C1
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 14:47:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232516AbiDIMqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 08:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50956 "EHLO
+        id S240099AbiDIMtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 08:49:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232357AbiDIMqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 08:46:06 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54481179407
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 05:43:58 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a6so22292139ejk.0
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 05:43:58 -0700 (PDT)
+        with ESMTP id S237195AbiDIMtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 08:49:33 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C2E29FC7C
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 05:47:26 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id i27so22176810ejd.9
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 05:47:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qFqeqNjaO9GxDFF6ku8GcKf8eCW7YzW8WlCYcuIhXtw=;
-        b=k7qgK3YBC2ZfwWfBq974Auw9JESCchzvmVpnSkvd2Wh/jNBRtf2QzUXjuM6QDOC9WM
-         MPpiekFZ4AAUK19lFab93vvPSScrJmv0YP9biKIdieYfTpNX6o8XQlOObgooo/n/zi/M
-         Y3xoONQc85T07imeYdn+5hF3rp17wTf91pj7Q0YnA+wCbthgDElRQKF4HlvLNMGBmPSI
-         EuyBB6bigXaIU+2XGPRL2IRoPpCw80QfF8g/Pf5lCM8CrVVt9vSrW3g/VFmwiimTbKRr
-         60cZtoPeTk/UD1k+YWNHEth0bfD5Ng8rbGhMK7LSYif8uQrFASWeiTokQkEQpZ4ODFhA
-         MXcQ==
+        bh=RYkFt3jpACagbux2jezQDt+Hlb4Mllg2F+Pvo9I6yg8=;
+        b=Iy2/plpTG2l4eGMzjWcPnr0DLlDOGCDFhQbyb2f9WLFdecVumS74oVVqskMl9HG/F/
+         dNCj1CG/S8UwtpnjIwEOINnE4ftiBnlv5qieaG3Ak7C7Bnao40qskHKyHlzYLvNabUYi
+         tpNQgk8mESb86xGcxLHzgL49y5Ial5x1Ux6jKVNfdn9sC4GOoiIie4HRegfCoB+ohBb8
+         9QTCx4Hl4nmk1MMLkg3YlNdWFa/kA2ynDkNahRNYu+EZA8PwVV4rEhkvlS8F1y24zXwS
+         TByvKQVsxGyK2thUArKffFYbGPpqlduoamI7Fh5OdV4rLV4vgKeLob2tFZl1+aM37p8Q
+         0esg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=qFqeqNjaO9GxDFF6ku8GcKf8eCW7YzW8WlCYcuIhXtw=;
-        b=Dy6N53IV3DmerZ4UdGvneumELKGVIg+OYQIwd7g2SnqL1ooBXsc62PhuYLst1hHNqo
-         ZZHqcoG1xMBs8T4FkbmISVRjQ8ZdUDWXB70Vm09w3WHMnJPc9IOQMytiFZpUq4X7n/UZ
-         XVhqm8Qt7UE4KfJJTDQsiK6Vvk/ncUN5aHq23/zqqZ+y3tcWgjKQsNQYwqPA3NAiE6Di
-         RSpTgKwgWa+cM6HqSF97LuVqN9WX/DJUCICYMq4Ho9VhVPnHMEcFywCXnlfwwg9xKCsV
-         mbsdP2zuy7PGyfrLuBjiWetdBqSs0BoWsYlGYJz1c2SKs5J1zMHwE6bPEXwRY+0+V7mo
-         ljhg==
-X-Gm-Message-State: AOAM53397shxAvtAWwrDf5UZmaHdnFMUohr7X7Vpc2X8MsJnXyCRduJm
-        +MORmSdzdL4zWfhbnG/ELQ9fIg==
-X-Google-Smtp-Source: ABdhPJwLYMPowNdTkLJ34QzaeN9tFdTwYfvdX4sZzVVl0Iw2FtIgFVDuXXt10tP1iVV/54OpJmp2hw==
-X-Received: by 2002:a17:906:469a:b0:6e8:76c2:1d58 with SMTP id a26-20020a170906469a00b006e876c21d58mr1213716ejr.371.1649508236783;
-        Sat, 09 Apr 2022 05:43:56 -0700 (PDT)
+        bh=RYkFt3jpACagbux2jezQDt+Hlb4Mllg2F+Pvo9I6yg8=;
+        b=i6RZNY73QYNjK2tCbZbpxhpFHkfcPu2AIl2HKGsebOotmfWLspivWxNCNgEwZ6Cnnc
+         q3VCvFNC+nSGyx7reZxlQeZj3ZyE93i/GtsWbnlzk+cXWRn5dvrFoA7cTPtAfKSlMgiO
+         iM87FPZNrPkiw3MJEiCtCO99ESvcR13wOaoKtxEVh20C8e3+RmA+n9Qntdj3JpuaKwpA
+         1IHx8/oc2+5dY1Zrrwrg2K5tPkDooWq7zhVt3o7DaJG2irdlg6gt1MBP9d+tDR6JYpgk
+         4pAo7SO7vuX7Ue5bzFVwVfvx0ZPPrDNswSnesY7m/CjcSz4sks2j9HawSMgGaR4DK4ZC
+         VyNQ==
+X-Gm-Message-State: AOAM530XsUvkcaYsS6/R5J8FiqeZ3UbNh6c0TAyUy1ACVDpBL0/mZCKY
+        7hbg44W424kTndhIT+Qu02msgSuJN6bF1hw6
+X-Google-Smtp-Source: ABdhPJyHbFNq9sjIttDPtopX84JitwYlNirupvNY03oGBfQPZkHlb0YESQGDm3byfy/d13g9cZRmyw==
+X-Received: by 2002:a17:907:629c:b0:6e1:6ad:5dd8 with SMTP id nd28-20020a170907629c00b006e106ad5dd8mr21620810ejc.641.1649508444649;
+        Sat, 09 Apr 2022 05:47:24 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id gv9-20020a170906f10900b006d7128b2e6fsm9749886ejb.162.2022.04.09.05.43.55
+        by smtp.gmail.com with ESMTPSA id q17-20020a17090622d100b006e87bcf7ae7sm151041eja.208.2022.04.09.05.47.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 05:43:56 -0700 (PDT)
-Message-ID: <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
-Date:   Sat, 9 Apr 2022 14:43:55 +0200
+        Sat, 09 Apr 2022 05:47:24 -0700 (PDT)
+Message-ID: <2e1495ab-2773-a3bb-0ad2-4af607cccc11@linaro.org>
+Date:   Sat, 9 Apr 2022 14:47:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
- Sercomm parser
+Subject: Re: [PATCH 13/18] dt-bindings: fix jz4780-nemc issue as reported by
+ dtbscheck
 Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
+References: <cover.1649443080.git.hns@goldelico.com>
+ <84adfe6237cd4cfd52cb9723416f69926e556e55.1649443080.git.hns@goldelico.com>
+ <036b66b2-c221-6e9e-6a56-510e7a0d20d3@linaro.org>
+ <VDO2AR.XO9112UD3KYT3@crapouillou.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
+In-Reply-To: <VDO2AR.XO9112UD3KYT3@crapouillou.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -83,69 +80,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2022 14:26, Mikhail Zhilkin wrote:
->>
->> In any case this requires vendor prefix.
+On 09/04/2022 14:37, Paul Cercueil wrote:
+>> The true question is whether you need simple-mfd. Isn't the binding 
+>> (and
+>> the driver) expected to instantiate its children?
 > 
-> I'm not sure that "scpart-id" is necessary here. "sercomm,sc-partitions"
-> is necessary. I'm going to add vendor prefix in a separate patch. Is this
-> ok?
+> I can explain that one. There is the EFUSE controller located inside 
+> the nemc's memory area, and the two are pretty much unrelated, hence 
+> the "simple-mfd" compatible string.
 
-Yes.
+I saw the efuse children and that's why I asked who is expected to
+populate them. You said that simple-mfd is required for this, I say no.
+It should work without simple-mfd...
 
-> 
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 01430973ecec..65ff22364fb3 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1082,6 +1082,8 @@ patternProperties:
->      description: Sensirion AG
->    "^sensortek,.*":
->      description: Sensortek Technology Corporation
-> +  "^sercomm,.*":
-> +    description: Sercomm (Suzhou) Corporation
->    "^sff,.*":
->      description: Small Form Factor Committee
->    "^sgd,.*":
-> --
-> 
->>> +
->>> +required:
->>> +  - compatible
->> Missing reg.
-> 
-> reg isn't required. Parser can read partition offsets and sizes from
-> SC PART MAP table. Or do you mean something else?  All is ok
-> without reg definition in "Example" (except the warns that reg property
-> is missing).
-
-reg might not be required for current implementation but it is required
-by devicetree for every node with unit address. Do you expect here nodes
-without unit addresses?
-
->> Are you sure that you tested your bindings? You miss here address/size
->> cells and children, so you should have big fat warning.
->>
->> Plus your DTS example has error and does not compile...
-> 
-> Whole dts, for the real device (not for example), was tested many times.
-
-Yeah, I did not speak about whole DTS, but bindings and example in the
-bindings.
-
-> Thank you for your feedback! I checked the another examples and there
-> are no any warnings now. But I'm not yet sure that "properties" and
-> "required" are correct.
-> What do you think (or what else I have to read / check)?
-
-There is no way you tested the bindings. There are for sure warnings
-because it simply cannot be even compiled. The writing-schema.rst
-describes how to test it.
+I am kind of repeating myself but I really do not see the need of
+simple-mfd in the bindings.
 
 Best regards,
 Krzysztof
