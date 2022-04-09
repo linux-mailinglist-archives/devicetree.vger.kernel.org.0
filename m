@@ -2,69 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 679F94FA53E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 07:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24544FA543
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 07:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238329AbiDIFzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 01:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50648 "EHLO
+        id S233140AbiDIF7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 01:59:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbiDIFzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 01:55:36 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED16B3AA41;
-        Fri,  8 Apr 2022 22:53:29 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id k23so21040826ejd.3;
-        Fri, 08 Apr 2022 22:53:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+4NMuImCyoCuFp6T7FFagPPjd4YgfqhKWKAbscvD19s=;
-        b=SUuYPdleZLQc2Mg9Um9LGB+HubXYlguWetrsNDJxT2TRStgN4S5YTkuWv2uVzvifXl
-         9CW0n+HUjngSWvQiO4FuttMh/eyGMwSdpV7wXMfwdrPCUJWD7iM4CHkmSOMZM9AWn2n+
-         2Tr+I/8LAyPIYBvn3eEwAPjDVdKCf3Htj70/2ahQc8BEuhaN8hiil9Dq/YRFb/+nVQXM
-         bClnJmA2+AqhuB7AWPLjoVXpYEI5fvo75gZ5+WvKfeLPiM6BFq6iw/7DL4lXZs93ZN7r
-         29HG3qqHWayXG4N3IOLqDk61TBzcHxBG3ZRZLIMk0XCIRqlr9qzUD1zafAWK4R+EcAY6
-         zMFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=+4NMuImCyoCuFp6T7FFagPPjd4YgfqhKWKAbscvD19s=;
-        b=305ilc7paZMuLJgN0jsZRxhv5KEzG8R+rgHghuaWTv8ylIMqgFCjmhvoO6ro+5pGNR
-         Z+1tTnAHUNz6cwXpY0+jGRlQzZoEzJBtGns27b1N3knylSLa1J0nblE4MV6fNMRHQV67
-         kJEkzV4G5tGeY9z5Rb6jTJ3ZMgW3bkCZ4ON/xAG204oOakEDWNERspUUv0Hv6HwzP8VO
-         BIdbeni6kNewhC1FmnymPWRAks2BHATG8vaDgSzj2sj4LC63j4STY+jjBf63xNtGU3yA
-         Ncd4x5GnoG+/OZNMMP4Qeot3obWgYJSLXLql0Vcn9jMItmQosrWO7OrmwvLqAgkVP/ry
-         Mc4g==
-X-Gm-Message-State: AOAM532vwyZzRWNUzT1TZxkgq+7/LoW5DsgFWEKOy0hTYVYdEEwQK62H
-        T3T1wiMvbMQlZPcXx4cQQNCA4TYpYO8=
-X-Google-Smtp-Source: ABdhPJxFt0R2wwZORfE212wpnbKsKcUf66uBPFMjto+NZAnpC7VhwvFpDCzRd3fpBHMb8RqPMzbiVw==
-X-Received: by 2002:a17:907:8688:b0:6d2:c19:e1a0 with SMTP id qa8-20020a170907868800b006d20c19e1a0mr20707198ejc.249.1649483608397;
-        Fri, 08 Apr 2022 22:53:28 -0700 (PDT)
-Received: from pevik ([77.48.21.118])
-        by smtp.gmail.com with ESMTPSA id r8-20020a170906350800b006e83027f295sm2572892eja.146.2022.04.08.22.53.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 22:53:27 -0700 (PDT)
-Date:   Sat, 9 Apr 2022 07:53:06 +0200
-From:   Petr Vorel <petr.vorel@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Konrad Dybcio <konradybcio@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 1/1] arm64: dts: qcom: msm8994-huawei-angler: Add
- sdhc1 definition
-Message-ID: <YlEfQoBaqPXrn0P9@pevik>
-Reply-To: Petr Vorel <petr.vorel@gmail.com>
-References: <20220323204840.22832-1-petr.vorel@gmail.com>
+        with ESMTP id S230012AbiDIF7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 01:59:48 -0400
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148B6263;
+        Fri,  8 Apr 2022 22:57:41 -0700 (PDT)
+Received: from [192.168.0.2] (ip5f5ae90c.dynamic.kabel-deutschland.de [95.90.233.12])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: pmenzel)
+        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 9B8C361E6478B;
+        Sat,  9 Apr 2022 07:57:37 +0200 (CEST)
+Message-ID: <c73bf178-f5bd-01c6-209d-051706112877@molgen.mpg.de>
+Date:   Sat, 9 Apr 2022 07:57:39 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220323204840.22832-1-petr.vorel@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v6 1/3] ARM: dts: nuvoton: Add memory controller node
+Content-Language: en-US
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
+        benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, ctcchien@nuvoton.com,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
+References: <20220322030152.19018-1-ctcchien@nuvoton.com>
+ <20220322030152.19018-2-ctcchien@nuvoton.com>
+From:   Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20220322030152.19018-2-ctcchien@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,45 +52,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn, Andy,
+Dear Medad,
 
-gently ping. Any change you queue this for v5.19?
+
+Thank you for the patch.
+
+Am 22.03.22 um 04:01 schrieb Medad CChien:
+> ECC must be configured in the BootBlock header.
+
+bootblock
+
+I search for *bootblock* in Linux and the git commit messages, and does 
+not seem to be a common term. Is that term used in the datasheet?
+
+> Then, you can read error counts via
+> the EDAC kernel framework.
+
+Please reflow for 75 characters per line. (Also, there is no need to 
+break lines after a sentence, unless 75 characters are reached or a new 
+paragraph starts.)
+
+Tested on what board?
+
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+
+Out of curiosity, is the first C in CChien the letter of your middle 
+name, or the last name really spelled with two capital letters in the 
+beginning?
+
+> ---
+>   arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> index 3696980a3da1..ba542b26941e 100644
+> --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
+> @@ -106,6 +106,13 @@
+>   		interrupt-parent = <&gic>;
+>   		ranges;
+>   
+> +		mc: memory-controller@f0824000 {
+> +			compatible = "nuvoton,npcm750-memory-controller";
+> +			reg = <0x0 0xf0824000 0x0 0x1000>;
+
+Is f0824000 from some datasheet?
+
+> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +			status = "disabled";
+> +		};
+> +
+>   		rstc: rstc@f0801000 {
+>   			compatible = "nuvoton,npcm750-reset";
+>   			reg = <0xf0801000 0x70>;
+
 
 Kind regards,
-Petr
 
-> Angler does not have SD card, thus sdhc2 kept disabled.
-
-> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
-> ---
-> NOTE: requires Konrad's fix
-> https://lore.kernel.org/linux-arm-msm/YjuE+cgGXCLihPIa@pevik/T/#t
-
-> changes v4->v5:
-> * remove workaround (fixed by Konrad's fix)
-
->  arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-> index 0e3dd48f0dbf..6e43e4339f55 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8994-huawei-angler-rev-101.dts
-> @@ -1,7 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /* Copyright (c) 2015, Huawei Inc. All rights reserved.
->   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-> - * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
-> + * Copyright (c) 2021-2022, Petr Vorel <petr.vorel@gmail.com>
->   */
-
->  /dts-v1/;
-> @@ -41,3 +41,8 @@ serial@f991e000 {
->  &tlmm {
->  	gpio-reserved-ranges = <85 4>;
->  };
-> +
-> +&sdhc1 {
-> +	status = "okay";
-> +	mmc-hs400-1_8v;
-> +};
+Paul
