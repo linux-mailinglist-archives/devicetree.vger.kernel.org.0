@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A474FA70A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 13:11:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96DD34FA70F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 13:12:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238064AbiDILOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 07:14:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50674 "EHLO
+        id S241527AbiDILOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 07:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231354AbiDILN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 07:13:59 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B151B64F5
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 04:11:50 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso9165401wme.5
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 04:11:50 -0700 (PDT)
+        with ESMTP id S241529AbiDILOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 07:14:20 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F16F94FD
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 04:12:13 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id q20so7067383wmq.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 04:12:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NocFHobML3Kvh5HOcMiUsxLrqgkYwa3jJ1l2qWZxl+w=;
-        b=qQQ3tKkqupKa5NQHgS2hjs3OTENlvIJ6iqth4AnY/qIB9RJv52mixVOudFeLtTGERm
-         lKqZkkoOV90nTTsyik8B/bnE2mVECBACPDOly60SiqqrvDX3wp/owHBlE1O94J1kkhup
-         aYjtl5v/fQsgwhHd7CFUtz/qkw4CSv0kFjDwE4qtdoyQxtrk6/MkBT56bQFWaA1IeV7g
-         UdwnO/bt+788P/WPUT7WH1y9lDbWAw9bwGv4EO/yRJUJPmCvFlPcUqvtIHoO0A27trLO
-         P+2NZcKr67PDXdLFO+AZN/kxDthOZEdEY6SfNa8cLcNiyZquzlvpupTckKAxnAYw0kfE
-         wtwg==
+        bh=9ZLrL9LLe+6i2XIOen61i69IcH4+0kwxzHmEq7Uc2qs=;
+        b=Uz2GkDyTy68upHnI+Za2zKW7LLOyxnFFZfskgkH64UHpeQnLwY34bf3893GpnFqfh2
+         76m+FeU/VI/G05bsgAXkRwp+Ym5tdAb2PqeMKvS8KioqvYJe+vIOTOzCU/BffjO7eIoI
+         JJTjEH64gi2jhhNFX+JxuezyD8moCFSFKM8jw+HI1IAee71kPgKUE36AivqFcSdGQdXA
+         CWe1MTUPKsrAUnZsEpPbS0FM3deQrRwG+7sEXxiCJsXF6CJERQQntOSyrNT+AsoulwXF
+         /EbSvTVd4K0nZiza9b5RmkdC5bpgE38h/LWa2Adbd6UVFRwBcFYALPwkodj4OQwyZ3uN
+         IeWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=NocFHobML3Kvh5HOcMiUsxLrqgkYwa3jJ1l2qWZxl+w=;
-        b=RVfcqija7HJLa2OsFxaurjcGHg1v77E70jB5B6p7efJoHQuSixidXPSOSTFegXiojL
-         9dGDptUFoAOfDTivqnz/O+7R4eSC9uGrQBFC9GyvxzxCLiPuUmWrulJ8LHpbWjQA0lSr
-         dZJmfwoWkugZ9DfCfcVDMU+K+YxOUU7VdOGh+CmmqP6krTw7kBgI/RmzsaRBAiywplzw
-         XwOFdFEhOspHgQKxkUwDWSV0rgS1xXm2sRQfoQuFWUUwBkuohKQMV/fAKQMEYai0+0ru
-         QumjKSNvEUJg4OnoeGdBficK9jBVHLxstGhixVNeASYjMPCdVc5DRSqKy8PVbRUnRudN
-         Arqg==
-X-Gm-Message-State: AOAM531bxa/8v4oNnyflEDJqoxjkOmggoixnxL5+pDHd3luvqQhZ1Fn+
-        cvC0mtD0XKRK2AkvO6xZzAAlhA==
-X-Google-Smtp-Source: ABdhPJxOLl2akea0SmpdY6ZEeQP0QpcKVyBk++z0/lrrDaC15FuXJNXKubzj1eDzIIVoYS2qIsemcg==
-X-Received: by 2002:a1c:6a01:0:b0:37f:1b18:6b17 with SMTP id f1-20020a1c6a01000000b0037f1b186b17mr20505096wmc.146.1649502709334;
-        Sat, 09 Apr 2022 04:11:49 -0700 (PDT)
+        bh=9ZLrL9LLe+6i2XIOen61i69IcH4+0kwxzHmEq7Uc2qs=;
+        b=N0Fgeuv3ko5Gke8FG5a6tUAM+Bl2CrxICL55y35LwPh70wE23yO1I/xYChMykqljny
+         7pLLZ0EGSQBIfjMF1VmO1JM6Amros34R8ZoV9skXEl2B5daMpcSUwTD7qMBMe9zwikRR
+         pTwQKcbPbd/1erHuDsjh1RY/gClfnCMtpq6wsLSSXCBoM0h94b/Z9LtdSJf+XAEtcj/M
+         lVKQNsSP+w82w3/Zfkj+nRwRv3if8vvZxub3SakF2dxCkhOunDBSN5bsNTmfy4megcIq
+         oKI/nZptaFVOog3EcSOAEN7nmx/olvY9CTeeSDRIDdJZJp9B5FadcSiDeTSbRGK6BZAG
+         Nc2Q==
+X-Gm-Message-State: AOAM532JFfuXpYHRY8RqVljzZTVFMVVQul+xIHzuBoxTaqdPikfEm6c9
+        2HGub+wHfbBXUTU7cHJVc+mT0w==
+X-Google-Smtp-Source: ABdhPJwLYg96ZGqhVnBxuTk7cBWckWvhDhB07dIYTJsUd1PxdS6Ln7O0dHweb2MDermuLqcroKmZ7A==
+X-Received: by 2002:a05:600c:600a:b0:38e:9e7b:3144 with SMTP id az10-20020a05600c600a00b0038e9e7b3144mr7322785wmb.105.1649502732130;
+        Sat, 09 Apr 2022 04:12:12 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id bg8-20020a05600c3c8800b0038e4c5967besm12893174wmb.3.2022.04.09.04.11.48
+        by smtp.gmail.com with ESMTPSA id l126-20020a1c2584000000b00387d4f35651sm12633672wml.10.2022.04.09.04.12.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 04:11:48 -0700 (PDT)
-Message-ID: <e5ea96d8-f8c9-b925-04ee-81e80e30a5d0@linaro.org>
-Date:   Sat, 9 Apr 2022 13:11:48 +0200
+        Sat, 09 Apr 2022 04:12:11 -0700 (PDT)
+Message-ID: <4d85b9b9-c5aa-5777-a56b-29a444cef3a8@linaro.org>
+Date:   Sat, 9 Apr 2022 13:12:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 03/18] MIPS: DTS: jz4780: fix tcu timer as reported by
+Subject: Re: [PATCH 04/18] MIPS: DTS: jz4780: fix ost timer as reported by
  dtbscheck
 Content-Language: en-US
 To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
@@ -63,14 +63,14 @@ To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
 References: <cover.1649443080.git.hns@goldelico.com>
- <c48277625f0ab5afc86d89deb1b87537e9c592f6.1649443080.git.hns@goldelico.com>
+ <2b5e2b5b9b1c435043f3eadf4919562dfa9dba70.1649443080.git.hns@goldelico.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c48277625f0ab5afc86d89deb1b87537e9c592f6.1649443080.git.hns@goldelico.com>
+In-Reply-To: <2b5e2b5b9b1c435043f3eadf4919562dfa9dba70.1649443080.git.hns@goldelico.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,21 +79,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/04/2022 20:37, H. Nikolaus Schaller wrote:
-> arch/mips/boot/dts/ingenic/ci20.dtb: timer@10002000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['ingenic,jz4780-tcu', 'ingenic,jz4770-tcu', 'simple-mfd'] is too long
-> 	'ingenic,jz4780-tcu' is not one of ['ingenic,jz4740-tcu', 'ingenic,jz4725b-tcu', 'ingenic,jz4760-tcu', 'ingenic,x1000-tcu']
-> 	'simple-mfd' was expected
-> 	'ingenic,jz4760-tcu' was expected
-
-Trim it a bit...
-
+> arch/mips/boot/dts/ingenic/ci20.dtb: timer@10002000: timer@e0:compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['ingenic,jz4780-ost', 'ingenic,jz4770-ost'] is too long
+> 	'ingenic,jz4780-ost' is not one of ['ingenic,jz4725b-ost', 'ingenic,jz4760b-ost']
+> 	'ingenic,jz4760-ost' was expected
+> 	'ingenic,jz4725b-ost' was expected
+> 	'ingenic,jz4760b-ost' was expected
 > 	From schema: Documentation/devicetree/bindings/timer/ingenic,tcu.yaml
+> 
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> ---
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-You need to explain this. You're changing the effective compatible of
-the device and doing so based only on schema warning does not look
-enough. Please write real reason instead of this fat warning, e.g. that
-both devices are actually compatible and this has no real effect except
-schema checks.
+The same as patch 3 - needs explanation.
+
 
 Best regards,
 Krzysztof
