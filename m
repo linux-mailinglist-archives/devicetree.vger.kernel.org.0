@@ -2,124 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF2C4FA08D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 02:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3697B4FA0A6
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 02:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240119AbiDIAVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Apr 2022 20:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
+        id S240155AbiDIA1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Apr 2022 20:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236441AbiDIAVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 20:21:00 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB42EBF967
-        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 17:18:54 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-ddfa38f1c1so11373907fac.11
-        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 17:18:54 -0700 (PDT)
+        with ESMTP id S233513AbiDIA1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Apr 2022 20:27:41 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD223F59
+        for <devicetree@vger.kernel.org>; Fri,  8 Apr 2022 17:25:35 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id f10so9275491plr.6
+        for <devicetree@vger.kernel.org>; Fri, 08 Apr 2022 17:25:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=50xptwVRrkuRO66P0RVniJpVpOVm1a9lccHqnLvTlfE=;
-        b=AmiZYX62pPfnCtUyEyYbUUuIlm5QJX31JlXqQPG6DdRm11ixOurVukbq0OobhW9wNJ
-         +wLsJm0MDe/0tw7a55pwdBnRAILieI+RDqSF9L0Zs3yEut5/tC6bluMxaao84HHXBhd9
-         GxWIr4DvBJARM8f/S01X5h197q3UTNPG3UFPsPQe4RIwcPLckiG/gvcbxKKnIApOljzN
-         NH10WkvcZAbVpO6Y9RFo6WxTDa00Y/u0bqPtnf2XivcJM0smlmWqFLCF5yqpZX053O4s
-         XWqx8JvrPjHsYircGxNfKtuWuB8jWl3RlN/p3A1wJfikJfK56owM91jz5XtDSKSdCi+6
-         73YA==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kz7GnN0ueKLYQdjs167y4clP/UZTHlXJVCCTffQi9xc=;
+        b=GbSXPP9jlr7EuTbmQKNyojNjyS2xBxseTteVGevqz+qfcK/PPF2FeFpT9R9MzHR1JA
+         IE7Ns0+bJOS7d2vCCLRr79HwhAy0UK2jSVWQNlyGEFqoZ2r+wcGOnIY0xgOHbsTgjkxE
+         2fozznD573gbVD3MYU8KqmzIIBmwN/oKFazjaI1+xSWflceXJgN2slJ90MNCOKf9CHKd
+         qfRnsSp1lZo5i8zinwCbvEp9pbnQRarlzmTJj8dzKzKlKb0FkbzUpKi73yymTfwbjBRS
+         W0b331WC97c0vehkPPyTJa1+rkVRdehQxQNtpe5QwNeuXjpXhG1niySyXj3SQw7HYi4A
+         JGMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=50xptwVRrkuRO66P0RVniJpVpOVm1a9lccHqnLvTlfE=;
-        b=eSWbxGdJX5LyaqCcdtwZwAu4R000WezRpmSq7ucjDR/953n9b3eTOoEWZWzqZA9llP
-         4pFpRwGCXC4aKDEmIrU2Q0lNxUNIHCx/9iDq8KmKKz7s90y00jwXKpMm6jPH9CHRl6SQ
-         1Kf/Q9LQI77OFSGIhKMbVFdR/m7JboDq8/KgqzCsWZW7pIjzLuLCOFWetuIEO/BUjMHX
-         Ka8iSbt4QPhSO+GPL1YflHHxPGDT3hubDGYUa1CwVkn7HYhtQ7tCl1OSTulxKuFVx6/C
-         L3vrGNicNydTGvuGEIVPvyp8+WIWce4BaHF/JCTTFi1d8uZ0zAtXAVyhR3X7vT6UrxQU
-         FeYw==
-X-Gm-Message-State: AOAM533KEsmucVPTA7MA5S0hny83PwD6KE1Tj6JxaCtFtcc3cF4RX3Cp
-        BsKkOrXA7JBTSropHdt7dsFwfQ==
-X-Google-Smtp-Source: ABdhPJx+aln7MEBB70i3l11Ekrt/TtO5AGwQEfIeBbGMN8Y1DEbJs0dkAoACV8uHpyJPSysMYr8KLg==
-X-Received: by 2002:a05:6870:41d2:b0:e2:1465:b63d with SMTP id z18-20020a05687041d200b000e21465b63dmr9960149oac.164.1649463534279;
-        Fri, 08 Apr 2022 17:18:54 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id 184-20020a4a03c1000000b003240492fc15sm9159240ooi.36.2022.04.08.17.18.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Apr 2022 17:18:53 -0700 (PDT)
-Date:   Fri, 8 Apr 2022 19:18:52 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        quic_msavaliy@quicinc.com
-Subject: Re: [V3 0/3] arch: arm64: dts: qcom: Configure cts sleep pinctrl to
- bias-bus-hold
-Message-ID: <YlDQ7GyxSSIOsHVq@builder.lan>
-References: <1649229362-31183-1-git-send-email-quic_vnivarth@quicinc.com>
- <CAD=FV=XieM5MHMBBV9d7jrbiN+8RVdo6=_XSNf9L-yqEZUTO_Q@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kz7GnN0ueKLYQdjs167y4clP/UZTHlXJVCCTffQi9xc=;
+        b=pZq2czbnMxZdL3ZgSi+7SlIQ6/FzOliBn0kS2ZLtyy8o4WRDJ3wlJDAL7VEt0Oj34T
+         6wx9yxaQvu3V++8hvlBek2nVAlNAD+Obx8iCu+K4kzo+LdNb+2kIOhCC+tCdkPFIKMxB
+         4k9HkTpx+QuO1bLI+IB5Txs8nAcwq7rMoRPR0KSpRGS4oysqcmfDcWVzNhz9jiVZFC1D
+         VXfLmt1rRFGq+nKibF0vb/g1QhIhv1Adl3D8bPbma20Cppv+X41aiZAKWq19q/pmBpfU
+         SYrYysAqigzXWa9EBrvOyph6WXllzwnvqWN0cl0GluyBVk5QGiubEw4nIKvSDpO6rxhM
+         pFbg==
+X-Gm-Message-State: AOAM530cZUi8AmFE3xobg+7g5WYFzBn6gjx3qIu1GBzccU9dYoMwBYLJ
+        1Lt5nnoz6Qo10GFMX4PGUGmC0eiuefR8BXLmCtosNw==
+X-Google-Smtp-Source: ABdhPJwpGliq5FMMKScQcNLr+H/KLqk+wpd25JkDEPoXoMlLVIoWSM1kMGeMPkISNh8SWxWkaTatpDWxxppN/3b/0zU=
+X-Received: by 2002:a17:902:c401:b0:154:152a:7fb7 with SMTP id
+ k1-20020a170902c40100b00154152a7fb7mr22053914plk.63.1649463935333; Fri, 08
+ Apr 2022 17:25:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=XieM5MHMBBV9d7jrbiN+8RVdo6=_XSNf9L-yqEZUTO_Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220408162108.184583-1-jagan@amarulasolutions.com>
+In-Reply-To: <20220408162108.184583-1-jagan@amarulasolutions.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 8 Apr 2022 17:25:23 -0700
+Message-ID: <CAJ+vNU2KMhMg2C2BRQCfqgM3jCrpMHznrPQhkq2L2GSRgX9ehg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] drm: bridge: Add Samsung MIPI DSIM bridge
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fancy Fang <chen.fang@nxp.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 06 Apr 10:04 CDT 2022, Doug Anderson wrote:
+On Fri, Apr 8, 2022 at 9:22 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> This series supports common bridge support for Samsung MIPI DSIM
+> which is used in Exynos and i.MX8MM SoC's.
+>
+> Previous RFC can be available here [1].
+>
+> The final bridge supports both the Exynos and i.MX8MM DSI devices.
+>
+> On, summary this patch-set break the entire DSIM driver into
+> - platform specific glue code for platform ops, component_ops.
+> - common bridge driver which handle platform glue init and invoke.
+>
+> Patch 0000:     Samsung DSIM bridge
+>
+> Patch 0001:     platform init flag via driver_data
+>
+> Patch 0002/9:   bridge fixes, atomic API's
+>
+> Patch 0010:     document fsl,imx8mm-mipi-dsim
+>
+> Patch 0011:     add i.MX8MM DSIM support
+>
+> Tested in Engicam i.Core MX8M Mini SoM.
+>
+> Anyone interested, please have a look on this repo [2]
+>
+> [2] https://github.com/openedev/kernel/tree/imx8mm-dsi-v1
+> [1] https://lore.kernel.org/linux-arm-kernel/YP2j9k5SrZ2%2Fo2%2F5@ravnborg.org/T/
+>
+> Any inputs?
+> Jagan.
+>
+> Jagan Teki (11):
+>   drm: bridge: Add Samsung DSIM bridge driver
+>   drm: bridge: samsung-dsim: Handle platform init via driver_data
+>   drm: bridge: samsung-dsim: Mark PHY as optional
+>   drm: bridge: samsung-dsim: Add DSI init in bridge pre_enable()
+>   drm: bridge: samsung-dsim: Fix PLL_P (PMS_P) offset
+>   drm: bridge: samsung-dsim: Add module init, exit
+>   drm: bridge: samsung-dsim: Add atomic_check
+>   drm: bridge: samsung-dsim: Add atomic_get_input_bus_fmts
+>   drm: bridge: samsung-dsim: Add input_bus_flags
+>   dt-bindings: display: exynos: dsim: Add NXP i.MX8MM support
+>   drm: bridge: samsung-dsim: Add i.MX8MM support
+>
+>  .../bindings/display/exynos/exynos_dsim.txt   |    1 +
+>  MAINTAINERS                                   |   12 +
+>  drivers/gpu/drm/bridge/Kconfig                |   12 +
+>  drivers/gpu/drm/bridge/Makefile               |    1 +
+>  drivers/gpu/drm/bridge/samsung-dsim.c         | 1803 +++++++++++++++++
+>  drivers/gpu/drm/exynos/Kconfig                |    1 +
+>  drivers/gpu/drm/exynos/exynos_drm_dsi.c       | 1704 +---------------
+>  include/drm/bridge/samsung-dsim.h             |   97 +
+>  8 files changed, 1982 insertions(+), 1649 deletions(-)
+>  create mode 100644 drivers/gpu/drm/bridge/samsung-dsim.c
+>  create mode 100644 include/drm/bridge/samsung-dsim.h
+>
+> --
+> 2.25.1
+>
 
-> Hi,
-> 
-> On Wed, Apr 6, 2022 at 12:16 AM Vijaya Krishna Nivarthi
-> <quic_vnivarth@quicinc.com> wrote:
-> >
-> > WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-> > Change sleep pinctrl configuration to handle same.
-> >
-> > ---
-> > v3: apply same change to active state and other sc7280*.dts* as well
-> > v2: used bias-bus-hold as per review comments
-> > v1: intial patch used bias-disable for sleep pinctrl in sc7280-idp only
-> > ---
-> >
-> > Vijaya Krishna Nivarthi (3):
-> >   arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
-> >   arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
-> >   arch: arm64: dts: qcom: Configure cts sleep pinctrl to bias-bus-hold
-> >
-> >  arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts | 12 ++++++------
-> >  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                   | 12 ++++++------
-> >  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                 | 13 ++++++++-----
-> >  3 files changed, 20 insertions(+), 17 deletions(-)
-> 
-> Probably the subject of all the patches should be modified to talk
-> about what each patch is applying to. Having 3 identically named
-> patches is not ideal.
-> 
-> I'll let Bjorn chime in on whether he'd rather adjust the subject
-> himself or whether he'd rather you re-send. In any case, with the
-> subject modified then for all 3 patches:
-> 
+Jagan,
 
-I've been fixing up a ton of these during the last few releases, so I
-think it's time that I stop doing that.
+Thanks so much for continuing to work this through!
 
-Please resubmit this with subject prefixes that matches the existing git
-log for each change.
+I've successfully tested this series on imx8mm-venice-gw73xx-0x using
+the following:
+- DFROBOT 7" raspberrypi touchscreen display (DFR0506) [1]
+- the following defconfig:
+CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
+CONFIG_DRM_PANEL_SIMPLE
+CONFIG_DRM_PANEL_BRIDGE
+CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN
+CONFIG_DRM_TOSHIBA_TC358762
+CONFIG_DRM_SAMSUNG_DSIM
+CONFIG_DRM_MXSFB
+- the following dt overlay:
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2022 Gateworks Corporation
+ */
 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+#include <dt-bindings/gpio/gpio.h>
 
-Thanks,
-Bjorn
+#include "imx8mm-pinfunc.h"
 
+/dts-v1/;
+/plugin/;
+
+&{/} {
+        compatible = "gw,imx8mm-gw73xx-0x", "fsl,imx8mm";
+
+        panel {
+                compatible = "powertip,ph800480t013-idf02";
+                power-supply = <&attiny>;
+                backlight = <&attiny>;
+
+                port {
+                        panel_out_bridge: endpoint {
+                                remote-endpoint = <&bridge_out_panel>;
+                        };
+                };
+        };
+};
+
+&i2c3 {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        attiny: regulator@45 {
+                compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
+                reg = <0x45>;
+        };
+};
+
+&lcdif {
+        status = "okay";
+};
+
+&dsi {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        status = "okay";
+
+        bridge@0 {
+                compatible = "toshiba,tc358762";
+                reg = <0>;
+                vddc-supply = <&attiny>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+                status = "okay";
+
+                ports {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+
+                        port@0 {
+                                reg = <0>;
+                                bridge_in_dsi: endpoint {
+                                        remote-endpoint = <&dsi_out_bridge>;
+                                        data-lanes = <0 1>;
+                                };
+                        };
+
+                        port@1 {
+                                reg = <1>;
+                                bridge_out_panel: endpoint {
+                                        remote-endpoint = <&panel_out_bridge>;
+                                };
+                        };
+                };
+        };
+
+        ports {
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                port@1 {
+                        reg = <1>;
+
+                        dsi_out_bridge: endpoint {
+                                remote-endpoint = <&bridge_in_dsi>;
+                        };
+                };
+        };
+};
+
+Tested-by: Tim Harvey <tharvey@gateworks.com> #imx8mm-venice-gw73xx with DFR0506
+
+I'll be happy to test any follow-on series as needed.
+
+Best Regards,
+
+Tim
+[1] https://www.dfrobot.com/product-1655.html
