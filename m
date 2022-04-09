@@ -2,103 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7B2E4FA9BC
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 18:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8794FAA13
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 20:04:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbiDIQyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 12:54:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50906 "EHLO
+        id S233305AbiDISGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 14:06:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242734AbiDIQya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 12:54:30 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB408DFDE5
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 09:52:22 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id l7so17540548ejn.2
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 09:52:22 -0700 (PDT)
+        with ESMTP id S242953AbiDISGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 14:06:17 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E233192B8;
+        Sat,  9 Apr 2022 11:04:10 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id r206-20020a1c44d7000000b0038ccb70e239so2039050wma.3;
+        Sat, 09 Apr 2022 11:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WPCpRLMafl4W/IlVxBjo7dtIzbIUznmlplI2v7Gu31g=;
-        b=OPT5JzOx2fwcy9VSQ0l1ROxLox8eg3/G+5NcV5eE5z4LfNHu+vZDVmxVSPfCnjTVWD
-         cxRRqV0TCr0jF8xtO2LweuRdkpk2naUd4uM/KB/u7yCtYnqo8jN5HFJdilBC4fbhEDxr
-         S/g7nlazX2+Uxg/xxqgeAfwiErumzra3TVOVDb1gLOfTYndflx/MsWVv8rUhqCtuGwfB
-         wL/lGmEpFxW/AmDlaKXK+cbEKcW3wgxgBp+aQxCFrA+/2eei8WTOdMOkt84iA4m43NxT
-         odsRFWurBB0kDqs2mjWhzbbyMvMwCidCuCyCculFfCxRrJjxWft/flppe18YQuucfEIY
-         UL4w==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=x+ZHRh6e82n5qKqvhVpyoJ5hZgFMYZM/zhsoK6Nbo1Q=;
+        b=YKOP6jVnRkzeNqGA3VvHJwzmjyDK08GWK/YjBh5+xYw1W4RUHgOuaZJpf6wWfZbmwX
+         UnS1BuFb+tfQ/sRE1kJdPw23yE9cepOTX12r+AXiVyTszFDEozTaL7SrgMHi+EyS0izg
+         zq3+87+Kl8eGRCbCwdSeW1JXQ5R/VEg1MEeRrdoy5pyNAgP2Tr82+UVwvFHDA2WU1SJT
+         R9SFIeBollfKOJiRQiY74UvCDqlOHd57iqXVJ2LfY2YhWhkOyc+1wL3OzXwEw+0QOE4w
+         G3CLiYfPmFEVtwmzmv4OQBY12+MYpEOQoWC3OIfpyBnNKji7gDbyoVRVkMW3SdTtB/PS
+         ABVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WPCpRLMafl4W/IlVxBjo7dtIzbIUznmlplI2v7Gu31g=;
-        b=6MnCJsd9NDlFViSP6t/W4MV4vPqwquLa7K3A7S9PZSPjZyUdGJCnXBJJfY8t7nH5pL
-         uqbXTLoqCuK8qOarB6+fGDqv7lM4Ygk0baDEQGZpmXwep/bIGoXqY9HY+xrKk/8pp0Nl
-         63W0lPRr1/Dn+e+NxU/Pg9/YtE4+GfAtF3WQxMNOlLjn39MpgJF+UnsqODJq+O207+rQ
-         qBnuj+x5im65gx0+naQ3866/r+exRomoD/EjkQipCIM/6IYk4EniFQG9WACWeW3ajU/+
-         Wiulk/48IbyHniSD8FirUabxueZiNaruwDJVJXXsFVhAotQY6YjX12iqHSR4ZZGqpf9W
-         S6fw==
-X-Gm-Message-State: AOAM5312CuLh+nAzkOJH+aDtrggWGirP8PSH/ehADg4zKt68DA5XrwUH
-        0nPOhtOScBicY0+74iUpoW/GPw==
-X-Google-Smtp-Source: ABdhPJznsOg3HL6c+Ur+PZxcu3Z6Q3fCmW7cw5Oy8nvw5G70mq8IPVQthLWtmjnISl7uKlnPIJpMFA==
-X-Received: by 2002:a17:906:4789:b0:6e8:7ab7:e843 with SMTP id cw9-20020a170906478900b006e87ab7e843mr1315788ejc.374.1649523141431;
-        Sat, 09 Apr 2022 09:52:21 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id g2-20020a50bf42000000b0041cc5233252sm8947630edk.57.2022.04.09.09.52.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Apr 2022 09:52:20 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     krzk@kernel.org, alim.akhtar@samsung.com,
-        Jonathan Bakker <xc-racer2@live.ca>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] ARM: dts: s5pv210: Bugfixes, features, and improvements
-Date:   Sat,  9 Apr 2022 18:52:19 +0200
-Message-Id: <164952313432.108518.3346102412412022215.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <CY4PR04MB056763D8667AD2BC418B7026CB1C9@CY4PR04MB0567.namprd04.prod.outlook.com>
-References: <CY4PR04MB05677B4C4E26A8A179F6ABC0CB179@CY4PR04MB0567.namprd04.prod.outlook.com> <CY4PR04MB056763D8667AD2BC418B7026CB1C9@CY4PR04MB0567.namprd04.prod.outlook.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=x+ZHRh6e82n5qKqvhVpyoJ5hZgFMYZM/zhsoK6Nbo1Q=;
+        b=vjezQHPn8IWt5fK8Inpufx9nedPvEpnSYySuBYbtiwTOQ5GqVOVsKPRNeKzaqyeC87
+         29Jc5RE2b2L9EgRv+zR4qIsIZfO50xjkGomtdAw0/5TIX0S2YXY2nLHkht6YpLocZFGC
+         16/hjDp+k/Itp6EbwLohS//g2RtibILNagFYs405D9T0SwAcBF+c7TzkVeWkSmPtLkQr
+         zM0qX6VGBMSuf6WQos1NLM+kKY7bME/ujH4vN+Cuc62qmKyTVZsUjj3NwNH0Yyi/fqFr
+         Ape0K4bq5Wc8G0jwNcgnkBY/k1I4Xrk4gIhD/OaYvF1e0UbkdyuMQoGb1UvuU0xhvksz
+         1MGw==
+X-Gm-Message-State: AOAM533EUIY8F6DoOCrlwWDhAHJ4rMmLIpO2oJyrbAvfBFqZKYeGL/gS
+        x/SZfHaLSleGstU0hfR6C8g=
+X-Google-Smtp-Source: ABdhPJwLn4H230P5wbpYMvAJbu0DCavPV2PqvXJ+80n8Ppagqwl4TVLKYE2L9RCL3YmS05IwqaKrDA==
+X-Received: by 2002:a05:600c:213:b0:38e:6379:af70 with SMTP id 19-20020a05600c021300b0038e6379af70mr21401923wmi.157.1649527448742;
+        Sat, 09 Apr 2022 11:04:08 -0700 (PDT)
+Received: from ?IPV6:2001:470:9898:9eac:f1cb:6e16:4fc0:c830? ([2a09:bac0:79::82a:3425])
+        by smtp.gmail.com with ESMTPSA id 2-20020a1c1902000000b00380d3873d6asm13715098wmz.43.2022.04.09.11.04.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Apr 2022 11:04:08 -0700 (PDT)
+Message-ID: <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
+Date:   Sat, 9 Apr 2022 21:04:05 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for Sercomm
+ parser
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
+        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220406195557.1956-1-csharper2005@gmail.com>
+ <20220406195946.2019-1-csharper2005@gmail.com>
+ <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
+ <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
+ <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
+From:   Mikhail Zhilkin <csharper2005@gmail.com>
+In-Reply-To: <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Mar 2022 11:08:49 -0700, Jonathan Bakker wrote:
-> Various cleanups to fix warnings when running make dtbs_check are included,
-> as are bugfixes for the panel CS pin and bluetooth interrupt name on Aries.
-> 
-> Changes in v2:
-> - Re-ordered patches to include bugfixes at start
-> - CC Stable where appropriate
-> - Drop sound-dai-cells changes
-> - Drop charger-manager and related changes
-> - Adjust memory reg entries commit to retain one node per device
-> 
-> [...]
+On 4/9/2022 3:43 PM, Krzysztof Kozlowski wrote:
 
-Applied, thanks!
+>> I'm not sure that "scpart-id" is necessary here. "sercomm,sc-partitions"
+>> is necessary. I'm going to add vendor prefix in a separate patch. Is this
+>> ok?
+> Yes.
 
-[1/5] ARM: dts: s5pv210: Remove spi-cs-high on panel in Aries
-      commit: 096f58507374e1293a9e9cff8a1ccd5f37780a20
-[2/5] ARM: dts: s5pv210: Correct interrupt name for bluetooth in Aries
-      commit: 3f5e3d3a8b895c8a11da8b0063ba2022dd9e2045
-[3/5] ARM: dts: s5pv210: Adjust memory reg entries to match spec
-      commit: 9576ec12261c4b639cd802fd9c13e3c9605165da
-[4/5] ARM: dts: s5pv210: Adjust DMA node names to match spec
-      commit: 21e4b7d151af9a3191fb251e2b4044e361a56102
-[5/5] ARM: dts: s5pv210: align DMA channels with dtschema
-      commit: 9e916fb9bc3d16066286f19fc9c51d26a6aec6bd
+Thanks!
 
-Best regards,
+>>>> +required:
+>>>> +  - compatible
+>>> Missing reg.
+>> reg isn't required. Parser can read partition offsets and sizes from
+>> SC PART MAP table. Or do you mean something else?  All is ok
+>> without reg definition in "Example" (except the warns that reg property
+>> is missing).
+> reg might not be required for current implementation but it is required
+> by devicetree for every node with unit address. Do you expect here nodes
+> without unit addresses?
+Only "partitions" node has no unit address. All subnodes  have unit
+addresses and therefore have to have reg property. I've just realized
+that "fixed-partitions.yaml" is almost my case. It looks like I can
+copy'n'paste  "required" and "*properties".
+Do you mind if I don't reinvent the wheel and reuse this good
+practice?
+
+Here's what I got (no any warnings appears):
+
+---
+ .../mtd/partitions/sercomm,sc-partitions.yaml | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644
+Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
+
+diff --git
+a/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
+b/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
+new file mode 100644
+index 000000000000..cb171a0383aa
+--- /dev/null
++++
+b/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id:
+http://devicetree.org/schemas/mtd/partitions/sercomm,sc-partitions.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sercomm Partitions
++
++description: |
++  Sercomm is one of hardware manufacturers providing SoCs used in home
+routers.
++  The Sercomm partition map table contains information about non-standard
++  partition offsets and sizes (depending on the bad blocks presence and
+their
++  locations). Partition map is used by many Sercomm-based Ralink devices
++  (e.g. Beeline, Netgear).
++
++maintainers:
++  - Mikhail Zhilkin <csharper2005@gmail.com>
++
++properties:
++  compatible:
++    const: sercomm,sc-partitions
++
++  "#address-cells": true
++
++  "#size-cells": true
++
++required:
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: true
++
++examples:
++  - |
++    partitions {
++        compatible = "sercomm,sc-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "u-boot";
++            reg = <0x0 0x100000>;
++            scpart-id = <0>;
++            read-only;
++        };
++
++        partition@100000 {
++            label = "dynamic partition map";
++            reg = <0x100000 0x100000>;
++            scpart-id = <1>;
++        };
++
++        factory: partition@200000 {
++            label = "Factory";
++            reg = <0x200000 0x100000>;
++            scpart-id = <2>;
++            read-only;
++
++            compatible = "nvmem-cells";
++            #address-cells = <1>;
++            #size-cells = <1>;
++
++            macaddr_factory_21000: macaddr@21000 {
++                reg = <0x21000 0x6>;
++            };
++        };
++
++        /* ... */
++
++    };
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+(...)
+
+> Best regards,
+> Krzysztof
+
+-- 
+Best regards,
+Mikhail
+
