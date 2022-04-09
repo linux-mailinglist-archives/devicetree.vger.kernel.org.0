@@ -2,213 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 140AE4FAA1E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 20:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C88D74FAA40
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 20:41:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241546AbiDISTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 14:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
+        id S243044AbiDISne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 14:43:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238956AbiDISTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 14:19:17 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CD55577F;
-        Sat,  9 Apr 2022 11:17:06 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id e16so20006337lfc.13;
-        Sat, 09 Apr 2022 11:17:06 -0700 (PDT)
+        with ESMTP id S243061AbiDISnd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 14:43:33 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D8AFC131;
+        Sat,  9 Apr 2022 11:41:26 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id r66so10638560pgr.3;
+        Sat, 09 Apr 2022 11:41:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=dkZS+u1u1YMngtfyHQMffzDhiw+IRddRGo68l2Ra+Cw=;
-        b=erY9p/SC8sRYECfqtwi8P4kDVvNzSfEgfZtOq+pRsbxMJq07ScwSMtPUWRQHnh+vza
-         IqHeExlv5yo/1N9Sc5E0doa7hVgqo4N9POWAGnGiZSFqvV7BADRVCdFGL/Xn5p4E7xb+
-         wyeg1k745NLeIXDofjdUbcohVEZgHCgZuVjGFWUSfEAppANZoFqip+gZAGxlko4RQBAa
-         2KvX6UCudD9c14VOX49GfdTAXm60zQn2ycPVEl9/4eDWGTXxgTC311wxZ2g33GToPZfG
-         jmYtxDjFzuvQDM8CMwkILGPY40cmuFL/wsiaIs04AvyfFSQp17FyBmu9wq2E+7M+QcT1
-         DFCg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WN+cZ+EH/2jdMXxpTEKPOeickiZoQW84lQN8HFTlfGk=;
+        b=GVr+YmrpKw9iWExzzn0YYiFAVz0khz0N4A6GJYFa4ApK4WwiSNadltPKsdak1Fl0+W
+         /U+ll7cTgWilgsrcytPMn+E2rN0DlTXPYZvfGfwMSPGq+4DVxwlYgVyvR7YqY4ZqTET5
+         EAYjUBcW3lQruMSMxg5EfSsXY6LgR13c1o24In5YsqNgTh+zAOtUnhzYbebTAkK7SIVN
+         h39n/5AzlXuBN4r0Jmx2+gEOXcrgcatdBXnReqEFHp8sUBx5hGBElnq2XblXrY4GITvc
+         +46IudDIR+lvNPAfyNbMey5XXNEqqLsWmCrQFkrHp+8vDCZD7yc6DNMa/3BSK+sGsu13
+         gKNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=dkZS+u1u1YMngtfyHQMffzDhiw+IRddRGo68l2Ra+Cw=;
-        b=6jjc3OM38Hx49/liFuI5MuTJWS1/VU/uHT7ehjyL1CIJTAtDlrUaNtCmyhtG1eSJBf
-         vBkv+Pgr/keqVezqDgVnZAucm9PKFvkjiDWl/bcPmqXRGMQ7OyTLWSCbZ3rV6zbhkB1t
-         9CVwmumUc2RbeRD675YvkIngnJMmhK9hsUOGZEJdJ+2UV7DLykjfr5ugJElMwornFIkD
-         r7ry/cgFu8gUgyC6Ny+T7IwTB3dyw0CFUl5BQOu8KxQ+AUXm6C0vMUHrNtrG3ncsyLeD
-         5wWPak/+0Tb5TtglucnkHqai89Lw4ePVGmkkLOb9E9HKUBTfac1aNdZg8RftDXPL4mS6
-         6qcg==
-X-Gm-Message-State: AOAM531wbqdxh63q113ks8oqNABjO93sSrP1Bj35UhVgwjN1BOpBkhx7
-        0R1S9eKrEk8kpnLKfr84KCg=
-X-Google-Smtp-Source: ABdhPJzNKxmzhOEn8UegFgZGFUfZwPUfAuqLLZWOhmFvJDh2/sWtPffSkZCE4rJw545FObXYwPcVRA==
-X-Received: by 2002:ac2:508b:0:b0:46b:9141:a66f with SMTP id f11-20020ac2508b000000b0046b9141a66fmr2768168lfm.198.1649528224929;
-        Sat, 09 Apr 2022 11:17:04 -0700 (PDT)
-Received: from ?IPV6:2001:470:9898:9eac:f1cb:6e16:4fc0:c830? ([2a09:bac0:87::815:6e3d])
-        by smtp.gmail.com with ESMTPSA id q23-20020a2e8757000000b0024b5e0ec306sm38082ljj.97.2022.04.09.11.17.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 11:17:04 -0700 (PDT)
-Message-ID: <bd533827-b575-caad-c230-af060851b231@gmail.com>
-Date:   Sat, 9 Apr 2022 21:17:03 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for Sercomm
- parser
-Content-Language: en-US
-From:   Mikhail Zhilkin <csharper2005@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=WN+cZ+EH/2jdMXxpTEKPOeickiZoQW84lQN8HFTlfGk=;
+        b=U3zHtnG6W9JgB0S5lSR6lYUNzXf2HtkOksGQenjHQW71fVQQkH03KihYEMmgJygoTt
+         QyId4LCDa8M0EKXPbgakVHvZ6LkXGX/vv8d7RB0Y5/VyRPXQYvXHiMgmX5NrNsGUrYaP
+         dkIPqdg4jK6a8FcxIzH6Jt+h5cKop0yCn8CIlN3tw3dg2AFOT0peiJntR55G+gCA+XPD
+         +O5wWE55ZWE9lZ6uSOwXUxbesNsZwpO9n6ItixK1lPi90pDRqU5cIMCY0n0hqlsH9m/e
+         7T/SpOjO7Snldj+Qyc2FJomzQGF5rHdaoLX/RvklivbNITl8PyimbnTaVwfacScie3+c
+         5Tpg==
+X-Gm-Message-State: AOAM532ugHDqK/Y4yKSbaOIYBy115pTQJYigYsRfYUkGyibczqyr8LKi
+        YELSlly39KK5ZucdDkF+wU7BJY7IuEQ=
+X-Google-Smtp-Source: ABdhPJw9Tw2GpTtcmFXjMJJp93pcZOSpYFzo9oV6lAt8ttC99gcYK3AqXAp91Odw8nptfOEQQHiuJw==
+X-Received: by 2002:a05:6a00:2124:b0:4fa:739f:2386 with SMTP id n4-20020a056a00212400b004fa739f2386mr25196272pfj.68.1649529685701;
+        Sat, 09 Apr 2022 11:41:25 -0700 (PDT)
+Received: from localhost.localdomain ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id g3-20020a63ad03000000b003821d0f0ef4sm25813933pgf.71.2022.04.09.11.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Apr 2022 11:41:25 -0700 (PDT)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
- <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
- <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
-In-Reply-To: <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Subject: [PATCH 0/6] Covert Qcom BAM dma binding to json format
+Date:   Sun, 10 Apr 2022 00:11:09 +0530
+Message-Id: <20220409184115.15612-1-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Patch 1,2,3,4,5 require generic node name for dma and 6/6 is actual
+conversion change.
 
-On 4/9/2022 9:04 PM, Mikhail Zhilkin wrote:
->>>>> +required:
->>>>> +  - compatible
->>>> Missing reg.
->>> reg isn't required. Parser can read partition offsets and sizes from
->>> SC PART MAP table. Or do you mean something else?  All is ok
->>> without reg definition in "Example" (except the warns that reg property
->>> is missing).
->> reg might not be required for current implementation but it is required
->> by devicetree for every node with unit address. Do you expect here nodes
->> without unit addresses?
-> Only "partitions" node has no unit address. All subnodes  have unit
-> addresses and therefore have to have reg property. I've just realized
-> that "fixed-partitions.yaml" is almost my case. It looks like I can
-> copy'n'paste  "required" and "*properties".
-> Do you mind if I don't reinvent the wheel and reuse this good
-> practice?
->
-> Here's what I got (no any warnings appears):
+Looking forward towards review comments. Thanks!
 
+Kuldeep Singh (6):
+  ARM: dts: qcom: apq8064: User generic node name for DMA
+  ARM: dts: qcom: mdm9615: User generic node name for DMA
+  arm64: dts: qcom: msm8996: User generic node name for DMA
+  ARM: dts: qcom: ipq4019: User generic node name for DMA
+  ARM: dts: qcom: ipq8064: User generic node name for DMA
+  dt-bindings: dma: Convert Qualcomm BAM DMA binding to json format
 
-I'm sorry, Krzysztof & All. Here is the final one.
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 90 +++++++++++++++++++
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  | 52 -----------
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |  6 +-
+ arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1.dtsi |  4 +-
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |  6 +-
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           |  4 +-
+ arch/arm/boot/dts/qcom-mdm9615.dtsi           |  4 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  2 +-
+ 8 files changed, 103 insertions(+), 65 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
 
----
- .../mtd/partitions/sercomm,sc-partitions.yaml | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
- create mode 100644
-Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-
-diff --git
-a/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-b/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-new file mode 100644
-index 000000000000..33172f0be92a
---- /dev/null
-+++
-b/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id:
-http://devicetree.org/schemas/mtd/partitions/sercomm,sc-partitions.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sercomm Partitions
-+
-+description: |
-+  Sercomm is one of hardware manufacturers providing SoCs used in home
-routers.
-+  The Sercomm partition map table contains information about non-standard
-+  partition offsets and sizes (depending on the bad blocks presence and
-their
-+  locations). Partition map is used by many Sercomm-based Ralink
-devices (e.g.
-+  Beeline, Netgear).
-+
-+  The partition table should be a node named "partitions". Partitions
-are then
-+  defined as subnodes.
-+
-+maintainers:
-+  - Mikhail Zhilkin <csharper2005@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sercomm,sc-partitions
-+
-+  "#address-cells": true
-+
-+  "#size-cells": true
-+
-+patternProperties:
-+  "@[0-9a-f]+$":
-+    $ref: "partition.yaml#"
-+
-+required:
-+  - compatible
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    partitions {
-+        compatible = "sercomm,sc-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+            label = "u-boot";
-+            reg = <0x0 0x100000>;
-+            scpart-id = <0>;
-+            read-only;
-+        };
-+
-+        partition@100000 {
-+            label = "dynamic partition map";
-+            reg = <0x100000 0x100000>;
-+            scpart-id = <1>;
-+        };
-+
-+        factory: partition@200000 {
-+            label = "Factory";
-+            reg = <0x200000 0x100000>;
-+            scpart-id = <2>;
-+            read-only;
-+
-+            compatible = "nvmem-cells";
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+
-+            macaddr_factory_21000: macaddr@21000 {
-+                reg = <0x21000 0x6>;
-+            };
-+        };
-+
-+        /* ... */
-+
-+    };
 -- 
+2.25.1
 
-
-> Best regards,
-> Mikhail
