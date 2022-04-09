@@ -2,120 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 971E24FA921
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 17:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66B814FA940
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 17:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233301AbiDIPEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 11:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44898 "EHLO
+        id S242537AbiDIP2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 11:28:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbiDIPED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 11:04:03 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFF820E948
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 08:01:54 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id j8so10355112pll.11
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 08:01:54 -0700 (PDT)
+        with ESMTP id S242536AbiDIP2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 11:28:20 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDBF33A;
+        Sat,  9 Apr 2022 08:26:13 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id d138so19976066ybc.13;
+        Sat, 09 Apr 2022 08:26:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=uM+FGcsj8toEe5e+GV8hGulxG9f/x9ohvcn77yjffaQ=;
-        b=G7du/fQkyfOrJMYkNjP1iCmcgdQPA+TEKplB6zDYMoYdfeB3kvJ9IkFJjSn8EPZmd/
-         k4DrkmwQIZbCmQwG7p6OcGNzG+EuoO8SRV/Y1sU6u94UYOIvfeNKGXhwWAUHRU/Ndl1B
-         9x5DyB+SaNRnJRtXhhvRgO4BlWxMStBXr47RKYtpQJzUb1I/kK7Xt2+emDxDnndNkKHi
-         /m+6wnCcEeHHm0ZqU70znZjOkSxjoG9rMLrJ0D2jC65z33I2Yito5Rl3qKUWQyFrzwFX
-         MQ4HNmhIosmMF+JOxSOSqUtXcfsLXwOHqc0tpnf8NilL5xs836cRKZ8y7B0IamG/ZyL4
-         GG4Q==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cR2pF5s8t+OdbSSxVuJNcvAN3V/unWJTiAFDdZ/69qU=;
+        b=GiGHHDgOsTCZkVZ3qA13Sb6FvHIZGDKjASv/UYR1gRUxpg4ro6pgjjruE+1alUxjvw
+         9c/GDyeCONs+IqKo2Ih6w8bnMsIo3HpqNprf4VdbfduInTTJVOYRdlsuQNfouTh3AD+W
+         oOafjH2YZ3EJJU8zCNpPqoWpjPHxfyXlgRhWtfbj801Fd8hgas74RpAPB0r1aO7h0fiu
+         wyajkNmZl/hfF9qj8hc5k/C3IQLGwg5B1AkVm1FtHRV1RkaOF0L02PV+pU2fgqHzLGyu
+         qLpT8KDMV5s7LckQ8unn6h6/eZdhs2+bxCxX/tMdPRnPWl+Z1U11qi8OZamegXOW0g7y
+         skmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=uM+FGcsj8toEe5e+GV8hGulxG9f/x9ohvcn77yjffaQ=;
-        b=OLMkqjOZ8VEWa+N3P0SvCMk3EyEZIh3P+laBmUObxcTBXk3UMJkCwBFc3q0xxEQSjW
-         JzbeDkvj+bD+NhHcR6qpHo+iem2ZNMgcRjoBhPLZjWgfkjw3B5deyaRxLT191FCHAE4D
-         cluK6ZyI4eVHKpLodSxiVgMvGqlpx5yPrR8h7DxTn7Wt9CrhnmbUrLp9IHgg2TYrf7ZY
-         ewlViUdwpixQ8KW1yA5FaSaxfQ4bHB2sMmJQzfhja5ppQAJRJzAAne3DuND3Vs0ePx4t
-         446S6HrphQrFJEmaQx6fqLRCLFdrq+xBZsjByPRLyyABqThFLkQM2BUNVlklIBUTy+AM
-         1qig==
-X-Gm-Message-State: AOAM530JaEaE+bXQT3LwbPT+uF7g1JDG4dLZu/62u6HkK2TcSLFV6aUI
-        mNG6K2zVXXMLxLQbdL0NACbOjU8/SOe2KuqNMk0=
-X-Google-Smtp-Source: ABdhPJxAPsORDj0C7UgBhNK58hipULHLu/OttEAPf+NO1TP1t5Hs9yvd7nWrQUkVybMKdP7rMIVn1umMW1mvjZSla6M=
-X-Received: by 2002:a17:902:ec86:b0:156:a032:7cf1 with SMTP id
- x6-20020a170902ec8600b00156a0327cf1mr24095009plg.40.1649516514210; Sat, 09
- Apr 2022 08:01:54 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cR2pF5s8t+OdbSSxVuJNcvAN3V/unWJTiAFDdZ/69qU=;
+        b=iJ+uQul/Ovvp+DXj4e50WT/rQhXc95FNEGTueFEgG3QqO/wM+UqlL7bGUUH9DJOEXR
+         i/0AYwhISxYOq+beAmBJTn/iitPxmgW5h1daD6mCDmDZhLNSOPCt5VGorYYDw1DXw3DK
+         xuLq2nzH0os8pEiLmapWTkrON6snZWgljDpRmRS3rdJNTwHr5XMvSfCFyHT2uJc5tqeU
+         bYIMwbN6ujlzNQx6gAfgVJbIuoA0W63wcp/piU9tSRhXQgTW6BnulRmJJhj9C0khqrob
+         Edd4QZ2VR2SUs9i7GjsdERu+GG/kPN22gkCfdTfuqKb9Jg3hJHgy70QSu2aWz9VF4x1u
+         WapQ==
+X-Gm-Message-State: AOAM533YwFlrhrIsAnMrXEgUtyr8HHMud28Uf/2EV+rYOQDv6Siq07vB
+        19lwMdKCzskk68NMOahjPej3QXJi1aDAE1wRjso=
+X-Google-Smtp-Source: ABdhPJwy9sT5pq4yY8qB+CnoQCmzTDVQInXJDJPL7q9XcmDqn8nFU9sVdEpR/0bq+uPrEm63H0VHbIoKc8s4gNZqods=
+X-Received: by 2002:a05:6902:143:b0:628:7cf1:f2a9 with SMTP id
+ p3-20020a056902014300b006287cf1f2a9mr16357436ybh.51.1649517972377; Sat, 09
+ Apr 2022 08:26:12 -0700 (PDT)
 MIME-Version: 1.0
-Sender: ghanacommercialbanksltd@gmail.com
-Received: by 2002:a05:6a10:43cd:0:0:0:0 with HTTP; Sat, 9 Apr 2022 08:01:53
- -0700 (PDT)
-From:   "Mr. Jimmy Moore" <jimmymoore265@gmail.com>
-Date:   Sat, 9 Apr 2022 16:01:53 +0100
-X-Google-Sender-Auth: XCG-ase37oZibP9GPLkXwXZ0Z9s
-Message-ID: <CANdDMzASpg2WDPW1PMoAgXwdk-nQn6wkGHWCy=JDYWHaUypZRw@mail.gmail.com>
-Subject: OVERDUE COMPENSATION.
-To:     undisclosed-recipients:;
+References: <20220409075147.136187-1-linux@fw-web.de> <CAMdYzYqx1iUuEe9FPpUTgL0L2i=Q5Sq2+0oiSYzqkV6noQ8BFw@mail.gmail.com>
+ <CAMdYzYqaGe9_GbRCvG3kvLpNsVfVqGNkg=YYgbVR90Qtcs9YSA@mail.gmail.com>
+ <4232341.5fSG56mABF@phil> <trinity-da7d86cc-5703-4657-858c-f241e5f0a6fd-1649505409042@3c-app-gmx-bap35>
+In-Reply-To: <trinity-da7d86cc-5703-4657-858c-f241e5f0a6fd-1649505409042@3c-app-gmx-bap35>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Sat, 9 Apr 2022 11:26:01 -0400
+Message-ID: <CAMdYzYpK-RTf_8FVte2QLJawCKCjU6efgkRjsBj6quWGSSE6xA@mail.gmail.com>
+Subject: Re: Re: Re: Re: [PATCH] arm64: dts: rockchip: Fix clocks for rk356x usb
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Dan Johansen <strit@manjaro.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,LOTS_OF_MONEY,
-        LOTTO_DEPT,MILLION_USD,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        SUBJ_ALL_CAPS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:641 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [ghanacommercialbanksltd[at]gmail.com]
-        *  0.2 MILLION_USD BODY: Talks about millions of dollars
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        *  0.7 LOTTO_DEPT Claims Department
-        *  3.5 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: *****
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UNITED NATIONS COVID-19 OVERDUE COMPENSATION UNIT.
-REFERENCE PAYMENT CODE: 8525595
-BAILOUT AMOUNT:$10.5 MILLION USD
-ADDRESS: NEW YORK, NY 10017, UNITED STATES
+On Sat, Apr 9, 2022 at 7:56 AM Frank Wunderlich <frank-w@public-files.de> wrote:
+>
+> Hi,
+>
+> so to not break the binding and other boards the right Patch should be like this
+>
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1691,17 +1691,17 @@ static int dwc3_probe(struct platform_device *pdev)
+>                  * Clocks are optional, but new DT platforms should support all
+>                  * clocks as required by the DT-binding.
+>                  */
+> -               dwc->bus_clk = devm_clk_get_optional(dev, "bus_early");
+> +               dwc->bus_clk = devm_clk_get_optional(dev, "bus_clk");
+>                 if (IS_ERR(dwc->bus_clk))
+>                         return dev_err_probe(dev, PTR_ERR(dwc->bus_clk),
+>                                              "could not get bus clock\n");
+>
+> -               dwc->ref_clk = devm_clk_get_optional(dev, "ref");
+> +               dwc->ref_clk = devm_clk_get_optional(dev, "ref_clk");
+>                 if (IS_ERR(dwc->ref_clk))
+>                         return dev_err_probe(dev, PTR_ERR(dwc->ref_clk),
+>                                              "could not get ref clock\n");
+>
+> -               dwc->susp_clk = devm_clk_get_optional(dev, "suspend");
+> +               dwc->susp_clk = devm_clk_get_optional(dev, "suspend_clk");
+>                 if (IS_ERR(dwc->susp_clk))
+>                         return dev_err_probe(dev, PTR_ERR(dwc->susp_clk),
+>                                              "could not get suspend clock\n");
+>
+> but this needs fixing dts using the new clock names
+>
+> this is a link to the series moving from bulk_clk to named clocks:
+>
+> https://patchwork.kernel.org/project/linux-usb/patch/20220127200636.1456175-3-sean.anderson@seco.com/
+>
+> regards Frank
 
-Dear award recipient, Covid-19 Compensation funds.
+I've submitted a fix for the backwards compatibility issue.
+https://patchwork.kernel.org/project/linux-rockchip/patch/20220409152116.3834354-1-pgwipeout@gmail.com/
 
-You are receiving this correspondence because we have finally reached
-a consensus with UN, IRS and IMF that your total fund worth $10.5
-Million Dollars of Covid-19 Compensation payment shall be delivered to
-your nominated mode of receipt, and you are expected to pay the sum of
-$12,000 for levies owed to authorities after receiving your funds.
-
-You have a grace period of 2 weeks to pay the $12,000 levy after you
-have receive your Covid-19 Compensation total sum of $10.5 Million. We
-shall proceed with the payment of your bailout grant only if you agree
-to the terms and conditions stated.
-
-Contact Dr. Mustafa Ali for more information by email on:(
-mustafa.ali@rahroco.com ) Your consent in this regard would be highly
-appreciated.
-
-Regards,
-Mr. Jimmy Moore.
-Undersecretary General United Nations
-Office of Internal Oversight-UNIOS
-UN making the world a better place
-http://www.un.org/sg/
+This fix is standalone and necessary no matter which route we decide
+to go with this series (and the rk3328/rk3399 support as well).
+With this patch, dwc3 is functional on the rk356x as the series was
+submitted, so if we decide to fix everything all at once, that is a
+viable option.
