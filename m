@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 101EA4FA598
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 09:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7810C4FA5A3
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 09:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236371AbiDIHkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 03:40:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
+        id S230369AbiDIHyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 03:54:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbiDIHkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 03:40:14 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8477E6571;
-        Sat,  9 Apr 2022 00:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1649489861;
-        bh=MLqA3bnD2sMvw0EFvGKTdpBOi8GVnKh839oLfjb5qm0=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ibVpGGokpc0x3q4ZPpBOxHvxJAVVYRPiQ/jdV53cZSk0Cy941XiYhmJUPLXDHgG7L
-         7khuseEwRalTI8HEJDs0B/42CYLYGj2P/NcKTxAddqvURI41rB+Pz5G9bHKsigkz54
-         sUIUAbw420cdyjGDLZlfEiWlWzcBwhT+KLQHvIug=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.154.105] ([217.61.154.105]) by web-mail.gmx.net
- (3c-app-gmx-bap35.server.lan [172.19.172.105]) (via HTTP); Sat, 9 Apr 2022
- 09:37:41 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-75c90ab6-a336-4f5d-972a-364b7f32c597-1649489861756@3c-app-gmx-bap35>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230105AbiDIHyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 03:54:19 -0400
+Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8514146B50;
+        Sat,  9 Apr 2022 00:52:12 -0700 (PDT)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout2.routing.net (Postfix) with ESMTP id 6D2A95FDFA;
+        Sat,  9 Apr 2022 07:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1649490730;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Woadcv1V4mB8TNR0hX8FoYo4UZy8QqujR0u1IsxgXzk=;
+        b=LotVTLABBbxNHxFz/KdC+RuwH+FBndhUE2ckpJVvYC0M9Oy61s1OBFE1BZcgR16eaav06b
+        yEl/OZLRzjecQhNJVU/QnyAUAjeTKaheVVVTLGLtzXADW6o3mSF5KOWUklazdgfPEnO9WD
+        sw1XELdCQbyO0Buo2hG2SmbFRLwP4wE=
+Received: from localhost.localdomain (fttx-pool-217.61.154.105.bambit.de [217.61.154.105])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 848854021D;
+        Sat,  9 Apr 2022 07:52:09 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Heiko Stuebner <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Aw: Re: [PATCH v5 3/5] arm64: dts: rockchip: add rk356x dwc3 usb3
- nodes
-Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 9 Apr 2022 09:37:41 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <trinity-7dbd5148-923f-479b-9eed-a75f000456e5-1649489032880@3c-app-gmx-bap35>
-References: <20220408151237.3165046-1-pgwipeout@gmail.com>
- <20220408151237.3165046-4-pgwipeout@gmail.com>
- <trinity-3ae2b0d1-a3f0-4c64-acb6-2fb4fa0b36b3-1649434480623@3c-app-gmx-bap48>
- <CAMdYzYrK2KV1svrHS=zMjGYh=dUis-JKjgYHaeOB4LQWXM1+4A@mail.gmail.com>
- <trinity-7dbd5148-923f-479b-9eed-a75f000456e5-1649489032880@3c-app-gmx-bap35>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:z/nqLKYmkEa/D6QLwIweufO8+//GvIEoMyUmvk4PEUw4hOhRdR58XNl9ZcaZoRF10YTfE
- GI8gT7DcJBKmHQhZK18pXGPg7nYkrBG2iy0zr4MmTkUXqg6XIetoIjL3dNDCFfDYewS44ubGyM1O
- 0rOzzu+WgpOolwXgDPPoRIPbeCw4ae1sTje2esvhDHvRX9KSPj8NjWjpjMOODIjH3S/CgkuKTQFT
- 4BAJ+nof0JCfAhGGMv6mqrG2ETvzo8AuL3VMee00mKew3IcQ7n431PYfD4xNZueqCrdaK7iJbsw+
- js=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:oxuTRLnR7JY=:MgqnI2P9sCNVrc0XfAWXhc
- /7KXjxsC7Q4Fce74LPvGO7xR5D8AUrH3FW5MB+hHusc+TPPccytR+xoU/kVf3zODmA+5hyo3b
- h6ZA99/4oxEi/FEX0Vr3rbJ86jv7Oi2LpXdDXPOlnhuAYXELGl033AvzT+lNqc0W5G+FDM/ZV
- sz0NMOR3qXbZ1JVchRJlJKCpoSgV2CP654PsAtIYBviP4ECpgD38xsHWfSOfWW9hz9/lpOx4T
- VSyCaWE5L6053i3Na5qCGaT2NKNQigMMz8A7Cupk8qK0iIlDGfTkO0esb0ayBA9CYh1dT+FG8
- oN7/4n13a9wPAZCUNTCp+nf7BLxA3BOx3/o+1sJrS4OV7jIr4LLqywKri6yrA/aPEXM7fXSP9
- tRkYlXtj2rz7G+18p9rAMWBRGWRNybnNY1ICF1XB5y3h0Q34sJIzkedN7lmBKIVY6YgB9bqLW
- ivtCmSkYNidgXzPb1nYti4+/Q57yIyfvf/YKE2EQkqwciv5OoTKuqac0GJnp0d/vjRaqxEJIa
- f+vXQ19m2NfV0RARRBUVUexMrAYGU5k3RDCK/VWcMRi5zmSsl8nnB+JPf5W3xY7HOUctN1UPS
- Zf1n0xwZ+joZ90N7Q6ciWqmBxkr2RgsTb/ahBWQHoWq1wggKbcd0CcnRHgtJ/kU/FlnerVjih
- Z+EGvUegoPT3U6VCXqUJCziinQzrY1PIBVz6ufcIQv7ixcG06MjXidQC6Hakn9AJw44XiMZ0g
- v44B21Ll2RP6JWpywpbgh8uMHoE6DM+xKU8rsOtdMrfTIjDaSGPfamVbaQKQEB8g8mPlT2dfS
- 4MMAjhj
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Fix clocks for rk356x usb
+Date:   Sat,  9 Apr 2022 09:51:47 +0200
+Message-Id: <20220409075147.136187-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: b784876b-6e21-42de-8301-4411050e2401
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Got it,
-these Patches require different clock names
+From: Frank Wunderlich <frank-w@public-files.de>
 
-ref_clk =3D> ref
-bus_clk =3D> bus_early
+after these 2 commit different clock names are needed compared to 5.17
 
-after renaming usb works on my board
+commit 5114c3ee2487 ("usb: dwc3: Calculate REFCLKPER based on reference clock")
+commit 33fb697ec7e5 ("usb: dwc3: Get clocks individually")
 
-will send an follow-up patch for this series
+change them in new rk356x usb support
 
-regards Frank
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+this is a fix for this series not yet applied
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=630470
+@peter
+after testing you can squash it into your series and add a co-developed or similar
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-
-> Gesendet: Samstag, 09. April 2022 um 09:23 Uhr
-> Von: "Frank Wunderlich" <frank-w@public-files.de>
->
-> at least i nailed it down to these 2 commits in drivers/usb/dwc3/core.c,=
- without them it works
->
-> 5114c3ee2487 2022-01-27 usb: dwc3: Calculate REFCLKPER based on referenc=
-e clock
-> 33fb697ec7e5 2022-01-27 usb: dwc3: Get clocks individually
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 55e6dcb948cc..6dfe54e53be1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -264,8 +264,8 @@ usb_host0_xhci: usb@fcc00000 {
+ 		interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru CLK_USB3OTG0_REF>, <&cru CLK_USB3OTG0_SUSPEND>,
+ 			 <&cru ACLK_USB3OTG0>;
+-		clock-names = "ref_clk", "suspend_clk",
+-			      "bus_clk";
++		clock-names = "ref", "suspend_clk",
++			      "bus_early";
+ 		dr_mode = "host";
+ 		phy_type = "utmi_wide";
+ 		power-domains = <&power RK3568_PD_PIPE>;
+@@ -280,8 +280,8 @@ usb_host1_xhci: usb@fd000000 {
+ 		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru CLK_USB3OTG1_REF>, <&cru CLK_USB3OTG1_SUSPEND>,
+ 			 <&cru ACLK_USB3OTG1>;
+-		clock-names = "ref_clk", "suspend_clk",
+-			      "bus_clk";
++		clock-names = "ref", "suspend_clk",
++			      "bus_early";
+ 		dr_mode = "host";
+ 		phys = <&usb2phy0_host>, <&combphy1 PHY_TYPE_USB3>;
+ 		phy-names = "usb2-phy", "usb3-phy";
+-- 
+2.25.1
 
