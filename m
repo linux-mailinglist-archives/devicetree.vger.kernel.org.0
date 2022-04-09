@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F41FC4FA73F
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 13:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0BB4FA746
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 13:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241631AbiDILYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 07:24:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        id S235239AbiDIL2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 07:28:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240568AbiDILYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 07:24:39 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B97B2D7D6E
-        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 04:22:32 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id u18so2049430eda.3
-        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 04:22:32 -0700 (PDT)
+        with ESMTP id S229551AbiDIL2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 07:28:35 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C652CCB36
+        for <devicetree@vger.kernel.org>; Sat,  9 Apr 2022 04:26:28 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id b24so12697748edu.10
+        for <devicetree@vger.kernel.org>; Sat, 09 Apr 2022 04:26:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SCzhSNrRKCbd86faPRBvydP9I/4Y5+ZcmnKGbLOwqnU=;
-        b=SbHHDzkpPWBPK4SYIDaXZNqmINDPEaL4pMtS2hyUR3KSZDKbNKVkxBdo4dMwCyC9Eo
-         +LhWHqYQQBceMIfx8AN6cTGvFxl9+IhaV7FJxjtUytQErS/VFJD7SxIsPMBUPRdWZs4f
-         EQuG+SKycajp513DqcWuMACUJEly4CdcpOjbdwvgCX39P4PnRhTfXWhtaP+KMZSgywXN
-         Ef3vD3sK9i9Fk/HNovdHHNm2xuwqWQtHyKESj03J7oK06ymwrWt/04kW+VaBgQzry4QI
-         Mh7YDMWezjejgKnm7v5hbNJFlPqllbmaN/1DQ2F18fu6hsFaI6ogj8YuETl/hHihLBy+
-         hjIw==
+        bh=uIniKHNq8JZpBtiVtTYbsG4CSucAQy7J49l7XkGedJQ=;
+        b=syeAl4mFwn7Jlf6Z67Bj7MRA0g1s6XL6W+iUCPVh9bRj0JKzwA/frdhS50xI6s3hgY
+         IKRj2nALPfJwi9YtRVwicdOlBhC4b3H2KmL5NN6yLZr3YAY4UlZymVZpRN9ghJUEcBi4
+         Hr71QPr/0f1I5/yyCu8YSGM5fs9WdIrZQ9me7tT8IEPVVZ5dFj04D/OBb2XuO33EWkhF
+         uW+ELDc2H2YWVP9FguWuSvqThhqmziX75ZjeHIdoAtrVgRED2PdTQCVtpU1ju3w4c3CW
+         PKRzPaLLkQbd/IFnjkyP2xQrI1945TDC1tI3izSL2pmybvsQv9i1DoayS9PgtYhVgGLW
+         6i+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=SCzhSNrRKCbd86faPRBvydP9I/4Y5+ZcmnKGbLOwqnU=;
-        b=MwnURBmpZ0dLRxR+9LNlgxm0rtnGePGvxgLCvaZEIm4kjjcTby6bpHusXwnrXndX9X
-         15KpQ+WG1326g8pRoX/z6No8vaElEFJ0ALqswCden20/K5/q/lekXBBK2zb+oJ9UWb34
-         WI498YjCvtMldEyG2mrFAXW3uZ9Ohkn00+q3HXlQZszDQxVV6fgqXD1VyUJpcqRLqQnS
-         Xd0lWuvLrgC6jjegyQBgN+1HESZmM3n5UvfkgiDsMq91P3obGuyzXnM8kDbhc/PAVqit
-         c78qyMHXefb69mMenMHXQ7wpUd21nNmUdWX7kMIIoL6GD3e5Sr5GBo+De6CDEG09jVan
-         YI3g==
-X-Gm-Message-State: AOAM532Cmq9YeDb/yjk0nOI2+nloHZPEQTIeOYR+dVSed47QON4ByykK
-        oN2TbpI50klcO2FRZdYi7Hxm7A==
-X-Google-Smtp-Source: ABdhPJztf0+IY1Rrex6cuag/BKeZ7Y38Cwi4QevqXNN+vcWJkKbuG+ASGC9A7rMPEyiwrRVC+wIVrg==
-X-Received: by 2002:aa7:c58f:0:b0:41c:d8c6:b6a5 with SMTP id g15-20020aa7c58f000000b0041cd8c6b6a5mr23956580edq.181.1649503350737;
-        Sat, 09 Apr 2022 04:22:30 -0700 (PDT)
+        bh=uIniKHNq8JZpBtiVtTYbsG4CSucAQy7J49l7XkGedJQ=;
+        b=wD8ZAoj9Elz93tVtiH1qeAmemN1tBmOZefYXLxZ8UCWSv4cgfV469mxuS6Xszmn+3N
+         V1d23DjUbR7ebh1pcHgPlkO2lzGBK9Ovc2Wx8lMc78bzWgM1MNLTsqcJu94pAxrjo6tO
+         Hox82xnNDD/buzodLYbfyWzv33EP9JgK/D93EGanrtXEJuW1iMuYbTpG6EJQ27diAlri
+         WNqCrpRl19J3diOmjpvYvcfmc7pu3wexebjzkCRp6ot6/rjNTRlXzj0lG65wW8JO6o2a
+         5880egUJgLQhZgC2Y3prKZlbrJYc4wfKC64PQG3QyQcHELnr/vACxwsJPkRW7iFdN742
+         8nag==
+X-Gm-Message-State: AOAM533ZV9jO8jqaA/RNUo/8ble5SdQJTRiWS1piHTgR/vq9qUuSZH5q
+        LAbAxrW9pEi0YZo0jEqRBR/qEw==
+X-Google-Smtp-Source: ABdhPJykVOfbfFlyQPpCMCFTFcG34OHVH9wUEbVWiFWDIxmCK8sV9ej4osJTkQAsEBTVah10qvGJ3Q==
+X-Received: by 2002:a05:6402:150d:b0:41d:5ef9:e241 with SMTP id f13-20020a056402150d00b0041d5ef9e241mr4500392edw.353.1649503587221;
+        Sat, 09 Apr 2022 04:26:27 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id z21-20020a1709063a1500b006da6436819dsm9607341eje.173.2022.04.09.04.22.29
+        by smtp.gmail.com with ESMTPSA id p9-20020a50c949000000b0041d180b8beesm2314883edh.48.2022.04.09.04.26.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 04:22:30 -0700 (PDT)
-Message-ID: <623248f1-7ce2-7ff1-22d4-c56e0983c9bf@linaro.org>
-Date:   Sat, 9 Apr 2022 13:22:29 +0200
+        Sat, 09 Apr 2022 04:26:26 -0700 (PDT)
+Message-ID: <036b66b2-c221-6e9e-6a56-510e7a0d20d3@linaro.org>
+Date:   Sat, 9 Apr 2022 13:26:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH 18/18] MIPS: DTS: CI20: fix bluetooth as reported by
+Subject: Re: [PATCH 13/18] dt-bindings: fix jz4780-nemc issue as reported by
  dtbscheck
 Content-Language: en-US
 To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
@@ -63,14 +63,14 @@ To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-mips@vger.kernel.org, letux-kernel@openphoenux.org
 References: <cover.1649443080.git.hns@goldelico.com>
- <32a2afa1a8f1f675a199d1aa9b4469bed2391069.1649443080.git.hns@goldelico.com>
+ <84adfe6237cd4cfd52cb9723416f69926e556e55.1649443080.git.hns@goldelico.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <32a2afa1a8f1f675a199d1aa9b4469bed2391069.1649443080.git.hns@goldelico.com>
+In-Reply-To: <84adfe6237cd4cfd52cb9723416f69926e556e55.1649443080.git.hns@goldelico.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,30 +78,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/04/2022 20:38, H. Nikolaus Schaller wrote:
-> arch/mips/boot/dts/ingenic/ci20.dtb: bluetooth: vcc-supply does not match any of the regexes: pinctrl-[0-9]+
-> 	From schema: Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+On 08/04/2022 20:37, H. Nikolaus Schaller wrote:
+> jz4780-nemc needs to be compatible to simple-mfd as well or we get
+> 
+> arch/mips/boot/dts/ingenic/ci20.dtb: memory-controller@13410000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['ingenic,jz4780-nemc', 'simple-mfd'] is too long
+> 	'ingenic,jz4725b-nemc' was expected
+> 	'ingenic,jz4740-nemc' was expected
+> 	From schema: Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
 > 
 > Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 > ---
->  arch/mips/boot/dts/ingenic/ci20.dts | 2 +-
+>  .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml    | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-> index dc587b4b36009..8a120f9374331 100644
-> --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> @@ -207,7 +207,7 @@ &uart2 {
->  	bluetooth {
->  		compatible = "brcm,bcm4330-bt";
->  		reset-gpios = <&gpf 8 GPIO_ACTIVE_HIGH>;
-> -		vcc-supply = <&wlan0_power>;
-> +		vbat-supply = <&wlan0_power>;
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> index 24f9e19820282..3b1116588de3d 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> @@ -17,7 +17,7 @@ properties:
+>      oneOf:
+>        - enum:
+>            - ingenic,jz4740-nemc
+> -          - ingenic,jz4780-nemc
+> +          - [ ingenic,jz4780-nemc, simple-mfd ]
 
-Could be also vddio...
+This is not correct representation. If you really need simple-mfd, then
+this should be a separate item below oneOf.
 
+The true question is whether you need simple-mfd. Isn't the binding (and
+the driver) expected to instantiate its children?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>        - items:
+>            - const: ingenic,jz4725b-nemc
+>            - const: ingenic,jz4740-nemc
 
 
 Best regards,
