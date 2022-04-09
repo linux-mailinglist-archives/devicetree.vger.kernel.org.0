@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B814FA940
-	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 17:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA9B84FA948
+	for <lists+devicetree@lfdr.de>; Sat,  9 Apr 2022 17:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242537AbiDIP2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Apr 2022 11:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47982 "EHLO
+        id S233448AbiDIPfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Apr 2022 11:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242536AbiDIP2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 11:28:20 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDBF33A;
-        Sat,  9 Apr 2022 08:26:13 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id d138so19976066ybc.13;
-        Sat, 09 Apr 2022 08:26:13 -0700 (PDT)
+        with ESMTP id S229504AbiDIPfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Apr 2022 11:35:21 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F7025AEE1;
+        Sat,  9 Apr 2022 08:33:11 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id e71so5507681ybf.8;
+        Sat, 09 Apr 2022 08:33:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=cR2pF5s8t+OdbSSxVuJNcvAN3V/unWJTiAFDdZ/69qU=;
-        b=GiGHHDgOsTCZkVZ3qA13Sb6FvHIZGDKjASv/UYR1gRUxpg4ro6pgjjruE+1alUxjvw
-         9c/GDyeCONs+IqKo2Ih6w8bnMsIo3HpqNprf4VdbfduInTTJVOYRdlsuQNfouTh3AD+W
-         oOafjH2YZ3EJJU8zCNpPqoWpjPHxfyXlgRhWtfbj801Fd8hgas74RpAPB0r1aO7h0fiu
-         wyajkNmZl/hfF9qj8hc5k/C3IQLGwg5B1AkVm1FtHRV1RkaOF0L02PV+pU2fgqHzLGyu
-         qLpT8KDMV5s7LckQ8unn6h6/eZdhs2+bxCxX/tMdPRnPWl+Z1U11qi8OZamegXOW0g7y
-         skmQ==
+        bh=5CNNYXuOr2RcG8eSzPuXT83KGiDGSucj1aFS0r5c1ZA=;
+        b=dc+l+QFt+ZkI4ADTsbh1RkzZ7R3GKYOGpQPN5INmbHlFKc7ns4gaQ8MzsnTZxHC9VZ
+         sbB+msnC5t+3A0if7JaXZ36vTXMRQDtmmNtdcUvAsD1GXSfjPe0XqX40aVc8WaaCdXR3
+         FKbS96lEEYq8OvHfAKySYgRQOCU13wtfmO2z3cW4WuEOX/uFIHm22Bbt8NKrZTXdd5zn
+         6Krcdg+Zap+0/M3Ee0533KHqgEnbVS/gOg93P/KNY4YLpf8ezcXDX6JTxgibmW/+PIEs
+         IjtMFpEt+lHA9MZi3/RZ1SHRC7/jYdMqTmE6qz+mbwfHMbAv4TcYcVYzdKffy/eR2a9W
+         nLxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cR2pF5s8t+OdbSSxVuJNcvAN3V/unWJTiAFDdZ/69qU=;
-        b=iJ+uQul/Ovvp+DXj4e50WT/rQhXc95FNEGTueFEgG3QqO/wM+UqlL7bGUUH9DJOEXR
-         i/0AYwhISxYOq+beAmBJTn/iitPxmgW5h1daD6mCDmDZhLNSOPCt5VGorYYDw1DXw3DK
-         xuLq2nzH0os8pEiLmapWTkrON6snZWgljDpRmRS3rdJNTwHr5XMvSfCFyHT2uJc5tqeU
-         bYIMwbN6ujlzNQx6gAfgVJbIuoA0W63wcp/piU9tSRhXQgTW6BnulRmJJhj9C0khqrob
-         Edd4QZ2VR2SUs9i7GjsdERu+GG/kPN22gkCfdTfuqKb9Jg3hJHgy70QSu2aWz9VF4x1u
-         WapQ==
-X-Gm-Message-State: AOAM533YwFlrhrIsAnMrXEgUtyr8HHMud28Uf/2EV+rYOQDv6Siq07vB
-        19lwMdKCzskk68NMOahjPej3QXJi1aDAE1wRjso=
-X-Google-Smtp-Source: ABdhPJwy9sT5pq4yY8qB+CnoQCmzTDVQInXJDJPL7q9XcmDqn8nFU9sVdEpR/0bq+uPrEm63H0VHbIoKc8s4gNZqods=
-X-Received: by 2002:a05:6902:143:b0:628:7cf1:f2a9 with SMTP id
- p3-20020a056902014300b006287cf1f2a9mr16357436ybh.51.1649517972377; Sat, 09
- Apr 2022 08:26:12 -0700 (PDT)
+        bh=5CNNYXuOr2RcG8eSzPuXT83KGiDGSucj1aFS0r5c1ZA=;
+        b=sYSB9KLe7E34ii2Dd5aJRN93SaQ4oEAuoUvL8Df/6Cjkxpmc4eN7g6vGEqTRExZezH
+         R8ws3Ro9ldFZqLlw/ewZgBwPxbXCoSHuZ1Sjq3kp/MYDLx5FwB7RD5tlmLVlBCJNJVqm
+         qCsMBYycVoF2TGI6O9WhHtLiiuBR9ioi9ua6VEWHSr0fpp09odBmYyYo1cayO7Ua+BKG
+         kuH6N6F0SbkqysePMnAPqPj53nnnFVDHgI63Vksg+i5c42nW53FLDlIGsWH/foCz1pHu
+         quNBP86q3YcE2vBSmL2vXGD8QHrgfNezeK7Ge67BkUm5FZStJ7wLYzWxmv3npTLiTP0o
+         tSHA==
+X-Gm-Message-State: AOAM531T9tBiiq+M4pef5V9glJLl9KQnYyCAZY+qyZ3TsAI/7CpvVL8X
+        BFtGfbQabsG9yWHmXYAqwSbvqDXf4WoRb2XAB5NQ9CzJe9Ujrfk1
+X-Google-Smtp-Source: ABdhPJz+u2vMB6vK+JAGuD+cHl3/9qosUF8iC3kUhZx4Qftx7dvTPzvltpLQ174kmxzW5MzbnQt7E8oPwm5+FKTFhMA=
+X-Received: by 2002:a5b:ac7:0:b0:633:cf3f:6d1b with SMTP id
+ a7-20020a5b0ac7000000b00633cf3f6d1bmr17740849ybr.585.1649518390548; Sat, 09
+ Apr 2022 08:33:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220409075147.136187-1-linux@fw-web.de> <CAMdYzYqx1iUuEe9FPpUTgL0L2i=Q5Sq2+0oiSYzqkV6noQ8BFw@mail.gmail.com>
- <CAMdYzYqaGe9_GbRCvG3kvLpNsVfVqGNkg=YYgbVR90Qtcs9YSA@mail.gmail.com>
- <4232341.5fSG56mABF@phil> <trinity-da7d86cc-5703-4657-858c-f241e5f0a6fd-1649505409042@3c-app-gmx-bap35>
-In-Reply-To: <trinity-da7d86cc-5703-4657-858c-f241e5f0a6fd-1649505409042@3c-app-gmx-bap35>
+References: <20220408151237.3165046-1-pgwipeout@gmail.com> <20220408151237.3165046-4-pgwipeout@gmail.com>
+ <trinity-3ae2b0d1-a3f0-4c64-acb6-2fb4fa0b36b3-1649434480623@3c-app-gmx-bap48>
+ <CAMdYzYrK2KV1svrHS=zMjGYh=dUis-JKjgYHaeOB4LQWXM1+4A@mail.gmail.com>
+ <trinity-7dbd5148-923f-479b-9eed-a75f000456e5-1649489032880@3c-app-gmx-bap35> <trinity-75c90ab6-a336-4f5d-972a-364b7f32c597-1649489861756@3c-app-gmx-bap35>
+In-Reply-To: <trinity-75c90ab6-a336-4f5d-972a-364b7f32c597-1649489861756@3c-app-gmx-bap35>
 From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Sat, 9 Apr 2022 11:26:01 -0400
-Message-ID: <CAMdYzYpK-RTf_8FVte2QLJawCKCjU6efgkRjsBj6quWGSSE6xA@mail.gmail.com>
-Subject: Re: Re: Re: Re: [PATCH] arm64: dts: rockchip: Fix clocks for rk356x usb
+Date:   Sat, 9 Apr 2022 11:32:59 -0400
+Message-ID: <CAMdYzYqHLVnu7nwnGHAFGTEctnZuaRx515usYqeGmGnEpBb8Gg@mail.gmail.com>
+Subject: Re: Re: [PATCH v5 3/5] arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
 To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Dan Johansen <strit@manjaro.org>,
-        Frank Wunderlich <linux@fw-web.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
         arm-mail-list <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
@@ -74,48 +73,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Apr 9, 2022 at 7:56 AM Frank Wunderlich <frank-w@public-files.de> wrote:
+On Sat, Apr 9, 2022 at 3:37 AM Frank Wunderlich <frank-w@public-files.de> wrote:
 >
-> Hi,
+> Got it,
+> these Patches require different clock names
 >
-> so to not break the binding and other boards the right Patch should be like this
+> ref_clk => ref
+> bus_clk => bus_early
 >
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1691,17 +1691,17 @@ static int dwc3_probe(struct platform_device *pdev)
->                  * Clocks are optional, but new DT platforms should support all
->                  * clocks as required by the DT-binding.
->                  */
-> -               dwc->bus_clk = devm_clk_get_optional(dev, "bus_early");
-> +               dwc->bus_clk = devm_clk_get_optional(dev, "bus_clk");
->                 if (IS_ERR(dwc->bus_clk))
->                         return dev_err_probe(dev, PTR_ERR(dwc->bus_clk),
->                                              "could not get bus clock\n");
+> after renaming usb works on my board
 >
-> -               dwc->ref_clk = devm_clk_get_optional(dev, "ref");
-> +               dwc->ref_clk = devm_clk_get_optional(dev, "ref_clk");
->                 if (IS_ERR(dwc->ref_clk))
->                         return dev_err_probe(dev, PTR_ERR(dwc->ref_clk),
->                                              "could not get ref clock\n");
->
-> -               dwc->susp_clk = devm_clk_get_optional(dev, "suspend");
-> +               dwc->susp_clk = devm_clk_get_optional(dev, "suspend_clk");
->                 if (IS_ERR(dwc->susp_clk))
->                         return dev_err_probe(dev, PTR_ERR(dwc->susp_clk),
->                                              "could not get suspend clock\n");
->
-> but this needs fixing dts using the new clock names
->
-> this is a link to the series moving from bulk_clk to named clocks:
->
-> https://patchwork.kernel.org/project/linux-usb/patch/20220127200636.1456175-3-sean.anderson@seco.com/
+> will send an follow-up patch for this series
 >
 > regards Frank
+>
+>
+> > Gesendet: Samstag, 09. April 2022 um 09:23 Uhr
+> > Von: "Frank Wunderlich" <frank-w@public-files.de>
+> >
+> > at least i nailed it down to these 2 commits in drivers/usb/dwc3/core.c, without them it works
+> >
+> > 5114c3ee2487 2022-01-27 usb: dwc3: Calculate REFCLKPER based on reference clock
+> > 33fb697ec7e5 2022-01-27 usb: dwc3: Get clocks individually
+>
 
-I've submitted a fix for the backwards compatibility issue.
+I've submitted a fix for the dwc3 issue.
 https://patchwork.kernel.org/project/linux-rockchip/patch/20220409152116.3834354-1-pgwipeout@gmail.com/
+The offending commit was: 33fb697ec7e5 ("usb: dwc3: Get clocks individually").
+It breaks backwards compatibility with rk3328, which follows the
+rockchip,dwc3.yaml dt-binding, and thus this series as well.
 
 This fix is standalone and necessary no matter which route we decide
 to go with this series (and the rk3328/rk3399 support as well).
 With this patch, dwc3 is functional on the rk356x as the series was
 submitted, so if we decide to fix everything all at once, that is a
 viable option.
+
+For those not following the other conversation, here is the TLDR:
+- rockchip,dwc3.yaml has different clock names than snps,dwc3.yaml
+- rk3328 and rk356x attach directly to the dwc3 core driver
+- rk3399 uses the dwc3-simple driver, which still uses the clk_bulk api.
+- commit 33fb697ec7e5 changed to individual clocks, which follow
+snps,dwc3.yaml naming
+- to correct this beyond my fix patch, we would need to align
+rockchip,dwc3.yaml with snps,dwc3.yaml, which means rk3328, rk3399,
+and rk356x will move to the snps clock naming scheme.
+
+I think we need Rob Herring to weigh in here, as this is a rather
+uncomfortable dt-binding issue.
