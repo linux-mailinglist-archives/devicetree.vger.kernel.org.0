@@ -2,65 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9484FAD9A
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 13:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BD74FADA9
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 13:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238185AbiDJLGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 07:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
+        id S238473AbiDJLdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 07:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238178AbiDJLGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 07:06:41 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3ECC443FF;
-        Sun, 10 Apr 2022 04:04:28 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id n9so11598086plc.4;
-        Sun, 10 Apr 2022 04:04:28 -0700 (PDT)
+        with ESMTP id S230057AbiDJLdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 07:33:38 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6435E58E40
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 04:31:27 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id d10so15057344edj.0
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 04:31:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Pj4wq9+LbeDRlRaJUHKgoygCg5/94JkoueAy/3cHRMU=;
-        b=qIO5/T0fVdupMRtS8+fLGpOvOKPDM4KAhTkm38bTErUgOQNCC5Mwlhxx3fytnZtrz2
-         I2uwyaRnweWl26gTX3UV0uE+gcJsrLsfn2F5VtLdo/YxCtRTZp0z8bWjR+pYeMxHgZHv
-         fkPODSnTKvqVBkYoQy/59iY/pyo3U3ip6un0/U/wOyF4PwvJ+6/UBIqjcDnIcx2aWAXS
-         MifOgafzXfijTC6BQ2GLWblXvbOIIGD/7YfV3aCx0UpAcLaecebWGlow/ijYEx5yStnC
-         ie7tco4Ww2PFb/OqjLYiy9woZfia8mft2yZZdiFP8/dBgcTowB5eTGn3Eo+oiP0xhBNN
-         9lcg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=sRX1WEzD+OHwRyf2blrJgodVZwUjqhVpYgifnVk+28Y=;
+        b=fSiEMLggH6nOdVHr/inNql5RIWc6hCvaVdD44xWAsr7FgswCKbgCQrsr6hhZ36Qnxb
+         vpQX4Lb7KHwYN0hblJaC85Fcc6jzu7t3fft4sd/UuYM69jUC/uhtEhUtBw6DWpMAdjJP
+         zl9FQkM98CZxxy00AK+IZvXbuAB5HZ5GD+rM48S6ZrIiWHrkDFNQoRdrMZvF+N/hzzU4
+         k+f89HH3u/8ZrC0Dl5vzfnmO4wLBuiLDjiT8hz/w7/SMVnN5tvyBTzDIuOGssGa6jtn4
+         5WIQt3R0sTdG9FE1r9/6oBG5AxXDRdajEVuI+kSQVtN7s3C4dYdaq9t3vgASLpATTHB0
+         XoMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Pj4wq9+LbeDRlRaJUHKgoygCg5/94JkoueAy/3cHRMU=;
-        b=6WljTXxLNkOP6+exs23XuX6UkMXPMTpNCezO+HBzPI88IrO2Oo+7ziqp4VbJ/xHzNf
-         zNVsW+Y5QbBm/LO6WRgDjfVoMlF6mJ8SqUo/MeK9v9VXdOlHiRX9dUYhst8R26xJ1AoO
-         gMg2M/BnqLUkkpCBUXKOSorOw0x/8DvN3loOdD0NwVTuJAf9bVq+v7tEwc7CYMD46RM/
-         C+FrS5gB1E1dcNLw/eeX6S9PSBfz13nFI5EjWBrlOP9Ts+YcnC/+Z9uqu99e4dVjJNm2
-         PbV8Zx9yOxTNPV5vSV1cl3V1WUbXRCGQVsHSUrhSqDKDg6XUMX1FPBaa9CG0npPemgrP
-         /lEw==
-X-Gm-Message-State: AOAM531WlAXNbGzrmwvZmG3JVOnEQ9U9XoYHQ93RAI2Y7gX1jNRT0sCq
-        oiBDUscIVmod7jKOR6dh5JA=
-X-Google-Smtp-Source: ABdhPJzujYvV7CWWoXSyGZ69+3TPkzbbvHelnSV378sOBT2+lmQjwvofcVYT2LoBFyWuE2vupzbLiw==
-X-Received: by 2002:a17:903:22c6:b0:154:4156:f397 with SMTP id y6-20020a17090322c600b001544156f397mr27570170plg.29.1649588668101;
-        Sun, 10 Apr 2022 04:04:28 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id m8-20020a056a00080800b004faa4e113bfsm33069670pfk.154.2022.04.10.04.04.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 04:04:27 -0700 (PDT)
-Date:   Sun, 10 Apr 2022 16:34:23 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/6] Covert Qcom BAM dma binding to json format
-Message-ID: <20220410110423.GA6249@9a2d8922b8f1>
-References: <20220409184115.15612-1-singh.kuldeep87k@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=sRX1WEzD+OHwRyf2blrJgodVZwUjqhVpYgifnVk+28Y=;
+        b=AdeHGAfw572+VrGT9wyPb46hzInL2EGnj5ngRDngqvajtRcIj0tPVLTJ+28dpNTnTF
+         ithO4lSeKlHv4LS8TE3xkkST4RlN9nH9LVk3mMlaUDqKbICpIgPPHIFX7UXDT2ICOq4P
+         MCuzvKG7DXgrsU0bjqr2U0Opri9s8ZgqNxmM8DOF+w+K+wgFN0c0VKsq+CyJIvMfd2MX
+         dWFg06ESjyGxW1httrIWWwpPPkS0rx3g3QpWIPZJAZrN52VmSvbxZBMlQHn224+mL2r0
+         cpDvzqAABmqWd5vW4lc1WFn6vxBqzlp9MZGgraO484xoSMIjcCH8Dt7iSssizlwfltyC
+         63Bg==
+X-Gm-Message-State: AOAM532QXe61jdyR3e8wyOkA1+VPlW6j6LU+DgesP8Gg3FMAVaisbPb2
+        kqDmFksp+2td4WFRlKZRjw==
+X-Google-Smtp-Source: ABdhPJw2erxI96LZQkKnLkWjSTDPEUQ3gin+rFkfZ/8VujZteZqKt0pgxbL48uF44MjdbzP8CcImOg==
+X-Received: by 2002:a50:858a:0:b0:41d:740f:55bd with SMTP id a10-20020a50858a000000b0041d740f55bdmr3769846edh.128.1649590285884;
+        Sun, 10 Apr 2022 04:31:25 -0700 (PDT)
+Received: from ?IPV6:2001:16b8:e981:9e00:815a:6661:46b9:139d? ([2001:16b8:e981:9e00:815a:6661:46b9:139d])
+        by smtp.gmail.com with ESMTPSA id dn4-20020a17090794c400b006dbec4f4acbsm10869995ejc.6.2022.04.10.04.31.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Apr 2022 04:31:25 -0700 (PDT)
+Message-ID: <8fac5d72-c635-521c-e7d1-a3980a4ed719@gmail.com>
+Date:   Sun, 10 Apr 2022 13:31:23 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220409184115.15612-1-singh.kuldeep87k@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v10 12/24] drm/rockchip: dw_hdmi: drop mode_valid hook
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20220408112238.1274817-1-s.hauer@pengutronix.de>
+ <20220408112238.1274817-13-s.hauer@pengutronix.de>
+From:   Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <20220408112238.1274817-13-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,9 +81,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 10, 2022 at 12:11:09AM +0530, Kuldeep Singh wrote:
-> Patch 1,2,3,4,5 require generic node name for dma and 6/6 is actual
-> conversion change.
+Am 08.04.22 um 13:22 schrieb Sascha Hauer:
+> The driver checks if the pixel clock of the given mode matches an entry
+> in the mpll config table. The frequencies in the mpll table are meant as
+> a frequency range up to which the entry works, not as a frequency that
+> must match the pixel clock. The downstream Kernel also does not have
+> this check, so drop it to allow for more display resolutions.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+> 
+You're correct: That frequency is meant to be greater or equal. But I'm
+not sure if it makes sense to completely drop it - what happens for
+clocks rates > 600 MHz which might be supported by later generation
+sinks (HDMI 2.1 or later)?
+As these are not supported by the IPs/PHYs currently supported by that
+driver a reason a simple
 
-Need to add more dma-controller name for ip4019 and update in binding.
-I will send v2 with updates.
+        int i;
+
+
+
+        for (i = 0; mpll_cfg[i].mpixelclock != (~0UL); i++) {
+
+-               if (pclk == mpll_cfg[i].mpixelclock) {
+
++               if (pclk >= mpll_cfg[i].mpixelclock) {
+
+                        valid = true;
+
+                        break;
+
+                }
+
+would be the better idea, I guess.
+
+Regards,
+Alex
+
+> Notes:
+>     Changes since v3:
+>     - new patch
+> 
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 25 ---------------------
+>  1 file changed, 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> index cb43e7b47157d..008ab20f39ee6 100644
+> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> @@ -248,26 +248,6 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>  	return 0;
+>  }
+>  
+> -static enum drm_mode_status
+> -dw_hdmi_rockchip_mode_valid(struct dw_hdmi *hdmi, void *data,
+> -			    const struct drm_display_info *info,
+> -			    const struct drm_display_mode *mode)
+> -{
+> -	const struct dw_hdmi_mpll_config *mpll_cfg = rockchip_mpll_cfg;
+> -	int pclk = mode->clock * 1000;
+> -	bool valid = false;
+> -	int i;
+> -
+> -	for (i = 0; mpll_cfg[i].mpixelclock != (~0UL); i++) {
+> -		if (pclk == mpll_cfg[i].mpixelclock) {
+> -			valid = true;
+> -			break;
+> -		}
+> -	}
+> -
+> -	return (valid) ? MODE_OK : MODE_BAD;
+> -}
+> -
+>  static void dw_hdmi_rockchip_encoder_disable(struct drm_encoder *encoder)
+>  {
+>  }
+> @@ -433,7 +413,6 @@ static struct rockchip_hdmi_chip_data rk3228_chip_data = {
+>  };
+>  
+>  static const struct dw_hdmi_plat_data rk3228_hdmi_drv_data = {
+> -	.mode_valid = dw_hdmi_rockchip_mode_valid,
+>  	.mpll_cfg = rockchip_mpll_cfg,
+>  	.cur_ctr = rockchip_cur_ctr,
+>  	.phy_config = rockchip_phy_config,
+> @@ -450,7 +429,6 @@ static struct rockchip_hdmi_chip_data rk3288_chip_data = {
+>  };
+>  
+>  static const struct dw_hdmi_plat_data rk3288_hdmi_drv_data = {
+> -	.mode_valid = dw_hdmi_rockchip_mode_valid,
+>  	.mpll_cfg   = rockchip_mpll_cfg,
+>  	.cur_ctr    = rockchip_cur_ctr,
+>  	.phy_config = rockchip_phy_config,
+> @@ -470,7 +448,6 @@ static struct rockchip_hdmi_chip_data rk3328_chip_data = {
+>  };
+>  
+>  static const struct dw_hdmi_plat_data rk3328_hdmi_drv_data = {
+> -	.mode_valid = dw_hdmi_rockchip_mode_valid,
+>  	.mpll_cfg = rockchip_mpll_cfg,
+>  	.cur_ctr = rockchip_cur_ctr,
+>  	.phy_config = rockchip_phy_config,
+> @@ -488,7 +465,6 @@ static struct rockchip_hdmi_chip_data rk3399_chip_data = {
+>  };
+>  
+>  static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
+> -	.mode_valid = dw_hdmi_rockchip_mode_valid,
+>  	.mpll_cfg   = rockchip_mpll_cfg,
+>  	.cur_ctr    = rockchip_cur_ctr,
+>  	.phy_config = rockchip_phy_config,
+> @@ -501,7 +477,6 @@ static struct rockchip_hdmi_chip_data rk3568_chip_data = {
+>  };
+>  
+>  static const struct dw_hdmi_plat_data rk3568_hdmi_drv_data = {
+> -	.mode_valid = dw_hdmi_rockchip_mode_valid,
+>  	.mpll_cfg   = rockchip_mpll_cfg,
+>  	.cur_ctr    = rockchip_cur_ctr,
+>  	.phy_config = rockchip_phy_config,
+
