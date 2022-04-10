@@ -2,55 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F24134FAF06
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1AF84FAF19
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243669AbiDJQoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 12:44:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50162 "EHLO
+        id S235460AbiDJQzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 12:55:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238184AbiDJQoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:44:15 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E264B841;
-        Sun, 10 Apr 2022 09:42:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C8FAFB80E18;
-        Sun, 10 Apr 2022 16:42:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326A2C385BB;
-        Sun, 10 Apr 2022 16:41:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649608921;
-        bh=01McTTLBX/RzXMJb16VibZQqPQGnBa6CpsLcFull0FE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ij509aT4VHMEslbHqIP9u1UZVsFJjf+yJDNAiDFuek0LIFlF+QCvXw4SMLiR6qOkq
-         YYbq5Nme7To3cov2yvKCEGdlRM6yT0o3J8U+1EnkWiqHF8QrL7HtjSun793aoKa2W5
-         XZPTMs9lY5D8XLJKgN39yLvyKbNkufygnx/n9KnO2aKchCzaH5RP3sLclffVNMfQif
-         eGao9Ck0QAxaT5FlRB9ez5pJBqHZdsgSKZLePPbP551t8zwPuS85KRclEDBXWcCMg1
-         tmoUXK4Bn8IyKds7MfdDWHY8NWbXbyXyeM/xIPTeuBskGFTkEbyCs0i56029Nx9O7U
-         d7h/Y3LZhulyA==
-Date:   Sun, 10 Apr 2022 17:49:52 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Gwendal Grignou <gwendal@chromium.org>, robh+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH v4 1/8] iio: sx9324: Fix default precharge internal
- resistance register
-Message-ID: <20220410174952.6660e013@jic23-huawei>
-In-Reply-To: <CAE-0n532f37UD8OyiFc0_ROzgc24Hb=aOYN+ALgruiehiNTfuQ@mail.gmail.com>
-References: <20220406165011.10202-1-gwendal@chromium.org>
-        <20220406165011.10202-2-gwendal@chromium.org>
-        <CAE-0n532f37UD8OyiFc0_ROzgc24Hb=aOYN+ALgruiehiNTfuQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S240762AbiDJQzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:55:39 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A019E4B436;
+        Sun, 10 Apr 2022 09:53:26 -0700 (PDT)
+Received: from p508fdda7.dip0.t-ipconnect.de ([80.143.221.167] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1ndaoQ-0006ci-8W; Sun, 10 Apr 2022 18:53:18 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Frank Wunderlich <frank-w@public-files.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Dan Johansen <strit@manjaro.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix clocks for rk356x usb
+Date:   Sun, 10 Apr 2022 18:53:17 +0200
+Message-ID: <10062144.nUPlyArG6x@phil>
+In-Reply-To: <CAMdYzYpK-RTf_8FVte2QLJawCKCjU6efgkRjsBj6quWGSSE6xA@mail.gmail.com>
+References: <20220409075147.136187-1-linux@fw-web.de> <trinity-da7d86cc-5703-4657-858c-f241e5f0a6fd-1649505409042@3c-app-gmx-bap35> <CAMdYzYpK-RTf_8FVte2QLJawCKCjU6efgkRjsBj6quWGSSE6xA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,24 +48,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Apr 2022 10:14:01 -0700
-Stephen Boyd <swboyd@chromium.org> wrote:
-
-> Quoting Gwendal Grignou (2022-04-06 09:50:04)
-> > Fix the default value for the register that set the resistance:
-> > it has to be 0x10 per datasheet.
+Am Samstag, 9. April 2022, 17:26:01 CEST schrieb Peter Geis:
+> On Sat, Apr 9, 2022 at 7:56 AM Frank Wunderlich <frank-w@public-files.de> wrote:
 > >
-> > Fixes: 4c18a890dff8d ("iio:proximity:sx9324: Add SX9324 support")
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> > ---  
+> > Hi,
+> >
+> > so to not break the binding and other boards the right Patch should be like this
+> >
+> > +++ b/drivers/usb/dwc3/core.c
+> > @@ -1691,17 +1691,17 @@ static int dwc3_probe(struct platform_device *pdev)
+> >                  * Clocks are optional, but new DT platforms should support all
+> >                  * clocks as required by the DT-binding.
+> >                  */
+> > -               dwc->bus_clk = devm_clk_get_optional(dev, "bus_early");
+> > +               dwc->bus_clk = devm_clk_get_optional(dev, "bus_clk");
+> >                 if (IS_ERR(dwc->bus_clk))
+> >                         return dev_err_probe(dev, PTR_ERR(dwc->bus_clk),
+> >                                              "could not get bus clock\n");
+> >
+> > -               dwc->ref_clk = devm_clk_get_optional(dev, "ref");
+> > +               dwc->ref_clk = devm_clk_get_optional(dev, "ref_clk");
+> >                 if (IS_ERR(dwc->ref_clk))
+> >                         return dev_err_probe(dev, PTR_ERR(dwc->ref_clk),
+> >                                              "could not get ref clock\n");
+> >
+> > -               dwc->susp_clk = devm_clk_get_optional(dev, "suspend");
+> > +               dwc->susp_clk = devm_clk_get_optional(dev, "suspend_clk");
+> >                 if (IS_ERR(dwc->susp_clk))
+> >                         return dev_err_probe(dev, PTR_ERR(dwc->susp_clk),
+> >                                              "could not get suspend clock\n");
+> >
+> > but this needs fixing dts using the new clock names
+> >
+> > this is a link to the series moving from bulk_clk to named clocks:
+> >
+> > https://patchwork.kernel.org/project/linux-usb/patch/20220127200636.1456175-3-sean.anderson@seco.com/
+> >
+> > regards Frank
 > 
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Applied to the fixes-togreg branch of iio.git.
+> I've submitted a fix for the backwards compatibility issue.
+> https://patchwork.kernel.org/project/linux-rockchip/patch/20220409152116.3834354-1-pgwipeout@gmail.com/
+> 
+> This fix is standalone and necessary no matter which route we decide
+> to go with this series (and the rk3328/rk3399 support as well).
+> With this patch, dwc3 is functional on the rk356x as the series was
+> submitted, so if we decide to fix everything all at once, that is a
+> viable option.
 
-I'm crossing my fingers that I'll be able to simultaneously
-queue this fix and the rest of the series on different branches
-without any significant merge problems...
+Thanks for doing that fix.
 
-Jonathan
+As the usb-dt-series is actually following the rockchip,dwc3 binding,
+and "just" the driver does ignore it, I've now applied the usb series
+and hope for a resolution of the general problem :-)
+
+
+Heiko
+
+
+
 
