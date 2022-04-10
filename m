@@ -2,75 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94BD04FAF4B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 19:25:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E780D4FAF62
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 19:51:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235686AbiDJR2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 13:28:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
+        id S231723AbiDJRxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 13:53:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233236AbiDJR2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 13:28:05 -0400
-X-Greylist: delayed 443 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 10 Apr 2022 10:25:54 PDT
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F3460D8C;
-        Sun, 10 Apr 2022 10:25:54 -0700 (PDT)
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS DV RSA Mixed SHA256 2020 CA-1" (verified OK))
-        by bmailout2.hostsharing.net (Postfix) with ESMTPS id C1C9F2800A278;
-        Sun, 10 Apr 2022 19:18:26 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-        id B5498324E0; Sun, 10 Apr 2022 19:18:26 +0200 (CEST)
-Date:   Sun, 10 Apr 2022 19:18:26 +0200
-From:   Lukas Wunner <lukas@wunner.de>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc:     peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca,
-        =robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stefanb@linux.ibm.com, p.rosenberger@kunbus.com
-Subject: Re: [PATCH 5/5] tpm: tpm_tis_spi_slb_9670: implement set_reset and
- unset_reset functions
-Message-ID: <20220410171826.GB24453@wunner.de>
-References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
- <20220407111849.5676-6-LinoSanfilippo@gmx.de>
+        with ESMTP id S229554AbiDJRxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 13:53:14 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDC74B418;
+        Sun, 10 Apr 2022 10:51:01 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id h15-20020a17090a054f00b001cb7cd2b11dso2184794pjf.5;
+        Sun, 10 Apr 2022 10:51:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Id/DirePZJY/Ai1GEf6Xyjg7zUYiVdrMqThuQAYxghE=;
+        b=PuRceRuA04I2fUI+H534OZaQG3ZJn4zMgmj/TNQkY8mW/DtKsLtmyl/q4OWqWhDGeZ
+         ejwTzY79s7YrWQ0J6rTl8d8THVqV+1wG44tyWsXq4m/MiHWiP+7uafcv1OSe94zIYMF3
+         9QTFPgb5dzmVp/dstNt+8Cki/fvfjjfg/zjwc8HRtKw4LgugxAVk78PpdELq1CnzhoOE
+         Ufct+alK4wSPEbvrZQiD1K0UTIiD679UzYyI5qiJgRZZrZN2jC6XylAYj0e3O+F3BywA
+         jUTUrpq/JNRzZx9fvh5Dtf/BHZmB50u9/KZQNnkmStrhM+2l8/8/ZYITfuWHGCYxkgha
+         d/Mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Id/DirePZJY/Ai1GEf6Xyjg7zUYiVdrMqThuQAYxghE=;
+        b=WO39sJq5QwUIB+Ielfd2pG10hkJn6TZEmsBH+Jnmn3TtkimXHkpJgkltqH0CaVg2gI
+         8qrE7u+Gf7ipK/ECii6kp8TTDFj8bLJ+bZ/8rhiPtPoA7UPnWkl2ec+5yQTgtJXm900H
+         xfUyC+qbBGXkoiZHwLjLj9i97rA9TDm2BNZgRdq+dRSqaXztixISGJzXC8HhHzMOJarW
+         v+ehhDLLo69X9+g3QHPvJ00ZfsXxG5PeOo6a230SoUzTFLwlAn/3/BHLw18dK7yJ0Uxe
+         +ahkStbpkxN3yS5uCCSWRF0qTcoPnxi1DxP2e3Au+MIBcJWlfM+TSS3NvJYZxC1HBH4W
+         yigw==
+X-Gm-Message-State: AOAM533U8LmJSEwAp1HZ1M0frBmBeKfB056fNet8OWKSxTOI4shGn9kZ
+        ej069SW7oTG7yoR74IK3brE=
+X-Google-Smtp-Source: ABdhPJyQy4c89b59i1wMQNAYbXRWxvfN1RFTS3Q/G1sNt2+3pACXaxa384nayARAetxtkwonjpr0EA==
+X-Received: by 2002:a17:902:8490:b0:156:9846:240 with SMTP id c16-20020a170902849000b0015698460240mr28464361plo.141.1649613060769;
+        Sun, 10 Apr 2022 10:51:00 -0700 (PDT)
+Received: from localhost.localdomain ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id l4-20020a056a0016c400b004f79504ef9csm32283286pfc.3.2022.04.10.10.50.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Apr 2022 10:51:00 -0700 (PDT)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/6] Convert Qcom BAM dma binding to json format
+Date:   Sun, 10 Apr 2022 23:20:50 +0530
+Message-Id: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220407111849.5676-6-LinoSanfilippo@gmx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Apr 07, 2022 at 01:18:49PM +0200, Lino Sanfilippo wrote:
-> --- /dev/null
-> +++ b/drivers/char/tpm/tpm_tis_spi_slb9670.c
-[...]
-> +int slb9670_spi_unset_reset(struct tpm_tis_data *data)
-[...]
-> +int slb9670_spi_set_reset(struct tpm_tis_data *data)
-[...]
-> +static const struct tpm_tis_phy_ops slb9670_spi_phy_ops = {
-> +	.read_bytes = tpm_tis_spi_read_bytes,
-> +	.write_bytes = tpm_tis_spi_write_bytes,
-> +	.read16 = tpm_tis_spi_read16,
-> +	.read32 = tpm_tis_spi_read32,
-> +	.write32 = tpm_tis_spi_write32,
-> +	.set_reset = slb9670_spi_set_reset,
-> +	.unset_reset = slb9670_spi_unset_reset,
-> +};
+v2:
+- Add more variants of ip4019-ap/dk-{01/04/07} for dma node rename
+- Add #dma-cells in binding file
+- use additionalproperties as false
+---
 
-0-day is complaining that slb9670_spi_set_reset() / slb9670_spi_unset_reset()
-are not declared static:
+Patch 1,2,3,4,5 require generic node name for dma and 6/6 is actual
+conversion change.
 
-https://lore.kernel.org/all/202204081357.8SfjQosI-lkp@intel.com/
+Looking forward towards review comments. Thanks!
 
-Thanks,
+Kuldeep Singh (6):
+  ARM: dts: qcom: apq8064: User generic node name for DMA
+  ARM: dts: qcom: mdm9615: User generic node name for DMA
+  arm64: dts: qcom: msm8996: User generic node name for DMA
+  ARM: dts: qcom: ipq4019: User generic node name for DMA
+  ARM: dts: qcom: ipq8064: User generic node name for DMA
+  dt-bindings: dma: Convert Qualcomm BAM DMA binding to json format
 
-Lukas
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 94 +++++++++++++++++++
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  | 52 ----------
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |  6 +-
+ arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1.dtsi |  4 +-
+ .../boot/dts/qcom-ipq4019-ap.dk04.1-c1.dts    |  2 +-
+ arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1.dtsi |  2 +-
+ arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1.dtsi |  4 +-
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |  6 +-
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           |  4 +-
+ arch/arm/boot/dts/qcom-mdm9615.dtsi           |  4 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  2 +-
+ 11 files changed, 111 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+
+-- 
+2.25.1
+
