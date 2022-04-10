@@ -2,117 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4CB54FAE5B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 17:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4F24FAE77
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 17:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236284AbiDJPGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 11:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
+        id S237080AbiDJPZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 11:25:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235249AbiDJPGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 11:06:48 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705D056775;
-        Sun, 10 Apr 2022 08:04:37 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id o2so907623lfu.13;
-        Sun, 10 Apr 2022 08:04:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uOwN9vBmQdLiAiop5qvqolDSzn0EbScB1TJ3qvgyKP4=;
-        b=N/EAxeksoGcR25P1cO+rRBnnWJeh954SB9clCW8JYB7mC/p8FbN8llnTZCR14ZBTwp
-         e3IZn6kQ/YGF1mmrUyBhAFyn9/cPSC8f2wiJBjhd8OXrYwz7qyhTZGLz+vjUfkhAGeo7
-         7K9YJPggY72uhbhDdPUHR95VaFicvncBeLwtROWM6ULrrMohcokHfdtR86MQZTd+vonf
-         ohAvLJ/Tw6wLSAcIgqZdumhaxIRewDBDhkZTZUKkRFTootnGUEnxXyky8jmKKCB1CZIA
-         BMXEpjbdGJ8A5hU6pQwfJR9TmN2nc3sg5V7FGiLnzzZfCG3YL8PAvIb0KyN6nLkdLARU
-         WCrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uOwN9vBmQdLiAiop5qvqolDSzn0EbScB1TJ3qvgyKP4=;
-        b=WOLqdLbktL54BbtkHh3ZJZ6JfC7LW5VKH0QuG8Z/EZbLgxVFb2PjBw5mK/jDa9RW6J
-         xiz6K62agL6+aSvTWszW8IBSGa5/t4WwHZe7/LkYUnquxR6cxdjOdY32mb5VaTqfwscM
-         R0H89UxbCbb+Pakxrd/nQFR7M5JZtL4TltHeEMYIm/VFdSq/5f1ngA7vjqg/1jlAEFMp
-         IPb2NuTw2dPzLz6XIyHBIQeltBBZC1OyjDJ+cwrQoOOi/Q/gtGDtN/TDx3HOXQJZAMZE
-         JYFwiW4gaERVP35tI+Qu3NjVsJy0bjsD7HvODFDXBuMnL4Eo5cfllr1ykq+QuGpuVfdm
-         Z8Mg==
-X-Gm-Message-State: AOAM532GPX0ZdLA0JpzUkmXqNIQ2npvMwxjQ2+VzI6ss0qFfEqFDcNsz
-        FatE2mO3VAfD4COxe93CJk4=
-X-Google-Smtp-Source: ABdhPJw8OMY3Ri0SfS4Q6JJrZLFioLRzz+diX3CAjHnsMo1KRWVVUJ1ANDt81caOOte3RkO0sN+JTw==
-X-Received: by 2002:ac2:4194:0:b0:442:ed9e:4a25 with SMTP id z20-20020ac24194000000b00442ed9e4a25mr17987613lfh.629.1649603075677;
-        Sun, 10 Apr 2022 08:04:35 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-138-167.dynamic.spd-mgts.ru. [109.252.138.167])
-        by smtp.googlemail.com with ESMTPSA id f4-20020ac24e44000000b0044b07e39d75sm2217435lfr.74.2022.04.10.08.04.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 08:04:34 -0700 (PDT)
-Message-ID: <bf23e357-1e74-6bbe-7f37-11147654e5fc@gmail.com>
-Date:   Sun, 10 Apr 2022 18:04:34 +0300
+        with ESMTP id S229481AbiDJPZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 11:25:11 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C2F17075;
+        Sun, 10 Apr 2022 08:23:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 4E5D9CE0B4E;
+        Sun, 10 Apr 2022 15:22:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3B8C385A1;
+        Sun, 10 Apr 2022 15:22:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649604177;
+        bh=ulUg6T6rrbt/EfbXOkU1Ef5NyiEsXklwdnANBmyHwnU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Z+MIwtLoYfW/PkpuFbpFgmte8APDEpCPLOsocEKBWi5prjSmAjyGB6lO7eTL0Xx2z
+         DnU21iSp77gz615YWOcDeYBR6Pmp+uEds1xTiSlovD3cxER77TzVZFGcrslenoOzD4
+         vq3fvTiEAXq/AhO8yhCLHkhuxtisoWdSJwyzvQZw5/yNidyVZOXuvBEc0hxxUo0v2G
+         SLHTAO6ynFIFqWBM6dH2IjdIHEmsx7kh6e0/S4+ikmCLMqYUEFECyJg+fLyChJiNbv
+         4wDbmMzWq6wNMLifePGBeZGQpNczY8KmPFvI+5PWVuzejpdQaio2Untk6AZrOPByDL
+         gt90y5jf3XP3g==
+Received: by mail-pg1-f172.google.com with SMTP id s137so9306060pgs.5;
+        Sun, 10 Apr 2022 08:22:57 -0700 (PDT)
+X-Gm-Message-State: AOAM532rdMbeagthwhdyI5WIkI0yXuqx16TcGhqQb4RKcHFmPhzEjpYU
+        KvWeh6+Z/B8sYhrHgwZWHbiX3pfS1V0EB3jACuI=
+X-Google-Smtp-Source: ABdhPJzGtnaWz59gOYXMnLlmEDIkfUFWhgLEYdvgIGgLs8MbiEJgqcMz0UwJhgS3ApBj8wO1RoEkv0GyccBaij6mAlE=
+X-Received: by 2002:a63:ce45:0:b0:399:1124:fbfe with SMTP id
+ r5-20020a63ce45000000b003991124fbfemr23656981pgi.542.1649604177314; Sun, 10
+ Apr 2022 08:22:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [Patch v6 1/4] memory: tegra: Add memory controller channels
- support
-Content-Language: en-US
-To:     Ashish Mhetre <amhetre@nvidia.com>, krzysztof.kozlowski@linaro.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220406052459.10438-1-amhetre@nvidia.com>
- <20220406052459.10438-2-amhetre@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220406052459.10438-2-amhetre@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220402193942.744737-1-aford173@gmail.com> <20220402193942.744737-2-aford173@gmail.com>
+ <a66f17c6-cec6-3eb8-92df-9990d74dd122@linaro.org> <CAHCN7x+mm_oXdkzXOTEQwjCFfDB99p2JG8zZzydbL5_pUVJqCQ@mail.gmail.com>
+In-Reply-To: <CAHCN7x+mm_oXdkzXOTEQwjCFfDB99p2JG8zZzydbL5_pUVJqCQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Sun, 10 Apr 2022 17:22:46 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdhuzHA1Vi53JE+nFDB1Tj823fx8s+ffx3mPvztWtbXdw@mail.gmail.com>
+Message-ID: <CAJKOXPdhuzHA1Vi53JE+nFDB1Tj823fx8s+ffx3mPvztWtbXdw@mail.gmail.com>
+Subject: Re: [PATCH V3 1/3] dt-bindings: mmc: imx-esdhc: Update compatible fallbacks
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.04.2022 08:24, Ashish Mhetre пишет:
-> diff --git a/include/soc/tegra/mc.h b/include/soc/tegra/mc.h
-> index 1066b1194a5a..c3c121fbfbb7 100644
-> --- a/include/soc/tegra/mc.h
-> +++ b/include/soc/tegra/mc.h
-> @@ -13,6 +13,9 @@
->  #include <linux/irq.h>
->  #include <linux/reset-controller.h>
->  #include <linux/types.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define MC_MAX_CHANNELS 16
->  
->  struct clk;
->  struct device;
-> @@ -181,6 +184,7 @@ struct tegra_mc_ops {
->  	int (*resume)(struct tegra_mc *mc);
->  	irqreturn_t (*handle_irq)(int irq, void *data);
->  	int (*probe_device)(struct tegra_mc *mc, struct device *dev);
-> +	int (*map_regs)(struct tegra_mc *mc, struct platform_device *pdev);
->  };
->  
->  struct tegra_mc_soc {
-> @@ -194,6 +198,7 @@ struct tegra_mc_soc {
->  	unsigned int atom_size;
->  
->  	u8 client_id_mask;
-> +	u8 num_channels;
->  
->  	const struct tegra_smmu_soc *smmu;
->  
-> @@ -212,6 +217,8 @@ struct tegra_mc {
->  	struct tegra_smmu *smmu;
->  	struct gart_device *gart;
->  	void __iomem *regs;
-> +	void __iomem *bcast_ch_regs;
-> +	void __iomem *ch_regs[MC_MAX_CHANNELS];
+On Sun, 10 Apr 2022 at 16:36, Adam Ford <aford173@gmail.com> wrote:
+> > Instead of comment use (I think on the same level as items):
+> >
+> > deprecated: true
+>
+> I have tried various combinations of where to place "deprecated" and
+> whether or not to use a hyphen, but I always get syntax errors.  Do
+> you have an example of this I can see?
 
-Why not to allocate ch_regs at runtime?
+Some simple example:
+Documentation/devicetree/bindings/arm/arm,cci-400.yaml
+
+More complex:
+Documentation/devicetree/bindings/arm/gemini.yaml
+
+Best regards,
+Krzysztof
