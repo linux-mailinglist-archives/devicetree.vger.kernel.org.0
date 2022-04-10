@@ -2,86 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2791F4FAF18
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A064FAF2E
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 19:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238878AbiDJQzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 12:55:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53102 "EHLO
+        id S240801AbiDJRNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 13:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235460AbiDJQze (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:55:34 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9084C4B435;
-        Sun, 10 Apr 2022 09:53:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S231439AbiDJRNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 13:13:38 -0400
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [IPv6:2a01:37:1000::53df:5f64:0])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4E3F22B3A;
+        Sun, 10 Apr 2022 10:11:25 -0700 (PDT)
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 49CC5B80E29;
-        Sun, 10 Apr 2022 16:53:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C8EEC385A4;
-        Sun, 10 Apr 2022 16:53:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649609601;
-        bh=EEwOvziSa4XARwMx46j7IVRZEenEfM1PTjghg9jOR34=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=AkxjgfUCTQHhTT37GlLVL7t9SBSvz5KSkiU1Lu/gURVt1OzpoHgK7wFU3ZYB61Nes
-         yiGx0TI3n9ww10maVxxwK8eB0M90+F160JG61C8yzm/VSW6ZMbH4WagUwKF5pwO/y7
-         QaLbGypK7NF0nM4IqBWHkiELnclVY1Be2a7vD0Uir+PoV+/ckf++nFb56ATQ38R8TQ
-         k+wYzAW5mnsVfIl18zUag9BkQJKb7PDrfaEdAzGQmyMh9EOPy0q/nerH01uvIlk8eH
-         JTuu8PmxCXzUxImjD49k5l/HxhbBkWlUdY6rWvMyDuVglIFUYuNKyxO4urnrOXoK2Z
-         ujwVtyF0Pbq9g==
-Date:   Sun, 10 Apr 2022 18:01:12 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh@kernel.org
-Subject: Re: [PATCH v2 0/2] add support for ASM330LHHX
-Message-ID: <20220410180112.38e9f047@jic23-huawei>
-In-Reply-To: <cover.1649100168.git.lorenzo@kernel.org>
-References: <cover.1649100168.git.lorenzo@kernel.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS DV RSA Mixed SHA256 2020 CA-1" (verified OK))
+        by bmailout1.hostsharing.net (Postfix) with ESMTPS id 34ADC30057E6C;
+        Sun, 10 Apr 2022 19:11:23 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+        id 298284A855; Sun, 10 Apr 2022 19:11:23 +0200 (CEST)
+Date:   Sun, 10 Apr 2022 19:11:23 +0200
+From:   Lukas Wunner <lukas@wunner.de>
+To:     Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     Lino Sanfilippo <LinoSanfilippo@gmx.de>, peterhuewe@gmx.de,
+        jarkko@kernel.org, =robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stefanb@linux.ibm.com, p.rosenberger@kunbus.com
+Subject: Re: [PATCH 1/5] tpm: add functions to set and unset the tpm chips
+ reset state
+Message-ID: <20220410171123.GA24453@wunner.de>
+References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
+ <20220407111849.5676-2-LinoSanfilippo@gmx.de>
+ <20220407142526.GW64706@ziepe.ca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220407142526.GW64706@ziepe.ca>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  4 Apr 2022 21:24:42 +0200
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
-
-> Add support for ASM330LHHX IMU automotive mems sensor
-> https://www.st.com/resource/en/datasheet/asm330lhhx.pdf
+On Thu, Apr 07, 2022 at 11:25:26AM -0300, Jason Gunthorpe wrote:
+> On Thu, Apr 07, 2022 at 01:18:45PM +0200, Lino Sanfilippo wrote:
+> > Currently it is not possible to set the tpm chips reset state from within
+> > the driver. This is problematic if the chip is still in reset after the
+> > system comes up. This may e.g. happen if the reset line is pulled into
+> > reset state by a pin configuration in the device tree.
 > 
-> Changes since v1:
-> - use lsm6dsr as fallback device for asm330lhhx
+> This kind of system is badly misdesigned.
+> 
+> TPM PCRs fundementally cannot work if the TPM reset line is under
+> software control.
 
-Series applied to the togreg branch of iio.git and initially
-pushed out as testing for 0-day to take a first look at it.
+Not every system which incorporates a TPM wants to use or is even capable
+of measuring software state of any kind or perform secure boot.
+
+Those systems may merely want to use the TPM to store key material.
 
 Thanks,
 
-Jonathan
-
-> 
-> Lorenzo Bianconi (2):
->   iio: imu: st_lsm6dsx: add support to ASM330LHHX
->   dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhx device bindings
-> 
->  .../bindings/iio/imu/st,lsm6dsx.yaml          | 38 ++++++++++---------
->  drivers/iio/imu/st_lsm6dsx/Kconfig            |  6 +--
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h       |  2 +
->  .../iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c    |  3 +-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c  |  6 ++-
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c   |  5 +++
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c   |  5 +++
->  7 files changed, 43 insertions(+), 22 deletions(-)
-> 
-
+Lukas
