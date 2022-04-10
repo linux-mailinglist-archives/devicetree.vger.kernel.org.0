@@ -2,107 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1452E4FAF86
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 20:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 686244FAF90
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 20:23:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235222AbiDJSOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 14:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48230 "EHLO
+        id S233036AbiDJSZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 14:25:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233036AbiDJSOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 14:14:49 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F95D60D98;
-        Sun, 10 Apr 2022 11:12:38 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9BDBE482;
-        Sun, 10 Apr 2022 20:12:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1649614356;
-        bh=jX5Le6TCB9q6490TZDhc0xzt6OcdxmfvhJ4v0itjJg0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VldgW/moPWOythTuBPC5xGILucTXvchs1S+SzHc+XewE9FS4bpMGqz4LMJBWCT8rD
-         bsdB8fodo/WycYgazUmkG7xeUub+SpFgkcyQxnXDQSEpOXo/U9E7QniIgd3prhTSPb
-         sdKF3FdU9F7D1eshmFt6myXZdPI5eODsxnQfD4S4=
-Date:   Sun, 10 Apr 2022 21:12:34 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Fancy Fang <chen.fang@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        Adam Ford <aford173@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH 10/11] dt-bindings: display: exynos: dsim: Add NXP
- i.MX8MM support
-Message-ID: <YlMeEqhkQ6HuCKFE@pendragon.ideasonboard.com>
-References: <20220408162108.184583-1-jagan@amarulasolutions.com>
- <20220408162108.184583-11-jagan@amarulasolutions.com>
+        with ESMTP id S230458AbiDJSZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 14:25:31 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F693465F;
+        Sun, 10 Apr 2022 11:23:19 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bh17so26680427ejb.8;
+        Sun, 10 Apr 2022 11:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=dTlWD/+DNG8ntKC7giRASd1M2RQMGgWr/+DdcAwn+Oo=;
+        b=fTMuFY8NJsqQxEy1jImsyfghQ41FlphmGwdVAypDvJrGJG2TOyyBp3sU9/lk4Kc9Wa
+         xFgHQAGmcPPsFV6W11Q81eQ4wpQPF1dLb4D7RQmZjOYkAruuMeO3XDoWUxqp+nEuJvQh
+         KMz/x6PEMXjlOF+/ZlB5sDl+tvPVvflC8yZfWH0bqxAAKfGY94w8ltirJIz+QbcF2VJU
+         E+7Vxuws97vPnDn+UXE2RsRm4PGBAThfQ/b4xbSqTnw20vKKn83Le92BW5Xm9jX5QB5g
+         kN+66pwcJb2dlKsTN5NrTRH51kqBUenTm8K/8CmiCeY7tOZ4WQnqgF0/P3Ohs8c9i/3x
+         +9fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=dTlWD/+DNG8ntKC7giRASd1M2RQMGgWr/+DdcAwn+Oo=;
+        b=nW879R4TszUWVsfpK5rBIFvB2CdCsBV37lKXhPwgQtV8rZ32fjpxKhF0svSt55Z84z
+         cnTl+ANSgnVTPYZYeAGJiog521QDMk02n8AZntK2s0cIYEU/MYnSm4nFVSyLWkK+wwYm
+         jKom//mHDoKkMtcXoGTk7WbpUghbN37JNEPG8ZKAtbTlJPioqCsjUSu/PSNrCc4NmH18
+         bxw+zW3Afgm5lGhAGIt6+9kqhgC5aJ4V3BdeNQlEjWof78/pHoRto/eBe2GTf51MO3Ye
+         zHpHRgu+8mmlns8p3wQdZ3nEIcW6gMGp1+hZcagTrjzK606HzW47M9Lb7y46YEGQ23YG
+         FGwg==
+X-Gm-Message-State: AOAM532VFwwgQSfjcHC09aNIpv5IUfKBi6Ln72e6KH69uIwxauwFojOu
+        QrZp8XE99agvFr8DtKp1e0w=
+X-Google-Smtp-Source: ABdhPJyWiHyfZYk23/sjFDvNph0NWHcmJxJcH7zcPzkJBZmYJp2g9edrzfKJENEPKt00hjEItaEJIw==
+X-Received: by 2002:a17:906:9743:b0:6d8:632a:a42d with SMTP id o3-20020a170906974300b006d8632aa42dmr27490055ejy.157.1649614998151;
+        Sun, 10 Apr 2022 11:23:18 -0700 (PDT)
+Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
+        by smtp.gmail.com with ESMTPSA id e22-20020a170906505600b006da7d71f25csm11054135ejk.41.2022.04.10.11.23.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Apr 2022 11:23:17 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Philip Rinn <rinni@inventati.org>, wens@csie.org,
+        Samuel Holland <samuel@sholland.org>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: Re: [PATCH v4] arm64: dts: allwinner: a64: olinuxino: Enable audio
+Date:   Sun, 10 Apr 2022 20:23:16 +0200
+Message-ID: <4727823.31r3eYUQgx@kista>
+In-Reply-To: <40976a35-2241-a2f0-c9be-dd32c1b51814@sholland.org>
+References: <4fc41278-c46c-6486-a336-f2a329bd6bd0@sholland.org> <20220407155145.10891-1-rinni@inventati.org> <40976a35-2241-a2f0-c9be-dd32c1b51814@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220408162108.184583-11-jagan@amarulasolutions.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
-
-Thank you for the patch.
-
-On Fri, Apr 08, 2022 at 09:51:07PM +0530, Jagan Teki wrote:
-> Samsung MIPI DSIM bridge can also be found in i.MX8MM/i.MX8MN SoC.
+Dne petek, 08. april 2022 ob 00:06:01 CEST je Samuel Holland napisal(a):
+> On 4/7/22 10:51 AM, Philip Rinn wrote:
+> > Enable the audio hardware on the Olimex A64-OLinuXino board family.
+> > Tested on the A64-OLinuXino-2Ge8G-IND variant.
+> > 
+> > Signed-off-by: Philip Rinn <rinni@inventati.org>
 > 
-> Add dt-bingings for it.
-> 
-> v1:
-> * new patch
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> index be377786e8cd..5133d4d39190 100644
-> --- a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> +++ b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
-> @@ -7,6 +7,7 @@ Required properties:
+> Acked-by: Samuel Holland <samuel@sholland.org>
 
-May I try and ask you to convert the DT bindings to YAML as part of this
-series ? :-)
+Applied to sunxi/dt-for-5.19. Thanks!
 
->  		"samsung,exynos5410-mipi-dsi" /* for Exynos5410/5420/5440 SoCs */
->  		"samsung,exynos5422-mipi-dsi" /* for Exynos5422/5800 SoCs */
->  		"samsung,exynos5433-mipi-dsi" /* for Exynos5433 SoCs */
-> +		"fsl,imx8mm-mipi-dsim" /* for i.MX8M Mini/Nano SoCs */
+Best regards,
+Jernej
 
-Should we have two different compatible strings for i.MX8MM and i.MX8MN
-?
 
->    - reg: physical base address and length of the registers set for the device
->    - interrupts: should contain DSI interrupt
->    - clocks: list of clock specifiers, must contain an entry for each required
-
--- 
-Regards,
-
-Laurent Pinchart
