@@ -2,116 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD2F4FB018
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E854D4FB021
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbiDJUcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 16:32:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46514 "EHLO
+        id S243928AbiDJUei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 16:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243910AbiDJUcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 16:32:33 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE9E4E3B0
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:30:22 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id g11so8114176qke.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BsUcM/Z7XokBBwlNH68ct6CoGgQVUeHoiGIq8UOrkwY=;
-        b=cm0vDg1xFaEu9ibVLcvrZe+KU2uU7qBEpKcpcsOUQ7yy0iL5YqYNzPqi2kXEbU92j9
-         wPvD5MWybREyUfXzCy+vckx1uHnCJR97bqscSuuG5vGUqSHem5LTgmIF5lQt2dFqSmI/
-         w4btpLhGLxvFQHarQ1oiXdunNkZWfI6O4POVBAty3zF/IKWjzY5ENEQaVZj0CeDzNuHN
-         Vw+33w/MNXrhP4Wt3OfX2HrtXz0qcmrSY+mlmiIIcXl6hbUsyJBhIolmwxD1XE/h0Z+u
-         SlT/6QjDPeFPLPiAHRzAb6xt1rOM3X7UvSA7+xcYsdQKRpTYAKkPoNmeIbba9pwCOcDP
-         2Vng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BsUcM/Z7XokBBwlNH68ct6CoGgQVUeHoiGIq8UOrkwY=;
-        b=VODkqQeOytAJkEw4QV50J3dZ7i7F0DU8qdcI9uWBAH/zODrF4CtBEUK2fWpPPKcHCM
-         6OLlEetu2+tauocdgrg5/x/dsrZEXu1sMfFJR6wzW3Tt+yuyNiu8O5lTGEXEU0C1qYo3
-         ZY7gWXpPYobPJ02fB7S2aRPMPaMetp6S4tBXU5f7n3Cz493FyPs0tyNUQNrYYh3k0AaU
-         x/HXSXeXHM5KT4xjD1hJj6UO2KG7ydp3BafvTwOoh+u7ceovHx4sVmheePb+aB6NDREC
-         jTzexWp1ugasUGdTuKhOgH0cpoW34r3I7Rsgnv1gLXKO5ghuD7nL11N06+4E8l7eB8qP
-         qSYA==
-X-Gm-Message-State: AOAM531esxz8Q1rnZQlG7UlXRRcRCOQxTc4WU3EKsW84YmfgmBdbnwI4
-        BEVpUcfrUiLpIingxbG+7Ls=
-X-Google-Smtp-Source: ABdhPJy3I3GbEexUHVfDnRg9g4E4gkjFWv7Qfyhzx6G+Eoe7jfi1VGRzcdK+RQ6acRAQqz9DVaKTjw==
-X-Received: by 2002:ae9:e8d0:0:b0:69b:ef92:c0b with SMTP id a199-20020ae9e8d0000000b0069bef920c0bmr7104236qkg.498.1649622621396;
-        Sun, 10 Apr 2022 13:30:21 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:6c1b:d125:bcaa:58ab? ([2600:1700:2442:6db0:6c1b:d125:bcaa:58ab])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05620a22c600b0067d247816eesm17157139qki.85.2022.04.10.13.30.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 13:30:20 -0700 (PDT)
-Message-ID: <979ce2b9-f7ca-bf2d-7bea-bfb767595e66@gmail.com>
-Date:   Sun, 10 Apr 2022 15:30:20 -0500
+        with ESMTP id S242214AbiDJUee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 16:34:34 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318BC36696;
+        Sun, 10 Apr 2022 13:32:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1649622725; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=jXdnh4aUEPVVkA6EtiCcN6TSmImKgdp4fMgYb0Rv0FSjx5WTBIjPBcQ4RpG/yQi59H2et8GaGLCBLxn/D+tgbd6iP74HuWdPpO34v3jegKpI4TM3Z/Czv4/NpWaKeyxV+FAaCarXYnYB5J65Osii6CNG9iyWOvk1lVV8u6D4t4s=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1649622725; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=3Bdr3ICR42EV4+Gp0uVKnzUG3CsEtqwPWuz6oFmIFog=; 
+        b=PoySZ3s3FSrXk1zJTDM7EAidnQXtnpk+XRSnLy8YLBm3DjLR3HBwbb9TeZFXV7XtqbRlEP6CmFr7OB5sp4A9XDNo2+vDBQ4QV865v59dTJv9yjLvbp4RQPBIz0kMtpqQ8KTUKZR47ZnRcZ5R0zW7R1HkaiwjuQUEmUW/xCeqbOg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649622725;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=3Bdr3ICR42EV4+Gp0uVKnzUG3CsEtqwPWuz6oFmIFog=;
+        b=Q2FD6ild+jvJRxdxl6l7vDoExFiAXBM/GXvduyOuywZX1gC4oWtXnHqo5LX23rhC
+        hMJD7Vq6k2DWUjzbkoVLymjV/nEv46PlKWBoOmcgdbPg8NzSSMHH0MNks27LlDw7d6c
+        9Vhyjqw8zBDTeqHji+ViPCVB2yeEakx3U0TgJ2co=
+Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1649622724346210.97787152203682; Sun, 10 Apr 2022 13:32:04 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH 1/3] mips: dts: mt7621: add mdio label to mdio-bus
+Date:   Sun, 10 Apr 2022 23:31:36 +0300
+Message-Id: <20220410203138.22513-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] of: overlay: set 'overlay_tree' and 'fdt' fields only on
- success
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Slawomir Stepien <sst@poczta.fm>
-Cc:     pantelis.antoniou@konsulko.com, devicetree@vger.kernel.org,
-        krzysztof.adamski@nokia.com, tomasz.medrek@nokia.com,
-        alexander.sverdlin@nokia.com
-References: <YkV60TQ+d3sltkNU@t480s.localdomain>
- <YktXKR0kI+Aq5sW/@robh.at.kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <YktXKR0kI+Aq5sW/@robh.at.kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/4/22 15:38, Rob Herring wrote:
-> On Thu, Mar 31, 2022 at 11:56:33AM +0200, Slawomir Stepien wrote:
->> From: Slawomir Stepien <slawomir.stepien@nokia.com>
->>
->> Before this change, the memory pointed by fields 'overlay_tree' and
->> 'fdt' will be double freed by a call to free_overlay_changeset() from
->> of_overlay_apply(), when the init_overlay_changeset() fails.
->>
->> The first free will happen under 'err_free_tree' label and for the
->> second time under 'err_free_overlay_changeset' label, where we call
->> free_overlay_changeset().
->>
->> This could happen for example, when you are applying an overlay to a
->> target path that does not exists.
->>
->> By setting the pointers only when we are sure that
->> init_overlay_changeset() will not fail, will prevent this double free.
-> 
-> It looks to me like the free should just be moved from 
-> init_overlay_changeset() to of_overlay_fdt_apply() where the allocation 
-> is done. Frank?
+Add mdio label to the mdio-bus node to easily refer to it.
 
-Yes, that would be much cleaner and proper.  v2 of my follow on patch set
-will do so.
+Use the newly created label on the GB-PC2 devicetree.
 
-> 
-> Also, I believe there's a bug that of_overlay_apply() should be passed 
-> new_fdt_align rather than new_fdt. It's only a bug if we expect 
-> overlay_changeset.fdt to point to a valid fdt rather than the memory 
-> allocation.
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+ .../boot/dts/ralink/mt7621-gnubee-gb-pc2.dts   | 18 ++++++++----------
+ arch/mips/boot/dts/ralink/mt7621.dtsi          |  2 +-
+ 2 files changed, 9 insertions(+), 11 deletions(-)
 
-new_fdt is correct instead of new_fdt_align.  It is only used by
-of_overlay_apply() and children for the purpose of kfree().  The
-only place that new_fdt_align is derefenced to access the data
-in the FDT is in of_fdt_unflatten_tree() and children, which is
-called by of_overlay_fdt_apply.
-> 
-> Rob
+diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
+index a7fce8de6147..b427ae9e081f 100644
+--- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
++++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
+@@ -93,17 +93,15 @@ gpio-pinmux {
+ 	};
+ };
+ 
+-&ethernet {
+-	gmac1: mac@1 {
+-		status = "okay";
+-		phy-handle = <&ethphy7>;
+-	};
++&gmac1 {
++	status = "okay";
++	phy-handle = <&ethphy7>;
++};
+ 
+-	mdio-bus {
+-		ethphy7: ethernet-phy@7 {
+-			reg = <7>;
+-			phy-mode = "rgmii-rxid";
+-		};
++&mdio {
++	ethphy7: ethernet-phy@7 {
++		reg = <7>;
++		phy-mode = "rgmii-rxid";
+ 	};
+ };
+ 
+diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+index 3222684915ac..40d0f28446ca 100644
+--- a/arch/mips/boot/dts/ralink/mt7621.dtsi
++++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+@@ -342,7 +342,7 @@ gmac1: mac@1 {
+ 			phy-mode = "rgmii-rxid";
+ 		};
+ 
+-		mdio-bus {
++		mdio: mdio-bus {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-- 
+2.25.1
 
