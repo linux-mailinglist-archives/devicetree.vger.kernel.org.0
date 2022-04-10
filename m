@@ -2,124 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C844FAFD0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 21:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 063554FAFD9
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 21:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241676AbiDJTiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 15:38:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
+        id S237685AbiDJTrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 15:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241651AbiDJTiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 15:38:12 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE94056C3C;
-        Sun, 10 Apr 2022 12:36:00 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id e1so10051336ile.2;
-        Sun, 10 Apr 2022 12:36:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Kq2mDXpJVUKHZ8kDUCVzEF7Ewrkfj8MwGMVmAZjj5HM=;
-        b=G0GGQ471rxAxJoI+vflM67vRTsrP8uihcV5wkB9k4TaGvypdTKT++LF0rprADglri2
-         brzUGCQfJDrVkfTd//0Vuy4tRp7SXeRaYzURHhGtwSnqFsa61aFVWZCnH3/NcJbyj27Z
-         oNSstFwLreTMuQtJSJhbT8AAN5lPD0uyA8jUceBJVjZc+kkpV9PvGpyNZ8KCZy6aRlo/
-         pXWRDNpNLaZfjg+LXmih3fp7zzOfuccZ/38lkPnn4W8fxAlqT33vu8nE81HWhqnI4wmR
-         vMqM6ASyb+Y3K+9tdyzumxpNnxrNe4WL42waSJsqOhuz8hEEvxKPC/JYmovk1hbl4jBM
-         +Izw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Kq2mDXpJVUKHZ8kDUCVzEF7Ewrkfj8MwGMVmAZjj5HM=;
-        b=Xwhhb8fCTFcbZg4DKrjuTzM+VzuVmdMapRuCvGSjlxlouGdeYmZzjBvb6SJusbWWMv
-         4EI9RBI8Vh+rJshke1mcbruFe4njrieZZE+CJc5X7Mbm+bDnxOSQ4RzmUdFd5w0Lhd8b
-         ukrZM0la19sD41vFtyBgI4W7Dw7QhkbE5eKvTs/TlxeSsvMoaEYQhCRWOdlruENJS4Sb
-         uSM6hbTtYv4Y5gabNSkKQoZK8Exub8YTIh1W51WBKkKnw9ysfVgzlDX22w3G6ow7OcNg
-         93dpVVg3MHjB+boot+HHVHLur+Fa3g2/n56jOw/yBUQgn/uYMfxoTGTeTUkHEdoFYWqo
-         f08w==
-X-Gm-Message-State: AOAM532d6cF/gxLSS4GXsJI2b3r3tx0XsWLRMJbtwbuw8TY/pbhLMTo0
-        /tqQmW1Lisr31JLj0VydN8Kptdbqvzc=
-X-Google-Smtp-Source: ABdhPJzaEb7zRVi/v1e9VtJQAKwimsKumnvluM8yYX+DQjfXWYPJkI4iu0AYZKgzS9EOghpQgBRi4A==
-X-Received: by 2002:a05:6e02:18cb:b0:2ca:a7d5:d392 with SMTP id s11-20020a056e0218cb00b002caa7d5d392mr1717924ilu.8.1649619359818;
-        Sun, 10 Apr 2022 12:35:59 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:1e67:6f3b:4d7f:4f90])
-        by smtp.gmail.com with ESMTPSA id m6-20020a923f06000000b002ca74f4fab2sm7218409ila.14.2022.04.10.12.35.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 12:35:59 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-mmc@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V4 3/3] arm64: dts: imx8mp: Enable HS400-ES
-Date:   Sun, 10 Apr 2022 14:35:43 -0500
-Message-Id: <20220410193544.1745684-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220410193544.1745684-1-aford173@gmail.com>
-References: <20220410193544.1745684-1-aford173@gmail.com>
+        with ESMTP id S233614AbiDJTrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 15:47:12 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E44D5D5F2;
+        Sun, 10 Apr 2022 12:44:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1649619888;
+        bh=0b150G6BrvAci/6qIgV9dOcDSR6KYc3RHxHU8xPDus0=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=Ul8XQ3zhOwkrGvPbXl6Qh1pCcpgTgQ0urdJ//KTpUQxLlPkTei9THqUxK1Llt2qbM
+         IGaD4+ECMNxsy+lINyxo6QJSWVRF4oBwSpXCKjzmKVNizOgm83eBy2GuckgF0wHyM5
+         TwMX5WNcR86XK5x2LA6W/lY3gUi/fPne0t5MpDNM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.0.33] ([46.223.3.230]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mt79P-1nxNCT0dwX-00tPw9; Sun, 10
+ Apr 2022 21:44:48 +0200
+Subject: Re: [PATCH 5/5] tpm: tpm_tis_spi_slb_9670: implement set_reset and
+ unset_reset functions
+To:     Lukas Wunner <lukas@wunner.de>
+Cc:     peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca,
+        =robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stefanb@linux.ibm.com, p.rosenberger@kunbus.com
+References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
+ <20220407111849.5676-6-LinoSanfilippo@gmx.de>
+ <20220410171826.GB24453@wunner.de>
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Message-ID: <1229fbc4-0abd-376e-a9d7-ccdd6d56c2ae@gmx.de>
+Date:   Sun, 10 Apr 2022 21:44:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220410171826.GB24453@wunner.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:mSm71vcc1o0VqmXNuuRUwbw/0qJB1BZH90rQsG55VU+wQkrfCzm
+ 6pMOb4LSwaOycSFvCkcGxMT2vtoKI8dHgBX8DafWOZuTCdbeMImfFlhS787f40Nsbnmq7K9
+ rtZ6wNQdXdrOXMxelkvqU9lQV6dnS1PxlitRFnZhR52IFntqBH6DqucbrETE36Ibh1fJ4Ka
+ dvZIAuXaMCWYzm8Juzj1Q==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:LfGMUcy+Qhw=:8gNvMHcSLwyqzQTM/qdGPb
+ kBSyA2A5Cx6VsCLx+8vIAGBPGC4m4S0qQNtwRKSzicgmdHOq40GKo2QB8Gpteca2dNtjzYPfM
+ +92jHFlvLP7DGYuKM607uevtj4wMjnAUQJSHzugRwLpkFzyGQV3VB+GtfGn0htN3xu4oUhZGp
+ 3D4uniB+JZDOtqCGQhzKnTLz9D8AkNGMPguIGeY95bjMerBQZ7nm+mp9Yc+PLmOdf8zSYlQby
+ AxkQWRjAmJsqOOcK0JElMrHgw0/2k6NQZf+3LcvshTgzfbFOfhoWvaNCyEo/43QQbOaDPKeSu
+ P9wqUR1GZKjuaJ86aNYpN0T6xpGkB/YZvK2IgbfBlgLHS1cURmCznaI2C0sE0sIkPcAKj4kuK
+ 0FlUCglZI8Y7Puwf0hTQ2qLds3ouFr6QNT4GYvNWQylNw4q2OI2m2ehm4c9CPS5aRi7ZlpQ3x
+ 6x9edZ9Q1o/xyaWTLV019zX5t35h5CeM1qlKIc5BTn8zHIcR2lWcI1wqZW3zevXzKGao+/0hx
+ DRWE7L66MwkOigV2HmQXgkJpgD0iSlGEI8lgL4rt8jx8rWLavsauxiu+A7QCSJagf0YuJngrJ
+ fEsV1OR6HP71bWUyf4d+JGKB/RjzOzjgdlh/oaNM5NTtncTZHShbCFTNzECoWcPqBfFFE+kW0
+ skY6zK2DRnMqJ8QxiMmSM0EsDMihe7a63uo1JWHYUEUNrb7eHGlwf9+2BJFflc8j18LUPUXPu
+ wm6Ku0KD37UjMkOgQjvJEqG45YjBT0XQxExfGAoKfHxqpnozhzIAUEUufgTj7guzkKYYo8a6Q
+ Lc71jkSZSxzsk43xffTn7qOhusa2XY+UoQYlLFO/92rC/SDjD/DhjGnSTqN8cYKAvStk/bwGy
+ 0QejNLQsrqEw4RLX8hGAgjXD3jtYQa3DMGpOX5wt7mhylF6FAFaoGTwqwW6hFMn3Y0LgzaNp/
+ gIltBiVlDXVFyHdEZlH9KDHPT+lupXTV2QZ+5MPT22pG85Uso40b+y268pziBtCGARaOkQ529
+ ez3e5EiKKaoVhJjXDVkGs43FcVFfhF+G16wqiJwE77W22B7G+AhFRcUpG97SsZx1C/0un5te0
+ PBbzspKhssoLAM=
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SDHC controller in the imx8mp has the same controller
-as the imx8mm which supports HS400-ES. Change the compatible
-fallback to imx8mm to enable it, but keep the imx7d-usdhc
-to prevent breaking backwards compatibility.
+On 10.04.22 at 19:18, Lukas Wunner wrote:
+> On Thu, Apr 07, 2022 at 01:18:49PM +0200, Lino Sanfilippo wrote:
+>> --- /dev/null
+>> +++ b/drivers/char/tpm/tpm_tis_spi_slb9670.c
+> [...]
+>> +int slb9670_spi_unset_reset(struct tpm_tis_data *data)
+> [...]
+>> +int slb9670_spi_set_reset(struct tpm_tis_data *data)
+> [...]
+>> +static const struct tpm_tis_phy_ops slb9670_spi_phy_ops =3D {
+>> +	.read_bytes =3D tpm_tis_spi_read_bytes,
+>> +	.write_bytes =3D tpm_tis_spi_write_bytes,
+>> +	.read16 =3D tpm_tis_spi_read16,
+>> +	.read32 =3D tpm_tis_spi_read32,
+>> +	.write32 =3D tpm_tis_spi_write32,
+>> +	.set_reset =3D slb9670_spi_set_reset,
+>> +	.unset_reset =3D slb9670_spi_unset_reset,
+>> +};
+>
+> 0-day is complaining that slb9670_spi_set_reset() / slb9670_spi_unset_re=
+set()
+> are not declared static:
+>
+> https://lore.kernel.org/all/202204081357.8SfjQosI-lkp@intel.com/
+>
+> Thanks,
+>
+> Lukas
+>
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V4: No Change
-V3: No change
-V2: Keep fallback to fsl,imx7d-usdhc to prevent breakage
+Right, I will fix this in the next version, thanks!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 794d75173cf5..8578ff1062e6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -769,7 +769,7 @@ i2c6: i2c@30ae0000 {
- 			};
- 
- 			usdhc1: mmc@30b40000 {
--				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
-+				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
- 				reg = <0x30b40000 0x10000>;
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_DUMMY>,
-@@ -783,7 +783,7 @@ usdhc1: mmc@30b40000 {
- 			};
- 
- 			usdhc2: mmc@30b50000 {
--				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
-+				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
- 				reg = <0x30b50000 0x10000>;
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_DUMMY>,
-@@ -797,7 +797,7 @@ usdhc2: mmc@30b50000 {
- 			};
- 
- 			usdhc3: mmc@30b60000 {
--				compatible = "fsl,imx8mp-usdhc", "fsl,imx7d-usdhc";
-+				compatible = "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc";
- 				reg = <0x30b60000 0x10000>;
- 				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_DUMMY>,
--- 
-2.34.1
+Regards,
+Lino
 
