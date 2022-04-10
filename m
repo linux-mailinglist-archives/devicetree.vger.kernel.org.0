@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 646E84FAEF9
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76DB4FAEF4
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:34:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243605AbiDJQiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 12:38:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59678 "EHLO
+        id S231600AbiDJQgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 12:36:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243612AbiDJQiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:38:11 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBAC3AA7A
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 09:35:59 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id b19so19665853wrh.11
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 09:35:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=N+Sd3XQqKZuKjlUjPG3x4ncDDe97DiTcIqhqg+djNQQ=;
-        b=lRS8goDMmhJ8AO3N2b6iyEPldFjLSg9hLeE9o6SnZQ+uI8nOY/CGHxZhXwykqJVrRz
-         NI/O+kF5ufuTkek+62d9qCko/u27PkX7nHrH6WAC3MbLklLZNTeM6ArOSA7TmSGaAKdx
-         Mg9kHxIP7O3wUOVN5sSR7HPBqbp3hQEVOfPMAyk5lMS1YgP9RSoRkkSzY0SzeQWiaOmv
-         h3x1teK3j7Y9ybKw30PrMa2CP723aJB11cmR5R5u6CYW+amcH47+fWEAPwuqgqAvkUcQ
-         Y0Z2giAu6y5yrgiNgx2SuXwEq2EoqvsqyHeNTQOfDTKG3W9I8AkbjfXgAHDCzvxv9avn
-         0DSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=N+Sd3XQqKZuKjlUjPG3x4ncDDe97DiTcIqhqg+djNQQ=;
-        b=APLQGaShe4M57OQD32KGdqUqopsIIJPXfGZiGbquuyQpuKOGLCAj7BkVUTQqjWjsQQ
-         HOoAbt/uofBkliqzuBqKnKPvxDUh45Rvc/C9FlFE7tg9bk/X6YVrXa3YVD4hQepThC9L
-         Q/H8GrfcCHMCnRTr2JfHSj6jL+h75JWxvZfLpXzcopSNSaNyc2Pfn3sXAyvGpJCUWqLy
-         mUrOp2eTdgFFL5Zn21vRNbEttqFVZB1YkossrDXLKNiAShNEQRol/jBhjfyLNvpMtzaH
-         DE/SzR+VvGL1k9Ga5qoQJp65JqMyS1rSXJwaHRs6Ur0TA9Ph6E1Ga5TwzibA+ul1RHFF
-         F4Gg==
-X-Gm-Message-State: AOAM530zJBFmWnbzEUkEuOb4MOlD91laPDN2FKA4Ka/6tqVt3pap+QLr
-        zZ3mqpw+6bnUxcSkz9ncjeL2Rg==
-X-Google-Smtp-Source: ABdhPJxiB8rHOcBtzMcYz8dLUCJBTdi5gOLU1jiHYbblbip2+AxEhSPKHEysx/bOsTmAM2Xmib9gbg==
-X-Received: by 2002:adf:8063:0:b0:205:e19e:2bc1 with SMTP id 90-20020adf8063000000b00205e19e2bc1mr21921598wrk.177.1649608558383;
-        Sun, 10 Apr 2022 09:35:58 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id a7-20020adffb87000000b00207982c7f4dsm6500126wrr.67.2022.04.10.09.35.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 09:35:57 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
-        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
-        bryan.odonoghue@linaro.org
-Subject: [RESEND PATCH 2/2] media: i2c: imx412: Add bulk regulator support
-Date:   Sun, 10 Apr 2022 17:35:53 +0100
-Message-Id: <20220410163553.3501938-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220410163553.3501938-1-bryan.odonoghue@linaro.org>
-References: <20220410163553.3501938-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S229653AbiDJQgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:36:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA481AE68;
+        Sun, 10 Apr 2022 09:34:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8314CB80DA6;
+        Sun, 10 Apr 2022 16:34:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A88C385A1;
+        Sun, 10 Apr 2022 16:34:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649608444;
+        bh=PoCEF4EXFFLgdTPSLeWBPA2wYwKJKRkllET0D7n7ioc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=byD3v+fvj9YbXFFJK6owno0jqb7vO8kTYvGy15L2VTIIxzjdbEdrfa5Jsb0+dGH9w
+         1DDtr67VgJ+H1M1Z4UPowXCzSWy0+m2rLE+CxnnafPGr25pk1+bZMdzZLjJlssG4Km
+         D5AT+aKaTP9U1euy/hM2u/o4EJzOyyyrwX/4wC3gGl2L5wlPf4bLQwt12CzA9gdkur
+         tthzzJaSSwoojBxVUO2GUe7WV1GpDPRQj/o+/Br+F9rWelEMz/Q7xSBvf8C6A7FF9L
+         0RwCazHgYnbF95npXNfuKksesacoiE/WnnKLSMC07tycDI9mhXYAX5BYX/dw6A19Z3
+         OVCFNM/qBQt4A==
+Date:   Sun, 10 Apr 2022 17:41:53 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, orsonzhai@gmail.com,
+        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
+        yuming.zhu1@unisoc.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 7/7] iio: adc: sc27xx: add support for PMIC ump9620
+Message-ID: <20220410174153.09c53bdc@jic23-huawei>
+In-Reply-To: <20220407082148.571442-8-gengcixi@gmail.com>
+References: <20220407082148.571442-1-gengcixi@gmail.com>
+        <20220407082148.571442-8-gengcixi@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,102 +57,400 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depending on the platform we may need to enable and disable three separate
-regulators for the imx412.
+On Thu,  7 Apr 2022 16:21:48 +0800
+Cixi Geng <gengcixi@gmail.com> wrote:
 
-- DOVDD
-Digital I/O power
+> From: Cixi Geng <cixi.geng1@unisoc.com>
+> 
+> The ump9620 is variant from sc27xx chip, add it in here.
+> 
+> Co-developed-by: Yuming Zhu <yuming.zhu1@unisoc.com>
+> Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
+> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+Hi Cixi, Yuming,
 
-- AVDD
-Analog power
+A follow up to the earlier comment on trying to avoid using
+a part enum when we have a structure to hold part specific data and
+can describe better what the feature is / use a callback to avoid
+having to handle it in the same code as the case where the feature
+isn't present.
 
-- DVDD
-Digital core power
+Thanks,
 
-The addition of these regulators shouldn't affect existing users using
-fixed-on/firmware-controlled regulators.
+Jonathan
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/i2c/imx412.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+> ---
+>  drivers/iio/adc/sc27xx_adc.c | 249 +++++++++++++++++++++++++++++++----
+>  1 file changed, 226 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
+> index 43655a818d09..fe4a45f61ac8 100644
+> --- a/drivers/iio/adc/sc27xx_adc.c
+> +++ b/drivers/iio/adc/sc27xx_adc.c
+> @@ -15,12 +15,16 @@
+>  /* PMIC global registers definition */
+>  #define SC2730_MODULE_EN		0x1808
+>  #define SC2731_MODULE_EN		0xc08
+> +#define UMP9620_MODULE_EN		0x2008
+>  #define SC27XX_MODULE_ADC_EN		BIT(5)
+>  #define SC2721_ARM_CLK_EN		0xc0c
+>  #define SC2730_ARM_CLK_EN		0x180c
+>  #define SC2731_ARM_CLK_EN		0xc10
+> +#define UMP9620_ARM_CLK_EN		0x200c
+> +#define UMP9620_XTL_WAIT_CTRL0		0x2378
+>  #define SC27XX_CLK_ADC_EN		BIT(5)
+>  #define SC27XX_CLK_ADC_CLK_EN		BIT(6)
+> +#define UMP9620_XTL_WAIT_CTRL0_EN	BIT(8)
+>  
+>  /* ADC controller registers definition */
+>  #define SC27XX_ADC_CTL			0x0
+> @@ -82,6 +86,13 @@
+>  enum sc27xx_pmic_type {
+>  	SC27XX_ADC,
+>  	SC2721_ADC,
+> +	UMP9620_ADC,
+> +};
+> +
+> +enum ump96xx_scale_cal {
+> +	UMP96XX_VBAT_SENSES_CAL,
+> +	UMP96XX_VBAT_DET_CAL,
+> +	UMP96XX_CH1_CAL,
+>  };
+>  
+>  struct sc27xx_adc_data {
+> @@ -139,6 +150,11 @@ static struct sc27xx_adc_linear_graph small_scale_graph = {
+>  	100, 341,
+>  };
+>  
+> +static struct sc27xx_adc_linear_graph ump9620_bat_det_graph = {
+> +	1400, 3482,
+> +	200, 476,
+> +};
+> +
+>  /* Add these for sc2731 pmic, and the [big|small]_scale_graph_calib for common's */
+>  static const struct sc27xx_adc_linear_graph sc2731_big_scale_graph_calib = {
+>  	4200, 850,
+> @@ -221,6 +237,56 @@ static int sc27xx_adc_scale_calibration(struct sc27xx_adc_data *data,
+>  	return 0;
+>  }
+>  
+> +static int ump96xx_adc_scale_cal(struct sc27xx_adc_data *data,
+> +				enum ump96xx_scale_cal cal_type)
+> +{
+> +	struct sc27xx_adc_linear_graph *graph;
+> +	const char *cell_name1, *cell_name2;
+> +	int adc_calib_data1, adc_calib_data2;
+> +
+> +	if (!data)
+> +		return -EINVAL;
+> +
+> +	if (cal_type == UMP96XX_VBAT_DET_CAL) {
+> +		graph = &ump9620_bat_det_graph;
+> +		cell_name1 = "vbat_det_cal1";
+> +		cell_name2 = "vbat_det_cal2";
+> +	} else if (cal_type == UMP96XX_VBAT_SENSES_CAL) {
+> +		graph = &big_scale_graph;
+> +		cell_name1 = "big_scale_calib1";
+> +		cell_name2 = "big_scale_calib2";
+> +	} else if (cal_type == UMP96XX_CH1_CAL) {
+> +		graph = &small_scale_graph;
+> +		cell_name1 = "small_scale_calib1";
+> +		cell_name2 = "small_scale_calib2";
+> +	} else {
+> +		graph = &small_scale_graph;
+> +		cell_name1 = "small_scale_calib1";
+> +		cell_name2 = "small_scale_calib2";
+> +	}
+> +
+> +	adc_calib_data1 = adc_nvmem_cell_calib_data(data, cell_name1);
+> +	if (adc_calib_data1 < 0) {
+> +		dev_err(data->dev, "err! %s:%d\n", cell_name1, adc_calib_data1);
+> +		return adc_calib_data1;
+> +	}
+> +
+> +	adc_calib_data2 = adc_nvmem_cell_calib_data(data, cell_name2);
+> +	if (adc_calib_data2 < 0) {
+> +		dev_err(data->dev, "err! %s:%d\n", cell_name2, adc_calib_data2);
+> +		return adc_calib_data2;
+> +	}
+> +
+> +	/*
+> +	 *Read the data in the two blocks of efuse and convert them into the
+> +	 *calibration value in the ump9620 adc linear graph.
+> +	 */
+> +	graph->adc0 = (adc_calib_data1 & 0xfff0) >> 4;
+> +	graph->adc1 = (adc_calib_data2 & 0xfff0) >> 4;
+> +
+> +	return 0;
+> +}
+> +
+>  static int sc2720_adc_get_ratio(int channel, int scale)
+>  {
+>  	switch (channel) {
+> @@ -408,6 +474,50 @@ static int sc2731_adc_get_ratio(int channel, int scale)
+>  	return SC27XX_VOLT_RATIO(1, 1);
+>  }
+>  
+> +static int ump9620_adc_get_ratio(int channel, int scale)
+> +{
+> +	switch (channel) {
+> +	case 11:
+> +		return SC27XX_VOLT_RATIO(1, 1);
+> +	case 14:
+> +		switch (scale) {
+> +		case 0:
+> +			return SC27XX_VOLT_RATIO(68, 900);
+> +		default:
+> +			return SC27XX_VOLT_RATIO(1, 1);
+> +		}
+> +	case 15:
+> +		switch (scale) {
+> +		case 0:
+> +			return SC27XX_VOLT_RATIO(1, 3);
+> +		default:
+> +			return SC27XX_VOLT_RATIO(1, 1);
+> +		}
+> +	case 21:
+> +	case 22:
+> +	case 23:
+> +		switch (scale) {
+> +		case 0:
+> +			return SC27XX_VOLT_RATIO(3, 8);
+> +		default:
+> +			return SC27XX_VOLT_RATIO(1, 1);
+> +		}
+> +	default:
+> +		switch (scale) {
+> +		case 0:
+> +			return SC27XX_VOLT_RATIO(1, 1);
+> +		case 1:
+> +			return SC27XX_VOLT_RATIO(1000, 1955);
+> +		case 2:
+> +			return SC27XX_VOLT_RATIO(1000, 2600);
+> +		case 3:
+> +			return SC27XX_VOLT_RATIO(1000, 4060);
+> +		default:
+> +			return SC27XX_VOLT_RATIO(1, 1);
+> +		}
+> +	}
+> +}
+> +
+>  /*
+>   * According to the datasheet set specific value on some channel.
+>   */
+> @@ -469,6 +579,22 @@ static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
+>  	}
+>  }
+>  
+> +static void ump9620_adc_scale_init(struct sc27xx_adc_data *data)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < SC27XX_ADC_CHANNEL_MAX; i++) {
 
-diff --git a/drivers/media/i2c/imx412.c b/drivers/media/i2c/imx412.c
-index be3f6ea55559..44b92718b6cf 100644
---- a/drivers/media/i2c/imx412.c
-+++ b/drivers/media/i2c/imx412.c
-@@ -11,6 +11,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-fwnode.h>
-@@ -101,6 +102,12 @@ struct imx412_mode {
- 	struct imx412_reg_list reg_list;
- };
- 
-+static const char * const imx412_supply_names[] = {
-+	"dovdd",	/* Digital I/O power */
-+	"avdd",		/* Analog power */
-+	"dvdd",		/* Digital core power */
-+};
-+
- /**
-  * struct imx412 - imx412 sensor device structure
-  * @dev: Pointer to generic device
-@@ -128,6 +135,8 @@ struct imx412 {
- 	struct media_pad pad;
- 	struct gpio_desc *reset_gpio;
- 	struct clk *inclk;
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(imx412_supply_names)];
-+	int num_supplies;
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	struct v4l2_ctrl *link_freq_ctrl;
- 	struct v4l2_ctrl *pclk_ctrl;
-@@ -946,6 +955,17 @@ static int imx412_parse_hw_config(struct imx412 *imx412)
- 		return -EINVAL;
- 	}
- 
-+	/* Get optional DT defined regulators */
-+	imx412->num_supplies = ARRAY_SIZE(imx412_supply_names);
-+	for (i = 0; i < imx412->num_supplies; i++)
-+		imx412->supplies[i].supply = imx412_supply_names[i];
-+
-+	ret = devm_regulator_bulk_get(imx412->dev,
-+				      imx412->num_supplies,
-+				      imx412->supplies);
-+	if (ret)
-+		return ret;
-+
- 	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
- 	if (!ep)
- 		return -ENXIO;
-@@ -1011,6 +1031,13 @@ static int imx412_power_on(struct device *dev)
- 	struct imx412 *imx412 = to_imx412(sd);
- 	int ret;
- 
-+	ret = regulator_bulk_enable(imx412->num_supplies,
-+				    imx412->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		goto error_reset;
-+	}
-+
- 	gpiod_set_value_cansleep(imx412->reset_gpio, 1);
- 
- 	ret = clk_prepare_enable(imx412->inclk);
-@@ -1044,6 +1071,9 @@ static int imx412_power_off(struct device *dev)
- 
- 	clk_disable_unprepare(imx412->inclk);
- 
-+	regulator_bulk_disable(imx412->num_supplies,
-+			       imx412->supplies);
-+
- 	return 0;
- }
- 
--- 
-2.35.1
+As for previous patch, a switch statement here would be easier to read.
+
+> +		if (i == 10 || i == 19 || i == 30 || i == 31)
+> +			data->channel_scale[i] = 3;
+> +		else if (i == 7 || i == 9)
+> +			data->channel_scale[i] = 2;
+> +		else if (i == 0 || i == 13)
+> +			data->channel_scale[i] = 1;
+> +		else
+> +			data->channel_scale[i] = 0;
+> +	}
+> +}
+> +
+>  static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
+>  			   int scale, int *val)
+>  {
+> @@ -603,29 +729,67 @@ static int sc27xx_adc_to_volt(struct sc27xx_adc_linear_graph *graph,
+>  	return tmp < 0 ? 0 : tmp;
+>  }
+>  
+> +static int ump96xx_adc_to_volt(struct sc27xx_adc_linear_graph *graph, int scale,
+> +		int raw_adc)
+> +{
+> +	int tmp;
+> +
+> +	tmp = adc_to_volt(graph, raw_adc);
+> +
+> +	if (scale == 2)
+> +		tmp = tmp * 2600 / 1000;
+> +	else if (scale == 3)
+> +		tmp = tmp * 4060 / 1000;
+> +
+> +	return tmp < 0 ? 0 : tmp;
+> +}
+> +
+> +
+>  static int sc27xx_adc_convert_volt(struct sc27xx_adc_data *data, int channel,
+>  				   int scale, int raw_adc)
+>  {
+>  	u32 numerator, denominator;
+>  	u32 volt;
+>  
+> -	/*
+> -	 * Convert ADC values to voltage values according to the linear graph,
+> -	 * and channel 5 and channel 1 has been calibrated, so we can just
+> -	 * return the voltage values calculated by the linear graph. But other
+> -	 * channels need be calculated to the real voltage values with the
+> -	 * voltage ratio.
+> -	 */
+> -	switch (channel) {
+> -	case 5:
+> -		return sc27xx_adc_to_volt(&big_scale_graph, raw_adc);
+> +	if (data->var_data->pmic_type == UMP9620_ADC) {
+
+Looks like a case for a callback to me so we end up without the complexity of
+handling multiple types via an if / else.
+
+> +		switch (channel) {
+> +		case 0:
+> +			if (scale == 1)
+> +				volt = sc27xx_adc_to_volt(&ump9620_bat_det_graph, raw_adc);
+> +			else
+> +				volt = ump96xx_adc_to_volt(&small_scale_graph, scale, raw_adc);
+> +			break;
+> +		case 11:
+> +			volt = sc27xx_adc_to_volt(&big_scale_graph, raw_adc);
+> +			break;
+> +		default:
+> +			if (scale == 1)
+> +				volt = sc27xx_adc_to_volt(&ump9620_bat_det_graph, raw_adc);
+> +			else
+> +				volt = ump96xx_adc_to_volt(&small_scale_graph, scale, raw_adc);
+> +			break;
+> +		}
+> +		if (channel == 0 && scale == 1)
+> +			return volt;
+> +	} else {
+> +		/*
+> +		 * Convert ADC values to voltage values according to the linear graph,
+> +		 * and channel 5 and channel 1 has been calibrated, so we can just
+> +		 * return the voltage values calculated by the linear graph. But other
+> +		 * channels need be calculated to the real voltage values with the
+> +		 * voltage ratio.
+> +		 */
+> +		switch (channel) {
+> +		case 5:
+> +			return sc27xx_adc_to_volt(&big_scale_graph, raw_adc);
+>  
+> -	case 1:
+> -		return sc27xx_adc_to_volt(&small_scale_graph, raw_adc);
+> +		case 1:
+> +			return sc27xx_adc_to_volt(&small_scale_graph, raw_adc);
+>  
+> -	default:
+> -		volt = sc27xx_adc_to_volt(&small_scale_graph, raw_adc);
+> -		break;
+> +		default:
+> +			volt = sc27xx_adc_to_volt(&small_scale_graph, raw_adc);
+> +			break;
+> +		}
+>  	}
+>  
+>  	sc27xx_adc_volt_ratio(data, channel, scale, &numerator, &denominator);
+> @@ -760,21 +924,42 @@ static int sc27xx_adc_enable(struct sc27xx_adc_data *data)
+>  	if (ret)
+>  		return ret;
+>  
+> -	/* Enable ADC work clock and controller clock */
+> +	/* Enable 26MHz crvstal oscillator wait cycles for UMP9620 ADC */
+> +	if (data->var_data->pmic_type == UMP9620_ADC) {
+> +		ret = regmap_update_bits(data->regmap, UMP9620_XTL_WAIT_CTRL0,
+> +				UMP9620_XTL_WAIT_CTRL0_EN,
+> +				UMP9620_XTL_WAIT_CTRL0_EN);
+> +	}
+> +
+> +	/* Enable ADC work clock */
+>  	ret = regmap_update_bits(data->regmap, data->var_data->clk_en,
+>  				 SC27XX_CLK_ADC_EN | SC27XX_CLK_ADC_CLK_EN,
+>  				 SC27XX_CLK_ADC_EN | SC27XX_CLK_ADC_CLK_EN);
+>  	if (ret)
+>  		goto disable_adc;
+>  
+> -	/* ADC channel scales' calibration from nvmem device */
+> -	ret = sc27xx_adc_scale_calibration(data, true);
+> -	if (ret)
+> -		goto disable_clk;
+> +	/* ADC channel scales calibration from nvmem device */
+> +	if (data->var_data->pmic_type == UMP9620_ADC) {
+
+As below.  If we need to use a callback for this that is fine too, but
+I don't want to see matching on pmic_type as that tends to just make
+the code harder to read as we'll gain more and more cases over time.
+
+> +		ret = ump96xx_adc_scale_cal(data, UMP96XX_VBAT_SENSES_CAL);
+> +		if (ret)
+> +			goto disable_clk;
+>  
+> -	ret = sc27xx_adc_scale_calibration(data, false);
+> -	if (ret)
+> -		goto disable_clk;
+> +		ret = ump96xx_adc_scale_cal(data, UMP96XX_VBAT_DET_CAL);
+> +		if (ret)
+> +			goto disable_clk;
+> +
+> +		ret = ump96xx_adc_scale_cal(data, UMP96XX_CH1_CAL);
+> +		if (ret)
+> +			goto disable_clk;
+> +	} else {
+> +		ret = sc27xx_adc_scale_calibration(data, true);
+> +		if (ret)
+> +			goto disable_clk;
+> +
+> +		ret = sc27xx_adc_scale_calibration(data, false);
+> +		if (ret)
+> +			goto disable_clk;
+> +	}
+>  
+>  	return 0;
+>  
+> @@ -798,6 +983,11 @@ static void sc27xx_adc_disable(void *_data)
+>  
+>  	regmap_update_bits(data->regmap, data->var_data->module_en,
+>  			   SC27XX_MODULE_ADC_EN, 0);
+> +
+> +	if (data->var_data->pmic_type == UMP9620_ADC)
+
+As with earlier vref bool suggestion, I'd like to see something
+descriptive added to the variant_data structure (only currently set for
+this device type) rather than using an enum value.
+Features descriptions always end up scaling better to lots of
+supported parts than matching on particular part IDs.
+
+> +		regmap_update_bits(data->regmap, UMP9620_XTL_WAIT_CTRL0,
+> +				UMP9620_XTL_WAIT_CTRL0_EN, 0);
+> +
+>  }
+>  
+>  static const struct sc27xx_adc_variant_data sc2731_data = {
+> @@ -848,6 +1038,18 @@ static const struct sc27xx_adc_variant_data sc2720_data = {
+>  	.get_ratio = sc2720_adc_get_ratio,
+>  };
+>  
+> +static const struct sc27xx_adc_variant_data ump9620_data = {
+> +	.pmic_type = UMP9620_ADC,
+> +	.module_en = UMP9620_MODULE_EN,
+> +	.clk_en = UMP9620_ARM_CLK_EN,
+> +	.scale_shift = SC27XX_ADC_SCALE_SHIFT,
+> +	.scale_mask = SC27XX_ADC_SCALE_MASK,
+> +	.bscale_cal = &big_scale_graph,
+> +	.sscale_cal = &small_scale_graph,
+> +	.init_scale = ump9620_adc_scale_init,
+> +	.get_ratio = ump9620_adc_get_ratio,
+> +};
+> +
+>  static int sc27xx_adc_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -941,6 +1143,7 @@ static const struct of_device_id sc27xx_adc_of_match[] = {
+>  	{ .compatible = "sprd,sc2730-adc", .data = &sc2730_data},
+>  	{ .compatible = "sprd,sc2721-adc", .data = &sc2721_data},
+>  	{ .compatible = "sprd,sc2720-adc", .data = &sc2720_data},
+> +	{ .compatible = "sprd,ump9620-adc", .data = &ump9620_data},
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, sc27xx_adc_of_match);
 
