@@ -2,114 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC404FAC76
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 08:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1387E4FAC8A
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 09:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbiDJG4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 02:56:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59606 "EHLO
+        id S230331AbiDJHaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 03:30:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiDJG4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 02:56:53 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A774362BD5;
-        Sat,  9 Apr 2022 23:54:43 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id bg10so24924410ejb.4;
-        Sat, 09 Apr 2022 23:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zauW37hZKPQj0zCz4NalU8xu3JjPbiaaA2uRWNB22gE=;
-        b=nnWkbWS3dszmsDv7aXEZLc+24lt3NcTuvsPM/VpE2pM2pyfGu8FkcqIEh1zz9poYcF
-         uzce3Z0ZNf6mTXqlplma1Mvtz8l/NPnStp4q+xp8qBoHl2UF/3bzCgAkPANrnnZk2LNY
-         URKv30tl+MhDqlGerhGd8ur5NBLIcd/E0qwM7wojZoqbyfVXQSwv+3pq6p3vQCrJ8npI
-         q7Hj5hcZjvzBKwdkqFI5fwRBCsc2reuoukyFOAMN30/ugvfB+KsHkPP+0f1VXyHRXzUS
-         RsOn3+scY6uukVR2vpMjhz7m6s0vXU16CK0gpc2frM/R4tfEgEVRDuhNdO/K+bWdnIc4
-         A6OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zauW37hZKPQj0zCz4NalU8xu3JjPbiaaA2uRWNB22gE=;
-        b=Tol9DVOgsLATg+srj+6e9zwxTb8sM/+WH738aSWbsj24jglrLbnGRDPpFKdhKbBc34
-         N4PDzB4PV7dnJ362ULt/jf4G9ucwB+JIFiW3oF4QC/vvtqBKKTfuMgoaqgKuFJk7q+nE
-         eHkVq3D8xriTQOswT9QI+gRA0ckEPd2V2yw2p8ysmCFumLe+A+e5ADk/0ncUzdXiwpo8
-         oQuVqucFUfKzSsdan6+cWAM583EDaiPyPkRiHLpNdvKp/WTelfRQqXpKZMRr/BIWdMvV
-         r6Li06jqK0RU3TTG6Z2eK5d+DmtzCjZMI3/Bj3fNPmggrxAC0nRUtSDlSDFvnuvm5TTo
-         rXbg==
-X-Gm-Message-State: AOAM5316uBViMoIVyRtp6FO6Moo3De3v0T9fp5yYM4eoqGk5LABVXfG0
-        t6WDvPIgJxlI/DrgQXw6d0c=
-X-Google-Smtp-Source: ABdhPJxnfdwJZ3HNLq21mnJgLRl21Pfs9epyk6/tcAjFMY+XD3RqknXCvsqQoBcWr6Zt8N8r9XsuGQ==
-X-Received: by 2002:a17:907:62a2:b0:6e0:e201:b94e with SMTP id nd34-20020a17090762a200b006e0e201b94emr25255567ejc.730.1649573681824;
-        Sat, 09 Apr 2022 23:54:41 -0700 (PDT)
-Received: from ?IPV6:2001:470:9898:9eac:f1cb:6e16:4fc0:c830? ([2a09:bac0:87::815:6e3d])
-        by smtp.gmail.com with ESMTPSA id m13-20020a50cc0d000000b0041d7329eaa2sm1229803edi.48.2022.04.09.23.54.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Apr 2022 23:54:41 -0700 (PDT)
-Message-ID: <6738687b-eeb2-c4e3-90c8-ee3aaa73f576@gmail.com>
-Date:   Sun, 10 Apr 2022 09:54:40 +0300
+        with ESMTP id S229603AbiDJHaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 03:30:03 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC9A52DA99;
+        Sun, 10 Apr 2022 00:27:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7A6B3B80A39;
+        Sun, 10 Apr 2022 07:27:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CF98C385A1;
+        Sun, 10 Apr 2022 07:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649575671;
+        bh=YzGXDlYnNncDbrCmQDBWKW1BaIk5s78v/1hoNSGUe/8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BzEdy6SzPyPdEBHTxiqN1qhLmwXWfOFJep58yRrbbFebbdrNgPjsO2jVchOlT0otH
+         w6bYNdvtapd6VoJSX2Pz1+9uzhpvOuDXdtMrfqncR215ekgX86eEGycsr9bdcCE17s
+         CJyDT+oAS8DrW9KvEvYfGjDYXNLMzN1QLAN5yUacLYl4AkGbPucCAoLfw8NK+QyUEG
+         S720hZ89RPaBo+FuaGRApGdHjagvvBvoCzHuTbkjnz8+FsKN8/fFIEFiryRfC1Fawk
+         9g4vBL1eX+/a6IwrdD7MTwxB+C7HPM/jOXeOiZbhl5J2we5QV/VMgrXXTl8/b846b0
+         7s+pz5YaeHjmg==
+Date:   Sun, 10 Apr 2022 15:27:45 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] ARM: dts: ls1021a: remove "simple-bus" compatible
+ from ifc node
+Message-ID: <20220410072745.GN129381@dragon>
+References: <20220322022818.9860-1-leoyang.li@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for Sercomm
- parser
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Karim <Karimdplay@gmail.com>,
-        NOGUCHI Hiroshi <drvlabo@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>, M <x1@disroot.org>,
-        linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <1649339427.653492.795407.nullmailer@robh.at.kernel.org>
- <9cf4e596-83d7-00cc-afcc-585309cb4852@gmail.com>
- <aea5e032-5cd0-7480-13c1-2af924237532@linaro.org>
-From:   Mikhail Zhilkin <csharper2005@gmail.com>
-In-Reply-To: <aea5e032-5cd0-7480-13c1-2af924237532@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220322022818.9860-1-leoyang.li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/9/2022 3:49 PM, Krzysztof Kozlowski wrote:
+On Mon, Mar 21, 2022 at 09:28:13PM -0500, Li Yang wrote:
+> The binding of ifc device has been updated.  Update dts to match
+> accordingly.
+> 
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
 
-> One? Apart of broken compilation, there were other mistakes. When you
-> run the tests, you will see all of them.
+I only received patches #1, #2, #4 and #5, while it claims there are 6
+patches in the series.
 
-I checked the first version again. It was:
-- One "FATAL ERROR" (missing '{' in dts example)
-- 5 warning / errors (severity not specified) "From schema"
+Shawn
 
-Fixed version is here (not a single warning):
-https://lore.kernel.org/linux-mtd/20220406195557.1956-1-csharper2005@gmail.com/T/#ma43afb59fd1f0fab8899951005ae9ce011fbb0cc
-
-Is it ok if I send it in PATCH v3?
-
-
-> This is not related to dt_binding_check. if you ask about checkpatch,
-> then no, this does not require fixing.
-
-
-Yeah, it's about checkpatch. Thanks.
-
-> Best regards,
-> Krzysztof
-
- 
-Best regards,
-Mikhail
-
+> ---
+>  arch/arm/boot/dts/ls1021a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
+> index 2e69d6eab4d1..52835d3dfa1b 100644
+> --- a/arch/arm/boot/dts/ls1021a.dtsi
+> +++ b/arch/arm/boot/dts/ls1021a.dtsi
+> @@ -123,7 +123,7 @@ msi2: msi-controller@1570e08 {
+>  		};
+>  
+>  		ifc: ifc@1530000 {
+> -			compatible = "fsl,ifc", "simple-bus";
+> +			compatible = "fsl,ifc";
+>  			reg = <0x0 0x1530000 0x0 0x10000>;
+>  			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+>  			status = "disabled";
+> -- 
+> 2.25.1
+> 
