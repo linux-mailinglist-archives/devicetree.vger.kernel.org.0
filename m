@@ -2,39 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E36524FAF1D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE4F4FAF14
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240675AbiDJQ6Z convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 10 Apr 2022 12:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
+        id S240705AbiDJQxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 12:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239491AbiDJQ6Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:58:25 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDF53C72F;
-        Sun, 10 Apr 2022 09:56:12 -0700 (PDT)
-Received: from p508fdda7.dip0.t-ipconnect.de ([80.143.221.167] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1ndar9-0006dP-LS; Sun, 10 Apr 2022 18:56:07 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, linus.walleij@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: pinctrl: add rockchip,rk3036-pinctrl compatible string
-Date:   Sun, 10 Apr 2022 18:56:06 +0200
-Message-ID: <1890974.PYKUYFuaPT@phil>
-In-Reply-To: <20220330133952.1949-1-jbx6244@gmail.com>
-References: <20220330133952.1949-1-jbx6244@gmail.com>
+        with ESMTP id S235460AbiDJQxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:53:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E5A113EB3;
+        Sun, 10 Apr 2022 09:51:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B01261139;
+        Sun, 10 Apr 2022 16:51:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25D91C385A1;
+        Sun, 10 Apr 2022 16:51:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649609499;
+        bh=czdwW7pfgBR6Ee2W4AiYbqSyE13e93HvLRJsq9W6umw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=FTsFEIsBuRG3FbCxDhLLQyVqZHTmNeVJitRpOz7hn9ORBlmEuG+ZNMnwNr7Ddzru+
+         zv5tdwS444+6Jn/n6LV8HP+ujh4yK19j9Bws5p6LVvLfVwbIMK7xS3ZX+Q+xIKXL2z
+         PRSd7r+WhDUG1u5g4yMCvq+RyoKLE+16YpRCh8oRsNF0li1yD7aQs49xiIoWKzVUQo
+         SYjHpTrN0PvLanlNKu72nbCsXgc1N1k1aOA1LmGmPdiGYCyaNgijQTtklTI3g5odMq
+         C2pDxvyPMFFRUhugHkNg1a18VPEblLZwfEkIHXoraipv8+1f/5fImz+OgGaRbFq06A
+         9PeF7UF8ZFPXg==
+Date:   Sun, 10 Apr 2022 17:59:30 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 0/2] ad3552r change maintainer and update MAINTAINERS
+Message-ID: <20220410175930.2c80dbc3@jic23-huawei>
+In-Reply-To: <20220404085000.249423-1-nuno.sa@analog.com>
+References: <20220404085000.249423-1-nuno.sa@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -42,37 +56,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 30. März 2022, 15:39:51 CEST schrieb Johan Jonker:
-> Add the compatible string "rockchip,rk3036-pinctrl" in already
-> in use in rk3036.dtsi to rockchip,pinctrl.yaml.
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+On Mon, 4 Apr 2022 10:49:58 +0200
+Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> After the bug report in [1], it came to my attention that the maintainer
+> for this driver is outdated as Mihail Chindris moved from ADI. As such,
+> change the maintainer to myself. On top of this, I then realized there
+> was no entry for this driver in MAINTAINERS so add one.
+>=20
+> [1]: https://lore.kernel.org/all/20220106103553.GA26440@kili/
+>=20
+> Nuno S=C3=A1 (2):
+>   dt-bindings: iio: dac: change ad3552r maintainer
+>   MAINTAINERS: add ad3552r
+>=20
+>  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml          | 2 +-
+>  MAINTAINERS                                               | 8 ++++++++
+>  2 files changed, 9 insertions(+), 1 deletion(-)
+>=20
 
-Linus, I guess this patch should go through the pinctrl tree :-)
+Series applied to the togreg branch of iio.git an pushed out as testing
+so 0-day can poke other stuff I have on that branch.
 
-Thanks
-Heiko
+Thanks,
 
-> ---
->  Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> index b0eae3a67..9e90faf9b 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> @@ -33,6 +33,7 @@ properties:
->      enum:
->        - rockchip,px30-pinctrl
->        - rockchip,rk2928-pinctrl
-> +      - rockchip,rk3036-pinctrl
->        - rockchip,rk3066a-pinctrl
->        - rockchip,rk3066b-pinctrl
->        - rockchip,rk3128-pinctrl
-> 
-
-
-
-
+Jonathan
