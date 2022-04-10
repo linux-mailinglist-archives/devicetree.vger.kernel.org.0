@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E30B24FACAD
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 10:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF5E4FACF0
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 10:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232769AbiDJIUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 04:20:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60026 "EHLO
+        id S235538AbiDJIkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 04:40:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231923AbiDJIUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 04:20:17 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A31131916
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:18:07 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id v4so1200771edl.7
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:18:07 -0700 (PDT)
+        with ESMTP id S231616AbiDJIkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 04:40:13 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A122CC93
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:38:03 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id r13so25138388ejd.5
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:38:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=OOscUjkmUIhgRzXyPdDTYNrAB2N5CAonkcdxEozYleA=;
-        b=PXYWs7Gm8xzntcJmAfclsmxb08EgjzzqwqkrnO7Sj1S9HCXXjTwo3WSxINKzT2qk3q
-         E1OTdRtUPCWso7pT1lTrvbb9VM7TSqkFHrcxkuvs+IRchWJwRaCkt7kPtAFwz8ubKuv8
-         LawYbyCpNPYa7y81B592lM4Rm0T7F3bCdqp0uIsJyOMzxiSFZ9NHlDlgdeNFY/899d4T
-         +qFfSBGeYDW+4DTC5+Ey0ry1AXFT3nZu//HoqXO0hdUtD/4cT3YEFq6qQt6BWVqt1Kr8
-         Ia6+t9mTrZPj2347vmV/Qy2EphnJyKk9wzAMVrPvDi6i2Zzh/bPZ2jG/lYWW831VWI3i
-         uo6w==
+        bh=gh/AAtf8cRdIoELrwepmpCDeMPbSdp9UytLl5DDKHr4=;
+        b=x77uAlufM1epd1LMPe9Z/2F2riMaIPZRMerJ87AO+zQtngB7ZoBqlLFePS3p1rpT/x
+         wxEByYkYLXXr9KJ213Y7HEVVxLJ2t8WN4e2+G9j2o5xKutWghtaoMr39E4GFqIi+FDXF
+         CXytZ5L1aYOQSRw8KIgTLBiRj516kpVXl62p6NLhPG7xTs2Si5PiQLpXZXb79m2YK7IU
+         Jk8ZXKC/KAJbCt6jeNhbDxJEtw+Y9I2EZ9/FUm1e7m55PueRHsYG5G+Aetsoywucp53d
+         61+WqRWfpmygyk5kav5wDrWA18af463WGbAB0XdhmZDjj0teluS/13ASd5wY3s6yzrJf
+         3iQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=OOscUjkmUIhgRzXyPdDTYNrAB2N5CAonkcdxEozYleA=;
-        b=Mm5/ducwm7hG0nayQG5E6eUn28LL6GnVjEJY4yIwWfuBt1+0uT/Qf4Ed1GoYEjPKkB
-         irvla/Y8V8b4PyMqT7J/v39LSkkjfvEhZNOiW7CzDsRwHnNWi/IS3TW8xF/hYmqyhHfy
-         Eqr1X86EJiwYIlfrr1d8U5EQU/g5wfMQNKuTQVnMstRyawp/GODWoyI8YbZSQHJCiFCc
-         8M/axC67W+MzswjEvCOChoTIxofX7uEgQD7+1rXTHmw/FNQEMRxwCs5CzJn2qEinsB2v
-         I0Xb2x4gpM9afcJbWe206c2Qme9BGBJjAonpKL4r5GGvg4FcQBnd1zsdPbvCgWJ4DUss
-         xzCg==
-X-Gm-Message-State: AOAM533EF15fyBc5FAsJMVfUJu444F36pFKa1vO2f1K1+w5Nbn+G1JRY
-        2otx2f6L59zBQwlfH86l5bLF3g==
-X-Google-Smtp-Source: ABdhPJyVcZ6hRp09mS9Z2u4w3HRyzlPJiv4rtZbZATSV70c+hXqWqM3As9jQbyUgIKctjg4XYV5gCA==
-X-Received: by 2002:a05:6402:42c6:b0:41c:defd:24d1 with SMTP id i6-20020a05640242c600b0041cdefd24d1mr28141892edc.326.1649578686025;
-        Sun, 10 Apr 2022 01:18:06 -0700 (PDT)
+        bh=gh/AAtf8cRdIoELrwepmpCDeMPbSdp9UytLl5DDKHr4=;
+        b=PFM/9M+yLSri8DYbz2mMiVSsniH+kYInS0bVN+ocBf/CmbJWGBYwSsZDmWBh865W9R
+         ++Mxuc1cA/JoJ7HVOWhMaLzBWy0wxka5/dP6HPBfSPtr0Z7dTtmGzo16hv61lfLnDbZs
+         7Ekz8VEbtb4dBdsL3kb3+zGtFw2I1jluPrfVRyPQa0nZl4lsBYW9k+ItTD+OrZZ8AAtP
+         RiUizn+vS8X3R0wPHIbfccCKUp8XfMAWQV+MNaNhu1e19G6tL7wH7rNSvfS6aKvAN7uw
+         y1oIyWFsBmlrG6mAvJvv4IqghFXiwbaGmN+oo512+5l+mw0hsessHnOns3nwI+HOBpFl
+         sPIg==
+X-Gm-Message-State: AOAM531N9vTJFdW+GBtGTEpGhQKLH+gGmrcrEUX2zBM/om4GWGWTWTxG
+        GM3lX5eV3/1RlwxQUuEHdgbHwg==
+X-Google-Smtp-Source: ABdhPJwWopm2EQV2ZJwh6NTf592QrsI18/yNtY37mQW+51gPPFLvkjJsgKAo0HfXO4jYgMRD1boAsA==
+X-Received: by 2002:a17:906:d552:b0:6e8:4edc:f2ee with SMTP id cr18-20020a170906d55200b006e84edcf2eemr10035344ejc.572.1649579881603;
+        Sun, 10 Apr 2022 01:38:01 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id s2-20020a1709066c8200b006e4e1b1f875sm9955032ejr.199.2022.04.10.01.18.05
+        by smtp.gmail.com with ESMTPSA id s20-20020a056402015400b00418f9574a36sm13021400edu.73.2022.04.10.01.38.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 01:18:05 -0700 (PDT)
-Message-ID: <db70e53b-7484-43bf-e9c8-b6a2dce1fbb5@linaro.org>
-Date:   Sun, 10 Apr 2022 10:18:04 +0200
+        Sun, 10 Apr 2022 01:38:00 -0700 (PDT)
+Message-ID: <4f20ad11-40c5-638e-7335-c68d2369373d@linaro.org>
+Date:   Sun, 10 Apr 2022 10:37:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: partitions: Add binding for
- Sercomm parser
+Subject: Re: [PATCH v2] dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
 Content-Language: en-US
-To:     Mikhail Zhilkin <csharper2005@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     NOGUCHI Hiroshi <drvlabo@gmail.com>, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220406195557.1956-1-csharper2005@gmail.com>
- <20220406195946.2019-1-csharper2005@gmail.com>
- <8d0d8b27-35ff-3693-cf80-897b80c26b4e@linaro.org>
- <57bebf2f-af4c-b2d9-10e5-19e5104946fb@gmail.com>
- <29cfa017-bbaf-3aba-fe1d-06771957dbaa@linaro.org>
- <1b391399-984b-7a63-3265-62ef09caec39@gmail.com>
- <bd533827-b575-caad-c230-af060851b231@gmail.com>
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht,
+        Caleb Connolly <caleb@connolly.tech>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220111220026.102838-1-david@ixit.cz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bd533827-b575-caad-c230-af060851b231@gmail.com>
+In-Reply-To: <20220111220026.102838-1-david@ixit.cz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -86,100 +79,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/04/2022 20:17, Mikhail Zhilkin wrote:
+On 11/01/2022 23:00, David Heidelberg wrote:
+> Convert Qualcomm SPMI PMIC binding to yaml format.
 > 
-> On 4/9/2022 9:04 PM, Mikhail Zhilkin wrote:
->>>>>> +required:
->>>>>> +  - compatible
->>>>> Missing reg.
->>>> reg isn't required. Parser can read partition offsets and sizes from
->>>> SC PART MAP table. Or do you mean something else?  All is ok
->>>> without reg definition in "Example" (except the warns that reg property
->>>> is missing).
->>> reg might not be required for current implementation but it is required
->>> by devicetree for every node with unit address. Do you expect here nodes
->>> without unit addresses?
->> Only "partitions" node has no unit address. All subnodes  have unit
->> addresses and therefore have to have reg property. I've just realized
->> that "fixed-partitions.yaml" is almost my case. It looks like I can
->> copy'n'paste  "required" and "*properties".
->> Do you mind if I don't reinvent the wheel and reuse this good
->> practice?
->>
->> Here's what I got (no any warnings appears):
+> Additional changes:
+>  - filled many missing compatibles
 > 
-> 
-> I'm sorry, Krzysztof & All. Here is the final one.
-
-I am sorry, but you changed now a lot in the bindings and it looks
-entirely different. Things previously being correct now are wrong, so
-rather start from your old bindings...
-
-> 
+> Co-developed-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../mtd/partitions/sercomm,sc-partitions.yaml | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-> 
-> diff --git
-> a/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-> b/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-> new file mode 100644
-> index 000000000000..33172f0be92a
-> --- /dev/null
-> +++
-> b/Documentation/devicetree/bindings/mtd/partitions/sercomm,sc-partitions.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id:
-> http://devicetree.org/schemas/mtd/partitions/sercomm,sc-partitions.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+Thank you for your patch. There is something to discuss/improve.
+
+(...)
+
 > +
-> +title: Sercomm Partitions
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,pm660
+> +          - qcom,pm660l
+> +          - qcom,pm6150
+> +          - qcom,pm6150l
+> +          - qcom,pm6350
+> +          - qcom,pm7325
+> +          - qcom,pm8004
+> +          - qcom,pm8005
+> +          - qcom,pm8009
+> +          - qcom,pm8019
+> +          - qcom,pm8110
+> +          - qcom,pm8150
+> +          - qcom,pm8150b
+> +          - qcom,pm8150l
+> +          - qcom,pm8226
+> +          - qcom,pm8350
+> +          - qcom,pm8350b
+> +          - qcom,pm8350c
+> +          - qcom,pm8841
+> +          - qcom,pm8909
+> +          - qcom,pm8916
+> +          - qcom,pm8941
+> +          - qcom,pm8950
+> +          - qcom,pm8994
+> +          - qcom,pm8998
+> +          - qcom,pma8084
+> +          - qcom,pmd9635
+> +          - qcom,pmi8950
+> +          - qcom,pmi8962
+> +          - qcom,pmi8994
+> +          - qcom,pmi8998
+> +          - qcom,pmk8350
+> +          - qcom,pmm8155au
+> +          - qcom,pmr735a
+> +          - qcom,pmr735b
+> +          - qcom,pms405
+> +          - qcom,pmx55
+> +          - qcom,smb2351
+> +      - const: qcom,spmi-pmic
 > +
-> +description: |
-> +  Sercomm is one of hardware manufacturers providing SoCs used in home
-> routers.
-> +  The Sercomm partition map table contains information about non-standard
-> +  partition offsets and sizes (depending on the bad blocks presence and
-> their
-> +  locations). Partition map is used by many Sercomm-based Ralink
-> devices (e.g.
-> +  Beeline, Netgear).
+> +  reg: true
+
+maxItems
+
 > +
-> +  The partition table should be a node named "partitions". Partitions
-> are then
-> +  defined as subnodes.
+> +  "#address-cells":
+> +    const: 1
 > +
-> +maintainers:
-> +  - Mikhail Zhilkin <csharper2005@gmail.com>
+> +  "#size-cells":
+> +    const: 0
 > +
-> +properties:
-> +  compatible:
-> +    const: sercomm,sc-partitions
 > +
-> +  "#address-cells": true
-> +
-> +  "#size-cells": true
-> +
+
+Just one blank line.
+
 > +patternProperties:
-> +  "@[0-9a-f]+$":
-> +    $ref: "partition.yaml#"
+> +  '^(labibb|([a-z][a-z0-9]+-)?regulators)$':
+> +    type: object
+> +
+
+This should be more specific, preferably by including schema for
+regulators (or any other children if applicable).
+
+> +    required:
+> +      - compatible
+
+unevaluatedProperties: false
+> +
+> +  '@[0-9a-f]+$':
+> +    type: object
+> +    description: >
+
+You don't need '>'.
+
+This also should be specified - what is expected to be here? Usually the
+children are exactly known.
+
+> +      Each child node of the PMIC represents a function of it.
+> +
+> +    properties:
+> +      reg: true
+
+maxItems
+
+> +
+> +      interrupts:
+> +        description: >
+
+No need for >
+
+> +          Interrupts are specified as a 4-tuple. For more information see
+> +          Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+> +
+> +    required:
+> +      - compatible
+> +
+> +    additionalProperties: true
+
+This will have to unevaluated or additional properties false, depending
+whether you include other schema or not.
+
 > +
 > +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-
-Still missing reg.
-
+> +  - compatible
+> +  - reg
 > +
-> +additionalProperties: true
-
-This is wrong, why it became true?
+> +additionalProperties: false
+> +
 
 
 Best regards,
