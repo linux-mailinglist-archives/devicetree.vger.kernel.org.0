@@ -2,246 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46B7C4FAF6E
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 19:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 099234FAF84
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 20:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243807AbiDJRxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 13:53:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40388 "EHLO
+        id S234530AbiDJSJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 14:09:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243809AbiDJRxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 13:53:34 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D5361A02;
-        Sun, 10 Apr 2022 10:51:22 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id mm4-20020a17090b358400b001cb93d8b137so851091pjb.2;
-        Sun, 10 Apr 2022 10:51:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QKoymIM/fv7AleuSvT3RBW6zEuHK660DiNK/eKFXaF0=;
-        b=QHVNydOQkI6aJW7lLFWCnArJGaCLIt5Pk+1OiDKlhZw4sN2hOJEUQxhnH7Mbm9YF8P
-         umsoGfEp8khqN3ofctT97x1oxHn9n5LS8LFGAgjPQ4AlgJKHLiet8U/tj3eo+933pYbC
-         jAfKUX0xSWlS8VRRgXM7f1N9olvFDKtHNhynv3Z6v5THDmRrGU3F5Webb2/pd/dqpOYF
-         NJiq7orFaEYKzrddfVbT4xRRTmLljdMeOpG/r72eZ1UqaF0c1R20N6D2+WQo4inBR/uf
-         nRhMED/vknuQWe/1qlS00NbVIZYFXCkI61m6G9YikUucWqQ3NRvhLOKqfvPqXNOyxaa2
-         TdLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QKoymIM/fv7AleuSvT3RBW6zEuHK660DiNK/eKFXaF0=;
-        b=KtZPDvBAgEq7bKf83jDmh8aE+BLISdB5HFncVuqIkOWbSeBPKUq49jvi4LYaw+PIMG
-         W65wTxqnxxDpjYR5ccAETc0+PH/FiyZpdd5DvnO+9UqB7UQKaKZ879byhDXg0Ldwhu3d
-         gUPjK3SiLwxl08NLsbxhKPEXIHmDuRtxX0EGiOr296hLyK1Wl78l1osdhyf4S+Lj0I2R
-         v0IKHfyiuraeTWFGuuAe8NX7Vrl6ruVKUOH5w447eP6iJ4rYTePFnQNl0nSiZvRdFhd6
-         vv3j9zUslAIG8iptz4xLeZaYoCJtlA3DF/4xafQPNJWjt5pXurlkCUhXDMGF1W8cZWbv
-         J1EA==
-X-Gm-Message-State: AOAM533ZmwRvZeYq0IWx8RyymPwX+bEASoC/e+JsVxW2BRJ62szdAu6x
-        vPgks7XuGNMJh17demJm2ScNEfK7CDA=
-X-Google-Smtp-Source: ABdhPJwobXiEtfPGnmEmn8BhKBHcBuSI84rTe8ZQjsNKE7W3yi5x3sUfAYGc6BYv0Ei9kdBclowQWg==
-X-Received: by 2002:a17:90b:4a4b:b0:1c6:4398:523c with SMTP id lb11-20020a17090b4a4b00b001c64398523cmr32397815pjb.50.1649613081672;
-        Sun, 10 Apr 2022 10:51:21 -0700 (PDT)
-Received: from localhost.localdomain ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id l4-20020a056a0016c400b004f79504ef9csm32283286pfc.3.2022.04.10.10.51.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 10:51:21 -0700 (PDT)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org
-Subject: [PATCH v2 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA binding to json format
-Date:   Sun, 10 Apr 2022 23:20:56 +0530
-Message-Id: <20220410175056.79330-7-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
-References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
+        with ESMTP id S233036AbiDJSJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 14:09:09 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E993D1C2;
+        Sun, 10 Apr 2022 11:06:57 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A5219482;
+        Sun, 10 Apr 2022 20:06:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1649614014;
+        bh=hkAl9FJL0m0CC6Dn+TSgiJdKgnk3FN4CM8GEUFG/SNk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RfKLl31cZXoa/3qnyLYeIirbPUb6OaWSRMaUoBEtjgonBupqzpNM/PSuodsFc2hrO
+         Zkuf1JLuG9afoiKb6XSvsDp564G0HT58CAy1u8RYj7eqCxNokhgZIN9P0Q8GIhUV6d
+         ki1JhMWuBJnwNY1PbC6k0ZD3JtU/ftJRvZlU5rLQ=
+Date:   Sun, 10 Apr 2022 21:06:51 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fancy Fang <chen.fang@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Adam Ford <aford173@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH 11/11] drm: bridge: samsung-dsim: Add i.MX8MM support
+Message-ID: <YlMcu2e2FdLRk5iP@pendragon.ideasonboard.com>
+References: <20220408162108.184583-1-jagan@amarulasolutions.com>
+ <20220408162108.184583-12-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220408162108.184583-12-jagan@amarulasolutions.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm BAM DMA controller binding to DT schema format using
-json schema.
+Hi Jagan,
 
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
- .../devicetree/bindings/dma/qcom,bam-dma.yaml | 94 +++++++++++++++++++
- .../devicetree/bindings/dma/qcom_bam_dma.txt  | 52 ----------
- 2 files changed, 94 insertions(+), 52 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
- delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+Thank you for the patch.
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-new file mode 100644
-index 000000000000..b32175d54dca
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/qcom,bam-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies Inc BAM DMA controller
-+
-+maintainers:
-+  - Andy Gross <agross@kernel.org>
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+allOf:
-+  - $ref: "dma-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,bam-v1.3.0
-+      - qcom,bam-v1.4.0
-+      - qcom,bam-v1.7.0
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: bam_clk
-+
-+  "#dma-cells":
-+    const: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  iommus:
-+    minItems: 1
-+    maxItems: 4
-+
-+  num-channels:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Indicates supported number of DMA channels in a remotely controlled bam.
-+
-+  qcom,controlled-remotely:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Indicates that the bam is controlled by remote proccessor i.e. execution
-+      environment.
-+
-+  qcom,ee:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Indicates the active Execution Environment identifier (0-7) used in the
-+      secure world.
-+
-+  qcom,num-ees:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Indicates supported number of Execution Environments in a remotely
-+      controlled bam.
-+
-+  qcom,powered-remotely:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Indicates that the bam is powered up by a remote processor but must be
-+      initialized by the local processor.
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - "#dma-cells"
-+  - interrupts
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/qcom,gcc-msm8974.h>
-+
-+    dma-controller@f9944000 {
-+        compatible = "qcom,bam-v1.4.0";
-+        reg = <0xf9944000 0x15000>;
-+        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&gcc GCC_BLSP2_AHB_CLK>;
-+        clock-names = "bam_clk";
-+        #dma-cells = <1>;
-+        qcom,ee = <0>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-deleted file mode 100644
-index 6e9a5497b3f2..000000000000
---- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--QCOM BAM DMA controller
--
--Required properties:
--- compatible: must be one of the following:
-- * "qcom,bam-v1.4.0" for MSM8974, APQ8074 and APQ8084
-- * "qcom,bam-v1.3.0" for APQ8064, IPQ8064 and MSM8960
-- * "qcom,bam-v1.7.0" for MSM8916
--- reg: Address range for DMA registers
--- interrupts: Should contain the one interrupt shared by all channels
--- #dma-cells: must be <1>, the cell in the dmas property of the client device
--  represents the channel number
--- clocks: required clock
--- clock-names: must contain "bam_clk" entry
--- qcom,ee : indicates the active Execution Environment identifier (0-7) used in
--  the secure world.
--- qcom,controlled-remotely : optional, indicates that the bam is controlled by
--  remote proccessor i.e. execution environment.
--- qcom,powered-remotely : optional, indicates that the bam is powered up by
--  a remote processor but must be initialized by the local processor.
--- num-channels : optional, indicates supported number of DMA channels in a
--  remotely controlled bam.
--- qcom,num-ees : optional, indicates supported number of Execution Environments
--  in a remotely controlled bam.
--
--Example:
--
--	uart-bam: dma@f9984000 = {
--		compatible = "qcom,bam-v1.4.0";
--		reg = <0xf9984000 0x15000>;
--		interrupts = <0 94 0>;
--		clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
--		clock-names = "bam_clk";
--		#dma-cells = <1>;
--		qcom,ee = <0>;
--	};
--
--DMA clients must use the format described in the dma.txt file, using a two cell
--specifier for each channel.
--
--Example:
--	serial@f991e000 {
--		compatible = "qcom,msm-uart";
--		reg = <0xf991e000 0x1000>
--			<0xf9944000 0x19000>;
--		interrupts = <0 108 0>;
--		clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
--			<&gcc GCC_BLSP1_AHB_CLK>;
--		clock-names = "core", "iface";
--
--		dmas = <&uart-bam 0>, <&uart-bam 1>;
--		dma-names = "rx", "tx";
--	};
+On Fri, Apr 08, 2022 at 09:51:08PM +0530, Jagan Teki wrote:
+> Samsung MIPI DSIM master can also be found in i.MX8MM SoC.
+> 
+> Add compatible and associated driver_data for it.
+> 
+> v1:
+> * none
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  drivers/gpu/drm/bridge/samsung-dsim.c | 34 +++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
+> index 71bbaf19f530..d91510a51981 100644
+> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+> @@ -360,6 +360,24 @@ static const unsigned int exynos5433_reg_values[] = {
+>  	[PHYTIMING_HS_TRAIL] = DSIM_PHYTIMING2_HS_TRAIL(0x0c),
+>  };
+>  
+> +static const unsigned int imx8mm_dsim_reg_values[] = {
+> +	[RESET_TYPE] = DSIM_SWRST,
+> +	[PLL_TIMER] = 500,
+> +	[STOP_STATE_CNT] = 0xf,
+> +	[PHYCTRL_ULPS_EXIT] = 0,
+> +	[PHYCTRL_VREG_LP] = 0,
+> +	[PHYCTRL_SLEW_UP] = 0,
+> +	[PHYTIMING_LPX] = DSIM_PHYTIMING_LPX(0x06),
+> +	[PHYTIMING_HS_EXIT] = DSIM_PHYTIMING_HS_EXIT(0x0b),
+> +	[PHYTIMING_CLK_PREPARE] = DSIM_PHYTIMING1_CLK_PREPARE(0x07),
+> +	[PHYTIMING_CLK_ZERO] = DSIM_PHYTIMING1_CLK_ZERO(0x26),
+> +	[PHYTIMING_CLK_POST] = DSIM_PHYTIMING1_CLK_POST(0x0d),
+> +	[PHYTIMING_CLK_TRAIL] = DSIM_PHYTIMING1_CLK_TRAIL(0x08),
+> +	[PHYTIMING_HS_PREPARE] = DSIM_PHYTIMING2_HS_PREPARE(0x08),
+> +	[PHYTIMING_HS_ZERO] = DSIM_PHYTIMING2_HS_ZERO(0x0d),
+> +	[PHYTIMING_HS_TRAIL] = DSIM_PHYTIMING2_HS_TRAIL(0x0b),
+> +};
+
+Most of these values don't seem to be specific to a particular SoC
+integration, but should be tuned for the board and the connected DSI
+sink. That's out of scope for this patch of course.
+
+> +
+>  static const struct samsung_dsim_driver_data exynos3_dsi_driver_data = {
+>  	.reg_ofs = exynos_reg_ofs,
+>  	.plltmr_reg = 0x50,
+> @@ -426,6 +444,18 @@ static const struct samsung_dsim_driver_data exynos5422_dsi_driver_data = {
+>  	.platform_init = true,
+>  };
+>  
+> +static const struct samsung_dsim_driver_data imx8mm_dsi_driver_data = {
+> +	.reg_ofs = exynos5433_reg_ofs,
+> +	.plltmr_reg = 0xa0,
+> +	.has_clklane_stop = 1,
+> +	.num_clks = 2,
+> +	.max_freq = 2100,
+> +	.wait_for_reset = 0,
+> +	.num_bits_resol = 12,
+> +	.pll_p_offset = 14,
+> +	.reg_values = imx8mm_dsim_reg_values,
+> +};
+
+I haven't verified the values, the rest looks good to me.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +
+>  static const struct of_device_id samsung_dsim_of_match[] = {
+>  	{
+>  		.compatible = "samsung,exynos3250-mipi-dsi",
+> @@ -447,6 +477,10 @@ static const struct of_device_id samsung_dsim_of_match[] = {
+>  		.compatible = "samsung,exynos5433-mipi-dsi",
+>  		.data = &exynos5433_dsi_driver_data
+>  	},
+> +	{
+> +		.compatible = "fsl,imx8mm-mipi-dsim",
+> +		.data = &imx8mm_dsi_driver_data
+> +	},
+>  	{ /* sentinel. */ }
+>  };
+>  
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
