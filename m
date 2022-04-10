@@ -2,54 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5F274FAEE1
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9A94FAEF6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243515AbiDJQ2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 12:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53882 "EHLO
+        id S229646AbiDJQiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 12:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240608AbiDJQ2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:28:01 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642E05E74A;
-        Sun, 10 Apr 2022 09:25:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2C582B80B00;
-        Sun, 10 Apr 2022 16:25:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A780C385A1;
-        Sun, 10 Apr 2022 16:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1649607947;
-        bh=NGKU1NW31S2WhJRxze0FB2Ln7FKN0fJi8+bBdLHPWEg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=uLdIA8rujL0YIz/V7rMMUrvCDJHL+plvWQ4n4O9ky0EcEdJ/Ay9MSl11cfvdTguTY
-         epbQVeK+DDzTaBm+2fEqcamujU6Wn7DDTAYNTbQeClIPn4dqIOafjpwwh/BvBbTmR4
-         RsyEKzVC0HeMIzBqOR7f0eAUfWZ8FOTZNAl8XOMWaMVS9+2q5bydRvew+pAwVXbZOO
-         Q/8exo3u9SYI5rvfwxrH5cytwJF1ZD2WrSak6kuvChs2+6VqlDnJEMf6FsSiQZzt28
-         bkv/AvyY81ei2uLH+H4IGXaFfifjF1SgBlHsoqKiyP69slB26lSxCa7I9BNUoq2KGg
-         8/A11WagbUaig==
-Date:   Sun, 10 Apr 2022 17:33:38 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cixi Geng <gengcixi@gmail.com>
-Cc:     lars@metafoo.de, robh+dt@kernel.org, orsonzhai@gmail.com,
-        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
-        yuming.zhu1@unisoc.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 6/7] iio: adc: sc27xx: add support for PMIC sc2730
-Message-ID: <20220410173338.35061998@jic23-huawei>
-In-Reply-To: <20220407082148.571442-7-gengcixi@gmail.com>
-References: <20220407082148.571442-1-gengcixi@gmail.com>
-        <20220407082148.571442-7-gengcixi@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229653AbiDJQiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:38:09 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB6C3A5E2
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 09:35:57 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id m30so19731311wrb.1
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 09:35:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1/Utui5eCGbt/cTGPsyHeox51v+ypYBCzwgfJpm/a/0=;
+        b=Tu9EfS/FLoaXHYekRIu5ejY09iVKbWmv/OdGWl37doJqnCj7wfIr6Wjaph8dGe4McT
+         38/tqpKQUUYVFBi3TUXsVQ1O/FF6VsdGShhGVdCx13qABPjf4wjgzcDrqygESrVPRTXk
+         bCSr3kXWXsAc4qb1ya58pKgucSW2zMl68/p6cpOE8l+KBvJeOYYJsNLIABcLsJSuvp/3
+         e0UzKzcdB+b51L2vBzZzcm1ChS+ZlB8bSyAI8IBYyY8NwditsoVY6Y/6pFoP6IStKo8a
+         iN4xRYPzIJCgimWuCyl51Yl+lk7XyhjKAI7HI6qgUmCSndhOl4nL9ceZXOhb6Vj0bWaO
+         3JOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1/Utui5eCGbt/cTGPsyHeox51v+ypYBCzwgfJpm/a/0=;
+        b=JKdZw8sMEfdZhhvqfbx1DlMZYMx3mbZGI3/VfkiAk2jtcRcHtxN1blODoB5cprhL9X
+         OnyvjtKQ3+CubWpjI9Nxv4CFOfxKFw2hbYFgvAFFDlCZGa6blcXxtP9Q0v0F+ksfWYcj
+         MkC4Jw5B6kexEU2+eS1tdhWfOFVzOQJDILHBN5LcNDIDcuGe5sziXYHQ3/ub1MwnFCxb
+         t3gM+45hEVy6mHMMRe49u9hpEV1rnwhWn5vC53us/gbgLXfuPGFNcQH2uIJF+l+Z8lDX
+         HNjLtGLJ9/B25Y/ZmE7QJKjCSUpTBoOauD/5mYsf5wh4NeODG2L0xVToTlBXBl7oiOD1
+         bpaA==
+X-Gm-Message-State: AOAM531QegZtogm09f+Ojs1YaJA7+66d0682A/kX1axUAgW03TMlkNBQ
+        AtI7Ls7gCFIC5o24sKBNK2Gi9w==
+X-Google-Smtp-Source: ABdhPJxKi/kWR8tbpojQUeV47W9wPXDebZ1a1ZDHjBW+9N4Wmff0KKuTzpe+YMyaG27OwDlzDMeHkA==
+X-Received: by 2002:adf:da49:0:b0:204:1548:2a58 with SMTP id r9-20020adfda49000000b0020415482a58mr21865396wrl.664.1649608556098;
+        Sun, 10 Apr 2022 09:35:56 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id a7-20020adffb87000000b00207982c7f4dsm6500126wrr.67.2022.04.10.09.35.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Apr 2022 09:35:55 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        mchehab@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     robert.foss@linaro.org, hfink@snap.com, jgrahsl@snap.com,
+        dmitry.baryshkov@linaro.org, vladimir.zapolskiy@linaro.org,
+        bryan.odonoghue@linaro.org
+Subject: [RESEND PATCH 0/2] media: i2c: imx412: Add regulator control to imx412
+Date:   Sun, 10 Apr 2022 17:35:51 +0100
+Message-Id: <20220410163553.3501938-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,176 +70,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  7 Apr 2022 16:21:47 +0800
-Cixi Geng <gengcixi@gmail.com> wrote:
+The imx412 has three regulators which depending on platform may need to be
+individually enabled.
 
-> From: Cixi Geng <cixi.geng1@unisoc.com>
-> 
-> sc2730 is the product of sc27xx series.
-> 
-> Co-developed-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-> Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+- dovdd
+- avdd
+- dvdd
 
-One minor comment inline.
+Existing code for an Intel platform doesn't appear to need to enable these
+rails directly. On my reference hardware, a Qualcomm Thundercomm RB5 some
+of these rails do need to be enabled individually.
 
-Thanks,
+Add in the above named rails as optional in the YAML in the first patch
+along with code to switch them on in the second patch.
 
-Jonathan
+Existing imx412 users should get dummy regulators populated which the
+regulator_bulk_enable()/regulator_bulk_disable() code can safely ignore.
 
-> ---
->  drivers/iio/adc/sc27xx_adc.c | 105 +++++++++++++++++++++++++++++++++++
->  1 file changed, 105 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
-> index eb9e789dd8ee..43655a818d09 100644
-> --- a/drivers/iio/adc/sc27xx_adc.c
-> +++ b/drivers/iio/adc/sc27xx_adc.c
-> @@ -13,9 +13,11 @@
->  #include <linux/slab.h>
->  
->  /* PMIC global registers definition */
-> +#define SC2730_MODULE_EN		0x1808
->  #define SC2731_MODULE_EN		0xc08
->  #define SC27XX_MODULE_ADC_EN		BIT(5)
->  #define SC2721_ARM_CLK_EN		0xc0c
-> +#define SC2730_ARM_CLK_EN		0x180c
->  #define SC2731_ARM_CLK_EN		0xc10
->  #define SC27XX_CLK_ADC_EN		BIT(5)
->  #define SC27XX_CLK_ADC_CLK_EN		BIT(6)
-> @@ -307,6 +309,80 @@ static int sc2721_adc_get_ratio(int channel, int scale)
->  	return SC27XX_VOLT_RATIO(1, 1);
->  }
->  
-> +static int sc2730_adc_get_ratio(int channel, int scale)
-> +{
-> +	switch (channel) {
-> +	case 14:
-> +		switch (scale) {
-> +		case 0:
-> +			return SC27XX_VOLT_RATIO(68, 900);
-> +		case 1:
-> +			return SC27XX_VOLT_RATIO(68, 1760);
-> +		case 2:
-> +			return SC27XX_VOLT_RATIO(68, 2327);
-> +		case 3:
-> +			return SC27XX_VOLT_RATIO(68, 3654);
-> +		default:
-> +			return SC27XX_VOLT_RATIO(1, 1);
-> +		}
-> +	case 15:
-> +		switch (scale) {
-> +		case 0:
-> +			return SC27XX_VOLT_RATIO(1, 3);
-> +		case 1:
-> +			return SC27XX_VOLT_RATIO(1000, 5865);
-> +		case 2:
-> +			return SC27XX_VOLT_RATIO(500, 3879);
-> +		case 3:
-> +			return SC27XX_VOLT_RATIO(500, 6090);
-> +		default:
-> +			return SC27XX_VOLT_RATIO(1, 1);
-> +		}
-> +	case 16:
-> +		switch (scale) {
-> +		case 0:
-> +			return SC27XX_VOLT_RATIO(48, 100);
-> +		case 1:
-> +			return SC27XX_VOLT_RATIO(480, 1955);
-> +		case 2:
-> +			return SC27XX_VOLT_RATIO(480, 2586);
-> +		case 3:
-> +			return SC27XX_VOLT_RATIO(48, 406);
-> +		default:
-> +			return SC27XX_VOLT_RATIO(1, 1);
-> +		}
-> +	case 21:
-> +	case 22:
-> +	case 23:
-> +		switch (scale) {
-> +		case 0:
-> +			return SC27XX_VOLT_RATIO(3, 8);
-> +		case 1:
-> +			return SC27XX_VOLT_RATIO(375, 1955);
-> +		case 2:
-> +			return SC27XX_VOLT_RATIO(375, 2586);
-> +		case 3:
-> +			return SC27XX_VOLT_RATIO(300, 3248);
-> +		default:
-> +			return SC27XX_VOLT_RATIO(1, 1);
-> +		}
-> +	default:
-> +		switch (scale) {
-> +		case 0:
-> +			return SC27XX_VOLT_RATIO(1, 1);
-> +		case 1:
-> +			return SC27XX_VOLT_RATIO(1000, 1955);
-> +		case 2:
-> +			return SC27XX_VOLT_RATIO(1000, 2586);
-> +		case 3:
-> +			return SC27XX_VOLT_RATIO(1000, 4060);
-> +		default:
-> +			return SC27XX_VOLT_RATIO(1, 1);
-> +		}
-> +	}
-> +	return SC27XX_VOLT_RATIO(1, 1);
-> +}
-> +
->  static int sc2731_adc_get_ratio(int channel, int scale)
->  {
->  	switch (channel) {
-> @@ -363,6 +439,22 @@ static void sc2720_adc_scale_init(struct sc27xx_adc_data *data)
->  	}
->  }
->  
-> +static void sc2730_adc_scale_init(struct sc27xx_adc_data *data)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < SC27XX_ADC_CHANNEL_MAX; i++) {
-> +		if (i == 5 || i == 10 || i == 19 || i == 30 || i == 31)
+Resend + devicetree@vger.kernel.org 
 
-I'd keep this looking like the other instances (in the previous patch)
-and use a switch statement.  They are more lines, but easier to read.
+Bryan O'Donoghue (2):
+  media: dt-bindings: imx412: Add regulator descriptions
+  media: i2c: imx412: Add bulk regulator support
 
-> +			data->channel_scale[i] = 3;
-> +		else if (i == 7 || i == 9)
-> +			data->channel_scale[i] = 2;
-> +		else if (i == 13)
-> +			data->channel_scale[i] = 1;
-> +		else
-> +			data->channel_scale[i] = 0;
-> +	}
-> +}
-> +
->  static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
->  {
->  	int i;
-> @@ -720,6 +812,18 @@ static const struct sc27xx_adc_variant_data sc2731_data = {
->  	.get_ratio = sc2731_adc_get_ratio,
->  };
->  
-> +static const struct sc27xx_adc_variant_data sc2730_data = {
-> +	.pmic_type = SC27XX_ADC,
-> +	.module_en = SC2730_MODULE_EN,
-> +	.clk_en = SC2730_ARM_CLK_EN,
-> +	.scale_shift = SC27XX_ADC_SCALE_SHIFT,
-> +	.scale_mask = SC27XX_ADC_SCALE_MASK,
-> +	.bscale_cal = &big_scale_graph_calib,
-> +	.sscale_cal = &small_scale_graph_calib,
-> +	.init_scale = sc2730_adc_scale_init,
-> +	.get_ratio = sc2730_adc_get_ratio,
-> +};
-> +
->  static const struct sc27xx_adc_variant_data sc2721_data = {
->  	.pmic_type = SC2721_ADC,
->  	.module_en = SC2731_MODULE_EN,
-> @@ -834,6 +938,7 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
->  
->  static const struct of_device_id sc27xx_adc_of_match[] = {
->  	{ .compatible = "sprd,sc2731-adc", .data = &sc2731_data},
-> +	{ .compatible = "sprd,sc2730-adc", .data = &sc2730_data},
->  	{ .compatible = "sprd,sc2721-adc", .data = &sc2721_data},
->  	{ .compatible = "sprd,sc2720-adc", .data = &sc2720_data},
->  	{ }
+ .../bindings/media/i2c/sony,imx412.yaml       | 12 ++++++
+ drivers/media/i2c/imx412.c                    | 38 +++++++++++++++++++
+ 2 files changed, 50 insertions(+)
+
+-- 
+2.35.1
 
