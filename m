@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6384FB03A
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B354FB03F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:56:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236047AbiDJUxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 16:53:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59904 "EHLO
+        id S235275AbiDJU6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 16:58:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239000AbiDJUxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 16:53:43 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F3855482
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:51:32 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id bx37so17834559ljb.4
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:51:32 -0700 (PDT)
+        with ESMTP id S231134AbiDJU6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 16:58:51 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0414B1088
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:56:39 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id kl29so11815297qvb.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:56:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7JvZ4hBKAGCEsqD/L8bcJY0jmn853mSTZ8aHf9c2cG0=;
-        b=Hfc6vxkB3Pu/unKGRbcA0ci1U7Uy99XJrr7E9Ky31Y1amtW3mfK8S1IbtoFnvmQZ6Z
-         pwPYtF1DagHfZZ+4I9H7QHGJ718ERyXhyjby3OC6kxrJT6/qQPPJH5Dqtg0AisUyeJaM
-         M3Er21eooUMFAbkrUSE8qVsq3NWyf3/iK1waZ2t36l4qXdINfSjZ94eZEBz0/H3wqW/r
-         sfMz3xirS+uOmMrX2aH65TqJ5mlKQru3YdKN68uA//f3taGD1DUde3JH0Wd1RDR2dtcX
-         oXxbmHAt/Pd3CSusmnLaO1dRU862WysA6rbbUlJuQaIuuXhrINAjBZCaol7BMbQsq39g
-         LC6w==
+        d=prism19-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v4Dm0zZiVNz+3KjhnBsylTDpY1b0Arid63IH2fuAnik=;
+        b=XrE9JJrRaF5iLY2JPFzzhhBr+NmyNaXlURO7Am8sXuwB5LTKcNq7cbc57ZCESWKJVA
+         ViMCAynxoDmUwjI3l1MH/DclLSskI/r/ezCnkW2hNwIg9LL6WvqwNgFjxvNYO2gs7TZO
+         v9I9kihxoJBmmWlji9Jg6CjthaNKMaL3SaeKWU4Cc4/bk6sdhCfBHfx8kQxq/CyEcKOM
+         SQYmaRjaJw25yY2fjA4rh+L8UAr/TBEJ5onCKlHA7+Is6ftwEPo7OapWRPU5ElVav7jQ
+         JGUDps5Y6qtMvtJaDEJUAEBadoEeIy4Xiok33I4BWXH+WkEkTffro2AgOmLm1NcX1elX
+         fr8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7JvZ4hBKAGCEsqD/L8bcJY0jmn853mSTZ8aHf9c2cG0=;
-        b=pqNWJTrE5n1iZEziIglysDm9ALtMej4JSQUcpD6dZvDZklepA1dxlh3pqt8GDFlEF/
-         1LmrS4CYl61b0EGbXi2oFCm9HDHSNIxeqjy5htzMsNcvdGJ7RFIeuYjFKgjzWwOnjZUt
-         Hkp0OB0XiZ+HAXI0VNnE3OE/se0eA8P2x7ctYZS6ASpiNDdB8OWhRQVPJLF+ayZAKJui
-         4jwoxNp6hO6tDbupYIeTtNwuLP+71UJAWLwA0t0PTFxG/hyxjFxqH216aXO4eAMxeC2+
-         JtJfWosp4KjDxod3phl3vCXg8G2vaEEzhrVRBGgrB024I7jxUC7AqTVaixRYgyAe6Lfa
-         9H6A==
-X-Gm-Message-State: AOAM532k0V4U7VnJ8ZbNemFLtSUo5tM6kSAar3Re4RACMLsA5H4Czzhg
-        6yTJLbaYJIGaKW/KzlbGnKKGvJL1bfNPHA==
-X-Google-Smtp-Source: ABdhPJyuKNJ8KiL4bbYEd/uJJ6SFMUPqP7StWHZvvQWj8AWLheTL5EiA1HomkC3tMahU9x0Bnjzdyg==
-X-Received: by 2002:a2e:8904:0:b0:24b:63b9:4435 with SMTP id d4-20020a2e8904000000b0024b63b94435mr1080677lji.87.1649623890282;
-        Sun, 10 Apr 2022 13:51:30 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t15-20020a19910f000000b0046ba6b39d14sm85244lfd.10.2022.04.10.13.51.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v4Dm0zZiVNz+3KjhnBsylTDpY1b0Arid63IH2fuAnik=;
+        b=Vevc9rOOL5q6yIEZjQNa6CVBBpIKOzBEmbOBBobUNkw3fmdfpsKN1T9eIg0jcfrl9q
+         my1VUvWZz8S6UW2ZYm0+s0sOQyLnH1c9ojhbB6d5OrK+RejchVH2/siBPDgl84SkvWKw
+         ZkhqVgqWfUreuOt5My5l5aZQljGPtXFZnhmcb0rTOdrgivn99OikPSs60GLORHoW5ML6
+         ZEd687k/tD/08o1mjw80oixcqGBEgWyb3Jgron1EjjXHMQYnMRXnWE4Nd+3/ejKCZOF8
+         2UtOfJrCRSTBOAw/2vSR/6DIokS6GYTwELG0Go9htEqrZXzOr3wETdcPx4g2Em+X05ag
+         daig==
+X-Gm-Message-State: AOAM533noluZhrk74/YQLviQINiAZhrYTqvmq3b8Hwu9tv1ydWmrND3U
+        S3RtDVqjyndnum0/BbQwFJD6QQ==
+X-Google-Smtp-Source: ABdhPJzKr+05g1w/9S4kzn27/Px/j9DsPrGWiXdcX3y2gI1UMnWoBRqzRfgcxanrSdHR+07WQSThEA==
+X-Received: by 2002:a05:6214:1d2b:b0:441:6a41:f726 with SMTP id f11-20020a0562141d2b00b004416a41f726mr24547900qvd.102.1649624198180;
+        Sun, 10 Apr 2022 13:56:38 -0700 (PDT)
+Received: from RADIUM.localdomain (bras-base-mtrlpq2718w-grc-02-76-67-205-66.dsl.bell.ca. [76.67.205.66])
+        by smtp.googlemail.com with ESMTPSA id bl22-20020a05620a1a9600b00680da570a5dsm19073102qkb.61.2022.04.10.13.56.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 13:51:29 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8450-hdk: add missing PMIC includes
-Date:   Sun, 10 Apr 2022 23:51:27 +0300
-Message-Id: <20220410205127.1670705-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220410205127.1670705-1-dmitry.baryshkov@linaro.org>
-References: <20220410205127.1670705-1-dmitry.baryshkov@linaro.org>
+        Sun, 10 Apr 2022 13:56:37 -0700 (PDT)
+From:   Guillaume Giraudon <ggiraudon@prism19.com>
+To:     kernel-dev@prism19.com
+Cc:     ggiraudon@prism19.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson-sm1-bananapi-m5: fix wrong GPIO pin labeling for CON1
+Date:   Sun, 10 Apr 2022 16:56:24 -0400
+Message-Id: <20220410205624.14295-1-ggiraudon@prism19.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add includes for PMICs used on the SM8450-HDK. This makes GPIO blocks
-and thermal sensors available to the user of the platform.
+The labels for lines 61 through 84 on the periphs-banks were offset by 2.
+Realigned them to match the Banana Pi M5 schematics.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Guillaume Giraudon <ggiraudon@prism19.com>
 ---
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index f0fcb1428449..e4b34ba22003 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -7,6 +7,12 @@
- 
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sm8450.dtsi"
-+#include "pm8350.dtsi"
-+#include "pm8350b.dtsi"
-+#include "pm8350c.dtsi"
-+#include "pm8450.dtsi"
-+#include "pmk8350.dtsi"
-+#include "pmr735a.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. SM8450 HDK";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+index 5751c48620ed..754c3d43ef0b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+@@ -448,7 +448,7 @@
+ 		"",
+ 		/* GPIOA */
+ 		"", "", "", "", "", "", "", "",
+-		"", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
+ 		"CON1-P27", /* GPIOA_14 */
+ 		"CON1-P28", /* GPIOA_15 */
+ 		/* GPIOX */
 -- 
-2.35.1
+2.20.1
 
