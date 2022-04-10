@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45BF04FAF33
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 19:13:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94BD04FAF4B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 19:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243701AbiDJRPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 13:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59258 "EHLO
+        id S235686AbiDJR2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 13:28:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239314AbiDJRPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 13:15:15 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94ABD34B88;
-        Sun, 10 Apr 2022 10:13:04 -0700 (PDT)
-Received: from p508fdda7.dip0.t-ipconnect.de ([80.143.221.167] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1ndb7T-0006hD-O7; Sun, 10 Apr 2022 19:12:59 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/5] enable usb support on rk356x
-Date:   Sun, 10 Apr 2022 19:12:56 +0200
-Message-Id: <164961074165.23152.8964489836130801474.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220408151237.3165046-1-pgwipeout@gmail.com>
-References: <20220408151237.3165046-1-pgwipeout@gmail.com>
+        with ESMTP id S233236AbiDJR2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 13:28:05 -0400
+X-Greylist: delayed 443 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 10 Apr 2022 10:25:54 PDT
+Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F3460D8C;
+        Sun, 10 Apr 2022 10:25:54 -0700 (PDT)
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS DV RSA Mixed SHA256 2020 CA-1" (verified OK))
+        by bmailout2.hostsharing.net (Postfix) with ESMTPS id C1C9F2800A278;
+        Sun, 10 Apr 2022 19:18:26 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+        id B5498324E0; Sun, 10 Apr 2022 19:18:26 +0200 (CEST)
+Date:   Sun, 10 Apr 2022 19:18:26 +0200
+From:   Lukas Wunner <lukas@wunner.de>
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Cc:     peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca,
+        =robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stefanb@linux.ibm.com, p.rosenberger@kunbus.com
+Subject: Re: [PATCH 5/5] tpm: tpm_tis_spi_slb_9670: implement set_reset and
+ unset_reset functions
+Message-ID: <20220410171826.GB24453@wunner.de>
+References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
+ <20220407111849.5676-6-LinoSanfilippo@gmx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220407111849.5676-6-LinoSanfilippo@gmx.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Apr 2022 11:12:32 -0400, Peter Geis wrote:
-> Good Morning,
-> 
-> This is my patch series that I have maintained out of tree until the
-> combophy driver landed.
-> 
-> This has been rebased on v5.18-rc1, several patches in the previous
-> series already landed and have been dropped.
-> 
-> [...]
+On Thu, Apr 07, 2022 at 01:18:49PM +0200, Lino Sanfilippo wrote:
+> --- /dev/null
+> +++ b/drivers/char/tpm/tpm_tis_spi_slb9670.c
+[...]
+> +int slb9670_spi_unset_reset(struct tpm_tis_data *data)
+[...]
+> +int slb9670_spi_set_reset(struct tpm_tis_data *data)
+[...]
+> +static const struct tpm_tis_phy_ops slb9670_spi_phy_ops = {
+> +	.read_bytes = tpm_tis_spi_read_bytes,
+> +	.write_bytes = tpm_tis_spi_write_bytes,
+> +	.read16 = tpm_tis_spi_read16,
+> +	.read32 = tpm_tis_spi_read32,
+> +	.write32 = tpm_tis_spi_write32,
+> +	.set_reset = slb9670_spi_set_reset,
+> +	.unset_reset = slb9670_spi_unset_reset,
+> +};
 
-Applied, thanks!
+0-day is complaining that slb9670_spi_set_reset() / slb9670_spi_unset_reset()
+are not declared static:
 
-[1/5] dt-bindings: soc: grf: add rk3566-pipe-grf compatible
-      commit: 2a872dd86eeb349f169df0a204668afa578a94b2
-[2/5] soc: rockchip: set dwc3 clock for rk3566
-      commit: 5c0bb71138770d85ea840acd379edc6471b867ee
-[3/5] arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
-      commit: 9f4c480f24e2ce1d464ff9d5f8a249a485acdc7f
-[4/5] arm64: dts: rockchip: enable dwc3 on quartz64-a
-      commit: e432309ff8bf2a148bbdd4946ca1580c6b5b610c
-[5/5] arm64: dts: rockchip: add usb3 support to rk3568-evb1-v10
-      commit: d6cfb110b0fdfb4e61ef4e3c3ab89a8f21b4d1b8
+https://lore.kernel.org/all/202204081357.8SfjQosI-lkp@intel.com/
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Thanks,
+
+Lukas
