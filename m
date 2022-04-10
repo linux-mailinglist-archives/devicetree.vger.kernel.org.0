@@ -2,41 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F094FAF0F
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F24134FAF06
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 18:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237189AbiDJQui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 12:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37458 "EHLO
+        id S243669AbiDJQoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 12:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236433AbiDJQuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:50:37 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AB414B840;
-        Sun, 10 Apr 2022 09:48:25 -0700 (PDT)
-Received: from p508fdda7.dip0.t-ipconnect.de ([80.143.221.167] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1ndajc-0006bM-FX; Sun, 10 Apr 2022 18:48:20 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-rockchip@lists.infradead.org,
-        Frank Wunderlich <linux@fw-web.de>
-Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: Re: [PATCH v1 0/2] Change Bananapi-R2-Pro board to match V1.0
-Date:   Sun, 10 Apr 2022 18:48:19 +0200
-Message-ID: <3163720.aeNJFYEL58@phil>
-In-Reply-To: <7EC83317-29EA-4464-9C24-27A78FB77911@fw-web.de>
-References: <20220402110045.104031-1-linux@fw-web.de> <164906273049.1398682.587469799631775473.b4-ty@sntech.de> <7EC83317-29EA-4464-9C24-27A78FB77911@fw-web.de>
+        with ESMTP id S238184AbiDJQoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 12:44:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E264B841;
+        Sun, 10 Apr 2022 09:42:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C8FAFB80E18;
+        Sun, 10 Apr 2022 16:42:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326A2C385BB;
+        Sun, 10 Apr 2022 16:41:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1649608921;
+        bh=01McTTLBX/RzXMJb16VibZQqPQGnBa6CpsLcFull0FE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ij509aT4VHMEslbHqIP9u1UZVsFJjf+yJDNAiDFuek0LIFlF+QCvXw4SMLiR6qOkq
+         YYbq5Nme7To3cov2yvKCEGdlRM6yT0o3J8U+1EnkWiqHF8QrL7HtjSun793aoKa2W5
+         XZPTMs9lY5D8XLJKgN39yLvyKbNkufygnx/n9KnO2aKchCzaH5RP3sLclffVNMfQif
+         eGao9Ck0QAxaT5FlRB9ez5pJBqHZdsgSKZLePPbP551t8zwPuS85KRclEDBXWcCMg1
+         tmoUXK4Bn8IyKds7MfdDWHY8NWbXbyXyeM/xIPTeuBskGFTkEbyCs0i56029Nx9O7U
+         d7h/Y3LZhulyA==
+Date:   Sun, 10 Apr 2022 17:49:52 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Gwendal Grignou <gwendal@chromium.org>, robh+dt@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v4 1/8] iio: sx9324: Fix default precharge internal
+ resistance register
+Message-ID: <20220410174952.6660e013@jic23-huawei>
+In-Reply-To: <CAE-0n532f37UD8OyiFc0_ROzgc24Hb=aOYN+ALgruiehiNTfuQ@mail.gmail.com>
+References: <20220406165011.10202-1-gwendal@chromium.org>
+        <20220406165011.10202-2-gwendal@chromium.org>
+        <CAE-0n532f37UD8OyiFc0_ROzgc24Hb=aOYN+ALgruiehiNTfuQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,44 +58,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+On Wed, 6 Apr 2022 10:14:01 -0700
+Stephen Boyd <swboyd@chromium.org> wrote:
 
-Am Dienstag, 5. April 2022, 08:09:43 CEST schrieb Frank Wunderlich:
-> Am 4. April 2022 10:59:59 MESZ schrieb Heiko Stuebner <heiko@sntech.de>:
-> >On Sat, 2 Apr 2022 13:00:43 +0200, Frank Wunderlich wrote:
-> >> Mainline Devicetree was created for v00 prototype that was not in
-> >> public sale and only shipped to few developers. V1.0 of the board
-> >> has some changes in io-domain and gmacs are swapped.
-> >> 
-> >> Change mainline DTS to match the current hardware.
-> >> 
-> >> Frank Wunderlich (2):
-> >>   arm64: dts: rockchip: Change io-domains of bpi-r2-pro
-> >>   arm64: dts: rockchip: Add gmac1 and change network settings
-> >> 
-> >> [...]
+> Quoting Gwendal Grignou (2022-04-06 09:50:04)
+> > Fix the default value for the register that set the resistance:
+> > it has to be 0x10 per datasheet.
 > >
-> >Applied, thanks!
-> >
-> >[1/2] arm64: dts: rockchip: Change io-domains of bpi-r2-pro
-> >      commit: 34fc952867aa2a2e257bf2bcbbaac97ac91f8bd1
-> >[2/2] arm64: dts: rockchip: Add gmac1 and change network settings
-> >      commit: 5c8e82ed3a4a5c8023b2959d8f3292f7291e7227
-> >
-> >Best regards,
+> > Fixes: 4c18a890dff8d ("iio:proximity:sx9324: Add SX9324 support")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> > ---  
 > 
-> Hi Heiko,
-> 
-> Thanks for fast apply.
-> 
-> Can you treat it as fix (for 5.18). At least io-domain will damage board if someone use 5.18. Network will simply not work.
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Applied to the fixes-togreg branch of iio.git.
 
-I've moved both over to fixes now.
+I'm crossing my fingers that I'll be able to simultaneously
+queue this fix and the rest of the series on different branches
+without any significant merge problems...
 
-It's clear for the io-domain but also the second patch probably makes
-the 1.0 board actually work where it wasn't before I guess, so that
-also counts as a fix :-)
-
-Heiko
-
+Jonathan
 
