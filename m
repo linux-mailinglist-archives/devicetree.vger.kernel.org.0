@@ -2,64 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B0B4FAD0E
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 11:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDCA44FAD17
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 11:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236194AbiDJJXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 05:23:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33918 "EHLO
+        id S231849AbiDJJtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 05:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236116AbiDJJXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 05:23:11 -0400
+        with ESMTP id S236522AbiDJJs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 05:48:57 -0400
 Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3039813E34
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 02:20:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1649582427; cv=none; 
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0902AE34;
+        Sun, 10 Apr 2022 02:46:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1649583974; cv=none; 
         d=zohomail.com; s=zohoarc; 
-        b=dXVLuvlExsIV13xZCiZR7R+Pe66Okq5Jx9mPNajzhytIpIfm+WIDnfQuJibSPbvwyz008MAB73mpsyXiMowZ0Ane8LFCohoUwe4tGj7+jEGw7Je0HAilI/e5A7NAr6jYSMWin0wjIOP+A+KTDbgyOnRIfNc6hbfLjEYovKxkKO4=
+        b=IVcX0fVbhg5OMdbn7yaaahvzH6Jk2UFXb6S57wQE6mF64PN465M9ikQr9DQOJX4N9SUNymMsaAmH02J1bKWBcOgOaffuK8jJwtakMfILGMoSSQ3wDk2XQ24OtIA7B64sISbYhtDNziyJWdbduZiQCOHwtWurbwgbxn5DsNjY0TU=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1649582427; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=96UPqnjPLE0l+SBBzNdmEgIsaN6EudyBTNbTg6oJfLc=; 
-        b=mM7YRCkKu1x55qkhTxLTUJb7ojALDSq6wtzq5sBpywLeLrZDCGjA4V5yUGTMO92+sjD4bLB94xbx3+UTESg4qam5JX3ZFtXGV3vtt7ArYpHNUmooITt9NcQ4KvitGLOxELrSOsAhaCnyxvOalz0kJHRKWhr1M5CJZRJVJFulHr8=
+        t=1649583974; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=7poOT/rw9kdWGl9YXFYkvmc3/pYXbV5NbQ/hwxad42M=; 
+        b=KlPTgF95iaPYLBCkM8ali76274TsIaK2wS0PTd2d8gK+LRaZ89eRkKGr8rWdxl3dYJlT+Hu/pF4ZeuFJtDDXubg1+4U+iMBb5rI8okd3pLQy6meSgYSnG5WZqWu3mIHHDwWbtRQZkuDiYcwR3579wO+EH7WxiHVkSZojF3eXPAg=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
         dkim=pass  header.i=arinc9.com;
         spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
         dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649582427;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1649583974;
         s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=96UPqnjPLE0l+SBBzNdmEgIsaN6EudyBTNbTg6oJfLc=;
-        b=B5rXRhnu0oHPU5mSeOU1wzNUY3O/xJgOo6Ijk+iXinFSV0+pDWjGxFsGG+ZyE+Hn
-        ziO6GToCt5Bwia89va6oCmCLRthxN76OpevjfLXSToExIj7rMH6NLmoVwsnGxyDVBug
-        fmKOr2XSrXQaHWPPo+sNHc2emtBgirttCJqumBFM=
-Received: from [10.10.10.3] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1649582424777288.6943548323691; Sun, 10 Apr 2022 02:20:24 -0700 (PDT)
-Message-ID: <9239d385-3094-e9b6-3d5f-0e9053a41d02@arinc9.com>
-Date:   Sun, 10 Apr 2022 12:20:20 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 5/5] ARM: dts: BCM5301X: Disable unused gmac0 and gmac2 on
- Asus RT-AC88U
-Content-Language: en-US
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=7poOT/rw9kdWGl9YXFYkvmc3/pYXbV5NbQ/hwxad42M=;
+        b=N9gfTA2+3liFeCJtn3lIw243pbKnDgkmCdHkETOQoZmaJ1DM1QsnQI+EBblwQ/Zn
+        8xCojxGwoSFXwsHMC0kVtPMrwcUcktXLA/cmqYXf5ZEr/plM6dPTT7DJA1w4X9s5svq
+        AA9Ydhhpm9wqljShTE5pMbV+5y+UAA4cqgBZ/Y/g=
+Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1649583972146345.7919696113951; Sun, 10 Apr 2022 02:46:12 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20220401102002.15765-1-arinc.unal@arinc9.com>
- <20220401102002.15765-5-arinc.unal@arinc9.com>
- <06e49b67a2e2f75040c51f8a05c329ef@milecki.pl>
- <21285586-7c9a-5fda-0f07-1d43312ea8c6@arinc9.com>
- <923b1c06-30c8-2f76-89ef-b36299cd1001@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <923b1c06-30c8-2f76-89ef-b36299cd1001@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH] ARM: dts: BCM5301X: Disable gmac0 and enable port@8 on Asus RT-AC88U
+Date:   Sun, 10 Apr 2022 12:44:55 +0300
+Message-Id: <20220410094454.2788-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,95 +60,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/04/2022 21:16, Florian Fainelli wrote:
-> On 4/1/22 04:36, Arınç ÜNAL wrote:
->> On 01/04/2022 13:40, Rafał Miłecki wrote:
->>> On 2022-04-01 12:20, Arınç ÜNAL wrote:
->>>> Disable gmac0 and gmac2 which are currently not used. This doesn't 
->>>> seem to
->>>> be implemented yet on drivers/net/ethernet/broadcom/bgmac-bcma.c but 
->>>> this
->>>> change is harmless, nonetheless.
->>>
->>> It doesn't matter whether Linux respects that.
->>>
->>>
->>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>> ---
->>>>  arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts | 8 ++++++++
->>>>  1 file changed, 8 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
->>>> b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
->>>> index 2f944d1c0330..0f5c5d576814 100644
->>>> --- a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
->>>> +++ b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
->>>> @@ -242,11 +242,19 @@ fixed-link {
->>>>      };
->>>>  };
->>>>
->>>> +&gmac0 {
->>>> +    status = "disabled";
->>>> +};
->>>> +
->>>>  &gmac1 {
->>>>      nvmem-cells = <&et1macaddr>;
->>>>      nvmem-cell-names = "mac-address";
->>>>  };
->>>>
->>>> +&gmac2 {
->>>> +    status = "disabled";
->>>> +};
->>>
->>> I don't think that is correct. Those interfaces are still there and
->>> they are actually connected to switch ports. If you configure your
->>> switch properly you can use them.
->>>
->>> Someone may want to use e.g. gmac0 & gmac1 with two sets of ports to
->>> speed up network communication.
->>>
->>> I think gmac2 is required if you want to enable FA (flow acceleration /
->>> accelerator) - even though there isn't Linux driver for it yet.
->>>
->>> They are not disabled / unpopulated / non functional interfaces.
->>
->> I understand your point. However, while we're not supposed to care 
->> whether the kernel respects the bindings, don't we also need to make 
->> the bindings work on the version of the Linux kernel we're submitting 
->> the bindings to?
->>
->> With the current way DSA works, only one switch port can be used as a 
->> CPU port. If we were to remove the status = "disabled" property from 
->> port@8 which connects to gmac2, it'd break the communication between 
->> the switch and the CPU on the current Linux kernel.
-> 
-> Are you sure? Because DSA still picks up the CPU port from lowest port 
-> to highest port number. If port 6 is enabled, then it should take 
-> precedence.
+Disable gmac0 which is not connected to any switch MAC. Enable port@8 of
+the Broadcom switch which is connected to gmac2.
 
-I just tested this on the router. You're right. We can keep port@8 
-enabled. I also made sure gmac0 is not connected to any switch GMAC. 
-I'll send a patch to address these.
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+ arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> 
->>
->> If a new driver or a feature is introduced, we should update the 
->> bindings accordingly afterwards.
->>
->> For this reason, I don't see an issue with explaining the driver side 
->> of it on the commit log for DT bindings.
->>
->> DT bindings are not exactly static either. Someone could want to use 
->> gmac2 instead of gmac1. In that case, I think they should change the 
->> bindings themselves as it's for their own use.
-> 
-> This is true, but we are not changing the binding here, the binding is 
-> the contract between the DTB provider and the DTB consumer, it describes 
-> properties, their shape and size etc. We are just changing the status of 
-> particular nodes.
+diff --git a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+index 2f944d1c0330..d8503758342b 100644
+--- a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
++++ b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+@@ -232,7 +232,6 @@ port@8 {
+ 			reg = <8>;
+ 			ethernet = <&gmac2>;
+ 			label = "cpu";
+-			status = "disabled";
+ 
+ 			fixed-link {
+ 				speed = <1000>;
+@@ -242,6 +241,10 @@ fixed-link {
+ 	};
+ };
+ 
++&gmac0 {
++	status = "disabled";
++};
++
+ &gmac1 {
+ 	nvmem-cells = <&et1macaddr>;
+ 	nvmem-cell-names = "mac-address";
+-- 
+2.25.1
 
-Understood, thank you.
-
-By the way, I don't see my applied patches on the link you referred to.
-
-Arınç
