@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FDB24FB045
+	by mail.lfdr.de (Postfix) with ESMTP id EA90C4FB047
 	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 22:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242456AbiDJVBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S241028AbiDJVBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 10 Apr 2022 17:01:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50030 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241028AbiDJVBS (ORCPT
+        with ESMTP id S242394AbiDJVBS (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 17:01:18 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9251751E7C
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:59:04 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id r2so2517088ljd.10
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:59:04 -0700 (PDT)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64A531AB
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:59:05 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u7so6321912lfs.8
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 13:59:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=g3Vj95qK5L+nX53EL/j4u6NkAUtmdPs/qhxL4ODa228=;
-        b=OVMScrL59CTZ7Lr3EhYdmQ5vRHx/3yS+Ql8xvaRz8YmTOE+W2hTidhvr+i2pZ0NBaY
-         d86L4RChjA3R/1K7gg/nG9ia9E8dicOVVcdI/hIOZSFqli4juWfeCrElUxXVTv1cZjff
-         kvM9L5Z79fQYleMB6fTJK1qlAqnHnWvTnXn44AFnFRMuF0gFlXre3E8OhcpFt/gYbKlH
-         A/6KqXWIu/rArG0J9Vql6MQaBV7Rs52RsUzdUwTYRbTrhkC4l40u+rkcExZaLaJweBxu
-         yvPkC3Jx33gsd+BnPOEYVe7N2WdyMLBlOo1AcrHyVzq4blt54111Q/kySktaeWZYff+j
-         NCQw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6jtqewFPMsxnLjGRnErtncZ30YDC8tDjxZxlMXPLk1k=;
+        b=b31gxl0p7pDzLjWYuQWUCcocGXkIuaDYEIxiXTYx8MAUFYT5GVKk03IMvs1DUtlhW8
+         WnOBB0UdhVURZL8WDkXRrIakCKAil4yerDxydVUcFhQZ4IZK/kiNs5istDSQbeVMFeSt
+         Q2RFwHyjzXYi5Eqkz/t98ekU0aJuLtbfes+uvIMl43pIoJhnk9zD89bsa9TSTaRn89F9
+         4fb30fD6DrR0nyLSNw/Gl5SkVmCc2OqDm99QkHwzk2K0quO4fzEbsfOSn2WSq1gZxa6v
+         7uwt4Eq4PU56+PjhzDuP+n/F9BcKt0JsvNVSxfqSo+/GQNyZpabgQ0IXmps5Ae+u4tkc
+         BRyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=g3Vj95qK5L+nX53EL/j4u6NkAUtmdPs/qhxL4ODa228=;
-        b=PO20sCRoVDgfK+hgfaZzvQCMA+94Ecza5YwbTXTkT3Lf8cNHa557eoSRHBmjDQUmNY
-         e3dogH2xW0cSQcxHXtqPjTdTXTjxOuKmJvBw7Y1tu+D8BgURDwmr18HwDT7/nqirWkWu
-         veWjFeFRJZFGH287Ntt7LzgytXz1G4Q7A8M+2L9qyxzNdwfz6mPDLXfqq+U4M2ZehWOG
-         mSfXEQtX52iSQSRkt/2f+7e6cDVzpNbhRmzErpHb46hqmbwIKQ6wxqNE8MRVXxMxP5gs
-         UdXfxGTPtGOzXPe1mysdSWyNurh1uBLrSJbgM2qy36OxoJEMlscJZbIddkMG/j2FRXLY
-         NMyA==
-X-Gm-Message-State: AOAM531Hg1WFNGX9DRtNWZ/RWiC5alnJvQdZXF3aQYc3/Ui7LGM+Zypu
-        Y8SStd4op5n2qrmIqXob5gm1vQ==
-X-Google-Smtp-Source: ABdhPJy0EDNTeLKR9oN8K6CQltHt7tzwMJVDRGBNbAanxs059FnnHE6lIvb9lpTCki0hpp/k02kK8A==
-X-Received: by 2002:a05:651c:17a3:b0:245:f39e:f2d2 with SMTP id bn35-20020a05651c17a300b00245f39ef2d2mr19150610ljb.490.1649624342738;
-        Sun, 10 Apr 2022 13:59:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6jtqewFPMsxnLjGRnErtncZ30YDC8tDjxZxlMXPLk1k=;
+        b=DxWZALbhfZCEbdb+DAohLt9sTkd9sdvdv8hvkckogSQYJbDqqnyHv/PLqxRC7x+aF8
+         MDEtPQYFccrG3unli2xQKN8E0iUuws65upul850yJhtCFe05tpM/ayVBJoy6Dk4g6k6Z
+         YK8sQzZBM6I/ju27axmLUli7lGrCTAzm3vrSA6ZX87Ai6Qbk+RU05GoymqkA91grVkN3
+         8ixl4tRZhvC55cyZU9Uq/Rdi9RrvG01kZuhwpL/MbPWv5KxKu6Bu/qZunIECU5ooMtAx
+         pqpCO4741da/KqSLKr2dBdgJlyU454RlYapFOroSgy5ZN4+eXoMM/m0Ij5hnKsIXARUk
+         s/DQ==
+X-Gm-Message-State: AOAM531M/Xktzeoe2Rx/2Du8xtpVWnKw3fROdKDgiIAQGwGj8F4wwhXp
+        iMC58p1/d0hEZLRisKwnS7BoEb5oOQQ3og==
+X-Google-Smtp-Source: ABdhPJxWfLcQpsBABdPNsAn/Ia2SJyLFTsSMG9tMe9PdWxcG5stcJt9dz4RSBFKuhLUSd+1evy9yWQ==
+X-Received: by 2002:a05:6512:3b28:b0:46b:ab15:9f2a with SMTP id f40-20020a0565123b2800b0046bab159f2amr72308lfv.588.1649624343555;
+        Sun, 10 Apr 2022 13:59:03 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id t17-20020a192d51000000b0044a5a9960f9sm3114809lft.236.2022.04.10.13.59.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Apr 2022 13:59:02 -0700 (PDT)
+        Sun, 10 Apr 2022 13:59:03 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 0/2] arm64: dts: qcom: sm8450: enable fastproc and DSP nodes
-Date:   Sun, 10 Apr 2022 23:58:59 +0300
-Message-Id: <20220410205901.1672089-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8450-hdk: Enable remoteproc instances
+Date:   Sun, 10 Apr 2022 23:59:00 +0300
+Message-Id: <20220410205901.1672089-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220410205901.1672089-1-dmitry.baryshkov@linaro.org>
+References: <20220410205901.1672089-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -69,16 +71,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable DSP (remoteproc) instances on SM8450-HDK platform. Add fastrpc device tree nodes.
+Enable the audio, compute, sensor and modem remoteproc and specify
+firmware path for these on the Qualcomm SM8450 HDK.
 
-Dmitry Baryshkov (2):
-  arm64: dts: qcom: sm8450-hdk: Enable remoteproc instances
-  arm64: dts: qcom: sm8450: add fastrpc nodes
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts |  20 ++++
- arch/arm64/boot/dts/qcom/sm8450.dtsi    | 119 ++++++++++++++++++++++++
- 2 files changed, 139 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+index f0fcb1428449..34e37991c0c9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+@@ -349,6 +349,26 @@ vreg_l7e_2p8: ldo7 {
+ 	};
+ };
+ 
++&remoteproc_adsp {
++	status = "okay";
++	firmware-name = "qcom/sm8450/adsp.mbn";
++};
++
++&remoteproc_cdsp {
++	status = "okay";
++	firmware-name = "qcom/sm8450/cdsp.mbn";
++};
++
++&remoteproc_mpss {
++	status = "okay";
++	firmware-name = "qcom/sm8450/modem.mbn";
++};
++
++&remoteproc_slpi {
++	status = "okay";
++	firmware-name = "qcom/sm8450/slpi.mbn";
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
 -- 
 2.35.1
 
