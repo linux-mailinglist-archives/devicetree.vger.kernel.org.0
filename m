@@ -2,187 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F804FACFC
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 10:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 578194FAD01
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 11:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235902AbiDJJBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 05:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
+        id S233827AbiDJJF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 05:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233301AbiDJJA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 05:00:59 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6B45C37F
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:58:49 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id d10so14821157edj.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 01:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JFX533NuQqTvrQqJuffC8j9JQ1wOAyBQkOCJGQOKmfY=;
-        b=ZUrgrIc/hCeQ93qMHjV9hA4zGWWEXT9nCNU3N/y0myeeik0/CNUUdx2MbAj6X+S8J3
-         X7281RVJj3qk7wY/JwCPK7rjYGGJy1TwE4SL8iVomkuW+CLdVcCvw7vxUJBWEGwmeXY7
-         hNVz5tW6f0xbdoPft7B74cgvDmCMFGdZYXmJW5l8VB090bVXGsfIyu+c1uMz4Xaybfc5
-         x4YUsSrd2veAI1oFDsuFQZdoJDkBWE/FZ1b6/RgxC0+vU6j7v3ds55di+Sv4h6ka+H5E
-         7fSjdqTNap2NafdcfTeaEv12LR3dtyLOKv1ezzCEDpyLNQTpeG7Af57jpuSWwbNgdDaT
-         FT6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=JFX533NuQqTvrQqJuffC8j9JQ1wOAyBQkOCJGQOKmfY=;
-        b=jPvW3no9eaFEJkZgr3oU+ML9TkAnrXorxVxpaU/f9xyVEufz3zn4CYwTfJHDoKeueE
-         sK9wXX83EmAV37+9CuJKTdfOllw3oQRpom2Cv+wKvm7Gzg5OZzrBRiKTdBjqpn9ZhOQx
-         p1DoNzhuaouHtRZUR4cZOEHo7t2bhpcn9YmwW27+LCQjB+ynuAmfL2hu2XNMVc8ulofz
-         OzGx6eO5bruozcrMGGDpzJMjn5pxKJxcGfccqOrkDoXZz0f8IdH8bnNUYXpThwBspvbR
-         CtmJyz4wMlEi+Uw/x8SSWVh5HCWVlVILgc8xCSee0zGUrXJBG7VqZfABHOqasASlLSbE
-         cNow==
-X-Gm-Message-State: AOAM5317ayrRGVxaCQI4LS9x7VaKmTGLCwMaOXovMds0jR4CmtK/18xG
-        1UBEqjdhar7SUt6LTjAQWKtuxg==
-X-Google-Smtp-Source: ABdhPJxKJRbTErQIz0J6+3cst4WNTzb+Ci+4ig6b0DTTHr1CXk0jvrivdMzRNRBK2zeOuxj/JQCHOA==
-X-Received: by 2002:a05:6402:d4c:b0:410:a415:fd95 with SMTP id ec12-20020a0564020d4c00b00410a415fd95mr27872574edb.288.1649581128102;
-        Sun, 10 Apr 2022 01:58:48 -0700 (PDT)
-Received: from [192.168.0.188] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id y17-20020a056402359100b0041926ea1e12sm13543144edc.53.2022.04.10.01.58.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 01:58:47 -0700 (PDT)
-Message-ID: <7659ba7c-1db8-1cdf-d969-d100785f20aa@linaro.org>
-Date:   Sun, 10 Apr 2022 10:58:46 +0200
+        with ESMTP id S229921AbiDJJFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 05:05:24 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E796BDCD;
+        Sun, 10 Apr 2022 02:03:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1649581382;
+        bh=PP14lou5/93ZSwesKhs/aFkM74lBQAXbbozD+ZJY6U4=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=ZkwGSJuNfcFO7nTjEEvntg+JMEeyHNAK9nZ+ZZimKMp8Gq6y6pg8/om/eqhKTLUlR
+         ozJm+O5ukBlOFSBeyc5D41uC+BsWweSN6dihEgvpSQwX87SuPq45qxBm+gTFjGEU1s
+         2P5EOKEiDqIrg0DRO6x4uBPGwu+3b0ewU4kzlfW0=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.0.33] ([46.223.3.230]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N3bSt-1o3Z4v1Mln-010g6J; Sun, 10
+ Apr 2022 11:03:02 +0200
+Subject: Re: [PATCH 1/5] tpm: add functions to set and unset the tpm chips
+ reset state
+To:     Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     peterhuewe@gmx.de, jarkko@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stefanb@linux.ibm.com,
+        p.rosenberger@kunbus.com, lukas@wunner.de
+References: <20220407111849.5676-1-LinoSanfilippo@gmx.de>
+ <20220407111849.5676-2-LinoSanfilippo@gmx.de>
+ <20220407142526.GW64706@ziepe.ca>
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Message-ID: <caf9dc77-8d81-9f79-9c4b-4b9e4fdf5b92@gmx.de>
+Date:   Sun, 10 Apr 2022 11:03:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] dt-bindings: firmware: convert Qualcomm SCM binding to
- the yaml
+In-Reply-To: <20220407142526.GW64706@ziepe.ca>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, Andy Gross <andy.gross@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211218194038.26913-1-david@ixit.cz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20211218194038.26913-1-david@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ITy5SCgzF2q6XF6Ozh6e95KHI6g1E9Q2aEPU72b+QaVsae4rdFe
+ UpWzx90EakqwrUVtrwPxgBfrd/AF2Uq3k1ZUoGc9lZBi6z+51nCotcC518HIH7Slqxu2iYC
+ /iXgE8U4Tc2howXJiTkrJveCP2SjrFv0/16udH+8886gib3VavEuoS+mVTCn0sCVpfzORpO
+ yo0kp2eVgafG1lL19CwTw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:shEpdg1hFZI=:KaypvA4/ER9yIL6Rp6c2LD
+ dMogNUJvuk5kBMe24Hv3CkktxEqBXRHwfOAkIro9PXr4JJRj2B+Tawgn9FQVlsJiz4lYyogwc
+ dlOgiKoP1jB7ww91GUvDfLREmRL4KN9iDtTYcIDG5nfLNJR4tBW9jfQbwA1ss3S2NTfDDarmw
+ AGSS59fTsPZACkfuZaVqYclOPY2RzkKVu7mHVq4gKhRAYlW2qBx6lvi2WzsxgnHbRol/5SXXX
+ f/eVgy+rKvc1JAF8XpruDKbAhGYG1PPaklQ4tEuWUINX3BFEOYMCST11VRuKj65wNrLAl56JA
+ I9kL9lB8+X72CpwveVEX0/MRyXcrpK2Bbqz3RL7hcZbYOEP9gOTaElqasd3VgXY0jROsllaMt
+ mV1Cxjt0kd2e6JwD6wz1VyZmQogqVNnhVwyrVeMk0Xlpggw9YYQZoeQ+/MaOSRHQd2yXnE1ui
+ COr85dYcdUBy2mVoXZBkc/Q8fGS85nnKgh6uduaw83AeSFfyu/wauDvzuVKL7hnJC1gk4IpkP
+ S4OUBPZuqB/9kucbwnblhUSR1/7i0lel7Zdfu3mi+2D577dvdUZO3Z+NNRF81SwmjbJz12Li7
+ NgFIYsueUqmVvl4YPkhHjKLa/T0Nj/nkI9TBgANWjc3nP9qXVbONdCYx1F+nNi/XZ9yr7aDUI
+ P5EkFg8S++SZqX6OHB4IU0X7JvHa67qI5eyAjX6mu8n8RsCYX3Wh7H5cBPYPGs17p8A2AYNTq
+ NrUHszI+seXjLeicAjCBHldiU0fTyGdxQqukeJ4m7fBjmqdHm9WkxAsCSRQe2lw+19vpykbR8
+ emRUADabTz2Mc3bM55jIfpareb4x5W9HMPPaXSbnecar4RyBKlhCFDoLzPQL4b3Na2CbFdD9m
+ 9d8CIhnYwl2/fmawhQtwpU2DlrFUeP/Ig2Nea2P2JwFhrYO6w3ILS3uPrH9ytHGIb/ELPqck/
+ EkLEr0OD55fzIpqVyNNo4GgKvoFP2VU1bnswy1T98cmsw7VgBgaoc9XbCr/i3Ykupgay1uPi2
+ Rm7QjcR1qsgjikDpt6ZzfW7UJ397/nN+ZS0nCw60EcGsf5ldkTpP1tBpgNlLBPzAd3Qbl3Kxt
+ XTt6csB/4I590M=
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/12/2021 20:40, David Heidelberg wrote:
-> Convert Qualcomm SCM firmware binding to the yaml format.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> This patch comes with followup question -> since not all definitions
-> follow `"qcom,scm-*chipset*", "qcom,scm"`, should I change them or adjust this
-> binding to cover all cases?
-> 
 
-Thank you for your patch. I hope you will continue to work on this and
-send a v2. :)
+Hi,
 
-There is something to discuss/improve.
-
->  .../devicetree/bindings/firmware/qcom,scm.txt |  54 ---------
->  .../bindings/firmware/qcom,scm.yaml           | 112 ++++++++++++++++++
->  2 files changed, 112 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.txt
->  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> 
-
-(...)
-
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,scm-apq8064
-> +          - qcom,scm-apq8084
-> +          - qcom,scm-ipq4019
-> +          - qcom,scm-ipq806x
-> +          - qcom,scm-ipq8074
-> +          - qcom,scm-mdm9607
-> +          - qcom,scm-msm8226
-> +          - qcom,scm-msm8660
-> +          - qcom,scm-msm8916
-> +          - qcom,scm-msm8953
-> +          - qcom,scm-msm8960
-> +          - qcom,scm-msm8974
-> +          - qcom,scm-msm8994
-> +          - qcom,scm-msm8996
-> +          - qcom,scm-msm8998
-> +          - qcom,scm-sc7180
-> +          - qcom,scm-sc7280
-> +          - qcom,scm-sdm845
-> +          - qcom,scm-sdx55
-> +          - qcom,scm-sm8150
-> +          - qcom,scm-sm8250
-> +          - qcom,scm-sm8350
-> +      - const: qcom,scm
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names: true
-> +
-> +  qcom,dload-mode:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: >
-
-No need for >
-
-> +      TCSR hardware block and offset of the download mode control register
-
-Could you define the items (and I think it has to be phandle-array in
-such case) like here for samsung,sysreg:
-https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
-
-This helps to validate the actual phandle.
-
-The DTSes have also few other properties (like reset-cells). They can be
-added in this commit, just please mention it in the commit msg.
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,scm-apq8064
-> +              - qcom,scm-msm8660
-> +              - qcom,scm-msm8960
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,scm-apq8084
-
-Based on the driver you also need (this can be in separate commit or
-just mention in commit msg):
-qcom,scm-mdm9607
+On 07.04.22 at 16:25, Jason Gunthorpe wrote:
+> On Thu, Apr 07, 2022 at 01:18:45PM +0200, Lino Sanfilippo wrote:
+>> Currently it is not possible to set the tpm chips reset state from with=
+in
+>> the driver. This is problematic if the chip is still in reset after the
+>> system comes up. This may e.g. happen if the reset line is pulled into
+>> reset state by a pin configuration in the device tree.
+>
+> This kind of system is badly misdesigned.
+>
+> TPM PCRs fundementally cannot work if the TPM reset line is under
+> software control.
+>
+> Jason
+>
 
 
-Best regards,
-Krzysztof
+you may be right about the misdesign, but as a matter of fact
+there are systems which have the TPMs reset line connected to a GPIO and n=
+ot
+the system reset. For those systems we should provide a way to let at leas=
+t the
+driver put the TPM out of reset (note that on those systems the TPM reset =
+can
+be triggered by software anyway by asserting/deasserting the GPIO line).
+
+
+Regards,
+Lino
