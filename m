@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A6514FAFA5
-	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 21:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C733A4FAFA7
+	for <lists+devicetree@lfdr.de>; Sun, 10 Apr 2022 21:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbiDJTL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Apr 2022 15:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
+        id S240556AbiDJTMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Apr 2022 15:12:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240449AbiDJTL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 15:11:26 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC524AE01
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 12:09:14 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id bg10so26893848ejb.4
-        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 12:09:14 -0700 (PDT)
+        with ESMTP id S240451AbiDJTMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Apr 2022 15:12:01 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFD34B1F4
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 12:09:50 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id u18so5188283eda.3
+        for <devicetree@vger.kernel.org>; Sun, 10 Apr 2022 12:09:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5JkRrTryndcAcm6OcrnDa89Ue3+33Y4QUxSNspsSwJQ=;
-        b=jQMOqQjK8ECeAuONJ/eXIeYZfEF/NsYeDNyFbfnhGWSeGGwv+7XBqOE74P+ScXh72y
-         WU7Saa5aanIF89yTRL5sDrSGsvA7MfRTCjGhb1dt07MO6L8VMsQgmHyAbLtmhtd4tjL4
-         7KmcfSU6oCSLkaa/sYfS/ESxMrPdH4DT+vaUtBvf1Sr62pAT8ApKbFyu1BDgfOdm1BLf
-         qv5MOrEr2lb6G7DOCkgPgzeb5+UmagvIzOhRzguCiQ69oDUi4Y3OMtXXjFUNoMsVQPPb
-         /IjAZdxUs2DZWo1KA+vlGNPz+KrOoFm6EXSP276vRN0Wa94ezixdIgTGJoc2ta9QFScC
-         q2Yg==
+        bh=UCq58/ccSena0g1xUtVue6jq9T/o1pRyEhKDx4EIiZo=;
+        b=YOebLUuZQEh/L3PBZLoVDtrhbO++jWpcWzAS2itGIU+KsYuAM8eVqbvv8G0r5RWoU9
+         JGbCCzNtHSSNT5ZzdDA+oISUaCxINveDJMfXQArUyDB8CdsXbHaQVMe2OhR/Pyw6trSI
+         TsGhb9DTakpT9paTNtgC3Az2WVjCTieWvMwr/mmqtrYjcvjxYQjIKLx6uviy06BxwO9M
+         bHBU1pH1F9l4NcQtH7bKDnHWQYR8YMquKHtWUvbjgutYUnlmnRJUgM6ZqPvQ7RmYNbUO
+         xnicRx04dREhtYEMSmjzPeOWakHDKHGgg99SbGlV7KbZ2+WIJEISsVtJT5vU5uSZR2eq
+         wjtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=5JkRrTryndcAcm6OcrnDa89Ue3+33Y4QUxSNspsSwJQ=;
-        b=tQyOmPT5+cqnRoOX7VPa6BxANmh4cZ9eV9mgmzNOl8l1yB+Y0kVK5CN65oov8w2IKB
-         ngcZF2+9EeJ/QKSc9tM5SiTrC1KcDM2edvstSiAx/pY2/FSJJ18IKHTU1l8ww5kDFijc
-         XKJ5Fe6PHMWu4b3qPrfHehKC/6xkh9Iu/zplVKgxFFeLXZcWjZZAHgawYcKepttcy4DX
-         ote6kSy0yDIwHV7VRZyUEWIk/STb2F0j4sqLn83t+/wgcg9QAotx63+9dnG/cLc7gC5b
-         qqllJUUtXTn6Bo94wYo/0eBCIQax7zkf5UMFvHJUotz8s7jiGfRTqaPZaTSIggNzAl8I
-         9grw==
-X-Gm-Message-State: AOAM533PRM+PRhWKN5Snni/1niGYQ5OVNN0mSZKHuBQNH+o4DcGBYCXw
-        S3YTHTfVIW0g3FeiSrfUacwELm48yyacIsyO
-X-Google-Smtp-Source: ABdhPJxIt1BQGH9pTziRD1CYXt68InR995ah5nQT3BEMylKyA5XH/+cyADgzqYFfZBUHr2W8I27hcQ==
-X-Received: by 2002:a17:907:7f0e:b0:6e8:7f57:2d96 with SMTP id qf14-20020a1709077f0e00b006e87f572d96mr4180838ejc.7.1649617752909;
-        Sun, 10 Apr 2022 12:09:12 -0700 (PDT)
+        bh=UCq58/ccSena0g1xUtVue6jq9T/o1pRyEhKDx4EIiZo=;
+        b=A+zTXcLMOzRkp+DrZnr9Yl8a3jdEQBWWYOaErMwvJ1gdF+b177NeZ/TEDcEsETXx6E
+         0MurOKyzyiTHy+ONEh5eoFJTj6Pi/iNdcWgOYi4hgVYAW0PfDgYioJrY8Tcig3e0+q1i
+         NABH/WKGX0SSrFr8IbVDB6ktguhaZUSfrFCVTKcajYqODukysBIRQGo8OVWdo/sApF7M
+         yRryYa0nKelahwL648ZGzThxh9W1diiQ9NhsDdj20NAAO4tDeYwyBe/1beeUR+YPeaiE
+         FWJ8ECFF8h+2jh/YSIv9ogD1b/QarCJhLDyeAbjItqyQvsjmLYHvtevKXw11nE9vuJmh
+         Tw3A==
+X-Gm-Message-State: AOAM532cMqQrRdNriRnevuTO2keNL2LoNeVii3OT5Rzp8VlSA4Xrbe7a
+        Wiwn8VjBhbNlk0PrzYZEPEekwA==
+X-Google-Smtp-Source: ABdhPJyTukAvJ2wPkY29KNL9yKOcjYbFkoTvfEVKuJy3p8NpBD//tYuzLN6UfgB8gsjWTEBHIhROOA==
+X-Received: by 2002:a05:6402:3554:b0:419:402f:f632 with SMTP id f20-20020a056402355400b00419402ff632mr29289044edd.1.1649617788857;
+        Sun, 10 Apr 2022 12:09:48 -0700 (PDT)
 Received: from [192.168.0.191] (xdsl-188-155-201-27.adslplus.ch. [188.155.201.27])
-        by smtp.gmail.com with ESMTPSA id a18-20020a1709063e9200b006e0527baa77sm11099291ejj.92.2022.04.10.12.09.12
+        by smtp.gmail.com with ESMTPSA id f7-20020a0564021e8700b0041d03a94f27sm5497808edf.66.2022.04.10.12.09.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Apr 2022 12:09:12 -0700 (PDT)
-Message-ID: <f147760b-aeca-0cc6-8d6a-eb2321839d1d@linaro.org>
-Date:   Sun, 10 Apr 2022 21:09:11 +0200
+        Sun, 10 Apr 2022 12:09:48 -0700 (PDT)
+Message-ID: <d5878fa7-b51c-8c6b-506a-116855a508fa@linaro.org>
+Date:   Sun, 10 Apr 2022 21:09:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/6] ARM: dts: qcom: mdm9615: User generic node name
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: msm8996: User generic node name
  for DMA
 Content-Language: en-US
 To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
@@ -64,14 +64,14 @@ To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
 References: <20220410175056.79330-1-singh.kuldeep87k@gmail.com>
- <20220410175056.79330-3-singh.kuldeep87k@gmail.com>
+ <20220410175056.79330-4-singh.kuldeep87k@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220410175056.79330-3-singh.kuldeep87k@gmail.com>
+In-Reply-To: <20220410175056.79330-4-singh.kuldeep87k@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,8 +85,8 @@ On 10/04/2022 19:50, Kuldeep Singh wrote:
 > 
 > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
 > ---
->  arch/arm/boot/dts/qcom-mdm9615.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 
